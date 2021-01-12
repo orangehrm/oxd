@@ -4,7 +4,7 @@
   "license": "GPL-3.0",
   "scripts": {
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook -o ./dist"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
