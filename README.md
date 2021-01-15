@@ -15,3 +15,33 @@ orange experience design is a component library that based orangehrm 5.x version
 * Dialogue 
 * Cards 
 * Filters 
+
+### Prerequisites
+
+- Yarn
+
+### Getting Started
+
+#### Install dependancies
+
+```
+yarn install
+```
+
+#### Start Storybook
+
+```
+yarn workspace oxd-storybook start
+```
+
+#### Build Storybook
+
+```
+yarn workspace oxd-storybook build
+```
+
+#### Linting
+
+```
+yarn workspace oxd-components lint
+```
