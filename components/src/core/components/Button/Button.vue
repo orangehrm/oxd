@@ -54,6 +54,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../styles";
+
 .oxd-button {
   font-weight: 600;
   border: 0;
@@ -63,13 +65,12 @@ export default {
   line-height: 1;
 }
 .oxd-button--primary {
-  color: white;
-  background-color: #1ea7fd;
+  color: $oxd-white-color;
+  background-color: $oxd-primary-one-color;
 }
 .oxd-button--secondary {
-  color: #333;
-  background-color: transparent;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
+  color: $oxd-white-color;
+  background-color: $oxd-secondary-one-color;
 }
 .oxd-button--small {
   font-size: 12px;
