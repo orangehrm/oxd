@@ -40,6 +40,11 @@ yarn workspace oxd-storybook start
 yarn workspace oxd-storybook build
 ```
 
+#### Unit Testing
+```
+yarn workspace oxd-components test:unit
+```
+
 #### Linting
 
 ```
