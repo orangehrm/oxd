@@ -1,0 +1,43 @@
+@import "../../../styles";
+@import "variables";
+
+.oxd-button {
+  font-family: $oxd-button-font-family;
+  font-weight: $oxd-button-font-weight;
+  border: 0;
+  border-radius: 3em;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 1;
+  padding-right: $oxd-button-horizontal-padding;
+  padding-left: $oxd-button-horizontal-padding;
+  min-width: $oxd-button-min-width;
+}
+
+.oxd-button--primary {
+  color: $oxd-white-color;
+  background-color: $oxd-primary-one-color;
+}
+
+.oxd-button--secondary {
+  color: $oxd-white-color;
+  background-color: $oxd-secondary-one-color;
+}
+
+.oxd-button--small {
+  font-size: $oxd-button-font-size--small;
+  padding-top: $oxd-button-vertical-padding--small;
+  padding-bottom: $oxd-button-vertical-padding--small;
+}
+
+.oxd-button--medium {
+  font-size: $oxd-button-font-size--medium;
+  padding-top: $oxd-button-vertical-padding--medium;
+  padding-bottom: $oxd-button-vertical-padding--medium;
+}
+
+.oxd-button--large {
+  font-size: $oxd-button-font-size--large;
+  padding-top: $oxd-button-vertical-padding--large;
+  padding-bottom: $oxd-button-vertical-padding--large;
+}

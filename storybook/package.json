@@ -8,17 +8,17 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
-    "@storybook/addon-actions": "^6.1.14",
-    "@storybook/addon-essentials": "^6.1.14",
-    "@storybook/addon-links": "^6.1.14",
-    "@storybook/addon-viewport": "^6.1.14",
-    "@storybook/vue": "^6.1.14",
+    "@storybook/addon-actions": "https://gitpkg.now.sh/zipme/storybook/addons/actions?30547456ff",
+    "@storybook/addon-essentials": "https://gitpkg.now.sh/zipme/storybook/addons/essentials?30547456ff",
+    "@storybook/addon-links": "https://gitpkg.now.sh/zipme/storybook/addons/links?30547456ff",
+    "@storybook/addon-viewport": "https://gitpkg.now.sh/zipme/storybook/addons/viewport?30547456ff",
+    "@storybook/vue3": "https://gitpkg.now.sh/zipme/storybook/app/vue3?30547456ff",
     "babel-loader": "^8.2.2",
     "sass": "^1.32.4",
     "sass-loader": "^10.1.1"
   },
   "dependencies": {
-    "vue": "^2.6.12",
-    "vue-template-compiler": "^2.6.12"
+    "vue": "^3.0.5",
+    "vue-loader": "^16.1.2"
   }
 }
