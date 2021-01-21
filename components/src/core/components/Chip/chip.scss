@@ -1,0 +1,19 @@
+@import "../../../styles";
+
+.oxd-chip {
+  border-radius: 3em;
+  line-height: 1;
+  font-weight: 400;
+  font-size: 12px;
+  padding: 5px;
+}
+
+.oxd-chip--default {
+  color: $oxd-white-color;
+  background-color: $oxd-interface-gray-color;
+}
+
+.oxd-chip--transparent {
+  border: 1px solid #e8eaef;
+  background-color: transparent;
+}
