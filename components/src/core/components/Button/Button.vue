@@ -47,41 +47,10 @@ export default {
 
   methods: {
     onClick() {
-      this.$emit("onClick");
+      this.$emit("click");
     },
   },
 };
 </script>
 
-<style lang="scss" scoped>
-@import "../../../styles";
-
-.oxd-button {
-  font-weight: 600;
-  border: 0;
-  border-radius: 3em;
-  cursor: pointer;
-  display: inline-block;
-  line-height: 1;
-}
-.oxd-button--primary {
-  color: $oxd-white-color;
-  background-color: $oxd-primary-one-color;
-}
-.oxd-button--secondary {
-  color: $oxd-white-color;
-  background-color: $oxd-secondary-one-color;
-}
-.oxd-button--small {
-  font-size: 12px;
-  padding: 10px 16px;
-}
-.oxd-button--medium {
-  font-size: 14px;
-  padding: 11px 20px;
-}
-.oxd-button--large {
-  font-size: 16px;
-  padding: 12px 24px;
-}
-</style>
+<style src="./button.scss" lang="scss" scoped></style>
