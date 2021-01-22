@@ -1,4 +1,4 @@
-import Button from "@orangehrm/oxd/core/components/Button/Button.vue";
+import Button from "@orangehrm/oxd/core/components/Button/Button";
 
 export default {
   title: "Example/Button",

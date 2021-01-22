@@ -1,10 +1,10 @@
-import Input from "@orangehrm/oxd/core/components/Input/Input.vue";
+import Input from "@orangehrm/oxd/core/components/Input/Input";
 
 export default {
   title: "Example/Input",
   component: Input,
   argTypes: {
-    backgroundColor: { control: "color" },
+    style: { control: { type: "object" } },
   },
 };
 
@@ -19,3 +19,8 @@ Default.args = {
   label: "Input",
 };
 
+export const Colored = Template.bind({});
+Colored.args = {
+  label: "Input",
+  style: { backgroundColor: "aliceblue" },
+};
