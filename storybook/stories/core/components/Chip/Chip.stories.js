@@ -1,4 +1,4 @@
-import Chip from "@orangehrm/oxd/core/components/Chip/Chip.vue";
+import Chip from "@orangehrm/oxd/core/components/Chip/Chip";
 
 export default {
   title: "Example/Chip",

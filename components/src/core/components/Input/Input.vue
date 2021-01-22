@@ -1,58 +1,51 @@
 <template>
-  <div>
-    <input
-      :class="classes"
-      :style="style"
-      :value="label"
-      @focus="onFocus"
-      @blur="onBlur"
-    />
-  </div>
+  <input
+    :class="classes"
+    :style="style"
+    :value="label"
+    @focus="onFocus"
+    @blur="onBlur"
+  />
 </template>
 
-<script>
+<script lang="ts">
 export default {
-  name: "oxd-input",
+  name: 'oxd-input',
 
   props: {
     label: {
       type: String,
       required: true,
     },
-    backgroundColor: {
-      type: String,
+    style: {
+      type: Object,
     },
   },
 
   data() {
     return {
-      focused: false,
+      focused: false as boolean,
     };
   },
 
   computed: {
     classes() {
       return {
-        "oxd-input": true,
-        "oxd-input--active": !this.focused,
-        "oxd-input--focus": this.focused,
-      };
-    },
-    style() {
-      return {
-        backgroundColor: this.backgroundColor,
+        'oxd-input': true,
+        'oxd-input--active': !this.focused,
+        'oxd-input--focus': this.focused,
       };
     },
   },
 
   methods: {
-    onFocus() {
+    onFocus(e: Event) {
       this.focused = true;
-      this.$emit("focus");
+      this.$emit('focus', e);
     },
-    onBlur() {
+    onBlur(e: Event) {
       this.focused = false;
-      this.$emit("blur");
+      this.$emit('blur', e);
     },
   },
 };

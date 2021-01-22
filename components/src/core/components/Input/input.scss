@@ -2,18 +2,13 @@
 @import "variables";
 
 .oxd-input {
-  font-size: $oxd-input-font-size;
-  font-weight: $oxd-input-font-weight;
-  border-radius: $oxd-input-border-radius;
-  box-sizing: border-box;
+  @include oxd-input-control;
   min-height: $oxd-input-min-height;
-  padding: 0.675rem 0.5rem;
-  color: $oxd-input-font-color;
-  line-height: $oxd-input-line-height;
 }
 
 .oxd-input--active {
   border: 1px solid #e8eaef;
+  box-shadow: 1px 1px 6px rgba(35, 35, 36, 0.12);
 }
 
 .oxd-input--focus {

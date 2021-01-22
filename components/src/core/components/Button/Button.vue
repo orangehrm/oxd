@@ -4,9 +4,11 @@
   </button>
 </template>
 
-<script>
+<script lang="ts">
+import {ButtonSize, SIZE_SMALL, SIZE_MEDIUM, SIZE_LARGE} from './types';
+
 export default {
-  name: "oxd-button",
+  name: 'oxd-button',
 
   props: {
     label: {
@@ -19,9 +21,9 @@ export default {
     },
     size: {
       type: String,
-      default: "medium",
-      validator: function(value) {
-        return ["small", "medium", "large"].indexOf(value) !== -1;
+      default: SIZE_MEDIUM,
+      validator: function(value: ButtonSize) {
+        return [SIZE_SMALL, SIZE_MEDIUM, SIZE_LARGE].indexOf(value) !== -1;
       },
     },
     backgroundColor: {
@@ -32,9 +34,9 @@ export default {
   computed: {
     classes() {
       return {
-        "oxd-button": true,
-        "oxd-button--primary": this.primary,
-        "oxd-button--secondary": !this.primary,
+        'oxd-button': true,
+        'oxd-button--primary': this.primary,
+        'oxd-button--secondary': !this.primary,
         [`oxd-button--${this.size}`]: true,
       };
     },
@@ -46,8 +48,8 @@ export default {
   },
 
   methods: {
-    onClick() {
-      this.$emit("click");
+    onClick(e: Event) {
+      this.$emit('click', e);
     },
   },
 };

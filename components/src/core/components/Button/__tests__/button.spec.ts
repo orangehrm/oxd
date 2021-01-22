@@ -1,12 +1,13 @@
-import { shallowMount } from "@vue/test-utils";
-import Button from "@orangehrm/oxd/core/components/Button/Button.vue";
+import {shallowMount} from '@vue/test-utils';
+import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 
-describe("Button.vue", () => {
-  it("renders OXD button", () => {
-    const label = "Button";
+describe('Button.vue', () => {
+  it('renders OXD button', () => {
+    const label = 'Button';
     const wrapper = shallowMount(Button, {
-      props: { label },
+      props: {label},
     });
     expect(wrapper.text()).toMatch(label);
+    expect(wrapper.html()).toMatchSnapshot();
   });
 });
