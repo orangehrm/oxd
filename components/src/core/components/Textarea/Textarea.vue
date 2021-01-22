@@ -37,6 +37,10 @@ export default {
     style: {
       type: Object,
     },
+    error: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -51,6 +55,7 @@ export default {
         'oxd-textarea': true,
         'oxd-textarea--active': !this.focused,
         'oxd-textarea--focus': this.focused,
+        'oxd-textarea--error': this.error,
         [`oxd-textarea--resize-${this.resize}`]: true,
       };
     },
