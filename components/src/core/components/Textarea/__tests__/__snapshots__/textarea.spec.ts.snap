@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Textarea.vue renders OXD Textarea 1`] = `<textarea class="oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical"></textarea>`;

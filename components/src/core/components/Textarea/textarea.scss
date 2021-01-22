@@ -1,5 +1,5 @@
-@import "../../../styles";
-@import "variables";
+@import '../../../styles';
+@import 'variables';
 
 .oxd-textarea {
   @include oxd-input-control;
@@ -9,12 +9,17 @@
 }
 
 .oxd-textarea--active {
-  border: 1px solid #e8eaef;
+  border: $oxd-textarea-border--active;
 }
 
 .oxd-textarea--focus {
-  border: 1px solid #929baa;
+  border: $oxd-textarea-border--focus;
   box-shadow: 1px 1px 6px rgba(35, 35, 36, 0.12);
+}
+
+.oxd-textarea--error {
+  border: $oxd-textarea-border--error;
+  box-shadow: 0 0 5px 0.2rem rgba(223, 9, 16, 0.1);
 }
 
 .oxd-textarea--resize-vertical {

@@ -1,26 +1,26 @@
-import Input from "@orangehrm/oxd/core/components/Input/Input";
+import Input from '@orangehrm/oxd/core/components/Input/Input';
 
 export default {
-  title: "Example/Input",
+  title: 'Example/Input',
   component: Input,
   argTypes: {
-    style: { control: { type: "object" } },
+    style: {control: {type: 'object'}},
   },
 };
 
-const Template = (args, { argTypes }) => ({
+const Template = (args, {argTypes}) => ({
   props: Object.keys(argTypes),
-  components: { "oxd-input": Input },
+  components: {'oxd-input': Input},
   template: '<oxd-input v-bind="$props" />',
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  label: "Input",
+  label: 'Input',
 };
 
 export const Colored = Template.bind({});
 Colored.args = {
-  label: "Input",
-  style: { backgroundColor: "aliceblue" },
+  label: 'Input',
+  style: {backgroundColor: 'aliceblue'},
 };
