@@ -1,11 +1,25 @@
 <template>
-  <button type="button" :class="classes" @click="onClick" :style="style">
+  <button
+    type="button"
+    :class="classes"
+    :style="style"
+    @click="onClick"
+    @mousedown="onMouseDown"
+    @mouseup="onMouseUp"
+  >
     {{ label }}
   </button>
 </template>
 
 <script lang="ts">
-import {ButtonSize, SIZE_SMALL, SIZE_MEDIUM, SIZE_LARGE} from './types';
+import {
+  ButtonSize,
+  ButtonType,
+  SIZES,
+  SIZE_MEDIUM,
+  TYPES,
+  TYPE_MAIN,
+} from './types';
 
 export default {
   name: 'oxd-button',
@@ -15,19 +29,22 @@ export default {
       type: String,
       required: true,
     },
-    primary: {
-      type: Boolean,
-      default: false,
+    type: {
+      type: String,
+      default: TYPE_MAIN,
+      validator: function(value: ButtonType) {
+        return TYPES.indexOf(value) !== -1;
+      },
     },
     size: {
       type: String,
       default: SIZE_MEDIUM,
       validator: function(value: ButtonSize) {
-        return [SIZE_SMALL, SIZE_MEDIUM, SIZE_LARGE].indexOf(value) !== -1;
+        return SIZES.indexOf(value) !== -1;
       },
     },
-    backgroundColor: {
-      type: String,
+    style: {
+      type: Object,
     },
   },
 
@@ -35,21 +52,22 @@ export default {
     classes() {
       return {
         'oxd-button': true,
-        'oxd-button--primary': this.primary,
-        'oxd-button--secondary': !this.primary,
         [`oxd-button--${this.size}`]: true,
-      };
-    },
-    style() {
-      return {
-        backgroundColor: this.backgroundColor,
+        [`oxd-button--${this.type}`]: true,
       };
     },
   },
 
   methods: {
     onClick(e: Event) {
+      console.log(e);
       this.$emit('click', e);
+    },
+    onMouseDown(e: Event) {
+      this.$emit('mousedown', e);
+    },
+    onMouseUp(e: Event) {
+      this.$emit('mouseup', e);
     },
   },
 };

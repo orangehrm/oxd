@@ -8,7 +8,7 @@ export default {
       control: {type: 'select', options: ['vertical', 'horizontal', 'none']},
     },
     style: {control: {type: 'object'}},
-    error: {control: {type: 'boolean'}},
+    hasError: {control: {type: 'boolean'}},
   },
 };
 
@@ -33,5 +33,5 @@ Colored.args = {
 export const Error = Template.bind({});
 Error.args = {
   label: 'Textarea',
-  error: true,
+  hasError: true,
 };

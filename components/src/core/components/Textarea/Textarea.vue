@@ -37,7 +37,7 @@ export default {
     style: {
       type: Object,
     },
-    error: {
+    hasError: {
       type: Boolean,
       default: false,
     },
@@ -55,7 +55,7 @@ export default {
         'oxd-textarea': true,
         'oxd-textarea--active': !this.focused,
         'oxd-textarea--focus': this.focused,
-        'oxd-textarea--error': this.error,
+        'oxd-textarea--error': this.hasError,
         [`oxd-textarea--resize-${this.resize}`]: true,
       };
     },

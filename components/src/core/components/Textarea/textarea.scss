@@ -4,7 +4,7 @@
 .oxd-textarea {
   @include oxd-input-control;
   min-height: $oxd-textarea-min-height;
-  scrollbar-color: #cfd3de #f6f5fb;
+  scrollbar-color: $oxd-textarea-scrollbar-color;
   scrollbar-width: thin;
 }
 
@@ -14,12 +14,12 @@
 
 .oxd-textarea--focus {
   border: $oxd-textarea-border--focus;
-  box-shadow: 1px 1px 6px rgba(35, 35, 36, 0.12);
+  box-shadow: $oxd-textarea-box-shadow--focus;
 }
 
 .oxd-textarea--error {
   border: $oxd-textarea-border--error;
-  box-shadow: 0 0 5px 0.2rem rgba(223, 9, 16, 0.1);
+  box-shadow: $oxd-textarea-box-shadow--error;
 }
 
 .oxd-textarea--resize-vertical {

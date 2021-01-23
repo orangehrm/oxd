@@ -20,6 +20,10 @@ export default {
     style: {
       type: Object,
     },
+    hasError: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -34,6 +38,7 @@ export default {
         'oxd-input': true,
         'oxd-input--active': !this.focused,
         'oxd-input--focus': this.focused,
+        'oxd-input--error': this.hasError,
       };
     },
   },

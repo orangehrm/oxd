@@ -8,3 +8,20 @@ $oxd-button-font-size--medium: 14px !default;
 $oxd-button-font-size--small: 12px !default;
 $oxd-button-font-weight: 600 !default;
 $oxd-button-font-family: $oxd-font-family !default;
+$oxd-button-font-color: $oxd-white-color !default;
+
+$oxd-button-color--main: $oxd-primary-one-color !default;
+$oxd-button-color--main-pressed: #ff6c03 !default;
+$oxd-button-color--main-hover: #ff8a36 !default;
+$oxd-button-color--main-inactive: $oxd-interface-gray-lighten-2-color !default;
+
+$oxd-button-color--secondary: $oxd-secondary-four-color !default;
+$oxd-button-color--secondary-pressed: #68a61d !default;
+$oxd-button-color--secondary-hover: #84d225 !default;
+$oxd-button-color--secondary-inactive: $oxd-interface-gray-lighten-2-color !default;
+
+$oxd-button-color--ghost: $oxd-secondary-four-color !default;
+$oxd-button-border--ghost: $oxd-border !default;
+$oxd-button-color--ghost-pressed: #68a61d !default;
+$oxd-button-color--ghost-hover: #84d225 !default;
+$oxd-button-color--ghost-inactive: $oxd-interface-gray-lighten-1-color !default;

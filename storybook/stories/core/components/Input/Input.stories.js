@@ -5,6 +5,7 @@ export default {
   component: Input,
   argTypes: {
     style: {control: {type: 'object'}},
+    hasError: {control: {type: 'boolean'}},
   },
 };
 
@@ -23,4 +24,10 @@ export const Colored = Template.bind({});
 Colored.args = {
   label: 'Input',
   style: {backgroundColor: 'aliceblue'},
+};
+
+export const Error = Template.bind({});
+Error.args = {
+  label: 'Input',
+  hasError: true,
 };
