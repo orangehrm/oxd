@@ -1,1 +1,6 @@
 $oxd-input-min-height: 45px !default;
+$oxd-input-border--active: $oxd-input-control-border--active;
+$oxd-input-border--focus: $oxd-input-control-border--focus;
+$oxd-input-border--error: $oxd-input-control-border--error;
+$oxd-input-box-shadow--focus: $oxd-input-control-box-shadow--focus !default;
+$oxd-input-box-shadow--error: $oxd-input-control-box-shadow--error !default;

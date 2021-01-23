@@ -1,5 +1,6 @@
-@import "../../../styles";
-@import "variables";
+@import '../../../styles';
+@import 'variables';
+@import 'mixins';
 
 .oxd-button {
   font-family: $oxd-button-font-family;
@@ -14,16 +15,58 @@
   min-width: $oxd-button-min-width;
 }
 
-.oxd-button--primary {
-  color: $oxd-white-color;
-  background-color: $oxd-primary-one-color;
+/* Main Button */
+.oxd-button--main {
+  @include oxd-button-color($oxd-button-color--main);
 }
 
+.oxd-button--main:hover {
+  @include oxd-button-color($oxd-button-color--main-hover);
+}
+
+.oxd-button--main:active {
+  @include oxd-button-color($oxd-button-color--main-pressed);
+}
+
+.oxd-button--main:disabled {
+  @include oxd-button-color($oxd-button-color--main-inactive);
+}
+
+/* Secondary Button */
 .oxd-button--secondary {
-  color: $oxd-white-color;
-  background-color: $oxd-secondary-one-color;
+  @include oxd-button-color($oxd-button-color--secondary);
 }
 
+.oxd-button--secondary:hover {
+  @include oxd-button-color($oxd-button-color--secondary-hover);
+}
+
+.oxd-button--secondary:active {
+  @include oxd-button-color($oxd-button-color--secondary-pressed);
+}
+
+.oxd-button--secondary:disabled {
+  @include oxd-button-color($oxd-button-color--secondary-inactive);
+}
+
+/* Ghost Button */
+.oxd-button--ghost {
+  @include oxd-button-color-ghost($oxd-button-color--ghost);
+}
+
+.oxd-button--ghost:hover {
+  @include oxd-button-color-ghost($oxd-button-color--ghost-hover);
+}
+
+.oxd-button--ghost:active {
+  @include oxd-button-color-ghost($oxd-button-color--ghost-pressed);
+}
+
+.oxd-button--ghost:disabled {
+  @include oxd-button-color-ghost($oxd-button-color--ghost-inactive);
+}
+
+/* Button Sizes */
 .oxd-button--small {
   font-size: $oxd-button-font-size--small;
   padding-top: $oxd-button-vertical-padding--small;

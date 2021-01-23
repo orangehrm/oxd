@@ -1,5 +1,5 @@
-@import "../../../styles";
-@import "variables";
+@import '../../../styles';
+@import 'variables';
 
 .oxd-input {
   @include oxd-input-control;
@@ -7,11 +7,15 @@
 }
 
 .oxd-input--active {
-  border: 1px solid #e8eaef;
-  box-shadow: 1px 1px 6px rgba(35, 35, 36, 0.12);
+  border: $oxd-input-border--active;
 }
 
 .oxd-input--focus {
-  border: 1px solid #929baa;
-  box-shadow: 1px 1px 6px rgba(35, 35, 36, 0.12);
+  border: $oxd-input-border--focus;
+  box-shadow: $oxd-input-box-shadow--focus;
+}
+
+.oxd-input--error {
+  border: $oxd-input-border--error;
+  box-shadow: $oxd-input-box-shadow--error;
 }
