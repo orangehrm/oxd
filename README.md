@@ -19,6 +19,7 @@ orange experience design is a component library that based orangehrm 5.x version
 ### Prerequisites
 
 - Yarn
+- [Visual Studio Code](https://code.visualstudio.com/) with [Vetur extension](https://github.com/vuejs/vetur)
 
 ### Getting Started
 
@@ -41,6 +42,7 @@ yarn workspace oxd-storybook build
 ```
 
 #### Unit Testing
+
 ```
 yarn workspace oxd-components test:unit
 ```

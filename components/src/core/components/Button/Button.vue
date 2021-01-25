@@ -12,6 +12,7 @@
 </template>
 
 <script lang="ts">
+import {defineComponent} from 'vue';
 import {
   ButtonSize,
   ButtonType,
@@ -21,7 +22,7 @@ import {
   TYPE_MAIN,
 } from './types';
 
-export default {
+export default defineComponent({
   name: 'oxd-button',
 
   props: {
@@ -49,7 +50,7 @@ export default {
   },
 
   computed: {
-    classes() {
+    classes(): object {
       return {
         'oxd-button': true,
         [`oxd-button--${this.size}`]: true,
@@ -70,7 +71,7 @@ export default {
       this.$emit('mouseup', e);
     },
   },
-};
+});
 </script>
 
 <style src="./button.scss" lang="scss" scoped></style>
