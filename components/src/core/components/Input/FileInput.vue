@@ -22,10 +22,6 @@ export default defineComponent({
   name: 'oxd-file-input',
 
   props: {
-    label: {
-      type: String,
-      required: true,
-    },
     style: {
       type: Object,
     },

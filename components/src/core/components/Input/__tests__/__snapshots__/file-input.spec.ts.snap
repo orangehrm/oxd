@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileInput.vue renders OXD FileInput 1`] = `
+<input type="file" class="oxd-file-input">
+<div class="oxd-input oxd-file-div oxd-input--active"></div>
+`;
+
+exports[`FileInput.vue should renders OXD FileInput with custom color 1`] = `
+<input type="file" class="oxd-file-input">
+<div class="oxd-input oxd-file-div oxd-input--active" style="background-color: aliceblue;"></div>
+`;
+
+exports[`FileInput.vue should renders OXD FileInput with error 1`] = `
+<input type="file" class="oxd-file-input">
+<div class="oxd-input oxd-file-div oxd-input--active oxd-input--error"></div>
+`;
