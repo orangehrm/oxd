@@ -9,6 +9,7 @@
 </template>
 
 <script lang="ts">
+import {defineComponent} from 'vue';
 import {
   TextareaResize,
   RESIZE_NONE,
@@ -16,7 +17,11 @@ import {
   RESIZE_HORIZONTAL,
 } from './types';
 
-export default {
+export interface State {
+  focused: boolean;
+}
+
+export default defineComponent({
   name: 'oxd-textarea',
 
   props: {
@@ -43,14 +48,14 @@ export default {
     },
   },
 
-  data() {
+  data: (): State => {
     return {
       focused: false,
     };
   },
 
   computed: {
-    classes() {
+    classes(): object {
       return {
         'oxd-textarea': true,
         'oxd-textarea--active': !this.focused,
@@ -71,7 +76,7 @@ export default {
       this.$emit('blur', e);
     },
   },
-};
+});
 </script>
 
 <style src="./textarea.scss" lang="scss" scoped></style>
