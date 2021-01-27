@@ -1,0 +1,35 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-textarea {
+  @include oxd-input-control;
+  min-height: $oxd-textarea-min-height;
+  scrollbar-color: $oxd-textarea-scrollbar-color;
+  scrollbar-width: thin;
+}
+
+.oxd-textarea--active {
+  border: $oxd-textarea-border--active;
+}
+
+.oxd-textarea--focus {
+  border: $oxd-textarea-border--focus;
+  box-shadow: $oxd-textarea-box-shadow--focus;
+}
+
+.oxd-textarea--error {
+  border: $oxd-textarea-border--error;
+  box-shadow: $oxd-textarea-box-shadow--error;
+}
+
+.oxd-textarea--resize-vertical {
+  resize: vertical;
+}
+
+.oxd-textarea--resize-horizontal {
+  resize: horizontal;
+}
+
+.oxd-textarea--resize-none {
+  resize: none;
+}

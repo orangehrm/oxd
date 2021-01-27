@@ -1,9 +1,12 @@
-import Input from '@orangehrm/oxd/core/components/Input/Input';
+import Textarea from '@orangehrm/oxd/core/components/Textarea/Textarea';
 
 export default {
-  title: 'Example/Input',
-  component: Input,
+  title: 'Example/Textarea',
+  component: Textarea,
   argTypes: {
+    resize: {
+      control: {type: 'select', options: ['vertical', 'horizontal', 'none']},
+    },
     style: {control: {type: 'object'}},
     hasError: {control: {type: 'boolean'}},
   },
@@ -11,23 +14,24 @@ export default {
 
 const Template = (args, {argTypes}) => ({
   props: Object.keys(argTypes),
-  components: {'oxd-input': Input},
-  template: '<oxd-input v-bind="$props" />',
+  components: {'oxd-textarea': Textarea},
+  template: '<oxd-textarea v-bind="$props" />',
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  label: 'Input',
+  label: 'Textarea',
+  style: {},
 };
 
 export const Colored = Template.bind({});
 Colored.args = {
-  label: 'Input',
+  label: 'Textarea',
   style: {backgroundColor: 'aliceblue'},
 };
 
 export const Error = Template.bind({});
 Error.args = {
-  label: 'Input',
+  label: 'Textarea',
   hasError: true,
 };

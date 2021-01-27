@@ -1,0 +1,11 @@
+@mixin oxd-input-control {
+  box-sizing: border-box;
+  font-family: $oxd-input-control-font-family;
+  color: $oxd-input-control-font-color;
+  font-size: $oxd-input-control-font-size;
+  font-weight: $oxd-input-control-font-weight;
+  line-height: $oxd-input-control-line-height;
+  border-radius: $oxd-input-control-border-radius;
+  padding: $oxd-input-control-vertical-padding
+    $oxd-input-control-horizontal-padding;
+}

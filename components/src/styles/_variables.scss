@@ -1,0 +1,20 @@
+/* Global */
+$oxd-border: 1px solid;
+$oxd-scrollbar-color: $oxd-interface-gray-lighten-1-color
+  $oxd-background-pastel-white-color;
+
+/* Input Control */
+$oxd-input-control-font-size: 12px !default;
+$oxd-input-control-font-color: $oxd-interface-gray-darken-1-color !default;
+$oxd-input-control-font-weight: 400 !default;
+$oxd-input-control-border-radius: 0.65rem !default;
+$oxd-input-control-line-height: 1.5 !default;
+$oxd-input-control-font-family: $oxd-font-family !default;
+$oxd-input-control-horizontal-padding: 0.5rem !default;
+$oxd-input-control-vertical-padding: 0.675rem !default;
+$oxd-input-control-border--active: $oxd-border
+  $oxd-interface-gray-lighten-2-color !default;
+$oxd-input-control-border--focus: $oxd-border $oxd-interface-gray-color !default;
+$oxd-input-control-border--error: $oxd-border $oxd-feedback-error-color !default;
+$oxd-input-control-box-shadow--focus: 1px 1px 6px rgba(35, 35, 36, 0.12) !default;
+$oxd-input-control-box-shadow--error: 0 0 5px 0.2rem rgba(223, 9, 16, 0.1) !default;

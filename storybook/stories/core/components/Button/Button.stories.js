@@ -1,41 +1,72 @@
-import Button from "@orangehrm/oxd/core/components/Button/Button.vue";
+import Button from '@orangehrm/oxd/core/components/Button/Button';
+import {
+  SIZES,
+  TYPES,
+  SIZE_LARGE,
+  SIZE_SMALL,
+  TYPE_MAIN,
+  TYPE_SECONDARY,
+  TYPE_GHOST,
+} from '@orangehrm/oxd/core/components/Button/types';
 
 export default {
-  title: "Example/Button",
+  title: 'Example/Button',
   component: Button,
   argTypes: {
-    backgroundColor: { control: "color" },
     size: {
-      control: { type: "select", options: ["small", "medium", "large"] },
+      control: {type: 'select', options: SIZES},
     },
+    type: {
+      control: {type: 'select', options: TYPES},
+    },
+    style: {control: {type: 'object'}},
   },
 };
 
-const Template = (args, { argTypes }) => ({
+const Template = (args, {argTypes}) => ({
   props: Object.keys(argTypes),
-  components: { "oxd-button": Button },
-  template: '<oxd-button @onClick="onClick" v-bind="$props" />',
+  components: {'oxd-button': Button},
+  template: '<oxd-button v-bind="$props" />',
 });
 
-export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: "Button",
+export const Main = Template.bind({});
+Main.args = {
+  type: TYPE_MAIN,
+  label: 'Button',
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  label: "Button",
+  type: TYPE_SECONDARY,
+  label: 'Button',
+};
+
+export const Ghost = Template.bind({});
+Ghost.args = {
+  type: TYPE_GHOST,
+  label: 'Button',
 };
 
 export const Large = Template.bind({});
 Large.args = {
-  size: "large",
-  label: "Button",
+  size: SIZE_LARGE,
+  label: 'Button',
 };
 
 export const Small = Template.bind({});
 Small.args = {
-  size: "small",
-  label: "Button",
+  size: SIZE_SMALL,
+  label: 'Button',
+};
+
+export const CustomColor = Template.bind({});
+CustomColor.args = {
+  label: 'Button',
+  style: {backgroundColor: 'palegreen'},
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  label: 'Button',
+  disabled: true,
 };

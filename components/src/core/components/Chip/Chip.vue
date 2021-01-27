@@ -4,9 +4,9 @@
   </span>
 </template>
 
-<script>
+<script lang="ts">
 export default {
-  name: "oxd-chip",
+  name: 'oxd-chip',
 
   props: {
     label: {
@@ -25,9 +25,9 @@ export default {
   computed: {
     classes() {
       return {
-        "oxd-chip": true,
-        "oxd-chip--default": !this.transparent,
-        "oxd-chip--transparent": this.transparent,
+        'oxd-chip': true,
+        'oxd-chip--default': !this.transparent,
+        'oxd-chip--transparent': this.transparent,
       };
     },
     style() {

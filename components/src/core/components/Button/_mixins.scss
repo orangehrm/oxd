@@ -1,0 +1,10 @@
+@mixin oxd-button-color($background-color) {
+  color: $oxd-button-font-color;
+  background-color: $background-color;
+}
+
+@mixin oxd-button-color-ghost($color) {
+  color: $color;
+  border: $oxd-button-border--ghost;
+  background-color: transparent;
+}

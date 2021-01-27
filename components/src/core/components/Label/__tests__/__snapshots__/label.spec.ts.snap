@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Label.vue renders OXD Label 1`] = `<label class="oxd-label">Label</label>`;
+
+exports[`Label.vue should renders OXD Label with custom color 1`] = `<label class="oxd-label" style="color: red;">Label</label>`;

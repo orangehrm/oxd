@@ -1,5 +1,5 @@
 <template>
-  <input
+  <textarea
     :class="classes"
     :style="style"
     :value="label"
@@ -10,18 +10,34 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import {
+  TextareaResize,
+  RESIZE_NONE,
+  RESIZE_VERTICAL,
+  RESIZE_HORIZONTAL,
+} from './types';
 
 export interface State {
   focused: boolean;
 }
 
 export default defineComponent({
-  name: 'oxd-input',
+  name: 'oxd-textarea',
 
   props: {
     label: {
       type: String,
       required: true,
+    },
+    resize: {
+      type: String,
+      default: RESIZE_VERTICAL,
+      validator: function(value: TextareaResize) {
+        return (
+          [RESIZE_VERTICAL, RESIZE_HORIZONTAL, RESIZE_NONE].indexOf(value) !==
+          -1
+        );
+      },
     },
     style: {
       type: Object,
@@ -32,7 +48,7 @@ export default defineComponent({
     },
   },
 
-  data(): State {
+  data: (): State => {
     return {
       focused: false,
     };
@@ -41,10 +57,11 @@ export default defineComponent({
   computed: {
     classes(): object {
       return {
-        'oxd-input': true,
-        'oxd-input--active': !this.focused,
-        'oxd-input--focus': this.focused,
-        'oxd-input--error': this.hasError,
+        'oxd-textarea': true,
+        'oxd-textarea--active': !this.focused,
+        'oxd-textarea--focus': this.focused,
+        'oxd-textarea--error': this.hasError,
+        [`oxd-textarea--resize-${this.resize}`]: true,
       };
     },
   },
@@ -62,4 +79,4 @@ export default defineComponent({
 });
 </script>
 
-<style src="./input.scss" lang="scss" scoped></style>
+<style src="./textarea.scss" lang="scss" scoped></style>

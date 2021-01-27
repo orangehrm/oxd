@@ -1,56 +1,77 @@
 <template>
-  <button type="button" :class="classes" @click="onClick" :style="style">
+  <button
+    type="button"
+    :class="classes"
+    :style="style"
+    @click="onClick"
+    @mousedown="onMouseDown"
+    @mouseup="onMouseUp"
+  >
     {{ label }}
   </button>
 </template>
 
-<script>
-export default {
-  name: "oxd-button",
+<script lang="ts">
+import {defineComponent} from 'vue';
+import {
+  ButtonSize,
+  ButtonType,
+  SIZES,
+  SIZE_MEDIUM,
+  TYPES,
+  TYPE_MAIN,
+} from './types';
+
+export default defineComponent({
+  name: 'oxd-button',
 
   props: {
     label: {
       type: String,
       required: true,
     },
-    primary: {
-      type: Boolean,
-      default: false,
+    type: {
+      type: String,
+      default: TYPE_MAIN,
+      validator: function(value: ButtonType) {
+        return TYPES.indexOf(value) !== -1;
+      },
     },
     size: {
       type: String,
-      default: "medium",
-      validator: function(value) {
-        return ["small", "medium", "large"].indexOf(value) !== -1;
+      default: SIZE_MEDIUM,
+      validator: function(value: ButtonSize) {
+        return SIZES.indexOf(value) !== -1;
       },
     },
-    backgroundColor: {
-      type: String,
+    style: {
+      type: Object,
     },
   },
 
   computed: {
-    classes() {
+    classes(): object {
       return {
-        "oxd-button": true,
-        "oxd-button--primary": this.primary,
-        "oxd-button--secondary": !this.primary,
+        'oxd-button': true,
         [`oxd-button--${this.size}`]: true,
-      };
-    },
-    style() {
-      return {
-        backgroundColor: this.backgroundColor,
+        [`oxd-button--${this.type}`]: true,
       };
     },
   },
 
   methods: {
-    onClick() {
-      this.$emit("click");
+    onClick(e: Event) {
+      console.log(e);
+      this.$emit('click', e);
+    },
+    onMouseDown(e: Event) {
+      this.$emit('mousedown', e);
+    },
+    onMouseUp(e: Event) {
+      this.$emit('mouseup', e);
     },
   },
-};
+});
 </script>
 
 <style src="./button.scss" lang="scss" scoped></style>
