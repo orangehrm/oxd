@@ -1,7 +1,7 @@
 /* Global */
-$oxd-border: 1px solid;
+$oxd-border: 1px solid !default;
 $oxd-scrollbar-color: $oxd-interface-gray-lighten-1-color
-  $oxd-background-pastel-white-color;
+  $oxd-background-pastel-white-color !default;
 
 /* Input Control */
 $oxd-input-control-font-size: 12px !default;
