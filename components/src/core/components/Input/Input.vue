@@ -1,11 +1,5 @@
 <template>
-  <input
-    :class="classes"
-    :style="style"
-    :value="label"
-    @focus="onFocus"
-    @blur="onBlur"
-  />
+  <input :class="classes" :style="style" @focus="onFocus" @blur="onBlur" />
 </template>
 
 <script lang="ts">
@@ -19,10 +13,6 @@ export default defineComponent({
   name: 'oxd-input',
 
   props: {
-    label: {
-      type: String,
-      required: true,
-    },
     style: {
       type: Object,
     },

@@ -17,17 +17,17 @@ const Template = (args, {argTypes}) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  label: 'Input',
+  value: 'Input',
 };
 
 export const Colored = Template.bind({});
 Colored.args = {
-  label: 'Input',
+  value: 'Input',
   style: {backgroundColor: 'aliceblue'},
 };
 
 export const Error = Template.bind({});
 Error.args = {
-  label: 'Input',
+  value: 'Input',
   hasError: true,
 };
