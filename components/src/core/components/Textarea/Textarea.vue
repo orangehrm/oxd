@@ -1,11 +1,5 @@
 <template>
-  <textarea
-    :class="classes"
-    :style="style"
-    :value="label"
-    @focus="onFocus"
-    @blur="onBlur"
-  />
+  <textarea :class="classes" :style="style" @focus="onFocus" @blur="onBlur" />
 </template>
 
 <script lang="ts">
@@ -25,10 +19,6 @@ export default defineComponent({
   name: 'oxd-textarea',
 
   props: {
-    label: {
-      type: String,
-      required: true,
-    },
     resize: {
       type: String,
       default: RESIZE_VERTICAL,

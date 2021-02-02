@@ -3,25 +3,25 @@ import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 
 describe('Input.vue', () => {
   it('renders OXD Input', () => {
-    const label = 'Input';
+    const value = 'Input';
     const wrapper = mount(Input, {
-      props: {label},
+      props: {label: value},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('should renders OXD Input with custom color', () => {
-    const label = 'Input';
+    const value = 'Input';
     const wrapper = mount(Input, {
-      props: {label, style: {backgroundColor: 'aliceblue'}},
+      props: {label: value, style: {backgroundColor: 'aliceblue'}},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('should renders OXD Input with error', () => {
-    const label = 'Input';
+    const value = 'Input';
     const wrapper = mount(Input, {
-      props: {label, hasError: true},
+      props: {label: value, hasError: true},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
