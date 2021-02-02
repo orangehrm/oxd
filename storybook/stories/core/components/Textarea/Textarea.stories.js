@@ -20,18 +20,18 @@ const Template = (args, {argTypes}) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  label: 'Textarea',
+  value: 'Textarea',
   style: {},
 };
 
 export const Colored = Template.bind({});
 Colored.args = {
-  label: 'Textarea',
+  value: 'Textarea',
   style: {backgroundColor: 'aliceblue'},
 };
 
 export const Error = Template.bind({});
 Error.args = {
-  label: 'Textarea',
+  value: 'Textarea',
   hasError: true,
 };
