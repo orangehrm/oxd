@@ -1,0 +1,7 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-divider {
+  border: 0;
+  border-top: $oxd-divider-border $oxd-divider-color;
+}
