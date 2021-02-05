@@ -27,3 +27,8 @@ export const Error = Template.bind({});
 Error.args = {
   hasError: true,
 };
+
+export const Labled = Template.bind({});
+Labled.args = {
+  label: 'Browse',
+};

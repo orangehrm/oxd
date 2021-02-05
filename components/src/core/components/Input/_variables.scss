@@ -4,3 +4,11 @@ $oxd-input-border--focus: $oxd-input-control-border--focus !default;
 $oxd-input-border--error: $oxd-input-control-border--error !default;
 $oxd-input-box-shadow--focus: $oxd-input-control-box-shadow--focus !default;
 $oxd-input-box-shadow--error: $oxd-input-control-box-shadow--error !default;
+
+$oxd-file-button-background-color: $oxd-interface-gray-lighten-2-color !default;
+$oxd-file-button-color: $oxd-interface-gray-darken-1-color !default;
+$oxd-file-button-font-size: 0.875rem;
+$oxd-file-button-font-weight: 600;
+$oxd-file-button-margin-vertical: 4px;
+$oxd-file-button-margin-left: 4px;
+$oxd-file-button-padding-horizontal: 2rem;

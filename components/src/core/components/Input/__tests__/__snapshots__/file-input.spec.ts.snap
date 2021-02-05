@@ -2,15 +2,32 @@
 
 exports[`FileInput.vue renders OXD FileInput 1`] = `
 <input type="file" class="oxd-file-input">
-<div class="oxd-input oxd-file-div oxd-input--active"></div>
+<div class="oxd-input oxd-file-div oxd-input--active">
+  <!--v-if-->
+  <div class="oxd-file-input-div"></div>
+</div>
+`;
+
+exports[`FileInput.vue should renders OXD FileInput with browse button 1`] = `
+<input type="file" class="oxd-file-input">
+<div class="oxd-input oxd-file-div oxd-input--active">
+  <div class="oxd-file-button">Browse</div>
+  <div class="oxd-file-input-div"></div>
+</div>
 `;
 
 exports[`FileInput.vue should renders OXD FileInput with custom color 1`] = `
 <input type="file" class="oxd-file-input">
-<div class="oxd-input oxd-file-div oxd-input--active" style="background-color: aliceblue;"></div>
+<div class="oxd-input oxd-file-div oxd-input--active" style="background-color: aliceblue;">
+  <!--v-if-->
+  <div class="oxd-file-input-div"></div>
+</div>
 `;
 
 exports[`FileInput.vue should renders OXD FileInput with error 1`] = `
 <input type="file" class="oxd-file-input">
-<div class="oxd-input oxd-file-div oxd-input--active oxd-input--error"></div>
+<div class="oxd-input oxd-file-div oxd-input--active oxd-input--error">
+  <!--v-if-->
+  <div class="oxd-file-input-div"></div>
+</div>
 `;

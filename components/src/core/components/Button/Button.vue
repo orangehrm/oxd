@@ -1,12 +1,5 @@
 <template>
-  <button
-    type="button"
-    :class="classes"
-    :style="style"
-    @click="onClick"
-    @mousedown="onMouseDown"
-    @mouseup="onMouseUp"
-  >
+  <button type="button" :class="classes" :style="style" @click="onClick">
     {{ label }}
   </button>
 </template>
@@ -49,6 +42,9 @@ export default defineComponent({
     },
   },
 
+  // https://v3.vuejs.org/guide/migration/v-on-native-modifier-removed.html#overview
+  emits: ['click'],
+
   computed: {
     classes(): object {
       return {
@@ -61,14 +57,9 @@ export default defineComponent({
 
   methods: {
     onClick(e: Event) {
-      console.log(e);
+      e.stopPropagation();
+      e.preventDefault();
       this.$emit('click', e);
-    },
-    onMouseDown(e: Event) {
-      this.$emit('mousedown', e);
-    },
-    onMouseUp(e: Event) {
-      this.$emit('mouseup', e);
     },
   },
 });

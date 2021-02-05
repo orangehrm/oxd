@@ -8,12 +8,12 @@
 import {defineComponent} from 'vue';
 
 export default defineComponent({
-  name: 'oxd-form-row',
+  name: 'oxd-form-actions',
 
   computed: {
     classes() {
       return {
-        'oxd-form-row': true,
+        'oxd-form-actions': true,
       };
     },
   },

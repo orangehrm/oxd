@@ -1,5 +1,12 @@
 <template>
-  <input :class="classes" :style="style" @focus="onFocus" @blur="onBlur" />
+  <input
+    :class="classes"
+    :style="style"
+    :value="modelValue"
+    @focus="onFocus"
+    @blur="onBlur"
+    @input="onInput"
+  />
 </template>
 
 <script lang="ts">
@@ -13,6 +20,8 @@ export default defineComponent({
   name: 'oxd-input',
 
   props: {
+    // https://v3.vuejs.org/guide/migration/v-model.html#overview
+    modelValue: {},
     style: {
       type: Object,
     },
@@ -47,6 +56,11 @@ export default defineComponent({
     onBlur(e: Event) {
       this.focused = false;
       this.$emit('blur', e);
+    },
+    onInput(e: Event) {
+      e.preventDefault();
+      this.$emit('update:modelValue', (e.target as HTMLInputElement).value);
+      this.$emit('input', e);
     },
   },
 });

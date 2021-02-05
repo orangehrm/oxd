@@ -22,4 +22,11 @@ describe('FileInput.vue', () => {
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
+
+  it('should renders OXD FileInput with browse button', () => {
+    const wrapper = mount(FileInput, {
+      props: {label: 'Browse'},
+    });
+    expect(wrapper.html()).toMatchSnapshot();
+  });
 });
