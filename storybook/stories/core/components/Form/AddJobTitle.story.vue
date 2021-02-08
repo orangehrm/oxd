@@ -70,7 +70,7 @@ export default {
 
   data() {
     return {
-      jobTitle: initialJobTitle,
+      jobTitle: {...initialJobTitle},
     };
   },
 

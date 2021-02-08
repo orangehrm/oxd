@@ -48,6 +48,18 @@ export default defineComponent({
 
   emits: ['click', 'focus', 'blur', 'input', 'update:modelValue'],
 
+  watch: {
+    modelValue(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        if (newValue !== undefined && newValue !== null) {
+          this.inputValue = newValue.name;
+        } else {
+          this.inputValue = '';
+        }
+      }
+    },
+  },
+
   computed: {
     classes(): object {
       return {
