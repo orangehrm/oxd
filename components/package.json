@@ -4,7 +4,7 @@
   "license": "GPL-3.0",
   "scripts": {
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint",
+    "lint": "NODE_ENV=production vue-cli-service lint",
     "tsc": "tsc"
   },
   "dependencies": {

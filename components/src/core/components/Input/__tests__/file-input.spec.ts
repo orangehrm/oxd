@@ -25,7 +25,7 @@ describe('FileInput.vue', () => {
 
   it('should renders OXD FileInput with browse button', () => {
     const wrapper = mount(FileInput, {
-      props: {label: 'Browse'},
+      props: {buttonLabel: 'Browse'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });

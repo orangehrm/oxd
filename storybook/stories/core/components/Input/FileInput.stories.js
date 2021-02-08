@@ -30,5 +30,5 @@ Error.args = {
 
 export const Labled = Template.bind({});
 Labled.args = {
-  label: 'Browse',
+  buttonLabel: 'Browse',
 };
