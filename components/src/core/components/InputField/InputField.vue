@@ -11,6 +11,7 @@
       :hasError="hasError"
       :is="component"
       :buttonLabel="buttonLabel"
+      v-bind="$attrs"
     ></component>
   </oxd-form-group>
 </template>
@@ -27,6 +28,7 @@ import {Types, Components, TYPES, TYPE_INPUT, TYPE_MAP} from './types';
 
 export default defineComponent({
   name: 'oxd-input-field',
+  inheritAttrs: false,
 
   components: {
     'oxd-form-group': FormGroup,
