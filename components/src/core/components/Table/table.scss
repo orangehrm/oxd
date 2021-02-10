@@ -1,0 +1,10 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-table {
+  border-collapse: collapse;
+  color: $oxd-table-font-color;
+  font-family: $oxd-table-font-family;
+  font-size: $oxd-table-font-size;
+  //   display: flex;
+}

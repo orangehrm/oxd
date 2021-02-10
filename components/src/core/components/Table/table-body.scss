@@ -1,0 +1,10 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-table-body {
+  font-weight: $oxd-table-font-weight;
+
+  &--with-strip tr:nth-child(odd) {
+    background-color: $oxd-table-body-strip-color;
+  }
+}
