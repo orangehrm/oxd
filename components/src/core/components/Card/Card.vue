@@ -1,4 +1,5 @@
 <template>
+  <div>{{ title }}</div>
   <div
     v-focus-within
     class="oxd-card"
@@ -12,9 +13,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
+  name: 'oxd-card',
+
   props: {
+    title: {
+      type: String,
+    },
     clickable: {
       type: Boolean,
     },
@@ -22,6 +28,7 @@ export default {
       type: Boolean,
     },
   },
+
   methods: {
     cardClick() {
       if (!this.clickable) return;
@@ -31,34 +38,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.oxd-card {
-  display: flex;
-  border: 1px solid var(--card-border-color);
-  border-radius: var(--card-border-radius);
-  outline: none;
-
-  &--noBorder {
-    border: none;
-    &:focus,
-    &:hover {
-      border: none;
-    }
-  }
-
-  &--hasHoverShadow:focus,
-  &--hasHoverShadow:hover {
-    box-shadow: var(--shadow-2);
-  }
-
-  &--hasShadow {
-    box-shadow: var(--shadow-2);
-  }
-
-  &--clickable:hover,
-  &--clickable:focus {
-    box-shadow: var(--shadow-2);
-    cursor: pointer;
-  }
-}
-</style>
+<style src="./card.scss" lang="scss" scoped></style>
