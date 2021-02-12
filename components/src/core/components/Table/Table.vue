@@ -9,6 +9,14 @@ import {defineComponent} from 'vue';
 
 export default defineComponent({
   name: 'oxd-table',
+
+  computed: {
+    classes(): object {
+      return {
+        'oxd-table': true,
+      };
+    },
+  },
 });
 </script>
 

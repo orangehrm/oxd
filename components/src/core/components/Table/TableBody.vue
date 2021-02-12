@@ -28,4 +28,4 @@ export default defineComponent({
 });
 </script>
 
-<style src="./table-body.scss" lang="scss" scoped></style>
+<style src="./table-body.scss" lang="scss"></style>

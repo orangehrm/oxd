@@ -1,5 +1,12 @@
 <template>
-  <oxd-clasic-table :headers="headers" :data="items" @click="onClick" />
+  <oxd-clasic-table
+    :selector="selector"
+    :headers="headers"
+    :items="items"
+    @click="onClick"
+    selectable
+    v-model:selected="checkedItems"
+  />
 </template>
 
 <script>
@@ -8,15 +15,23 @@ import ClassicTable from '@orangehrm/oxd/core/components/Table/ClassicTable';
 export default {
   data() {
     return {
+      selector: {
+        width: '3%',
+      },
       headers: [
-        {name: 'col1', title: 'Column 1', width: '30%'},
-        {name: 'col2', title: 'Column 2', width: '40%'},
+        {name: 'col1', title: 'Column 1', width: '40%'},
+        {name: 'col2', title: 'Column 2', width: '50%'},
       ],
       items: [
         {col1: 'Data 1', col2: 'Data 2'},
         {col1: 'Data 2', col2: 'Data 2'},
-        {col1: 'Data 3', col2: 'Data 2'},
+        {
+          col1: 'Data 3',
+          col2:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        },
       ],
+      checkedItems: [2, 0],
     };
   },
 
