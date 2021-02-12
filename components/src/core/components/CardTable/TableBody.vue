@@ -1,27 +1,19 @@
 <template>
-  <tbody :class="classes">
+  <div :class="classes" role="list">
     <slot></slot>
-  </tbody>
+  </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 
 export default defineComponent({
-  name: 'oxd-tbody',
-
-  props: {
-    withStrip: {
-      type: Boolean,
-      default: false,
-    },
-  },
+  name: 'oxd-card-tbody',
 
   computed: {
     classes(): object {
       return {
         'oxd-table-body': true,
-        'oxd-table-body--with-strip': this.withStrip,
       };
     },
   },
