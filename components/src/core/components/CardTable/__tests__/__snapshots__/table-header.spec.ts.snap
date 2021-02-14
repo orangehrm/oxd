@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardTable > TableHeader.vue renders OXD CardTable > TableHeader 1`] = `<div class="oxd-table-header" role="rowgroup"></div>`;

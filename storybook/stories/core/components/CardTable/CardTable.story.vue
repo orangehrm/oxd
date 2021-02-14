@@ -8,7 +8,6 @@
       :selectable="selectable"
       v-model:selected="checkedItems"
       rowDecorator="oxd-table-decorator-card"
-      :with-strip="true"
     />
   </div>
 </template>

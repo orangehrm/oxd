@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes" role="listitem">
+  <div :class="classes" role="row">
     <slot></slot>
   </div>
 </template>

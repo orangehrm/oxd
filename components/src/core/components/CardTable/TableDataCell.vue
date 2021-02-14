@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div role="cell">
     <slot></slot>
   </div>
 </template>

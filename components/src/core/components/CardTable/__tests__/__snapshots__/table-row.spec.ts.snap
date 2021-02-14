@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardTable > TableRow.vue renders OXD CardTable > TableRow 1`] = `<div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row"></div>`;

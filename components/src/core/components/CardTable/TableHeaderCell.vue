@@ -1,5 +1,5 @@
 <template>
-  <div class="oxd-table-header-cell">
+  <div class="oxd-table-header-cell" role="columnheader">
     <slot></slot>
   </div>
 </template>

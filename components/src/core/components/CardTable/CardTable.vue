@@ -27,7 +27,7 @@
       </oxd-card-tr>
     </oxd-card-thead>
 
-    <oxd-card-tbody :with-strip="withStrip">
+    <oxd-card-tbody>
       <component
         :is="rowDecorator"
         v-for="(item, index) in items"
