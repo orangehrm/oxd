@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageItem.vue renders OXD PageItem 1`] = `<li><button type="button" class="oxd-pagination-page-item oxd-pagination-page-item--page">1</button></li>`;
+
+exports[`PageItem.vue renders OXD PageItem next 1`] = `<li><button type="button" class="oxd-pagination-page-item oxd-pagination-page-item--previous-next"><i class="oxd-icon bi-chevron-right"></i></button></li>`;
+
+exports[`PageItem.vue renders OXD PageItem previous 1`] = `<li><button type="button" class="oxd-pagination-page-item oxd-pagination-page-item--previous-next"><i class="oxd-icon bi-chevron-left"></i></button></li>`;
+
+exports[`PageItem.vue renders OXD PageItem selected 1`] = `<li><button type="button" class="oxd-pagination-page-item oxd-pagination-page-item--page oxd-pagination-page-item--page-selected">2</button></li>`;
