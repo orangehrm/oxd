@@ -1,0 +1,17 @@
+@import '../../../styles';
+@import 'variables';
+
+tbody > .oxd-table-row {
+  &:hover {
+    color: $oxd-table-row-hover-font-color;
+    background-color: $oxd-table-row-hover-bg-color;
+  }
+
+  &--clickable:hover {
+    cursor: pointer;
+  }
+
+  &--with-border {
+    border-top: $oxd-table-row-border $oxd-table-row-border-color;
+  }
+}

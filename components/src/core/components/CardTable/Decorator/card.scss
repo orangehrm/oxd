@@ -1,0 +1,16 @@
+@import '../../../../styles';
+@import 'variables';
+
+.oxd-table-decorator-card {
+  border-radius: $oxd-card-table-decorator-card-radius;
+  background-color: $oxd-card-table-decorator-card-color;
+  margin-bottom: 0.4rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+
+  &:hover {
+    color: $oxd-card-table-row-hover-font-color;
+    background-color: $oxd-card-table-row-hover-bg-color;
+    cursor: pointer;
+  }
+}

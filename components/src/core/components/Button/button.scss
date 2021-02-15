@@ -13,57 +13,64 @@
   padding-right: $oxd-button-horizontal-padding;
   padding-left: $oxd-button-horizontal-padding;
   min-width: $oxd-button-min-width;
-}
 
-/* Main Button */
-.oxd-button--main {
-  @include oxd-button-color($oxd-button-color--main);
-}
+  &:focus {
+    outline: 0;
+  }
 
-.oxd-button--main:hover {
-  @include oxd-button-color($oxd-button-color--main-hover);
-}
+  /* Main Button */
+  &--main {
+    @include oxd-button-color($oxd-button-color--main);
 
-.oxd-button--main:active {
-  @include oxd-button-color($oxd-button-color--main-pressed);
-}
+    &:focus,
+    &:hover {
+      @include oxd-button-color($oxd-button-color--main-hover);
+    }
 
-.oxd-button--main:disabled {
-  @include oxd-button-color($oxd-button-color--main-inactive);
-}
+    &:active {
+      @include oxd-button-color($oxd-button-color--main-pressed);
+    }
 
-/* Secondary Button */
-.oxd-button--secondary {
-  @include oxd-button-color($oxd-button-color--secondary);
-}
+    &:disabled {
+      @include oxd-button-color($oxd-button-color--main-inactive);
+    }
+  }
 
-.oxd-button--secondary:hover {
-  @include oxd-button-color($oxd-button-color--secondary-hover);
-}
+  /* Secondary Button */
+  &--secondary {
+    @include oxd-button-color($oxd-button-color--secondary);
 
-.oxd-button--secondary:active {
-  @include oxd-button-color($oxd-button-color--secondary-pressed);
-}
+    &:focus,
+    &:hover {
+      @include oxd-button-color($oxd-button-color--secondary-hover);
+    }
 
-.oxd-button--secondary:disabled {
-  @include oxd-button-color($oxd-button-color--secondary-inactive);
-}
+    &:active {
+      @include oxd-button-color($oxd-button-color--secondary-pressed);
+    }
 
-/* Ghost Button */
-.oxd-button--ghost {
-  @include oxd-button-color-ghost($oxd-button-color--ghost);
-}
+    &:disabled {
+      @include oxd-button-color($oxd-button-color--secondary-inactive);
+    }
+  }
 
-.oxd-button--ghost:hover {
-  @include oxd-button-color-ghost($oxd-button-color--ghost-hover);
-}
+  /* Ghost Button */
+  &--ghost {
+    @include oxd-button-color-ghost($oxd-button-color--ghost);
 
-.oxd-button--ghost:active {
-  @include oxd-button-color-ghost($oxd-button-color--ghost-pressed);
-}
+    &:focus,
+    &:hover {
+      @include oxd-button-color-ghost($oxd-button-color--ghost-hover);
+    }
 
-.oxd-button--ghost:disabled {
-  @include oxd-button-color-ghost($oxd-button-color--ghost-inactive);
+    &:active {
+      @include oxd-button-color-ghost($oxd-button-color--ghost-pressed);
+    }
+
+    &:disabled {
+      @include oxd-button-color-ghost($oxd-button-color--ghost-inactive);
+    }
+  }
 }
 
 /* Button Sizes */

@@ -1,0 +1,49 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-pagination-page-item {
+  font-size: $oxd-pagination-page-item-font-size;
+  font-family: $oxd-pagination-page-item-font-family;
+  font-weight: $oxd-pagination-page-item-font-weight;
+  background-color: $oxd-white-color;
+  color: $oxd-pagination-page-item-font-color;
+  border-radius: 50%;
+  cursor: pointer;
+  height: $oxd-pagination-page-item-size;
+  width: $oxd-pagination-page-item-size;
+  margin: $oxd-pagination-page-item-margin;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  // TODO: handle focus
+  // &:focus {
+  //   outline: 0;
+  // }
+
+  &--previous-next {
+    border: $oxd-pagination-page-item-border
+      $oxd-pagination-page-item-border-color;
+
+    // TODO: handle focus
+    // &:focus,
+    &:hover {
+      background-color: $oxd-pagination-page-item--previous-next-hover-bg-color;
+    }
+  }
+
+  &--page {
+    border: 0;
+
+    &-selected {
+      background-color: $oxd-pagination-page-item--page-selected-bg-color;
+    }
+
+    // TODO: handle focus
+    // &:focus,
+    &:hover {
+      color: $oxd-pagination-page-item--page-hover-font-color;
+      background-color: $oxd-pagination-page-item--page-hover-bg-color;
+    }
+  }
+}

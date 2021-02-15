@@ -1,0 +1,10 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-input-field-error-message {
+  color: $oxd-input-field-error-color !important;
+}
+
+.oxd-input-field-bottom-space {
+  margin-bottom: $oxd-input-field-bottom-space;
+}

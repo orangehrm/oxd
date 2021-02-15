@@ -3,33 +3,35 @@
 
 .oxd-textarea {
   @include oxd-input-control;
+  @include oxd-input-control-size;
   min-height: $oxd-textarea-min-height;
   scrollbar-color: $oxd-textarea-scrollbar-color;
   scrollbar-width: thin;
-}
 
-.oxd-textarea--active {
-  border: $oxd-textarea-border--active;
-}
+  &--active {
+    border: $oxd-textarea-border--active;
+  }
 
-.oxd-textarea--focus {
-  border: $oxd-textarea-border--focus;
-  box-shadow: $oxd-textarea-box-shadow--focus;
-}
+  &--focus {
+    border: $oxd-textarea-border--focus;
+    box-shadow: $oxd-textarea-box-shadow--focus;
+    outline: 0;
+  }
 
-.oxd-textarea--error {
-  border: $oxd-textarea-border--error;
-  box-shadow: $oxd-textarea-box-shadow--error;
-}
+  &--error {
+    border: $oxd-textarea-border--error;
+    box-shadow: $oxd-textarea-box-shadow--error;
+  }
 
-.oxd-textarea--resize-vertical {
-  resize: vertical;
-}
+  &--resize-vertical {
+    resize: vertical;
+  }
 
-.oxd-textarea--resize-horizontal {
-  resize: horizontal;
-}
+  &--resize-horizontal {
+    resize: horizontal;
+  }
 
-.oxd-textarea--resize-none {
-  resize: none;
+  &--resize-none {
+    resize: none;
+  }
 }

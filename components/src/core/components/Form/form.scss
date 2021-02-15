@@ -1,6 +1,31 @@
 @import '../../../styles';
+@import 'variables';
 
 .oxd-form-row {
   display: flex;
   flex-wrap: wrap;
+}
+
+.oxd-form-actions {
+  justify-content: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.oxd-form-group {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+
+  &__message {
+    margin-top: $oxd-form-group-message-margin-top;
+    font-size: $oxd-form-group-message-font-size;
+    font-weight: $oxd-form-group-message-font-weight;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .oxd-form-group {
+    width: 100%;
+  }
 }

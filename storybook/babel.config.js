@@ -1,15 +1,15 @@
 module.exports = {
   plugins: [
     [
-      "module-resolver",
+      'module-resolver',
       {
-        root: ["../"],
-        extensions: [".ts", ".tsx", ".vue", ".js", ".json"],
+        root: ['../'],
+        extensions: ['.ts', '.tsx', '.vue', '.js', '.json'],
         alias: {
-          "@orangehrm/oxd": "../components/src",
+          '@orangehrm/oxd': '../components/src',
 
           // storybook releated
-          stories: "./stories",
+          stories: './stories',
         },
       },
     ],

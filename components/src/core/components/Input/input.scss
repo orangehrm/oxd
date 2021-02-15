@@ -3,21 +3,23 @@
 
 .oxd-input {
   @include oxd-input-control;
+  @include oxd-input-control-size;
   min-height: $oxd-input-min-height;
-}
 
-.oxd-input--active {
-  border: $oxd-input-border--active;
-}
+  &--active {
+    border: $oxd-input-border--active;
+  }
 
-.oxd-input--focus {
-  border: $oxd-input-border--focus;
-  box-shadow: $oxd-input-box-shadow--focus;
-}
+  &--focus {
+    border: $oxd-input-border--focus;
+    box-shadow: $oxd-input-box-shadow--focus;
+    outline: 0;
+  }
 
-.oxd-input--error {
-  border: $oxd-input-border--error;
-  box-shadow: $oxd-input-box-shadow--error;
+  &--error {
+    border: $oxd-input-border--error;
+    box-shadow: $oxd-input-box-shadow--error;
+  }
 }
 
 /* File Input */
@@ -32,4 +34,32 @@
 
 .oxd-file-div {
   word-wrap: break-word;
+  display: flex;
+  padding: 0;
+}
+
+.oxd-file-button {
+  cursor: pointer;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  border-radius: $oxd-input-control-border-radius;
+  padding-right: $oxd-file-button-padding-horizontal;
+  padding-left: $oxd-file-button-padding-horizontal;
+
+  background-color: $oxd-file-button-background-color;
+  color: $oxd-file-button-color;
+  font-size: $oxd-file-button-font-size;
+  font-weight: $oxd-file-button-font-weight;
+  margin-top: $oxd-file-button-margin-vertical;
+  margin-bottom: $oxd-file-button-margin-vertical;
+  margin-left: $oxd-file-button-margin-left;
+}
+
+.oxd-file-input-div {
+  @include oxd-input-control;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

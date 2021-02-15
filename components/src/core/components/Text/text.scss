@@ -63,6 +63,10 @@
   }
 
   &--p {
-    color: $oxd-text-color;
+    color: $oxd-text-p-color;
+  }
+
+  &--span {
+    color: $oxd-text-span-color;
   }
 }

@@ -1,0 +1,15 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-padding-cell {
+  padding: $oxd-table-cell-padding;
+}
+
+.oxd-table-th {
+  text-align: left;
+}
+
+.oxd-table-tr {
+  padding: $oxd-table-tr-padding;
+  background-color: $oxd-table-tr-bg-color;
+}

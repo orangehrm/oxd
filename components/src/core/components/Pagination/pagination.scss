@@ -1,0 +1,9 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-pagination__ul {
+  list-style-type: none;
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+}
