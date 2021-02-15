@@ -16,9 +16,3 @@ Icon.args = {
   name: 'trash',
 };
 Icon.argTypes = {};
-
-// export const Secondary = Template.bind({});
-// Secondary.args = {
-//   type: TYPE_SECONDARY,
-//   label: 'Button',
-// };
