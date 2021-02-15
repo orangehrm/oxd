@@ -4,9 +4,9 @@
 .oxd-table-decorator-card {
   border-radius: $oxd-card-table-decorator-card-radius;
   background-color: $oxd-card-table-decorator-card-color;
-  margin-bottom: 0.4rem;
-  padding-top: 0.2rem;
-  padding-bottom: 0.2rem;
+  margin-bottom: $oxd-card-table-decorator-card-margin-bottom;
+  padding-top: $oxd-card-table-decorator-card-margin-vertical;
+  padding-bottom: $oxd-card-table-decorator-card-margin-vertical;
 
   &:hover {
     color: $oxd-card-table-row-hover-font-color;

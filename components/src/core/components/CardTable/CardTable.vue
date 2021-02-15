@@ -34,6 +34,7 @@
         :key="item"
         :clickable="clickable"
         @click="onClick(item)($event)"
+        :rowItem="item"
       >
         <oxd-card-tr>
           <oxd-card-td
@@ -57,7 +58,12 @@
             :style="header.style"
             :class="header.class"
           >
-            {{ item[header.name] }}
+            <component
+              :is="header.cellType ? header.cellType : 'oxd-table-cell-default'"
+              :item="item[header.name]"
+              :rowItem="item"
+              :header="header"
+            />
           </oxd-card-td>
         </oxd-card-tr>
       </component>
@@ -66,7 +72,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from 'vue';
+import {defineComponent, PropType, computed} from 'vue';
 import {CardSelector, CardHeaders} from './types';
 import Table from '@orangehrm/oxd/core/components/CardTable/Table.vue';
 import TableHeader from '@orangehrm/oxd/core/components/CardTable/TableHeader.vue';
@@ -74,8 +80,14 @@ import TableBody from '@orangehrm/oxd/core/components/CardTable/TableBody.vue';
 import TableRow from '@orangehrm/oxd/core/components/CardTable/TableRow.vue';
 import TableHeaderCell from '@orangehrm/oxd/core/components/CardTable/TableHeaderCell.vue';
 import TableDataCell from '@orangehrm/oxd/core/components/CardTable/TableDataCell.vue';
+
+// Decorators
 import DefaultDecorator from '@orangehrm/oxd/core/components/CardTable/Decorator/Default.vue';
 import CardDecorator from '@orangehrm/oxd/core/components/CardTable/Decorator/Card.vue';
+
+// Cells
+import DefaultCell from '@orangehrm/oxd/core/components/CardTable/Cell/Default.vue';
+import ActionsCell from '@orangehrm/oxd/core/components/CardTable/Cell/Actions.vue';
 
 export default defineComponent({
   name: 'oxd-card-card-table',
@@ -133,6 +145,12 @@ export default defineComponent({
     },
   },
 
+  provide() {
+    return {
+      tableProps: computed(() => this.$props),
+    };
+  },
+
   emits: ['click', 'clickCheckbox', 'update:selected', 'update:selectAll'],
 
   components: {
@@ -142,8 +160,14 @@ export default defineComponent({
     'oxd-card-tr': TableRow,
     'oxd-card-th': TableHeaderCell,
     'oxd-card-td': TableDataCell,
+
+    // Decorators
     'oxd-table-decorator-default': DefaultDecorator,
     'oxd-table-decorator-card': CardDecorator,
+
+    // Cells
+    'oxd-table-cell-default': DefaultCell,
+    'oxd-table-cell-actions': ActionsCell,
   },
 
   methods: {
