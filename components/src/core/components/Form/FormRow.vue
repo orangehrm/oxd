@@ -5,7 +5,9 @@
 </template>
 
 <script lang="ts">
-export default {
+import {defineComponent} from 'vue';
+
+export default defineComponent({
   name: 'oxd-form-row',
 
   computed: {
@@ -15,7 +17,7 @@ export default {
       };
     },
   },
-};
+});
 </script>
 
 <style src="./form.scss" lang="scss" scoped></style>

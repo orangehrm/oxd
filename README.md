@@ -32,7 +32,7 @@ yarn install
 #### Start Storybook
 
 ```
-yarn workspace oxd-storybook start
+yarn dev
 ```
 
 #### Build Storybook
@@ -44,11 +44,11 @@ yarn workspace oxd-storybook build
 #### Unit Testing
 
 ```
-yarn workspace oxd-components test:unit
+yarn test:unit
 ```
 
 #### Linting
 
 ```
-yarn workspace oxd-components lint
+yarn lint
 ```

@@ -1,5 +1,12 @@
 <template>
-  <textarea :class="classes" :style="style" @focus="onFocus" @blur="onBlur" />
+  <textarea
+    :class="classes"
+    :style="style"
+    :value="modelValue"
+    @focus="onFocus"
+    @blur="onBlur"
+    @input="onInput"
+  />
 </template>
 
 <script lang="ts">
@@ -19,6 +26,7 @@ export default defineComponent({
   name: 'oxd-textarea',
 
   props: {
+    modelValue: {},
     resize: {
       type: String,
       default: RESIZE_VERTICAL,
@@ -64,6 +72,11 @@ export default defineComponent({
     onBlur(e: Event) {
       this.focused = false;
       this.$emit('blur', e);
+    },
+    onInput(e: Event) {
+      e.preventDefault();
+      this.$emit('update:modelValue', (e.target as HTMLTextAreaElement).value);
+      this.$emit('input', e);
     },
   },
 });

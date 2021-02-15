@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form novalidate>
     <slot></slot>
   </form>
 </template>

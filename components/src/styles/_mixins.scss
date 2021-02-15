@@ -9,3 +9,7 @@
   padding: $oxd-input-control-vertical-padding
     $oxd-input-control-horizontal-padding;
 }
+
+@mixin oxd-input-control-size {
+  width: $oxd-input-control-width;
+}

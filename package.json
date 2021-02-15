@@ -6,7 +6,16 @@
     "components",
     "storybook"
   ],
-  "devDependencies": {
+  "scripts": {
+    "dev": "yarn workspace oxd-storybook start",
+    "test:unit": "yarn workspace oxd-components test:unit",
+    "lint": "yarn workspace oxd-components lint"
+  },
+  "engines": {
+    "node": ">=10.19.0",
+    "yarn": ">=1.22.5"
+  },
+  "dependencies": {
     "babel-plugin-module-resolver": "^4.1.0"
   }
 }
