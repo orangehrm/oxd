@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loader > Spinner.vue renders OXD Spinner 1`] = `
+<div class="oxd-loading-spinner-container">
+  <div class="oxd-loading-spinner"></div>
+</div>
+`;
+
+exports[`Loader > Spinner.vue should renders OXD Spinner with container 1`] = `
+<div class="oxd-loading-spinner-container--block">
+  <div class="oxd-loading-spinner"></div>
+</div>
+`;
