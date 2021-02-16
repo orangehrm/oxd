@@ -1,4 +1,5 @@
 import CardTableStory from './CardTable.story.vue';
+import ActionCardTable from './ActionCardTable.story.vue';
 
 export default {
   title: 'Example/CardTable',
@@ -14,3 +15,5 @@ export const Default = Template.bind({});
 Default.args = {
   selectable: true,
 };
+
+export const ActionTable = () => ActionCardTable;

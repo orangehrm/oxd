@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
+    "@storybook/addon-a11y": "^6.1.18",
     "@storybook/addon-actions": "https://gitpkg.now.sh/zipme/storybook/addons/actions?30547456ff",
     "@storybook/addon-essentials": "https://gitpkg.now.sh/zipme/storybook/addons/essentials?30547456ff",
     "@storybook/addon-links": "https://gitpkg.now.sh/zipme/storybook/addons/links?30547456ff",

@@ -1,0 +1,28 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-icon-button {
+  font-size: $oxd-icon-button-font-size;
+  font-weight: $oxd-icon-button-font-weight;
+  background-color: $oxd-icon-button-bg-color;
+  color: $oxd-icon-button-font-color;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  min-width: $oxd-icon-button-size;
+  min-height: $oxd-icon-button-size;
+  padding: $oxd-icon-button-padding;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  &:focus,
+  &:hover {
+    outline: 0;
+    background-color: $oxd-icon-button--hover;
+  }
+
+  &:active {
+    background-color: $oxd-icon-button--pressed;
+  }
+}

@@ -1,0 +1,13 @@
+@import '../../../../styles';
+@import 'variables';
+
+.oxd-table-cell-actions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.oxd-table-cell-action-space {
+  margin-right: $oxd-table-cell-action-margin;
+  margin-bottom: $oxd-table-cell-action-margin;
+}
