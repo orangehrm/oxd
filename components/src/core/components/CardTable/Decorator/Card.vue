@@ -6,9 +6,12 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import {decoratorMixin} from './decorator-mixin';
 
 export default defineComponent({
   name: 'oxd-table-decorator-card',
+
+  mixins: [decoratorMixin],
 
   computed: {
     classes(): object {
@@ -20,4 +23,4 @@ export default defineComponent({
 });
 </script>
 
-<style src="./card.scss" lang="scss"></style>
+<style src="./card.scss" lang="scss" scoped></style>
