@@ -39,7 +39,7 @@ export default defineComponent({
 
   mixins: [validatableMixin],
 
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'errors'],
 
   props: {
     modelValue: {},
@@ -82,6 +82,9 @@ export default defineComponent({
     onUpdate(value: string | OutputFile) {
       this.validate(value);
       this.$emit('update:modelValue', value);
+      if (this.errorBucket.length !== 0) {
+        this.$emit('errors', this.errorBucket);
+      }
     },
   },
 });
