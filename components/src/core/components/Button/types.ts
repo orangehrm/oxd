@@ -6,7 +6,16 @@ export const SIZES = [SIZE_SMALL, SIZE_MEDIUM, SIZE_LARGE];
 export const TYPE_MAIN = 'main';
 export const TYPE_SECONDARY = 'secondary';
 export const TYPE_GHOST = 'ghost';
-export const TYPES = [TYPE_MAIN, TYPE_SECONDARY, TYPE_GHOST];
+export const TYPE_LABEL = 'label';
+export const TYPE_LABEL_ERROR = 'label-error';
+
+export const TYPES = [
+  TYPE_MAIN,
+  TYPE_SECONDARY,
+  TYPE_GHOST,
+  TYPE_LABEL,
+  TYPE_LABEL_ERROR,
+];
 
 export type ButtonSize =
   | typeof SIZE_SMALL
@@ -16,4 +25,6 @@ export type ButtonSize =
 export type ButtonType =
   | typeof TYPE_MAIN
   | typeof TYPE_SECONDARY
-  | typeof TYPE_GHOST;
+  | typeof TYPE_GHOST
+  | typeof TYPE_LABEL
+  | typeof TYPE_LABEL_ERROR;

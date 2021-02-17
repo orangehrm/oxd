@@ -51,24 +51,27 @@ export default defineComponent({
 
   methods: {
     onClickAction(action: Action<RowItem>, key: string, e: Event) {
+      const cellConfig = this.header?.cellConfig;
       if (typeof action.onClick === 'function') {
         action.onClick(this.rowItem, e);
-      } else if (typeof this.header?.cellConfig[key]?.onClick === 'function') {
+      } else if (cellConfig && typeof cellConfig[key]?.onClick === 'function') {
         this.header?.cellConfig[key]?.onClick(this.rowItem, e);
       }
     },
     getProps(action: Action<RowItem>, key: string) {
+      const cellConfig = this.header?.cellConfig;
       return mergeProps(
-        this.header?.cellConfig[key]?.props,
+        cellConfig ? cellConfig[key]?.props : {},
         action?.props ? action?.props : {},
       );
     },
     getComponent(action: Action<RowItem>, key: string) {
       let component = 'oxd-icon-button';
+      const cellConfig = this.header?.cellConfig;
       if (action.component) {
         component = action.component;
-      } else if (this.header?.cellConfig[key]?.component) {
-        component = this.header?.cellConfig[key]?.component;
+      } else if (cellConfig && cellConfig[key]?.component) {
+        component = cellConfig[key]?.component;
       }
 
       return component;

@@ -10,7 +10,7 @@ module.exports = {
     '@storybook/addon-links/register',
     '@storybook/addon-actions/register',
     '@storybook/addon-viewport/register',
-    '@storybook/addon-a11y/register',
+    '@storybook/addon-a11y',
   ],
   // https://storybook.js.org/docs/react/configure/webpack#extending-storybooks-webpack-config
   webpackFinal: async config => {

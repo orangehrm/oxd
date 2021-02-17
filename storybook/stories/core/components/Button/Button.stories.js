@@ -7,6 +7,8 @@ import {
   TYPE_MAIN,
   TYPE_SECONDARY,
   TYPE_GHOST,
+  TYPE_LABEL,
+  TYPE_LABEL_ERROR,
 } from '@orangehrm/oxd/core/components/Button/types';
 
 export default {
@@ -44,6 +46,18 @@ Secondary.args = {
 export const Ghost = Template.bind({});
 Ghost.args = {
   type: TYPE_GHOST,
+  label: 'Button',
+};
+
+export const Label = Template.bind({});
+Label.args = {
+  type: TYPE_LABEL,
+  label: 'Button',
+};
+
+export const LabelError = Template.bind({});
+LabelError.args = {
+  type: TYPE_LABEL_ERROR,
   label: 'Button',
 };
 
