@@ -95,7 +95,8 @@ export default defineComponent({
   data() {
     return {
       checkedItems: this.selected as number[],
-      selectedAll: (this.selected.length === this.items.length) as boolean,
+      selectedAll: (this.selected.length > 0 &&
+        this.selected.length === this.items.length) as boolean,
     };
   },
 
@@ -184,9 +185,20 @@ export default defineComponent({
     },
     onChangeSelectAll() {
       this.checkedItems = this.selectedAll
-        ? [...Array(this.items.length).keys()]
+        ? [...this.range(0, this.items.length - 1)]
         : [];
       this.$emit('update:selectAll', this.selectedAll);
+    },
+    range(from: number, to: number): Array<number> {
+      const range = [];
+      if (from > to) {
+        // eslint-disable-next-line no-console
+        console.error('`from` is bigger than `to`');
+      }
+      for (let i = from; i <= to; i++) {
+        range.push(i);
+      }
+      return range;
     },
   },
 });
