@@ -22,15 +22,3 @@ Default.args = {
   length: 3,
   max: 6,
 };
-
-// export const Colored = Template.bind({});
-// Colored.args = {
-//   value: 'Textarea',
-//   style: {backgroundColor: 'aliceblue'},
-// };
-
-// export const Error = Template.bind({});
-// Error.args = {
-//   value: 'Textarea',
-//   hasError: true,
-// };
