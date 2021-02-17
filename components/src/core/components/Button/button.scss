@@ -71,6 +71,44 @@
       @include oxd-button-color-ghost($oxd-button-color--ghost-inactive);
     }
   }
+
+  /* Label Button */
+  &--label {
+    color: $oxd-button-font-color--label;
+    background-color: $oxd-button-color--label;
+
+    &:focus,
+    &:hover {
+      background-color: $oxd-button-color--label-hover;
+    }
+
+    &:active {
+      background-color: $oxd-button-color--label-pressed;
+    }
+
+    &:disabled {
+      background-color: $oxd-button-color--label-inactive;
+    }
+  }
+
+  /* Label Error Button */
+  &--label-error {
+    color: $oxd-button-font-color--label-error;
+    background-color: $oxd-button-color--label-error;
+
+    &:focus,
+    &:hover {
+      background-color: $oxd-button-color--label-error-hover;
+    }
+
+    &:active {
+      background-color: $oxd-button-color--label-error-pressed;
+    }
+
+    &:disabled {
+      background-color: $oxd-button-color--label-error-inactive;
+    }
+  }
 }
 
 /* Button Sizes */

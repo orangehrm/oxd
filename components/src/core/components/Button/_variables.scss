@@ -26,6 +26,18 @@ $oxd-button-color--ghost-pressed: #68a61d !default;
 $oxd-button-color--ghost-hover: #84d225 !default;
 $oxd-button-color--ghost-inactive: $oxd-interface-gray-lighten-1-color !default;
 
+$oxd-button-font-color--label: rgb(104, 166, 29) !default;
+$oxd-button-color--label: rgb(104, 166, 29, 0.1) !default;
+$oxd-button-color--label-pressed: rgb(104, 166, 29, 0.2) !default;
+$oxd-button-color--label-hover: rgb(104, 166, 29, 0.15) !default;
+$oxd-button-color--label-inactive: $oxd-interface-gray-lighten-1-color !default;
+
+$oxd-button-font-color--label-error: $oxd-feedback-error-color !default;
+$oxd-button-color--label-error: rgb(235, 9, 16, 0.1) !default;
+$oxd-button-color--label-error-pressed: rgb(235, 9, 16, 0.2) !default;
+$oxd-button-color--label-error-hover: rgb(235, 9, 16, 0.15) !default;
+$oxd-button-color--label-error-inactive: $oxd-interface-gray-lighten-1-color !default;
+
 $oxd-icon-button-font-size: 18px !default;
 $oxd-icon-button-font-weight: 400 !default;
 $oxd-icon-button-bg-color: rgba(100, 114, 140, 0.1) !default;
