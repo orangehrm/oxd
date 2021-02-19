@@ -22,6 +22,9 @@ export const TYPE_LABEL_DANGER = 'label-danger';
 export const TYPE_LABEL_WARN = 'label-warn';
 export const TYPE_LABEL_SUCCESS = 'label-success';
 
+export const TYPE_TEXT = 'text';
+export const TYPE_TOOL = 'tool';
+
 export const TYPES = [
   TYPE_MAIN,
   TYPE_SECONDARY,
@@ -39,6 +42,8 @@ export const TYPES = [
   TYPE_LABEL_DANGER,
   TYPE_LABEL_WARN,
   TYPE_LABEL_SUCCESS,
+  TYPE_TEXT,
+  TYPE_TOOL,
 ];
 
 export type ButtonSize =
@@ -62,4 +67,6 @@ export type ButtonType =
   | typeof TYPE_LABEL_INFO
   | typeof TYPE_LABEL_DANGER
   | typeof TYPE_LABEL_WARN
-  | typeof TYPE_LABEL_SUCCESS;
+  | typeof TYPE_LABEL_SUCCESS
+  | typeof TYPE_TEXT
+  | typeof TYPE_TOOL;

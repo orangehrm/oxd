@@ -169,6 +169,13 @@ $oxd-button-color--ghost-success-hover: $oxd-button-color--ghost-success !defaul
 $oxd-button-color--ghost-success-focus: $oxd-button-color--ghost-success-hover !default;
 $oxd-button-color--ghost-success-inactive: $oxd-interface-gray-lighten-1-color !default;
 
+/* Tool */
+$oxd-button-color--ghost-tool: $oxd-interface-gray-color !default;
+$oxd-button-color--ghost-tool-pressed: $oxd-button-color--ghost-tool !default;
+$oxd-button-color--ghost-tool-hover: $oxd-button-color--ghost-tool !default;
+$oxd-button-color--ghost-tool-focus: $oxd-button-color--ghost-tool-hover !default;
+$oxd-button-color--ghost-tool-inactive: $oxd-interface-gray-lighten-1-color !default;
+
 $oxd-ghost-buttons: (
   default: (
     active: $oxd-button-color--ghost,
@@ -204,6 +211,13 @@ $oxd-ghost-buttons: (
     focus: $oxd-button-color--ghost-success-focus,
     hover: $oxd-button-color--ghost-success-hover,
     inactive: $oxd-button-color--ghost-success-inactive,
+  ),
+  tool: (
+    active: $oxd-button-color--ghost-tool,
+    pressed: $oxd-button-color--ghost-tool-pressed,
+    focus: $oxd-button-color--ghost-tool-focus,
+    hover: $oxd-button-color--ghost-tool-hover,
+    inactive: $oxd-button-color--ghost-tool-inactive,
   ),
 );
 
@@ -270,6 +284,24 @@ $oxd-button-color--label-success-hover: $oxd-button-font-color--label-success !d
 $oxd-button-color--label-success-focus: $oxd-button-color--label-success-hover !default;
 $oxd-button-color--label-success-inactive: $oxd-interface-gray-lighten-1-color !default;
 
+/* Text button */
+$oxd-button-font-color--label-text: $oxd-interface-gray-darken-1-color !default;
+$oxd-button-color--label-text: rgba(
+  $oxd-button-font-color--label-text,
+  0.1
+) !default;
+$oxd-button-color--label-text-pressed: rgba(
+  $oxd-button-font-color--label-text,
+  0.2
+) !default;
+$oxd-button-color--label-text-hover: rgba(
+  $oxd-button-font-color--label-text,
+  0.15
+) !default;
+$oxd-button-color--label-text-focus: $oxd-button-color--label-text-hover !default;
+$oxd-button-color--label-text-inactive: #f6f7f9 !default;
+$oxd-button-font-color--label-text-inactive: $oxd-interface-gray-lighten-2-color !default;
+
 $oxd-label-buttons: (
   default: (
     font: $oxd-button-font-color--label,
@@ -310,6 +342,15 @@ $oxd-label-buttons: (
     focus: $oxd-button-color--label-success-focus,
     hover: $oxd-button-color--label-success-hover,
     inactive: $oxd-button-color--label-success-inactive,
+  ),
+  text: (
+    font: $oxd-button-font-color--label-text,
+    active: $oxd-button-color--label-text,
+    pressed: $oxd-button-color--label-text-pressed,
+    focus: $oxd-button-color--label-text-focus,
+    hover: $oxd-button-color--label-text-hover,
+    inactive: $oxd-button-color--label-text-inactive,
+    font-inactive: $oxd-button-font-color--label-text-inactive,
   ),
 );
 

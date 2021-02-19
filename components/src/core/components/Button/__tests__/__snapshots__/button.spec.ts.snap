@@ -1,35 +1,174 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button.vue renders OXD button 1`] = `<button type="button" class="oxd-button oxd-button--medium oxd-button--main">Button</button>`;
+exports[`Button.vue renders OXD button 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--main">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;
 
-exports[`Button.vue should renders OXD button with custom color 1`] = `<button type="button" class="oxd-button oxd-button--medium oxd-button--main" style="background-color: palegreen;">Button</button>`;
+exports[`Button.vue should renders OXD button with custom color 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--main" style="background-color: palegreen;">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;
 
-exports[`Button.vue should renders OXD ghost button 1`] = `<button type="button" class="oxd-button oxd-button--medium oxd-button--ghost">Button</button>`;
+exports[`Button.vue should renders OXD ghost button 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--ghost">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;
 
-exports[`Button.vue should renders OXD ghost-danger button 1`] = `<button type="button" class="oxd-button oxd-button--medium oxd-button--ghost-danger">Button</button>`;
+exports[`Button.vue should renders OXD ghost-danger button 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--ghost-danger">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;
 
-exports[`Button.vue should renders OXD ghost-info button 1`] = `<button type="button" class="oxd-button oxd-button--medium oxd-button--ghost-info">Button</button>`;
+exports[`Button.vue should renders OXD ghost-info button 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--ghost-info">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;
 
-exports[`Button.vue should renders OXD ghost-success button 1`] = `<button type="button" class="oxd-button oxd-button--medium oxd-button--ghost-success">Button</button>`;
+exports[`Button.vue should renders OXD ghost-success button 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--ghost-success">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;
 
-exports[`Button.vue should renders OXD ghost-warn button 1`] = `<button type="button" class="oxd-button oxd-button--medium oxd-button--ghost-warn">Button</button>`;
+exports[`Button.vue should renders OXD ghost-warn button 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--ghost-warn">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;
 
-exports[`Button.vue should renders OXD label button 1`] = `<button type="button" class="oxd-button oxd-button--medium oxd-button--label">Button</button>`;
+exports[`Button.vue should renders OXD iconName button 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--main"><i class="oxd-icon bi-arrow-left oxd-button-icon"></i> Button
+  <!--v-if-->
+</button>
+`;
 
-exports[`Button.vue should renders OXD label-danger button 1`] = `<button type="button" class="oxd-button oxd-button--medium oxd-button--label-danger">Button</button>`;
+exports[`Button.vue should renders OXD iconRightName button 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--main">
+  <!--v-if--> Button <i class="oxd-icon bi-arrow-right oxd-button-icon"></i>
+</button>
+`;
 
-exports[`Button.vue should renders OXD label-info button 1`] = `<button type="button" class="oxd-button oxd-button--medium oxd-button--label-info">Button</button>`;
+exports[`Button.vue should renders OXD label button 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--label">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;
 
-exports[`Button.vue should renders OXD label-success button 1`] = `<button type="button" class="oxd-button oxd-button--medium oxd-button--label-success">Button</button>`;
+exports[`Button.vue should renders OXD label-danger button 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--label-danger">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;
 
-exports[`Button.vue should renders OXD label-warn button 1`] = `<button type="button" class="oxd-button oxd-button--medium oxd-button--label-warn">Button</button>`;
+exports[`Button.vue should renders OXD label-info button 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--label-info">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;
 
-exports[`Button.vue should renders OXD large button 1`] = `<button type="button" class="oxd-button oxd-button--large oxd-button--main">Button</button>`;
+exports[`Button.vue should renders OXD label-success button 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--label-success">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;
 
-exports[`Button.vue should renders OXD main button 1`] = `<button type="button" class="oxd-button oxd-button--medium oxd-button--main">Button</button>`;
+exports[`Button.vue should renders OXD label-warn button 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--label-warn">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;
 
-exports[`Button.vue should renders OXD medium button 1`] = `<button type="button" class="oxd-button oxd-button--medium oxd-button--main">Button</button>`;
+exports[`Button.vue should renders OXD large button 1`] = `
+<button type="button" class="oxd-button oxd-button--large oxd-button--main">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;
 
-exports[`Button.vue should renders OXD secondary button 1`] = `<button type="button" class="oxd-button oxd-button--medium oxd-button--secondary">Button</button>`;
+exports[`Button.vue should renders OXD main button 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--main">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;
 
-exports[`Button.vue should renders OXD small button 1`] = `<button type="button" class="oxd-button oxd-button--small oxd-button--main">Button</button>`;
+exports[`Button.vue should renders OXD medium button 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--main">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;
+
+exports[`Button.vue should renders OXD secondary button 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--secondary">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;
+
+exports[`Button.vue should renders OXD small button 1`] = `
+<button type="button" class="oxd-button oxd-button--small oxd-button--main">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;
+
+exports[`Button.vue should renders OXD solid danger button 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--danger">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;
+
+exports[`Button.vue should renders OXD solid info button 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--info">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;
+
+exports[`Button.vue should renders OXD solid success button 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--success">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;
+
+exports[`Button.vue should renders OXD solid warn button 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--warn">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;
+
+exports[`Button.vue should renders OXD text button 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--text">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;
+
+exports[`Button.vue should renders OXD tool button 1`] = `
+<button type="button" class="oxd-button oxd-button--medium oxd-button--tool">
+  <!--v-if--> Button
+  <!--v-if-->
+</button>
+`;

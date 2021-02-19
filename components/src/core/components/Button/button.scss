@@ -77,6 +77,16 @@
       @include oxd-button-label('success');
     }
   }
+
+  /* Text Button */
+  &--text {
+    @include oxd-button-label('text');
+  }
+
+  /* Tool Button */
+  &--tool {
+    @include oxd-button-ghost('tool');
+  }
 }
 
 /* Button Sizes */
@@ -96,4 +106,8 @@
   font-size: $oxd-button-font-size--large;
   padding-top: $oxd-button-vertical-padding--large;
   padding-bottom: $oxd-button-vertical-padding--large;
+}
+
+.oxd-button-icon {
+  color: inherit;
 }

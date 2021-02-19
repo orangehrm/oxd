@@ -1,6 +1,16 @@
 <template>
   <button type="button" :class="classes" :style="style" @click="onClick">
+    <slot name="icon">
+      <oxd-icon v-if="iconName" :name="iconName" class="oxd-button-icon" />
+    </slot>
     {{ label }}
+    <slot name="iconRight">
+      <oxd-icon
+        v-if="iconRightName"
+        :name="iconRightName"
+        class="oxd-button-icon"
+      />
+    </slot>
   </button>
 </template>
 
@@ -14,9 +24,14 @@ import {
   TYPES,
   TYPE_MAIN,
 } from './types';
+import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
   name: 'oxd-button',
+
+  components: {
+    'oxd-icon': Icon,
+  },
 
   props: {
     label: {
@@ -39,6 +54,12 @@ export default defineComponent({
     },
     style: {
       type: Object,
+    },
+    iconName: {
+      type: String,
+    },
+    iconRightName: {
+      type: String,
     },
   },
 

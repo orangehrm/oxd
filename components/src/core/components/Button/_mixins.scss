@@ -35,7 +35,7 @@
   color: map-get($oxd-button, 'font');
   background-color: map-get($oxd-button, 'active');
 
-  @if ($type == 'default') {
+  @if ($type == 'default' or $type == 'text') {
     &:focus {
       background-color: map-get($oxd-button, 'focus');
     }
@@ -58,7 +58,12 @@
   }
 
   &:disabled {
-    color: $oxd-button-font-color;
+    @if ($type== 'text') {
+      color: map-get($oxd-button, 'font-inactive');
+    } @else {
+      color: $oxd-button-font-color;
+    }
+
     background-color: map-get($oxd-button, 'inactive');
   }
 }
@@ -81,7 +86,7 @@
 
   @include oxd-button-color-ghost(map-get($oxd-button, 'active'));
 
-  @if ($type == 'default') {
+  @if ($type == 'default' or $type == 'tool') {
     &:focus {
       @include oxd-button-color-ghost(map-get($oxd-button, 'focus'));
     }

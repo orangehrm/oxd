@@ -11,6 +11,8 @@ import {
   TYPE_GHOST_DANGER,
   TYPE_LABEL,
   TYPE_LABEL_DANGER,
+  TYPE_TEXT,
+  TYPE_TOOL,
 } from '@orangehrm/oxd/core/components/Button/types';
 
 export default {
@@ -119,4 +121,29 @@ export const Disabled = Template.bind({});
 Disabled.args = {
   label: 'Button',
   disabled: true,
+};
+
+export const ButtonWithIcon = Template.bind({});
+ButtonWithIcon.args = {
+  label: 'Button',
+  iconName: 'trash',
+};
+
+export const ButtonWithIconRight = Template.bind({});
+ButtonWithIconRight.args = {
+  label: 'Button',
+  iconRightName: 'arrow-right',
+};
+
+export const Text = Template.bind({});
+Text.args = {
+  label: 'Button',
+  type: TYPE_TEXT,
+};
+
+export const Tool = Template.bind({});
+Tool.args = {
+  label: 'Button',
+  iconName: 'person-plus',
+  type: TYPE_TOOL,
 };
