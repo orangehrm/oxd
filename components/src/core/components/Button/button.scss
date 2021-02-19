@@ -44,57 +44,37 @@
 
   /* Ghost Button */
   &--ghost {
-    @include oxd-button-color-ghost($oxd-button-color--ghost);
+    @include oxd-button-ghost('default');
 
-    &:focus,
-    &:hover {
-      @include oxd-button-color-ghost($oxd-button-color--ghost-hover);
+    &-info {
+      @include oxd-button-ghost('info');
     }
-
-    &:active {
-      @include oxd-button-color-ghost($oxd-button-color--ghost-pressed);
+    &-danger {
+      @include oxd-button-ghost('danger');
     }
-
-    &:disabled {
-      @include oxd-button-color-ghost($oxd-button-color--ghost-inactive);
+    &-warn {
+      @include oxd-button-ghost('warn');
+    }
+    &-success {
+      @include oxd-button-ghost('success');
     }
   }
 
   /* Label Button */
   &--label {
-    color: $oxd-button-font-color--label;
-    background-color: $oxd-button-color--label;
+    @include oxd-button-label('default');
 
-    &:focus,
-    &:hover {
-      background-color: $oxd-button-color--label-hover;
+    &-info {
+      @include oxd-button-label('info');
     }
-
-    &:active {
-      background-color: $oxd-button-color--label-pressed;
+    &-danger {
+      @include oxd-button-label('danger');
     }
-
-    &:disabled {
-      background-color: $oxd-button-color--label-inactive;
+    &-warn {
+      @include oxd-button-label('warn');
     }
-  }
-
-  /* Label Error Button */
-  &--label-error {
-    color: $oxd-button-font-color--label-error;
-    background-color: $oxd-button-color--label-error;
-
-    &:focus,
-    &:hover {
-      background-color: $oxd-button-color--label-error-hover;
-    }
-
-    &:active {
-      background-color: $oxd-button-color--label-error-pressed;
-    }
-
-    &:disabled {
-      background-color: $oxd-button-color--label-error-inactive;
+    &-success {
+      @include oxd-button-label('success');
     }
   }
 }

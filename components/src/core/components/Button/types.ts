@@ -11,8 +11,16 @@ export const TYPE_WARN = 'warn';
 export const TYPE_SUCCESS = 'success';
 
 export const TYPE_GHOST = 'ghost';
+export const TYPE_GHOST_INFO = 'ghost-info';
+export const TYPE_GHOST_DANGER = 'ghost-danger';
+export const TYPE_GHOST_WARN = 'ghost-warn';
+export const TYPE_GHOST_SUCCESS = 'ghost-success';
+
 export const TYPE_LABEL = 'label';
-export const TYPE_LABEL_ERROR = 'label-error';
+export const TYPE_LABEL_INFO = 'label-info';
+export const TYPE_LABEL_DANGER = 'label-danger';
+export const TYPE_LABEL_WARN = 'label-warn';
+export const TYPE_LABEL_SUCCESS = 'label-success';
 
 export const TYPES = [
   TYPE_MAIN,
@@ -22,8 +30,15 @@ export const TYPES = [
   TYPE_WARN,
   TYPE_SUCCESS,
   TYPE_GHOST,
+  TYPE_GHOST_INFO,
+  TYPE_GHOST_DANGER,
+  TYPE_GHOST_WARN,
+  TYPE_GHOST_SUCCESS,
   TYPE_LABEL,
-  TYPE_LABEL_ERROR,
+  TYPE_LABEL_INFO,
+  TYPE_LABEL_DANGER,
+  TYPE_LABEL_WARN,
+  TYPE_LABEL_SUCCESS,
 ];
 
 export type ButtonSize =
@@ -39,5 +54,12 @@ export type ButtonType =
   | typeof TYPE_WARN
   | typeof TYPE_SUCCESS
   | typeof TYPE_GHOST
+  | typeof TYPE_GHOST_INFO
+  | typeof TYPE_GHOST_DANGER
+  | typeof TYPE_GHOST_WARN
+  | typeof TYPE_GHOST_SUCCESS
   | typeof TYPE_LABEL
-  | typeof TYPE_LABEL_ERROR;
+  | typeof TYPE_LABEL_INFO
+  | typeof TYPE_LABEL_DANGER
+  | typeof TYPE_LABEL_WARN
+  | typeof TYPE_LABEL_SUCCESS;

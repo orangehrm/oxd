@@ -8,8 +8,9 @@ import {
   TYPE_SECONDARY,
   TYPE_DANGER,
   TYPE_GHOST,
+  TYPE_GHOST_DANGER,
   TYPE_LABEL,
-  TYPE_LABEL_ERROR,
+  TYPE_LABEL_DANGER,
 } from '@orangehrm/oxd/core/components/Button/types';
 
 export default {
@@ -51,6 +52,20 @@ Ghost.args = {
   label: 'Button',
 };
 
+export const GhostFeedback = Template.bind({});
+GhostFeedback.args = {
+  type: TYPE_GHOST_DANGER,
+  label: 'Button',
+};
+GhostFeedback.argTypes = {
+  type: {
+    control: {
+      type: 'select',
+      options: ['ghost-info', 'ghost-danger', 'ghost-warn', 'ghost-success'],
+    },
+  },
+};
+
 export const Feedback = Template.bind({});
 Feedback.args = {
   type: TYPE_DANGER,
@@ -68,10 +83,18 @@ Label.args = {
   label: 'Button',
 };
 
-export const LabelError = Template.bind({});
-LabelError.args = {
-  type: TYPE_LABEL_ERROR,
+export const LabelFeedback = Template.bind({});
+LabelFeedback.args = {
+  type: TYPE_LABEL_DANGER,
   label: 'Button',
+};
+LabelFeedback.argTypes = {
+  type: {
+    control: {
+      type: 'select',
+      options: ['label-info', 'label-danger', 'label-warn', 'label-success'],
+    },
+  },
 };
 
 export const Large = Template.bind({});
