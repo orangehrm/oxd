@@ -1,10 +1,40 @@
+@import 'variables';
+
 @mixin oxd-button-color($background-color) {
   color: $oxd-button-font-color;
   background-color: $background-color;
+}
+
+@mixin oxd-button-solid($type: 'main') {
+  @include oxd-button-base;
+  $oxd-button: map-get($oxd-solid-buttons, $type);
+
+  @include oxd-button-color(map-get($oxd-button, 'active'));
+
+  &:focus {
+    @include oxd-button-color(map-get($oxd-button, 'focus'));
+  }
+
+  &:hover {
+    @include oxd-button-color(map-get($oxd-button, 'hover'));
+  }
+
+  &:active {
+    @include oxd-button-color(map-get($oxd-button, 'pressed'));
+  }
+
+  &:disabled {
+    @include oxd-button-color(map-get($oxd-button, 'inactive'));
+  }
 }
 
 @mixin oxd-button-color-ghost($color) {
   color: $color;
   border: $oxd-button-border--ghost;
   background-color: transparent;
+}
+
+@mixin oxd-button-base {
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }

@@ -20,38 +20,26 @@
 
   /* Main Button */
   &--main {
-    @include oxd-button-color($oxd-button-color--main);
-
-    &:focus,
-    &:hover {
-      @include oxd-button-color($oxd-button-color--main-hover);
-    }
-
-    &:active {
-      @include oxd-button-color($oxd-button-color--main-pressed);
-    }
-
-    &:disabled {
-      @include oxd-button-color($oxd-button-color--main-inactive);
-    }
+    @include oxd-button-solid('main');
   }
 
   /* Secondary Button */
   &--secondary {
-    @include oxd-button-color($oxd-button-color--secondary);
+    @include oxd-button-solid('secondary');
+  }
 
-    &:focus,
-    &:hover {
-      @include oxd-button-color($oxd-button-color--secondary-hover);
-    }
-
-    &:active {
-      @include oxd-button-color($oxd-button-color--secondary-pressed);
-    }
-
-    &:disabled {
-      @include oxd-button-color($oxd-button-color--secondary-inactive);
-    }
+  /* Feedback Buttons */
+  &--info {
+    @include oxd-button-solid('info');
+  }
+  &--danger {
+    @include oxd-button-solid('danger');
+  }
+  &--warn {
+    @include oxd-button-solid('warn');
+  }
+  &--success {
+    @include oxd-button-solid('success');
   }
 
   /* Ghost Button */

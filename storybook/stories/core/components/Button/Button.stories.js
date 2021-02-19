@@ -6,6 +6,7 @@ import {
   SIZE_SMALL,
   TYPE_MAIN,
   TYPE_SECONDARY,
+  TYPE_DANGER,
   TYPE_GHOST,
   TYPE_LABEL,
   TYPE_LABEL_ERROR,
@@ -22,6 +23,7 @@ export default {
       control: {type: 'select', options: TYPES},
     },
     style: {control: {type: 'object'}},
+    disabled: {control: {type: 'boolean'}},
   },
 };
 
@@ -47,6 +49,17 @@ export const Ghost = Template.bind({});
 Ghost.args = {
   type: TYPE_GHOST,
   label: 'Button',
+};
+
+export const Feedback = Template.bind({});
+Feedback.args = {
+  type: TYPE_DANGER,
+  label: 'Button',
+};
+Feedback.argTypes = {
+  type: {
+    control: {type: 'select', options: ['info', 'danger', 'warn', 'success']},
+  },
 };
 
 export const Label = Template.bind({});
