@@ -1,7 +1,13 @@
 <template>
-  <button type="button" :class="classes" @click="onClick">
+  <button v-if="withContainer" type="button" :class="classes" @click="onClick">
     <oxd-icon :name="name" />
   </button>
+  <oxd-icon
+    v-else
+    :name="name"
+    class="oxd-icon-button__icon"
+    @click="onClick"
+  />
 </template>
 
 <script lang="ts">
@@ -19,6 +25,10 @@ export default defineComponent({
     name: {
       type: String,
       required: true,
+    },
+    withContainer: {
+      type: Boolean,
+      default: false,
     },
   },
 

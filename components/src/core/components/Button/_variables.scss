@@ -365,3 +365,10 @@ $oxd-icon-button--pressed: rgba($oxd-icon-button-font-color, 0.2) !default;
 $oxd-icon-button--hover: rgba($oxd-icon-button-font-color, 0.15) !default;
 $oxd-icon-button-size: 36px;
 $oxd-icon-button-padding: 6px;
+
+/**
+ * List Button
+**/
+$oxd-list-button-font-color: $oxd-interface-gray-darken-1-color !default;
+$oxd-list-button--pressed: $oxd-primary-one-color !default;
+$oxd-list-button--hover: $oxd-list-button--pressed !default;

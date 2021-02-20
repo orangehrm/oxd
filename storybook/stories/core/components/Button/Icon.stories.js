@@ -16,3 +16,9 @@ Icon.args = {
   name: 'trash',
 };
 Icon.argTypes = {};
+
+export const ListIcon = Template.bind({});
+ListIcon.args = {
+  name: 'trash',
+  withContainer: true,
+};
