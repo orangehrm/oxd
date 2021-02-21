@@ -20,94 +20,72 @@
 
   /* Main Button */
   &--main {
-    @include oxd-button-color($oxd-button-color--main);
-
-    &:focus,
-    &:hover {
-      @include oxd-button-color($oxd-button-color--main-hover);
-    }
-
-    &:active {
-      @include oxd-button-color($oxd-button-color--main-pressed);
-    }
-
-    &:disabled {
-      @include oxd-button-color($oxd-button-color--main-inactive);
-    }
+    @include oxd-button-solid('main');
   }
 
   /* Secondary Button */
   &--secondary {
-    @include oxd-button-color($oxd-button-color--secondary);
+    @include oxd-button-solid('secondary');
+  }
 
-    &:focus,
-    &:hover {
-      @include oxd-button-color($oxd-button-color--secondary-hover);
-    }
-
-    &:active {
-      @include oxd-button-color($oxd-button-color--secondary-pressed);
-    }
-
-    &:disabled {
-      @include oxd-button-color($oxd-button-color--secondary-inactive);
-    }
+  /* Feedback Buttons */
+  &--info {
+    @include oxd-button-solid('info');
+  }
+  &--danger {
+    @include oxd-button-solid('danger');
+  }
+  &--warn {
+    @include oxd-button-solid('warn');
+  }
+  &--success {
+    @include oxd-button-solid('success');
   }
 
   /* Ghost Button */
   &--ghost {
-    @include oxd-button-color-ghost($oxd-button-color--ghost);
+    @include oxd-button-ghost('default');
 
-    &:focus,
-    &:hover {
-      @include oxd-button-color-ghost($oxd-button-color--ghost-hover);
+    &-info {
+      @include oxd-button-ghost('info');
     }
-
-    &:active {
-      @include oxd-button-color-ghost($oxd-button-color--ghost-pressed);
+    &-danger {
+      @include oxd-button-ghost('danger');
     }
-
-    &:disabled {
-      @include oxd-button-color-ghost($oxd-button-color--ghost-inactive);
+    &-warn {
+      @include oxd-button-ghost('warn');
+    }
+    &-success {
+      @include oxd-button-ghost('success');
     }
   }
 
   /* Label Button */
   &--label {
-    color: $oxd-button-font-color--label;
-    background-color: $oxd-button-color--label;
+    @include oxd-button-label('default');
 
-    &:focus,
-    &:hover {
-      background-color: $oxd-button-color--label-hover;
+    &-info {
+      @include oxd-button-label('info');
     }
-
-    &:active {
-      background-color: $oxd-button-color--label-pressed;
+    &-danger {
+      @include oxd-button-label('danger');
     }
-
-    &:disabled {
-      background-color: $oxd-button-color--label-inactive;
+    &-warn {
+      @include oxd-button-label('warn');
+    }
+    &-success {
+      @include oxd-button-label('success');
     }
   }
 
-  /* Label Error Button */
-  &--label-error {
-    color: $oxd-button-font-color--label-error;
-    background-color: $oxd-button-color--label-error;
+  /* Text Button */
+  &--text {
+    @include oxd-button-label('text');
+  }
 
-    &:focus,
-    &:hover {
-      background-color: $oxd-button-color--label-error-hover;
-    }
-
-    &:active {
-      background-color: $oxd-button-color--label-error-pressed;
-    }
-
-    &:disabled {
-      background-color: $oxd-button-color--label-error-inactive;
-    }
+  /* Tool Button */
+  &--tool {
+    @include oxd-button-ghost('tool');
   }
 }
 
@@ -128,4 +106,8 @@
   font-size: $oxd-button-font-size--large;
   padding-top: $oxd-button-vertical-padding--large;
   padding-bottom: $oxd-button-vertical-padding--large;
+}
+
+.oxd-button-icon {
+  color: inherit;
 }
