@@ -14,12 +14,13 @@
   margin: $oxd-pagination-page-item-margin;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
 
   // TODO: handle focus
-  // &:focus {
-  //   outline: 0;
-  // }
+  /* &:focus {
+    outline: 0;
+  } */
 
   &--previous-next {
     border: $oxd-pagination-page-item-border

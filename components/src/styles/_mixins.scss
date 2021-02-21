@@ -13,3 +13,38 @@
 @mixin oxd-input-control-size {
   width: $oxd-input-control-width;
 }
+
+@mixin oxd-scrollbar(
+  $thumb-color: $oxd-scrollbar-thumb-color,
+  $track-color: $oxd-scrollbar-track-color,
+  $size: $oxd-scrollbar-size,
+  $arrow-color: $oxd-scrollbar-arrow-color
+) {
+  // Firefox
+  scrollbar-color: $thumb-color $track-color;
+  scrollbar-width: thin;
+
+  // Chrome/Edge/Safari
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: $oxd-scrollbar-thumb-border-radius;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+  }
+
+  // IE
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    & {
+      scrollbar-face-color: $thumb-color;
+      scrollbar-track-color: $track-color;
+      scrollbar-arrow-color: $arrow-color;
+    }
+  }
+}

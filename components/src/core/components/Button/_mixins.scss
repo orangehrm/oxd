@@ -3,8 +3,113 @@
   background-color: $background-color;
 }
 
-@mixin oxd-button-color-ghost($color) {
-  color: $color;
+@mixin oxd-button-solid($type: 'main') {
+  @include oxd-button-base;
+  $oxd-button: map-get($oxd-solid-buttons, $type);
+
+  @include oxd-button-color(map-get($oxd-button, 'active'));
+
+  &:focus {
+    @include oxd-button-color(map-get($oxd-button, 'focus'));
+  }
+
+  &:hover {
+    @include oxd-button-color(map-get($oxd-button, 'hover'));
+  }
+
+  &:active {
+    @include oxd-button-color(map-get($oxd-button, 'pressed'));
+  }
+
+  &:disabled {
+    @include oxd-button-color(map-get($oxd-button, 'inactive'));
+  }
+}
+
+@mixin oxd-button-label($type: 'default') {
+  @include oxd-button-base;
+  $oxd-button: map-get($oxd-label-buttons, $type);
+
+  color: map-get($oxd-button, 'font');
+  background-color: map-get($oxd-button, 'active');
+
+  @if ($type == 'default' or $type == 'text') {
+    &:focus {
+      background-color: map-get($oxd-button, 'focus');
+    }
+    &:hover {
+      background-color: map-get($oxd-button, 'hover');
+    }
+  } @else {
+    &:focus {
+      color: $oxd-button-font-color;
+      background-color: map-get($oxd-button, 'focus');
+    }
+    &:hover {
+      color: $oxd-button-font-color;
+      background-color: map-get($oxd-button, 'hover');
+    }
+  }
+
+  &:active {
+    background-color: map-get($oxd-button, 'pressed');
+  }
+
+  &:disabled {
+    @if ($type== 'text') {
+      color: map-get($oxd-button, 'font-inactive');
+    } @else {
+      color: $oxd-button-font-color;
+    }
+
+    background-color: map-get($oxd-button, 'inactive');
+  }
+}
+
+@mixin oxd-button-color-ghost($color, $hover: false) {
   border: $oxd-button-border--ghost;
-  background-color: transparent;
+
+  @if ($hover) {
+    color: $oxd-button-font-color;
+    background-color: $color;
+  } @else {
+    color: $color;
+    background-color: transparent;
+  }
+}
+
+@mixin oxd-button-ghost($type: 'default') {
+  @include oxd-button-base;
+  $oxd-button: map-get($oxd-ghost-buttons, $type);
+
+  @include oxd-button-color-ghost(map-get($oxd-button, 'active'));
+
+  @if ($type == 'default' or $type == 'tool') {
+    &:focus {
+      @include oxd-button-color-ghost(map-get($oxd-button, 'focus'));
+    }
+    &:hover {
+      @include oxd-button-color-ghost(map-get($oxd-button, 'hover'));
+    }
+  } @else {
+    &:focus {
+      @include oxd-button-color-ghost(map-get($oxd-button, 'focus'), true);
+    }
+    &:hover {
+      @include oxd-button-color-ghost(map-get($oxd-button, 'hover'), true);
+    }
+  }
+
+  &:active {
+    @include oxd-button-color-ghost(map-get($oxd-button, 'pressed'));
+  }
+
+  &:disabled {
+    @include oxd-button-color-ghost(map-get($oxd-button, 'inactive'));
+  }
+}
+
+@mixin oxd-button-base {
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }

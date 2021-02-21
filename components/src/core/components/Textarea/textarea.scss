@@ -4,9 +4,11 @@
 .oxd-textarea {
   @include oxd-input-control;
   @include oxd-input-control-size;
+  @include oxd-scrollbar(
+    $oxd-textarea-scrollbar-thumb-color,
+    $oxd-textarea-scrollbar-track-color
+  );
   min-height: $oxd-textarea-min-height;
-  scrollbar-color: $oxd-textarea-scrollbar-color;
-  scrollbar-width: thin;
 
   &--active {
     border: $oxd-textarea-border--active;

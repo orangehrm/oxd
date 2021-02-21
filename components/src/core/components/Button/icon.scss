@@ -14,6 +14,7 @@
   padding: $oxd-icon-button-padding;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
 
   &:focus,
@@ -24,5 +25,22 @@
 
   &:active {
     background-color: $oxd-icon-button--pressed;
+  }
+}
+
+.oxd-icon-button__icon {
+  font-size: $oxd-icon-button-font-size;
+  font-weight: $oxd-icon-button-font-weight;
+  color: $oxd-list-button-font-color;
+  cursor: pointer;
+
+  &:focus,
+  &:hover {
+    outline: 0;
+    color: $oxd-list-button--hover;
+  }
+
+  &:active {
+    color: $oxd-list-button--pressed;
   }
 }
