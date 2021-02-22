@@ -66,4 +66,28 @@ describe('Text.vue', () => {
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
+
+  it('should renders OXD Text with subtitle-1 type', () => {
+    const wrapper = mount(Text, {
+      slots: {default: DUMMY_TEXT},
+      props: {type: 'subtitle-1'},
+    });
+    expect(wrapper.html()).toMatchSnapshot();
+  });
+
+  it('should renders OXD Text with subtitle-2 type', () => {
+    const wrapper = mount(Text, {
+      slots: {default: DUMMY_TEXT},
+      props: {type: 'subtitle-2'},
+    });
+    expect(wrapper.html()).toMatchSnapshot();
+  });
+
+  it('should renders OXD Text with card-title type', () => {
+    const wrapper = mount(Text, {
+      slots: {default: DUMMY_TEXT},
+      props: {type: 'card-title'},
+    });
+    expect(wrapper.html()).toMatchSnapshot();
+  });
 });
