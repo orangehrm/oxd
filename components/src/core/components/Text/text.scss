@@ -48,18 +48,25 @@
     color: $oxd-text-h6-color;
   }
 
-  &--subtitle1 {
-    font-size: $oxd-text-subtitle1-font-size;
-    font-weight: $oxd-text-subtitle1-font-weight;
-    letter-spacing: $oxd-text-subtitle1-letter-spacing;
-    color: $oxd-text-subtitle1-color;
+  &--subtitle-1 {
+    font-size: $oxd-text-subtitle-1-font-size;
+    font-weight: $oxd-text-subtitle-1-font-weight;
+    letter-spacing: $oxd-text-subtitle-1-letter-spacing;
+    color: $oxd-text-subtitle-1-color;
   }
 
-  &--subtitle2 {
-    font-size: $oxd-text-subtitle2-font-size;
-    font-weight: $oxd-text-subtitle2-font-weight;
-    letter-spacing: $oxd-text-subtitle2-letter-spacing;
-    color: $oxd-text-subtitle2-color;
+  &--subtitle-2 {
+    font-size: $oxd-text-subtitle-2-font-size;
+    font-weight: $oxd-text-subtitle-2-font-weight;
+    letter-spacing: $oxd-text-subtitle-2-letter-spacing;
+    color: $oxd-text-subtitle-2-color;
+  }
+
+  &--card-title {
+    font-size: $oxd-text-card-title-font-size;
+    font-weight: $oxd-text-card-title-font-weight;
+    letter-spacing: $oxd-text-card-title-letter-spacing;
+    color: $oxd-text-card-title-color;
   }
 
   &--p {
