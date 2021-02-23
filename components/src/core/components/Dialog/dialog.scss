@@ -1,0 +1,18 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-dialog-close-button-position {
+  position: absolute;
+  top: $oxd-dialog-close-button-top;
+  right: $oxd-dialog-close-button-right;
+}
+
+.oxd-dialog-sheet {
+  z-index: $oxd-dialog-z-index;
+  position: relative;
+  box-sizing: border-box;
+
+  &--shadow {
+    box-shadow: $oxd-dialog-sheet-box-shadow;
+  }
+}

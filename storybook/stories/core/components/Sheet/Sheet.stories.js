@@ -13,6 +13,9 @@ export default {
     rounded: {
       control: {type: 'boolean'},
     },
+    gutters: {
+      control: {type: 'boolean'},
+    },
   },
 };
 
@@ -36,6 +39,7 @@ export const SheetWithGutters = () => SheetWithGuttersStory;
 SheetWithGutters.args = {
   type: 'gray-lighten-2',
   rounded: true,
+  gutters: true,
 };
 
 export const SheetWithBackground = () => SheetWithBackgroundStory;
