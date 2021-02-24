@@ -69,6 +69,20 @@
     color: $oxd-text-card-title-color;
   }
 
+  &--toast-title {
+    font-size: $oxd-text-toast-title-font-size;
+    font-weight: $oxd-text-toast-title-font-weight;
+    letter-spacing: $oxd-text-toast-title-letter-spacing;
+    color: $oxd-text-toast-title-color;
+  }
+
+  &--toast-message {
+    font-size: $oxd-text-toast-message-font-size;
+    font-weight: $oxd-text-toast-message-font-weight;
+    letter-spacing: $oxd-text-toast-message-letter-spacing;
+    color: $oxd-text-toast-message-color;
+  }
+
   &--p {
     color: $oxd-text-p-color;
   }

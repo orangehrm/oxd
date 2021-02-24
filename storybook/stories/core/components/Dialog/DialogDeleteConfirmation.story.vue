@@ -6,7 +6,7 @@
       <oxd-text type="card-title">Are you sure?</oxd-text>
     </div>
     <div class="orangehrm-text-center-align">
-      <oxd-text>
+      <oxd-text type="subtitle-2">
         The selected item will be permanently deleted. Are you sure you want to
         continue?
       </oxd-text>

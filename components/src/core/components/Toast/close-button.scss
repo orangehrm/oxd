@@ -1,0 +1,22 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-toast-close {
+  border: 0;
+  outline: 0;
+  padding: $oxd-toast-close-padding;
+  height: $oxd-toast-close-size;
+  width: $oxd-toast-close-size;
+  border-radius: $oxd-toast-close-border-radius;
+  cursor: pointer;
+  background-color: rgba($oxd-toast-icon-color, 0.1);
+  @include oxd-flex-center;
+
+  &--default {
+    background-color: rgba($oxd-toast-icon-color-default, 0.1);
+  }
+}
+
+.oxd-toast-close-container {
+  @include oxd-flex-center;
+}
