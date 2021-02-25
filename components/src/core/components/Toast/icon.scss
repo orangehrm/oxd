@@ -1,0 +1,25 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-toast-icon {
+  color: inherit;
+  font-size: $oxd-toast-icon-font-size;
+}
+
+.oxd-toast-icon-container {
+  @include oxd-flex-center;
+}
+
+.oxd-toast-icon-wrap {
+  background-color: rgba($oxd-toast-icon-color, 0.1);
+  padding: $oxd-toast-icon-wrap-padding;
+  border-radius: 100%;
+  box-sizing: border-box;
+  height: $oxd-toast-icon-wrap-size;
+  width: $oxd-toast-icon-wrap-size;
+  @include oxd-flex-center;
+
+  &--default {
+    background-color: rgba($oxd-toast-icon-color-default, 0.1);
+  }
+}

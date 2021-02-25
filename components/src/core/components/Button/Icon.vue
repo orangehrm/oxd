@@ -28,7 +28,7 @@ export default defineComponent({
     },
     withContainer: {
       type: Boolean,
-      default: false,
+      default: true,
     },
   },
 

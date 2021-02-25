@@ -5,8 +5,10 @@ export default {
   component: Pagination,
 };
 
-const Template = (args, {argTypes}) => ({
-  props: Object.keys(argTypes),
+const Template = args => ({
+  setup() {
+    return {args};
+  },
   data() {
     return {
       current: 2,
@@ -14,7 +16,7 @@ const Template = (args, {argTypes}) => ({
   },
   components: {'oxd-pagination': Pagination},
   template:
-    '<div>Current page: {{current}} </div><oxd-pagination :length="length" v-model:current="current" :max="max" />',
+    '<div>Current page: {{current}} </div><oxd-pagination :length="args.length" v-model:current="current" :max="args.max" />',
 });
 
 export const Default = Template.bind({});

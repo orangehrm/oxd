@@ -1,0 +1,97 @@
+<template>
+  <oxd-overlay role="dialog" centered :show="show" @click="onClickOverlay">
+    <!--
+    :aria-labelledby="'dialogTitle_' + id"
+    :aria-describedby="'dialogDesc_' + id"
+    -->
+    <component :is="dialogContainer">
+      <oxd-sheet
+        :class="classes"
+        v-bind="$attrs"
+        role="document"
+        @click="onClickSheet"
+      >
+        <oxd-dialog-close-button
+          v-if="withClose"
+          class="oxd-dialog-close-button-position"
+          @click="onClose"
+        />
+        <slot></slot>
+      </oxd-sheet>
+    </component>
+  </oxd-overlay>
+</template>
+
+<script lang="ts">
+import {defineComponent} from 'vue';
+import Overlay from '@orangehrm/oxd/core/components/Dialog/Overlay.vue';
+import CloseButton from '@orangehrm/oxd/core/components/Dialog/CloseButton.vue';
+import Sheet from '@orangehrm/oxd/core/components/Sheet/Sheet.vue';
+
+// Containers
+import DefaultContainer from '@orangehrm/oxd/core/components/Dialog/Container/Default.vue';
+
+export default defineComponent({
+  name: 'oxd-dialog',
+  inheritAttrs: false,
+
+  components: {
+    'oxd-overlay': Overlay,
+    'oxd-dialog-close-button': CloseButton,
+    'oxd-sheet': Sheet,
+
+    // Containers
+    'oxd-dialog-container-default': DefaultContainer,
+  },
+
+  emits: ['update:show'],
+
+  props: {
+    show: {
+      type: Boolean,
+      default: false,
+    },
+    shadow: {
+      type: Boolean,
+      default: true,
+    },
+    withClose: {
+      type: Boolean,
+      default: true,
+    },
+    persistent: {
+      type: Boolean,
+      default: false,
+    },
+    dialogContainer: {
+      type: String,
+      default: 'oxd-dialog-container-default',
+    },
+  },
+
+  computed: {
+    classes(): object {
+      return {
+        'oxd-dialog-sheet': true,
+        'oxd-dialog-sheet--shadow': this.shadow,
+      };
+    },
+  },
+
+  methods: {
+    onClose() {
+      this.$emit('update:show', false);
+    },
+    onClickOverlay() {
+      if (!this.persistent) {
+        this.$emit('update:show', false);
+      }
+    },
+    onClickSheet(e: Event) {
+      e.stopPropagation();
+    },
+  },
+});
+</script>
+
+<style src="./dialog.scss" lang="scss" scoped></style>

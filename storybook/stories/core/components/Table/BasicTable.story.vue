@@ -16,7 +16,7 @@
         <oxd-td>{{ item.col1 }}</oxd-td>
         <oxd-td>{{ item.col2 }}</oxd-td>
         <oxd-td>
-          <button @click.stop="item.action">{{ item.col2 }}</button>
+          <oxd-icon-button name="trash" @click.stop="onBtnClick" />
         </oxd-td>
       </oxd-tr>
     </oxd-tbody>
@@ -33,6 +33,7 @@ import TableFooter from '@orangehrm/oxd/core/components/Table/TableFooter';
 import TableRow from '@orangehrm/oxd/core/components/Table/TableRow';
 import TableHeaderCell from '@orangehrm/oxd/core/components/Table/TableHeaderCell';
 import TableDataCell from '@orangehrm/oxd/core/components/Table/TableDataCell';
+import IconButton from '@orangehrm/oxd/core/components/Button/Icon';
 
 export default {
   data() {
@@ -53,6 +54,7 @@ export default {
     'oxd-tr': TableRow,
     'oxd-th': TableHeaderCell,
     'oxd-td': TableDataCell,
+    'oxd-icon-button': IconButton,
   },
 
   methods: {

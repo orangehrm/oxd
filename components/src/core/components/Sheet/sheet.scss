@@ -1,0 +1,42 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-sheet {
+  background-color: $oxd-sheet-white-color;
+
+  &--gray-darken-2 {
+    background-color: $oxd-sheet-gray-darken-2-color;
+  }
+  &--gray-darken-1 {
+    background-color: $oxd-sheet-gray-darken-1-color;
+  }
+  &--gray {
+    background-color: $oxd-sheet-gray-color;
+  }
+  &--gray-lighten-1 {
+    background-color: $oxd-sheet-gray-lighten-1-color;
+  }
+  &--gray-lighten-2 {
+    background-color: $oxd-sheet-gray-lighten-2-color;
+  }
+  &--light-gray {
+    background-color: $oxd-sheet-light-gray-color;
+  }
+  &--pastel-white {
+    background-color: $oxd-sheet-pastel-white-color;
+  }
+  &--white-shadow {
+    background-color: $oxd-sheet-white-shadow-color;
+  }
+
+  &--rounded {
+    border-radius: $oxd-sheet-border-radius;
+  }
+
+  &--gutters {
+    padding-top: $oxd-sheet-padding-vertical;
+    padding-bottom: $oxd-sheet-padding-vertical;
+    padding-left: $oxd-sheet-padding-horizontal;
+    padding-right: $oxd-sheet-padding-horizontal;
+  }
+}

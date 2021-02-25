@@ -1,0 +1,28 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $oxd-overlay-z-index;
+  width: 100%;
+  height: 100%;
+  outline: 0;
+  box-sizing: border-box;
+  background-color: $oxd-overlay-background-color;
+
+  &--hide {
+    display: none !important;
+  }
+
+  &--flex {
+    display: flex;
+    flex-direction: column;
+
+    &-centered {
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

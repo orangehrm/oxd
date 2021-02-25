@@ -9,7 +9,9 @@
   "scripts": {
     "dev": "yarn workspace oxd-storybook start",
     "test:unit": "yarn workspace oxd-components test:unit",
-    "lint": "yarn workspace oxd-components lint"
+    "test:cov": "yarn workspace oxd-components test:unit --coverageDirectory coverage --coverage",
+    "lint": "yarn workspace oxd-components lint",
+    "tsc": "yarn workspace oxd-components tsc"
   },
   "engines": {
     "node": ">=10.19.0",
