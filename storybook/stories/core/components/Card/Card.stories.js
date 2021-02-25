@@ -8,10 +8,12 @@ export default {
   },
 };
 
-const Template = (args, {argTypes}) => ({
-  props: Object.keys(argTypes),
+const Template = args => ({
+  setup() {
+    return {args};
+  },
   components: {'oxd-card': Card},
-  template: '<oxd-card v-bind="$props" />',
+  template: '<oxd-card v-bind="args" />',
 });
 
 export const Default = Template.bind({});

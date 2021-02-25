@@ -11,10 +11,12 @@ export default {
   },
 };
 
-const Template = (args, {argTypes}) => ({
-  props: Object.keys(argTypes),
+const Template = args => ({
+  setup() {
+    return {args};
+  },
   components: {'oxd-icon': Icon},
-  template: '<oxd-icon v-bind="$props" />',
+  template: '<oxd-icon v-bind="args" />',
 });
 
 export const Default = Template.bind({});

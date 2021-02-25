@@ -8,10 +8,12 @@ export default {
   },
 };
 
-const Template = (args, {argTypes}) => ({
-  props: Object.keys(argTypes),
+const Template = args => ({
+  setup() {
+    return {args};
+  },
   components: {'oxd-chip': Chip},
-  template: '<oxd-chip v-bind="$props" />',
+  template: '<oxd-chip v-bind="args" />',
 });
 
 export const Default = Template.bind({});

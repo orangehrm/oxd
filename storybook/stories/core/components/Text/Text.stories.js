@@ -1,5 +1,10 @@
 import Text from '@orangehrm/oxd/core/components/Text/Text';
-import {TAGS} from '@orangehrm/oxd/core/components/Text/types';
+import {
+  TAGS,
+  TYPE_SUBTITLE_1,
+  TYPE_SUBTITLE_2,
+  TYPE_CARD_TITLE,
+} from '@orangehrm/oxd/core/components/Text/types';
 
 export default {
   title: 'Example/Text',
@@ -8,10 +13,12 @@ export default {
 
 const DUMMY_TEXT = 'Nunito is a well balanced sans serif typeface';
 
-const Template = (args, {argTypes}) => ({
-  props: Object.keys(argTypes),
+const Template = args => ({
+  setup() {
+    return {args};
+  },
   components: {'oxd-text': Text},
-  template: `<oxd-text v-bind="$props">${DUMMY_TEXT}</oxd-text>`,
+  template: `<oxd-text v-bind="args">${DUMMY_TEXT}</oxd-text>`,
 });
 
 const argTypes = {
@@ -45,3 +52,12 @@ export const All = TemplateAll.bind({});
 All.args = {
   label: DUMMY_TEXT,
 };
+
+export const CardTitle = Template.bind({});
+CardTitle.args = {type: TYPE_CARD_TITLE};
+
+export const Subtitle1 = Template.bind({});
+Subtitle1.args = {type: TYPE_SUBTITLE_1};
+
+export const Subtitle2 = Template.bind({});
+Subtitle2.args = {type: TYPE_SUBTITLE_2};

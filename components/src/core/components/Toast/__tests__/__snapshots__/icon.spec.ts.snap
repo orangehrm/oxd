@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toast > Icon.vue should renders OXD ToastIcon 1`] = `
+<div class="oxd-toast-icon-container">
+  <div class="oxd-toast-icon-wrap oxd-toast-icon-wrap--default"><i class="oxd-icon bi-star oxd-toast-icon"></i></div>
+</div>
+`;
+
+exports[`Toast > Icon.vue should renders OXD ToastIcon error 1`] = `
+<div class="oxd-toast-icon-container">
+  <div class="oxd-toast-icon-wrap oxd-toast-icon-wrap--error"><i class="oxd-icon bi-exclamation-circle oxd-toast-icon"></i></div>
+</div>
+`;
+
+exports[`Toast > Icon.vue should renders OXD ToastIcon info 1`] = `
+<div class="oxd-toast-icon-container">
+  <div class="oxd-toast-icon-wrap oxd-toast-icon-wrap--info"><i class="oxd-icon bi-info-circle oxd-toast-icon"></i></div>
+</div>
+`;
+
+exports[`Toast > Icon.vue should renders OXD ToastIcon success 1`] = `
+<div class="oxd-toast-icon-container">
+  <div class="oxd-toast-icon-wrap oxd-toast-icon-wrap--success"><i class="oxd-icon bi-check2 oxd-toast-icon"></i></div>
+</div>
+`;
+
+exports[`Toast > Icon.vue should renders OXD ToastIcon warn 1`] = `
+<div class="oxd-toast-icon-container">
+  <div class="oxd-toast-icon-wrap oxd-toast-icon-wrap--warn"><i class="oxd-icon bi-exclamation-triangle oxd-toast-icon"></i></div>
+</div>
+`;

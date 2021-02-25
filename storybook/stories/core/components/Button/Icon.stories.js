@@ -5,10 +5,12 @@ export default {
   component: IconButton,
 };
 
-const Template = (args, {argTypes}) => ({
-  props: Object.keys(argTypes),
+const Template = args => ({
+  setup() {
+    return {args};
+  },
   components: {'oxd-icon-button': IconButton},
-  template: '<oxd-icon-button v-bind="$props" />',
+  template: '<oxd-icon-button v-bind="args" />',
 });
 
 export const Icon = Template.bind({});

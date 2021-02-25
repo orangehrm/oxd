@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dialog > Overlay.vue should renders OXD Dialog > Overlay 1`] = `<div role="dialog" class="oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered oxd-overlay--hide"></div>`;
+
+exports[`Dialog > Overlay.vue should renders OXD Dialog > Overlay centered 1`] = `<div role="dialog" class="oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered"></div>`;
+
+exports[`Dialog > Overlay.vue should renders OXD Dialog > Overlay show 1`] = `<div role="dialog" class="oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered"></div>`;

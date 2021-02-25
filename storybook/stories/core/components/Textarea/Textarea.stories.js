@@ -12,10 +12,12 @@ export default {
   },
 };
 
-const Template = (args, {argTypes}) => ({
-  props: Object.keys(argTypes),
+const Template = args => ({
+  setup() {
+    return {args};
+  },
   components: {'oxd-textarea': Textarea},
-  template: '<oxd-textarea v-bind="$props" />',
+  template: '<oxd-textarea v-bind="args" />',
 });
 
 export const Default = Template.bind({});

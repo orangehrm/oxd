@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sheet.vue should renders OXD Sheet 1`] = `<div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white"></div>`;
+
+exports[`Sheet.vue should renders OXD Sheet, not rounded 1`] = `<div class="oxd-sheet oxd-sheet--gutters oxd-sheet--white"></div>`;
+
+exports[`Sheet.vue should renders OXD Sheet, type gray 1`] = `<div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--gray"></div>`;
+
+exports[`Sheet.vue should renders OXD Sheet, type gray-darken-1 1`] = `<div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--gray-darken-1"></div>`;
+
+exports[`Sheet.vue should renders OXD Sheet, type gray-darken-2 1`] = `<div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--gray-darken-2"></div>`;
+
+exports[`Sheet.vue should renders OXD Sheet, type gray-lighten-1 1`] = `<div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--gray-lighten-1"></div>`;
+
+exports[`Sheet.vue should renders OXD Sheet, type gray-lighten-2 1`] = `<div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--gray-lighten-2"></div>`;
+
+exports[`Sheet.vue should renders OXD Sheet, type light-gray 1`] = `<div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--light-gray"></div>`;
+
+exports[`Sheet.vue should renders OXD Sheet, type pastel-white 1`] = `<div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--pastel-white"></div>`;
+
+exports[`Sheet.vue should renders OXD Sheet, type white 1`] = `<div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white"></div>`;
+
+exports[`Sheet.vue should renders OXD Sheet, type white-shadow 1`] = `<div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white-shadow"></div>`;
+
+exports[`Sheet.vue should renders OXD Sheet, without gutters 1`] = `<div class="oxd-sheet oxd-sheet--rounded oxd-sheet--white"></div>`;

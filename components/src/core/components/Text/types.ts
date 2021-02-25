@@ -17,6 +17,20 @@ export const TAGS = [
   TAG_SPAN,
 ];
 
+export const TYPE_SUBTITLE_1 = 'subtitle-1';
+export const TYPE_SUBTITLE_2 = 'subtitle-2';
+export const TYPE_CARD_TITLE = 'card-title';
+export const TYPE_TOAST_TITLE = 'toast-title';
+export const TYPE_TOAST_MESSAGE = 'toast-message';
+
+export const TYPES = [
+  TYPE_SUBTITLE_1,
+  TYPE_SUBTITLE_2,
+  TYPE_CARD_TITLE,
+  TYPE_TOAST_TITLE,
+  TYPE_TOAST_MESSAGE,
+];
+
 export type Tags =
   | typeof TAG_H1
   | typeof TAG_H2
@@ -26,3 +40,10 @@ export type Tags =
   | typeof TAG_H6
   | typeof TAG_P
   | typeof TAG_SPAN;
+
+export type TextTypes =
+  | typeof TYPE_SUBTITLE_1
+  | typeof TYPE_SUBTITLE_2
+  | typeof TYPE_CARD_TITLE
+  | typeof TYPE_TOAST_TITLE
+  | typeof TYPE_TOAST_MESSAGE;

@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {TAGS, Tags, TAG_P} from './types';
+import {TAGS, Tags, TAG_P, TYPES, TextTypes} from './types';
 
 export default defineComponent({
   name: 'oxd-text',
@@ -20,6 +20,15 @@ export default defineComponent({
     style: {
       type: Object,
     },
+    type: {
+      type: String,
+      validator: function(value?: TextTypes) {
+        if (value === undefined || value === null) {
+          return true;
+        }
+        return TYPES.indexOf(value) !== -1;
+      },
+    },
   },
 
   computed: {
@@ -27,6 +36,7 @@ export default defineComponent({
       return {
         'oxd-text': true,
         [`oxd-text--${this.tag}`]: true,
+        [`oxd-text--${this.type}`]: this.type,
       };
     },
   },
