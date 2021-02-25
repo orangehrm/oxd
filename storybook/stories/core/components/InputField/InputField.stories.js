@@ -13,10 +13,12 @@ const argTypes = {
   },
 };
 
-const Template = (args, {argTypes}) => ({
-  props: Object.keys(argTypes),
+const Template = args => ({
+  setup() {
+    return {args};
+  },
   components: {'oxd-input-field': InputField},
-  template: '<oxd-input-field v-bind="$props" />',
+  template: '<oxd-input-field v-bind="args" />',
 });
 
 export const Default = Template.bind({});

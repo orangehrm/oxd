@@ -8,10 +8,12 @@ export default {
   },
 };
 
-const Template = (args, {argTypes}) => ({
-  props: Object.keys(argTypes),
+const Template = args => ({
+  setup() {
+    return {args};
+  },
   components: {'oxd-divider': Divider},
-  template: '<oxd-divider v-bind="$props" />',
+  template: '<oxd-divider v-bind="args" />',
 });
 
 export const Default = Template.bind({});

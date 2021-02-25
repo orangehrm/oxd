@@ -5,10 +5,12 @@ export default {
   title: 'Example/CardTable',
 };
 
-const Template = (args, {argTypes}) => ({
-  props: Object.keys(argTypes),
+const Template = args => ({
+  setup() {
+    return {args};
+  },
   components: {CardTableStory},
-  template: '<CardTableStory v-bind="$props" />',
+  template: '<CardTableStory v-bind="args" />',
 });
 
 export const Default = Template.bind({});

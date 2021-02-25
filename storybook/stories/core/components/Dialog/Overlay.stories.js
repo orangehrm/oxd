@@ -5,8 +5,10 @@ export default {
   component: Overlay,
 };
 
-const Template = (args, {argTypes}) => ({
-  props: Object.keys(argTypes),
+const Template = args => ({
+  setup() {
+    return {args};
+  },
   components: {'oxd-overlay': Overlay},
   template: `
   <p><b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry.
@@ -16,7 +18,7 @@ const Template = (args, {argTypes}) => ({
   remaining essentially unchanged.
   It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
   and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-  <oxd-overlay v-bind="$props"><div :style="{padding:'10px',backgroundColor:'white'}">Hello World!!</div></oxd-overlay>
+  <oxd-overlay v-bind="args"><div :style="{padding:'10px',backgroundColor:'white'}">Hello World!!</div></oxd-overlay>
   `,
 });
 

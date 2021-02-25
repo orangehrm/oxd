@@ -7,17 +7,15 @@ import DialogDeleteConfirmationStory from './DialogDeleteConfirmation.story.vue'
 export default {
   title: 'Example/Dialog/Dialog',
   component: Dialog,
+  args: {
+    dialogContainer: 'oxd-dialog-container-default',
+  },
 };
 
-const argTypes = {
-  shadow: {control: {type: 'boolean'}},
-  gutters: {control: {type: 'boolean'}},
-  withClose: {control: {type: 'boolean'}},
-  persistent: {control: {type: 'boolean'}},
-};
-
-const Template = (args, {argTypes}) => ({
-  props: Object.keys(argTypes),
+const Template = args => ({
+  setup() {
+    return {args};
+  },
   components: {'oxd-dialog': Dialog},
   template: `
   <p><b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry.
@@ -28,7 +26,7 @@ const Template = (args, {argTypes}) => ({
   It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
   and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
 
-  <oxd-dialog v-bind="$props">
+  <oxd-dialog v-bind="args">
     <p><b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry.
     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
     when an unknown printer took a galley of type and scrambled it to make a type specimen book.
@@ -51,18 +49,36 @@ Default.args = {
 export const Close = () => DialogClose;
 Close.args = {};
 
-export const DialogWithoutClose = () => DialogWithoutCloseStory;
+export const DialogWithoutClose = args => ({
+  setup() {
+    return {
+      args: {
+        withClose: args.withClose,
+      },
+    };
+  },
+  components: {DialogWithoutCloseStory},
+  template: `<DialogWithoutCloseStory v-bind="args" />`,
+});
 DialogWithoutClose.args = {
   withClose: false,
 };
-DialogWithoutClose.argTypes = argTypes;
 
-export const Persistent = () => DialogPersistentStory;
+export const Persistent = args => ({
+  setup() {
+    delete args.show;
+    return {args};
+  },
+  components: {DialogPersistentStory},
+  template: `<DialogPersistentStory v-bind="args" />`,
+});
 Persistent.args = {
   withClose: false,
   persistent: true,
 };
-Persistent.argTypes = argTypes;
 
-export const DeleteConfirmation = () => DialogDeleteConfirmationStory;
+export const DeleteConfirmation = () => ({
+  components: {DialogDeleteConfirmationStory},
+  template: `<DialogDeleteConfirmationStory />`,
+});
 DeleteConfirmation.args = {};

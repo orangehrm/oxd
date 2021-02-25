@@ -5,10 +5,12 @@ export default {
   component: Spinner,
 };
 
-const Template = (args, {argTypes}) => ({
-  props: Object.keys(argTypes),
+const Template = args => ({
+  setup() {
+    return {args};
+  },
   components: {'oxd-loading-spinner': Spinner},
-  template: '<oxd-loading-spinner v-bind="$props" />',
+  template: '<oxd-loading-spinner v-bind="args" />',
 });
 
 export const Default = Template.bind({});

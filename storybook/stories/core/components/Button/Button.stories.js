@@ -4,6 +4,7 @@ import {
   TYPES,
   SIZE_LARGE,
   SIZE_SMALL,
+  SIZE_MEDIUM,
   TYPE_MAIN,
   TYPE_SECONDARY,
   TYPE_DANGER,
@@ -21,6 +22,7 @@ export default {
   argTypes: {
     size: {
       control: {type: 'select', options: SIZES},
+      defaultValue: SIZE_MEDIUM,
     },
     type: {
       control: {type: 'select', options: TYPES},
@@ -30,10 +32,12 @@ export default {
   },
 };
 
-const Template = (args, {argTypes}) => ({
-  props: Object.keys(argTypes),
+const Template = args => ({
+  setup() {
+    return {args};
+  },
   components: {'oxd-button': Button},
-  template: '<oxd-button v-bind="$props" />',
+  template: '<oxd-button v-bind="args" />',
 });
 
 export const Main = Template.bind({});

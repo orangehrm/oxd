@@ -19,10 +19,12 @@ export default {
   },
 };
 
-const Template = (args, {argTypes}) => ({
-  props: Object.keys(argTypes),
+const Template = args => ({
+  setup() {
+    return {args};
+  },
   components: {'oxd-sheet': Sheet},
-  template: '<oxd-sheet v-bind="$props" />',
+  template: '<oxd-sheet v-bind="args" />',
 });
 
 export const Default = Template.bind({});

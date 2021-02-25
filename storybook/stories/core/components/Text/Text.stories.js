@@ -13,10 +13,12 @@ export default {
 
 const DUMMY_TEXT = 'Nunito is a well balanced sans serif typeface';
 
-const Template = (args, {argTypes}) => ({
-  props: Object.keys(argTypes),
+const Template = args => ({
+  setup() {
+    return {args};
+  },
   components: {'oxd-text': Text},
-  template: `<oxd-text v-bind="$props">${DUMMY_TEXT}</oxd-text>`,
+  template: `<oxd-text v-bind="args">${DUMMY_TEXT}</oxd-text>`,
 });
 
 const argTypes = {

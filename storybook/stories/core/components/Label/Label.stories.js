@@ -5,10 +5,12 @@ export default {
   component: Label,
 };
 
-const Template = (args, {argTypes}) => ({
-  props: Object.keys(argTypes),
+const Template = args => ({
+  setup() {
+    return {args};
+  },
   components: {'oxd-label': Label},
-  template: '<oxd-label v-bind="$props" />',
+  template: '<oxd-label v-bind="args" />',
 });
 
 export const Default = Template.bind({});

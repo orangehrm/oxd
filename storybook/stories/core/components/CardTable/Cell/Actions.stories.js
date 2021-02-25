@@ -5,11 +5,13 @@ export default {
   argTypes: {onClick: {action: 'clicked'}},
 };
 
-const Template = (args, {argTypes}) => ({
-  props: Object.keys(argTypes),
+const Template = args => ({
+  setup() {
+    return {args};
+  },
   provide: {tableProps: {}},
   components: {'oxd-table-cell-actions': CellActions},
-  template: '<oxd-table-cell-actions v-bind="$props" />',
+  template: '<oxd-table-cell-actions v-bind="args" />',
 });
 
 export const Actions = Template.bind({});
