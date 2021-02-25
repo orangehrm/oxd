@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toast > Toast.vue should renders OXD Toast 1`] = `<!--v-if-->`;
+
+exports[`Toast > Toast.vue should renders OXD Toast error 1`] = `<!--v-if-->`;
+
+exports[`Toast > Toast.vue should renders OXD Toast info 1`] = `<!--v-if-->`;
+
+exports[`Toast > Toast.vue should renders OXD Toast success 1`] = `<!--v-if-->`;
+
+exports[`Toast > Toast.vue should renders OXD Toast warn 1`] = `<!--v-if-->`;

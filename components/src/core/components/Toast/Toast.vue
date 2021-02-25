@@ -1,18 +1,20 @@
 <template>
   <div v-if="show" :class="classes" aria-live="assertive" @click="onClickToast">
-    <slot name="icon">
-      <oxd-toast-icon :type="type" />
-    </slot>
-    <slot>
-      <div :class="contentClasses">
-        <oxd-text type="toast-title" class="oxd-toast-content-text">
-          {{ title }}
-        </oxd-text>
-        <oxd-text type="toast-message" class="oxd-toast-content-text">
-          {{ message }}
-        </oxd-text>
-      </div>
-    </slot>
+    <div class="oxd-toast-start">
+      <slot name="icon">
+        <oxd-toast-icon :type="type" />
+      </slot>
+      <slot>
+        <div :class="contentClasses">
+          <oxd-text type="toast-title" class="oxd-toast-content-text">
+            {{ title }}
+          </oxd-text>
+          <oxd-text type="toast-message" class="oxd-toast-content-text">
+            {{ message }}
+          </oxd-text>
+        </div>
+      </slot>
+    </div>
     <slot name="close">
       <oxd-toast-close-button :type="type" @click="onClickClose" />
     </slot>
@@ -36,6 +38,8 @@ export default defineComponent({
     'oxd-toast-close-button': ToastCloseButton,
     'oxd-toast-icon': ToastIcon,
   },
+
+  emits: ['update:show'],
 
   props: {
     show: {

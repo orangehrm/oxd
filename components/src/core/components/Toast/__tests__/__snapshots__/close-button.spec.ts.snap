@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toast > CloseButton.vue should renders OXD ToastCloseButton 1`] = `
+<div class="oxd-toast-close-container">
+  <div class="oxd-toast-close oxd-toast-close--default" role="button"> × </div>
+</div>
+`;
+
+exports[`Toast > CloseButton.vue should renders OXD ToastCloseButton error 1`] = `
+<div class="oxd-toast-close-container">
+  <div class="oxd-toast-close oxd-toast-close--error" role="button"> × </div>
+</div>
+`;
+
+exports[`Toast > CloseButton.vue should renders OXD ToastCloseButton info 1`] = `
+<div class="oxd-toast-close-container">
+  <div class="oxd-toast-close oxd-toast-close--info" role="button"> × </div>
+</div>
+`;
+
+exports[`Toast > CloseButton.vue should renders OXD ToastCloseButton success 1`] = `
+<div class="oxd-toast-close-container">
+  <div class="oxd-toast-close oxd-toast-close--success" role="button"> × </div>
+</div>
+`;
+
+exports[`Toast > CloseButton.vue should renders OXD ToastCloseButton warn 1`] = `
+<div class="oxd-toast-close-container">
+  <div class="oxd-toast-close oxd-toast-close--warn" role="button"> × </div>
+</div>
+`;

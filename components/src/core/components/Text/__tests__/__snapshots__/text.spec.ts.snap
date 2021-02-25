@@ -21,3 +21,7 @@ exports[`Text.vue should renders OXD Text with h6 tag 1`] = `<h6 class="oxd-text
 exports[`Text.vue should renders OXD Text with subtitle-1 type 1`] = `<p class="oxd-text oxd-text--p oxd-text--subtitle-1">Nunito is a well balanced sans serif typeface</p>`;
 
 exports[`Text.vue should renders OXD Text with subtitle-2 type 1`] = `<p class="oxd-text oxd-text--p oxd-text--subtitle-2">Nunito is a well balanced sans serif typeface</p>`;
+
+exports[`Text.vue should renders OXD Text with toast-message type 1`] = `<p class="oxd-text oxd-text--p oxd-text--toast-message">Nunito is a well balanced sans serif typeface</p>`;
+
+exports[`Text.vue should renders OXD Text with toast-title type 1`] = `<p class="oxd-text oxd-text--p oxd-text--toast-title">Nunito is a well balanced sans serif typeface</p>`;

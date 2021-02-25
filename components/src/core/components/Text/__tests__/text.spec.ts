@@ -90,4 +90,20 @@ describe('Text.vue', () => {
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
+
+  it('should renders OXD Text with toast-title type', () => {
+    const wrapper = mount(Text, {
+      slots: {default: DUMMY_TEXT},
+      props: {type: 'toast-title'},
+    });
+    expect(wrapper.html()).toMatchSnapshot();
+  });
+
+  it('should renders OXD Text with toast-message type', () => {
+    const wrapper = mount(Text, {
+      slots: {default: DUMMY_TEXT},
+      props: {type: 'toast-message'},
+    });
+    expect(wrapper.html()).toMatchSnapshot();
+  });
 });

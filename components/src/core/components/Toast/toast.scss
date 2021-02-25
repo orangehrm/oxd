@@ -4,6 +4,7 @@
 .oxd-toast {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   color: $oxd-toast-icon-color;
   box-shadow: $oxd-toast-box-shadow;
   padding: $oxd-toast-padding;
@@ -40,6 +41,11 @@
     opacity: 1;
     cursor: unset;
   }
+}
+
+.oxd-toast-start {
+  display: flex;
+  flex-direction: row;
 }
 
 .oxd-toast-content {

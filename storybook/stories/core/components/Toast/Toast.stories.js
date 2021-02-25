@@ -1,5 +1,6 @@
 import Toast from '@orangehrm/oxd/core/components/Toast/Toast';
 import {TYPES} from '@orangehrm/oxd/core/components/Toast/types';
+import ToastAnimation from './ToastAnimation.story.vue';
 
 export default {
   title: 'Example/Toast/Toast',
@@ -14,10 +15,12 @@ export default {
   },
 };
 
-const Template = (args, {argTypes}) => ({
-  props: Object.keys(argTypes),
+const Template = args => ({
+  setup() {
+    return {args};
+  },
   components: {'oxd-toast': Toast},
-  template: `<oxd-toast v-bind="$props" />`,
+  template: `<oxd-toast v-bind="args" />`,
 });
 
 export const Default = Template.bind({});
@@ -35,3 +38,5 @@ Default.args = {
   desktop publishing software like Aldus PageMaker including versions of
   Lorem Ipsum.`,
 };
+
+export const Animation = () => ToastAnimation;

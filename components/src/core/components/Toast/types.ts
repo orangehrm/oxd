@@ -12,6 +12,11 @@ export const TYPES = [
   TYPE_INFO,
 ];
 
+export const POSITION_TOP = 'top';
+export const POSITION_BOTTOM = 'bottom';
+
+export const POSITIONS = [POSITION_TOP, POSITION_BOTTOM];
+
 export const ICON_MAP = {
   [TYPE_DEFAULT]: 'star',
   [TYPE_SUCCESS]: 'check2',
@@ -26,3 +31,15 @@ export type ToastType =
   | typeof TYPE_WARN
   | typeof TYPE_ERROR
   | typeof TYPE_INFO;
+
+export type ToastContainerPositions =
+  | typeof POSITION_TOP
+  | typeof POSITION_BOTTOM;
+
+export interface Toast {
+  type: ToastType;
+  title: string;
+  message?: string;
+  show: boolean;
+  persistent?: boolean;
+}
