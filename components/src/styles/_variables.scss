@@ -8,6 +8,23 @@ $oxd-scrollbar-arrow-color: $oxd-interface-gray-color !default;
 $oxd-scrollbar-size: 0.5rem !default;
 $oxd-overlay-z-index: 1000 !default;
 $oxd-dialog-z-index: 1500 !default;
+$oxd_breakpoints: (
+  'xs': (
+    min-width: 0px,
+  ),
+  'sm': (
+    min-width: 600px,
+  ),
+  'md': (
+    min-width: 800px,
+  ),
+  'lg': (
+    min-width: 1000px,
+  ),
+  'xl': (
+    min-width: 1200px,
+  ),
+);
 
 /* Input Control */
 $oxd-input-control-font-size: 12px !default;
