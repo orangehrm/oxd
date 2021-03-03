@@ -1,5 +1,5 @@
 <template>
-  <div class="oxd-grid">
+  <div :class="className">
     <slot></slot>
   </div>
 </template>
@@ -11,14 +11,14 @@ export default defineComponent({
   name: 'oxd-grid',
 
   props: {
-    rows: {
-      type: Number,
-    },
     cols: {
       type: Number,
     },
-    gap: {
-      type: Number,
+  },
+
+  computed: {
+    className(): String {
+      return `oxd-grid-${this.cols}`;
     },
   },
 });

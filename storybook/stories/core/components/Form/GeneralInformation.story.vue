@@ -1,6 +1,6 @@
 <template>
   <oxd-form>
-    <oxd-grid>
+    <oxd-grid :cols="4">
       <oxd-grid-item>
         <oxd-form-row>
           <oxd-form-group label="Oraganization Name">
