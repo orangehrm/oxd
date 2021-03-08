@@ -5,31 +5,31 @@
 
   <oxd-form>
     <oxd-form-row>
-      <oxd-form-group class="orangehrm-bottom-space" label="Job Title">
+      <oxd-input-group class="orangehrm-bottom-space" label="Job Title">
         <oxd-input v-model="jobTitle.title" />
-      </oxd-form-group>
+      </oxd-input-group>
     </oxd-form-row>
 
     <oxd-form-row>
-      <oxd-form-group class="orangehrm-bottom-space" label="Job Description">
+      <oxd-input-group class="orangehrm-bottom-space" label="Job Description">
         <oxd-textarea
           v-model="jobTitle.description"
           placeholder="Type description here"
         />
-      </oxd-form-group>
+      </oxd-input-group>
     </oxd-form-row>
 
     <oxd-form-row>
-      <oxd-form-group class="orangehrm-bottom-space" label="Job Specification">
+      <oxd-input-group class="orangehrm-bottom-space" label="Job Specification">
         <oxd-file-input v-model="jobTitle.specification" />
-      </oxd-form-group>
+      </oxd-input-group>
     </oxd-form-row>
   </oxd-form>
 
   <oxd-form-row>
-    <oxd-form-group class="orangehrm-bottom-space" label="Note">
+    <oxd-input-group class="orangehrm-bottom-space" label="Note">
       <oxd-textarea v-model="jobTitle.note" placeholder="Add note" />
-    </oxd-form-group>
+    </oxd-input-group>
   </oxd-form-row>
 
   <oxd-divider />
@@ -48,7 +48,7 @@
 <script>
 import Form from '@orangehrm/oxd/core/components/Form/Form';
 import FormRow from '@orangehrm/oxd/core/components/Form/FormRow';
-import FormGroup from '@orangehrm/oxd/core/components/Form/FormGroup';
+import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue';
 import FormActions from '@orangehrm/oxd/core/components/Form/FormActions';
 import Input from '@orangehrm/oxd/core/components/Input/Input';
 import FileInput from '@orangehrm/oxd/core/components/Input/FileInput';
@@ -77,7 +77,7 @@ export default {
   components: {
     'oxd-form': Form,
     'oxd-form-row': FormRow,
-    'oxd-form-group': FormGroup,
+    'oxd-input-group': InputGroup,
     'oxd-form-actions': FormActions,
     'oxd-input': Input,
     'oxd-file-input': FileInput,
