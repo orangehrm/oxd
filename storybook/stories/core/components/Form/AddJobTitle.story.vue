@@ -4,33 +4,41 @@
   <oxd-divider />
 
   <oxd-form>
-    <oxd-form-row>
-      <oxd-input-group class="orangehrm-bottom-space" label="Job Title">
-        <oxd-input v-model="jobTitle.title" />
-      </oxd-input-group>
-    </oxd-form-row>
+    <oxd-grid :cols="2">
+      <div>
+        <oxd-form-row>
+          <oxd-input-field label="Job Title" v-model="jobTitle.title" />
+        </oxd-form-row>
 
-    <oxd-form-row>
-      <oxd-input-group class="orangehrm-bottom-space" label="Job Description">
-        <oxd-textarea
-          v-model="jobTitle.description"
-          placeholder="Type description here"
-        />
-      </oxd-input-group>
-    </oxd-form-row>
+        <oxd-form-row>
+          <oxd-input-field
+            type="textarea"
+            label="Job Description"
+            placeholder="Type description here"
+            v-model="jobTitle.description"
+          />
+        </oxd-form-row>
 
-    <oxd-form-row>
-      <oxd-input-group class="orangehrm-bottom-space" label="Job Specification">
-        <oxd-file-input v-model="jobTitle.specification" />
-      </oxd-input-group>
-    </oxd-form-row>
+        <oxd-form-row>
+          <oxd-input-field
+            type="file"
+            label="Job Specification"
+            buttonLabel="Browse"
+            v-model="jobTitle.specification"
+          />
+        </oxd-form-row>
+
+        <oxd-form-row>
+          <oxd-input-field
+            type="textarea"
+            label="Note"
+            placeholder="Add note"
+            v-model="jobTitle.note"
+          />
+        </oxd-form-row>
+      </div>
+    </oxd-grid>
   </oxd-form>
-
-  <oxd-form-row>
-    <oxd-input-group class="orangehrm-bottom-space" label="Note">
-      <oxd-textarea v-model="jobTitle.note" placeholder="Add note" />
-    </oxd-input-group>
-  </oxd-form-row>
 
   <oxd-divider />
 
@@ -50,13 +58,11 @@ import Form from '@orangehrm/oxd/core/components/Form/Form';
 import FormRow from '@orangehrm/oxd/core/components/Form/FormRow';
 import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue';
 import FormActions from '@orangehrm/oxd/core/components/Form/FormActions';
-import Input from '@orangehrm/oxd/core/components/Input/Input';
-import FileInput from '@orangehrm/oxd/core/components/Input/FileInput';
-import Textarea from '@orangehrm/oxd/core/components/Textarea/Textarea';
-import Label from '@orangehrm/oxd/core/components/Label/Label';
+import InputField from '@orangehrm/oxd/core/components/InputField/InputField';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider';
 import Button from '@orangehrm/oxd/core/components/Button/Button';
 import Text from '@orangehrm/oxd/core/components/Text/Text';
+import Grid from '@orangehrm/oxd/core/components/Grid/Grid';
 
 const initialJobTitle = {
   title: '',
@@ -77,15 +83,12 @@ export default {
   components: {
     'oxd-form': Form,
     'oxd-form-row': FormRow,
-    'oxd-input-group': InputGroup,
+    'oxd-input-field': InputField,
     'oxd-form-actions': FormActions,
-    'oxd-input': Input,
-    'oxd-file-input': FileInput,
-    'oxd-textarea': Textarea,
-    'oxd-label': Label,
     'oxd-divider': Divider,
     'oxd-button': Button,
     'oxd-text': Text,
+    'oxd-grid': Grid,
   },
 
   methods: {
@@ -97,9 +100,5 @@ export default {
 <style lang="scss" scoped>
 .orangehrm-left-space {
   margin-left: 10px;
-}
-
-.orangehrm-bottom-space {
-  margin-bottom: 10px;
 }
 </style>
