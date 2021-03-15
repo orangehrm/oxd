@@ -23,8 +23,11 @@ import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import FileInput from '@orangehrm/oxd/core/components/Input/FileInput.vue';
 import Textarea from '@orangehrm/oxd/core/components/Textarea/Textarea.vue';
 import {validatableMixin} from '../../../mixins/validatable';
+import {uuid} from '../../../mixins/uuid';
+import {injectStrict} from '../../../utils/injectable';
 import {OutputFile} from '../Input/types';
 import {Types, Components, TYPES, TYPE_INPUT, TYPE_MAP} from './types';
+import IErrorField from '../../../interfaces/errorfield.interface';
 
 export default defineComponent({
   name: 'oxd-input-field',
@@ -37,7 +40,23 @@ export default defineComponent({
     'oxd-textarea': Textarea,
   },
 
-  mixins: [validatableMixin],
+  mixins: [validatableMixin, uuid],
+
+  setup() {
+    const form: any = injectStrict('form');
+    return {
+      form,
+    };
+  },
+
+  mounted() {
+    this.form && this.form.$el.addEventListener('submit', this.triggerUpdate);
+  },
+
+  unmounted() {
+    this.form &&
+      this.form.$el.removeEventListener('submit', this.triggerUpdate);
+  },
 
   emits: ['update:modelValue', 'errors'],
 
@@ -53,7 +72,7 @@ export default defineComponent({
     type: {
       type: String,
       default: TYPE_INPUT,
-      validator: function(value: Types) {
+      validator: function (value: Types) {
         return TYPES.indexOf(value) !== -1;
       },
     },
@@ -79,11 +98,22 @@ export default defineComponent({
   },
 
   methods: {
+    triggerUpdate() {
+      this.onUpdate(this.modelValue as string);
+    },
+
     onUpdate(value: string | OutputFile) {
       this.validate(value);
+      const field: IErrorField = {
+        cid: this.cid,
+        errors: this.errorBucket,
+      };
       this.$emit('update:modelValue', value);
       if (this.errorBucket.length !== 0) {
+        this.form && this.form.addError(field);
         this.$emit('errors', this.errorBucket);
+      } else {
+        this.form && this.form.removeError(field);
       }
     },
   },
