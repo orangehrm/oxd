@@ -1,13 +1,13 @@
 <template>
-  <form novalidate @submit.prevent="noOp">
+  <form novalidate @submit.prevent="validate">
     <slot></slot>
   </form>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import IErrorBag from '../../../interfaces/errorbag.interface';
-import IErrorField from '../../../interfaces/errorfield.interface';
+import IErrorBag from './errorbag.interface';
+import IErrorField from './errorfield.interface';
 
 export default defineComponent({
   name: 'oxd-form',
@@ -30,7 +30,7 @@ export default defineComponent({
   },
 
   methods: {
-    noOp(e: Event) {
+    validate(e: Event) {
       setTimeout(() => {
         if (this.isValid) {
           this.$emit('submitValid', e);

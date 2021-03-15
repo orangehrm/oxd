@@ -27,7 +27,7 @@ import {uuid} from '../../../mixins/uuid';
 import {injectStrict} from '../../../utils/injectable';
 import {OutputFile} from '../Input/types';
 import {Types, Components, TYPES, TYPE_INPUT, TYPE_MAP} from './types';
-import IErrorField from '../../../interfaces/errorfield.interface';
+import IErrorField from '../Form/errorfield.interface';
 
 export default defineComponent({
   name: 'oxd-input-field',
