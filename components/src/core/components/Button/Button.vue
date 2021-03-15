@@ -1,5 +1,5 @@
 <template>
-  <button :type="type" :class="classes" :style="style">
+  <button :class="classes" :style="style">
     <slot name="icon">
       <oxd-icon v-if="iconName" :name="iconName" class="oxd-button-icon" />
     </slot>
@@ -38,10 +38,6 @@ export default defineComponent({
       type: String,
       required: true,
     },
-    type: {
-      type: String,
-      default: 'button',
-    },
     displayType: {
       type: String,
       default: TYPE_MAIN,
@@ -66,9 +62,6 @@ export default defineComponent({
       type: String,
     },
   },
-
-  // https://v3.vuejs.org/guide/migration/v-on-native-modifier-removed.html#overview
-  emits: ['click'],
 
   computed: {
     classes(): object {
