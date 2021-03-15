@@ -1,0 +1,43 @@
+@import '../../../styles';
+
+.oxd-grid-4 {
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 1rem;
+
+  @include oxd-respond-to('md') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include oxd-respond-to('lg') {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.oxd-grid-3 {
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 1rem;
+
+  @include oxd-respond-to('md') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include oxd-respond-to('lg') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.oxd-grid-2 {
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 1rem;
+
+  @include oxd-respond-to('md') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include oxd-respond-to('lg') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
