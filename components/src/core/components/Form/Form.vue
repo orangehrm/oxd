@@ -5,15 +5,19 @@
 </template>
 
 <script lang="ts">
+interface State {
+  errorBag: ErrorBag;
+}
+
 import {defineComponent} from 'vue';
-import IErrorBag from './errorbag.interface';
-import IErrorField from './errorfield.interface';
+import ErrorBag from './errorbag.interface';
+import ErrorField from './errorfield.interface';
 
 export default defineComponent({
   name: 'oxd-form',
-  data() {
+  data(): State {
     return {
-      errorBag: <IErrorBag>[],
+      errorBag: [],
     };
   },
 
@@ -24,7 +28,7 @@ export default defineComponent({
   },
 
   computed: {
-    isValid(): Boolean {
+    isValid(): boolean {
       return this.errorBag.length === 0;
     },
   },
@@ -38,17 +42,17 @@ export default defineComponent({
       }, 0);
     },
     searchErrors(id: string) {
-      return this.errorBag.findIndex((item: IErrorField) => {
+      return this.errorBag.findIndex((item: ErrorField) => {
         return item.cid == id;
       });
     },
-    addError(errorField: IErrorField) {
+    addError(errorField: ErrorField) {
       const i: number = this.searchErrors(errorField.cid);
       if (i < 0) {
         this.errorBag.push(errorField);
       }
     },
-    removeError(errorField: IErrorField) {
+    removeError(errorField: ErrorField) {
       const i: number = this.searchErrors(errorField.cid);
       if (i > -1) {
         this.errorBag.splice(i, 1);

@@ -1,3 +1,4 @@
-import IErrorField from "./errorfield.interface";
+import ErrorField from './errorfield.interface';
 
-export default interface IErrorBag extends Array<IErrorField> { }
+// eslint-disable-next-line
+export default interface ErrorBag extends Array<ErrorField> {}

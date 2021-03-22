@@ -1,4 +1,4 @@
-export default interface IErrorField {
-    cid: string,
-    errors: string[]
+export default interface ErrorField {
+  cid: string;
+  errors: string[];
 }

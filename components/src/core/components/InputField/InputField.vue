@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {Component, defineComponent} from 'vue';
 import FormGroup from '@orangehrm/oxd/core/components/Form/FormGroup.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import FileInput from '@orangehrm/oxd/core/components/Input/FileInput.vue';
@@ -27,7 +27,7 @@ import {uuid} from '../../../mixins/uuid';
 import {injectStrict} from '../../../utils/injectable';
 import {OutputFile} from '../Input/types';
 import {Types, Components, TYPES, TYPE_INPUT, TYPE_MAP} from './types';
-import IErrorField from '../Form/errorfield.interface';
+import ErrorField from '../Form/errorfield.interface';
 
 export default defineComponent({
   name: 'oxd-input-field',
@@ -43,7 +43,7 @@ export default defineComponent({
   mixins: [validatableMixin, uuid],
 
   setup() {
-    const form: any = injectStrict('form');
+    const form: Component = injectStrict('form');
     return {
       form,
     };
@@ -72,7 +72,7 @@ export default defineComponent({
     type: {
       type: String,
       default: TYPE_INPUT,
-      validator: function (value: Types) {
+      validator: function(value: Types) {
         return TYPES.indexOf(value) !== -1;
       },
     },
@@ -104,7 +104,7 @@ export default defineComponent({
 
     onUpdate(value: string | OutputFile) {
       this.validate(value);
-      const field: IErrorField = {
+      const field: ErrorField = {
         cid: this.cid,
         errors: this.errorBucket,
       };
