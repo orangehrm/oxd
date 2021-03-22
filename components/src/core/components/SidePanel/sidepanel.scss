@@ -17,10 +17,12 @@
   @include oxd-respond-to('xs') {
     width: 0;
     overflow: hidden;
+    position: absolute;
   }
   @include oxd-respond-to('md') {
     width: 272px;
     overflow: visible;
+    position: relative;
   }
   min-height: 100vh;
   background-color: $oxd-sidepanel-bg-color;
@@ -29,7 +31,6 @@
   box-shadow: 0px 25px 35px 0 rgba(0, 0, 0, 0.18);
   z-index: 1000;
   transition: width 0.3s ease-in-out;
-  position: relative;
 
   &.toggled {
     @include oxd-respond-to('xs') {
@@ -204,6 +205,12 @@
     min-width: 25px;
     min-height: 25px;
     background-color: $oxd-menu-slide-button-color;
+    @include oxd-respond-to('xs') {
+      display: none;
+    }
+    @include oxd-respond-to('md') {
+      display: inline-flex;
+    }
     & i {
       color: $oxd-white-color !important;
     }
@@ -212,14 +219,6 @@
     }
     &:active {
       background-color: $oxd-menu-slide-button-color;
-    }
-    &.toggled {
-      @include oxd-respond-to('xs') {
-        display: none;
-      }
-      @include oxd-respond-to('md') {
-        display: inline-flex;
-      }
     }
   }
 }

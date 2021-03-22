@@ -11,7 +11,7 @@
       <oxd-icon-button
         @click="$emit('collapse')"
         :name="toggle ? 'chevron-right' : 'chevron-left'"
-        :class="{'oxd-main-menu-button': true, toggled: toggle}"
+        class="oxd-main-menu-button"
       />
     </div>
     <hr class="oxd-main-menu-divider" />
