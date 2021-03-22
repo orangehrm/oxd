@@ -3,6 +3,7 @@ import AddJobTitle from './AddJobTitle.story.vue';
 import CustomLabelForm from './CustomLabelForm.story.vue';
 import ValidatableFrom from './ValidatableFrom.story.vue';
 import DynamicValidatableFrom from './DynamicValidatableFrom.story.vue';
+import GeneralInformation from './GeneralInformation.story.vue';
 
 export default {
   title: 'Example/Form',
@@ -17,3 +18,5 @@ export const AddJobTitleForm = () => AddJobTitle;
 export const FormWithValidation = () => ValidatableFrom;
 
 export const DynamicFormWithValidation = () => DynamicValidatableFrom;
+
+export const GeneralInformationForm = () => GeneralInformation;
