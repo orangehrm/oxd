@@ -5,6 +5,7 @@ import Form from '@orangehrm/oxd/core/components/Form/Form.vue';
 describe('InputField.vue', () => {
   const mockForm = Form;
   mockForm.$el = {
+    // eslint-disable-next-line
     addEventListener(event: any, callback: any) {},
   };
   it('renders OXD InputField', () => {
