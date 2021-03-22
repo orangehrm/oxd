@@ -6,7 +6,7 @@ describe('InputField.vue', () => {
   const mockForm = Form;
   mockForm.$el = {
     // eslint-disable-next-line
-    addEventListener(event: any, callback: any) {},
+    addEventListener(event: Event, callback: () => void): void {},
   };
   it('renders OXD InputField', () => {
     const wrapper = mount(InputField, {
