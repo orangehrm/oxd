@@ -1,6 +1,6 @@
 <template>
   <aside class="oxd-sidepanel" :class="classes">
-    <nav class="oxd-navbar-nav">
+    <nav class="oxd-navbar-nav" role="navigation" aria-label="Sidepanel">
       <div class="oxd-sidepanel-header">
         <oxd-branding :toggle="toggle" />
         <oxd-icon

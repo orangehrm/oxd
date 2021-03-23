@@ -1,7 +1,7 @@
 <template>
   <a class="oxd-brand" :class="classes" :href="url">
     <div class="oxd-brand-icon">
-      <img src="../../../assets/orange.png" />
+      <img alt="orangehrm logo" src="../../../assets/orange.png" />
     </div>
     <div class="oxd-brand-text" :class="classes">
       <oxd-text tag="p" class="oxd-brand-text-main">Orange</oxd-text>

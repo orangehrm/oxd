@@ -12,6 +12,7 @@
         @click="$emit('collapse')"
         :name="toggle ? 'chevron-right' : 'chevron-left'"
         class="oxd-main-menu-button"
+        role="none"
       />
     </div>
     <hr class="oxd-main-menu-divider" />
