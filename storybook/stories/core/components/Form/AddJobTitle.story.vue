@@ -35,10 +35,10 @@
   <oxd-divider />
 
   <oxd-form-actions>
-    <oxd-button type="ghost" label="Cancel" />
+    <oxd-button displayType="ghost" label="Cancel" />
     <oxd-button
       class="orangehrm-left-space"
-      type="secondary"
+      displayType="secondary"
       label="Add"
       @click="onSave"
     />

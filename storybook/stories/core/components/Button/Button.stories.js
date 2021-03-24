@@ -24,7 +24,7 @@ export default {
       control: {type: 'select', options: SIZES},
       defaultValue: SIZE_MEDIUM,
     },
-    type: {
+    displayType: {
       control: {type: 'select', options: TYPES},
     },
     style: {control: {type: 'object'}},
@@ -42,29 +42,29 @@ const Template = args => ({
 
 export const Main = Template.bind({});
 Main.args = {
-  type: TYPE_MAIN,
+  displayType: TYPE_MAIN,
   label: 'Button',
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  type: TYPE_SECONDARY,
+  displayType: TYPE_SECONDARY,
   label: 'Button',
 };
 
 export const Ghost = Template.bind({});
 Ghost.args = {
-  type: TYPE_GHOST,
+  displayType: TYPE_GHOST,
   label: 'Button',
 };
 
 export const GhostFeedback = Template.bind({});
 GhostFeedback.args = {
-  type: TYPE_GHOST_DANGER,
+  displayType: TYPE_GHOST_DANGER,
   label: 'Button',
 };
 GhostFeedback.argTypes = {
-  type: {
+  displayType: {
     control: {
       type: 'select',
       options: ['ghost-info', 'ghost-danger', 'ghost-warn', 'ghost-success'],
@@ -74,28 +74,28 @@ GhostFeedback.argTypes = {
 
 export const Feedback = Template.bind({});
 Feedback.args = {
-  type: TYPE_DANGER,
+  displayType: TYPE_DANGER,
   label: 'Button',
 };
 Feedback.argTypes = {
-  type: {
+  displayType: {
     control: {type: 'select', options: ['info', 'danger', 'warn', 'success']},
   },
 };
 
 export const Label = Template.bind({});
 Label.args = {
-  type: TYPE_LABEL,
+  displayType: TYPE_LABEL,
   label: 'Button',
 };
 
 export const LabelFeedback = Template.bind({});
 LabelFeedback.args = {
-  type: TYPE_LABEL_DANGER,
+  displayType: TYPE_LABEL_DANGER,
   label: 'Button',
 };
 LabelFeedback.argTypes = {
-  type: {
+  displayType: {
     control: {
       type: 'select',
       options: ['label-info', 'label-danger', 'label-warn', 'label-success'],
@@ -142,12 +142,12 @@ ButtonWithIconRight.args = {
 export const Text = Template.bind({});
 Text.args = {
   label: 'Button',
-  type: TYPE_TEXT,
+  displayType: TYPE_TEXT,
 };
 
 export const Tool = Template.bind({});
 Tool.args = {
   label: 'Button',
   iconName: 'person-plus',
-  type: TYPE_TOOL,
+  displayType: TYPE_TOOL,
 };
