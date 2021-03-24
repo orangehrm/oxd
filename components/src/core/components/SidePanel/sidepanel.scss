@@ -34,7 +34,7 @@
 
   &.toggled {
     @include oxd-respond-to('xs') {
-      width: 280px;
+      width: 270px;
       position: absolute;
     }
     @include oxd-respond-to('md') {

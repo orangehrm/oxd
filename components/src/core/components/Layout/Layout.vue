@@ -7,12 +7,17 @@
     >
     </oxd-side-panel>
     <div class="oxd-layout-container">
-      <oxd-overlay class="oxd-layout-overlay" :show="collapse"></oxd-overlay>
+      <oxd-overlay
+        @click="onCollapse"
+        class="oxd-layout-overlay"
+        :show="collapse"
+      ></oxd-overlay>
       <oxd-top-bar
         @collapse="onCollapse"
         :context-title="contextTitle"
         :icon="icon"
         :menu-items="topbarMenuItems"
+        :user="user"
       ></oxd-top-bar>
       <div class="oxd-layout-context">
         <slot></slot>
@@ -31,6 +36,7 @@ import SidePanel from '@orangehrm/oxd/core/components/SidePanel/SidePanel.vue';
 import overlay from '@orangehrm/oxd/core/components/Dialog/Overlay.vue';
 import MenuItem from '../SidePanel/menuItem.interface';
 import {TopMenuItem} from '../Topbar/menuItem.interface';
+import {User} from '../Topbar/user.interface';
 
 export default defineComponent({
   name: 'oxd-layout',
@@ -43,6 +49,9 @@ export default defineComponent({
     contextTitle: {
       type: String,
       required: true,
+    },
+    user: {
+      type: Object as PropType<User>,
     },
     sidepanelMenuItems: {
       type: Object as PropType<MenuItem[]>,

@@ -13,7 +13,14 @@
           {{ contextTitle }}
         </oxd-text>
       </div>
-      <!-- User Menu -->
+      <!-- User Menu Area -->
+      <div class="oxd-topbar-header-userarea">
+        <ul>
+          <oxd-notification-dropdown></oxd-notification-dropdown>
+          <span class="oxd-userdropdown-gap"></span>
+          <oxd-user-dropdown :user="user"></oxd-user-dropdown>
+        </ul>
+      </div>
     </div>
     <div class="oxd-topbar-body">
       <oxd-navigation-level-one
@@ -26,9 +33,12 @@
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
 import {TopMenuItem} from './menuItem.interface';
+import {User} from './user.interface';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import NavigationLevelOne from '@orangehrm/oxd/core/components/Topbar/NavigationLevelOne.vue';
+import UserDropdown from '@orangehrm/oxd/core/components/Topbar/UserDropdown.vue';
+import NotificationDropdown from '@orangehrm/oxd/core/components/Topbar/NotificationDropdown.vue';
 
 export default defineComponent({
   name: 'oxd-top-bar',
@@ -47,12 +57,17 @@ export default defineComponent({
     menuItems: {
       type: Object as PropType<TopMenuItem[]>,
     },
+    user: {
+      type: Object as PropType<User>,
+    },
   },
 
   components: {
     'oxd-text': Text,
     'oxd-navigation-level-one': NavigationLevelOne,
     'oxd-icon': Icon,
+    'oxd-user-dropdown': UserDropdown,
+    'oxd-notification-dropdown': NotificationDropdown,
   },
 
   computed: {

@@ -4,6 +4,7 @@
     context-title="Personal Information Manager"
     :sidepanel-menu-items="sidepanelMenuItems"
     :topbar-menu-items="topbarMenuItems"
+    :user="user"
   >
     <p class="context-default">
       slot for context
@@ -21,6 +22,11 @@ export default {
   },
   data() {
     return {
+      user: {
+        firstName: 'Jeff',
+        lastName: 'Winger',
+        profImgSrc: '',
+      },
       sidepanelMenuItems: [
         {
           name: 'Home',
