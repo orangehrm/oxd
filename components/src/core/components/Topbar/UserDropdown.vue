@@ -42,7 +42,6 @@
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
 import {User} from './user.interface';
-import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import DropdownMenu from '@orangehrm/oxd/core/components/DropdownMenu/DropdownMenu.vue';
 
@@ -56,7 +55,6 @@ export default defineComponent({
   },
 
   components: {
-    'oxd-text': Text,
     'oxd-icon': Icon,
     'oxd-dropdown-menu': DropdownMenu,
   },

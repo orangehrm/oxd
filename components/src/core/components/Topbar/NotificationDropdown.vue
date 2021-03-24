@@ -29,14 +29,12 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import DropdownMenu from '@orangehrm/oxd/core/components/DropdownMenu/DropdownMenu.vue';
 
 export default defineComponent({
   name: 'oxd-notification-dropdown',
   components: {
-    'oxd-text': Text,
     'oxd-icon': Icon,
     'oxd-dropdown-menu': DropdownMenu,
   },
