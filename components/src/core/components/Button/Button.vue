@@ -1,5 +1,5 @@
 <template>
-  <button type="button" :class="classes" :style="style" @click="onClick">
+  <button type="button" :class="classes" :style="style">
     <slot name="icon">
       <oxd-icon v-if="iconName" :name="iconName" class="oxd-button-icon" />
     </slot>
@@ -38,7 +38,7 @@ export default defineComponent({
       type: String,
       required: true,
     },
-    type: {
+    displayType: {
       type: String,
       default: TYPE_MAIN,
       validator: function(value: ButtonType) {
@@ -63,24 +63,13 @@ export default defineComponent({
     },
   },
 
-  // https://v3.vuejs.org/guide/migration/v-on-native-modifier-removed.html#overview
-  emits: ['click'],
-
   computed: {
     classes(): object {
       return {
         'oxd-button': true,
         [`oxd-button--${this.size}`]: true,
-        [`oxd-button--${this.type}`]: true,
+        [`oxd-button--${this.displayType}`]: true,
       };
-    },
-  },
-
-  methods: {
-    onClick(e: Event) {
-      e.stopPropagation();
-      e.preventDefault();
-      this.$emit('click', e);
     },
   },
 });

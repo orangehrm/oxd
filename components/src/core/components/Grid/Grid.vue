@@ -17,7 +17,7 @@ export default defineComponent({
   },
 
   computed: {
-    className(): String {
+    className(): string {
       return `oxd-grid-${this.cols}`;
     },
   },

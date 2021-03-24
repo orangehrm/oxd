@@ -13,8 +13,30 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": ["webpack-env", "jest"],
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+    "types": [
+      "webpack-env",
+      "jest"
+    ],
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ],
+    "paths": {
+      "@orangehrm/oxd/*": [
+        "components/src/*"
+      ]
+    }
   },
-  "exclude": ["node_modules"]
+  "include": [
+    "components/src/**/*.ts",
+    "components/src/**/*.tsx",
+    "components/src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
