@@ -28,7 +28,7 @@ describe('Button.vue', () => {
   it('renders OXD button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label},
+      props: {label, type: 'button'},
     });
     expect(wrapper.text()).toMatch(label);
     expect(wrapper.html()).toMatchSnapshot();
@@ -37,7 +37,7 @@ describe('Button.vue', () => {
   it('should renders OXD small button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, size: SIZE_SMALL},
+      props: {label, size: SIZE_SMALL, type: 'button'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -45,7 +45,7 @@ describe('Button.vue', () => {
   it('should renders OXD large button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, size: SIZE_LARGE},
+      props: {label, size: SIZE_LARGE, type: 'button'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -53,7 +53,7 @@ describe('Button.vue', () => {
   it('should renders OXD medium button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, size: SIZE_MEDIUM},
+      props: {label, size: SIZE_MEDIUM, type: 'button'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -205,7 +205,7 @@ describe('Button.vue', () => {
   it('should renders OXD iconName button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, iconName: 'arrow-left'},
+      props: {label, iconName: 'arrow-left', type: 'button'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -213,7 +213,7 @@ describe('Button.vue', () => {
   it('should renders OXD iconRightName button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, iconRightName: 'arrow-right'},
+      props: {label, iconRightName: 'arrow-right', type: 'button'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -221,7 +221,7 @@ describe('Button.vue', () => {
   it('should renders OXD button with custom color', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, style: {backgroundColor: 'palegreen'}},
+      props: {label, style: {backgroundColor: 'palegreen', type: 'button'}},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });

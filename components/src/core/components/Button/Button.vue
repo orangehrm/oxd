@@ -41,14 +41,14 @@ export default defineComponent({
     displayType: {
       type: String,
       default: TYPE_MAIN,
-      validator: function(value: ButtonType) {
+      validator: function (value: ButtonType) {
         return TYPES.indexOf(value) !== -1;
       },
     },
     size: {
       type: String,
       default: SIZE_MEDIUM,
-      validator: function(value: ButtonSize) {
+      validator: function (value: ButtonSize) {
         return SIZES.indexOf(value) !== -1;
       },
     },

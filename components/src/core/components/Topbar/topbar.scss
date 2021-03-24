@@ -1,0 +1,106 @@
+@import '../../../styles';
+@import '../../../styles/icons';
+@import 'variables';
+
+.oxd-topbar {
+  position: relative;
+  display: flex;
+  max-height: 100px;
+  flex-direction: column;
+  margin-bottom: 10px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 300;
+  &-header {
+    height: 50px;
+    padding: 0.5rem 1.5rem;
+    background-color: $oxd-topbar-bg-color;
+    background-image: $oxd-topbar-bg-gradient;
+    &-title {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem 0rem;
+      & i {
+        margin-right: 10px;
+        @include oxd-respond-to('xs') {
+          display: none;
+        }
+        @include oxd-respond-to('md') {
+          display: block;
+        }
+      }
+      &-text {
+        font-size: 14px;
+        color: $oxd-white-color;
+      }
+    }
+    &-hamburger {
+      color: #fff !important;
+      margin-right: 10px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      @include oxd-respond-to('xs') {
+        display: block !important;
+      }
+      @include oxd-respond-to('md') {
+        display: none !important;
+      }
+    }
+  }
+  &-body {
+    height: 40px;
+    background-color: $oxd-white-color;
+    border-bottom: 1px solid $oxd-topbar-border-color;
+    @include oxd-respond-to('xs') {
+      padding: 0.5rem;
+    }
+    @include oxd-respond-to('md') {
+      padding: 5px;
+      padding-left: 30px;
+    }
+    &-nav {
+      & ul:first-child {
+        list-style: none;
+        display: flex;
+        padding: 0;
+        margin: 0;
+      }
+      &-tab {
+        padding: 4px 15px;
+        cursor: pointer;
+        position: relative;
+        user-select: none;
+        &-item {
+          color: $oxd-topbar-tab-text-color;
+          text-decoration: none;
+          font-size: 12px;
+        }
+        &-link {
+          color: $oxd-topbar-tab-text-color;
+          text-decoration: none;
+          display: block;
+          padding: 6px 16px;
+          font-size: 12px;
+        }
+        &.--active {
+          background-color: $oxd-background-pastel-white-color;
+          border-radius: 1rem;
+        }
+      }
+    }
+  }
+  &:before {
+    background-color: $oxd-topbar-patch-color;
+    width: 50px;
+    position: absolute;
+    top: 0px;
+    display: block;
+    left: -50px;
+    height: 100%;
+    @include oxd-respond-to('xs') {
+      content: unset;
+    }
+    @include oxd-respond-to('md') {
+      content: '';
+    }
+  }
+}
