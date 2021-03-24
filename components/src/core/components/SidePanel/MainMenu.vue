@@ -23,7 +23,7 @@
   <ul class="oxd-main-menu">
     <oxd-main-menu-item
       v-for="(menuItem, index) in filteredMenuItems"
-      :key="index"
+      :key="`oxd-main-menu-${index}`"
       :url="menuItem.url"
       :active="menuItem.active"
       :collapsed="toggle"
