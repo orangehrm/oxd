@@ -16,6 +16,7 @@ const Template = args => ({
 export const Icon = Template.bind({});
 Icon.args = {
   name: 'trash',
+  withContainer: false,
 };
 Icon.argTypes = {};
 
