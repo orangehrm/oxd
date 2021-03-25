@@ -1,7 +1,14 @@
 <template>
   <div :class="rootClasses">
     <slot name="label">
-      <oxd-label v-if="label" :label="label" :class="labelClasses" />
+      <div class="oxd-input-group__label-wrapper">
+        <oxd-icon
+          v-if="labelIcon"
+          :name="labelIcon"
+          class="oxd-input-group__label-icon"
+        />
+        <oxd-label v-if="label" :label="label" :class="labelClasses" />
+      </div>
     </slot>
     <div>
       <slot></slot>
@@ -18,17 +25,22 @@
 import {defineComponent} from 'vue';
 import Label from '@orangehrm/oxd/core/components/Label/Label.vue';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
+import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
-  name: 'oxd-form-group',
+  name: 'oxd-input-group',
 
   components: {
     'oxd-label': Label,
     'oxd-text': Text,
+    'oxd-icon': Icon,
   },
 
   props: {
     label: {
+      type: String,
+    },
+    labelIcon: {
       type: String,
     },
     message: {
@@ -48,7 +60,7 @@ export default defineComponent({
   computed: {
     rootClasses(): object {
       return {
-        'oxd-form-group': true,
+        'oxd-input-group': true,
       };
     },
     labelClasses(): object {
@@ -59,11 +71,11 @@ export default defineComponent({
     messageClasses(): object {
       return {
         ...this.classes.message,
-        'oxd-form-group__message': true,
+        'oxd-input-group__message': true,
       };
     },
   },
 });
 </script>
 
-<style src="./form.scss" lang="scss" scoped></style>
+<style src="./input-group.scss" lang="scss" scoped></style>

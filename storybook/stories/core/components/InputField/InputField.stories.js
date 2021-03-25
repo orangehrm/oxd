@@ -43,4 +43,12 @@ Textarea.args = {
   type: 'textarea',
 };
 
+export const WithIcon = Template.bind({});
+WithIcon.argTypes = argTypes;
+WithIcon.args = {
+  label: 'Textarea Input Field',
+  labelIcon: 'card-text',
+  type: 'textarea',
+};
+
 export const WithValidation = () => InputFieldValidation;
