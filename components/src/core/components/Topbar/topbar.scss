@@ -220,6 +220,8 @@
   &-icon {
     color: $oxd-white-color;
     font-size: 1.25rem;
+    position: relative;
+    top: 8px;
   }
   &-count {
     position: absolute;
