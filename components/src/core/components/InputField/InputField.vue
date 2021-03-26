@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import {Component, defineComponent} from 'vue';
+import {defineComponent} from 'vue';
 import FormGroup from '@orangehrm/oxd/core/components/Form/FormGroup.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import FileInput from '@orangehrm/oxd/core/components/Input/FileInput.vue';
@@ -43,7 +43,8 @@ export default defineComponent({
   mixins: [validatableMixin, uuid],
 
   setup() {
-    const form: Component = injectStrict('form');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const form: any = injectStrict('form');
     return {
       form,
     };
