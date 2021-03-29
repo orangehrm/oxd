@@ -102,7 +102,8 @@ export default defineComponent({
 
   watch: {
     checkedItems(state) {
-      this.selectedAll = state.length === this.items.length;
+      this.selectedAll =
+        state.length === this.items.length && this.items.length !== 0;
       this.$emit('update:selected', state);
     },
   },
@@ -192,8 +193,7 @@ export default defineComponent({
     range(from: number, to: number): Array<number> {
       const range = [];
       if (from > to) {
-        // eslint-disable-next-line no-console
-        console.error('`from` is bigger than `to`');
+        return [];
       }
       for (let i = from; i <= to; i++) {
         range.push(i);

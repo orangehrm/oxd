@@ -42,7 +42,6 @@
 <script>
 import Form from '@orangehrm/oxd/core/components/Form/Form';
 import FormRow from '@orangehrm/oxd/core/components/Form/FormRow';
-import FormGroup from '@orangehrm/oxd/core/components/Form/FormGroup';
 import Input from '@orangehrm/oxd/core/components/Input/Input';
 import Label from '@orangehrm/oxd/core/components/Label/Label';
 import InputField from '@orangehrm/oxd/core/components/InputField/InputField';
@@ -82,7 +81,6 @@ export default {
   components: {
     'oxd-form': Form,
     'oxd-form-row': FormRow,
-    'oxd-form-group': FormGroup,
     'oxd-input': Input,
     'oxd-label': Label,
     'oxd-input-field': InputField,

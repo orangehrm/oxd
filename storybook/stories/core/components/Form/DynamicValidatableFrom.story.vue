@@ -5,10 +5,22 @@
 
   <oxd-form @submit="checkForm" @submitValid="getFormValues" ref="form">
     <oxd-form-row>
-      <div class="orangehrm-row-item" v-for="(customField, index) in customFields" :key="index">
-          <oxd-input-field :label="`Custom Field [${index+1}]`" v-model="customFields[index].name"
-            :rules="rules.name" />
-          <oxd-icon-button @click="addField" name="plus" v-if="index==(customFields.length-1)" style="height: 30px;margin-left: 15px;" />
+      <div
+        class="orangehrm-row-item"
+        v-for="(customField, index) in customFields"
+        :key="index"
+      >
+        <oxd-input-field
+          :label="`Custom Field [${index + 1}]`"
+          v-model="customFields[index].name"
+          :rules="rules.name"
+        />
+        <oxd-icon-button
+          @click="addField"
+          name="plus"
+          v-if="index == customFields.length - 1"
+          style="height: 30px;margin-left: 15px;"
+        />
       </div>
     </oxd-form-row>
 
@@ -23,19 +35,17 @@
         type="submit"
       />
     </oxd-form-actions>
-
   </oxd-form>
 
   <p>Form is {{ isValid ? 'vaild' : 'invalid' }}</p>
-
 </template>
 
 <script>
 import Form from '@orangehrm/oxd/core/components/Form/Form';
 import FormRow from '@orangehrm/oxd/core/components/Form/FormRow';
-import FormGroup from '@orangehrm/oxd/core/components/Form/FormGroup';
+import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup';
 import FormActions from '@orangehrm/oxd/core/components/Form/FormActions';
-import InputField from "@orangehrm/oxd/core/components/InputField/InputField";
+import InputField from '@orangehrm/oxd/core/components/InputField/InputField';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider';
 import Button from '@orangehrm/oxd/core/components/Button/Button';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon';
@@ -46,42 +56,39 @@ export default {
 
   data() {
     return {
-      customFields: [
-        { name: "" },
-        { name: "" }
-      ],
+      customFields: [{name: ''}, {name: ''}],
       rules: {
         name: [
-          v => (!!v && v.trim() !== "") || "Required",
-          v => (v && v.length <= 50) || "Should be less than 50 characters"
+          v => (!!v && v.trim() !== '') || 'Required',
+          v => (v && v.length <= 50) || 'Should be less than 50 characters',
         ],
       },
-      isValid: true
+      isValid: true,
     };
   },
 
   components: {
     'oxd-form': Form,
     'oxd-form-row': FormRow,
-    'oxd-form-group': FormGroup,
+    'oxd-input-group': InputGroup,
     'oxd-form-actions': FormActions,
     'oxd-input-field': InputField,
     'oxd-divider': Divider,
     'oxd-button': Button,
-    'oxd-icon-button' : IconButton,
+    'oxd-icon-button': IconButton,
     'oxd-text': Text,
   },
 
   methods: {
     addField() {
-      this.customFields.push({ name: "" });
+      this.customFields.push({name: ''});
     },
     getFormValues() {
       console.log('form submit');
     },
     checkForm() {
       this.isValid = this.$refs.form.isValid;
-    }
+    },
   },
 };
 </script>
@@ -99,7 +106,7 @@ export default {
   display: flex;
   flex-basis: 50%;
   align-items: center;
-  .oxd-form-group {
+  .oxd-input-group {
     width: 80% !important;
   }
 }

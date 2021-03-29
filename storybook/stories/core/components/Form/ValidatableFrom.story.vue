@@ -5,18 +5,18 @@
 
   <oxd-form @submit="checkForm" @submitValid="getFormValues" ref="form">
     <oxd-form-row>
-      <oxd-form-group class="orangehrm-bottom-space">
+      <oxd-input-group class="orangehrm-bottom-space">
         <oxd-input-field
-            label="Job Category Name"
-            v-model="name"
-            :rules="rules.name"
-          />
-          <oxd-input-field
-            label="Job Category Id"
-            v-model="id"
-            :rules="rules.id"
-          />
-      </oxd-form-group>
+          label="Job Category Name"
+          v-model="name"
+          :rules="rules.name"
+        />
+        <oxd-input-field
+          label="Job Category Id"
+          v-model="id"
+          :rules="rules.id"
+        />
+      </oxd-input-group>
     </oxd-form-row>
 
     <oxd-divider />
@@ -30,19 +30,17 @@
         type="submit"
       />
     </oxd-form-actions>
-
   </oxd-form>
 
   <p>Form is {{ isValid ? 'vaild' : 'invalid' }}</p>
-
 </template>
 
 <script>
 import Form from '@orangehrm/oxd/core/components/Form/Form';
 import FormRow from '@orangehrm/oxd/core/components/Form/FormRow';
-import FormGroup from '@orangehrm/oxd/core/components/Form/FormGroup';
+import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup';
 import FormActions from '@orangehrm/oxd/core/components/Form/FormActions';
-import InputField from "@orangehrm/oxd/core/components/InputField/InputField";
+import InputField from '@orangehrm/oxd/core/components/InputField/InputField';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider';
 import Button from '@orangehrm/oxd/core/components/Button/Button';
 import Text from '@orangehrm/oxd/core/components/Text/Text';
@@ -52,26 +50,26 @@ export default {
 
   data() {
     return {
-      name: "",
-      id: "",
+      name: '',
+      id: '',
       rules: {
         name: [
-          v => (!!v && v.trim() !== "") || "Required",
-          v => (v && v.length <= 50) || "Should be less than 50 characters"
+          v => (!!v && v.trim() !== '') || 'Required',
+          v => (v && v.length <= 50) || 'Should be less than 50 characters',
         ],
         id: [
-          v => (!!v && v.trim() !== "") || "Required",
-          v => (v && v.length >= 10) || "Should more than 10 characters"
-        ]
+          v => (!!v && v.trim() !== '') || 'Required',
+          v => (v && v.length >= 10) || 'Should more than 10 characters',
+        ],
       },
-      isValid: true
+      isValid: true,
     };
   },
 
   components: {
     'oxd-form': Form,
     'oxd-form-row': FormRow,
-    'oxd-form-group': FormGroup,
+    'oxd-input-group': InputGroup,
     'oxd-form-actions': FormActions,
     'oxd-input-field': InputField,
     'oxd-divider': Divider,
@@ -85,7 +83,7 @@ export default {
     },
     checkForm() {
       this.isValid = this.$refs.form.isValid;
-    }
+    },
   },
 };
 </script>

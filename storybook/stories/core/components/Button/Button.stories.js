@@ -26,6 +26,7 @@ export default {
     },
     displayType: {
       control: {type: 'select', options: TYPES},
+      defaultValue: TYPE_MAIN,
     },
     style: {control: {type: 'object'}},
     disabled: {control: {type: 'boolean'}},

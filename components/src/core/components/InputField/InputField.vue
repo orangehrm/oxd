@@ -1,6 +1,7 @@
 <template>
-  <oxd-form-group
+  <oxd-input-group
     :label="label"
+    :labelIcon="labelIcon"
     :message="message"
     class="oxd-input-field-bottom-space"
     :classes="classes"
@@ -13,12 +14,12 @@
       :buttonLabel="buttonLabel"
       v-bind="$attrs"
     ></component>
-  </oxd-form-group>
+  </oxd-input-group>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import FormGroup from '@orangehrm/oxd/core/components/Form/FormGroup.vue';
+import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import FileInput from '@orangehrm/oxd/core/components/Input/FileInput.vue';
 import Textarea from '@orangehrm/oxd/core/components/Textarea/Textarea.vue';
@@ -34,7 +35,7 @@ export default defineComponent({
   inheritAttrs: false,
 
   components: {
-    'oxd-form-group': FormGroup,
+    'oxd-input-group': InputGroup,
     'oxd-input': Input,
     'oxd-file-input': FileInput,
     'oxd-textarea': Textarea,
@@ -66,11 +67,21 @@ export default defineComponent({
     label: {
       type: String,
     },
+    labelIcon: {
+      type: String,
+    },
     // this prop only applicable for `type`='file'
     buttonLabel: {
       type: String,
     },
     type: {
+      type: String,
+      default: TYPE_INPUT,
+      validator: function(value: Types) {
+        return TYPES.indexOf(value) !== -1;
+      },
+    },
+    errors: {
       type: String,
       default: TYPE_INPUT,
       validator: function(value: Types) {
