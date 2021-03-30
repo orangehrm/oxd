@@ -1,0 +1,59 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-userdropdown {
+  position: relative;
+  & .oxd-dropdown-menu {
+    right: 0;
+    top: auto;
+  }
+  &-tab {
+    display: flex;
+    align-items: center;
+    padding-right: 0.75rem;
+    box-shadow: 1px 6px 26px 7px rgb(214 43 4 / 53%);
+    border-radius: 100px;
+    min-width: 35px;
+    cursor: pointer;
+    &:hover {
+      box-shadow: 1px 6px 26px 7px rgb(255 255 255 / 53%);
+    }
+  }
+  &-img {
+    height: 2.5rem;
+    width: 2.5rem;
+    border: $oxd-userdropdown-img-border;
+    border-radius: 50% !important;
+    margin-right: 8px;
+  }
+  &-name {
+    margin: 0;
+    color: $oxd-white-color;
+    font-size: 0.75rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 50px;
+    white-space: nowrap;
+    @include oxd-respond-to('md') {
+      max-width: unset;
+    }
+  }
+  &-link {
+    color: $oxd-topbar-tab-text-color;
+    text-decoration: none;
+    display: block;
+    padding: 6px 16px;
+    font-size: 12px;
+    & i {
+      margin-right: 1rem;
+    }
+    &:hover {
+      background-color: $oxd-topbar-tab-hover-color;
+    }
+  }
+  &-divider {
+    border: 0;
+    border-top: $oxd-userdropdown-hr;
+    margin: 5px 1rem;
+  }
+}
