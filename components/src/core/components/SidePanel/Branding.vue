@@ -1,7 +1,7 @@
 <template>
   <a class="oxd-brand" :class="classes" :href="url">
     <div class="oxd-brand-icon">
-      <img alt="orangehrm logo" src="../../../assets/images/orange.png" />
+      <img alt="orangehrm logo" :src="imageSrc" />
     </div>
     <div class="oxd-brand-text" :class="classes">
       <oxd-text tag="p" class="oxd-brand-text-main">Orange</oxd-text>
@@ -21,6 +21,10 @@ export default defineComponent({
     url: {
       type: String,
       default: '/',
+    },
+    imageSrc: {
+      type: String,
+      default: '',
     },
     toggle: {
       type: Boolean,

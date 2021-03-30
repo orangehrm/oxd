@@ -2,7 +2,7 @@
   <aside class="oxd-sidepanel" :class="classes">
     <nav class="oxd-navbar-nav" role="navigation" aria-label="Sidepanel">
       <div class="oxd-sidepanel-header">
-        <oxd-branding :toggle="toggle" />
+        <oxd-branding :toggle="toggle" :image-src="brandImageSrc" />
         <oxd-icon
           name="x"
           class="oxd-sidepanel-header-close"
@@ -37,8 +37,13 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    brandImageSrc: {
+      type: String,
+      default: '',
+    },
     menuItems: {
       type: Object as PropType<MenuItem[]>,
+      default: [],
     },
   },
 

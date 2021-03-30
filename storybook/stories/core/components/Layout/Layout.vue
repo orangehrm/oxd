@@ -5,6 +5,7 @@
     :sidepanel-menu-items="sidepanelMenuItems"
     :topbar-menu-items="topbarMenuItems"
     :user="user"
+    :brand-image-src="brandImageSrc"
   >
     <p class="context-default">
       slot for context
@@ -22,6 +23,7 @@ export default {
   },
   data() {
     return {
+      brandImageSrc: require('@orangehrm/oxd/assets/images/orange.png').default,
       user: {
         firstName: 'Jeff',
         lastName: 'Winger',

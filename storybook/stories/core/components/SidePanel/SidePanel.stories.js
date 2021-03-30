@@ -94,5 +94,6 @@ Default.args = {
       active: false,
     },
   ],
+  brandImageSrc: require('@orangehrm/oxd/assets/images/orange.png').default,
 };
 Default.argTypes = argTypes;

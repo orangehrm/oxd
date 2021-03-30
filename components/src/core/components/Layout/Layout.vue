@@ -4,6 +4,7 @@
       @collapse="onCollapse"
       :toggle="collapse"
       :menu-items="sidepanelMenuItems"
+      :brand-image-src="brandImageSrc"
     >
     </oxd-side-panel>
     <div class="oxd-layout-container">
@@ -59,6 +60,10 @@ export default defineComponent({
     },
     topbarMenuItems: {
       type: Object as PropType<TopMenuItem[]>,
+      required: true,
+    },
+    brandImageSrc: {
+      type: String,
       required: true,
     },
   },
