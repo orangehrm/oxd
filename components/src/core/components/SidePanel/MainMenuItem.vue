@@ -64,7 +64,7 @@ export default defineComponent({
 });
 </script>
 
-<style src="./sidepanel.scss" lang="scss" scoped></style>
+<style src="./mainmenu.scss" lang="scss" scoped></style>
 <style lang="scss">
 @import '../../../styles/colors';
 .oxd-main-menu-button i {

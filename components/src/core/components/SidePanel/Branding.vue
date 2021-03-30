@@ -42,4 +42,4 @@ export default defineComponent({
 });
 </script>
 
-<style src="./sidepanel.scss" lang="scss" scoped></style>
+<style src="./branding.scss" lang="scss" scoped></style>
