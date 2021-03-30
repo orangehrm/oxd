@@ -17,7 +17,7 @@
       <div class="oxd-topbar-header-userarea">
         <ul>
           <oxd-notification-dropdown></oxd-notification-dropdown>
-          <span class="oxd-userdropdown-gap"></span>
+          <span class="oxd-topbar-header-userarea-gap"></span>
           <oxd-user-dropdown :user="user"></oxd-user-dropdown>
         </ul>
       </div>

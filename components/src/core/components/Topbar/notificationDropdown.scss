@@ -1,0 +1,64 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-notifdropdown {
+  position: relative;
+  & .oxd-dropdown-menu {
+    right: 0;
+    top: auto;
+  }
+  & .--center {
+    text-align: center;
+  }
+  &-head {
+    font-weight: 600;
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+    color: $oxd-interface-gray-darken-2-color;
+  }
+  &-tab {
+    display: block;
+    box-shadow: 1px 6px 26px 7px rgb(214 43 4 / 53%);
+    border-radius: 100px;
+    cursor: pointer;
+    height: 35px;
+    width: 35px;
+    text-align: center;
+    &:hover {
+      box-shadow: 1px 6px 26px 7px rgb(255 255 255 / 53%);
+    }
+  }
+  &-icon {
+    color: $oxd-white-color;
+    font-size: 1.25rem;
+    position: relative;
+    top: 8px;
+  }
+  &-count {
+    position: absolute;
+    transform: scale(0.6);
+    transform-origin: top right;
+    right: -8px;
+    background-color: $oxd-notifdropdown-counter-bg;
+    padding: 0.25rem 0.6rem;
+    border-radius: 100%;
+  }
+  &-link {
+    color: $oxd-topbar-tab-text-color;
+    text-decoration: none;
+    display: block;
+    padding: 6px 16px;
+    font-size: 12px;
+    & i {
+      margin-right: 1rem;
+    }
+    &:hover {
+      background-color: $oxd-topbar-tab-hover-color;
+    }
+  }
+  &-divider {
+    border: 0;
+    border-top: $oxd-userdropdown-hr;
+  }
+}

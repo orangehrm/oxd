@@ -24,7 +24,7 @@
       </li>
     </template>
   </oxd-dropdown-menu>
-  <!-- User dropdown -->
+  <!-- Notification dropdown -->
 </template>
 
 <script lang="ts">
@@ -41,7 +41,7 @@ export default defineComponent({
 });
 </script>
 
-<style src="./topbar.scss" lang="scss" scoped></style>
+<style src="./notificationDropdown.scss" lang="scss" scoped></style>
 <style lang="scss">
 .oxd-notifdropdown {
   & .oxd-dropdown-menu {
