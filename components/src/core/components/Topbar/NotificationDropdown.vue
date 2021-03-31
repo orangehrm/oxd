@@ -41,7 +41,7 @@ export default defineComponent({
 });
 </script>
 
-<style src="./notificationDropdown.scss" lang="scss" scoped></style>
+<style src="./notification-dropdown.scss" lang="scss" scoped></style>
 <style lang="scss">
 .oxd-notifdropdown {
   & .oxd-dropdown-menu {

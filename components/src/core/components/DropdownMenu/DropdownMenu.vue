@@ -41,4 +41,4 @@ export default defineComponent({
 });
 </script>
 
-<style src="./dropdownMenu.scss" lang="scss" scoped></style>
+<style src="./dropdown-menu.scss" lang="scss" scoped></style>

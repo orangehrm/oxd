@@ -69,7 +69,7 @@ export default defineComponent({
 });
 </script>
 
-<style src="./userDropdown.scss" lang="scss" scoped></style>
+<style src="./user-dropdown.scss" lang="scss" scoped></style>
 <style lang="scss">
 .oxd-userdropdown {
   & .oxd-dropdown-menu {
