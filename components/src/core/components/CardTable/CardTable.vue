@@ -203,8 +203,7 @@ export default defineComponent({
     range(from: number, to: number): Array<number> {
       const range = [];
       if (from > to) {
-        // eslint-disable-next-line no-console
-        console.error('`from` is bigger than `to`');
+        return [];
       }
       for (let i = from; i <= to; i++) {
         range.push(i);

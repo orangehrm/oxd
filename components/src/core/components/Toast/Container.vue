@@ -7,6 +7,7 @@
         v-bind="toast"
         @update:show="onUpdateShow($event, index, toast)"
         :class="toastClass"
+        :style="{zIndex: toasts.length - index}"
       />
     </transition-group>
   </div>

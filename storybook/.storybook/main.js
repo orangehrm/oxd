@@ -16,9 +16,14 @@ module.exports = {
   webpackFinal: async config => {
     config.module.rules.push({
       test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'sass-loader', 'postcss-loader'],
+      use: ['style-loader', 'css-loader', 'sass-loader'],
       include: path.resolve(__dirname, '../../'),
     });
+
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      assets: path.resolve(__dirname, '../../components/src/assets'),
+    };
 
     return config;
   },

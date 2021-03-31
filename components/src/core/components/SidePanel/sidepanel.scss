@@ -1,0 +1,60 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-navbar-nav {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  /* clip out scrollbars */
+  overflow: hidden;
+  border-bottom-right-radius: $oxd-sidepanel-border-radius;
+}
+
+.oxd-sidepanel {
+  @include oxd-respond-to('xs') {
+    width: 0;
+    overflow: hidden;
+    position: absolute;
+  }
+  @include oxd-respond-to('md') {
+    width: 272px;
+    overflow: visible;
+    position: relative;
+  }
+  min-height: 100%;
+  background-color: $oxd-sidepanel-bg-color;
+  border-bottom-right-radius: $oxd-sidepanel-border-radius;
+  border-top-right-radius: $oxd-sidepanel-border-radius;
+  box-shadow: 0px 25px 35px 0 rgba(0, 0, 0, 0.18);
+  z-index: 1001;
+  transition: width 0.3s ease-in-out;
+
+  &.toggled {
+    @include oxd-respond-to('xs') {
+      width: 270px;
+      position: absolute;
+    }
+    @include oxd-respond-to('md') {
+      width: 82px;
+      position: relative;
+    }
+  }
+
+  &-header {
+    &-close {
+      font-size: 1.5rem;
+      right: 20px;
+      top: 38px;
+      position: absolute;
+      cursor: pointer;
+      @include oxd-respond-to('xs') {
+        display: block;
+      }
+      @include oxd-respond-to('md') {
+        display: none;
+      }
+    }
+  }
+}
