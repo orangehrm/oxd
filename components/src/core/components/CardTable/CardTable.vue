@@ -106,6 +106,11 @@ export default defineComponent({
         state.length === this.items.length && this.items.length !== 0;
       this.$emit('update:selected', state);
     },
+    selected(state) {
+      if (state !== this.checkedItems) {
+        this.checkedItems = state;
+      }
+    },
   },
 
   props: {
