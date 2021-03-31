@@ -72,7 +72,14 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType, computed} from 'vue';
+import {
+  defineComponent,
+  PropType,
+  computed,
+  reactive,
+  watch,
+  toRefs,
+} from 'vue';
 import {CardSelector, CardHeaders} from './types';
 import Table from '@orangehrm/oxd/core/components/CardTable/Table.vue';
 import TableHeader from '@orangehrm/oxd/core/components/CardTable/TableHeader.vue';
@@ -89,43 +96,26 @@ import CardDecorator from '@orangehrm/oxd/core/components/CardTable/Decorator/Ca
 import DefaultCell from '@orangehrm/oxd/core/components/CardTable/Cell/Default.vue';
 import ActionsCell from '@orangehrm/oxd/core/components/CardTable/Cell/Actions.vue';
 
+interface State {
+  checkedItems: number[];
+  selectedAll: boolean;
+}
+
 export default defineComponent({
   name: 'oxd-card-card-table',
-
-  data() {
-    return {
-      checkedItems: this.selected as number[],
-      selectedAll: (this.selected.length > 0 &&
-        this.selected.length === this.items.length) as boolean,
-    };
-  },
-
-  watch: {
-    checkedItems(state) {
-      this.selectedAll =
-        state.length === this.items.length && this.items.length !== 0;
-      this.$emit('update:selected', state);
-    },
-  },
 
   props: {
     selector: {
       type: Object as PropType<CardSelector>,
-      default() {
-        return {style: undefined, class: undefined};
-      },
+      default: () => ({}),
     },
     headers: {
       type: Array as PropType<CardHeaders>,
-      default() {
-        return [];
-      },
+      default: () => [],
     },
     items: {
       type: Array,
-      default() {
-        return [];
-      },
+      default: () => [],
     },
     clickable: {
       type: Boolean,
@@ -136,15 +126,35 @@ export default defineComponent({
       default: false,
     },
     selected: {
-      type: Array,
-      default() {
-        return [];
-      },
+      type: Array as PropType<number[]>,
+      default: () => [],
     },
     rowDecorator: {
       type: String,
       default: 'oxd-table-decorator-default',
     },
+  },
+
+  setup(props, context) {
+    const state: State = reactive({
+      checkedItems: props.selected,
+      selectedAll:
+        props.selected.length > 0 &&
+        props.selected.length === props.items.length,
+    });
+
+    watch(
+      () => state.checkedItems,
+      function(newVal) {
+        state.selectedAll =
+          newVal.length === props.items.length && props.items.length != 0;
+        context.emit('update:selected', newVal);
+      },
+    );
+
+    return {
+      ...toRefs(state),
+    };
   },
 
   provide() {

@@ -85,4 +85,4 @@ export default defineComponent({
 });
 </script>
 
-<style src="./mainmenu.scss" lang="scss" scoped></style>
+<style src="./main-menu.scss" lang="scss" scoped></style>
