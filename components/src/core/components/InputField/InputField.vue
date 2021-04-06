@@ -6,12 +6,11 @@
     :classes="classes"
   >
     <component
-      :modelValue="modelValue"
-      @update:modelValue="onUpdate"
-      :hasError="hasError"
       :is="component"
-      :buttonLabel="buttonLabel"
       v-bind="$attrs"
+      :modelValue="modelValue"
+      :hasError="hasError"
+      @update:modelValue="onUpdate"
     ></component>
   </oxd-form-group>
 </template>
@@ -22,6 +21,7 @@ import FormGroup from '@orangehrm/oxd/core/components/Form/FormGroup.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import FileInput from '@orangehrm/oxd/core/components/Input/FileInput.vue';
 import Textarea from '@orangehrm/oxd/core/components/Textarea/Textarea.vue';
+import DropdownInput from '@orangehrm/oxd/core/components/Input/DropdownInput.vue';
 import {validatableMixin} from '../../../mixins/validatable';
 import {uuid} from '../../../mixins/uuid';
 import {injectStrict} from '../../../utils/injectable';
@@ -38,6 +38,7 @@ export default defineComponent({
     'oxd-input': Input,
     'oxd-file-input': FileInput,
     'oxd-textarea': Textarea,
+    'oxd-dropdown-input': DropdownInput,
   },
 
   mixins: [validatableMixin, uuid],
@@ -65,8 +66,7 @@ export default defineComponent({
     label: {
       type: String,
     },
-    // this prop only applicable for `type`='file'
-    buttonLabel: {
+    labelIcon: {
       type: String,
     },
     type: {

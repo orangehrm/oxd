@@ -7,16 +7,27 @@
     <oxd-form-row>
       <oxd-form-group class="orangehrm-bottom-space">
         <oxd-input-field
-            label="Job Category Name"
-            v-model="name"
-            :rules="rules.name"
-          />
-          <oxd-input-field
-            label="Job Category Id"
-            v-model="id"
-            :rules="rules.id"
-          />
-      </oxd-form-group>
+          label="Job Category Name"
+          v-model="name"
+          :rules="rules.name"
+        />
+        <oxd-input-field
+          label="Job Category Id"
+          v-model="id"
+          :rules="rules.id"
+        />
+        <oxd-input-field
+          type="dropdown"
+          label="Job Role"
+          v-model="role"
+          :rules="rules.role"
+          :options="[
+            {id: 1, label: 'All'},
+            {id: 2, label: 'Admin'},
+            {id: 3, label: 'ESS'},
+          ]"
+        />
+      </oxd-input-group>
     </oxd-form-row>
 
     <oxd-divider />
@@ -52,17 +63,19 @@ export default {
 
   data() {
     return {
-      name: "",
-      id: "",
+      name: '',
+      id: '',
+      role: null,
       rules: {
         name: [
           v => (!!v && v.trim() !== "") || "Required",
           v => (v && v.length <= 50) || "Should be less than 50 characters"
         ],
         id: [
-          v => (!!v && v.trim() !== "") || "Required",
-          v => (v && v.length >= 10) || "Should more than 10 characters"
-        ]
+          v => (!!v && v.trim() !== '') || 'Required',
+          v => (v && v.length >= 10) || 'Should more than 10 characters',
+        ],
+        role: [v => (v && v.length > 0) || 'Required'],
       },
       isValid: true
     };

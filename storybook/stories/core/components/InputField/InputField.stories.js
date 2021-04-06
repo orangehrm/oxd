@@ -43,4 +43,37 @@ Textarea.args = {
   type: 'textarea',
 };
 
+export const Dropdown = Template.bind({});
+Dropdown.argTypes = argTypes;
+Dropdown.args = {
+  label: 'Dropdown Input Field',
+  type: 'dropdown',
+  options: new Promise(resolve => {
+    setTimeout(() => {
+      resolve([
+        {
+          id: 1,
+          label: 'Apple',
+        },
+        {
+          id: 2,
+          label: 'Samsung',
+        },
+        {
+          id: 3,
+          label: 'Nokia',
+        },
+      ]);
+    }, 5000);
+  }),
+};
+
+export const WithIcon = Template.bind({});
+WithIcon.argTypes = argTypes;
+WithIcon.args = {
+  label: 'Textarea Input Field',
+  labelIcon: 'card-text',
+  type: 'textarea',
+};
+
 export const WithValidation = () => InputFieldValidation;
