@@ -3,6 +3,7 @@
  * https://github.com/chodorowicz/ts-debounce/blob/master/src/index.ts
  */
 
+/*eslint @typescript-eslint/no-explicit-any: ["error", { "ignoreRestArgs": true }]*/
 export type Procedure = (...args: any[]) => void;
 
 export type Options = {
@@ -18,13 +19,14 @@ export default function debounce<F extends Procedure>(
 ): F {
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
-  return function(this: any, ...args: any[]) {
-    const context = this;
+  return function(this: unknown, ...args: any[]) {
+    // eslint-disable-next-line  @typescript-eslint/no-this-alias
+    const self = this;
 
     const doLater = function() {
       timeoutId = undefined;
       if (!options.isImmediate) {
-        func.apply(context, args);
+        func.apply(self, args);
       }
     };
 
@@ -37,7 +39,8 @@ export default function debounce<F extends Procedure>(
     timeoutId = setTimeout(doLater, waitMilliseconds);
 
     if (shouldCallNow) {
-      func.apply(context, args);
+      func.apply(self, args);
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } as any;
 }

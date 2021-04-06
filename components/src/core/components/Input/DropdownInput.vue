@@ -226,7 +226,8 @@ export default defineComponent({
           .then(resolved => {
             if (resolved) {
               state.localOptions = state.localOptions
-                .concat(resolved as Array<Object>)
+                // eslint-disable-next-line
+                .concat(resolved as Array<any>)
                 .filter((item, index, arr) => {
                   return arr.findIndex(_item => _item.id === item.id) === index;
                 });
