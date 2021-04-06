@@ -100,7 +100,7 @@ export default defineComponent({
     message(): string | null {
       return this.hasError ? this.errorBucket[0] : null;
     },
-    classes() {
+    classes(): object {
       return {
         label: {
           'oxd-input-field-required': this.required,
