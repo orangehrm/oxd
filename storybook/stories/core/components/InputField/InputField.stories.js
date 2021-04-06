@@ -49,24 +49,33 @@ Dropdown.argTypes = argTypes;
 Dropdown.args = {
   label: 'Dropdown Input Field',
   type: 'dropdown',
-  options: new Promise(resolve => {
-    setTimeout(() => {
-      resolve([
-        {
-          id: 1,
-          label: 'Apple',
-        },
-        {
-          id: 2,
-          label: 'Samsung',
-        },
-        {
-          id: 3,
-          label: 'Nokia',
-        },
-      ]);
-    }, 5000);
-  }),
+  options: async function() {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve([
+          {
+            id: 1,
+            label: 'All',
+          },
+          {
+            id: 2,
+            label: 'HR Admin',
+          },
+          {
+            id: 3,
+            label: 'ESS',
+          },
+        ]);
+      }, 5000);
+    });
+  },
+};
+
+export const PasswordInput = Template.bind({});
+PasswordInput.argTypes = argTypes;
+PasswordInput.args = {
+  label: 'Password Input Field',
+  type: 'password',
 };
 
 export const WithIcon = Template.bind({});

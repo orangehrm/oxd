@@ -1,7 +1,12 @@
 <template>
   <oxd-form>
     <oxd-form-row>
-      <oxd-input-field label="Label" :rules="rules.input" v-model="input" />
+      <oxd-input-field
+        required
+        label="Label"
+        :rules="rules.input"
+        v-model="input"
+      />
       <oxd-input-field
         label="Label without validation"
         v-model="input"

@@ -23,6 +23,7 @@ import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import FileInput from '@orangehrm/oxd/core/components/Input/FileInput.vue';
 import Textarea from '@orangehrm/oxd/core/components/Textarea/Textarea.vue';
 import DropdownInput from '@orangehrm/oxd/core/components/Input/DropdownInput.vue';
+import PasswordInput from '@orangehrm/oxd/core/components/Input/PasswordInput.vue';
 import {validatableMixin} from '../../../mixins/validatable';
 import {uuid} from '../../../mixins/uuid';
 import {injectStrict} from '../../../utils/injectable';
@@ -40,6 +41,7 @@ export default defineComponent({
     'oxd-file-input': FileInput,
     'oxd-textarea': Textarea,
     'oxd-dropdown-input': DropdownInput,
+    'oxd-password-input': PasswordInput,
   },
 
   mixins: [validatableMixin, uuid],
@@ -85,6 +87,10 @@ export default defineComponent({
         return TYPES.indexOf(value) !== -1;
       },
     },
+    required: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   computed: {
@@ -96,6 +102,9 @@ export default defineComponent({
     },
     classes() {
       return {
+        label: {
+          'oxd-input-field-required': this.required,
+        },
         message: {
           'oxd-input-field-error-message': this.hasError,
         },
