@@ -4,7 +4,7 @@
   display: flex;
   position: relative;
   background-color: $oxd-background-pastel-white-color;
-  height: 100%;
+  min-height: 100%;
   &-container {
     flex: 1;
     width: 100%;

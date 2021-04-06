@@ -73,6 +73,10 @@ export default defineComponent({
     labelIcon: {
       type: String,
     },
+    required: {
+      type: Boolean,
+      default: false,
+    },
     type: {
       type: String,
       default: TYPE_INPUT,
@@ -86,10 +90,6 @@ export default defineComponent({
       validator: function(value: Types) {
         return TYPES.indexOf(value) !== -1;
       },
-    },
-    required: {
-      type: Boolean,
-      default: false,
     },
   },
 
