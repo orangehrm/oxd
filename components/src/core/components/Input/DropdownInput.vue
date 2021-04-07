@@ -200,6 +200,13 @@ export default defineComponent({
             }
           }
           emit('update:modelValue', state.selected);
+        } else {
+          // If preselect is true but no selected opts props passed, select first one default
+          if (state.localOptions.length > 0) {
+            const {id, label} = state.localOptions[0];
+            state.selected.push({id, label});
+            emit('update:modelValue', state.selected);
+          }
         }
       }
     };
