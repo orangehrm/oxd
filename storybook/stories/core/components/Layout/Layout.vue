@@ -158,6 +158,6 @@ export default {
 .context-default {
   background-color: rgba(255, 0, 0, 0.37);
   text-align: center;
-  padding: 15% 0;
+  padding: 25% 0;
 }
 </style>
