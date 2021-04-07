@@ -1,25 +1,33 @@
 <template>
-  <oxd-overlay role="dialog" centered :show="show" @click="onClickOverlay">
-    <!--
+  <transition :name="computedTransition">
+    <oxd-overlay
+      role="dialog"
+      centered
+      v-if="show"
+      :show="true"
+      @click="onClickOverlay"
+    >
+      <!--
     :aria-labelledby="'dialogTitle_' + id"
     :aria-describedby="'dialogDesc_' + id"
     -->
-    <component :is="dialogContainer">
-      <oxd-sheet
-        :class="classes"
-        v-bind="$attrs"
-        role="document"
-        @click="onClickSheet"
-      >
-        <oxd-dialog-close-button
-          v-if="withClose"
-          class="oxd-dialog-close-button-position"
-          @click="onClose"
-        />
-        <slot></slot>
-      </oxd-sheet>
-    </component>
-  </oxd-overlay>
+      <component :is="dialogContainer">
+        <oxd-sheet
+          :class="classes"
+          v-bind="$attrs"
+          role="document"
+          @click="onClickSheet"
+        >
+          <oxd-dialog-close-button
+            v-if="withClose"
+            class="oxd-dialog-close-button-position"
+            @click="onClose"
+          />
+          <slot></slot>
+        </oxd-sheet>
+      </component>
+    </oxd-overlay>
+  </transition>
 </template>
 
 <script lang="ts">
@@ -67,6 +75,10 @@ export default defineComponent({
       type: String,
       default: 'oxd-dialog-container-default',
     },
+    withTransition: {
+      type: Boolean,
+      default: true,
+    },
   },
 
   computed: {
@@ -75,6 +87,9 @@ export default defineComponent({
         'oxd-dialog-sheet': true,
         'oxd-dialog-sheet--shadow': this.shadow,
       };
+    },
+    computedTransition(): string {
+      return this.withTransition ? 'fade' : '';
     },
   },
 
