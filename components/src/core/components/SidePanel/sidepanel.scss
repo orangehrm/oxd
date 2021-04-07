@@ -7,6 +7,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  height: inherit;
   /* clip out scrollbars */
   overflow: hidden;
   border-bottom-right-radius: $oxd-sidepanel-border-radius;
@@ -23,7 +24,7 @@
     overflow: visible;
     position: relative;
   }
-  min-height: 100%;
+  height: inherit;
   background-color: $oxd-sidepanel-bg-color;
   border-bottom-right-radius: $oxd-sidepanel-border-radius;
   border-top-right-radius: $oxd-sidepanel-border-radius;
@@ -43,6 +44,7 @@
   }
 
   &-header {
+    flex: none;
     &-close {
       font-size: 1.5rem;
       right: 20px;
@@ -56,5 +58,12 @@
         display: none;
       }
     }
+  }
+
+  &-body {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
   }
 }

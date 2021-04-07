@@ -1,6 +1,7 @@
 <template>
   <span :class="classes" :style="style">
     {{ label }}
+    <slot></slot>
   </span>
 </template>
 

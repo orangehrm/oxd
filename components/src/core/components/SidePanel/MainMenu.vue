@@ -1,6 +1,6 @@
 <template>
   <!-- Search -->
-  <div class="oxd-main-menu">
+  <div class="oxd-main-menu --fixed">
     <div class="oxd-main-menu-search">
       <i class="oxd-menu-icon icon-search"></i>
       <oxd-input

@@ -89,3 +89,19 @@ export default defineComponent({
 </script>
 
 <style src="./layout.scss" lang="scss" scoped></style>
+<style>
+body {
+  display: block;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+#app,
+#root {
+  height: inherit;
+}
+</style>

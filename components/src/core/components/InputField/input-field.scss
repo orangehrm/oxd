@@ -8,3 +8,8 @@
 .oxd-input-field-bottom-space {
   margin-bottom: $oxd-input-field-bottom-space;
 }
+
+.oxd-input-field-required:after {
+  content: '*';
+  color: $oxd-input-field-error-color;
+}

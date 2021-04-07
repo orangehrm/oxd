@@ -44,6 +44,40 @@ Textarea.args = {
   type: 'textarea',
 };
 
+export const Dropdown = Template.bind({});
+Dropdown.argTypes = argTypes;
+Dropdown.args = {
+  label: 'Dropdown Input Field',
+  type: 'dropdown',
+  options: async function() {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve([
+          {
+            id: 1,
+            label: 'All',
+          },
+          {
+            id: 2,
+            label: 'HR Admin',
+          },
+          {
+            id: 3,
+            label: 'ESS',
+          },
+        ]);
+      }, 5000);
+    });
+  },
+};
+
+export const PasswordInput = Template.bind({});
+PasswordInput.argTypes = argTypes;
+PasswordInput.args = {
+  label: 'Password Input Field',
+  type: 'password',
+};
+
 export const WithIcon = Template.bind({});
 WithIcon.argTypes = argTypes;
 WithIcon.args = {
