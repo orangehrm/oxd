@@ -16,6 +16,17 @@
           v-model="id"
           :rules="rules.id"
         />
+        <oxd-input-field
+          type="dropdown"
+          label="Job Role"
+          v-model="role"
+          :rules="rules.role"
+          :options="[
+            {id: 1, label: 'All'},
+            {id: 2, label: 'Admin'},
+            {id: 3, label: 'ESS'},
+          ]"
+        />
       </oxd-input-group>
     </oxd-form-row>
 
@@ -52,6 +63,7 @@ export default {
     return {
       name: '',
       id: '',
+      role: null,
       rules: {
         name: [
           v => (!!v && v.trim() !== '') || 'Required',
@@ -61,6 +73,7 @@ export default {
           v => (!!v && v.trim() !== '') || 'Required',
           v => (v && v.length >= 10) || 'Should more than 10 characters',
         ],
+        role: [v => (v && v.length > 0) || 'Required'],
       },
       isValid: true,
     };

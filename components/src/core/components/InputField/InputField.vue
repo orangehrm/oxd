@@ -7,12 +7,11 @@
     :classes="classes"
   >
     <component
-      :modelValue="modelValue"
-      @update:modelValue="onUpdate"
-      :hasError="hasError"
       :is="component"
-      :buttonLabel="buttonLabel"
       v-bind="$attrs"
+      :modelValue="modelValue"
+      :hasError="hasError"
+      @update:modelValue="onUpdate"
     ></component>
   </oxd-input-group>
 </template>
@@ -23,6 +22,8 @@ import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import FileInput from '@orangehrm/oxd/core/components/Input/FileInput.vue';
 import Textarea from '@orangehrm/oxd/core/components/Textarea/Textarea.vue';
+import DropdownInput from '@orangehrm/oxd/core/components/Input/DropdownInput.vue';
+import PasswordInput from '@orangehrm/oxd/core/components/Input/PasswordInput.vue';
 import {validatableMixin} from '../../../mixins/validatable';
 import {uuid} from '../../../mixins/uuid';
 import {injectStrict} from '../../../utils/injectable';
@@ -39,6 +40,8 @@ export default defineComponent({
     'oxd-input': Input,
     'oxd-file-input': FileInput,
     'oxd-textarea': Textarea,
+    'oxd-dropdown-input': DropdownInput,
+    'oxd-password-input': PasswordInput,
   },
 
   mixins: [validatableMixin, uuid],
@@ -70,9 +73,9 @@ export default defineComponent({
     labelIcon: {
       type: String,
     },
-    // this prop only applicable for `type`='file'
-    buttonLabel: {
-      type: String,
+    required: {
+      type: Boolean,
+      default: false,
     },
     type: {
       type: String,
@@ -97,8 +100,11 @@ export default defineComponent({
     message(): string | null {
       return this.hasError ? this.errorBucket[0] : null;
     },
-    classes() {
+    classes(): object {
       return {
+        label: {
+          'oxd-input-field-required': this.required,
+        },
         message: {
           'oxd-input-field-error-message': this.hasError,
         },

@@ -131,4 +131,7 @@
       background-color: $oxd-menu-slide-button-color;
     }
   }
+  &.--fixed {
+    flex: none;
+  }
 }

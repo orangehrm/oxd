@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DropdownInput.vue renders OXD Dropdown Input 1`] = `
+<div class="oxd-dropdown-container">
+  <div class="oxd-dropdown-input">
+    <oxd-input-stub placeholder="Type for hints..." disabled="false"></oxd-input-stub>
+    <div class="oxd-dropdown-input-icon">
+      <!--v-if-->
+      <oxd-icon-stub class="--arrow"></oxd-icon-stub>
+    </div>
+  </div>
+  <transition-stub>
+    <!--v-if-->
+  </transition-stub>
+  <!--v-if-->
+</div>
+`;
