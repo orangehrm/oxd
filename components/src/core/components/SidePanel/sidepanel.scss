@@ -18,13 +18,14 @@
     width: 0;
     overflow: hidden;
     position: absolute;
+    height: 100%;
   }
   @include oxd-respond-to('md') {
     width: 272px;
     overflow: visible;
     position: relative;
+    height: inherit;
   }
-  height: inherit;
   background-color: $oxd-sidepanel-bg-color;
   border-bottom-right-radius: $oxd-sidepanel-border-radius;
   border-top-right-radius: $oxd-sidepanel-border-radius;
