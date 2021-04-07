@@ -49,7 +49,6 @@ const asyncFunction = async function(serachParam) {
 const asyncLazyFunction = async function(serachParam) {
   return new Promise(resolve => {
     if (serachParam.trim()) {
-      console.log(serachParam);
       fetch(`https://api.github.com/search/users?q=${serachParam}`)
         .then(response => response.json())
         .then(json => {
