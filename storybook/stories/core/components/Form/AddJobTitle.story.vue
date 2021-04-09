@@ -36,6 +36,18 @@
             v-model="jobTitle.note"
           />
         </oxd-form-row>
+
+        <oxd-form-row>
+          <oxd-input-field
+            type="checkbox"
+            value="1"
+            label="Check this"
+            option-label="I agree"
+            v-model="jobTitle.consent"
+            true-value="yes"
+            false-value="no"
+          />
+        </oxd-form-row>
       </div>
     </oxd-grid>
   </oxd-form>
@@ -69,6 +81,7 @@ const initialJobTitle = {
   description: '',
   specification: null,
   note: '',
+  consent: '',
 };
 
 export default {
