@@ -61,6 +61,7 @@ export default defineComponent({
   },
 
   unmounted() {
+    this.removeErrors();
     this.form &&
       this.form.$el.removeEventListener('submit', this.triggerUpdate);
   },
@@ -122,18 +123,30 @@ export default defineComponent({
       this.onUpdate(this.modelValue as string);
     },
 
-    onUpdate(value: string | OutputFile) {
-      this.validate(value);
+    addErrors() {
       const field: ErrorField = {
         cid: this.cid,
         errors: this.errorBucket,
       };
+      this.form && this.form.addError(field);
+      this.$emit('errors', this.errorBucket);
+    },
+
+    removeErrors() {
+      const field: ErrorField = {
+        cid: this.cid,
+        errors: this.errorBucket,
+      };
+      this.form && this.form.removeError(field);
+    },
+
+    onUpdate(value: string | OutputFile) {
+      this.validate(value);
       this.$emit('update:modelValue', value);
       if (this.errorBucket.length !== 0) {
-        this.form && this.form.addError(field);
-        this.$emit('errors', this.errorBucket);
+        this.addErrors();
       } else {
-        this.form && this.form.removeError(field);
+        this.removeErrors();
       }
     },
   },
