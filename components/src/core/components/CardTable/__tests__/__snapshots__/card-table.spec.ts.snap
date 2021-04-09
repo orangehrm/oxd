@@ -4,9 +4,11 @@ exports[`CardTable > CardTable.vue renders OXD CardTable > CardTable 1`] = `
 <div class="oxd-table" role="table">
   <div class="oxd-table-header" role="rowgroup">
     <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader"><input type="checkbox"></div>
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;">Column 1</div>
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;">Column 2</div>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader"><input type="checkbox">
+        <!--v-if-->
+      </div>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;">Column 1<i class="oxd-icon bi- oxd-icon-button__icon oxd-table-header-cell-sorticon"></i></div>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;">Column 2<i class="oxd-icon bi- oxd-icon-button__icon oxd-table-header-cell-sorticon"></i></div>
     </div>
   </div>
   <div class="oxd-table-body" role="rowgroup">
@@ -33,9 +35,11 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
 <div class="oxd-table" role="table">
   <div class="oxd-table-header" role="rowgroup">
     <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader"><input type="checkbox"></div>
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;">Column 1</div>
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;">Column 2</div>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader"><input type="checkbox">
+        <!--v-if-->
+      </div>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;">Column 1<i class="oxd-icon bi- oxd-icon-button__icon oxd-table-header-cell-sorticon"></i></div>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;">Column 2<i class="oxd-icon bi- oxd-icon-button__icon oxd-table-header-cell-sorticon"></i></div>
     </div>
   </div>
   <div class="oxd-table-body" role="rowgroup">
@@ -68,9 +72,11 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
 <div class="oxd-table" role="table">
   <div class="oxd-table-header" role="rowgroup">
     <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;"><input type="checkbox"></div>
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;">Column 1</div>
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;">Column 2</div>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;"><input type="checkbox">
+        <!--v-if-->
+      </div>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;">Column 1<i class="oxd-icon bi- oxd-icon-button__icon oxd-table-header-cell-sorticon"></i></div>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;">Column 2<i class="oxd-icon bi- oxd-icon-button__icon oxd-table-header-cell-sorticon"></i></div>
     </div>
   </div>
   <div class="oxd-table-body" role="rowgroup">
@@ -104,8 +110,8 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
   <div class="oxd-table-header" role="rowgroup">
     <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
       <!--v-if-->
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;">Column 1</div>
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;">Column 2</div>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;">Column 1<i class="oxd-icon bi- oxd-icon-button__icon oxd-table-header-cell-sorticon"></i></div>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;">Column 2<i class="oxd-icon bi- oxd-icon-button__icon oxd-table-header-cell-sorticon"></i></div>
     </div>
   </div>
   <div class="oxd-table-body" role="rowgroup">

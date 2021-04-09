@@ -4,4 +4,9 @@
 .oxd-table-header-cell {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  &-sorticon {
+    margin-left: 0.5rem;
+    font-size: inherit;
+  }
 }
