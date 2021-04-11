@@ -93,7 +93,7 @@ export default defineComponent({
   props: {
     modelValue: {
       type: Array,
-      default: [],
+      default: () => [],
     },
     options: {
       type: Array as PropType<Option[]>,
@@ -262,7 +262,7 @@ export default defineComponent({
       this.closeDropdown();
     },
     onRemoveOption(item: Option) {
-      let _selOpts = JSON.parse(JSON.stringify(this.selectedOptions));
+      const _selOpts = JSON.parse(JSON.stringify(this.selectedOptions));
       const itemIndex = _selOpts.findIndex(elem => elem.id === item.id);
       if (itemIndex > -1) {
         _selOpts.splice(itemIndex, 1);
