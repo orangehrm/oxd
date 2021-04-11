@@ -70,6 +70,7 @@ describe('DropdownInput.vue', () => {
         disabled: true,
       },
     });
+    await wrapper.vm.$nextTick();
     wrapper.find('.oxd-icon.--arrow').trigger('click');
     expect(wrapper.find('.oxd-icon.--arrow').classes()).toContain(
       'bi-caret-down-fill',
@@ -89,6 +90,7 @@ describe('DropdownInput.vue', () => {
         options: dropdownOptions,
       },
     });
+    await wrapper.vm.$nextTick();
     wrapper.find('.oxd-icon.--arrow').trigger('click');
     expect(wrapper.find('.oxd-icon.--arrow').classes()).toContain(
       'bi-caret-down-fill',
@@ -128,32 +130,6 @@ describe('DropdownInput.vue', () => {
     expect(wrapper.vm.filteredOptions.length).toEqual(3);
   });
 
-  it('will not load options from array if lazy', async () => {
-    const wrapper = mount(DropdownInput, {
-      props: {
-        options: dropdownOptions,
-        lazyLoad: true,
-      },
-    });
-    expect(wrapper.vm.localOptions.length).toEqual(0);
-    expect(wrapper.vm.filteredOptions.length).toEqual(0);
-  });
-
-  it('will load options from array if lazy on filter', () => {
-    const wrapper = mount(DropdownInput, {
-      props: {
-        options: dropdownOptions,
-        lazyLoad: true,
-      },
-    });
-    wrapper.findComponent(Input).setValue('HR Admin');
-    // offset for debounce
-    setTimeout(() => {
-      expect(wrapper.vm.localOptions.length).toEqual(3);
-      expect(wrapper.vm.filteredOptions.length).toEqual(1);
-    }, 600);
-  });
-
   it('will filter options from array', () => {
     const wrapper = mount(DropdownInput, {
       props: {
@@ -171,7 +147,7 @@ describe('DropdownInput.vue', () => {
   it('will load options from sync function', async () => {
     const wrapper = mount(DropdownInput, {
       props: {
-        options: syncFunction,
+        createOptions: syncFunction,
       },
     });
     await wrapper.vm.$nextTick();
@@ -182,7 +158,7 @@ describe('DropdownInput.vue', () => {
   it('will load options from async function', async () => {
     const wrapper = mount(DropdownInput, {
       props: {
-        options: asyncFunction,
+        createOptions: asyncFunction,
       },
     });
     await wrapper.vm.$nextTick();
@@ -208,7 +184,6 @@ describe('DropdownInput.vue', () => {
     expect(wrapper.findAll('.oxd-dropdown-options-item').length).toEqual(3);
     wrapper.findAll('.oxd-dropdown-options-item')[0].trigger('mousedown');
     await wrapper.vm.$nextTick();
-    expect(wrapper.vm.selected.length).toEqual(1);
     expect(wrapper.emitted('update:modelValue')).toBeTruthy();
   });
 
@@ -224,7 +199,7 @@ describe('DropdownInput.vue', () => {
     expect(wrapper.findAll('.oxd-dropdown-options-item').length).toEqual(3);
     wrapper.findAll('.oxd-dropdown-options-item')[0].trigger('mousedown');
     await wrapper.vm.$nextTick();
-    expect(wrapper.vm.selected.length).toEqual(0);
+    expect(wrapper.vm.selectedOptions.length).toEqual(0);
     expect(wrapper.emitted('update:modelValue')).toBeFalsy();
   });
 
@@ -239,27 +214,30 @@ describe('DropdownInput.vue', () => {
     await wrapper.vm.$nextTick();
     wrapper.findAll('.oxd-dropdown-options-item')[0].trigger('mousedown');
     await wrapper.vm.$nextTick();
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy();
     wrapper.findComponent(Input).trigger('click');
     await wrapper.vm.$nextTick();
     wrapper.findAll('.oxd-dropdown-options-item')[1].trigger('mousedown');
     await wrapper.vm.$nextTick();
-    expect(wrapper.vm.selected.length).toEqual(2);
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy();
   });
 
   it('will clear select options from dropdown', async () => {
     const wrapper = mount(DropdownInput, {
       props: {
         options: dropdownOptions,
+        modelValue: [
+          {
+            id: 1,
+            label: 'HR Admin',
+          },
+        ],
       },
-    });
-    wrapper.vm.selected.push({
-      id: 1,
-      label: 'HR Admin',
     });
     await wrapper.vm.$nextTick();
     wrapper.find('.oxd-icon.--clear').trigger('click');
     await wrapper.vm.$nextTick();
-    expect(wrapper.vm.selected.length).toEqual(0);
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy();
     expect(wrapper.emitted('dropdown:cleared')).toBeTruthy();
   });
 
@@ -267,11 +245,13 @@ describe('DropdownInput.vue', () => {
     const wrapper = mount(DropdownInput, {
       props: {
         options: dropdownOptions,
+        modelValue: [
+          {
+            id: 1,
+            label: 'HR Admin',
+          },
+        ],
       },
-    });
-    wrapper.vm.selected.push({
-      id: 1,
-      label: 'HR Admin',
     });
     await wrapper.vm.$nextTick();
     expect(wrapper.find('.oxd-icon.--clear').exists()).toBeTruthy();
@@ -292,35 +272,35 @@ describe('DropdownInput.vue', () => {
       props: {
         options: dropdownOptions,
         clear: false,
+        modelValue: [
+          {
+            id: 1,
+            label: 'HR Admin',
+          },
+        ],
       },
-    });
-    wrapper.vm.selected.push({
-      id: 1,
-      label: 'HR Admin',
     });
     await wrapper.vm.$nextTick();
     expect(wrapper.find('.oxd-icon.--clear').exists()).toBeFalsy();
-  });
-
-  it('will auto preselect first option', () => {
-    const wrapper = mount(DropdownInput, {
-      props: {
-        options: dropdownOptions,
-        preSelect: true,
-      },
-    });
-    expect(wrapper.vm.selected.length).toEqual(1);
   });
 
   it('will auto preselect given options', () => {
     const wrapper = mount(DropdownInput, {
       props: {
         options: dropdownOptions,
-        preSelect: true,
         multiple: true,
-        selectedOptions: [1, 2],
+        modelValue: [
+          {
+            id: 1,
+            label: 'HR Admin',
+          },
+          {
+            id: 2,
+            label: 'ESS User',
+          },
+        ],
       },
     });
-    expect(wrapper.vm.selected.length).toEqual(2);
+    expect(wrapper.vm.selectedOptions.length).toEqual(2);
   });
 });
