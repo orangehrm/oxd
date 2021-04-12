@@ -25,6 +25,7 @@
   border-radius: 50%;
   width: $oxd-loading-spinner-size;
   height: $oxd-loading-spinner-size;
+  margin: 0 auto;
 }
 
 .oxd-loading-spinner-container {
@@ -34,7 +35,8 @@
   width: $oxd-loading-spinner-container-size;
   height: $oxd-loading-spinner-container-size;
   padding: $oxd-loading-spinner-container-padding;
-
+  display: flex;
+  align-items: center;
   &--block {
     display: inline-block;
   }
