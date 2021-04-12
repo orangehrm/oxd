@@ -1,5 +1,6 @@
 import CardTableStory from './CardTable.story.vue';
 import ActionCardTable from './ActionCardTable.story.vue';
+import SortableCardTable from './SortableCardTable.story.vue';
 
 export default {
   title: 'Example/CardTable',
@@ -19,3 +20,4 @@ Default.args = {
 };
 
 export const ActionTable = () => ActionCardTable;
+export const SortableTable = () => SortableCardTable;

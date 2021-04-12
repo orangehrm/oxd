@@ -3,6 +3,7 @@ import DialogClose from './DialogClose.story.vue';
 import DialogWithoutCloseStory from './DialogWithoutClose.story.vue';
 import DialogPersistentStory from './DialogPersistent.story.vue';
 import DialogDeleteConfirmationStory from './DialogDeleteConfirmation.story.vue';
+import DialogWithoutTransition from './DialogWithoutTransition.story.vue';
 
 export default {
   title: 'Example/Dialog/Dialog',
@@ -48,6 +49,9 @@ Default.args = {
 
 export const Close = () => DialogClose;
 Close.args = {};
+
+export const WithoutTransition = () => DialogWithoutTransition;
+WithoutTransition.args = {};
 
 export const DialogWithoutClose = args => ({
   setup() {

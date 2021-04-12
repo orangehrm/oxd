@@ -1,3 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CardTable > TableHeaderCell.vue renders OXD CardTable > TableHeaderCell 1`] = `<div class="oxd-table-header-cell" role="columnheader"></div>`;
+exports[`CardTable > TableHeaderCell.vue renders OXD CardTable > TableHeaderCell 1`] = `
+<div class="oxd-table-header-cell" role="columnheader">
+  <!--v-if-->
+</div>
+`;

@@ -17,7 +17,7 @@
       />
       <div class="oxd-dropdown-input-icon" v-if="!isLoading">
         <oxd-icon
-          v-if="selected.length != 0 && clear"
+          v-if="selectedOptions.length != 0 && clear"
           class="--clear"
           name="x"
           @click="onDropdownClear"
@@ -61,7 +61,7 @@
     </transition>
     <div class="oxd-dropdown-selected" v-if="multiple">
       <oxd-chip
-        v-for="(option, index) in selected"
+        v-for="(option, index) in selectedOptions"
         :key="`${index}-selected-${option.id}`"
         :label="option.label"
         class="oxd-dropdown-selected-chip"
@@ -78,27 +78,35 @@ import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
 import debounce from '../../../utils/debounce';
-import {
-  defineComponent,
-  onBeforeMount,
-  PropType,
-  reactive,
-  toRefs,
-  watch,
-} from 'vue';
+import {defineComponent, onBeforeMount, PropType, reactive, toRefs} from 'vue';
 
 interface Option {
   id: number;
   label: string;
-  disabled: boolean;
-  selected: boolean;
+  disabled?: boolean;
+  selected?: boolean;
 }
 
 export default defineComponent({
   name: 'oxd-dropdown-input',
 
   props: {
-    modelValue: {},
+    modelValue: {
+      type: Array,
+      default: () => [],
+    },
+    options: {
+      type: Array as PropType<Option[]>,
+      default: [],
+    },
+    disabledOptions: {
+      type: Array as PropType<number[]>,
+      default: [],
+    },
+    createOptions: {
+      type: Function,
+      required: false,
+    },
     hasError: {
       type: Boolean,
       default: false,
@@ -111,10 +119,6 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    preSelect: {
-      type: Boolean,
-      default: false,
-    },
     clear: {
       type: Boolean,
       default: true,
@@ -123,23 +127,9 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    disabledOptions: {
-      type: Array as PropType<number[]>,
-      default: [],
-    },
-    selectedOptions: {
-      type: Array as PropType<number[]>,
-      default: [],
-    },
     placeholderText: {
       type: String,
       default: 'Type for hints...',
-    },
-    options: {
-      type: [Array, Function],
-      default: () => {
-        return [];
-      },
     },
   },
 
@@ -158,127 +148,78 @@ export default defineComponent({
     'oxd-loading-spinner': Spinner,
   },
 
-  setup(props, {emit}) {
+  setup(props) {
     const state = reactive({
       searchTerm: '',
       open: false,
       focused: false,
-      selected: [],
-      localOptions: [],
+      localOptions: [...props.options],
       isLoading: false,
       pointer: 0,
     });
 
-    watch(
-      () => state.selected,
-      function() {
-        emit('update:modelValue', state.selected);
-      },
-    );
-
-    // Mark preselected options
-    const preselectOptions = () => {
-      if (props.preSelect) {
-        if (props.selectedOptions.length > 0) {
-          if (props.multiple) {
-            props.selectedOptions.forEach(selOption => {
-              const itemIndex = state.localOptions.findIndex(
-                elem => elem.id === selOption,
-              );
-              if (itemIndex > -1) {
-                const {id, label} = state.localOptions[itemIndex];
-                state.selected.push({id, label});
-              }
-            });
-          } else {
-            const itemIndex = state.localOptions.findIndex(
-              elem => elem.id === props.selectedOptions[0],
-            );
-            if (itemIndex > -1) {
-              const {id, label} = state.localOptions[itemIndex];
-              state.selected.push({id, label});
-            }
-          }
-          emit('update:modelValue', state.selected);
-        } else {
-          // If preselect is true but no selected opts props passed, select first one default
-          if (state.localOptions.length > 0) {
-            const {id, label} = state.localOptions[0];
-            state.selected.push({id, label});
-            emit('update:modelValue', state.selected);
-          }
-        }
-      }
-    };
-
-    // Add options to select dropdown
+    // Load options to dropdown via function
     const loadOptions = async () => {
       state.isLoading = true;
-      if (Array.isArray(props.options)) {
-        // If options are passed as an array set options directly
-        state.localOptions = state.localOptions
-          .concat(props.options)
-          .filter((item, index, arr) => {
-            return arr.findIndex(_item => _item.id === item.id) === index;
-          });
-        if (!props.lazyLoad) {
-          preselectOptions();
-        }
-        state.isLoading = false;
-      } else if (typeof props.options === 'function') {
-        // If options are passed as a function, do funcation and set options
-        new Promise(resolve =>
-          resolve((props.options as Function)(state.searchTerm)),
-        )
-          .then(resolved => {
-            if (resolved) {
-              state.localOptions = state.localOptions
-                // eslint-disable-next-line
-                .concat(resolved as Array<any>)
-                .filter((item, index, arr) => {
-                  return arr.findIndex(_item => _item.id === item.id) === index;
-                });
-            }
-          })
-          .finally(() => {
-            if (!props.lazyLoad) {
-              preselectOptions();
-            }
-            state.isLoading = false;
-          });
-      }
+      new Promise(resolve => resolve(props.createOptions(state.searchTerm)))
+        .then(resolved => {
+          if (resolved) {
+            state.localOptions = state.localOptions
+              // eslint-disable-next-line
+              .concat(resolved as Array<any>)
+              .filter((item, index, arr) => {
+                return arr.findIndex(_item => _item.id === item.id) === index;
+              });
+          }
+        })
+        .finally(() => {
+          state.isLoading = false;
+        });
     };
 
-    if (!props.lazyLoad) {
+    if (!props.lazyLoad && props.createOptions) {
       onBeforeMount(loadOptions);
-    } else {
-      watch(() => state.searchTerm, loadOptions);
     }
 
     return {
       ...toRefs(state),
+      loadOptions,
     };
   },
 
   computed: {
+    selectedOptions(): Option[] {
+      return this.modelValue.length > 0 ? this.modelValue : [];
+    },
     filteredOptions(): Option[] {
       const filter = new RegExp(this.searchTerm, 'i');
-      return this.localOptions
-        .filter(option => option.label.match(filter))
-        .map(option => {
-          return {
-            id: option.id,
-            label: option.label,
-            disabled:
-              this.disabledOptions.findIndex(item => item == option.id) > -1,
-            selected:
-              this.selected.findIndex(item => item.id == option.id) > -1,
-          };
-        });
+      const _options = this.localOptions.filter(option =>
+        option.label.match(filter),
+      );
+
+      // When all local options are exahusted try API
+      if (
+        this.searchTerm.length > 0 &&
+        _options.length === 0 &&
+        this.createOptions
+      ) {
+        this.loadOptions();
+      }
+
+      return _options.map(option => {
+        return {
+          id: option.id,
+          label: option.label,
+          disabled:
+            this.disabledOptions.findIndex(item => item == option.id) > -1,
+          selected:
+            this.selectedOptions.findIndex(item => item.id == option.id) > -1,
+        };
+      });
     },
     placeholder(): string {
-      return !this.multiple && this.selected.length != 0
-        ? this.selected[0].label
+      return !this.multiple && this.selectedOptions.length != 0
+        ? this.selectedOptions[0].label
         : this.placeholderText.replace(/'/g, '');
     },
   },
@@ -304,25 +245,29 @@ export default defineComponent({
       }
     },
     onDropdownClear() {
-      this.selected = [];
+      this.$emit('update:modelValue', []);
       this.$emit('dropdown:cleared');
     },
     onSelectOption({id, label, disabled, selected}) {
       if (disabled || selected) {
         return;
       }
+      let _selOpts = JSON.parse(JSON.stringify(this.selectedOptions));
       if (!this.multiple) {
-        this.selected = [];
+        _selOpts = [];
       }
-      this.selected.push({id, label});
+      _selOpts.push({id, label});
+      this.$emit('update:modelValue', _selOpts);
       this.searchTerm = '';
       this.closeDropdown();
     },
     onRemoveOption(item: Option) {
-      const itemIndex = this.selected.findIndex(elem => elem.id === item.id);
+      const _selOpts = JSON.parse(JSON.stringify(this.selectedOptions));
+      const itemIndex = _selOpts.findIndex(elem => elem.id === item.id);
       if (itemIndex > -1) {
-        this.selected.splice(itemIndex, 1);
+        _selOpts.splice(itemIndex, 1);
       }
+      this.$emit('update:modelValue', _selOpts);
       this.closeDropdown();
     },
     openDropdown() {

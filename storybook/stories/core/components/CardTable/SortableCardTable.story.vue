@@ -5,9 +5,10 @@
       :headers="headers"
       :items="items"
       @click="onClick"
-      :selectable="selectable"
+      :selectable="true"
       v-model:selected="checkedItems"
       rowDecorator="oxd-table-decorator-card"
+      :order="order"
     />
   </div>
 </template>
@@ -22,11 +23,21 @@ export default {
         style: {flex: 1},
       },
       headers: [
-        {name: 'col1', title: 'Column 1', sortable: true, style: {flex: 1}},
+        {name: 'col1', title: 'Column 1', style: {flex: 1}},
         {name: 'col2', title: 'Column 2', style: {flex: 5}},
       ],
       items: [],
       checkedItems: [2, 0],
+      order: [
+        {
+          id: 0,
+          default: 'desc',
+        },
+        {
+          id: 1,
+          default: '',
+        },
+      ],
     };
   },
 
@@ -58,7 +69,7 @@ export default {
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
         },
       ];
-    }, 1000);
+    }, 500);
   },
 };
 </script>

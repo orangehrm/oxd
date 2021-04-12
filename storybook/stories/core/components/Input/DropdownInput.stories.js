@@ -9,12 +9,15 @@ export default {
   },
 };
 
+const data = [];
+
 const Template = args => ({
   setup() {
     return {args};
   },
+  data: () => ({data}),
   components: {'oxd-dropdown-input': DropdownInput},
-  template: '<oxd-dropdown-input v-bind="args" />',
+  template: '<oxd-dropdown-input v-model="data" v-bind="args" />',
 });
 
 const dropdownOptions = [
@@ -89,29 +92,29 @@ DefaultDisabled.args = {
 
 export const DefaultSync = Template.bind({});
 DefaultSync.args = {
-  options: syncFunction,
+  createOptions: syncFunction,
 };
 
 export const DefaultSyncLazy = Template.bind({});
 DefaultSyncLazy.args = {
-  options: syncFunction,
+  createOptions: syncFunction,
   lazyLoad: true,
 };
 
 export const DefaultAsync = Template.bind({});
 DefaultAsync.args = {
-  options: asyncFunction,
+  createOptions: asyncFunction,
 };
 
 export const DefaultAsyncLazy = Template.bind({});
 DefaultAsyncLazy.args = {
-  options: asyncLazyFunction,
+  createOptions: asyncLazyFunction,
   lazyLoad: true,
 };
 
 export const MultipleAsyncLazy = Template.bind({});
 MultipleAsyncLazy.args = {
-  options: asyncLazyFunction,
+  createOptions: asyncLazyFunction,
   multiple: true,
   lazyLoad: true,
 };

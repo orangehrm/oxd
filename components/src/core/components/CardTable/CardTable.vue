@@ -17,10 +17,12 @@
 
         <oxd-card-th
           class="oxd-padding-cell oxd-table-th"
-          v-for="header in headers"
+          v-for="(header, index) in headers"
           :key="header"
           :style="header.style"
           :class="header.class"
+          :sort="getSort(index)"
+          @sort="onSort"
         >
           {{ header.title }}
         </oxd-card-th>
@@ -80,7 +82,7 @@ import {
   watch,
   toRefs,
 } from 'vue';
-import {CardSelector, CardHeaders} from './types';
+import {CardSelector, CardHeaders, Sort, Order} from './types';
 import Table from '@orangehrm/oxd/core/components/CardTable/Table.vue';
 import TableHeader from '@orangehrm/oxd/core/components/CardTable/TableHeader.vue';
 import TableBody from '@orangehrm/oxd/core/components/CardTable/TableBody.vue';
@@ -99,6 +101,7 @@ import ActionsCell from '@orangehrm/oxd/core/components/CardTable/Cell/Actions.v
 interface State {
   checkedItems: number[];
   selectedAll: boolean;
+  sort: Sort[];
 }
 
 export default defineComponent({
@@ -133,6 +136,10 @@ export default defineComponent({
       type: String,
       default: 'oxd-table-decorator-default',
     },
+    order: {
+      type: Array as PropType<Order[]>,
+      default: () => [],
+    },
   },
 
   setup(props, context) {
@@ -141,7 +148,16 @@ export default defineComponent({
       selectedAll:
         props.selected.length > 0 &&
         props.selected.length === props.items.length,
+      sort: props.headers.map((header, index) => {
+        return {
+          order: props.order[index],
+          header: header,
+          state: props.order[index] ? props.order[index].default : 'none',
+        };
+      }),
     });
+
+    context.emit('update:sort', state.sort);
 
     watch(
       () => state.checkedItems,
@@ -163,7 +179,13 @@ export default defineComponent({
     };
   },
 
-  emits: ['click', 'clickCheckbox', 'update:selected', 'update:selectAll'],
+  emits: [
+    'click',
+    'clickCheckbox',
+    'update:selected',
+    'update:selectAll',
+    'update:sort',
+  ],
 
   components: {
     'oxd-card-table-container': Table,
@@ -209,6 +231,30 @@ export default defineComponent({
         range.push(i);
       }
       return range;
+    },
+    getSort(index: number): Sort {
+      return this.sort[index];
+    },
+    onSort(sortEvent: Sort) {
+      const {order} = sortEvent;
+      if (order) {
+        const _sort: Sort = {...this.sort[order.id]};
+        switch (_sort.state) {
+          case 'asc':
+            _sort.state = 'desc';
+            break;
+          case 'desc':
+            _sort.state = '';
+            break;
+          case '':
+            _sort.state = 'asc';
+            break;
+          default:
+            break;
+        }
+        this.sort[order.id] = _sort;
+        this.$emit('update:sort', this.sort);
+      }
     },
   },
 });

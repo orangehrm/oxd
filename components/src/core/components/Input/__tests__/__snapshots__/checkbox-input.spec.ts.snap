@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckboxInput.vue renders OXD Checkbox Input 1`] = `<div class="oxd-checkbox-wrapper"><label><input type="checkbox" value="" label="Checkbox" true-value="true" false-value="false"><span class="oxd-checkbox-input oxd-checkbox-input--active oxd-checkbox-input"><i class="oxd-icon bi-check oxd-checkbox-input-icon"></i></span> </label></div>`;
+
+exports[`CheckboxInput.vue should renders OXD Input with error 1`] = `<div class="oxd-checkbox-wrapper"><label><input type="checkbox" value="" label="Checkbox" true-value="true" false-value="false"><span class="oxd-checkbox-input oxd-checkbox-input--active oxd-checkbox-input--error oxd-checkbox-input"><i class="oxd-icon bi-check oxd-checkbox-input-icon"></i></span> </label></div>`;
