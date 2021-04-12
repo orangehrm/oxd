@@ -78,6 +78,14 @@ PasswordInput.args = {
   type: 'password',
 };
 
+export const CheckboxInput = Template.bind({});
+CheckboxInput.argTypes = argTypes;
+CheckboxInput.args = {
+  label: 'Checkbox Input Field',
+  optionLabel: 'check this!',
+  type: 'checkbox',
+};
+
 export const WithIcon = Template.bind({});
 WithIcon.argTypes = argTypes;
 WithIcon.args = {

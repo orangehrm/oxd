@@ -63,7 +63,7 @@ export default {
     return {
       name: '',
       id: '',
-      role: null,
+      role: [{id: 2, label: 'Admin'}],
       rules: {
         name: [
           v => (!!v && v.trim() !== '') || 'Required',

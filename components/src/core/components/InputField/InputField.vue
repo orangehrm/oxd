@@ -24,6 +24,7 @@ import FileInput from '@orangehrm/oxd/core/components/Input/FileInput.vue';
 import Textarea from '@orangehrm/oxd/core/components/Textarea/Textarea.vue';
 import DropdownInput from '@orangehrm/oxd/core/components/Input/DropdownInput.vue';
 import PasswordInput from '@orangehrm/oxd/core/components/Input/PasswordInput.vue';
+import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
 import {validatableMixin} from '../../../mixins/validatable';
 import {uuid} from '../../../mixins/uuid';
 import {injectStrict} from '../../../utils/injectable';
@@ -42,6 +43,7 @@ export default defineComponent({
     'oxd-textarea': Textarea,
     'oxd-dropdown-input': DropdownInput,
     'oxd-password-input': PasswordInput,
+    'oxd-checkbox-input': CheckboxInput,
   },
 
   mixins: [validatableMixin, uuid],
@@ -59,6 +61,7 @@ export default defineComponent({
   },
 
   unmounted() {
+    this.removeErrors();
     this.form &&
       this.form.$el.removeEventListener('submit', this.triggerUpdate);
   },
@@ -120,18 +123,30 @@ export default defineComponent({
       this.onUpdate(this.modelValue as string);
     },
 
-    onUpdate(value: string | OutputFile) {
-      this.validate(value);
+    addErrors() {
       const field: ErrorField = {
         cid: this.cid,
         errors: this.errorBucket,
       };
+      this.form && this.form.addError(field);
+      this.$emit('errors', this.errorBucket);
+    },
+
+    removeErrors() {
+      const field: ErrorField = {
+        cid: this.cid,
+        errors: this.errorBucket,
+      };
+      this.form && this.form.removeError(field);
+    },
+
+    onUpdate(value: string | OutputFile) {
+      this.validate(value);
       this.$emit('update:modelValue', value);
       if (this.errorBucket.length !== 0) {
-        this.form && this.form.addError(field);
-        this.$emit('errors', this.errorBucket);
+        this.addErrors();
       } else {
-        this.form && this.form.removeError(field);
+        this.removeErrors();
       }
     },
   },

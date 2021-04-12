@@ -1,5 +1,8 @@
 <template>
-  <form novalidate @submit.prevent="validate">
+  <form class="oxd-form" novalidate @submit.prevent="validate">
+    <div v-if="loading" class="oxd-form-loader">
+      <oxd-loading-spinner />
+    </div>
     <slot></slot>
   </form>
 </template>
@@ -12,6 +15,7 @@ interface State {
 import {defineComponent} from 'vue';
 import ErrorBag from './errorbag.interface';
 import ErrorField from './errorfield.interface';
+import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
 
 export default defineComponent({
   name: 'oxd-form',
@@ -25,6 +29,17 @@ export default defineComponent({
     return {
       form: this,
     };
+  },
+
+  props: {
+    loading: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
+  components: {
+    'oxd-loading-spinner': Spinner,
   },
 
   computed: {
@@ -61,3 +76,5 @@ export default defineComponent({
   },
 });
 </script>
+
+<style src="./form.scss" lang="scss" scoped></style>

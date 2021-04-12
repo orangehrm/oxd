@@ -25,3 +25,14 @@ export interface ObjectClass {
 export type ArrayClass = Array<ObjectClass | string>;
 
 export type StyleAttribute = Properties;
+
+export interface Order {
+  id: number;
+  default: string;
+}
+
+export interface Sort {
+  order?: Order;
+  header: CardHeader;
+  state: string;
+}
