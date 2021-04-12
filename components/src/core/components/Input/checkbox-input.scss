@@ -16,7 +16,8 @@
       clear: both;
     }
     & input[type='checkbox'] {
-      display: none;
+      opacity: 0;
+      position: absolute;
       + .oxd-checkbox-input {
         background-color: transparent;
         .oxd-checkbox-input-icon {
