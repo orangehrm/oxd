@@ -38,7 +38,7 @@
         @click="onClick(item)($event)"
         :rowItem="item"
       >
-        <oxd-card-tr>
+        <oxd-card-tr :clickable="clickable">
           <oxd-card-td
             v-if="selectable"
             class="oxd-padding-cell"
