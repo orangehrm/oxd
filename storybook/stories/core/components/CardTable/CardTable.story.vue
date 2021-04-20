@@ -6,6 +6,7 @@
       :items="items"
       @click="onClick"
       :selectable="selectable"
+      :clickable="false"
       v-model:selected="checkedItems"
       rowDecorator="oxd-table-decorator-card"
     />

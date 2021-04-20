@@ -13,11 +13,11 @@
     background-color: $oxd-table-row-hover-bg-color;
   }
 
-  &--clickable:hover {
-    cursor: pointer;
-  }
-
   &--with-border {
     border-top: $oxd-table-row-border $oxd-table-row-border-color;
   }
+}
+
+.oxd-table-row--clickable {
+  cursor: pointer;
 }
