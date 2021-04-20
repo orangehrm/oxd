@@ -1,19 +1,19 @@
 import {defineComponent} from 'vue';
 
-interface breakpoint {
+interface Breakpoint {
   [screenType: string]: {
     min: number;
     max: number;
   };
 }
 
-interface state {
+interface State {
   windowWidth: number;
   windowHeight: number;
   screenType: string;
 }
 
-export const breakpoints: breakpoint = {
+export const breakpoints: Breakpoint = {
   xs: {
     min: 0,
     max: 599,
@@ -37,7 +37,7 @@ export const breakpoints: breakpoint = {
 };
 
 export const responsiveMixin = defineComponent({
-  data(): state {
+  data(): State {
     return {
       windowWidth: 0,
       windowHeight: 0,
@@ -54,7 +54,7 @@ export const responsiveMixin = defineComponent({
     window.removeEventListener('resize', this.setWindowSize);
   },
   methods: {
-    setWindowSize(event?: Event): void {
+    setWindowSize(): void {
       const width = document.documentElement.clientWidth;
       const height = document.documentElement.clientHeight;
       this.windowWidth = width;

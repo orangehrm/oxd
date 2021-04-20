@@ -8,6 +8,11 @@ const GLOBAL = {
         items: [],
       };
     },
+    screenType() {
+      return {
+        value: '',
+      };
+    },
   },
 };
 
