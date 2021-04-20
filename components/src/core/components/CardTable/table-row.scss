@@ -21,3 +21,11 @@
     border-top: $oxd-table-row-border $oxd-table-row-border-color;
   }
 }
+
+.oxd-table-decorator-card--xs,
+.oxd-table-decorator-card--sm,
+.oxd-table-decorator-card--md {
+  & .oxd-table-row {
+    flex-direction: column;
+  }
+}

@@ -1,6 +1,6 @@
 <template>
   <oxd-card-table-container>
-    <oxd-card-thead>
+    <oxd-card-thead v-if="showHeader">
       <oxd-card-tr>
         <oxd-card-th
           v-if="selectable"
@@ -55,13 +55,13 @@
 
           <oxd-card-td
             class="oxd-padding-cell"
-            v-for="header in headers"
+            v-for="(header, index) in headers"
             :key="header"
             :style="header.style"
             :class="header.class"
           >
             <component
-              :is="header.cellType ? header.cellType : 'oxd-table-cell-default'"
+              :is="cellType[index]"
               :item="item[header.name]"
               :rowItem="item"
               :header="header"
@@ -97,6 +97,9 @@ import CardDecorator from '@orangehrm/oxd/core/components/CardTable/Decorator/Ca
 // Cells
 import DefaultCell from '@orangehrm/oxd/core/components/CardTable/Cell/Default.vue';
 import ActionsCell from '@orangehrm/oxd/core/components/CardTable/Cell/Actions.vue';
+import CardCell from '@orangehrm/oxd/core/components/CardTable/Cell/CardCell.vue';
+
+import {responsiveMixin} from '../../../mixins/responsive';
 
 interface State {
   checkedItems: number[];
@@ -142,6 +145,8 @@ export default defineComponent({
     },
   },
 
+  mixins: [responsiveMixin],
+
   setup(props, context) {
     const state: State = reactive({
       checkedItems: props.selected,
@@ -176,7 +181,28 @@ export default defineComponent({
   provide() {
     return {
       tableProps: computed(() => this.$props),
+      screenType: computed((): string => this.screenType),
     };
+  },
+
+  computed: {
+    showHeader(): boolean {
+      if (this.rowDecorator === 'oxd-table-decorator-card') {
+        return this.screenType === 'lg' || this.screenType === 'xl';
+      }
+      return true;
+    },
+    cellType(): string {
+      return this.headers.map(header => {
+        if (header.cellType) {
+          return header.cellType;
+        } else if (this.rowDecorator === 'oxd-table-decorator-card') {
+          return 'oxd-table-cell-card';
+        } else {
+          return 'oxd-table-cell-default';
+        }
+      });
+    },
   },
 
   emits: [
@@ -202,6 +228,7 @@ export default defineComponent({
     // Cells
     'oxd-table-cell-default': DefaultCell,
     'oxd-table-cell-actions': ActionsCell,
+    'oxd-table-cell-card': CardCell,
   },
 
   methods: {

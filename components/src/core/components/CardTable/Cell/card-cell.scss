@@ -1,0 +1,10 @@
+@import '../../../../styles';
+@import 'variables';
+
+.oxd-table-cell-card {
+  display: flex;
+  justify-content: space-between;
+  & .header {
+    font-weight: $oxd-table-header-font-weight;
+  }
+}

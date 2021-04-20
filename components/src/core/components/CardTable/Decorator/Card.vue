@@ -17,6 +17,7 @@ export default defineComponent({
     classes(): object {
       return {
         'oxd-table-decorator-card': true,
+        [`oxd-table-decorator-card--${this.screenType.value}`]: true,
       };
     },
   },

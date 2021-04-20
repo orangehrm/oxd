@@ -8,7 +8,7 @@ export const decoratorMixin = defineComponent({
     },
   },
 
-  inject: ['tableProps'],
+  inject: ['tableProps', 'screenType'],
 });
 
 export default decoratorMixin;
