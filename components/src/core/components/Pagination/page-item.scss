@@ -17,17 +17,20 @@
   align-items: center;
   flex-direction: column;
 
-  // TODO: handle focus
-  /* &:focus {
+  /* Remove the focus indicator on mouse-focus 
+     https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible */
+  &:focus:not(:focus-visible) {
     outline: 0;
-  } */
+  }
+
+  &:focus-visible {
+    outline: auto;
+  }
 
   &--previous-next {
     border: $oxd-pagination-page-item-border
       $oxd-pagination-page-item-border-color;
 
-    // TODO: handle focus
-    // &:focus,
     &:hover {
       background-color: $oxd-pagination-page-item--previous-next-hover-bg-color;
     }
@@ -40,8 +43,6 @@
       background-color: $oxd-pagination-page-item--page-selected-bg-color;
     }
 
-    // TODO: handle focus
-    // &:focus,
     &:hover {
       color: $oxd-pagination-page-item--page-hover-font-color;
       background-color: $oxd-pagination-page-item--page-hover-bg-color;
