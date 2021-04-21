@@ -10,6 +10,7 @@
     color: $oxd-input-control-font-color;
     font-size: $oxd-input-control-font-size;
     font-weight: $oxd-input-control-font-weight;
+    width: fit-content;
     & input[type='checkbox'] {
       opacity: 0;
       position: absolute;

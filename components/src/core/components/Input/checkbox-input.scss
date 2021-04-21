@@ -10,6 +10,7 @@
     color: $oxd-input-control-font-color;
     font-size: $oxd-input-control-font-size;
     font-weight: $oxd-input-control-font-weight;
+    width: fit-content;
     &:after {
       content: '';
       display: table;
@@ -53,7 +54,14 @@
   border-radius: $oxd-checkbox-border-radius;
   width: $oxd-checkbox-width;
   height: $oxd-checkbox-height;
-  margin-right: $oxd-checkbox-label-margin;
+
+  &.--label-left {
+    margin-left: $oxd-checkbox-label-margin;
+  }
+
+  &.--label-right {
+    margin-right: $oxd-checkbox-label-margin;
+  }
 
   &--active {
     border: $oxd-input-border--active;

@@ -86,6 +86,14 @@ CheckboxInput.args = {
   type: 'checkbox',
 };
 
+export const SwitchInput = Template.bind({});
+SwitchInput.argTypes = argTypes;
+SwitchInput.args = {
+  label: 'Switch Input Field',
+  optionLabel: 'switch this!',
+  type: 'switch',
+};
+
 export const WithIcon = Template.bind({});
 WithIcon.argTypes = argTypes;
 WithIcon.args = {

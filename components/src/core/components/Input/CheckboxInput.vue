@@ -1,34 +1,39 @@
 <template>
   <div class="oxd-checkbox-wrapper">
     <label>
+      <template v-if="labelPosition === 'left'">
+        {{ optionLabel }}
+      </template>
       <input
         type="checkbox"
-        :value="modelValue"
         @focus="onFocus"
         @blur="onBlur"
-        @input="onInput"
+        @change="onChange"
         v-bind="$attrs"
-        :true-value="trueValue"
-        :false-value="falseValue"
+        v-model="checked"
       />
       <span :class="classes" :style="style" class="oxd-checkbox-input">
         <oxd-icon class="oxd-checkbox-input-icon" :name="checkIcon" />
       </span>
-      {{ optionLabel }}
+      <template v-if="labelPosition === 'right'">
+        {{ optionLabel }}
+      </template>
     </label>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import {Position, LabelPositions} from './types';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
 export interface State {
   focused: boolean;
+  checkedProxy: any;
 }
 
 export default defineComponent({
-  name: 'oxd-input',
+  name: 'oxd-checkbox-input',
   inheritAttrs: false,
   props: {
     modelValue: {},
@@ -47,13 +52,12 @@ export default defineComponent({
       type: String,
       default: '',
     },
-    trueValue: {
-      type: [Boolean, String, Number],
-      default: true,
-    },
-    falseValue: {
-      type: [Boolean, String, Number],
-      default: false,
+    labelPosition: {
+      type: String,
+      default: 'right',
+      validator: function(value: Position) {
+        return LabelPositions.indexOf(value) !== -1;
+      },
     },
   },
 
@@ -64,6 +68,7 @@ export default defineComponent({
   data(): State {
     return {
       focused: false,
+      checkedProxy: {},
     };
   },
 
@@ -74,7 +79,16 @@ export default defineComponent({
         'oxd-checkbox-input--active': !this.focused,
         'oxd-checkbox-input--focus': this.focused,
         'oxd-checkbox-input--error': this.hasError,
+        [`--label-${this.labelPosition}`]: true,
       };
+    },
+    checked: {
+      get() {
+        return this.modelValue;
+      },
+      set(value) {
+        this.checkedProxy = value;
+      },
     },
   },
 
@@ -87,13 +101,9 @@ export default defineComponent({
       this.focused = false;
       this.$emit('blur', e);
     },
-    onInput(e: Event) {
-      const emitValue = (e.target as HTMLInputElement).checked
-        ? this.trueValue
-        : this.falseValue;
-      e.preventDefault();
-      this.$emit('update:modelValue', emitValue);
-      this.$emit('input', e);
+    onChange(e: Event) {
+      this.$emit('update:modelValue', this.checkedProxy);
+      this.$emit('change', e);
     },
   },
 });
