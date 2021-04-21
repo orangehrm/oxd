@@ -23,3 +23,17 @@ $oxd-checkbox-border-radius: 0.35rem;
 $oxd-checkbox-label-margin: 0.5em;
 $oxd-checkbox-checked-background-color: $oxd-primary-one-color;
 $oxd-checkbox-disabled-background-color: $oxd-interface-gray-lighten-2-color;
+
+$oxd-switch-width: 2rem;
+$oxd-switch-height: calc(#{$oxd-switch-width} / 2);
+$oxd-switch-radius: calc(#{$oxd-switch-height} / 2);
+$oxd-switch-selector-height: calc(#{$oxd-switch-height} - 2px);
+$oxd-switch-selector-width: calc(#{$oxd-switch-height} - 2px);
+$oxd-switch-selector-radius: calc(#{$oxd-switch-selector-height} / 2);
+$oxd-switch-selector-color: $oxd-white-color;
+$oxd-switch-label-margin: 0.5em;
+$oxd-switch-off-background-color: $oxd-interface-gray-lighten-2-color;
+$oxd-switch-on-background-color: $oxd-primary-one-color;
+$oxd-switch-on-disabled-background-color: #fdbb8d;
+$oxd-switch-off-disabled-background-color: $oxd-interface-gray-lighten-2-color;
+$oxd-switch-disabled-background-color: $oxd-interface-gray-lighten-2-color;
