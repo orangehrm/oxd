@@ -1,5 +1,10 @@
 <template>
-  <oxd-tree-view :data="data" class="org-structure">
+  <oxd-tree-view
+    :data="data"
+    :open="true"
+    :show-root="false"
+    class="org-structure"
+  >
     <template v-slot:content="{nodeData}">
       <oxd-sheet type="pastel-white" class="org-structure-card">
         <div class="org-name">

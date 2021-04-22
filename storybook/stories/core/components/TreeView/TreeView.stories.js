@@ -47,4 +47,64 @@ Default.args = {
 };
 Default.argTypes = argTypes;
 
+export const withoutAnimation = Template.bind({});
+withoutAnimation.args = {
+  data: {
+    name: '/',
+    children: [
+      {name: 'root'},
+      {name: 'bin'},
+      {name: 'opt'},
+      {
+        name: 'usr',
+        children: [
+          {
+            name: 'share',
+            children: [{name: 'man'}, {name: 'local'}],
+          },
+          {name: 'bin'},
+          {name: 'sbin'},
+          {
+            name: 'local',
+            children: [{name: 'etc'}, {name: 'bin'}],
+          },
+        ],
+      },
+      {name: 'etc'},
+    ],
+  },
+  animation: '',
+};
+withoutAnimation.argTypes = argTypes;
+
+export const openNodes = Template.bind({});
+openNodes.args = {
+  data: {
+    name: '/',
+    children: [
+      {name: 'root'},
+      {name: 'bin'},
+      {name: 'opt'},
+      {
+        name: 'usr',
+        children: [
+          {
+            name: 'share',
+            children: [{name: 'man'}, {name: 'local'}],
+          },
+          {name: 'bin'},
+          {name: 'sbin'},
+          {
+            name: 'local',
+            children: [{name: 'etc'}, {name: 'bin'}],
+          },
+        ],
+      },
+      {name: 'etc'},
+    ],
+  },
+  open: true,
+};
+openNodes.argTypes = argTypes;
+
 export const CustomTreeview = () => CustomTemplate;

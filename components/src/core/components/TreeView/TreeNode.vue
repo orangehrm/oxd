@@ -1,6 +1,6 @@
 <template>
   <li class="oxd-tree-node" :class="nodeClasses">
-    <div class="oxd-tree-node-wrapper" :class="nodeClasses">
+    <div v-if="showRoot" class="oxd-tree-node-wrapper" :class="nodeClasses">
       <span v-if="hasChildren" class="oxd-tree-node-toggle">
         <oxd-icon-button
           @click="onClickNode"
@@ -15,22 +15,29 @@
         </template>
       </div>
     </div>
-    <ul class="oxd-tree-node-child" v-show="isOpen" v-if="hasChildren">
-      <oxd-tree-node
-        v-for="child in data.children"
-        :key="child.cuid"
-        :data="child"
-      >
-        <template v-for="(_, name) in $slots" v-slot:[name]="slotData"
-          ><slot :name="name" v-bind="slotData"
-        /></template>
-      </oxd-tree-node>
-    </ul>
+    <transition
+      :name="animation"
+      v-if="hasChildren"
+      @after-leave="onAnimationComplete"
+    >
+      <ul class="oxd-tree-node-child" v-show="isOpen">
+        <oxd-tree-node
+          v-for="child in data.children"
+          :key="child.cuid"
+          :data="child"
+          :animation="animation"
+        >
+          <template v-for="(_, name) in $slots" v-slot:[name]="slotData"
+            ><slot :name="name" v-bind="slotData"
+          /></template>
+        </oxd-tree-node>
+      </ul>
+    </transition>
   </li>
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from 'vue';
+import {defineComponent, PropType, ref} from 'vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import {TNode} from './types';
 import {nanoid} from 'nanoid';
@@ -42,13 +49,28 @@ export default defineComponent({
       type: Object as PropType<TNode>,
       required: true,
     },
+    open: {
+      type: Boolean,
+      default: false,
+    },
+    showRoot: {
+      type: Boolean,
+      default: true,
+    },
+    animation: {
+      type: String,
+      default: 'transition-fade-down',
+    },
   },
   components: {
     'oxd-icon-button': IconButton,
   },
-  data() {
+  setup(props) {
+    const isOpen = ref(props.open);
+    const isCollapsed = ref(!props.open);
     return {
-      isOpen: false,
+      isOpen,
+      isCollapsed,
     };
   },
   computed: {
@@ -58,7 +80,7 @@ export default defineComponent({
     nodeClasses(): object {
       return {
         '--parent': this.hasChildren,
-        '--open': this.isOpen,
+        '--open': !this.isCollapsed && this.hasChildren,
       };
     },
     currentNode(): TNode {
@@ -73,7 +95,11 @@ export default defineComponent({
     onClickNode() {
       if (this.hasChildren) {
         this.isOpen = !this.isOpen;
+        this.isCollapsed = false;
       }
+    },
+    onAnimationComplete() {
+      this.isCollapsed = true;
     },
   },
 });
