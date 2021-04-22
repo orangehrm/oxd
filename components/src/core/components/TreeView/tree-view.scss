@@ -32,7 +32,6 @@
       position: absolute;
       left: calc(-1.25rem + (#{$oxd-tree-view-toggle-height}/ 2));
       border-top: $oxd-tree-view-border;
-      z-index: -1;
       width: 1rem;
     }
   }
@@ -62,7 +61,6 @@
     content: '';
     position: absolute;
     left: calc(-1.25rem + (#{$oxd-tree-view-toggle-height}/ 2));
-    z-index: -1;
   }
   &::after {
     border-left: $oxd-tree-view-border;
