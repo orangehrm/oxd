@@ -26,6 +26,7 @@ import {Position, LabelPositions} from './types';
 
 export interface State {
   focused: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   checkedProxy: any;
 }
 

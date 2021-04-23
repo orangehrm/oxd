@@ -115,3 +115,8 @@
       cubic-bezier(0.53, 2, 0.36, 0.85),
     opacity $oxd-dropdown-animation-time cubic-bezier(0.53, 2, 0.36, 0.85);
 }
+
+::v-deep(.oxd-loading-spinner) {
+  width: $oxd-dropdown-loader-height;
+  height: $oxd-dropdown-loader-height;
+}

@@ -1,10 +1,14 @@
 $oxd-topbar-bg-color: #ff6500;
 $oxd-topbar-bg-gradient: linear-gradient(90deg, #ff8226 0%, #f35c17 90%);
 $oxd-topbar-border-color: #e9eaec;
-$oxd-topbar-patch-color: #f7802a;
+$oxd-topbar-patch-color: #ff8226;
 
 $oxd-topbar-tab-text-color: #7a7b88;
 $oxd-topbar-tab-hover-color: #f8f9fc;
+$oxd-topbar-body-padding: 0.5rem;
+$oxd-topbar-visited-border: 3px solid $oxd-primary-one-color;
+$oxd-topbar-visited-border-radius: 3px;
+$oxd-topbar-visited-border-width: 2rem;
 
 $oxd-userdropdown-hr: 1px solid rgba(143, 143, 143, 0.15);
 $oxd-userdropdown-img-border: 2px solid #de5801;

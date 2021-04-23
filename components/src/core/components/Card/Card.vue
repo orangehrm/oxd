@@ -1,8 +1,8 @@
 <template>
   <div>{{ title }}</div>
   <div
-    v-focus-within
     class="oxd-card"
+    v-bind="$attrs"
     :class="[
       clickable && 'oxd-card--clickable',
       hasShadow && 'oxd-card--hasShadow',
@@ -14,9 +14,11 @@
 </template>
 
 <script lang="ts">
-export default {
-  name: 'oxd-card',
+import {defineComponent} from 'vue';
 
+export default defineComponent({
+  name: 'oxd-card',
+  inheritAttrs: false,
   props: {
     title: {
       type: String,
@@ -35,7 +37,7 @@ export default {
       this.$emit('click');
     },
   },
-};
+});
 </script>
 
 <style src="./card.scss" lang="scss" scoped></style>

@@ -10,7 +10,7 @@ const Template = args => ({
     return {args};
   },
   components: {'oxd-side-panel': SidePanel},
-  template: `<oxd-side-panel/>`,
+  template: `<oxd-side-panel v-bind="args"/>`,
 });
 
 const argTypes = {

@@ -327,9 +327,3 @@ export default defineComponent({
 </script>
 
 <style src="./dropdown-input.scss" lang="scss" scoped></style>
-<style lang="scss">
-.oxd-loading-spinner {
-  width: 1rem !important;
-  height: 1rem !important;
-}
-</style>

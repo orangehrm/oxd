@@ -6,8 +6,8 @@
         <!-- Menu Item without Sub Menu-->
         <li
           :key="`nav-level1-${index}`"
-          v-if="menuItem.url != ''"
-          class="oxd-topbar-body-nav-tab"
+          v-if="menuItem.children.length === 0"
+          :class="menuClasses[index]"
         >
           <a class="oxd-topbar-body-nav-tab-item" :href="menuItem.url">{{
             menuItem.name
@@ -16,7 +16,7 @@
         <!-- Menu Item with Sub Menu -->
         <oxd-dropdown-menu
           :key="`nav-level1-${index}`"
-          class="oxd-topbar-body-nav-tab"
+          :class="menuClasses[index]"
           v-else
         >
           <span class="oxd-topbar-body-nav-tab-item"
@@ -46,7 +46,7 @@
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
-import {SubMenuItem} from './menuItem.interface';
+import {TopMenuItem} from './menuItem.interface';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import DropdownMenu from '@orangehrm/oxd/core/components/DropdownMenu/DropdownMenu.vue';
 
@@ -55,13 +55,25 @@ export default defineComponent({
 
   props: {
     menuItems: {
-      type: Object as PropType<SubMenuItem[]>,
+      type: Object as PropType<TopMenuItem[]>,
     },
   },
 
   components: {
     'oxd-dropdown-menu': DropdownMenu,
     'oxd-icon': Icon,
+  },
+
+  computed: {
+    menuClasses(): TopMenuItem[] {
+      return this.menuItems.map(item => {
+        return {
+          'oxd-topbar-body-nav-tab': true,
+          '--parent': item.children.length > 0,
+          '--visited': item.active,
+        };
+      });
+    },
   },
 });
 </script>
