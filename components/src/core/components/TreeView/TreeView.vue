@@ -1,9 +1,9 @@
 <template>
   <ul class="oxd-tree-view">
     <oxd-tree-node v-bind="$attrs">
-      <template v-for="(_, name) in $slots" v-slot:[name]="slotData"
-        ><slot :name="name" v-bind="slotData"
-      /></template>
+      <template v-for="(_, name) in $slots" v-slot:[name]="slotData">
+        <slot :name="name" v-bind="slotData" />
+      </template>
     </oxd-tree-node>
   </ul>
 </template>

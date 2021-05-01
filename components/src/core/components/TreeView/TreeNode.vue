@@ -27,9 +27,9 @@
           :data="child"
           :animation="animation"
         >
-          <template v-for="(_, name) in $slots" v-slot:[name]="slotData"
-            ><slot :name="name" v-bind="slotData"
-          /></template>
+          <template v-for="(_, name) in $slots" v-slot:[name]="slotData">
+            <slot :name="name" v-bind="slotData" />
+          </template>
         </oxd-tree-node>
       </ul>
     </transition>
