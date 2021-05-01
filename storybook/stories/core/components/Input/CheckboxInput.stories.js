@@ -1,4 +1,8 @@
 import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput';
+import {
+  RIGHT,
+  LABEL_POSITIONS,
+} from '@orangehrm/oxd/core/components/Input/types';
 
 export default {
   title: 'Example/CheckboxInput',
@@ -6,6 +10,10 @@ export default {
   argTypes: {
     style: {control: {type: 'object'}},
     hasError: {control: {type: 'boolean'}},
+    labelPosition: {
+      control: {type: 'select', options: LABEL_POSITIONS},
+      defaultValue: RIGHT,
+    },
   },
 };
 
@@ -17,7 +25,21 @@ const Template = args => ({
   template: '<oxd-checkbox-input v-bind="args" />',
 });
 
-const VmodelSample = args => ({
+const VmodelSample = () => ({
+  data() {
+    return {
+      selected: '',
+    };
+  },
+  components: {'oxd-checkbox-input': CheckboxInput},
+  template: `<div>
+    <oxd-checkbox-input v-model="selected" id="check1" value="orange" true-value="yes" false-value="no" optionLabel="Orange" />
+    <br/>
+    <span>{{selected}}</span>
+  </div>`,
+});
+
+const VmodelMultiSample = () => ({
   data() {
     return {
       selected: ['apple'],
@@ -52,4 +74,6 @@ Error.args = {
   hasError: true,
 };
 
-export const Vmodel = VmodelSample.bind({});
+export const VmodelSingle = VmodelSample.bind({});
+
+export const VmodelMultiple = VmodelMultiSample.bind({});

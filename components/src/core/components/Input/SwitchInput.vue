@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {Position, LabelPositions} from './types';
+import {Position, LABEL_POSITIONS, RIGHT} from './types';
 
 export interface State {
   focused: boolean;
@@ -48,12 +48,14 @@ export default defineComponent({
     },
     labelPosition: {
       type: String,
-      default: 'right',
+      default: RIGHT,
       validator: function(value: Position) {
-        return LabelPositions.indexOf(value) !== -1;
+        return LABEL_POSITIONS.indexOf(value) !== -1;
       },
     },
   },
+
+  emits: ['update:modelValue', 'blur', 'focus', 'change'],
 
   data(): State {
     return {

@@ -1,4 +1,8 @@
 import SwitchInput from '@orangehrm/oxd/core/components/Input/SwitchInput';
+import {
+  RIGHT,
+  LABEL_POSITIONS,
+} from '@orangehrm/oxd/core/components/Input/types';
 
 export default {
   title: 'Example/SwitchInput',
@@ -6,6 +10,10 @@ export default {
   argTypes: {
     style: {control: {type: 'object'}},
     hasError: {control: {type: 'boolean'}},
+    labelPosition: {
+      control: {type: 'select', options: LABEL_POSITIONS},
+      defaultValue: RIGHT,
+    },
   },
 };
 
