@@ -1,12 +1,6 @@
 <template>
-  <transition :name="computedTransition">
-    <oxd-overlay
-      role="dialog"
-      centered
-      v-if="show"
-      :show="true"
-      @click="onClickOverlay"
-    >
+  <transition :name="computedTransition" appear>
+    <oxd-overlay role="dialog" centered :show="true" @click="onClickOverlay">
       <!--
     :aria-labelledby="'dialogTitle_' + id"
     :aria-describedby="'dialogDesc_' + id"
@@ -55,10 +49,6 @@ export default defineComponent({
   emits: ['update:show'],
 
   props: {
-    show: {
-      type: Boolean,
-      default: false,
-    },
     shadow: {
       type: Boolean,
       default: true,
