@@ -163,13 +163,15 @@ export default defineComponent({
       state.isLoading = true;
       new Promise(resolve => resolve(props.createOptions(state.searchTerm)))
         .then(resolved => {
-          if (resolved) {
-            state.localOptions = state.localOptions
-              // eslint-disable-next-line
-              .concat(resolved as Array<any>)
-              .filter((item, index, arr) => {
-                return arr.findIndex(_item => _item.id === item.id) === index;
-              });
+          if (resolved && Array.isArray(resolved)) {
+            if (resolved.length > 0) {
+              state.localOptions = state.localOptions
+                // eslint-disable-next-line
+                .concat(resolved as Array<any>)
+                .filter((item, index, arr) => {
+                  return arr.findIndex(_item => _item.id === item.id) === index;
+                });
+            }
           }
         })
         .finally(() => {
