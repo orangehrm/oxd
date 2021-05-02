@@ -21,39 +21,29 @@ describe('CheckboxInput.vue', () => {
   it('should emit checked value on click', async () => {
     const wrapper = mount(CheckboxInput, {
       props: {
-        value: '1',
-        trueValue: 'yes',
-        falseValue: 'no',
+        modelValue: false,
       },
     });
     wrapper.find("input[type='checkbox']").trigger('click');
     await wrapper.vm.$nextTick();
-    expect(wrapper.emitted('update:modelValue')).toBeTruthy();
-    expect(wrapper.emitted('update:modelValue')[0]).toContain('yes');
+    expect(wrapper.emitted('update:modelValue')).toContainEqual([true]);
   });
 
   it('should emit unchecked value on click', async () => {
     const wrapper = mount(CheckboxInput, {
       props: {
-        value: '1',
-        checked: true,
-        trueValue: 'yes',
-        falseValue: 'no',
+        modelValue: true,
       },
     });
     wrapper.find("input[type='checkbox']").trigger('click');
     await wrapper.vm.$nextTick();
-    expect(wrapper.emitted('update:modelValue')).toBeTruthy();
-    expect(wrapper.emitted('update:modelValue')[0]).toContain('no');
+    expect(wrapper.emitted('update:modelValue')).toContainEqual([false]);
   });
 
   it('should not emit any value if disabled', async () => {
     const wrapper = mount(CheckboxInput, {
       props: {
-        value: '1',
         disabled: true,
-        trueValue: 'yes',
-        falseValue: 'no',
       },
     });
     wrapper.find("input[type='checkbox']").trigger('click');

@@ -10,7 +10,7 @@ const Template = args => ({
     return {args};
   },
   components: {'oxd-top-bar': Topbar},
-  template: `<oxd-top-bar/>`,
+  template: `<oxd-top-bar v-bind="args"/>`,
 });
 
 const argTypes = {
@@ -30,7 +30,7 @@ Default.args = {
     {
       name: 'Manage Data',
       url: '',
-      active: false,
+      active: true,
       children: [
         {
           name: 'Job Titles',
@@ -67,5 +67,10 @@ Default.args = {
     },
   ],
   contextTitle: 'Personal Information Manager',
+  user: {
+    firstName: 'Jeff',
+    lastName: 'Winger',
+    profImgSrc: '',
+  },
 };
 Default.argTypes = argTypes;
