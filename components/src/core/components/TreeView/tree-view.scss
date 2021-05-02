@@ -1,0 +1,93 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-tree-view {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 1rem;
+  font-family: $oxd-tree-view-font-family;
+  font-size: $oxd-tree-view-font-size;
+  color: $oxd-tree-view-font-color;
+  font-weight: $oxd-tree-view-font-weight;
+  line-height: $oxd-tree-view-line-height;
+
+  & > li:first-child {
+    &::after {
+      content: none;
+    }
+    & > ul {
+      padding: 0;
+    }
+  }
+}
+
+.oxd-tree-node {
+  position: relative;
+  &-wrapper {
+    display: flex;
+    align-items: center;
+    &::before {
+      content: '';
+      position: absolute;
+      left: calc(-1.25rem + (#{$oxd-tree-view-toggle-height}/ 2));
+      border-top: $oxd-tree-view-border;
+      width: 1rem;
+    }
+  }
+  &-toggle {
+    z-index: 500;
+    position: absolute;
+    left: -1.25rem;
+    & .oxd-icon-button {
+      font-size: inherit;
+      min-width: unset;
+      min-height: unset;
+      height: $oxd-tree-view-toggle-height;
+      width: $oxd-tree-view-toggle-height;
+      background-color: rgb(239 239 239);
+    }
+  }
+  &-content {
+    padding: $oxd-tree-view-content-padding;
+  }
+  &-child {
+    list-style: none;
+    margin: 0;
+    padding: $oxd-tree-view-node-padding;
+    position: relative;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    left: calc(-1.25rem + (#{$oxd-tree-view-toggle-height}/ 2));
+  }
+  &::after {
+    border-left: $oxd-tree-view-border;
+    height: 100%;
+    width: 0px;
+    top: 0;
+  }
+  &:last-child::after {
+    height: 50%;
+  }
+  &.--open {
+    &:last-child::after {
+      height: 12%;
+    }
+  }
+}
+
+.transition-fade-down-enter-active,
+.transition-fade-down-leave-active {
+  transform-origin: top;
+  transition: transform $oxd-tree-view-animation-time
+      cubic-bezier(0.53, 2, 0.36, 0.85),
+    opacity $oxd-tree-view-animation-time cubic-bezier(0.53, 2, 0.36, 0.85);
+}
+
+.transition-fade-down-enter-from,
+.transition-fade-down-leave-to {
+  opacity: 0;
+  transform: scaleY(0);
+}

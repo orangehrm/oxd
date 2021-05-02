@@ -1,7 +1,7 @@
 <template>
   <oxd-icon-button name="trash" @click="onClick" withContainer />
 
-  <oxd-dialog v-model:show="show" :style="{maxWidth: '450px'}">
+  <oxd-dialog v-if="show" @update:show="onCancel" :style="{maxWidth: '450px'}">
     <div class="orangehrm-modal-header">
       <oxd-text type="card-title">Are you sure?</oxd-text>
     </div>

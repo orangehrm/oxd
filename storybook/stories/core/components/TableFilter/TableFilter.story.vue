@@ -32,8 +32,6 @@
                 label="User Role"
                 v-model="filters.role"
                 :clear="false"
-                :preSelect="true"
-                :selectedOptions="[1]"
                 :options="[
                   {id: 1, label: 'All'},
                   {id: 2, label: 'Admin'},
@@ -46,7 +44,7 @@
                 type="dropdown"
                 label="Employee Name"
                 v-model="filters.empName"
-                :options="loadEmployees"
+                :createOptions="loadEmployees"
               />
             </oxd-grid-item>
             <oxd-grid-item>
@@ -55,8 +53,6 @@
                 label="Status"
                 v-model="filters.status"
                 :clear="false"
-                :preSelect="true"
-                :selectedOptions="[2]"
                 :options="[
                   {id: 1, label: 'All'},
                   {id: 2, label: 'Enabled'},
@@ -110,9 +106,9 @@ export default {
     return {
       filters: {
         username: '',
-        role: '',
-        empName: '',
-        status: '',
+        role: [1],
+        empName: [],
+        status: [2],
       },
       headers: [
         {name: 'col1', title: 'Username', style: {flex: 1}},

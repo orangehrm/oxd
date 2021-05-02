@@ -12,7 +12,8 @@
   <oxd-icon-button name="trash" @click="onClick" withContainer />
 
   <oxd-dialog
-    v-model:show="show"
+    v-if="show"
+    @update:show="onClose"
     :withTransition="false"
     :style="{maxWidth: '800px'}"
   >
@@ -49,6 +50,9 @@ export default {
   methods: {
     onClick() {
       this.show = true;
+    },
+    onClose() {
+      this.show = false;
     },
   },
 };

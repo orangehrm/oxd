@@ -41,7 +41,6 @@ const Template = args => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  show: true,
   shadow: true,
   gutters: true,
   style: {maxWidth: '800px'},

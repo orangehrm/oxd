@@ -11,7 +11,7 @@
   </p>
   <oxd-icon-button name="trash" @click="onClick" withContainer />
 
-  <oxd-dialog v-model:show="show" :style="{maxWidth: '800px'}">
+  <oxd-dialog v-if="show" @update:show="onClose" :style="{maxWidth: '800px'}">
     <p>
       <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting
       industry. Lorem Ipsum has been the industry's standard dummy text ever
@@ -45,6 +45,9 @@ export default {
   methods: {
     onClick() {
       this.show = true;
+    },
+    onClose() {
+      this.show = false;
     },
   },
 };

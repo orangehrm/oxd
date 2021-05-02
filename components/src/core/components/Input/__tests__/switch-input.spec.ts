@@ -1,10 +1,10 @@
 import {mount} from '@vue/test-utils';
-import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
+import SwitchInput from '@orangehrm/oxd/core/components/Input/SwitchInput.vue';
 
-describe('CheckboxInput.vue', () => {
-  it('renders OXD Checkbox Input', () => {
+describe('SwitchInput.vue', () => {
+  it('renders OXD Switch Input', () => {
     const value = 'Checkbox';
-    const wrapper = mount(CheckboxInput, {
+    const wrapper = mount(SwitchInput, {
       props: {label: value},
     });
     expect(wrapper.html()).toMatchSnapshot();
@@ -12,14 +12,14 @@ describe('CheckboxInput.vue', () => {
 
   it('should renders OXD Input with error', () => {
     const value = 'Checkbox';
-    const wrapper = mount(CheckboxInput, {
+    const wrapper = mount(SwitchInput, {
       props: {label: value, hasError: true},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('should emit checked value on click', async () => {
-    const wrapper = mount(CheckboxInput, {
+    const wrapper = mount(SwitchInput, {
       props: {
         modelValue: false,
       },
@@ -30,7 +30,7 @@ describe('CheckboxInput.vue', () => {
   });
 
   it('should emit unchecked value on click', async () => {
-    const wrapper = mount(CheckboxInput, {
+    const wrapper = mount(SwitchInput, {
       props: {
         modelValue: true,
       },
@@ -41,7 +41,7 @@ describe('CheckboxInput.vue', () => {
   });
 
   it('should not emit any value if disabled', async () => {
-    const wrapper = mount(CheckboxInput, {
+    const wrapper = mount(SwitchInput, {
       props: {
         disabled: true,
       },

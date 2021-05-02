@@ -1,5 +1,5 @@
 <template>
-  <div class="oxd-checkbox-wrapper">
+  <div class="oxd-switch-wrapper">
     <label>
       <template v-if="labelPosition === 'left'">
         {{ optionLabel }}
@@ -12,9 +12,7 @@
         v-bind="$attrs"
         v-model="checked"
       />
-      <span :class="classes" :style="style" class="oxd-checkbox-input">
-        <oxd-icon class="oxd-checkbox-input-icon" :name="checkIcon" />
-      </span>
+      <span :class="classes" :style="style"> </span>
       <template v-if="labelPosition === 'right'">
         {{ optionLabel }}
       </template>
@@ -25,7 +23,6 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {Position, LABEL_POSITIONS, RIGHT} from './types';
-import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
 export interface State {
   focused: boolean;
@@ -34,7 +31,7 @@ export interface State {
 }
 
 export default defineComponent({
-  name: 'oxd-checkbox-input',
+  name: 'oxd-switch-input',
   inheritAttrs: false,
   props: {
     modelValue: {},
@@ -44,10 +41,6 @@ export default defineComponent({
     hasError: {
       type: Boolean,
       default: false,
-    },
-    checkIcon: {
-      type: String,
-      default: 'check',
     },
     optionLabel: {
       type: String,
@@ -64,10 +57,6 @@ export default defineComponent({
 
   emits: ['update:modelValue', 'blur', 'focus', 'change'],
 
-  components: {
-    'oxd-icon': Icon,
-  },
-
   data(): State {
     return {
       focused: false,
@@ -78,10 +67,10 @@ export default defineComponent({
   computed: {
     classes(): object {
       return {
-        'oxd-checkbox-input': true,
-        'oxd-checkbox-input--active': !this.focused,
-        'oxd-checkbox-input--focus': this.focused,
-        'oxd-checkbox-input--error': this.hasError,
+        'oxd-switch-input': true,
+        'oxd-switch-input--active': !this.focused,
+        'oxd-switch-input--focus': this.focused,
+        'oxd-switch-input--error': this.hasError,
         [`--label-${this.labelPosition}`]: true,
       };
     },
@@ -112,4 +101,4 @@ export default defineComponent({
 });
 </script>
 
-<style src="./checkbox-input.scss" lang="scss" scoped></style>
+<style src="./switch-input.scss" lang="scss" scoped></style>

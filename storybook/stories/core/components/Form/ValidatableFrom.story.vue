@@ -30,6 +30,25 @@
       </oxd-input-group>
     </oxd-form-row>
 
+    <oxd-form-row>
+      <oxd-input-field
+        type="checkbox"
+        label="Check this"
+        option-label="I agree"
+        v-model="consent"
+        :rules="rules.consent"
+        true-value="yes"
+        false-value="no"
+      />
+      <oxd-input-field
+        type="switch"
+        label="Switch this"
+        option-label="Notify me"
+        v-model="notify"
+        :rules="rules.notify"
+      />
+    </oxd-form-row>
+
     <oxd-divider />
 
     <oxd-form-actions>
@@ -64,6 +83,8 @@ export default {
       name: '',
       id: '',
       role: [{id: 2, label: 'Admin'}],
+      consent: '',
+      notify: '',
       rules: {
         name: [
           v => (!!v && v.trim() !== '') || 'Required',
@@ -74,6 +95,11 @@ export default {
           v => (v && v.length >= 10) || 'Should more than 10 characters',
         ],
         role: [v => (v && v.length > 0) || 'Required'],
+        consent: [
+          v => (v && v.length > 0) || 'Required',
+          v => v === 'yes' || 'You should agree',
+        ],
+        notify: [v => v || 'Please turn notify on'],
       },
       isValid: true,
     };

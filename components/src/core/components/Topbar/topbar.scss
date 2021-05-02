@@ -27,6 +27,7 @@
       flex-basis: 70%;
       align-items: center;
       padding: 0.5rem 0rem;
+      min-width: 0%;
       & i {
         margin-right: 10px;
         @include oxd-respond-to('xs') {
@@ -39,6 +40,9 @@
       &-text {
         font-size: 14px;
         color: $oxd-white-color;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
       }
     }
     &-hamburger {
@@ -75,13 +79,19 @@
     background-color: $oxd-white-color;
     border-bottom: 1px solid $oxd-topbar-border-color;
     @include oxd-respond-to('xs') {
-      padding: 0.5rem;
+      padding: $oxd-topbar-body-padding;
     }
     @include oxd-respond-to('md') {
-      padding: 5px;
+      padding: calc(#{$oxd-topbar-body-padding} / 2);
       padding-left: 30px;
     }
     &-nav {
+      @include oxd-respond-to('xs') {
+        overflow: hidden;
+      }
+      @include oxd-respond-to('md') {
+        overflow: visible;
+      }
       & ul:first-child {
         list-style: none;
         display: flex;
@@ -91,12 +101,15 @@
       &-tab {
         padding: 4px 15px;
         cursor: pointer;
-        position: relative;
+        @include oxd-respond-to('md') {
+          position: relative;
+        }
         user-select: none;
         &-item {
           color: $oxd-topbar-tab-text-color;
           text-decoration: none;
           font-size: 12px;
+          white-space: nowrap;
         }
         &-link {
           color: $oxd-topbar-tab-text-color;
@@ -111,6 +124,26 @@
         &.--active {
           background-color: $oxd-background-pastel-white-color;
           border-radius: 1rem;
+        }
+        &.--visited:after {
+          content: '';
+          display: block;
+          position: absolute;
+          width: $oxd-topbar-visited-border-width;
+          border-radius: $oxd-topbar-visited-border-radius;
+          border-bottom: $oxd-topbar-visited-border;
+          bottom: -#{$oxd-topbar-body-padding};
+          @include oxd-respond-to('md') {
+            bottom: calc(-#{$oxd-topbar-body-padding} / 2);
+          }
+        }
+        // TODO: Refactor for a better solution
+        ::v-deep(.oxd-dropdown-menu) {
+          @media (min-width: 0px) and (max-width: 800px) {
+            top: 115px;
+            left: 0;
+            right: 0;
+          }
         }
       }
     }

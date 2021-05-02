@@ -28,3 +28,19 @@ $oxd-feedback-success-color: #34bc40 !default;
 
 $oxd-white-color: #ffffff !default;
 $oxd-black-color: #000000 !default;
+
+/* OXD - Gradient Colors */
+$oxd-primary-gradient-start-color: #ff8226 !default;
+$oxd-primary-gradient-end-color: #f35c17 !default;
+$oxd-primary-gradient: linear-gradient(
+  90deg,
+  $oxd-primary-gradient-start-color 0%,
+  $oxd-primary-gradient-end-color 90%
+) !default;
+$oxd-primary-secondary-start-color: #ff5e00 !default;
+$oxd-primary-secondary-end-color: #ffa46b !default;
+$oxd-secondary-gradient: linear-gradient(
+  90deg,
+  $oxd-primary-secondary-start-color 0%,
+  $oxd-primary-secondary-end-color 90%
+) !default;
