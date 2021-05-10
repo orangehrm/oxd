@@ -1,15 +1,77 @@
 @import '../../../../styles';
 @import 'variables';
 
-.oxd-table-decorator-card {
+.oxd-card-table-body {
+  display: grid;
+  grid-gap: $oxd-card-table-decorator-card-gap;
+
+  @include oxd-respond-to('xs') {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+
+  @include oxd-respond-to('md') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.oxd-table-card {
   border-radius: $oxd-card-table-decorator-card-radius;
   background-color: $oxd-card-table-decorator-card-color;
-  margin-bottom: $oxd-card-table-decorator-card-margin-bottom;
   padding-top: $oxd-card-table-decorator-card-margin-vertical;
   padding-bottom: $oxd-card-table-decorator-card-margin-vertical;
 
   &:hover {
     color: $oxd-card-table-row-hover-font-color;
     background-color: $oxd-card-table-row-hover-bg-color;
+  }
+}
+
+.card-item {
+  padding: 0.15rem 0.3rem;
+  min-width: 0;
+  align-self: stretch;
+}
+
+.card-left,
+.card-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-left {
+  margin-left: auto;
+}
+
+.card-right {
+  margin-right: auto;
+}
+
+.card-center {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  & .card-header-slot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &-content {
+      &.--left,
+      &.--right {
+        flex: 1;
+      }
+      &.--left {
+        text-align: left;
+      }
+      &.--right {
+        text-align: right;
+      }
+    }
+  }
+
+  & .card-body-slot,
+  .card-footer-slot {
+    display: flex;
+    flex-direction: column;
   }
 }

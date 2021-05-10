@@ -1,4 +1,4 @@
-@import '../../../styles';
+@import '../../../../styles';
 @import 'variables';
 
 .oxd-table {
@@ -7,4 +7,8 @@
   font-size: $oxd-table-font-size;
   display: flex;
   flex-direction: column;
+}
+
+.oxd-padding-cell {
+  padding: $oxd-table-cell-padding;
 }

@@ -20,4 +20,4 @@ export default defineComponent({
 });
 </script>
 
-<style src="./table.scss" lang="scss" scoped></style>
+<style src="./table.scss" lang="scss"></style>

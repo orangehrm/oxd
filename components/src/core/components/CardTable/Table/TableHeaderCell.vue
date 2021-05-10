@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
-import {Sort} from './types';
+import {Sort} from '../types';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 
 export default defineComponent({

@@ -1,108 +1,26 @@
 <template>
   <oxd-card-table-container>
-    <oxd-card-thead>
-      <oxd-card-tr>
-        <oxd-card-th
-          v-if="selectable"
-          class="oxd-padding-cell oxd-table-th"
-          :class="selector.class"
-          :style="selector.style"
-        >
-          <input
-            type="checkbox"
-            v-model="selectedAll"
-            @change="onChangeSelectAll"
-          />
-        </oxd-card-th>
+    <!-- oxd-card-table header start -->
+    <component :is="theme.headerDecorator"></component>
+    <!-- oxd-card-table header end -->
 
-        <oxd-card-th
-          class="oxd-padding-cell oxd-table-th"
-          v-for="(header, index) in headers"
-          :key="header"
-          :style="header.style"
-          :class="header.class"
-          :sort="getSort(index)"
-          @sort="onSort"
-        >
-          {{ header.title }}
-        </oxd-card-th>
-      </oxd-card-tr>
-    </oxd-card-thead>
-
-    <oxd-card-tbody>
-      <component
-        :is="rowDecorator"
-        v-for="(item, index) in items"
-        :key="item"
-        :clickable="clickable"
-        @click="onClick(item)($event)"
-        :rowItem="item"
-      >
-        <oxd-card-tr :clickable="clickable">
-          <oxd-card-td
-            v-if="selectable"
-            class="oxd-padding-cell"
-            :class="selector.class"
-            :style="selector.style"
-          >
-            <input
-              type="checkbox"
-              :value="index"
-              v-model="checkedItems"
-              @click="onClickCheckbox(item, $event)"
-            />
-          </oxd-card-td>
-
-          <oxd-card-td
-            class="oxd-padding-cell"
-            v-for="header in headers"
-            :key="header"
-            :style="header.style"
-            :class="header.class"
-          >
-            <component
-              :is="header.cellType ? header.cellType : 'oxd-table-cell-default'"
-              :item="item[header.name]"
-              :rowItem="item"
-              :header="header"
-            />
-          </oxd-card-td>
-        </oxd-card-tr>
-      </component>
-    </oxd-card-tbody>
+    <!-- oxd-card-table body start -->
+    <component :is="theme.bodyDecorator"></component>
+    <!-- oxd-card-table body end -->
   </oxd-card-table-container>
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  PropType,
-  computed,
-  reactive,
-  watch,
-  toRefs,
-} from 'vue';
-import {CardSelector, CardHeaders, Sort, Order} from './types';
-import Table from '@orangehrm/oxd/core/components/CardTable/Table.vue';
-import TableHeader from '@orangehrm/oxd/core/components/CardTable/TableHeader.vue';
-import TableBody from '@orangehrm/oxd/core/components/CardTable/TableBody.vue';
-import TableRow from '@orangehrm/oxd/core/components/CardTable/TableRow.vue';
-import TableHeaderCell from '@orangehrm/oxd/core/components/CardTable/TableHeaderCell.vue';
-import TableDataCell from '@orangehrm/oxd/core/components/CardTable/TableDataCell.vue';
+import {defineComponent, PropType, provide, readonly} from 'vue';
+import {CardSelector, CardHeaders, Order} from './types';
+import useResponsive from '../../../composables/useResponsive';
+import Table from '@orangehrm/oxd/core/components/CardTable/Table/Table.vue';
 
-// Decorators
-import DefaultDecorator from '@orangehrm/oxd/core/components/CardTable/Decorator/Default.vue';
-import CardDecorator from '@orangehrm/oxd/core/components/CardTable/Decorator/Card.vue';
+// Body Decorators
+import DefaultCardContainer from '@orangehrm/oxd/core/components/CardTable/Decorator/DefaultCardContainer.vue';
 
-// Cells
-import DefaultCell from '@orangehrm/oxd/core/components/CardTable/Cell/Default.vue';
-import ActionsCell from '@orangehrm/oxd/core/components/CardTable/Cell/Actions.vue';
-
-interface State {
-  checkedItems: number[];
-  selectedAll: boolean;
-  sort: Sort[];
-}
+// Headers Decorators
+import DefaultCardHeader from '@orangehrm/oxd/core/components/CardTable/Header/DefaultCardHeader.vue';
 
 export default defineComponent({
   name: 'oxd-card-card-table',
@@ -132,9 +50,9 @@ export default defineComponent({
       type: Array as PropType<number[]>,
       default: () => [],
     },
-    rowDecorator: {
+    decorator: {
       type: String,
-      default: 'oxd-table-decorator-default',
+      default: 'oxd-table-decorator-card',
     },
     order: {
       type: Array as PropType<Order[]>,
@@ -142,41 +60,11 @@ export default defineComponent({
     },
   },
 
-  setup(props, context) {
-    const state: State = reactive({
-      checkedItems: props.selected,
-      selectedAll:
-        props.selected.length > 0 &&
-        props.selected.length === props.items.length,
-      sort: props.headers.map((header, index) => {
-        return {
-          order: props.order[index],
-          header: header,
-          state: props.order[index] ? props.order[index].default : 'none',
-        };
-      }),
-    });
+  setup(props) {
+    const responsiveState = useResponsive();
 
-    context.emit('update:sort', state.sort);
-
-    watch(
-      () => state.checkedItems,
-      function(newVal) {
-        state.selectedAll =
-          newVal.length === props.items.length && props.items.length != 0;
-        context.emit('update:selected', newVal);
-      },
-    );
-
-    return {
-      ...toRefs(state),
-    };
-  },
-
-  provide() {
-    return {
-      tableProps: computed(() => this.$props),
-    };
+    provide('tableProps', readonly(props));
+    provide('screenState', readonly(responsiveState));
   },
 
   emits: [
@@ -189,75 +77,21 @@ export default defineComponent({
 
   components: {
     'oxd-card-table-container': Table,
-    'oxd-card-thead': TableHeader,
-    'oxd-card-tbody': TableBody,
-    'oxd-card-tr': TableRow,
-    'oxd-card-th': TableHeaderCell,
-    'oxd-card-td': TableDataCell,
 
-    // Decorators
-    'oxd-table-decorator-default': DefaultDecorator,
-    'oxd-table-decorator-card': CardDecorator,
+    // Body Decorators
+    'oxd-table-decorator-card': DefaultCardContainer,
 
-    // Cells
-    'oxd-table-cell-default': DefaultCell,
-    'oxd-table-cell-actions': ActionsCell,
+    // Header Decorators
+    'oxd-table-header-default': DefaultCardHeader,
   },
 
-  methods: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    onClick(item: any) {
-      return (e: Event) => {
-        this.$emit('click', {item, native: e});
+  computed: {
+    theme(): object {
+      return {
+        headerDecorator: 'oxd-table-header-default',
+        bodyDecorator: 'oxd-table-decorator-card',
       };
-    },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    onClickCheckbox(item: any, e: Event) {
-      e.stopPropagation();
-      this.$emit('clickCheckbox', {item, native: e});
-    },
-    onChangeSelectAll() {
-      this.checkedItems = this.selectedAll
-        ? [...this.range(0, this.items.length - 1)]
-        : [];
-      this.$emit('update:selectAll', this.selectedAll);
-    },
-    range(from: number, to: number): Array<number> {
-      const range = [];
-      if (from > to) {
-        return [];
-      }
-      for (let i = from; i <= to; i++) {
-        range.push(i);
-      }
-      return range;
-    },
-    getSort(index: number): Sort {
-      return this.sort[index];
-    },
-    onSort(sortEvent: Sort) {
-      const {order} = sortEvent;
-      if (order) {
-        const _sort: Sort = {...this.sort[order.id]};
-        switch (_sort.state) {
-          case 'asc':
-            _sort.state = 'desc';
-            break;
-          case 'desc':
-            _sort.state = '';
-            break;
-          case '':
-            _sort.state = 'asc';
-            break;
-          default:
-            break;
-        }
-        this.sort[order.id] = _sort;
-        this.$emit('update:sort', this.sort);
-      }
     },
   },
 });
 </script>
-
-<style src="./card-table.scss" lang="scss" scoped></style>
