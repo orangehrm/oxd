@@ -65,6 +65,9 @@
       }
       &.--right {
         text-align: right;
+        ::v-deep(.oxd-table-cell-actions) {
+          justify-content: flex-end;
+        }
       }
     }
   }

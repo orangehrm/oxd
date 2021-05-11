@@ -15,9 +15,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    & .oxd-loading-spinner-container {
+      background-color: $oxd-white-color;
+    }
   }
 }
 
 .oxd-padding-cell {
   padding: $oxd-table-cell-padding;
+}
+
+.oxd-table-cell {
+  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
+  word-break: break-all;
 }
