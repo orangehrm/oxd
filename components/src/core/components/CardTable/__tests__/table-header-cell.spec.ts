@@ -1,5 +1,5 @@
 import {mount} from '@vue/test-utils';
-import TableHeaderCell from '@orangehrm/oxd/core/components/CardTable/TableHeaderCell.vue';
+import TableHeaderCell from '@orangehrm/oxd/core/components/CardTable/Table/TableHeaderCell.vue';
 
 describe('CardTable > TableHeaderCell.vue', () => {
   it('renders OXD CardTable > TableHeaderCell', () => {

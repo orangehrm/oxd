@@ -1,10 +1,11 @@
-@import '../../../styles';
+@import '../../../../styles';
 @import 'variables';
 
 .oxd-table-row {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  align-items: center;
 }
 
 .oxd-table-body > .oxd-table-row {

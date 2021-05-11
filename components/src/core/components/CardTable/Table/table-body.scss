@@ -1,0 +1,8 @@
+@import '../../../../styles';
+@import 'variables';
+
+.oxd-table-body {
+  font-weight: $oxd-table-font-weight;
+  display: grid;
+  grid-gap: $oxd-card-table-row-gap;
+}

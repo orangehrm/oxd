@@ -1,0 +1,9 @@
+@import '../../../../styles';
+@import 'variables';
+
+.oxd-table-card-cell {
+  display: block;
+  & .header {
+    font-weight: $oxd-table-header-font-weight;
+  }
+}
