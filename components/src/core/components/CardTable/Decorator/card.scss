@@ -6,7 +6,7 @@
   grid-gap: $oxd-card-table-decorator-card-gap;
 
   @include oxd-respond-to('xs') {
-    grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
   }
 
   @include oxd-respond-to('md') {
