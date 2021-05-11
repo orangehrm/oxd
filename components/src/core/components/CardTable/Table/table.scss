@@ -7,6 +7,15 @@
   font-size: $oxd-table-font-size;
   display: flex;
   flex-direction: column;
+
+  &-loader {
+    min-height: $oxd-table-loader-height;
+    width: 100%;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .oxd-padding-cell {

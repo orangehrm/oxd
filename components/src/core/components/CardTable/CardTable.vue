@@ -1,12 +1,17 @@
 <template>
   <oxd-card-table-container>
-    <!-- oxd-card-table header start -->
-    <component :is="tableDeco.headerDecorator"></component>
-    <!-- oxd-card-table header end -->
+    <div v-if="loading" class="oxd-table-loader">
+      <oxd-loading-spinner />
+    </div>
+    <template v-else>
+      <!-- oxd-card-table header start -->
+      <component :is="tableDeco.headerDecorator"></component>
+      <!-- oxd-card-table header end -->
 
-    <!-- oxd-card-table body start -->
-    <component :is="tableDeco.bodyDecorator"></component>
-    <!-- oxd-card-table body end -->
+      <!-- oxd-card-table body start -->
+      <component :is="tableDeco.bodyDecorator"></component>
+      <!-- oxd-card-table body end -->
+    </template>
   </oxd-card-table-container>
 </template>
 
@@ -16,6 +21,7 @@ import {defineComponent, PropType, provide, readonly} from 'vue';
 import {CardSelector, CardHeaders, Order} from './types';
 import useResponsive from '../../../composables/useResponsive';
 import Table from '@orangehrm/oxd/core/components/CardTable/Table/Table.vue';
+import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
 
 // Body Decorators
 import DefaultCardContainer from '@orangehrm/oxd/core/components/CardTable/Decorator/DefaultCardContainer.vue';
@@ -59,6 +65,10 @@ export default defineComponent({
       type: Array as PropType<Order[]>,
       default: () => [],
     },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   setup(props, context) {
@@ -97,6 +107,7 @@ export default defineComponent({
 
   components: {
     'oxd-card-table-container': Table,
+    'oxd-loading-spinner': Spinner,
 
     // Body Decorators
     'oxd-table-decorator-card': DefaultCardContainer,

@@ -1,12 +1,12 @@
 import {defineComponent} from 'vue';
-import {State, breakpoints} from '../../composables/useResponsive';
+import {State, breakpoints, DEVICE_XS} from '../../composables/useResponsive';
 
 export const responsiveMixin = defineComponent({
   data(): State {
     return {
       windowWidth: 0,
       windowHeight: 0,
-      screenType: '',
+      screenType: DEVICE_XS,
     };
   },
   mounted() {

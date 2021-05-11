@@ -47,9 +47,10 @@ export default defineComponent({
       if (this.tableProps.selectable) {
         return [
           {
-            name: 'selectable',
-            style: {flex: 1},
+            name: 'selector',
             cellType: 'oxd-table-cell-checkbox',
+            class: this.tableProps.selector?.class,
+            style: this.tableProps.selector?.style,
           },
           ...this.tableProps.headers,
         ];
@@ -59,7 +60,7 @@ export default defineComponent({
     items(): Array<object> {
       return this.tableProps.items.map((item, index) => {
         return this.tableProps.selectable
-          ? {selectable: index, ...item}
+          ? {selector: index, ...item}
           : {...item};
       });
     },

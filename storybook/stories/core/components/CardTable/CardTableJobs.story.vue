@@ -5,7 +5,7 @@
       :headers="headers"
       :items="items"
       @click="onClick"
-      :selectable="selectable"
+      :selectable="true"
       :clickable="false"
       v-model:selected="checkedItems"
       rowDecorator="oxd-table-decorator-card"
@@ -73,12 +73,6 @@ export default {
       ],
       checkedItems: [2, 0],
     };
-  },
-
-  props: {
-    selectable: {
-      type: Boolean,
-    },
   },
 
   components: {
