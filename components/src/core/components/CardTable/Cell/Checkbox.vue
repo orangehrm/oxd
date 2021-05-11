@@ -23,7 +23,7 @@ export default defineComponent({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const tableProps: any = inject('tableProps');
 
-    let checkState = computed({
+    const checkState = computed({
       get: () => {
         const itemIndex = tableProps.selected.findIndex(
           item => item === props.item,

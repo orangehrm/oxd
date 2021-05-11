@@ -39,7 +39,6 @@ import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import NavigationLevelOne from '@orangehrm/oxd/core/components/Topbar/NavigationLevelOne.vue';
 import UserDropdown from '@orangehrm/oxd/core/components/Topbar/UserDropdown.vue';
-import NotificationDropdown from '@orangehrm/oxd/core/components/Topbar/NotificationDropdown.vue';
 
 export default defineComponent({
   name: 'oxd-top-bar',
@@ -72,7 +71,6 @@ export default defineComponent({
     'oxd-navigation-level-one': NavigationLevelOne,
     'oxd-icon': Icon,
     'oxd-user-dropdown': UserDropdown,
-    'oxd-notification-dropdown': NotificationDropdown,
   },
 
   computed: {
