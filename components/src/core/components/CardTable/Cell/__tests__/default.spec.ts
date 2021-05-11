@@ -1,11 +1,17 @@
 import {mount} from '@vue/test-utils';
 import DefaultCell from '@orangehrm/oxd/core/components/CardTable/Cell/Default.vue';
+import {DEVICE_LG} from '@orangehrm/oxd/composables/useResponsive';
 
 const GLOBAL = {
   provide: {
     tableProps() {
       return {
         items: [],
+      };
+    },
+    screenState() {
+      return {
+        screenType: DEVICE_LG,
       };
     },
   },

@@ -3,6 +3,7 @@ import {decoratorMixin} from '../Decorator/decorator-mixin';
 
 export const cellMixin = defineComponent({
   mixins: [decoratorMixin],
+  inject: ['screenState'],
 
   props: {
     header: {
