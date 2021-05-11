@@ -1,4 +1,10 @@
-import {nextTick, onBeforeUnmount, onMounted, reactive, toRefs} from 'vue';
+import {nextTick, onBeforeUnmount, onMounted, reactive} from 'vue';
+
+export const DEVICE_XS = 'xs';
+export const DEVICE_SM = 'sm';
+export const DEVICE_MD = 'md';
+export const DEVICE_LG = 'lg';
+export const DEVICE_XL = 'xl';
 
 interface Breakpoint {
   [screenType: string]: {
@@ -14,23 +20,23 @@ export interface State {
 }
 
 export const breakpoints: Breakpoint = {
-  xs: {
+  [DEVICE_XS]: {
     min: 0,
     max: 599,
   },
-  sm: {
+  [DEVICE_SM]: {
     min: 600,
     max: 799,
   },
-  md: {
+  [DEVICE_MD]: {
     min: 800,
     max: 999,
   },
-  lg: {
+  [DEVICE_LG]: {
     min: 1000,
     max: 1199,
   },
-  xl: {
+  [DEVICE_XL]: {
     min: 1200,
     max: 4000,
   },
@@ -40,7 +46,7 @@ export default function useResponsive() {
   const state: State = reactive({
     windowWidth: 0,
     windowHeight: 0,
-    screenType: '',
+    screenType: DEVICE_XS,
   });
 
   const setWindowSize = () => {

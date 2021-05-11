@@ -1,18 +1,15 @@
 <template>
   <oxd-card-tbody>
-    <div :class="classes" v-for="(item, index) in tableProps.items" :key="item">
+    <div
+      :class="classes"
+      v-for="item in items"
+      :key="item"
+      @click="onClick(item)($event)"
+    >
       <oxd-card-tr :clickable="tableProps.clickable">
-        <oxd-card-td
-          class="oxd-padding-cell"
-          v-if="tableProps.selectable"
-          :class="tableProps.selector.class"
-          :style="tableProps.selector.style"
-        >
-          <oxd-table-cell-checkbox :item="item" :index="index" />
-        </oxd-card-td>
         <oxd-card-cell
           class="oxd-padding-cell"
-          :headers="tableProps.headers"
+          :headers="defaultSlot"
           :items="item"
         ></oxd-card-cell>
       </oxd-card-tr>
@@ -25,9 +22,9 @@ import {defineComponent} from 'vue';
 import {decoratorMixin} from './decorator-mixin';
 import TableBody from '@orangehrm/oxd/core/components/CardTable/Table/TableBody.vue';
 import TableRow from '@orangehrm/oxd/core/components/CardTable/Table/TableRow.vue';
-import TableDataCell from '@orangehrm/oxd/core/components/CardTable/Table/TableDataCell.vue';
-import CheckboxCell from '@orangehrm/oxd/core/components/CardTable/Cell/Checkbox.vue';
 import DefaultCellContainer from '@orangehrm/oxd/core/components/CardTable/Cell/DefaultCellContainer.vue';
+import {CardHeaders} from '../types';
+import emitter from '../../../../utils/emitter';
 
 export default defineComponent({
   name: 'oxd-table-default-card-web',
@@ -37,15 +34,42 @@ export default defineComponent({
   components: {
     'oxd-card-tbody': TableBody,
     'oxd-card-tr': TableRow,
-    'oxd-card-td': TableDataCell,
     'oxd-card-cell': DefaultCellContainer,
-    'oxd-table-cell-checkbox': CheckboxCell,
   },
 
   computed: {
     classes(): object {
       return {
         'oxd-table-card': true,
+      };
+    },
+    defaultSlot(): Array<CardHeaders> {
+      if (this.tableProps.selectable) {
+        return [
+          {
+            name: 'selectable',
+            style: {flex: 1},
+            cellType: 'oxd-table-cell-checkbox',
+          },
+          ...this.tableProps.headers,
+        ];
+      }
+      return this.tableProps.headers;
+    },
+    items(): Array<object> {
+      return this.tableProps.items.map((item, index) => {
+        return this.tableProps.selectable
+          ? {selectable: index, ...item}
+          : {...item};
+      });
+    },
+  },
+
+  methods: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    onClick(item: any) {
+      return (e: Event) => {
+        emitter.emit('datatable:clickRow', {item, native: e});
       };
     },
   },

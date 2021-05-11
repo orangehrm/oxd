@@ -1,7 +1,7 @@
 <template>
   <oxd-card-td
     :class="$attrs.class"
-    v-for="(header, index) in headers"
+    v-for="header in headers"
     :key="header"
     :style="header.style"
   >
@@ -9,7 +9,6 @@
       :is="header.cellType ? header.cellType : 'oxd-table-cell-default'"
       :item="items[header.name]"
       :header="header"
-      :index="index"
     />
   </oxd-card-td>
 </template>

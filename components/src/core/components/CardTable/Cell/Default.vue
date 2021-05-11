@@ -14,6 +14,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import {DEVICE_LG, DEVICE_XL} from '../../../../composables/useResponsive';
 import {cellMixin} from './cell-mixin';
 
 export default defineComponent({
@@ -30,8 +31,8 @@ export default defineComponent({
   computed: {
     showHeader(): boolean {
       return !(
-        this.screenState.screenType === 'lg' ||
-        this.screenState.screenType === 'xl'
+        this.screenState.screenType === DEVICE_LG ||
+        this.screenState.screenType === DEVICE_XL
       );
     },
   },

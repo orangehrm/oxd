@@ -1,6 +1,11 @@
 <template>
   <oxd-card-tbody class="oxd-card-table-body">
-    <div :class="classes" v-for="item in tableProps.items" :key="item">
+    <div
+      :class="classes"
+      v-for="item in tableProps.items"
+      :key="item"
+      @click="onClick(item)($event)"
+    >
       <oxd-card-tr :clickable="tableProps.clickable">
         <div class="card-item card-left">
           <oxd-card-cell :headers="leftSlot" :items="item"></oxd-card-cell>
@@ -39,6 +44,7 @@ import {decoratorMixin} from './decorator-mixin';
 import TableBody from '@orangehrm/oxd/core/components/CardTable/Table/TableBody.vue';
 import TableRow from '@orangehrm/oxd/core/components/CardTable/Table/TableRow.vue';
 import DefaultCellContainer from '@orangehrm/oxd/core/components/CardTable/Cell/DefaultCellContainer.vue';
+import emitter from '../../../../utils/emitter';
 
 export default defineComponent({
   name: 'oxd-table-default-card-mobile',
@@ -87,6 +93,15 @@ export default defineComponent({
       return this.tableProps.headers.filter(header => {
         return header?.slot === 'right';
       });
+    },
+  },
+
+  methods: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    onClick(item: any) {
+      return (e: Event) => {
+        emitter.emit('datatable:clickRow', {item, native: e});
+      };
     },
   },
 });

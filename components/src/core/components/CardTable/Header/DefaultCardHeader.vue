@@ -7,7 +7,11 @@
         :class="tableProps.selector.class"
         :style="tableProps.selector.style"
       >
-        <oxd-checkbox-input v-model="selectedAll" @change="onChangeSelectAll" />
+        <oxd-checkbox-input
+          :checkIcon="checkIcon"
+          v-model="selectedAll"
+          @change="onChangeSelectAll"
+        />
       </oxd-card-th>
 
       <oxd-card-th
@@ -28,14 +32,16 @@
 <script lang="ts">
 import {defineComponent, reactive, watch, toRefs, inject, computed} from 'vue';
 import {Sort} from '../types';
+import emitter from '../../../../utils/emitter';
 import TableHeader from '@orangehrm/oxd/core/components/CardTable/Table/TableHeader.vue';
-import TableBody from '@orangehrm/oxd/core/components/CardTable/Table/TableBody.vue';
 import TableRow from '@orangehrm/oxd/core/components/CardTable/Table/TableRow.vue';
 import TableHeaderCell from '@orangehrm/oxd/core/components/CardTable/Table/TableHeaderCell.vue';
-import TableDataCell from '@orangehrm/oxd/core/components/CardTable/Table/TableDataCell.vue';
 import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
+import {DEVICE_LG, DEVICE_XL} from '../../../../composables/useResponsive';
 
 interface State {
+  checkIcon: string;
+  checkedItems: number[];
   selectedAll: boolean;
   sort: Sort[];
 }
@@ -45,18 +51,20 @@ export default defineComponent({
 
   components: {
     'oxd-card-thead': TableHeader,
-    'oxd-card-tbody': TableBody,
     'oxd-card-tr': TableRow,
     'oxd-card-th': TableHeaderCell,
-    'oxd-card-td': TableDataCell,
     'oxd-checkbox-input': CheckboxInput,
   },
 
-  setup(props, context) {
+  setup() {
+    /* eslint-disable @typescript-eslint/no-explicit-any */
     const tableProps: any = inject('tableProps');
     const screenState: any = inject('screenState');
+    /* eslint-enable @typescript-eslint/no-explicit-any */
 
     const state: State = reactive({
+      checkIcon: 'check',
+      checkedItems: tableProps.selected,
       selectedAll:
         tableProps.selected.length > 0 &&
         tableProps.selected.length === tableProps.items.length,
@@ -71,20 +79,45 @@ export default defineComponent({
       }),
     });
 
-    context.emit('update:sort', state.sort);
+    emitter.emit('datatable:updateSort', state.sort);
 
-    // watch(
-    //   () => checkedItems,
-    //   function(newVal) {
-    //     state.selectedAll =
-    //       newVal.length === tableProps.items.length &&
-    //       tableProps.items.length != 0;
-    //     context.emit('update:selected', newVal);
-    //   },
-    // );
+    emitter.on('datatable:rowSelected', value => {
+      const itemIndex = state.checkedItems.findIndex(item => item === value);
+      if (itemIndex === -1) {
+        state.checkedItems.push(value);
+      }
+    });
+
+    emitter.on('datatable:rowUnselected', value => {
+      const itemIndex = state.checkedItems.findIndex(item => item === value);
+      if (itemIndex > -1) {
+        state.checkedItems.splice(itemIndex, 1);
+      }
+    });
+
+    watch(
+      () => state.checkedItems,
+      newVal => {
+        emitter.emit('datatable:updateSelected', newVal);
+        if (tableProps.items.length > 0 && newVal.length > 0) {
+          state.selectedAll = true;
+          if (newVal.length === tableProps.items.length) {
+            state.checkIcon = 'check';
+          } else {
+            state.checkIcon = 'dash';
+          }
+        } else {
+          state.selectedAll = false;
+        }
+      },
+      {deep: true},
+    );
 
     const showHeader = computed(() => {
-      return screenState.screenType === 'lg' || screenState.screenType === 'xl';
+      return (
+        screenState.screenType === DEVICE_LG ||
+        screenState.screenType === DEVICE_XL
+      );
     });
 
     return {
@@ -96,32 +129,12 @@ export default defineComponent({
   },
 
   methods: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    onClick(item: any) {
-      return (e: Event) => {
-        this.$emit('click', {item, native: e});
-      };
-    },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    onClickCheckbox(item: any, e: Event) {
-      e.stopPropagation();
-      this.$emit('clickCheckbox', {item, native: e});
-    },
     onChangeSelectAll() {
-      const items = this.selectedAll
-        ? [...this.range(0, this.tableProps.items.length - 1)]
-        : [];
-      this.$emit('update:selectAll', items);
-    },
-    range(from: number, to: number): Array<number> {
-      const range = [];
-      if (from > to) {
-        return [];
+      if (this.selectedAll) {
+        emitter.emit('datatable:selectAll', this.tableProps.items);
+      } else {
+        emitter.emit('datatable:unselectAll', []);
       }
-      for (let i = from; i <= to; i++) {
-        range.push(i);
-      }
-      return range;
     },
     getSort(index: number): Sort {
       return this.sort[index];
@@ -144,7 +157,7 @@ export default defineComponent({
             break;
         }
         this.sort[order.id] = _sort;
-        this.$emit('update:sort', this.sort);
+        emitter.emit('datatable:updateSort', this.sort);
       }
     },
   },

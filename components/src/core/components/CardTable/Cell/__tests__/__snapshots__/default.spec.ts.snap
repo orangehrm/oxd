@@ -1,18 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CardTable > Cell > Default.vue should renders OXD CardTable > Cell > Default 1`] = `"Test"`;
-
-exports[`CardTable > Cell > Default.vue should renders OXD CardTable > Cell > Default with array 1`] = `
-"[
-  \\"Test\\",
-  \\"Array\\"
-]"
+exports[`CardTable > Cell > Default.vue should renders OXD CardTable > Cell > Default 1`] = `
+<div class="oxd-table-card-cell">
+  <div class="header"></div>
+  <div class="data">Test</div>
+</div>
 `;
 
-exports[`CardTable > Cell > Default.vue should renders OXD CardTable > Cell > Default with number 1`] = `"2"`;
+exports[`CardTable > Cell > Default.vue should renders OXD CardTable > Cell > Default with array 1`] = `
+<div class="oxd-table-card-cell">
+  <div class="header"></div>
+  <div class="data">[
+    "Test",
+    "Array"
+    ]</div>
+</div>
+`;
+
+exports[`CardTable > Cell > Default.vue should renders OXD CardTable > Cell > Default with number 1`] = `
+<div class="oxd-table-card-cell">
+  <div class="header"></div>
+  <div class="data">2</div>
+</div>
+`;
 
 exports[`CardTable > Cell > Default.vue should renders OXD CardTable > Cell > Default with object 1`] = `
-"{
-  \\"test\\": \\"Object\\"
-}"
+<div class="oxd-table-card-cell">
+  <div class="header"></div>
+  <div class="data">{
+    "test": "Object"
+    }</div>
+</div>
 `;

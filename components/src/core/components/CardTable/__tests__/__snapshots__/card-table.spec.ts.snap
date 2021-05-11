@@ -2,134 +2,368 @@
 
 exports[`CardTable > CardTable.vue renders OXD CardTable > CardTable 1`] = `
 <div class="oxd-table" role="table">
-  <div class="oxd-table-header" role="rowgroup">
-    <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader"><input type="checkbox">
-        <!--v-if-->
+  <!-- oxd-card-table header start -->
+  <!--v-if-->
+  <!-- oxd-card-table header end -->
+  <!-- oxd-card-table body start -->
+  <div class="oxd-table-body oxd-card-table-body" role="rowgroup">
+    <div class="oxd-table-card --mobile">
+      <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
+        <div class="card-item card-left"></div>
+        <div class="card-center">
+          <div class="card-header-slot">
+            <div class="card-item card-header-slot-content --left"></div>
+            <div class="card-item card-header-slot-content --right"></div>
+          </div>
+          <div class="card-item card-body-slot">
+            <div role="cell" style="flex: 1;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 1</div>
+                <div class="data">Data 1</div>
+              </div>
+            </div>
+            <div role="cell" style="flex: 5;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 2</div>
+                <div class="data">Data 2</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-item card-footer-slot"></div>
+        </div>
+        <div class="card-item card-right"></div>
       </div>
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;">Column 1<i class="oxd-icon bi- oxd-icon-button__icon oxd-table-header-cell-sorticon"></i></div>
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;">Column 2<i class="oxd-icon bi- oxd-icon-button__icon oxd-table-header-cell-sorticon"></i></div>
     </div>
-  </div>
-  <div class="oxd-table-body" role="rowgroup">
-    <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-      <div role="cell" class="oxd-padding-cell"><input type="checkbox" value="0"></div>
-      <div role="cell" class="oxd-padding-cell" style="flex: 1;">Data 1</div>
-      <div role="cell" class="oxd-padding-cell" style="flex: 5;">Data 2</div>
+    <div class="oxd-table-card --mobile">
+      <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
+        <div class="card-item card-left"></div>
+        <div class="card-center">
+          <div class="card-header-slot">
+            <div class="card-item card-header-slot-content --left"></div>
+            <div class="card-item card-header-slot-content --right"></div>
+          </div>
+          <div class="card-item card-body-slot">
+            <div role="cell" style="flex: 1;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 1</div>
+                <div class="data">Data 2</div>
+              </div>
+            </div>
+            <div role="cell" style="flex: 5;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 2</div>
+                <div class="data">Data 2</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-item card-footer-slot"></div>
+        </div>
+        <div class="card-item card-right"></div>
+      </div>
     </div>
-    <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-      <div role="cell" class="oxd-padding-cell"><input type="checkbox" value="1"></div>
-      <div role="cell" class="oxd-padding-cell" style="flex: 1;">Data 2</div>
-      <div role="cell" class="oxd-padding-cell" style="flex: 5;">Data 2</div>
+    <div class="oxd-table-card --mobile">
+      <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
+        <div class="card-item card-left"></div>
+        <div class="card-center">
+          <div class="card-header-slot">
+            <div class="card-item card-header-slot-content --left"></div>
+            <div class="card-item card-header-slot-content --right"></div>
+          </div>
+          <div class="card-item card-body-slot">
+            <div role="cell" style="flex: 1;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 1</div>
+                <div class="data">Data 3</div>
+              </div>
+            </div>
+            <div role="cell" style="flex: 5;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 2</div>
+                <div class="data">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-item card-footer-slot"></div>
+        </div>
+        <div class="card-item card-right"></div>
+      </div>
     </div>
-    <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-      <div role="cell" class="oxd-padding-cell"><input type="checkbox" value="2"></div>
-      <div role="cell" class="oxd-padding-cell" style="flex: 1;">Data 3</div>
-      <div role="cell" class="oxd-padding-cell" style="flex: 5;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
-    </div>
-  </div>
+  </div><!-- oxd-card-table body end -->
 </div>
 `;
 
 exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with card decorator 1`] = `
-<div class="oxd-table" role="table">
-  <div class="oxd-table-header" role="rowgroup">
-    <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader"><input type="checkbox">
-        <!--v-if-->
-      </div>
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;">Column 1<i class="oxd-icon bi- oxd-icon-button__icon oxd-table-header-cell-sorticon"></i></div>
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;">Column 2<i class="oxd-icon bi- oxd-icon-button__icon oxd-table-header-cell-sorticon"></i></div>
-    </div>
-  </div>
-  <div class="oxd-table-body" role="rowgroup">
-    <div class="oxd-table-decorator-card" clickable="true">
+<div class="oxd-table" role="table" rowdecorator="oxd-table-decorator-card">
+  <!-- oxd-card-table header start -->
+  <!--v-if-->
+  <!-- oxd-card-table header end -->
+  <!-- oxd-card-table body start -->
+  <div class="oxd-table-body oxd-card-table-body" role="rowgroup">
+    <div class="oxd-table-card --mobile">
       <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-        <div role="cell" class="oxd-padding-cell"><input type="checkbox" value="0"></div>
-        <div role="cell" class="oxd-padding-cell" style="flex: 1;">Data 1</div>
-        <div role="cell" class="oxd-padding-cell" style="flex: 5;">Data 2</div>
+        <div class="card-item card-left"></div>
+        <div class="card-center">
+          <div class="card-header-slot">
+            <div class="card-item card-header-slot-content --left"></div>
+            <div class="card-item card-header-slot-content --right"></div>
+          </div>
+          <div class="card-item card-body-slot">
+            <div role="cell" style="flex: 1;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 1</div>
+                <div class="data">Data 1</div>
+              </div>
+            </div>
+            <div role="cell" style="flex: 5;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 2</div>
+                <div class="data">Data 2</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-item card-footer-slot"></div>
+        </div>
+        <div class="card-item card-right"></div>
       </div>
     </div>
-    <div class="oxd-table-decorator-card" clickable="true">
+    <div class="oxd-table-card --mobile">
       <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-        <div role="cell" class="oxd-padding-cell"><input type="checkbox" value="1"></div>
-        <div role="cell" class="oxd-padding-cell" style="flex: 1;">Data 2</div>
-        <div role="cell" class="oxd-padding-cell" style="flex: 5;">Data 2</div>
+        <div class="card-item card-left"></div>
+        <div class="card-center">
+          <div class="card-header-slot">
+            <div class="card-item card-header-slot-content --left"></div>
+            <div class="card-item card-header-slot-content --right"></div>
+          </div>
+          <div class="card-item card-body-slot">
+            <div role="cell" style="flex: 1;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 1</div>
+                <div class="data">Data 2</div>
+              </div>
+            </div>
+            <div role="cell" style="flex: 5;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 2</div>
+                <div class="data">Data 2</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-item card-footer-slot"></div>
+        </div>
+        <div class="card-item card-right"></div>
       </div>
     </div>
-    <div class="oxd-table-decorator-card" clickable="true">
+    <div class="oxd-table-card --mobile">
       <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-        <div role="cell" class="oxd-padding-cell"><input type="checkbox" value="2"></div>
-        <div role="cell" class="oxd-padding-cell" style="flex: 1;">Data 3</div>
-        <div role="cell" class="oxd-padding-cell" style="flex: 5;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+        <div class="card-item card-left"></div>
+        <div class="card-center">
+          <div class="card-header-slot">
+            <div class="card-item card-header-slot-content --left"></div>
+            <div class="card-item card-header-slot-content --right"></div>
+          </div>
+          <div class="card-item card-body-slot">
+            <div role="cell" style="flex: 1;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 1</div>
+                <div class="data">Data 3</div>
+              </div>
+            </div>
+            <div role="cell" style="flex: 5;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 2</div>
+                <div class="data">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-item card-footer-slot"></div>
+        </div>
+        <div class="card-item card-right"></div>
       </div>
     </div>
-  </div>
+  </div><!-- oxd-card-table body end -->
 </div>
 `;
 
 exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with selector config 1`] = `
-<div class="oxd-table" role="table">
-  <div class="oxd-table-header" role="rowgroup">
-    <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;"><input type="checkbox">
-        <!--v-if-->
-      </div>
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;">Column 1<i class="oxd-icon bi- oxd-icon-button__icon oxd-table-header-cell-sorticon"></i></div>
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;">Column 2<i class="oxd-icon bi- oxd-icon-button__icon oxd-table-header-cell-sorticon"></i></div>
-    </div>
-  </div>
-  <div class="oxd-table-body" role="rowgroup">
-    <div class="oxd-table-decorator-card" clickable="true">
+<div class="oxd-table" role="table" rowdecorator="oxd-table-decorator-card">
+  <!-- oxd-card-table header start -->
+  <!--v-if-->
+  <!-- oxd-card-table header end -->
+  <!-- oxd-card-table body start -->
+  <div class="oxd-table-body oxd-card-table-body" role="rowgroup">
+    <div class="oxd-table-card --mobile">
       <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-        <div role="cell" class="oxd-padding-cell" style="flex: 1;"><input type="checkbox" value="0"></div>
-        <div role="cell" class="oxd-padding-cell" style="flex: 1;">Data 1</div>
-        <div role="cell" class="oxd-padding-cell" style="flex: 5;">Data 2</div>
+        <div class="card-item card-left"></div>
+        <div class="card-center">
+          <div class="card-header-slot">
+            <div class="card-item card-header-slot-content --left"></div>
+            <div class="card-item card-header-slot-content --right"></div>
+          </div>
+          <div class="card-item card-body-slot">
+            <div role="cell" style="flex: 1;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 1</div>
+                <div class="data">Data 1</div>
+              </div>
+            </div>
+            <div role="cell" style="flex: 5;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 2</div>
+                <div class="data">Data 2</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-item card-footer-slot"></div>
+        </div>
+        <div class="card-item card-right"></div>
       </div>
     </div>
-    <div class="oxd-table-decorator-card" clickable="true">
+    <div class="oxd-table-card --mobile">
       <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-        <div role="cell" class="oxd-padding-cell" style="flex: 1;"><input type="checkbox" value="1"></div>
-        <div role="cell" class="oxd-padding-cell" style="flex: 1;">Data 2</div>
-        <div role="cell" class="oxd-padding-cell" style="flex: 5;">Data 2</div>
+        <div class="card-item card-left"></div>
+        <div class="card-center">
+          <div class="card-header-slot">
+            <div class="card-item card-header-slot-content --left"></div>
+            <div class="card-item card-header-slot-content --right"></div>
+          </div>
+          <div class="card-item card-body-slot">
+            <div role="cell" style="flex: 1;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 1</div>
+                <div class="data">Data 2</div>
+              </div>
+            </div>
+            <div role="cell" style="flex: 5;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 2</div>
+                <div class="data">Data 2</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-item card-footer-slot"></div>
+        </div>
+        <div class="card-item card-right"></div>
       </div>
     </div>
-    <div class="oxd-table-decorator-card" clickable="true">
+    <div class="oxd-table-card --mobile">
       <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-        <div role="cell" class="oxd-padding-cell" style="flex: 1;"><input type="checkbox" value="2"></div>
-        <div role="cell" class="oxd-padding-cell" style="flex: 1;">Data 3</div>
-        <div role="cell" class="oxd-padding-cell" style="flex: 5;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+        <div class="card-item card-left"></div>
+        <div class="card-center">
+          <div class="card-header-slot">
+            <div class="card-item card-header-slot-content --left"></div>
+            <div class="card-item card-header-slot-content --right"></div>
+          </div>
+          <div class="card-item card-body-slot">
+            <div role="cell" style="flex: 1;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 1</div>
+                <div class="data">Data 3</div>
+              </div>
+            </div>
+            <div role="cell" style="flex: 5;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 2</div>
+                <div class="data">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-item card-footer-slot"></div>
+        </div>
+        <div class="card-item card-right"></div>
       </div>
     </div>
-  </div>
+  </div><!-- oxd-card-table body end -->
 </div>
 `;
 
 exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable without selectable 1`] = `
 <div class="oxd-table" role="table">
-  <div class="oxd-table-header" role="rowgroup">
-    <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-      <!--v-if-->
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;">Column 1<i class="oxd-icon bi- oxd-icon-button__icon oxd-table-header-cell-sorticon"></i></div>
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;">Column 2<i class="oxd-icon bi- oxd-icon-button__icon oxd-table-header-cell-sorticon"></i></div>
+  <!-- oxd-card-table header start -->
+  <!--v-if-->
+  <!-- oxd-card-table header end -->
+  <!-- oxd-card-table body start -->
+  <div class="oxd-table-body oxd-card-table-body" role="rowgroup">
+    <div class="oxd-table-card --mobile">
+      <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
+        <div class="card-item card-left"></div>
+        <div class="card-center">
+          <div class="card-header-slot">
+            <div class="card-item card-header-slot-content --left"></div>
+            <div class="card-item card-header-slot-content --right"></div>
+          </div>
+          <div class="card-item card-body-slot">
+            <div role="cell" style="flex: 1;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 1</div>
+                <div class="data">Data 1</div>
+              </div>
+            </div>
+            <div role="cell" style="flex: 5;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 2</div>
+                <div class="data">Data 2</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-item card-footer-slot"></div>
+        </div>
+        <div class="card-item card-right"></div>
+      </div>
     </div>
-  </div>
-  <div class="oxd-table-body" role="rowgroup">
-    <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-      <!--v-if-->
-      <div role="cell" class="oxd-padding-cell" style="flex: 1;">Data 1</div>
-      <div role="cell" class="oxd-padding-cell" style="flex: 5;">Data 2</div>
+    <div class="oxd-table-card --mobile">
+      <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
+        <div class="card-item card-left"></div>
+        <div class="card-center">
+          <div class="card-header-slot">
+            <div class="card-item card-header-slot-content --left"></div>
+            <div class="card-item card-header-slot-content --right"></div>
+          </div>
+          <div class="card-item card-body-slot">
+            <div role="cell" style="flex: 1;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 1</div>
+                <div class="data">Data 2</div>
+              </div>
+            </div>
+            <div role="cell" style="flex: 5;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 2</div>
+                <div class="data">Data 2</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-item card-footer-slot"></div>
+        </div>
+        <div class="card-item card-right"></div>
+      </div>
     </div>
-    <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-      <!--v-if-->
-      <div role="cell" class="oxd-padding-cell" style="flex: 1;">Data 2</div>
-      <div role="cell" class="oxd-padding-cell" style="flex: 5;">Data 2</div>
+    <div class="oxd-table-card --mobile">
+      <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
+        <div class="card-item card-left"></div>
+        <div class="card-center">
+          <div class="card-header-slot">
+            <div class="card-item card-header-slot-content --left"></div>
+            <div class="card-item card-header-slot-content --right"></div>
+          </div>
+          <div class="card-item card-body-slot">
+            <div role="cell" style="flex: 1;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 1</div>
+                <div class="data">Data 3</div>
+              </div>
+            </div>
+            <div role="cell" style="flex: 5;">
+              <div class="oxd-table-card-cell">
+                <div class="header">Column 2</div>
+                <div class="data">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-item card-footer-slot"></div>
+        </div>
+        <div class="card-item card-right"></div>
+      </div>
     </div>
-    <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-      <!--v-if-->
-      <div role="cell" class="oxd-padding-cell" style="flex: 1;">Data 3</div>
-      <div role="cell" class="oxd-padding-cell" style="flex: 5;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
-    </div>
-  </div>
+  </div><!-- oxd-card-table body end -->
 </div>
 `;

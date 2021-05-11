@@ -1,16 +1,17 @@
 <template>
   <oxd-card-table-container>
     <!-- oxd-card-table header start -->
-    <component :is="theme.headerDecorator"></component>
+    <component :is="tableDeco.headerDecorator"></component>
     <!-- oxd-card-table header end -->
 
     <!-- oxd-card-table body start -->
-    <component :is="theme.bodyDecorator"></component>
+    <component :is="tableDeco.bodyDecorator"></component>
     <!-- oxd-card-table body end -->
   </oxd-card-table-container>
 </template>
 
 <script lang="ts">
+import emitter from '../../../utils/emitter';
 import {defineComponent, PropType, provide, readonly} from 'vue';
 import {CardSelector, CardHeaders, Order} from './types';
 import useResponsive from '../../../composables/useResponsive';
@@ -60,11 +61,30 @@ export default defineComponent({
     },
   },
 
-  setup(props) {
+  setup(props, context) {
     const responsiveState = useResponsive();
 
     provide('tableProps', readonly(props));
     provide('screenState', readonly(responsiveState));
+
+    emitter.on('datatable:selectAll', value => {
+      context.emit('update:selectAll', value);
+    });
+    emitter.on('datatable:unselectAll', () => {
+      context.emit('update:selectAll', []);
+    });
+    emitter.on('datatable:updateSort', value => {
+      context.emit('update:sort', value);
+    });
+    emitter.on('datatable:updateSelected', value => {
+      context.emit('update:selected', value);
+    });
+    emitter.on('datatable:clickCheckboxCell', value => {
+      context.emit('clickCheckbox', value);
+    });
+    emitter.on('datatable:clickRow', value => {
+      context.emit('click', value);
+    });
   },
 
   emits: [
@@ -86,7 +106,7 @@ export default defineComponent({
   },
 
   computed: {
-    theme(): object {
+    tableDeco(): object {
       return {
         headerDecorator: 'oxd-table-header-default',
         bodyDecorator: 'oxd-table-decorator-card',
