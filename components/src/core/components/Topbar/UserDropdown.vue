@@ -30,7 +30,7 @@
       </li>
       <hr class="oxd-userdropdown-divider" />
       <li role="none">
-        <a href="#" role="menuitem" class="oxd-userdropdown-link">
+        <a :href="logoutUrl" role="menuitem" class="oxd-userdropdown-link">
           <oxd-icon name="box-arrow-right" :with-container="false" />Logout
         </a>
       </li>
@@ -51,6 +51,10 @@ export default defineComponent({
   props: {
     user: {
       type: Object as PropType<User>,
+    },
+    logoutUrl: {
+      type: String,
+      default: '#',
     },
   },
 

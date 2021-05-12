@@ -16,13 +16,13 @@ exports[`CardTable > CardTable.vue renders OXD CardTable > CardTable 1`] = `
             <div class="card-item card-header-slot-content --right"></div>
           </div>
           <div class="card-item card-body-slot">
-            <div role="cell" style="flex: 1;">
+            <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 1</div>
                 <div class="data">Data 1</div>
               </div>
             </div>
-            <div role="cell" style="flex: 5;">
+            <div class="oxd-table-cell" role="cell" style="flex: 5;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 2</div>
                 <div class="data">Data 2</div>
@@ -43,13 +43,13 @@ exports[`CardTable > CardTable.vue renders OXD CardTable > CardTable 1`] = `
             <div class="card-item card-header-slot-content --right"></div>
           </div>
           <div class="card-item card-body-slot">
-            <div role="cell" style="flex: 1;">
+            <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 1</div>
                 <div class="data">Data 2</div>
               </div>
             </div>
-            <div role="cell" style="flex: 5;">
+            <div class="oxd-table-cell" role="cell" style="flex: 5;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 2</div>
                 <div class="data">Data 2</div>
@@ -70,13 +70,13 @@ exports[`CardTable > CardTable.vue renders OXD CardTable > CardTable 1`] = `
             <div class="card-item card-header-slot-content --right"></div>
           </div>
           <div class="card-item card-body-slot">
-            <div role="cell" style="flex: 1;">
+            <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 1</div>
                 <div class="data">Data 3</div>
               </div>
             </div>
-            <div role="cell" style="flex: 5;">
+            <div class="oxd-table-cell" role="cell" style="flex: 5;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 2</div>
                 <div class="data">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
@@ -108,13 +108,13 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
             <div class="card-item card-header-slot-content --right"></div>
           </div>
           <div class="card-item card-body-slot">
-            <div role="cell" style="flex: 1;">
+            <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 1</div>
                 <div class="data">Data 1</div>
               </div>
             </div>
-            <div role="cell" style="flex: 5;">
+            <div class="oxd-table-cell" role="cell" style="flex: 5;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 2</div>
                 <div class="data">Data 2</div>
@@ -135,13 +135,13 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
             <div class="card-item card-header-slot-content --right"></div>
           </div>
           <div class="card-item card-body-slot">
-            <div role="cell" style="flex: 1;">
+            <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 1</div>
                 <div class="data">Data 2</div>
               </div>
             </div>
-            <div role="cell" style="flex: 5;">
+            <div class="oxd-table-cell" role="cell" style="flex: 5;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 2</div>
                 <div class="data">Data 2</div>
@@ -162,13 +162,13 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
             <div class="card-item card-header-slot-content --right"></div>
           </div>
           <div class="card-item card-body-slot">
-            <div role="cell" style="flex: 1;">
+            <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 1</div>
                 <div class="data">Data 3</div>
               </div>
             </div>
-            <div role="cell" style="flex: 5;">
+            <div class="oxd-table-cell" role="cell" style="flex: 5;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 2</div>
                 <div class="data">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
@@ -200,13 +200,13 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
             <div class="card-item card-header-slot-content --right"></div>
           </div>
           <div class="card-item card-body-slot">
-            <div role="cell" style="flex: 1;">
+            <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 1</div>
                 <div class="data">Data 1</div>
               </div>
             </div>
-            <div role="cell" style="flex: 5;">
+            <div class="oxd-table-cell" role="cell" style="flex: 5;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 2</div>
                 <div class="data">Data 2</div>
@@ -227,13 +227,13 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
             <div class="card-item card-header-slot-content --right"></div>
           </div>
           <div class="card-item card-body-slot">
-            <div role="cell" style="flex: 1;">
+            <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 1</div>
                 <div class="data">Data 2</div>
               </div>
             </div>
-            <div role="cell" style="flex: 5;">
+            <div class="oxd-table-cell" role="cell" style="flex: 5;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 2</div>
                 <div class="data">Data 2</div>
@@ -254,13 +254,13 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
             <div class="card-item card-header-slot-content --right"></div>
           </div>
           <div class="card-item card-body-slot">
-            <div role="cell" style="flex: 1;">
+            <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 1</div>
                 <div class="data">Data 3</div>
               </div>
             </div>
-            <div role="cell" style="flex: 5;">
+            <div class="oxd-table-cell" role="cell" style="flex: 5;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 2</div>
                 <div class="data">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
@@ -292,13 +292,13 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
             <div class="card-item card-header-slot-content --right"></div>
           </div>
           <div class="card-item card-body-slot">
-            <div role="cell" style="flex: 1;">
+            <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 1</div>
                 <div class="data">Data 1</div>
               </div>
             </div>
-            <div role="cell" style="flex: 5;">
+            <div class="oxd-table-cell" role="cell" style="flex: 5;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 2</div>
                 <div class="data">Data 2</div>
@@ -319,13 +319,13 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
             <div class="card-item card-header-slot-content --right"></div>
           </div>
           <div class="card-item card-body-slot">
-            <div role="cell" style="flex: 1;">
+            <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 1</div>
                 <div class="data">Data 2</div>
               </div>
             </div>
-            <div role="cell" style="flex: 5;">
+            <div class="oxd-table-cell" role="cell" style="flex: 5;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 2</div>
                 <div class="data">Data 2</div>
@@ -346,13 +346,13 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
             <div class="card-item card-header-slot-content --right"></div>
           </div>
           <div class="card-item card-body-slot">
-            <div role="cell" style="flex: 1;">
+            <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 1</div>
                 <div class="data">Data 3</div>
               </div>
             </div>
-            <div role="cell" style="flex: 5;">
+            <div class="oxd-table-cell" role="cell" style="flex: 5;">
               <div class="oxd-table-card-cell">
                 <div class="header">Column 2</div>
                 <div class="data">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>

@@ -1,5 +1,5 @@
 <template>
-  <div role="cell">
+  <div class="oxd-table-cell" role="cell">
     <slot></slot>
   </div>
 </template>

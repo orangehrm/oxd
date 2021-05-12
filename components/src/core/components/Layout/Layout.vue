@@ -19,6 +19,7 @@
         :icon="icon"
         :menu-items="topbarMenuItems"
         :user="user"
+        :logoutUrl="logoutUrl"
       ></oxd-top-bar>
       <div class="oxd-layout-context">
         <slot></slot>
@@ -65,6 +66,10 @@ export default defineComponent({
     brandImageSrc: {
       type: String,
       required: true,
+    },
+    logoutUrl: {
+      type: String,
+      default: '#',
     },
   },
 
