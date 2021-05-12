@@ -16,9 +16,10 @@
       <!-- User Menu Area -->
       <div class="oxd-topbar-header-userarea">
         <ul>
-          <oxd-notification-dropdown></oxd-notification-dropdown>
-          <span class="oxd-topbar-header-userarea-gap"></span>
-          <oxd-user-dropdown :user="user"></oxd-user-dropdown>
+          <oxd-user-dropdown
+            :user="user"
+            :logoutUrl="logoutUrl"
+          ></oxd-user-dropdown>
         </ul>
       </div>
     </div>
@@ -38,7 +39,6 @@ import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import NavigationLevelOne from '@orangehrm/oxd/core/components/Topbar/NavigationLevelOne.vue';
 import UserDropdown from '@orangehrm/oxd/core/components/Topbar/UserDropdown.vue';
-import NotificationDropdown from '@orangehrm/oxd/core/components/Topbar/NotificationDropdown.vue';
 
 export default defineComponent({
   name: 'oxd-top-bar',
@@ -60,6 +60,10 @@ export default defineComponent({
     user: {
       type: Object as PropType<User>,
     },
+    logoutUrl: {
+      type: String,
+      default: '#',
+    },
   },
 
   components: {
@@ -67,7 +71,6 @@ export default defineComponent({
     'oxd-navigation-level-one': NavigationLevelOne,
     'oxd-icon': Icon,
     'oxd-user-dropdown': UserDropdown,
-    'oxd-notification-dropdown': NotificationDropdown,
   },
 
   computed: {

@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, inject, ref, watch} from 'vue';
+import {defineComponent, inject, computed} from 'vue';
 import emitter from '../../../../utils/emitter';
 import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
 
@@ -22,14 +22,20 @@ export default defineComponent({
   setup(props) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const tableProps: any = inject('tableProps');
-    const checkState = ref(false);
 
-    const itemIndex = tableProps.selected.findIndex(
-      item => item === props.item,
-    );
-    if (itemIndex > -1) {
-      checkState.value = true;
-    }
+    const checkState = computed({
+      get: () => {
+        const itemIndex = tableProps.selected.findIndex(
+          item => item === props.item,
+        );
+        return itemIndex > -1;
+      },
+      set: newVal => {
+        newVal
+          ? emitter.emit('datatable:rowSelected', props.item)
+          : emitter.emit('datatable:rowUnselected', props.item);
+      },
+    });
 
     emitter.on('datatable:selectAll', () => {
       checkState.value = true;
@@ -38,15 +44,6 @@ export default defineComponent({
     emitter.on('datatable:unselectAll', () => {
       checkState.value = false;
     });
-
-    watch(
-      () => checkState.value,
-      function(newVal) {
-        newVal
-          ? emitter.emit('datatable:rowSelected', props.item)
-          : emitter.emit('datatable:rowUnselected', props.item);
-      },
-    );
 
     return {
       checkState,

@@ -9,6 +9,7 @@
       :is="header.cellType ? header.cellType : 'oxd-table-cell-default'"
       :item="items[header.name]"
       :header="header"
+      :rowItem="items"
     />
   </oxd-card-td>
 </template>
