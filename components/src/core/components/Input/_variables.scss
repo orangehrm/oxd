@@ -41,3 +41,12 @@ $oxd-switch-on-disabled-background-color: rgba(
 ) !default;
 $oxd-switch-off-disabled-background-color: $oxd-interface-gray-lighten-2-color !default;
 $oxd-switch-disabled-background-color: $oxd-interface-gray-lighten-2-color !default;
+
+$oxd-radio-height: 1rem !default;
+$oxd-radio-width: 1rem !default;
+$oxd-radio-label-margin: 0.5em !default;
+$oxd-radio-checked-color: $oxd-primary-one-color !default;
+$oxd-radio-checked-disabled-color: lighten(
+  $oxd-radio-checked-color,
+  30%
+) !default;
