@@ -191,7 +191,7 @@ export default defineComponent({
 
   computed: {
     selectedOptions(): Option[] {
-      return this.modelValue.length > 0 ? this.modelValue : [];
+      return this.modelValue?.length > 0 ? this.modelValue : [];
     },
     filteredOptions(): Option[] {
       const filter = new RegExp(this.searchTerm, 'i');

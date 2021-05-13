@@ -1,4 +1,5 @@
 import DropdownInput from '@orangehrm/oxd/core/components/Input/DropdownInput';
+import {h, ref} from 'vue';
 
 export default {
   title: 'Example/DropdownInput',
@@ -9,15 +10,20 @@ export default {
   },
 };
 
-const data = [];
-
 const Template = args => ({
   setup() {
-    return {args};
+    const selected = ref([]);
+    return {args, selected};
   },
-  data: () => ({data}),
-  components: {'oxd-dropdown-input': DropdownInput},
-  template: '<oxd-dropdown-input v-model="data" v-bind="args" />',
+  render() {
+    return h(DropdownInput, {
+      ...this.args,
+      modelValue: this.selected,
+      'onUpdate:modelValue': value => {
+        this.selected = [...value];
+      },
+    });
+  },
 });
 
 const dropdownOptions = [

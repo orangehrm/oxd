@@ -10,7 +10,7 @@
         <oxd-label v-if="label" :label="label" :class="labelClasses" />
       </div>
     </slot>
-    <div>
+    <div :class="wrapperClasses">
       <slot></slot>
     </div>
     <slot name="message">
@@ -48,10 +48,11 @@ export default defineComponent({
     },
     classes: {
       type: Object,
-      default() {
+      default: () => {
         return {
           label: {},
           message: {},
+          wrapper: {},
         };
       },
     },
@@ -73,6 +74,10 @@ export default defineComponent({
         ...this.classes.message,
         'oxd-input-group__message': true,
       };
+    },
+    wrapperClasses(): object {
+      const {wrapper} = this.classes;
+      return wrapper ? wrapper : {};
     },
   },
 });
