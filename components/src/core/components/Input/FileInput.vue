@@ -8,8 +8,11 @@
     @input="onInput"
   />
   <div :class="classes" :style="style" @click="onClick">
-    <div class="oxd-file-button" v-if="buttonLabel">{{ buttonLabel }}</div>
-    <div class="oxd-file-input-div">{{ inputValue }}</div>
+    <slot></slot>
+    <template v-if="!$slots.default">
+      <div class="oxd-file-button" v-if="buttonLabel">{{ buttonLabel }}</div>
+      <div class="oxd-file-input-div">{{ inputValue }}</div>
+    </template>
   </div>
 </template>
 

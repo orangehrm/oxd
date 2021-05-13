@@ -94,6 +94,14 @@ SwitchInput.args = {
   type: 'switch',
 };
 
+export const RadioInput = Template.bind({});
+RadioInput.argTypes = argTypes;
+RadioInput.args = {
+  label: 'Radio Input Field',
+  optionLabel: 'check this!',
+  type: 'radio',
+};
+
 export const WithIcon = Template.bind({});
 WithIcon.argTypes = argTypes;
 WithIcon.args = {
