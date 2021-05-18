@@ -41,6 +41,53 @@ const dropdownOptions = [
   },
 ];
 
+const nestedOptions = [
+  {
+    id: 1,
+    label: 'Organization',
+  },
+  {
+    id: 2,
+    label: 'Test',
+    indent: 2,
+  },
+  {
+    id: 3,
+    label: 'HR Department',
+    indent: 2,
+  },
+  {
+    id: 4,
+    label: 'Engineering',
+    indent: 2,
+  },
+  {
+    id: 5,
+    label: 'Open Source',
+    indent: 3,
+  },
+  {
+    id: 7,
+    label: 'OrangeHR Open Source Mobile',
+    indent: 4,
+  },
+  {
+    id: 8,
+    label: 'OrangeHR Open Source Web',
+    indent: 4,
+  },
+  {
+    id: 9,
+    label: 'OrangeHR Open Source Web - Customization',
+    indent: 5,
+  },
+  {
+    id: 6,
+    label: 'Enterprise',
+    indent: 3,
+  },
+];
+
 const syncFunction = function(serachParam) {
   console.log(serachParam);
   return dropdownOptions;
@@ -123,4 +170,9 @@ MultipleAsyncLazy.args = {
   createOptions: asyncLazyFunction,
   multiple: true,
   lazyLoad: true,
+};
+
+export const Nested = Template.bind({});
+Nested.args = {
+  options: nestedOptions,
 };

@@ -46,6 +46,7 @@
             '--disabled': option.disabled,
             '--selected': option.selected,
             '--focused': isFocused(index),
+            [`--indent-${option.indent}`]: true,
           }"
           @mousedown="onSelectOption(option)"
         >
@@ -85,6 +86,7 @@ interface Option {
   label: string;
   disabled?: boolean;
   selected?: boolean;
+  indent?: number;
 }
 
 export default defineComponent({
@@ -216,6 +218,7 @@ export default defineComponent({
             this.disabledOptions.findIndex(item => item == option.id) > -1,
           selected:
             this.selectedOptions.findIndex(item => item.id == option.id) > -1,
+          indent: option?.indent ? option.indent : 1,
         };
       });
     },
