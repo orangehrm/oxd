@@ -13,7 +13,9 @@
       :hasError="hasError"
       @update:modelValue="onUpdate"
     >
-      <slot></slot>
+      <template v-for="(_, name) in $slots" v-slot:[name]="slotData">
+        <slot :name="name" v-bind="slotData" />
+      </template>
     </component>
   </oxd-input-group>
 </template>

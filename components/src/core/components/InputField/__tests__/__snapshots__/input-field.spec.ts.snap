@@ -20,6 +20,7 @@ exports[`InputField.vue renders OXD InputField type \`file\` 1`] = `
   <div class=""><input type="file" class="oxd-file-input">
     <div class="oxd-input oxd-file-div oxd-input--active">
       <!--v-if-->
+      <div class="oxd-file-input-div"></div>
     </div>
   </div>
   <!--v-if-->
@@ -34,7 +35,8 @@ exports[`InputField.vue renders OXD InputField type \`file\` with button 1`] = `
   </div>
   <div class=""><input type="file" class="oxd-file-input">
     <div class="oxd-input oxd-file-div oxd-input--active">
-      <!--v-if-->
+      <div class="oxd-file-button">Browse</div>
+      <div class="oxd-file-input-div"></div>
     </div>
   </div>
   <!--v-if-->
