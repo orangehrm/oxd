@@ -44,7 +44,6 @@ export default defineComponent({
 
   methods: {
     onClick(e: Event) {
-      e.stopPropagation();
       e.preventDefault();
       this.$emit('click', e);
     },
