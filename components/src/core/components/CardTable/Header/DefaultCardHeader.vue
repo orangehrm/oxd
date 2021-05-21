@@ -64,7 +64,7 @@ export default defineComponent({
 
     const state: State = reactive({
       checkIcon: 'check',
-      checkedItems: tableProps.selected,
+      checkedItems: [...tableProps.selected],
       selectedAll:
         tableProps.selected.length > 0 &&
         tableProps.selected.length === tableProps.items.length,

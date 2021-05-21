@@ -14,7 +14,7 @@ $oxd-file-button-margin-left: 4px;
 $oxd-file-button-padding-horizontal: 2rem;
 
 $oxd-dropdown-animation-time: 300ms !default;
-$oxd-dropdown-max-height: 10rem !default;
+$oxd-dropdown-max-height: 11.5rem !default;
 $oxd-dropdown-loader-height: 1rem !default;
 
 $oxd-checkbox-check-font-size: 1rem !default;
@@ -41,3 +41,12 @@ $oxd-switch-on-disabled-background-color: rgba(
 ) !default;
 $oxd-switch-off-disabled-background-color: $oxd-interface-gray-lighten-2-color !default;
 $oxd-switch-disabled-background-color: $oxd-interface-gray-lighten-2-color !default;
+
+$oxd-radio-height: 1rem !default;
+$oxd-radio-width: 1rem !default;
+$oxd-radio-label-margin: 0.5em !default;
+$oxd-radio-checked-color: $oxd-primary-one-color !default;
+$oxd-radio-checked-disabled-color: lighten(
+  $oxd-radio-checked-color,
+  30%
+) !default;

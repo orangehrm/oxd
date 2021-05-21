@@ -2,6 +2,7 @@ import InputField from '@orangehrm/oxd/core/components/InputField/InputField';
 import {TYPES} from '@orangehrm/oxd/core/components/InputField/types';
 import InputFieldValidation from './InputFieldValidation.story.vue';
 import Form from '@orangehrm/oxd/core/components/Form/Form';
+import {h, ref} from 'vue';
 
 export default {
   title: 'Example/InputField',
@@ -20,6 +21,30 @@ const Template = args => ({
   },
   components: {'oxd-input-field': InputField, 'oxd-form': Form},
   template: '<oxd-form><oxd-input-field v-bind="args" /></oxd-form>',
+});
+
+const DropdownTemplate = args => ({
+  setup() {
+    const selected = ref([]);
+    return {args, selected};
+  },
+  render() {
+    return h(
+      Form,
+      {},
+      {
+        default: () => {
+          return h(InputField, {
+            ...this.args,
+            modelValue: this.selected,
+            'onUpdate:modelValue': value => {
+              this.selected = [...value];
+            },
+          });
+        },
+      },
+    );
+  },
 });
 
 export const Default = Template.bind({});
@@ -44,12 +69,12 @@ Textarea.args = {
   type: 'textarea',
 };
 
-export const Dropdown = Template.bind({});
+export const Dropdown = DropdownTemplate.bind({});
 Dropdown.argTypes = argTypes;
 Dropdown.args = {
   label: 'Dropdown Input Field',
   type: 'dropdown',
-  options: async function() {
+  createOptions: async function() {
     return new Promise(resolve => {
       setTimeout(() => {
         resolve([
@@ -92,6 +117,14 @@ SwitchInput.args = {
   label: 'Switch Input Field',
   optionLabel: 'switch this!',
   type: 'switch',
+};
+
+export const RadioInput = Template.bind({});
+RadioInput.argTypes = argTypes;
+RadioInput.args = {
+  label: 'Radio Input Field',
+  optionLabel: 'check this!',
+  type: 'radio',
 };
 
 export const WithIcon = Template.bind({});

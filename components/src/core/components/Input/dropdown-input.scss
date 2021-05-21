@@ -32,6 +32,10 @@
     position: absolute;
     right: 10px;
   }
+  ::v-deep(.oxd-input) {
+    text-overflow: ellipsis;
+    padding-right: 4rem;
+  }
 }
 
 .oxd-dropdown-options {
@@ -77,6 +81,12 @@
     }
     &.--selected {
       color: $oxd-interface-gray-lighten-1-color;
+    }
+    @for $i from 1 through 20 {
+      $value: $i * 0.5;
+      &.--indent-#{$i} {
+        padding-left: #{$value}rem;
+      }
     }
   }
 }

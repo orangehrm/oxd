@@ -4,6 +4,7 @@ import CustomLabelForm from './CustomLabelForm.story.vue';
 import ValidatableFrom from './ValidatableFrom.story.vue';
 import DynamicValidatableFrom from './DynamicValidatableFrom.story.vue';
 import GeneralInformation from './GeneralInformation.story.vue';
+import InputGroupedForm from './InputGroupedForm.story.vue';
 
 export default {
   title: 'Example/Form',
@@ -20,3 +21,5 @@ export const FormWithValidation = () => ValidatableFrom;
 export const DynamicFormWithValidation = () => DynamicValidatableFrom;
 
 export const GeneralInformationForm = () => GeneralInformation;
+
+export const InputGroupForm = () => InputGroupedForm;
