@@ -12,7 +12,11 @@
       :modelValue="modelValue"
       :hasError="hasError"
       @update:modelValue="onUpdate"
-    ></component>
+    >
+      <template v-for="(_, name) in $slots" v-slot:[name]="slotData">
+        <slot :name="name" v-bind="slotData" />
+      </template>
+    </component>
   </oxd-input-group>
 </template>
 
@@ -26,6 +30,7 @@ import DropdownInput from '@orangehrm/oxd/core/components/Input/DropdownInput.vu
 import PasswordInput from '@orangehrm/oxd/core/components/Input/PasswordInput.vue';
 import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
 import SwitchInput from '@orangehrm/oxd/core/components/Input/SwitchInput.vue';
+import RadioInput from '@orangehrm/oxd/core/components/Input/RadioInput.vue';
 import {validatableMixin} from '../../../mixins/validatable';
 import {uuid} from '../../../mixins/uuid';
 import {injectStrict} from '../../../utils/injectable';
@@ -46,6 +51,7 @@ export default defineComponent({
     'oxd-password-input': PasswordInput,
     'oxd-checkbox-input': CheckboxInput,
     'oxd-switch-input': SwitchInput,
+    'oxd-radio-input': RadioInput,
   },
 
   mixins: [validatableMixin, uuid],

@@ -6,7 +6,7 @@ exports[`InputField.vue renders OXD InputField 1`] = `
     <!--v-if-->
     <!--v-if-->
   </div>
-  <div><input class="oxd-input oxd-input--active"></div>
+  <div class=""><input class="oxd-input oxd-input--active"></div>
   <!--v-if-->
 </div>
 `;
@@ -17,7 +17,7 @@ exports[`InputField.vue renders OXD InputField type \`file\` 1`] = `
     <!--v-if-->
     <!--v-if-->
   </div>
-  <div><input type="file" class="oxd-file-input">
+  <div class=""><input type="file" class="oxd-file-input">
     <div class="oxd-input oxd-file-div oxd-input--active">
       <!--v-if-->
       <div class="oxd-file-input-div"></div>
@@ -33,7 +33,7 @@ exports[`InputField.vue renders OXD InputField type \`file\` with button 1`] = `
     <!--v-if-->
     <!--v-if-->
   </div>
-  <div><input type="file" class="oxd-file-input">
+  <div class=""><input type="file" class="oxd-file-input">
     <div class="oxd-input oxd-file-div oxd-input--active">
       <div class="oxd-file-button">Browse</div>
       <div class="oxd-file-input-div"></div>
@@ -49,7 +49,7 @@ exports[`InputField.vue renders OXD InputField type \`input\` 1`] = `
     <!--v-if-->
     <!--v-if-->
   </div>
-  <div><input class="oxd-input oxd-input--active"></div>
+  <div class=""><input class="oxd-input oxd-input--active"></div>
   <!--v-if-->
 </div>
 `;
@@ -60,7 +60,7 @@ exports[`InputField.vue renders OXD InputField type \`textarea\` 1`] = `
     <!--v-if-->
     <!--v-if-->
   </div>
-  <div><textarea class="oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical"></textarea></div>
+  <div class=""><textarea class="oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical"></textarea></div>
   <!--v-if-->
 </div>
 `;
