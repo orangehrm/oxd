@@ -32,27 +32,37 @@ export default defineComponent({
       },
       set: newVal => {
         newVal
-          ? emitter.emit('datatable:rowSelected', props.item)
-          : emitter.emit('datatable:rowUnselected', props.item);
+          ? emitter.emit(
+              `${tableProps.tableId}-datatable:rowSelected`,
+              props.item,
+            )
+          : emitter.emit(
+              `${tableProps.tableId}-datatable:rowUnselected`,
+              props.item,
+            );
       },
     });
 
-    emitter.on('datatable:selectAll', () => {
+    emitter.on(`${tableProps.tableId}-datatable:selectAll`, () => {
       checkState.value = true;
     });
 
-    emitter.on('datatable:unselectAll', () => {
+    emitter.on(`${tableProps.tableId}-datatable:unselectAll`, () => {
       checkState.value = false;
     });
 
     return {
+      tableProps,
       checkState,
     };
   },
   methods: {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onClickCheckbox(item: any, e: Event) {
-      emitter.emit('datatable:clickCheckboxCell', {item, native: e});
+      emitter.emit(`${this.tableProps.tableId}-datatable:clickCheckboxCell`, {
+        item,
+        native: e,
+      });
     },
   },
 });

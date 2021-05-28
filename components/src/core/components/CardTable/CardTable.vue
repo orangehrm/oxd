@@ -16,8 +16,15 @@
 </template>
 
 <script lang="ts">
+import {nanoid} from 'nanoid';
 import emitter from '../../../utils/emitter';
-import {defineComponent, PropType, provide, readonly} from 'vue';
+import {
+  defineComponent,
+  onBeforeUnmount,
+  PropType,
+  provide,
+  readonly,
+} from 'vue';
 import {CardSelector, CardHeaders, Order} from './types';
 import useResponsive from '../../../composables/useResponsive';
 import Table from '@orangehrm/oxd/core/components/CardTable/Table/Table.vue';
@@ -69,6 +76,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    tableId: {
+      type: String,
+      default: () => nanoid(8),
+    },
   },
 
   setup(props, context) {
@@ -77,23 +88,31 @@ export default defineComponent({
     provide('tableProps', readonly(props));
     provide('screenState', readonly(responsiveState));
 
-    emitter.on('datatable:selectAll', value => {
+    emitter.on(`${props.tableId}-datatable:selectAll`, value => {
       context.emit('update:selectAll', value);
     });
-    emitter.on('datatable:unselectAll', () => {
+    emitter.on(`${props.tableId}-datatable:unselectAll`, () => {
       context.emit('update:selectAll', []);
     });
-    emitter.on('datatable:updateSort', value => {
+    emitter.on(`${props.tableId}-datatable:updateSort`, value => {
       context.emit('update:sort', value);
     });
-    emitter.on('datatable:updateSelected', value => {
+    emitter.on(`${props.tableId}-datatable:updateSelected`, value => {
       context.emit('update:selected', value);
     });
-    emitter.on('datatable:clickCheckboxCell', value => {
+    emitter.on(`${props.tableId}-datatable:clickCheckboxCell`, value => {
       context.emit('clickCheckbox', value);
     });
-    emitter.on('datatable:clickRow', value => {
+    emitter.on(`${props.tableId}-datatable:clickRow`, value => {
       context.emit('click', value);
+    });
+
+    onBeforeUnmount(() => {
+      emitter.all.forEach((...[, key]) => {
+        if ((key as string).substr(0, 8) === props.tableId) {
+          emitter.all.delete(key);
+        }
+      });
     });
   },
 
