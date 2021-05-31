@@ -70,7 +70,10 @@ export default defineComponent({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onClick(item: any) {
       return (e: Event) => {
-        emitter.emit('datatable:clickRow', {item, native: e});
+        emitter.emit(`${this.tableProps.tableId}-datatable:clickRow`, {
+          item,
+          native: e,
+        });
       };
     },
   },
