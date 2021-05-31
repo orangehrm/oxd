@@ -79,16 +79,16 @@ export default defineComponent({
       }),
     });
 
-    emitter.emit('datatable:updateSort', state.sort);
+    emitter.emit(`${tableProps.tableId}-datatable:updateSort`, state.sort);
 
-    emitter.on('datatable:rowSelected', value => {
+    emitter.on(`${tableProps.tableId}-datatable:rowSelected`, value => {
       const itemIndex = state.checkedItems.findIndex(item => item === value);
       if (itemIndex === -1) {
         state.checkedItems.push(value);
       }
     });
 
-    emitter.on('datatable:rowUnselected', value => {
+    emitter.on(`${tableProps.tableId}-datatable:rowUnselected`, value => {
       const itemIndex = state.checkedItems.findIndex(item => item === value);
       if (itemIndex > -1) {
         state.checkedItems.splice(itemIndex, 1);
@@ -98,7 +98,7 @@ export default defineComponent({
     watch(
       () => state.checkedItems,
       newVal => {
-        emitter.emit('datatable:updateSelected', newVal);
+        emitter.emit(`${tableProps.tableId}-datatable:updateSelected`, newVal);
         if (tableProps.items.length > 0 && newVal.length > 0) {
           state.selectedAll = true;
           if (newVal.length === tableProps.items.length) {
@@ -131,9 +131,12 @@ export default defineComponent({
   methods: {
     onChangeSelectAll() {
       if (this.selectedAll) {
-        emitter.emit('datatable:selectAll', this.tableProps.items);
+        emitter.emit(
+          `${this.tableProps.tableId}-datatable:selectAll`,
+          this.tableProps.items,
+        );
       } else {
-        emitter.emit('datatable:unselectAll', []);
+        emitter.emit(`${this.tableProps.tableId}-datatable:unselectAll`, []);
       }
     },
     getSort(index: number): Sort {
@@ -157,7 +160,10 @@ export default defineComponent({
             break;
         }
         this.sort[order.id] = _sort;
-        emitter.emit('datatable:updateSort', this.sort);
+        emitter.emit(
+          `${this.tableProps.tableId}-datatable:updateSort`,
+          this.sort,
+        );
       }
     },
   },
