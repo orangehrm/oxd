@@ -6,7 +6,12 @@
   >
     <slot></slot>
     <transition name="transition-fade-down">
-      <ul v-if="isActive" class="oxd-dropdown-menu" role="menu">
+      <ul
+        @click.stop="closeSubMenu"
+        v-if="isActive"
+        class="oxd-dropdown-menu"
+        role="menu"
+      >
         <slot name="content"></slot>
       </ul>
     </transition>
@@ -35,7 +40,9 @@ export default defineComponent({
       this.isActive = true;
     },
     closeSubMenu() {
-      this.isActive = false;
+      if (this.isActive) {
+        this.isActive = false;
+      }
     },
   },
 });
