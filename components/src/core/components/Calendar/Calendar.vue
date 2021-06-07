@@ -1,16 +1,16 @@
 <script lang="ts">
 import {
-  parseDate,
-  format,
   isEqual,
   getDaysInMonth,
   getYear,
   getMonth,
   getDayOffset,
   freshDate,
+  rearrangeWeek,
 } from '../../../utils/date';
+import {enGB} from 'date-fns/locale';
+import {DateOptions} from './types';
 import {computed, defineComponent, h, PropType, reactive, toRefs} from 'vue';
-import {DateOptions, DAYS_OF_WEEK, MONTHS_OF_YEAR, SUNDAY} from './types';
 import Day from '@orangehrm/oxd/core/components/Calendar/Day.vue';
 import DateVue from '@orangehrm/oxd/core/components/Calendar/Date.vue';
 import CalendarController from '@orangehrm/oxd/core/components/Calendar/CalendarController.vue';
@@ -19,14 +19,10 @@ export default defineComponent({
   name: 'oxd-calendar',
   props: {
     modelValue: {
-      type: [String, Date],
+      type: Object as PropType<Date>,
       default: () => {
         return freshDate();
       },
-    },
-    format: {
-      type: String,
-      default: 'yyyy-MM-dd',
     },
     firstDayOfWeek: {
       type: Number,
@@ -41,22 +37,36 @@ export default defineComponent({
         );
       },
     },
+    locale: {
+      type: Object as PropType<Locale>,
+      default: enGB,
+    },
+    monthFormat: {
+      type: String,
+      default: 'wide',
+    },
     months: {
       type: Array,
-      default: () => MONTHS_OF_YEAR,
+      default: () => [],
+    },
+    dayFormat: {
+      type: String,
+      default: 'narrow',
     },
     days: {
       type: Array,
-      default: () => DAYS_OF_WEEK,
+      default: () => [],
     },
     dateAttributes: {
       type: Array as PropType<DateOptions[]>,
       default: () => [],
     },
   },
-  setup(props, context) {
+  setup(props) {
     const selectedDate = computed(() => {
-      return parseDate(props.modelValue, props.format);
+      return props.modelValue
+        ? new Date(props.modelValue.setHours(0, 0, 0, 0))
+        : props.modelValue;
     });
 
     const state = reactive({
@@ -65,11 +75,31 @@ export default defineComponent({
     });
 
     const daysOfWeek = computed(() => {
-      const days = JSON.parse(JSON.stringify(props.days));
-      if (props.firstDayOfWeek > 0) {
-        return days.splice(props.firstDayOfWeek, 6).concat(days);
+      let days = JSON.parse(JSON.stringify(props.days));
+      const week = rearrangeWeek(props.firstDayOfWeek);
+
+      if (days.length === 0) {
+        days = new Array(7).fill('').map((...[, index]) => {
+          return (props.locale as Locale).localize.day(index, {
+            width: props.dayFormat,
+          });
+        });
+      }
+
+      return week.map(index => {
+        return days[index];
+      });
+    });
+
+    const monthsOfYear = computed(() => {
+      if (props.months.length > 0) {
+        return props.months;
       } else {
-        return days;
+        return new Array(12).fill('').map((...[, index]) => {
+          return (props.locale as Locale).localize.month(index, {
+            width: props.monthFormat,
+          });
+        });
       }
     });
 
@@ -94,25 +124,22 @@ export default defineComponent({
       });
     });
 
-    const onDateSelected = (value: Date) => {
-      context.emit('update:modelValue', format(value, props.format));
-    };
-
     return {
       ...toRefs(state),
       daysOfWeek,
       datesOfMonth,
+      monthsOfYear,
       selectedDate,
       attributes,
-      onDateSelected,
     };
   },
+
   render() {
     return h('div', {class: 'oxd-calendar-wrapper'}, [
       h(CalendarController, {
         modelValue: {year: this.year, month: this.month},
         years: this.years,
-        months: this.months,
+        months: this.monthsOfYear,
         'onUpdate:modelValue': ({month, year}) => {
           (this.month = month), (this.year = year);
         },
@@ -134,7 +161,7 @@ export default defineComponent({
             options: this.attributes[i],
             onClick: ($event: Event) => {
               $event.stopPropagation();
-              this.onDateSelected(date);
+              this.$emit('update:modelValue', date);
             },
           });
         }),

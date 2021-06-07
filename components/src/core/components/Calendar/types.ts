@@ -47,8 +47,9 @@ export const MONTHS_OF_YEAR = [
 export interface DateOptions {
   selected: boolean;
   holiday?: boolean;
-  leaveFull?: boolean;
-  leaveHalf?: boolean;
+  highlightFull?: boolean;
+  highlightHalf?: boolean;
   offset?: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }

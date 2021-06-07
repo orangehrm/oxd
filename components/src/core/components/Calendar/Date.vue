@@ -22,8 +22,8 @@ export default defineComponent({
         '--selected': props.options.selected,
         '--today': isEqual(freshDate(), props.date),
         '--holiday': props.options?.holiday,
-        '--leave-full': props.options?.leaveFull,
-        '--leave-half': props.options?.leaveHalf,
+        '--highlight-full': props.options?.highlightFull,
+        '--highlight-half': props.options?.highlightHalf,
       };
     });
 
