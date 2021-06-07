@@ -135,4 +135,11 @@ WithIcon.args = {
   type: 'textarea',
 };
 
+export const DateInput = Template.bind({});
+DateInput.argTypes = argTypes;
+DateInput.args = {
+  label: 'Date Input Field',
+  type: 'date',
+};
+
 export const WithValidation = () => InputFieldValidation;

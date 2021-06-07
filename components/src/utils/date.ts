@@ -1,7 +1,7 @@
 import {
-  isDate,
   parse,
   format,
+  isDate,
   isEqual,
   isWeekend,
   getDaysInMonth,
@@ -14,34 +14,34 @@ const freshDate = () => {
   return new Date(new Date().setHours(0, 0, 0, 0));
 };
 
-const parseDate = (value: any, format: string): Date | null => {
+const parseDate = (value: string, dateFormat: string): Date | null => {
   try {
-    if (typeof value === 'string' && value) {
-      return parse(value, format, freshDate());
-    } else if (isDate(value)) {
-      return value as Date;
-    } else {
-      return null;
-    }
+    const parsed = parse(value, dateFormat.replace(/'/g, ''), freshDate());
+    return !isNaN(parsed.valueOf()) ? parsed : null;
   } catch (error) {
     return null;
   }
 };
 
-const getDayOffset = (date: Date, weekStartsOn: number) => {
+const formatDate = (value: Date, dateFormat: string): string | null => {
+  try {
+    return format(value, dateFormat.replace(/'/g, ''));
+  } catch (error) {
+    return null;
+  }
+};
+
+const rearrangeWeek = (weekStartsOn: number) => {
   const week = [0, 1, 2, 3, 4, 5, 6];
-  return (
-    week
-      .splice(weekStartsOn, 6)
-      .concat(week)
-      .findIndex(i => i === getDay(date)) + 1
-  );
+  return week.splice(weekStartsOn, 6).concat(week);
+};
+
+const getDayOffset = (date: Date, weekStartsOn: number) => {
+  return rearrangeWeek(weekStartsOn).findIndex(i => i === getDay(date)) + 1;
 };
 
 export {
   isDate,
-  parse,
-  format,
   isEqual,
   isWeekend,
   getDaysInMonth,
@@ -50,4 +50,6 @@ export {
   getDayOffset,
   freshDate,
   parseDate,
+  formatDate,
+  rearrangeWeek,
 };

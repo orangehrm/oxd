@@ -49,13 +49,11 @@ export default defineComponent({
   },
 
   methods: {
-    onFocus(e: Event) {
+    onFocus() {
       this.focused = true;
-      this.$emit('focus', e);
     },
-    onBlur(e: Event) {
+    onBlur() {
       this.focused = false;
-      this.$emit('blur', e);
     },
     onInput(e: Event) {
       e.preventDefault();
