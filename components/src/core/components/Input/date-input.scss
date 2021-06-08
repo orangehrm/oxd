@@ -1,0 +1,57 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-date-wrapper {
+  @include oxd-input-control-size;
+  position: relative;
+  &:focus {
+    outline: none;
+  }
+  & > *:focus {
+    outline: none;
+  }
+}
+
+.oxd-date-input {
+  display: flex;
+  align-items: center;
+  &-icon {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    & .oxd-icon {
+      border-radius: 0.65rem;
+      padding: 0.5rem;
+      background-color: $oxd-interface-gray-lighten-2-color;
+    }
+  }
+  ::v-deep(.oxd-input) {
+    text-overflow: ellipsis;
+    padding-right: 4rem;
+  }
+  &-calendar {
+    top: 50px;
+    right: 0;
+    position: absolute;
+    width: 250px;
+    z-index: 9999;
+  }
+}
+
+.transition-fade-down-enter-from,
+.transition-fade-down-leave-to {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+.transition-fade-down-enter-active,
+.transition-fade-down-leave-active {
+  transition: transform $oxd-dropdown-animation-time
+      cubic-bezier(0.53, 2, 0.36, 0.85),
+    opacity $oxd-dropdown-animation-time cubic-bezier(0.53, 2, 0.36, 0.85);
+}
+
+::v-deep(.oxd-loading-spinner) {
+  width: $oxd-dropdown-loader-height;
+  height: $oxd-dropdown-loader-height;
+}

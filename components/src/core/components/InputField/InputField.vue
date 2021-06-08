@@ -31,6 +31,7 @@ import PasswordInput from '@orangehrm/oxd/core/components/Input/PasswordInput.vu
 import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
 import SwitchInput from '@orangehrm/oxd/core/components/Input/SwitchInput.vue';
 import RadioInput from '@orangehrm/oxd/core/components/Input/RadioInput.vue';
+import DateInput from '@orangehrm/oxd/core/components/Input/DateInput.vue';
 import {validatableMixin} from '../../../mixins/validatable';
 import {uuid} from '../../../mixins/uuid';
 import {injectStrict} from '../../../utils/injectable';
@@ -52,6 +53,7 @@ export default defineComponent({
     'oxd-checkbox-input': CheckboxInput,
     'oxd-switch-input': SwitchInput,
     'oxd-radio-input': RadioInput,
+    'oxd-date-input': DateInput,
   },
 
   mixins: [validatableMixin, uuid],
