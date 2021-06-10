@@ -36,6 +36,7 @@
   word-wrap: break-word;
   display: flex;
   padding: 0;
+  background-color: $oxd-file-input-background-color;
 }
 
 .oxd-file-button {
@@ -62,4 +63,15 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.oxd-file-input-icon {
+  cursor: pointer;
+  border-radius: $oxd-input-control-border-radius;
+  margin-left: auto;
+  margin-top: $oxd-file-button-margin-vertical;
+  margin-bottom: $oxd-file-button-margin-vertical;
+  margin-right: $oxd-file-button-margin-right;
+  background-color: $oxd-file-button-background-color;
+  padding: 0.5rem 0.75rem;
 }

@@ -104,7 +104,7 @@ export default defineComponent({
       this.$emit('blur');
     },
     onDateTyped(value: string) {
-      this.dateTyped = value;
+      this.dateTyped = value ? value : ' ';
     },
     onDateSelected() {
       this.closeDropdown();

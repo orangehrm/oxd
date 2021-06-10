@@ -5,26 +5,33 @@ $oxd-input-border--error: $oxd-input-control-border--error !default;
 $oxd-input-box-shadow--focus: $oxd-input-control-box-shadow--focus !default;
 $oxd-input-box-shadow--error: $oxd-input-control-box-shadow--error !default;
 
+$oxd-file-input-background-color: $oxd-white-color !default;
 $oxd-file-button-background-color: $oxd-interface-gray-lighten-2-color !default;
 $oxd-file-button-color: $oxd-interface-gray-darken-1-color !default;
 $oxd-file-button-font-size: 0.875rem;
 $oxd-file-button-font-weight: 600;
 $oxd-file-button-margin-vertical: 4px;
 $oxd-file-button-margin-left: 4px;
-$oxd-file-button-padding-horizontal: 2rem;
+$oxd-file-button-margin-right: 4px;
+$oxd-file-button-padding-horizontal: 1.5rem;
 
 $oxd-dropdown-animation-time: 300ms !default;
 $oxd-dropdown-max-height: 11.5rem !default;
 $oxd-dropdown-loader-height: 1rem !default;
 
+$oxd-checkbox-label-color: $oxd-input-control-font-color !default;
+$oxd-checkbox-label-color--disabled: $oxd-interface-gray-color !default;
 $oxd-checkbox-check-font-size: 1rem !default;
 $oxd-checkbox-height: 1rem !default;
 $oxd-checkbox-width: 1rem !default;
+$oxd-checkbox-border: 1px solid $oxd-interface-gray-lighten-1-color !default;
 $oxd-checkbox-border-radius: 0.35rem !default;
 $oxd-checkbox-label-margin: 0.5em !default;
 $oxd-checkbox-checked-background-color: $oxd-primary-one-color !default;
 $oxd-checkbox-disabled-background-color: $oxd-interface-gray-lighten-2-color !default;
 
+$oxd-switch-label-color: $oxd-input-control-font-color !default;
+$oxd-switch-label-color--disabled: $oxd-interface-gray-color !default;
 $oxd-switch-width: 2rem !default;
 $oxd-switch-height: calc(#{$oxd-switch-width} / 2);
 $oxd-switch-radius: calc(#{$oxd-switch-height} / 2);
@@ -42,6 +49,8 @@ $oxd-switch-on-disabled-background-color: rgba(
 $oxd-switch-off-disabled-background-color: $oxd-interface-gray-lighten-2-color !default;
 $oxd-switch-disabled-background-color: $oxd-interface-gray-lighten-2-color !default;
 
+$oxd-radio-label-color: $oxd-input-control-font-color !default;
+$oxd-radio-label-color--disabled: $oxd-interface-gray-color !default;
 $oxd-radio-height: 1rem !default;
 $oxd-radio-width: 1rem !default;
 $oxd-radio-label-margin: 0.5em !default;

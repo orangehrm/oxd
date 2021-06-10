@@ -135,6 +135,11 @@ export default defineComponent({
   },
 
   render() {
+    /**
+     * Vue scoped styles not working for render function
+     * https://github.com/vuejs/vue-next/issues/1539
+     *
+     */
     return h('div', {class: 'oxd-calendar-wrapper'}, [
       h(CalendarController, {
         modelValue: {year: this.year, month: this.month},
@@ -171,4 +176,4 @@ export default defineComponent({
 });
 </script>
 
-<style src="./calendar.scss" lang="scss" module></style>
+<style src="./calendar.scss" lang="scss"></style>

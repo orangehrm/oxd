@@ -47,10 +47,15 @@ export default {
         children: [
           {name: 'Administration', children: []},
           {
-            name: 'Engineering',
+            name:
+              'Engineering aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
             children: [
               {name: 'Development', children: []},
-              {name: 'Quality Assurance', children: []},
+              {
+                name:
+                  'Quality Assurance aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                children: [],
+              },
               {
                 name: 'TechOps',
                 children: [
@@ -125,6 +130,11 @@ export default {
       margin-right: 0.5rem;
     }
   }
+}
+.org-name {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  padding-right: 5px;
 }
 </style>
 

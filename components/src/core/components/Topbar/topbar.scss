@@ -25,7 +25,7 @@
     &-title {
       display: flex;
       flex-basis: 70%;
-      align-items: center;
+      align-items: baseline;
       padding: 0.5rem 0rem;
       min-width: 0%;
       & i {
@@ -38,8 +38,9 @@
         }
       }
       &-text {
-        font-size: 14px;
-        color: $oxd-white-color;
+        font-size: $oxd-topbar-title-font-size;
+        font-weight: $oxd-topbar-title-font-weight;
+        color: $oxd-topbar-title-font-color;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
@@ -78,11 +79,8 @@
     height: 40px;
     background-color: $oxd-white-color;
     border-bottom: 1px solid $oxd-topbar-border-color;
-    @include oxd-respond-to('xs') {
-      padding: $oxd-topbar-body-padding;
-    }
+    padding: $oxd-topbar-body-padding;
     @include oxd-respond-to('md') {
-      padding: calc(#{$oxd-topbar-body-padding} / 2);
       padding-left: 30px;
     }
     &-nav {
@@ -106,13 +104,15 @@
         }
         user-select: none;
         &-item {
-          color: $oxd-topbar-tab-text-color;
+          color: $oxd-topbar-tab-font-color;
+          font-weight: $oxd-topbar-tab-font-weight;
           text-decoration: none;
           font-size: 12px;
           white-space: nowrap;
         }
         &-link {
-          color: $oxd-topbar-tab-text-color;
+          color: $oxd-topbar-tab-font-color;
+          font-weight: $oxd-topbar-tab-font-weight;
           text-decoration: none;
           display: block;
           padding: 6px 16px;
@@ -133,9 +133,6 @@
           border-radius: $oxd-topbar-visited-border-radius;
           border-bottom: $oxd-topbar-visited-border;
           bottom: -#{$oxd-topbar-body-padding};
-          @include oxd-respond-to('md') {
-            bottom: calc(-#{$oxd-topbar-body-padding} / 2);
-          }
         }
         // TODO: Refactor for a better solution
         ::v-deep(.oxd-dropdown-menu) {

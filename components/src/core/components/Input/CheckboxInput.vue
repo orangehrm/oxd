@@ -1,6 +1,6 @@
 <template>
   <div class="oxd-checkbox-wrapper">
-    <label>
+    <label :class="{'--disabled': disabled}">
       <template v-if="labelPosition === 'left'">
         {{ optionLabel }}
       </template>
@@ -9,6 +9,7 @@
         @focus="onFocus"
         @blur="onBlur"
         @change="onChange"
+        :disabled="disabled"
         v-bind="$attrs"
         v-model="checked"
       />
@@ -42,6 +43,10 @@ export default defineComponent({
       type: Object,
     },
     hasError: {
+      type: Boolean,
+      default: false,
+    },
+    disabled: {
       type: Boolean,
       default: false,
     },

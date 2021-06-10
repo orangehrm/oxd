@@ -1,6 +1,6 @@
 <template>
   <oxd-card-thead v-if="showHeader">
-    <oxd-card-tr>
+    <oxd-card-tr :clickable="false">
       <oxd-card-th
         v-if="tableProps.selectable"
         class="oxd-padding-cell oxd-table-th"
@@ -109,6 +109,15 @@ export default defineComponent({
         } else {
           state.selectedAll = false;
         }
+      },
+      {deep: true},
+    );
+
+    watch(
+      () => tableProps.items,
+      () => {
+        state.selectedAll = false;
+        emitter.emit(`${tableProps.tableId}-datatable:updateSelected`, []);
       },
       {deep: true},
     );

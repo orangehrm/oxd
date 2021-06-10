@@ -7,7 +7,7 @@
     display: flex;
     align-content: center;
     font-family: $oxd-input-control-font-family;
-    color: $oxd-input-control-font-color;
+    color: $oxd-switch-label-color;
     font-size: $oxd-input-control-font-size;
     font-weight: $oxd-input-control-font-weight;
     width: fit-content;
@@ -36,6 +36,11 @@
       &:disabled + .oxd-switch-input {
         background-color: $oxd-switch-off-disabled-background-color;
       }
+    }
+
+    &.--disabled {
+      color: $oxd-switch-label-color--disabled;
+      cursor: unset;
     }
   }
 }

@@ -20,8 +20,8 @@
     }
   }
   &-img {
-    height: 2.5rem;
-    width: 2.5rem;
+    height: 2.9rem;
+    width: 2.8rem;
     border: $oxd-userdropdown-img-border;
     border-radius: 50% !important;
     margin-right: 8px;
@@ -34,12 +34,13 @@
     overflow: hidden;
     max-width: 50px;
     white-space: nowrap;
+    font-weight: 600;
     @include oxd-respond-to('md') {
       max-width: unset;
     }
   }
   &-link {
-    color: $oxd-topbar-tab-text-color;
+    color: $oxd-topbar-tab-font-color;
     text-decoration: none;
     display: block;
     padding: 6px 16px;

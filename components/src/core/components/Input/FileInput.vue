@@ -12,6 +12,7 @@
     <template v-if="!$slots.default">
       <div class="oxd-file-button" v-if="buttonLabel">{{ buttonLabel }}</div>
       <div class="oxd-file-input-div">{{ inputValue }}</div>
+      <oxd-icon class="oxd-file-input-icon" :name="buttonIcon" />
     </template>
   </div>
 </template>
@@ -19,6 +20,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {OutputFile} from './types';
+import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
 export interface State {
   focused: boolean;
@@ -40,6 +42,14 @@ export default defineComponent({
     buttonLabel: {
       type: String,
     },
+    buttonIcon: {
+      type: String,
+      default: 'upload',
+    },
+  },
+
+  components: {
+    'oxd-icon': Icon,
   },
 
   data(): State {

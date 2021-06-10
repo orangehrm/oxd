@@ -104,16 +104,6 @@
     padding: 0;
     width: 65%;
 
-    .oxd-dropdown-menu {
-      padding: $oxd-calendar-selector-padding;
-      top: $oxd-calendar-selector-top-margin;
-      left: 0;
-      right: 0;
-      max-height: $oxd-calendar-selector-height;
-      overflow: hidden auto;
-      @include oxd-scrollbar();
-    }
-
     &.--month,
     &.--year {
       cursor: pointer;

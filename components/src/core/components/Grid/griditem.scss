@@ -1,5 +1,12 @@
 @import '../../../styles';
+@import 'variables';
 
 .oxd-grid-item {
-  padding: 1rem;
+  @include oxd-respond-to('xs') {
+    padding: $oxd-grid-item-xs-padding;
+  }
+
+  @include oxd-respond-to('md') {
+    padding: $oxd-grid-item-md-padding;
+  }
 }

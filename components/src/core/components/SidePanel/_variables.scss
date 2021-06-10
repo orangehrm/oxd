@@ -4,7 +4,11 @@ $oxd-sidepanel-border-radius: 35px !default;
 $oxd-brand-color-black: #3a3a3a;
 $oxd-brand-color-green: #008000;
 
+$oxd-menu-item-name-font-size: 14px !default;
+$oxd-menu-item-name-font-weight: 600 !default;
 $oxd-menu-item-name-color: #6d6d6f !default;
+$oxd-menu-item-name-color--active: $oxd-white-color !default;
+$oxd-menu-item-name-color--hover: $oxd-white-color !default;
 $oxd-menu-item-hover-color: #ffccae !default;
 $oxd-menu-item-active-color: #ff7d31 !default;
 $oxd-menu-item-active-gradient: $oxd-secondary-gradient !default;

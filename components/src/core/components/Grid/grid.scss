@@ -1,43 +1,50 @@
 @import '../../../styles';
+@import 'variables';
 
 .oxd-grid-4 {
-  margin: 0 auto;
   display: grid;
-  grid-gap: 1rem;
+  margin: $oxd-grid-four-margin;
+  grid-gap: $oxd-grid-four-gap;
 
   @include oxd-respond-to('md') {
-    grid-template-columns: repeat(2, 1fr);
+    grid-gap: $oxd-grid-four-md-gap;
+    grid-template-columns: $oxd-grid-four-md-template-columns;
   }
 
   @include oxd-respond-to('lg') {
-    grid-template-columns: repeat(4, 1fr);
+    grid-gap: $oxd-grid-four-lg-gap;
+    grid-template-columns: $oxd-grid-four-lg-template-columns;
   }
 }
 
 .oxd-grid-3 {
-  margin: 0 auto;
   display: grid;
-  grid-gap: 1rem;
+  margin: $oxd-grid-three-margin;
+  grid-gap: $oxd-grid-three-gap;
 
   @include oxd-respond-to('md') {
-    grid-template-columns: repeat(2, 1fr);
+    grid-gap: $oxd-grid-three-md-gap;
+    grid-template-columns: $oxd-grid-three-md-template-columns;
   }
 
   @include oxd-respond-to('lg') {
-    grid-template-columns: repeat(3, 1fr);
+    grid-gap: $oxd-grid-three-lg-gap;
+    grid-template-columns: $oxd-grid-three-lg-template-columns;
   }
 }
 
 .oxd-grid-2 {
-  margin: 0 auto;
   display: grid;
-  grid-gap: 1rem;
+  margin: $oxd-grid-two-margin;
+  grid-gap: $oxd-grid-two-gap;
 
   @include oxd-respond-to('md') {
-    grid-template-columns: repeat(2, 1fr);
+    grid-gap: $oxd-grid-two-md-gap;
+    grid-template-columns: $oxd-grid-two-md-template-columns;
   }
 
   @include oxd-respond-to('lg') {
-    grid-template-columns: repeat(2, 1fr);
+    grid-gap: $oxd-grid-two-lg-gap;
+    grid-template-columns: $oxd-grid-two-lg-template-columns;
   }
 }
