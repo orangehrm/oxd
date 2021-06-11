@@ -27,7 +27,7 @@ const formatDate = (value: Date, dateFormat: string): string | null => {
   try {
     return format(value, dateFormat.replace(/'/g, ''));
   } catch (error) {
-    return null;
+    return '';
   }
 };
 
