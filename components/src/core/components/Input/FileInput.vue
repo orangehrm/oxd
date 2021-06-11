@@ -11,7 +11,9 @@
     <slot></slot>
     <template v-if="!$slots.default">
       <div class="oxd-file-button" v-if="buttonLabel">{{ buttonLabel }}</div>
-      <div class="oxd-file-input-div">{{ inputValue }}</div>
+      <div class="oxd-file-input-div">
+        {{ inputValue ? inputValue : placeholder }}
+      </div>
       <oxd-icon class="oxd-file-input-icon" :name="buttonIcon" />
     </template>
   </div>
@@ -45,6 +47,10 @@ export default defineComponent({
     buttonIcon: {
       type: String,
       default: 'upload',
+    },
+    placeholder: {
+      type: String,
+      default: 'No file chosen',
     },
   },
 

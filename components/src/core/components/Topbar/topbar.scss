@@ -24,10 +24,11 @@
     flex-flow: row;
     &-title {
       display: flex;
-      flex-basis: 70%;
-      align-items: baseline;
-      padding: 0.5rem 0rem;
       min-width: 0%;
+      line-height: 2;
+      flex-basis: 70%;
+      align-items: center;
+      padding: 0.5rem 0rem;
       & i {
         margin-right: 10px;
         @include oxd-respond-to('xs') {

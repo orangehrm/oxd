@@ -17,7 +17,6 @@
     justify-content: space-between;
     &-options {
       display: flex;
-      padding: 1rem 0;
       @include oxd-respond-to('md') {
         padding: 0;
       }
