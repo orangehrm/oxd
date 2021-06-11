@@ -10,6 +10,7 @@
         @click="toggleDropdown"
         :value="displayDate"
         :placeholder="placeholder"
+        ref="oxdInput"
       />
       <div class="oxd-date-input-icon">
         <oxd-icon name="calendar" @click="toggleDropdown" />
@@ -112,6 +113,7 @@ export default defineComponent({
     toggleDropdown() {
       if (!this.disabled) {
         if (!this.open) {
+          this.$refs.oxdInput.$el.focus();
           this.openDropdown();
         } else {
           this.closeDropdown();

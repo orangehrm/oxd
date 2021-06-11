@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, inject, computed} from 'vue';
+import {defineComponent, inject, computed, onBeforeUnmount} from 'vue';
 import emitter from '../../../../utils/emitter';
 import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
 
@@ -43,12 +43,19 @@ export default defineComponent({
       },
     });
 
-    emitter.on(`${tableProps.tableId}-datatable:selectAll`, () => {
+    const setStateTrue = () => {
       checkState.value = true;
-    });
-
-    emitter.on(`${tableProps.tableId}-datatable:unselectAll`, () => {
+    };
+    const setStateFalse = () => {
       checkState.value = false;
+    };
+
+    emitter.on(`${tableProps.tableId}-datatable:selectAll`, setStateTrue);
+    emitter.on(`${tableProps.tableId}-datatable:unselectAll`, setStateFalse);
+
+    onBeforeUnmount(() => {
+      emitter.off(`${tableProps.tableId}-datatable:selectAll`, setStateTrue);
+      emitter.off(`${tableProps.tableId}-datatable:unselectAll`, setStateFalse);
     });
 
     return {

@@ -113,15 +113,6 @@ export default defineComponent({
       {deep: true},
     );
 
-    watch(
-      () => tableProps.items,
-      () => {
-        state.selectedAll = false;
-        emitter.emit(`${tableProps.tableId}-datatable:updateSelected`, []);
-      },
-      {deep: true},
-    );
-
     const showHeader = computed(() => {
       return (
         screenState.screenType === DEVICE_LG ||
