@@ -140,8 +140,8 @@ export default defineComponent({
     },
     displayDate(): string {
       return this.displayFormat && this.displayFormat.trim() !== ''
-        ? formatDate(this.dateProxy, this.displayFormat)
-        : formatDate(this.dateProxy, this.ioformat);
+        ? formatDate(this.dateSelected, this.displayFormat)
+        : formatDate(this.dateSelected, this.ioformat);
     },
   },
 });
