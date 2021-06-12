@@ -1,6 +1,6 @@
 <template>
   <div class="oxd-switch-wrapper">
-    <label>
+    <label :class="{'--disabled': disabled}">
       <template v-if="labelPosition === 'left'">
         {{ optionLabel }}
       </template>
@@ -11,6 +11,7 @@
         @change="onChange"
         v-bind="$attrs"
         v-model="checked"
+        :disabled="disabled"
       />
       <span :class="classes" :style="style"> </span>
       <template v-if="labelPosition === 'right'">
@@ -37,6 +38,10 @@ export default defineComponent({
     modelValue: {},
     style: {
       type: Object,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
     hasError: {
       type: Boolean,

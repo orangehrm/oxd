@@ -6,3 +6,8 @@
 .oxd-icon {
   color: $oxd-icon-font-color;
 }
+
+[class^='bi-']::before,
+[class*=' bi-']::before {
+  line-height: inherit;
+}

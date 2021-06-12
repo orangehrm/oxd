@@ -1,6 +1,6 @@
 <template>
   <oxd-card-thead v-if="showHeader">
-    <oxd-card-tr>
+    <oxd-card-tr :clickable="false">
       <oxd-card-th
         v-if="tableProps.selectable"
         class="oxd-padding-cell oxd-table-th"

@@ -3,11 +3,11 @@
 @import 'variables';
 
 .oxd-main-menu {
-  display: flex;
-  flex-flow: column;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  display: flex;
   overflow-y: auto;
+  flex-flow: column;
   overflow-x: hidden;
   @include oxd-scrollbar();
   $parent: &;
@@ -18,17 +18,18 @@
     text-decoration: none;
     padding-left: 30px;
     &--name {
-      font-size: 0.85rem;
       display: inline;
-      padding-left: 15px;
-      color: $oxd-menu-item-name-color;
       text-align: left;
+      padding-left: 15px;
+      font-size: $oxd-menu-item-name-font-size;
+      font-weight: $oxd-menu-item-name-font-weight;
+      color: $oxd-menu-item-name-color;
       &.active {
-        color: $oxd-white-color;
+        color: $oxd-menu-item-name-color--active;
       }
     }
     &:hover {
-      color: $oxd-white-color;
+      color: $oxd-menu-item-name-color--hover;
       background-color: $oxd-menu-item-hover-color;
       box-shadow: 1px 1px 10px 5px rgb(255 94 0 / 12%);
       transition-timing-function: ease-out;
@@ -37,7 +38,7 @@
       transition: 0.45s;
     }
     &.active {
-      color: $oxd-white-color;
+      color: $oxd-menu-item-name-color--active;
       background-color: $oxd-menu-item-active-color;
       box-shadow: 1px 1px 10px 5px rgb(255 94 0 / 12%);
       transition-timing-function: ease-out;

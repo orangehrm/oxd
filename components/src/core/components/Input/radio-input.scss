@@ -7,7 +7,7 @@
     display: flex;
     align-content: center;
     font-family: $oxd-input-control-font-family;
-    color: $oxd-input-control-font-color;
+    color: $oxd-radio-label-color;
     font-size: $oxd-input-control-font-size;
     font-weight: $oxd-input-control-font-weight;
     width: fit-content;
@@ -19,7 +19,7 @@
     }
 
     &.--disabled {
-      color: lighten($oxd-input-control-font-color, 30%);
+      color: $oxd-radio-label-color--disabled;
       cursor: unset;
       background-color: unset;
       border-radius: unset;

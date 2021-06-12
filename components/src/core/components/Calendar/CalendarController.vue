@@ -2,7 +2,7 @@
   <div class="oxd-calendar-header">
     <oxd-icon name="chevron-left" @click="gotoPreviousMonth"></oxd-icon>
     <ul class="oxd-calendar-selector">
-      <oxd-dropdown-menu class="oxd-calendar-selector-month">
+      <oxd-calendar-dropdown class="oxd-calendar-selector-month">
         <div class="oxd-calendar-selector-month-selected">
           <oxd-text tag="p">{{ months[modelValue.month] }}</oxd-text>
           <oxd-icon name="caret-down-fill" :with-container="false" />
@@ -18,8 +18,8 @@
             {{ month }}
           </li>
         </template>
-      </oxd-dropdown-menu>
-      <oxd-dropdown-menu class="oxd-calendar-selector-year">
+      </oxd-calendar-dropdown>
+      <oxd-calendar-dropdown class="oxd-calendar-selector-year">
         <div class="oxd-calendar-selector-year-selected">
           <oxd-text tag="p">{{ modelValue.year }}</oxd-text>
           <oxd-icon name="caret-down-fill" :with-container="false" />
@@ -35,7 +35,7 @@
             {{ year }}
           </li>
         </template>
-      </oxd-dropdown-menu>
+      </oxd-calendar-dropdown>
     </ul>
     <oxd-icon name="chevron-right" @click="gotoNextMonth"></oxd-icon>
   </div>
@@ -44,7 +44,7 @@
 import {defineComponent} from 'vue';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import Icon from '@orangehrm/oxd/core/components/Button/Icon.vue';
-import DropdownMenu from '@orangehrm/oxd/core/components/DropdownMenu/DropdownMenu.vue';
+import CalendarDropdown from '@orangehrm/oxd/core/components/Calendar/CalendarDropdown.vue';
 
 export default defineComponent({
   name: 'oxd-calendar-controller',
@@ -65,7 +65,7 @@ export default defineComponent({
   components: {
     'oxd-text': Text,
     'oxd-icon': Icon,
-    'oxd-dropdown-menu': DropdownMenu,
+    'oxd-calendar-dropdown': CalendarDropdown,
   },
   methods: {
     gotoPreviousMonth() {

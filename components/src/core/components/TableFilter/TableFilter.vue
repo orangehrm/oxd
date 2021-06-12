@@ -13,19 +13,30 @@
         <div class="--export">
           <slot name="exportOptions"></slot>
         </div>
+        <div class="--toggle">
+          <oxd-icon-button
+            :name="isActive ? 'caret-up-fill' : 'caret-down-fill'"
+            @click="toggleFilters"
+          />
+        </div>
       </div>
     </div>
-    <oxd-divider />
-    <div class="oxd-table-filter-area">
+    <oxd-divider v-show="isActive" />
+    <div v-show="isActive" class="oxd-table-filter-area">
       <slot></slot>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, ref, watchEffect} from 'vue';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';
+import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
+import useResponsive, {
+  DEVICE_LG,
+  DEVICE_XL,
+} from '../../../composables/useResponsive';
 
 export default defineComponent({
   name: 'oxd-table-filter',
@@ -33,6 +44,7 @@ export default defineComponent({
   components: {
     'oxd-text': Text,
     'oxd-divider': Divider,
+    'oxd-icon-button': IconButton,
   },
 
   props: {
@@ -42,19 +54,24 @@ export default defineComponent({
     },
   },
 
-  data() {
-    return {
-      isActive: false,
-    };
-  },
+  setup() {
+    const responsiveState = useResponsive();
+    const isActive = ref(true);
 
-  methods: {
-    openSubmenu() {
-      this.isActive = true;
-    },
-    closeSubMenu() {
-      this.isActive = false;
-    },
+    const toggleFilters = () => {
+      isActive.value = !isActive.value;
+    };
+
+    watchEffect(() => {
+      isActive.value =
+        responsiveState.screenType === DEVICE_LG ||
+        responsiveState.screenType === DEVICE_XL;
+    });
+
+    return {
+      isActive,
+      toggleFilters,
+    };
   },
 });
 </script>

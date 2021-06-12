@@ -22,7 +22,7 @@
     & .oxd-icon {
       border-radius: 0.65rem;
       padding: 0.5rem;
-      background-color: $oxd-interface-gray-lighten-2-color;
+      background-color: $oxd-background-light-gray-color;
     }
   }
   ::v-deep(.oxd-input) {
@@ -33,8 +33,11 @@
     top: 50px;
     right: 0;
     position: absolute;
-    width: 250px;
     z-index: 9999;
+    width: 250px;
+    @include oxd-respond-to('sm') {
+      width: 300px;
+    }
   }
 }
 

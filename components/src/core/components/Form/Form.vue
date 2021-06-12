@@ -50,11 +50,13 @@ export default defineComponent({
 
   methods: {
     validate(e: Event) {
-      setTimeout(() => {
-        if (this.isValid) {
-          this.$emit('submitValid', e);
-        }
-      }, 0);
+      if (!this.loading) {
+        setTimeout(() => {
+          if (this.isValid) {
+            this.$emit('submitValid', e);
+          }
+        }, 0);
+      }
     },
     searchErrors(id: string) {
       return this.errorBag.findIndex((item: ErrorField) => {

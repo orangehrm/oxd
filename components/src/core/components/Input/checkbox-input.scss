@@ -7,7 +7,7 @@
     display: flex;
     align-content: center;
     font-family: $oxd-input-control-font-family;
-    color: $oxd-input-control-font-color;
+    color: $oxd-checkbox-label-color;
     font-size: $oxd-input-control-font-size;
     font-weight: $oxd-input-control-font-weight;
     width: fit-content;
@@ -49,6 +49,11 @@
         }
       }
     }
+
+    &.--disabled {
+      color: $oxd-checkbox-label-color--disabled;
+      cursor: unset;
+    }
   }
 }
 
@@ -68,7 +73,7 @@
   }
 
   &--active {
-    border: $oxd-input-border--active;
+    border: $oxd-checkbox-border;
   }
 
   &--focus {
@@ -86,7 +91,7 @@
     color: $oxd-white-color;
     font-size: $oxd-checkbox-check-font-size;
     position: absolute;
-    line-height: 0;
+    line-height: 1.5;
     align-self: center;
   }
 }
