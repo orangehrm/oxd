@@ -94,7 +94,9 @@ export default defineComponent({
 </script>
 
 <style src="./layout.scss" lang="scss" scoped></style>
-<style>
+<style lang="scss">
+@import '../../../styles';
+
 body {
   display: block;
   margin: 0;
@@ -103,6 +105,7 @@ body {
 html,
 body {
   height: 100%;
+  @include oxd-scrollbar();
 }
 
 #app,

@@ -10,6 +10,7 @@
         @click="toggleDropdown"
         :value="displayDate"
         :placeholder="placeholder"
+        ref="oxdInput"
       />
       <div class="oxd-date-input-icon">
         <oxd-icon name="calendar" @click="toggleDropdown" />
@@ -104,7 +105,7 @@ export default defineComponent({
       this.$emit('blur');
     },
     onDateTyped(value: string) {
-      this.dateTyped = value;
+      this.dateTyped = value ? value : ' ';
     },
     onDateSelected() {
       this.closeDropdown();
@@ -112,6 +113,7 @@ export default defineComponent({
     toggleDropdown() {
       if (!this.disabled) {
         if (!this.open) {
+          this.$refs.oxdInput.$el.focus();
           this.openDropdown();
         } else {
           this.closeDropdown();
@@ -140,8 +142,8 @@ export default defineComponent({
     },
     displayDate(): string {
       return this.displayFormat && this.displayFormat.trim() !== ''
-        ? formatDate(this.dateProxy, this.displayFormat)
-        : formatDate(this.dateProxy, this.ioformat);
+        ? formatDate(this.dateSelected, this.displayFormat)
+        : formatDate(this.dateSelected, this.ioformat);
     },
   },
 });

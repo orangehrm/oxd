@@ -10,7 +10,7 @@
         displayType="ghost-success"
         label="No, Cancel"
       />
-      <oxd-button size="medium" displayType="secondary" label="Yes, Delete" />
+      <oxd-button size="medium" displayType="success" label="Yes, Delete" />
     </oxd-alert>
 
     <oxd-alert

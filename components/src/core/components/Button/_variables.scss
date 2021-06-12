@@ -16,8 +16,8 @@ $oxd-button-font-color: $oxd-white-color !default;
 
 /* Main */
 $oxd-button-color--main: $oxd-primary-one-color !default;
-$oxd-button-color--main-pressed: darken($oxd-button-color--main, 5%) !default;
-$oxd-button-color--main-hover: lighten($oxd-button-color--main, 5%) !default;
+$oxd-button-color--main-pressed: darken($oxd-button-color--main, 5.1%) !default;
+$oxd-button-color--main-hover: lighten($oxd-button-color--main, 4.9%) !default;
 $oxd-button-color--main-focus: $oxd-button-color--main-hover !default;
 $oxd-button-color--main-inactive: $oxd-interface-gray-lighten-2-color !default;
 
@@ -171,9 +171,9 @@ $oxd-button-color--ghost-success-inactive: $oxd-interface-gray-lighten-1-color !
 
 /* Tool */
 $oxd-button-color--ghost-tool: $oxd-interface-gray-color !default;
-$oxd-button-color--ghost-tool-pressed: $oxd-button-color--ghost-tool !default;
-$oxd-button-color--ghost-tool-hover: $oxd-button-color--ghost-tool !default;
-$oxd-button-color--ghost-tool-focus: $oxd-button-color--ghost-tool-hover !default;
+$oxd-button-color--ghost-tool-pressed: $oxd-interface-gray-darken-1-color !default;
+$oxd-button-color--ghost-tool-hover: $oxd-interface-gray-darken-1-color !default;
+$oxd-button-color--ghost-tool-focus: $oxd-interface-gray-darken-1-color !default;
 $oxd-button-color--ghost-tool-inactive: $oxd-interface-gray-lighten-1-color !default;
 
 $oxd-ghost-buttons: (

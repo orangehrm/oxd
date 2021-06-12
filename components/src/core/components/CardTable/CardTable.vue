@@ -24,6 +24,7 @@ import {
   PropType,
   provide,
   readonly,
+  watch,
 } from 'vue';
 import {CardSelector, CardHeaders, Order} from './types';
 import useResponsive from '../../../composables/useResponsive';
@@ -106,6 +107,13 @@ export default defineComponent({
     emitter.on(`${props.tableId}-datatable:clickRow`, value => {
       context.emit('click', value);
     });
+
+    watch(
+      () => props.loading,
+      () => {
+        context.emit('update:selected', []);
+      },
+    );
 
     onBeforeUnmount(() => {
       emitter.all.forEach((...[, key]) => {

@@ -14,6 +14,7 @@
         @update:modelValue="onSearchUpdate"
         @click="toggleDropdown"
         @blur="onBlur"
+        ref="oxdInput"
       />
       <div class="oxd-dropdown-input-icon" v-if="!isLoading">
         <oxd-icon
@@ -243,6 +244,7 @@ export default defineComponent({
     toggleDropdown() {
       if (!this.disabled) {
         if (!this.open) {
+          this.$refs.oxdInput.$el.focus();
           this.openDropdown();
         } else {
           this.closeDropdown();
