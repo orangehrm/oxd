@@ -57,24 +57,12 @@
     padding: $oxd-tree-view-node-padding;
     position: relative;
   }
-  &::after {
-    content: '';
+  &-liner {
     position: absolute;
     left: calc(-1.25rem + (#{$oxd-tree-view-toggle-height}/ 2));
-  }
-  &::after {
     border-left: $oxd-tree-view-border;
-    height: 100%;
     width: 0px;
     top: 0;
-  }
-  &:last-child::after {
-    height: 50%;
-  }
-  &.--open {
-    &:last-child::after {
-      height: 12%;
-    }
   }
 }
 

@@ -1,6 +1,11 @@
 <template>
   <li class="oxd-tree-node" :class="nodeClasses">
-    <div v-if="showRoot" class="oxd-tree-node-wrapper" :class="nodeClasses">
+    <div
+      :ref="cuid"
+      v-if="showRoot"
+      :class="nodeClasses"
+      class="oxd-tree-node-wrapper"
+    >
       <span v-if="hasChildren" class="oxd-tree-node-toggle">
         <oxd-icon-button
           @click="onClickNode"
@@ -15,17 +20,19 @@
         </template>
       </div>
     </div>
+    <div class="oxd-tree-node-liner" :style="lineStyles"></div>
     <transition
       :name="animation"
       v-if="hasChildren"
       @after-leave="onAnimationComplete"
     >
-      <ul class="oxd-tree-node-child" v-show="isOpen">
+      <ul class="oxd-tree-node-child" v-if="isOpen">
         <oxd-tree-node
-          v-for="child in data.children"
+          v-for="(child, index) in data.children"
           :key="child.cuid"
           :data="child"
           :animation="animation"
+          :isLast="index + 1 === data.children.length"
         >
           <template v-for="(_, name) in $slots" v-slot:[name]="slotData">
             <slot :name="name" v-bind="slotData" />
@@ -61,6 +68,10 @@ export default defineComponent({
       type: String,
       default: 'transition-fade-down',
     },
+    isLast: {
+      type: Boolean,
+      default: true,
+    },
   },
   components: {
     'oxd-icon-button': IconButton,
@@ -68,9 +79,11 @@ export default defineComponent({
   setup(props) {
     const isOpen = ref(props.open);
     const isCollapsed = ref(!props.open);
+    const height = ref(0);
     return {
       isOpen,
       isCollapsed,
+      height,
     };
   },
   computed: {
@@ -81,14 +94,23 @@ export default defineComponent({
       return {
         '--parent': this.hasChildren,
         '--open': !this.isCollapsed && this.hasChildren,
+        '--last': this.isLast,
       };
     },
     currentNode(): TNode {
       const {name, children, ...rest} = this.data;
       return {name, children, ...rest};
     },
+    cuid(): string {
+      return nanoid(8);
+    },
     nodes(): TNode {
-      return {...this.data, cuid: nanoid(8)};
+      return {...this.data, cuid: this.cuid};
+    },
+    lineStyles(): object {
+      return {
+        height: this.isLast ? this.height / 2 + 'px' : '100%',
+      };
     },
   },
   methods: {
@@ -101,6 +123,13 @@ export default defineComponent({
     onAnimationComplete() {
       this.isCollapsed = true;
     },
+    calculateNodeHeight() {
+      const node = this.$refs[this.cuid] as HTMLInputElement;
+      this.height = node ? node.clientHeight : 0;
+    },
+  },
+  mounted() {
+    this.calculateNodeHeight();
   },
 });
 </script>
