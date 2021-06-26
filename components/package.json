@@ -13,8 +13,7 @@
     "date-fns": "^2.22.1",
     "mitt": "^2.1.0",
     "nanoid": "^3.1.21",
-    "vue": "^3.0.5",
-    "vue-class-component": "^8.0.0-0"
+    "vue": "^3.1.2"
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",
