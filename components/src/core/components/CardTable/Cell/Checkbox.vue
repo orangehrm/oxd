@@ -1,8 +1,10 @@
 <template>
   <oxd-checkbox-input
+    v-if="isSelectable"
     v-model="checkState"
     :value="item"
     @click="onClickCheckbox(item, $event)"
+    :disabled="isDisabled"
   />
 </template>
 
@@ -10,10 +12,12 @@
 import {defineComponent, inject, computed, onBeforeUnmount} from 'vue';
 import emitter from '../../../../utils/emitter';
 import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
+import {cellMixin} from './cell-mixin';
 
 export default defineComponent({
   name: 'oxd-table-cell-checkbox',
   components: {'oxd-checkbox-input': CheckboxInput},
+  mixins: [cellMixin],
   props: {
     item: {
       required: true,
@@ -43,6 +47,18 @@ export default defineComponent({
       },
     });
 
+    const isDisabled = computed(() => {
+      return props.rowItem?.isDisabled === undefined
+        ? false
+        : Boolean(props.rowItem.isDisabled);
+    });
+
+    const isSelectable = computed(() => {
+      return props.rowItem?.isSelectable === undefined
+        ? true
+        : Boolean(props.rowItem.isSelectable);
+    });
+
     const setStateTrue = () => {
       checkState.value = true;
     };
@@ -50,8 +66,10 @@ export default defineComponent({
       checkState.value = false;
     };
 
-    emitter.on(`${tableProps.tableId}-datatable:selectAll`, setStateTrue);
-    emitter.on(`${tableProps.tableId}-datatable:unselectAll`, setStateFalse);
+    if (!isDisabled.value && isSelectable.value) {
+      emitter.on(`${tableProps.tableId}-datatable:selectAll`, setStateTrue);
+      emitter.on(`${tableProps.tableId}-datatable:unselectAll`, setStateFalse);
+    }
 
     onBeforeUnmount(() => {
       emitter.off(`${tableProps.tableId}-datatable:selectAll`, setStateTrue);
@@ -61,6 +79,8 @@ export default defineComponent({
     return {
       tableProps,
       checkState,
+      isDisabled,
+      isSelectable,
     };
   },
   methods: {

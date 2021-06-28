@@ -6,6 +6,7 @@
       :is="getComponent(action, key)"
       v-bind="getProps(action, key)"
       class="oxd-table-cell-action-space"
+      :disabled="isDisabled"
       @click="onClickAction(action, key, $event)"
     />
   </div>
@@ -46,6 +47,11 @@ export default defineComponent({
       }
 
       return {};
+    },
+    isDisabled(): boolean {
+      return this.rowItem?.isDisabled === undefined
+        ? false
+        : Boolean(this.rowItem.isDisabled);
     },
   },
 

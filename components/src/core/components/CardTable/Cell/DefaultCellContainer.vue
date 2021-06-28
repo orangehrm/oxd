@@ -21,6 +21,7 @@ import DefaultCell from './Default.vue';
 import ActionsCell from './Actions.vue';
 import CheckboxCell from './Checkbox.vue';
 import {CardHeaders} from '../types';
+import {RowItem} from './types';
 
 export default defineComponent({
   name: 'oxd-table-cell-container',
@@ -38,7 +39,7 @@ export default defineComponent({
       default: () => [],
     },
     items: {
-      type: Object,
+      type: Object as PropType<RowItem>,
       default: () => ({}),
     },
   },
