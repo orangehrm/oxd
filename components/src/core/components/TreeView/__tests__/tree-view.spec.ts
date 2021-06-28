@@ -34,19 +34,19 @@ describe('TreeView.vue', () => {
     expect(wrapper.html()).toMatchSnapshot();
   });
 
-  it('should renders Tree View with 8 Nodes', () => {
+  it('should renders Tree View with 4 Nodes', () => {
     const wrapper = mount(TreeView, {
-      props: {data},
+      props: {data, open: true},
     });
     const nodes = wrapper.findAllComponents(TreeNode);
-    expect(nodes.length).toBe(8);
+    expect(nodes.length).toBe(4);
   });
 
   it('should not render root node', () => {
     const wrapper = mount(TreeView, {
-      props: {data, showRoot: false},
+      props: {data, showRoot: false, open: true},
     });
-    expect(wrapper.findAll('.oxd-tree-node-wrapper').length).toBe(7);
+    expect(wrapper.findAll('.oxd-tree-node-wrapper').length).toBe(3);
   });
 
   it('should open node on click', async () => {
@@ -60,7 +60,7 @@ describe('TreeView.vue', () => {
 
   it('should not have collapse button on non parent nodes', async () => {
     const wrapper = mount(TreeView, {
-      props: {data},
+      props: {data, open: true},
     });
     const nodes = wrapper.findAllComponents(TreeNode);
     expect(
