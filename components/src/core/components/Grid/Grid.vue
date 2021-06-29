@@ -25,3 +25,11 @@ export default defineComponent({
 </script>
 
 <style src="./grid.scss" lang="scss" scoped></style>
+
+<style lang="scss">
+@for $i from 1 through 8 {
+  .--span-column-#{$i} {
+    grid-column: span #{$i};
+  }
+}
+</style>
