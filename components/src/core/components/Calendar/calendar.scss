@@ -34,8 +34,6 @@
   &-date-wrapper {
     &.--weekend {
       background-color: $oxd-calendar-date-weekend-background-color;
-      color: $oxd-calendar-date-weekend-font-color;
-      font-weight: $oxd-calendar-date-weekend-font-weight;
     }
     @for $i from 1 through 7 {
       &.--offset-#{$i} {
@@ -59,6 +57,10 @@
       background-color: $oxd-calendar-date-today-background-color;
       color: $oxd-calendar-date-today-font-color;
       font-weight: $oxd-calendar-date-today-font-weight;
+    }
+    &.--weekend {
+      color: $oxd-calendar-date-weekend-font-color;
+      font-weight: $oxd-calendar-date-weekend-font-weight;
     }
     &.--holiday {
       background-color: $oxd-calendar-date-holiday-background-color;
