@@ -8,8 +8,10 @@
       :selectable="true"
       v-model:selected="checkedItems"
       rowDecorator="oxd-table-decorator-card"
-      :order="order"
+      v-model:order="order"
     />
+    <br />
+    <p>{{ order }}</p>
   </div>
 </template>
 
@@ -28,16 +30,10 @@ export default {
       ],
       items: [],
       checkedItems: [2, 0],
-      order: [
-        {
-          id: 0,
-          default: 'desc',
-        },
-        {
-          id: 1,
-          default: '',
-        },
-      ],
+      order: {
+        col1: 'ASC',
+        col2: 'DEFAULT',
+      },
     };
   },
 

@@ -49,9 +49,15 @@ export default defineComponent({
       return {};
     },
     isDisabled(): boolean {
-      return this.rowItem?.isDisabled === undefined
-        ? false
-        : Boolean(this.rowItem.isDisabled);
+      const isRowDisabled =
+        this.rowItem?.isDisabled === undefined
+          ? false
+          : Boolean(this.rowItem.isDisabled);
+      const isTableDisabled =
+        this.tableProps?.disabled === undefined
+          ? false
+          : Boolean(this.tableProps?.disabled);
+      return isTableDisabled ? isTableDisabled : isRowDisabled;
     },
   },
 

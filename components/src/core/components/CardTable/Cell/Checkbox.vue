@@ -6,6 +6,9 @@
     @click="onClickCheckbox(item, $event)"
     :disabled="isDisabled"
   />
+  <div v-else class="oxd-table-card-cell-hidden">
+    <oxd-checkbox-input />
+  </div>
 </template>
 
 <script lang="ts">
@@ -48,9 +51,15 @@ export default defineComponent({
     });
 
     const isDisabled = computed(() => {
-      return props.rowItem?.isDisabled === undefined
-        ? false
-        : Boolean(props.rowItem.isDisabled);
+      const isRowDisabled =
+        props.rowItem?.isDisabled === undefined
+          ? false
+          : Boolean(props.rowItem.isDisabled);
+      const isTableDisabled =
+        tableProps?.disabled === undefined
+          ? false
+          : Boolean(tableProps?.disabled);
+      return isTableDisabled ? isTableDisabled : isRowDisabled;
     });
 
     const isSelectable = computed(() => {
@@ -95,4 +104,4 @@ export default defineComponent({
 });
 </script>
 
-<style src="./default.scss" lang="scss" scoped></style>
+<style src="./default.scss" lang="scss"></style>

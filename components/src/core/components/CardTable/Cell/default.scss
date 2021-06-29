@@ -6,4 +6,10 @@
   & .header {
     font-weight: $oxd-table-header-font-weight;
   }
+  &-hidden {
+    opacity: 0 !important;
+    label {
+      cursor: unset !important;
+    }
+  }
 }
