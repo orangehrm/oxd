@@ -69,16 +69,18 @@ export default defineComponent({
     });
 
     const setStateTrue = () => {
-      checkState.value = true;
+      if (!isDisabled.value && isSelectable.value) {
+        checkState.value = true;
+      }
     };
     const setStateFalse = () => {
-      checkState.value = false;
+      if (!isDisabled.value && isSelectable.value) {
+        checkState.value = false;
+      }
     };
 
-    if (!isDisabled.value && isSelectable.value) {
-      emitter.on(`${tableProps.tableId}-datatable:selectAll`, setStateTrue);
-      emitter.on(`${tableProps.tableId}-datatable:unselectAll`, setStateFalse);
-    }
+    emitter.on(`${tableProps.tableId}-datatable:selectAll`, setStateTrue);
+    emitter.on(`${tableProps.tableId}-datatable:unselectAll`, setStateFalse);
 
     onBeforeUnmount(() => {
       emitter.off(`${tableProps.tableId}-datatable:selectAll`, setStateTrue);
