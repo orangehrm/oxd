@@ -3,8 +3,10 @@ import {ActionsCellConfig, RowItem} from './Cell/types';
 
 export interface CardHeader extends StyleProps {
   name: string;
+  slot?: string;
   cellType?: string;
   cellConfig?: ActionsCellConfig<RowItem>;
+  sortField?: string;
 }
 
 export type CardHeaders = Array<CardHeader>;

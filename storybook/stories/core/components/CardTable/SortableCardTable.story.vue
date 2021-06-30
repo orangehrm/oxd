@@ -25,14 +25,24 @@ export default {
         style: {flex: 1},
       },
       headers: [
-        {name: 'col1', title: 'Column 1', style: {flex: 1}},
-        {name: 'col2', title: 'Column 2', style: {flex: 5}},
+        {
+          name: 'col1',
+          sortField: 'col1.name',
+          title: 'Column 1',
+          style: {flex: 1},
+        },
+        {
+          name: 'col2',
+          sortField: 'col2.name',
+          title: 'Column 2',
+          style: {flex: 5},
+        },
       ],
       items: [],
       checkedItems: [2, 0],
       order: {
-        col1: 'ASC',
-        col2: 'DEFAULT',
+        'col1.name': 'ASC',
+        'col2.name': 'DEFAULT',
       },
     };
   },

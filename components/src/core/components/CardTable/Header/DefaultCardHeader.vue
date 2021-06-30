@@ -20,7 +20,7 @@
         :key="header"
         :style="header.style"
         :class="header.class"
-        :order="tableProps.order[header.name]"
+        :order="tableProps.order[header.sortField]"
         @order="onColumnOrderChanged($event, header)"
       >
         {{ header.title }}
@@ -134,7 +134,7 @@ export default defineComponent({
       }
       emitter.emit(`${this.tableProps.tableId}-datatable:updateOrder`, {
         ...orderFields,
-        [column.name]: order,
+        [column.sortField]: order,
       });
     },
   },
