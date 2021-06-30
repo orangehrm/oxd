@@ -2,7 +2,7 @@
   <div class="oxd-table-header-cell" role="columnheader">
     <slot></slot>
     <oxd-card-th-sort
-      v-if="order"
+      v-if="order !== undefined"
       :order="order"
       @order="onOrder"
     ></oxd-card-th-sort>

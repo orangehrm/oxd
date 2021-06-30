@@ -17,14 +17,14 @@
           class="oxd-table-header-sort-dropdown-item"
           @click="$emit('order', 'ASC')"
         >
-          <oxd-icon name="sort-alpha-up" />
+          <oxd-icon name="sort-alpha-down" />
           <oxd-text tag="span">Ascending</oxd-text>
         </li>
         <li
           class="oxd-table-header-sort-dropdown-item"
           @click="$emit('order', 'DESC')"
         >
-          <oxd-icon name="sort-alpha-down" />
+          <oxd-icon name="sort-alpha-up" />
           <oxd-text tag="span">Decending</oxd-text>
         </li>
       </ul>
@@ -84,13 +84,13 @@ export default defineComponent({
   computed: {
     sortIcon(): string {
       let icon = '';
-      if (this.order) {
+      if (this.order !== undefined) {
         switch (this.order as Order) {
           case 'ASC':
-            icon = 'sort-alpha-up';
+            icon = 'sort-alpha-down';
             break;
           case 'DESC':
-            icon = 'sort-alpha-down';
+            icon = 'sort-alpha-up';
             break;
           default:
             icon = 'arrow-down-up';
