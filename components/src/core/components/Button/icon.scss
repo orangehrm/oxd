@@ -26,6 +26,12 @@
   &:active {
     background-color: $oxd-icon-button--pressed;
   }
+
+  &:disabled {
+    background-color: $oxd-icon-button--disabled;
+    color: $oxd-icon-button-font-color--disabled;
+    cursor: not-allowed;
+  }
 }
 
 .oxd-icon-button__icon {
@@ -42,5 +48,9 @@
 
   &:active {
     color: $oxd-list-button--pressed;
+  }
+
+  &.--disabled {
+    color: $oxd-icon-button-font-color--disabled;
   }
 }

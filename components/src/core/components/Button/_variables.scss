@@ -363,6 +363,8 @@ $oxd-icon-button-font-color: $oxd-interface-gray-darken-1-color !default;
 $oxd-icon-button-bg-color: rgba($oxd-icon-button-font-color, 0.1) !default;
 $oxd-icon-button--pressed: rgba($oxd-icon-button-font-color, 0.2) !default;
 $oxd-icon-button--hover: rgba($oxd-icon-button-font-color, 0.15) !default;
+$oxd-icon-button--disabled: #f6f7f9 !default;
+$oxd-icon-button-font-color--disabled: $oxd-interface-gray-lighten-2-color !default;
 $oxd-icon-button-size: 36px;
 $oxd-icon-button-padding: 6px;
 

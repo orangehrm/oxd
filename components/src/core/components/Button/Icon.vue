@@ -1,11 +1,17 @@
 <template>
-  <button v-if="withContainer" type="button" :class="classes" @click="onClick">
-    <oxd-icon :name="name" />
+  <button
+    :disabled="disabled"
+    v-if="withContainer"
+    type="button"
+    :class="classes"
+    @click="onClick"
+  >
+    <oxd-icon :class="{'--disabled': disabled}" :name="name" />
   </button>
   <oxd-icon
     v-else
     :name="name"
-    class="oxd-icon-button__icon"
+    :class="{'oxd-icon-button__icon': true, '--disabled': disabled}"
     @click="onClick"
   />
 </template>
@@ -29,6 +35,10 @@ export default defineComponent({
     withContainer: {
       type: Boolean,
       default: true,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
 

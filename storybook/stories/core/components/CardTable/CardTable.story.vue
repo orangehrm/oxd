@@ -6,6 +6,7 @@
       :items="items"
       @click="onClick"
       :selectable="selectable"
+      :disabled="disabled"
       :clickable="false"
       :loading="isLoading"
       v-model:selected="checkedItems"
@@ -35,6 +36,9 @@ export default {
 
   props: {
     selectable: {
+      type: Boolean,
+    },
+    disabled: {
       type: Boolean,
     },
   },

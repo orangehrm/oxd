@@ -16,9 +16,12 @@
         @blur="onBlur"
         ref="oxdInput"
       />
-      <div class="oxd-dropdown-input-icon" v-if="!isLoading">
+      <div
+        v-if="!isLoading"
+        :class="{'oxd-dropdown-input-icon': true, '--disabled': disabled}"
+      >
         <oxd-icon
-          v-if="selectedOptions.length != 0 && clear"
+          v-if="selectedOptions.length != 0 && clear && !disabled"
           class="--clear"
           name="x"
           @click="onDropdownClear"
@@ -68,7 +71,11 @@
         :label="option.label"
         class="oxd-dropdown-selected-chip"
       >
-        <oxd-icon class="--clear" name="x" @click="onRemoveOption(option)" />
+        <oxd-icon
+          :class="{'--clear': true, '--disabled': disabled}"
+          name="x"
+          @click="onRemoveOption(option)"
+        />
       </oxd-chip>
     </div>
   </div>
@@ -224,9 +231,12 @@ export default defineComponent({
       });
     },
     placeholder(): string {
+      const placeholder = !this.disabled
+        ? this.placeholderText.replace(/'/g, '')
+        : '';
       return !this.multiple && this.selectedOptions.length != 0
         ? this.selectedOptions[0].label
-        : this.placeholderText.replace(/'/g, '');
+        : placeholder;
     },
   },
 
@@ -252,6 +262,9 @@ export default defineComponent({
       }
     },
     onDropdownClear() {
+      if (this.disabled) {
+        return;
+      }
       this.$emit('update:modelValue', []);
       this.$emit('dropdown:cleared');
     },
@@ -269,6 +282,9 @@ export default defineComponent({
       this.closeDropdown();
     },
     onRemoveOption(item: Option) {
+      if (this.disabled) {
+        return;
+      }
       const _selOpts = JSON.parse(JSON.stringify(this.selectedOptions));
       const itemIndex = _selOpts.findIndex(elem => elem.id === item.id);
       if (itemIndex > -1) {

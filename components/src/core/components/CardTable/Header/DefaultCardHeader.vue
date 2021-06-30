@@ -16,12 +16,12 @@
 
       <oxd-card-th
         class="oxd-padding-cell oxd-table-th"
-        v-for="(header, index) in tableProps.headers"
+        v-for="header in tableProps.headers"
         :key="header"
         :style="header.style"
         :class="header.class"
-        :sort="getSort(index)"
-        @sort="onSort"
+        :order="tableProps.order[header.sortField]"
+        @order="onColumnOrderChanged($event, header)"
       >
         {{ header.title }}
       </oxd-card-th>
@@ -31,19 +31,18 @@
 
 <script lang="ts">
 import {defineComponent, reactive, watch, toRefs, inject, computed} from 'vue';
-import {Sort} from '../types';
 import emitter from '../../../../utils/emitter';
 import TableHeader from '@orangehrm/oxd/core/components/CardTable/Table/TableHeader.vue';
 import TableRow from '@orangehrm/oxd/core/components/CardTable/Table/TableRow.vue';
 import TableHeaderCell from '@orangehrm/oxd/core/components/CardTable/Table/TableHeaderCell.vue';
 import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
 import {DEVICE_LG, DEVICE_XL} from '../../../../composables/useResponsive';
+import {CardHeader, Order} from '../types';
 
 interface State {
   checkIcon: string;
   checkedItems: number[];
   selectedAll: boolean;
-  sort: Sort[];
 }
 
 export default defineComponent({
@@ -68,18 +67,7 @@ export default defineComponent({
       selectedAll:
         tableProps.selected.length > 0 &&
         tableProps.selected.length === tableProps.items.length,
-      sort: tableProps.headers.map((header, index) => {
-        return {
-          order: tableProps.order[index],
-          header: header,
-          state: tableProps.order[index]
-            ? tableProps.order[index].default
-            : 'none',
-        };
-      }),
     });
-
-    emitter.emit(`${tableProps.tableId}-datatable:updateSort`, state.sort);
 
     emitter.on(`${tableProps.tableId}-datatable:rowSelected`, value => {
       const itemIndex = state.checkedItems.findIndex(item => item === value);
@@ -139,32 +127,15 @@ export default defineComponent({
         emitter.emit(`${this.tableProps.tableId}-datatable:unselectAll`, []);
       }
     },
-    getSort(index: number): Sort {
-      return this.sort[index];
-    },
-    onSort(sortEvent: Sort) {
-      const {order} = sortEvent;
-      if (order) {
-        const _sort: Sort = {...this.sort[order.id]};
-        switch (_sort.state) {
-          case 'asc':
-            _sort.state = 'desc';
-            break;
-          case 'desc':
-            _sort.state = '';
-            break;
-          case '':
-            _sort.state = 'asc';
-            break;
-          default:
-            break;
-        }
-        this.sort[order.id] = _sort;
-        emitter.emit(
-          `${this.tableProps.tableId}-datatable:updateSort`,
-          this.sort,
-        );
+    onColumnOrderChanged(order: Order, column: CardHeader) {
+      const orderFields = {};
+      for (const key in this.tableProps.order) {
+        orderFields[key] = 'DEFAULT';
       }
+      emitter.emit(`${this.tableProps.tableId}-datatable:updateOrder`, {
+        ...orderFields,
+        [column.sortField]: order,
+      });
     },
   },
 });

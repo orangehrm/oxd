@@ -27,6 +27,9 @@
         background-color: $oxd-background-light-gray-color;
       }
     }
+    &.--disabled {
+      cursor: unset;
+    }
   }
   &-loader {
     position: absolute;
@@ -109,6 +112,9 @@
       background-color: $oxd-interface-gray-lighten-1-color;
       color: $oxd-white-color;
       margin-left: 5px;
+    }
+    & .--disabled {
+      cursor: unset;
     }
   }
 }
