@@ -1,0 +1,49 @@
+@import '../../../../styles';
+@import 'variables';
+
+.oxd-table-header-sort {
+  position: relative;
+
+  &-icon {
+    margin-left: 10px;
+    font-size: inherit;
+  }
+
+  &-dropdown {
+    right: 0;
+    display: block;
+    position: absolute;
+    overflow: hidden auto;
+    top: $oxd-table-sort-dropdown-top-margin;
+    max-height: $oxd-table-sort-dropdown-height;
+    width: $oxd-table-sort-dropdown-width;
+    box-shadow: $oxd-dropdown-shadow;
+    border: $oxd-dropdown-border;
+    border-radius: $oxd-dropdown-border-radius;
+    background-color: $oxd-dropdown-background-color;
+    z-index: $oxd-dropdown-z-index;
+
+    ul {
+      list-style: none;
+      padding: $oxd-dropdown-padding;
+      margin: 0;
+    }
+
+    &-item {
+      cursor: pointer;
+      text-align: right;
+      font-size: $oxd-table-sort-dropdown-font-size;
+      font-weight: $oxd-table-sort-dropdown-font-weight;
+      color: $oxd-table-sort-dropdown-font-color;
+      padding: $oxd-dropdown-padding;
+      border-radius: $oxd-dropdown-border-radius;
+      span {
+        margin-left: 5px;
+      }
+      &:hover,
+      &.--selected {
+        background-color: $oxd-dropdown-item-hover-color;
+      }
+    }
+  }
+}

@@ -8,8 +8,10 @@
       :selectable="true"
       v-model:selected="checkedItems"
       rowDecorator="oxd-table-decorator-card"
-      :order="order"
+      v-model:order="order"
     />
+    <br />
+    <p>{{ order }}</p>
   </div>
 </template>
 
@@ -23,21 +25,25 @@ export default {
         style: {flex: 1},
       },
       headers: [
-        {name: 'col1', title: 'Column 1', style: {flex: 1}},
-        {name: 'col2', title: 'Column 2', style: {flex: 5}},
+        {
+          name: 'col1',
+          sortField: 'col1.name',
+          title: 'Column 1',
+          style: {flex: 1},
+        },
+        {
+          name: 'col2',
+          sortField: 'col2.name',
+          title: 'Column 2',
+          style: {flex: 5},
+        },
       ],
       items: [],
       checkedItems: [2, 0],
-      order: [
-        {
-          id: 0,
-          default: 'desc',
-        },
-        {
-          id: 1,
-          default: '',
-        },
-      ],
+      order: {
+        'col1.name': 'ASC',
+        'col2.name': 'DEFAULT',
+      },
     };
   },
 

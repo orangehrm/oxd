@@ -26,7 +26,7 @@ import {
   readonly,
   watch,
 } from 'vue';
-import {CardSelector, CardHeaders, Order} from './types';
+import {CardSelector, CardHeaders, SortDefinition} from './types';
 import useResponsive from '../../../composables/useResponsive';
 import Table from '@orangehrm/oxd/core/components/CardTable/Table/Table.vue';
 import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
@@ -61,6 +61,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
     selected: {
       type: Array as PropType<number[]>,
       default: () => [],
@@ -70,8 +74,8 @@ export default defineComponent({
       default: 'oxd-table-decorator-card',
     },
     order: {
-      type: Array as PropType<Order[]>,
-      default: () => [],
+      type: Object as PropType<SortDefinition>,
+      default: () => ({}),
     },
     loading: {
       type: Boolean,
@@ -95,8 +99,8 @@ export default defineComponent({
     emitter.on(`${props.tableId}-datatable:unselectAll`, () => {
       context.emit('update:selectAll', []);
     });
-    emitter.on(`${props.tableId}-datatable:updateSort`, value => {
-      context.emit('update:sort', value);
+    emitter.on(`${props.tableId}-datatable:updateOrder`, value => {
+      context.emit('update:order', value);
     });
     emitter.on(`${props.tableId}-datatable:updateSelected`, value => {
       context.emit('update:selected', value);
@@ -129,7 +133,7 @@ export default defineComponent({
     'clickCheckbox',
     'update:selected',
     'update:selectAll',
-    'update:sort',
+    'update:order',
   ],
 
   components: {

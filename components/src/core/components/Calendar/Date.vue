@@ -24,6 +24,7 @@ export default defineComponent({
         '--holiday': props.options?.holiday,
         '--highlight-full': props.options?.highlightFull,
         '--highlight-half': props.options?.highlightHalf,
+        '--weekend': isWeekend(props.date),
       };
     });
 

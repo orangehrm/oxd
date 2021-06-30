@@ -5,6 +5,9 @@
 
 .oxd-icon {
   color: $oxd-icon-font-color;
+  &.--disabled {
+    color: $oxd-icon-font-color--disabled;
+  }
 }
 
 [class^='bi-']::before,
