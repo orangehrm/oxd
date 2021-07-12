@@ -6,6 +6,9 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
+  height: 100%;
+  padding-left: $oxd-table-row-left-padding;
+  padding-right: $oxd-table-row-right-padding;
 }
 
 .oxd-table-body > .oxd-table-row {
