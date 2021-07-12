@@ -15,10 +15,9 @@
 }
 
 .oxd-table-card {
+  min-height: $oxd-card-table-decorator-card-min-height;
   border-radius: $oxd-card-table-decorator-card-radius;
   background-color: $oxd-card-table-decorator-card-color;
-  padding-top: $oxd-card-table-decorator-card-margin-vertical;
-  padding-bottom: $oxd-card-table-decorator-card-margin-vertical;
 
   &:hover {
     color: $oxd-card-table-row-hover-font-color;
@@ -27,7 +26,7 @@
 }
 
 .card-item {
-  padding: 0.15rem 0.3rem;
+  padding: $oxd-card-table-decorator-card-item-padding;
   min-width: 0;
   align-self: stretch;
 }
