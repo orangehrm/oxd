@@ -14,8 +14,10 @@ $oxd-table-body-strip-color: $oxd-background-white-shadow-color !default;
 $oxd-table-tr-bg-color: $oxd-interface-gray-color !default;
 $oxd-table-tr-padding: 25px !default;
 
-$oxd-table-cell-padding: 0.65rem !default;
-$oxd-card-table-row-gap: 0.4rem !default;
+$oxd-table-cell-padding: 5px !default;
+$oxd-table-row-left-padding: 5px !default;
+$oxd-table-row-right-padding: 5px !default;
+$oxd-card-table-row-gap: 5px !default;
 
 $oxd-table-loader-height: 400px !default;
 
