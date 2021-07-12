@@ -7,4 +7,13 @@ export const RIGHT = 'right';
 export const TOP = 'top';
 export const BOTTOM = 'bottom';
 export const LABEL_POSITIONS = [LEFT, RIGHT];
+export const DROPDOWN_POSITIONS = [TOP, BOTTOM];
 export type Position = typeof LEFT | typeof RIGHT | typeof TOP | typeof BOTTOM;
+
+export interface Option {
+  id: number;
+  label: string;
+  [key: string]: any;
+}
+
+export type DropdownOptions = Array<Option>;
