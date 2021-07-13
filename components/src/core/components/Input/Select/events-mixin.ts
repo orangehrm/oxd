@@ -3,19 +3,15 @@ import {Option} from '../types';
 
 interface State {
   dropdownOpen: boolean;
-  searchTerm: string | null;
   pointer: number;
-  options: Option[];
 }
 
 export const eventsMixin = defineComponent({
-  props: ['modelValue', 'disabled', 'multiple'],
+  props: ['modelValue', 'disabled'],
   data(): State {
     return {
       dropdownOpen: false,
-      searchTerm: null,
       pointer: -1,
-      options: [],
     };
   },
   methods: {
@@ -34,14 +30,10 @@ export const eventsMixin = defineComponent({
       this.$emit('dropdown:blur');
     },
     onSelect(option: Option) {
-      this.searchTerm = null;
       this.pointer = -1;
       this.dropdownOpen = false;
-      if (this.multiple) {
-        const prevSelected = Array.isArray(this.modelValue)
-          ? this.modelValue
-          : [];
-        this.$emit('update:modelValue', [...prevSelected, option]);
+      if (Array.isArray(this.modelValue)) {
+        this.$emit('update:modelValue', [...this.modelValue, option]);
       } else {
         this.$emit('update:modelValue', option);
       }

@@ -3,7 +3,13 @@
     <div class="oxd-autocomplete-text-input--before">
       <slot name="beforeInput"></slot>
     </div>
-    <input @focus="onFocus" @blur="onBlur" v-bind="$attrs" />
+    <input
+      @focus="onFocus"
+      @blur="onBlur"
+      v-bind="$attrs"
+      :disabled="disabled"
+      :readonly="readonly"
+    />
     <div class="oxd-autocomplete-text-input--after">
       <slot name="afterInput"></slot>
       <oxd-icon
@@ -42,6 +48,14 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    readonly: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -57,12 +71,18 @@ export default defineComponent({
         'oxd-autocomplete-text-input--active': !this.focused,
         'oxd-autocomplete-text-input--focus': this.focused,
         'oxd-autocomplete-text-input--error': this.hasError,
+        'oxd-autocomplete-text-input--disabled': this.disabled,
+        'oxd-autocomplete-text-input--readonly': this.readonly,
       };
     },
   },
 
   methods: {
-    onFocus() {
+    onFocus($e: Event) {
+      if (this.disabled || this.readonly) {
+        $e.stopImmediatePropagation();
+        return;
+      }
       this.focused = true;
     },
     onBlur() {

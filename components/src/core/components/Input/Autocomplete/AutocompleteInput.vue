@@ -5,6 +5,8 @@
       :clear="showClear"
       :placeholder="placeholder"
       :value="inputValue"
+      :disabled="disabled"
+      :readonly="readonly"
       @blur="onBlur"
       @input="onSearch"
       @clear="onClear"
@@ -33,10 +35,10 @@
       v-if="dropdownOpen"
       :class="dropdownClasses"
       :loading="loading"
-      :empty="options.length === 0"
+      :empty="computedOptions.length === 0"
     >
       <oxd-autocomplete-option
-        v-for="(option, i) in options"
+        v-for="(option, i) in computedOptions"
         :key="option.id"
         :class="optionClasses[i]"
         :disabled="option._disabled || option._selected"
@@ -50,6 +52,7 @@
     <oxd-autocomplete-chips
       v-if="multiple"
       :disabled="disabled"
+      :readonly="readonly"
       :selected="modelValue"
       @chipRemoved="onRemoveSelected"
     ></oxd-autocomplete-chips>
@@ -59,8 +62,8 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import debounce from '../../../../utils/debounce';
-import eventsMixin from './events-mixin';
-import navigationMixin from './navigation-mixin';
+import eventsMixin from '../Select/events-mixin';
+import navigationMixin from '../Select/navigation-mixin';
 import {TOP, BOTTOM, Option, Position, DROPDOWN_POSITIONS} from '../types';
 import AutocompleteTextInput from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteTextInput.vue';
 import AutocompleteDropdown from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteDropdown.vue';
@@ -91,6 +94,10 @@ export default defineComponent({
   props: {
     modelValue: {},
     disabled: {
+      type: Boolean,
+      default: false,
+    },
+    readonly: {
       type: Boolean,
       default: false,
     },
@@ -130,6 +137,17 @@ export default defineComponent({
   },
 
   computed: {
+    computedOptions(): Option[] {
+      return this.options.map((option: Option) => {
+        let _selected = false;
+        if (Array.isArray(this.modelValue)) {
+          _selected = this.modelValue.findIndex(o => o.id === option.id) > -1;
+        } else if (this.modelValue?.id === option.id) {
+          _selected = true;
+        }
+        return {...option, _selected};
+      });
+    },
     dropdownClasses(): object {
       return {
         '--positon-bottom': this.dropdownPosition === BOTTOM,
@@ -137,7 +155,7 @@ export default defineComponent({
       };
     },
     optionClasses(): object[] {
-      return this.options.map((option: Option, index: number) => {
+      return this.computedOptions.map((option: Option, index: number) => {
         return {
           '--disabled': option._disabled,
           '--selected': option._selected,
@@ -147,25 +165,32 @@ export default defineComponent({
     },
     highlightedOptions(): string[] {
       const filter = new RegExp(this.searchTerm, 'i');
-      return this.options.map((option: Option) => {
+      return this.computedOptions.map((option: Option) => {
         return option.label.replace(filter, match => {
           return `<b>${match}</b>`;
         });
       });
     },
     selectedItem(): string {
-      if (this.searchTerm) {
-        return this.searchTerm;
-      } else if (!this.multiple && this.modelValue?.label) {
+      if (!this.multiple && this.modelValue?.label) {
         return this.modelValue.label;
       }
       return null;
     },
     inputValue(): string {
-      return this.options[this.pointer]?.label || this.selectedItem;
+      return (
+        this.computedOptions[this.pointer]?.label ||
+        this.searchTerm ||
+        this.selectedItem
+      );
     },
     showClear(): boolean {
-      return !this.disabled && this.clear && this.selectedItem !== null;
+      return (
+        !this.disabled &&
+        !this.readonly &&
+        this.clear &&
+        this.selectedItem !== null
+      );
     },
   },
 
@@ -182,6 +207,17 @@ export default defineComponent({
         this.$emit('update:modelValue', null);
       }
     },
+    onSelect(option: Option) {
+      this.pointer = -1;
+      this.dropdownOpen = false;
+      this.searchTerm = null;
+      if (this.multiple) {
+        const selected = Array.isArray(this.modelValue) ? this.modelValue : [];
+        this.$emit('update:modelValue', [...selected, option]);
+      } else {
+        this.$emit('update:modelValue', option);
+      }
+    },
     search: debounce((vm, searchTerm: string) => {
       new Promise(resolve => {
         if (vm.createOptions) {
@@ -193,16 +229,7 @@ export default defineComponent({
         .then(resolved => {
           if (resolved && Array.isArray(resolved)) {
             if (resolved.length > 0) {
-              vm.options = resolved.slice(0, 5).map((option: Option) => {
-                let _selected = false;
-                if (Array.isArray(vm.modelValue)) {
-                  _selected =
-                    vm.modelValue.findIndex(o => o.id === option.id) > -1;
-                } else if (vm.modelValue?.id === option.id) {
-                  _selected = true;
-                }
-                return {...option, _selected};
-              });
+              vm.options = resolved.slice(0, 5);
             } else {
               vm.options = [];
             }

@@ -142,4 +142,76 @@ DateInput.args = {
   type: 'date',
 };
 
+export const AutocompleteInput = Template.bind({});
+AutocompleteInput.argTypes = argTypes;
+AutocompleteInput.args = {
+  label: 'Autocomplete Input Field',
+  type: 'autocomplete',
+  modelValue: null,
+  createOptions: async function() {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve([
+          {
+            id: 1,
+            label: 'All',
+          },
+          {
+            id: 2,
+            label: 'HR Admin',
+          },
+          {
+            id: 3,
+            label: 'ESS',
+          },
+        ]);
+      }, 1000);
+    });
+  },
+};
+
+export const SelectInput = Template.bind({});
+SelectInput.argTypes = argTypes;
+SelectInput.args = {
+  label: 'Dropdown Input Field',
+  type: 'select',
+  modelValue: null,
+  options: [
+    {
+      id: 1,
+      label: 'All',
+    },
+    {
+      id: 2,
+      label: 'HR Admin',
+    },
+    {
+      id: 3,
+      label: 'ESS',
+    },
+  ],
+};
+
+export const MultiselectInput = Template.bind({});
+MultiselectInput.argTypes = argTypes;
+MultiselectInput.args = {
+  label: 'Multiselect Input Field',
+  type: 'multiselect',
+  modelValue: [],
+  options: [
+    {
+      id: 1,
+      label: 'All',
+    },
+    {
+      id: 2,
+      label: 'HR Admin',
+    },
+    {
+      id: 3,
+      label: 'ESS',
+    },
+  ],
+};
+
 export const WithValidation = () => InputFieldValidation;

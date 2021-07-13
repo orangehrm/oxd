@@ -9,7 +9,11 @@
       <oxd-icon
         name="x"
         @click="onClick(option)"
-        :class="{'--clear': true, '--disabled': disabled}"
+        :class="{
+          '--clear': true,
+          '--disabled': disabled,
+          '--readonly': readonly,
+        }"
       />
     </oxd-chip>
   </div>
@@ -29,6 +33,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    readonly: {
+      type: Boolean,
+      default: false,
+    },
     selected: {
       type: Array,
       default: () => [],
@@ -44,7 +52,7 @@ export default defineComponent({
 
   methods: {
     onClick(option: Option) {
-      if (this.disabled) return;
+      if (this.disabled || this.readonly) return;
       this.$emit('chipRemoved', option);
     },
   },
