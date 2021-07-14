@@ -197,10 +197,10 @@ export default defineComponent({
   methods: {
     onSearch($event: Event) {
       const searchTerm = ($event.target as HTMLInputElement).value;
+      this.searchTerm = searchTerm;
       if (searchTerm) {
         this.loading = true;
         this.dropdownOpen = true;
-        this.searchTerm = searchTerm;
         this.search(this, searchTerm);
       }
       if (!this.multiple) {
