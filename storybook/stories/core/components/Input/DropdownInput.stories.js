@@ -2,7 +2,7 @@ import DropdownInput from '@orangehrm/oxd/core/components/Input/DropdownInput';
 import {h, ref} from 'vue';
 
 export default {
-  title: 'Example/DropdownInput',
+  title: 'Deprecated/DropdownInput',
   component: DropdownInput,
   argTypes: {
     style: {control: {type: 'object'}},

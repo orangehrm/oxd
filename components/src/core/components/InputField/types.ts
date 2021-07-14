@@ -7,6 +7,9 @@ export const COMPONENT_CHECKBOX_INPUT = 'oxd-checkbox-input';
 export const COMPONENT_SWITCH_INPUT = 'oxd-switch-input';
 export const COMPONENT_RADIO_INPUT = 'oxd-radio-input';
 export const COMPONENT_DATE_INPUT = 'oxd-date-input';
+export const COMPONENT_AUTOCOMPLETE_INPUT = 'oxd-autocomplete-input';
+export const COMPONENT_SELECT_INPUT = 'oxd-select-input';
+export const COMPONENT_MULTISELECT_INPUT = 'oxd-multiselect-input';
 
 export const TYPE_INPUT = 'input';
 export const TYPE_FILE_INPUT = 'file';
@@ -17,6 +20,9 @@ export const TYPE_CHECKBOX = 'checkbox';
 export const TYPE_SWITCH = 'switch';
 export const TYPE_RADIO = 'radio';
 export const TYPE_DATE = 'date';
+export const TYPE_AUTOCOMPLETE = 'autocomplete';
+export const TYPE_SELECT = 'select';
+export const TYPE_MULTISELECT = 'multiselect';
 
 export const TYPES = [
   TYPE_INPUT,
@@ -28,6 +34,9 @@ export const TYPES = [
   TYPE_SWITCH,
   TYPE_RADIO,
   TYPE_DATE,
+  TYPE_AUTOCOMPLETE,
+  TYPE_SELECT,
+  TYPE_MULTISELECT,
 ];
 
 export const TYPE_MAP: TypeMap = {
@@ -40,6 +49,9 @@ export const TYPE_MAP: TypeMap = {
   [TYPE_SWITCH]: COMPONENT_SWITCH_INPUT,
   [TYPE_RADIO]: COMPONENT_RADIO_INPUT,
   [TYPE_DATE]: COMPONENT_DATE_INPUT,
+  [TYPE_AUTOCOMPLETE]: COMPONENT_AUTOCOMPLETE_INPUT,
+  [TYPE_SELECT]: COMPONENT_SELECT_INPUT,
+  [TYPE_MULTISELECT]: COMPONENT_MULTISELECT_INPUT,
 };
 
 export type Types =
@@ -51,7 +63,10 @@ export type Types =
   | typeof TYPE_CHECKBOX
   | typeof TYPE_SWITCH
   | typeof TYPE_RADIO
-  | typeof TYPE_DATE;
+  | typeof TYPE_DATE
+  | typeof TYPE_AUTOCOMPLETE
+  | typeof TYPE_SELECT
+  | typeof TYPE_MULTISELECT;
 
 export type Components =
   | typeof COMPONENT_INPUT
@@ -62,7 +77,10 @@ export type Components =
   | typeof COMPONENT_CHECKBOX_INPUT
   | typeof COMPONENT_SWITCH_INPUT
   | typeof COMPONENT_RADIO_INPUT
-  | typeof COMPONENT_DATE_INPUT;
+  | typeof COMPONENT_DATE_INPUT
+  | typeof COMPONENT_AUTOCOMPLETE_INPUT
+  | typeof COMPONENT_SELECT_INPUT
+  | typeof COMPONENT_MULTISELECT_INPUT;
 
 export interface TypeMap {
   [key: string]: Components;

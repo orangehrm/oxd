@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MultiSelectInput.vue renders OXD MultiSelect Input 1`] = `
+<div class="oxd-multiselect-wrapper">
+  <div class="oxd-select-text oxd-select-text--active">
+    <div class="oxd-select-text-input" tabindex="0"></div>
+    <div class="oxd-select-text--after"><i class="oxd-icon bi-caret-down-fill oxd-select-text--arrow"></i></div>
+  </div>
+  <!--v-if-->
+  <div class="oxd-multiselect-chips-area"></div>
+</div>
+`;
