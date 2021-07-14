@@ -30,7 +30,7 @@ export const navigationMixin = defineComponent({
     },
     onSelectUp() {
       if (this.dropdownOpen) {
-        if (this.pointer > -1) {
+        if (this.pointer > 0) {
           this.pointer--;
         } else {
           this.pointer = 0;

@@ -16,12 +16,12 @@ export const eventsMixin = defineComponent({
   },
   methods: {
     onOpenDropdown() {
-      if (this.disabled && this.dropdownOpen) return;
+      if (this.disabled || this.dropdownOpen) return;
       this.dropdownOpen = true;
       this.$emit('dropdown:opened');
     },
     onCloseDropdown() {
-      if (this.disabled && !this.dropdownOpen) return;
+      if (this.disabled || !this.dropdownOpen) return;
       this.dropdownOpen = false;
       this.$emit('dropdown:closed');
     },

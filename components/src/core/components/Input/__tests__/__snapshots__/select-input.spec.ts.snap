@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectInput.vue renders OXD Select Input 1`] = `
+<div class="oxd-select-wrapper">
+  <div class="oxd-select-text oxd-select-text--active">
+    <div class="oxd-select-text-input" tabindex="0">-- Select --</div>
+    <div class="oxd-select-text--after"><i class="oxd-icon bi-caret-down-fill oxd-select-text--arrow"></i></div>
+  </div>
+  <!--v-if-->
+</div>
+`;

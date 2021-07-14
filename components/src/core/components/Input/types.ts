@@ -13,6 +13,7 @@ export type Position = typeof LEFT | typeof RIGHT | typeof TOP | typeof BOTTOM;
 export interface Option {
   id: number;
   label: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 
