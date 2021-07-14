@@ -9,12 +9,9 @@ exports[`CardTable > CardTable.vue renders OXD CardTable > CardTable 1`] = `
   <div class="oxd-table-body oxd-card-table-body" role="rowgroup">
     <div class="oxd-table-card --mobile">
       <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-        <div class="card-item card-left"></div>
+        <!--v-if-->
         <div class="card-center">
-          <div class="card-header-slot">
-            <div class="card-item card-header-slot-content --left"></div>
-            <div class="card-item card-header-slot-content --right"></div>
-          </div>
+          <!--v-if-->
           <div class="card-item card-body-slot">
             <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
@@ -29,19 +26,16 @@ exports[`CardTable > CardTable.vue renders OXD CardTable > CardTable 1`] = `
               </div>
             </div>
           </div>
-          <div class="card-item card-footer-slot"></div>
+          <!--v-if-->
         </div>
-        <div class="card-item card-right"></div>
+        <!--v-if-->
       </div>
     </div>
     <div class="oxd-table-card --mobile">
       <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-        <div class="card-item card-left"></div>
+        <!--v-if-->
         <div class="card-center">
-          <div class="card-header-slot">
-            <div class="card-item card-header-slot-content --left"></div>
-            <div class="card-item card-header-slot-content --right"></div>
-          </div>
+          <!--v-if-->
           <div class="card-item card-body-slot">
             <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
@@ -56,19 +50,16 @@ exports[`CardTable > CardTable.vue renders OXD CardTable > CardTable 1`] = `
               </div>
             </div>
           </div>
-          <div class="card-item card-footer-slot"></div>
+          <!--v-if-->
         </div>
-        <div class="card-item card-right"></div>
+        <!--v-if-->
       </div>
     </div>
     <div class="oxd-table-card --mobile">
       <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-        <div class="card-item card-left"></div>
+        <!--v-if-->
         <div class="card-center">
-          <div class="card-header-slot">
-            <div class="card-item card-header-slot-content --left"></div>
-            <div class="card-item card-header-slot-content --right"></div>
-          </div>
+          <!--v-if-->
           <div class="card-item card-body-slot">
             <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
@@ -83,9 +74,9 @@ exports[`CardTable > CardTable.vue renders OXD CardTable > CardTable 1`] = `
               </div>
             </div>
           </div>
-          <div class="card-item card-footer-slot"></div>
+          <!--v-if-->
         </div>
-        <div class="card-item card-right"></div>
+        <!--v-if-->
       </div>
     </div>
   </div><!-- oxd-card-table body end -->
@@ -101,12 +92,9 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
   <div class="oxd-table-body oxd-card-table-body" role="rowgroup">
     <div class="oxd-table-card --mobile">
       <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-        <div class="card-item card-left"></div>
+        <!--v-if-->
         <div class="card-center">
-          <div class="card-header-slot">
-            <div class="card-item card-header-slot-content --left"></div>
-            <div class="card-item card-header-slot-content --right"></div>
-          </div>
+          <!--v-if-->
           <div class="card-item card-body-slot">
             <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
@@ -121,19 +109,16 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
               </div>
             </div>
           </div>
-          <div class="card-item card-footer-slot"></div>
+          <!--v-if-->
         </div>
-        <div class="card-item card-right"></div>
+        <!--v-if-->
       </div>
     </div>
     <div class="oxd-table-card --mobile">
       <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-        <div class="card-item card-left"></div>
+        <!--v-if-->
         <div class="card-center">
-          <div class="card-header-slot">
-            <div class="card-item card-header-slot-content --left"></div>
-            <div class="card-item card-header-slot-content --right"></div>
-          </div>
+          <!--v-if-->
           <div class="card-item card-body-slot">
             <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
@@ -148,19 +133,16 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
               </div>
             </div>
           </div>
-          <div class="card-item card-footer-slot"></div>
+          <!--v-if-->
         </div>
-        <div class="card-item card-right"></div>
+        <!--v-if-->
       </div>
     </div>
     <div class="oxd-table-card --mobile">
       <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-        <div class="card-item card-left"></div>
+        <!--v-if-->
         <div class="card-center">
-          <div class="card-header-slot">
-            <div class="card-item card-header-slot-content --left"></div>
-            <div class="card-item card-header-slot-content --right"></div>
-          </div>
+          <!--v-if-->
           <div class="card-item card-body-slot">
             <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
@@ -175,9 +157,9 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
               </div>
             </div>
           </div>
-          <div class="card-item card-footer-slot"></div>
+          <!--v-if-->
         </div>
-        <div class="card-item card-right"></div>
+        <!--v-if-->
       </div>
     </div>
   </div><!-- oxd-card-table body end -->
@@ -193,12 +175,9 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
   <div class="oxd-table-body oxd-card-table-body" role="rowgroup">
     <div class="oxd-table-card --mobile">
       <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-        <div class="card-item card-left"></div>
+        <!--v-if-->
         <div class="card-center">
-          <div class="card-header-slot">
-            <div class="card-item card-header-slot-content --left"></div>
-            <div class="card-item card-header-slot-content --right"></div>
-          </div>
+          <!--v-if-->
           <div class="card-item card-body-slot">
             <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
@@ -213,19 +192,16 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
               </div>
             </div>
           </div>
-          <div class="card-item card-footer-slot"></div>
+          <!--v-if-->
         </div>
-        <div class="card-item card-right"></div>
+        <!--v-if-->
       </div>
     </div>
     <div class="oxd-table-card --mobile">
       <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-        <div class="card-item card-left"></div>
+        <!--v-if-->
         <div class="card-center">
-          <div class="card-header-slot">
-            <div class="card-item card-header-slot-content --left"></div>
-            <div class="card-item card-header-slot-content --right"></div>
-          </div>
+          <!--v-if-->
           <div class="card-item card-body-slot">
             <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
@@ -240,19 +216,16 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
               </div>
             </div>
           </div>
-          <div class="card-item card-footer-slot"></div>
+          <!--v-if-->
         </div>
-        <div class="card-item card-right"></div>
+        <!--v-if-->
       </div>
     </div>
     <div class="oxd-table-card --mobile">
       <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-        <div class="card-item card-left"></div>
+        <!--v-if-->
         <div class="card-center">
-          <div class="card-header-slot">
-            <div class="card-item card-header-slot-content --left"></div>
-            <div class="card-item card-header-slot-content --right"></div>
-          </div>
+          <!--v-if-->
           <div class="card-item card-body-slot">
             <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
@@ -267,9 +240,9 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
               </div>
             </div>
           </div>
-          <div class="card-item card-footer-slot"></div>
+          <!--v-if-->
         </div>
-        <div class="card-item card-right"></div>
+        <!--v-if-->
       </div>
     </div>
   </div><!-- oxd-card-table body end -->
@@ -285,12 +258,9 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
   <div class="oxd-table-body oxd-card-table-body" role="rowgroup">
     <div class="oxd-table-card --mobile">
       <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-        <div class="card-item card-left"></div>
+        <!--v-if-->
         <div class="card-center">
-          <div class="card-header-slot">
-            <div class="card-item card-header-slot-content --left"></div>
-            <div class="card-item card-header-slot-content --right"></div>
-          </div>
+          <!--v-if-->
           <div class="card-item card-body-slot">
             <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
@@ -305,19 +275,16 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
               </div>
             </div>
           </div>
-          <div class="card-item card-footer-slot"></div>
+          <!--v-if-->
         </div>
-        <div class="card-item card-right"></div>
+        <!--v-if-->
       </div>
     </div>
     <div class="oxd-table-card --mobile">
       <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-        <div class="card-item card-left"></div>
+        <!--v-if-->
         <div class="card-center">
-          <div class="card-header-slot">
-            <div class="card-item card-header-slot-content --left"></div>
-            <div class="card-item card-header-slot-content --right"></div>
-          </div>
+          <!--v-if-->
           <div class="card-item card-body-slot">
             <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
@@ -332,19 +299,16 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
               </div>
             </div>
           </div>
-          <div class="card-item card-footer-slot"></div>
+          <!--v-if-->
         </div>
-        <div class="card-item card-right"></div>
+        <!--v-if-->
       </div>
     </div>
     <div class="oxd-table-card --mobile">
       <div class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" role="row">
-        <div class="card-item card-left"></div>
+        <!--v-if-->
         <div class="card-center">
-          <div class="card-header-slot">
-            <div class="card-item card-header-slot-content --left"></div>
-            <div class="card-item card-header-slot-content --right"></div>
-          </div>
+          <!--v-if-->
           <div class="card-item card-body-slot">
             <div class="oxd-table-cell" role="cell" style="flex: 1;">
               <div class="oxd-table-card-cell">
@@ -359,9 +323,9 @@ exports[`CardTable > CardTable.vue should renders OXD CardTable > CardTable with
               </div>
             </div>
           </div>
-          <div class="card-item card-footer-slot"></div>
+          <!--v-if-->
         </div>
-        <div class="card-item card-right"></div>
+        <!--v-if-->
       </div>
     </div>
   </div><!-- oxd-card-table body end -->

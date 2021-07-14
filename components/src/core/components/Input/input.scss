@@ -20,6 +20,11 @@
     border: $oxd-input-border--error;
     box-shadow: $oxd-input-box-shadow--error;
   }
+
+  &:disabled,
+  &:read-only {
+    background-color: $oxd-input-background--disabled;
+  }
 }
 
 /* File Input */
