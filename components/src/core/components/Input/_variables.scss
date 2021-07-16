@@ -76,14 +76,15 @@ $oxd-dropdown-dropdown-background--disabled: darken(
 ) !default;
 $oxd-dropdown-dropdown-margin: 5px !default;
 $oxd-dropdown-dropdown-color: $oxd-interface-gray-darken-1-color !default;
+$oxd-dropdown-dropdown-slot-color: $oxd-interface-gray-color !default;
 $oxd-dropdown-dropdown-max-height: 224px !default;
 
 $oxd-dropdown-option-font-size: $oxd-input-control-font-size !default;
 $oxd-dropdown-option-font-family: $oxd-input-control-font-family !default;
 $oxd-dropdown-option-font-weight: $oxd-input-control-font-weight !default;
 $oxd-dropdown-option-padding: 4px !default;
-$oxd-dropdown-option-min-height: 37px !default;
-$oxd-dropdown-option-line-height: 27px !default;
+$oxd-dropdown-option-min-height: 27px !default;
+$oxd-dropdown-option-line-height: normal !default;
 $oxd-dropdown-option-border-bottom: 1px solid #fbfbfc !default;
 $oxd-dropdown-option-border-radius: 0.65rem !default;
 $oxd-dropdown-option-color: $oxd-interface-gray-darken-1-color !default;

@@ -126,7 +126,7 @@ export default defineComponent({
           '--disabled': option._disabled,
           '--selected': option._selected,
           '--focused': index === this.pointer,
-          [`--indent-${option._indent}`]: true,
+          [`--indent-${option._indent}`]: option._indent !== undefined,
         };
       });
     },

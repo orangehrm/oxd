@@ -49,12 +49,15 @@
     outline: 0;
     border: none;
     text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     background: transparent;
   }
 
   &--before,
   &--after {
     @include oxd-input-control;
+    color: $oxd-dropdown-dropdown-slot-color;
     border: none;
     min-width: 0;
     flex-shrink: 0;
@@ -105,16 +108,24 @@
   display: flex;
   align-items: center;
   text-align: inherit;
-  white-space: nowrap;
   cursor: pointer;
   color: $oxd-dropdown-option-color;
   font-size: $oxd-dropdown-option-font-size;
   font-family: $oxd-dropdown-option-font-family;
   font-weight: $oxd-dropdown-option-font-weight;
   padding: $oxd-dropdown-option-padding;
-  line-height: $oxd-dropdown-option-line-height;
   border-bottom: $oxd-dropdown-option-border-bottom;
   background-color: $oxd-dropdown-option-background;
+  min-height: $oxd-dropdown-option-min-height;
+
+  span {
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   &:last-child {
     border-bottom: unset;
