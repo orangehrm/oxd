@@ -102,3 +102,18 @@ Readonly.args = {
   options: options,
   readonly: true,
 };
+
+export const LongLabels = Template.bind({});
+LongLabels.args = {
+  options: [
+    {id: 1, label: 'This is a very long label for testing the dropdown field'},
+    {
+      id: 2,
+      label:
+        'aaaaaaaaaaa bbbbbbbbbbbbbbbbbbbbbbbbbbb cccccccccccccccccccccc ddddddddddddddddddddddddddddd',
+    },
+    {id: 3, label: 'normal length label'},
+    {id: 4, label: null},
+    {id: 5, label: 'ඔක්තෝබර්'},
+  ],
+};

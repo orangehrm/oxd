@@ -51,7 +51,6 @@ describe('AutocompleteInput.vue', () => {
     expect(wrapper.vm.dropdownOpen).toEqual(true);
     expect(wrapper.vm.loading).toEqual(true);
     expect(wrapper.vm.searchTerm).toEqual(searchTerm);
-    expect(wrapper.emitted('update:modelValue')).toEqual([[null]]);
 
     setTimeout(() => {
       expect(wrapper.vm.loading).toEqual(false);

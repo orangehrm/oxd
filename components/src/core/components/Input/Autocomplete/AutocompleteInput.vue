@@ -203,9 +203,6 @@ export default defineComponent({
         this.dropdownOpen = true;
         this.search(this, searchTerm);
       }
-      if (!this.multiple) {
-        this.$emit('update:modelValue', null);
-      }
     },
     onSelect(option: Option) {
       this.pointer = -1;
@@ -241,6 +238,13 @@ export default defineComponent({
           vm.loading = false;
         });
     }, 800),
+    onBlur() {
+      if (!this.multiple && this.searchTerm) {
+        this.$emit('update:modelValue', null);
+      }
+      this.dropdownOpen = false;
+      this.$emit('dropdown:blur');
+    },
   },
 });
 </script>
