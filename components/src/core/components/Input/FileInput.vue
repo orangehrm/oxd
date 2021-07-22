@@ -2,6 +2,7 @@
   <input
     type="file"
     ref="input"
+    v-bind="$attrs"
     :class="fileInputClasses"
     @focus="onFocus"
     @blur="onBlur"
@@ -10,11 +11,19 @@
   <div :class="classes" :style="style" @click="onClick">
     <slot></slot>
     <template v-if="!$slots.default">
-      <div class="oxd-file-button" v-if="buttonLabel">{{ buttonLabel }}</div>
+      <div
+        v-if="buttonLabel"
+        :class="{'oxd-file-button': true, '--disabled': disabled}"
+      >
+        {{ buttonLabel }}
+      </div>
       <div class="oxd-file-input-div">
         {{ inputValue ? inputValue : placeholder }}
       </div>
-      <oxd-icon class="oxd-file-input-icon" :name="buttonIcon" />
+      <oxd-icon
+        :class="{'oxd-file-input-icon': true, '--disabled': disabled}"
+        :name="buttonIcon"
+      />
     </template>
   </div>
 </template>
@@ -31,6 +40,7 @@ export interface State {
 
 export default defineComponent({
   name: 'oxd-file-input',
+  inheritAttrs: false,
 
   props: {
     modelValue: {},
@@ -51,6 +61,14 @@ export default defineComponent({
     placeholder: {
       type: String,
       default: 'No file chosen',
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    readonly: {
+      type: Boolean,
+      default: false,
     },
   },
 
@@ -82,11 +100,12 @@ export default defineComponent({
   computed: {
     classes(): object {
       return {
-        'oxd-input': true,
         'oxd-file-div': true,
-        'oxd-input--active': !this.focused,
-        'oxd-input--focus': this.focused,
-        'oxd-input--error': this.hasError,
+        'oxd-file-div--active': !this.focused,
+        'oxd-file-div--focus': this.focused,
+        'oxd-file-div--error': this.hasError,
+        'oxd-file-div--disabled': this.disabled,
+        'oxd-file-div--readonly': this.readonly,
       };
     },
     fileInputClasses(): object {
@@ -98,6 +117,7 @@ export default defineComponent({
 
   methods: {
     onClick(e: Event) {
+      if (this.disabled || this.readonly) return;
       const inputRef = this.$refs.input as HTMLInputElement;
       inputRef.focus();
       inputRef.click();
@@ -150,4 +170,4 @@ export default defineComponent({
 });
 </script>
 
-<style src="./input.scss" lang="scss" scoped></style>
+<style src="./file-input.scss" lang="scss" scoped></style>
