@@ -10,6 +10,7 @@ export const COMPONENT_DATE_INPUT = 'oxd-date-input';
 export const COMPONENT_AUTOCOMPLETE_INPUT = 'oxd-autocomplete-input';
 export const COMPONENT_SELECT_INPUT = 'oxd-select-input';
 export const COMPONENT_MULTISELECT_INPUT = 'oxd-multiselect-input';
+export const COMPONENT_TIME_INPUT = 'oxd-time-input';
 
 export const TYPE_INPUT = 'input';
 export const TYPE_FILE_INPUT = 'file';
@@ -23,6 +24,7 @@ export const TYPE_DATE = 'date';
 export const TYPE_AUTOCOMPLETE = 'autocomplete';
 export const TYPE_SELECT = 'select';
 export const TYPE_MULTISELECT = 'multiselect';
+export const TYPE_TIME = 'time';
 
 export const TYPES = [
   TYPE_INPUT,
@@ -37,6 +39,7 @@ export const TYPES = [
   TYPE_AUTOCOMPLETE,
   TYPE_SELECT,
   TYPE_MULTISELECT,
+  TYPE_TIME,
 ];
 
 export const TYPE_MAP: TypeMap = {
@@ -52,6 +55,7 @@ export const TYPE_MAP: TypeMap = {
   [TYPE_AUTOCOMPLETE]: COMPONENT_AUTOCOMPLETE_INPUT,
   [TYPE_SELECT]: COMPONENT_SELECT_INPUT,
   [TYPE_MULTISELECT]: COMPONENT_MULTISELECT_INPUT,
+  [TYPE_TIME]: COMPONENT_TIME_INPUT,
 };
 
 export type Types =
@@ -66,7 +70,8 @@ export type Types =
   | typeof TYPE_DATE
   | typeof TYPE_AUTOCOMPLETE
   | typeof TYPE_SELECT
-  | typeof TYPE_MULTISELECT;
+  | typeof TYPE_MULTISELECT
+  | typeof TYPE_TIME;
 
 export type Components =
   | typeof COMPONENT_INPUT
@@ -80,7 +85,8 @@ export type Components =
   | typeof COMPONENT_DATE_INPUT
   | typeof COMPONENT_AUTOCOMPLETE_INPUT
   | typeof COMPONENT_SELECT_INPUT
-  | typeof COMPONENT_MULTISELECT_INPUT;
+  | typeof COMPONENT_MULTISELECT_INPUT
+  | typeof COMPONENT_TIME_INPUT;
 
 export interface TypeMap {
   [key: string]: Components;
