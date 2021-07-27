@@ -214,4 +214,11 @@ MultiselectInput.args = {
   ],
 };
 
+export const TimeInput = Template.bind({});
+TimeInput.argTypes = argTypes;
+TimeInput.args = {
+  label: 'Time Input Field',
+  type: 'time',
+};
+
 export const WithValidation = () => InputFieldValidation;

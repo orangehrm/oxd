@@ -1,0 +1,123 @@
+@import '../../../../styles';
+@import '../variables';
+
+.oxd-time-wrapper {
+  @include oxd-input-control-size;
+  position: relative;
+  &:focus {
+    outline: none;
+  }
+  & > *:focus {
+    outline: none;
+  }
+}
+
+.oxd-time-input {
+  display: flex;
+  align-items: center;
+  ::v-deep(.oxd-input) {
+    text-overflow: ellipsis;
+    padding-right: 3rem;
+  }
+  &--clock {
+    right: 0.25rem;
+    display: flex;
+    cursor: pointer;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: $oxd-dropdown-arrow-width;
+    height: $oxd-dropdown-arrow-height;
+    border-radius: $oxd-dropdown-arrow-border-radius;
+    background-color: $oxd-dropdown-arrow-background-color;
+    &.--disabled,
+    &.--readonly {
+      cursor: unset;
+      background-color: $oxd-dropdown-arrow-background-color--readonly;
+      color: $oxd-dropdown-arrow-color--readonly;
+    }
+  }
+}
+
+.oxd-time-picker {
+  right: 0;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  box-sizing: border-box;
+  color: $oxd-dropdown-dropdown-color;
+  z-index: $oxd-dropdown-dropdown-z-index;
+  border: $oxd-dropdown-dropdown-border;
+  box-shadow: $oxd-dropdown-dropdown-box-shadow;
+  border-radius: $oxd-dropdown-dropdown-border-radius;
+  background-color: $oxd-dropdown-dropdown-background;
+  max-height: $oxd-dropdown-dropdown-max-height;
+  margin-top: $oxd-dropdown-dropdown-margin;
+  padding: $oxd-time-picker-dropdown-margin;
+  width: $oxd-time-picker-dropdown-width;
+
+  .oxd-time-hour-input,
+  .oxd-time-minute-input,
+  .oxd-time-period-input {
+    display: flex;
+    flex-direction: column;
+    width: $oxd-time-picker-dropdown-input-width;
+    align-items: center;
+  }
+
+  .oxd-time-seperator {
+    display: block;
+    &-icon {
+      padding: $oxd-time-picker-dropdown-seperator-padding;
+    }
+  }
+
+  .oxd-time-hour-input-text,
+  .oxd-time-minute-input-text {
+    width: inherit;
+    text-align: center;
+  }
+
+  .oxd-time-period-input {
+    justify-content: space-between;
+    margin-left: auto;
+  }
+
+  .oxd-time-period-label {
+    position: relative;
+    padding: $oxd-time-picker-period-label-padding;
+    min-width: $oxd-time-picker-period-label-width;
+
+    input[type='radio'] {
+      opacity: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      cursor: pointer;
+
+      + label {
+        display: block;
+        text-align: center;
+        color: $oxd-time-picker-period-font-color;
+        background-color: $oxd-interface-gray-color;
+        font-size: $oxd-time-picker-period-font-size;
+        font-weight: $oxd-time-picker-period-font-weight;
+        font-family: $oxd-time-picker-period-font-family;
+        padding: $oxd-time-picker-period-vertical-padding
+          $oxd-time-picker-period-horizontal-padding;
+        border-radius: $oxd-time-picker-period-border-radius;
+        border: $oxd-input-border--active;
+      }
+
+      &:checked + label {
+        background-color: $oxd-primary-one-color;
+      }
+
+      &:focus + label {
+        border: $oxd-input-border--focus;
+        box-shadow: $oxd-input-box-shadow--focus;
+      }
+    }
+  }
+}
