@@ -15,8 +15,8 @@ $oxd-calendar-date-font-size: $oxd-input-control-font-size !default;
 $oxd-calendar-date-font-weight: 500 !default;
 $oxd-calendar-date-border-radius: 0.75rem !default;
 
-$oxd-calendar-date-half-font-color: #5a980f !default;
-$oxd-calendar-date-half-background-color: #d0fe4f !default;
+$oxd-calendar-date-half-font-color: $oxd-interface-gray-darken-1-color !default;
+$oxd-calendar-date-half-background-color: $oxd-background-pastel-white-color !default;
 $oxd-calendar-date-half-font-weight: 600 !default;
 
 $oxd-calendar-date-hover-background-color: $oxd-interface-gray-lighten-2-color !default;
