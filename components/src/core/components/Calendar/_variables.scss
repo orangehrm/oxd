@@ -15,6 +15,10 @@ $oxd-calendar-date-font-size: $oxd-input-control-font-size !default;
 $oxd-calendar-date-font-weight: 500 !default;
 $oxd-calendar-date-border-radius: 0.75rem !default;
 
+$oxd-calendar-date-half-font-color: #5a980f !default;
+$oxd-calendar-date-half-background-color: #d0fe4f !default;
+$oxd-calendar-date-half-font-weight: 600 !default;
+
 $oxd-calendar-date-hover-background-color: $oxd-interface-gray-lighten-2-color !default;
 $oxd-calendar-date-hover-font-color: $oxd-interface-gray-darken-1-color !default;
 $oxd-calendar-date-hover-font-weight: 600 !default;
@@ -27,9 +31,13 @@ $oxd-calendar-date-selected-background-color: $oxd-primary-one-color !default;
 $oxd-calendar-date-selected-font-color: $oxd-white-color !default;
 $oxd-calendar-date-selected-font-weight: 600 !default;
 
-$oxd-calendar-date-holiday-background-color: $oxd-secondary-two-color !default;
-$oxd-calendar-date-holiday-font-color: $oxd-primary-one-color !default;
-$oxd-calendar-date-holiday-font-weight: 600 !default;
+$oxd-calendar-date-holiday-full-background-color: $oxd-secondary-two-color !default;
+$oxd-calendar-date-holiday-full-font-color: $oxd-primary-one-color !default;
+$oxd-calendar-date-holiday-full-font-weight: 600 !default;
+
+$oxd-calendar-date-holiday-half-background-color: #cfe5cf !default;
+$oxd-calendar-date-holiday-half-font-color: #0c6375 !default;
+$oxd-calendar-date-holiday-half-font-weight: 600 !default;
 
 $oxd-calendar-date-highlight-full-background-color: #3bda98 !default;
 $oxd-calendar-date-highlight-full-font-color: $oxd-white-color !default;

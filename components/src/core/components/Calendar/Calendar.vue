@@ -9,8 +9,16 @@ import {
   rearrangeWeek,
 } from '../../../utils/date';
 import {enGB} from 'date-fns/locale';
-import {DateOptions} from './types';
-import {computed, defineComponent, h, PropType, reactive, toRefs} from 'vue';
+import {CalendarDayAttributes, CalendarEvent} from './types';
+import {
+  computed,
+  defineComponent,
+  h,
+  PropType,
+  reactive,
+  toRefs,
+  watch,
+} from 'vue';
 import Day from '@orangehrm/oxd/core/components/Calendar/Day.vue';
 import DateVue from '@orangehrm/oxd/core/components/Calendar/Date.vue';
 import CalendarController from '@orangehrm/oxd/core/components/Calendar/CalendarController.vue';
@@ -57,12 +65,16 @@ export default defineComponent({
       type: Array,
       default: () => [],
     },
-    dateAttributes: {
-      type: Array as PropType<DateOptions[]>,
+    dayAttributes: {
+      type: Array as PropType<CalendarDayAttributes[]>,
+      default: () => [],
+    },
+    events: {
+      type: Array as PropType<CalendarEvent[]>,
       default: () => [],
     },
   },
-  setup(props) {
+  setup(props, context) {
     const selectedDate = computed(() => {
       return props.modelValue
         ? new Date(props.modelValue.setHours(0, 0, 0, 0))
@@ -112,17 +124,34 @@ export default defineComponent({
     });
 
     const attributes = computed(() => {
-      return datesOfMonth.value.map((date, index) => {
-        const attrs = props.dateAttributes.filter(item =>
-          isEqual(date, item?.date),
-        )[0];
-        return {
-          selected: isEqual(date, selectedDate.value),
-          offset: index === 0 ? getDayOffset(date, props.firstDayOfWeek) : 0,
-          ...attrs,
-        };
+      return datesOfMonth.value.map(date => {
+        const attrs = props.dayAttributes.find(
+          attr => date.getDay() === attr.index,
+        );
+        return attrs;
       });
     });
+
+    const events = computed(() => {
+      return datesOfMonth.value.map(date => {
+        const event = props.events.find(e => isEqual(date, e.date));
+        return event;
+      });
+    });
+
+    watch(
+      () => state.year,
+      () => {
+        context.emit('selectYear', {month: state.month, year: state.year});
+      },
+    );
+
+    watch(
+      () => state.month,
+      () => {
+        context.emit('selectMonth', {month: state.month, year: state.year});
+      },
+    );
 
     return {
       ...toRefs(state),
@@ -131,8 +160,11 @@ export default defineComponent({
       monthsOfYear,
       selectedDate,
       attributes,
+      events,
     };
   },
+
+  emits: ['update:modelValue', 'selectMonth', 'selectYear'],
 
   render() {
     /**
@@ -140,38 +172,50 @@ export default defineComponent({
      * https://github.com/vuejs/vue-next/issues/1539
      *
      */
-    return h('div', {class: 'oxd-calendar-wrapper'}, [
-      h(CalendarController, {
-        modelValue: {year: this.year, month: this.month},
-        years: this.years,
-        months: this.monthsOfYear,
-        'onUpdate:modelValue': ({month, year}) => {
-          (this.month = month), (this.year = year);
-        },
-      }),
-      h(
-        'div',
-        {class: 'oxd-calendar-week-grid'},
-        this.daysOfWeek.map((day: string) => {
-          return h(Day, {name: day, key: day});
+    return h(
+      'div',
+      {class: 'oxd-calendar-wrapper'},
+      [
+        h(CalendarController, {
+          modelValue: {year: this.year, month: this.month},
+          years: this.years,
+          months: this.monthsOfYear,
+          'onUpdate:modelValue': ({month, year}) => {
+            (this.month = month), (this.year = year);
+          },
         }),
+        h(
+          'div',
+          {class: 'oxd-calendar-week-grid'},
+          this.daysOfWeek.map((day: string) => {
+            return h(Day, {name: day, key: day});
+          }),
+        ),
+        h(
+          'div',
+          {class: 'oxd-calendar-dates-grid'},
+          this.datesOfMonth.map((date: Date, i: number) => {
+            return h(DateVue, {
+              key: date.valueOf(),
+              date,
+              selected: isEqual(date, this.selectedDate),
+              today: isEqual(freshDate(), date),
+              offset: i === 0 ? getDayOffset(date, this.firstDayOfWeek) : 0,
+              attributes: this.attributes[i],
+              event: this.events[i],
+              onClick: ($event: Event) => {
+                $event.stopPropagation();
+                this.$emit('update:modelValue', date);
+              },
+            });
+          }),
+        ),
+      ].concat(
+        this.$slots.default != undefined
+          ? [h('div', this.$slots.default())]
+          : [],
       ),
-      h(
-        'div',
-        {class: 'oxd-calendar-dates-grid'},
-        this.datesOfMonth.map((date: Date, i: number) => {
-          return h(DateVue, {
-            key: date.valueOf(),
-            date,
-            options: this.attributes[i],
-            onClick: ($event: Event) => {
-              $event.stopPropagation();
-              this.$emit('update:modelValue', date);
-            },
-          });
-        }),
-      ),
-    ]);
+    );
   },
 });
 </script>
