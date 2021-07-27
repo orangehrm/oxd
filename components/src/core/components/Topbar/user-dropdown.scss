@@ -3,9 +3,8 @@
 
 .oxd-userdropdown {
   position: relative;
-  & .oxd-dropdown-menu {
-    right: 0;
-    top: auto;
+  ::v-deep(.oxd-dropdown-menu) {
+    top: 60px;
   }
   &-tab {
     display: flex;

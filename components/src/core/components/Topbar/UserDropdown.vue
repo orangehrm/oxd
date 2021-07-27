@@ -12,23 +12,6 @@
       </p>
     </span>
     <template v-slot:content>
-      <!-- User dropdown options -->
-      <li role="none">
-        <a href="#" role="menuitem" class="oxd-userdropdown-link">
-          <oxd-icon name="person-fill" :with-container="false" />Profile
-        </a>
-      </li>
-      <li role="none">
-        <a href="#" role="menuitem" class="oxd-userdropdown-link">
-          <oxd-icon name="gear-fill" :with-container="false" />Settings
-        </a>
-      </li>
-      <li role="none">
-        <a href="#" role="menuitem" class="oxd-userdropdown-link">
-          <oxd-icon name="list-ul" :with-container="false" />Activity Log
-        </a>
-      </li>
-      <hr class="oxd-userdropdown-divider" />
       <li role="none">
         <a :href="logoutUrl" role="menuitem" class="oxd-userdropdown-link">
           <oxd-icon name="box-arrow-right" :with-container="false" />Logout

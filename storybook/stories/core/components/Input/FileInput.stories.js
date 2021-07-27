@@ -28,7 +28,7 @@ const SlotTemplate = args => ({
         if (file.value) {
           return `data:image/jpeg;base64,${file.value}`;
         } else {
-          return defaultPic.default;
+          return defaultPic;
         }
       },
     });
@@ -89,4 +89,9 @@ SlotDemo.args = {
     'border-radius': '100%',
     overflow: 'hidden',
   },
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  disabled: true,
 };
