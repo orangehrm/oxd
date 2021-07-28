@@ -23,11 +23,11 @@ export default defineComponent({
     },
     attributes: {
       type: Object as PropType<CalendarDayAttributes>,
-      default: () => {},
+      default: () => ({}),
     },
     event: {
       type: Object as PropType<CalendarEvent>,
-      default: () => {},
+      default: () => ({}),
     },
   },
   setup(props) {

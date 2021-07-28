@@ -132,7 +132,7 @@ export default defineComponent({
       });
     });
 
-    const events = computed(() => {
+    const parsedEvents = computed(() => {
       return datesOfMonth.value.map(date => {
         const event = props.events.find(e => isEqual(date, e.date));
         return event;
@@ -160,7 +160,7 @@ export default defineComponent({
       monthsOfYear,
       selectedDate,
       attributes,
-      events,
+      parsedEvents,
     };
   },
 
@@ -202,7 +202,7 @@ export default defineComponent({
               today: isEqual(freshDate(), date),
               offset: i === 0 ? getDayOffset(date, this.firstDayOfWeek) : 0,
               attributes: this.attributes[i],
-              event: this.events[i],
+              event: this.parsedEvents[i],
               onClick: ($event: Event) => {
                 $event.stopPropagation();
                 this.$emit('update:modelValue', date);
