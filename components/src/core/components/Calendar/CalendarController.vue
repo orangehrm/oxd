@@ -62,39 +62,40 @@ export default defineComponent({
       required: true,
     },
   },
+  emits: ['update:modelValue'],
   components: {
     'oxd-text': Text,
     'oxd-icon': Icon,
     'oxd-calendar-dropdown': CalendarDropdown,
   },
   methods: {
-    gotoPreviousMonth() {
+    calculateMonth(value: number) {
       const {month, year} = this.modelValue;
-      if (month - 1 < 0) {
-        this.$emit('update:modelValue', {
-          month: 11,
-          year: year - 1,
-        });
+      if (month + value > 11 || month + value < 0) {
+        return {
+          month: month + value > 11 ? 0 : 11,
+          year: year + value,
+        };
       } else {
-        this.$emit('update:modelValue', {
-          month: month - 1,
+        return {
+          month: month + value,
           year,
-        });
+        };
       }
     },
+    gotoPreviousMonth() {
+      const {month, year} = this.calculateMonth(-1);
+      this.$emit('update:modelValue', {
+        month,
+        year,
+      });
+    },
     gotoNextMonth() {
-      const {month, year} = this.modelValue;
-      if (month + 1 > 11) {
-        this.$emit('update:modelValue', {
-          month: 0,
-          year: year + 1,
-        });
-      } else {
-        this.$emit('update:modelValue', {
-          month: month + 1,
-          year,
-        });
-      }
+      const {month, year} = this.calculateMonth(1);
+      this.$emit('update:modelValue', {
+        month,
+        year,
+      });
     },
     onSelectYear(year: number) {
       this.$emit('update:modelValue', {

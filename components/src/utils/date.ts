@@ -8,6 +8,8 @@ import {
   getYear,
   getMonth,
   getDay,
+  nextSaturday,
+  nextSunday,
 } from 'date-fns';
 
 const freshDate = () => {
@@ -52,4 +54,6 @@ export {
   parseDate,
   formatDate,
   rearrangeWeek,
+  nextSaturday,
+  nextSunday,
 };

@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CalendarController.vue renders OXD CalendarController 1`] = `
+<div class="oxd-calendar-header"><button type="button" class="oxd-icon-button"><i class="oxd-icon bi-chevron-left"></i></button>
+  <ul class="oxd-calendar-selector">
+    <li class="oxd-calendar-selector-month">
+      <div class="oxd-calendar-selector-month-selected">
+        <p class="oxd-text oxd-text--p">March</p><i class="oxd-icon bi-caret-down-fill oxd-icon-button__icon"></i>
+      </div>
+      <transition-stub>
+        <!--v-if-->
+      </transition-stub>
+    </li>
+    <li class="oxd-calendar-selector-year">
+      <div class="oxd-calendar-selector-year-selected">
+        <p class="oxd-text oxd-text--p">2020</p><i class="oxd-icon bi-caret-down-fill oxd-icon-button__icon"></i>
+      </div>
+      <transition-stub>
+        <!--v-if-->
+      </transition-stub>
+    </li>
+  </ul><button type="button" class="oxd-icon-button"><i class="oxd-icon bi-chevron-right"></i></button>
+</div>
+`;

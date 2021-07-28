@@ -12,9 +12,11 @@
         :placeholder="placeholder"
         ref="oxdInput"
       />
-      <div class="oxd-date-input-icon">
-        <oxd-icon name="calendar" @click="toggleDropdown" />
-      </div>
+      <oxd-icon
+        :class="dateIconClasses"
+        name="calendar"
+        @click="toggleDropdown"
+      />
     </div>
     <transition name="transition-fade-down">
       <div v-if="open" class="oxd-date-input-calendar">
@@ -23,14 +25,26 @@
           @update:modelValue="onDateSelected"
           @mousedown.prevent
           v-model="dateSelected"
-        ></oxd-calendar>
+        >
+          <div class="oxd-date-input-links">
+            <div @click="onClickToday" class="oxd-date-input-link --today">
+              Today
+            </div>
+            <div @click="onClickClear" class="oxd-date-input-link --clear">
+              Clear
+            </div>
+            <div @click="closeDropdown" class="oxd-date-input-link --close">
+              Close
+            </div>
+          </div>
+        </oxd-calendar>
       </div>
     </transition>
   </div>
 </template>
 
 <script lang="ts">
-import {formatDate, parseDate} from '../../../utils/date';
+import {formatDate, parseDate, freshDate} from '../../../utils/date';
 import {defineComponent, reactive, toRefs} from 'vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
@@ -101,7 +115,7 @@ export default defineComponent({
         this.dateSelected = parsedDate;
       }
       this.closeDropdown();
-      e.stopPropagation();
+      e.stopImmediatePropagation();
       this.$emit('blur');
     },
     onDateTyped(value: string) {
@@ -111,7 +125,7 @@ export default defineComponent({
       this.closeDropdown();
     },
     toggleDropdown() {
-      if (!this.disabled) {
+      if (!this.disabled && !this.readonly) {
         if (!this.open) {
           this.$refs.oxdInput.$el.focus();
           this.openDropdown();
@@ -127,6 +141,14 @@ export default defineComponent({
     closeDropdown() {
       this.open = false;
       this.$emit('dateselect:closed');
+    },
+    onClickToday() {
+      this.dateSelected = freshDate();
+      this.open = false;
+    },
+    onClickClear() {
+      this.dateSelected = null;
+      this.open = false;
     },
   },
 
@@ -144,6 +166,13 @@ export default defineComponent({
       return this.displayFormat && this.displayFormat.trim() !== ''
         ? formatDate(this.dateSelected, this.displayFormat)
         : formatDate(this.dateSelected, this.ioformat);
+    },
+    dateIconClasses(): object {
+      return {
+        'oxd-date-input-icon': true,
+        '--disabled': this.disabled,
+        '--readonly': this.readonly,
+      };
     },
   },
 });

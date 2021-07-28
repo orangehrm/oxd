@@ -32,8 +32,17 @@
     justify-content: center;
   }
   &-date-wrapper {
-    &.--weekend {
+    color: $oxd-calendar-date-font-color;
+    font-weight: $oxd-calendar-date-font-weight;
+    &.--working-day-half {
+      background-color: $oxd-calendar-date-half-background-color;
+      color: $oxd-calendar-date-half-font-color;
+      font-weight: $oxd-calendar-date-half-font-weight;
+    }
+    &.--non-working-day {
       background-color: $oxd-calendar-date-weekend-background-color;
+      color: $oxd-calendar-date-weekend-font-color;
+      font-weight: $oxd-calendar-date-weekend-font-weight;
     }
     @for $i from 1 through 7 {
       &.--offset-#{$i} {
@@ -43,10 +52,10 @@
   }
   &-date {
     position: relative;
-    color: $oxd-calendar-date-font-color;
+    color: inherit;
+    font-weight: inherit;
     font-family: $oxd-calendar-date-font-family;
     font-size: $oxd-calendar-date-font-size;
-    font-weight: $oxd-calendar-date-font-weight;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -58,14 +67,15 @@
       color: $oxd-calendar-date-today-font-color;
       font-weight: $oxd-calendar-date-today-font-weight;
     }
-    &.--weekend {
-      color: $oxd-calendar-date-weekend-font-color;
-      font-weight: $oxd-calendar-date-weekend-font-weight;
+    &.--holiday-half {
+      background-color: $oxd-calendar-date-holiday-half-background-color;
+      color: $oxd-calendar-date-holiday-half-font-color;
+      font-weight: $oxd-calendar-date-holiday-half-font-weight;
     }
-    &.--holiday {
-      background-color: $oxd-calendar-date-holiday-background-color;
-      color: $oxd-calendar-date-holiday-font-color;
-      font-weight: $oxd-calendar-date-holiday-font-weight;
+    &.--holiday-full {
+      background-color: $oxd-calendar-date-holiday-full-background-color;
+      color: $oxd-calendar-date-holiday-full-font-color;
+      font-weight: $oxd-calendar-date-holiday-full-font-weight;
     }
     &.--highlight-half {
       background-color: $oxd-calendar-date-highlight-half-background-color;
@@ -89,11 +99,11 @@
     }
   }
 
-  &-dates-grid div:nth-child(-n + 7).--weekend {
+  &-dates-grid .oxd-calendar-date-wrapper:nth-child(-n + 7) {
     border-top-left-radius: $oxd-calendar-date-border-radius;
     border-top-right-radius: $oxd-calendar-date-border-radius;
   }
-  &-dates-grid div:nth-last-child(-n + 7).--weekend {
+  &-dates-grid .oxd-calendar-date-wrapper:nth-last-child(-n + 7) {
     border-bottom-left-radius: $oxd-calendar-date-border-radius;
     border-bottom-right-radius: $oxd-calendar-date-border-radius;
   }
