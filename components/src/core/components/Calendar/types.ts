@@ -44,12 +44,15 @@ export const MONTHS_OF_YEAR = [
   DECEMBER,
 ];
 
-export interface DateOptions {
-  selected: boolean;
-  holiday?: boolean;
-  highlightFull?: boolean;
-  highlightHalf?: boolean;
-  offset?: number;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: any;
+export type CalendarEvent = {
+  date: Date;
+  type: string;
+  class?: string;
+  style?: object;
+};
+
+export interface CalendarDayAttributes {
+  index: number;
+  class?: string;
+  style?: object;
 }

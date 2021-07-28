@@ -1,6 +1,7 @@
 import Calendar from '@orangehrm/oxd/core/components/Calendar/Calendar';
 import {ref} from 'vue';
 import {enGB, ru} from 'date-fns/locale';
+import {getDaysInMonth} from 'date-fns';
 
 export default {
   title: 'Example/Calendar',
@@ -29,7 +30,7 @@ const argTypes = {
 
 const Template = args => ({
   setup() {
-    const selected = ref(new Date(2021, 5, 1));
+    const selected = ref(new Date());
     return {args, selected};
   },
   components: {Calendar},
@@ -40,26 +41,42 @@ const Template = args => ({
   </div>`,
 });
 
+const datesOfMonth = () => {
+  const today = new Date();
+  return new Array(getDaysInMonth(today)).fill('').map((...[, index]) => {
+    return new Date(today.getFullYear(), today.getMonth(), ++index);
+  });
+};
+
 export const Default = Template.bind({});
 Default.argTypes = argTypes;
 Default.args = {
   firstDayOfWeek: 0,
   monthFormat: 'wide',
   dayFormat: 'narrow',
-  dateAttributes: [
+  dayAttributes: [
     {
-      date: new Date(2021, 5, 24),
-      holiday: true,
+      index: 0, // sunday
+      class: '--non-working-day',
+      style: {},
     },
     {
-      date: new Date(2021, 5, 12),
-      highlightFull: true,
-    },
-    {
-      date: new Date(2021, 5, 15),
-      highlightHalf: true,
+      index: 6, // saturday
+      class: '--working-day-half',
+      style: {},
     },
   ],
+  events: datesOfMonth().map(date => {
+    if (date.getDate() % 2 === 0) {
+      return {
+        date,
+        type: 'holiday',
+        class: Math.random() > 0.5 ? '--holiday-full' : '--holiday-half',
+      };
+    } else {
+      return {date};
+    }
+  }),
   locale: enGB,
 };
 
@@ -69,18 +86,16 @@ RussianLocale.args = {
   firstDayOfWeek: 0,
   monthFormat: 'wide',
   dayFormat: 'narrow',
-  dateAttributes: [
+  dayAttributes: [
     {
-      date: new Date(2021, 5, 24),
-      holiday: true,
+      index: 0, // sunday
+      class: '--non-working-day',
+      style: {},
     },
     {
-      date: new Date(2021, 5, 12),
-      highlightFull: true,
-    },
-    {
-      date: new Date(2021, 5, 15),
-      highlightHalf: true,
+      index: 6,
+      class: '--non-working-day',
+      style: {},
     },
   ],
   locale: ru,
@@ -90,18 +105,16 @@ export const SinhalaLocale = Template.bind({});
 SinhalaLocale.argTypes = argTypes;
 SinhalaLocale.args = {
   firstDayOfWeek: 1,
-  dateAttributes: [
+  dayAttributes: [
     {
-      date: new Date(2021, 5, 24),
-      holiday: true,
+      index: 0, // sunday
+      class: '--non-working-day',
+      style: {},
     },
     {
-      date: new Date(2021, 5, 12),
-      highlightFull: true,
-    },
-    {
-      date: new Date(2021, 5, 15),
-      highlightHalf: true,
+      index: 6,
+      class: '--non-working-day',
+      style: {},
     },
   ],
   days: ['ඉ', 'ස', 'අ', 'බ', 'බ්‍ර', 'සි', 'සෙ'],
@@ -118,6 +131,55 @@ SinhalaLocale.args = {
     'ඔක්තෝබර්',
     'නොවැම්බර්',
     'දෙසැම්බර්',
+  ],
+  locale: enGB,
+};
+
+export const CustomStyles = Template.bind({});
+CustomStyles.argTypes = argTypes;
+CustomStyles.args = {
+  firstDayOfWeek: 0,
+  monthFormat: 'wide',
+  dayFormat: 'narrow',
+  dayAttributes: [
+    {
+      index: 0, // sunday
+      class: '--non-working-day',
+      style: {},
+    },
+    {
+      index: 1,
+      class: '',
+      style: {},
+    },
+    {
+      index: 2,
+      class: '',
+      style: {},
+    },
+    {
+      index: 3,
+      class: '',
+      style: {
+        backgroundColor: 'limegreen',
+        borderRadius: '100%',
+      },
+    },
+    {
+      index: 4,
+      class: '',
+      style: {},
+    },
+    {
+      index: 5,
+      class: '',
+      style: {},
+    },
+    {
+      index: 6,
+      class: '--non-working-day',
+      style: {},
+    },
   ],
   locale: enGB,
 };

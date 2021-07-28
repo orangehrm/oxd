@@ -78,7 +78,6 @@ describe('TimeInput.vue', () => {
     const wrapper = mount(TimeInput, {});
     wrapper.findComponent(Input).trigger('click');
     await wrapper.vm.$nextTick();
-    const picker = wrapper.findComponent(TimePicker);
     const period = wrapper.findAll('input[type="radio"]');
     expect(wrapper.vm.timeInput).toEqual('01:00 AM');
     await period[1].setValue(true);

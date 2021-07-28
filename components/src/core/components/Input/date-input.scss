@@ -16,13 +16,21 @@
   display: flex;
   align-items: center;
   &-icon {
+    right: 0.25rem;
+    display: flex;
     cursor: pointer;
     position: absolute;
-    right: 10px;
-    & .oxd-icon {
-      border-radius: 0.65rem;
-      padding: 0.5rem;
-      background-color: $oxd-background-light-gray-color;
+    align-items: center;
+    justify-content: center;
+    width: $oxd-dropdown-arrow-width;
+    height: $oxd-dropdown-arrow-height;
+    border-radius: $oxd-dropdown-arrow-border-radius;
+    background-color: $oxd-dropdown-arrow-background-color;
+    &.--disabled,
+    &.--readonly {
+      cursor: unset;
+      background-color: $oxd-dropdown-arrow-background-color--readonly;
+      color: $oxd-dropdown-arrow-color--readonly;
     }
   }
   ::v-deep(.oxd-input) {
@@ -37,6 +45,28 @@
     width: 250px;
     @include oxd-respond-to('sm') {
       width: 300px;
+    }
+  }
+  &-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: $oxd-date-input-links-margin;
+  }
+  &-link {
+    cursor: pointer;
+    padding: $oxd-date-input-link-padding;
+    border-radius: $oxd-date-input-link-border-radius;
+    font-family: $oxd-input-control-font-family;
+    color: $oxd-input-control-font-color;
+    font-weight: $oxd-date-input-link-font-weight;
+    font-size: $oxd-date-input-link-font-size;
+    &.--today,
+    &.--close {
+      color: $oxd-date-input-link-highlight-color;
+    }
+    &:hover {
+      background-color: $oxd-date-input-link-background;
     }
   }
 }

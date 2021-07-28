@@ -1,6 +1,5 @@
 <script lang="ts">
-import {freshDate, isWeekend, isEqual} from '../../../utils/date';
-import {DateOptions} from './types';
+import {CalendarDayAttributes, CalendarEvent} from './types';
 import {computed, defineComponent, h, PropType} from 'vue';
 
 export default defineComponent({
@@ -10,44 +9,62 @@ export default defineComponent({
       type: Date as PropType<Date>,
       required: true,
     },
-    options: {
-      type: Object as PropType<DateOptions>,
-      required: true,
+    selected: {
+      type: Boolean,
+      default: false,
+    },
+    today: {
+      type: Boolean,
+      default: false,
+    },
+    offset: {
+      type: Number,
+      default: 0,
+    },
+    attributes: {
+      type: Object as PropType<CalendarDayAttributes>,
+      default: () => ({}),
+    },
+    event: {
+      type: Object as PropType<CalendarEvent>,
+      default: () => ({}),
     },
   },
   setup(props) {
-    const classes = computed(() => {
-      return {
-        'oxd-calendar-date': true,
-        '--selected': props.options.selected,
-        '--today': isEqual(freshDate(), props.date),
-        '--holiday': props.options?.holiday,
-        '--highlight-full': props.options?.highlightFull,
-        '--highlight-half': props.options?.highlightHalf,
-        '--weekend': isWeekend(props.date),
-      };
+    const innerClasses = computed(() => {
+      return props?.event?.class ? props.event.class.split(' ') : [];
+    });
+
+    const wrapperClasses = computed(() => {
+      return props?.attributes?.class ? props.attributes.class.split(' ') : [];
     });
 
     return {
-      classes,
+      innerClasses,
+      wrapperClasses,
     };
   },
   render() {
     return h(
       'div',
       {
-        class: {
-          'oxd-calendar-date-wrapper': true,
-          '--weekend': isWeekend(this.date),
-          [`--offset-${this.options?.offset}`]: this.options?.offset
-            ? true
-            : false,
-        },
+        class: [
+          ...this.wrapperClasses,
+          {'oxd-calendar-date-wrapper': true},
+          {[`--offset-${this.offset}`]: this.offset},
+        ],
+        style: this.attributes?.style,
       },
       h(
         'div',
         {
-          class: this.classes,
+          class: [
+            ...this.innerClasses,
+            {'oxd-calendar-date': true},
+            {'--selected': this.selected},
+            {'--today': this.today},
+          ],
+          style: this.event?.style,
         },
         this.date.getDate(),
       ),
