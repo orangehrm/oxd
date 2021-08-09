@@ -36,7 +36,7 @@ describe('TimeInput.vue', () => {
     await pickerInputs[0].trigger('change');
     (pickerInputs[1].element as HTMLInputElement).value = '10';
     await pickerInputs[1].trigger('change');
-    expect(wrapper.vm.timeInput).toEqual('05:10 AM');
+    expect(wrapper.vm.timeInput).toEqual('05:10');
   });
   it('should not accept invalid input', async () => {
     const wrapper = mount(TimeInput, {});
@@ -46,7 +46,7 @@ describe('TimeInput.vue', () => {
     const pickerInput = picker.findComponent(Input);
     (pickerInput.element as HTMLInputElement).value = '23';
     await pickerInput.trigger('change');
-    expect(wrapper.vm.timeInput).toEqual('01:00 AM');
+    expect(wrapper.vm.timeInput).toEqual('01:00');
   });
   it('should increment/decrement hour', async () => {
     const wrapper = mount(TimeInput, {});
@@ -55,11 +55,11 @@ describe('TimeInput.vue', () => {
     const picker = wrapper.findComponent(TimePicker);
     const incrementBtn = picker.find('.oxd-time-hour-input-up');
     const decrementBtn = picker.find('.oxd-time-hour-input-down');
-    expect(wrapper.vm.timeInput).toEqual('01:00 AM');
+    expect(wrapper.vm.timeInput).toEqual('01:00');
     await incrementBtn.trigger('click');
-    expect(wrapper.vm.timeInput).toEqual('02:00 AM');
+    expect(wrapper.vm.timeInput).toEqual('02:00');
     await decrementBtn.trigger('click');
-    expect(wrapper.vm.timeInput).toEqual('01:00 AM');
+    expect(wrapper.vm.timeInput).toEqual('01:00');
   });
   it('should increment/decrement minute', async () => {
     const wrapper = mount(TimeInput, {});
@@ -68,21 +68,21 @@ describe('TimeInput.vue', () => {
     const picker = wrapper.findComponent(TimePicker);
     const incrementBtn = picker.find('.oxd-time-minute-input-up');
     const decrementBtn = picker.find('.oxd-time-minute-input-down');
-    expect(wrapper.vm.timeInput).toEqual('01:00 AM');
+    expect(wrapper.vm.timeInput).toEqual('01:00');
     await incrementBtn.trigger('click');
-    expect(wrapper.vm.timeInput).toEqual('01:01 AM');
+    expect(wrapper.vm.timeInput).toEqual('01:01');
     await decrementBtn.trigger('click');
-    expect(wrapper.vm.timeInput).toEqual('01:00 AM');
+    expect(wrapper.vm.timeInput).toEqual('01:00');
   });
   it('should toggle AM/PM', async () => {
     const wrapper = mount(TimeInput, {});
     wrapper.findComponent(Input).trigger('click');
     await wrapper.vm.$nextTick();
     const period = wrapper.findAll('input[type="radio"]');
-    expect(wrapper.vm.timeInput).toEqual('01:00 AM');
+    expect(wrapper.vm.timeInput).toEqual('01:00');
     await period[1].setValue(true);
-    expect(wrapper.vm.timeInput).toEqual('01:00 PM');
+    expect(wrapper.vm.timeInput).toEqual('13:00');
     await period[0].setValue(true);
-    expect(wrapper.vm.timeInput).toEqual('01:00 AM');
+    expect(wrapper.vm.timeInput).toEqual('01:00');
   });
 });

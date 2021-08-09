@@ -128,7 +128,7 @@ export default defineComponent({
     };
 
     watchEffect(() => {
-      const time = parseDate(props.modelValue, 'hh:mm a');
+      const time = parseDate(props.modelValue, 'HH:mm');
       if (time) {
         // getHours() return 0-23, return 12 if 0
         setValue(time.getHours() % 12 || 12, 'hour');
@@ -138,10 +138,11 @@ export default defineComponent({
     });
 
     watchEffect(() => {
-      context.emit(
-        'update:modelValue',
-        `${state.hour}:${state.minute} ${state.period}`,
+      const time = formatDate(
+        parseDate(`${state.hour}:${state.minute} ${state.period}`, 'hh:mm a'),
+        'HH:mm',
       );
+      context.emit('update:modelValue', time);
     });
 
     return {
