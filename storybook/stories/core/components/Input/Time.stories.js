@@ -12,7 +12,7 @@ export default {
 
 const Template = args => ({
   setup() {
-    const selected = ref('05:00 AM');
+    const selected = ref('05:00');
     return {args, selected};
   },
   render() {
