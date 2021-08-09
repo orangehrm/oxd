@@ -6,7 +6,7 @@
         :hasError="hasError"
         :disabled="disabled"
         :readonly="readonly"
-        :value="timeInput"
+        :value="timeDisplay"
         :placeholder="placeholder"
         @change="onTimeInput"
         @click="toggleDropdown"
@@ -27,6 +27,7 @@ import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import clickOutsideDirective from '../../../../directives/click-outside';
 import TimePicker from '@orangehrm/oxd/core/components/Input/Time/TimePicker.vue';
+import {parseDate, formatDate} from '../../../../utils/date';
 
 export default defineComponent({
   name: 'oxd-time-input',
@@ -94,7 +95,8 @@ export default defineComponent({
       }
     },
     onTimeInput($event: Event) {
-      this.timeInput = ($event.target as HTMLInputElement).value;
+      const input = ($event.target as HTMLInputElement).value;
+      this.timeInput = formatDate(parseDate(input, 'hh:mm a'), 'HH:mm');
     },
     toggleDropdown() {
       if (!this.disabled) {
@@ -123,6 +125,9 @@ export default defineComponent({
         '--disabled': this.disabled,
         '--readonly': this.readonly,
       };
+    },
+    timeDisplay(): string {
+      return formatDate(parseDate(this.modelValue, 'HH:mm'), 'hh:mm a');
     },
   },
 });
