@@ -1,52 +1,17 @@
 <template>
-  <oxd-text tag="h5">Add Job Category</oxd-text>
+  <oxd-text tag="h5">Check Github Username</oxd-text>
 
   <oxd-divider />
 
-  <oxd-form @submitValid="getFormValues" ref="form">
+  <oxd-form @submit="onSubmit" @submitInvalid="onInvalid">
     <oxd-form-row>
       <oxd-input-group class="orangehrm-bottom-space">
         <oxd-input-field
-          label="Job Category Name"
+          label="Github Username"
           v-model="name"
           :rules="rules.name"
         />
-        <oxd-input-field
-          label="Job Category Id"
-          v-model="id"
-          :rules="rules.id"
-        />
-        <oxd-input-field
-          type="dropdown"
-          label="Job Role"
-          v-model="role"
-          :rules="rules.role"
-          :options="[
-            {id: 1, label: 'All'},
-            {id: 2, label: 'Admin'},
-            {id: 3, label: 'ESS'},
-          ]"
-        />
       </oxd-input-group>
-    </oxd-form-row>
-
-    <oxd-form-row>
-      <oxd-input-field
-        type="checkbox"
-        label="Check this"
-        option-label="I agree"
-        v-model="consent"
-        :rules="rules.consent"
-        true-value="yes"
-        false-value="no"
-      />
-      <oxd-input-field
-        type="switch"
-        label="Switch this"
-        option-label="Notify me"
-        v-model="notify"
-        :rules="rules.notify"
-      />
     </oxd-form-row>
 
     <oxd-divider />
@@ -62,7 +27,7 @@
     </oxd-form-actions>
   </oxd-form>
 
-  <p>Form is {{ isValid ? 'vaild' : 'invalid' }}</p>
+  <p>Form is {{ isValid }}</p>
 </template>
 
 <script>
@@ -74,34 +39,39 @@ import InputField from '@orangehrm/oxd/core/components/InputField/InputField';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider';
 import Button from '@orangehrm/oxd/core/components/Button/Button';
 import Text from '@orangehrm/oxd/core/components/Text/Text';
+import debounce from '@orangehrm/oxd/utils/debounce';
+
+const checkGithub = function(value) {
+  return new Promise(resolve => {
+    if (value.trim()) {
+      fetch(`https://api.github.com/search/users?q=${value}`)
+        .then(response => response.json())
+        .then(json => {
+          const {total_count} = json;
+          return total_count === 0
+            ? resolve(true)
+            : resolve('Existing Github User');
+        });
+    } else {
+      resolve(true);
+    }
+  });
+};
 
 export default {
   name: 'ValidatableFrom',
 
   data() {
     return {
+      isValid: 'valid',
       name: '',
-      id: '',
-      role: [{id: 2, label: 'Admin'}],
-      consent: '',
-      notify: '',
       rules: {
         name: [
           v => (!!v && v.trim() !== '') || 'Required',
           v => (v && v.length <= 50) || 'Should be less than 50 characters',
+          checkGithub,
         ],
-        id: [
-          v => (!!v && v.trim() !== '') || 'Required',
-          v => (v && v.length >= 10) || 'Should more than 10 characters',
-        ],
-        role: [v => (v && v.length > 0) || 'Required'],
-        consent: [
-          v => (v && v.length > 0) || 'Required',
-          v => v === 'yes' || 'You should agree',
-        ],
-        notify: [v => v || 'Please turn notify on'],
       },
-      isValid: true,
     };
   },
 
@@ -117,12 +87,12 @@ export default {
   },
 
   methods: {
-    getFormValues() {
+    onSubmit() {
       console.log('form submit');
     },
-    // checkForm() {
-    //   this.isValid = this.$refs.form.isValid;
-    // },
+    onInvalid() {
+      console.log('form invalid');
+    },
   },
 };
 </script>
