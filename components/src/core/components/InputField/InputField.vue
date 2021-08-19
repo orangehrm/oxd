@@ -9,9 +9,10 @@
     <component
       :is="component"
       v-bind="$attrs"
-      :modelValue="modelValue"
       :hasError="hasError"
-      @update:modelValue="onUpdate"
+      :modelValue="modelValue"
+      @blur="onBlur"
+      @update:modelValue="$emit('update:modelValue', $event)"
     >
       <template v-for="(_, name) in $slots" v-slot:[name]="slotData">
         <slot :name="name" v-bind="slotData" />
@@ -21,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, nextTick, PropType, toRef} from 'vue';
 import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import FileInput from '@orangehrm/oxd/core/components/Input/FileInput.vue';
@@ -36,12 +37,9 @@ import AutocompleteInput from '@orangehrm/oxd/core/components/Input/Autocomplete
 import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
 import MultiSelectInput from '@orangehrm/oxd/core/components/Input/MultiSelect/MultiSelectInput.vue';
 import TimeInput from '@orangehrm/oxd/core/components/Input/Time/TimeInput.vue';
-import {validatableMixin} from '../../../mixins/validatable';
-import {uuid} from '../../../mixins/uuid';
-import {injectStrict} from '../../../utils/injectable';
 import {OutputFile} from '../Input/types';
 import {Types, Components, TYPES, TYPE_INPUT, TYPE_MAP} from './types';
-import ErrorField from '../Form/errorfield.interface';
+import useField from '../../../composables/useField';
 
 export default defineComponent({
   name: 'oxd-input-field',
@@ -64,26 +62,6 @@ export default defineComponent({
     'oxd-time-input': TimeInput,
   },
 
-  mixins: [validatableMixin, uuid],
-
-  setup() {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const form: any = injectStrict('form');
-    return {
-      form,
-    };
-  },
-
-  mounted() {
-    this.form && this.form.$el.addEventListener('submit', this.triggerUpdate);
-  },
-
-  unmounted() {
-    this.removeErrors();
-    this.form &&
-      this.form.$el.removeEventListener('submit', this.triggerUpdate);
-  },
-
   emits: ['update:modelValue', 'errors'],
 
   props: {
@@ -101,26 +79,59 @@ export default defineComponent({
     type: {
       type: String,
       default: TYPE_INPUT,
-      validator: function(value: Types) {
+      validator: (value: Types) => {
         return TYPES.indexOf(value) !== -1;
       },
     },
     errors: {
       type: String,
       default: TYPE_INPUT,
-      validator: function(value: Types) {
+      validator: (value: Types) => {
         return TYPES.indexOf(value) !== -1;
       },
     },
+    rules: {
+      type: Array as PropType<any>,
+      default: () => [],
+    },
+  },
+
+  setup(props) {
+    const modelValue = toRef(props, 'modelValue');
+    const {
+      form,
+      validate,
+      hasError,
+      message,
+      getProcessingState,
+      setProcessingState,
+    } = useField({
+      fieldLabel: props.label,
+      rules: props.rules,
+      modelValue,
+    });
+
+    const onBlur = async () => {
+      if (getProcessingState()) return;
+      setProcessingState(true);
+      await nextTick();
+      validate()
+        .then(result => {
+          form.addError(result);
+        })
+        .finally(() => {
+          setProcessingState(false);
+        });
+    };
+
+    return {
+      hasError,
+      message,
+      onBlur,
+    };
   },
 
   computed: {
-    hasError(): boolean {
-      return this.errorBucket.length !== 0;
-    },
-    message(): string | null {
-      return this.hasError ? this.errorBucket[0] : null;
-    },
     classes(): object {
       return {
         label: {
@@ -133,39 +144,6 @@ export default defineComponent({
     },
     component(): Components {
       return TYPE_MAP[this.type as Types];
-    },
-  },
-
-  methods: {
-    triggerUpdate() {
-      this.onUpdate(this.modelValue as string);
-    },
-
-    addErrors() {
-      const field: ErrorField = {
-        cid: this.cid,
-        errors: this.errorBucket,
-      };
-      this.form && this.form.addError(field);
-      this.$emit('errors', this.errorBucket);
-    },
-
-    removeErrors() {
-      const field: ErrorField = {
-        cid: this.cid,
-        errors: this.errorBucket,
-      };
-      this.form && this.form.removeError(field);
-    },
-
-    onUpdate(value: string | OutputFile) {
-      this.validate(value);
-      this.$emit('update:modelValue', value);
-      if (this.errorBucket.length !== 0) {
-        this.addErrors();
-      } else {
-        this.removeErrors();
-      }
     },
   },
 });
