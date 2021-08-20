@@ -1,19 +1,21 @@
 import {mount} from '@vue/test-utils';
 import InputField from '@orangehrm/oxd/core/components/InputField/InputField.vue';
-import Form from '@orangehrm/oxd/core/components/Form/Form.vue';
+import {FormAPI, formKey} from '@orangehrm/oxd/composables/types';
 
 describe('InputField.vue', () => {
-  const mockForm = Form;
-  mockForm.$el = {
-    // eslint-disable-next-line
-    addEventListener(event: Event, callback: () => void): void {},
+  const mockFormAPI: FormAPI = {
+    searchErrors: jest.fn(() => []),
+    purgeErrors: jest.fn(),
+    addError: jest.fn(),
+    registerField: jest.fn(),
+    unregisterField: jest.fn(),
   };
   it('renders OXD InputField', () => {
     const wrapper = mount(InputField, {
       props: {},
       global: {
         provide: {
-          form: mockForm,
+          [formKey as symbol]: mockFormAPI,
         },
       },
     });
@@ -25,7 +27,7 @@ describe('InputField.vue', () => {
       props: {type: 'input'},
       global: {
         provide: {
-          form: mockForm,
+          [formKey as symbol]: mockFormAPI,
         },
       },
     });
@@ -37,7 +39,7 @@ describe('InputField.vue', () => {
       props: {type: 'file'},
       global: {
         provide: {
-          form: mockForm,
+          [formKey as symbol]: mockFormAPI,
         },
       },
     });
@@ -49,7 +51,7 @@ describe('InputField.vue', () => {
       props: {type: 'file', buttonLabel: 'Browse'},
       global: {
         provide: {
-          form: mockForm,
+          [formKey as symbol]: mockFormAPI,
         },
       },
     });
@@ -61,7 +63,7 @@ describe('InputField.vue', () => {
       props: {type: 'textarea'},
       global: {
         provide: {
-          form: mockForm,
+          [formKey as symbol]: mockFormAPI,
         },
       },
     });

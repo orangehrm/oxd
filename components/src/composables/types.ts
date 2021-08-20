@@ -7,8 +7,8 @@ export type ErrorField = {
 
 export type rule = (value?: any) => string | boolean;
 
-export interface ErrorBag extends Array<ErrorField> {}
-export interface Fieldset extends Array<FormField> {}
+export type ErrorBag = Array<ErrorField>;
+export type Fieldset = Array<FormField>;
 
 export interface FormField {
   cid: Ref<string>;
