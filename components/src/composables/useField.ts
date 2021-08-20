@@ -6,6 +6,7 @@ import {ErrorField, formKey, rule} from './types';
 export default function useField(fieldContext: {
   fieldLabel: string;
   rules: rule[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   modelValue: Ref<any>;
 }) {
   const form = injectStrict(formKey);
@@ -16,36 +17,48 @@ export default function useField(fieldContext: {
   const processing = ref<boolean>(false);
 
   const validate = () => {
-    const allValidation = Promise.all(
+    processing.value = true;
+    const allValidations = Promise.all(
       fieldContext.rules.map(func => {
-        return new Promise<string | boolean>(async (resolve, reject) => {
-          try {
-            const valid = await func(fieldContext.modelValue.value);
-            if (typeof valid === 'string' || typeof valid === 'boolean') {
+        return new Promise<boolean>((resolve, reject) => {
+          Promise.resolve(func(fieldContext.modelValue.value)).then(valid => {
+            if (valid === true) {
               resolve(valid);
+            } else if (typeof valid === 'string') {
+              reject(valid);
             } else {
-              throw new Error(
-                `Rules should return a string or true, received '${typeof valid}'`,
+              reject(
+                new Error(
+                  `Rules should return a string or true, received '${typeof valid}'`,
+                ),
               );
             }
-          } catch (error) {
-            reject(error);
-          }
+          });
         });
       }),
     );
 
     return new Promise<ErrorField>((resolve, reject) => {
-      allValidation
-        .then(validationErrors => {
+      allValidations
+        .then(() => {
           resolve({
             cid: cid.value,
-            errors: validationErrors.filter(
-              e => typeof e === 'string',
-            ) as string[],
+            errors: [],
           });
         })
-        .catch(error => reject(error));
+        .catch(error => {
+          if (typeof error === 'string') {
+            resolve({
+              cid: cid.value,
+              errors: [error],
+            });
+          } else {
+            reject(error);
+          }
+        })
+        .finally(() => {
+          processing.value = false;
+        });
     });
   };
 
@@ -63,20 +76,10 @@ export default function useField(fieldContext: {
     return hasError.value ? form.searchErrors(cid.value)[0].errors[0] : null;
   });
 
-  const setProcessingState = (state: boolean) => {
-    processing.value = state;
-  };
-
-  const getProcessingState = () => {
-    return processing.value;
-  };
-
   return {
     form,
     validate,
     hasError,
     message,
-    setProcessingState,
-    getProcessingState,
   };
 }

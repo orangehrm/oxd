@@ -5,6 +5,7 @@ export type ErrorField = {
   errors: string[];
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type rule = (value?: any) => string | boolean;
 
 export type ErrorBag = Array<ErrorField>;

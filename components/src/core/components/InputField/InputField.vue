@@ -11,8 +11,7 @@
       v-bind="$attrs"
       :hasError="hasError"
       :modelValue="modelValue"
-      @blur="onBlur"
-      @update:modelValue="$emit('update:modelValue', $event)"
+      @update:modelValue="onUpdate"
     >
       <template v-for="(_, name) in $slots" v-slot:[name]="slotData">
         <slot :name="name" v-bind="slotData" />
@@ -62,7 +61,7 @@ export default defineComponent({
     'oxd-time-input': TimeInput,
   },
 
-  emits: ['update:modelValue', 'errors'],
+  emits: ['update:modelValue'],
 
   props: {
     modelValue: {},
@@ -91,43 +90,32 @@ export default defineComponent({
       },
     },
     rules: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       type: Array as PropType<any>,
       default: () => [],
     },
   },
 
-  setup(props) {
+  setup(props, context) {
     const modelValue = toRef(props, 'modelValue');
-    const {
-      form,
-      validate,
-      hasError,
-      message,
-      getProcessingState,
-      setProcessingState,
-    } = useField({
+    const {form, validate, hasError, message} = useField({
       fieldLabel: props.label,
       rules: props.rules,
       modelValue,
     });
 
-    const onBlur = async () => {
-      if (getProcessingState()) return;
-      setProcessingState(true);
+    const onUpdate = async (value: string | OutputFile) => {
+      context.emit('update:modelValue', value);
       await nextTick();
-      validate()
-        .then(result => {
-          form.addError(result);
-        })
-        .finally(() => {
-          setProcessingState(false);
-        });
+      validate().then(result => {
+        form.addError(result);
+      });
     };
 
     return {
       hasError,
       message,
-      onBlur,
+      onUpdate,
     };
   },
 

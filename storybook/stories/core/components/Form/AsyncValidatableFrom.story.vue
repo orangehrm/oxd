@@ -1,15 +1,35 @@
 <template>
-  <oxd-text tag="h5">Check Github Username</oxd-text>
+  <oxd-text tag="h5">Sync/Async Validations</oxd-text>
 
   <oxd-divider />
 
-  <oxd-form @submit="onSubmit" @submitInvalid="onInvalid">
+  <oxd-form ref="form" @submitValid="onSubmit" @submitInvalid="onInvalid">
     <oxd-form-row>
       <oxd-input-group class="orangehrm-bottom-space">
         <oxd-input-field
-          label="Github Username"
+          label="Github Username (real async validation)"
           v-model="name"
           :rules="rules.name"
+        />
+      </oxd-input-group>
+    </oxd-form-row>
+
+    <oxd-form-row>
+      <oxd-input-group class="orangehrm-bottom-space">
+        <oxd-input-field
+          label="Email (simulated slow async validation)"
+          v-model="email"
+          :rules="rules.email"
+        />
+      </oxd-input-group>
+    </oxd-form-row>
+
+    <oxd-form-row>
+      <oxd-input-group class="orangehrm-bottom-space">
+        <oxd-input-field
+          label="Number (sync validation)"
+          v-model="number"
+          :rules="rules.number"
         />
       </oxd-input-group>
     </oxd-form-row>
@@ -27,10 +47,13 @@
     </oxd-form-actions>
   </oxd-form>
 
-  <p>Form is {{ isValid }}</p>
+  <p>Form state {{ form && form.isProcessing ? 'busy' : 'idle' }}</p>
+  <p>Form is {{ form && form.isFromInvalid ? 'invalid' : 'valid' }}</p>
+  <p>Errorbag {{ form && form.errorbag }}</p>
 </template>
 
 <script>
+import {ref} from 'vue';
 import Form from '@orangehrm/oxd/core/components/Form/Form';
 import FormRow from '@orangehrm/oxd/core/components/Form/FormRow';
 import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup';
@@ -39,7 +62,7 @@ import InputField from '@orangehrm/oxd/core/components/InputField/InputField';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider';
 import Button from '@orangehrm/oxd/core/components/Button/Button';
 import Text from '@orangehrm/oxd/core/components/Text/Text';
-import debounce from '@orangehrm/oxd/utils/debounce';
+import promiseDebounce from '@orangehrm/oxd/utils/promiseDebounce';
 
 const checkGithub = function(value) {
   return new Promise(resolve => {
@@ -58,18 +81,51 @@ const checkGithub = function(value) {
   });
 };
 
+const delayedFunc = function(value) {
+  return new Promise(resolve => {
+    if (value === 'test@test.com') {
+      setTimeout(() => {
+        resolve(true);
+      }, 5000);
+    } else {
+      setTimeout(() => {
+        resolve('Invalid email!');
+      }, 5000);
+    }
+  });
+};
+
 export default {
   name: 'ValidatableFrom',
+
+  setup() {
+    const form = ref(null);
+
+    return {
+      form,
+    };
+  },
 
   data() {
     return {
       isValid: 'valid',
       name: '',
+      email: '',
+      number: '',
       rules: {
         name: [
           v => (!!v && v.trim() !== '') || 'Required',
-          v => (v && v.length <= 50) || 'Should be less than 50 characters',
-          checkGithub,
+          v => (v && v.length <= 6) || 'Should be less than 6 characters',
+          promiseDebounce(checkGithub, 500),
+        ],
+        email: [
+          v => (!!v && v.trim() !== '') || 'Required',
+          v => (v && v.length <= 15) || 'Should be less than 15 characters',
+          promiseDebounce(delayedFunc, 500),
+        ],
+        number: [
+          v => (!!v && v.trim() !== '') || 'Required',
+          v => (v && v.length <= 10) || 'Should be less than 10 characters',
         ],
       },
     };
@@ -87,11 +143,11 @@ export default {
   },
 
   methods: {
-    onSubmit() {
-      console.log('form submit');
+    onSubmit(e) {
+      console.log('form valid', e);
     },
-    onInvalid() {
-      console.log('form invalid');
+    onInvalid(e) {
+      console.log('form invalid', e);
     },
   },
 };

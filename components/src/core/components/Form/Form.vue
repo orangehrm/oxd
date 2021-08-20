@@ -31,8 +31,8 @@ export default defineComponent({
 
     const isProcessing = computed(() => {
       return fieldset.value.reduce((acc, field) => {
-        return acc && field.processing.value;
-      }, true);
+        return acc || field.processing;
+      }, false);
     });
 
     const isFromInvalid = computed(() => {
@@ -40,18 +40,19 @@ export default defineComponent({
     });
 
     const isFormBusy = computed(() => {
-      return props.loading && isProcessing;
+      return props.loading || isProcessing.value;
     });
 
-    const onSubmit = async (e: Event) => {
-      if (!isFormBusy) {
+    const onSubmit = (e: Event) => {
+      if (isFormBusy.value) return;
+      setTimeout(async () => {
         await validate();
-        if (!isFromInvalid) {
+        if (!isFromInvalid.value) {
           context.emit('submitValid', e);
         } else {
           context.emit('submitInvalid', e);
         }
-      }
+      }, 0);
     };
 
     return {

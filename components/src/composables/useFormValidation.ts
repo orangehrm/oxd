@@ -54,21 +54,19 @@ export default function useFormValidation() {
   };
 
   const validate = () => {
-    return new Promise<void>(() => {
-      Promise.all(formState.fieldset.map(field => field.validate()))
-        .then(results => {
-          results.map(errorField => {
-            addError(errorField);
-          });
-        })
-        .catch(reject => {
-          console.error(reject);
+    return Promise.all(formState.fieldset.map(field => field.validate()))
+      .then(results => {
+        results.map(errorField => {
+          addError(errorField);
         });
-    });
+      })
+      .catch(reject => {
+        // eslint-disable-next-line no-console
+        console.error(reject);
+      });
   };
 
   provide(formKey, {
-    validate,
     addError,
     purgeErrors,
     searchErrors,
