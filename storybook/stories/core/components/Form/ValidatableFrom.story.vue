@@ -62,10 +62,13 @@
     </oxd-form-actions>
   </oxd-form>
 
-  <p>Form is {{ isValid ? 'vaild' : 'invalid' }}</p>
+  <p>Form state {{ form && form.isProcessing ? 'busy' : 'idle' }}</p>
+  <p>Form is {{ form && form.isFromInvalid ? 'invalid' : 'valid' }}</p>
+  <p>Errorbag {{ form && form.errorbag }}</p>
 </template>
 
 <script>
+import {ref} from 'vue';
 import Form from '@orangehrm/oxd/core/components/Form/Form';
 import FormRow from '@orangehrm/oxd/core/components/Form/FormRow';
 import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup';
@@ -77,6 +80,14 @@ import Text from '@orangehrm/oxd/core/components/Text/Text';
 
 export default {
   name: 'ValidatableFrom',
+
+  setup() {
+    const form = ref(null);
+
+    return {
+      form,
+    };
+  },
 
   data() {
     return {
@@ -120,9 +131,6 @@ export default {
     getFormValues() {
       console.log('form submit');
     },
-    // checkForm() {
-    //   this.isValid = this.$refs.form.isValid;
-    // },
   },
 };
 </script>
