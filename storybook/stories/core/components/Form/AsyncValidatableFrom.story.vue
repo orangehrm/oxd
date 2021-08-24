@@ -1,52 +1,37 @@
 <template>
-  <oxd-text tag="h5">Add Job Category</oxd-text>
+  <oxd-text tag="h5">Sync/Async Validations</oxd-text>
 
   <oxd-divider />
 
-  <oxd-form @submitValid="getFormValues" ref="form">
+  <oxd-form ref="form" @submitValid="onSubmit" @submitInvalid="onInvalid">
     <oxd-form-row>
       <oxd-input-group class="orangehrm-bottom-space">
         <oxd-input-field
-          label="Job Category Name"
+          label="Github Username (real async validation)"
           v-model="name"
           :rules="rules.name"
-        />
-        <oxd-input-field
-          label="Job Category Id"
-          v-model="id"
-          :rules="rules.id"
-        />
-        <oxd-input-field
-          type="dropdown"
-          label="Job Role"
-          v-model="role"
-          :rules="rules.role"
-          :options="[
-            {id: 1, label: 'All'},
-            {id: 2, label: 'Admin'},
-            {id: 3, label: 'ESS'},
-          ]"
         />
       </oxd-input-group>
     </oxd-form-row>
 
     <oxd-form-row>
-      <oxd-input-field
-        type="checkbox"
-        label="Check this"
-        option-label="I agree"
-        v-model="consent"
-        :rules="rules.consent"
-        true-value="yes"
-        false-value="no"
-      />
-      <oxd-input-field
-        type="switch"
-        label="Switch this"
-        option-label="Notify me"
-        v-model="notify"
-        :rules="rules.notify"
-      />
+      <oxd-input-group class="orangehrm-bottom-space">
+        <oxd-input-field
+          label="Email (simulated slow async validation)"
+          v-model="email"
+          :rules="rules.email"
+        />
+      </oxd-input-group>
+    </oxd-form-row>
+
+    <oxd-form-row>
+      <oxd-input-group class="orangehrm-bottom-space">
+        <oxd-input-field
+          label="Number (sync validation)"
+          v-model="number"
+          :rules="rules.number"
+        />
+      </oxd-input-group>
     </oxd-form-row>
 
     <oxd-divider />
@@ -77,6 +62,38 @@ import InputField from '@orangehrm/oxd/core/components/InputField/InputField';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider';
 import Button from '@orangehrm/oxd/core/components/Button/Button';
 import Text from '@orangehrm/oxd/core/components/Text/Text';
+import promiseDebounce from '@orangehrm/oxd/utils/promiseDebounce';
+
+const checkGithub = function(value) {
+  return new Promise(resolve => {
+    if (value.trim()) {
+      fetch(`https://api.github.com/search/users?q=${value}`)
+        .then(response => response.json())
+        .then(json => {
+          const {total_count} = json;
+          return total_count === 0
+            ? resolve(true)
+            : resolve('Existing Github User');
+        });
+    } else {
+      resolve(true);
+    }
+  });
+};
+
+const delayedFunc = function(value) {
+  return new Promise(resolve => {
+    if (value === 'test@test.com') {
+      setTimeout(() => {
+        resolve(true);
+      }, 5000);
+    } else {
+      setTimeout(() => {
+        resolve('Invalid email!');
+      }, 5000);
+    }
+  });
+};
 
 export default {
   name: 'ValidatableFrom',
@@ -91,28 +108,26 @@ export default {
 
   data() {
     return {
+      isValid: 'valid',
       name: '',
-      id: '',
-      role: [{id: 2, label: 'Admin'}],
-      consent: '',
-      notify: '',
+      email: '',
+      number: '',
       rules: {
         name: [
           v => (!!v && v.trim() !== '') || 'Required',
-          v => (v && v.length <= 50) || 'Should be less than 50 characters',
+          v => (v && v.length <= 6) || 'Should be less than 6 characters',
+          promiseDebounce(checkGithub, 500),
         ],
-        id: [
+        email: [
           v => (!!v && v.trim() !== '') || 'Required',
-          v => (v && v.length >= 10) || 'Should more than 10 characters',
+          v => (v && v.length <= 15) || 'Should be less than 15 characters',
+          promiseDebounce(delayedFunc, 500),
         ],
-        role: [v => (v && v.length > 0) || 'Required'],
-        consent: [
-          v => (v && v.length > 0) || 'Required',
-          v => v === 'yes' || 'You should agree',
+        number: [
+          v => (!!v && v.trim() !== '') || 'Required',
+          v => (v && v.length <= 10) || 'Should be less than 10 characters',
         ],
-        notify: [v => v || 'Please turn notify on'],
       },
-      isValid: true,
     };
   },
 
@@ -128,8 +143,11 @@ export default {
   },
 
   methods: {
-    getFormValues() {
-      console.log('form submit');
+    onSubmit(e) {
+      console.log('form valid', e);
+    },
+    onInvalid(e) {
+      console.log('form invalid', e);
     },
   },
 };
