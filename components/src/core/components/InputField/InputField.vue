@@ -99,7 +99,7 @@ export default defineComponent({
   setup(props, context) {
     const modelValue = toRef(props, 'modelValue');
     const {form, validate, hasError, message} = useField({
-      fieldLabel: props.label,
+      fieldLabel: props.label ? props.label : '',
       rules: props.rules,
       modelValue,
     });
