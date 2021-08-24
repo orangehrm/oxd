@@ -21,3 +21,12 @@ export interface RowItem {
   isSelectable?: boolean;
   isDisabled?: boolean;
 }
+
+export interface ActionCellEvent extends MouseEvent {
+  context?: string;
+}
+
+export type DropdownOption = {
+  label: string;
+  context: string;
+};
