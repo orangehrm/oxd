@@ -1,10 +1,10 @@
-import {inject} from 'vue';
+import {inject, InjectionKey} from 'vue';
 
-export function injectStrict<T>(key: string, fallback?: T) {
+export function injectStrict<T>(key: InjectionKey<T>, fallback?: T): T {
   const resolved = inject(key, fallback);
   if (!resolved) {
     throw new Error(
-      `Could not resolve ${key}, this component should be in parent who provide ${key}`,
+      `Could not resolve ${key.toString()}, this component should be in parent who provide ${key.toString()}`,
     );
   }
 

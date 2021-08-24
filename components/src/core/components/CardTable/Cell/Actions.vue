@@ -15,8 +15,10 @@
 <script lang="ts">
 import {defineComponent, mergeProps} from 'vue';
 import {cellMixin} from './cell-mixin';
-import {ActionsCellConfig, Action, RowItem} from './types';
+import {ActionsCellConfig, Action, RowItem, ActionCellEvent} from './types';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
+import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
+import Dropdown from '@orangehrm/oxd/core/components/CardTable/Cell/Dropdown.vue';
 
 export default defineComponent({
   name: 'oxd-table-cell-actions',
@@ -25,6 +27,8 @@ export default defineComponent({
 
   components: {
     'oxd-icon-button': IconButton,
+    'oxd-button': Button,
+    'oxd-table-dropdown': Dropdown,
   },
 
   props: {
@@ -56,13 +60,13 @@ export default defineComponent({
       const isTableDisabled =
         this.tableProps?.disabled === undefined
           ? false
-          : Boolean(this.tableProps?.disabled);
+          : Boolean(this.tableProps.disabled);
       return isTableDisabled ? isTableDisabled : isRowDisabled;
     },
   },
 
   methods: {
-    onClickAction(action: Action<RowItem>, key: string, e: Event) {
+    onClickAction(action: Action<RowItem>, key: string, e: ActionCellEvent) {
       const cellConfig = this.header?.cellConfig;
       if (typeof action.onClick === 'function') {
         action.onClick(this.rowItem, e);
