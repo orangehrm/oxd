@@ -8,4 +8,16 @@ describe('Icon.vue', () => {
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
+  it('should renders ohrm icon', () => {
+    const wrapper = mount(Icon, {
+      props: {name: 'oxd-likes'},
+    });
+    expect(wrapper.html()).toMatchSnapshot();
+  });
+  it('should not renders ohrm icon', () => {
+    const wrapper = mount(Icon, {
+      props: {name: 'oxd-test'},
+    });
+    expect(wrapper.html()).toMatchSnapshot();
+  });
 });
