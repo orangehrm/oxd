@@ -1,10 +1,11 @@
 <template>
-  <i :class="classes"></i>
+  <i v-if="isBootstrapIcon" :class="classes"></i>
+  <i v-else v-html="imageSVG" class="oxd-svg-icon"></i>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-
+import icons from './icons';
 export default defineComponent({
   name: 'oxd-icon',
 
@@ -14,13 +15,22 @@ export default defineComponent({
       required: true,
     },
   },
-
   computed: {
     classes(): object {
       return {
         'oxd-icon': true,
         [`bi-${this.name}`]: true,
       };
+    },
+    isBootstrapIcon(): boolean {
+      return !this.name.includes('oxd');
+    },
+    imageSVG(): string {
+      if (icons[this.name]?.value) {
+        return icons[this.name].value;
+      } else {
+        return '';
+      }
     },
   },
 });

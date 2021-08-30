@@ -23,3 +23,8 @@ export const Default = Template.bind({});
 Default.args = {
   name: 'trash',
 };
+
+export const OhrmIcon = Template.bind({});
+OhrmIcon.args = {
+  name: 'oxd-kudos',
+};
