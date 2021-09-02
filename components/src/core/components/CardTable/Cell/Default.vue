@@ -8,7 +8,7 @@
     </div>
   </div>
   <template v-else>
-    {{ item }}
+    <div>{{ item }}</div>
   </template>
 </template>
 

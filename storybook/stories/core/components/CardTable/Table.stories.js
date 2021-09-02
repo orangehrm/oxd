@@ -5,6 +5,7 @@ import SortableCardTable from './SortableCardTable.story.vue';
 import CardTableJobs from './CardTableJobs.story.vue';
 import CardTableRowOptions from './CardTableRowOptions.story.vue';
 import CardTableLeavelist from './CardTableLeavelist.story.vue';
+import CardTableLeavelistAlt from './CardTableLeavelistAlt.story.vue';
 
 export default {
   title: 'Example/CardTable',
@@ -29,6 +30,7 @@ export const ActionTable = () => ActionCardTable;
 export const SortableTable = () => SortableCardTable;
 export const JobTitleExample = () => CardTableJobs;
 export const LeaveListExample = () => CardTableLeavelist;
+export const LeaveListExample2 = () => CardTableLeavelistAlt;
 
 const RowOptionsTemplate = args => ({
   setup() {
