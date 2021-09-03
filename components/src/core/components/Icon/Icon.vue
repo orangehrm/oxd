@@ -30,7 +30,7 @@ export default defineComponent({
       }
     },
     imageSVG(): string {
-      if (Object.prototype.hasOwnProperty.call(icons, this.name)) {
+      if (icons[this.name]?.value) {
         return icons[this.name].value;
       } else {
         return '';
