@@ -14,6 +14,8 @@
 
 <script>
 import CardTable from '@orangehrm/oxd/core/components/CardTable/CardTable';
+import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput';
+import Textarea from '@orangehrm/oxd/core/components/Textarea/Textarea';
 
 export default {
   data() {
@@ -25,14 +27,18 @@ export default {
         {name: 'leaveBalance', title: 'Leave Balance (Days)', style: {flex: 1}},
         {name: 'days', title: 'Number of Days', style: {flex: 1}},
         {name: 'status', title: 'Status', style: {flex: 1}},
-        {name: 'comment', title: 'Comments', style: {flex: '5%'}},
+        {
+          name: 'comment',
+          title: 'Comments',
+          style: {flex: '10%'},
+          cellRenderer: this.commentRenderer,
+        },
         {
           name: 'action',
           slot: 'footer',
           title: 'Actions',
-          style: {flex: '20%'},
-          cellType: 'oxd-table-cell-actions',
-          cellRenderer: this.cellRenderer,
+          style: {flex: '10%'},
+          cellRenderer: this.actionsRenderer,
         },
       ],
       items: [
@@ -77,48 +83,36 @@ export default {
   },
 
   methods: {
-    cellRenderer(index, item, header, row) {
-      const accept = {
-        component: 'oxd-button',
-        props: {
-          label: 'Approve',
-          displayType: 'label',
-          size: 'medium',
-        },
-      };
-      const reject = {
-        component: 'oxd-button',
-        props: {
-          label: 'Reject',
-          displayType: 'label-danger',
-          size: 'medium',
-        },
-      };
-      const more = {
-        component: 'oxd-table-dropdown',
+    actionsRenderer() {
+      return {
+        component: SelectInput,
         props: {
           options: [
-            {label: 'Add Comment', context: 'add_comment'},
-            {label: 'View Leave Details', context: 'leave_details'},
-            {label: 'View PIM Info', context: 'pim_details'},
+            {
+              id: 1,
+              label: 'HR Admin',
+            },
           ],
-          style: {'margin-left': 'auto'},
+          'onUpdate:modelValue': function(params) {
+            console.log(params);
+          },
         },
       };
-      if (row.allowedActions.CANCEL) {
-        more.props.options.push({
-          label: 'Cancel Leave',
-          context: 'cancel_leave',
-        });
-      }
+    },
+    // dynamic component change
+    commentRenderer(index, data, header, row) {
       return {
+        component: row.isTextArea ? Textarea : null,
         props: {
-          header: {
-            cellConfig: {
-              ...(row.allowedActions.APPROVE && {accept}),
-              ...(row.allowedActions.REJECT && {reject}),
-              more,
-            },
+          value: data,
+          onClick: () => {
+            this.items[index].isTextArea = true;
+          },
+          onBlur: () => {
+            this.items[index].isTextArea = false;
+          },
+          onChange: $event => {
+            this.items[index].comment = $event.target.value;
           },
         },
       };
