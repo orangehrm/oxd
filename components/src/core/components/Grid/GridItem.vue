@@ -12,4 +12,4 @@ export default defineComponent({
 });
 </script>
 
-<style src="./griditem.scss" lang="scss" scoped></style>
+<style src="./grid-item.scss" lang="scss" scoped></style>

@@ -2,7 +2,7 @@
   <oxd-card-tbody>
     <div
       :class="classes"
-      v-for="item in items"
+      v-for="(item, index) in items"
       :key="item"
       @click="onClick(item)($event)"
     >
@@ -11,6 +11,7 @@
           class="oxd-padding-cell"
           :headers="defaultSlot"
           :items="item"
+          :index="index"
         ></oxd-card-cell>
       </oxd-card-tr>
     </div>

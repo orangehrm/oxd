@@ -1,7 +1,7 @@
 import {computed, onBeforeUnmount, Ref, ref} from 'vue';
 import {nanoid} from 'nanoid';
 import {injectStrict} from '../utils/injectable';
-import {ErrorField, formKey, rule} from './types';
+import {ErrorField, FormAPI, formKey, rule} from './types';
 
 export default function useField(fieldContext: {
   fieldLabel: string;
@@ -9,7 +9,7 @@ export default function useField(fieldContext: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   modelValue: Ref<any>;
 }) {
-  const form = injectStrict(formKey);
+  const form = injectStrict<FormAPI>(formKey);
   const cid = ref<string>(nanoid());
   const label = ref<string>(fieldContext.fieldLabel);
   const dirty = ref<boolean>(false);
