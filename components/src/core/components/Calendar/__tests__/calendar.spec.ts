@@ -26,7 +26,7 @@ describe('Calendar.vue', () => {
     const date = wrapper.findAllComponents(DateVue);
     const today = freshDate();
     expect(
-      date[today.getDate()].find('.oxd-calendar-date.--today').exists(),
+      date[today.getDate() - 1].find('.oxd-calendar-date.--today').exists(),
     ).toBeTruthy();
   });
   it('should show attributes in calendar', async () => {

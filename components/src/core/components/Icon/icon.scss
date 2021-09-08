@@ -10,6 +10,12 @@
   }
 }
 
+.oxd-svg-icon {
+  display: inline-block;
+  height: 1rem;
+  width: 1rem;
+}
+
 [class^='bi-']::before,
 [class*=' bi-']::before {
   line-height: inherit;
