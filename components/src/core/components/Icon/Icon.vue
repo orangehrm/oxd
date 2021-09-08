@@ -23,11 +23,7 @@ export default defineComponent({
       };
     },
     isBootstrapIcon(): boolean {
-      if (this.name.includes('oxd')) {
-        return false;
-      } else {
-        return true;
-      }
+      return !this.name.includes('oxd');
     },
     imageSVG(): string {
       if (icons[this.name]?.value) {

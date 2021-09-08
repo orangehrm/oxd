@@ -15,13 +15,13 @@ const Template = args => ({
 
 export const Icon = Template.bind({});
 Icon.args = {
-  name: 'oxd_buzz_likes',
+  name: 'trash',
   withContainer: false,
 };
 Icon.argTypes = {};
 
 export const ListIcon = Template.bind({});
 ListIcon.args = {
-  name: 'oxd_buzz_likes',
+  name: 'trash',
   withContainer: true,
 };

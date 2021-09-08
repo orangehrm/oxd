@@ -1,7 +1,7 @@
-@import "../../../styles";
-@import "variables";
+@import '../../../styles';
+@import 'variables';
 
-@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import '~bootstrap-icons/font/bootstrap-icons.css';
 
 .oxd-icon {
   color: $oxd-icon-font-color;
@@ -17,7 +17,7 @@
   fill: currentColor;
 }
 
-[class^="bi-"]::before,
-[class*=" bi-"]::before {
+[class^='bi-']::before,
+[class*=' bi-']::before {
   line-height: inherit;
 }
