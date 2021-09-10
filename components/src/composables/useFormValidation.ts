@@ -1,4 +1,4 @@
-import {provide, reactive, toRefs} from 'vue';
+import {provide, reactive, toRefs, unref} from 'vue';
 import {
   ErrorBag,
   ErrorField,
@@ -30,13 +30,13 @@ export default function useFormValidation() {
   };
 
   const addError = (errorField: ErrorField) => {
-    purgeErrors(errorField.cid);
+    purgeErrors(unref(errorField.cid));
     if (errorField.errors.length > 0) formState.errorbag.push(errorField);
   };
 
   const registerField = (field: FormField) => {
     const i = formState.fieldset.findIndex(item => {
-      return item.cid === field.cid;
+      return unref(item.cid) === unref(field.cid);
     });
     if (i === -1) {
       formState.fieldset.push(field);
@@ -44,9 +44,10 @@ export default function useFormValidation() {
   };
 
   const unregisterField = (field: FormField) => {
-    purgeErrors(field.cid.value);
+    purgeErrors(unref(field.cid));
+
     const i = formState.fieldset.findIndex(item => {
-      return item.cid === field.cid;
+      return unref(item.cid) === unref(field.cid);
     });
     if (i > -1) {
       formState.fieldset.splice(i, 1);
