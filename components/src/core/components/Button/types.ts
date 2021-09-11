@@ -1,6 +1,7 @@
 export const SIZE_SMALL = 'small';
 export const SIZE_MEDIUM = 'medium';
 export const SIZE_LARGE = 'large';
+export const SIZE_LONG = 'long';
 export const SIZES = [SIZE_SMALL, SIZE_MEDIUM, SIZE_LARGE];
 
 export const TYPE_MAIN = 'main';

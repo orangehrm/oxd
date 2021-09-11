@@ -227,9 +227,9 @@ describe('Button.vue', () => {
     expect(wrapper.html()).toMatchSnapshot();
   });
 
-  it('should renders OXD icon button', () => {
+  it('should renders OXD Glass button', () => {
     const label = 'Share Photos';
-    const imageSrc = require('@orangehrm/oxd/assets/images/cameraglass.png');
+    const imageSrc = '@orangehrm/oxd/assets/images/cameraglass.png';
     const wrapper = mount(Button, {
       props: {label, size: SIZE_LARGE, displayType: TYPE_GLASS},
       slots: {

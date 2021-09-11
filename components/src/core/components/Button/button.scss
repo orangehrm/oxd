@@ -108,6 +108,12 @@
   padding-bottom: $oxd-button-vertical-padding--large;
 }
 
+.oxd-button--long {
+  font-size: $oxd-button-font-size--large;
+  padding-top: $oxd-button-vertical-padding--medium;
+  padding-bottom: $oxd-button-vertical-padding--medium;
+}
+
 /*Glass Button */
 
 .oxd-button-icon {
@@ -119,7 +125,7 @@
   font-size: $oxd-button-font-size--large;
   font-weight: $oxd-button-font-weight;
   color: $oxd-interface-gray-darken-2-color;
-  background-color: $oxd-background-white-shadow-color;
+  background-color: $oxd-background-white-color;
   cursor: pointer;
 
   &:focus,
@@ -137,9 +143,8 @@
   }
 
   :deep img {
-    width: 2rem;
-    height: 2rem;
-    vertical-align: middle;
+    width: 2.5rem;
+    vertical-align: -0.8rem;
     padding-right: 5px;
   }
 }

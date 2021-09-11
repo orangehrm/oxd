@@ -7,6 +7,13 @@ exports[`Button.vue renders OXD button 1`] = `
 </button>
 `;
 
+exports[`Button.vue should renders OXD Glass button 1`] = `
+<button type="button" class="oxd-button oxd-button--large oxd-button--glass">
+  <!--v-if--> Share Photos
+  <!--v-if-->
+</button>
+`;
+
 exports[`Button.vue should renders OXD button with custom color 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--main" style="background-color: palegreen;">
   <!--v-if--> Button
@@ -45,13 +52,6 @@ exports[`Button.vue should renders OXD ghost-success button 1`] = `
 exports[`Button.vue should renders OXD ghost-warn button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--ghost-warn">
   <!--v-if--> Button
-  <!--v-if-->
-</button>
-`;
-
-exports[`Button.vue should renders OXD icon button 1`] = `
-<button type="button" class="oxd-button oxd-button--large oxd-button--glass">
-  <!--v-if--> Share Photos
   <!--v-if-->
 </button>
 `;

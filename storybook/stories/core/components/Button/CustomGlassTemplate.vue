@@ -14,6 +14,7 @@
 import Button from '@orangehrm/oxd/core/components/Button/Button';
 import {
   SIZE_LARGE,
+  SIZE_LONG,
   TYPE_GLASS,
 } from '@orangehrm/oxd/core/components/Button/types';
 export default {
@@ -24,7 +25,7 @@ export default {
     return {
       data: {
         imageSrc: require('@orangehrm/oxd/assets/images/cameraglass.png'),
-        imageSize: SIZE_LARGE,
+        imageSize: SIZE_LONG,
         imageDisplayType: TYPE_GLASS,
       },
     };
