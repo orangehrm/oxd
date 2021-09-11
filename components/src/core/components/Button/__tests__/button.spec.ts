@@ -22,6 +22,7 @@ import {
   TYPE_LABEL_SUCCESS,
   TYPE_TEXT,
   TYPE_TOOL,
+  TYPE_GLASS,
 } from '../types';
 
 describe('Button.vue', () => {
@@ -222,6 +223,18 @@ describe('Button.vue', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
       props: {label, style: {backgroundColor: 'palegreen'}},
+    });
+    expect(wrapper.html()).toMatchSnapshot();
+  });
+
+  it('should renders OXD icon button', () => {
+    const label = 'Share Photos';
+    const imageSrc = require('@orangehrm/oxd/assets/images/cameraglass.png');
+    const wrapper = mount(Button, {
+      props: {label, size: SIZE_LARGE, displayType: TYPE_GLASS},
+      slots: {
+        default: `<img src="${imageSrc}"/>`,
+      },
     });
     expect(wrapper.html()).toMatchSnapshot();
   });

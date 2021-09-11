@@ -25,6 +25,8 @@ export const TYPE_LABEL_SUCCESS = 'label-success';
 export const TYPE_TEXT = 'text';
 export const TYPE_TOOL = 'tool';
 
+export const TYPE_GLASS = 'glass';
+
 export const TYPES = [
   TYPE_MAIN,
   TYPE_SECONDARY,
@@ -44,6 +46,7 @@ export const TYPES = [
   TYPE_LABEL_SUCCESS,
   TYPE_TEXT,
   TYPE_TOOL,
+  TYPE_GLASS,
 ];
 
 export type ButtonSize =

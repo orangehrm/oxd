@@ -49,6 +49,13 @@ exports[`Button.vue should renders OXD ghost-warn button 1`] = `
 </button>
 `;
 
+exports[`Button.vue should renders OXD icon button 1`] = `
+<button type="button" class="oxd-button oxd-button--large oxd-button--glass">
+  <!--v-if--> Share Photos
+  <!--v-if-->
+</button>
+`;
+
 exports[`Button.vue should renders OXD iconName button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--main"><i class="oxd-icon bi-arrow-left oxd-button-icon"></i> Button
   <!--v-if-->
