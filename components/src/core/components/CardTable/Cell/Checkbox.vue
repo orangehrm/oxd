@@ -8,6 +8,8 @@
     v-model="checkState"
     :value="item"
     :disabled="isDisabled"
+    :disabled-tooltip="disabledTooltip"
+    :tooltip-position="tooltipPosition"
     @click="onClickCheckbox(item, $event)"
   />
 </template>
@@ -18,6 +20,7 @@ import emitter from '../../../../utils/emitter';
 import {defineComponent, inject, computed, onBeforeUnmount} from 'vue';
 import Skeleton from '@orangehrm/oxd/core/components/Skeleton/Skeleton.vue';
 import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
+import {TOP} from '@orangehrm/oxd/core/components/Input/types';
 
 export default defineComponent({
   name: 'oxd-table-cell-checkbox',
@@ -59,7 +62,19 @@ export default defineComponent({
         tableProps?.disabled === undefined
           ? false
           : Boolean(tableProps?.disabled);
-      return isTableDisabled ? isTableDisabled : isRowDisabled;
+      const isSelectDisabled = Boolean(props.rowItem?.isSelectDisabled);
+      return isTableDisabled || isRowDisabled || isSelectDisabled;
+    });
+
+    const tooltipPosition = computed(() => {
+      return props.rowItem?.selectDisabledTooltipPosition
+        ? props.rowItem?.selectDisabledTooltipPosition
+        : TOP;
+    });
+    const disabledTooltip = computed(() => {
+      return props.rowItem?.isSelectDisabled
+        ? props.rowItem?.selectDisabledTooltip ?? null
+        : null;
     });
 
     const isSelectable = computed(() => {
@@ -92,6 +107,8 @@ export default defineComponent({
       checkState,
       isDisabled,
       isSelectable,
+      tooltipPosition,
+      disabledTooltip,
     };
   },
   methods: {
