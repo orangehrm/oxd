@@ -108,7 +108,43 @@
   padding-bottom: $oxd-button-vertical-padding--large;
 }
 
+.oxd-button--long {
+  font-size: $oxd-button-font-size--large;
+  padding-top: $oxd-button-vertical-padding--medium;
+  padding-bottom: $oxd-button-vertical-padding--medium;
+}
+
+/*Glass Button */
+
 .oxd-button-icon {
   color: inherit;
   vertical-align: bottom;
+}
+
+.oxd-button--glass {
+  font-size: $oxd-button-font-size--large;
+  font-weight: $oxd-button-font-weight;
+  color: $oxd-interface-gray-darken-2-color;
+  background-color: $oxd-background-white-color;
+  cursor: pointer;
+
+  &:focus,
+  &:hover {
+    outline: 0;
+    background-color: $oxd-interface-gray-lighten-2-color;
+  }
+
+  &:active {
+    background-color: $oxd-interface-gray-lighten-2-color;
+  }
+
+  &.--disabled {
+    color: $oxd-icon-button-font-color--disabled;
+  }
+
+  :deep img {
+    width: 2.5rem;
+    vertical-align: -0.8rem;
+    padding-right: 5px;
+  }
 }
