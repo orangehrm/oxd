@@ -13,9 +13,9 @@ export default defineComponent({
 <style lang="scss" scoped>
 .header-image::v-deep img {
   border-radius: 50%;
-  width: 3.75rem;
+  width: 3.5rem;
   height: auto;
-  max-height: 3.75rem;
+  max-height: 3.5rem;
   cursor: pointer;
 }
 </style>
