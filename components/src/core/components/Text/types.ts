@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
+
 export const TAG_H1 = 'h1';
 export const TAG_H2 = 'h2';
 export const TAG_H3 = 'h3';
