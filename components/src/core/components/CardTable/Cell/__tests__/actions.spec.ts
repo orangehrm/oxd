@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
+
 import {mount} from '@vue/test-utils';
 import ActionsCell from '@orangehrm/oxd/core/components/CardTable/Cell/Actions.vue';
 import {DEVICE_LG} from '@orangehrm/oxd/composables/useResponsive';

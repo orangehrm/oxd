@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
+
 import {mount, shallowMount} from '@vue/test-utils';
 import SidePanel from '@orangehrm/oxd/core/components/SidePanel/SidePanel.vue';
 import MainMenu from '@orangehrm/oxd/core/components/SidePanel/MainMenu.vue';
