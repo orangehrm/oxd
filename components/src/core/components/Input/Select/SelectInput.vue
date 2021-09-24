@@ -43,8 +43,9 @@
       :class="dropdownClasses"
       :loading="loading"
       :empty="computedOptions.length === 0"
+      :empty-text="emptyText"
     >
-      <oxd-select-option @select="onClear">
+      <oxd-select-option v-if="showEmptySelector" @select="onClear">
         {{ placeholder }}
       </oxd-select-option>
       <oxd-select-option
@@ -106,6 +107,14 @@ export default defineComponent({
     placeholder: {
       type: String,
       default: '-- Select --',
+    },
+    showEmptySelector: {
+      type: Boolean,
+      default: true,
+    },
+    emptyText: {
+      type: String,
+      required: false,
     },
     dropdownPosition: {
       type: String,

@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
+
 import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput';
 import {
   BOTTOM,
@@ -86,7 +86,7 @@ const options = [
 
 const Template = args => ({
   setup() {
-    const selected = ref(null);
+    const selected = ref(args.value ?? null);
     return {args, selected};
   },
   render() {
@@ -135,4 +135,19 @@ LongLabels.args = {
     {id: 4, label: null},
     {id: 5, label: 'ඔක්තෝබර්'},
   ],
+};
+
+export const PreSelected = Template.bind({});
+PreSelected.args = {
+  options: options,
+  value: {
+    id: 4,
+    label: 'Manager',
+  },
+  showEmptySelector: false,
+};
+
+export const CustomEmptyText = Template.bind({});
+CustomEmptyText.args = {
+  emptyText: 'No Leave Types Available',
 };
