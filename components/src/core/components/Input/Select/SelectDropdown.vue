@@ -22,7 +22,7 @@
 <template>
   <div role="listbox" class="oxd-select-dropdown">
     <oxd-select-option v-if="empty">
-      No results found
+      {{ emptyText }}
     </oxd-select-option>
     <slot v-else></slot>
   </div>
@@ -43,6 +43,10 @@ export default defineComponent({
     empty: {
       type: Boolean,
       default: false,
+    },
+    emptyText: {
+      type: String,
+      default: 'No results found',
     },
   },
 });
