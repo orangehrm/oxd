@@ -17,7 +17,12 @@
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
 
-import mitt from 'mitt';
+import ReportTable from '@orangehrm/oxd/core/components/ReportTable/ReportTable';
+import ReportTableStory from './ReportTable.story.vue';
 
-const emitter = mitt();
-export default emitter;
+export default {
+  title: 'Example/ReportTable',
+  component: ReportTable,
+};
+
+export const ReportView = () => ReportTableStory;

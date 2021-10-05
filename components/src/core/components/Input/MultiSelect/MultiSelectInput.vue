@@ -47,6 +47,7 @@
       :class="dropdownClasses"
       :loading="loading"
       :empty="computedOptions.length === 0"
+      :empty-text="emptyText"
     >
       <oxd-select-option
         v-for="(option, i) in computedOptions"
@@ -116,6 +117,10 @@ export default defineComponent({
     options: {
       type: Array,
       required: true,
+    },
+    emptyText: {
+      type: String,
+      required: false,
     },
     dropdownPosition: {
       type: String,

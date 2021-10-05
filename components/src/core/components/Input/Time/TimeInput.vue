@@ -43,7 +43,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, reactive, toRefs} from 'vue';
+import {defineComponent, reactive, toRefs, watchEffect} from 'vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import clickOutsideDirective from '../../../../directives/click-outside';
@@ -97,10 +97,14 @@ export default defineComponent({
     'click-outside': clickOutsideDirective,
   },
 
-  setup(props) {
+  setup(props, context) {
     const state = reactive({
       open: false,
       timeInput: props.modelValue,
+    });
+
+    watchEffect(() => {
+      context.emit('update:modelValue', state.timeInput);
     });
 
     return {
@@ -110,10 +114,7 @@ export default defineComponent({
 
   methods: {
     onFocusOut() {
-      if (this.open) {
-        this.$emit('update:modelValue', this.timeInput);
-        this.closeDropdown();
-      }
+      this.open && this.closeDropdown();
     },
     onTimeInput($event: Event) {
       const input = ($event.target as HTMLInputElement).value;
