@@ -26,6 +26,7 @@
       :height="height"
       :headers="headers"
       :items="items"
+      :column-count="6"
     >
       <template v-slot:pagination>
         <oxd-pagination :length="3" :max="10" />
@@ -47,7 +48,6 @@ export default {
         {
           name: 'Leave Type',
           prop: 'type',
-          size: 150,
           pin: 'colPinStart',
         },
         {
@@ -56,11 +56,11 @@ export default {
             {
               name: 'Leave Entitlement (Days)',
               prop: 'entitlement',
-              size: 200,
               cellProperties: () => {
                 return {
                   class: {
                     'col-alt': true,
+                    'cell-action': true,
                   },
                 };
               },
@@ -68,22 +68,18 @@ export default {
             {
               name: 'Leave Pending Approval (Days)',
               prop: 'pending',
-              size: 200,
             },
             {
               name: 'Leave Scheduled (Days)',
               prop: 'scheduled',
-              size: 200,
             },
             {
               name: 'Leave Taken (Days)',
               prop: 'taken',
-              size: 200,
             },
             {
               name: 'Leave Balance (Days)',
               prop: 'balance',
-              size: 200,
               cellProperties: () => {
                 return {
                   class: {

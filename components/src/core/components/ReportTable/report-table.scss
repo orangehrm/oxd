@@ -70,6 +70,11 @@
       border-left: $oxd-report-table-cell-border;
     }
 
+    .main-viewport {
+      height: unset !important;
+      overflow-y: auto;
+    }
+
     .rgRow {
       border-top: $oxd-report-table-cell-border;
     }
@@ -84,6 +89,11 @@
 
     .colPinEnd {
       border-left: $oxd-report-table-header-border;
+    }
+
+    .cell-action:hover {
+      cursor: pointer;
+      text-decoration: underline;
     }
 
     revogr-header {
@@ -105,6 +115,14 @@
         font-size: $oxd-report-table-header-font-size;
         font-weight: $oxd-report-table-header-font-weight;
         background-color: unset !important;
+      }
+
+      .rgHeaderCell .header-content {
+        line-height: normal;
+        align-self: center;
+        overflow: unset !important;
+        text-overflow: unset !important;
+        white-space: normal !important;
       }
     }
   }
