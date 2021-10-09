@@ -137,9 +137,22 @@ export default defineComponent({
       const inputValue = files.map((file: File) => file.name).join(', ');
 
       if (files.length > 0) {
-        // Not supporting with multiple (i.e. <input type="file" multiple>)
-        const reader = new FileReader();
+        this.readFiles(files);
+        this.inputValue = inputValue;
+      } else {
+        this.inputValue = inputValue;
+        this.$emit('update:modelValue', null);
+      }
 
+      this.$emit('input', e);
+    },
+
+    readFiles(files: any) {
+      let count = files.length;
+      const outputFileArray: OutputFile[] = [];
+      for (let i = count - 1; i >= 0; i--) {
+        let file = files[i];
+        let reader = new FileReader();
         reader.onload = (event: ProgressEvent<FileReader>) => {
           if (
             typeof event.target?.result === 'string' ||
@@ -148,23 +161,21 @@ export default defineComponent({
             const base64 = event.target?.result.split(',').pop();
             if (base64) {
               const outputFile: OutputFile = {
-                name: files[0].name,
-                type: files[0].type,
-                size: files[0].size,
+                name: file.name,
+                type: file.type,
+                size: file.size,
                 base64,
               };
-              this.inputValue = inputValue;
-              this.$emit('update:modelValue', outputFile);
+              outputFileArray.push(outputFile);
+              if (!i) this.onFilesReadComplete(outputFileArray);
             }
           }
         };
-        reader.readAsDataURL(files[0]);
-      } else {
-        this.inputValue = inputValue;
-        this.$emit('update:modelValue', null);
+        reader.readAsDataURL(file);
       }
-
-      this.$emit('input', e);
+    },
+    onFilesReadComplete(files: OutputFile[]) {
+      this.$emit('update:modelValue', files);
     },
   },
 });
