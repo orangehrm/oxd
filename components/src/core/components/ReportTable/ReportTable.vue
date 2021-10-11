@@ -54,12 +54,13 @@
       v-else
       ref="vgridRef"
       theme="compact"
+      :key="key"
       :source="items"
       :columns="headers"
       :readonly="true"
       :resize="true"
       :canFocus="false"
-      :style="styles"
+      :colSize="colSize"
       v-bind="$attrs"
     ></v-grid>
     <div class="oxd-report-table-footer"></div>
@@ -69,6 +70,7 @@
 <script lang="ts">
 import VGrid from '@revolist/vue3-datagrid';
 import {computed, defineComponent, ref} from 'vue';
+import useResize from '../../../composables/useResize';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
 
@@ -97,14 +99,20 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    style: {
-      type: Object,
+    columnCount: {
+      type: Number,
+      required: false,
+    },
+    columnSize: {
+      type: Number,
+      default: 150,
     },
   },
   setup(props) {
     const tableRef = ref(null);
     const vgridRef = ref(null);
     const isFullScreen = ref(false);
+    const {width} = useResize(tableRef);
 
     const scrollLeft = () => {
       if (vgridRef.value) {
@@ -130,13 +138,6 @@ export default defineComponent({
       }
     };
 
-    const styles = computed(() => {
-      return {
-        ...props.style,
-        height: isFullScreen.value ? '100%' : props.height + 'px',
-      };
-    });
-
     const classes = computed(() => {
       return {
         'oxd-report-table': true,
@@ -144,13 +145,25 @@ export default defineComponent({
       };
     });
 
+    const colSize = computed(() => {
+      const size = Math.floor(
+        width.value / props.columnCount ?? props.headers.length,
+      );
+      return size > props.columnSize ? size : props.columnSize;
+    });
+
     const fullScreenIcon = computed(() => {
       return isFullScreen.value ? 'fullscreen-exit' : 'arrows-fullscreen';
     });
 
+    const key = computed(() => {
+      return {c: colSize.value, h: props.headers.length, i: props.items.length};
+    });
+
     return {
-      styles,
+      key,
       classes,
+      colSize,
       vgridRef,
       tableRef,
       scrollLeft,
