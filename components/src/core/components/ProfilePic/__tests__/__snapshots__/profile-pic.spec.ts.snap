@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProfilePic.vue renders OXD ProfilePic 1`] = `<div class="header-image"></div>`;
+exports[`ProfilePic.vue renders OXD ProfilePic with image 1`] = `<div class="header-image profile-image--medium"><img></div>`;
+
+exports[`ProfilePic.vue renders OXD ProfilePic with small image 1`] = `<div class="header-image profile-image--medium" displaytype="small"><img></div>`;
