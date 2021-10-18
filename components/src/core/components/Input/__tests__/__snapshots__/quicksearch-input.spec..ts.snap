@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AutocompleteSearchwidget.vue renders OXD Autocomplete Input 1`] = `
+exports[`QuickSearchInput.vue renders OXD Autocomplete Input 1`] = `
 <div class="oxd-autocomplete-search-wrapper">
   <div class="oxd-autocomplete-wrapper">
     <div class="oxd-autocomplete-text-input oxd-autocomplete-text-input--active">

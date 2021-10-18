@@ -1,7 +1,5 @@
 import {mount} from '@vue/test-utils';
-import AutocompleteSearchwidget from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteSearchwidget.vue';
-import AutocompleteTextInput from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteTextInput.vue';
-
+import QuickSearchInput from '@orangehrm/oxd/core/components/Input/Autocomplete/QuickSearchInput.vue';
 const options = [
   {
     id: 1,
@@ -21,9 +19,9 @@ const syncFunction = function() {
   return options;
 };
 
-describe('AutocompleteSearchwidget.vue', () => {
+describe('QuickSearchInput.vue', () => {
   it('renders OXD Autocomplete Input', () => {
-    const wrapper = mount(AutocompleteSearchwidget, {
+    const wrapper = mount(QuickSearchInput, {
       props: {
         createOptions: syncFunction,
       },

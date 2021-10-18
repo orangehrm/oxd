@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import SearchWidget from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteSearchwidget.vue';
+import SearchWidget from '@orangehrm/oxd/core/components/Input/Autocomplete/QuickSearchInput.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 export default {
   components: {
