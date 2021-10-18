@@ -5,6 +5,7 @@ import {
 } from '@orangehrm/oxd/core/components/Input/types';
 import {h, ref} from 'vue';
 import AutocompleteCustom from './AutocompleteCustom.story.vue';
+import QuickSearchWidget from './QuickSearchInput.story.vue';
 
 export default {
   title: 'Example/AutocompleteInput',
@@ -133,3 +134,5 @@ MultiSelect.args = {
 };
 
 export const CustomTemplate = () => AutocompleteCustom;
+
+export const QuickSearchInput = () => QuickSearchWidget;
