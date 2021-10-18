@@ -7,7 +7,11 @@
       @dropdown:opened="onOpen()"
       @dropdown:closed="onClosed()"
       @dropdown:blur="onBlur()"
-    ></oxd-autocomplete-input>
+    >
+      <template v-for="(_, slot) of $slots" v-slot:[slot]="scope"
+        ><slot :name="slot" v-bind="scope"
+      /></template>
+    </oxd-autocomplete-input>
     <slot name="iconSlot"></slot>
   </div>
 </template>
@@ -17,7 +21,7 @@ import {defineComponent} from 'vue';
 import AutocompleteInput from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteInput.vue';
 
 export default defineComponent({
-  name: 'oxd-autocomplete-search-input',
+  name: 'oxd-quick-search-input',
   inheritAttrs: false,
 
   components: {

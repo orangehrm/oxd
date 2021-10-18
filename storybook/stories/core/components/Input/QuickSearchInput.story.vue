@@ -1,53 +1,61 @@
 <template>
-  <oxd-search-widget :createOptions="syncFunction">
-    <template v-slot:iconSlot>
-      <oxd-icon-button name="oxd-search"></oxd-icon-button>
-    </template>
-  </oxd-search-widget>
+  <div>
+    <oxd-quick-search :createOptions="callAPI">
+      <template v-slot:iconSlot>
+        <oxd-icon-button name="oxd-search"></oxd-icon-button>
+      </template>
+      <template v-slot:option="{data}">
+        <span
+          class="auto-complete-img"
+          style=" display: inline-block;padding-right: 15px;"
+        >
+          <img
+            :src="data.avatar_url"
+            style=" border-radius: 50%;height: auto;cursor: pointer;width: 2.5rem;max-height: 2.5rem;"
+          />
+        </span>
+        <span> {{ data.label }}</span>
+      </template>
+    </oxd-quick-search>
+  </div>
 </template>
 
 <script>
-import SearchWidget from '@orangehrm/oxd/core/components/Input/Autocomplete/QuickSearchInput.vue';
-import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
+import QuickSearchInput from '@orangehrm/oxd/core/components/Input/Autocomplete/QuickSearchInput';
+import IconButton from '@orangehrm/oxd/core/components/Button/Icon';
+
 export default {
+  data() {
+    return {};
+  },
+
   components: {
-    'oxd-search-widget': SearchWidget,
+    'oxd-quick-search': QuickSearchInput,
     'oxd-icon-button': IconButton,
   },
-  data() {
-    return {
-      options: [
-        {
-          id: 1,
-          label: 'HR Admin',
-        },
-        {
-          id: 2,
-          label: 'ESS User',
-        },
-        {
-          id: 3,
-          label: 'Supervisor',
-        },
-        {
-          id: 4,
-          label: 'Manager',
-        },
-        {
-          id: 5,
-          label: 'Employee',
-        },
-        {
-          id: 6,
-          label: 'Appraiser',
-        },
-      ],
-    };
-  },
+
   methods: {
-    syncFunction(serachParam) {
-      const filter = new RegExp(serachParam, 'i');
-      return this.options.filter(item => item.label.match(filter));
+    callAPI(serachParam) {
+      return new Promise(resolve => {
+        if (serachParam.trim()) {
+          fetch(`https://api.github.com/search/users?q=${serachParam}`)
+            .then(response => response.json())
+            .then(json => {
+              const {items} = json;
+              resolve(
+                items.map(item => {
+                  return {
+                    id: item.id,
+                    label: item.login,
+                    avatar_url: item.avatar_url,
+                  };
+                }),
+              );
+            });
+        } else {
+          resolve([]);
+        }
+      });
     },
   },
 };
