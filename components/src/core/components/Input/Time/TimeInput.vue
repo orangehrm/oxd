@@ -36,14 +36,15 @@
     </div>
     <oxd-time-picker
       v-if="open"
-      v-model="timeInput"
       :step="step"
+      :modelValue="modelValue"
+      @update:modelValue="$emit('update:modelValue', $event)"
     ></oxd-time-picker>
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent, reactive, toRefs, watchEffect} from 'vue';
+import {defineComponent} from 'vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import clickOutsideDirective from '../../../../directives/click-outside';
@@ -97,18 +98,9 @@ export default defineComponent({
     'click-outside': clickOutsideDirective,
   },
 
-  setup(props, context) {
-    const state = reactive({
-      open: false,
-      timeInput: props.modelValue,
-    });
-
-    watchEffect(() => {
-      context.emit('update:modelValue', state.timeInput);
-    });
-
+  data() {
     return {
-      ...toRefs(state),
+      open: false,
     };
   },
 
@@ -118,7 +110,8 @@ export default defineComponent({
     },
     onTimeInput($event: Event) {
       const input = ($event.target as HTMLInputElement).value;
-      this.timeInput = formatDate(parseDate(input, 'hh:mm a'), 'HH:mm');
+      const value = formatDate(parseDate(input, 'hh:mm a'), 'HH:mm');
+      this.$emit('update:modelValue', value);
     },
     toggleDropdown() {
       if (!this.disabled) {
