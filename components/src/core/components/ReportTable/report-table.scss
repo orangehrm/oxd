@@ -50,7 +50,7 @@
     min-height: $oxd-report-table-loader-height;
     width: 100%;
     height: 100%;
-    z-index: 999;
+    z-index: $oxd-loader-z-index;
     display: flex;
     justify-content: center;
     align-items: center;

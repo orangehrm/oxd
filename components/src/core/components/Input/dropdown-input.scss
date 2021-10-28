@@ -62,7 +62,7 @@
   list-style: none;
   position: absolute;
   padding: 4px;
-  z-index: 300;
+  z-index: $oxd-dropdown-z-index;
   border-radius: 6px;
   box-shadow: 0px 5px 15px -8px rgb(0 0 0 / 15%);
   background-color: $oxd-white-color;

@@ -86,7 +86,7 @@ $oxd-dropdown-text-padding: 0 0.25rem 0 0.5rem !default;
 $oxd-dropdown-animation-time: 300ms !default;
 $oxd-dropdown-max-height: 11.5rem !default;
 $oxd-dropdown-loader-height: 1rem !default;
-$oxd-dropdown-dropdown-z-index: 300 !default;
+$oxd-dropdown-dropdown-z-index: $oxd-dropdown-z-index !default;
 $oxd-dropdown-dropdown-box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.15) !default;
 $oxd-dropdown-dropdown-padding: 4px !default;
 $oxd-dropdown-dropdown-border: 1px solid $oxd-interface-gray-lighten-2-color !default;

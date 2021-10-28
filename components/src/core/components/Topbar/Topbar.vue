@@ -21,10 +21,9 @@
 
 <template>
   <header class="oxd-topbar">
-    <div class="oxd-topbar-header">
+    <div :class="headerClasses">
       <!-- Context Header -->
       <div class="oxd-topbar-header-title">
-        <i :class="iconClasses"></i>
         <oxd-icon
           name="list"
           class="oxd-topbar-header-hamburger"
@@ -37,14 +36,13 @@
       <!-- User Menu Area -->
       <div class="oxd-topbar-header-userarea">
         <ul>
-          <oxd-user-dropdown
-            :user="user"
-            :logoutUrl="logoutUrl"
-          ></oxd-user-dropdown>
+          <oxd-user-dropdown :user="user">
+            <slot></slot>
+          </oxd-user-dropdown>
         </ul>
       </div>
     </div>
-    <div class="oxd-topbar-body">
+    <div :class="bodyClasses">
       <oxd-navigation-level-one
         :menu-items="menuItems"
       ></oxd-navigation-level-one>
@@ -67,13 +65,13 @@ export default defineComponent({
   emits: ['collapse'],
 
   props: {
+    toggle: {
+      type: Boolean,
+      default: false,
+    },
     contextTitle: {
       type: String,
       default: '',
-    },
-    icon: {
-      type: String,
-      default: 'icon-home',
     },
     menuItems: {
       type: Object as PropType<TopMenuItem[]>,
@@ -81,24 +79,26 @@ export default defineComponent({
     user: {
       type: Object as PropType<User>,
     },
-    logoutUrl: {
-      type: String,
-      default: '#',
-    },
   },
 
   components: {
     'oxd-text': Text,
-    'oxd-navigation-level-one': NavigationLevelOne,
     'oxd-icon': Icon,
+    'oxd-navigation-level-one': NavigationLevelOne,
     'oxd-user-dropdown': UserDropdown,
   },
 
   computed: {
-    iconClasses(): object {
+    headerClasses(): object {
       return {
-        'oxd-menu-icon': true,
-        [`${this.icon}-w`]: true,
+        'oxd-topbar-header': true,
+        toggled: this.toggle,
+      };
+    },
+    bodyClasses(): object {
+      return {
+        'oxd-topbar-body': true,
+        toggled: this.toggle,
       };
     },
   },

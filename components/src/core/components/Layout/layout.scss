@@ -15,30 +15,41 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see  http://www.gnu.org/licenses
 
-@import '../../../styles';
+@import 'variables';
 
 .oxd-layout {
-  display: flex;
   position: relative;
-  background-color: $oxd-background-pastel-white-color;
+  background-color: $oxd-layout-background-color;
   min-height: 100%;
   &-container {
-    flex: 1;
-    width: 100%;
     height: inherit;
     position: relative;
+    overflow: hidden;
+    width: $oxd-layout-container-mobile-width;
+    margin-top: $oxd-layout-container-margin-top;
+    @include oxd-respond-to('md') {
+      overflow: unset;
+      width: $oxd-layout-container-web-width;
+      margin-left: $oxd-layout-container-margin-left;
+      &.--collapse {
+        width: $oxd-layout-container-web-collapse-width;
+        margin-left: $oxd-layout-container-margin-left--collapse;
+      }
+    }
   }
   &-context {
-    padding: 0 1.5rem;
-    margin-bottom: 50px;
+    padding-top: $oxd-layout-context-padding-top;
+    padding-left: $oxd-layout-context-padding-left;
+    padding-right: $oxd-layout-context-padding-right;
+    margin-bottom: $oxd-layout-context-margin-bottom;
   }
   &-footer {
-    position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
   }
   &-overlay {
+    z-index: $oxd-sidepanel-overlay-z-index;
     @include oxd-respond-to('xs') {
       display: flex;
     }

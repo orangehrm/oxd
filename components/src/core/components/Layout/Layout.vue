@@ -21,27 +21,30 @@
 
 <template>
   <div class="oxd-layout">
-    <oxd-side-panel
-      @collapse="onCollapse"
-      :toggle="collapse"
-      :menu-items="sidepanelMenuItems"
-      :brand-image-src="brandImageSrc"
-    >
-    </oxd-side-panel>
-    <div class="oxd-layout-container">
+    <div class="oxd-layout-navigation">
+      <oxd-side-panel
+        @collapse="onCollapse"
+        :toggle="collapse"
+        :menu-items="sidepanelMenuItems"
+        :brand-image-src="brandImageSrc"
+      >
+      </oxd-side-panel>
+      <oxd-top-bar
+        @collapse="onCollapse"
+        :toggle="collapse"
+        :context-title="contextTitle"
+        :menu-items="topbarMenuItems"
+        :user="user"
+      >
+        <slot name="user-actions"></slot>
+      </oxd-top-bar>
+    </div>
+    <div :class="containerClasses">
       <oxd-overlay
         @click="onCollapse"
         class="oxd-layout-overlay"
         :show="collapse"
       ></oxd-overlay>
-      <oxd-top-bar
-        @collapse="onCollapse"
-        :context-title="contextTitle"
-        :icon="icon"
-        :menu-items="topbarMenuItems"
-        :user="user"
-        :logoutUrl="logoutUrl"
-      ></oxd-top-bar>
       <div class="oxd-layout-context">
         <slot></slot>
       </div>
@@ -65,10 +68,6 @@ export default defineComponent({
   name: 'oxd-layout',
 
   props: {
-    icon: {
-      type: String,
-      default: '',
-    },
     contextTitle: {
       type: String,
       required: true,
@@ -87,10 +86,6 @@ export default defineComponent({
     brandImageSrc: {
       type: String,
       required: true,
-    },
-    logoutUrl: {
-      type: String,
-      default: '#',
     },
   },
 
@@ -111,26 +106,17 @@ export default defineComponent({
       this.collapse = !this.collapse;
     },
   },
+
+  computed: {
+    containerClasses(): object {
+      return {
+        'oxd-layout-container': true,
+        '--collapse': this.collapse,
+      };
+    },
+  },
 });
 </script>
 
 <style src="./layout.scss" lang="scss" scoped></style>
-<style lang="scss">
-@import '../../../styles';
-
-body {
-  display: block;
-  margin: 0;
-}
-
-html,
-body {
-  height: 100%;
-  @include oxd-scrollbar();
-}
-
-#app,
-#root {
-  height: inherit;
-}
-</style>
+<style src="./layout-global.scss" lang="scss"></style>
