@@ -18,43 +18,46 @@
 @import '../../../styles';
 @import '../../../styles/icons';
 @import 'variables';
+@import '../SidePanel/variables';
+
+$oxd-topbar-header-padding-left-calc: calc(
+  #{$oxd-sidepanel-expand-width} + #{$oxd-topbar-header-padding-left}
+);
+$oxd-topbar-header-padding-left-collapse-calc: calc(
+  #{$oxd-sidepanel-collapse-width} + #{$oxd-topbar-header-padding-left}
+);
+$oxd-topbar-body-web-width: calc(100% - #{$oxd-sidepanel-expand-width});
+$oxd-topbar-body-web-collapse-width: calc(
+  100% - #{$oxd-sidepanel-collapse-width}
+);
+$oxd-topbar-body-web-margin-left: $oxd-sidepanel-expand-width;
+$oxd-topbar-body-web-margin-collapse: $oxd-sidepanel-collapse-width;
 
 .oxd-topbar {
-  position: relative;
-  display: flex;
+  top: 0;
+  width: 100%;
+  bottom: auto;
+  position: fixed;
   max-height: 100px;
-  flex-direction: column;
-  margin-bottom: 10px;
-  font-family: 'Nunito Sans', sans-serif;
   font-weight: 300;
+  font-family: $oxd-font-family;
+  z-index: $oxd-topbar-z-index;
   &-header {
     height: 50px;
-    @include oxd-respond-to('xs') {
-      padding: 0.5rem;
-    }
-    @include oxd-respond-to('md') {
-      padding: 0.5rem 1.5rem;
-    }
-    background-color: $oxd-topbar-bg-color;
-    background-image: $oxd-topbar-bg-gradient;
     display: flex;
     flex-flow: row;
+    padding-top: $oxd-topbar-header-padding-top;
+    padding-bottom: $oxd-topbar-header-padding-bottom;
+    padding-left: $oxd-topbar-header-padding-left;
+    padding-right: $oxd-topbar-header-padding-right;
+    background-color: $oxd-topbar-bg-color;
+    background-image: $oxd-topbar-bg-gradient;
     &-title {
       display: flex;
       min-width: 0%;
       line-height: 2;
       flex-basis: 70%;
       align-items: center;
-      padding: 0.5rem 0rem;
-      & i {
-        margin-right: 10px;
-        @include oxd-respond-to('xs') {
-          display: none;
-        }
-        @include oxd-respond-to('md') {
-          display: block;
-        }
-      }
       &-text {
         font-size: $oxd-topbar-title-font-size;
         font-weight: $oxd-topbar-title-font-weight;
@@ -65,13 +68,11 @@
       }
     }
     &-hamburger {
+      display: block;
       color: $oxd-white-color !important;
       margin-right: 10px;
       font-size: 1.5rem;
       cursor: pointer;
-      @include oxd-respond-to('xs') {
-        display: block !important;
-      }
       @include oxd-respond-to('md') {
         display: none !important;
       }
@@ -92,22 +93,20 @@
         margin: auto 1rem;
       }
     }
+    @include oxd-respond-to('md') {
+      padding-left: $oxd-topbar-header-padding-left-calc;
+      &.toggled {
+        padding-left: $oxd-topbar-header-padding-left-collapse-calc;
+      }
+    }
   }
   &-body {
-    height: 40px;
-    background-color: $oxd-white-color;
-    border-bottom: 1px solid $oxd-topbar-border-color;
+    box-sizing: border-box;
+    min-height: $oxd-topbar-body-min-height;
+    background-color: $oxd-topbar-body-background;
+    border-bottom: $oxd-topbar-border;
     padding: $oxd-topbar-body-padding;
-    @include oxd-respond-to('md') {
-      padding-left: 30px;
-    }
     &-nav {
-      @include oxd-respond-to('xs') {
-        overflow: hidden;
-      }
-      @include oxd-respond-to('md') {
-        overflow: visible;
-      }
       & ul:first-child {
         list-style: none;
         display: flex;
@@ -115,67 +114,65 @@
         margin: 0;
       }
       &-tab {
-        padding: 4px 15px;
-        cursor: pointer;
-        @include oxd-respond-to('md') {
-          position: relative;
-        }
+        height: 35px;
+        display: flex;
+        align-items: center;
         user-select: none;
-        &-item {
-          color: $oxd-topbar-tab-font-color;
-          font-weight: $oxd-topbar-tab-font-weight;
-          text-decoration: none;
-          font-size: 12px;
-          white-space: nowrap;
-        }
+        cursor: pointer;
+        padding: 0 12px;
+        position: relative;
+        margin-right: 15px;
+        text-decoration: none;
+        border-radius: 0.85rem;
+        background-color: #f8f9fa;
+        color: $oxd-topbar-tab-font-color;
+        font-family: $oxd-font-family;
+        font-size: $oxd-topbar-tab-font-size;
+        font-weight: $oxd-topbar-tab-font-weight;
+        &-item,
         &-link {
-          color: $oxd-topbar-tab-font-color;
-          font-weight: $oxd-topbar-tab-font-weight;
-          text-decoration: none;
-          display: block;
-          padding: 6px 16px;
-          font-size: 12px;
-          &:hover {
-            background-color: $oxd-topbar-tab-hover-color;
+          color: inherit;
+          white-space: nowrap;
+          text-decoration: inherit;
+        }
+        &:hover,
+        &.--active,
+        &.--visited {
+          color: $oxd-primary-one-color;
+          background-color: #fff2e9;
+          .oxd-icon {
+            color: $oxd-primary-one-color;
           }
         }
-        &.--active {
-          background-color: $oxd-background-pastel-white-color;
-          border-radius: 1rem;
-        }
-        &.--visited:after {
-          content: '';
-          display: block;
-          position: absolute;
-          width: $oxd-topbar-visited-border-width;
-          border-radius: $oxd-topbar-visited-border-radius;
-          border-bottom: $oxd-topbar-visited-border;
-          bottom: -#{$oxd-topbar-body-padding};
+        ::v-deep(.oxd-dropdown-menu) {
+          padding: 0.375rem;
+          min-width: 10rem;
+          & li {
+            color: $oxd-topbar-tab-font-color;
+            padding: 0.5rem;
+          }
+          & li:hover {
+            background-color: #f6f7f9;
+            border-radius: 0.65rem;
+          }
         }
         // TODO: Refactor for a better solution
-        ::v-deep(.oxd-dropdown-menu) {
-          @media (min-width: 0px) and (max-width: 800px) {
-            top: 115px;
-            left: 0;
-            right: 0;
-          }
-        }
+        // ::v-deep(.oxd-dropdown-menu) {
+        //   @media (min-width: 0px) and (max-width: 800px) {
+        //     top: 115px;
+        //     left: 0;
+        //     right: 0;
+        //   }
+        // }
       }
     }
-  }
-  &:before {
-    background-color: $oxd-topbar-patch-color;
-    width: 50px;
-    position: absolute;
-    top: 0px;
-    display: block;
-    left: -50px;
-    height: 100%;
-    @include oxd-respond-to('xs') {
-      content: unset;
-    }
     @include oxd-respond-to('md') {
-      content: '';
+      width: $oxd-topbar-body-web-width;
+      margin-left: $oxd-topbar-body-web-margin-left;
+      &.toggled {
+        width: $oxd-topbar-body-web-collapse-width;
+        margin-left: $oxd-topbar-body-web-margin-collapse;
+      }
     }
   }
 }

@@ -21,27 +21,30 @@
 
 <template>
   <div class="oxd-layout">
-    <oxd-side-panel
-      @collapse="onCollapse"
-      :toggle="collapse"
-      :menu-items="sidepanelMenuItems"
-      :brand-image-src="brandImageSrc"
-    >
-    </oxd-side-panel>
-    <div class="oxd-layout-container">
-      <oxd-overlay
-        @click="onCollapse"
-        class="oxd-layout-overlay"
-        :show="collapse"
-      ></oxd-overlay>
+    <div class="oxd-layout-navigation">
+      <oxd-side-panel
+        @collapse="onCollapse"
+        :toggle="collapse"
+        :menu-items="sidepanelMenuItems"
+        :brand-image-src="brandImageSrc"
+      >
+      </oxd-side-panel>
       <oxd-top-bar
         @collapse="onCollapse"
+        :toggle="collapse"
         :context-title="contextTitle"
         :icon="icon"
         :menu-items="topbarMenuItems"
         :user="user"
         :logoutUrl="logoutUrl"
       ></oxd-top-bar>
+    </div>
+    <div :class="containerClasses">
+      <oxd-overlay
+        @click="onCollapse"
+        class="oxd-layout-overlay"
+        :show="collapse"
+      ></oxd-overlay>
       <div class="oxd-layout-context">
         <slot></slot>
       </div>
@@ -109,6 +112,15 @@ export default defineComponent({
   methods: {
     onCollapse() {
       this.collapse = !this.collapse;
+    },
+  },
+
+  computed: {
+    containerClasses(): object {
+      return {
+        'oxd-layout-container': true,
+        '--collapse': this.collapse,
+      };
     },
   },
 });
