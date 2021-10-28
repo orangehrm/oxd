@@ -132,7 +132,7 @@
     height: 25px;
     min-width: 25px;
     min-height: 25px;
-    background-color: $oxd-menu-slide-button-color;
+    background-color: $oxd-menu-slide-button-color !important;
     @include oxd-respond-to('xs') {
       display: none;
     }
@@ -141,12 +141,6 @@
     }
     & i {
       color: $oxd-white-color !important;
-    }
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.3);
-    }
-    &:active {
-      background-color: $oxd-menu-slide-button-color;
     }
   }
   &.--fixed {

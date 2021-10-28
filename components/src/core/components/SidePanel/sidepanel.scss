@@ -25,39 +25,35 @@
   padding: 0;
   margin: 0;
   height: inherit;
-  /* clip out scrollbars */
   overflow: hidden;
-  border-bottom-right-radius: $oxd-sidepanel-border-radius;
 }
 
 .oxd-sidepanel {
-  @include oxd-respond-to('xs') {
-    width: 0;
-    overflow: hidden;
-    position: absolute;
-    height: 100%;
-  }
-  @include oxd-respond-to('md') {
-    width: 272px;
-    overflow: visible;
-    position: relative;
-    height: inherit;
-  }
+  top: 0;
+  height: 100%;
+  position: fixed;
   background-color: $oxd-sidepanel-bg-color;
   border-bottom-right-radius: $oxd-sidepanel-border-radius;
   border-top-right-radius: $oxd-sidepanel-border-radius;
-  box-shadow: 0px 25px 35px 0 rgba(0, 0, 0, 0.18);
-  z-index: 1001;
+  box-shadow: $oxd-sidepanel-box-shadow;
+  z-index: $oxd-sidepanel-z-index;
   transition: width 0.3s ease-in-out;
 
+  // hide sidepanel by default in mobile
+  @include oxd-respond-to('xs') {
+    width: 0;
+  }
+  @include oxd-respond-to('md') {
+    width: $oxd-sidepanel-expand-width;
+  }
+
+  // toggle sidepanel expland/collpase width
   &.toggled {
     @include oxd-respond-to('xs') {
-      width: 270px;
-      position: absolute;
+      width: $oxd-sidepanel-expand-width;
     }
     @include oxd-respond-to('md') {
-      width: 82px;
-      position: relative;
+      width: $oxd-sidepanel-collapse-width;
     }
   }
 
