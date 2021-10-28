@@ -16,40 +16,19 @@
 // along with this program.  If not, see  http://www.gnu.org/licenses
 
 @import '../../../styles';
-@import 'variables';
 
-.oxd-userdropdown {
-  position: relative;
-  ::v-deep(.oxd-dropdown-menu) {
-    top: 60px;
-  }
-  &-tab {
-    display: flex;
-    align-items: center;
-    padding-right: 0.75rem;
-    border-radius: 100px;
-    min-width: 35px;
-    cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.15);
-  }
-  &-img {
-    height: 2.9rem;
-    width: 2.8rem;
-    border: $oxd-userdropdown-img-border;
-    border-radius: 50% !important;
-    margin-right: 8px;
-  }
-  &-name {
-    margin: 0;
-    color: $oxd-white-color;
-    font-size: 0.75rem;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    max-width: 50px;
-    white-space: nowrap;
-    font-weight: 600;
-    @include oxd-respond-to('md') {
-      max-width: unset;
-    }
-  }
+body {
+  display: block;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+  @include oxd-scrollbar();
+}
+
+#app,
+#root {
+  height: inherit;
 }

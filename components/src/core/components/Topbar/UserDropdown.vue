@@ -33,11 +33,7 @@
       </p>
     </span>
     <template v-slot:content>
-      <li role="none">
-        <a :href="logoutUrl" role="menuitem" class="oxd-userdropdown-link">
-          <oxd-icon name="box-arrow-right" :with-container="false" />Logout
-        </a>
-      </li>
+      <slot></slot>
     </template>
   </oxd-dropdown-menu>
   <!-- User dropdown -->
@@ -46,7 +42,6 @@
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
 import {User} from './user.interface';
-import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import DropdownMenu from '@orangehrm/oxd/core/components/DropdownMenu/DropdownMenu.vue';
 
 export default defineComponent({
@@ -56,14 +51,9 @@ export default defineComponent({
     user: {
       type: Object as PropType<User>,
     },
-    logoutUrl: {
-      type: String,
-      default: '#',
-    },
   },
 
   components: {
-    'oxd-icon': Icon,
     'oxd-dropdown-menu': DropdownMenu,
   },
 
@@ -71,20 +61,11 @@ export default defineComponent({
     profilePicUrl() {
       return this.user.profImgSrc != ''
         ? this.user.profImgSrc
-        : require('../../../assets/images/user-default-400.png').default;
+        : require('../../../assets/images/user-default-400.png');
     },
   },
 });
 </script>
 
 <style src="./user-dropdown.scss" lang="scss" scoped></style>
-<style lang="scss">
-.oxd-userdropdown {
-  & .oxd-dropdown-menu {
-    right: 0;
-    left: unset;
-    top: 50px;
-    min-width: 10rem;
-  }
-}
-</style>
+<style src="./user-dropdown-global.scss" lang="scss"></style>

@@ -36,10 +36,9 @@
       <!-- User Menu Area -->
       <div class="oxd-topbar-header-userarea">
         <ul>
-          <oxd-user-dropdown
-            :user="user"
-            :logoutUrl="logoutUrl"
-          ></oxd-user-dropdown>
+          <oxd-user-dropdown :user="user">
+            <slot></slot>
+          </oxd-user-dropdown>
         </ul>
       </div>
     </div>
@@ -79,10 +78,6 @@ export default defineComponent({
     },
     user: {
       type: Object as PropType<User>,
-    },
-    logoutUrl: {
-      type: String,
-      default: '#',
     },
   },
 

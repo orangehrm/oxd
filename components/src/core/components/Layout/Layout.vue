@@ -33,11 +33,11 @@
         @collapse="onCollapse"
         :toggle="collapse"
         :context-title="contextTitle"
-        :icon="icon"
         :menu-items="topbarMenuItems"
         :user="user"
-        :logoutUrl="logoutUrl"
-      ></oxd-top-bar>
+      >
+        <slot name="user-actions"></slot>
+      </oxd-top-bar>
     </div>
     <div :class="containerClasses">
       <oxd-overlay
@@ -68,10 +68,6 @@ export default defineComponent({
   name: 'oxd-layout',
 
   props: {
-    icon: {
-      type: String,
-      default: '',
-    },
     contextTitle: {
       type: String,
       required: true,
@@ -90,10 +86,6 @@ export default defineComponent({
     brandImageSrc: {
       type: String,
       required: true,
-    },
-    logoutUrl: {
-      type: String,
-      default: '#',
     },
   },
 
@@ -127,22 +119,4 @@ export default defineComponent({
 </script>
 
 <style src="./layout.scss" lang="scss" scoped></style>
-<style lang="scss">
-@import '../../../styles';
-
-body {
-  display: block;
-  margin: 0;
-}
-
-html,
-body {
-  height: 100%;
-  @include oxd-scrollbar();
-}
-
-#app,
-#root {
-  height: inherit;
-}
-</style>
+<style src="./layout-global.scss" lang="scss"></style>
