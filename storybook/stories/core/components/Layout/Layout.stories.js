@@ -16,11 +16,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
-import Layout from './Layout.vue';
+import LayoutSimple from './LayoutSimple.story.vue';
+import LayoutComplex from './LayoutComplex.story.vue';
 
 export default {
-    title: 'Example/Layout',
+  title: 'Example/Layout',
 };
 
-export const Default = () => Layout;
+export const Default = () => LayoutSimple;
+
+Default.parameters = {
+  docs: {
+    inlineStories: false,
+    iframeHeight: 720,
+  },
+};
+
+export const Complex = () => LayoutComplex;
+
+Complex.parameters = {
+  docs: {
+    inlineStories: false,
+    iframeHeight: 720,
+  },
+};
