@@ -146,9 +146,10 @@ export default defineComponent({
     });
 
     const colSize = computed(() => {
-      const size = Math.floor(
-        width.value / props.columnCount ?? props.headers.length,
-      );
+      const numberOfColumns = props.columnCount
+        ? props.columnCount
+        : props.headers.length;
+      const size = Math.floor(width.value / numberOfColumns);
       return size > props.columnSize ? size : props.columnSize;
     });
 
