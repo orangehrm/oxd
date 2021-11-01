@@ -23,7 +23,11 @@
   <aside class="oxd-sidepanel" :class="classes">
     <nav class="oxd-navbar-nav" role="navigation" aria-label="Sidepanel">
       <div class="oxd-sidepanel-header">
-        <oxd-branding :toggle="toggle" :image-src="brandImageSrc" />
+        <oxd-branding
+          :toggle="toggle"
+          :image-src="brandImageSrc"
+          :url="homeUrl"
+        />
         <oxd-icon
           name="x"
           class="oxd-sidepanel-header-close"
@@ -45,7 +49,7 @@
 import {defineComponent, PropType} from 'vue';
 import Branding from './Branding.vue';
 import MainMenu from './MainMenu.vue';
-import MenuItem from './menuItem.interface';
+import MenuItem from './types';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
@@ -61,6 +65,10 @@ export default defineComponent({
     brandImageSrc: {
       type: String,
       default: '',
+    },
+    homeUrl: {
+      type: String,
+      default: '/',
     },
     menuItems: {
       type: Object as PropType<MenuItem[]>,

@@ -20,27 +20,26 @@
 -->
 
 <template>
-  <li v-if="menuItem.children.length === 0" :class="class">
-    <a class="oxd-topbar-body-nav-tab-item" :href="menuItem.url">
+  <li
+    v-if="menuItem.children.length === 0"
+    @click="onClickMenu($event, menuItem)"
+  >
+    <a class="oxd-topbar-body-nav-tab-item" href="#">
       {{ menuItem.name }}
     </a>
   </li>
-  <oxd-dropdown-menu :class="class" v-else>
+  <oxd-dropdown-menu v-else>
     <span class="oxd-topbar-body-nav-tab-item">
       {{ menuItem.name }}
-      <oxd-icon name="caret-down-fill" :with-container="false" />
+      <oxd-icon name="chevron-down" :with-container="false" />
     </span>
     <template v-slot:content>
       <li
         v-for="(subMenuItem, index) in menuItem.children"
         :key="`nav-level2-${index}`"
-        role="none"
+        @click="onClickMenu($event, subMenuItem)"
       >
-        <a
-          :href="subMenuItem.url"
-          role="menuitem"
-          class="oxd-topbar-body-nav-tab-link"
-        >
+        <a href="#" role="menuitem" class="oxd-topbar-body-nav-tab-link">
           {{ subMenuItem.name }}
         </a>
       </li>
@@ -57,9 +56,6 @@ import DropdownMenu from '@orangehrm/oxd/core/components/DropdownMenu/DropdownMe
 export default defineComponent({
   name: 'oxd-navigation-link',
   props: {
-    class: {
-      type: String,
-    },
     menuItem: {
       type: Object as PropType<TopMenuItem>,
     },
@@ -67,6 +63,20 @@ export default defineComponent({
   components: {
     'oxd-icon': Icon,
     'oxd-dropdown-menu': DropdownMenu,
+  },
+  setup() {
+    const onClickMenu = ($event: MouseEvent, item: TopMenuItem) => {
+      if (!item.children || item.children.length === 0) {
+        window.location.replace(item.url);
+      } else {
+        $event.preventDefault();
+        $event.stopPropagation();
+      }
+    };
+
+    return {
+      onClickMenu,
+    };
   },
 });
 </script>

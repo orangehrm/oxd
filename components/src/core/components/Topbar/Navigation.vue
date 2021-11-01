@@ -118,7 +118,7 @@ export default defineComponent({
         lastMenuItemWidth.value = getHTMLElementWidth(
           menuItems[menuItems.length - 1].$el,
         );
-        hiddenMenuItems.value.push(visibleMenuItems.value.pop());
+        hiddenMenuItems.value.unshift(visibleMenuItems.value.pop());
       }
 
       if (
@@ -126,7 +126,7 @@ export default defineComponent({
         width.value > menuItemsWidth + lastMenuItemWidth.value
       ) {
         nextTick().then(() => {
-          visibleMenuItems.value.push(hiddenMenuItems.value.pop());
+          visibleMenuItems.value.push(hiddenMenuItems.value.shift());
         });
       }
     };

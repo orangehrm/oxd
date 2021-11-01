@@ -21,10 +21,10 @@
 @import '../SidePanel/variables';
 
 $oxd-topbar-header-padding-left-calc: calc(
-  #{$oxd-sidepanel-expand-width} + #{$oxd-topbar-header-padding-left}
+  #{$oxd-sidepanel-expand-width} + #{$oxd-topbar-header-web-padding-left}
 );
 $oxd-topbar-header-padding-left-collapse-calc: calc(
-  #{$oxd-sidepanel-collapse-width} + #{$oxd-topbar-header-padding-left}
+  #{$oxd-sidepanel-collapse-width} + #{$oxd-topbar-header-web-padding-left}
 );
 $oxd-topbar-body-web-width: calc(100% - #{$oxd-sidepanel-expand-width});
 $oxd-topbar-body-web-collapse-width: calc(
@@ -48,8 +48,8 @@ $oxd-topbar-body-web-margin-collapse: $oxd-sidepanel-collapse-width;
     flex-flow: row;
     padding-top: $oxd-topbar-header-padding-top;
     padding-bottom: $oxd-topbar-header-padding-bottom;
-    padding-left: $oxd-topbar-header-padding-left;
-    padding-right: $oxd-topbar-header-padding-right;
+    padding-left: $oxd-topbar-header-mobile-padding-left;
+    padding-right: $oxd-topbar-header-mobile-padding-right;
     background-color: $oxd-topbar-bg-color;
     background-image: $oxd-topbar-bg-gradient;
     &-title {
@@ -73,8 +73,9 @@ $oxd-topbar-body-web-margin-collapse: $oxd-sidepanel-collapse-width;
       margin-right: 10px;
       font-size: 1.5rem;
       cursor: pointer;
+      height: 100%;
       @include oxd-respond-to('md') {
-        display: none !important;
+        display: none;
       }
     }
     &-userarea {
@@ -95,6 +96,7 @@ $oxd-topbar-body-web-margin-collapse: $oxd-sidepanel-collapse-width;
     }
     @include oxd-respond-to('md') {
       padding-left: $oxd-topbar-header-padding-left-calc;
+      padding-right: $oxd-topbar-header-web-padding-right;
       &.toggled {
         padding-left: $oxd-topbar-header-padding-left-collapse-calc;
       }
@@ -105,8 +107,9 @@ $oxd-topbar-body-web-margin-collapse: $oxd-sidepanel-collapse-width;
     min-height: $oxd-topbar-body-min-height;
     background-color: $oxd-topbar-body-background;
     border-bottom: $oxd-topbar-border;
-    padding: $oxd-topbar-body-padding;
+    padding: $oxd-topbar-body-mobile-padding;
     @include oxd-respond-to('md') {
+      padding: $oxd-topbar-body-web-padding;
       width: $oxd-topbar-body-web-width;
       margin-left: $oxd-topbar-body-web-margin-left;
       &.toggled {

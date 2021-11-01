@@ -19,7 +19,7 @@
 @import 'variables';
 
 .oxd-topbar-body-nav-tab {
-  background-color: #f8f9fa;
+  background-color: $oxd-topbar-tab-background-color;
   color: $oxd-topbar-tab-font-color;
   &-item,
   &-link {
@@ -39,31 +39,26 @@
   &.--active,
   &.--visited {
     color: $oxd-primary-one-color;
-    background-color: #fff2e9;
+    background-color: $oxd-topbar-tab-hover-color;
     .oxd-icon {
       color: $oxd-primary-one-color;
     }
   }
   .oxd-dropdown-menu {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: 0.5rem;
     padding: 0.375rem;
-    min-width: 10rem;
     & li {
       color: $oxd-topbar-tab-font-color;
       padding: 0.5rem;
     }
     & li:hover {
-      background-color: #f6f7f9;
+      background-color: $oxd-dropdown-item-hover-color;
       border-radius: 0.65rem;
     }
   }
-  // TODO: Refactor for a better solution
-  // ::v-deep(.oxd-dropdown-menu) {
-  //   @media (min-width: 0px) and (max-width: 800px) {
-  //     top: 115px;
-  //     left: 0;
-  //     right: 0;
-  //   }
-  // }
 
   &-accordian {
     list-style: none;

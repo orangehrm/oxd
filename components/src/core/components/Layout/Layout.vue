@@ -27,6 +27,7 @@
         :toggle="collapse"
         :menu-items="sidepanelMenuItems"
         :brand-image-src="brandImageSrc"
+        :home-url="homeUrl"
       >
       </oxd-side-panel>
       <oxd-top-bar
@@ -60,9 +61,8 @@ import {defineComponent, PropType} from 'vue';
 import Topbar from '@orangehrm/oxd/core/components/Topbar/Topbar.vue';
 import SidePanel from '@orangehrm/oxd/core/components/SidePanel/SidePanel.vue';
 import overlay from '@orangehrm/oxd/core/components/Dialog/Overlay.vue';
-import MenuItem from '../SidePanel/menuItem.interface';
-import {TopMenuItem} from '../Topbar/menuItem.interface';
-import {User} from '../Topbar/user.interface';
+import MenuItem from '../SidePanel/types';
+import {TopMenuItem, User} from '../Topbar/types';
 
 export default defineComponent({
   name: 'oxd-layout',
@@ -86,6 +86,10 @@ export default defineComponent({
     brandImageSrc: {
       type: String,
       required: true,
+    },
+    homeUrl: {
+      type: String,
+      default: '/',
     },
   },
 

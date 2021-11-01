@@ -32,9 +32,7 @@
             {{ menuItem.name }}
             <oxd-icon
               v-show="menuItem.children.length > 0"
-              :name="
-                index === expandedIndex ? 'caret-up-fill' : 'caret-down-fill'
-              "
+              :name="index === expandedIndex ? 'chevron-up' : 'chevron-down'"
               :with-container="false"
             />
           </a>

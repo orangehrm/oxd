@@ -25,7 +25,8 @@ $oxd-topbar-title-font-color: $oxd-white-color !default;
 $oxd-topbar-tab-font-color: $oxd-interface-gray-color !default;
 $oxd-topbar-tab-font-size: 12px !default;
 $oxd-topbar-tab-font-weight: 600 !default;
-$oxd-topbar-tab-hover-color: #f8f9fc !default;
+$oxd-topbar-tab-hover-color: #fff2e9 !default;
+$oxd-topbar-tab-background-color: #f8f9fa !default;
 $oxd-topbar-visited-border: 3px solid $oxd-primary-one-color !default;
 $oxd-topbar-visited-border-radius: 4px !default;
 $oxd-topbar-visited-border-width: 1.875rem !default;
@@ -35,12 +36,15 @@ $oxd-userdropdown-img-border: 4px solid rgba(225, 225, 255, 0.37) !default;
 $oxd-userdropdown-gap-border: 1px solid #da630b !default;
 
 $oxd-notifdropdown-counter-bg: #ffd3c0 !default;
-$oxd-topbar-header-padding-left: 48px !default;
-$oxd-topbar-header-padding-right: 48px !default;
+$oxd-topbar-header-web-padding-left: 48px !default;
+$oxd-topbar-header-mobile-padding-left: 20px !default;
+$oxd-topbar-header-web-padding-right: 48px !default;
+$oxd-topbar-header-mobile-padding-right: 20px !default;
 $oxd-topbar-header-padding-top: 8px !default;
 $oxd-topbar-header-padding-bottom: 8px !default;
 
-$oxd-topbar-body-padding: 8px 48px !default;
+$oxd-topbar-body-web-padding: 8px 48px !default;
+$oxd-topbar-body-mobile-padding: 8px 20px !default;
 $oxd-topbar-body-min-height: 52px !default;
 $oxd-topbar-body-background: $oxd-white-color !default;
 $oxd-topbar-border: 1px solid #f1f2f3 !default;

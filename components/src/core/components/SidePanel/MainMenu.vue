@@ -59,7 +59,7 @@ import {defineComponent, PropType} from 'vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import MainMenuItem from './MainMenuItem.vue';
-import MenuItem from './menuItem.interface';
+import MenuItem from './types';
 
 export default defineComponent({
   name: 'oxd-main-menu',

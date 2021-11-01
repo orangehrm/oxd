@@ -32,12 +32,19 @@
     user-select: none;
     cursor: pointer;
     padding: 0 12px;
-    position: relative;
     margin-right: 15px;
     text-decoration: none;
     border-radius: 0.85rem;
     font-family: $oxd-font-family;
     font-size: $oxd-topbar-tab-font-size;
     font-weight: $oxd-topbar-tab-font-weight;
+  }
+  @include oxd-respond-to('xs') {
+    position: relative;
+  }
+  @include oxd-respond-to('md') {
+    &-tab {
+      position: relative;
+    }
   }
 }
