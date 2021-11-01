@@ -20,52 +20,55 @@
 -->
 
 <template>
-  <!-- User dropdown -->
-  <oxd-dropdown-menu class="oxd-userdropdown">
-    <span class="oxd-userdropdown-tab">
-      <img
-        alt="profile picture"
-        class="oxd-userdropdown-img"
-        :src="profilePicUrl"
-      />
-      <p class="oxd-userdropdown-name">
-        {{ user.firstName }} {{ user.lastName }}
-      </p>
+  <li v-if="menuItem.children.length === 0" :class="class">
+    <a class="oxd-topbar-body-nav-tab-item" :href="menuItem.url">
+      {{ menuItem.name }}
+    </a>
+  </li>
+  <oxd-dropdown-menu :class="class" v-else>
+    <span class="oxd-topbar-body-nav-tab-item">
+      {{ menuItem.name }}
+      <oxd-icon name="caret-down-fill" :with-container="false" />
     </span>
     <template v-slot:content>
-      <slot></slot>
+      <li
+        v-for="(subMenuItem, index) in menuItem.children"
+        :key="`nav-level2-${index}`"
+        role="none"
+      >
+        <a
+          :href="subMenuItem.url"
+          role="menuitem"
+          class="oxd-topbar-body-nav-tab-link"
+        >
+          {{ subMenuItem.name }}
+        </a>
+      </li>
     </template>
   </oxd-dropdown-menu>
-  <!-- User dropdown -->
 </template>
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
-import {User} from './types';
+import {TopMenuItem} from './types';
+import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import DropdownMenu from '@orangehrm/oxd/core/components/DropdownMenu/DropdownMenu.vue';
 
 export default defineComponent({
-  name: 'oxd-user-dropdown',
-
+  name: 'oxd-navigation-link',
   props: {
-    user: {
-      type: Object as PropType<User>,
+    class: {
+      type: String,
+    },
+    menuItem: {
+      type: Object as PropType<TopMenuItem>,
     },
   },
-
   components: {
+    'oxd-icon': Icon,
     'oxd-dropdown-menu': DropdownMenu,
-  },
-
-  computed: {
-    profilePicUrl() {
-      return this.user.profImgSrc != ''
-        ? this.user.profImgSrc
-        : require('../../../assets/images/user-default-400.png');
-    },
   },
 });
 </script>
 
-<style src="./user-dropdown.scss" lang="scss" scoped></style>
-<style src="./user-dropdown-global.scss" lang="scss"></style>
+<style src="./navigation-link.scss" lang="scss"></style>

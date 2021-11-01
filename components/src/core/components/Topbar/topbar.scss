@@ -106,66 +106,6 @@ $oxd-topbar-body-web-margin-collapse: $oxd-sidepanel-collapse-width;
     background-color: $oxd-topbar-body-background;
     border-bottom: $oxd-topbar-border;
     padding: $oxd-topbar-body-padding;
-    &-nav {
-      & ul:first-child {
-        list-style: none;
-        display: flex;
-        padding: 0;
-        margin: 0;
-      }
-      &-tab {
-        height: 35px;
-        display: flex;
-        align-items: center;
-        user-select: none;
-        cursor: pointer;
-        padding: 0 12px;
-        position: relative;
-        margin-right: 15px;
-        text-decoration: none;
-        border-radius: 0.85rem;
-        background-color: #f8f9fa;
-        color: $oxd-topbar-tab-font-color;
-        font-family: $oxd-font-family;
-        font-size: $oxd-topbar-tab-font-size;
-        font-weight: $oxd-topbar-tab-font-weight;
-        &-item,
-        &-link {
-          color: inherit;
-          white-space: nowrap;
-          text-decoration: inherit;
-        }
-        &:hover,
-        &.--active,
-        &.--visited {
-          color: $oxd-primary-one-color;
-          background-color: #fff2e9;
-          .oxd-icon {
-            color: $oxd-primary-one-color;
-          }
-        }
-        ::v-deep(.oxd-dropdown-menu) {
-          padding: 0.375rem;
-          min-width: 10rem;
-          & li {
-            color: $oxd-topbar-tab-font-color;
-            padding: 0.5rem;
-          }
-          & li:hover {
-            background-color: #f6f7f9;
-            border-radius: 0.65rem;
-          }
-        }
-        // TODO: Refactor for a better solution
-        // ::v-deep(.oxd-dropdown-menu) {
-        //   @media (min-width: 0px) and (max-width: 800px) {
-        //     top: 115px;
-        //     left: 0;
-        //     right: 0;
-        //   }
-        // }
-      }
-    }
     @include oxd-respond-to('md') {
       width: $oxd-topbar-body-web-width;
       margin-left: $oxd-topbar-body-web-margin-left;

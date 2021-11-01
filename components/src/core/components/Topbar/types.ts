@@ -17,6 +17,18 @@
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
 
+export interface TopMenuItem {
+  name: string;
+  url: string;
+  active: boolean;
+  children: SubMenuItem[];
+}
+
+export interface SubMenuItem {
+  name: string;
+  url: string;
+}
+
 export interface User {
   firstName: string;
   lastName: string;
