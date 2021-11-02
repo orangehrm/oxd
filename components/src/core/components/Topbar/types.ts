@@ -34,3 +34,8 @@ export interface User {
   lastName: string;
   profImgSrc: string;
 }
+
+export interface Breadcrumb {
+  moduleName: string;
+  level?: string;
+}

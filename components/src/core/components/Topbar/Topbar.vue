@@ -29,9 +29,18 @@
           class="oxd-topbar-header-hamburger"
           @click="$emit('collapse')"
         />
-        <oxd-text tag="h6" class="oxd-topbar-header-title-text">
-          {{ contextTitle }}
-        </oxd-text>
+        <span class="oxd-topbar-header-breadcrumb">
+          <oxd-text tag="h6" class="oxd-topbar-header-breadcrumb-module">
+            {{ breadcrumb.moduleName }}
+          </oxd-text>
+          <oxd-text
+            v-if="breadcrumb.level"
+            tag="h6"
+            class="oxd-topbar-header-breadcrumb-level"
+          >
+            {{ breadcrumb.level }}
+          </oxd-text>
+        </span>
       </div>
       <!-- User Menu Area -->
       <div class="oxd-topbar-header-userarea">
@@ -50,7 +59,7 @@
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
-import {TopMenuItem, User} from './types';
+import {TopMenuItem, User, Breadcrumb} from './types';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Navigation from '@orangehrm/oxd/core/components/Topbar/Navigation.vue';
@@ -66,15 +75,14 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    contextTitle: {
-      type: String,
-      default: '',
-    },
     menuItems: {
       type: Object as PropType<TopMenuItem[]>,
     },
     user: {
       type: Object as PropType<User>,
+    },
+    breadcrumb: {
+      type: Object as PropType<Breadcrumb>,
     },
   },
 

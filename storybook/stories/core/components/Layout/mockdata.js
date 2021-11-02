@@ -211,4 +211,9 @@ const headers = [
   },
 ];
 
-export {topMenuItems, sidePanelItems, headers};
+const breadcrumb = {
+  moduleName: 'Admin',
+  level: 'Configuration',
+};
+
+export {topMenuItems, sidePanelItems, headers, breadcrumb};

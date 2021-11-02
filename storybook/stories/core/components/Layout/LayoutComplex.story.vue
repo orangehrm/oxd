@@ -26,6 +26,7 @@
     :sidepanel-menu-items="sidepanelMenuItems"
     :topbar-menu-items="topbarMenuItems"
     :brand-image-src="brandImageSrc"
+    :breadcrumb="breadcrumb"
   >
     <div class="orangehrm-container">
       <oxd-table-filter filter-title="System Users">
@@ -83,7 +84,7 @@
 </template>
 
 <script>
-import {topMenuItems, sidePanelItems, headers} from './mockdata';
+import {topMenuItems, sidePanelItems, headers, breadcrumb} from './mockdata';
 import Text from '@orangehrm/oxd/core/components/Text/Text';
 import Layout from '@orangehrm/oxd/core/components/Layout/Layout';
 import TableFilter from '@orangehrm/oxd/core/components/TableFilter/TableFilter';
@@ -138,6 +139,7 @@ export default {
       items: [],
       sidepanelMenuItems: sidePanelItems,
       topbarMenuItems: topMenuItems,
+      breadcrumb: breadcrumb,
     };
   },
 
@@ -165,10 +167,7 @@ export default {
 };
 </script>
 
-<style>
-.sb-show-main {
-  padding: 0 !important;
-}
+<style scoped>
 .orangehrm-container {
   background-color: #f6f5fb;
   border-radius: unset;

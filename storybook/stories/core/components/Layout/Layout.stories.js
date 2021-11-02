@@ -26,6 +26,7 @@ export default {
 export const Default = () => LayoutSimple;
 
 Default.parameters = {
+  layout: 'fullscreen',
   docs: {
     inlineStories: false,
     iframeHeight: 720,
@@ -35,6 +36,7 @@ Default.parameters = {
 export const Complex = () => LayoutComplex;
 
 Complex.parameters = {
+  layout: 'fullscreen',
   docs: {
     inlineStories: false,
     iframeHeight: 720,

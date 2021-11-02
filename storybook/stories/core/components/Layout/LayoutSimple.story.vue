@@ -26,6 +26,7 @@
     :sidepanel-menu-items="sidepanelMenuItems"
     :topbar-menu-items="topbarMenuItems"
     :brand-image-src="brandImageSrc"
+    :breadcrumb="breadcrumb"
   >
     <p class="context-default">
       slot for context
@@ -47,7 +48,7 @@
 </template>
 
 <script>
-import {topMenuItems, sidePanelItems} from './mockdata';
+import {topMenuItems, sidePanelItems, breadcrumb} from './mockdata';
 import Layout from '@orangehrm/oxd/core/components/Layout/Layout';
 
 export default {
@@ -65,6 +66,7 @@ export default {
       },
       sidepanelMenuItems: sidePanelItems,
       topbarMenuItems: topMenuItems,
+      breadcrumb: breadcrumb,
     };
   },
 };

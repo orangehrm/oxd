@@ -33,9 +33,9 @@
       <oxd-top-bar
         @collapse="onCollapse"
         :toggle="collapse"
-        :context-title="contextTitle"
         :menu-items="topbarMenuItems"
         :user="user"
+        :breadcrumb="breadcrumb"
       >
         <slot name="user-actions"></slot>
       </oxd-top-bar>
@@ -62,16 +62,12 @@ import Topbar from '@orangehrm/oxd/core/components/Topbar/Topbar.vue';
 import SidePanel from '@orangehrm/oxd/core/components/SidePanel/SidePanel.vue';
 import overlay from '@orangehrm/oxd/core/components/Dialog/Overlay.vue';
 import MenuItem from '../SidePanel/types';
-import {TopMenuItem, User} from '../Topbar/types';
+import {TopMenuItem, User, Breadcrumb} from '../Topbar/types';
 
 export default defineComponent({
   name: 'oxd-layout',
 
   props: {
-    contextTitle: {
-      type: String,
-      required: true,
-    },
     user: {
       type: Object as PropType<User>,
     },
@@ -90,6 +86,10 @@ export default defineComponent({
     homeUrl: {
       type: String,
       default: '/',
+    },
+    breadcrumb: {
+      type: Object as PropType<Breadcrumb>,
+      required: true,
     },
   },
 

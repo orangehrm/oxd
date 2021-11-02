@@ -55,25 +55,40 @@ $oxd-topbar-body-web-margin-collapse: $oxd-sidepanel-collapse-width;
     &-title {
       display: flex;
       min-width: 0%;
-      line-height: 2;
       flex-basis: 70%;
       align-items: center;
-      &-text {
-        font-size: $oxd-topbar-title-font-size;
+    }
+    &-breadcrumb {
+      font-size: $oxd-topbar-title-font-size;
+      &-module,
+      &-level {
+        font-size: inherit;
         font-weight: $oxd-topbar-title-font-weight;
         color: $oxd-topbar-title-font-color;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
       }
+      &-level {
+        font-size: 0.75rem;
+      }
+      @include oxd-respond-to('md') {
+        display: flex;
+        &-level {
+          margin-left: 0.25rem;
+          font-size: inherit;
+          &::before {
+            content: '/ ';
+          }
+        }
+      }
     }
     &-hamburger {
       display: block;
-      color: $oxd-white-color !important;
+      color: $oxd-topbar-title-font-color;
       margin-right: 10px;
-      font-size: 1.5rem;
+      font-size: 1.75rem;
       cursor: pointer;
-      height: 100%;
       @include oxd-respond-to('md') {
         display: none;
       }
