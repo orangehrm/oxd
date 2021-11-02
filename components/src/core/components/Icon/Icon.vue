@@ -19,12 +19,11 @@
  */
 -->
 
-<template>
-  <i :class="classes"></i>
-</template>
-
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {computed, defineComponent, h, unref} from 'vue';
+import {TYPES, TYPE_BOOTSTRAP} from './types';
+import * as SVGs from './map';
+import SVGLoader from '@orangehrm/oxd/core/components/Icon/SVGLoader.vue';
 
 export default defineComponent({
   name: 'oxd-icon',
@@ -34,15 +33,31 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    type: {
+      type: String,
+      default: TYPE_BOOTSTRAP,
+      validator: (value: string) => {
+        return TYPES.indexOf(value) !== -1;
+      },
+    },
   },
 
-  computed: {
-    classes(): object {
+  setup(props) {
+    const classes = computed(() => {
       return {
         'oxd-icon': true,
-        [`bi-${this.name}`]: true,
+        [`bi-${props.name}`]: props.type === TYPE_BOOTSTRAP,
       };
-    },
+    });
+
+    return () =>
+      props.type === TYPE_BOOTSTRAP
+        ? h('i', {class: unref(classes)})
+        : h(
+            SVGLoader,
+            {class: unref(classes)},
+            {default: () => h(SVGs[props.name])},
+          );
   },
 });
 </script>
