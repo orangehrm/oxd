@@ -19,10 +19,7 @@
 
 .oxd-layout {
   position: relative;
-  background-color: $oxd-layout-background-color;
-  min-height: 100%;
   &-container {
-    height: inherit;
     position: relative;
     overflow: hidden;
     width: $oxd-layout-container-mobile-width;
@@ -38,15 +35,23 @@
     }
   }
   &-context {
+    min-height: $oxd-layout-context-height;
     padding-top: $oxd-layout-context-padding-top;
-    padding-left: $oxd-layout-context-padding-left;
-    padding-right: $oxd-layout-context-padding-right;
-    margin-bottom: $oxd-layout-context-margin-bottom;
+    padding-left: $oxd-layout-context-mobile-padding-left;
+    padding-right: $oxd-layout-context-mobile-padding-right;
+    @include oxd-respond-to('md') {
+      padding-left: $oxd-layout-context-web-padding-left;
+      padding-right: $oxd-layout-context-web-padding-right;
+    }
   }
   &-footer {
-    bottom: 0;
-    left: 0;
-    right: 0;
+    margin-top: $oxd-layout-context-padding-top;
+    padding-left: $oxd-layout-context-mobile-padding-left;
+    padding-right: $oxd-layout-context-mobile-padding-right;
+    @include oxd-respond-to('md') {
+      padding-left: $oxd-layout-context-web-padding-left;
+      padding-right: $oxd-layout-context-web-padding-right;
+    }
   }
   &-overlay {
     z-index: $oxd-sidepanel-overlay-z-index;

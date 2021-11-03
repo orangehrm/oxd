@@ -1,3 +1,4 @@
+<!--
 /*
  * This file is part of OrangeHRM Inc
  *
@@ -16,9 +17,40 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
+-->
 
-export interface User {
-  firstName: string;
-  lastName: string;
-  profImgSrc: string;
-}
+<template>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    :width="width"
+    :height="height"
+    viewBox="0 0 500 500"
+    role="presentation"
+  >
+    <g :fill="iconColor">
+      <slot></slot>
+    </g>
+  </svg>
+</template>
+
+<script lang="ts">
+import {defineComponent} from 'vue';
+
+export default defineComponent({
+  name: 'svg-loader',
+  props: {
+    width: {
+      type: [Number, String],
+      default: 18,
+    },
+    height: {
+      type: [Number, String],
+      default: 18,
+    },
+    iconColor: {
+      type: String,
+      default: 'currentColor',
+    },
+  },
+});
+</script>

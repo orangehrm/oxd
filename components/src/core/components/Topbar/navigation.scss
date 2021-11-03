@@ -18,42 +18,33 @@
 @import '../../../styles';
 @import 'variables';
 
-.oxd-userdropdown {
-  position: relative;
-  ::v-deep(.oxd-dropdown-menu) {
-    top: 60px;
+.oxd-topbar-body-nav {
+  & ul:first-child {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
   }
   &-tab {
+    height: 35px;
     display: flex;
     align-items: center;
-    border-radius: 100px;
-    min-width: 35px;
+    user-select: none;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.15);
-    @include oxd-respond-to('md') {
-      padding-right: 0.75rem;
-    }
+    padding: 0 12px;
+    margin-right: 15px;
+    text-decoration: none;
+    border-radius: 0.85rem;
+    font-family: $oxd-font-family;
+    font-size: $oxd-topbar-tab-font-size;
+    font-weight: $oxd-topbar-tab-font-weight;
   }
-  &-img {
-    height: 2.9rem;
-    width: 2.8rem;
-    border: $oxd-userdropdown-img-border;
-    border-radius: 50% !important;
+  @include oxd-respond-to('xs') {
+    position: relative;
   }
-  &-name {
-    margin: 0;
-    display: none;
-    color: $oxd-white-color;
-    font-size: 0.75rem;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    max-width: 50px;
-    white-space: nowrap;
-    font-weight: 600;
-    margin-left: 8px;
-    @include oxd-respond-to('md') {
-      display: block;
-      max-width: unset;
+  @include oxd-respond-to('md') {
+    &-tab {
+      position: relative;
     }
   }
 }

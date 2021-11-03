@@ -23,59 +23,46 @@
   margin: 0;
   padding: 0;
   display: flex;
-  overflow-y: auto;
   flex-flow: column;
-  overflow-x: hidden;
+  overflow: hidden auto;
+  padding-right: $oxd-menu-padding-right;
   @include oxd-scrollbar();
-  $parent: &;
   &-item {
-    display: block;
+    display: flex;
     text-align: left;
-    padding: 0.55rem;
+    align-items: center;
     text-decoration: none;
-    padding-left: 30px;
+    color: $oxd-menu-item-color;
+    padding: $oxd-menu-item-padding;
+    &--icon,
     &--name {
-      display: inline;
-      text-align: left;
-      padding-left: 15px;
-      font-size: $oxd-menu-item-name-font-size;
-      font-weight: $oxd-menu-item-name-font-weight;
-      color: $oxd-menu-item-name-color;
-      &.active {
-        color: $oxd-menu-item-name-color--active;
-      }
+      color: inherit;
+    }
+    &--name {
+      padding-left: $oxd-menu-item-text-padding-left;
+      font-size: $oxd-menu-item-font-size;
+      font-weight: $oxd-menu-item-font-weight;
     }
     &:hover {
-      color: $oxd-menu-item-name-color--hover;
       background-color: $oxd-menu-item-hover-color;
-      box-shadow: 1px 1px 10px 5px rgb(255 94 0 / 12%);
       transition-timing-function: ease-out;
       border-top-right-radius: 50px;
       border-bottom-right-radius: 50px;
-      transition: 0.45s;
     }
     &.active {
-      color: $oxd-menu-item-name-color--active;
+      color: $oxd-menu-item-color--active;
       background-color: $oxd-menu-item-active-color;
-      box-shadow: 1px 1px 10px 5px rgb(255 94 0 / 12%);
-      transition-timing-function: ease-out;
       border-top-right-radius: 50px;
       border-bottom-right-radius: 50px;
       background-image: $oxd-menu-item-active-gradient;
     }
     &.toggle {
       @include oxd-respond-to('md') {
-        #{$parent}-item--name {
-          text-align: center;
-          display: block;
-          margin-left: -15px;
-          padding: 0;
-          font-size: 9px;
+        justify-content: center;
+        & .oxd-main-menu-item--name {
+          display: none;
         }
       }
-    }
-    &-wrapper {
-      list-style: none;
     }
   }
   & hr {
@@ -86,11 +73,11 @@
     margin: 5px 1rem;
   }
   &-search {
+    width: 100%;
     display: block;
     text-align: left;
-    padding: 0.55rem;
-    padding-left: 30px;
     overflow: visible;
+    padding: $oxd-menu-item-padding;
     /* Unset default oxd input styles */
     & .oxd-input {
       border-radius: unset;
@@ -125,22 +112,21 @@
     }
   }
   &-button {
-    position: absolute;
     top: 110px;
     right: -12px;
     width: 25px;
     height: 25px;
+    display: none;
     min-width: 25px;
     min-height: 25px;
+    position: absolute;
     background-color: $oxd-menu-slide-button-color !important;
-    @include oxd-respond-to('xs') {
-      display: none;
-    }
     @include oxd-respond-to('md') {
       display: inline-flex;
     }
-    & i {
-      color: $oxd-white-color !important;
+    ::v-deep(.oxd-icon) {
+      font-size: 10px;
+      color: $oxd-white-color;
     }
   }
   &.--fixed {

@@ -16,29 +16,41 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
-import LayoutSimple from './LayoutSimple.story.vue';
-import LayoutComplex from './LayoutComplex.story.vue';
+
+import Icon from '@orangehrm/oxd/core/components/Icon/Icon';
+import * as SVGs from '@orangehrm/oxd/core/components/Icon/map';
 
 export default {
-  title: 'Example/Layout',
-};
-
-export const Default = () => LayoutSimple;
-
-Default.parameters = {
-  layout: 'fullscreen',
-  docs: {
-    inlineStories: false,
-    iframeHeight: 720,
+  title: 'Example/Icon (svg)',
+  component: Icon,
+  argTypes: {
+    name: {
+      control: {type: 'select', options: Object.keys(SVGs)},
+    },
   },
 };
 
-export const Complex = () => LayoutComplex;
-
-Complex.parameters = {
-  layout: 'fullscreen',
-  docs: {
-    inlineStories: false,
-    iframeHeight: 720,
+const Template = args => ({
+  setup() {
+    return {args};
   },
+  components: {'oxd-icon': Icon},
+  template: '<oxd-icon v-bind="args" />',
+});
+
+export const Default = Template.bind({});
+Default.args = {
+  type: 'svg',
+  name: 'admin',
+};
+
+export const CustomStyles = Template.bind({});
+CustomStyles.args = {
+  name: 'pim',
+  type: 'svg',
+  style: {
+    color: 'red',
+  },
+  height: 50,
+  width: 50,
 };

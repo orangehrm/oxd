@@ -41,7 +41,7 @@
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
-import {User} from './user.interface';
+import {User} from './types';
 import DropdownMenu from '@orangehrm/oxd/core/components/DropdownMenu/DropdownMenu.vue';
 
 export default defineComponent({

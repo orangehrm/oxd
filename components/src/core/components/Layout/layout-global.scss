@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see  http://www.gnu.org/licenses
 
-@import '../../../styles';
+@import 'variables';
 
 body {
   display: block;
@@ -25,6 +25,7 @@ body {
 html,
 body {
   height: 100%;
+  background-color: $oxd-layout-background-color;
   @include oxd-scrollbar();
 }
 

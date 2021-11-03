@@ -29,9 +29,18 @@
           class="oxd-topbar-header-hamburger"
           @click="$emit('collapse')"
         />
-        <oxd-text tag="h6" class="oxd-topbar-header-title-text">
-          {{ contextTitle }}
-        </oxd-text>
+        <span class="oxd-topbar-header-breadcrumb">
+          <oxd-text tag="h6" class="oxd-topbar-header-breadcrumb-module">
+            {{ breadcrumb.moduleName }}
+          </oxd-text>
+          <oxd-text
+            v-if="breadcrumb.level"
+            tag="h6"
+            class="oxd-topbar-header-breadcrumb-level"
+          >
+            {{ breadcrumb.level }}
+          </oxd-text>
+        </span>
       </div>
       <!-- User Menu Area -->
       <div class="oxd-topbar-header-userarea">
@@ -43,20 +52,17 @@
       </div>
     </div>
     <div :class="bodyClasses">
-      <oxd-navigation-level-one
-        :menu-items="menuItems"
-      ></oxd-navigation-level-one>
+      <oxd-navigation :menu-items="menuItems"></oxd-navigation>
     </div>
   </header>
 </template>
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
-import {TopMenuItem} from './menuItem.interface';
-import {User} from './user.interface';
+import {TopMenuItem, User, Breadcrumb} from './types';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
-import NavigationLevelOne from '@orangehrm/oxd/core/components/Topbar/NavigationLevelOne.vue';
+import Navigation from '@orangehrm/oxd/core/components/Topbar/Navigation.vue';
 import UserDropdown from '@orangehrm/oxd/core/components/Topbar/UserDropdown.vue';
 
 export default defineComponent({
@@ -69,22 +75,21 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    contextTitle: {
-      type: String,
-      default: '',
-    },
     menuItems: {
       type: Object as PropType<TopMenuItem[]>,
     },
     user: {
       type: Object as PropType<User>,
     },
+    breadcrumb: {
+      type: Object as PropType<Breadcrumb>,
+    },
   },
 
   components: {
     'oxd-text': Text,
     'oxd-icon': Icon,
-    'oxd-navigation-level-one': NavigationLevelOne,
+    'oxd-navigation': Navigation,
     'oxd-user-dropdown': UserDropdown,
   },
 

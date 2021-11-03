@@ -52,6 +52,8 @@ export default defineComponent({
     };
   },
 
+  emits: ['dropdown:opened', 'dropdown:closed'],
+
   directives: {
     'click-outside': clickOutsideDirective,
   },
@@ -59,10 +61,12 @@ export default defineComponent({
   methods: {
     openSubmenu() {
       this.isActive = true;
+      this.$emit('dropdown:opened');
     },
     closeSubMenu() {
       if (this.isActive) {
         this.isActive = false;
+        this.$emit('dropdown:closed');
       }
     },
   },

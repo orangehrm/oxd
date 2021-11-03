@@ -16,29 +16,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
-import LayoutSimple from './LayoutSimple.story.vue';
-import LayoutComplex from './LayoutComplex.story.vue';
 
-export default {
-  title: 'Example/Layout',
-};
-
-export const Default = () => LayoutSimple;
-
-Default.parameters = {
-  layout: 'fullscreen',
-  docs: {
-    inlineStories: false,
-    iframeHeight: 720,
-  },
-};
-
-export const Complex = () => LayoutComplex;
-
-Complex.parameters = {
-  layout: 'fullscreen',
-  docs: {
-    inlineStories: false,
-    iframeHeight: 720,
-  },
-};
+export {default as admin} from './svg/admin-svg.vue';
+export {default as leave} from './svg/leave-svg.vue';
+export {default as performance} from './svg/performance-svg.vue';
+export {default as pim} from './svg/pim-svg.vue';
+export {default as recruitment} from './svg/recruitment-svg.vue';
+export {default as time} from './svg/time-svg.vue';
+export {default as buzz} from './svg/buzz-svg.vue';
+export {default as dashboard} from './svg/dashboard-svg.vue';
+export {default as directory} from './svg/directory-svg.vue';
+export {default as maintenance} from './svg/maintenance-svg.vue';
+export {default as myinfo} from './svg/myinfo-svg.vue';

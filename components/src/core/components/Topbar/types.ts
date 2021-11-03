@@ -28,3 +28,14 @@ export interface SubMenuItem {
   name: string;
   url: string;
 }
+
+export interface User {
+  firstName: string;
+  lastName: string;
+  profImgSrc: string;
+}
+
+export interface Breadcrumb {
+  moduleName: string;
+  level?: string;
+}
