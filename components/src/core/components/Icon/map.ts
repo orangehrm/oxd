@@ -23,3 +23,8 @@ export {default as performance} from './svg/performance-svg.vue';
 export {default as pim} from './svg/pim-svg.vue';
 export {default as recruitment} from './svg/recruitment-svg.vue';
 export {default as time} from './svg/time-svg.vue';
+export {default as buzz} from './svg/buzz-svg.vue';
+export {default as dashboard} from './svg/dashboard-svg.vue';
+export {default as directory} from './svg/directory-svg.vue';
+export {default as maintenance} from './svg/maintenance-svg.vue';
+export {default as myinfo} from './svg/myinfo-svg.vue';
