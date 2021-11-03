@@ -22,12 +22,16 @@
 <template>
   <li class="oxd-main-menu-item-wrapper">
     <a :class="menuClasses" :href="url">
-      <i :class="iconClasses"></i>
-      <oxd-text
-        tag="span"
-        :class="{'oxd-main-menu-item--name': true, active: active}"
-        >{{ name }}</oxd-text
-      >
+      <oxd-icon
+        :name="icon"
+        type="svg"
+        width="22"
+        height="22"
+        class="oxd-main-menu-item--icon"
+      ></oxd-icon>
+      <oxd-text tag="span" class="oxd-main-menu-item--name">
+        {{ name }}
+      </oxd-text>
     </a>
   </li>
 </template>
@@ -35,6 +39,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
+import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
   name: 'oxd-main-menu-item',
@@ -58,22 +63,16 @@ export default defineComponent({
     },
     icon: {
       type: String,
-      default: 'icon-home',
+      default: 'home',
     },
   },
 
   components: {
     'oxd-text': Text,
+    'oxd-icon': Icon,
   },
 
   computed: {
-    iconClasses(): object {
-      return {
-        'oxd-menu-icon': true,
-        [this.icon]: !this.active,
-        [`${this.icon}-w`]: this.active,
-      };
-    },
     menuClasses(): object {
       return {
         'oxd-main-menu-item': true,
@@ -86,10 +85,3 @@ export default defineComponent({
 </script>
 
 <style src="./main-menu.scss" lang="scss" scoped></style>
-<style lang="scss">
-@import '../../../styles/colors';
-.oxd-main-menu-button i {
-  color: $oxd-white-color !important;
-  font-size: 10px;
-}
-</style>

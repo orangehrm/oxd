@@ -31,21 +31,21 @@ describe('SidePanel.vue', () => {
   it('should render OXD Side Panel with menu items', async () => {
     const menuItems = [
       {
-        name: 'Home',
+        name: 'Dashboard',
         url: '#',
-        icon: 'icon-home',
+        icon: 'dashboard',
         active: false,
       },
       {
         name: 'PIM',
         url: '#',
-        icon: 'icon-pim',
+        icon: 'pim',
         active: true,
       },
       {
         name: 'Time',
         url: '#',
-        icon: 'icon-time',
+        icon: 'time',
         active: false,
       },
     ];
@@ -60,9 +60,9 @@ describe('SidePanel.vue', () => {
   it('should emit OXD Side Panel collapse event', () => {
     const menuItems = [
       {
-        name: 'Home',
+        name: 'Dashboard',
         url: '#',
-        icon: 'icon-home',
+        icon: 'dashboard',
         active: false,
       },
     ];
