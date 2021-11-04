@@ -36,7 +36,8 @@ export interface FormField {
   dirty: Ref<boolean>;
   touched: Ref<boolean>;
   processing: Ref<boolean>;
-  validate(): Promise<ErrorField>;
+  validate: () => Promise<ErrorField>;
+  reset: () => void;
 }
 
 export interface FormAPI {
