@@ -18,6 +18,8 @@
 @import '../../../styles';
 @import 'variables';
 
+$oxd-report-table-frame-offset: $oxd-report-table-frame-header-height * 2;
+
 .oxd-report-table {
   &.--frame {
     overflow: hidden;
@@ -34,7 +36,7 @@
     box-sizing: border-box;
   }
   &-header {
-    &.--toggable {
+    &--toggable {
       display: flex;
       align-items: center;
       padding-left: $oxd-report-table-frame-padding-left;
@@ -42,7 +44,10 @@
         margin-right: $oxd-report-table-frame-margin-right;
       }
     }
-    &.--pagination {
+    &--pagination {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       padding-right: $oxd-report-table-frame-padding-right;
     }
   }
@@ -62,6 +67,7 @@
   revo-grid {
     background-color: $oxd-report-table-body-background-color;
     font-family: $oxd-report-table-body-font-family !important;
+    height: calc(100% - #{$oxd-report-table-frame-offset}) !important;
 
     [data-rgcol] {
       color: $oxd-report-table-cell-font-color !important;
@@ -110,6 +116,10 @@
         box-shadow: unset !important;
       }
 
+      .group-rgRow .rgHeaderCell {
+        border-left: $oxd-report-table-header-border;
+      }
+
       .rgHeaderCell {
         color: $oxd-report-table-header-font-color !important;
         font-size: $oxd-report-table-header-font-size;
@@ -120,6 +130,7 @@
       .rgHeaderCell .header-content {
         line-height: normal;
         align-self: center;
+        word-break: break-word;
         overflow: unset !important;
         text-overflow: unset !important;
         white-space: normal !important;

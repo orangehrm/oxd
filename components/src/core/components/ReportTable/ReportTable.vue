@@ -22,7 +22,7 @@
 <template>
   <div @fullscreenchange="onFullScreenChange" ref="tableRef" :class="classes">
     <div class="oxd-report-table-header">
-      <div class="oxd-report-table-header --toggable">
+      <div class="oxd-report-table-header--toggable">
         <oxd-icon-button
           class="--toggable-icon"
           :name="fullScreenIcon"
@@ -43,7 +43,7 @@
         />
         <slot name="toggable"></slot>
       </div>
-      <div class="oxd-report-table-header --pagination">
+      <div class="oxd-report-table-header--pagination">
         <slot name="pagination"></slot>
       </div>
     </div>
