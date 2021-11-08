@@ -1,3 +1,4 @@
+<!--
 /*
  * This file is part of OrangeHRM Inc
  *
@@ -16,16 +17,42 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
+-->
 
-import ReportTable from '@orangehrm/oxd/core/components/ReportTable/ReportTable';
-import ReportTableStory from './ReportTable.story.vue';
-import ReportCustomStory from './ReportCustom.story.vue';
+<template>
+  <ul>
+    <template v-for="item in items" :key="item._id">
+      <li>{{ item.content }}</li>
+      <hr />
+    </template>
+  </ul>
+</template>
 
-export default {
-  title: 'Example/ReportTable',
-  component: ReportTable,
-};
+<script lang="ts">
+import {defineComponent, unref} from 'vue';
 
-export const Default = () => ReportTableStory;
+export default defineComponent({
+  name: 'oxd-report-table-multiline-cell',
+  props: {
+    rowIndex: {
+      type: Number,
+    },
+    prop: {
+      type: String,
+    },
+    model: {},
+  },
+  setup(props) {
+    const data = unref(props.model[props.prop]);
+    const items = Array.isArray(data)
+      ? data.map(i => {
+          return {content: i, _id: props.rowIndex};
+        })
+      : [];
 
-export const CustomCell = () => ReportCustomStory;
+    return {
+      items,
+    };
+  },
+});
+</script>

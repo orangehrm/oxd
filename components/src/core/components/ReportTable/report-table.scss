@@ -35,6 +35,9 @@ $oxd-report-table-frame-offset: $oxd-report-table-frame-header-height * 2;
     background-color: $oxd-report-table-frame-background-color;
     box-sizing: border-box;
   }
+  &-footer {
+    border-top: $oxd-report-table-header-border;
+  }
   &-header {
     &--toggable {
       display: flex;
@@ -100,6 +103,22 @@ $oxd-report-table-frame-offset: $oxd-report-table-frame-header-height * 2;
     .cell-action:hover {
       cursor: pointer;
       text-decoration: underline;
+    }
+
+    .rgCell {
+      ul {
+        margin: 0;
+        padding: 0 15px;
+        list-style: none;
+      }
+      hr {
+        left: 0;
+        right: 0;
+        margin: 0;
+        border: none;
+        position: absolute;
+        border-bottom: $oxd-report-table-cell-border;
+      }
     }
 
     revogr-header {

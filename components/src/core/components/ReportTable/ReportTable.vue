@@ -63,6 +63,7 @@
       :resize="true"
       :canFocus="false"
       :colSize="colSize"
+      :row-definitions="rowDefinitions"
       v-bind="$attrs"
     ></v-grid>
     <div class="oxd-report-table-footer"></div>
@@ -182,6 +183,13 @@ export default defineComponent({
       return false;
     });
 
+    const rowDefinitions = computed(() => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return props.items.map((item: any, index: number) => {
+        return {type: 'rgRow', index, size: parseInt(item?._rows) * 32};
+      });
+    });
+
     watch(vgridRef, (vgrid: ComponentPublicInstance | null) => {
       if (vgrid && vgrid.$el) {
         setTimeout(() => {
@@ -203,6 +211,7 @@ export default defineComponent({
       scrollRight,
       hasScrolling,
       isFullScreen,
+      rowDefinitions,
       fullScreenIcon,
       toggleFullScreen,
       onFullScreenChange,
