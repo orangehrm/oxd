@@ -17,7 +17,7 @@
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
 
-import {computed, onBeforeUnmount, Ref, ref} from 'vue';
+import {ref, Ref, watch, computed, onBeforeUnmount, WatchStopHandle} from 'vue';
 import {nanoid} from 'nanoid';
 import {injectStrict} from '../utils/injectable';
 import {ErrorField, FormAPI, formKey, rule} from './types';
@@ -27,6 +27,7 @@ export default function useField(fieldContext: {
   rules: rule[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   modelValue: Ref<any>;
+  onReset: () => Promise<void>;
 }) {
   const form = injectStrict<FormAPI>(formKey);
   const cid = ref<string>(nanoid());
@@ -34,6 +35,7 @@ export default function useField(fieldContext: {
   const dirty = ref<boolean>(false);
   const touched = ref<boolean>(false);
   const processing = ref<boolean>(false);
+  let watchHandler: WatchStopHandle;
 
   const validate = () => {
     processing.value = true;
@@ -81,10 +83,36 @@ export default function useField(fieldContext: {
     });
   };
 
-  form.registerField({cid, label, dirty, touched, processing, validate});
+  const startWatcher = () => {
+    watchHandler = watch(fieldContext.modelValue, () => {
+      validate().then(result => {
+        form.addError(result);
+      });
+    });
+  };
+
+  startWatcher();
+
+  const reset = () => {
+    dirty.value = false;
+    touched.value = false;
+    processing.value = false;
+    watchHandler(); // stop the validation watcher
+    fieldContext.onReset().then(() => startWatcher());
+  };
+
+  form.registerField({cid, label, dirty, touched, processing, validate, reset});
 
   onBeforeUnmount(() => {
-    form.unregisterField({cid, label, dirty, touched, processing, validate});
+    form.unregisterField({
+      cid,
+      label,
+      dirty,
+      touched,
+      processing,
+      validate,
+      reset,
+    });
   });
 
   const hasError = computed(() => {
@@ -97,6 +125,7 @@ export default function useField(fieldContext: {
 
   return {
     form,
+    reset,
     validate,
     hasError,
     message,

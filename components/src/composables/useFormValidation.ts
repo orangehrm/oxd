@@ -86,6 +86,11 @@ export default function useFormValidation() {
       });
   };
 
+  const reset = () => {
+    formState.fieldset.map(field => field.reset());
+    formState.errorbag = [];
+  };
+
   provide(formKey, {
     addError,
     purgeErrors,
@@ -96,6 +101,7 @@ export default function useFormValidation() {
 
   return {
     ...toRefs(formState),
+    reset,
     validate,
     purgeErrors,
   };

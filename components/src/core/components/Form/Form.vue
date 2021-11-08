@@ -20,7 +20,12 @@
 -->
 
 <template>
-  <form class="oxd-form" novalidate @submit.prevent="onSubmit">
+  <form
+    class="oxd-form"
+    novalidate
+    @submit.prevent="onSubmit"
+    @reset.prevent="onReset"
+  >
     <div v-if="loading" class="oxd-form-loader">
       <oxd-loading-spinner />
     </div>
@@ -48,7 +53,7 @@ export default defineComponent({
   },
 
   setup(props, context) {
-    const {validate, errorbag, fieldset} = useFormValidation();
+    const {validate, reset, errorbag, fieldset} = useFormValidation();
 
     const isProcessing = computed(() => {
       return fieldset.value.reduce((acc, field) => {
@@ -83,6 +88,7 @@ export default defineComponent({
       isProcessing,
       isFromInvalid,
       isFormBusy,
+      onReset: reset,
     };
   },
 });

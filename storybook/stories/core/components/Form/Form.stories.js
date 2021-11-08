@@ -16,15 +16,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
+
 import DefaultForm from './DefaultForm.story.vue';
 import AddJobTitle from './AddJobTitle.story.vue';
 import CustomLabelForm from './CustomLabelForm.story.vue';
-import ValidatableFrom from './ValidatableFrom.story.vue';
-import DynamicValidatableFrom from './DynamicValidatableFrom.story.vue';
+import ValidatableForm from './ValidatableForm.story.vue';
+import DynamicValidatableForm from './DynamicValidatableForm.story.vue';
 import GeneralInformation from './GeneralInformation.story.vue';
 import InputGroupedForm from './InputGroupedForm.story.vue';
-import AsyncValidatableFrom from './AsyncValidatableFrom.story.vue';
+import AsyncValidatableForm from './AsyncValidatableForm.story.vue';
+import ResetForm from './ResetForm.story.vue';
 
 export default {
   title: 'Example/Form',
@@ -36,12 +37,14 @@ export const CustomLabel = () => CustomLabelForm;
 
 export const AddJobTitleForm = () => AddJobTitle;
 
-export const FormWithValidation = () => ValidatableFrom;
+export const FormWithValidation = () => ValidatableForm;
 
-export const DynamicFormWithValidation = () => DynamicValidatableFrom;
+export const DynamicFormWithValidation = () => DynamicValidatableForm;
 
 export const GeneralInformationForm = () => GeneralInformation;
 
 export const InputGroupForm = () => InputGroupedForm;
 
-export const FormWithAsyncValidation = () => AsyncValidatableFrom;
+export const FormWithAsyncValidation = () => AsyncValidatableForm;
+
+export const FormValidationReset = () => ResetForm;

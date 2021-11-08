@@ -32,7 +32,7 @@
       v-bind="$attrs"
       :hasError="hasError"
       :modelValue="modelValue"
-      @update:modelValue="onUpdate"
+      @update:modelValue="$emit('update:modelValue', $event)"
     >
       <template v-for="(_, name) in $slots" v-slot:[name]="slotData">
         <slot :name="name" v-bind="slotData" />
@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, nextTick, PropType, toRef} from 'vue';
+import {toRef, PropType, nextTick, defineComponent} from 'vue';
 import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import FileInput from '@orangehrm/oxd/core/components/Input/FileInput.vue';
@@ -57,7 +57,6 @@ import AutocompleteInput from '@orangehrm/oxd/core/components/Input/Autocomplete
 import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
 import MultiSelectInput from '@orangehrm/oxd/core/components/Input/MultiSelect/MultiSelectInput.vue';
 import TimeInput from '@orangehrm/oxd/core/components/Input/Time/TimeInput.vue';
-import {OutputFile} from '../Input/types';
 import {Types, Components, TYPES, TYPE_INPUT, TYPE_MAP} from './types';
 import useField from '../../../composables/useField';
 
@@ -119,24 +118,23 @@ export default defineComponent({
 
   setup(props, context) {
     const modelValue = toRef(props, 'modelValue');
-    const {form, validate, hasError, message} = useField({
+    const initialValue = modelValue.value;
+
+    const onReset = async () => {
+      context.emit('update:modelValue', initialValue);
+      await nextTick();
+    };
+
+    const {hasError, message} = useField({
       fieldLabel: props.label ? props.label : '',
       rules: props.rules,
       modelValue,
+      onReset,
     });
 
-    const onUpdate = async (value: string | OutputFile) => {
-      context.emit('update:modelValue', value);
-      await nextTick();
-      validate().then(result => {
-        form.addError(result);
-      });
-    };
-
     return {
-      hasError,
       message,
-      onUpdate,
+      hasError,
     };
   },
 
