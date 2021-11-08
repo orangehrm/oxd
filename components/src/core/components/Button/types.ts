@@ -2,7 +2,7 @@ export const SIZE_SMALL = 'small';
 export const SIZE_MEDIUM = 'medium';
 export const SIZE_LARGE = 'large';
 export const SIZE_LONG = 'long';
-export const SIZES = [SIZE_SMALL, SIZE_MEDIUM, SIZE_LARGE];
+export const SIZES = [SIZE_SMALL, SIZE_MEDIUM, SIZE_LARGE, SIZE_LONG];
 
 export const TYPE_MAIN = 'main';
 export const TYPE_SECONDARY = 'secondary';
@@ -53,7 +53,8 @@ export const TYPES = [
 export type ButtonSize =
   | typeof SIZE_SMALL
   | typeof SIZE_MEDIUM
-  | typeof SIZE_LARGE;
+  | typeof SIZE_LARGE
+  | typeof SIZE_LONG;
 
 export type ButtonType =
   | typeof TYPE_MAIN
