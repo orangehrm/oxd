@@ -22,28 +22,30 @@
 <template>
   <div @fullscreenchange="onFullScreenChange" ref="tableRef" :class="classes">
     <div class="oxd-report-table-header">
-      <div class="oxd-report-table-header --toggable">
+      <div class="oxd-report-table-header--toggable">
         <oxd-icon-button
           class="--toggable-icon"
           :name="fullScreenIcon"
           :withContainer="false"
           @click="toggleFullScreen"
         />
-        <oxd-icon-button
-          class="--toggable-icon"
-          name="chevron-left"
-          :withContainer="false"
-          @click="scrollLeft"
-        />
-        <oxd-icon-button
-          class="--toggable-icon"
-          name="chevron-right"
-          :withContainer="false"
-          @click="scrollRight"
-        />
+        <template v-if="hasScrolling">
+          <oxd-icon-button
+            class="--toggable-icon"
+            name="chevron-left"
+            :withContainer="false"
+            @click="scrollLeft"
+          />
+          <oxd-icon-button
+            class="--toggable-icon"
+            name="chevron-right"
+            :withContainer="false"
+            @click="scrollRight"
+          />
+        </template>
         <slot name="toggable"></slot>
       </div>
-      <div class="oxd-report-table-header --pagination">
+      <div class="oxd-report-table-header--pagination">
         <slot name="pagination"></slot>
       </div>
     </div>
@@ -61,6 +63,7 @@
       :resize="true"
       :canFocus="false"
       :colSize="colSize"
+      :row-definitions="rowDefinitions"
       v-bind="$attrs"
     ></v-grid>
     <div class="oxd-report-table-footer"></div>
@@ -68,8 +71,15 @@
 </template>
 
 <script lang="ts">
+import {
+  ref,
+  watch,
+  unref,
+  computed,
+  defineComponent,
+  ComponentPublicInstance,
+} from 'vue';
 import VGrid from '@revolist/vue3-datagrid';
-import {computed, defineComponent, ref} from 'vue';
 import useResize from '../../../composables/useResize';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
@@ -109,20 +119,23 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const tableRef = ref(null);
-    const vgridRef = ref(null);
     const isFullScreen = ref(false);
+    const tableRef = ref<HTMLElement | null>(null);
+    const vgridRef = ref<ComponentPublicInstance | null>(null);
+    const horizontalScroller = ref<HTMLElement | null>(null);
     const {width} = useResize(tableRef);
 
     const scrollLeft = () => {
-      if (vgridRef.value) {
-        vgridRef.value.$el.scrollToColumnIndex(0);
+      const scrollbar = unref(horizontalScroller);
+      if (scrollbar) {
+        scrollbar.scrollLeft -= 50;
       }
     };
 
     const scrollRight = () => {
-      if (vgridRef.value && props.headers.length > 1) {
-        vgridRef.value.$el.scrollToColumnIndex(props.headers.length - 1);
+      const scrollbar = unref(horizontalScroller);
+      if (scrollbar) {
+        scrollbar.scrollLeft += 50;
       }
     };
 
@@ -131,8 +144,9 @@ export default defineComponent({
     };
 
     const toggleFullScreen = () => {
-      if (!isFullScreen.value && tableRef) {
-        tableRef.value.requestFullscreen();
+      const table = unref(tableRef);
+      if (!isFullScreen.value && table) {
+        table.requestFullscreen();
       } else {
         isFullScreen.value && document.exitFullscreen();
       }
@@ -161,6 +175,32 @@ export default defineComponent({
       return {c: colSize.value, h: props.headers.length, i: props.items.length};
     });
 
+    const hasScrolling = computed(() => {
+      const scrollbar = unref(horizontalScroller);
+      if (scrollbar) {
+        return scrollbar.style.minHeight !== '0px' ? true : false;
+      }
+      return false;
+    });
+
+    const rowDefinitions = computed(() => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return props.items.map((item: any, index: number) => {
+        return {type: 'rgRow', index, size: parseInt(item?._rows) * 32};
+      });
+    });
+
+    watch(vgridRef, (vgrid: ComponentPublicInstance | null) => {
+      if (vgrid && vgrid.$el) {
+        setTimeout(() => {
+          const scrollBars: HTMLCollection = vgrid.$el.getElementsByTagName(
+            'revogr-scroll-virtual',
+          );
+          horizontalScroller.value = scrollBars.item(1) as HTMLElement;
+        }, 500);
+      }
+    });
+
     return {
       key,
       classes,
@@ -169,7 +209,9 @@ export default defineComponent({
       tableRef,
       scrollLeft,
       scrollRight,
+      hasScrolling,
       isFullScreen,
+      rowDefinitions,
       fullScreenIcon,
       toggleFullScreen,
       onFullScreenChange,
