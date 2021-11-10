@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
+import Input from '@ohrm/oxd/core/components/Input/Input.vue';
 
 export default defineComponent({
   name: 'oxd-password-input',

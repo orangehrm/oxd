@@ -16,8 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
-import Label from '@orangehrm/oxd/core/components/Label/Label';
+
+import Label from '@ohrm/oxd/core/components/Label/Label';
 
 export default {
   title: 'Example/Label',

@@ -63,9 +63,9 @@
 </template>
 <script lang="ts">
 import {defineComponent} from 'vue';
-import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
-import Icon from '@orangehrm/oxd/core/components/Button/Icon.vue';
-import CalendarDropdown from '@orangehrm/oxd/core/components/Calendar/CalendarDropdown.vue';
+import Text from '@ohrm/oxd/core/components/Text/Text.vue';
+import Icon from '@ohrm/oxd/core/components/Button/Icon.vue';
+import CalendarDropdown from '@ohrm/oxd/core/components/Calendar/CalendarDropdown.vue';
 
 export default defineComponent({
   name: 'oxd-calendar-controller',

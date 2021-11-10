@@ -65,8 +65,8 @@
 </template>
 
 <script>
-import Alert from '@orangehrm/oxd/core/components/Alert/Alert';
-import Button from '@orangehrm/oxd/core/components/Button/Button';
+import Alert from '@ohrm/oxd/core/components/Alert/Alert';
+import Button from '@ohrm/oxd/core/components/Button/Button';
 
 export default {
   name: 'alert-container-example',

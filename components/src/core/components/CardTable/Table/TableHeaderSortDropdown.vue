@@ -56,9 +56,9 @@
 <script lang="ts">
 import {Order} from '../types';
 import {defineComponent} from 'vue';
-import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
-import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
-import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
+import Text from '@ohrm/oxd/core/components/Text/Text.vue';
+import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
+import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
 import clickOutsideDirective from '../../../../directives/click-outside';
 
 export default defineComponent({

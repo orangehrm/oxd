@@ -18,7 +18,7 @@
  */
 
 import {mount} from '@vue/test-utils';
-import Dialog from '@orangehrm/oxd/core/components/Dialog/Dialog.vue';
+import Dialog from '@ohrm/oxd/core/components/Dialog/Dialog.vue';
 
 describe('Dialog > Dialog.vue', () => {
   it('should renders OXD Dialog > Dialog', () => {

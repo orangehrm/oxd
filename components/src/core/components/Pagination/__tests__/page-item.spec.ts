@@ -18,7 +18,7 @@
  */
 
 import {mount} from '@vue/test-utils';
-import PageItem from '@orangehrm/oxd/core/components/Pagination/PageItem.vue';
+import PageItem from '@ohrm/oxd/core/components/Pagination/PageItem.vue';
 
 describe('PageItem.vue', () => {
   it('renders OXD PageItem', () => {

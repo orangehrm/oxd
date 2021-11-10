@@ -16,12 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
-import RadioInput from '@orangehrm/oxd/core/components/Input/RadioInput';
-import {
-  RIGHT,
-  LABEL_POSITIONS,
-} from '@orangehrm/oxd/core/components/Input/types';
+
+import RadioInput from '@ohrm/oxd/core/components/Input/RadioInput';
+import {RIGHT, LABEL_POSITIONS} from '@ohrm/oxd/core/components/Input/types';
 
 export default {
   title: 'Example/RadioInput',

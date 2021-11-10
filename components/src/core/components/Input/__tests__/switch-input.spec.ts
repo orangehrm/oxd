@@ -18,7 +18,7 @@
  */
 
 import {mount} from '@vue/test-utils';
-import SwitchInput from '@orangehrm/oxd/core/components/Input/SwitchInput.vue';
+import SwitchInput from '@ohrm/oxd/core/components/Input/SwitchInput.vue';
 
 describe('SwitchInput.vue', () => {
   it('renders OXD Switch Input', () => {

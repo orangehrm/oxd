@@ -49,7 +49,7 @@
 
 <script>
 import {topMenuItems, sidePanelItems, breadcrumb} from './mockdata';
-import Layout from '@orangehrm/oxd/core/components/Layout/Layout';
+import Layout from '@ohrm/oxd/core/components/Layout/Layout';
 
 export default {
   name: 'Layout',
@@ -58,7 +58,7 @@ export default {
   },
   data() {
     return {
-      brandImageSrc: require('@orangehrm/oxd/assets/images/orange.png'),
+      brandImageSrc: require('@ohrm/oxd/assets/images/orange.png'),
       user: {
         firstName: 'Jeff',
         lastName: 'Winger',

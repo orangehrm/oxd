@@ -18,9 +18,9 @@
  */
 
 import {mount} from '@vue/test-utils';
-import TimeInput from '@orangehrm/oxd/core/components/Input/Time/TimeInput.vue';
-import TimePicker from '@orangehrm/oxd/core/components/Input/Time/TimePicker.vue';
-import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
+import TimeInput from '@ohrm/oxd/core/components/Input/Time/TimeInput.vue';
+import TimePicker from '@ohrm/oxd/core/components/Input/Time/TimePicker.vue';
+import Input from '@ohrm/oxd/core/components/Input/Input.vue';
 
 describe('TimeInput.vue', () => {
   it('renders OXD Time Input', () => {

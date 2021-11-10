@@ -44,9 +44,9 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import Label from '@orangehrm/oxd/core/components/Label/Label.vue';
-import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
-import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
+import Label from '@ohrm/oxd/core/components/Label/Label.vue';
+import Text from '@ohrm/oxd/core/components/Text/Text.vue';
+import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
   name: 'oxd-input-group',

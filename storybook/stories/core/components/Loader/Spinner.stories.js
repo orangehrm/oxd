@@ -16,8 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
-import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner';
+
+import Spinner from '@ohrm/oxd/core/components/Loader/Spinner';
 
 export default {
   title: 'Example/Loader/Spinner',

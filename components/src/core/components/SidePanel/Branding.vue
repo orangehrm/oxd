@@ -33,7 +33,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
+import Text from '@ohrm/oxd/core/components/Text/Text.vue';
 
 export default defineComponent({
   name: 'oxd-branding',

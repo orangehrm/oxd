@@ -39,7 +39,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
+import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
   name: 'oxd-icon-button',

@@ -76,11 +76,11 @@
 </template>
 
 <script>
-import Form from '@orangehrm/oxd/core/components/Form/Form';
-import FormRow from '@orangehrm/oxd/core/components/Form/FormRow';
-import InputField from '@orangehrm/oxd/core/components/InputField/InputField';
-import Grid from '@orangehrm/oxd/core/components/Grid/Grid';
-import GridItem from '@orangehrm/oxd/core/components/Grid/GridItem';
+import Form from '@ohrm/oxd/core/components/Form/Form';
+import FormRow from '@ohrm/oxd/core/components/Form/FormRow';
+import InputField from '@ohrm/oxd/core/components/InputField/InputField';
+import Grid from '@ohrm/oxd/core/components/Grid/Grid';
+import GridItem from '@ohrm/oxd/core/components/Grid/GridItem';
 
 export default {
   name: 'GeneralInformation',

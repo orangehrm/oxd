@@ -35,7 +35,7 @@
 <script lang="ts">
 import {defineComponent, inject, computed, onBeforeUnmount} from 'vue';
 import emitter from '../../../../utils/emitter';
-import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
+import CheckboxInput from '@ohrm/oxd/core/components/Input/CheckboxInput.vue';
 import {cellMixin} from './cell-mixin';
 
 export default defineComponent({

@@ -18,10 +18,10 @@
  */
 
 import {mount} from '@vue/test-utils';
-import DefaultCardContainer from '@orangehrm/oxd/core/components/CardTable/Decorator/DefaultCardContainer.vue';
-import DefaultCardMobile from '@orangehrm/oxd/core/components/CardTable/Decorator/DefaultCardMobile.vue';
-import DefaultCardWeb from '@orangehrm/oxd/core/components/CardTable/Decorator/DefaultCardWeb.vue';
-import {DEVICE_LG, DEVICE_MD} from '@orangehrm/oxd/composables/useResponsive';
+import DefaultCardContainer from '@ohrm/oxd/core/components/CardTable/Decorator/DefaultCardContainer.vue';
+import DefaultCardMobile from '@ohrm/oxd/core/components/CardTable/Decorator/DefaultCardMobile.vue';
+import DefaultCardWeb from '@ohrm/oxd/core/components/CardTable/Decorator/DefaultCardWeb.vue';
+import {DEVICE_LG, DEVICE_MD} from '@ohrm/oxd/composables/useResponsive';
 
 describe('CardTable > Decorator > DefaultCardContainer.vue', () => {
   it('should renders DefaultCardWeb on screen LG, XL', async () => {

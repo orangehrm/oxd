@@ -18,7 +18,7 @@
  */
 
 import {mount} from '@vue/test-utils';
-import RadioInput from '@orangehrm/oxd/core/components/Input/RadioInput.vue';
+import RadioInput from '@ohrm/oxd/core/components/Input/RadioInput.vue';
 
 describe('RadioInput.vue', () => {
   it('renders OXD Radio Input', () => {

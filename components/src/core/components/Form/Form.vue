@@ -36,7 +36,7 @@
 <script lang="ts">
 import {computed, defineComponent} from 'vue';
 import useFormValidation from '../../../composables/useFormValidation';
-import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
+import Spinner from '@ohrm/oxd/core/components/Loader/Spinner.vue';
 
 export default defineComponent({
   name: 'oxd-form',

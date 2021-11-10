@@ -67,11 +67,11 @@
 </template>
 
 <script>
-import Form from '@orangehrm/oxd/core/components/Form/Form';
-import FormRow from '@orangehrm/oxd/core/components/Form/FormRow';
-import Input from '@orangehrm/oxd/core/components/Input/Input';
-import Label from '@orangehrm/oxd/core/components/Label/Label';
-import InputField from '@orangehrm/oxd/core/components/InputField/InputField';
+import Form from '@ohrm/oxd/core/components/Form/Form';
+import FormRow from '@ohrm/oxd/core/components/Form/FormRow';
+import Input from '@ohrm/oxd/core/components/Input/Input';
+import Label from '@ohrm/oxd/core/components/Label/Label';
+import InputField from '@ohrm/oxd/core/components/InputField/InputField';
 
 export default {
   data() {

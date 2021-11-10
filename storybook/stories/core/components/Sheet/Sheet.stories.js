@@ -16,9 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
-import Sheet from '@orangehrm/oxd/core/components/Sheet/Sheet';
-import {TYPES} from '@orangehrm/oxd/core/components/Sheet/types';
+
+import Sheet from '@ohrm/oxd/core/components/Sheet/Sheet';
+import {TYPES} from '@ohrm/oxd/core/components/Sheet/types';
 import SheetWithGuttersStory from './SheetWithGutters.story.vue';
 import SheetWithBackgroundStory from './SheetWithBackground.story.vue';
 

@@ -18,7 +18,7 @@
  */
 
 import {mount} from '@vue/test-utils';
-import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
+import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
 
 describe('Button > Icon.vue', () => {
   it('should renders OXD icon button', () => {

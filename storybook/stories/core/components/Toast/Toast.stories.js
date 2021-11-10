@@ -16,9 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
-import Toast from '@orangehrm/oxd/core/components/Toast/Toast';
-import {TYPES} from '@orangehrm/oxd/core/components/Toast/types';
+
+import Toast from '@ohrm/oxd/core/components/Toast/Toast';
+import {TYPES} from '@ohrm/oxd/core/components/Toast/types';
 import ToastAnimation from './ToastAnimation.story.vue';
 
 export default {

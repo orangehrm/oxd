@@ -7,7 +7,7 @@ module.exports = {
         root: ['./src'],
         extensions: ['.ts', '.tsx', '.vue', '.js', '.json'],
         alias: {
-          '@orangehrm/oxd': './src',
+          '@ohrm/oxd': './src',
         },
       },
     ],

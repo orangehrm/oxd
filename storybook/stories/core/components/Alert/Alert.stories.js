@@ -16,10 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
-import Alert from '@orangehrm/oxd/core/components/Alert/Alert';
-import Button from '@orangehrm/oxd/core/components/Button/Button';
-import {TYPES} from '@orangehrm/oxd/core/components/Alert/types';
+
+import Alert from '@ohrm/oxd/core/components/Alert/Alert';
+import Button from '@ohrm/oxd/core/components/Button/Button';
+import {TYPES} from '@ohrm/oxd/core/components/Alert/types';
 import AlertContainer from './AlertContainer';
 
 export default {

@@ -56,8 +56,8 @@
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
-import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
-import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
+import Input from '@ohrm/oxd/core/components/Input/Input.vue';
+import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
 import MainMenuItem from './MainMenuItem.vue';
 import MenuItem from './types';
 

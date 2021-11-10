@@ -40,9 +40,9 @@ import {
   toRefs,
   watch,
 } from 'vue';
-import Day from '@orangehrm/oxd/core/components/Calendar/Day.vue';
-import DateVue from '@orangehrm/oxd/core/components/Calendar/Date.vue';
-import CalendarController from '@orangehrm/oxd/core/components/Calendar/CalendarController.vue';
+import Day from '@ohrm/oxd/core/components/Calendar/Day.vue';
+import DateVue from '@ohrm/oxd/core/components/Calendar/Date.vue';
+import CalendarController from '@ohrm/oxd/core/components/Calendar/CalendarController.vue';
 
 export default defineComponent({
   name: 'oxd-calendar',

@@ -58,9 +58,9 @@
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
-import Topbar from '@orangehrm/oxd/core/components/Topbar/Topbar.vue';
-import SidePanel from '@orangehrm/oxd/core/components/SidePanel/SidePanel.vue';
-import overlay from '@orangehrm/oxd/core/components/Dialog/Overlay.vue';
+import Topbar from '@ohrm/oxd/core/components/Topbar/Topbar.vue';
+import SidePanel from '@ohrm/oxd/core/components/SidePanel/SidePanel.vue';
+import overlay from '@ohrm/oxd/core/components/Dialog/Overlay.vue';
 import MenuItem from '../SidePanel/types';
 import {TopMenuItem, User, Breadcrumb} from '../Topbar/types';
 

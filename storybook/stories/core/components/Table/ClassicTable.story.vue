@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import ClassicTable from '@orangehrm/oxd/core/components/Table/ClassicTable';
+import ClassicTable from '@ohrm/oxd/core/components/Table/ClassicTable';
 
 export default {
   data() {

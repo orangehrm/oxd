@@ -54,8 +54,8 @@
 </template>
 
 <script>
-import Dialog from '@orangehrm/oxd/core/components/Dialog/Dialog';
-import IconButton from '@orangehrm/oxd/core/components/Button/Icon';
+import Dialog from '@ohrm/oxd/core/components/Dialog/Dialog';
+import IconButton from '@ohrm/oxd/core/components/Button/Icon';
 
 export default {
   components: {

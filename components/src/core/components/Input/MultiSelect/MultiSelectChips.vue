@@ -43,8 +43,8 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {Option} from '../types';
-import Chip from '@orangehrm/oxd/core/components/Chip/Chip.vue';
-import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
+import Chip from '@ohrm/oxd/core/components/Chip/Chip.vue';
+import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
   name: 'oxd-mutliselect-chips',

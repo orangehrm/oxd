@@ -16,12 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
-import AutocompleteInput from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteInput';
+
+import AutocompleteInput from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteInput';
 import {
   BOTTOM,
   DROPDOWN_POSITIONS,
-} from '@orangehrm/oxd/core/components/Input/types';
+} from '@ohrm/oxd/core/components/Input/types';
 import {h, ref} from 'vue';
 import AutocompleteCustom from './AutocompleteCustom.story.vue';
 

@@ -18,7 +18,7 @@
  */
 
 import {mount} from '@vue/test-utils';
-import PasswordInput from '@orangehrm/oxd/core/components/Input/PasswordInput.vue';
+import PasswordInput from '@ohrm/oxd/core/components/Input/PasswordInput.vue';
 
 describe('PasswordInput.vue', () => {
   it('renders OXD Input', () => {

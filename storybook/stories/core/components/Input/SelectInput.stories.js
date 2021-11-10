@@ -17,11 +17,11 @@
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
 
-import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput';
+import SelectInput from '@ohrm/oxd/core/components/Input/Select/SelectInput';
 import {
   BOTTOM,
   DROPDOWN_POSITIONS,
-} from '@orangehrm/oxd/core/components/Input/types';
+} from '@ohrm/oxd/core/components/Input/types';
 import {h, ref} from 'vue';
 
 export default {

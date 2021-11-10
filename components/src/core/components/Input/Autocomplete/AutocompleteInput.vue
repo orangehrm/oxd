@@ -86,10 +86,10 @@ import debounce from '../../../../utils/debounce';
 import eventsMixin from '../Select/events-mixin';
 import navigationMixin from '../Select/navigation-mixin';
 import {TOP, BOTTOM, Option, Position, DROPDOWN_POSITIONS} from '../types';
-import AutocompleteTextInput from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteTextInput.vue';
-import AutocompleteDropdown from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteDropdown.vue';
-import AutocompleteOption from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteOption.vue';
-import AutocompleteChips from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteChips.vue';
+import AutocompleteTextInput from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteTextInput.vue';
+import AutocompleteDropdown from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteDropdown.vue';
+import AutocompleteOption from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteOption.vue';
+import AutocompleteChips from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteChips.vue';
 
 export default defineComponent({
   name: 'oxd-autocomplete-input',

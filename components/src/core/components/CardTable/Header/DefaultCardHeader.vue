@@ -53,10 +53,10 @@
 <script lang="ts">
 import {defineComponent, reactive, watch, toRefs, inject, computed} from 'vue';
 import emitter from '../../../../utils/emitter';
-import TableHeader from '@orangehrm/oxd/core/components/CardTable/Table/TableHeader.vue';
-import TableRow from '@orangehrm/oxd/core/components/CardTable/Table/TableRow.vue';
-import TableHeaderCell from '@orangehrm/oxd/core/components/CardTable/Table/TableHeaderCell.vue';
-import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
+import TableHeader from '@ohrm/oxd/core/components/CardTable/Table/TableHeader.vue';
+import TableRow from '@ohrm/oxd/core/components/CardTable/Table/TableRow.vue';
+import TableHeaderCell from '@ohrm/oxd/core/components/CardTable/Table/TableHeaderCell.vue';
+import CheckboxInput from '@ohrm/oxd/core/components/Input/CheckboxInput.vue';
 import {DEVICE_LG, DEVICE_XL} from '../../../../composables/useResponsive';
 import {CardHeader, Order} from '../types';
 

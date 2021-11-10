@@ -18,7 +18,7 @@
  */
 
 import {mount} from '@vue/test-utils';
-import Sheet from '@orangehrm/oxd/core/components/Sheet/Sheet.vue';
+import Sheet from '@ohrm/oxd/core/components/Sheet/Sheet.vue';
 
 describe('Sheet.vue', () => {
   it('should renders OXD Sheet', () => {

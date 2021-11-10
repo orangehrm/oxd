@@ -16,8 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
-import Calendar from '@orangehrm/oxd/core/components/Calendar/Calendar';
+
+import Calendar from '@ohrm/oxd/core/components/Calendar/Calendar';
 import {ref} from 'vue';
 import {enGB, ru} from 'date-fns/locale';
 import {getDaysInMonth} from 'date-fns';

@@ -18,7 +18,7 @@
  */
 
 import {mount} from '@vue/test-utils';
-import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
+import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
 describe('Icon.vue', () => {
   it('renders OXD Icon', () => {

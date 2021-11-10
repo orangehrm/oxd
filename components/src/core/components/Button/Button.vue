@@ -45,7 +45,7 @@ import {
   TYPES,
   TYPE_MAIN,
 } from './types';
-import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
+import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
   name: 'oxd-button',

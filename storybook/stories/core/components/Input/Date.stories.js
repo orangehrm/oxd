@@ -16,10 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
+
 import {h, ref} from 'vue';
 import {ru} from 'date-fns/locale';
-import DateInput from '@orangehrm/oxd/core/components/Input/DateInput';
+import DateInput from '@ohrm/oxd/core/components/Input/DateInput';
 
 export default {
   title: 'Example/DateInput',

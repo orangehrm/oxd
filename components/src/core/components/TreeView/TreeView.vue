@@ -31,7 +31,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import TreeNode from '@orangehrm/oxd/core/components/TreeView/TreeNode.vue';
+import TreeNode from '@ohrm/oxd/core/components/TreeView/TreeNode.vue';
 
 export default defineComponent({
   name: 'oxd-tree-view',

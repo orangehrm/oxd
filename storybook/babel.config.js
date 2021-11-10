@@ -6,7 +6,7 @@ module.exports = {
         root: ['../'],
         extensions: ['.ts', '.tsx', '.vue', '.js', '.json'],
         alias: {
-          '@orangehrm/oxd': '../components/src',
+          '@ohrm/oxd': '../components/src',
 
           // storybook releated
           stories: './stories',

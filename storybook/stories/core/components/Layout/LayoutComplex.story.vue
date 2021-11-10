@@ -85,22 +85,22 @@
 
 <script>
 import {topMenuItems, sidePanelItems, headers, breadcrumb} from './mockdata';
-import Text from '@orangehrm/oxd/core/components/Text/Text';
-import Layout from '@orangehrm/oxd/core/components/Layout/Layout';
-import TableFilter from '@orangehrm/oxd/core/components/TableFilter/TableFilter';
-import Grid from '@orangehrm/oxd/core/components/Grid/Grid';
-import GridItem from '@orangehrm/oxd/core/components/Grid/GridItem';
-import Form from '@orangehrm/oxd/core/components/Form/Form';
-import FormRow from '@orangehrm/oxd/core/components/Form/FormRow';
-import FormActions from '@orangehrm/oxd/core/components/Form/FormActions';
-import InputField from '@orangehrm/oxd/core/components/InputField/InputField';
-import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup';
-import IconButton from '@orangehrm/oxd/core/components/Button/Icon';
-import Button from '@orangehrm/oxd/core/components/Button/Button';
-import Divider from '@orangehrm/oxd/core/components/Divider/Divider';
-import ReportTable from '@orangehrm/oxd/core/components/ReportTable/ReportTable';
-import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination';
-import Icon from '@orangehrm/oxd/core/components/Icon/Icon';
+import Text from '@ohrm/oxd/core/components/Text/Text';
+import Layout from '@ohrm/oxd/core/components/Layout/Layout';
+import TableFilter from '@ohrm/oxd/core/components/TableFilter/TableFilter';
+import Grid from '@ohrm/oxd/core/components/Grid/Grid';
+import GridItem from '@ohrm/oxd/core/components/Grid/GridItem';
+import Form from '@ohrm/oxd/core/components/Form/Form';
+import FormRow from '@ohrm/oxd/core/components/Form/FormRow';
+import FormActions from '@ohrm/oxd/core/components/Form/FormActions';
+import InputField from '@ohrm/oxd/core/components/InputField/InputField';
+import InputGroup from '@ohrm/oxd/core/components/InputField/InputGroup';
+import IconButton from '@ohrm/oxd/core/components/Button/Icon';
+import Button from '@ohrm/oxd/core/components/Button/Button';
+import Divider from '@ohrm/oxd/core/components/Divider/Divider';
+import ReportTable from '@ohrm/oxd/core/components/ReportTable/ReportTable';
+import Pagination from '@ohrm/oxd/core/components/Pagination/Pagination';
+import Icon from '@ohrm/oxd/core/components/Icon/Icon';
 
 export default {
   name: 'Layout',
@@ -124,11 +124,11 @@ export default {
   },
   data() {
     return {
-      brandImageSrc: require('@orangehrm/oxd/assets/images/orange.png'),
+      brandImageSrc: require('@ohrm/oxd/assets/images/orange.png'),
       user: {
         firstName: 'Jeff',
         lastName: 'Winger',
-        profImgSrc: require('@orangehrm/oxd/assets/images/orange.png'),
+        profImgSrc: require('@ohrm/oxd/assets/images/orange.png'),
       },
       filters: {
         username: '',

@@ -49,14 +49,14 @@ import {
 } from 'vue';
 import {CardSelector, CardHeaders, SortDefinition} from './types';
 import useResponsive from '../../../composables/useResponsive';
-import Table from '@orangehrm/oxd/core/components/CardTable/Table/Table.vue';
-import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
+import Table from '@ohrm/oxd/core/components/CardTable/Table/Table.vue';
+import Spinner from '@ohrm/oxd/core/components/Loader/Spinner.vue';
 
 // Body Decorators
-import DefaultCardContainer from '@orangehrm/oxd/core/components/CardTable/Decorator/DefaultCardContainer.vue';
+import DefaultCardContainer from '@ohrm/oxd/core/components/CardTable/Decorator/DefaultCardContainer.vue';
 
 // Headers Decorators
-import DefaultCardHeader from '@orangehrm/oxd/core/components/CardTable/Header/DefaultCardHeader.vue';
+import DefaultCardHeader from '@ohrm/oxd/core/components/CardTable/Header/DefaultCardHeader.vue';
 
 export default defineComponent({
   name: 'oxd-card-card-table',

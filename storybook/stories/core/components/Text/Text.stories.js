@@ -16,14 +16,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
-import Text from '@orangehrm/oxd/core/components/Text/Text';
+
+import Text from '@ohrm/oxd/core/components/Text/Text';
 import {
   TAGS,
   TYPE_SUBTITLE_1,
   TYPE_SUBTITLE_2,
   TYPE_CARD_TITLE,
-} from '@orangehrm/oxd/core/components/Text/types';
+} from '@ohrm/oxd/core/components/Text/types';
 
 export default {
   title: 'Example/Text',

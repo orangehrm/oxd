@@ -46,8 +46,8 @@
 </template>
 
 <script>
-import AutocompleteInput from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteInput';
-import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput';
+import AutocompleteInput from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteInput';
+import CheckboxInput from '@ohrm/oxd/core/components/Input/CheckboxInput';
 
 export default {
   data() {

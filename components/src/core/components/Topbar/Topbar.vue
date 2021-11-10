@@ -60,10 +60,10 @@
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
 import {TopMenuItem, User, Breadcrumb} from './types';
-import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
-import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
-import Navigation from '@orangehrm/oxd/core/components/Topbar/Navigation.vue';
-import UserDropdown from '@orangehrm/oxd/core/components/Topbar/UserDropdown.vue';
+import Text from '@ohrm/oxd/core/components/Text/Text.vue';
+import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
+import Navigation from '@ohrm/oxd/core/components/Topbar/Navigation.vue';
+import UserDropdown from '@ohrm/oxd/core/components/Topbar/UserDropdown.vue';
 
 export default defineComponent({
   name: 'oxd-top-bar',

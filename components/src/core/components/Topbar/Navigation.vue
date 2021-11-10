@@ -59,8 +59,8 @@ import {
 } from 'vue';
 import {TopMenuItem} from './types';
 import useResize from '../../../composables/useResize';
-import NavigationLink from '@orangehrm/oxd/core/components/Topbar/NavigationLink.vue';
-import NavigationMore from '@orangehrm/oxd/core/components/Topbar/NavigationMore.vue';
+import NavigationLink from '@ohrm/oxd/core/components/Topbar/NavigationLink.vue';
+import NavigationMore from '@ohrm/oxd/core/components/Topbar/NavigationMore.vue';
 
 export default defineComponent({
   name: 'oxd-navigation',

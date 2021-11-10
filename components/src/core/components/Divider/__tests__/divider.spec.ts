@@ -18,7 +18,7 @@
  */
 
 import {mount} from '@vue/test-utils';
-import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';
+import Divider from '@ohrm/oxd/core/components/Divider/Divider.vue';
 
 describe('Divider.vue', () => {
   it('renders OXD Divider', () => {

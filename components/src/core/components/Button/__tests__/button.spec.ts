@@ -18,7 +18,7 @@
  */
 
 import {mount} from '@vue/test-utils';
-import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
+import Button from '@ohrm/oxd/core/components/Button/Button.vue';
 import {
   SIZE_LARGE,
   SIZE_MEDIUM,

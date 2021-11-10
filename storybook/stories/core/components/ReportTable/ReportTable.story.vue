@@ -36,8 +36,8 @@
 </template>
 
 <script>
-import ReportTable from '@orangehrm/oxd/core/components/ReportTable/ReportTable';
-import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination';
+import ReportTable from '@ohrm/oxd/core/components/ReportTable/ReportTable';
+import Pagination from '@ohrm/oxd/core/components/Pagination/Pagination';
 
 export default {
   data() {

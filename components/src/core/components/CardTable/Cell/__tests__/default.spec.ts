@@ -18,8 +18,8 @@
  */
 
 import {mount} from '@vue/test-utils';
-import DefaultCell from '@orangehrm/oxd/core/components/CardTable/Cell/Default.vue';
-import {DEVICE_LG} from '@orangehrm/oxd/composables/useResponsive';
+import DefaultCell from '@ohrm/oxd/core/components/CardTable/Cell/Default.vue';
+import {DEVICE_LG} from '@ohrm/oxd/composables/useResponsive';
 
 const GLOBAL = {
   provide: {

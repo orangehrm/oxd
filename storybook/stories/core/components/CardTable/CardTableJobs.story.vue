@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import CardTable from '@orangehrm/oxd/core/components/CardTable/CardTable';
+import CardTable from '@ohrm/oxd/core/components/CardTable/CardTable';
 
 export default {
   data() {

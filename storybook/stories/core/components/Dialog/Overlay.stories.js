@@ -16,8 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
-import Overlay from '@orangehrm/oxd/core/components/Dialog/Overlay';
+
+import Overlay from '@ohrm/oxd/core/components/Dialog/Overlay';
 
 export default {
   title: 'Example/Dialog/Overlay',

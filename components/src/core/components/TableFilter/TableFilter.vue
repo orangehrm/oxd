@@ -51,9 +51,9 @@
 
 <script lang="ts">
 import {defineComponent, ref, watchEffect} from 'vue';
-import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
-import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';
-import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
+import Text from '@ohrm/oxd/core/components/Text/Text.vue';
+import Divider from '@ohrm/oxd/core/components/Divider/Divider.vue';
+import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
 import useResponsive, {
   DEVICE_LG,
   DEVICE_XL,

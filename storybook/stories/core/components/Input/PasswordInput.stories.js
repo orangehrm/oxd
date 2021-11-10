@@ -16,8 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
-import PasswordInput from '@orangehrm/oxd/core/components/Input/PasswordInput';
+
+import PasswordInput from '@ohrm/oxd/core/components/Input/PasswordInput';
 
 export default {
   title: 'Example/PasswordInput',

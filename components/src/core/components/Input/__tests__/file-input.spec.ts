@@ -18,7 +18,7 @@
  */
 
 import {mount} from '@vue/test-utils';
-import FileInput from '@orangehrm/oxd/core/components/Input/FileInput.vue';
+import FileInput from '@ohrm/oxd/core/components/Input/FileInput.vue';
 
 describe('FileInput.vue', () => {
   it('renders OXD FileInput', () => {

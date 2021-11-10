@@ -18,7 +18,7 @@
  */
 
 import {mount} from '@vue/test-utils';
-import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
+import Spinner from '@ohrm/oxd/core/components/Loader/Spinner.vue';
 
 describe('Loader > Spinner.vue', () => {
   it('renders OXD Spinner', () => {

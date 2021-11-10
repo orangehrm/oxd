@@ -16,8 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
-import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination';
+
+import Pagination from '@ohrm/oxd/core/components/Pagination/Pagination';
 
 export default {
   title: 'Example/Pagination',
