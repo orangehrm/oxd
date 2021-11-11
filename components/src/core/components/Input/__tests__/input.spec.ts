@@ -18,7 +18,7 @@
  */
 
 import {mount} from '@vue/test-utils';
-import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
+import Input from '@ohrm/oxd/core/components/Input/Input.vue';
 
 describe('Input.vue', () => {
   it('renders OXD Input', () => {

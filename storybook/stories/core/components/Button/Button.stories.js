@@ -16,8 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
-import Button from '@orangehrm/oxd/core/components/Button/Button';
+
+import Button from '@ohrm/oxd/core/components/Button/Button';
 import {
   SIZES,
   TYPES,
@@ -33,7 +33,7 @@ import {
   TYPE_LABEL_DANGER,
   TYPE_TEXT,
   TYPE_TOOL,
-} from '@orangehrm/oxd/core/components/Button/types';
+} from '@ohrm/oxd/core/components/Button/types';
 
 export default {
   title: 'Example/Button',

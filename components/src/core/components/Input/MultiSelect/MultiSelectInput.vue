@@ -76,10 +76,10 @@ import {defineComponent} from 'vue';
 import eventsMixin from '../Select/events-mixin';
 import navigationMixin from '../Select/navigation-mixin';
 import {TOP, BOTTOM, Option, Position, DROPDOWN_POSITIONS} from '../types';
-import SelectText from '@orangehrm/oxd/core/components/Input/Select/SelectText.vue';
-import SelectDropdown from '@orangehrm/oxd/core/components/Input/Select/SelectDropdown.vue';
-import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
-import MultiSelectChips from '@orangehrm/oxd/core/components/Input/MultiSelect/MultiSelectChips.vue';
+import SelectText from '@ohrm/oxd/core/components/Input/Select/SelectText.vue';
+import SelectDropdown from '@ohrm/oxd/core/components/Input/Select/SelectDropdown.vue';
+import SelectOption from '@ohrm/oxd/core/components/Input/Select/SelectOption.vue';
+import MultiSelectChips from '@ohrm/oxd/core/components/Input/MultiSelect/MultiSelectChips.vue';
 
 export default defineComponent({
   name: 'oxd-multiselect-input',

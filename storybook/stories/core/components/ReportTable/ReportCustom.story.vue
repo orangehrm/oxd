@@ -35,10 +35,10 @@
 </template>
 
 <script>
-import ReportTable from '@orangehrm/oxd/core/components/ReportTable/ReportTable';
-import CellAdapter from '@orangehrm/oxd/core/components/ReportTable/CellAdapter';
-import MultilineCell from '@orangehrm/oxd/core/components/ReportTable/Cell/MultilineCell';
-import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination';
+import ReportTable from '@ohrm/oxd/core/components/ReportTable/ReportTable';
+import CellAdapter from '@ohrm/oxd/core/components/ReportTable/CellAdapter';
+import MultilineCell from '@ohrm/oxd/core/components/ReportTable/Cell/MultilineCell';
+import Pagination from '@ohrm/oxd/core/components/Pagination/Pagination';
 
 export default {
   data() {

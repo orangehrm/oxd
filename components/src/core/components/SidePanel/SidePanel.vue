@@ -50,7 +50,7 @@ import {defineComponent, PropType} from 'vue';
 import Branding from './Branding.vue';
 import MainMenu from './MainMenu.vue';
 import MenuItem from './types';
-import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
+import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
   name: 'oxd-side-panel',

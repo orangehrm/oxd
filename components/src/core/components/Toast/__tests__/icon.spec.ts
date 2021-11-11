@@ -18,7 +18,7 @@
  */
 
 import {mount} from '@vue/test-utils';
-import ToastIcon from '@orangehrm/oxd/core/components/Toast/Icon.vue';
+import ToastIcon from '@ohrm/oxd/core/components/Toast/Icon.vue';
 
 describe('Toast > Icon.vue', () => {
   it('should renders OXD ToastIcon', () => {

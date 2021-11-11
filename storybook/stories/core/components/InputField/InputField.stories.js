@@ -16,11 +16,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
-import InputField from '@orangehrm/oxd/core/components/InputField/InputField';
-import {TYPES} from '@orangehrm/oxd/core/components/InputField/types';
+
+import InputField from '@ohrm/oxd/core/components/InputField/InputField';
+import {TYPES} from '@ohrm/oxd/core/components/InputField/types';
 import InputFieldValidation from './InputFieldValidation.story.vue';
-import Form from '@orangehrm/oxd/core/components/Form/Form';
+import Form from '@ohrm/oxd/core/components/Form/Form';
 import {h, ref} from 'vue';
 
 export default {

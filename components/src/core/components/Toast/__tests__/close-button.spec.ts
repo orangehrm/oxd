@@ -18,7 +18,7 @@
  */
 
 import {mount} from '@vue/test-utils';
-import Toast from '@orangehrm/oxd/core/components/Toast/CloseButton.vue';
+import Toast from '@ohrm/oxd/core/components/Toast/CloseButton.vue';
 
 describe('Toast > CloseButton.vue', () => {
   it('should renders OXD ToastCloseButton', () => {

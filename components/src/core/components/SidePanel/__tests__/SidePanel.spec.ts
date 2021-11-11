@@ -18,9 +18,9 @@
  */
 
 import {mount, shallowMount} from '@vue/test-utils';
-import SidePanel from '@orangehrm/oxd/core/components/SidePanel/SidePanel.vue';
-import MainMenu from '@orangehrm/oxd/core/components/SidePanel/MainMenu.vue';
-import MainMenuItem from '@orangehrm/oxd/core/components/SidePanel/MainMenuItem.vue';
+import SidePanel from '@ohrm/oxd/core/components/SidePanel/SidePanel.vue';
+import MainMenu from '@ohrm/oxd/core/components/SidePanel/MainMenu.vue';
+import MainMenuItem from '@ohrm/oxd/core/components/SidePanel/MainMenuItem.vue';
 
 describe('SidePanel.vue', () => {
   it('renders OXD Side Panel', () => {

@@ -50,8 +50,8 @@
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
 import {TopMenuItem} from './types';
-import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
-import DropdownMenu from '@orangehrm/oxd/core/components/DropdownMenu/DropdownMenu.vue';
+import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
+import DropdownMenu from '@ohrm/oxd/core/components/DropdownMenu/DropdownMenu.vue';
 
 export default defineComponent({
   name: 'oxd-navigation-link',

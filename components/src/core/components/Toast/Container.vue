@@ -37,7 +37,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {POSITION_BOTTOM, POSITIONS, ToastContainerPositions} from './types';
-import Toast from '@orangehrm/oxd/core/components/Toast/Toast.vue';
+import Toast from '@ohrm/oxd/core/components/Toast/Toast.vue';
 
 export default defineComponent({
   name: 'oxd-toast-container',

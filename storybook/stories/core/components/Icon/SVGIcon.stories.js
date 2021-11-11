@@ -17,8 +17,8 @@
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
 
-import Icon from '@orangehrm/oxd/core/components/Icon/Icon';
-import * as SVGs from '@orangehrm/oxd/core/components/Icon/map';
+import Icon from '@ohrm/oxd/core/components/Icon/Icon';
+import * as SVGs from '@ohrm/oxd/core/components/Icon/map';
 
 export default {
   title: 'Example/Icon (svg)',

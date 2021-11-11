@@ -81,8 +81,8 @@ import {
 } from 'vue';
 import VGrid from '@revolist/vue3-datagrid';
 import useResize from '../../../composables/useResize';
-import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
-import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
+import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
+import Spinner from '@ohrm/oxd/core/components/Loader/Spinner.vue';
 
 export default defineComponent({
   name: 'oxd-report-table',

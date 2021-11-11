@@ -36,8 +36,8 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {AlertType, TYPE_DEFAULT, TYPES, ICON_MAP} from './types';
-import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
-import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
+import Text from '@ohrm/oxd/core/components/Text/Text.vue';
+import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 export default defineComponent({
   name: 'oxd-alert',
 

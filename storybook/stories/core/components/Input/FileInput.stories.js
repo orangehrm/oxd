@@ -16,8 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
-import FileInput from '@orangehrm/oxd/core/components/Input/FileInput';
+
+import FileInput from '@ohrm/oxd/core/components/Input/FileInput';
 import {computed, h, ref} from 'vue';
 
 export default {
@@ -37,7 +37,7 @@ const Template = args => ({
   template: '<oxd-file-input v-bind="args" />',
 });
 
-const defaultPic = require('@orangehrm/oxd/assets/images/user-default-400.png');
+const defaultPic = require('@ohrm/oxd/assets/images/user-default-400.png');
 
 const SlotTemplate = args => ({
   setup() {

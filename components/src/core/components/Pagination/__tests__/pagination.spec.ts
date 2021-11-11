@@ -18,7 +18,7 @@
  */
 
 import {mount} from '@vue/test-utils';
-import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination.vue';
+import Pagination from '@ohrm/oxd/core/components/Pagination/Pagination.vue';
 
 describe('Pagination.vue', () => {
   it('renders OXD Pagination', () => {

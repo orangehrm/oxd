@@ -52,9 +52,9 @@
 </template>
 
 <script>
-import TreeView from '@orangehrm/oxd/core/components/TreeView/TreeView';
-import Sheet from '@orangehrm/oxd/core/components/Sheet/Sheet';
-import IconButton from '@orangehrm/oxd/core/components/Button/Icon';
+import TreeView from '@ohrm/oxd/core/components/TreeView/TreeView';
+import Sheet from '@ohrm/oxd/core/components/Sheet/Sheet';
+import IconButton from '@ohrm/oxd/core/components/Button/Icon';
 
 export default {
   components: {

@@ -16,12 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
-import MultiSelectInput from '@orangehrm/oxd/core/components/Input/MultiSelect/MultiSelectInput';
+
+import MultiSelectInput from '@ohrm/oxd/core/components/Input/MultiSelect/MultiSelectInput';
 import {
   BOTTOM,
   DROPDOWN_POSITIONS,
-} from '@orangehrm/oxd/core/components/Input/types';
+} from '@ohrm/oxd/core/components/Input/types';
 import {h, ref} from 'vue';
 
 export default {

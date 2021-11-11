@@ -16,9 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
+
 import {h, ref} from 'vue';
-import TimeInput from '@orangehrm/oxd/core/components/Input/Time/TimeInput';
+import TimeInput from '@ohrm/oxd/core/components/Input/Time/TimeInput';
 
 export default {
   title: 'Example/TimeInput',

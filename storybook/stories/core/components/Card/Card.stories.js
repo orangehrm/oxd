@@ -16,8 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
-import Card from '@orangehrm/oxd/core/components/Card/Card';
+
+import Card from '@ohrm/oxd/core/components/Card/Card';
 
 export default {
   title: 'Example/Card',

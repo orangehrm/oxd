@@ -41,7 +41,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import PageItem from '@orangehrm/oxd/core/components/Pagination/PageItem.vue';
+import PageItem from '@ohrm/oxd/core/components/Pagination/PageItem.vue';
 import {pageableMixin} from '../../../mixins/pageable';
 
 export default defineComponent({

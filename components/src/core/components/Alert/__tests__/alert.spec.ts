@@ -18,7 +18,7 @@
  */
 
 import {shallowMount} from '@vue/test-utils';
-import Alert from '@orangehrm/oxd/core/components/Alert/Alert.vue';
+import Alert from '@ohrm/oxd/core/components/Alert/Alert.vue';
 
 describe('Alert.vue', () => {
   it('renders OXD Alert', () => {

@@ -18,9 +18,9 @@
  */
 
 import {mount} from '@vue/test-utils';
-import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
-import SelectText from '@orangehrm/oxd/core/components/Input/Select/SelectText.vue';
-import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
+import SelectInput from '@ohrm/oxd/core/components/Input/Select/SelectInput.vue';
+import SelectText from '@ohrm/oxd/core/components/Input/Select/SelectText.vue';
+import SelectOption from '@ohrm/oxd/core/components/Input/Select/SelectOption.vue';
 
 const options = [
   {

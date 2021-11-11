@@ -37,9 +37,9 @@
 import {defineComponent, mergeProps} from 'vue';
 import {cellMixin} from './cell-mixin';
 import {ActionsCellConfig, Action, RowItem, ActionCellEvent} from './types';
-import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
-import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
-import Dropdown from '@orangehrm/oxd/core/components/CardTable/Cell/Dropdown.vue';
+import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
+import Button from '@ohrm/oxd/core/components/Button/Button.vue';
+import Dropdown from '@ohrm/oxd/core/components/CardTable/Cell/Dropdown.vue';
 
 export default defineComponent({
   name: 'oxd-table-cell-actions',

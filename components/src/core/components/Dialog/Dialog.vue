@@ -47,12 +47,12 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import Overlay from '@orangehrm/oxd/core/components/Dialog/Overlay.vue';
-import CloseButton from '@orangehrm/oxd/core/components/Dialog/CloseButton.vue';
-import Sheet from '@orangehrm/oxd/core/components/Sheet/Sheet.vue';
+import Overlay from '@ohrm/oxd/core/components/Dialog/Overlay.vue';
+import CloseButton from '@ohrm/oxd/core/components/Dialog/CloseButton.vue';
+import Sheet from '@ohrm/oxd/core/components/Sheet/Sheet.vue';
 
 // Containers
-import DefaultContainer from '@orangehrm/oxd/core/components/Dialog/Container/Default.vue';
+import DefaultContainer from '@ohrm/oxd/core/components/Dialog/Container/Default.vue';
 
 export default defineComponent({
   name: 'oxd-dialog',

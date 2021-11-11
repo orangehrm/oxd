@@ -30,7 +30,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
+import SelectOption from '@ohrm/oxd/core/components/Input/Select/SelectOption.vue';
 
 export default defineComponent({
   name: 'oxd-select-dropdown',

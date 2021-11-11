@@ -23,7 +23,7 @@
 import {computed, defineComponent, h, unref} from 'vue';
 import {TYPES, TYPE_BOOTSTRAP} from './types';
 import * as SVGs from './map';
-import SVGLoader from '@orangehrm/oxd/core/components/Icon/SVGLoader.vue';
+import SVGLoader from '@ohrm/oxd/core/components/Icon/SVGLoader.vue';
 
 export default defineComponent({
   name: 'oxd-icon',

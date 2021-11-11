@@ -110,18 +110,18 @@
 </template>
 
 <script>
-import TableFilter from '@orangehrm/oxd/core/components/TableFilter/TableFilter';
-import Grid from '@orangehrm/oxd/core/components/Grid/Grid';
-import GridItem from '@orangehrm/oxd/core/components/Grid/GridItem';
-import Form from '@orangehrm/oxd/core/components/Form/Form';
-import FormRow from '@orangehrm/oxd/core/components/Form/FormRow';
-import FormActions from '@orangehrm/oxd/core/components/Form/FormActions';
-import InputField from '@orangehrm/oxd/core/components/InputField/InputField';
-import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup';
-import IconButton from '@orangehrm/oxd/core/components/Button/Icon';
-import Button from '@orangehrm/oxd/core/components/Button/Button';
-import Divider from '@orangehrm/oxd/core/components/Divider/Divider';
-import CardTable from '@orangehrm/oxd/core/components/CardTable/CardTable';
+import TableFilter from '@ohrm/oxd/core/components/TableFilter/TableFilter';
+import Grid from '@ohrm/oxd/core/components/Grid/Grid';
+import GridItem from '@ohrm/oxd/core/components/Grid/GridItem';
+import Form from '@ohrm/oxd/core/components/Form/Form';
+import FormRow from '@ohrm/oxd/core/components/Form/FormRow';
+import FormActions from '@ohrm/oxd/core/components/Form/FormActions';
+import InputField from '@ohrm/oxd/core/components/InputField/InputField';
+import InputGroup from '@ohrm/oxd/core/components/InputField/InputGroup';
+import IconButton from '@ohrm/oxd/core/components/Button/Icon';
+import Button from '@ohrm/oxd/core/components/Button/Button';
+import Divider from '@ohrm/oxd/core/components/Divider/Divider';
+import CardTable from '@ohrm/oxd/core/components/CardTable/CardTable';
 
 export default {
   data() {

@@ -67,9 +67,9 @@
 <script lang="ts">
 import {formatDate, parseDate, freshDate} from '../../../utils/date';
 import {defineComponent, reactive, toRefs} from 'vue';
-import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
-import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
-import Calendar from '@orangehrm/oxd/core/components/Calendar/Calendar.vue';
+import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
+import Input from '@ohrm/oxd/core/components/Input/Input.vue';
+import Calendar from '@ohrm/oxd/core/components/Calendar/Calendar.vue';
 
 export default defineComponent({
   name: 'oxd-date-input',

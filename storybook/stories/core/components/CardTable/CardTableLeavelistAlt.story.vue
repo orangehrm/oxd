@@ -35,9 +35,9 @@
 </template>
 
 <script>
-import CardTable from '@orangehrm/oxd/core/components/CardTable/CardTable';
-import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput';
-import Textarea from '@orangehrm/oxd/core/components/Textarea/Textarea';
+import CardTable from '@ohrm/oxd/core/components/CardTable/CardTable';
+import SelectInput from '@ohrm/oxd/core/components/Input/Select/SelectInput';
+import Textarea from '@ohrm/oxd/core/components/Textarea/Textarea';
 
 export default {
   data() {

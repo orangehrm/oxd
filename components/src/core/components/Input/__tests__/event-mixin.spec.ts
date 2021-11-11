@@ -19,7 +19,7 @@
 
 import {mount} from '@vue/test-utils';
 import {defineComponent} from 'vue';
-import eventsMixin from '@orangehrm/oxd/core/components/Input/Select/events-mixin';
+import eventsMixin from '@ohrm/oxd/core/components/Input/Select/events-mixin';
 
 const MockComponent = defineComponent({
   name: 'mock-component',

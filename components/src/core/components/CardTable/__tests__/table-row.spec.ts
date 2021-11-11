@@ -18,7 +18,7 @@
  */
 
 import {mount} from '@vue/test-utils';
-import TableRow from '@orangehrm/oxd/core/components/CardTable/Table/TableRow.vue';
+import TableRow from '@ohrm/oxd/core/components/CardTable/Table/TableRow.vue';
 
 describe('CardTable > TableRow.vue', () => {
   it('renders OXD CardTable > TableRow', () => {

@@ -18,7 +18,7 @@
  */
 
 import {mount} from '@vue/test-utils';
-import Toast from '@orangehrm/oxd/core/components/Toast/Toast.vue';
+import Toast from '@ohrm/oxd/core/components/Toast/Toast.vue';
 
 describe('Toast > Toast.vue', () => {
   it('should renders OXD Toast', () => {

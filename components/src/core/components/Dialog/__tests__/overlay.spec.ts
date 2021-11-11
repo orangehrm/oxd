@@ -18,7 +18,7 @@
  */
 
 import {mount} from '@vue/test-utils';
-import Overlay from '@orangehrm/oxd/core/components/Dialog/Overlay.vue';
+import Overlay from '@ohrm/oxd/core/components/Dialog/Overlay.vue';
 
 describe('Dialog > Overlay.vue', () => {
   it('should renders OXD Dialog > Overlay', () => {

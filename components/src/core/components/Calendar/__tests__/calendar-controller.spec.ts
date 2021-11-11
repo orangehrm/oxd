@@ -18,8 +18,8 @@
  */
 
 import {mount, shallowMount} from '@vue/test-utils';
-import CalendarController from '@orangehrm/oxd/core/components/Calendar/CalendarController.vue';
-import Icon from '@orangehrm/oxd/core/components/Button/Icon.vue';
+import CalendarController from '@ohrm/oxd/core/components/Calendar/CalendarController.vue';
+import Icon from '@ohrm/oxd/core/components/Button/Icon.vue';
 
 describe('CalendarController.vue', () => {
   const months = [

@@ -18,8 +18,8 @@
  */
 
 import {mount} from '@vue/test-utils';
-import ActionsCell from '@orangehrm/oxd/core/components/CardTable/Cell/Actions.vue';
-import {DEVICE_LG} from '@orangehrm/oxd/composables/useResponsive';
+import ActionsCell from '@ohrm/oxd/core/components/CardTable/Cell/Actions.vue';
+import {DEVICE_LG} from '@ohrm/oxd/composables/useResponsive';
 
 const GLOBAL = {
   provide: {

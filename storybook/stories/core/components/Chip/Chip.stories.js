@@ -16,8 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
-import Chip from '@orangehrm/oxd/core/components/Chip/Chip';
+
+import Chip from '@ohrm/oxd/core/components/Chip/Chip';
 
 export default {
   title: 'Example/Chip',

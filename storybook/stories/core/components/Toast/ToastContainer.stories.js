@@ -16,12 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
-import ToastContainer from '@orangehrm/oxd/core/components/Toast/Container';
+
+import ToastContainer from '@ohrm/oxd/core/components/Toast/Container';
 import {
   POSITIONS,
   POSITION_BOTTOM,
-} from '@orangehrm/oxd/core/components/Toast/types';
+} from '@ohrm/oxd/core/components/Toast/types';
 import ToastContainerCustomAnimationStory from './ToastContainerCustomAnimation.story.vue';
 import ToastContainerCustomWrapperStory from './ToastContainerCustomWrapper.story.vue';
 

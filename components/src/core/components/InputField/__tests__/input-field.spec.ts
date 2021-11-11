@@ -18,8 +18,8 @@
  */
 
 import {mount} from '@vue/test-utils';
-import InputField from '@orangehrm/oxd/core/components/InputField/InputField.vue';
-import {FormAPI, formKey} from '@orangehrm/oxd/composables/types';
+import InputField from '@ohrm/oxd/core/components/InputField/InputField.vue';
+import {FormAPI, formKey} from '@ohrm/oxd/composables/types';
 
 describe('InputField.vue', () => {
   const mockFormAPI: FormAPI = {

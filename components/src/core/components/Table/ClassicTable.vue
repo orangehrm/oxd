@@ -79,13 +79,13 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import Table from '@orangehrm/oxd/core/components/Table/Table.vue';
-import TableHeader from '@orangehrm/oxd/core/components/Table/TableHeader.vue';
-import TableBody from '@orangehrm/oxd/core/components/Table/TableBody.vue';
-import TableFooter from '@orangehrm/oxd/core/components/Table/TableFooter.vue';
-import TableRow from '@orangehrm/oxd/core/components/Table/TableRow.vue';
-import TableHeaderCell from '@orangehrm/oxd/core/components/Table/TableHeaderCell.vue';
-import TableDataCell from '@orangehrm/oxd/core/components/Table/TableDataCell.vue';
+import Table from '@ohrm/oxd/core/components/Table/Table.vue';
+import TableHeader from '@ohrm/oxd/core/components/Table/TableHeader.vue';
+import TableBody from '@ohrm/oxd/core/components/Table/TableBody.vue';
+import TableFooter from '@ohrm/oxd/core/components/Table/TableFooter.vue';
+import TableRow from '@ohrm/oxd/core/components/Table/TableRow.vue';
+import TableHeaderCell from '@ohrm/oxd/core/components/Table/TableHeaderCell.vue';
+import TableDataCell from '@ohrm/oxd/core/components/Table/TableDataCell.vue';
 
 export default defineComponent({
   name: 'oxd-clasic-table',

@@ -33,7 +33,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import AutocompleteOption from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteOption.vue';
+import AutocompleteOption from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteOption.vue';
 
 export default defineComponent({
   name: 'oxd-autocomplete-dropdown',

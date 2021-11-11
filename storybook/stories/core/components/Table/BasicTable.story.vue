@@ -48,14 +48,14 @@
 </template>
 
 <script>
-import Table from '@orangehrm/oxd/core/components/Table/Table';
-import TableHeader from '@orangehrm/oxd/core/components/Table/TableHeader';
-import TableBody from '@orangehrm/oxd/core/components/Table/TableBody';
-import TableFooter from '@orangehrm/oxd/core/components/Table/TableFooter';
-import TableRow from '@orangehrm/oxd/core/components/Table/TableRow';
-import TableHeaderCell from '@orangehrm/oxd/core/components/Table/TableHeaderCell';
-import TableDataCell from '@orangehrm/oxd/core/components/Table/TableDataCell';
-import IconButton from '@orangehrm/oxd/core/components/Button/Icon';
+import Table from '@ohrm/oxd/core/components/Table/Table';
+import TableHeader from '@ohrm/oxd/core/components/Table/TableHeader';
+import TableBody from '@ohrm/oxd/core/components/Table/TableBody';
+import TableFooter from '@ohrm/oxd/core/components/Table/TableFooter';
+import TableRow from '@ohrm/oxd/core/components/Table/TableRow';
+import TableHeaderCell from '@ohrm/oxd/core/components/Table/TableHeaderCell';
+import TableDataCell from '@ohrm/oxd/core/components/Table/TableDataCell';
+import IconButton from '@ohrm/oxd/core/components/Button/Icon';
 
 export default {
   data() {

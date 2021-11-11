@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import ToastContainer from '@orangehrm/oxd/core/components/Toast/Container';
+import ToastContainer from '@ohrm/oxd/core/components/Toast/Container';
 
 export default {
   components: {

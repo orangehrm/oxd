@@ -16,8 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
-import Input from '@orangehrm/oxd/core/components/Input/Input';
+
+import Input from '@ohrm/oxd/core/components/Input/Input';
 
 export default {
   title: 'Example/Input',

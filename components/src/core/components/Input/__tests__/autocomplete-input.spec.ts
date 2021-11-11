@@ -18,8 +18,8 @@
  */
 
 import {mount} from '@vue/test-utils';
-import AutocompleteInput from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteInput.vue';
-import AutocompleteTextInput from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteTextInput.vue';
+import AutocompleteInput from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteInput.vue';
+import AutocompleteTextInput from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteTextInput.vue';
 
 const options = [
   {

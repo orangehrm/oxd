@@ -82,8 +82,8 @@
 <script lang="ts">
 import {parseDate, formatDate} from '../../../../utils/date';
 import {defineComponent, reactive, toRefs, watchEffect} from 'vue';
-import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
-import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
+import Input from '@ohrm/oxd/core/components/Input/Input.vue';
+import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
 
 interface State {
   hour: string;

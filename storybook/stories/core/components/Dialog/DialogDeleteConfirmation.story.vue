@@ -52,10 +52,10 @@
 </template>
 
 <script>
-import Dialog from '@orangehrm/oxd/core/components/Dialog/Dialog';
-import IconButton from '@orangehrm/oxd/core/components/Button/Icon';
-import Button from '@orangehrm/oxd/core/components/Button/Button';
-import Text from '@orangehrm/oxd/core/components/Text/Text';
+import Dialog from '@ohrm/oxd/core/components/Dialog/Dialog';
+import IconButton from '@ohrm/oxd/core/components/Button/Icon';
+import Button from '@ohrm/oxd/core/components/Button/Button';
+import Text from '@ohrm/oxd/core/components/Text/Text';
 
 export default {
   components: {

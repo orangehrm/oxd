@@ -45,9 +45,9 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {toastMixin} from './toast-mixin';
-import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
-import ToastCloseButton from '@orangehrm/oxd/core/components/Toast/CloseButton.vue';
-import ToastIcon from '@orangehrm/oxd/core/components/Toast/Icon.vue';
+import Text from '@ohrm/oxd/core/components/Text/Text.vue';
+import ToastCloseButton from '@ohrm/oxd/core/components/Toast/CloseButton.vue';
+import ToastIcon from '@ohrm/oxd/core/components/Toast/Icon.vue';
 
 export default defineComponent({
   name: 'oxd-toast',

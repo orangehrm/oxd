@@ -43,20 +43,20 @@
 
 <script lang="ts">
 import {toRef, PropType, nextTick, defineComponent} from 'vue';
-import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue';
-import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
-import FileInput from '@orangehrm/oxd/core/components/Input/FileInput.vue';
-import Textarea from '@orangehrm/oxd/core/components/Textarea/Textarea.vue';
-import DropdownInput from '@orangehrm/oxd/core/components/Input/DropdownInput.vue';
-import PasswordInput from '@orangehrm/oxd/core/components/Input/PasswordInput.vue';
-import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
-import SwitchInput from '@orangehrm/oxd/core/components/Input/SwitchInput.vue';
-import RadioInput from '@orangehrm/oxd/core/components/Input/RadioInput.vue';
-import DateInput from '@orangehrm/oxd/core/components/Input/DateInput.vue';
-import AutocompleteInput from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteInput.vue';
-import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
-import MultiSelectInput from '@orangehrm/oxd/core/components/Input/MultiSelect/MultiSelectInput.vue';
-import TimeInput from '@orangehrm/oxd/core/components/Input/Time/TimeInput.vue';
+import InputGroup from '@ohrm/oxd/core/components/InputField/InputGroup.vue';
+import Input from '@ohrm/oxd/core/components/Input/Input.vue';
+import FileInput from '@ohrm/oxd/core/components/Input/FileInput.vue';
+import Textarea from '@ohrm/oxd/core/components/Textarea/Textarea.vue';
+import DropdownInput from '@ohrm/oxd/core/components/Input/DropdownInput.vue';
+import PasswordInput from '@ohrm/oxd/core/components/Input/PasswordInput.vue';
+import CheckboxInput from '@ohrm/oxd/core/components/Input/CheckboxInput.vue';
+import SwitchInput from '@ohrm/oxd/core/components/Input/SwitchInput.vue';
+import RadioInput from '@ohrm/oxd/core/components/Input/RadioInput.vue';
+import DateInput from '@ohrm/oxd/core/components/Input/DateInput.vue';
+import AutocompleteInput from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteInput.vue';
+import SelectInput from '@ohrm/oxd/core/components/Input/Select/SelectInput.vue';
+import MultiSelectInput from '@ohrm/oxd/core/components/Input/MultiSelect/MultiSelectInput.vue';
+import TimeInput from '@ohrm/oxd/core/components/Input/Time/TimeInput.vue';
 import {Types, Components, TYPES, TYPE_INPUT, TYPE_MAP} from './types';
 import useField from '../../../composables/useField';
 

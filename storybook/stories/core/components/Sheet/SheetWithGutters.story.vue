@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import Sheet from '@orangehrm/oxd/core/components/Sheet/Sheet';
-import Text from '@orangehrm/oxd/core/components/Text/Text';
+import Sheet from '@ohrm/oxd/core/components/Sheet/Sheet';
+import Text from '@ohrm/oxd/core/components/Text/Text';
 
 export default {
   components: {

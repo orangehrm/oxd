@@ -18,7 +18,7 @@
  */
 
 import {mount} from '@vue/test-utils';
-import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
+import CheckboxInput from '@ohrm/oxd/core/components/Input/CheckboxInput.vue';
 
 describe('CheckboxInput.vue', () => {
   it('renders OXD Checkbox Input', () => {

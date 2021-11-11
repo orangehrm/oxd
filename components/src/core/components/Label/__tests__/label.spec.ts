@@ -18,7 +18,7 @@
  */
 
 import {mount} from '@vue/test-utils';
-import Label from '@orangehrm/oxd/core/components/Label/Label.vue';
+import Label from '@ohrm/oxd/core/components/Label/Label.vue';
 
 describe('Label.vue', () => {
   it('renders OXD Label', () => {

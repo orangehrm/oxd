@@ -18,9 +18,9 @@
  */
 
 import {mount, shallowMount} from '@vue/test-utils';
-import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
-import DropdownInput from '@orangehrm/oxd/core/components/Input/DropdownInput.vue';
-import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
+import Input from '@ohrm/oxd/core/components/Input/Input.vue';
+import DropdownInput from '@ohrm/oxd/core/components/Input/DropdownInput.vue';
+import Spinner from '@ohrm/oxd/core/components/Loader/Spinner.vue';
 
 const dropdownOptions = [
   {

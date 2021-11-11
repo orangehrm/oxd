@@ -76,15 +76,15 @@
 
 <script>
 import {ref} from 'vue';
-import Form from '@orangehrm/oxd/core/components/Form/Form';
-import FormRow from '@orangehrm/oxd/core/components/Form/FormRow';
-import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup';
-import FormActions from '@orangehrm/oxd/core/components/Form/FormActions';
-import InputField from '@orangehrm/oxd/core/components/InputField/InputField';
-import Divider from '@orangehrm/oxd/core/components/Divider/Divider';
-import Button from '@orangehrm/oxd/core/components/Button/Button';
-import Text from '@orangehrm/oxd/core/components/Text/Text';
-import promiseDebounce from '@orangehrm/oxd/utils/promiseDebounce';
+import Form from '@ohrm/oxd/core/components/Form/Form';
+import FormRow from '@ohrm/oxd/core/components/Form/FormRow';
+import InputGroup from '@ohrm/oxd/core/components/InputField/InputGroup';
+import FormActions from '@ohrm/oxd/core/components/Form/FormActions';
+import InputField from '@ohrm/oxd/core/components/InputField/InputField';
+import Divider from '@ohrm/oxd/core/components/Divider/Divider';
+import Button from '@ohrm/oxd/core/components/Button/Button';
+import Text from '@ohrm/oxd/core/components/Text/Text';
+import promiseDebounce from '@ohrm/oxd/utils/promiseDebounce';
 
 const checkGithub = function(value) {
   return new Promise(resolve => {
