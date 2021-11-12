@@ -31,6 +31,7 @@
       <p class="oxd-userdropdown-name">
         {{ user.firstName }} {{ user.lastName }}
       </p>
+      <oxd-icon name="caret-down-fill" class="oxd-userdropdown-icon"></oxd-icon>
     </span>
     <template v-slot:content>
       <slot></slot>
@@ -42,6 +43,7 @@
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
 import {User} from './types';
+import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 import DropdownMenu from '@ohrm/oxd/core/components/DropdownMenu/DropdownMenu.vue';
 
 export default defineComponent({
@@ -54,6 +56,7 @@ export default defineComponent({
   },
 
   components: {
+    'oxd-icon': Icon,
     'oxd-dropdown-menu': DropdownMenu,
   },
 
