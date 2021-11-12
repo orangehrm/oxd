@@ -28,3 +28,4 @@ export {default as dashboard} from './svg/dashboard-svg.vue';
 export {default as directory} from './svg/directory-svg.vue';
 export {default as maintenance} from './svg/maintenance-svg.vue';
 export {default as myinfo} from './svg/myinfo-svg.vue';
+export {default as search} from './svg/search-svg.vue';

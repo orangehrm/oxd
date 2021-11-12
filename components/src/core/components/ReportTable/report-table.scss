@@ -108,7 +108,7 @@ $oxd-report-table-frame-offset: $oxd-report-table-frame-header-height * 2;
     .rgCell {
       ul {
         margin: 0;
-        padding: 0 15px;
+        padding: 0;
         list-style: none;
       }
       hr {
@@ -137,6 +137,7 @@ $oxd-report-table-frame-offset: $oxd-report-table-frame-header-height * 2;
 
       .group-rgRow .rgHeaderCell {
         border-left: $oxd-report-table-header-border;
+        border-right: $oxd-report-table-header-border;
       }
 
       .rgHeaderCell {

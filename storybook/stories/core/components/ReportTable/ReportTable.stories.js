@@ -20,6 +20,7 @@
 import ReportTable from '@ohrm/oxd/core/components/ReportTable/ReportTable';
 import ReportTableStory from './ReportTable.story.vue';
 import ReportCustomStory from './ReportCustom.story.vue';
+import PIMReport from './PIMReport.story.vue';
 
 export default {
   title: 'Example/ReportTable',
@@ -29,3 +30,5 @@ export default {
 export const Default = () => ReportTableStory;
 
 export const CustomCell = () => ReportCustomStory;
+
+export const SampleReport = () => PIMReport;

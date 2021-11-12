@@ -43,8 +43,8 @@
   &-name {
     margin: 0;
     display: none;
-    color: $oxd-white-color;
-    font-size: 0.75rem;
+    color: $oxd-userdropdown-font-color;
+    font-size: $oxd-userdropdown-font-size;
     text-overflow: ellipsis;
     overflow: hidden;
     max-width: 50px;
@@ -55,5 +55,10 @@
       display: block;
       max-width: unset;
     }
+  }
+  &-icon {
+    padding: 0 0.2rem;
+    color: $oxd-userdropdown-font-color;
+    font-size: $oxd-userdropdown-font-size;
   }
 }

@@ -25,6 +25,7 @@
       <li>{{ item.content }}</li>
       <hr />
     </template>
+    <li>--</li>
   </ul>
 </template>
 

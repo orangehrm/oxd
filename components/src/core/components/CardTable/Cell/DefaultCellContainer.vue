@@ -34,9 +34,11 @@ import ActionsCell from './Actions.vue';
 import CheckboxCell from './Checkbox.vue';
 import {CardHeaders} from '../types';
 import {RowItem} from './types';
+import {DEVICE_LG, DEVICE_XL} from '../../../../composables/useResponsive';
 
 export default defineComponent({
   name: 'oxd-table-cell-container',
+  inject: ['screenState'],
 
   components: {
     'oxd-table-cell-default': DefaultCell,
@@ -56,6 +58,15 @@ export default defineComponent({
     items: {
       type: Object as PropType<RowItem>,
       default: () => ({}),
+    },
+  },
+
+  computed: {
+    isMobile(): boolean {
+      return !(
+        this.screenState.screenType === DEVICE_LG ||
+        this.screenState.screenType === DEVICE_XL
+      );
     },
   },
 
@@ -84,6 +95,10 @@ export default defineComponent({
           header,
           rowData,
         );
+      } else {
+        if (this.isMobile && !cellData) {
+          return null;
+        }
       }
 
       if (header.cellType) {
