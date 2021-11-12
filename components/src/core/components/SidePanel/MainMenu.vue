@@ -23,7 +23,13 @@
   <!-- Search -->
   <div class="oxd-main-menu --fixed">
     <div class="oxd-main-menu-search">
-      <i class="oxd-menu-icon icon-search"></i>
+      <oxd-icon
+        name="search"
+        type="svg"
+        width="22"
+        height="22"
+        class="oxd-menu-icon"
+      ></oxd-icon>
       <oxd-input
         v-model="searchTerm"
         placeholder="Search"
@@ -56,10 +62,11 @@
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
+import MenuItem from './types';
+import MainMenuItem from './MainMenuItem.vue';
+import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@ohrm/oxd/core/components/Input/Input.vue';
 import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
-import MainMenuItem from './MainMenuItem.vue';
-import MenuItem from './types';
 
 export default defineComponent({
   name: 'oxd-main-menu',
@@ -87,9 +94,10 @@ export default defineComponent({
   },
 
   components: {
+    'oxd-icon': Icon,
     'oxd-input': Input,
-    'oxd-main-menu-item': MainMenuItem,
     'oxd-icon-button': IconButton,
+    'oxd-main-menu-item': MainMenuItem,
   },
 
   methods: {
