@@ -96,7 +96,11 @@ export default defineComponent({
           rowData,
         );
       } else {
-        if (this.isMobile && !cellData) {
+        if (
+          this.isMobile &&
+          (cellData === '' || cellData === null || cellData === undefined) &&
+          header.cellType === undefined
+        ) {
           return null;
         }
       }
