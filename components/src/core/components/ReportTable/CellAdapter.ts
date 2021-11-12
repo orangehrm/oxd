@@ -29,14 +29,21 @@ interface VueElement extends HTMLElement {
  * Based on https://github.com/revolist/vue-datagrid/blob/next/src/vue-template.tsx
  */
 const componentLoader = (
-  el: VueElement | null,
+  el: HTMLElement | null,
   vueComponent: string | ConcreteComponent,
   props: RevoGrid.ColumnDataSchemaModel,
 ) => {
-  if (el && !el.__vue__) {
-    return render(h(vueComponent, props), el);
+  if (el) {
+    let vueNode: VueElement | undefined;
+    if (el.childNodes.length > 0) {
+      vueNode = el.childNodes[0] as VueElement;
+    }
+    if (vueNode === undefined) {
+      return render(h(vueComponent, props), el);
+    } else {
+      return vueNode.__vue__ ? vueNode.__vue__ : null;
+    }
   }
-
   return null;
 };
 
@@ -48,10 +55,19 @@ const cellTemplateFn = (component: string) => {
   return (
     createElement: RevoGrid.HyperFunc<VNode>,
     column: RevoGrid.ColumnDataSchemaModel,
-  ) =>
-    createElement('span', {
+  ) => {
+    // if data inside cell is empty, don't bother mounting Vue elm
+    const data = column.model[column.prop];
+    if (Array.isArray(data) && data.length === 0) {
+      return null;
+    } else if (data === '' || data === undefined || data === null) {
+      return null;
+    }
+
+    return createElement('span', {
       ref: (el: HTMLElement) => componentLoader(el, component, column),
     });
+  };
 };
 
 export default cellTemplateFn;
