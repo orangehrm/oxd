@@ -200,12 +200,13 @@ export default defineComponent({
     },
     inputValue(): string {
       if (this.computedOptions[this.pointer]?.label) {
-        return this.computedOptions[this.pointer]?.label;
+        return this.computedOptions[this.pointer].label;
       } else if (this.searchTerm) {
         return this.searchTerm;
       } else if (!this.dropdownOpen) {
         return this.selectedItem;
       }
+      return '';
     },
     showClear(): boolean {
       return (
