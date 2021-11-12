@@ -10,6 +10,7 @@
       :item="items[header.name]"
       :header="header"
       :rowItem="items"
+      :options="items['options']"
     />
   </oxd-card-td>
 </template>
