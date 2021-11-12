@@ -42,3 +42,9 @@
 .oxd-table-row--clickable {
   cursor: pointer;
 }
+
+.oxd-table-card.--mobile {
+  .oxd-table-row {
+    align-items: flex-start;
+  }
+}
