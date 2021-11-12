@@ -71,102 +71,99 @@ export default {
   data() {
     return {
       showFilterModal: false,
-      filters: {
-        username: '',
-        role: [1],
-        empName: [],
-        status: [2],
-      },
       headers: [
         { name: 'candidate', sortField: 'candidate', title: 'Candidate', style: {flex: 1} },
         { name: 'email', sortField: 'email', title: 'Email', style: {flex: 1} },
         { name: 'contactNumber', sortField: 'contactNumber', title: 'Contact Number', style: {flex: 1} },
         { name: 'dateApplied', sortField: 'dateApplied', title: 'Date Applied', style: {flex: 1} },
         {
-          name: 'action',
+          name: 'stage',
           slot: 'footer',
           title: 'Stage',
-          style: {flex: '10%'},
+          style: {flex: 1},
+          cellType: 'oxd-table-cell-dropdown',
+          cellConfig: {
+            selectStage: {
+              'onUpdate:modelValue': (item, e) => {
+                console.log(item, e)
+              },
+              props: {
+                options: this.stages,
+              },
+            },
+          }
+        },
+        {
+          name: 'action',
+          slot: 'action',
+          title: '',
+          style: {flex: 1},
           cellType: 'oxd-table-cell-actions',
-          cellRenderer: this.actionCellRenderer,
+          cellConfig: {
+            downloadResume: {
+              onClick(item, e) {
+                console.log(item, e)
+              },
+              props: {
+                name: 'download',
+              },
+            },
+            downloadApplicationForm: {
+              onClick(item, e) {
+                console.log(item, e)
+              },
+              props: {
+                name: 'person',
+              },
+            },
+            compareWithOtherCandidates: {
+              onClick(item, e) {
+                console.log(item, e)
+              },
+              props: {
+                name: 'person',
+              },
+            },
+          },
         },
       ],
       totalRecordsCount: 138,
       items: [
         {
-          allowedActions: {
-            stageSlot: true
-          },
           candidate: 'Trevor Atkins',
           email: 'trevor@o.com',
           contactNumber: '+8552616462',
-          dateApplied: 'Thu, 11 Mar 2021',
-          allowedActions: {
-            stageSlot: true,
-            downloadResumeSlot: true,
-            downloadApplicationFormSlot: true,
-            compareSlot: true
-          },
+          dateApplied: 'Thu, 11 Mar 2021'
         },
         {
           candidate: 'Lucy Valdez',
           email: 'lucy@o.com',
           contactNumber: '+8523616462',
-          dateApplied: 'Thu, 10 Mar 2021',
-          allowedActions: {
-            stageSlot: true,
-            downloadResumeSlot: true,
-            downloadApplicationFormSlot: true,
-            compareSlot: true
-          },
+          dateApplied: 'Thu, 10 Mar 2021'
         },
         {
           candidate: 'SRIMANSI JOSHE',
           email: 'JOSHE@gmail.com',
           contactNumber: '+6523616462',
-          dateApplied: 'Wed, 30 Sep 2020',
-          allowedActions: {
-            stageSlot: true,
-            downloadResumeSlot: true,
-            downloadApplicationFormSlot: true,
-            compareSlot: true
-          },
+          dateApplied: 'Wed, 30 Sep 2020'
         },
         {
           candidate: 'Peter Smith',
           email: 'petersmith@gmail.com',
           contactNumber: '+1 876-345-1505',
-          dateApplied: 'Tue, 30 Apr 2019',
-          allowedActions: {
-            stageSlot: true,
-            downloadResumeSlot: true,
-            downloadApplicationFormSlot: true,
-            compareSlot: true
-          },
+          dateApplied: 'Tue, 30 Apr 2019'
         },
         {
           candidate: 'Jo Denton',
           email: 'jodentan@gmail.com',
           contactNumber: '+1 888-452-2314',
-          dateApplied: 'Tue, 30 Apr 2019',
-          allowedActions: {
-            stageSlot: true,
-            downloadResumeSlot: true,
-            downloadApplicationFormSlot: true,
-            compareSlot: true
-          },
+          dateApplied: 'Tue, 30 Apr 2019'
         },
         {
           candidate: 'Garry White',
           email: 'garrywhite@gmail.com',
           contactNumber: '+1 788-482-1505',
-          dateApplied: 'Fri, 26 Apr 2019',
-          allowedActions: {
-            stageSlot: true,
-            downloadResumeSlot: true,
-            downloadApplicationFormSlot: true,
-            compareSlot: true
-          },
+          dateApplied: 'Fri, 26 Apr 2019'
         },
       ],
       checkedItems: [],
@@ -232,56 +229,6 @@ export default {
   },
 
   methods: {
-    actionCellRenderer(index, item, header, row) {
-      const stage = {
-        component: SelectInput,
-        props: {
-          options: this.stages,
-          'onUpdate:modelValue': (params) => {
-            console.log(params);
-          },
-        },
-      }
-      const downloadResume = {
-        component: 'oxd-icon-button',
-        props: {
-          label: 'Download resume',
-          displayType: 'label',
-          size: 'medium',
-          name: 'download'
-        },
-      }
-      const downloadApplicationForm = {
-        component: 'oxd-icon-button',
-        props: {
-          label: 'Download Application Form',
-          displayType: 'label',
-          size: 'medium',
-          name: 'download'
-        },
-      }
-      const compare = {
-        component: 'oxd-icon-button',
-        props: {
-          label: 'Download Application Form',
-          displayType: 'label',
-          size: 'medium',
-          name: 'person'
-        },
-      }
-      return {
-        props: {
-          header: {
-            cellConfig: {
-              ...(row.allowedActions.stageSlot && {stage}),
-              ...(row.allowedActions.downloadResumeSlot && {downloadResume}),
-              ...(row.allowedActions.downloadApplicationFormSlot && {downloadApplicationForm}),
-              ...(row.allowedActions.compareSlot && {compare}),
-            },
-          },
-        },
-      };
-    },
     toggleFilterModal (isVisible) {
       this.showFilterModal = isVisible
     }

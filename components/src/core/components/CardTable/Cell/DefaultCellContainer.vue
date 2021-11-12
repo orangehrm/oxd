@@ -20,6 +20,7 @@ import TableDataCell from '@orangehrm/oxd/core/components/CardTable/Table/TableD
 import DefaultCell from './Default.vue';
 import ActionsCell from './Actions.vue';
 import CheckboxCell from './Checkbox.vue';
+import DropdownInput from './../../Input/DropdownInput.vue';
 import {CardHeaders} from '../types';
 import {RowItem} from './types';
 
@@ -31,6 +32,7 @@ export default defineComponent({
     'oxd-table-cell-default': DefaultCell,
     'oxd-table-cell-actions': ActionsCell,
     'oxd-table-cell-checkbox': CheckboxCell,
+    'oxd-table-cell-dropdown': DropdownInput,
   },
 
   props: {
