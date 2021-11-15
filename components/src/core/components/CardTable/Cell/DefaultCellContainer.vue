@@ -10,7 +10,8 @@
       :item="items[header.name]"
       :header="header"
       :rowItem="items"
-      :options="items['options']"
+      :options="items[dropdownListKey(header)]"
+      :modelValue="items.selectedStage"
     />
   </oxd-card-td>
 </template>
@@ -46,5 +47,11 @@ export default defineComponent({
       default: () => ({}),
     },
   },
+
+  methods: {
+    dropdownListKey(header) {
+      return header.cellType === 'oxd-table-cell-dropdown' ? 'options' : null
+    }
+  }
 });
 </script>
