@@ -43,7 +43,7 @@
       :items="items"
       :selectable="true"
       :clickable="false"
-      :style-class="'oxd-classic-table'"
+      :style-class="'oxd-classic-table with-filters'"
       v-model:selected="checkedItems"
       v-model:order="order"
       rowDecorator="oxd-table-decorator-card"
@@ -235,9 +235,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.orangehrm-container {
-  background-color: #fff;
-}
-</style>
