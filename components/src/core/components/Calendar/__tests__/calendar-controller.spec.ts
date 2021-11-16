@@ -22,6 +22,11 @@ import CalendarController from '@ohrm/oxd/core/components/Calendar/CalendarContr
 import Icon from '@ohrm/oxd/core/components/Button/Icon.vue';
 
 describe('CalendarController.vue', () => {
+  // https://github.com/jsdom/jsdom/issues/1695
+  window.HTMLElement.prototype.scrollIntoView = function() {
+    //do nothing
+  };
+
   const months = [
     'January',
     'February',
@@ -60,9 +65,11 @@ describe('CalendarController.vue', () => {
       },
     });
     await wrapper.find('.oxd-calendar-selector-month').trigger('click');
-    expect(wrapper.findAll('.oxd-calendar-selector.--month').length).toEqual(
-      12,
-    );
+    expect(
+      wrapper.findAll(
+        '.oxd-calendar-selector-month .oxd-calendar-dropdown--option',
+      ).length,
+    ).toEqual(12);
   });
   it('should open year dropdown on click', async () => {
     const wrapper = mount(CalendarController, {
@@ -73,7 +80,11 @@ describe('CalendarController.vue', () => {
       },
     });
     await wrapper.find('.oxd-calendar-selector-year').trigger('click');
-    expect(wrapper.findAll('.oxd-calendar-selector.--year').length).toEqual(4);
+    expect(
+      wrapper.findAll(
+        '.oxd-calendar-selector-year .oxd-calendar-dropdown--option',
+      ).length,
+    ).toEqual(4);
   });
   it('should select month on click', async () => {
     const wrapper = mount(CalendarController, {
@@ -84,7 +95,9 @@ describe('CalendarController.vue', () => {
       },
     });
     await wrapper.find('.oxd-calendar-selector-month').trigger('click');
-    await wrapper.find('.oxd-calendar-selector.--month').trigger('click');
+    await wrapper
+      .find('.oxd-calendar-selector-month .oxd-calendar-dropdown--option')
+      .trigger('click');
     expect(wrapper.emitted('update:modelValue')).toEqual([
       [{month: 0, year: 2020}],
     ]);
@@ -98,7 +111,9 @@ describe('CalendarController.vue', () => {
       },
     });
     await wrapper.find('.oxd-calendar-selector-year').trigger('click');
-    await wrapper.find('.oxd-calendar-selector.--year').trigger('click');
+    await wrapper
+      .find('.oxd-calendar-selector-year .oxd-calendar-dropdown--option')
+      .trigger('click');
     expect(wrapper.emitted('update:modelValue')).toEqual([
       [{month: 2, year: 2019}],
     ]);

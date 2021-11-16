@@ -133,23 +133,6 @@
     padding: 0;
     width: 65%;
 
-    &.--month,
-    &.--year {
-      cursor: pointer;
-      font-family: $oxd-input-control-font-family;
-      color: $oxd-input-control-font-color;
-      font-size: $oxd-input-control-font-size;
-      font-weight: $oxd-input-control-font-weight;
-      line-height: $oxd-input-control-line-height;
-      padding: $oxd-calendar-controller-item-padding;
-      border-radius: $oxd-calendar-controller-item-radius;
-      width: auto;
-      &:hover,
-      &.--selected {
-        background-color: $oxd-calendar-controller-item-background-color;
-      }
-    }
-
     &-month,
     &-year {
       cursor: pointer;

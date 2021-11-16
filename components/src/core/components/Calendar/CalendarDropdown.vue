@@ -26,6 +26,7 @@
     :class="{'--active': isActive}"
   >
     <slot></slot>
+
     <transition name="transition-fade-down">
       <ul
         @click.stop="closeSubMenu"
@@ -33,7 +34,18 @@
         class="oxd-calendar-dropdown"
         role="menu"
       >
-        <slot name="content"></slot>
+        <li
+          v-for="(option, index) in options"
+          :ref="`oxd-cal-ref-${index}`"
+          :class="{
+            'oxd-calendar-dropdown--option': true,
+            '--selected': index === selected,
+          }"
+          :key="`oxd-cal-option-${index}`"
+          @click="onSelectOption(index)"
+        >
+          {{ option }}
+        </li>
       </ul>
     </transition>
   </li>
@@ -45,6 +57,18 @@ import clickOutsideDirective from '../../../directives/click-outside';
 
 export default defineComponent({
   name: 'oxd-calendar-dropdown',
+  emits: ['select'],
+
+  props: {
+    options: {
+      type: Array,
+      required: true,
+    },
+    selected: {
+      type: Number,
+      required: false,
+    },
+  },
 
   data() {
     return {
@@ -59,11 +83,21 @@ export default defineComponent({
   methods: {
     openSubmenu() {
       this.isActive = true;
+      this.$nextTick(() => {
+        const elm = this.$refs[`oxd-cal-ref-${this.selected}`];
+        elm && this.scrollToView(elm);
+      });
     },
     closeSubMenu() {
       if (this.isActive) {
         this.isActive = false;
       }
+    },
+    onSelectOption(option) {
+      this.$emit('select', option);
+    },
+    scrollToView(elm: HTMLElement) {
+      elm.scrollIntoView();
     },
   },
 });

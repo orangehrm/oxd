@@ -23,39 +23,27 @@
   <div class="oxd-calendar-header">
     <oxd-icon name="chevron-left" @click="gotoPreviousMonth"></oxd-icon>
     <ul class="oxd-calendar-selector">
-      <oxd-calendar-dropdown class="oxd-calendar-selector-month">
+      <oxd-calendar-dropdown
+        :options="months"
+        :selected="currentMonth"
+        @select="onSelectMonth"
+        class="oxd-calendar-selector-month"
+      >
         <div class="oxd-calendar-selector-month-selected">
           <oxd-text tag="p">{{ months[modelValue.month] }}</oxd-text>
           <oxd-icon name="caret-down-fill" :with-container="false" />
         </div>
-        <template v-slot:content>
-          <li
-            role="none"
-            class="oxd-calendar-selector --month"
-            v-for="(month, index) in months"
-            :key="`oxd-month-${index}`"
-            @click="onSelectMonth(index)"
-          >
-            {{ month }}
-          </li>
-        </template>
       </oxd-calendar-dropdown>
-      <oxd-calendar-dropdown class="oxd-calendar-selector-year">
+      <oxd-calendar-dropdown
+        :options="years"
+        :selected="currentYear"
+        @select="onSelectYear"
+        class="oxd-calendar-selector-year"
+      >
         <div class="oxd-calendar-selector-year-selected">
           <oxd-text tag="p">{{ modelValue.year }}</oxd-text>
           <oxd-icon name="caret-down-fill" :with-container="false" />
         </div>
-        <template v-slot:content>
-          <li
-            role="none"
-            class="oxd-calendar-selector --year"
-            v-for="(year, index) in years"
-            :key="`oxd-year-${index}`"
-            @click="onSelectYear(year)"
-          >
-            {{ year }}
-          </li>
-        </template>
       </oxd-calendar-dropdown>
     </ul>
     <oxd-icon name="chevron-right" @click="gotoNextMonth"></oxd-icon>
@@ -121,7 +109,7 @@ export default defineComponent({
     onSelectYear(year: number) {
       this.$emit('update:modelValue', {
         month: this.modelValue.month,
-        year,
+        year: this.years[year],
       });
     },
     onSelectMonth(month: number) {
@@ -129,6 +117,16 @@ export default defineComponent({
         month,
         year: this.modelValue.year,
       });
+    },
+  },
+  computed: {
+    currentMonth(): number {
+      const {month} = this.modelValue;
+      return month;
+    },
+    currentYear(): number {
+      const {year} = this.modelValue;
+      return this.years.findIndex(v => v === year);
     },
   },
 });
