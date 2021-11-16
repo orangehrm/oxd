@@ -34,10 +34,14 @@ rootDirFiles.forEach(function (file) {
 });
 
 const pathToComponentsDir = path.join(projectRootDir, 'components');
-const componentsDirFiles = ['package.json', 'babel.config.js', '.browserslistrc'];
+const componentsDirFiles = ['babel.config.js', '.browserslistrc'];
 componentsDirFiles.forEach(function (file) {
     fs.copyFileSync(path.join(pathToComponentsDir, file), path.join(pathToBuildDir, file));
 })
+
+const packageJson = require(path.join(pathToComponentsDir, 'package.json'));
+packageJson.name = '@ohrm/oxd';
+fs.writeFileSync(path.join(pathToBuildDir, 'package.json'), JSON.stringify(packageJson, null, 2) + "\n");
 
 const copyRecursiveSync = function (src, dest) {
     const exists = fs.existsSync(src);
