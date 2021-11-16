@@ -36,6 +36,22 @@
   border: 1px solid #e9eaec;
   box-shadow: 0px 12px 20px 0px rgb(0 0 0 / 8%);
   @include oxd-scrollbar();
+
+  &--option {
+    cursor: pointer;
+    font-family: $oxd-input-control-font-family;
+    color: $oxd-input-control-font-color;
+    font-size: $oxd-input-control-font-size;
+    font-weight: $oxd-input-control-font-weight;
+    line-height: $oxd-input-control-line-height;
+    padding: $oxd-calendar-controller-item-padding;
+    border-radius: $oxd-calendar-controller-item-radius;
+    width: auto;
+    &:hover,
+    &.--selected {
+      background-color: $oxd-calendar-controller-item-background-color;
+    }
+  }
 }
 
 .transition-fade-down-enter-from,
