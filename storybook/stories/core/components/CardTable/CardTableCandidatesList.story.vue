@@ -67,14 +67,21 @@ import IconButton from '@orangehrm/oxd/core/components/Button/Icon';
 import Button from '@orangehrm/oxd/core/components/Button/Button';
 import QuickSearchInput from '@orangehrm/oxd/core/components/Input/Autocomplete/QuickSearchInput';
 import Dialog from '@orangehrm/oxd/core/components/Dialog/Dialog';
-
-import { cloneDeep } from 'lodash'
+import ProfilePic from './../ProfilePic/CustomTemplate';
 
 export default {
   data() {
     return {
       showFilterModal: false,
       headers: [
+        {
+          name: 'profilepic',
+          slot: 'footer',
+          title: '',
+          style: {width: '44px'},
+          cellType: 'oxd-table-cell-actions',
+          cellRenderer: this.profilePicRenderer,
+        },
         { name: 'candidate', sortField: 'candidate', title: 'Candidate', style: {flex: 1}, },
         { name: 'email', sortField: 'email', title: 'Email', style: {flex: 1} },
         { name: 'contactNumber', sortField: 'contactNumber', title: 'Contact Number', style: {flex: 1} },
@@ -91,10 +98,23 @@ export default {
       totalRecordsCount: 138,
       items: [
         {
+          profilePic: true,
           candidate: 'Trevor Atkins',
           email: 'trevor@o.com',
           contactNumber: '+8552616462',
           dateApplied: 'Thu, 11 Mar 2021',
+          selectedStage: {
+            eventTitle: 'Application Received',
+            id: '1',
+            isInterview: false,
+            isScoreType: false,
+            isTest: false,
+            level: '1',
+            maxScore: '100',
+            threshold: null,
+            type: 'Application Received',
+            typeId: '1'
+          },
           candidateStages: [
             {
               eventTitle: 'Application Received',
@@ -129,10 +149,23 @@ export default {
           },
         },
         {
+          profilePic: true,
           candidate: 'Lucy Valdez',
           email: 'lucy@o.com',
           contactNumber: '+8523616462',
           dateApplied: 'Thu, 10 Mar 2021',
+          selectedStage: {
+            eventTitle: 'Application Received',
+            id: '1',
+            isInterview: false,
+            isScoreType: false,
+            isTest: false,
+            level: '1',
+            maxScore: '100',
+            threshold: null,
+            type: 'Application Received',
+            typeId: '1'
+          },
           candidateStages: [
             {
               eventTitle: 'Application Received',
@@ -155,10 +188,23 @@ export default {
           },
         },
         {
+          profilePic: true,
           candidate: 'SRIMANSI JOSHE',
           email: 'JOSHE@gmail.com',
           contactNumber: '+6523616462',
           dateApplied: 'Wed, 30 Sep 2020',
+          selectedStage: {
+            eventTitle: 'Shortlisted',
+            id: '2',
+            isInterview: false,
+            isScoreType: false,
+            isTest: false,
+            level: '2',
+            maxScore: '100',
+            threshold: null,
+            type: 'Shortlisted',
+            typeId: '9'
+          },
           candidateStages: [
             {
               eventTitle: 'Application Received',
@@ -193,10 +239,23 @@ export default {
           },
         },
         {
+          profilePic: true,
           candidate: 'Peter Smith',
           email: 'petersmith@gmail.com',
           contactNumber: '+1 876-345-1505',
           dateApplied: 'Tue, 30 Apr 2019',
+          selectedStage: {
+            eventTitle: 'Shortlisted',
+            id: '2',
+            isInterview: false,
+            isScoreType: false,
+            isTest: false,
+            level: '2',
+            maxScore: '100',
+            threshold: null,
+            type: 'Shortlisted',
+            typeId: '9'
+          },
           candidateStages: [
             {
               eventTitle: 'Application Received',
@@ -231,10 +290,49 @@ export default {
           },
         },
         {
+          profilePic: true,
           candidate: 'Jo Denton',
           email: 'jodentan@gmail.com',
           contactNumber: '+1 888-452-2314',
           dateApplied: 'Tue, 30 Apr 2019',
+          selectedStage: {
+            eventTitle: 'Shortlisted',
+            id: '2',
+            isInterview: false,
+            isScoreType: false,
+            isTest: false,
+            level: '2',
+            maxScore: '100',
+            threshold: null,
+            type: 'Shortlisted',
+            typeId: '9'
+          },
+          candidateStages: [
+            {
+              eventTitle: 'Application Received',
+              id: '1',
+              isInterview: false,
+              isScoreType: false,
+              isTest: false,
+              level: '1',
+              maxScore: '100',
+              threshold: null,
+              type: 'Application Received',
+              typeId: '1'
+            },
+            {
+              eventTitle: 'Shortlisted',
+              id: '2',
+              isInterview: false,
+              isScoreType: false,
+              isTest: false,
+              level: '2',
+              maxScore: '100',
+              threshold: null,
+              type: 'Shortlisted',
+              typeId: '9'
+            }
+          ],
           allowedActions: {
             stageSlot: true,
             downloadResumeSlot: true,
@@ -243,10 +341,23 @@ export default {
           },
         },
         {
+          profilePic: true,
           candidate: 'Garry White',
           email: 'garrywhite@gmail.com',
           contactNumber: '+1 788-482-1505',
           dateApplied: 'Fri, 26 Apr 2019',
+          selectedStage: {
+            eventTitle: 'Shortlisted',
+            id: '2',
+            isInterview: false,
+            isScoreType: false,
+            isTest: false,
+            level: '2',
+            maxScore: '100',
+            threshold: null,
+            type: 'Shortlisted',
+            typeId: '9'
+          },
           candidateStages: [
             {
               eventTitle: 'Application Received',
@@ -341,11 +452,26 @@ export default {
     'oxd-card-table': CardTable,
     'oxd-quick-search': QuickSearchInput,
     'oxd-dialog': Dialog,
+    'oxd-profile-pix': ProfilePic,
   },
 
   methods: {
     toggleFilterModal (isVisible) {
       this.showFilterModal = isVisible
+    },
+    profilePicRenderer(_index, _item, header, row) {
+      const profilePic = {
+        component: ProfilePic
+      }
+      return {
+        props: {
+          header: {
+            cellConfig: {
+              ...(row.profilePic && {profilePic}),
+            },
+          },
+        },
+      };
     },
     actionsRenderer(_index, _item, header, row) {
       const rowObj = JSON.parse(JSON.stringify(row))
@@ -357,10 +483,15 @@ export default {
           label: candidateState.eventTitle
         }
       })
+      const selectedStage = {
+        ...rowObj.selectedStage,
+        label: rowObj.selectedStage && rowObj.selectedStage.eventTitle ? rowObj.selectedStage.eventTitle : ''
+      }
       const stage = {
         component: SelectInput,
         props: {
           options: mappedStages,
+          modelValue: selectedStage,
           'onUpdate:modelValue': (params) => {
             console.log(params);
           },
@@ -409,3 +540,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+::v-deep(.header-image) {
+  img {
+    width: 2.5rem !important;
+  }
+}
+</style>
