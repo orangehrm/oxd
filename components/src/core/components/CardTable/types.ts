@@ -1,4 +1,5 @@
 import {Properties} from 'csstype';
+import {ConcreteComponent, Directive, VNodeProps} from 'vue';
 import {ActionsCellConfig, RowItem} from './Cell/types';
 
 export interface CardHeader extends StyleProps {
@@ -7,7 +8,19 @@ export interface CardHeader extends StyleProps {
   cellType?: string;
   cellConfig?: ActionsCellConfig<RowItem>;
   sortField?: string;
+  cellRenderer?: cellRenderCallback;
 }
+
+export type cellRenderCallback = (
+  index: number,
+  item: RowItem,
+  header: CardHeader,
+  rowItems: RowItem[],
+) => {
+  component?: ConcreteComponent;
+  props?: VNodeProps;
+  directives?: Directive[];
+};
 
 export type CardHeaders = Array<CardHeader>;
 

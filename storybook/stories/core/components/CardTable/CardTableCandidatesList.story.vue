@@ -43,6 +43,7 @@
       :items="items"
       :selectable="true"
       :clickable="false"
+      :isDynamicCell="true"
       :style-class="'oxd-classic-table with-filters'"
       v-model:selected="checkedItems"
       v-model:order="order"
@@ -67,64 +68,24 @@ import Button from '@orangehrm/oxd/core/components/Button/Button';
 import QuickSearchInput from '@orangehrm/oxd/core/components/Input/Autocomplete/QuickSearchInput';
 import Dialog from '@orangehrm/oxd/core/components/Dialog/Dialog';
 
+import { cloneDeep } from 'lodash'
+
 export default {
   data() {
     return {
       showFilterModal: false,
       headers: [
-        { name: 'candidate', sortField: 'candidate', title: 'Candidate', style: {flex: 1} },
+        { name: 'candidate', sortField: 'candidate', title: 'Candidate', style: {flex: 1}, },
         { name: 'email', sortField: 'email', title: 'Email', style: {flex: 1} },
         { name: 'contactNumber', sortField: 'contactNumber', title: 'Contact Number', style: {flex: 1} },
         { name: 'dateApplied', sortField: 'dateApplied', title: 'Date Applied', style: {flex: 1} },
         {
-          name: 'stage',
-          slot: 'footer',
-          title: 'Stage',
-          style: {flex: 1},
-          cellType: 'oxd-table-cell-dropdown',
-          cellConfig: {
-            selectStage: {
-              'onUpdate:modelValue': (item, e) => {
-                console.log(item, e)
-              },
-              props: {
-                options: this.stages,
-              },
-            },
-          }
-        },
-        {
           name: 'action',
-          slot: 'action',
+          slot: 'footer',
           title: '',
-          style: {flex: 1},
+          style: {flex: '10%'},
           cellType: 'oxd-table-cell-actions',
-          cellConfig: {
-            downloadResume: {
-              onClick(item, e) {
-                console.log(item, e)
-              },
-              props: {
-                name: 'download',
-              },
-            },
-            downloadApplicationForm: {
-              onClick(item, e) {
-                console.log(item, e)
-              },
-              props: {
-                name: 'person',
-              },
-            },
-            compareWithOtherCandidates: {
-              onClick(item, e) {
-                console.log(item, e)
-              },
-              props: {
-                name: 'person',
-              },
-            },
-          },
+          cellRenderer: this.actionsRenderer,
         },
       ],
       totalRecordsCount: 138,
@@ -133,37 +94,191 @@ export default {
           candidate: 'Trevor Atkins',
           email: 'trevor@o.com',
           contactNumber: '+8552616462',
-          dateApplied: 'Thu, 11 Mar 2021'
+          dateApplied: 'Thu, 11 Mar 2021',
+          candidateStages: [
+            {
+              eventTitle: 'Application Received',
+              id: '1',
+              isInterview: false,
+              isScoreType: false,
+              isTest: false,
+              level: '1',
+              maxScore: '100',
+              threshold: null,
+              type: 'Application Received',
+              typeId: '1'
+            },
+            {
+              eventTitle: 'Shortlisted',
+              id: '2',
+              isInterview: false,
+              isScoreType: false,
+              isTest: false,
+              level: '2',
+              maxScore: '100',
+              threshold: null,
+              type: 'Shortlisted',
+              typeId: '9'
+            }
+          ],
+          allowedActions: {
+            stageSlot: true,
+            downloadResumeSlot: true,
+            downloadApplicationFormSlot: true,
+            compareSlot: true
+          },
         },
         {
           candidate: 'Lucy Valdez',
           email: 'lucy@o.com',
           contactNumber: '+8523616462',
-          dateApplied: 'Thu, 10 Mar 2021'
+          dateApplied: 'Thu, 10 Mar 2021',
+          candidateStages: [
+            {
+              eventTitle: 'Application Received',
+              id: '1',
+              isInterview: false,
+              isScoreType: false,
+              isTest: false,
+              level: '1',
+              maxScore: '100',
+              threshold: null,
+              type: 'Application Received',
+              typeId: '1'
+            }
+          ],
+          allowedActions: {
+            stageSlot: true,
+            downloadResumeSlot: true,
+            downloadApplicationFormSlot: true,
+            compareSlot: true
+          },
         },
         {
           candidate: 'SRIMANSI JOSHE',
           email: 'JOSHE@gmail.com',
           contactNumber: '+6523616462',
-          dateApplied: 'Wed, 30 Sep 2020'
+          dateApplied: 'Wed, 30 Sep 2020',
+          candidateStages: [
+            {
+              eventTitle: 'Application Received',
+              id: '1',
+              isInterview: false,
+              isScoreType: false,
+              isTest: false,
+              level: '1',
+              maxScore: '100',
+              threshold: null,
+              type: 'Application Received',
+              typeId: '1'
+            },
+            {
+              eventTitle: 'Shortlisted',
+              id: '2',
+              isInterview: false,
+              isScoreType: false,
+              isTest: false,
+              level: '2',
+              maxScore: '100',
+              threshold: null,
+              type: 'Shortlisted',
+              typeId: '9'
+            }
+          ],
+          allowedActions: {
+            stageSlot: true,
+            downloadResumeSlot: true,
+            downloadApplicationFormSlot: true,
+            compareSlot: true
+          },
         },
         {
           candidate: 'Peter Smith',
           email: 'petersmith@gmail.com',
           contactNumber: '+1 876-345-1505',
-          dateApplied: 'Tue, 30 Apr 2019'
+          dateApplied: 'Tue, 30 Apr 2019',
+          candidateStages: [
+            {
+              eventTitle: 'Application Received',
+              id: '1',
+              isInterview: false,
+              isScoreType: false,
+              isTest: false,
+              level: '1',
+              maxScore: '100',
+              threshold: null,
+              type: 'Application Received',
+              typeId: '1'
+            },
+            {
+              eventTitle: 'Shortlisted',
+              id: '2',
+              isInterview: false,
+              isScoreType: false,
+              isTest: false,
+              level: '2',
+              maxScore: '100',
+              threshold: null,
+              type: 'Shortlisted',
+              typeId: '9'
+            }
+          ],
+          allowedActions: {
+            stageSlot: true,
+            downloadResumeSlot: true,
+            downloadApplicationFormSlot: true,
+            compareSlot: true
+          },
         },
         {
           candidate: 'Jo Denton',
           email: 'jodentan@gmail.com',
           contactNumber: '+1 888-452-2314',
-          dateApplied: 'Tue, 30 Apr 2019'
+          dateApplied: 'Tue, 30 Apr 2019',
+          allowedActions: {
+            stageSlot: true,
+            downloadResumeSlot: true,
+            downloadApplicationFormSlot: true,
+            compareSlot: true
+          },
         },
         {
           candidate: 'Garry White',
           email: 'garrywhite@gmail.com',
           contactNumber: '+1 788-482-1505',
-          dateApplied: 'Fri, 26 Apr 2019'
+          dateApplied: 'Fri, 26 Apr 2019',
+          candidateStages: [
+            {
+              eventTitle: 'Application Received',
+              id: '1',
+              isInterview: false,
+              isScoreType: false,
+              isTest: false,
+              level: '1',
+              maxScore: '100',
+              threshold: null,
+              type: 'Application Received',
+              typeId: '1'
+            },
+            {
+              eventTitle: 'Shortlisted',
+              id: '2',
+              isInterview: false,
+              isScoreType: false,
+              isTest: false,
+              level: '2',
+              maxScore: '100',
+              threshold: null,
+              type: 'Shortlisted',
+              typeId: '9'
+            }
+          ],
+          allowedActions: {
+            stageSlot: true,
+            downloadResumeSlot: true,
+            downloadApplicationFormSlot: true,
+            compareSlot: true
+          },
         },
       ],
       checkedItems: [],
@@ -231,7 +346,66 @@ export default {
   methods: {
     toggleFilterModal (isVisible) {
       this.showFilterModal = isVisible
-    }
+    },
+    actionsRenderer(_index, _item, header, row) {
+      const rowObj = JSON.parse(JSON.stringify(row))
+      const candidateStages = rowObj.candidateStages && rowObj.candidateStages.length > 0 ? rowObj.candidateStages : []
+      const mappedStages = candidateStages.map(candidateState => {
+        return {
+          ...candidateState,
+          id: candidateState.id,
+          label: candidateState.eventTitle
+        }
+      })
+      const stage = {
+        component: SelectInput,
+        props: {
+          options: mappedStages,
+          'onUpdate:modelValue': (params) => {
+            console.log(params);
+          },
+        },
+      }
+      const downloadResume = {
+        component: 'oxd-icon-button',
+        props: {
+          label: 'Download resume',
+          displayType: 'label',
+          size: 'medium',
+          name: 'oxd-download-doc'
+        },
+      }
+      const downloadApplicationForm = {
+        component: 'oxd-icon-button',
+        props: {
+          label: 'Download Application Form',
+          displayType: 'label',
+          size: 'medium',
+          name: 'oxd-download'
+        },
+      }
+      const compare = {
+        component: 'oxd-icon-button',
+        props: {
+          label: 'Download Application Form',
+          displayType: 'label',
+          size: 'medium',
+          name: 'oxd-users'
+        },
+      }
+      return {
+        props: {
+          header: {
+            cellConfig: {
+              ...(row.allowedActions.stageSlot && {stage}),
+              ...(row.allowedActions.downloadResumeSlot && {downloadResume}),
+              ...(row.allowedActions.downloadApplicationFormSlot && {downloadApplicationForm}),
+              ...(row.allowedActions.compareSlot && {compare}),
+            },
+          },
+        },
+      };
+    },
   },
 };
 </script>

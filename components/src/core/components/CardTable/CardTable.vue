@@ -89,6 +89,10 @@ export default defineComponent({
       type: String,
       default: () => '',
     },
+    isDynamicCell: {
+      type: Boolean,
+      default: true,
+    },
   },
 
   setup(props, context) {
