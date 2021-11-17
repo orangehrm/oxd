@@ -13,7 +13,7 @@
         <div class="--export">
           <slot name="exportOptions"></slot>
         </div>
-        <div class="--toggle">
+        <div v-if="!hideFilterSlot" class="--toggle">
           <oxd-icon-button
             :name="isActive ? 'caret-up-fill' : 'caret-down-fill'"
             @click="toggleFilters"
@@ -21,8 +21,8 @@
         </div>
       </div>
     </div>
-    <oxd-divider v-show="isActive" />
-    <div v-show="isActive" class="oxd-table-filter-area">
+    <oxd-divider v-if="!hideFilterSlot" v-show="isActive" />
+    <div v-if="!hideFilterSlot" v-show="isActive" class="oxd-table-filter-area">
       <slot></slot>
     </div>
   </div>
@@ -48,6 +48,10 @@ export default defineComponent({
   },
 
   props: {
+    hideFilterSlot: {
+      type: Boolean,
+      default: false
+    },
     filterTitle: {
       type: String,
       required: true,
@@ -79,19 +83,8 @@ export default defineComponent({
 <style src="./table-filter.scss" lang="scss" scoped></style>
 <style lang="scss">
 .oxd-table-filter-header-options {
-  & .oxd-icon-button {
-    font-size: 12px;
-    width: 24px !important;
-    height: 24px !important;
-    min-width: unset;
-    min-height: unset;
-    margin-right: 5px;
-  }
-  & .oxd-button {
-    padding-right: 5px;
-    padding-left: 5px;
-    min-width: unset;
-    margin-right: 5px;
+  & .oxd-icon-button, .oxd-button {
+    margin-left: 5px;
   }
 }
 </style>

@@ -2,16 +2,21 @@
   <oxd-card-tbody>
     <div
       :class="classes"
-      v-for="item in items"
+      v-for="(item, index) in items"
       :key="item"
       @click="onClick(item)($event)"
     >
       <oxd-card-tr :clickable="tableProps.clickable">
-        <oxd-card-cell
+        <component
+          :is="tableProps.isDynamicCell
+            ? 'oxd-dynamic-card-cell'
+            : 'oxd-card-cell'
+          "
           class="oxd-padding-cell"
           :headers="defaultSlot"
           :items="item"
-        ></oxd-card-cell>
+          :index="index"
+        />
       </oxd-card-tr>
     </div>
   </oxd-card-tbody>
@@ -23,6 +28,7 @@ import {decoratorMixin} from './decorator-mixin';
 import TableBody from '@orangehrm/oxd/core/components/CardTable/Table/TableBody.vue';
 import TableRow from '@orangehrm/oxd/core/components/CardTable/Table/TableRow.vue';
 import DefaultCellContainer from '@orangehrm/oxd/core/components/CardTable/Cell/DefaultCellContainer.vue';
+import DynamicCellContainer from '@orangehrm/oxd/core/components/CardTable/Cell/DynamicCellContainer.vue';
 import {CardHeaders} from '../types';
 import emitter from '../../../../utils/emitter';
 
@@ -35,6 +41,7 @@ export default defineComponent({
     'oxd-card-tbody': TableBody,
     'oxd-card-tr': TableRow,
     'oxd-card-cell': DefaultCellContainer,
+    'oxd-dynamic-card-cell': DynamicCellContainer,
   },
 
   computed: {
