@@ -19,6 +19,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import AutocompleteInput from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteInput.vue';
+import {Option} from '../types';
 
 export default defineComponent({
   name: 'oxd-quick-search-input',
@@ -35,7 +36,7 @@ export default defineComponent({
     'dropdown:blur',
   ],
   methods: {
-    onModelUpdate($event) {
+    onModelUpdate($event: Option) {
       this.$emit('dropdown:modelValue', $event);
     },
     onClear() {
