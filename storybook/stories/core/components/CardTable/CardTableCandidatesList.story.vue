@@ -21,7 +21,12 @@
 
 <template>
   <div class="orangehrm-container">
-    <oxd-table-filter :filter-title="`${totalRecordsCount} ${totalRecordsCount > 1 ? 'Candidates' : 'Candidate' } found`">
+    <oxd-table-filter
+      :filter-title="`${totalRecordsCount} ${totalRecordsCount > 1
+        ? 'Candidates'
+        : 'Candidate' } found`"
+      :hide-filter-slot="true"
+    >
       <template v-slot:toggleOptions>
         <oxd-quick-search />
         <oxd-icon-button name="funnel" @click="toggleFilterModal(true)"/>

@@ -1,5 +1,5 @@
 <template>
-  <div class="oxd-table-filter">
+  <div class="oxd-table-filter" :class="{'no-filter-slot' : hideFilterSlot}">
     <div class="oxd-table-filter-header">
       <div class="oxd-table-filter-header-title">
         <oxd-text class="oxd-table-filter-title" tag="h5">{{
@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-    <oxd-divider v-if="!hideFilterSlot" v-show="isActive" />
+    <oxd-divider v-show="isActive" />
     <div v-if="!hideFilterSlot" v-show="isActive" class="oxd-table-filter-area">
       <slot></slot>
     </div>
@@ -82,9 +82,16 @@ export default defineComponent({
 
 <style src="./table-filter.scss" lang="scss" scoped></style>
 <style lang="scss">
-.oxd-table-filter-header-options {
-  & .oxd-icon-button, .oxd-button {
-    margin-left: 5px;
+.oxd-table-filter {
+  &.no-filter-slot {
+    .oxd-divider {
+      margin: 0;
+    }
+  }
+  .oxd-table-filter-header-options {
+    & .oxd-icon-button, .oxd-button {
+      margin-left: 5px;
+    }
   }
 }
 </style>
