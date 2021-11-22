@@ -20,46 +20,66 @@
 -->
 
 <template>
-  <div class="orangehrm-container">
-    <oxd-table-filter
-      :filter-title="`${totalRecordsCount} ${totalRecordsCount > 1
-        ? 'Candidates'
-        : 'Candidate' } found`"
-      :hide-filter-slot="true"
+  <div class="orangehrm-container recruitment-container">
+    <oxd-table-sidebar
+      class="oxd-table-sidebar"
+      width="200px"
+      :button="{
+        label: 'Add candidates'
+      }"
+      :dropdownButton="{
+        label: 'All Vacancy',
+        iconName: 'eye',
+        displayType: 'label'
+      }"
+      :options="dropdownStages"
+
     >
-      <template v-slot:toggleOptions>
-        <oxd-quick-search />
-        <oxd-icon-button name="funnel" @click="toggleFilterModal(true)"/>
-        <oxd-icon-button name="gear-fill" />
+      <template v-slot:body>
       </template>
-      <template v-slot:exportOptions>
-        <oxd-button
-          size="small"
-          display-type="tool"
-          label="CSV"
-          icon-name="file-earmark-spreadsheet"
-        />
-      </template>
-    </oxd-table-filter>
+    </oxd-table-sidebar>
+    <div class="table-card-list-wrapper">
+      <oxd-table-filter
+        class="candidates-list-table-filter"
+        :filter-title="`(${totalRecordsCount}) ${totalRecordsCount > 1
+          ? 'Candidates'
+          : 'Candidate' } found`"
+        :hide-filter-slot="true"
+      >
+        <template v-slot:toggleOptions>
+          <oxd-quick-search />
+          <oxd-icon-button name="funnel" @click="toggleFilterModal(true)"/>
+          <oxd-icon-button name="gear-fill" />
+        </template>
+        <template v-slot:exportOptions>
+          <oxd-button
+            :size="'medium'"
+            display-type="label-info"
+            label="CSV"
+            icon-name="file-earmark-spreadsheet"
+          />
+        </template>
+      </oxd-table-filter>
 
-    <oxd-card-table
-      :selector="selector"
-      :headers="headers"
-      :items="items"
-      :selectable="true"
-      :clickable="false"
-      :isDynamicCell="true"
-      :style-class="'oxd-classic-table with-filters'"
-      v-model:selected="checkedItems"
-      v-model:order="order"
-      rowDecorator="oxd-table-decorator-card"
-    />
+      <oxd-card-table
+        :selector="selector"
+        :headers="headers"
+        :items="items"
+        :selectable="true"
+        :clickable="false"
+        :isDynamicCell="true"
+        :style-class="'oxd-classic-table with-filters'"
+        v-model:selected="checkedItems"
+        v-model:order="order"
+        rowDecorator="oxd-table-decorator-card"
+      />
 
-    <oxd-dialog v-if="showFilterModal" @update:show="toggleFilterModal(false)" :style="{width: '800px'}">
-      <p>
-        Filter modal goes here
-      </p>
-    </oxd-dialog>
+      <oxd-dialog v-if="showFilterModal" @update:show="toggleFilterModal(false)" :style="{width: '800px'}">
+        <p>
+          Filter modal goes here
+        </p>
+      </oxd-dialog>
+    </div>
   </div>
 </template>
 
@@ -72,6 +92,7 @@ import IconButton from '@orangehrm/oxd/core/components/Button/Icon';
 import Button from '@orangehrm/oxd/core/components/Button/Button';
 import QuickSearchInput from '@orangehrm/oxd/core/components/Input/Autocomplete/QuickSearchInput';
 import Dialog from '@orangehrm/oxd/core/components/Dialog/Dialog';
+import TableSidebar from '@orangehrm/oxd/core/components/TableSidebar/TableSidebar';
 import ProfilePic from './../ProfilePic/CustomTemplate';
 
 export default {
@@ -94,8 +115,8 @@ export default {
         {
           name: 'action',
           slot: 'footer',
-          title: '',
-          style: {flex: '10%'},
+          title: 'Stage',
+          style: { width: "300px" },
           cellType: 'oxd-table-cell-actions',
           cellRenderer: this.actionsRenderer,
         },
@@ -408,49 +429,70 @@ export default {
         {
           id: 1,
           label: 'Application Received',
+          count: 24,
+          displayType: 'label-info'
         },
         {
           id: 2,
           label: 'Phone Screening',
+          count: 11,
+          displayType: 'label-warn'
         },
         {
           id: 3,
           label: '1st In-Person Interview',
+          count: 3,
+          displayType: 'label'
         },
         {
           id: 4,
           label: 'Shortlisted',
+          count: 0,
+          displayType: 'label-warn'
         },
         {
           id: 5,
           label: 'Panel Interview',
+          count: 9,
+          displayType: 'label-info'
         },
         {
           id: 6,
           label: 'Reference Check',
+          count: 1,
+          displayType: 'label-warn'
         },
         {
           id: 7,
           label: '321 Form Onboarding',
+          count: 0,
+          displayType: 'label-warn'
         },
         {
           id: 8,
           label: 'Job Offer',
+          count: 2,
+          displayType: 'label-success'
         },
         {
           id: 9,
           label: 'Hired',
+          count: 2,
+          displayType: 'label-warn'
         },
         {
           id: 10,
           label: 'Rejected',
+          count: 3,
+          displayType: 'label-danger'
         },
-      ],
+      ]
     };
   },
 
   components: {
     'oxd-card-table': CardTable,
+    'oxd-table-sidebar': TableSidebar,
     'oxd-table-filter': TableFilter,
     'oxd-button': Button,
     'oxd-icon-button': IconButton,
@@ -460,6 +502,19 @@ export default {
     'oxd-profile-pix': ProfilePic,
   },
 
+  computed: {
+    dropdownStages() {
+      return [
+        {
+          id: 0,
+          label: 'All Candidates',
+          count: 39,
+          displayType: 'text'
+        },
+        ...this.stages
+      ]
+    }
+  },
   methods: {
     toggleFilterModal (isVisible) {
       this.showFilterModal = isVisible
@@ -550,6 +605,92 @@ export default {
 ::v-deep(.header-image) {
   img {
     width: 2.5rem !important;
+  }
+}
+
+.recruitment-container {
+  margin-top: 2rem;
+  background-color: #fff;
+  border-radius: 1.2rem;
+  display: flex;
+  align-items: flex-start;
+  .oxd-table-sidebar {
+    margin-top: 1.5rem;
+  }
+  .table-card-list-wrapper {
+    width: calc(100% - 200px);
+    .candidates-list-table-filter {
+      padding-bottom: 0;
+      ::v-deep(.oxd-divider) {
+        margin-top: 0.25rem;
+        margin-bottom: 0;
+      }
+      ::v-deep(.oxd-table-filter-header-title) {
+        .oxd-table-filter-title {
+          font-weight: 500 !important;
+        }
+      }
+      ::v-deep(.oxd-table-filter-header) {
+        .oxd-table-filter-header-options {
+          align-items: center;
+          .oxd-icon-button {
+            i {
+              font-size: 14px;
+            }
+          }
+          .oxd-button {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem !important;
+            min-width: unset !important;
+            font-size: 0.75rem;
+            i {
+              font-size: 1.0625rem;
+              margin-right: 0.25rem;
+            }
+            &:hover {
+              color: #1e6ceb;
+              background-color: rgba(30, 108, 235, 0.15);
+            }
+          }
+        }
+      }
+      .oxd-autocomplete-search-wrapper {
+        width: 300px;
+      }
+      ::v-deep(.oxd-autocomplete-text-input) {
+        background-color: #fff;
+        padding-top: unset;
+        padding-bottom: unset;
+        height: 36px;
+      }
+      ::v-deep(.candidate-search-btn) {
+        padding: 0;
+        min-width: unset;
+        min-height: unset;
+        width: 28px;
+        height: 28px;
+        background-color: rgba(100, 114, 140, 0.1);
+        i {
+          width: unset;
+          height: unset;
+          svg {
+            width: 12px;
+          }
+        }
+      }
+    }
+  }
+  .oxd-classic-table {
+    padding-top: 0.5rem;
+    ::v-deep(.oxd-icon-button) {
+      font-size: 15px;
+    }
+    ::v-deep(.oxd-table-th) {
+      text-align: left;
+      padding-top: 0.65rem;
+      padding-bottom: 0.65rem;
+    }
   }
 }
 </style>
