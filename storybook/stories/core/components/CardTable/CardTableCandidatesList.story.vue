@@ -28,7 +28,7 @@
         label: 'Add candidates'
       }"
       :dropdownButton="{
-        label: 'All Vacancy',
+        label: selectedStage && selectedStage.label ? selectedStage.label : '',
         iconName: 'eye',
         displayType: 'label'
       }"
@@ -506,6 +506,13 @@ export default {
     dropdownStages() {
       return [
         {
+          id: -1,
+          label: 'All Vacancies',
+          count: 54,
+          displayType: 'text',
+          selected: true
+        },
+        {
           id: 0,
           label: 'All Candidates',
           count: 39,
@@ -513,6 +520,9 @@ export default {
         },
         ...this.stages
       ]
+    },
+    selectedStage() {
+      return this.dropdownStages.find(stage => stage.selected)
     }
   },
   methods: {

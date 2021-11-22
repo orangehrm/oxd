@@ -194,10 +194,16 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 12px;
+  i {
+    font-size: 14px;
+  }
 }
 .oxd-select-wrapper {
   ::v-deep(.oxd-select-dropdown) {
     max-height: calc(100vh - 200px);
+    border: none;
+    box-shadow: none;
   }
 }
 </style>
