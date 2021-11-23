@@ -588,10 +588,10 @@ export default {
         },
         ...this.stages
       ]
-      },
-      selectedStage() {
-        return this.dropdownStages.find(stage => stage.selected)
-      }
+    },
+    selectedStage() {
+      return this.dropdownStages.find(stage => stage.selected)
+    }
   },
   methods: {
     selectVacancy(modelValue) {
