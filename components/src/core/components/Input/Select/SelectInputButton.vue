@@ -43,7 +43,6 @@ import {defineComponent} from 'vue';
 import eventsMixin from './events-mixin';
 import navigationMixin from './navigation-mixin';
 import {TOP, BOTTOM, Option, Position, DROPDOWN_POSITIONS} from '../types';
-import SelectText from '@orangehrm/oxd/core/components/Input/Select/SelectText.vue';
 import SelectDropdown from '@orangehrm/oxd/core/components/Input/Select/SelectDropdown.vue';
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
@@ -56,7 +55,6 @@ export default defineComponent({
   components: {
     'oxd-icon': Icon,
     'oxd-button': Button,
-    'oxd-select-text': SelectText,
     'oxd-select-dropdown': SelectDropdown,
     'oxd-select-option': SelectOption,
   },
@@ -92,7 +90,7 @@ export default defineComponent({
     },
     button: {
       type: Object,
-      default: () => {}
+      default: () => null,
     },
   },
 
@@ -144,15 +142,15 @@ export default defineComponent({
         iconImageSrc: null,
         size: 'long',
         displayType: 'label',
-        style: null
+        style: null,
       }
-      for (var key in this.button) {
+      for (const key in this.button) {
         const value = this.button[key]
         if (value) {
-          initialObject[key] = value
+          initialObject[key] = value;
         }
       }
-      return initialObject
+      return initialObject;
     },
   },
 

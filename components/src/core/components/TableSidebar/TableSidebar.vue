@@ -19,8 +19,7 @@
       </slot>
     </div>
     <div class="body">
-      <slot name="body">
-      </slot>
+      <slot name="body"></slot>
     </div>
     <div class="list">
       <slot name="list">
@@ -35,7 +34,7 @@
                 :color="item.style.color"
               />
             </div>
-            <p class="oxd-label">{{item.label}}</p>
+            <p class="oxd-label">{{ item.label }}</p>
           </li>
         </ul>
       </slot>
@@ -44,11 +43,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import {defineComponent, computed} from 'vue';
 import Chip from '@orangehrm/oxd/core/components/Chip/Chip.vue';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';
 import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
-import SelectInputButton from '@orangehrm/oxd/core/components/Input/Select/SelectInputButton.vue';
 
 export default defineComponent({
   name: 'oxd-table-filter',
@@ -57,21 +55,20 @@ export default defineComponent({
     'oxd-chip': Chip,
     'oxd-divider': Divider,
     'oxd-button': Button,
-    'oxd-select-input-btn': SelectInputButton
   },
 
   props: {
     button: {
       type: Object,
-      default: () => {}
+      default: () => null,
     },
     width: {
       type: String,
-      default: '100%'
+      default: '100%',
     },
     list: {
       type: Array,
-      default: () => []
+      default: () => [],
     }
   },
 
@@ -84,20 +81,20 @@ export default defineComponent({
         iconImageSrc: null,
         size: 'long',
         displayType: 'secondary',
-        style: null
+        style: null,
       }
-      for (var key in props.button) {
+      for (const key in props.button) {
         const value = props.button[key]
         if (value) {
-          initialObject[key] = value
+          initialObject[key] = value;
         }
       }
-      return initialObject
+      return initialObject;
     })
 
     const customStyles = computed(() => {
       return {
-        width: props.width
+        width: props.width,
       }
     })
     return {
@@ -125,13 +122,14 @@ export default defineComponent({
       border-radius: 1.5rem;
       .count-container {
         width: 45px;
+        height: 26px;
         .oxd-dropdown-selected-chip {
           min-width: 20px;
           width: auto;
           padding: 4px 9px;
           font-size: 0.75rem;
           font-weight: 700;
-          font-family: "Nunito Sans", sans-serif;
+          font-family: 'Nunito Sans', sans-serif;
         }
       }
       .oxd-label {
@@ -139,6 +137,7 @@ export default defineComponent({
         margin-top: 0.25rem;
         margin-bottom: 0.25rem;
         font-size: 0.75rem;
+        line-height: normal;
       }
       &:hover {
         background-color: rgba(100, 114, 140, 0.1);
