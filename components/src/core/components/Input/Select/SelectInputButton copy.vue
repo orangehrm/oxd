@@ -5,7 +5,6 @@
       :label="buttonData.label"
       :iconName="buttonData.iconName"
       :size="buttonData.size"
-      :style="buttonData.style"
       :displayType="buttonData.displayType"
       @click="onToggleDropdown"
     >
@@ -31,8 +30,13 @@
         :ref="`option-${i}`"
         @select="onSelect(option)"
       >
-        <slot name="option" :data="option"></slot>
-        <span v-if="!$slots['option']">{{ option.label }}</span>
+        <oxd-button
+          class="chip-button"
+          :label="option.count"
+          :size="'small'"
+          :displayType="option.displayType"
+        ></oxd-button>
+        <p class="oxd-label">{{option.label}}</p>
       </oxd-select-option>
     </oxd-select-dropdown>
   </div>
@@ -46,8 +50,8 @@ import {TOP, BOTTOM, Option, Position, DROPDOWN_POSITIONS} from '../types';
 import SelectText from '@orangehrm/oxd/core/components/Input/Select/SelectText.vue';
 import SelectDropdown from '@orangehrm/oxd/core/components/Input/Select/SelectDropdown.vue';
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
-import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
+import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
   name: 'oxd-select-input',
@@ -83,6 +87,10 @@ export default defineComponent({
       type: Array,
       required: true,
     },
+    placeholder: {
+      type: String,
+      default: '-- Select --',
+    },
     dropdownPosition: {
       type: String,
       default: BOTTOM,
@@ -94,13 +102,17 @@ export default defineComponent({
       type: Object,
       default: () => {}
     },
+    openDropdownInitially: {
+      type: Boolean,
+      default: false
+    }
   },
 
   data() {
     return {
       focused: false,
       loading: false,
-      dropdownOpen: false,
+      dropdownOpen: this.openDropdownInitially || false,
       searchTerm: null,
     };
   },
@@ -132,7 +144,7 @@ export default defineComponent({
       });
     },
     selectedItem(): string {
-      return this.modelValue?.label ? this.modelValue.label : this.button;
+      return this.modelValue?.label ? this.modelValue.label : this.button.label;
     },
     inputValue(): string {
       return this.computedOptions[this.pointer]?.label || this.selectedItem;
@@ -143,17 +155,16 @@ export default defineComponent({
         iconName: 'plus',
         iconImageSrc: null,
         size: 'long',
-        displayType: 'label',
-        style: null
+        displayType: 'label'
       }
       for (var key in this.button) {
         const value = this.button[key]
-        if (value) {
+        if (initialObject[key] && value) {
           initialObject[key] = value
         }
       }
       return initialObject
-    },
+    }
   },
 
   watch: {
@@ -166,16 +177,33 @@ export default defineComponent({
 </script>
 
 <style src="./select-input.scss" lang="scss" scoped></style>
+<style src="./../../TableSidebar/table-sidebar.scss" lang="scss" scoped></style>
 
 <style lang="scss" scoped>
+.chip-button {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  min-width: unset;
+}
+.oxd-label {
+  margin-left: 0.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
 .dropdown-btn {
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 12px;
-  width: 100%;
-  ::v-deep(.oxd-icon) {
+  i {
     font-size: 14px;
+  }
+}
+.oxd-select-wrapper {
+  ::v-deep(.oxd-select-dropdown) {
+    max-height: calc(100vh - 200px);
+    border: none;
+    box-shadow: none;
   }
 }
 </style>

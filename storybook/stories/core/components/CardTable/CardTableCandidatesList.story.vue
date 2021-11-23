@@ -24,18 +24,29 @@
     <oxd-table-sidebar
       class="oxd-table-sidebar"
       width="200px"
+      :list="stages"
       :button="{
-        label: 'Add candidates'
+        label: 'Add candidates',
+        style: {
+          height: '36px'
+        }
       }"
-      :dropdownButton="{
-        label: selectedStage && selectedStage.label ? selectedStage.label : '',
-        iconName: 'eye',
-        displayType: 'label'
-      }"
-      :options="dropdownStages"
-
     >
       <template v-slot:body>
+        <oxd-select-input-btn
+          :button="{
+            label: selectedVacancy && selectedVacancy.label ? selectedVacancy.label : selectedStage && selectedStage.label ? selectedStage.label : '',
+            iconName: 'eye',
+            displayType: 'label',
+            style: {
+              height: '36px'
+            }
+          }"
+          :options="vacancies"
+          :open-dropdown-initially="true"
+          @update:modelValue="selectVacancy"
+          :modelValue="selectedVacancy"
+        />
       </template>
     </oxd-table-sidebar>
     <div class="table-card-list-wrapper">
@@ -94,10 +105,12 @@ import QuickSearchInput from '@orangehrm/oxd/core/components/Input/Autocomplete/
 import Dialog from '@orangehrm/oxd/core/components/Dialog/Dialog';
 import TableSidebar from '@orangehrm/oxd/core/components/TableSidebar/TableSidebar';
 import ProfilePic from './../ProfilePic/CustomTemplate';
+import SelectInputButton from '@orangehrm/oxd/core/components/Input/Select/SelectInputButton.vue';
 
 export default {
   data() {
     return {
+      selectedVacancy: null,
       showFilterModal: false,
       headers: [
         {
@@ -425,66 +438,120 @@ export default {
         'contactNumber': 'ASC',
         'dateApplied': 'DESC',
       },
+      vacancies: [
+        {
+          id: 1,
+          label: 'Sales Coordinator'
+        },
+        {
+          id: 2,
+          label: 'Credit Analyst'
+        },
+        {
+          id: 3,
+          label: 'Customer Success Executive'
+        }
+      ],
       stages: [
         {
           id: 1,
           label: 'Application Received',
           count: 24,
-          displayType: 'label-info'
+          displayType: 'label-info',
+          style: {
+            backgroundColor: '#d1dff6',
+            color: '#1f6ffd'
+          }
         },
         {
           id: 2,
           label: 'Phone Screening',
           count: 11,
-          displayType: 'label-warn'
+          displayType: 'label-warn',
+          style: {
+            backgroundColor: '#ebebf0',
+            color: '#65738f'
+          }
         },
         {
           id: 3,
           label: '1st In-Person Interview',
           count: 3,
-          displayType: 'label'
+          displayType: 'label',
+          style: {
+            backgroundColor: '#ebebf0',
+            color: '#65738f'
+          }
         },
         {
           id: 4,
           label: 'Shortlisted',
           count: 0,
-          displayType: 'label-warn'
+          displayType: 'label-warn',
+          style: {
+            backgroundColor: '#f8ebfd',
+            color: '#c57afd'
+          }
         },
         {
           id: 5,
           label: 'Panel Interview',
           count: 9,
-          displayType: 'label-info'
+          displayType: 'label-info',
+          style: {
+            backgroundColor: '#ebebf0',
+            color: '#65738f'
+          }
         },
         {
           id: 6,
           label: 'Reference Check',
           count: 1,
-          displayType: 'label-warn'
+          displayType: 'label-warn',
+          style: {
+            backgroundColor: '#ebebf0',
+            color: '#65738f'
+          }
         },
         {
           id: 7,
           label: '321 Form Onboarding',
           count: 0,
-          displayType: 'label-warn'
+          displayType: 'label-warn',
+          style: {
+            backgroundColor: '#ebebf0',
+            color: '#65738f'
+          }
         },
         {
           id: 8,
           label: 'Job Offer',
           count: 2,
-          displayType: 'label-success'
+          displayType: 'label-success',
+          style: {
+            backgroundColor: '#e1f8e0',
+            color: '#74cb1e'
+          }
         },
         {
           id: 9,
           label: 'Hired',
           count: 2,
-          displayType: 'label-warn'
+          displayType: 'label-warn',
+          style: {
+            backgroundColor: '#fceee3',
+            color: '#ed7d30'
+          }
         },
         {
           id: 10,
           label: 'Rejected',
           count: 3,
-          displayType: 'label-danger'
+          displayType: 'label-danger',
+          style: {
+            backgroundColor: '#f9e3e9',
+            color: '#e74432'
+          }
         },
       ]
     };
@@ -500,6 +567,7 @@ export default {
     'oxd-quick-search': QuickSearchInput,
     'oxd-dialog': Dialog,
     'oxd-profile-pix': ProfilePic,
+    'oxd-select-input-btn': SelectInputButton
   },
 
   computed: {
@@ -520,12 +588,15 @@ export default {
         },
         ...this.stages
       ]
-    },
-    selectedStage() {
-      return this.dropdownStages.find(stage => stage.selected)
-    }
+      },
+      selectedStage() {
+        return this.dropdownStages.find(stage => stage.selected)
+      }
   },
   methods: {
+    selectVacancy(modelValue) {
+      this.selectedVacancy = modelValue
+    },
     toggleFilterModal (isVisible) {
       this.showFilterModal = isVisible
     },
@@ -625,7 +696,7 @@ export default {
   display: flex;
   align-items: flex-start;
   .oxd-table-sidebar {
-    margin-top: 1.5rem;
+    margin-top: 1.25rem;
   }
   .table-card-list-wrapper {
     width: calc(100% - 200px);
