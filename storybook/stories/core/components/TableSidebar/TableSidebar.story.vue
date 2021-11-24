@@ -10,6 +10,7 @@
           height: '36px'
         }
       }"
+      @list:onSelect="selectStage"
     >
       <template v-slot:body>
         <oxd-select-input-btn
@@ -31,7 +32,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import TableSidebar from '@orangehrm/oxd/core/components/TableSidebar/TableSidebar';
 import SelectInputButton from '@orangehrm/oxd/core/components/Input/Select/SelectInputButton.vue';
 
@@ -173,6 +174,9 @@ export default {
     selectVacancy(modelValue) {
       this.selectedVacancy = modelValue
     },
+    selectStage(stage) {
+      console.log(stage);
+    }
   },
 };
 </script>

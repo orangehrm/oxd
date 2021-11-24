@@ -24,7 +24,11 @@
     <div class="list">
       <slot name="list">
         <ul>
-          <li v-for="(item, id) in list" :key="id">
+          <li
+            v-for="(item, id) in list"
+            :key="id"
+            @click="$emit('list:onSelect', item)"
+          >
             <div class="count-container">
               <oxd-chip
                 :label="item.count"
@@ -141,6 +145,7 @@ export default defineComponent({
       }
       &:hover {
         background-color: rgba(100, 114, 140, 0.1);
+        cursor: pointer;
       }
       &:not(:last-child) {
         margin-bottom: 5px;

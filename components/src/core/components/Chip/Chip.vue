@@ -6,12 +6,7 @@
 </template>
 
 <script lang="ts">
-
-import {
-  ButtonType,
-  TYPES,
-  TYPE_MAIN,
-} from './../Button/types';
+import {ButtonType, TYPES, TYPE_MAIN} from './../Button/types';
 
 export default {
   name: 'oxd-chip',
@@ -52,7 +47,7 @@ export default {
     style() {
       return {
         backgroundColor: this.backgroundColor,
-        color: this.color
+        color: this.color,
       };
     },
   },

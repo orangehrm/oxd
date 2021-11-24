@@ -31,6 +31,7 @@
           height: '36px'
         }
       }"
+      @list:onSelect="selectStage"
     >
       <template v-slot:body>
         <oxd-select-input-btn
@@ -594,6 +595,9 @@ export default {
     }
   },
   methods: {
+    selectStage(stage) {
+      console.log(stage);
+    },
     selectVacancy(modelValue) {
       this.selectedVacancy = modelValue
     },
