@@ -195,8 +195,7 @@ export default defineComponent({
   }
 }
 .label-double-line-wrapper {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding: 0.65rem 1rem;
   &.label-double-line {
     * {
       display: block;
