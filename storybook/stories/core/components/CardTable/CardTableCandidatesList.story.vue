@@ -31,6 +31,7 @@
           height: '36px'
         }
       }"
+      :selected-stage-id="selectedStageId"
       @list:onSelect="selectStage"
     >
       <template v-slot:body>
@@ -113,6 +114,7 @@ export default {
         id: -1,
         label: "All Vacancies",
       },
+      selectedStageId: -1,
       showFilterModal: false,
       headers: [
         {
@@ -459,6 +461,16 @@ export default {
         }
       ],
       stages: [
+        {
+          id: -1,
+          label: 'All Candidates',
+          count: 33,
+          displayType: 'label-info',
+          style: {
+            backgroundColor: '#d1dff6',
+            color: '#1f6ffd'
+          }
+        },
         {
           id: 1,
           label: 'Application Received',

@@ -29,7 +29,9 @@
             :key="id"
             @click="selectListitem(item)"
             :class="{
-              active: selectedListItem.id === item.id,
+              active: selectedListItem.id
+                ? selectedListItem.id === item.id
+                : selectedStageId === item.id,
             }"
           >
             <div class="count-container">
@@ -76,6 +78,9 @@ export default defineComponent({
     list: {
       type: Array,
       default: () => [],
+    },
+    selectedStageId: {
+      type: Number,
     },
   },
 
