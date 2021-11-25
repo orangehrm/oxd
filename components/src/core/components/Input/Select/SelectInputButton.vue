@@ -190,12 +190,11 @@ export default defineComponent({
     font-size: 14px;
   }
   &.button-double-line {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 0.65rem 1rem;
   }
 }
 .label-double-line-wrapper {
-  padding: 0.65rem 1rem;
+  padding: 0 1rem;
   &.label-double-line {
     * {
       display: block;
