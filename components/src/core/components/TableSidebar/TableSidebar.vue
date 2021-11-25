@@ -27,7 +27,10 @@
           <li
             v-for="(item, id) in list"
             :key="id"
-            @click="$emit('list:onSelect', item)"
+            @click="selectListitem(item)"
+            :class="{
+              active: selectedListItem.id === item.id,
+            }"
           >
             <div class="count-container">
               <oxd-chip
@@ -47,7 +50,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, computed} from 'vue';
+import {defineComponent, computed, ref} from 'vue';
 import Chip from '@orangehrm/oxd/core/components/Chip/Chip.vue';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';
 import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
@@ -73,10 +76,20 @@ export default defineComponent({
     list: {
       type: Array,
       default: () => [],
-    }
+    },
   },
 
-  setup(props) {
+  setup(props, {emit}) {
+    const selectedListItem = ref<{
+      id: number;
+      label: string;
+      active: boolean;
+    }>({
+      id: null,
+      label: null,
+      active: false,
+    });
+
     // TODO: Optimize these duplicated methods; Sandamal
     const buttonData = computed(() => {
       const initialObject = {
@@ -94,16 +107,28 @@ export default defineComponent({
         }
       }
       return initialObject;
-    })
+    });
 
     const customStyles = computed(() => {
       return {
         width: props.width,
-      }
-    })
+      };
+    });
+
+    const selectListitem = (item: {
+      id: number;
+      label: string;
+      active: boolean;
+    }) => {
+      selectedListItem.value = item;
+      emit('list:onSelect', item);
+    }
+
     return {
+      selectedListItem,
       customStyles,
       buttonData,
+      selectListitem,
     }
   },
 });
@@ -143,7 +168,8 @@ export default defineComponent({
         font-size: 0.75rem;
         line-height: normal;
       }
-      &:hover {
+      &:hover,
+      &.active {
         background-color: rgba(100, 114, 140, 0.1);
         cursor: pointer;
       }

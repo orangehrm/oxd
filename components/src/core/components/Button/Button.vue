@@ -3,7 +3,9 @@
     <slot name="icon">
       <oxd-icon v-if="iconName" :name="iconName" class="oxd-button-icon" />
     </slot>
-    {{ label }}
+    <slot name="label">
+      {{ label }}
+    </slot>
     <slot name="iconRight">
       <oxd-icon
         v-if="iconRightName"

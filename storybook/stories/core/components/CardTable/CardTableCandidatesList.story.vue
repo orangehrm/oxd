@@ -39,9 +39,7 @@
             label: selectedVacancy && selectedVacancy.label ? selectedVacancy.label : selectedStage && selectedStage.label ? selectedStage.label : '',
             iconName: 'eye',
             displayType: 'label',
-            style: {
-              height: '36px'
-            }
+            doubleLineLabel: true,
           }"
           :options="vacancies"
           :open-dropdown-initially="true"
@@ -111,7 +109,10 @@ import SelectInputButton from '@orangehrm/oxd/core/components/Input/Select/Selec
 export default {
   data() {
     return {
-      selectedVacancy: null,
+      selectedVacancy: {
+        id: -1,
+        label: "All Vacancies",
+      },
       showFilterModal: false,
       headers: [
         {
@@ -440,6 +441,10 @@ export default {
         'dateApplied': 'DESC',
       },
       vacancies: [
+        {
+          id: -1,
+          label: "All Vacancies",
+        },
         {
           id: 1,
           label: 'Sales Coordinator'

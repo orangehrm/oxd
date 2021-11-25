@@ -2,6 +2,7 @@
   <div class="oxd-select-wrapper">
     <oxd-button
       class="w-100 dropdown-btn"
+      :class="{'button-double-line': buttonData.doubleLineLabel}"
       :label="buttonData.label"
       :iconName="buttonData.iconName"
       :size="buttonData.size"
@@ -12,8 +13,20 @@
       <template v-if="buttonData.iconImageSrc" v-slot:icon>
         <img :src="buttonData.iconImageSrc" />
       </template>
+      <template #label>
+        <div
+          v-if="buttonData.doubleLineLabel"
+          class="label-double-line-wrapper"
+          :class="{
+            'label-double-line': modelValue,
+          }"
+        >
+          <small v-if="modelValue && modelValue.id > -1">Vacancy</small>
+          <label v-text="buttonData.label"></label>
+        </div>
+      </template>
       <template v-slot:iconRight>
-        <oxd-icon :name="dropdownOpen ? 'chevron-up' : 'chevron-down'"/>
+        <oxd-icon :name="dropdownOpen ? 'chevron-up' : 'chevron-down'" />
       </template>
     </oxd-button>
 
@@ -143,6 +156,7 @@ export default defineComponent({
         size: 'long',
         displayType: 'label',
         style: null,
+        doubleLineLabel: false,
       }
       for (const key in this.button) {
         const value = this.button[key]
@@ -174,6 +188,28 @@ export default defineComponent({
   width: 100%;
   ::v-deep(.oxd-icon) {
     font-size: 14px;
+  }
+  &.button-double-line {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+.label-double-line-wrapper {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  &.label-double-line {
+    * {
+      display: block;
+      text-align: left;
+      width: 100%;
+    }
+    small {
+      margin-bottom: 0.25rem;
+    }
+    label {
+      font-size: 14px;
+      font-weight: 600;
+    }
   }
 }
 </style>
