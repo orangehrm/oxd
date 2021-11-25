@@ -21,7 +21,7 @@
             'label-double-line': modelValue,
           }"
         >
-          <span class="small" v-if="modelValue && modelValue.id > -1">Vacancy</span>
+          <span class="label-small" v-if="modelValue && modelValue.id > -1">Vacancy</span>
           <span class="label" v-text="buttonData.label"></span>
         </div>
       </template>
@@ -201,7 +201,7 @@ export default defineComponent({
       text-align: left;
       width: 100%;
     }
-    .small {
+    .label-small {
       margin-bottom: 0.25rem;
       font-size: 0.75rem;
     }
