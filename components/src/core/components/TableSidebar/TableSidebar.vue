@@ -29,9 +29,7 @@
             :key="id"
             @click="selectListitem(item)"
             :class="{
-              active: selectedListItem.id
-                ? selectedListItem.id === item.id
-                : selectedStageId === item.id,
+              active: selectedListItem.id === item.id,
             }"
           >
             <div class="count-container">
@@ -90,7 +88,7 @@ export default defineComponent({
       label: string;
       active: boolean;
     }>({
-      id: null,
+      id: props.selectedStageId,
       label: null,
       active: false,
     });
