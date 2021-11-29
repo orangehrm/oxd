@@ -17,14 +17,26 @@ $oxd-dialog-sheet-box-shadow: 0 25px 35px 0 rgba($oxd-black-color, 0.18) !defaul
   justify-content: space-between;
 }
 
+.overlay {
+  z-index: 998;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0, 0.1);
+  width: 100%;
+  height: 100%;
+}
+
 .oxd-drawer {
   font-family: "Nunito Sans", sans-serif;
   top: 0;
   right: 0;
   padding: 1rem;
+  background-color: $oxd-white-color;
   border-radius: $oxd-border-radius 0 0 $oxd-border-radius;
   box-shadow: $oxd-dialog-sheet-box-shadow;
   transition: 1s;
+  z-index: 999;
   .header {
     border-bottom: 1px solid $oxd-interface-gray-lighten-3-color;
     padding-bottom: 0.5rem;

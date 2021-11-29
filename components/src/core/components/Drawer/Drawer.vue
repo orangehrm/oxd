@@ -1,44 +1,51 @@
 <template>
-  <div
-    class="oxd-drawer"
-    ref="wrapper"
-    :class="[alignments, {'sticky-footer': stickyFooter}, {opened: modalState}]"
-    :style="[styles, drawerPositionX]"
-  >
-    <div class="header" ref="header">
-      <slot name="header">
-        <h5 v-text="title"></h5>
-      </slot>
-    </div>
-    <div class="body" :style="bodyHeight">
-      <slot name="body">
-        Body
-      </slot>
-    </div>
-    <div class="footer" ref="footer">
-      <slot name="footer">
-        <oxd-button
-          class="default-btn--cancel"
-          :label="cancelButtonData.label"
-          :iconName="cancelButtonData.iconName"
-          :size="cancelButtonData.size"
-          :style="cancelButtonData.style"
-          :displayType="cancelButtonData.displayType"
-          @click="cancelButtonData.click"
-        />
-        <oxd-button
-          class="default-btn--save"
-          :label="okButtonData.label"
-          :iconName="okButtonData.iconName"
-          :size="okButtonData.size"
-          :style="okButtonData.style"
-          :displayType="okButtonData.displayType"
-          @click="okButtonData.click"
-        />
-      </slot>
-    </div>
-    <div v-if="false" class="trigger">
-      <slot name="trigger"></slot>
+  <div class="drawer-wrapper">
+    <div class="overlay"></div>
+    <div
+      class="oxd-drawer"
+      ref="wrapper"
+      :class="[
+        alignments,
+        {'sticky-footer': stickyFooter},
+        {opened: modalState},
+      ]"
+      :style="[styles, drawerPositionX]"
+    >
+      <div class="header" ref="header">
+        <slot name="header">
+          <h5 v-text="title"></h5>
+        </slot>
+      </div>
+      <div class="body" :style="bodyHeight">
+        <slot name="body">
+          Body
+        </slot>
+      </div>
+      <div class="footer" ref="footer">
+        <slot name="footer">
+          <oxd-button
+            class="default-btn--cancel"
+            :label="cancelButtonData.label"
+            :iconName="cancelButtonData.iconName"
+            :size="cancelButtonData.size"
+            :style="cancelButtonData.style"
+            :displayType="cancelButtonData.displayType"
+            @click="cancelButtonData.click"
+          />
+          <oxd-button
+            class="default-btn--save"
+            :label="okButtonData.label"
+            :iconName="okButtonData.iconName"
+            :size="okButtonData.size"
+            :style="okButtonData.style"
+            :displayType="okButtonData.displayType"
+            @click="okButtonData.click"
+          />
+        </slot>
+      </div>
+      <div v-if="false" class="trigger">
+        <slot name="trigger"></slot>
+      </div>
     </div>
   </div>
 </template>

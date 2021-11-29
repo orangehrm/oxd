@@ -6,6 +6,7 @@
       @click="toggleDrawer"
       :style="{
         position: 'fixed',
+        'z-index': '1000',
         left: `${position === 'right' ? '0px': null}`,
         right: `${position === 'left' ? '0px': null}`,
       }"
@@ -177,7 +178,7 @@ export default defineComponent({
     const modalState = ref<boolean>(false);
     const position = ref<string>('right');
     const applySearch = () => {
-      modalState.value = true
+      modalState.value = false
       console.log('search applied');
     }
     const cancelSearch = () => {
