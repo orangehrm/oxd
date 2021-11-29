@@ -1,6 +1,6 @@
 <template>
   <div class="drawer-wrapper">
-    <div class="overlay"></div>
+    <div v-if="modalState" class="overlay"></div>
     <div
       class="oxd-drawer"
       ref="wrapper"
