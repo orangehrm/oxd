@@ -1,0 +1,80 @@
+@import '../../../styles';
+@import './../../../styles/variables';
+@import './../../../styles/colors';
+$oxd-dialog-sheet-box-shadow: 0 25px 35px 0 rgba($oxd-black-color, 0.18) !default;
+
+* {
+  box-sizing: border-box;
+}
+
+.d-flex {
+  display: flex;
+}
+.align-center {
+  align-items: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+
+.oxd-drawer {
+  font-family: "Nunito Sans", sans-serif;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  border-radius: $oxd-border-radius 0 0 $oxd-border-radius;
+  box-shadow: $oxd-dialog-sheet-box-shadow;
+  transition: 1s;
+  .header {
+    border-bottom: 1px solid $oxd-interface-gray-lighten-3-color;
+    padding-bottom: 0.5rem;
+    h5 {
+      font-weight: 700;
+      font-size: 16px;
+      color: $oxd-interface-gray-darken-1-color;
+      margin: 0;
+    }
+  }
+  .body {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    overflow-y: auto;
+  }
+  .footer {
+    display: flex;
+    padding-top: 0.75rem;
+    border-top: 1px solid $oxd-interface-gray-lighten-3-color;
+    justify-content: flex-end;
+    .default-btn {
+      &--save {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+  &.left {
+    border-radius: 0 $oxd-border-radius $oxd-border-radius 0;
+    right: unset;
+    left: 0;
+    .footer {
+      justify-content: flex-start;
+      .default-btn {
+        &--save {
+          margin-left: 0;
+        }
+        &--cancel {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+  &.sticky-footer {
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 1rem;
+      width: calc(100% - 2rem);
+      display: flex;
+      padding: 1rem;
+    }
+  }
+}
