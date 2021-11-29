@@ -11,17 +11,15 @@
       ]"
       :style="[styles, drawerPositionX]"
     >
-      <div class="header" ref="header">
+      <div class="drawer-header" ref="header">
         <slot name="header">
           <h5 v-text="title"></h5>
         </slot>
       </div>
-      <div class="body" :style="bodyHeight">
-        <slot name="body">
-          Body
-        </slot>
+      <div class="drawer-body" :style="bodyHeight">
+        <slot name="body"></slot>
       </div>
-      <div class="footer" ref="footer">
+      <div class="drawer-footer" ref="footer">
         <slot name="footer">
           <oxd-button
             class="default-btn--cancel"

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <oxd-button
+    <oxd-icon-button
       :label="'Toggle drawer'"
       :displayType="'secondary'"
       @click="toggleDrawer"
@@ -171,7 +171,7 @@ export default defineComponent({
     'oxd-drawer': Drawer,
     'oxd-input-group': InputGroup,
     'oxd-date-input': DateInput,
-    'oxd-button': oxdIconButton,
+    'oxd-icon-button': oxdIconButton,
   },
 
   setup() {

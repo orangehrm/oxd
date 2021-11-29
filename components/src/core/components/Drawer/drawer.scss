@@ -37,7 +37,7 @@ $oxd-dialog-sheet-box-shadow: 0 25px 35px 0 rgba($oxd-black-color, 0.18) !defaul
   box-shadow: $oxd-dialog-sheet-box-shadow;
   transition: 1s;
   z-index: 999;
-  .header {
+  .drawer-header {
     border-bottom: 1px solid $oxd-interface-gray-lighten-3-color;
     padding-bottom: 0.5rem;
     h5 {
@@ -47,12 +47,12 @@ $oxd-dialog-sheet-box-shadow: 0 25px 35px 0 rgba($oxd-black-color, 0.18) !defaul
       margin: 0;
     }
   }
-  .body {
+  .drawer-body {
     padding-top: 1rem;
     padding-bottom: 1rem;
     overflow-y: auto;
   }
-  .footer {
+  .drawer-footer {
     display: flex;
     padding-top: 0.75rem;
     border-top: 1px solid $oxd-interface-gray-lighten-3-color;
