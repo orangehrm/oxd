@@ -157,7 +157,7 @@ export default defineComponent({
     });
     const bodyHeight = computed(() => {
       const totalHeightToRemove =
-        wrapperHeight.value - (headerHeight.value + footerHeight.value);
+        wrapperHeight.value - (headerHeight.value + footerHeight.value + 20);
       return {
         height: `${totalHeightToRemove}px`,
       };
