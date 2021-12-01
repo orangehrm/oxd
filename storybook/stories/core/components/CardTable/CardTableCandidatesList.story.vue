@@ -55,7 +55,6 @@
         :filter-title="`(${totalRecordsCount}) ${totalRecordsCount > 1
           ? 'Candidates'
           : 'Candidate' } found`"
-        :hide-filter-slot="true"
       >
         <template v-slot:toggleOptions>
           <oxd-quick-search />

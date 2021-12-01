@@ -11,8 +11,8 @@ import TableDataCell from '@orangehrm/oxd/core/components/CardTable/Table/TableD
 import DefaultCell from './Default.vue';
 import ActionsCell from './Actions.vue';
 import CheckboxCell from './Checkbox.vue';
-import {CardHeaders } from '../types';
-import { RowItem } from './../Cell/types';
+import {CardHeaders} from '../types';
+import {RowItem} from './../Cell/types';
 
 export default defineComponent({
   name: 'oxd-table-cell-container',

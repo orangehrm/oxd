@@ -13,18 +13,9 @@
         <div class="--export">
           <slot name="exportOptions"></slot>
         </div>
-        <div v-if="!hideFilterSlot" class="--toggle">
-          <oxd-icon-button
-            :name="isActive ? 'caret-up-fill' : 'caret-down-fill'"
-            @click="toggleFilters"
-          />
-        </div>
       </div>
     </div>
     <oxd-divider v-show="isActive" />
-    <div v-if="!hideFilterSlot" v-show="isActive" class="oxd-table-filter-area">
-      <slot></slot>
-    </div>
   </div>
 </template>
 
@@ -32,7 +23,6 @@
 import {defineComponent, ref, watchEffect} from 'vue';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';
-import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import useResponsive, {
   DEVICE_LG,
   DEVICE_XL,
@@ -44,14 +34,9 @@ export default defineComponent({
   components: {
     'oxd-text': Text,
     'oxd-divider': Divider,
-    'oxd-icon-button': IconButton,
   },
 
   props: {
-    hideFilterSlot: {
-      type: Boolean,
-      default: false
-    },
     filterTitle: {
       type: String,
       required: true,
