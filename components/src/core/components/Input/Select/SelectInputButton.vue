@@ -1,8 +1,11 @@
 <template>
   <div class="oxd-select-wrapper">
     <oxd-button
-      class="w-100 dropdown-btn"
-      :class="{'button-double-line': buttonData.doubleLineLabel}"
+      class="dropdown-btn"
+      :class="
+        ({'button-double-line': buttonData.doubleLineLabel},
+        hideDropdownLabel ? 'no-label' : 'w-100')
+      "
       :label="buttonData.label"
       :iconName="buttonData.iconName"
       :size="buttonData.size"
@@ -21,8 +24,14 @@
             'label-double-line': modelValue,
           }"
         >
-          <span class="label-small" v-if="modelValue && modelValue.id > -1">Vacancy</span>
-          <span class="label" v-text="buttonData.label"></span>
+          <span class="label-small" v-if="modelValue && modelValue.id > -1"
+            >Vacancy</span
+          >
+          <span
+            v-if="!hideDropdownLabel"
+            class="label"
+            v-text="buttonData.label"
+          ></span>
         </div>
       </template>
       <template v-slot:iconRight>
@@ -105,6 +114,10 @@ export default defineComponent({
       type: Object,
       default: () => null,
     },
+    hideDropdownLabel: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -157,9 +170,10 @@ export default defineComponent({
         displayType: 'label',
         style: null,
         doubleLineLabel: false,
+        showLabel: true,
       }
       for (const key in this.button) {
-        const value = this.button[key]
+        const value = this.button[key];
         if (value) {
           initialObject[key] = value;
         }
@@ -180,12 +194,23 @@ export default defineComponent({
 <style src="./select-input.scss" lang="scss" scoped></style>
 
 <style lang="scss" scoped>
+.w-100 {
+  width: 100%;
+}
+.no-label {
+  min-width: initial;
+  ::v-deep(.oxd-button-label-wrapper) {
+    display: none;
+  }
+  ::v-deep(.oxd-button-icon) {
+    display: none;
+  }
+}
 .dropdown-btn {
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 12px;
-  width: 100%;
   ::v-deep(.oxd-icon) {
     font-size: 14px;
   }

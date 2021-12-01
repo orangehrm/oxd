@@ -3,7 +3,8 @@
     <div class="header">
       <slot name="header">
         <oxd-button
-          class="w-100"
+          class="table-header-action-btn"
+          :class="!isSidebarOpen ? 'no-label' : 'w-100'"
           :label="buttonData.label"
           :iconName="buttonData.iconName"
           :size="buttonData.size"
@@ -15,7 +16,7 @@
             <img :src="buttonData.iconImageSrc" />
           </template>
         </oxd-button>
-        <oxd-divider />
+        <oxd-divider class="table-sidebar-divider" />
       </slot>
     </div>
     <div class="body">
@@ -30,6 +31,7 @@
             @click="selectListitem(item)"
             :class="{
               active: selectedListItem.id === item.id,
+              collapsed: !isSidebarOpen,
             }"
           >
             <div class="count-container">
@@ -41,11 +43,16 @@
                 :color="item.style.color"
               />
             </div>
-            <p class="oxd-label">{{ item.label }}</p>
+            <p v-if="isSidebarOpen" class="oxd-label">{{ item.label }}</p>
           </li>
         </ul>
       </slot>
     </div>
+    <oxd-icon-button
+      :name="isSidebarOpen ? 'chevron-left' : 'chevron-right'"
+      class="oxd-table-sidebar-toggle-btn"
+      @click="toggleSidebar"
+    />
   </div>
 </template>
 
@@ -54,6 +61,7 @@ import {defineComponent, computed, ref} from 'vue';
 import Chip from '@orangehrm/oxd/core/components/Chip/Chip.vue';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';
 import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
+import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 
 export default defineComponent({
   name: 'oxd-table-filter',
@@ -62,6 +70,7 @@ export default defineComponent({
     'oxd-chip': Chip,
     'oxd-divider': Divider,
     'oxd-button': Button,
+    'oxd-icon-button': IconButton,
   },
 
   props: {
@@ -79,6 +88,10 @@ export default defineComponent({
     },
     selectedStageId: {
       type: Number,
+    },
+    isSidebarOpen: {
+      type: Boolean,
+      default: true,
     },
   },
 
@@ -114,7 +127,7 @@ export default defineComponent({
 
     const customStyles = computed(() => {
       return {
-        width: props.width,
+        width: props.isSidebarOpen ? props.width : null,
       };
     });
 
@@ -125,14 +138,19 @@ export default defineComponent({
     }) => {
       selectedListItem.value = item;
       emit('list:onSelect', item);
-    }
+    };
+
+    const toggleSidebar = () => {
+      emit('table-sidebar:onToggle');
+    };
 
     return {
       selectedListItem,
       customStyles,
       buttonData,
       selectListitem,
-    }
+      toggleSidebar,
+    };
   },
 });
 </script>
@@ -152,9 +170,12 @@ export default defineComponent({
       align-items: center;
       padding: 0.5rem;
       border-radius: 1.5rem;
+      &.collapsed {
+        display: table;
+      }
       .count-container {
-        width: 45px;
-        height: 26px;
+        width: auto;
+        height: 21px;
         .oxd-dropdown-selected-chip {
           min-width: 20px;
           width: auto;
@@ -179,6 +200,14 @@ export default defineComponent({
       &:not(:last-child) {
         margin-bottom: 5px;
       }
+    }
+  }
+}
+.table-header-action-btn {
+  &.no-label {
+    min-width: initial;
+    ::v-deep(.oxd-button-label-wrapper) {
+      display: none;
     }
   }
 }

@@ -5,7 +5,7 @@
       width="200px"
       :list="stages"
       :button="{
-        label: 'Add candidates',
+        label: 'Add Candidate',
         style: {
           height: '36px'
         }
