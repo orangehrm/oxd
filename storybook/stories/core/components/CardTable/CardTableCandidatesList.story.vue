@@ -705,7 +705,7 @@ export default {
     margin-top: 1.25rem;
   }
   .table-card-list-wrapper {
-    width: calc(100% - 200px);
+    width: 100%;
     .candidates-list-table-filter {
       padding-bottom: 0;
       ::v-deep(.oxd-divider) {
