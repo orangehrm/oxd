@@ -31,7 +31,7 @@
         />
       </template>
     </oxd-table-sidebar>
-    <div class="table-card-list-wrapper">
+    <div class="table-card-list-wrapper" :class="{'w-100': !isSidebarOpen}">
       <oxd-table-filter
         class="candidates-list-table-filter"
         :filter-title="`(${totalRecordsCount}) ${totalRecordsCount > 1
@@ -779,5 +779,8 @@ export default {
       padding-bottom: 0.65rem;
     }
   }
+}
+.w-100 {
+  width: 100% !important;
 }
 </style>
