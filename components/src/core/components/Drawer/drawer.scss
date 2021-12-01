@@ -53,6 +53,9 @@ $oxd-dialog-sheet-box-shadow: 0 25px 35px 0 rgba($oxd-black-color, 0.18) !defaul
     overflow-y: auto;
   }
   .drawer-footer {
+    position: absolute;
+    width: calc(100% - 2rem);
+    bottom: 1rem;
     display: flex;
     padding-top: 0.75rem;
     border-top: 1px solid $oxd-interface-gray-lighten-3-color;
