@@ -109,7 +109,6 @@ export default defineComponent({
     const wrapper = ref(null);
     const header = ref(null);
     const footer = ref(null);
-    const wrapperWidth = ref(0);
     const wrapperHeight = ref(0);
     const footerHeight = ref(0);
     const headerHeight = ref(0);
@@ -135,13 +134,14 @@ export default defineComponent({
 
     const drawerPositionX = computed(() => {
       let transform = '';
+      debugger
       if (props.position === 'right') {
         transform = `translateX(${
-          props.modalState ? '0px' : `${wrapperHeight.value}px`
+          props.modalState ? '0px' : props.width
         })`;
       } else {
         transform = `translateX(${
-          props.modalState ? '0px' : `-${wrapperHeight.value}px`
+          props.modalState ? '0px' : `-${props.width}`
         })`;
       }
       return `transform: ${transform}`;
@@ -201,7 +201,6 @@ export default defineComponent({
     });
 
     onMounted(() => {
-      wrapperWidth.value = wrapper.value.clientWidth;
       wrapperHeight.value = wrapper.value.clientHeight;
       headerHeight.value = header.value.clientHeight;
       footerHeight.value = footer.value.clientHeight;
