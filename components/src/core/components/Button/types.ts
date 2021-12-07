@@ -29,7 +29,16 @@ export const TYPE_DANGER = 'danger';
 export const TYPE_WARN = 'warn';
 export const TYPE_SUCCESS = 'success';
 
+export const TYPE_SOLID = 'solid';
+export const TYPE_SOLID_MAIN = 'solid-main';
+export const TYPE_SOLID_SECONDARY = 'solid-secondary';
+export const TYPE_SOLID_INFO = 'solid-info';
+export const TYPE_SOLID_DANGER = 'solid-danger';
+export const TYPE_SOLID_WARN = 'solid-warn';
+export const TYPE_SOLID_SUCCESS = 'solid-success';
+
 export const TYPE_GHOST = 'ghost';
+export const TYPE_GHOST_MAIN = 'ghost-main';
 export const TYPE_GHOST_INFO = 'ghost-info';
 export const TYPE_GHOST_DANGER = 'ghost-danger';
 export const TYPE_GHOST_WARN = 'ghost-warn';
@@ -89,3 +98,44 @@ export type ButtonType =
   | typeof TYPE_LABEL_SUCCESS
   | typeof TYPE_TEXT
   | typeof TYPE_TOOL;
+
+export const ICON_TYPES = [
+  TYPE_MAIN,
+  TYPE_SECONDARY,
+  TYPE_INFO,
+  TYPE_DANGER,
+  TYPE_WARN,
+  TYPE_SUCCESS,
+  TYPE_SOLID,
+  TYPE_SOLID_MAIN,
+  TYPE_SOLID_INFO,
+  TYPE_SOLID_DANGER,
+  TYPE_SOLID_WARN,
+  TYPE_SOLID_SUCCESS,
+  TYPE_GHOST,
+  TYPE_GHOST_MAIN,
+  TYPE_GHOST_INFO,
+  TYPE_GHOST_DANGER,
+  TYPE_GHOST_WARN,
+  TYPE_GHOST_SUCCESS,
+];
+
+export type IconType =
+  | typeof TYPE_MAIN
+  | typeof TYPE_SECONDARY
+  | typeof TYPE_INFO
+  | typeof TYPE_DANGER
+  | typeof TYPE_WARN
+  | typeof TYPE_SUCCESS
+  | typeof TYPE_SOLID
+  | typeof TYPE_SOLID_MAIN
+  | typeof TYPE_SOLID_INFO
+  | typeof TYPE_SOLID_DANGER
+  | typeof TYPE_SOLID_SUCCESS
+  | typeof TYPE_SOLID_SUCCESS
+  | typeof TYPE_GHOST
+  | typeof TYPE_GHOST_MAIN
+  | typeof TYPE_GHOST_INFO
+  | typeof TYPE_GHOST_DANGER
+  | typeof TYPE_GHOST_WARN
+  | typeof TYPE_GHOST_SUCCESS;

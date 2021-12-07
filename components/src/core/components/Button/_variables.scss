@@ -391,3 +391,13 @@ $oxd-icon-button-padding: 6px;
 $oxd-list-button-font-color: $oxd-interface-gray-darken-1-color !default;
 $oxd-list-button--pressed: $oxd-primary-one-color !default;
 $oxd-list-button--hover: $oxd-list-button--pressed !default;
+
+$oxd-list-button-pallete: (
+  default: $oxd-interface-gray-darken-1-color,
+  main: $oxd-primary-one-color,
+  secondary: $oxd-secondary-four-color,
+  info: $oxd-feedback-info-color,
+  danger: $oxd-feedback-danger-color,
+  warn: $oxd-feedback-warn-color,
+  success: $oxd-feedback-success-color,
+);
