@@ -85,6 +85,7 @@ export default defineComponent({
       onSubmit,
       fieldset,
       errorbag,
+      validate,
       isProcessing,
       isFromInvalid,
       isFormBusy,
