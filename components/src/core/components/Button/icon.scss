@@ -17,12 +17,11 @@
 
 @import '../../../styles';
 @import 'variables';
+@import 'mixins';
 
 .oxd-icon-button {
   font-size: $oxd-icon-button-font-size;
   font-weight: $oxd-icon-button-font-weight;
-  background-color: $oxd-icon-button-bg-color;
-  color: $oxd-icon-button-font-color;
   border-radius: 50%;
   border: 0;
   cursor: pointer;
@@ -34,20 +33,78 @@
   align-items: center;
   flex-direction: column;
 
-  &:focus,
-  &:hover {
-    outline: 0;
-    background-color: $oxd-icon-button--hover;
+  @include oxd-icon-button();
+  &--main {
+    @include oxd-icon-button('main');
+  }
+  &--secondary {
+    @include oxd-icon-button('secondary');
+  }
+  &--info {
+    @include oxd-icon-button('info');
+  }
+  &--danger {
+    @include oxd-icon-button('danger');
+  }
+  &--warn {
+    @include oxd-icon-button('warn');
+  }
+  &--success {
+    @include oxd-icon-button('success');
   }
 
-  &:active {
-    background-color: $oxd-icon-button--pressed;
+  &--solid {
+    @include oxd-icon-button-solid();
+    &-main {
+      @include oxd-icon-button-solid('main');
+    }
+    &-secondary {
+      @include oxd-icon-button-solid('secondary');
+    }
+    &-info {
+      @include oxd-icon-button-solid('info');
+    }
+    &-danger {
+      @include oxd-icon-button-solid('danger');
+    }
+    &-warn {
+      @include oxd-icon-button-solid('warn');
+    }
+    &-success {
+      @include oxd-icon-button-solid('success');
+    }
+  }
+
+  &--ghost {
+    @include oxd-icon-button-ghost();
+    &-main {
+      @include oxd-icon-button-ghost('main');
+    }
+    &-secondary {
+      @include oxd-icon-button-ghost('secondary');
+    }
+    &-info {
+      @include oxd-icon-button-ghost('info');
+    }
+    &-danger {
+      @include oxd-icon-button-ghost('danger');
+    }
+    &-warn {
+      @include oxd-icon-button-ghost('warn');
+    }
+    &-success {
+      @include oxd-icon-button-ghost('success');
+    }
   }
 
   &:disabled {
     background-color: $oxd-icon-button--disabled;
     color: $oxd-icon-button-font-color--disabled;
     cursor: not-allowed;
+  }
+
+  ::v-deep(.oxd-icon) {
+    color: inherit;
   }
 }
 

@@ -39,6 +39,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import {ICON_TYPES, ButtonType} from './types';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
@@ -61,6 +62,13 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    displayType: {
+      type: String,
+      default: null,
+      validator: function(value: ButtonType) {
+        return !value || ICON_TYPES.indexOf(value) !== -1;
+      },
+    },
   },
 
   emits: ['click'],
@@ -69,6 +77,7 @@ export default defineComponent({
     classes(): object {
       return {
         'oxd-icon-button': true,
+        [`oxd-icon-button--${this.displayType}`]: Boolean(this.displayType),
       };
     },
   },

@@ -130,3 +130,62 @@
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
+@mixin oxd-icon-button($type: 'default') {
+  $oxd-icon-button-color: map-get($oxd-list-button-pallete, $type);
+
+  color: $oxd-icon-button-color;
+  background-color: rgba($oxd-icon-button-color, 0.1);
+
+  &:focus,
+  &:hover {
+    outline: 0;
+    background-color: rgba($oxd-icon-button-color, 0.15);
+  }
+
+  &:active {
+    background-color: rgba($oxd-icon-button-color, 0.2);
+  }
+}
+
+@mixin oxd-icon-button-solid($type: 'default') {
+  $oxd-icon-bg-color: map-get($oxd-list-button-pallete, $type);
+
+  color: $oxd-white-color;
+  background-color: $oxd-icon-bg-color;
+
+  &:focus,
+  &:hover {
+    outline: 0;
+    background-color: lighten($oxd-icon-bg-color, 5%);
+  }
+
+  &:active {
+    background-color: darken($oxd-icon-bg-color, 5%);
+  }
+}
+
+@mixin oxd-icon-button-ghost($type: 'default') {
+  $oxd-icon-color: map-get($oxd-list-button-pallete, $type);
+
+  color: $oxd-icon-color;
+  border: $oxd-border $oxd-icon-color;
+  background-color: transparent !important;
+
+  &:focus,
+  &:hover {
+    outline: 0;
+    color: lighten($oxd-icon-color, 5%);
+    border: $oxd-border lighten($oxd-icon-color, 5%);
+  }
+
+  &:active {
+    color: lighten($oxd-icon-color, 5%);
+    border: $oxd-border lighten($oxd-icon-color, 5%);
+  }
+
+  &:disabled {
+    color: $oxd-icon-button-font-color--disabled !important;
+    border: $oxd-border $oxd-icon-button--disabled !important;
+  }
+}

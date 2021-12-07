@@ -18,10 +18,17 @@
  */
 
 import IconButton from '@ohrm/oxd/core/components/Button/Icon';
+import {ICON_TYPES} from '@ohrm/oxd/core/components/Button/types';
 
 export default {
   title: 'Example/Button/IconButton',
   component: IconButton,
+  argTypes: {
+    displayType: {
+      control: {type: 'select', options: ICON_TYPES},
+    },
+    disabled: {control: {type: 'boolean'}},
+  },
 };
 
 const Template = args => ({
@@ -43,4 +50,11 @@ export const ListIcon = Template.bind({});
 ListIcon.args = {
   name: 'trash',
   withContainer: true,
+};
+
+export const CustomIcon = Template.bind({});
+CustomIcon.args = {
+  name: 'chat-left-dots',
+  disabled: false,
+  displayType: 'secondary',
 };

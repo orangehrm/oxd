@@ -85,4 +85,22 @@ describe('DateInput.vue', () => {
     await wrapper.find('.oxd-date-input-link.--close').trigger('click');
     expect(wrapper.emitted('dateselect:closed')).toBeTruthy();
   });
+  it('should display selected date', async () => {
+    const wrapper = mount(DateInput, {
+      props: {modelValue: '2021-12-30', value: null},
+    });
+    await wrapper.vm.$nextTick();
+    const input = wrapper.findComponent(Input);
+    expect((input.element as HTMLInputElement).value).toEqual('2021-12-30');
+  });
+  it('should display value passed as prop over selected date', async () => {
+    const wrapper = mount(DateInput, {
+      props: {modelValue: '2021-12-30', value: '2021-12-01 - 2021-12-31'},
+    });
+    await wrapper.vm.$nextTick();
+    const input = wrapper.findComponent(Input);
+    expect((input.element as HTMLInputElement).value).toEqual(
+      '2021-12-01 - 2021-12-31',
+    );
+  });
 });
