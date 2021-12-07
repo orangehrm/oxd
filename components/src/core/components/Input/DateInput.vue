@@ -110,6 +110,10 @@ export default defineComponent({
       type: String,
       default: null,
     },
+    value: {
+      type: String,
+      default: null,
+    },
   },
 
   setup(props) {
@@ -184,9 +188,13 @@ export default defineComponent({
       },
     },
     displayDate(): string {
-      return this.displayFormat && this.displayFormat.trim() !== ''
-        ? formatDate(this.dateSelected, this.displayFormat)
-        : formatDate(this.dateSelected, this.ioformat);
+      if (this.value !== null) {
+        return this.value;
+      } else if (this.displayFormat && this.displayFormat.trim() !== '') {
+        return formatDate(this.dateSelected, this.displayFormat);
+      } else {
+        return formatDate(this.dateSelected, this.ioformat);
+      }
     },
     dateIconClasses(): object {
       return {
