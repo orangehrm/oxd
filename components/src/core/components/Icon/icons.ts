@@ -211,6 +211,7 @@ const icons: Icons = {
   'oxd-caret-down': oxdCaretDown,
   'oxd-edit': oxdEdit,
   'oxd-hide': oxdHide,
+  'oxd-show': oxdShow,
   'oxd-report': oxdReport,
   'oxd-report-chart': oxdReportChart,
   'oxd-people-management': oxdPeopleManagement,
