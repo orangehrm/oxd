@@ -20,7 +20,7 @@
       </slot>
     </div>
     <div class="body">
-      <slot name="body"></slot>
+      <slot name="sidebarBody"></slot>
     </div>
     <div class="list">
       <slot name="list">
