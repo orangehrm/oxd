@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <oxd-list>
+    <oxd-list :settings="settings" :list-items="state.items">
       <template v-slot:sidebarBody>
       </template>
     </oxd-list>
@@ -8,9 +8,10 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, reactive, computed} from 'vue';
+import {defineComponent, reactive, computed, ref} from 'vue';
 import List from '@orangehrm/oxd/core/components/List/List';
 import ListProfilePic from '@orangehrm/oxd/core/components/List/ListProfilePic';
+import list from './list.json'
 
 interface SelectedVacancyI extends SelectUII {
   id: number;
@@ -43,6 +44,8 @@ export default defineComponent({
   props: {},
 
   setup() {
+    const settings = ref(list)
+
     const profilePicRenderer = (_index, _item, _header, row) => {
       const profilePic = {
         component: ListProfilePic,
@@ -143,43 +146,7 @@ export default defineComponent({
       selectedStageId: -1,
       showFilterModal: false,
       isSidebarOpen: true,
-      headers: [
-        {
-          name: 'profilepic',
-          slot: 'footer',
-          title: '',
-          style: {width: '44px'},
-          cellType: 'oxd-table-cell-actions',
-          cellRenderer: profilePicRenderer,
-        },
-        {
-          name: 'candidate',
-          sortField: 'candidate',
-          title: 'Candidate',
-          style: {flex: 1},
-        },
-        {name: 'email', sortField: 'email', title: 'Email', style: {flex: 1}},
-        {
-          name: 'contactNumber',
-          sortField: 'contactNumber',
-          title: 'Contact Number',
-          style: {flex: 1},
-        },
-        {
-          name: 'dateApplied',
-          sortField: 'dateApplied',
-          title: 'Date Applied',
-          style: {flex: 1},
-        },
-        {
-          name: 'action',
-          slot: 'footer',
-          title: 'Stage',
-          style: {width: '300px'},
-          cellType: 'oxd-table-cell-actions',
-          cellRenderer: actionsRenderer,
-        },
-      ],
+      headers: list,
       totalRecordsCount: 138,
       items: [
         {
@@ -657,10 +624,11 @@ export default defineComponent({
 
     return {
       state,
-      dropdownStages,
-      selectedStage,
+      settings,
       selectStage,
+      selectedStage,
       selectVacancy,
+      dropdownStages,
       toggleFilterModal,
       profilePicRenderer,
       actionsRenderer,

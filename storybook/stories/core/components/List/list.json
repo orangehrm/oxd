@@ -1,0 +1,79 @@
+{
+  "table": {
+    "sideFilters": {
+      "visibility": true,
+      "header": {
+        "visibility": true,
+        "button": {
+          "label": "Add Candidate"
+        }
+      },
+      "body": {
+        "visibility": true
+      },
+      "list": {
+        "visibility": true,
+        "bubble": {
+          "visibility": true
+        }
+      }
+    },
+    "topFilters": {
+      "visibility": true
+    },
+    "headers": [
+      {
+        "name": "profilepic",
+        "slot": "footer",
+        "title": "",
+        "style": {
+          "width": "44px"
+        },
+        "cellType": "oxd-table-cell-actions",
+        "cellRenderer": "profilePicRenderer"
+      },
+      {
+        "name": "candidate",
+        "sortField": "candidate",
+        "title": "Candidate",
+        "style": {
+          "flex": 1
+        }
+      },
+      {
+        "name": "email",
+        "sortField": "email",
+        "title": "Email",
+        "style": {
+          "flex": 1
+        }
+      },
+      {
+        "name": "contactNumber",
+        "sortField": "contactNumber",
+        "title": "Contact Number",
+        "style": {
+          "flex": 1
+        }
+      },
+      {
+        "name": "dateApplied",
+        "sortField": "dateApplied",
+        "title": "Date Applied",
+        "style": {
+          "flex": 1
+        }
+      },
+      {
+        "name": "action",
+        "slot": "footer",
+        "title": "Stage",
+        "style": {
+          "width": "300px"
+        },
+        "cellType": "oxd-table-cell-actions",
+        "cellRenderer": "actionsRenderer"
+      }
+    ]
+  }
+}

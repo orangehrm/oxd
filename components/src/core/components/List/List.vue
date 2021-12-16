@@ -1,18 +1,22 @@
 <template>
   <div
     class="orangehrm-container recruitment-container"
-    :class="{'table-sidebar-open': state.isSidebarOpen}"
+    :class="{
+      'table-sidebar-open':
+        settings.table.sideFilters.visibility && state.isSidebarOpen,
+    }"
   >
     <oxd-table-sidebar
+      v-if="settings.table.sideFilters.header.visibility"
       class="oxd-table-sidebar"
+      :class="{'with-filters': settings.table.topFilters.visibility}"
       width="230px"
       :list="state.stages"
-      :button="{
-        label: 'Add Candidate',
-        style: {
-          height: '36px',
-        },
-      }"
+      :header-visibility="settings.table.sideFilters.header.visibility"
+      :body-visibility="settings.table.sideFilters.body.visibility"
+      :list-visibility="settings.table.sideFilters.list.visibility"
+      :bubble-visibility="settings.table.sideFilters.list.bubble.visibility"
+      :button="settings.table.sideFilters.headerButton"
       :selected-stage-id="state.selectedStageId"
       @list:onSelect="selectStage"
       @table-sidebar:onToggle="toggleSidebar"
@@ -46,6 +50,7 @@
       :class="{'w-100': !state.isSidebarOpen}"
     >
       <oxd-table-filter
+        v-if="settings.table.topFilters.visibility"
         class="candidates-list-table-filter"
         :filter-title="
           `(${state.totalRecordsCount}) ${
@@ -70,12 +75,12 @@
 
       <oxd-card-table
         :selector="state.selector"
-        :headers="state.headers"
-        :items="state.items"
+        :headers="tableHeaders"
+        :items="listItems"
         :selectable="true"
         :clickable="false"
         :isDynamicCell="true"
-        :style-class="'oxd-classic-table with-filters'"
+        :style-class="oxdCardTableStyleClasses"
         v-model:selected="state.checkedItems"
         v-model:order="state.order"
         rowDecorator="oxd-table-decorator-card"
@@ -142,8 +147,16 @@ export default defineComponent({
     'oxd-dialog': Dialog,
     'oxd-select-input-btn': SelectInputButton,
   },
-
-  setup() {
+  props: {
+    settings: {
+      type: Object,
+      required: true,
+    },
+    listItems: {
+      type: Array,
+    },
+  },
+  setup(props) {
     const profilePicRenderer = (_index, _item, _header, row) => {
       const profilePic = {
         component: ListProfilePic,
@@ -244,340 +257,7 @@ export default defineComponent({
       selectedStageId: -1,
       showFilterModal: false,
       isSidebarOpen: true,
-      headers: [
-        {
-          name: 'profilepic',
-          slot: 'footer',
-          title: '',
-          style: {width: '44px'},
-          cellType: 'oxd-table-cell-actions',
-          cellRenderer: profilePicRenderer,
-        },
-        {
-          name: 'candidate',
-          sortField: 'candidate',
-          title: 'Candidate',
-          style: {flex: 1},
-        },
-        {name: 'email', sortField: 'email', title: 'Email', style: {flex: 1}},
-        {
-          name: 'contactNumber',
-          sortField: 'contactNumber',
-          title: 'Contact Number',
-          style: {flex: 1},
-        },
-        {
-          name: 'dateApplied',
-          sortField: 'dateApplied',
-          title: 'Date Applied',
-          style: {flex: 1},
-        },
-        {
-          name: 'action',
-          slot: 'footer',
-          title: 'Stage',
-          style: {width: '300px'},
-          cellType: 'oxd-table-cell-actions',
-          cellRenderer: actionsRenderer,
-        },
-      ],
       totalRecordsCount: 138,
-      items: [
-        {
-          profilePic: true,
-          candidate: 'Venkatanarasimharajuvar Narasimha Rajuvaripet',
-          email: 'trevor@o.com',
-          contactNumber: '+8552616462',
-          dateApplied: 'Thu, 11 Mar 2021',
-          selectedStage: {
-            eventTitle: 'Application Received',
-            id: '1',
-            isInterview: false,
-            isScoreType: false,
-            isTest: false,
-            level: '1',
-            maxScore: '100',
-            threshold: null,
-            type: 'Application Received',
-            typeId: '1',
-          },
-          candidateStages: [
-            {
-              eventTitle: 'Application Received',
-              id: '1',
-              isInterview: false,
-              isScoreType: false,
-              isTest: false,
-              level: '1',
-              maxScore: '100',
-              threshold: null,
-              type: 'Application Received',
-              typeId: '1',
-            },
-            {
-              eventTitle: 'Shortlisted',
-              id: '2',
-              isInterview: false,
-              isScoreType: false,
-              isTest: false,
-              level: '2',
-              maxScore: '100',
-              threshold: null,
-              type: 'Shortlisted',
-              typeId: '9',
-            },
-          ],
-          allowedActions: {
-            stageSlot: true,
-            downloadResumeSlot: true,
-            downloadApplicationFormSlot: true,
-            compareSlot: true,
-          },
-        },
-        {
-          profilePic: true,
-          candidate: 'Lucy Valdez',
-          email: 'lucy@o.com',
-          contactNumber: '+8523616462',
-          dateApplied: 'Thu, 10 Mar 2021',
-          selectedStage: {
-            eventTitle: 'Application Received',
-            id: '1',
-            isInterview: false,
-            isScoreType: false,
-            isTest: false,
-            level: '1',
-            maxScore: '100',
-            threshold: null,
-            type: 'Application Received',
-            typeId: '1',
-          },
-          candidateStages: [
-            {
-              eventTitle: 'Application Received',
-              id: '1',
-              isInterview: false,
-              isScoreType: false,
-              isTest: false,
-              level: '1',
-              maxScore: '100',
-              threshold: null,
-              type: 'Application Received',
-              typeId: '1',
-            },
-          ],
-          allowedActions: {
-            stageSlot: true,
-            downloadResumeSlot: true,
-            downloadApplicationFormSlot: true,
-            compareSlot: true,
-          },
-        },
-        {
-          profilePic: true,
-          candidate: 'SRIMANSI JOSHE',
-          email: 'JOSHE@gmail.com',
-          contactNumber: '+6523616462',
-          dateApplied: 'Wed, 30 Sep 2020',
-          selectedStage: {
-            eventTitle: 'Shortlisted',
-            id: '2',
-            isInterview: false,
-            isScoreType: false,
-            isTest: false,
-            level: '2',
-            maxScore: '100',
-            threshold: null,
-            type: 'Shortlisted',
-            typeId: '9',
-          },
-          candidateStages: [
-            {
-              eventTitle: 'Application Received',
-              id: '1',
-              isInterview: false,
-              isScoreType: false,
-              isTest: false,
-              level: '1',
-              maxScore: '100',
-              threshold: null,
-              type: 'Application Received',
-              typeId: '1',
-            },
-            {
-              eventTitle: 'Shortlisted',
-              id: '2',
-              isInterview: false,
-              isScoreType: false,
-              isTest: false,
-              level: '2',
-              maxScore: '100',
-              threshold: null,
-              type: 'Shortlisted',
-              typeId: '9',
-            },
-          ],
-          allowedActions: {
-            stageSlot: true,
-            downloadResumeSlot: true,
-            downloadApplicationFormSlot: true,
-            compareSlot: true,
-          },
-        },
-        {
-          profilePic: true,
-          candidate: 'Peter Smith',
-          email: 'petersmith@gmail.com',
-          contactNumber: '+1 876-345-1505',
-          dateApplied: 'Tue, 30 Apr 2019',
-          selectedStage: {
-            eventTitle: 'Shortlisted',
-            id: '2',
-            isInterview: false,
-            isScoreType: false,
-            isTest: false,
-            level: '2',
-            maxScore: '100',
-            threshold: null,
-            type: 'Shortlisted',
-            typeId: '9',
-          },
-          candidateStages: [
-            {
-              eventTitle: 'Application Received',
-              id: '1',
-              isInterview: false,
-              isScoreType: false,
-              isTest: false,
-              level: '1',
-              maxScore: '100',
-              threshold: null,
-              type: 'Application Received',
-              typeId: '1',
-            },
-            {
-              eventTitle: 'Shortlisted',
-              id: '2',
-              isInterview: false,
-              isScoreType: false,
-              isTest: false,
-              level: '2',
-              maxScore: '100',
-              threshold: null,
-              type: 'Shortlisted',
-              typeId: '9',
-            },
-          ],
-          allowedActions: {
-            stageSlot: true,
-            downloadResumeSlot: true,
-            downloadApplicationFormSlot: true,
-            compareSlot: true,
-          },
-        },
-        {
-          profilePic: true,
-          candidate: 'Jo Denton',
-          email: 'jodentan@gmail.com',
-          contactNumber: '+1 888-452-2314',
-          dateApplied: 'Tue, 30 Apr 2019',
-          selectedStage: {
-            eventTitle: 'Shortlisted',
-            id: '2',
-            isInterview: false,
-            isScoreType: false,
-            isTest: false,
-            level: '2',
-            maxScore: '100',
-            threshold: null,
-            type: 'Shortlisted',
-            typeId: '9',
-          },
-          candidateStages: [
-            {
-              eventTitle: 'Application Received',
-              id: '1',
-              isInterview: false,
-              isScoreType: false,
-              isTest: false,
-              level: '1',
-              maxScore: '100',
-              threshold: null,
-              type: 'Application Received',
-              typeId: '1',
-            },
-            {
-              eventTitle: 'Shortlisted',
-              id: '2',
-              isInterview: false,
-              isScoreType: false,
-              isTest: false,
-              level: '2',
-              maxScore: '100',
-              threshold: null,
-              type: 'Shortlisted',
-              typeId: '9',
-            },
-          ],
-          allowedActions: {
-            stageSlot: true,
-            downloadResumeSlot: true,
-            downloadApplicationFormSlot: true,
-            compareSlot: true,
-          },
-        },
-        {
-          profilePic: true,
-          candidate: 'Garry White',
-          email: 'garrywhite@gmail.com',
-          contactNumber: '+1 788-482-1505',
-          dateApplied: 'Fri, 26 Apr 2019',
-          selectedStage: {
-            eventTitle: 'Shortlisted',
-            id: '2',
-            isInterview: false,
-            isScoreType: false,
-            isTest: false,
-            level: '2',
-            maxScore: '100',
-            threshold: null,
-            type: 'Shortlisted',
-            typeId: '9',
-          },
-          candidateStages: [
-            {
-              eventTitle: 'Application Received',
-              id: '1',
-              isInterview: false,
-              isScoreType: false,
-              isTest: false,
-              level: '1',
-              maxScore: '100',
-              threshold: null,
-              type: 'Application Received',
-              typeId: '1',
-            },
-            {
-              eventTitle: 'Shortlisted',
-              id: '2',
-              isInterview: false,
-              isScoreType: false,
-              isTest: false,
-              level: '2',
-              maxScore: '100',
-              threshold: null,
-              type: 'Shortlisted',
-              typeId: '9',
-            },
-          ],
-          allowedActions: {
-            stageSlot: true,
-            downloadResumeSlot: true,
-            downloadApplicationFormSlot: true,
-            compareSlot: true,
-          },
-        },
-      ],
       checkedItems: [],
       order: {
         candidate: 'ASC',
@@ -736,8 +416,26 @@ export default defineComponent({
       ];
     });
 
+    const tableHeaders = computed(() => {
+      const a = props.settings.table.headers.map(header => {
+        return {
+          ...header,
+          cellRenderer: eval(header.cellRenderer),
+        };
+      });
+      return a;
+    });
+
     const selectedStage = computed(() => {
       return dropdownStages.value.find(stage => stage.selected);
+    });
+
+    const oxdCardTableStyleClasses = computed(() => {
+      let styleClasses = 'oxd-classic-table ';
+      styleClasses += props.settings.table.topFilters.visibility
+        ? 'with-filters'
+        : '';
+      return styleClasses;
     });
 
     const selectStage = (stage: StageI) => {
@@ -760,6 +458,8 @@ export default defineComponent({
       state,
       dropdownStages,
       selectedStage,
+      tableHeaders,
+      oxdCardTableStyleClasses,
       selectStage,
       selectVacancy,
       toggleFilterModal,
@@ -785,7 +485,9 @@ export default defineComponent({
   display: flex;
   align-items: flex-start;
   .oxd-table-sidebar {
-    margin-top: 1.25rem;
+    &.with-filters {
+      margin-top: 1.25rem;
+    }
   }
   .table-card-list-wrapper {
     width: 100%;
@@ -818,7 +520,8 @@ export default defineComponent({
               font-size: 1.0625rem;
               margin-right: 0.25rem;
             }
-            &:hover {
+            &:hover,
+            &:focus {
               color: #1e6ceb;
               background-color: rgba(30, 108, 235, 0.15);
             }
@@ -857,7 +560,7 @@ export default defineComponent({
     }
   }
   .oxd-classic-table {
-    padding-top: 0.5rem;
+    flex-wrap: nowrap;
     ::v-deep(.oxd-icon-button) {
       font-size: 15px;
     }
@@ -865,6 +568,9 @@ export default defineComponent({
       text-align: left;
       padding-top: 0.65rem;
       padding-bottom: 0.65rem;
+    }
+    ::v-deep(.oxd-table-cell) {
+      flex-wrap: nowrap;
     }
   }
 }

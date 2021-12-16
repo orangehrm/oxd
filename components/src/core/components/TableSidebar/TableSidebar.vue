@@ -1,6 +1,6 @@
 <template>
   <div class="oxd-table-sidebar" :style="customStyles">
-    <div class="header">
+    <div v-if="headerVisibility" class="header">
       <slot name="header">
         <oxd-button
           class="table-header-action-btn"
@@ -19,10 +19,10 @@
         <oxd-divider class="table-sidebar-divider" />
       </slot>
     </div>
-    <div class="body">
+    <div v-if="bodyVisibility" class="body">
       <slot name="sidebarBody"></slot>
     </div>
-    <div class="list">
+    <div v-if="listVisibility" class="list">
       <slot name="list">
         <ul>
           <li
@@ -36,6 +36,7 @@
           >
             <div class="count-container">
               <oxd-chip
+                v-if="bubbleVisibility"
                 :label="item.count"
                 class="oxd-dropdown-selected-chip"
                 :displayType="item.displayType"
@@ -74,6 +75,22 @@ export default defineComponent({
   },
 
   props: {
+    headerVisibility: {
+      type: Boolean,
+      default: false,
+    },
+    bodyVisibility: {
+      type: Boolean,
+      default: false,
+    },
+    listVisibility: {
+      type: Boolean,
+      default: false,
+    },
+    bubbleVisibility: {
+      type: Boolean,
+      default: true,
+    },
     button: {
       type: Object,
       default: () => null,

@@ -735,7 +735,7 @@ export default {
               font-size: 1.0625rem;
               margin-right: 0.25rem;
             }
-            &:hover {
+            &:hover, &:focus {
               color: #1e6ceb;
               background-color: rgba(30, 108, 235, 0.15);
             }
