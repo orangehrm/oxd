@@ -113,6 +113,7 @@ import Dialog from '@orangehrm/oxd/core/components/Dialog/Dialog.vue';
 import TableSidebar from '@orangehrm/oxd/core/components/TableSidebar/TableSidebar.vue';
 import ListProfilePic from './ListProfilePic.vue';
 import SelectInputButton from '@orangehrm/oxd/core/components/Input/Select/SelectInputButton.vue';
+import images from './images';
 
 import {defineComponent, reactive, computed} from 'vue';
 
@@ -167,7 +168,7 @@ export default defineComponent({
           size: 'small',
           imageSrc: row.profilePic
             ? row.profilePic
-            : require('./user-default-400.png'),
+            : images['default-user'].value,
         },
       };
       return {
