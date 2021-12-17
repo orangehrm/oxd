@@ -167,7 +167,7 @@ export default defineComponent({
           size: 'small',
           imageSrc: row.profilePic
             ? row.profilePic
-            : require('../../../assets/images/user-default-400.png'),
+            : require('./user-default-400.png'),
         },
       };
       return {
