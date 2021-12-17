@@ -1,6 +1,6 @@
 {
   "table": {
-    "sideFilters": {
+    "sidebar": {
       "visibility": true,
       "header": {
         "visibility": true,

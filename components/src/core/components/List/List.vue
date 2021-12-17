@@ -3,20 +3,20 @@
     class="orangehrm-container recruitment-container"
     :class="{
       'table-sidebar-open':
-        settings.table.sideFilters.visibility && state.isSidebarOpen,
+        settings.table.sidebar.visibility && state.isSidebarOpen,
     }"
   >
     <oxd-table-sidebar
-      v-if="settings.table.sideFilters.header.visibility"
+      v-if="settings.table.sidebar.header.visibility"
       class="oxd-table-sidebar"
       :class="{'with-filters': settings.table.topFilters.visibility}"
       width="230px"
       :list="state.stages"
-      :header-visibility="settings.table.sideFilters.header.visibility"
-      :body-visibility="settings.table.sideFilters.body.visibility"
-      :list-visibility="settings.table.sideFilters.list.visibility"
-      :bubble-visibility="settings.table.sideFilters.list.bubble.visibility"
-      :button="settings.table.sideFilters.headerButton"
+      :header-visibility="settings.table.sidebar.header.visibility"
+      :body-visibility="settings.table.sidebar.body.visibility"
+      :list-visibility="settings.table.sidebar.list.visibility"
+      :bubble-visibility="settings.table.sidebar.list.bubble.visibility"
+      :button="settings.table.sidebar.headerButton"
       :selected-stage-id="state.selectedStageId"
       @list:onSelect="selectStage"
       @table-sidebar:onToggle="toggleSidebar"
@@ -43,6 +43,9 @@
             :modelValue="state.selectedVacancy"
           />
         </slot>
+      </template>
+      <template v-slot:list>
+        <slot name="list"></slot>
       </template>
     </oxd-table-sidebar>
     <div
@@ -162,14 +165,16 @@ export default defineComponent({
         component: ListProfilePic,
         props: {
           size: 'small',
-          imageSrc: require('@orangehrm/oxd/assets/images/user-default-400.png'),
+          imageSrc: row.profilePic
+            ? row.profilePic
+            : require('../../../assets/images/user-default-400.png'),
         },
       };
       return {
         props: {
           header: {
             cellConfig: {
-              ...(row.profilePic && {profilePic}),
+              ...{profilePic},
             },
           },
         },
