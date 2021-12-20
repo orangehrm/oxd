@@ -1,25 +1,25 @@
 {
   "table": {
-    "sidebar": {
-      "visibility": true,
+    "sidePanel": {
+      "visible": true,
       "header": {
-        "visibility": true,
+        "visible": true,
         "button": {
           "label": "Add Candidate"
         }
       },
       "body": {
-        "visibility": true
+        "visible": true
       },
       "list": {
-        "visibility": true,
+        "visible": true,
         "bubble": {
-          "visibility": true
+          "visible": true
         }
       }
     },
     "topFilters": {
-      "visibility": true
+      "visible": true
     },
     "headers": [
       {
@@ -57,8 +57,8 @@
         }
       },
       {
-        "name": "dateApplied",
-        "sortField": "dateApplied",
+        "name": "dateOfApplication",
+        "sortField": "dateOfApplication",
         "title": "Date Applied",
         "style": {
           "flex": 1

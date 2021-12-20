@@ -1,6 +1,6 @@
 <template>
   <div class="oxd-table-sidebar" :style="customStyles">
-    <div v-if="headerVisibility" class="header">
+    <div v-if="headerVisible" class="header">
       <slot name="header">
         <oxd-button
           class="table-header-action-btn"
@@ -19,14 +19,14 @@
         <oxd-divider class="table-sidebar-divider" />
       </slot>
     </div>
-    <div v-if="bodyVisibility" class="body">
+    <div v-if="bodyVisible" class="body">
       <slot name="sidebarBody"></slot>
     </div>
-    <div v-if="listVisibility" class="list">
+    <div v-if="listVisible" class="list">
       <slot name="list">
         <ul>
           <li
-            v-for="(item, id) in list"
+            v-for="(item, id) in sidePanelList"
             :key="id"
             @click="selectListitem(item)"
             :class="{
@@ -36,7 +36,7 @@
           >
             <div class="count-container">
               <oxd-chip
-                v-if="bubbleVisibility"
+                v-if="bubbleVisible"
                 :label="item.count"
                 class="oxd-dropdown-selected-chip"
                 :displayType="item.displayType"
@@ -75,19 +75,19 @@ export default defineComponent({
   },
 
   props: {
-    headerVisibility: {
+    headerVisible: {
       type: Boolean,
       default: false,
     },
-    bodyVisibility: {
+    bodyVisible: {
       type: Boolean,
       default: false,
     },
-    listVisibility: {
+    listVisible: {
       type: Boolean,
       default: false,
     },
-    bubbleVisibility: {
+    bubbleVisible: {
       type: Boolean,
       default: true,
     },
@@ -99,16 +99,12 @@ export default defineComponent({
       type: String,
       default: '100%',
     },
-    list: {
+    sidePanelList: {
       type: Array,
       default: () => [],
     },
     selectedStageId: {
       type: Number,
-    },
-    isSidebarOpen: {
-      type: Boolean,
-      default: true,
     },
   },
 
@@ -122,6 +118,7 @@ export default defineComponent({
       label: null,
       active: false,
     });
+    const isSidebarOpen = ref<boolean>(true)
 
     // TODO: Optimize these duplicated methods; Sandamal
     const buttonData = computed(() => {
@@ -144,7 +141,7 @@ export default defineComponent({
 
     const customStyles = computed(() => {
       return {
-        width: props.isSidebarOpen ? props.width : null,
+        width: isSidebarOpen.value ? props.width : null,
       };
     });
 
@@ -154,17 +151,19 @@ export default defineComponent({
       active: boolean;
     }) => {
       selectedListItem.value = item;
-      emit('list:onSelect', item);
+      emit('sidePanelList:onSelect', item);
     };
 
     const toggleSidebar = () => {
-      emit('table-sidebar:onToggle');
+      isSidebarOpen.value = !isSidebarOpen.value
+      emit('table-sidebar:onToggle', isSidebarOpen.value);
     };
 
     return {
       selectedListItem,
       customStyles,
       buttonData,
+      isSidebarOpen,
       selectListitem,
       toggleSidebar,
     };

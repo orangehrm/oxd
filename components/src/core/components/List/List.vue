@@ -3,45 +3,27 @@
     class="orangehrm-container recruitment-container"
     :class="{
       'table-sidebar-open':
-        settings.table.sidebar.visibility && state.isSidebarOpen,
+        configurations.table.sidebar.visible && state.isSidebarOpen,
     }"
   >
     <oxd-table-sidebar
-      v-if="settings.table.sidebar.header.visibility"
+      v-if="configurations.table.sidebar.header.visible"
       class="oxd-table-sidebar"
-      :class="{'with-filters': settings.table.topFilters.visibility}"
+      :class="{'with-filters': configurations.table.topFilters.visible}"
       width="230px"
-      :list="state.stages"
-      :header-visibility="settings.table.sidebar.header.visibility"
-      :body-visibility="settings.table.sidebar.body.visibility"
-      :list-visibility="settings.table.sidebar.list.visibility"
-      :bubble-visibility="settings.table.sidebar.list.bubble.visibility"
-      :button="settings.table.sidebar.headerButton"
+      :side-panel-list="sidePanelList"
+      :header-visible="configurations.table.sidebar.header.visible"
+      :body-visible="configurations.table.sidebar.body.visible"
+      :list-visible="configurations.table.sidebar.list.visible"
+      :bubble-visible="configurations.table.sidebar.list.bubble.visible"
+      :button="configurations.table.sidebar.header.button"
       :selected-stage-id="state.selectedStageId"
-      @list:onSelect="selectStage"
+      @sidePanelList:onSelect="selectStage"
       @table-sidebar:onToggle="toggleSidebar"
       :is-sidebar-open="state.isSidebarOpen"
     >
       <template v-slot:sidebarBody>
         <slot name="sidebarBody">
-          <oxd-select-input-btn
-            :button="{
-              label:
-                state.selectedVacancy && state.selectedVacancy.label
-                  ? state.selectedVacancy.label
-                  : state.selectedStage && state.selectedStage.label
-                  ? state.selectedStage.label
-                  : '',
-              iconName: 'eye',
-              displayType: 'label',
-              doubleLineLabel: true,
-            }"
-            :hideDropdownLabel="!state.isSidebarOpen"
-            :options="state.vacancies"
-            :open-dropdown-initially="true"
-            @update:modelValue="selectVacancy"
-            :modelValue="state.selectedVacancy"
-          />
         </slot>
       </template>
       <template v-slot:list>
@@ -53,17 +35,46 @@
       :class="{'w-100': !state.isSidebarOpen}"
     >
       <oxd-table-filter
-        v-if="settings.table.topFilters.visibility"
+        v-if="configurations.table.topFilters.visible"
         class="candidates-list-table-filter"
         :filter-title="
-          `(${state.totalRecordsCount}) ${
-            state.totalRecordsCount > 1 ? 'Candidates' : 'Candidate'
+          `(${totalRecordsCount}) ${
+            totalRecordsCount > 1 ? 'Candidates' : 'Candidate'
           } found`
         "
       >
         <template v-slot:toggleOptions>
-          <oxd-quick-search />
-          <oxd-icon-button name="funnel" @click="toggleFilterModal(true)" />
+          <oxd-quick-search
+            :class="'candidates-quick-search'"
+            :placeholder="'Search'"
+            :createOptions="quickSearchCreateOptions"
+            @dropdown:modelValue="selectCandidate"
+          >
+            <template v-slot:iconSlot>
+              <oxd-icon-button
+                name="oxd-search"
+                display-type="label-info"
+                class="candidate-search-btn"
+              ></oxd-icon-button>
+            </template>
+            <template v-slot:option="{ data }">
+              <oxd-list-profile-pic
+                size="small"
+                :style="{
+                  'margin-right': '0.5rem',
+                }"
+                :image-src="data.imageSrc ? data.imageSrc : sampleImages['default-user'].value"
+              />
+              <span>{{ data.candidateName }}</span>
+            </template>
+          </oxd-quick-search>
+          <oxd-icon-button
+            v-if="configurations.drawer.visible"
+            name="funnel"
+            display-type="label-info"
+            class="btn-large"
+            @click="showFilterDrawer"
+          />
           <oxd-icon-button name="gear-fill" />
         </template>
         <template v-slot:exportOptions>
@@ -86,19 +97,46 @@
         :style-class="oxdCardTableStyleClasses"
         v-model:selected="state.checkedItems"
         v-model:order="state.order"
+        @update:order="tableSort"
         rowDecorator="oxd-table-decorator-card"
       />
 
-      <oxd-dialog
-        v-if="state.showFilterModal"
-        @update:show="toggleFilterModal(false)"
-        :style="{width: '800px'}"
-      >
-        <p>
-          Filter modal goes here
-        </p>
-      </oxd-dialog>
     </div>
+    <oxd-drawer
+      v-if="configurations.drawer.visible"
+      :modal-state="state.modalState"
+      :width="configurations.drawer.width"
+      :height="configurations.drawer.height"
+      :full-height="configurations.drawer.fullHeight"
+      :sticky-footer="configurations.drawer.stickyFooter"
+      :fixed="configurations.drawer.fixedPosition"
+      :position="configurations.drawer.position"
+      :ok-button="{
+        label: configurations.drawer.footer.okButton.label,
+        click: applySearch,
+      }"
+      :cancel-button="{
+        click: closeDrawer,
+      }"
+    >
+      <template v-slot:header>
+        <div v-if="configurations.drawer.header.visible" class="header">
+          <slot name="drawerHeader">
+            <div class="d-flex align-center justify-between">
+              <h5>{{configurations.drawer.header.title}}</h5>
+              <oxd-icon-button
+                v-if="configurations.drawer.header.charmButton.visible"
+                :name="configurations.drawer.header.charmButton.icon"
+                @click="cancelSearch"
+              />
+            </div>
+          </slot>
+        </div>
+      </template>
+      <template v-slot:body>
+        <slot name="drawerBody"></slot>
+      </template>
+    </oxd-drawer>
   </div>
 </template>
 
@@ -109,10 +147,10 @@ import TableFilter from '@orangehrm/oxd/core/components/TableFilter/TableFilter.
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import QuickSearchInput from '@orangehrm/oxd/core/components/Input/Autocomplete/QuickSearchInput.vue';
-import Dialog from '@orangehrm/oxd/core/components/Dialog/Dialog.vue';
 import TableSidebar from '@orangehrm/oxd/core/components/TableSidebar/TableSidebar.vue';
 import ListProfilePic from './ListProfilePic.vue';
-import SelectInputButton from '@orangehrm/oxd/core/components/Input/Select/SelectInputButton.vue';
+import ProfilePic from "@orangehrm/oxd/core/components/List/ListProfilePic.vue";
+import Drawer from "@orangehrm/oxd/core/components/Drawer/Drawer.vue";
 import images from './images';
 
 import {defineComponent, reactive, computed} from 'vue';
@@ -148,19 +186,32 @@ export default defineComponent({
     'oxd-button': Button,
     'oxd-icon-button': IconButton,
     'oxd-quick-search': QuickSearchInput,
-    'oxd-dialog': Dialog,
-    'oxd-select-input-btn': SelectInputButton,
+    "oxd-list-profile-pic": ProfilePic,
+    "oxd-drawer": Drawer,
   },
   props: {
-    settings: {
+    configurations: {
       type: Object,
       required: true,
     },
     listItems: {
       type: Array,
     },
+    totalRecordsCount: {
+      type: Number,
+      default: 0,
+    },
+    sidePanelList: {
+      type: Array,
+      default: () => [],
+    },
+    quickSearchCreateOptions: {
+      type: Function,
+      required: true,
+    },
   },
-  setup(props) {
+  setup(props, { emit }) {
+    const sampleImages = images;
     const profilePicRenderer = (_index, _item, _header, row) => {
       const profilePic = {
         component: ListProfilePic,
@@ -182,88 +233,13 @@ export default defineComponent({
       };
     };
 
-    const actionsRenderer = (_index, _item, _header, row) => {
-      const rowObj = JSON.parse(JSON.stringify(row));
-      const candidateStages =
-        rowObj.candidateStages && rowObj.candidateStages.length > 0
-          ? rowObj.candidateStages
-          : [];
-      const mappedStages = candidateStages.map(candidateState => {
-        return {
-          ...candidateState,
-          id: candidateState.id,
-          label: candidateState.eventTitle,
-        };
-      });
-      const selectedStage = {
-        ...rowObj.selectedStage,
-        label:
-          rowObj.selectedStage && rowObj.selectedStage.eventTitle
-            ? rowObj.selectedStage.eventTitle
-            : '',
-      };
-      const stage = {
-        component: SelectInput,
-        props: {
-          options: mappedStages,
-          modelValue: selectedStage,
-          'onUpdate:modelValue': params => {
-            console.log(params);
-          },
-        },
-      };
-      const downloadResume = {
-        component: 'oxd-icon-button',
-        props: {
-          label: 'Download resume',
-          displayType: 'label',
-          size: 'medium',
-          name: 'oxd-download-doc',
-        },
-      };
-      const downloadApplicationForm = {
-        component: 'oxd-icon-button',
-        props: {
-          label: 'Download Application Form',
-          displayType: 'label',
-          size: 'medium',
-          name: 'oxd-download',
-        },
-      };
-      const compare = {
-        component: 'oxd-icon-button',
-        props: {
-          label: 'Download Application Form',
-          displayType: 'label',
-          size: 'medium',
-          name: 'oxd-users',
-        },
-      };
-      return {
-        props: {
-          header: {
-            cellConfig: {
-              ...(row.allowedActions.stageSlot && {stage}),
-              ...(row.allowedActions.downloadResumeSlot && {downloadResume}),
-              ...(row.allowedActions.downloadApplicationFormSlot && {
-                downloadApplicationForm,
-              }),
-              ...(row.allowedActions.compareSlot && {compare}),
-            },
-          },
-        },
-      };
-    };
-
     const state = reactive({
+      selectedStageId: -1,
       selectedVacancy: {
         id: -1,
         label: 'All Vacancies',
       },
-      selectedStageId: -1,
-      showFilterModal: false,
       isSidebarOpen: true,
-      totalRecordsCount: 138,
       checkedItems: [],
       order: {
         candidate: 'ASC',
@@ -271,6 +247,7 @@ export default defineComponent({
         contactNumber: 'ASC',
         dateApplied: 'DESC',
       },
+      stages: [],
       vacancies: [
         {
           id: -1,
@@ -289,118 +266,8 @@ export default defineComponent({
           label: 'Customer Success Executive',
         },
       ],
-      stages: [
-        {
-          id: -1,
-          label: 'All Candidates',
-          count: 33,
-          displayType: 'label-info',
-          style: {
-            backgroundColor: '#d1dff6',
-            color: '#1f6ffd',
-          },
-        },
-        {
-          id: 1,
-          label: 'Application Received',
-          count: 24,
-          displayType: 'label-info',
-          style: {
-            backgroundColor: '#d1dff6',
-            color: '#1f6ffd',
-          },
-        },
-        {
-          id: 2,
-          label: 'Phone Screening',
-          count: 11,
-          displayType: 'label-warn',
-          style: {
-            backgroundColor: '#ebebf0',
-            color: '#65738f',
-          },
-        },
-        {
-          id: 3,
-          label: '1st In-Person Interview',
-          count: 3,
-          displayType: 'label',
-          style: {
-            backgroundColor: '#ebebf0',
-            color: '#65738f',
-          },
-        },
-        {
-          id: 4,
-          label: 'Shortlisted',
-          count: 0,
-          displayType: 'label-warn',
-          style: {
-            backgroundColor: '#f8ebfd',
-            color: '#c57afd',
-          },
-        },
-        {
-          id: 5,
-          label: 'Panel Interview',
-          count: 9,
-          displayType: 'label-info',
-          style: {
-            backgroundColor: '#ebebf0',
-            color: '#65738f',
-          },
-        },
-        {
-          id: 6,
-          label: 'Reference Check',
-          count: 1,
-          displayType: 'label-warn',
-          style: {
-            backgroundColor: '#ebebf0',
-            color: '#65738f',
-          },
-        },
-        {
-          id: 7,
-          label: '321 Form Onboarding',
-          count: 0,
-          displayType: 'label-warn',
-          style: {
-            backgroundColor: '#ebebf0',
-            color: '#65738f',
-          },
-        },
-        {
-          id: 8,
-          label: 'Job Offer',
-          count: 2,
-          displayType: 'label-success',
-          style: {
-            backgroundColor: '#e1f8e0',
-            color: '#74cb1e',
-          },
-        },
-        {
-          id: 9,
-          label: 'Hired',
-          count: 2,
-          displayType: 'label-warn',
-          style: {
-            backgroundColor: '#fceee3',
-            color: '#ed7d30',
-          },
-        },
-        {
-          id: 10,
-          label: 'Rejected',
-          count: 3,
-          displayType: 'label-danger',
-          style: {
-            backgroundColor: '#f9e3e9',
-            color: '#e74432',
-          },
-        },
-      ] as StageI[],
+      candidateName: "" as string,
+      modalState: false as boolean,
     });
 
     const dropdownStages = computed(() => {
@@ -423,10 +290,10 @@ export default defineComponent({
     });
 
     const tableHeaders = computed(() => {
-      const a = props.settings.table.headers.map(header => {
+      const a = props.configurations.table.headers.map(header => {
         return {
           ...header,
-          cellRenderer: eval(header.cellRenderer),
+          cellRenderer: header.cellRenderer,
         };
       });
       return a;
@@ -438,40 +305,68 @@ export default defineComponent({
 
     const oxdCardTableStyleClasses = computed(() => {
       let styleClasses = 'oxd-classic-table ';
-      styleClasses += props.settings.table.topFilters.visibility
+      styleClasses += props.configurations.table.topFilters.visible
         ? 'with-filters'
         : '';
       return styleClasses;
     });
 
-    const selectStage = (stage: StageI) => {
-      console.log(stage);
+    const selectStage = (item) => {
+      emit('sidePanelList:onSelect', item);
     };
 
-    const selectVacancy = (modelValue: SelectedVacancyI) => {
-      state.selectedVacancy = modelValue;
+    const selectVacancy = (item) => {
+      state.selectedVacancy = item;
     };
 
-    const toggleFilterModal = (isVisible: boolean) => {
-      state.showFilterModal = isVisible;
+    const selectCandidate = (value) => {
+      emit('quick-search:onSelect', value);
     };
 
-    const toggleSidebar = () => {
-      state.isSidebarOpen = !state.isSidebarOpen;
+    const tableSort = (value) => {
+      emit('update:order', value);
+    };
+
+    const showFilterDrawer = (): void => {
+      state.modalState = !state.modalState;
+    };
+
+    const applySearch = (): void => {
+      state.modalState = false;
+      emit('drawer-search:apply');
+    };
+
+    const cancelSearch = (): void => {
+      state.modalState = false;
+      emit('drawer-search:reset');
+    };
+
+    const closeDrawer = (): void => {
+      state.modalState = false;
+      emit('drawer-search:cancel');
+    };
+
+    const toggleSidebar = (sidebarOpenState: boolean) => {
+      emit('table-sidebar:onToggle', sidebarOpenState);
     };
 
     return {
       state,
+      sampleImages,
       dropdownStages,
       selectedStage,
       tableHeaders,
       oxdCardTableStyleClasses,
       selectStage,
       selectVacancy,
-      toggleFilterModal,
       profilePicRenderer,
-      actionsRenderer,
+      selectCandidate,
+      showFilterDrawer,
+      applySearch,
+      cancelSearch,
+      closeDrawer,
       toggleSidebar,
+      tableSort,
     };
   },
 });
