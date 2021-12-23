@@ -3,11 +3,11 @@
     class="orangehrm-container recruitment-container"
     :class="{
       'table-sidebar-open':
-        configurations.table.sidebar.visible && state.isSidebarOpen,
+        configurations.table.sidebar.visible && state.isSidePanelOpen,
     }"
   >
     <oxd-table-sidebar
-      v-if="configurations.table.sidebar.header.visible"
+      v-if="configurations.table.sidebar.visible"
       class="oxd-table-sidebar"
       :class="{'with-filters': configurations.table.topFilters.visible}"
       width="230px"
@@ -17,55 +17,55 @@
       :list-visible="configurations.table.sidebar.list.visible"
       :bubble-visible="configurations.table.sidebar.list.bubble.visible"
       :button="configurations.table.sidebar.header.button"
-      :selected-stage-id="state.selectedStageId"
-      @sidePanelList:onSelect="selectStage"
-      @table-sidebar:onToggle="toggleSidebar"
-      :is-sidebar-open="state.isSidebarOpen"
+      :selected-list-item-id="selectedListItem.id"
+      @sidePanelList:onSelect="sidePanelListOnSelect"
+      @side-panel:onToggle="toggleSidePanel"
+      :is-side-panel-open="state.isSidePanelOpen"
     >
-      <template v-slot:sidebarBody>
-        <slot name="sidebarBody">
-        </slot>
+      <template v-slot:sidePanelBody>
+        <slot name="sidePanelBody"></slot>
       </template>
-      <template v-slot:list>
-        <slot name="list"></slot>
+      <template v-slot:footer>
+        <slot name="footer"></slot>
       </template>
     </oxd-table-sidebar>
     <div
       class="table-card-list-wrapper"
-      :class="{'w-100': !state.isSidebarOpen}"
+      :class="{'w-100': !state.isSidePanelOpen}"
     >
       <oxd-table-filter
         v-if="configurations.table.topFilters.visible"
-        class="candidates-list-table-filter"
+        class="list-table-filter"
         :filter-title="
           `(${totalRecordsCount}) ${
-            totalRecordsCount > 1 ? 'Candidates' : 'Candidate'
+            totalRecordsCount > 1
+              ? configurations.table.topFilters.listRecordCount.multiTerm
+              : configurations.table.topFilters.listRecordCount.singleTerm
           } found`
         "
       >
         <template v-slot:toggleOptions>
           <oxd-quick-search
-            :class="'candidates-quick-search'"
             :placeholder="'Search'"
-            :createOptions="quickSearchCreateOptions"
-            @dropdown:modelValue="selectCandidate"
+            :clear="true"
+            :createOptions="quickSearchOptions"
+            :modelValue="state.selectedQuickSearch"
+            @dropdown:modelValue="quickSearchSelect"
           >
             <template v-slot:iconSlot>
               <oxd-icon-button
+                v-if="!state.selectedQuickSearch"
                 name="oxd-search"
                 display-type="label-info"
-                class="candidate-search-btn"
+                class="quick-search-btn"
               ></oxd-icon-button>
             </template>
-            <template v-slot:option="{ data }">
-              <oxd-list-profile-pic
+            <template v-slot:option="{data}">
+              <oxd-profile-pic
                 size="small"
-                :style="{
-                  'margin-right': '0.5rem',
-                }"
-                :image-src="data.imageSrc ? data.imageSrc : sampleImages['default-user'].value"
+                :imageSrc="data.imageSrc"
               />
-              <span>{{ data.candidateName }}</span>
+              <span class="margin-left">{{ data.label }}</span>
             </template>
           </oxd-quick-search>
           <oxd-icon-button
@@ -76,8 +76,6 @@
             @click="showFilterDrawer"
           />
           <oxd-icon-button name="gear-fill" />
-        </template>
-        <template v-slot:exportOptions>
           <oxd-button
             :size="'medium'"
             display-type="label-info"
@@ -87,22 +85,35 @@
         </template>
       </oxd-table-filter>
 
-      <oxd-card-table
-        :selector="state.selector"
-        :headers="tableHeaders"
-        :items="listItems"
-        :selectable="true"
-        :clickable="false"
-        :isDynamicCell="true"
-        :style-class="oxdCardTableStyleClasses"
-        v-model:selected="state.checkedItems"
-        v-model:order="state.order"
-        @update:order="tableSort"
-        rowDecorator="oxd-table-decorator-card"
-      />
-
+      <div class="oxd-card-table-wrapper">
+        <oxd-card-table
+          :selector="state.selector"
+          :headers="configurations.table.headers"
+          :items="listItems"
+          :selectable="true"
+          :clickable="false"
+          :isDynamicCell="true"
+          :style-class="oxdCardTableStyleClasses"
+          v-model:selected="state.checkedItems"
+          v-model:order="order"
+          @update:order="tableSort"
+          rowDecorator="oxd-table-decorator-card"
+        />
+        <oxd-pagination
+          class="list-pagination"
+          :length="paginationLength"
+          v-model:current="state.currentPage"
+          :max="totalRecordsCount"
+          :pages-list="pagination.pages"
+          :current="pagination.limit"
+          @previous="previous"
+          @next="next"
+          @clickPage="clickPage"
+          @onPerPageSelect="perPageSelect"
+        />
+      </div>
     </div>
-    <oxd-drawer
+    <!-- <oxd-drawer
       v-if="configurations.drawer.visible"
       :modal-state="state.modalState"
       :width="configurations.drawer.width"
@@ -118,16 +129,17 @@
       :cancel-button="{
         click: closeDrawer,
       }"
+      @drawer:click-outside="closeDrawer"
     >
       <template v-slot:header>
         <div v-if="configurations.drawer.header.visible" class="header">
           <slot name="drawerHeader">
             <div class="d-flex align-center justify-between">
-              <h5>{{configurations.drawer.header.title}}</h5>
+              <h5>{{ configurations.drawer.header.title }}</h5>
               <oxd-icon-button
                 v-if="configurations.drawer.header.charmButton.visible"
                 :name="configurations.drawer.header.charmButton.icon"
-                @click="cancelSearch"
+                @click="resetSearch"
               />
             </div>
           </slot>
@@ -136,47 +148,23 @@
       <template v-slot:body>
         <slot name="drawerBody"></slot>
       </template>
-    </oxd-drawer>
+    </oxd-drawer> -->
   </div>
 </template>
 
 <script lang="ts">
 import CardTable from '@orangehrm/oxd/core/components/CardTable/CardTable.vue';
-import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
 import TableFilter from '@orangehrm/oxd/core/components/TableFilter/TableFilter.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import QuickSearchInput from '@orangehrm/oxd/core/components/Input/Autocomplete/QuickSearchInput.vue';
 import TableSidebar from '@orangehrm/oxd/core/components/TableSidebar/TableSidebar.vue';
-import ListProfilePic from './ListProfilePic.vue';
-import ProfilePic from "@orangehrm/oxd/core/components/List/ListProfilePic.vue";
-import Drawer from "@orangehrm/oxd/core/components/Drawer/Drawer.vue";
+import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue';
+import Drawer from '@orangehrm/oxd/core/components/Drawer/Drawer.vue';
+import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination.vue';
 import images from './images';
 
 import {defineComponent, reactive, computed} from 'vue';
-
-interface SelectedVacancyI extends SelectUII {
-  id: number;
-  label: string;
-}
-
-interface SelectUII {
-  id: number | string;
-  label: string;
-  _selected?: boolean | undefined;
-}
-
-interface StageStylesI {
-  backgroundColor: string;
-  color: string;
-}
-
-interface StageI extends SelectUII {
-  count: number;
-  selected?: boolean | undefined;
-  style?: StageStylesI | undefined;
-  displayType?: string;
-}
 
 export default defineComponent({
   components: {
@@ -186,8 +174,9 @@ export default defineComponent({
     'oxd-button': Button,
     'oxd-icon-button': IconButton,
     'oxd-quick-search': QuickSearchInput,
-    "oxd-list-profile-pic": ProfilePic,
-    "oxd-drawer": Drawer,
+    'oxd-profile-pic': ProfilePic,
+    'oxd-drawer': Drawer,
+    'oxd-pagination': Pagination,
   },
   props: {
     configurations: {
@@ -205,102 +194,31 @@ export default defineComponent({
       type: Array,
       default: () => [],
     },
-    quickSearchCreateOptions: {
+    quickSearchOptions: {
       type: Function,
       required: true,
     },
+    pagination: {
+      type: Object,
+      default: () => ({
+        limit: 10 as number,
+        pages: [10, 20, 50, 100] as number[],
+      }),
+    },
+    selectedListItem: {
+      type: Object,
+      default: () => ({}),
+    },
   },
-  setup(props, { emit }) {
+  setup(props, {emit}) {
     const sampleImages = images;
-    const profilePicRenderer = (_index, _item, _header, row) => {
-      const profilePic = {
-        component: ListProfilePic,
-        props: {
-          size: 'small',
-          imageSrc: row.profilePic
-            ? row.profilePic
-            : images['default-user'].value,
-        },
-      };
-      return {
-        props: {
-          header: {
-            cellConfig: {
-              ...{profilePic},
-            },
-          },
-        },
-      };
-    };
 
     const state = reactive({
-      selectedStageId: -1,
-      selectedVacancy: {
-        id: -1,
-        label: 'All Vacancies',
-      },
-      isSidebarOpen: true,
+      currentPage: 1,
+      isSidePanelOpen: true,
       checkedItems: [],
-      order: {
-        candidate: 'ASC',
-        email: 'ASC',
-        contactNumber: 'ASC',
-        dateApplied: 'DESC',
-      },
-      stages: [],
-      vacancies: [
-        {
-          id: -1,
-          label: 'All Vacancies',
-        },
-        {
-          id: 1,
-          label: 'Sales Coordinator',
-        },
-        {
-          id: 2,
-          label: 'Credit Analyst',
-        },
-        {
-          id: 3,
-          label: 'Customer Success Executive',
-        },
-      ],
-      candidateName: "" as string,
       modalState: false as boolean,
-    });
-
-    const dropdownStages = computed(() => {
-      return [
-        {
-          id: -1,
-          label: 'All Vacancies',
-          count: 54,
-          displayType: 'text',
-          selected: true,
-        },
-        {
-          id: 0,
-          label: 'All Candidates',
-          count: 39,
-          displayType: 'text',
-        },
-        ...state.stages,
-      ];
-    });
-
-    const tableHeaders = computed(() => {
-      const a = props.configurations.table.headers.map(header => {
-        return {
-          ...header,
-          cellRenderer: header.cellRenderer,
-        };
-      });
-      return a;
-    });
-
-    const selectedStage = computed(() => {
-      return dropdownStages.value.find(stage => stage.selected);
+      selectedQuickSearch: null,
     });
 
     const oxdCardTableStyleClasses = computed(() => {
@@ -311,24 +229,49 @@ export default defineComponent({
       return styleClasses;
     });
 
-    const selectStage = (item) => {
+    const order = computed(() => {
+      const sortableFieldsObj = {};
+      props.configurations.table.headers.forEach(header => {
+        if (header.initialSortOrder) {
+          sortableFieldsObj[header.sortField] = header.initialSortOrder;
+        }
+      });
+      return sortableFieldsObj;
+    });
+
+    const isFloat = (n) => {
+      return n === +n && n !== (n | 0)
+    };
+
+    const paginationLength = computed((): number => {
+      const pagesLength: number =
+        props.totalRecordsCount / props.pagination.limit;
+      return isFloat(pagesLength) ? Math.floor(pagesLength) + 1 : pagesLength;
+    });
+
+    const sidePanelListOnSelect = item => {
       emit('sidePanelList:onSelect', item);
     };
 
-    const selectVacancy = (item) => {
-      state.selectedVacancy = item;
+    const quickSearchSelect = value => {
+      if (value) {
+        state.selectedQuickSearch = {
+          label: value.candidateName,
+        };
+        emit('quick-search:onSelect', value);
+      } else {
+        state.selectedQuickSearch = null;
+        emit('quick-search:onClear');
+      };
     };
 
-    const selectCandidate = (value) => {
-      emit('quick-search:onSelect', value);
-    };
-
-    const tableSort = (value) => {
+    const tableSort = value => {
       emit('update:order', value);
     };
 
     const showFilterDrawer = (): void => {
       state.modalState = !state.modalState;
+      emit('drawer:show', true);
     };
 
     const applySearch = (): void => {
@@ -336,7 +279,7 @@ export default defineComponent({
       emit('drawer-search:apply');
     };
 
-    const cancelSearch = (): void => {
+    const resetSearch = (): void => {
       state.modalState = false;
       emit('drawer-search:reset');
     };
@@ -346,34 +289,52 @@ export default defineComponent({
       emit('drawer-search:cancel');
     };
 
-    const toggleSidebar = (sidebarOpenState: boolean) => {
+    const toggleSidePanel = (sidebarOpenState: boolean) => {
+      state.isSidePanelOpen = sidebarOpenState;
       emit('table-sidebar:onToggle', sidebarOpenState);
+    };
+
+    const previous = (e: Event) => {
+      emit('pagination:onPrevious', e);
+    };
+
+    const next = (e: Event) => {
+      emit('pagination:onNext', e);
+    };
+
+    const clickPage = (page: number, e: Event) => {
+      emit('pagination:onSelectPage', page, e);
+    };
+
+    const perPageSelect = (page: number) => {
+      emit('pagination:onSelectPerPage', page);
     };
 
     return {
       state,
       sampleImages,
-      dropdownStages,
-      selectedStage,
-      tableHeaders,
       oxdCardTableStyleClasses,
-      selectStage,
-      selectVacancy,
-      profilePicRenderer,
-      selectCandidate,
+      order,
+      sidePanelListOnSelect,
+      quickSearchSelect,
       showFilterDrawer,
       applySearch,
-      cancelSearch,
+      resetSearch,
       closeDrawer,
-      toggleSidebar,
+      toggleSidePanel,
       tableSort,
+      previous,
+      next,
+      clickPage,
+      perPageSelect,
+      paginationLength,
     };
   },
 });
 </script>
 
 <style lang="scss" scoped>
-::v-deep(.header-image) {
+:deep(.header-image) {
   img {
     width: 2.5rem !important;
   }
@@ -392,18 +353,19 @@ export default defineComponent({
   }
   .table-card-list-wrapper {
     width: 100%;
-    .candidates-list-table-filter {
+    .list-table-filter {
       padding-bottom: 0;
-      ::v-deep(.oxd-divider) {
+      :deep(.oxd-divider) {
         margin-top: 0.25rem;
         margin-bottom: 0;
       }
-      ::v-deep(.oxd-table-filter-header-title) {
+      :deep(.oxd-table-filter-header-title) {
         .oxd-table-filter-title {
-          font-weight: 500 !important;
+          // Use Sub Title in OXD
+          // font-weight: 500 !important;
         }
       }
-      ::v-deep(.oxd-table-filter-header) {
+      :deep(.oxd-table-filter-header) {
         .oxd-table-filter-header-options {
           align-items: center;
           .oxd-icon-button {
@@ -432,13 +394,13 @@ export default defineComponent({
       .oxd-autocomplete-search-wrapper {
         width: 300px;
       }
-      ::v-deep(.oxd-autocomplete-text-input) {
+      :deep(.oxd-autocomplete-text-input) {
         background-color: #fff;
         padding-top: unset;
         padding-bottom: unset;
         height: 36px;
       }
-      ::v-deep(.candidate-search-btn) {
+      :deep(.quick-search-btn) {
         padding: 0;
         min-width: unset;
         min-height: unset;
@@ -462,20 +424,40 @@ export default defineComponent({
   }
   .oxd-classic-table {
     flex-wrap: nowrap;
-    ::v-deep(.oxd-icon-button) {
+    :deep(.oxd-icon-button) {
       font-size: 15px;
     }
-    ::v-deep(.oxd-table-th) {
+    :deep(.oxd-table-th) {
       text-align: left;
       padding-top: 0.65rem;
       padding-bottom: 0.65rem;
     }
-    ::v-deep(.oxd-table-cell) {
+    :deep(.oxd-table-cell) {
       flex-wrap: nowrap;
     }
   }
 }
 .w-100 {
   width: 100% !important;
+}
+.margin-left {
+  margin-left: 0.5rem;
+}
+.list-pagination {
+  height: initial;
+  line-height: initial;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  box-shadow: none;
+  :deep(i) {
+    font-size: initial;
+    height: initial;
+    line-height: initial;
+  }
+  :deep(.oxd-select-wrapper) {
+    margin-left: 0.5rem;
+  }
 }
 </style>

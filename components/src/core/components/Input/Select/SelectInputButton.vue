@@ -8,9 +8,12 @@
       "
       :label="buttonData.label"
       :iconName="buttonData.iconName"
+      :hide-dropdown-label="hideDropdownLabel"
       :size="buttonData.size"
       :style="buttonData.style"
       :displayType="buttonData.displayType"
+      :tooltip="tooltip"
+      :flow="flow"
       @click="onToggleDropdown"
     >
       <template v-if="buttonData.iconImageSrc" v-slot:icon>
@@ -28,7 +31,6 @@
             >Vacancy</span
           >
           <span
-            v-if="!hideDropdownLabel"
             class="label"
             v-text="buttonData.label"
           ></span>
@@ -42,6 +44,7 @@
     <oxd-select-dropdown
       v-if="dropdownOpen"
       :class="dropdownClasses"
+      :style="dropdownStyles"
       :loading="loading"
       :empty="computedOptions.length === 0"
     >
@@ -110,6 +113,10 @@ export default defineComponent({
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
+    dropdownStyles: {
+      type: Object,
+      default: () => null,
+    },
     button: {
       type: Object,
       default: () => null,
@@ -118,6 +125,14 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    tooltip: {
+      type: String,
+      default: null,
+    },
+    flow: {
+      type: String,
+      default: 'top',
+    }
   },
 
   data() {
@@ -202,8 +217,11 @@ export default defineComponent({
   ::v-deep(.oxd-button-label-wrapper) {
     display: none;
   }
-  ::v-deep(.oxd-button-icon) {
-    display: none;
+  ::v-deep(.oxd-icon.bi-chevron-down) {
+    display: none !important;
+  }
+  ::v-deep(.oxd-icon.bi-chevron-up) {
+    display: none !important;
   }
 }
 .dropdown-btn {

@@ -172,10 +172,11 @@ export default defineComponent({
       });
     },
     selectedItem(): string {
+      let label = null;
       if (!this.multiple && this.modelValue?.label) {
-        return this.modelValue.label;
+        label = this.modelValue.label;
       }
-      return null;
+      return label;
     },
     inputValue(): string {
       return (
@@ -185,12 +186,13 @@ export default defineComponent({
       );
     },
     showClear(): boolean {
-      return (
+      const a = (
         !this.disabled &&
         !this.readonly &&
         this.clear &&
         this.selectedItem !== null
       );
+      return a;
     },
   },
 

@@ -14,13 +14,19 @@
         @click="onClickPage(page, $event)"
       />
       <oxd-pagination-page-item next @click="onClickNext" v-if="showNext" />
+      <oxd-select-input
+        :options="perPages"
+        @update:modelValue="selectPerPage"
+        :model-value="perPage"
+      />
     </ul>
   </nav>
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, computed} from 'vue';
 import PageItem from '@orangehrm/oxd/core/components/Pagination/PageItem.vue';
+import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
 import {pageableMixin} from '../../../mixins/pageable';
 
 export default defineComponent({
@@ -28,6 +34,7 @@ export default defineComponent({
 
   components: {
     'oxd-pagination-page-item': PageItem,
+    "oxd-select-input": SelectInput,
   },
 
   mixins: [pageableMixin],
@@ -37,6 +44,10 @@ export default defineComponent({
   data() {
     return {
       pagePointer: this.current,
+      perPage:  {
+        id: 1,
+        label: 10
+      },
     };
   },
 
@@ -56,9 +67,21 @@ export default defineComponent({
       default: 1,
       validator: (val: number) => Number.isInteger(val),
     },
+    pagesList: {
+      type: Array,
+      default: () => [10, 20, 50, 100],
+    }
   },
 
   computed: {
+    perPages() {
+      return this.pagesList.map((page, index) => {
+        return {
+          id: ++index,
+          label: page
+        };
+      });
+    },
     currentPage: {
       get(): number {
         if (this.current < 1 || this.current > this.length) {
@@ -147,6 +170,10 @@ export default defineComponent({
       }
       return range;
     },
+    selectPerPage(val) {
+      this.perPage = val;
+      this.$emit('onPerPageSelect', val);
+    }
   },
 });
 </script>

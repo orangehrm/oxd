@@ -1,5 +1,5 @@
 <template>
-  <button type="button" :class="classes" :style="style">
+  <button type="button" :class="classes" :style="style" :tooltip="tooltip" :flow="flow">
     <slot name="icon">
       <oxd-icon v-if="iconName" :name="iconName" class="oxd-button-icon" />
     </slot>
@@ -65,6 +65,14 @@ export default defineComponent({
     iconRightName: {
       type: String,
     },
+    tooltip: {
+      type: String,
+      default: null,
+    },
+    flow: {
+      type: String,
+      default: 'top',
+    }
   },
 
   computed: {

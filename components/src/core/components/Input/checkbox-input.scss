@@ -60,6 +60,8 @@
 .oxd-checkbox-input {
   position: relative;
   display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: $oxd-checkbox-border-radius;
   width: $oxd-checkbox-width;
   height: $oxd-checkbox-height;

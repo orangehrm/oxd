@@ -1,12 +1,15 @@
 <template>
   <div :class="classes">
-    <slot> </slot>
+    <slot>
+      <img :src="imageSrc ? imageSrc : userPlaceholderImage" />
+    </slot>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {SIZES, SIZE_MEDIUM, ImageSize} from './types';
+import { defaultUser } from './../List/images';
 export default defineComponent({
   name: 'oxd-profile-pic',
   props: {
@@ -17,6 +20,13 @@ export default defineComponent({
         return SIZES.indexOf(value) !== -1;
       },
     },
+    style: {
+      type: Object,
+    },
+    imageSrc: {
+      type: String,
+      default: null,
+    },
   },
   computed: {
     classes(): object {
@@ -25,6 +35,9 @@ export default defineComponent({
         [`profile-image--${this.size}`]: true,
       };
     },
+    userPlaceholderImage() {
+      return defaultUser.value;
+    }
   },
 });
 </script>

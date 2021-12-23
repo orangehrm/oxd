@@ -12,7 +12,7 @@
 <script lang="ts">
 import {defineComponent, reactive, computed, ref} from 'vue';
 import List from '@orangehrm/oxd/core/components/List/List';
-import ListProfilePic from '@orangehrm/oxd/core/components/List/ListProfilePic';
+import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic';
 import list from './list.json'
 
 interface SelectedVacancyI extends SelectUII {
@@ -50,10 +50,10 @@ export default defineComponent({
 
     const profilePicRenderer = (_index, _item, _header, row) => {
       const profilePic = {
-        component: ListProfilePic,
+        component: ProfilePic,
         props: {
           size: 'small',
-          imageSrc: require('@orangehrm/oxd/assets/images/user-default-400.png'),
+          imageSrc: null,
         },
       };
       return {

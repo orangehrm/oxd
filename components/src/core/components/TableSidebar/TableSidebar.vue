@@ -4,7 +4,9 @@
       <slot name="header">
         <oxd-button
           class="table-header-action-btn"
-          :class="!isSidebarOpen ? 'no-label' : 'w-100'"
+          :class="!isSidePanelOpen ? 'no-label' : 'w-100'"
+          :tooltip="!isSidePanelOpen ? buttonData.label : null"
+          flow="right"
           :label="buttonData.label"
           :iconName="buttonData.iconName"
           :size="buttonData.size"
@@ -20,37 +22,36 @@
       </slot>
     </div>
     <div v-if="bodyVisible" class="body">
-      <slot name="sidebarBody"></slot>
+      <slot name="sidePanelBody"></slot>
     </div>
-    <div v-if="listVisible" class="list">
-      <slot name="list">
+    <div v-if="listVisible" class="footer list">
+      <slot name="footer">
         <ul>
           <li
             v-for="(item, id) in sidePanelList"
             :key="id"
             @click="selectListitem(item)"
-            :class="{
-              active: selectedListItem.id === item.id,
-              collapsed: !isSidebarOpen,
-            }"
+            :class="{ collapsed: !isSidePanelOpen }"
           >
-            <div class="count-container">
+            <div class="count-container" :class="{ active: selectedListItem.id === item.id }">
               <oxd-chip
                 v-if="bubbleVisible"
                 :label="item.count"
+                :tooltip="!isSidePanelOpen ? item.label : null"
+                flow="right"
                 class="oxd-dropdown-selected-chip"
                 :displayType="item.displayType"
                 :background-color="item.style.backgroundColor"
                 :color="item.style.color"
               />
+              <p v-if="isSidePanelOpen" class="oxd-label">{{ item.label }}</p>
             </div>
-            <p v-if="isSidebarOpen" class="oxd-label">{{ item.label }}</p>
           </li>
         </ul>
       </slot>
     </div>
     <oxd-icon-button
-      :name="isSidebarOpen ? 'chevron-left' : 'chevron-right'"
+      :name="isSidePanelOpen ? 'chevron-left' : 'chevron-right'"
       class="oxd-table-sidebar-toggle-btn"
       @click="toggleSidebar"
     />
@@ -103,7 +104,7 @@ export default defineComponent({
       type: Array,
       default: () => [],
     },
-    selectedStageId: {
+    selectedListItemId: {
       type: Number,
     },
   },
@@ -114,11 +115,11 @@ export default defineComponent({
       label: string;
       active: boolean;
     }>({
-      id: props.selectedStageId,
+      id: props.selectedListItemId,
       label: null,
       active: false,
     });
-    const isSidebarOpen = ref<boolean>(true)
+    const isSidePanelOpen = ref<boolean>(true)
 
     // TODO: Optimize these duplicated methods; Sandamal
     const buttonData = computed(() => {
@@ -141,7 +142,7 @@ export default defineComponent({
 
     const customStyles = computed(() => {
       return {
-        width: isSidebarOpen.value ? props.width : null,
+        width: isSidePanelOpen.value ? props.width : null,
       };
     });
 
@@ -155,15 +156,15 @@ export default defineComponent({
     };
 
     const toggleSidebar = () => {
-      isSidebarOpen.value = !isSidebarOpen.value
-      emit('table-sidebar:onToggle', isSidebarOpen.value);
+      isSidePanelOpen.value = !isSidePanelOpen.value
+      emit('side-panel:onToggle', isSidePanelOpen.value);
     };
 
     return {
       selectedListItem,
       customStyles,
       buttonData,
-      isSidebarOpen,
+      isSidePanelOpen,
       selectListitem,
       toggleSidebar,
     };
@@ -176,7 +177,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .list {
-  margin-top: 1.5rem;
+  padding-top: 1.25rem !important;
   ul {
     list-style: none;
     margin: 0;
@@ -184,15 +185,15 @@ export default defineComponent({
     li {
       display: flex;
       align-items: center;
-      padding: 0.5rem;
-      border-radius: 1.5rem;
-      &.collapsed {
-        display: table;
-      }
       .count-container {
+        display: flex;
+        align-items: center;
         width: auto;
-        height: 21px;
+        padding: 0.5rem;
+        border-radius: 1.5rem;
+        width: 100%;
         .oxd-dropdown-selected-chip {
+          position: relative;
           min-width: 20px;
           width: auto;
           padding: 4px 9px;
@@ -200,21 +201,28 @@ export default defineComponent({
           font-weight: 700;
           font-family: 'Nunito Sans', sans-serif;
         }
+        &:hover,
+        &.active {
+          background-color: rgba(100, 114, 140, 0.1);
+          cursor: pointer;
+        }
       }
       .oxd-label {
-        margin-left: 0.5rem;
-        margin-top: 0.25rem;
-        margin-bottom: 0.25rem;
+        margin: 0.25rem 0.5rem;
         font-size: 0.75rem;
         line-height: normal;
       }
-      &:hover,
-      &.active {
-        background-color: rgba(100, 114, 140, 0.1);
-        cursor: pointer;
-      }
       &:not(:last-child) {
         margin-bottom: 5px;
+      }
+      &.collapsed {
+        justify-content: center;
+        .count-container {
+          display: table-cell;
+          text-align: center;
+          vertical-align: middle;
+          width: auto;
+        }
       }
     }
   }
