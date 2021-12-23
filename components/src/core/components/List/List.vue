@@ -103,7 +103,7 @@
           class="list-pagination"
           :length="paginationLength"
           v-model:current="state.currentPage"
-          :max="totalRecordsCount"
+          :max="maxPages"
           :pages-list="pagination.pages"
           :current="pagination.limit"
           @previous="previous"
@@ -209,6 +209,10 @@ export default defineComponent({
       type: Object,
       default: () => ({}),
     },
+    maxPages: {
+      type: Number,
+      default: 5,
+    }
   },
   setup(props, {emit}) {
     const sampleImages = images;
