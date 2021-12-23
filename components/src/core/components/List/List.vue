@@ -160,7 +160,7 @@ import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import QuickSearchInput from '@orangehrm/oxd/core/components/Input/Autocomplete/QuickSearchInput.vue';
 import TableSidebar from '@orangehrm/oxd/core/components/TableSidebar/TableSidebar.vue';
 import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue';
-import Drawer from '@orangehrm/oxd/core/components/Drawer/Drawer.vue';
+// import Drawer from '@orangehrm/oxd/core/components/Drawer/Drawer.vue';
 import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination.vue';
 import images from './images';
 
@@ -175,7 +175,7 @@ export default defineComponent({
     'oxd-icon-button': IconButton,
     'oxd-quick-search': QuickSearchInput,
     'oxd-profile-pic': ProfilePic,
-    'oxd-drawer': Drawer,
+    // 'oxd-drawer': Drawer,
     'oxd-pagination': Pagination,
   },
   props: {
