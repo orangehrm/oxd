@@ -175,7 +175,7 @@ import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import QuickSearchInput from '@orangehrm/oxd/core/components/Input/Autocomplete/QuickSearchInput.vue';
 import TableSidebar from '@orangehrm/oxd/core/components/TableSidebar/TableSidebar.vue';
 import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue';
-// import Drawer from '@orangehrm/oxd/core/components/Drawer/Drawer.vue';
+import Drawer from '@orangehrm/oxd/core/components/Drawer/Drawer.vue';
 import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination.vue';
 import images from './images';
 
@@ -190,7 +190,7 @@ export default defineComponent({
     'oxd-icon-button': IconButton,
     'oxd-quick-search': QuickSearchInput,
     'oxd-profile-pic': ProfilePic,
-    // 'oxd-drawer': Drawer,
+    'oxd-drawer': Drawer,
     'oxd-pagination': Pagination,
   },
   props: {
@@ -309,7 +309,7 @@ export default defineComponent({
       };
     };
 
-    const tableSort = (value: any) => {
+    const tableSort = value => {
       emit('update:order', value);
     };
 
@@ -410,12 +410,12 @@ export default defineComponent({
         margin-top: 0.25rem;
         margin-bottom: 0;
       }
-      // :deep(.oxd-table-filter-header-title) {
-      //   .oxd-table-filter-title {
-      //     // Use Sub Title in OXD
-      //     // font-weight: 500 !important;
-      //   }
-      // }
+      :deep(.oxd-table-filter-header-title) {
+        .oxd-table-filter-title {
+          // Use Sub Title in OXD
+          // font-weight: 500 !important;
+        }
+      }
       :deep(.oxd-table-filter-header) {
         .oxd-table-filter-header-options {
           align-items: center;
@@ -514,6 +514,19 @@ export default defineComponent({
 .oxd-button.archive {
   display: flex;
   align-items: center;
-  color: #1e6ceb !important;
+  :hover {
+    color: #1e6ceb;
+    background-color: rgba(30, 108, 235, 0.15);
+    svg {
+      * {
+        fill: #fff !important;
+      }
+    }
+  }
+  :deep(svg) {
+    * {
+      fill: #1e6ceb !important;
+    }
+  }
 }
 </style>
