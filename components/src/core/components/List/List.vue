@@ -45,7 +45,7 @@
             :label="'Archive'"
             :size="'medium'"
             :displayType="'ghost-info'"
-            :style="{ 'margin-left': '0.5rem' }"
+            :style="{'margin-left': '0.5rem'}"
             icon-name="oxd-archive"
           />
           <oxd-button
@@ -54,7 +54,7 @@
             :label="'Delete Selected'"
             :size="'medium'"
             :displayType="'ghost-danger'"
-            :style="{ 'margin-left': '0.5rem' }"
+            :style="{'margin-left': '0.5rem'}"
             icon-name="trash"
           />
         </template>
@@ -75,10 +75,7 @@
               ></oxd-icon-button>
             </template>
             <template v-slot:option="{data}">
-              <oxd-profile-pic
-                size="small"
-                :imageSrc="data.imageSrc"
-              />
+              <oxd-profile-pic size="small" :imageSrc="data.imageSrc" />
               <span class="margin-left">{{ data.label }}</span>
             </template>
           </oxd-quick-search>
@@ -175,7 +172,7 @@ import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import QuickSearchInput from '@orangehrm/oxd/core/components/Input/Autocomplete/QuickSearchInput.vue';
 import TableSidebar from '@orangehrm/oxd/core/components/TableSidebar/TableSidebar.vue';
 import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue';
-import Drawer from '@orangehrm/oxd/core/components/Drawer/Drawer.vue';
+// import Drawer from '@orangehrm/oxd/core/components/Drawer/Drawer.vue';
 import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination.vue';
 import images from './images';
 
@@ -190,7 +187,7 @@ export default defineComponent({
     'oxd-icon-button': IconButton,
     'oxd-quick-search': QuickSearchInput,
     'oxd-profile-pic': ProfilePic,
-    'oxd-drawer': Drawer,
+    // 'oxd-drawer': Drawer,
     'oxd-pagination': Pagination,
   },
   props: {
@@ -242,7 +239,7 @@ export default defineComponent({
       checkedItems: [],
       modalState: false as boolean,
       selectedQuickSearch: null,
-      selectedItemIndexes: []
+      selectedItemIndexes: [],
     });
 
     const oxdCardTableStyleClasses = computed(() => {
