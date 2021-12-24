@@ -5,6 +5,9 @@
         <oxd-text class="oxd-table-filter-title" tag="h5">{{
           filterTitle
         }}</oxd-text>
+        <div class="--actions">
+          <slot name="actionOptions"></slot>
+        </div>
       </div>
       <div class="oxd-table-filter-header-options">
         <div class="--toggle">
@@ -72,6 +75,10 @@ export default defineComponent({
     .oxd-divider {
       margin: 0;
     }
+  }
+  .oxd-table-filter-header-title, .--actions {
+    display: flex;
+    align-items: center;
   }
   .oxd-table-filter-header-options {
     & .oxd-icon-button, .oxd-button {

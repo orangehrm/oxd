@@ -634,6 +634,7 @@ export default {
       const stage = {
         component: SelectInput,
         props: {
+          hideDropdownDefaultLabel: true,
           options: mappedStages,
           modelValue: selectedStage,
           'onUpdate:modelValue': (params) => {

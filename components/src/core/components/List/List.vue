@@ -36,14 +36,28 @@
       <oxd-table-filter
         v-if="configurations.table.topFilters.visible"
         class="list-table-filter"
-        :filter-title="
-          `(${totalRecordsCount}) ${
-            totalRecordsCount > 1
-              ? configurations.table.topFilters.listRecordCount.multiTerm
-              : configurations.table.topFilters.listRecordCount.singleTerm
-          } found`
-        "
+        :filter-title="filterTitle"
       >
+        <template v-slot:actionOptions>
+          <oxd-button
+            v-if="state.selectedItemIndexes.length > 0"
+            class="default-btn--cancel archive"
+            :label="'Archive'"
+            :size="'medium'"
+            :displayType="'ghost-info'"
+            :style="{ 'margin-left': '0.5rem' }"
+            icon-name="oxd-archive"
+          />
+          <oxd-button
+            v-if="state.selectedItemIndexes.length > 0"
+            class="default-btn--save"
+            :label="'Delete Selected'"
+            :size="'medium'"
+            :displayType="'ghost-danger'"
+            :style="{ 'margin-left': '0.5rem' }"
+            icon-name="trash"
+          />
+        </template>
         <template v-slot:toggleOptions>
           <oxd-quick-search
             :placeholder="'Search'"
@@ -97,6 +111,7 @@
           v-model:selected="state.checkedItems"
           v-model:order="order"
           @update:order="tableSort"
+          @update:selected="tableSelect"
           rowDecorator="oxd-table-decorator-card"
         />
         <oxd-pagination
@@ -186,7 +201,11 @@ export default defineComponent({
     listItems: {
       type: Array,
     },
-    totalRecordsCount: {
+    filteredTotalRecordsCount: {
+      type: Number,
+      default: 0,
+    },
+    wholeRecordsCount: {
       type: Number,
       default: 0,
     },
@@ -223,6 +242,7 @@ export default defineComponent({
       checkedItems: [],
       modalState: false as boolean,
       selectedQuickSearch: null,
+      selectedItemIndexes: []
     });
 
     const oxdCardTableStyleClasses = computed(() => {
@@ -249,8 +269,28 @@ export default defineComponent({
 
     const paginationLength = computed((): number => {
       const pagesLength: number =
-        props.totalRecordsCount / props.pagination.limit;
+        props.filteredTotalRecordsCount / props.pagination.limit;
       return isFloat(pagesLength) ? Math.floor(pagesLength) + 1 : pagesLength;
+    });
+
+    const filterTitle = computed((): string => {
+      let title = '';
+      if (state.selectedItemIndexes.length > 0) {
+        if (state.selectedItemIndexes.length > 1) {
+          title = props.configurations.table.topFilters.listRecordCount.multiTerm;
+        } else {
+          title = props.configurations.table.topFilters.listRecordCount.singleTerm;
+        }
+        title = `(${state.selectedItemIndexes.length}) ${title} selected`;
+      } else {
+        if (props.filteredTotalRecordsCount > 1) {
+          title = props.configurations.table.topFilters.listRecordCount.multiTerm;
+        } else {
+          title = props.configurations.table.topFilters.listRecordCount.singleTerm;
+        };
+        title = `(${props.filteredTotalRecordsCount}) ${title} found`;
+      }
+      return title;
     });
 
     const sidePanelListOnSelect = item => {
@@ -269,8 +309,13 @@ export default defineComponent({
       };
     };
 
-    const tableSort = value => {
+    const tableSort = (value: any) => {
       emit('update:order', value);
+    };
+
+    const tableSelect = items => {
+      state.selectedItemIndexes = items;
+      emit('update:selected', items);
     };
 
     const showFilterDrawer = (): void => {
@@ -316,6 +361,7 @@ export default defineComponent({
 
     return {
       state,
+      filterTitle,
       sampleImages,
       oxdCardTableStyleClasses,
       order,
@@ -327,6 +373,7 @@ export default defineComponent({
       closeDrawer,
       toggleSidePanel,
       tableSort,
+      tableSelect,
       previous,
       next,
       clickPage,
@@ -363,12 +410,12 @@ export default defineComponent({
         margin-top: 0.25rem;
         margin-bottom: 0;
       }
-      :deep(.oxd-table-filter-header-title) {
-        .oxd-table-filter-title {
-          // Use Sub Title in OXD
-          // font-weight: 500 !important;
-        }
-      }
+      // :deep(.oxd-table-filter-header-title) {
+      //   .oxd-table-filter-title {
+      //     // Use Sub Title in OXD
+      //     // font-weight: 500 !important;
+      //   }
+      // }
       :deep(.oxd-table-filter-header) {
         .oxd-table-filter-header-options {
           align-items: center;
@@ -463,5 +510,10 @@ export default defineComponent({
   :deep(.oxd-select-wrapper) {
     margin-left: 0.5rem;
   }
+}
+.oxd-button.archive {
+  display: flex;
+  align-items: center;
+  color: #1e6ceb !important;
 }
 </style>
