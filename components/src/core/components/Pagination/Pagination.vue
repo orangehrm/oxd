@@ -18,6 +18,7 @@
         :options="perPages"
         @update:modelValue="selectPerPage"
         :model-value="perPage"
+        :hide-dropdown-default-label="true"
       />
     </ul>
   </nav>
