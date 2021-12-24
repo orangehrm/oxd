@@ -15,6 +15,7 @@
       />
       <oxd-pagination-page-item next @click="onClickNext" v-if="showNext" />
       <oxd-select-input
+        class="pagination-dropdown"
         :options="perPages"
         @update:modelValue="selectPerPage"
         :model-value="perPage"
@@ -180,3 +181,9 @@ export default defineComponent({
 </script>
 
 <style src="./pagination.scss" lang="scss" scoped></style>
+
+<style lang="scss" scoped>
+:deep(.pagination-dropdown) {
+  min-width: 59px;
+}
+</style>
