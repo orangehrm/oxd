@@ -41,19 +41,19 @@
         <template v-slot:actionOptions>
           <oxd-button
             v-if="state.selectedItemIndexes.length > 0"
-            class="default-btn--cancel archive"
+            class="default-btn--cancel btn-info"
             :label="'Archive'"
             :size="'medium'"
-            :displayType="'ghost-info'"
+            display-type="label-info"
             :style="{'margin-left': '0.5rem'}"
             icon-name="oxd-archive"
           />
           <oxd-button
             v-if="state.selectedItemIndexes.length > 0"
-            class="default-btn--save"
+            class="default-btn--save btn-danger"
             :label="'Delete Selected'"
             :size="'medium'"
-            :displayType="'ghost-danger'"
+            display-type="label-danger"
             :style="{'margin-left': '0.5rem'}"
             icon-name="trash"
           />
@@ -86,7 +86,7 @@
             class="btn-large"
             @click="showFilterDrawer"
           />
-          <oxd-icon-button name="gear-fill" />
+          <!-- <oxd-icon-button name="gear-fill" /> -->
           <oxd-button
             :size="'medium'"
             display-type="label-info"
@@ -228,7 +228,7 @@ export default defineComponent({
     maxPages: {
       type: Number,
       default: 5,
-    }
+    },
   },
   setup(props, {emit}) {
     const sampleImages = images;
@@ -260,8 +260,8 @@ export default defineComponent({
       return sortableFieldsObj;
     });
 
-    const isFloat = (n) => {
-      return n === +n && n !== (n | 0)
+    const isFloat = n => {
+      return n === +n && n !== (n | 0);
     };
 
     const paginationLength = computed((): number => {
@@ -274,17 +274,21 @@ export default defineComponent({
       let title = '';
       if (state.selectedItemIndexes.length > 0) {
         if (state.selectedItemIndexes.length > 1) {
-          title = props.configurations.table.topFilters.listRecordCount.multiTerm;
+          title =
+            props.configurations.table.topFilters.listRecordCount.multiTerm;
         } else {
-          title = props.configurations.table.topFilters.listRecordCount.singleTerm;
+          title =
+            props.configurations.table.topFilters.listRecordCount.singleTerm;
         }
         title = `(${state.selectedItemIndexes.length}) ${title} selected`;
       } else {
         if (props.filteredTotalRecordsCount > 1) {
-          title = props.configurations.table.topFilters.listRecordCount.multiTerm;
+          title =
+            props.configurations.table.topFilters.listRecordCount.multiTerm;
         } else {
-          title = props.configurations.table.topFilters.listRecordCount.singleTerm;
-        };
+          title =
+            props.configurations.table.topFilters.listRecordCount.singleTerm;
+        }
         title = `(${props.filteredTotalRecordsCount}) ${title} found`;
       }
       return title;
@@ -303,7 +307,7 @@ export default defineComponent({
       } else {
         state.selectedQuickSearch = null;
         emit('quick-search:onClear');
-      };
+      }
     };
 
     const tableSort = value => {
@@ -407,12 +411,12 @@ export default defineComponent({
         margin-top: 0.25rem;
         margin-bottom: 0;
       }
-      :deep(.oxd-table-filter-header-title) {
-        .oxd-table-filter-title {
-          // Use Sub Title in OXD
-          // font-weight: 500 !important;
-        }
-      }
+      // :deep(.oxd-table-filter-header-title) {
+      //   .oxd-table-filter-title {
+      //     // Use Sub Title in OXD
+      //     // font-weight: 500 !important;
+      //   }
+      // }
       :deep(.oxd-table-filter-header) {
         .oxd-table-filter-header-options {
           align-items: center;
@@ -505,24 +509,49 @@ export default defineComponent({
     line-height: initial;
   }
   :deep(.oxd-select-wrapper) {
-    margin-left: 0.5rem;
+    margin-right: 5px;
   }
 }
-.oxd-button.archive {
+.oxd-button {
   display: flex;
   align-items: center;
-  :hover {
-    color: #1e6ceb;
-    background-color: rgba(30, 108, 235, 0.15);
-    svg {
+  :deep(.oxd-button-icon) {
+    margin-right: 0.5rem;
+  }
+  &.btn-info {
+    :deep(svg) {
       * {
-        fill: #fff !important;
+        fill: #17a2b8 !important;
+      }
+    }
+    color: #17a2b8;
+    background-color: #327cf31a;
+    &:hover {
+      color: #17a2b8;
+      background-color: rgba(30, 108, 235, 0.15);
+      svg {
+        * {
+          fill: #fff !important;
+        }
       }
     }
   }
-  :deep(svg) {
-    * {
-      fill: #1e6ceb !important;
+  &.btn-danger {
+    :deep(svg) {
+      * {
+        fill: #eb0910 !important;
+      }
+    }
+    color: #eb0910;
+    background-color: rgba(235, 9, 16, 0.1);
+    &:hover {
+      color: #eb0910;
+      background-color: rgba(235, 9, 16, 0.15);
+      svg {
+        * {
+          fill: #fff !important;
+        }
+      }
     }
   }
 }

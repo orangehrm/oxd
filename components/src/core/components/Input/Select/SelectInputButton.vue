@@ -1,5 +1,8 @@
 <template>
-  <div class="oxd-select-wrapper">
+  <div
+    class="oxd-select-wrapper"
+    :class="{'d-flex justify-center': hideDropdownLabel}"
+  >
     <oxd-button
       class="dropdown-btn"
       :class="
@@ -30,10 +33,7 @@
           <span class="label-small" v-if="modelValue && modelValue.id > -1"
             >Vacancy</span
           >
-          <span
-            class="label"
-            v-text="buttonData.label"
-          ></span>
+          <span class="label" v-text="buttonData.label"></span>
         </div>
       </template>
       <template v-slot:iconRight>
@@ -132,7 +132,7 @@ export default defineComponent({
     flow: {
       type: String,
       default: 'top',
-    }
+    },
   },
 
   data() {
@@ -186,7 +186,7 @@ export default defineComponent({
         style: null,
         doubleLineLabel: false,
         showLabel: true,
-      }
+      };
       for (const key in this.button) {
         const value = this.button[key];
         if (value) {
@@ -209,11 +209,18 @@ export default defineComponent({
 <style src="./select-input.scss" lang="scss" scoped></style>
 
 <style lang="scss" scoped>
+.d-flex {
+  display: flex;
+}
+.justify-center {
+  justify-content: center !important;
+}
 .w-100 {
   width: 100%;
 }
 .no-label {
   min-width: initial;
+  justify-content: center !important;
   ::v-deep(.oxd-button-label-wrapper) {
     display: none;
   }
@@ -229,6 +236,8 @@ export default defineComponent({
   align-items: center;
   justify-content: space-between;
   font-size: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
   ::v-deep(.oxd-icon) {
     font-size: 14px;
   }
@@ -246,12 +255,23 @@ export default defineComponent({
     }
     .label-small {
       margin-bottom: 0.25rem;
-      font-size: 0.75rem;
+      font-size: 0.625rem;
     }
     .label {
-      font-size: 0.875rem;
+      font-size: 0.75rem;
       font-weight: 600;
+      display: -webkit-box;
+      max-width: 200px;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
+  }
+}
+.oxd-select-wrapper {
+  ::v-deep(.oxd-select-dropdown) {
+    left: 0;
+    top: 30px;
   }
 }
 </style>

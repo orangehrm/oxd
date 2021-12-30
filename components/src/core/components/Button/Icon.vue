@@ -5,6 +5,8 @@
     type="button"
     :class="classes"
     @click="onClick"
+    :tooltip="tooltip"
+    :flow="flow"
   >
     <oxd-icon :class="{'--disabled': disabled}" :name="name" />
   </button>
@@ -13,6 +15,8 @@
     :name="name"
     :class="{'oxd-icon-button__icon': true, '--disabled': disabled}"
     @click="onClick"
+    :tooltip="tooltip"
+    :flow="flow"
   />
 </template>
 
@@ -39,6 +43,14 @@ export default defineComponent({
     disabled: {
       type: Boolean,
       default: false,
+    },
+    tooltip: {
+      type: String,
+      default: null,
+    },
+    flow: {
+      type: String,
+      default: 'up',
     },
   },
 
