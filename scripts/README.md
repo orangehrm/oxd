@@ -6,6 +6,13 @@
 
 Update version in `components/package.json` and `package.json`
 
+E.g.
+
+```bash
+$ yarn version --no-git-tag-version --new-version 1.0.5-alpha1
+$ yarn workspace oxd-components version --no-git-tag-version --new-version 1.0.5-alpha1
+```
+
 ### Generate build directory
 
 ```bash
