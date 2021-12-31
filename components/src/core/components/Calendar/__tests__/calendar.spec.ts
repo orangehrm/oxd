@@ -42,11 +42,9 @@ describe('Calendar.vue', () => {
   });
   it('should show today date', async () => {
     const wrapper = mount(Calendar, {});
-    const date = wrapper.findAllComponents(DateVue);
-    const today = freshDate();
-    expect(
-      date[today.getDate()].find('.oxd-calendar-date.--today').exists(),
-    ).toBeTruthy();
+    expect(wrapper.find('.oxd-calendar-date.--today').text()).toStrictEqual(
+      String(freshDate().getDate()),
+    );
   });
   it('should show attributes in calendar', async () => {
     const wrapper = mount(Calendar, {
