@@ -78,4 +78,21 @@ describe('SelectInput.vue', () => {
     await nodes[1].trigger('mousedown');
     expect(wrapper.emitted('update:modelValue')).toBeFalsy();
   });
+  it('should not have placeholder', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {
+        options,
+        modelValue: {
+          id: 1,
+          label: 'HR Admin',
+        },
+        showEmptySelector: false,
+      },
+    });
+    wrapper.findComponent(SelectText).trigger('click');
+    await wrapper.vm.$nextTick();
+    const nodes = wrapper.findAllComponents(SelectOption);
+    await nodes[0].trigger('mousedown');
+    expect(nodes.length).toBe(3);
+  });
 });

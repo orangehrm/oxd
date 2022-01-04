@@ -23,7 +23,7 @@
       :loading="loading"
       :empty="computedOptions.length === 0"
     >
-      <oxd-select-option @select="onClear">
+      <oxd-select-option v-if="showEmptySelector" @select="onClear">
         {{ placeholder }}
       </oxd-select-option>
       <oxd-select-option
@@ -92,6 +92,10 @@ export default defineComponent({
       validator: function(value: Position) {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
+    },
+    showEmptySelector: {
+      type: Boolean,
+      default: true,
     },
   },
 
