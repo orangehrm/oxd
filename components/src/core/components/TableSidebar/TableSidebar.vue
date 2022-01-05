@@ -12,7 +12,7 @@
           :size="buttonData.size"
           :style="buttonData.style"
           :displayType="buttonData.displayType"
-          @click="onToggleDropdown"
+          @click="onHeaderBtnClick"
         >
           <template v-if="buttonData.iconImageSrc" v-slot:icon>
             <img :src="buttonData.iconImageSrc" />
@@ -31,9 +31,12 @@
             v-for="(item, id) in sidePanelList"
             :key="id"
             @click="selectListitem(item)"
-            :class="{ collapsed: !isSidePanelOpen }"
+            :class="{collapsed: !isSidePanelOpen}"
           >
-            <div class="count-container" :class="{ active: selectedListItem.id === item.id }">
+            <div
+              class="count-container"
+              :class="{active: selectedListItem.id === item.id}"
+            >
               <oxd-chip
                 v-if="bubbleVisible"
                 :label="item.count"
@@ -119,7 +122,7 @@ export default defineComponent({
       label: null,
       active: false,
     });
-    const isSidePanelOpen = ref<boolean>(true)
+    const isSidePanelOpen = ref<boolean>(true);
 
     // TODO: Optimize these duplicated methods; Sandamal
     const buttonData = computed(() => {
@@ -130,9 +133,9 @@ export default defineComponent({
         size: 'long',
         displayType: 'secondary',
         style: null,
-      }
+      };
       for (const key in props.button) {
-        const value = props.button[key]
+        const value = props.button[key];
         if (value) {
           initialObject[key] = value;
         }
@@ -146,6 +149,10 @@ export default defineComponent({
       };
     });
 
+    const onHeaderBtnClick = () => {
+      emit('sidePanelList:onHeaderBtnClick');
+    };
+
     const selectListitem = (item: {
       id: number;
       label: string;
@@ -156,7 +163,7 @@ export default defineComponent({
     };
 
     const toggleSidebar = () => {
-      isSidePanelOpen.value = !isSidePanelOpen.value
+      isSidePanelOpen.value = !isSidePanelOpen.value;
       emit('side-panel:onToggle', isSidePanelOpen.value);
     };
 
@@ -165,6 +172,7 @@ export default defineComponent({
       customStyles,
       buttonData,
       isSidePanelOpen,
+      onHeaderBtnClick,
       selectListitem,
       toggleSidebar,
     };

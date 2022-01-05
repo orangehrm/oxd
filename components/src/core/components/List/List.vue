@@ -19,6 +19,7 @@
       :bubble-visible="configurations.table.sidebar.list.bubble.visible"
       :button="configurations.table.sidebar.header.button"
       :selected-list-item-id="selectedListItem.id"
+      @sidePanelList:onHeaderBtnClick="sidePanelListOnHeaderBtnClick"
       @sidePanelList:onSelect="sidePanelListOnSelect"
       @side-panel:onToggle="toggleSidePanel"
       :is-side-panel-open="state.isSidePanelOpen"
@@ -219,6 +220,10 @@ export default defineComponent({
       return isFloat(pagesLength) ? Math.floor(pagesLength) + 1 : pagesLength;
     });
 
+    const sidePanelListOnHeaderBtnClick = () => {
+      emit('sidePanelList:onHeaderBtnClick');
+    };
+
     const sidePanelListOnSelect = item => {
       emit('sidePanelList:onSelect', item);
     };
@@ -285,6 +290,7 @@ export default defineComponent({
       sampleImages,
       oxdCardTableStyleClasses,
       order,
+      sidePanelListOnHeaderBtnClick,
       sidePanelListOnSelect,
       quickSearchSelect,
       showFilterDrawer,

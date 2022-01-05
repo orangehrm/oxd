@@ -10,6 +10,7 @@
       :pagination="state.pagination"
       :selected-list-item="state.vacancies"
       @table-sidebar:onToggle="toggleSidebar"
+      @sidePanelList:onHeaderBtnClick="showAddCandidatesModal"
       @sidePanelList:onSelect="selectStage"
       @quick-search:onSelect="candidateQuickSearchSelect"
       @quick-search:onClear="candidateQuickSearchClear"
@@ -665,6 +666,9 @@ export default defineComponent({
     const selectedStage = computed(() => {
       return dropdownStages.value.find(stage => stage.selected);
     });
+    const showAddCandidatesModal = () => {
+      console.log('show add candidates modal');
+    };
     const selectStage = (stage: StageI) => {
       console.log(stage);
     };
@@ -772,6 +776,7 @@ export default defineComponent({
       profilePicRenderer,
       actionsRenderer,
       toggleSidebar,
+      showAddCandidatesModal,
       candidateQuickSearch,
       closeModal,
       drawerShow,
