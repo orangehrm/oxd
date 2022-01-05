@@ -20,6 +20,7 @@
       :selected-list-item-id="selectedListItem.id"
       @sidePanelList:onSelect="sidePanelListOnSelect"
       @side-panel:onToggle="toggleSidePanel"
+      @sidePanelList:onHeaderBtnClick="sidePanelListOnHeaderBtnClick"
       :is-side-panel-open="state.isSidePanelOpen"
     >
       <template v-slot:sidePanelBody>
@@ -294,6 +295,10 @@ export default defineComponent({
       return title;
     });
 
+    const sidePanelListOnHeaderBtnClick = () => {
+      emit('sidePanelList:onHeaderBtnClick');
+    };
+
     const sidePanelListOnSelect = item => {
       emit('sidePanelList:onSelect', item);
     };
@@ -366,6 +371,7 @@ export default defineComponent({
       sampleImages,
       oxdCardTableStyleClasses,
       order,
+      sidePanelListOnHeaderBtnClick,
       sidePanelListOnSelect,
       quickSearchSelect,
       showFilterDrawer,
