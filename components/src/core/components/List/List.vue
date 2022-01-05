@@ -1,6 +1,5 @@
 <template>
   <div
-    v-if="configurations"
     class="orangehrm-container recruitment-container"
     :class="{
       'table-sidebar-open':
@@ -19,7 +18,6 @@
       :bubble-visible="configurations.table.sidebar.list.bubble.visible"
       :button="configurations.table.sidebar.header.button"
       :selected-list-item-id="selectedListItem.id"
-      @sidePanelList:onHeaderBtnClick="sidePanelListOnHeaderBtnClick"
       @sidePanelList:onSelect="sidePanelListOnSelect"
       @side-panel:onToggle="toggleSidePanel"
       :is-side-panel-open="state.isSidePanelOpen"
@@ -38,21 +36,32 @@
       <oxd-table-filter
         v-if="configurations.table.topFilters.visible"
         class="list-table-filter"
-        :filter-title="
-          `(${filteredTotalRecordsCount}) ${
-            filteredTotalRecordsCount > 1
-              ? configurations.table.topFilters.listRecordCount.multiTerm
-              : configurations.table.topFilters.listRecordCount.singleTerm
-          } found`
-        "
+        :filter-title="filterTitle"
       >
+        <template v-slot:actionOptions>
+          <oxd-button
+            v-if="state.selectedItemIndexes.length > 0"
+            class="default-btn--cancel btn-info"
+            :label="'Archive'"
+            :size="'medium'"
+            display-type="label-info"
+            :style="{'margin-left': '0.5rem'}"
+            icon-name="oxd-archive"
+          />
+          <oxd-button
+            v-if="state.selectedItemIndexes.length > 0"
+            class="default-btn--save btn-danger"
+            :label="'Delete Selected'"
+            :size="'medium'"
+            display-type="label-danger"
+            :style="{'margin-left': '0.5rem'}"
+            icon-name="trash"
+          />
+        </template>
         <template v-slot:toggleOptions>
           <oxd-quick-search
-            v-if="configurations.table.topFilters.quickSearch.visible"
-            :placeholder="
-              configurations.table.topFilters.quickSearch.searchPlaceholder
-            "
-            :clear="configurations.table.topFilters.quickSearch.clearButton"
+            :placeholder="'Search'"
+            :clear="true"
             :createOptions="quickSearchOptions"
             :modelValue="state.selectedQuickSearch"
             @dropdown:modelValue="quickSearchSelect"
@@ -60,10 +69,8 @@
             <template v-slot:iconSlot>
               <oxd-icon-button
                 v-if="!state.selectedQuickSearch"
-                :name="configurations.table.topFilters.quickSearch.buttonIcon"
-                :display-type="
-                  configurations.table.topFilters.quickSearch.buttonDisplayType
-                "
+                name="oxd-search"
+                display-type="label-info"
                 class="quick-search-btn"
               ></oxd-icon-button>
             </template>
@@ -79,7 +86,7 @@
             class="btn-large"
             @click="showFilterDrawer"
           />
-          <oxd-icon-button name="gear-fill" />
+          <!-- <oxd-icon-button name="gear-fill" /> -->
           <oxd-button
             :size="'medium'"
             display-type="label-info"
@@ -101,12 +108,14 @@
           v-model:selected="state.checkedItems"
           v-model:order="order"
           @update:order="tableSort"
+          @update:selected="tableSelect"
+          rowDecorator="oxd-table-decorator-card"
         />
         <oxd-pagination
           class="list-pagination"
-          :length="configurations.table.pagination.maxPageLimit"
+          :length="paginationLength"
           v-model:current="state.currentPage"
-          :max="wholeRecordsCount"
+          :max="maxPages"
           :pages-list="pagination.pages"
           :current="pagination.limit"
           @previous="previous"
@@ -116,6 +125,42 @@
         />
       </div>
     </div>
+    <!-- <oxd-drawer
+      v-if="configurations.drawer.visible"
+      :modal-state="state.modalState"
+      :width="configurations.drawer.width"
+      :height="configurations.drawer.height"
+      :full-height="configurations.drawer.fullHeight"
+      :sticky-footer="configurations.drawer.stickyFooter"
+      :fixed="configurations.drawer.fixedPosition"
+      :position="configurations.drawer.position"
+      :ok-button="{
+        label: configurations.drawer.footer.okButton.label,
+        click: applySearch,
+      }"
+      :cancel-button="{
+        click: closeDrawer,
+      }"
+      @drawer:click-outside="closeDrawer"
+    >
+      <template v-slot:header>
+        <div v-if="configurations.drawer.header.visible" class="header">
+          <slot name="drawerHeader">
+            <div class="d-flex align-center justify-between">
+              <h5>{{ configurations.drawer.header.title }}</h5>
+              <oxd-icon-button
+                v-if="configurations.drawer.header.charmButton.visible"
+                :name="configurations.drawer.header.charmButton.icon"
+                @click="resetSearch"
+              />
+            </div>
+          </slot>
+        </div>
+      </template>
+      <template v-slot:body>
+        <slot name="drawerBody"></slot>
+      </template>
+    </oxd-drawer> -->
   </div>
 </template>
 
@@ -127,6 +172,7 @@ import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import QuickSearchInput from '@orangehrm/oxd/core/components/Input/Autocomplete/QuickSearchInput.vue';
 import TableSidebar from '@orangehrm/oxd/core/components/TableSidebar/TableSidebar.vue';
 import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue';
+// import Drawer from '@orangehrm/oxd/core/components/Drawer/Drawer.vue';
 import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination.vue';
 import images from './images';
 
@@ -141,6 +187,7 @@ export default defineComponent({
     'oxd-icon-button': IconButton,
     'oxd-quick-search': QuickSearchInput,
     'oxd-profile-pic': ProfilePic,
+    // 'oxd-drawer': Drawer,
     'oxd-pagination': Pagination,
   },
   props: {
@@ -178,6 +225,10 @@ export default defineComponent({
       type: Object,
       default: () => ({}),
     },
+    maxPages: {
+      type: Number,
+      default: 5,
+    },
   },
   setup(props, {emit}) {
     const sampleImages = images;
@@ -188,6 +239,7 @@ export default defineComponent({
       checkedItems: [],
       modalState: false as boolean,
       selectedQuickSearch: null,
+      selectedItemIndexes: [],
     });
 
     const oxdCardTableStyleClasses = computed(() => {
@@ -200,13 +252,11 @@ export default defineComponent({
 
     const order = computed(() => {
       const sortableFieldsObj = {};
-      if (props.configurations) {
-        props.configurations.table.headers.forEach(header => {
-          if (header.initialSortOrder) {
-            sortableFieldsObj[header.sortField] = header.initialSortOrder;
-          }
-        });
-      }
+      props.configurations.table.headers.forEach(header => {
+        if (header.initialSortOrder) {
+          sortableFieldsObj[header.sortField] = header.initialSortOrder;
+        }
+      });
       return sortableFieldsObj;
     });
 
@@ -216,13 +266,33 @@ export default defineComponent({
 
     const paginationLength = computed((): number => {
       const pagesLength: number =
-        props.wholeRecordsCount / props.pagination.limit;
+        props.filteredTotalRecordsCount / props.pagination.limit;
       return isFloat(pagesLength) ? Math.floor(pagesLength) + 1 : pagesLength;
     });
 
-    const sidePanelListOnHeaderBtnClick = () => {
-      emit('sidePanelList:onHeaderBtnClick');
-    };
+    const filterTitle = computed((): string => {
+      let title = '';
+      if (state.selectedItemIndexes.length > 0) {
+        if (state.selectedItemIndexes.length > 1) {
+          title =
+            props.configurations.table.topFilters.listRecordCount.multiTerm;
+        } else {
+          title =
+            props.configurations.table.topFilters.listRecordCount.singleTerm;
+        }
+        title = `(${state.selectedItemIndexes.length}) ${title} selected`;
+      } else {
+        if (props.filteredTotalRecordsCount > 1) {
+          title =
+            props.configurations.table.topFilters.listRecordCount.multiTerm;
+        } else {
+          title =
+            props.configurations.table.topFilters.listRecordCount.singleTerm;
+        }
+        title = `(${props.filteredTotalRecordsCount}) ${title} found`;
+      }
+      return title;
+    });
 
     const sidePanelListOnSelect = item => {
       emit('sidePanelList:onSelect', item);
@@ -242,6 +312,11 @@ export default defineComponent({
 
     const tableSort = value => {
       emit('update:order', value);
+    };
+
+    const tableSelect = items => {
+      state.selectedItemIndexes = items;
+      emit('update:selected', items);
     };
 
     const showFilterDrawer = (): void => {
@@ -287,10 +362,10 @@ export default defineComponent({
 
     return {
       state,
+      filterTitle,
       sampleImages,
       oxdCardTableStyleClasses,
       order,
-      sidePanelListOnHeaderBtnClick,
       sidePanelListOnSelect,
       quickSearchSelect,
       showFilterDrawer,
@@ -299,6 +374,7 @@ export default defineComponent({
       closeDrawer,
       toggleSidePanel,
       tableSort,
+      tableSelect,
       previous,
       next,
       clickPage,
@@ -335,7 +411,6 @@ export default defineComponent({
         margin-top: 0.25rem;
         margin-bottom: 0;
       }
-      // TODO: check and match the styles
       // :deep(.oxd-table-filter-header-title) {
       //   .oxd-table-filter-title {
       //     // Use Sub Title in OXD
@@ -434,7 +509,50 @@ export default defineComponent({
     line-height: initial;
   }
   :deep(.oxd-select-wrapper) {
-    margin-left: 0.5rem;
+    margin-right: 5px;
+  }
+}
+.oxd-button {
+  display: flex;
+  align-items: center;
+  :deep(.oxd-button-icon) {
+    margin-right: 0.5rem;
+  }
+  &.btn-info {
+    :deep(svg) {
+      * {
+        fill: #17a2b8 !important;
+      }
+    }
+    color: #17a2b8;
+    background-color: #327cf31a;
+    &:hover {
+      color: #17a2b8;
+      background-color: rgba(30, 108, 235, 0.15);
+      svg {
+        * {
+          fill: #fff !important;
+        }
+      }
+    }
+  }
+  &.btn-danger {
+    :deep(svg) {
+      * {
+        fill: #eb0910 !important;
+      }
+    }
+    color: #eb0910;
+    background-color: rgba(235, 9, 16, 0.1);
+    &:hover {
+      color: #eb0910;
+      background-color: rgba(235, 9, 16, 0.15);
+      svg {
+        * {
+          fill: #fff !important;
+        }
+      }
+    }
   }
 }
 </style>
