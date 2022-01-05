@@ -51,8 +51,7 @@
            "style":{
               "width":"50px"
            },
-           "cellType":"oxd-table-cell-actions",
-           "cellRenderer":"profilePicRenderer"
+           "cellType":"oxd-table-cell-profile-pic"
         },
         {
            "name":"candidate",
