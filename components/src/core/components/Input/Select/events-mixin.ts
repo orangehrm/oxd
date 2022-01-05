@@ -25,6 +25,13 @@ export const eventsMixin = defineComponent({
       this.dropdownOpen = false;
       this.$emit('dropdown:closed');
     },
+    onToggleDropdown() {
+      if (!this.dropdownOpen) {
+        this.onOpenDropdown()
+      } else {
+        this.onCloseDropdown()
+      }
+    },
     onBlur() {
       this.onCloseDropdown();
       this.$emit('dropdown:blur');

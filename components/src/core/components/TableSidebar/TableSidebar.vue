@@ -1,0 +1,246 @@
+<template>
+  <div class="oxd-table-sidebar" :style="customStyles">
+    <div v-if="headerVisible" class="header">
+      <slot name="header">
+        <oxd-button
+          class="table-header-action-btn"
+          :class="!isSidePanelOpen ? 'no-label' : 'w-100'"
+          :tooltip="!isSidePanelOpen ? buttonData.label : null"
+          flow="right"
+          :label="buttonData.label"
+          :iconName="buttonData.iconName"
+          :size="buttonData.size"
+          :style="buttonData.style"
+          :displayType="buttonData.displayType"
+          @click="onHeaderBtnClick"
+        >
+          <template v-if="buttonData.iconImageSrc" v-slot:icon>
+            <img :src="buttonData.iconImageSrc" />
+          </template>
+        </oxd-button>
+        <oxd-divider class="table-sidebar-divider" />
+      </slot>
+    </div>
+    <div v-if="bodyVisible" class="body">
+      <slot name="sidePanelBody"></slot>
+    </div>
+    <div v-if="listVisible" class="footer list">
+      <slot name="footer">
+        <ul>
+          <li
+            v-for="(item, id) in sidePanelList"
+            :key="id"
+            @click="selectListitem(item)"
+            :class="{collapsed: !isSidePanelOpen}"
+          >
+            <div
+              class="count-container"
+              :class="{active: selectedListItem.id === item.id}"
+            >
+              <oxd-chip
+                v-if="bubbleVisible"
+                :label="item.count"
+                :tooltip="!isSidePanelOpen ? item.label : null"
+                flow="right"
+                class="oxd-dropdown-selected-chip"
+                :displayType="item.displayType"
+                :background-color="item.style.backgroundColor"
+                :color="item.style.color"
+              />
+              <p v-if="isSidePanelOpen" class="oxd-label">{{ item.label }}</p>
+            </div>
+          </li>
+        </ul>
+      </slot>
+    </div>
+    <oxd-icon-button
+      :name="isSidePanelOpen ? 'chevron-left' : 'chevron-right'"
+      class="oxd-table-sidebar-toggle-btn"
+      @click="toggleSidebar"
+    />
+  </div>
+</template>
+
+<script lang="ts">
+import {defineComponent, computed, ref} from 'vue';
+import Chip from '@orangehrm/oxd/core/components/Chip/Chip.vue';
+import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';
+import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
+import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
+
+export default defineComponent({
+  name: 'oxd-table-filter',
+
+  components: {
+    'oxd-chip': Chip,
+    'oxd-divider': Divider,
+    'oxd-button': Button,
+    'oxd-icon-button': IconButton,
+  },
+
+  props: {
+    headerVisible: {
+      type: Boolean,
+      default: false,
+    },
+    bodyVisible: {
+      type: Boolean,
+      default: false,
+    },
+    listVisible: {
+      type: Boolean,
+      default: false,
+    },
+    bubbleVisible: {
+      type: Boolean,
+      default: true,
+    },
+    button: {
+      type: Object,
+      default: () => null,
+    },
+    width: {
+      type: String,
+      default: '100%',
+    },
+    sidePanelList: {
+      type: Array,
+      default: () => [],
+    },
+    selectedListItemId: {
+      type: Number,
+    },
+  },
+
+  setup(props, {emit}) {
+    const selectedListItem = ref<{
+      id: number;
+      label: string;
+      active: boolean;
+    }>({
+      id: props.selectedListItemId,
+      label: null,
+      active: false,
+    });
+    const isSidePanelOpen = ref<boolean>(true);
+
+    // TODO: Optimize these duplicated methods; Sandamal
+    const buttonData = computed(() => {
+      const initialObject = {
+        label: 'Button',
+        iconName: 'plus',
+        iconImageSrc: null,
+        size: 'long',
+        displayType: 'secondary',
+        style: null,
+      };
+      for (const key in props.button) {
+        const value = props.button[key];
+        if (value) {
+          initialObject[key] = value;
+        }
+      }
+      return initialObject;
+    });
+
+    const customStyles = computed(() => {
+      return {
+        width: isSidePanelOpen.value ? props.width : null,
+      };
+    });
+
+    const onHeaderBtnClick = () => {
+      emit('sidePanelList:onHeaderBtnClick');
+    };
+
+    const selectListitem = (item: {
+      id: number;
+      label: string;
+      active: boolean;
+    }) => {
+      selectedListItem.value = item;
+      emit('sidePanelList:onSelect', item);
+    };
+
+    const toggleSidebar = () => {
+      isSidePanelOpen.value = !isSidePanelOpen.value;
+      emit('side-panel:onToggle', isSidePanelOpen.value);
+    };
+
+    return {
+      selectedListItem,
+      customStyles,
+      buttonData,
+      isSidePanelOpen,
+      onHeaderBtnClick,
+      selectListitem,
+      toggleSidebar,
+    };
+  },
+});
+</script>
+
+<style src="./../Label/label.scss" lang="scss" scoped></style>
+<style src="./table-sidebar.scss" lang="scss" scoped></style>
+
+<style lang="scss" scoped>
+.list {
+  padding-top: 1.25rem !important;
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      display: flex;
+      align-items: center;
+      .count-container {
+        display: flex;
+        align-items: center;
+        width: auto;
+        padding: 0.5rem;
+        border-radius: 1.5rem;
+        width: 100%;
+        .oxd-dropdown-selected-chip {
+          position: relative;
+          min-width: 20px;
+          width: auto;
+          padding: 4px 9px;
+          font-size: 0.75rem;
+          font-weight: 700;
+          font-family: 'Nunito Sans', sans-serif;
+        }
+        &:hover,
+        &.active {
+          background-color: rgba(100, 114, 140, 0.1);
+          cursor: pointer;
+        }
+      }
+      .oxd-label {
+        margin: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+        line-height: normal;
+      }
+      &:not(:last-child) {
+        margin-bottom: 5px;
+      }
+      &.collapsed {
+        justify-content: center;
+        .count-container {
+          display: table-cell;
+          text-align: center;
+          vertical-align: middle;
+          width: auto;
+        }
+      }
+    }
+  }
+}
+.table-header-action-btn {
+  &.no-label {
+    min-width: initial;
+    ::v-deep(.oxd-button-label-wrapper) {
+      display: none;
+    }
+  }
+}
+</style>
