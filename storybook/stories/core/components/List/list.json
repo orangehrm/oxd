@@ -100,7 +100,10 @@
            "cellType":"oxd-table-cell-actions",
            "cellRenderer":"actionsRenderer"
         }
-     ]
+     ],
+     "pagination": {
+       "maxPageLimit": 5
+     }
   },
   "drawer":{
      "visible":true,

@@ -38,8 +38,8 @@
         v-if="configurations.table.topFilters.visible"
         class="list-table-filter"
         :filter-title="
-          `(${totalRecordsCount}) ${
-            totalRecordsCount > 1
+          `(${filteredTotalRecordsCount}) ${
+            filteredTotalRecordsCount > 1
               ? configurations.table.topFilters.listRecordCount.multiTerm
               : configurations.table.topFilters.listRecordCount.singleTerm
           } found`
@@ -103,9 +103,9 @@
         />
         <oxd-pagination
           class="list-pagination"
-          :length="paginationLength"
+          :length="configurations.table.pagination.maxPageLimit"
           v-model:current="state.currentPage"
-          :max="totalRecordsCount"
+          :max="wholeRecordsCount"
           :pages-list="pagination.pages"
           :current="pagination.limit"
           @previous="previous"
@@ -150,7 +150,11 @@ export default defineComponent({
     listItems: {
       type: Array,
     },
-    totalRecordsCount: {
+    filteredTotalRecordsCount: {
+      type: Number,
+      default: 0,
+    },
+    wholeRecordsCount: {
       type: Number,
       default: 0,
     },
@@ -211,7 +215,7 @@ export default defineComponent({
 
     const paginationLength = computed((): number => {
       const pagesLength: number =
-        props.totalRecordsCount / props.pagination.limit;
+        props.wholeRecordsCount / props.pagination.limit;
       return isFloat(pagesLength) ? Math.floor(pagesLength) + 1 : pagesLength;
     });
 
@@ -325,6 +329,7 @@ export default defineComponent({
         margin-top: 0.25rem;
         margin-bottom: 0;
       }
+      // TODO: check and match the styles
       // :deep(.oxd-table-filter-header-title) {
       //   .oxd-table-filter-title {
       //     // Use Sub Title in OXD
