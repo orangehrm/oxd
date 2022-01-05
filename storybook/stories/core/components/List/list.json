@@ -1,79 +1,127 @@
 {
-  "table": {
-    "sidePanel": {
-      "visible": true,
-      "header": {
-        "visible": true,
-        "button": {
-          "label": "Add Candidate"
-        }
-      },
-      "body": {
-        "visible": true
-      },
-      "list": {
-        "visible": true,
-        "bubble": {
-          "visible": true
-        }
-      }
-    },
-    "topFilters": {
-      "visible": true
-    },
-    "headers": [
-      {
-        "name": "profilepic",
-        "slot": "footer",
-        "title": "",
-        "style": {
-          "width": "44px"
+  "table":{
+     "sidebar":{
+        "visible":true,
+        "header":{
+           "visible":true,
+           "button":{
+              "label":"Add Candidate"
+           }
         },
-        "cellType": "oxd-table-cell-actions",
-        "cellRenderer": "profilePicRenderer"
-      },
-      {
-        "name": "candidate",
-        "sortField": "candidate",
-        "title": "Candidate",
-        "style": {
-          "flex": 1
-        }
-      },
-      {
-        "name": "email",
-        "sortField": "email",
-        "title": "Email",
-        "style": {
-          "flex": 1
-        }
-      },
-      {
-        "name": "contactNumber",
-        "sortField": "contactNumber",
-        "title": "Contact Number",
-        "style": {
-          "flex": 1
-        }
-      },
-      {
-        "name": "dateOfApplication",
-        "sortField": "dateOfApplication",
-        "title": "Date Applied",
-        "style": {
-          "flex": 1
-        }
-      },
-      {
-        "name": "action",
-        "slot": "footer",
-        "title": "Stage",
-        "style": {
-          "width": "300px"
+        "body":{
+           "visible":true,
+           "button":{
+              "label":"All Vacancy",
+              "iconName":"eye",
+              "displayType":"label",
+              "doubleLineLabel":true
+           },
+           "dropdown":{
+              "style":{
+                 "width":"220px"
+              }
+           }
         },
-        "cellType": "oxd-table-cell-actions",
-        "cellRenderer": "actionsRenderer"
-      }
-    ]
+        "list":{
+           "visible":true,
+           "bubble":{
+              "visible":true
+           }
+        }
+     },
+     "topFilters":{
+        "visible":true,
+        "listRecordCount":{
+           "singleTerm":"Candidate",
+           "multiTerm":"Candidates"
+        },
+        "quickSearch":{
+           "visible":true,
+           "searchPlaceholder":"Search",
+           "clearButton":true,
+           "buttonIcon":"oxd-search",
+           "buttonDisplayType":"label-info"
+        }
+     },
+     "headers":[
+        {
+           "name":"profilepic",
+           "slot":"footer",
+           "title":"",
+           "style":{
+              "width":"50px"
+           },
+           "cellType":"oxd-table-cell-actions",
+           "cellRenderer":"profilePicRenderer"
+        },
+        {
+           "name":"candidate",
+           "sortField":"candidate",
+           "initialSortOrder":"ASC",
+           "title":"Candidate",
+           "style":{
+              "flex":1
+           }
+        },
+        {
+           "name":"email",
+           "sortField":"email",
+           "initialSortOrder":"ASC",
+           "title":"Email",
+           "style":{
+              "flex":1
+           }
+        },
+        {
+           "name":"contactNumber",
+           "sortField":"contactNumber",
+           "initialSortOrder":"ASC",
+           "title":"Contact Number",
+           "style":{
+              "flex":1
+           }
+        },
+        {
+           "name":"dateApplied",
+           "sortField":"dateApplied",
+           "initialSortOrder":"DESC",
+           "title":"Date Applied",
+           "style":{
+              "flex":1
+           }
+        },
+        {
+           "name":"action",
+           "slot":"footer",
+           "title":"Stage",
+           "style":{
+              "width":"300px"
+           },
+           "cellType":"oxd-table-cell-actions",
+           "cellRenderer":"actionsRenderer"
+        }
+     ]
+  },
+  "drawer":{
+     "visible":true,
+     "width":"600px",
+     "height":"100%",
+     "fullHeight":false,
+     "stickyFooter":true,
+     "fixedPosition":true,
+     "position":"right",
+     "header":{
+        "visible":true,
+        "title":"Filter",
+        "charmButton":{
+           "visible":true,
+           "icon":"oxd-refresh"
+        }
+     },
+     "footer":{
+        "okButton":{
+           "label":"Search"
+        }
+     }
   }
 }

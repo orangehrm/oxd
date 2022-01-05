@@ -1,6 +1,27 @@
 <template>
   <div class="container">
-    <oxd-list :settings="settings" :list-items="state.items">
+    <oxd-list
+      :configurations="configurations"
+      :list-items="state.items" 
+      :whole-records-count="110"
+      :filtered-total-records-count="100"
+      :side-panel-list="state.stages"
+      :quick-search-options="candidateQuickSearch"
+      :pagination="state.pagination"
+      :selected-list-item="state.vacancies"
+      @table-sidebar:onToggle="toggleSidebar"
+      @sidePanelList:onSelect="selectStage"
+      @quick-search:onSelect="candidateQuickSearchSelect"
+      @quick-search:onClear="candidateQuickSearchClear"
+      @drawer:show="drawerShow"
+      @drawer-search:apply="applyDrawerSearch"
+      @drawer-search:reset="resetDrawerSearch"
+      @drawer-search:cancel="cancelDrawerSearch"
+      @update:order="tableSort"
+      @pagination:onPrevious="selectPreviousPage"
+      @pagination:onNext="selectNextPaginate"
+      @pagination:onSelectPage="selectExactPage"
+      @pagination:onSelectPerPage="selectPerPage">
       <template v-slot:sidebarBody>
       </template>
       <template v-slot:list>
@@ -13,7 +34,9 @@
 import {defineComponent, reactive, computed, ref} from 'vue';
 import List from '@orangehrm/oxd/core/components/List/List';
 import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic';
+import SelectInput from "@orangehrm/oxd/core/components/Input/Select/SelectInput";
 import list from './list.json'
+import map from 'lodash/map'
 
 interface SelectedVacancyI extends SelectUII {
   id: number;
@@ -38,6 +61,20 @@ interface StageI extends SelectUII {
   displayType?: string;
 }
 
+const initialFilters: IAppliedFilter = {
+  candidateEventStage: null,
+  vacancyId: null,
+  candidateIdList: [],
+  subUnitId: null,
+  jobTitleId: null,
+  locationId: null,
+  orderField: null,
+  orderBy: null,
+  nameTxt: null,
+  appliedDateFrom: "2021-02-21",
+  appliedDateTo: "2022-02-21",
+};
+
 export default defineComponent({
   components: {
     'oxd-list': List
@@ -46,7 +83,19 @@ export default defineComponent({
   props: {},
 
   setup() {
-    const settings = ref(list)
+    const appliedFilters = ref(
+      JSON.parse(JSON.stringify(initialFilters))
+    );
+
+    const configurations = computed(() => {
+      list.table.headers =  map(list.table.headers, item => {
+        return {
+          ...item,
+          cellRenderer: eval(item.cellRenderer)
+        }
+      })
+      return list
+    })
 
     const profilePicRenderer = (_index, _item, _header, row) => {
       const profilePic = {
@@ -583,6 +632,16 @@ export default defineComponent({
           },
         },
       ] as StageI[],
+      pagination: {
+        limit: 10,
+        pages: [10, 20, 50, 100],
+        currentPage: 1,
+      } as {
+        limit: number;
+        pages: number[];
+        currentPage: number;
+      },
+      modalState: false,
     });
 
     const dropdownStages = computed(() => {
@@ -603,31 +662,109 @@ export default defineComponent({
         ...state.stages,
       ];
     });
-
     const selectedStage = computed(() => {
       return dropdownStages.value.find(stage => stage.selected);
     });
-
     const selectStage = (stage: StageI) => {
       console.log(stage);
     };
-
+    const candidateQuickSearchSelect = (candidate: ICandidate): void => {
+      appliedFilters.value.candidateIdList = [candidate.candidateId];
+    };
+    const candidateQuickSearchClear = () => {
+      delete appliedFilters.value.candidateIdList;
+    };
     const selectVacancy = (modelValue: SelectedVacancyI) => {
       state.selectedVacancy = modelValue;
     };
-
     const toggleFilterModal = (isVisible: boolean) => {
       state.showFilterModal = isVisible;
     };
-
+    const applyDrawerSearch = (): void => {
+      state.modalState = false;
+    };
+    const resetDrawerSearch = (): void => {
+      appliedFilters.value = initialFilters;
+      appliedQueries.value = initialQueries;
+      selectedVacancy.value = {
+        id: -1,
+        label: "All Vacancy",
+      };
+      state.modalState = false;
+    };
+    const cancelDrawerSearch = (): void => {
+      state.modalState = false;
+    };
+    const tableSort = (obj: { [key: string]: string }) => {
+      for (const key in obj) {
+        const value = obj[key];
+        if (value !== "DEFAULT") {
+          const orderFieldKey =
+            key === "dateOfApplication" ? "dateApplied" : key;
+          const orderField = orderFieldKey.replace(
+            /[A-Z]/g,
+            (letter) => `_${letter.toLowerCase()}`
+          );
+          const query = [`orderField=${orderField}`, `orderBy=${value}`];
+          let includes;
+          getCandidates(appliedFilters.value, includes, query);
+        }
+      }
+    };
     const toggleSidebar = () => {
       state.isSidebarOpen = !state.isSidebarOpen;
+    };
+    const closeModal = () => {
+      state.modalState = false;
+    };
+    const drawerShow = (state: boolean) => {
+      state.modalState = state;
+    };
+    const candidateQuickSearch = (name: string) => {
+      return new Promise(resolve => {
+        if (name.trim()) {
+          fetch(`https://api.github.com/search/users?q=${name}`)
+            .then(response => response.json())
+            .then(json => {
+              const {items} = json;
+              resolve(
+                items.map(item => {
+                  return {
+                    id: item.id,
+                    label: item.login,
+                    avatar_url: item.avatar_url,
+                  };
+                }),
+              );
+            });
+        } else {
+          resolve([]);
+        }
+      });
+    };
+    const selectPreviousPage = () => {
+      state.pagination.currentPage = state.pagination.currentPage - 1;
+    };
+    const selectNextPaginate = () => {
+      state.pagination.currentPage = state.pagination.currentPage + 1;
+    };
+    const selectExactPage = (page: { native: Event; page: number }) => {
+      state.pagination.currentPage = page.page;
+    };
+    const selectPerPage = (page: {
+      id: number;
+      label: number | number;
+      _selected: boolean;
+    }) => {
+      state.pagination.limit = page.label;
     };
 
     return {
       state,
-      settings,
+      configurations,
       selectStage,
+      candidateQuickSearchSelect,
+      candidateQuickSearchClear,
       selectedStage,
       selectVacancy,
       dropdownStages,
@@ -635,6 +772,17 @@ export default defineComponent({
       profilePicRenderer,
       actionsRenderer,
       toggleSidebar,
+      candidateQuickSearch,
+      closeModal,
+      drawerShow,
+      applyDrawerSearch,
+      resetDrawerSearch,
+      cancelDrawerSearch,
+      tableSort,
+      selectPreviousPage,
+      selectNextPaginate,
+      selectExactPage,
+      selectPerPage,
     };
   },
 });
