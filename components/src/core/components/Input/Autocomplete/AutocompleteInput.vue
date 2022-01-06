@@ -179,11 +179,14 @@ export default defineComponent({
       return label;
     },
     inputValue(): string {
-      return (
-        this.computedOptions[this.pointer]?.label ||
-        this.searchTerm ||
-        this.selectedItem
-      );
+      if (this.computedOptions[this.pointer]?.label) {
+        return this.computedOptions[this.pointer].label;
+      } else if (this.searchTerm) {
+        return this.searchTerm;
+      } else if (!this.dropdownOpen) {
+        return this.selectedItem;
+      }
+      return '';
     },
     showClear(): boolean {
       const a = (
@@ -204,6 +207,10 @@ export default defineComponent({
         this.loading = true;
         this.dropdownOpen = true;
         this.search(this, searchTerm);
+      } else {
+        this.loading = false;
+        this.dropdownOpen = false;
+        this.$emit('update:modelValue', null);
       }
     },
     onSelect(option: Option) {
