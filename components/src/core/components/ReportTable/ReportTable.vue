@@ -66,7 +66,9 @@
       :row-definitions="rowDefinitions"
       v-bind="$attrs"
     ></v-grid>
-    <div class="oxd-report-table-footer"></div>
+    <div class="oxd-report-table-footer">
+      <slot name="footer"></slot>
+    </div>
   </div>
 </template>
 
