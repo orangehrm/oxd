@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import ProfilePic from '@orangehrm/oxd/src/core/components/ProfilePic/ProfilePic.vue';
+import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue';
 import {cellMixin} from './cell-mixin';
 
 export default defineComponent({
