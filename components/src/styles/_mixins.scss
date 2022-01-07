@@ -83,7 +83,7 @@
   $ratio: map-get($map, ratio) or
     if($width and $height, $width/$height, nth-value($arglist, 1)) or 1;
   // $padding: 1 / $ratio * 100%; // this returns a warning
-  $padding: calc(1 / $ratio); // this is suggested by the sass compiler
+  $padding: calc(1 / $ratio * 100%); // this is suggested by the sass compiler
   &::before,
   &::after {
     content: '';

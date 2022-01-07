@@ -93,6 +93,7 @@
             display-type="label-info"
             label="CSV"
             icon-name="file-earmark-spreadsheet"
+            @click="exportBtn"
           />
         </template>
       </oxd-table-filter>
@@ -105,7 +106,7 @@
           :selectable="true"
           :clickable="false"
           :isDynamicCell="true"
-          :style-class="oxdCardTableStyleClasses"
+          :class="oxdCardTableStyleClasses"
           v-model:selected="state.checkedItems"
           v-model:order="order"
           @update:order="tableSort"
@@ -365,6 +366,10 @@ export default defineComponent({
       emit('pagination:onSelectPerPage', page);
     };
 
+    const exportBtn = () => {
+      emit('topfilters:onExportBtnClick')
+    }
+
     return {
       state,
       filterTitle,
@@ -386,6 +391,7 @@ export default defineComponent({
       clickPage,
       perPageSelect,
       paginationLength,
+      exportBtn,
     };
   },
 });

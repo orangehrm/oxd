@@ -10,7 +10,6 @@
       :item="items[header.name]"
       :header="header"
       :rowItem="items"
-      :modelValue="items.selectedStage"
     />
   </oxd-card-td>
 </template>

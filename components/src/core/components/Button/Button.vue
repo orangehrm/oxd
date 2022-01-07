@@ -29,10 +29,13 @@ import {defineComponent} from 'vue';
 import {
   ButtonSize,
   ButtonType,
+  TooltipPosition,
   SIZES,
   SIZE_MEDIUM,
   TYPES,
   TYPE_MAIN,
+  TOOLTIP_TOP,
+  TOOLTIP_POSITIONS,
 } from './types';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
@@ -77,7 +80,10 @@ export default defineComponent({
     },
     flow: {
       type: String,
-      default: 'top',
+      default: TOOLTIP_TOP,
+      validator: (value: TooltipPosition) => {
+        return TOOLTIP_POSITIONS.indexOf(value) !== 1;
+      },
     },
   },
 

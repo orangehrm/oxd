@@ -48,7 +48,7 @@ export default defineComponent({
       pagePointer: this.current,
       perPage:  {
         id: 1,
-        label: 10
+        label: "10"
       },
     };
   },
@@ -71,7 +71,7 @@ export default defineComponent({
     },
     pagesList: {
       type: Array,
-      default: () => [10, 20, 50, 100],
+      default: () => ["10", "20", "50", "100"],
     }
   },
 

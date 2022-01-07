@@ -103,16 +103,16 @@
 }
 
 /* FLOW: DOWN */
-[tooltip][flow^="down"]::before {
+[tooltip][flow^="bottom"]::before {
   top: 100%;
   border-top-width: 0;
   border-bottom-color: #64728c;
 }
-[tooltip][flow^="down"]::after {
+[tooltip][flow^="bottom"]::after {
   top: calc(100% + 5px);
 }
-[tooltip][flow^="down"]::before,
-[tooltip][flow^="down"]::after {
+[tooltip][flow^="bottom"]::before,
+[tooltip][flow^="bottom"]::after {
   left: 50%;
   transform: translate(-50%, .5em);
 }
@@ -165,8 +165,8 @@
 [tooltip]:not([flow]):hover::after,
 [tooltip][flow^="up"]:hover::before,
 [tooltip][flow^="up"]:hover::after,
-[tooltip][flow^="down"]:hover::before,
-[tooltip][flow^="down"]:hover::after {
+[tooltip][flow^="bottom"]:hover::before,
+[tooltip][flow^="bottom"]:hover::after {
   animation: tooltips-vert 300ms ease-out forwards;
 }
 

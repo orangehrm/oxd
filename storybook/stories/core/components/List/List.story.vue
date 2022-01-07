@@ -154,6 +154,7 @@ export default defineComponent({
           displayType: 'label',
           size: 'medium',
           name: 'oxd-download-doc',
+          tooltip: "Download Resume",
         },
       };
       const downloadApplicationForm = {
@@ -163,6 +164,7 @@ export default defineComponent({
           displayType: 'label',
           size: 'medium',
           name: 'oxd-download',
+          tooltip: "Download Application Form",
         },
       };
       const compare = {
@@ -172,6 +174,7 @@ export default defineComponent({
           displayType: 'label',
           size: 'medium',
           name: 'oxd-users',
+          tooltip: "Compare With Other Candidates",
         },
       };
       return {

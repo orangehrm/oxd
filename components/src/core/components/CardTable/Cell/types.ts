@@ -21,3 +21,8 @@ export interface RowItem {
   isSelectable?: boolean;
   isDisabled?: boolean;
 }
+
+export interface ProfilePicItem {
+  profilePic?: string | null | undefined;
+  size?: string | null | undefined;
+}

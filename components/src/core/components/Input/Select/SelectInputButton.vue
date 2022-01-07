@@ -68,6 +68,11 @@ import {defineComponent} from 'vue';
 import eventsMixin from './events-mixin';
 import navigationMixin from './navigation-mixin';
 import {TOP, BOTTOM, Option, Position, DROPDOWN_POSITIONS} from '../types';
+import {
+  TooltipPosition,
+  TOOLTIP_TOP,
+  TOOLTIP_POSITIONS,
+} from './../../Button/types';
 import SelectDropdown from '@orangehrm/oxd/core/components/Input/Select/SelectDropdown.vue';
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
@@ -109,7 +114,7 @@ export default defineComponent({
     dropdownPosition: {
       type: String,
       default: BOTTOM,
-      validator: function(value: Position) {
+      validator: function(value: TooltipPosition) {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
@@ -131,7 +136,10 @@ export default defineComponent({
     },
     flow: {
       type: String,
-      default: 'top',
+      default: TOOLTIP_TOP,
+      validator: (value: Position) => {
+        return TOOLTIP_POSITIONS.indexOf(value) !== 1;
+      },
     },
   },
 

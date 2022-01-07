@@ -22,6 +22,11 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import {
+  TooltipPosition,
+  TOOLTIP_TOP,
+  TOOLTIP_POSITIONS,
+} from './types';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
@@ -50,7 +55,10 @@ export default defineComponent({
     },
     flow: {
       type: String,
-      default: 'up',
+      default: TOOLTIP_TOP,
+      validator: (value: TooltipPosition) => {
+        return TOOLTIP_POSITIONS.indexOf(value) !== 1;
+      },
     },
   },
 

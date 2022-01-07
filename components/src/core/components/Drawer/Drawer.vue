@@ -4,11 +4,7 @@
     <div
       class="oxd-drawer"
       ref="wrapper"
-      :class="[
-        alignments,
-        {'sticky-footer': stickyFooter},
-        {opened: modalState},
-      ]"
+      :class="drawerStyleClasses"
       :style="[styles, drawerPositionX]"
       v-click-outside="clickOutside"
     >
@@ -50,7 +46,13 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, computed, onMounted, ref} from 'vue';
+import {defineComponent, computed, onMounted, ref, reactive} from 'vue';
+import {
+  DrawerPosition,
+  RIGHT,
+  POSITIONS,
+  Drawer,
+} from './types';
 import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import clickOutsideDirective from '@orangehrm/oxd/directives/click-outside';
 
@@ -66,7 +68,10 @@ export default defineComponent({
     },
     position: {
       type: String,
-      default: 'right',
+      default: RIGHT,
+      validator: (value: DrawerPosition) => {
+        return POSITIONS.indexOf(value) !== 1;
+      },
     },
     width: {
       type: String,
@@ -111,13 +116,15 @@ export default defineComponent({
   },
 
   setup(props, {emit}) {
-    const open = ref(false);
-    const wrapper = ref(null);
-    const header = ref(null);
-    const footer = ref(null);
-    const wrapperHeight = ref(0);
-    const footerHeight = ref(0);
-    const headerHeight = ref(0);
+    const wrapper = ref<HTMLElement>();
+    const header = ref<HTMLElement>();
+    const footer = ref<HTMLElement>();
+    const state: Drawer = reactive({
+      open: false,
+      wrapperHeight: 0,
+      footerHeight: 0,
+      headerHeight: 0,
+    });
     const alignments = computed(() => {
       const styles = [];
       if (props.autoAlign) {
@@ -129,8 +136,16 @@ export default defineComponent({
       return styles.join(' ');
     });
 
+    const drawerStyleClasses = computed(() => {
+      return [
+        alignments,
+        {'sticky-footer': props.stickyFooter},
+        {opened: props.modalState},
+      ]
+    });
+
     const toggleDrawer = (isOpen: boolean) => {
-      open.value = isOpen;
+      state.open = isOpen;
     };
 
     const defaultOkAction = () => {
@@ -166,7 +181,7 @@ export default defineComponent({
     });
     const bodyHeight = computed(() => {
       const totalHeightToRemove =
-        wrapperHeight.value - (headerHeight.value + footerHeight.value + 20);
+        state.wrapperHeight - (state.headerHeight + state.footerHeight + 20);
       return {
         height: `${totalHeightToRemove}px`,
       };
@@ -210,12 +225,12 @@ export default defineComponent({
     });
 
     onMounted(() => {
-      wrapperHeight.value = wrapper.value.clientHeight;
-      headerHeight.value = header.value.clientHeight;
-      footerHeight.value = footer.value.clientHeight;
+      state.wrapperHeight = wrapper.value.clientHeight;
+      state.headerHeight = header.value.clientHeight;
+      state.footerHeight = footer.value.clientHeight;
     });
     return {
-      open,
+      state,
       wrapper,
       header,
       footer,
@@ -226,6 +241,7 @@ export default defineComponent({
       cancelButtonData,
       drawerPositionX,
       clickOutside,
+      drawerStyleClasses,
     };
   },
 });

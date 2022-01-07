@@ -1,5 +1,5 @@
 <template>
-  <oxd-card-table-container :class="styleClass">
+  <oxd-card-table-container>
     <div v-if="loading" class="oxd-table-loader">
       <oxd-loading-spinner />
     </div>
@@ -84,10 +84,6 @@ export default defineComponent({
     tableId: {
       type: String,
       default: () => nanoid(8),
-    },
-    styleClass: {
-      type: String,
-      default: () => '',
     },
     isDynamicCell: {
       type: Boolean,
