@@ -24,7 +24,7 @@
       :empty="computedOptions.length === 0"
     >
       <oxd-select-option v-if="showEmptySelector" @select="onClear">
-        {{ placeholder }}
+        {{ $oxdt(placeholder) }}
       </oxd-select-option>
       <oxd-select-option
         v-for="(option, i) in computedOptions"
@@ -35,7 +35,7 @@
         @select="onSelect(option)"
       >
         <slot name="option" :data="option"></slot>
-        <span v-if="!$slots['option']">{{ option.label }}</span>
+        <span v-if="!$slots['option']">{{ $oxdt(option.label) }}</span>
       </oxd-select-option>
     </oxd-select-dropdown>
   </div>
@@ -49,6 +49,7 @@ import {TOP, BOTTOM, Option, Position, DROPDOWN_POSITIONS} from '../types';
 import SelectText from '@orangehrm/oxd/core/components/Input/Select/SelectText.vue';
 import SelectDropdown from '@orangehrm/oxd/core/components/Input/Select/SelectDropdown.vue';
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
+import {translateMixin} from '../../../../mixins/translate';
 
 export default defineComponent({
   name: 'oxd-select-input',
@@ -60,7 +61,7 @@ export default defineComponent({
     'oxd-select-option': SelectOption,
   },
 
-  mixins: [navigationMixin, eventsMixin],
+  mixins: [navigationMixin, eventsMixin, translateMixin],
 
   emits: [
     'update:modelValue',
