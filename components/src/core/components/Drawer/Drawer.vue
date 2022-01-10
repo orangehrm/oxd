@@ -54,7 +54,7 @@ import {
   Drawer,
 } from './types';
 import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
-import clickOutsideDirective from '@orangehrm/oxd/directives/click-outside';
+import clickOutsideDirective from './../../../directives/click-outside';
 
 export default defineComponent({
   components: {
