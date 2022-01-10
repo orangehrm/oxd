@@ -85,19 +85,19 @@
 
 /* FLOW: UP */
 [tooltip]:not([flow])::before,
-[tooltip][flow^="up"]::before {
+[tooltip][flow^="top"]::before {
   bottom: 100%;
   border-bottom-width: 0;
   border-top-color: #64728c;
 }
 [tooltip]:not([flow])::after,
-[tooltip][flow^="up"]::after {
+[tooltip][flow^="top"]::after {
   bottom: calc(100% + 5px);
 }
 [tooltip]:not([flow])::before,
 [tooltip]:not([flow])::after,
-[tooltip][flow^="up"]::before,
-[tooltip][flow^="up"]::after {
+[tooltip][flow^="top"]::before,
+[tooltip][flow^="top"]::after {
   left: 50%;
   transform: translate(-50%, -.5em);
 }
@@ -163,8 +163,8 @@
 /* FX All The Things */ 
 [tooltip]:not([flow]):hover::before,
 [tooltip]:not([flow]):hover::after,
-[tooltip][flow^="up"]:hover::before,
-[tooltip][flow^="up"]:hover::after,
+[tooltip][flow^="top"]:hover::before,
+[tooltip][flow^="top"]:hover::after,
 [tooltip][flow^="bottom"]:hover::before,
 [tooltip][flow^="bottom"]:hover::after {
   animation: tooltips-vert 300ms ease-out forwards;
