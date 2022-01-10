@@ -1,7 +1,7 @@
 <template>
   <div role="listbox" class="oxd-autocomplete-dropdown">
     <oxd-autocomplete-option v-if="loading">
-      {{ $oxdt('Searching') }}...
+      {{ $oxdt('Searching...') }}
     </oxd-autocomplete-option>
     <oxd-autocomplete-option v-else-if="empty">
       {{ $oxdt('No results found') }}
