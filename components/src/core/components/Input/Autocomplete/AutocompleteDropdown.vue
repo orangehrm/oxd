@@ -13,7 +13,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import AutocompleteOption from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteOption.vue';
-import {translateMixin} from '@orangehrm/oxd/mixins/translate';
+import {translateMixin} from '../../../../mixins/translate';
 
 export default defineComponent({
   name: 'oxd-autocomplete-dropdown',
