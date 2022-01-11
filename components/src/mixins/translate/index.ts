@@ -7,7 +7,7 @@ export const translateMixin = defineComponent({
       if (typeof this?.$t === 'function') {
         return this.$t(key);
       }
-      return 'key';
+      return key;
     },
   },
 });
