@@ -3,10 +3,10 @@ import {defineComponent} from 'vue';
 export const translateMixin = defineComponent({
   methods: {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    $vt(key?: any) {
-      if (typeof this.$t === 'function') {
-        return this.$t(key);
-      }
+    $vt(key: string) {
+      return this.$t(key);
+    },
+    $t(key: string) {
       return key;
     },
   },
