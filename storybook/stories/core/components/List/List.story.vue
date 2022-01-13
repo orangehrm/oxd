@@ -98,25 +98,6 @@ export default defineComponent({
       return list
     })
 
-    const profilePicRenderer = (_index, _item, _header, row) => {
-      const profilePic = {
-        component: ProfilePic,
-        props: {
-          size: 'small',
-          imageSrc: null,
-        },
-      };
-      return {
-        props: {
-          header: {
-            cellConfig: {
-              ...({profilePic}),
-            },
-          },
-        },
-      };
-    };
-
     const actionsRenderer = (_index, _item, _header, row) => {
       const rowObj = JSON.parse(JSON.stringify(row));
       const candidateStages =
@@ -776,7 +757,6 @@ export default defineComponent({
       selectVacancy,
       dropdownStages,
       toggleFilterModal,
-      profilePicRenderer,
       actionsRenderer,
       toggleSidebar,
       showAddCandidatesModal,

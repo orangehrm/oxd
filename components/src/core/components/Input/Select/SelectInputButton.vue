@@ -217,12 +217,6 @@ export default defineComponent({
 <style src="./select-input.scss" lang="scss" scoped></style>
 
 <style lang="scss" scoped>
-.d-flex {
-  display: flex;
-}
-.justify-center {
-  justify-content: center !important;
-}
 .w-100 {
   width: 100%;
 }

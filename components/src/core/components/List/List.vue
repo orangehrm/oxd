@@ -40,24 +40,19 @@
         :filter-title="filterTitle"
       >
         <template v-slot:actionOptions>
-          <oxd-button
-            v-if="state.selectedItemIndexes.length > 0"
-            class="default-btn--cancel btn-info"
-            :label="'Archive'"
-            :size="'medium'"
-            display-type="label-info"
-            :style="{'margin-left': '0.5rem'}"
-            icon-name="oxd-archive"
-          />
-          <oxd-button
-            v-if="state.selectedItemIndexes.length > 0"
-            class="default-btn--save btn-danger"
-            :label="'Delete Selected'"
-            :size="'medium'"
-            display-type="label-danger"
-            :style="{'margin-left': '0.5rem'}"
-            icon-name="trash"
-          />
+          <div
+            v-for="(action, index) in configurations.table.topFilters.actions"
+            :key="index"
+          >
+            <component
+              :is="action.type"
+              v-if="state.selectedItemIndexes.length > 0"
+              v-bind="action.props"
+              v-on="eventBinder(action.events)"
+              :class="action.class"
+              :style="action.style"
+            />
+          </div>
         </template>
         <template v-slot:toggleOptions>
           <oxd-quick-search
@@ -370,6 +365,22 @@ export default defineComponent({
       emit('topfilters:onExportBtnClick')
     }
 
+    const eventBinder = (events) => {
+      let mappedEvents, mappedEventsObj
+      if (events) {
+        mappedEvents = events.map(event => {
+          return {
+            "click": (vals) => {
+              debugger
+              emit(event.identifier, vals)
+            }
+          }
+        })
+        mappedEventsObj = Object.assign({}, ...mappedEvents )
+      }
+      return mappedEventsObj;
+    }
+
     return {
       state,
       filterTitle,
@@ -392,6 +403,7 @@ export default defineComponent({
       perPageSelect,
       paginationLength,
       exportBtn,
+      eventBinder,
     };
   },
 });

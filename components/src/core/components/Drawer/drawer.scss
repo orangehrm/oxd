@@ -7,16 +7,6 @@ $oxd-dialog-sheet-box-shadow: 0 25px 35px 0 rgba($oxd-black-color, 0.18) !defaul
   box-sizing: border-box;
 }
 
-.d-flex {
-  display: flex;
-}
-.align-center {
-  align-items: center;
-}
-.justify-between {
-  justify-content: space-between;
-}
-
 .overlay {
   z-index: 998;
   position: fixed;
