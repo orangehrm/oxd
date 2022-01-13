@@ -195,49 +195,79 @@ $oxd-ghost-buttons: (
  * Label Button
 **/
 $oxd-button-font-color--label: #68a61d !default;
-$oxd-button-color--label: hsl(87, 70%, 38%, 0.1) !default;
-$oxd-button-color--label-pressed: hsl(87, 70%, 38%, 0.2) !default;
-$oxd-button-color--label-hover: hsl(87, 70%, 38%, 0.15) !default;
+$oxd-button-color--label: rgba($oxd-button-font-color--label, 0.1) !default;
+$oxd-button-color--label-pressed: rgba(
+  $oxd-button-font-color--label,
+  0.2
+) !default;
+$oxd-button-color--label-hover: rgba(
+  $oxd-button-font-color--label,
+  0.15
+) !default;
 $oxd-button-color--label-focus: $oxd-button-color--label-hover !default;
 $oxd-button-color--label-inactive: $oxd-interface-gray-lighten-1-color !default;
 
 /* Info */
 $oxd-button-font-color--label-info: $oxd-feedback-info-color !default;
-$oxd-button-color--label-info: hsl(217, 84%, 52%, 0.1) !default;
-$oxd-button-color--label-info-pressed: hsl(217, 84%, 52%, 0.2) !default;
+$oxd-button-color--label-info: rgba($oxd-feedback-info-color, 0.1) !default;
+$oxd-button-color--label-info-pressed: rgba(
+  $oxd-feedback-info-color,
+  0.2
+) !default;
 $oxd-button-color--label-info-hover: $oxd-button-font-color--label-info !default;
 $oxd-button-color--label-info-focus: $oxd-button-color--label-info-hover !default;
 $oxd-button-color--label-info-inactive: $oxd-interface-gray-lighten-1-color !default;
 
 /* Danger */
 $oxd-button-font-color--label-danger: $oxd-feedback-danger-color !default;
-$oxd-button-color--label-danger: hsl(358, 93%, 48%, 0.1) !default;
-$oxd-button-color--label-danger-pressed: hsl(358, 93%, 48%, 0.2) !default;
+$oxd-button-color--label-danger: rgba($oxd-feedback-danger-color, 0.1) !default;
+$oxd-button-color--label-danger-pressed: rgba(
+  $oxd-feedback-danger-color,
+  0.2
+) !default;
 $oxd-button-color--label-danger-hover: $oxd-button-font-color--label-danger !default;
 $oxd-button-color--label-danger-focus: $oxd-button-color--label-danger-hover !default;
 $oxd-button-color--label-danger-inactive: $oxd-interface-gray-lighten-1-color !default;
 
 /* Warning */
 $oxd-button-font-color--label-warn: $oxd-feedback-warn-color !default;
-$oxd-button-color--label-warn: hsl(34, 100%, 59%, 0.1) !default;
-$oxd-button-color--label-warn-pressed: hsl(34, 100%, 59%, 0.2) !default;
+$oxd-button-color--label-warn: rgba($oxd-feedback-warn-color, 0.1) !default;
+$oxd-button-color--label-warn-pressed: rgba(
+  $oxd-feedback-warn-color,
+  0.2
+) !default;
 $oxd-button-color--label-warn-hover: $oxd-button-font-color--label-warn !default;
 $oxd-button-color--label-warn-focus: $oxd-button-color--label-warn-hover !default;
 $oxd-button-color--label-warn-inactive: $oxd-interface-gray-lighten-1-color !default;
 
 /* Success */
 $oxd-button-font-color--label-success: $oxd-feedback-success-color !default;
-$oxd-button-color--label-success: hsl(125, 57%, 47%, 0.1) !default;
-$oxd-button-color--label-success-pressed: hsl(125, 57%, 47%, 0.2) !default;
+$oxd-button-color--label-success: rgba(
+  $oxd-feedback-success-color,
+  0.1
+) !default;
+$oxd-button-color--label-success-pressed: rgba(
+  $oxd-feedback-success-color,
+  0.2
+) !default;
 $oxd-button-color--label-success-hover: $oxd-button-font-color--label-success !default;
 $oxd-button-color--label-success-focus: $oxd-button-color--label-success-hover !default;
 $oxd-button-color--label-success-inactive: $oxd-interface-gray-lighten-1-color !default;
 
 /* Text button */
 $oxd-button-font-color--label-text: $oxd-interface-gray-darken-1-color !default;
-$oxd-button-color--label-text: hsl(219, 17%, 47%, 0.1) !default;
-$oxd-button-color--label-text-pressed: hsl(219, 17%, 47%, 0.2) !default;
-$oxd-button-color--label-text-hover: hsl(219, 17%, 47%, 0.15) !default;
+$oxd-button-color--label-text: rgba(
+  $oxd-button-font-color--label-text,
+  0.1
+) !default;
+$oxd-button-color--label-text-pressed: rgba(
+  $oxd-button-font-color--label-text,
+  0.2
+) !default;
+$oxd-button-color--label-text-hover: rgba(
+  $oxd-button-font-color--label-text,
+  0.15
+) !default;
 $oxd-button-color--label-text-focus: $oxd-button-color--label-text-hover !default;
 $oxd-button-color--label-text-inactive: #f6f7f9 !default;
 $oxd-button-font-color--label-text-inactive: $oxd-interface-gray-lighten-2-color !default;
@@ -300,9 +330,9 @@ $oxd-label-buttons: (
 $oxd-icon-button-font-size: 18px !default;
 $oxd-icon-button-font-weight: 400 !default;
 $oxd-icon-button-font-color: $oxd-interface-gray-darken-1-color !default;
-$oxd-icon-button-bg-color: hsl(219, 17%, 47%, 0.1) !default;
-$oxd-icon-button--pressed: hsl(219, 17%, 47%, 0.2) !default;
-$oxd-icon-button--hover: hsl(219, 17%, 47%, 0.15) !default;
+$oxd-icon-button-bg-color: rgba($oxd-icon-button-font-color, 0.1) !default;
+$oxd-icon-button--pressed: rgba($oxd-icon-button-font-color, 0.2) !default;
+$oxd-icon-button--hover: rgba($oxd-icon-button-font-color, 0.15) !default;
 $oxd-icon-button--disabled: #f6f7f9 !default;
 $oxd-icon-button-font-color--disabled: $oxd-interface-gray-lighten-2-color !default;
 $oxd-icon-button-size: 36px;
