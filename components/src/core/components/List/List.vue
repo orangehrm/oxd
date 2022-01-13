@@ -41,7 +41,7 @@
       >
         <template v-slot:actionOptions>
           <div
-            v-for="(action, index) in configurations.table.topBar.actions"
+            v-for="(action, index) in configurations.table.topBar.bulkActions"
             :key="index"
           >
             <component
@@ -369,9 +369,9 @@ export default defineComponent({
       let mappedEvents, mappedEventsObj
       if (events) {
         mappedEvents = events.map(event => {
+          debugger
           return {
-            "click": (vals) => {
-              debugger
+            [event.type]: (vals) => {
               emit(event.identifier, vals)
             }
           }

@@ -110,7 +110,7 @@ export default {
         { name: 'candidate', sortField: 'candidate', title: 'Candidate', style: {flex: 1}, },
         { name: 'email', sortField: 'email', title: 'Email', style: {flex: 1} },
         { name: 'contactNumber', sortField: 'contactNumber', title: 'Contact Number', style: {flex: 1} },
-        { name: 'dateApplied', sortField: 'dateApplied', title: 'Date Applied', style: {flex: 1} },
+        { name: 'dateOfApplication', sortField: 'dateOfApplication', title: 'Date Applied', style: {flex: 1} },
         {
           name: 'action',
           slot: 'footer',
@@ -127,7 +127,7 @@ export default {
           candidate: 'Venkatanarasimharajuvar Narasimha Rajuvaripet',
           email: 'trevor@o.com',
           contactNumber: '+8552616462',
-          dateApplied: 'Thu, 11 Mar 2021',
+          dateOfApplication: 'Thu, 11 Mar 2021',
           selectedStage: {
             eventTitle: 'Application Received',
             id: '1',
@@ -178,7 +178,7 @@ export default {
           candidate: 'Lucy Valdez',
           email: 'lucy@o.com',
           contactNumber: '+8523616462',
-          dateApplied: 'Thu, 10 Mar 2021',
+          dateOfApplication: 'Thu, 10 Mar 2021',
           selectedStage: {
             eventTitle: 'Application Received',
             id: '1',
@@ -217,7 +217,7 @@ export default {
           candidate: 'SRIMANSI JOSHE',
           email: 'JOSHE@gmail.com',
           contactNumber: '+6523616462',
-          dateApplied: 'Wed, 30 Sep 2020',
+          dateOfApplication: 'Wed, 30 Sep 2020',
           selectedStage: {
             eventTitle: 'Shortlisted',
             id: '2',
@@ -268,7 +268,7 @@ export default {
           candidate: 'Peter Smith',
           email: 'petersmith@gmail.com',
           contactNumber: '+1 876-345-1505',
-          dateApplied: 'Tue, 30 Apr 2019',
+          dateOfApplication: 'Tue, 30 Apr 2019',
           selectedStage: {
             eventTitle: 'Shortlisted',
             id: '2',
@@ -319,7 +319,7 @@ export default {
           candidate: 'Jo Denton',
           email: 'jodentan@gmail.com',
           contactNumber: '+1 888-452-2314',
-          dateApplied: 'Tue, 30 Apr 2019',
+          dateOfApplication: 'Tue, 30 Apr 2019',
           selectedStage: {
             eventTitle: 'Shortlisted',
             id: '2',
@@ -370,7 +370,7 @@ export default {
           candidate: 'Garry White',
           email: 'garrywhite@gmail.com',
           contactNumber: '+1 788-482-1505',
-          dateApplied: 'Fri, 26 Apr 2019',
+          dateOfApplication: 'Fri, 26 Apr 2019',
           selectedStage: {
             eventTitle: 'Shortlisted',
             id: '2',
@@ -422,7 +422,7 @@ export default {
         'candidate': 'ASC',
         'email': 'ASC',
         'contactNumber': 'ASC',
-        'dateApplied': 'DESC',
+        'dateOfApplication': 'DESC',
       },
       vacancies: [
         {
