@@ -6,10 +6,10 @@ $oxd-alert-margin: 1rem 0 !default;
 $oxd-alert-padding: 1rem !default;
 
 $oxd-alert-bg-color-default: $oxd-white-color !default;
-$oxd-alert-bg-color-success: rgba($oxd-feedback-success-color, 0.06) !default;
-$oxd-alert-bg-color-warn: rgba($oxd-feedback-warn-color, 0.06) !default;
-$oxd-alert-bg-color-error: rgba($oxd-feedback-danger-color, 0.06) !default;
-$oxd-alert-bg-color-info: rgba($oxd-feedback-info-color, 0.06) !default;
+$oxd-alert-bg-color-success: hsl(125, 57%, 47%, 0.06) !default;
+$oxd-alert-bg-color-warn: hsl(34, 100%, 59%, 0.06) !default;
+$oxd-alert-bg-color-error: hsl(358, 93%, 48%, 0.06) !default;
+$oxd-alert-bg-color-info: hsl(217, 84%, 52%, 0.06) !default;
 
 $oxd-alert-color-default: $oxd-interface-gray-darken-1-color !default;
 $oxd-alert-color-success: $oxd-feedback-success-color !default;

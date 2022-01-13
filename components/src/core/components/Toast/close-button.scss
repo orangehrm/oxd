@@ -9,11 +9,11 @@
   width: $oxd-toast-close-size;
   border-radius: $oxd-toast-close-border-radius;
   cursor: pointer;
-  background-color: rgba($oxd-toast-icon-color, 0.1);
+  background-color: hsl(0, 0%, 100%, 0.1);
   @include oxd-flex-center;
 
   &--default {
-    background-color: rgba($oxd-toast-icon-color-default, 0.1);
+    background-color: hsl(219, 17%, 47%, 0.1);
   }
 }
 
