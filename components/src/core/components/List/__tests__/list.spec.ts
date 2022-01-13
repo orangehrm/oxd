@@ -32,7 +32,7 @@ const DUMMY_DATA = {
         },
       },
     },
-    topFilters: {
+    topBar: {
       visible: true,
       listRecordCount: {
         singleTerm: 'Candidate',

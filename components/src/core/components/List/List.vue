@@ -9,7 +9,7 @@
     <oxd-table-sidebar
       v-if="configurations.table.sidebar.visible"
       class="oxd-table-sidebar"
-      :class="{'with-filters': configurations.table.topFilters.visible}"
+      :class="{'with-filters': configurations.table.topBar.visible}"
       width="230px"
       :side-panel-list="sidePanelList"
       :header-visible="configurations.table.sidebar.header.visible"
@@ -35,13 +35,13 @@
       :class="{'w-100': !state.isSidePanelOpen}"
     >
       <oxd-table-filter
-        v-if="configurations.table.topFilters.visible"
+        v-if="configurations.table.topBar.visible"
         class="list-table-filter"
         :filter-title="filterTitle"
       >
         <template v-slot:actionOptions>
           <div
-            v-for="(action, index) in configurations.table.topFilters.actions"
+            v-for="(action, index) in configurations.table.topBar.actions"
             :key="index"
           >
             <component
@@ -241,7 +241,7 @@ export default defineComponent({
 
     const oxdCardTableStyleClasses = computed(() => {
       let styleClasses = 'oxd-classic-table ';
-      styleClasses += props.configurations.table.topFilters.visible
+      styleClasses += props.configurations.table.topBar.visible
         ? 'with-filters'
         : '';
       return styleClasses;
@@ -272,19 +272,19 @@ export default defineComponent({
       if (state.selectedItemIndexes.length > 0) {
         if (state.selectedItemIndexes.length > 1) {
           title =
-            props.configurations.table.topFilters.listRecordCount.multiTerm;
+            props.configurations.table.topBar.listRecordCount.multiTerm;
         } else {
           title =
-            props.configurations.table.topFilters.listRecordCount.singleTerm;
+            props.configurations.table.topBar.listRecordCount.singleTerm;
         }
         title = `(${state.selectedItemIndexes.length}) ${title} selected`;
       } else {
         if (props.filteredTotalRecordsCount > 1) {
           title =
-            props.configurations.table.topFilters.listRecordCount.multiTerm;
+            props.configurations.table.topBar.listRecordCount.multiTerm;
         } else {
           title =
-            props.configurations.table.topFilters.listRecordCount.singleTerm;
+            props.configurations.table.topBar.listRecordCount.singleTerm;
         }
         title = `(${props.filteredTotalRecordsCount}) ${title} found`;
       }
