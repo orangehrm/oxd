@@ -346,11 +346,11 @@ export default defineComponent({
     };
 
     const previous = (e: Event) => {
-      emit('pagination:onPrevious', e);
+      emit('pagination:onPrevious', state.currentPage, e);
     };
 
     const next = (e: Event) => {
-      emit('pagination:onNext', e);
+      emit('pagination:onNext', state.currentPage, e);
     };
 
     const clickPage = (page: number, e: Event) => {
@@ -369,7 +369,6 @@ export default defineComponent({
       let mappedEvents, mappedEventsObj
       if (events) {
         mappedEvents = events.map(event => {
-          debugger
           return {
             [event.type]: (vals) => {
               emit(event.identifier, vals)
