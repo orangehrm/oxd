@@ -122,42 +122,6 @@
         />
       </div>
     </div>
-    <!-- <oxd-drawer
-      v-if="configurations.drawer.visible"
-      :modal-state="state.modalState"
-      :width="configurations.drawer.width"
-      :height="configurations.drawer.height"
-      :full-height="configurations.drawer.fullHeight"
-      :sticky-footer="configurations.drawer.stickyFooter"
-      :fixed="configurations.drawer.fixedPosition"
-      :position="configurations.drawer.position"
-      :ok-button="{
-        label: configurations.drawer.footer.okButton.label,
-        click: applySearch,
-      }"
-      :cancel-button="{
-        click: closeDrawer,
-      }"
-      @drawer:click-outside="closeDrawer"
-    >
-      <template v-slot:header>
-        <div v-if="configurations.drawer.header.visible" class="header">
-          <slot name="drawerHeader">
-            <div class="d-flex align-center justify-between">
-              <h5>{{ configurations.drawer.header.title }}</h5>
-              <oxd-icon-button
-                v-if="configurations.drawer.header.charmButton.visible"
-                :name="configurations.drawer.header.charmButton.icon"
-                @click="resetSearch"
-              />
-            </div>
-          </slot>
-        </div>
-      </template>
-      <template v-slot:body>
-        <slot name="drawerBody"></slot>
-      </template>
-    </oxd-drawer> -->
   </div>
 </template>
 
@@ -169,7 +133,6 @@ import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import QuickSearchInput from '@orangehrm/oxd/core/components/Input/Autocomplete/QuickSearchInput.vue';
 import TableSidebar from '@orangehrm/oxd/core/components/TableSidebar/TableSidebar.vue';
 import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue';
-// import Drawer from '@orangehrm/oxd/core/components/Drawer/Drawer.vue';
 import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination.vue';
 import images from './images';
 
