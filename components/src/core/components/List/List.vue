@@ -507,40 +507,35 @@ export default defineComponent({
   :deep(.oxd-button-icon) {
     margin-right: 0.5rem;
   }
-  &.btn-info {
+  &:disabled {
     :deep(svg) {
       * {
-        fill: #17a2b8 !important;
-      }
-    }
-    color: #17a2b8;
-    background-color: #327cf31a;
-    &:hover {
-      color: #17a2b8;
-      background-color: rgba(30, 108, 235, 0.15);
-      svg {
-        * {
-          fill: #fff !important;
-        }
+        fill: #ffffff !important;
       }
     }
   }
-  &.btn-danger {
+  &.oxd-btn-info-custom {
     :deep(svg) {
       * {
-        fill: #eb0910 !important;
+        fill: #17a2b8;
+      }
+    }
+    color: #17a2b8;
+    &:disabled {
+      background-color: #cfd3de !important;
+      color: #fff !important;
+    }
+  }
+  &.oxd-btn-danger-custom {
+    :deep(svg) {
+      * {
+        fill: #eb0910;
       }
     }
     color: #eb0910;
-    background-color: rgba(235, 9, 16, 0.1);
-    &:hover {
-      color: #eb0910;
-      background-color: rgba(235, 9, 16, 0.15);
-      svg {
-        * {
-          fill: #fff !important;
-        }
-      }
+    &:disabled {
+      background-color: #cfd3de !important;
+      color: #fff !important;
     }
   }
 }
