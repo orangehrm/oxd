@@ -147,7 +147,6 @@ export default defineComponent({
     'oxd-icon-button': IconButton,
     'oxd-quick-search': QuickSearchInput,
     'oxd-profile-pic': ProfilePic,
-    // 'oxd-drawer': Drawer,
     'oxd-pagination': Pagination,
   },
   props: {

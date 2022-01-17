@@ -92,6 +92,7 @@ export default defineComponent({
   },
 
   setup(props, context) {
+    debugger
     const responsiveState = useResponsive();
 
     provide('tableProps', readonly(props));
@@ -118,6 +119,13 @@ export default defineComponent({
 
     watch(
       () => props.loading,
+      () => {
+        context.emit('update:selected', []);
+      },
+    );
+
+    watch(
+      () => props.items,
       () => {
         context.emit('update:selected', []);
       },
