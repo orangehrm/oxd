@@ -3,20 +3,20 @@
     class="orangehrm-container recruitment-container"
     :class="{
       'table-sidebar-open':
-        configurations.table.sidebar.visible && state.isSidePanelOpen,
+        config.table.sidebar.visible && state.isSidePanelOpen,
     }"
   >
     <oxd-table-sidebar
-      v-if="configurations.table.sidebar.visible"
+      v-if="config.table.sidebar.visible"
       class="oxd-table-sidebar"
-      :class="{'with-filters': configurations.table.topBar.visible}"
+      :class="{'with-filters': config.table.topBar.visible}"
       width="230px"
       :side-panel-list="sidePanelList"
-      :header-visible="configurations.table.sidebar.header.visible"
-      :body-visible="configurations.table.sidebar.body.visible"
-      :list-visible="configurations.table.sidebar.list.visible"
-      :bubble-visible="configurations.table.sidebar.list.bubble.visible"
-      :button="configurations.table.sidebar.header.button"
+      :header-visible="config.table.sidebar.header.visible"
+      :body-visible="config.table.sidebar.body.visible"
+      :list-visible="config.table.sidebar.list.visible"
+      :bubble-visible="config.table.sidebar.list.bubble.visible"
+      :button="config.table.sidebar.header.button"
       :selected-list-item-id="selectedListItem.id"
       @sidePanelList:onSelect="sidePanelListOnSelect"
       @side-panel:onToggle="toggleSidePanel"
@@ -35,18 +35,18 @@
       :class="{'w-100': !state.isSidePanelOpen}"
     >
       <oxd-table-filter
-        v-if="configurations.table.topBar.visible"
+        v-if="config.table.topBar.visible"
         class="list-table-filter"
         :filter-title="filterTitle"
       >
         <template v-slot:actionOptions>
           <div
-            v-for="(action, index) in configurations.table.topBar.bulkActions"
+            v-for="(action, index) in config.table.topBar.bulkActions"
             :key="index"
           >
             <component
               :is="action.type"
-              v-if="state.selectedItemIndexes.length > 0"
+              v-if="state.selectedItemIndexes.length > 0 && (action.conditional ? action.visible === undefined ? true : action.visible : true)"
               v-bind="action.props"
               v-on="eventBinder(action.events)"
               :class="action.class"
@@ -76,7 +76,7 @@
             </template>
           </oxd-quick-search>
           <oxd-icon-button
-            v-if="configurations.drawer.visible"
+            v-if="config.drawer.visible"
             name="funnel"
             display-type="label-info"
             class="btn-large"
@@ -96,7 +96,7 @@
       <div class="oxd-card-table-wrapper">
         <oxd-card-table
           :selector="state.selector"
-          :headers="configurations.table.headers"
+          :headers="config.table.headers"
           :items="listItems"
           :selectable="true"
           :clickable="false"
@@ -202,9 +202,11 @@ export default defineComponent({
       selectedItemIndexes: [],
     });
 
+    const config = computed(() => props.configurations)
+
     const oxdCardTableStyleClasses = computed(() => {
       let styleClasses = 'oxd-classic-table ';
-      styleClasses += props.configurations.table.topBar.visible
+      styleClasses += config.value.table.topBar.visible
         ? 'with-filters'
         : '';
       return styleClasses;
@@ -212,7 +214,7 @@ export default defineComponent({
 
     const order = computed(() => {
       const sortableFieldsObj = {};
-      props.configurations.table.headers.forEach(header => {
+      config.value.table.headers.forEach(header => {
         if (header.initialSortOrder) {
           sortableFieldsObj[header.sortField] = header.initialSortOrder;
         }
@@ -235,19 +237,19 @@ export default defineComponent({
       if (state.selectedItemIndexes.length > 0) {
         if (state.selectedItemIndexes.length > 1) {
           title =
-            props.configurations.table.topBar.listRecordCount.multiTerm;
+            config.value.table.topBar.listRecordCount.multiTerm;
         } else {
           title =
-            props.configurations.table.topBar.listRecordCount.singleTerm;
+            config.value.table.topBar.listRecordCount.singleTerm;
         }
         title = `(${state.selectedItemIndexes.length}) ${title} selected`;
       } else {
         if (props.filteredTotalRecordsCount > 1) {
           title =
-            props.configurations.table.topBar.listRecordCount.multiTerm;
+            config.value.table.topBar.listRecordCount.multiTerm;
         } else {
           title =
-            props.configurations.table.topBar.listRecordCount.singleTerm;
+            config.value.table.topBar.listRecordCount.singleTerm;
         }
         title = `(${props.filteredTotalRecordsCount}) ${title} found`;
       }
@@ -366,6 +368,7 @@ export default defineComponent({
       paginationLength,
       exportBtn,
       eventBinder,
+      config,
     };
   },
 });
