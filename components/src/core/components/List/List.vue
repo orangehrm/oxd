@@ -474,6 +474,9 @@ export default defineComponent({
     }
     :deep(.oxd-table-cell) {
       flex-wrap: nowrap;
+      .oxd-select-wrapper {
+        max-width: 170px;
+      }
     }
   }
 }
