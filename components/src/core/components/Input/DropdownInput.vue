@@ -107,7 +107,7 @@ export default defineComponent({
     },
     options: {
       type: Array as PropType<Option[]>,
-      default: [],
+      default: () => ([]),
     },
     disabledOptions: {
       type: Array as PropType<number[]>,

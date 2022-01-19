@@ -22,11 +22,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {
-  TooltipPosition,
-  TOOLTIP_TOP,
-  TOOLTIP_POSITIONS,
-} from './types';
+import {TooltipPosition, TOOLTIP_TOP, TOOLTIP_POSITIONS} from './types';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({

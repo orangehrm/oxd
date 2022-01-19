@@ -8,12 +8,12 @@ export interface Drawer {
   wrapperHeight: number;
   footerHeight: number;
   headerHeight: number;
-};
+}
 
 export const POSITIONS = [TOP, BOTTOM, LEFT, RIGHT];
 
 export type DrawerPosition =
-| typeof TOP
-| typeof BOTTOM
-| typeof LEFT
-| typeof RIGHT;
+  | typeof TOP
+  | typeof BOTTOM
+  | typeof LEFT
+  | typeof RIGHT;

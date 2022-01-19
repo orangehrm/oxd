@@ -33,7 +33,12 @@ export const TOOLTIP_BOTTOM = 'bottom';
 export const TOOLTIP_LEFT = 'left';
 export const TOOLTIP_RIGHT = 'right';
 
-export const TOOLTIP_POSITIONS = [TOOLTIP_TOP, TOOLTIP_BOTTOM, TOOLTIP_LEFT, TOOLTIP_RIGHT];
+export const TOOLTIP_POSITIONS = [
+  TOOLTIP_TOP,
+  TOOLTIP_BOTTOM,
+  TOOLTIP_LEFT,
+  TOOLTIP_RIGHT,
+];
 
 export const TYPES = [
   TYPE_MAIN,
@@ -83,7 +88,7 @@ export type ButtonType =
   | typeof TYPE_TEXT
   | typeof TYPE_TOOL;
 
-  export type TooltipPosition =
+export type TooltipPosition =
   | typeof TOOLTIP_TOP
   | typeof TOOLTIP_BOTTOM
   | typeof TOOLTIP_LEFT

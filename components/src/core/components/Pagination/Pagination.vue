@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, computed} from 'vue';
+import {defineComponent} from 'vue';
 import PageItem from '@orangehrm/oxd/core/components/Pagination/PageItem.vue';
 import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
 import {pageableMixin} from '../../../mixins/pageable';
@@ -36,7 +36,7 @@ export default defineComponent({
 
   components: {
     'oxd-pagination-page-item': PageItem,
-    "oxd-select-input": SelectInput,
+    'oxd-select-input': SelectInput,
   },
 
   mixins: [pageableMixin],
@@ -46,9 +46,9 @@ export default defineComponent({
   data() {
     return {
       pagePointer: this.current,
-      perPage:  {
+      perPage: {
         id: 1,
-        label: "10"
+        label: '10',
       },
     };
   },
@@ -71,8 +71,8 @@ export default defineComponent({
     },
     pagesList: {
       type: Array,
-      default: () => ["10", "20", "50", "100"],
-    }
+      default: () => ['10', '20', '50', '100'],
+    },
   },
 
   computed: {
@@ -80,7 +80,7 @@ export default defineComponent({
       return this.pagesList.map((page, index) => {
         return {
           id: ++index,
-          label: page
+          label: page,
         };
       });
     },
@@ -175,7 +175,7 @@ export default defineComponent({
     selectPerPage(val) {
       this.perPage = val;
       this.$emit('onPerPageSelect', val);
-    }
+    },
   },
 });
 </script>

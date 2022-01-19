@@ -46,7 +46,14 @@
           >
             <component
               :is="action.type"
-              v-if="state.selectedItemIndexes.length > 0 && (action.conditional ? action.visible === undefined ? true : action.visible : true)"
+              v-if="
+                state.selectedItemIndexes.length > 0 &&
+                  (action.conditional
+                    ? action.visible === undefined
+                      ? true
+                      : action.visible
+                    : true)
+              "
               v-bind="action.props"
               v-on="eventBinder(action.events)"
               :class="action.class"
@@ -100,7 +107,6 @@
           :items="listItems"
           :selectable="true"
           :clickable="false"
-          :isDynamicCell="true"
           :class="oxdCardTableStyleClasses"
           v-model:selected="state.checkedItems"
           v-model:order="order"
@@ -201,13 +207,11 @@ export default defineComponent({
       selectedItemIndexes: [],
     });
 
-    const config = computed(() => props.configurations)
+    const config = computed(() => props.configurations);
 
     const oxdCardTableStyleClasses = computed(() => {
       let styleClasses = 'oxd-classic-table ';
-      styleClasses += config.value.table.topBar.visible
-        ? 'with-filters'
-        : '';
+      styleClasses += config.value.table.topBar.visible ? 'with-filters' : '';
       return styleClasses;
     });
 
@@ -235,20 +239,16 @@ export default defineComponent({
       let title = '';
       if (state.selectedItemIndexes.length > 0) {
         if (state.selectedItemIndexes.length > 1) {
-          title =
-            config.value.table.topBar.listRecordCount.multiTerm;
+          title = config.value.table.topBar.listRecordCount.multiTerm;
         } else {
-          title =
-            config.value.table.topBar.listRecordCount.singleTerm;
+          title = config.value.table.topBar.listRecordCount.singleTerm;
         }
         title = `(${state.selectedItemIndexes.length}) ${title} selected`;
       } else {
         if (props.filteredTotalRecordsCount > 1) {
-          title =
-            config.value.table.topBar.listRecordCount.multiTerm;
+          title = config.value.table.topBar.listRecordCount.multiTerm;
         } else {
-          title =
-            config.value.table.topBar.listRecordCount.singleTerm;
+          title = config.value.table.topBar.listRecordCount.singleTerm;
         }
         title = `(${props.filteredTotalRecordsCount}) ${title} found`;
       }
@@ -326,23 +326,23 @@ export default defineComponent({
     };
 
     const exportBtn = () => {
-      emit('topfilters:onExportBtnClick')
-    }
+      emit('topfilters:onExportBtnClick');
+    };
 
-    const eventBinder = (events) => {
-      let mappedEvents, mappedEventsObj
+    const eventBinder = events => {
+      let mappedEvents, mappedEventsObj;
       if (events) {
         mappedEvents = events.map(event => {
           return {
-            [event.type]: (vals) => {
-              emit(event.identifier, vals)
-            }
-          }
-        })
-        mappedEventsObj = Object.assign({}, ...mappedEvents )
+            [event.type]: vals => {
+              emit(event.identifier, vals);
+            },
+          };
+        });
+        mappedEventsObj = Object.assign({}, ...mappedEvents);
       }
       return mappedEventsObj;
-    }
+    };
 
     return {
       state,

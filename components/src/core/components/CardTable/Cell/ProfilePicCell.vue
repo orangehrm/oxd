@@ -1,12 +1,15 @@
 <template>
-  <oxd-profile-pic :size="profilePicObj.size" :imageSrc="profilePicObj.profilePic" />
+  <oxd-profile-pic
+    :size="profilePicObj.size"
+    :imageSrc="profilePicObj.profilePic"
+  />
 </template>
 
 <script lang="ts">
 import {defineComponent, PropType, computed} from 'vue';
 import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue';
-import {ProfilePicItem} from './types'
-import {SIZE_SMALL} from './../../ProfilePic/types'
+import {ProfilePicItem} from './types';
+import {SIZE_SMALL} from './../../ProfilePic/types';
 import {cellMixin} from './cell-mixin';
 
 export default defineComponent({
@@ -23,7 +26,7 @@ export default defineComponent({
     const profilePicObj = computed(() => {
       const initialObject = {
         profilePic: null,
-        size: SIZE_SMALL
+        size: SIZE_SMALL,
       };
       for (const key in props.rowItem) {
         const value = props.rowItem[key];
@@ -32,10 +35,10 @@ export default defineComponent({
         }
       }
       return initialObject;
-    })
+    });
     return {
       profilePicObj,
-    }
-  }
+    };
+  },
 });
 </script>

@@ -47,12 +47,7 @@
 
 <script lang="ts">
 import {defineComponent, computed, onMounted, ref, reactive} from 'vue';
-import {
-  DrawerPosition,
-  RIGHT,
-  POSITIONS,
-  Drawer,
-} from './types';
+import {DrawerPosition, RIGHT, POSITIONS, Drawer} from './types';
 import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import clickOutsideDirective from './../../../directives/click-outside';
 
@@ -141,7 +136,7 @@ export default defineComponent({
         alignments,
         {'sticky-footer': props.stickyFooter},
         {opened: props.modalState},
-      ]
+      ];
     });
 
     const toggleDrawer = (isOpen: boolean) => {
@@ -155,14 +150,12 @@ export default defineComponent({
 
     const clickOutside = () => {
       emit('drawer:click-outside');
-    }
+    };
 
     const drawerPositionX = computed(() => {
       let transform = '';
       if (props.position === 'right') {
-        transform = `translateX(${
-          props.modalState ? '0px' : props.width
-        })`;
+        transform = `translateX(${props.modalState ? '0px' : props.width})`;
       } else {
         transform = `translateX(${
           props.modalState ? '0px' : `-${props.width}`

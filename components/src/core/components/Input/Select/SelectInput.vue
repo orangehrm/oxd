@@ -23,7 +23,10 @@
       :loading="loading"
       :empty="computedOptions.length === 0"
     >
-      <oxd-select-option v-if="showEmptySelector && !hideDropdownDefaultLabel" @select="onClear">
+      <oxd-select-option
+        v-if="showEmptySelector && !hideDropdownDefaultLabel"
+        @select="onClear"
+      >
         {{ placeholder }}
       </oxd-select-option>
       <oxd-select-option

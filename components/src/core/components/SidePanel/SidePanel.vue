@@ -43,7 +43,7 @@ export default defineComponent({
     },
     menuItems: {
       type: Object as PropType<MenuItem[]>,
-      default: [],
+      default: () => ([]),
     },
   },
 

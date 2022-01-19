@@ -48,11 +48,21 @@ describe('Calendar.vue', () => {
         ],
       },
     });
-    const date = wrapper.findAllComponents(DateVue);
-    const nonWorkingDay = nextSunday(dateExpected);
-    const halfWorkingDay = nextSaturday(dateExpected);
-    expect(wrapper.find('.oxd-calendar-date-wrapper.--non-working-day').find('.oxd-calendar-date').text()).toStrictEqual('1');
-    expect(wrapper.find('.oxd-calendar-date-wrapper.--working-day-half').find('.oxd-calendar-date').text()).toStrictEqual('7');
+    // const date = wrapper.findAllComponents(DateVue);
+    // const nonWorkingDay = nextSunday(dateExpected);
+    // const halfWorkingDay = nextSaturday(dateExpected);
+    expect(
+      wrapper
+        .find('.oxd-calendar-date-wrapper.--non-working-day')
+        .find('.oxd-calendar-date')
+        .text(),
+    ).toStrictEqual('1');
+    expect(
+      wrapper
+        .find('.oxd-calendar-date-wrapper.--working-day-half')
+        .find('.oxd-calendar-date')
+        .text(),
+    ).toStrictEqual('7');
   });
   it('should show events in calendar', async () => {
     const event1 = {
@@ -71,9 +81,13 @@ describe('Calendar.vue', () => {
         events: [event1, event2],
       },
     });
-    const date = wrapper.findAllComponents(DateVue);
-    expect(wrapper.find('.oxd-calendar-date.--holiday-full').text()).toStrictEqual('29');
-    expect(wrapper.find('.oxd-calendar-date.--holiday-half').text()).toStrictEqual('5');
+    // const date = wrapper.findAllComponents(DateVue);
+    expect(
+      wrapper.find('.oxd-calendar-date.--holiday-full').text(),
+    ).toStrictEqual('29');
+    expect(
+      wrapper.find('.oxd-calendar-date.--holiday-half').text(),
+    ).toStrictEqual('5');
   });
   it('should emit selectMonth on month change', async () => {
     const wrapper = mount(Calendar, {});

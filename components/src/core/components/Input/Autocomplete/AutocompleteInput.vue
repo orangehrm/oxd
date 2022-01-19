@@ -189,12 +189,11 @@ export default defineComponent({
       return '';
     },
     showClear(): boolean {
-      const a = (
+      const a =
         !this.disabled &&
         !this.readonly &&
         this.clear &&
-        this.selectedItem !== null
-      );
+        this.selectedItem !== null;
       return a;
     },
   },

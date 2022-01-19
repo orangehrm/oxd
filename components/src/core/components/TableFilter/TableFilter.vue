@@ -1,5 +1,5 @@
 <template>
-  <div class="oxd-table-filter" :class="{'no-filter-slot' : hideFilterSlot}">
+  <div class="oxd-table-filter" :class="{'no-filter-slot': hideFilterSlot}">
     <div class="oxd-table-filter-header">
       <div class="oxd-table-filter-header-title">
         <oxd-text class="oxd-table-filter-title" tag="h5">{{
@@ -76,12 +76,14 @@ export default defineComponent({
       margin: 0;
     }
   }
-  .oxd-table-filter-header-title, .--actions {
+  .oxd-table-filter-header-title,
+  .--actions {
     display: flex;
     align-items: center;
   }
   .oxd-table-filter-header-options {
-    & .oxd-icon-button, .oxd-button {
+    & .oxd-icon-button,
+    .oxd-button {
       margin-left: 5px;
     }
   }
