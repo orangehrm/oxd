@@ -8,83 +8,59 @@
     >
       <oxd-card-tr :clickable="tableProps.clickable">
         <div v-if="leftSlot.length != 0" class="card-item card-left">
-          <component
-            :is="tableProps.isDynamicCell
-              ? 'oxd-dynamic-card-cell'
-              : 'oxd-card-cell'
-            "
-            class="oxd-padding-cell"
-            :headers="defaultSlot"
-            :items="item"
-            :index="index"
-          />
+        <oxd-card-cell
+          class="oxd-padding-cell"
+          :headers="defaultSlot"
+          :items="item"
+          :index="index"
+        ></oxd-card-cell>
         </div>
         <div class="card-center">
           <div v-if="titleSlot.length != 0" class="card-header-slot">
             <div class="card-item card-header-slot-content --left">
-              <component
-                :is="tableProps.isDynamicCell
-                  ? 'oxd-dynamic-card-cell'
-                  : 'oxd-card-cell'
-                "
+              <oxd-card-cell
                 class="oxd-padding-cell"
                 :headers="defaultSlot"
                 :items="item"
                 :index="index"
-              />
+              ></oxd-card-cell>
             </div>
             <div
               v-if="actionSlot.length != 0"
               class="card-item card-header-slot-content --right"
             >
-              <component
-                :is="tableProps.isDynamicCell
-                  ? 'oxd-dynamic-card-cell'
-                  : 'oxd-card-cell'
-                "
+              <oxd-card-cell
                 class="oxd-padding-cell"
                 :headers="defaultSlot"
                 :items="item"
                 :index="index"
-              />
+              ></oxd-card-cell>
             </div>
           </div>
           <div v-if="defaultSlot.length != 0" class="card-item card-body-slot">
-            <component
-              :is="tableProps.isDynamicCell
-                ? 'oxd-dynamic-card-cell'
-                : 'oxd-card-cell'
-              "
+            <oxd-card-cell
               class="oxd-padding-cell"
               :headers="defaultSlot"
               :items="item"
               :index="index"
-            />
+            ></oxd-card-cell>
           </div>
           <div v-if="footerSlot.length != 0" class="card-item card-footer-slot">
-            <component
-              :is="tableProps.isDynamicCell
-                ? 'oxd-dynamic-card-cell'
-                : 'oxd-card-cell'
-              "
+            <oxd-card-cell
               class="oxd-padding-cell"
               :headers="defaultSlot"
               :items="item"
               :index="index"
-            />
+            ></oxd-card-cell>
           </div>
         </div>
         <div v-if="rightSlot.length != 0" class="card-item card-right">
-          <component
-            :is="tableProps.isDynamicCell
-              ? 'oxd-dynamic-card-cell'
-              : 'oxd-card-cell'
-            "
+          <oxd-card-cell
             class="oxd-padding-cell"
             :headers="defaultSlot"
             :items="item"
             :index="index"
-          />
+          ></oxd-card-cell>
         </div>
       </oxd-card-tr>
     </div>

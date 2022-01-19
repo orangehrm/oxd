@@ -59,7 +59,6 @@
         :items="items"
         :selectable="true"
         :clickable="false"
-        :isDynamicCell="true"
         :style-class="'oxd-classic-table with-filters'"
         v-model:selected="checkedItems"
         v-model:order="order"

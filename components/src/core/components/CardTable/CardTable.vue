@@ -85,10 +85,6 @@ export default defineComponent({
       type: String,
       default: () => nanoid(8),
     },
-    isDynamicCell: {
-      type: Boolean,
-      default: true,
-    },
   },
 
   setup(props, context) {
