@@ -120,7 +120,7 @@
           v-model:current="state.currentPage"
           :max="maxPages"
           :pages-list="pagination.pages"
-          :current="pagination.limit"
+          :per-page="pagination.perPage"
           @previous="previous"
           @next="next"
           @clickPage="clickPage"
@@ -182,7 +182,14 @@ export default defineComponent({
     pagination: {
       type: Object,
       default: () => ({
-        limit: 10 as number,
+        limit: 20 as number,
+        perPage: {
+          id: 1,
+          label: '10',
+        } as {
+          id: number,
+          label: string,
+        },
         pages: [10, 20, 50, 100] as number[],
       }),
     },

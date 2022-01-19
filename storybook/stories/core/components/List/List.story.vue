@@ -36,7 +36,7 @@ import {defineComponent, reactive, computed, ref} from 'vue';
 import List from '@orangehrm/oxd/core/components/List/List';
 import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic';
 import SelectInput from "@orangehrm/oxd/core/components/Input/Select/SelectInput";
-import list from './list.json'
+import list from './list-config.json'
 import map from 'lodash/map'
 
 interface SelectedVacancyI extends SelectUII {
@@ -620,13 +620,19 @@ export default defineComponent({
         },
       ] as StageI[],
       pagination: {
-        limit: 10,
-        pages: [10, 20, 50, 100],
-        currentPage: 1,
+        perPage: {
+          id: 2,
+          label: '20',
+        },
+        limit: 20,
+        pages: [10, 20, 50, 100]
       } as {
-        limit: number;
+        perPage: {
+          id: number,
+          label: string,
+        },
+        limit: number,
         pages: number[];
-        currentPage: number;
       },
       modalState: false,
     });
@@ -732,21 +738,22 @@ export default defineComponent({
         }
       });
     };
-    const selectPreviousPage = () => {
-      state.pagination.currentPage = state.pagination.currentPage - 1;
+    const selectPreviousPage = (currentPage: number) => {
+      console.log(currentPage)
     };
-    const selectNextPaginate = () => {
-      state.pagination.currentPage = state.pagination.currentPage + 1;
+    const selectNextPaginate = (currentPage: number) => {
+      console.log(currentPage)
     };
     const selectExactPage = (page: { native: Event; page: number }) => {
-      state.pagination.currentPage = page.page;
+      console.log(page.page)
     };
     const selectPerPage = (page: {
       id: number;
       label: number | number;
       _selected: boolean;
     }) => {
-      state.pagination.limit = page.label;
+      state.pagination.perPage = page
+      console.log(page.label)
     };
 
     return {

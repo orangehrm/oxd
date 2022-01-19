@@ -18,7 +18,7 @@
         class="pagination-dropdown"
         :options="perPages"
         @update:modelValue="selectPerPage"
-        :model-value="perPage"
+        :model-value="perPageData"
         :hide-dropdown-default-label="true"
       />
     </ul>
@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, PropType} from 'vue';
 import PageItem from '@orangehrm/oxd/core/components/Pagination/PageItem.vue';
 import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
 import {pageableMixin} from '../../../mixins/pageable';
@@ -46,7 +46,7 @@ export default defineComponent({
   data() {
     return {
       pagePointer: this.current,
-      perPage: {
+      perPageData: {
         id: 1,
         label: '10',
       },
@@ -72,6 +72,16 @@ export default defineComponent({
     pagesList: {
       type: Array,
       default: () => ['10', '20', '50', '100'],
+    },
+    perPage: {
+      type: Object as PropType<{
+        id: number,
+        label: string,
+      }>,
+      default: () => ({
+        id: 1,
+        label: '10',
+      })
     },
   },
 
@@ -173,10 +183,14 @@ export default defineComponent({
       return range;
     },
     selectPerPage(val) {
-      this.perPage = val;
+      this.perPageData = val;
       this.$emit('onPerPageSelect', val);
     },
   },
+
+  mounted() {
+    this.perPageData = this.perPage
+  }
 });
 </script>
 
