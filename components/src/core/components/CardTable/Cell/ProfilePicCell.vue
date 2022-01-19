@@ -2,6 +2,7 @@
   <oxd-profile-pic
     :size="profilePicObj.size"
     :imageSrc="profilePicObj.profilePic"
+    :link="profilePicObj.link"
   />
 </template>
 
@@ -27,6 +28,10 @@ export default defineComponent({
       const initialObject = {
         profilePic: null,
         size: SIZE_SMALL,
+        link: {
+          url: null,
+          target: null,
+        },
       };
       for (const key in props.rowItem) {
         const value = props.rowItem[key];

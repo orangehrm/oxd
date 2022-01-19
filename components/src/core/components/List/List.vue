@@ -2,26 +2,26 @@
   <div
     class="orangehrm-container recruitment-container"
     :class="{
-      'table-sidebar-open':
-        config.table.sidebar.visible && state.isSidePanelOpen,
+      'table-left-panel-open':
+        config.table.leftPanel.visible && state.isLeftPanelOpen,
     }"
   >
     <oxd-table-sidebar
-      v-if="config.table.sidebar.visible"
-      class="oxd-table-sidebar"
+      v-if="config.table.leftPanel.visible"
+      class="oxd-table-left-panel"
       :class="{'with-filters': config.table.topBar.visible}"
       width="230px"
       :side-panel-list="sidePanelList"
-      :header-visible="config.table.sidebar.header.visible"
-      :body-visible="config.table.sidebar.body.visible"
-      :list-visible="config.table.sidebar.list.visible"
-      :bubble-visible="config.table.sidebar.list.bubble.visible"
-      :button="config.table.sidebar.header.button"
+      :header-visible="config.table.leftPanel.header.visible"
+      :body-visible="config.table.leftPanel.body.visible"
+      :list-visible="config.table.leftPanel.list.visible"
+      :bubble-visible="config.table.leftPanel.list.bubble.visible"
+      :button="config.table.leftPanel.header.button"
       :selected-list-item-id="selectedListItem.id"
       @sidePanelList:onSelect="sidePanelListOnSelect"
       @side-panel:onToggle="toggleSidePanel"
       @sidePanelList:onHeaderBtnClick="sidePanelListOnHeaderBtnClick"
-      :is-side-panel-open="state.isSidePanelOpen"
+      :is-side-panel-open="state.isLeftPanelOpen"
     >
       <template v-slot:sidePanelBody>
         <slot name="sidePanelBody"></slot>
@@ -32,7 +32,7 @@
     </oxd-table-sidebar>
     <div
       class="table-card-list-wrapper"
-      :class="{'w-100': !state.isSidePanelOpen}"
+      :class="{'w-100': !state.isLeftPanelOpen}"
     >
       <oxd-table-filter
         v-if="config.table.topBar.visible"
@@ -200,7 +200,7 @@ export default defineComponent({
 
     const state = reactive({
       currentPage: 1,
-      isSidePanelOpen: true,
+      isLeftPanelOpen: true,
       checkedItems: [],
       modalState: false as boolean,
       selectedQuickSearch: null,
@@ -304,9 +304,9 @@ export default defineComponent({
       emit('drawer-search:cancel');
     };
 
-    const toggleSidePanel = (sidebarOpenState: boolean) => {
-      state.isSidePanelOpen = sidebarOpenState;
-      emit('table-sidebar:onToggle', sidebarOpenState);
+    const toggleSidePanel = (leftPanelOpenState: boolean) => {
+      state.isLeftPanelOpen = leftPanelOpenState;
+      emit('table-left-panel:onToggle', leftPanelOpenState);
     };
 
     const previous = (e: Event) => {
@@ -386,7 +386,7 @@ export default defineComponent({
   border-radius: 1.2rem;
   display: flex;
   align-items: flex-start;
-  .oxd-table-sidebar {
+  .oxd-table-left-panel {
     &.with-filters {
       margin-top: 1.25rem;
     }
@@ -457,7 +457,7 @@ export default defineComponent({
       }
     }
   }
-  &.table-sidebar-open {
+  &.table-left-panel-open {
     .table-card-list-wrapper {
       width: calc(100% - 230px);
     }

@@ -2,17 +2,17 @@
 @import './variables';
 @import './../../../styles/colors';
 
-.oxd-table-sidebar {
+.oxd-table-left-panel {
   position: relative;
   border-right: 1px solid $oxd-interface-gray-lighten-4-color;
   padding-right: 10px;
-  .table-sidebar-divider {
+  .table-left-panel-divider {
     width: calc(100% + 10px);
   }
   .body {
     margin-top: 1rem;
   }
-  .oxd-table-sidebar-toggle-btn {
+  .oxd-table-left-panel-toggle-btn {
     position: absolute;
     width: 28px;
     height: 28px;

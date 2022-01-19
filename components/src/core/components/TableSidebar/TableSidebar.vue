@@ -1,11 +1,11 @@
 <template>
-  <div class="oxd-table-sidebar" :style="customStyles">
+  <div class="oxd-table-left-panel" :style="customStyles">
     <div v-if="headerVisible" class="header">
       <slot name="header">
         <oxd-button
           class="table-header-action-btn"
-          :class="!isSidePanelOpen ? 'no-label' : 'w-100'"
-          :tooltip="!isSidePanelOpen ? buttonData.label : null"
+          :class="!isLeftPanelOpen ? 'no-label' : 'w-100'"
+          :tooltip="!isLeftPanelOpen ? buttonData.label : null"
           flow="right"
           :label="buttonData.label"
           :iconName="buttonData.iconName"
@@ -18,7 +18,7 @@
             <img :src="buttonData.iconImageSrc" />
           </template>
         </oxd-button>
-        <oxd-divider class="table-sidebar-divider" />
+        <oxd-divider class="table-left-panel-divider" />
       </slot>
     </div>
     <div v-if="bodyVisible" class="body">
@@ -31,7 +31,7 @@
             v-for="(item, id) in sidePanelList"
             :key="id"
             @click="selectListitem(item)"
-            :class="{collapsed: !isSidePanelOpen}"
+            :class="{collapsed: !isLeftPanelOpen}"
           >
             <div
               class="count-container"
@@ -40,23 +40,23 @@
               <oxd-chip
                 v-if="bubbleVisible"
                 :label="item.count"
-                :tooltip="!isSidePanelOpen ? item.label : null"
+                :tooltip="!isLeftPanelOpen ? item.label : null"
                 flow="right"
                 class="oxd-dropdown-selected-chip"
                 :displayType="item.displayType"
                 :background-color="item.style.backgroundColor"
                 :color="item.style.color"
               />
-              <p v-if="isSidePanelOpen" class="oxd-label">{{ item.label }}</p>
+              <p v-if="isLeftPanelOpen" class="oxd-label">{{ item.label }}</p>
             </div>
           </li>
         </ul>
       </slot>
     </div>
     <oxd-icon-button
-      :name="isSidePanelOpen ? 'chevron-left' : 'chevron-right'"
-      class="oxd-table-sidebar-toggle-btn"
-      @click="toggleSidebar"
+      :name="isLeftPanelOpen ? 'chevron-left' : 'chevron-right'"
+      class="oxd-table-left-panel-toggle-btn"
+      @click="toggleLeftPanel"
     />
   </div>
 </template>
@@ -122,7 +122,7 @@ export default defineComponent({
       label: null,
       active: false,
     });
-    const isSidePanelOpen = ref<boolean>(true);
+    const isLeftPanelOpen = ref<boolean>(true);
 
     // TODO: Optimize these duplicated methods; Sandamal
     const buttonData = computed(() => {
@@ -145,7 +145,7 @@ export default defineComponent({
 
     const customStyles = computed(() => {
       return {
-        width: isSidePanelOpen.value ? props.width : null,
+        width: isLeftPanelOpen.value ? props.width : null,
       };
     });
 
@@ -162,26 +162,26 @@ export default defineComponent({
       emit('sidePanelList:onSelect', item);
     };
 
-    const toggleSidebar = () => {
-      isSidePanelOpen.value = !isSidePanelOpen.value;
-      emit('side-panel:onToggle', isSidePanelOpen.value);
+    const toggleLeftPanel = () => {
+      isLeftPanelOpen.value = !isLeftPanelOpen.value;
+      emit('side-panel:onToggle', isLeftPanelOpen.value);
     };
 
     return {
       selectedListItem,
       customStyles,
       buttonData,
-      isSidePanelOpen,
+      isLeftPanelOpen,
       onHeaderBtnClick,
       selectListitem,
-      toggleSidebar,
+      toggleLeftPanel,
     };
   },
 });
 </script>
 
 <style src="./../Label/label.scss" lang="scss" scoped></style>
-<style src="./table-sidebar.scss" lang="scss" scoped></style>
+<style src="./table-left-panel.scss" lang="scss" scoped></style>
 
 <style lang="scss" scoped>
 .list {

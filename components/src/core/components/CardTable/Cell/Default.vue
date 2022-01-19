@@ -8,7 +8,8 @@
     </div>
   </div>
   <template v-else>
-    {{ item }}
+    <a v-if="rowItem.link && clickableCell" :href="rowItem.link" :target="linkMode">{{ item }}</a>
+    <span v-else>{{ item }}</span>
   </template>
 </template>
 
@@ -16,6 +17,7 @@
 import {defineComponent} from 'vue';
 import {DEVICE_LG, DEVICE_XL} from '../../../../composables/useResponsive';
 import {cellMixin} from './cell-mixin';
+import {TargetTypes, TARGET_SELF, TARGETS} from './types';
 
 export default defineComponent({
   name: 'oxd-table-cell-default',
@@ -26,6 +28,23 @@ export default defineComponent({
     item: {
       required: true,
     },
+    clickableCell: {
+      type: Boolean,
+      default: false,
+    },
+    linkMode: {
+      type: String,
+      default: TARGET_SELF,
+      validator: (value: TargetTypes) => {
+        return TARGETS.indexOf(value) !== 1;
+      },
+    },
+    rowItem: {
+      type: Object,
+      default: () => ({
+        link: null
+      })
+    },
   },
 
   computed: {
@@ -34,7 +53,7 @@ export default defineComponent({
         this.screenState.screenType === DEVICE_LG ||
         this.screenState.screenType === DEVICE_XL
       );
-    },
+    }
   },
 });
 </script>

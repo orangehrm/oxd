@@ -56,6 +56,8 @@ export default defineComponent({
         item: cellData,
         header: header,
         rowItem: rowData,
+        clickableCell: header.clickable,
+        linkMode: header.target,
       };
 
       if (typeof header.cellRenderer === 'function') {

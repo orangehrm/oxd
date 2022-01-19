@@ -6,7 +6,7 @@
      "delete": true
    },
    "table": {
-     "sidebar": {
+     "leftPanel": {
        "visible": true,
        "header": {
          "visible": true,
@@ -96,6 +96,8 @@
          "cellType": "oxd-table-cell-profile-pic"
        },
        {
+         "clickable": true,
+         "target": "_blank",
          "name": "candidate",
          "sortField": "candidate",
          "initialSortOrder": "ASC",
@@ -140,6 +142,14 @@
          },
          "cellType": "oxd-table-cell-actions",
          "cellRenderer": "actionsRenderer"
+       }
+     ],
+     "tdMapper": [
+       {
+         "name": "",
+         "title": "",
+         "style": "",
+         "link": ""
        }
      ],
      "pagination": {

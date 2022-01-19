@@ -3,7 +3,7 @@ import CardTable from '@orangehrm/oxd/core/components/CardTable/CardTable.vue';
 
 const DUMMY_DATA = {
   table: {
-    sidebar: {
+    leftPanel: {
       visible: true,
       header: {
         visible: true,

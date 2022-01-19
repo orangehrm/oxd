@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <oxd-table-sidebar
-      class="oxd-table-sidebar"
+      class="oxd-table-left-panel"
       width="200px"
       :list="stages"
       :button="{

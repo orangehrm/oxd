@@ -1,7 +1,10 @@
 <template>
   <div :class="classes">
     <slot>
-      <img :src="imageSrc ? imageSrc : userPlaceholderImage" />
+      <a v-if="link.url" :href="link.url" :target="link.target">
+        <img :src="imageSrc ? imageSrc : userPlaceholderImage" />
+      </a>
+      <img v-else :src="imageSrc ? imageSrc : userPlaceholderImage" />
     </slot>
   </div>
 </template>
@@ -24,6 +27,10 @@ export default defineComponent({
       type: Object,
     },
     imageSrc: {
+      type: String,
+      default: null,
+    },
+    link: {
       type: String,
       default: null,
     },
