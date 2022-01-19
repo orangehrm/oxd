@@ -4,10 +4,7 @@ $oxd-input-border--focus: $oxd-input-control-border--focus !default;
 $oxd-input-border--error: $oxd-input-control-border--error !default;
 $oxd-input-box-shadow--focus: $oxd-input-control-box-shadow--focus !default;
 $oxd-input-box-shadow--error: $oxd-input-control-box-shadow--error !default;
-$oxd-input-background--disabled: darken(
-  $oxd-background-white-shadow-color,
-  3%
-) !default;
+$oxd-input-background--disabled: #f0f0f6 !default;
 
 $oxd-file-input-horizontal-margin: 0.25rem !default;
 $oxd-file-input-background-color: $oxd-white-color !default;
@@ -17,10 +14,7 @@ $oxd-file-button-font-size: 0.875rem;
 $oxd-file-button-font-weight: 600;
 $oxd-file-button-padding-horizontal: 1.5rem;
 $oxd-file-button-color--disabled: $oxd-interface-gray-lighten-1-color !default;
-$oxd-file-button-background-color--disabled: darken(
-  $oxd-white-color,
-  1%
-) !default;
+$oxd-file-button-background-color--disabled: #d9d9d9 !default;
 $oxd-file-button-height: 35px !default;
 $oxd-file-button-width: 35px !default;
 
@@ -47,10 +41,7 @@ $oxd-switch-selector-color: $oxd-white-color !default;
 $oxd-switch-label-margin: 0.5em;
 $oxd-switch-off-background-color: $oxd-interface-gray-lighten-2-color !default;
 $oxd-switch-on-background-color: $oxd-primary-one-color !default;
-$oxd-switch-on-disabled-background-color: rgba(
-  $oxd-primary-one-color,
-  0.5
-) !default;
+$oxd-switch-on-disabled-background-color: hsl(25, 100%, 56%, 0.5) !default;
 $oxd-switch-off-disabled-background-color: $oxd-interface-gray-lighten-2-color !default;
 $oxd-switch-disabled-background-color: $oxd-interface-gray-lighten-2-color !default;
 
@@ -60,10 +51,7 @@ $oxd-radio-height: 1rem !default;
 $oxd-radio-width: 1rem !default;
 $oxd-radio-label-margin: 0.5em !default;
 $oxd-radio-checked-color: $oxd-primary-one-color !default;
-$oxd-radio-checked-disabled-color: lighten(
-  $oxd-radio-checked-color,
-  30%
-) !default;
+$oxd-radio-checked-disabled-color: #ffd4b6 !default;
 
 $oxd-dropdown-text-padding: 0 0.25rem 0 0.5rem !default;
 $oxd-dropdown-animation-time: 300ms !default;
@@ -75,10 +63,7 @@ $oxd-dropdown-dropdown-padding: 4px !default;
 $oxd-dropdown-dropdown-border: 1px solid $oxd-interface-gray-lighten-2-color !default;
 $oxd-dropdown-dropdown-border-radius: 0.65rem !default;
 $oxd-dropdown-dropdown-background: $oxd-white-color !default;
-$oxd-dropdown-dropdown-background--disabled: darken(
-  $oxd-background-white-shadow-color,
-  3%
-) !default;
+$oxd-dropdown-dropdown-background--disabled: #f0f0f6 !default;
 $oxd-dropdown-dropdown-margin: 5px !default;
 $oxd-dropdown-dropdown-color: $oxd-interface-gray-darken-1-color !default;
 $oxd-dropdown-dropdown-slot-color: $oxd-interface-gray-color !default;
@@ -107,10 +92,7 @@ $oxd-dropdown-chip-area-padding: 0.5rem 0 !default;
 
 $oxd-dropdown-arrow-background-color: $oxd-background-light-gray-color !default;
 $oxd-dropdown-arrow-background-color--disabled: $oxd-background-light-gray-color !default;
-$oxd-dropdown-arrow-background-color--readonly: darken(
-  $oxd-white-color,
-  1%
-) !default;
+$oxd-dropdown-arrow-background-color--readonly: #fcfcfc !default;
 $oxd-dropdown-arrow-color--readonly: $oxd-interface-gray-lighten-1-color !default;
 $oxd-dropdown-arrow-width: 35px !default;
 $oxd-dropdown-arrow-height: 35px !default;
