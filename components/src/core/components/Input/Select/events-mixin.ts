@@ -27,9 +27,9 @@ export const eventsMixin = defineComponent({
     },
     onToggleDropdown() {
       if (!this.dropdownOpen) {
-        this.onOpenDropdown()
+        this.onOpenDropdown();
       } else {
-        this.onCloseDropdown()
+        this.onCloseDropdown();
       }
     },
     onBlur() {

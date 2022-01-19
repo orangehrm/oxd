@@ -8,12 +8,12 @@
     >
       <oxd-card-tr :clickable="tableProps.clickable">
         <div v-if="leftSlot.length != 0" class="card-item card-left">
-        <oxd-card-cell
-          class="oxd-padding-cell"
-          :headers="defaultSlot"
-          :items="item"
-          :index="index"
-        ></oxd-card-cell>
+          <oxd-card-cell
+            class="oxd-padding-cell"
+            :headers="defaultSlot"
+            :items="item"
+            :index="index"
+          ></oxd-card-cell>
         </div>
         <div class="card-center">
           <div v-if="titleSlot.length != 0" class="card-header-slot">
@@ -74,7 +74,6 @@ import {decoratorMixin} from './decorator-mixin';
 import TableBody from '@orangehrm/oxd/core/components/CardTable/Table/TableBody.vue';
 import TableRow from '@orangehrm/oxd/core/components/CardTable/Table/TableRow.vue';
 import DefaultCellContainer from '@orangehrm/oxd/core/components/CardTable/Cell/DefaultCellContainer.vue';
-import DynamicCellContainer from '@orangehrm/oxd/core/components/CardTable/Cell/DynamicCellContainer.vue';
 import emitter from '../../../../utils/emitter';
 
 export default defineComponent({
@@ -86,7 +85,6 @@ export default defineComponent({
     'oxd-card-tbody': TableBody,
     'oxd-card-tr': TableRow,
     'oxd-card-cell': DefaultCellContainer,
-    'oxd-dynamic-card-cell': DynamicCellContainer,
   },
 
   computed: {

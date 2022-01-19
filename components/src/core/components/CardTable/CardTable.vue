@@ -88,7 +88,6 @@ export default defineComponent({
   },
 
   setup(props, context) {
-    debugger
     const responsiveState = useResponsive();
 
     provide('tableProps', readonly(props));
