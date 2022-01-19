@@ -63,6 +63,7 @@
         </template>
         <template v-slot:toggleOptions>
           <oxd-quick-search
+            style="width: 261px"
             :placeholder="'Search'"
             :clear="true"
             :createOptions="quickSearchOptions"
@@ -75,6 +76,7 @@
                 name="oxd-search"
                 display-type="label-info"
                 class="quick-search-btn"
+                style="background-color: rgba(100, 114, 140, 0.1); padding: 0; min-width: unset; min-height: unset; width: 28px; height: 28px;"
               ></oxd-icon-button>
             </template>
             <template v-slot:option="{data}">
@@ -87,6 +89,7 @@
             name="funnel"
             display-type="label-info"
             class="btn-large"
+            style="font-size: 14px"
             @click="showFilterDrawer"
           />
           <!-- <oxd-icon-button name="gear-fill" /> -->
@@ -381,12 +384,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-:deep(.header-image) {
-  img {
-    width: 2.5rem !important;
-  }
-}
-
 .recruitment-container {
   margin-top: 2rem;
   background-color: #fff;
@@ -405,62 +402,6 @@ export default defineComponent({
       :deep(.oxd-divider) {
         margin-top: 0.25rem;
         margin-bottom: 0;
-      }
-      // :deep(.oxd-table-filter-header-title) {
-      //   .oxd-table-filter-title {
-      //     // Use Sub Title in OXD
-      //     // font-weight: 500 !important;
-      //   }
-      // }
-      :deep(.oxd-table-filter-header) {
-        .oxd-table-filter-header-options {
-          align-items: center;
-          .oxd-icon-button {
-            i {
-              font-size: 14px;
-            }
-          }
-          .oxd-button {
-            display: flex;
-            align-items: center;
-            padding: 0.5rem 1rem !important;
-            min-width: unset !important;
-            font-size: 0.75rem;
-            i {
-              font-size: 1.0625rem;
-              margin-right: 0.25rem;
-            }
-            &:hover,
-            &:focus {
-              color: #1e6ceb;
-              background-color: rgba(30, 108, 235, 0.15);
-            }
-          }
-        }
-      }
-      .oxd-autocomplete-search-wrapper {
-        width: 300px;
-      }
-      :deep(.oxd-autocomplete-text-input) {
-        background-color: #fff;
-        padding-top: unset;
-        padding-bottom: unset;
-        height: 36px;
-      }
-      :deep(.quick-search-btn) {
-        padding: 0;
-        min-width: unset;
-        min-height: unset;
-        width: 28px;
-        height: 28px;
-        background-color: rgba(100, 114, 140, 0.1);
-        i {
-          width: unset;
-          height: unset;
-          svg {
-            width: 12px;
-          }
-        }
       }
     }
   }
@@ -487,9 +428,6 @@ export default defineComponent({
     }
   }
 }
-.w-100 {
-  width: 100% !important;
-}
 .margin-left {
   margin-left: 0.5rem;
 }
@@ -501,14 +439,6 @@ export default defineComponent({
   align-items: center;
   justify-content: flex-end;
   box-shadow: none;
-  :deep(i) {
-    font-size: initial;
-    height: initial;
-    line-height: initial;
-  }
-  :deep(.oxd-select-wrapper) {
-    margin-right: 5px;
-  }
 }
 .oxd-button {
   display: flex;

@@ -217,9 +217,6 @@ export default defineComponent({
 <style src="./select-input.scss" lang="scss" scoped></style>
 
 <style lang="scss" scoped>
-.w-100 {
-  width: 100%;
-}
 .no-label {
   min-width: initial;
   justify-content: center !important;
