@@ -9,7 +9,6 @@
   border-radius: 3em;
   cursor: pointer;
   display: inline-block;
-  line-height: 1;
   padding-right: $oxd-button-horizontal-padding;
   padding-left: $oxd-button-horizontal-padding;
   min-width: $oxd-button-min-width;
@@ -147,4 +146,8 @@
     vertical-align: -0.8rem;
     padding-right: 5px;
   }
+}
+
+.oxd-button-label-wrapper {
+  display: initial;
 }

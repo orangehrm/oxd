@@ -172,10 +172,9 @@ export default defineComponent({
       });
     },
     selectedItem(): string {
-      if (!this.multiple && this.modelValue?.label) {
-        return this.modelValue.label;
-      }
-      return null;
+      return !this.multiple && this.modelValue?.label
+        ? this.modelValue.label
+        : null;
     },
     inputValue(): string {
       if (this.computedOptions[this.pointer]?.label) {
@@ -188,12 +187,12 @@ export default defineComponent({
       return '';
     },
     showClear(): boolean {
-      return (
+      const a =
         !this.disabled &&
         !this.readonly &&
         this.clear &&
-        this.selectedItem !== null
-      );
+        this.selectedItem !== null;
+      return a;
     },
   },
 

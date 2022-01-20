@@ -1,10 +1,10 @@
 <template>
   <div role="listbox" class="oxd-autocomplete-dropdown">
     <oxd-autocomplete-option v-if="loading">
-      {{$vt('Searching...')}}
+      {{ $vt('Searching...') }}
     </oxd-autocomplete-option>
     <oxd-autocomplete-option v-else-if="empty">
-      {{$vt('No results found')}}
+      {{ $vt('No results found') }}
     </oxd-autocomplete-option>
     <slot v-else></slot>
   </div>

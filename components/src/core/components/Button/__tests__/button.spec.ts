@@ -29,7 +29,7 @@ describe('Button.vue', () => {
   it('renders OXD button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label},
+      props: {label, flow: 'up'},
     });
     expect(wrapper.text()).toMatch(label);
     expect(wrapper.html()).toMatchSnapshot();
@@ -38,7 +38,7 @@ describe('Button.vue', () => {
   it('should renders OXD small button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, size: SIZE_SMALL},
+      props: {label, size: SIZE_SMALL, flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -46,7 +46,7 @@ describe('Button.vue', () => {
   it('should renders OXD large button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, size: SIZE_LARGE},
+      props: {label, size: SIZE_LARGE, flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -54,7 +54,7 @@ describe('Button.vue', () => {
   it('should renders OXD medium button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, size: SIZE_MEDIUM},
+      props: {label, size: SIZE_MEDIUM, flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -62,7 +62,7 @@ describe('Button.vue', () => {
   it('should renders OXD main button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, displayType: TYPE_MAIN},
+      props: {label, displayType: TYPE_MAIN, flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -70,7 +70,7 @@ describe('Button.vue', () => {
   it('should renders OXD secondary button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, displayType: TYPE_SECONDARY},
+      props: {label, displayType: TYPE_SECONDARY, flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -78,7 +78,7 @@ describe('Button.vue', () => {
   it('should renders OXD solid info button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, displayType: TYPE_INFO},
+      props: {label, displayType: TYPE_INFO, flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -86,7 +86,7 @@ describe('Button.vue', () => {
   it('should renders OXD solid danger button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, displayType: TYPE_DANGER},
+      props: {label, displayType: TYPE_DANGER, flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -94,7 +94,7 @@ describe('Button.vue', () => {
   it('should renders OXD solid warn button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, displayType: TYPE_WARN},
+      props: {label, displayType: TYPE_WARN, flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -102,7 +102,7 @@ describe('Button.vue', () => {
   it('should renders OXD solid success button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, displayType: TYPE_SUCCESS},
+      props: {label, displayType: TYPE_SUCCESS, flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -110,7 +110,7 @@ describe('Button.vue', () => {
   it('should renders OXD ghost button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, displayType: TYPE_GHOST},
+      props: {label, displayType: TYPE_GHOST, flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -118,7 +118,7 @@ describe('Button.vue', () => {
   it('should renders OXD ghost-info button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, displayType: TYPE_GHOST_INFO},
+      props: {label, displayType: TYPE_GHOST_INFO, flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -126,7 +126,7 @@ describe('Button.vue', () => {
   it('should renders OXD ghost-danger button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, displayType: TYPE_GHOST_DANGER},
+      props: {label, displayType: TYPE_GHOST_DANGER, flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -134,7 +134,7 @@ describe('Button.vue', () => {
   it('should renders OXD ghost-warn button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, displayType: TYPE_GHOST_WARN},
+      props: {label, displayType: TYPE_GHOST_WARN, flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -142,7 +142,7 @@ describe('Button.vue', () => {
   it('should renders OXD ghost-success button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, displayType: TYPE_GHOST_SUCCESS},
+      props: {label, displayType: TYPE_GHOST_SUCCESS, flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -150,7 +150,7 @@ describe('Button.vue', () => {
   it('should renders OXD label button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, displayType: TYPE_LABEL},
+      props: {label, displayType: TYPE_LABEL, flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -158,7 +158,7 @@ describe('Button.vue', () => {
   it('should renders OXD label-info button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, displayType: TYPE_LABEL_INFO},
+      props: {label, displayType: TYPE_LABEL_INFO, flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -166,7 +166,7 @@ describe('Button.vue', () => {
   it('should renders OXD label-danger button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, displayType: TYPE_LABEL_DANGER},
+      props: {label, displayType: TYPE_LABEL_DANGER, flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -174,7 +174,7 @@ describe('Button.vue', () => {
   it('should renders OXD label-warn button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, displayType: TYPE_LABEL_WARN},
+      props: {label, displayType: TYPE_LABEL_WARN, flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -182,7 +182,7 @@ describe('Button.vue', () => {
   it('should renders OXD label-success button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, displayType: TYPE_LABEL_SUCCESS},
+      props: {label, displayType: TYPE_LABEL_SUCCESS, flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -190,7 +190,7 @@ describe('Button.vue', () => {
   it('should renders OXD text button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, displayType: TYPE_TEXT},
+      props: {label, displayType: TYPE_TEXT, flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -198,7 +198,7 @@ describe('Button.vue', () => {
   it('should renders OXD tool button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, displayType: TYPE_TOOL},
+      props: {label, displayType: TYPE_TOOL, flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -206,7 +206,7 @@ describe('Button.vue', () => {
   it('should renders OXD iconName button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, iconName: 'arrow-left'},
+      props: {label, iconName: 'arrow-left', flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -214,7 +214,7 @@ describe('Button.vue', () => {
   it('should renders OXD iconRightName button', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, iconRightName: 'arrow-right'},
+      props: {label, iconRightName: 'arrow-right', flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -222,7 +222,7 @@ describe('Button.vue', () => {
   it('should renders OXD button with custom color', () => {
     const label = 'Button';
     const wrapper = mount(Button, {
-      props: {label, style: {backgroundColor: 'palegreen'}},
+      props: {label, style: {backgroundColor: 'palegreen'}, flow: 'up'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -231,7 +231,7 @@ describe('Button.vue', () => {
     const label = 'Share Photos';
     const imageSrc = '@orangehrm/oxd/assets/images/cameraglass.png';
     const wrapper = mount(Button, {
-      props: {label, size: SIZE_LARGE, displayType: TYPE_GLASS},
+      props: {label, size: SIZE_LARGE, displayType: TYPE_GLASS, flow: 'up'},
       slots: {
         default: `<img src="${imageSrc}"/>`,
       },

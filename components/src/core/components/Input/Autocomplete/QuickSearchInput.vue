@@ -8,9 +8,9 @@
       @dropdown:closed="onClosed()"
       @dropdown:blur="onBlur()"
     >
-      <template v-for="(_, slot) of $slots" v-slot:[slot]="scope"
-        ><slot :name="slot" v-bind="scope"
-      /></template>
+      <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
+        <slot :name="slot" v-bind="scope" />
+      </template>
     </oxd-autocomplete-input>
     <slot name="iconSlot"></slot>
   </div>
@@ -60,19 +60,35 @@ export default defineComponent({
 @import '../variables';
 .oxd-autocomplete-search-wrapper {
   position: relative;
+  display: flex;
+  align-items: center;
+  padding-right: 0.25rem;
+  border-radius: 2rem;
+  min-height: 1rem;
+  background-color: $oxd-background-pastel-white-color;
+  border: 1px solid $oxd-interface-gray-lighten-2-color;
+  .oxd-autocomplete-wrapper {
+    display: flex;
+    align-content: center;
+  }
   &:deep(.oxd-icon-button) {
-    position: absolute;
-    top: 4px;
-    right: 5px;
     background-color: $oxd-white-color;
     color: $oxd-interface-gray-darken-2-color;
     min-width: 33px;
     min-height: 33px;
   }
   &:deep(.oxd-autocomplete-text-input) {
+    border: none;
+    box-shadow: none;
     border-radius: 2rem;
     min-height: 1rem;
-    background-color: $oxd-background-pastel-white-color;
+    background-color: transparent;
+    input {
+      padding: 0.5rem;
+    }
+  }
+  &:deep(.oxd-autocomplete-dropdown) {
+    margin-top: 25px;
   }
 }
 </style>

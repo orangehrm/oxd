@@ -11,13 +11,42 @@
   &-loader {
     min-height: $oxd-table-loader-height;
     width: 100%;
-    z-index: 999;
+    z-index: $oxd-form-z-index;
     display: flex;
     justify-content: center;
     align-items: center;
     & .oxd-loading-spinner-container {
       background-color: $oxd-white-color;
     }
+  }
+  &.oxd-classic-table {
+    background-color: $oxd-white-color;
+    padding: 1rem;
+    border-radius: $oxd-border-radius;
+    .oxd-table-header {
+      padding-top: 0.25rem;
+      .oxd-table-row {
+        border-bottom: 2px solid $oxd-interface-gray-lighten-3-color;
+      }
+    }
+    .oxd-table-body {
+      grid-gap: 0;
+      .oxd-table-card {
+        border-top: 1px solid $oxd-interface-gray-lighten-2-color;
+        border-radius: 0;
+        .oxd-table-row {
+          .oxd-table-cell {
+            .oxd-table-cell-actions {
+              flex-wrap: nowrap;
+            }
+          }
+        }
+      }
+    }
+  }
+  &.with-filters {
+    margin-top: 1rem;
+    padding-top: 0.5rem;
   }
 }
 
@@ -27,5 +56,5 @@
 
 .oxd-table-cell {
   overflow-wrap: break-word;
-  word-break: break-all;
+  word-break: break-word;
 }

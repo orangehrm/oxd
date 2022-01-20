@@ -3,10 +3,10 @@
 exports[`DropdownInput.vue renders OXD Dropdown Input 1`] = `
 <div class="oxd-dropdown-container">
   <div class="oxd-dropdown-input">
-    <oxd-input-stub placeholder="Type for hints..." disabled="false"></oxd-input-stub>
+    <oxd-input-stub haserror="false" placeholder="Type for hints..." disabled="false"></oxd-input-stub>
     <div class="oxd-dropdown-input-icon">
       <!--v-if-->
-      <oxd-icon-stub class="--arrow"></oxd-icon-stub>
+      <oxd-icon-stub name="caret-down-fill" class="--arrow"></oxd-icon-stub>
     </div>
   </div>
   <transition-stub>

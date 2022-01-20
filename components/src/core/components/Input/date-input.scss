@@ -41,7 +41,7 @@
     top: 50px;
     right: 0;
     position: absolute;
-    z-index: 9999;
+    z-index: $oxd-date-z-index;
     width: 250px;
     @include oxd-respond-to('sm') {
       width: 300px;

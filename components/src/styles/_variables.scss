@@ -6,8 +6,6 @@ $oxd-scrollbar-thumb-color: $oxd-interface-gray-lighten-1-color !default;
 $oxd-scrollbar-track-color: $oxd-background-pastel-white-color !default;
 $oxd-scrollbar-arrow-color: $oxd-interface-gray-color !default;
 $oxd-scrollbar-size: 0.5rem !default;
-$oxd-overlay-z-index: 1000 !default;
-$oxd-dialog-z-index: 1500 !default;
 $oxd_breakpoints: (
   'xs': (
     min-width: 0px,
@@ -48,6 +46,19 @@ $oxd-dropdown-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.15) !default;
 $oxd-dropdown-border: 1px solid $oxd-interface-gray-lighten-2-color !default;
 $oxd-dropdown-border-radius: 0.65rem !default;
 $oxd-dropdown-background-color: $oxd-white-color !default;
-$oxd-dropdown-z-index: 300 !default;
 $oxd-dropdown-padding: 4px !default;
 $oxd-dropdown-item-hover-color: #f6f7f9 !default;
+
+// z axis index
+$oxd-brand-z-index: 1 !default;
+$oxd-dropdown-z-index: 300 !default;
+$oxd-tree-view-z-index: 500 !default;
+$oxd-drawer-overlay-z-index: 950 !default;
+$oxd-drawer-z-index: 951 !default;
+$oxd-form-z-index: 999 !default;
+$oxd-overlay-z-index: 1000 !default;
+$oxd-sidepanel-z-index: 1001 !default;
+$oxd-dialog-z-index: 1500 !default;
+$oxd-tooltip-bg-z-index: 2000 !default;
+$oxd-tooltip-font-z-index: 2001 !default;
+$oxd-date-z-index: 9999 !default;

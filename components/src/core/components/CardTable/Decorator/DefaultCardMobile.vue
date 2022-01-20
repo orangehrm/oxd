@@ -2,38 +2,65 @@
   <oxd-card-tbody class="oxd-card-table-body">
     <div
       :class="classes"
-      v-for="item in tableProps.items"
+      v-for="(item, index) in tableProps.items"
       :key="item"
       @click="onClick(item)($event)"
     >
       <oxd-card-tr :clickable="tableProps.clickable">
         <div v-if="leftSlot.length != 0" class="card-item card-left">
-          <oxd-card-cell :headers="leftSlot" :items="item"></oxd-card-cell>
+          <oxd-card-cell
+            class="oxd-padding-cell"
+            :headers="defaultSlot"
+            :items="item"
+            :index="index"
+          ></oxd-card-cell>
         </div>
         <div class="card-center">
           <div v-if="titleSlot.length != 0" class="card-header-slot">
             <div class="card-item card-header-slot-content --left">
-              <oxd-card-cell :headers="titleSlot" :items="item"></oxd-card-cell>
+              <oxd-card-cell
+                class="oxd-padding-cell"
+                :headers="defaultSlot"
+                :items="item"
+                :index="index"
+              ></oxd-card-cell>
             </div>
             <div
               v-if="actionSlot.length != 0"
               class="card-item card-header-slot-content --right"
             >
               <oxd-card-cell
-                :headers="actionSlot"
+                class="oxd-padding-cell"
+                :headers="defaultSlot"
                 :items="item"
+                :index="index"
               ></oxd-card-cell>
             </div>
           </div>
           <div v-if="defaultSlot.length != 0" class="card-item card-body-slot">
-            <oxd-card-cell :headers="defaultSlot" :items="item"></oxd-card-cell>
+            <oxd-card-cell
+              class="oxd-padding-cell"
+              :headers="defaultSlot"
+              :items="item"
+              :index="index"
+            ></oxd-card-cell>
           </div>
           <div v-if="footerSlot.length != 0" class="card-item card-footer-slot">
-            <oxd-card-cell :headers="footerSlot" :items="item"></oxd-card-cell>
+            <oxd-card-cell
+              class="oxd-padding-cell"
+              :headers="defaultSlot"
+              :items="item"
+              :index="index"
+            ></oxd-card-cell>
           </div>
         </div>
         <div v-if="rightSlot.length != 0" class="card-item card-right">
-          <oxd-card-cell :headers="rightSlot" :items="item"></oxd-card-cell>
+          <oxd-card-cell
+            class="oxd-padding-cell"
+            :headers="defaultSlot"
+            :items="item"
+            :index="index"
+          ></oxd-card-cell>
         </div>
       </oxd-card-tr>
     </div>

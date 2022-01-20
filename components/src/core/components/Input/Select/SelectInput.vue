@@ -23,7 +23,10 @@
       :loading="loading"
       :empty="computedOptions.length === 0"
     >
-      <oxd-select-option v-if="showEmptySelector" @select="onClear">
+      <oxd-select-option
+        v-if="showEmptySelector && !hideDropdownDefaultLabel"
+        @select="onClear"
+      >
         {{ $vt(placeholder) }}
       </oxd-select-option>
       <oxd-select-option
@@ -76,6 +79,10 @@ export default defineComponent({
       type: Object,
     },
     disabled: {
+      type: Boolean,
+      default: false,
+    },
+    hideDropdownDefaultLabel: {
       type: Boolean,
       default: false,
     },
@@ -136,7 +143,11 @@ export default defineComponent({
       });
     },
     selectedItem(): string {
-      return this.modelValue?.label ? this.$vt(this.modelValue.label) : this.$vt(this.placeholder);
+      return this.modelValue?.label
+        ? this.$vt(this.modelValue.label)
+        : this.hideDropdownDefaultLabel
+        ? null
+        : this.$vt(this.placeholder);
     },
     inputValue(): string {
       return this.computedOptions[this.pointer]?.label || this.selectedItem;

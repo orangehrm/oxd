@@ -119,6 +119,13 @@ export default defineComponent({
       },
     );
 
+    watch(
+      () => props.items,
+      () => {
+        context.emit('update:selected', []);
+      },
+    );
+
     onBeforeUnmount(() => {
       emitter.all.forEach((...[, key]) => {
         if ((key as string).substr(0, 8) === props.tableId) {

@@ -3,8 +3,8 @@
 exports[`Alert.vue renders OXD Alert 1`] = `
 <div class="oxd-alert oxd-alert--success" role="alert">
   <div class="oxd-alert-content oxd-alert-content--success">
-    <oxd-icon-stub class="oxd-alert-content-icon"></oxd-icon-stub>
-    <oxd-text-stub class="oxd-alert-content-text"></oxd-text-stub>
+    <oxd-icon-stub name="check2" class="oxd-alert-content-icon"></oxd-icon-stub>
+    <oxd-text-stub tag="p" class="oxd-alert-content-text"></oxd-text-stub>
   </div>
   <div class="oxd-alert-action"></div>
 </div>
