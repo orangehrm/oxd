@@ -85,7 +85,7 @@ export default defineComponent({
     min-height: 1rem;
     background-color: transparent;
     input {
-      padding: 0 0.5rem;
+      padding: 0.5rem;
     }
   }
   &:deep(.oxd-autocomplete-dropdown) {

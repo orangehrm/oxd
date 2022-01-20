@@ -10,6 +10,7 @@
       :pagination="state.pagination"
       :selected-list-item="state.vacancies"
       @table-left-panel:onToggle="toggleLeftPanel"
+      @topfilters:onExportBtnClick="exportCSV"
       @sidePanelList:onHeaderBtnClick="showAddCandidatesModal"
       @sidePanelList:onSelect="selectStage"
       @quick-search:onSelect="candidateQuickSearchSelect"
@@ -747,9 +748,14 @@ export default defineComponent({
     const closeModal = () => {
       state.modalState = false;
     };
-    const drawerShow = (state: boolean) => {
-      state.modalState = state;
+    const drawerShow = (event: Event) => {
+      state.modalState = !state.modalState;
+      alert(`Drawer state: ${state.modalState}`);
     };
+    const exportCSV = () => {
+      alert('Exported')
+    }
+
     const candidateQuickSearch = (name: string) => {
       return new Promise(resolve => {
         if (name.trim()) {
@@ -806,6 +812,7 @@ export default defineComponent({
       candidateQuickSearch,
       closeModal,
       drawerShow,
+      exportCSV,
       applyDrawerSearch,
       resetDrawerSearch,
       cancelDrawerSearch,

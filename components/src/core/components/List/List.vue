@@ -84,21 +84,38 @@
               <span class="margin-left">{{ data.label }}</span>
             </template>
           </oxd-quick-search>
-          <oxd-icon-button
+          <div class="d-flex align-center">
+            <component
+              v-for="(action, index) in config.table.topBar.singleActions"
+              :key="index"
+              :is="action.type"
+              v-show="(action.conditional
+                    ? action.visible === undefined
+                      ? true
+                      : action.visible
+                    : true)
+              "
+              v-bind="action.props"
+              v-on="eventBinder(action.events)"
+              :class="action.class"
+              :style="action.style"
+            />
+          </div>
+          <!-- <oxd-icon-button
             v-if="config.drawer.visible"
             name="funnel"
             display-type="label-info"
             class="btn-large"
             style="font-size: 14px"
             @click="showFilterDrawer"
-          />
-          <oxd-button
+          /> -->
+          <!-- <oxd-button
             :size="'medium'"
             display-type="label-info"
             label="CSV"
             icon-name="file-earmark-spreadsheet"
             @click="exportBtn"
-          />
+          /> -->
         </template>
       </oxd-table-filter>
 
