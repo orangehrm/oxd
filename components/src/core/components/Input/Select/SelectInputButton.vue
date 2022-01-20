@@ -5,10 +5,7 @@
   >
     <oxd-button
       class="dropdown-btn"
-      :class="
-        ({'button-double-line': buttonData.doubleLineLabel},
-        hideDropdownLabel ? 'no-label' : 'w-100')
-      "
+      :class="dropdownButtonClasses"
       :label="buttonData.label"
       :iconName="buttonData.iconName"
       :hide-dropdown-label="hideDropdownLabel"
@@ -204,6 +201,9 @@ export default defineComponent({
       }
       return initialObject;
     },
+    dropdownButtonClasses(): string {
+      return `${this.buttonData.doubleLineLabel} ? 'button-double-line' : null ${this.hideDropdownLabel ? 'no-label' : 'w-100'}`
+    }
   },
 
   watch: {
