@@ -12,7 +12,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {SIZES, SIZE_MEDIUM, ImageSize} from './types';
-import {defaultUser} from './../List/images';
+import {defaultUser} from './images';
 export default defineComponent({
   name: 'oxd-profile-pic',
   props: {

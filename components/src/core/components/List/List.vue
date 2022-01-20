@@ -159,7 +159,7 @@ import QuickSearchInput from '@orangehrm/oxd/core/components/Input/Autocomplete/
 import TableSidebar from '@orangehrm/oxd/core/components/TableSidebar/TableSidebar.vue';
 import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue';
 import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination.vue';
-import images from './images';
+import images from '../ProfilePic/images';
 
 import {defineComponent, reactive, computed} from 'vue';
 
