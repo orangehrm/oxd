@@ -240,4 +240,4 @@ export default defineComponent({
 });
 </script>
 
-<style src="./drawer.scss" lang="scss"></style>
+<style src="./drawer.scss" lang="scss" scoped></style>
