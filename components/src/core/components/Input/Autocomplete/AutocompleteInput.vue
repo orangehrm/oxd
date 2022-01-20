@@ -172,7 +172,9 @@ export default defineComponent({
       });
     },
     selectedItem(): string {
-      return !this.multiple && this.modelValue?.label ? this.modelValue.label : null;
+      return !this.multiple && this.modelValue?.label
+        ? this.modelValue.label
+        : null;
     },
     inputValue(): string {
       if (this.computedOptions[this.pointer]?.label) {

@@ -38,4 +38,4 @@ export type TargetTypes =
   | typeof TARGET_SELF
   | typeof TARGET_BLANK
   | typeof TARGET_PARENT
-  | typeof TARGET_TOP
+  | typeof TARGET_TOP;

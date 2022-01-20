@@ -32,8 +32,6 @@ describe('eventsMixin.ts', () => {
     const wrapper = mount(MockComponent, {});
     wrapper.vm.onClear();
     expect(wrapper.emitted()).toHaveProperty('dropdown:clear');
-    const a = wrapper.emitted('update:modelValue');
-    console.log(a);
     const tempWrapper =
       wrapper && wrapper.emitted('update:modelValue')
         ? wrapper.emitted('update:modelValue')

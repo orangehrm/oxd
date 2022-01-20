@@ -27,9 +27,9 @@
             'label-double-line': modelValue,
           }"
         >
-          <span class="label-small" v-if="modelValue && modelValue.id > -1"
-            >{{ buttonData.labelMini }}</span
-          >
+          <span class="label-small" v-if="modelValue && modelValue.id > -1">{{
+            buttonData.labelMini
+          }}</span>
           <span class="label">{{ buttonData.label }}</span>
         </div>
       </template>
@@ -202,8 +202,12 @@ export default defineComponent({
       return initialObject;
     },
     dropdownButtonClasses(): string {
-      return `${this.buttonData.doubleLineLabel} ? 'button-double-line' : null ${this.hideDropdownLabel ? 'no-label' : 'w-100'}`
-    }
+      return `${
+        this.buttonData.doubleLineLabel
+      } ? 'button-double-line' : null ${
+        this.hideDropdownLabel ? 'no-label' : 'w-100'
+      }`;
+    },
   },
 
   watch: {

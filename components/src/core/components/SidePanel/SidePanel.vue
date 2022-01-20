@@ -42,8 +42,8 @@ export default defineComponent({
       default: '',
     },
     menuItems: {
-      type: Object as PropType<MenuItem[]>,
-      default: () => ([]),
+      type: Array as PropType<MenuItem[]>,
+      default: () => [],
     },
   },
 

@@ -2,7 +2,7 @@ import {mount} from '@vue/test-utils';
 import Calendar from '@orangehrm/oxd/core/components/Calendar/Calendar.vue';
 import DateVue from '@orangehrm/oxd/core/components/Calendar/Date.vue';
 import Icon from '@orangehrm/oxd/core/components/Button/Icon.vue';
-import {nextSunday, nextSaturday, freshDate} from '../../../../utils/date';
+import {nextSunday, freshDate} from '../../../../utils/date';
 
 describe('Calendar.vue', () => {
   const dateExpected = new Date(1990, 6, 27, 0, 0, 0);

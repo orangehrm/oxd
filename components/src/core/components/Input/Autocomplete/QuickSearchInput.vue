@@ -8,8 +8,7 @@
       @dropdown:closed="onClosed()"
       @dropdown:blur="onBlur()"
     >
-      <template v-for="(_, slot) of $slots" v-slot:[slot]="scope"
-        >
+      <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
         <slot :name="slot" v-bind="scope" />
       </template>
     </oxd-autocomplete-input>

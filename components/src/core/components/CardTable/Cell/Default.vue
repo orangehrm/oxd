@@ -8,7 +8,12 @@
     </div>
   </div>
   <template v-else>
-    <a v-if="rowItem.link && clickableCell" :href="rowItem.link" :target="linkMode">{{ item }}</a>
+    <a
+      v-if="rowItem.link && clickableCell"
+      :href="rowItem.link"
+      :target="linkMode"
+      >{{ item }}</a
+    >
     <span v-else>{{ item }}</span>
   </template>
 </template>
@@ -42,8 +47,8 @@ export default defineComponent({
     rowItem: {
       type: Object,
       default: () => ({
-        link: null
-      })
+        link: null,
+      }),
     },
   },
 
@@ -53,7 +58,7 @@ export default defineComponent({
         this.screenState.screenType === DEVICE_LG ||
         this.screenState.screenType === DEVICE_XL
       );
-    }
+    },
   },
 });
 </script>

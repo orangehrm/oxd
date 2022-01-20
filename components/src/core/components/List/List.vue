@@ -73,7 +73,10 @@
           >
             <template v-slot:iconSlot>
               <oxd-icon-button
-                v-if="config.table.topBar.quickSearch.button.visible && !state.selectedQuickSearch"
+                v-if="
+                  config.table.topBar.quickSearch.button.visible &&
+                    !state.selectedQuickSearch
+                "
                 v-bind="config.table.topBar.quickSearch.button.props"
                 :class="config.table.topBar.quickSearch.button.class"
                 :style="config.table.topBar.quickSearch.button.style"
@@ -89,11 +92,12 @@
               v-for="(action, index) in config.table.topBar.singleActions"
               :key="index"
               :is="action.type"
-              v-show="(action.conditional
-                    ? action.visible === undefined
-                      ? true
-                      : action.visible
-                    : true)
+              v-show="
+                action.conditional
+                  ? action.visible === undefined
+                    ? true
+                    : action.visible
+                  : true
               "
               v-bind="action.props"
               v-on="eventBinder(action.events)"
@@ -206,8 +210,8 @@ export default defineComponent({
           id: 1,
           label: '10',
         } as {
-          id: number,
-          label: string,
+          id: number;
+          label: string;
         },
         pages: [10, 20, 50, 100] as number[],
       }),

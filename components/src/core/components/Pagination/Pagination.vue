@@ -75,13 +75,13 @@ export default defineComponent({
     },
     perPage: {
       type: Object as PropType<{
-        id: number,
-        label: string,
+        id: number;
+        label: string;
       }>,
       default: () => ({
         id: 1,
         label: '10',
-      })
+      }),
     },
   },
 
@@ -189,8 +189,8 @@ export default defineComponent({
   },
 
   mounted() {
-    this.perPageData = this.perPage
-  }
+    this.perPageData = this.perPage;
+  },
 });
 </script>
 

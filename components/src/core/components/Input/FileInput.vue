@@ -147,7 +147,7 @@ export default defineComponent({
       this.$emit('input', e);
     },
 
-    readFiles(files: any) {
+    readFiles(files: Array<File>) {
       const count = files.length;
       const outputFileArray: OutputFile[] = [];
       for (let i = count - 1; i >= 0; i--) {
