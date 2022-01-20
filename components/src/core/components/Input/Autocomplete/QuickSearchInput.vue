@@ -80,12 +80,16 @@ export default defineComponent({
   }
   &:deep(.oxd-autocomplete-text-input) {
     border: none;
+    box-shadow: none;
     border-radius: 2rem;
     min-height: 1rem;
     background-color: transparent;
     input {
       padding: 0 0.5rem;
     }
+  }
+  &:deep(.oxd-autocomplete-dropdown) {
+    margin-top: 25px;
   }
 }
 </style>

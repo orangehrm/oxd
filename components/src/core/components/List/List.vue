@@ -63,24 +63,24 @@
         </template>
         <template v-slot:toggleOptions>
           <oxd-quick-search
-            style="width: 261px"
-            :placeholder="'Search'"
-            :clear="true"
+            v-if="config.table.topBar.quickSearch.visible"
+            :style="config.table.topBar.quickSearch.style"
+            :placeholder="config.table.topBar.quickSearch.placeholder"
+            :clear="config.table.topBar.quickSearch.clear"
             :createOptions="quickSearchOptions"
             :modelValue="state.selectedQuickSearch"
             @dropdown:modelValue="quickSearchSelect"
           >
             <template v-slot:iconSlot>
               <oxd-icon-button
-                v-if="!state.selectedQuickSearch"
-                name="oxd-search"
-                display-type="label-info"
-                class="quick-search-btn"
-                style="background-color: rgba(100, 114, 140, 0.1); padding: 0; min-width: unset; min-height: unset; width: 28px; height: 28px;"
+                v-if="config.table.topBar.quickSearch.button.visible && !state.selectedQuickSearch"
+                v-bind="config.table.topBar.quickSearch.button.props"
+                :class="config.table.topBar.quickSearch.button.class"
+                :style="config.table.topBar.quickSearch.button.style"
               ></oxd-icon-button>
             </template>
             <template v-slot:option="{data}">
-              <oxd-profile-pic size="small" :imageSrc="data.imageSrc" />
+              <oxd-profile-pic size="small" :imageSrc="data.avatar_url" />
               <span class="margin-left">{{ data.label }}</span>
             </template>
           </oxd-quick-search>
@@ -92,7 +92,6 @@
             style="font-size: 14px"
             @click="showFilterDrawer"
           />
-          <!-- <oxd-icon-button name="gear-fill" /> -->
           <oxd-button
             :size="'medium'"
             display-type="label-info"

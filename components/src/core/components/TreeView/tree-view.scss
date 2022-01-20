@@ -36,7 +36,7 @@
     }
   }
   &-toggle {
-    z-index: 500;
+    z-index: $oxd-tree-view-z-index;
     position: absolute;
     left: -1.25rem;
     & .oxd-icon-button {

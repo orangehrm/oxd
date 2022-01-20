@@ -6,7 +6,7 @@
 }
 
 .overlay {
-  z-index: 998;
+  z-index: $oxd-drawer-overlay-z-index;
   position: fixed;
   top: 0;
   left: 0;
@@ -24,7 +24,7 @@
   border-radius: $oxd-border-radius 0 0 $oxd-border-radius;
   box-shadow: $oxd-dialog-sheet-box-shadow;
   transition: 1s;
-  z-index: 999;
+  z-index: $oxd-drawer-z-index;
   .drawer-header {
     border-bottom: 1px solid $oxd-interface-gray-lighten-3-color;
     padding-bottom: 0.5rem;

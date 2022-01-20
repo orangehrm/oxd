@@ -23,7 +23,31 @@
       @pagination:onNext="selectNextPaginate"
       @pagination:onSelectPage="selectExactPage"
       @pagination:onSelectPerPage="selectPerPage">
-      <template v-slot:sidebarBody>
+      <template v-slot:sidePanelBody>
+        <oxd-select-input-btn
+          :button="{
+            label: selectedVacancyLabel,
+            labelMini: configurations.table.leftPanel.body.button.labelMini,
+            iconName: configurations.table.leftPanel.body.button.iconName,
+            displayType: configurations.table.leftPanel.body.button.displayType,
+            doubleLineLabel:
+              configurations.table.leftPanel.body.button.doubleLineLabel,
+          }"
+          :hideDropdownLabel="!state.isLeftPanelOpen"
+          :tooltip="
+            !state.isLeftPanelOpen
+              ? state.selectedVacancy.id > -1
+                ? state.selectedVacancy.label
+                : configurations.table.leftPanel.body.button.label
+              : null
+          "
+          flow="right"
+          :options="state.vacancies"
+          :open-dropdown-initially="true"
+          :dropdown-styles="configurations.table.leftPanel.body.dropdown.style"
+          @update:modelValue="selectVacancy"
+          :modelValue="state.selectedVacancy"
+        />
       </template>
       <template v-slot:list>
       </template>
@@ -36,6 +60,7 @@ import {defineComponent, reactive, computed, ref} from 'vue';
 import List from '@orangehrm/oxd/core/components/List/List';
 import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic';
 import SelectInput from "@orangehrm/oxd/core/components/Input/Select/SelectInput";
+import SelectInputButton from '@orangehrm/oxd/core/components/Input/Select/SelectInputButton.vue';
 import list from './list-config.json'
 import map from 'lodash/map'
 
@@ -78,7 +103,8 @@ const initialFilters: IAppliedFilter = {
 
 export default defineComponent({
   components: {
-    'oxd-list': List
+    'oxd-list': List,
+    'oxd-select-input-btn': SelectInputButton
   },
 
   props: {},
@@ -97,6 +123,14 @@ export default defineComponent({
       })
       return list
     })
+
+    const selectedVacancyLabel = computed(() => {
+      let label = "";
+      if (state.selectedVacancy) {
+        label = state.selectedVacancy.label;
+      }
+      return label;
+    });
 
     const actionsRenderer = (_index, _item, _header, row) => {
       const rowObj = JSON.parse(JSON.stringify(row));
@@ -682,7 +716,7 @@ export default defineComponent({
     const resetDrawerSearch = (): void => {
       appliedFilters.value = initialFilters;
       appliedQueries.value = initialQueries;
-      selectedVacancy.value = {
+      state.selectedVacancy = {
         id: -1,
         label: "All Vacancy",
       };
@@ -780,6 +814,7 @@ export default defineComponent({
       selectNextPaginate,
       selectExactPage,
       selectPerPage,
+      selectedVacancyLabel,
     };
   },
 });

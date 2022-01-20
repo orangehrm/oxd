@@ -16,6 +16,7 @@
         <oxd-select-input-btn
           :button="{
             label: selectedVacancy && selectedVacancy.label ? selectedVacancy.label : selectedStage && selectedStage.label ? selectedStage.label : '',
+            labelMini: 'Vacancy',
             iconName: 'eye',
             displayType: 'label',
             style: {

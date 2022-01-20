@@ -6,7 +6,6 @@
       @click="toggleDrawer"
       :style="{
         position: 'fixed',
-        'z-index': '1000',
         left: `${position === 'right' ? '0px': null}`,
         right: `${position === 'left' ? '0px': null}`,
       }"

@@ -1,7 +1,7 @@
 <template>
   <div :class="classes">
     <slot>
-      <a v-if="link.url" :href="link.url" :target="link.target">
+      <a v-if="link && link.url" :href="link.url" :target="link.target">
         <img :src="imageSrc ? imageSrc : userPlaceholderImage" />
       </a>
       <img v-else :src="imageSrc ? imageSrc : userPlaceholderImage" />

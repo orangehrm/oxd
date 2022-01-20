@@ -31,9 +31,9 @@
           }"
         >
           <span class="label-small" v-if="modelValue && modelValue.id > -1"
-            >Vacancy</span
+            >{{ buttonData.labelMini }}</span
           >
-          <span class="label" v-text="buttonData.label"></span>
+          <span class="label">{{ buttonData.label }}</span>
         </div>
       </template>
       <template v-slot:iconRight>
@@ -187,6 +187,7 @@ export default defineComponent({
     buttonData(): object {
       const initialObject = {
         label: 'Button',
+        labelMini: null,
         iconName: 'plus',
         iconImageSrc: null,
         size: 'long',

@@ -11,7 +11,7 @@
   &-loader {
     min-height: $oxd-table-loader-height;
     width: 100%;
-    z-index: 999;
+    z-index: $oxd-form-z-index;
     display: flex;
     justify-content: center;
     align-items: center;
