@@ -23,8 +23,8 @@ export interface RowItem {
 }
 
 export interface ProfilePicItem {
-  profilePic?: string | null | undefined;
-  size?: string | null | undefined;
+  profilePic?: string | null;
+  size?: string | null;
 }
 
 export const TARGET_SELF = '_self';
