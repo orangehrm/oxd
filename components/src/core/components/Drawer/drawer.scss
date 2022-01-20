@@ -1,7 +1,5 @@
 @import '../../../styles';
-@import './../../../styles/variables';
-@import './../../../styles/colors';
-$oxd-dialog-sheet-box-shadow: 0 25px 35px 0 rgba($oxd-black-color, 0.18) !default;
+@import './variables';
 
 * {
   box-sizing: border-box;
@@ -18,7 +16,7 @@ $oxd-dialog-sheet-box-shadow: 0 25px 35px 0 rgba($oxd-black-color, 0.18) !defaul
 }
 
 .oxd-drawer {
-  font-family: "Nunito Sans", sans-serif;
+  font-family: $oxd-drawer-font-family;
   top: 0;
   right: 0;
   padding: 1rem;

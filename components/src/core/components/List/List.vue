@@ -1,6 +1,6 @@
 <template>
   <div
-    class="orangehrm-container recruitment-container"
+    class="orangehrm-container list-container"
     :class="{
       'table-left-panel-open':
         config.table.leftPanel.visible && state.isLeftPanelOpen,
@@ -384,7 +384,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.recruitment-container {
+.list-container {
   margin-top: 2rem;
   background-color: #fff;
   border-radius: 1.2rem;

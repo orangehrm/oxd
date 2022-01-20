@@ -43,6 +43,7 @@
        },
        "bulkActions": [
          {
+           "conditional": true,
            "type": "oxd-button",
            "props": {
              "label": "Archive",
@@ -50,12 +51,35 @@
              "display-type": "label-info",
              "icon-name": "oxd-archive"
            },
-           "class": "default-btn--cancel btn-info",
-           "style": "{'margin-left': '0.5rem'}",
+           "class": "oxd-btn-info-custom",
+           "style": {
+             "margin-left": "0.5rem"
+           },
            "events": [
              {
                "type": "click",
                "identifier": "archive-candidates"
+             }
+           ]
+         },
+         {
+           "conditional": true,
+           "visible": false,
+           "type": "oxd-button",
+           "props": {
+             "label": "Unarchive",
+             "size": "medium",
+             "display-type": "label-info",
+             "icon-name": "oxd-archive"
+           },
+           "class": "oxd-btn-info-custom",
+           "style": {
+             "margin-left": "0.5rem"
+           },
+           "events": [
+             {
+               "type": "click",
+               "identifier": "unarchive-candidates"
              }
            ]
          },
@@ -67,8 +91,10 @@
              "display-type": "label-danger",
              "icon-name": "trash"
            },
-           "class": "default-btn--save btn-danger",
-           "style": "{'margin-left': '0.5rem'}",
+           "class": "oxd-btn-danger-custom",
+           "style": {
+             "margin-left": "0.5rem"
+           },
            "events": [
              {
                "type": "click",
