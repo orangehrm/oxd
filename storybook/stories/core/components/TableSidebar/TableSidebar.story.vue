@@ -14,7 +14,7 @@
       :selected-list-item-id="1"
       @sidePanelList:onSelect="sidePanelListOnSelect"
       @side-panel:onToggle="toggleSidePanel"
-      @sidePanelList:onHeaderBtnClick="sidePanelListOnHeaderBtnClick"
+      @get-add-candidates-modal="sidePanelListOnHeaderBtnClick"
       :is-side-panel-open="isLeftPanelOpen"
     >
       <template v-slot:sidePanelBody>
