@@ -1,6 +1,6 @@
 <template>
   <div
-    class="orangehrm-container list-container"
+    class="list-container w-100 d-flex align-start"
     :class="{
       'table-left-panel-open':
         config.table.leftPanel.visible && state.isLeftPanelOpen,
@@ -138,7 +138,7 @@
           rowDecorator="oxd-table-decorator-card"
         />
         <oxd-pagination
-          class="list-pagination"
+          class="list-pagination d-flex align-center justify-end"
           :length="paginationLength"
           v-model:current="state.currentPage"
           :max="maxPages"
@@ -403,99 +403,4 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-.list-container {
-  margin-top: 2rem;
-  background-color: #fff;
-  border-radius: 1.2rem;
-  display: flex;
-  align-items: flex-start;
-  .oxd-table-left-panel {
-    &.with-filters {
-      margin-top: 1.25rem;
-    }
-  }
-  .table-card-list-wrapper {
-    width: 100%;
-    .list-table-filter {
-      padding-bottom: 0;
-      :deep(.oxd-divider) {
-        margin-top: 0.25rem;
-        margin-bottom: 0;
-      }
-    }
-  }
-  &.table-left-panel-open {
-    .table-card-list-wrapper {
-      width: calc(100% - 230px);
-    }
-  }
-  .oxd-classic-table {
-    flex-wrap: nowrap;
-    :deep(.oxd-icon-button) {
-      font-size: 15px;
-    }
-    :deep(.oxd-table-th) {
-      text-align: left;
-      padding-top: 0.65rem;
-      padding-bottom: 0.65rem;
-    }
-    :deep(.oxd-table-cell) {
-      flex-wrap: nowrap;
-      .oxd-select-wrapper {
-        max-width: 170px;
-      }
-    }
-  }
-}
-.margin-left {
-  margin-left: 0.5rem;
-}
-.list-pagination {
-  height: initial;
-  line-height: initial;
-  padding: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  box-shadow: none;
-}
-.oxd-button {
-  display: flex;
-  align-items: center;
-  :deep(.oxd-button-icon) {
-    margin-right: 0.5rem;
-  }
-  &:disabled {
-    :deep(svg) {
-      * {
-        fill: #ffffff !important;
-      }
-    }
-  }
-  &.oxd-btn-info-custom {
-    :deep(svg) {
-      * {
-        fill: #17a2b8;
-      }
-    }
-    color: #17a2b8;
-    &:disabled {
-      background-color: #cfd3de !important;
-      color: #fff !important;
-    }
-  }
-  &.oxd-btn-danger-custom {
-    :deep(svg) {
-      * {
-        fill: #eb0910;
-      }
-    }
-    color: #eb0910;
-    &:disabled {
-      background-color: #cfd3de !important;
-      color: #fff !important;
-    }
-  }
-}
-</style>
+<style src="./list.scss" lang="scss" scoped></style>
