@@ -105,21 +105,6 @@
               :style="action.style"
             />
           </div>
-          <!-- <oxd-icon-button
-            v-if="config.drawer.visible"
-            name="funnel"
-            display-type="label-info"
-            class="btn-large"
-            style="font-size: 14px"
-            @click="showFilterDrawer"
-          /> -->
-          <!-- <oxd-button
-            :size="'medium'"
-            display-type="label-info"
-            label="CSV"
-            icon-name="file-earmark-spreadsheet"
-            @click="exportBtn"
-          /> -->
         </template>
       </oxd-table-filter>
 
