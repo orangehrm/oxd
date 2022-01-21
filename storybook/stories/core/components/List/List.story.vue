@@ -11,7 +11,7 @@
       :selected-list-item="state.vacancies"
       @table-left-panel:onToggle="toggleLeftPanel"
       @topfilters:onExportBtnClick="exportCSV"
-      @get-add-candidates-modal="showAddCandidatesModal"
+      @sidePanelList:onHeaderBtnClick="showAddCandidatesModal"
       @sidePanelList:onSelect="selectStage"
       @quick-search:onSelect="candidateQuickSearchSelect"
       @quick-search:onClear="candidateQuickSearchClear"

@@ -12,7 +12,7 @@
           :size="buttonData.size"
           :style="buttonData.style"
           :displayType="buttonData.displayType"
-          v-on="eventBinder(button.events)"
+          @click="onHeaderBtnClick"
         >
           <template v-if="buttonData.iconImageSrc" v-slot:icon>
             <img :src="buttonData.iconImageSrc" />
@@ -149,19 +149,8 @@ export default defineComponent({
       };
     });
 
-    const eventBinder = events => {
-      let mappedEvents, mappedEventsObj;
-      if (events) {
-        mappedEvents = events.map(event => {
-          return {
-            [event.type]: vals => {
-              emit(event.identifier, vals);
-            },
-          };
-        });
-        mappedEventsObj = Object.assign({}, ...mappedEvents);
-      }
-      return mappedEventsObj;
+    const onHeaderBtnClick = () => {
+      emit('sidePanelList:onHeaderBtnClick');
     };
 
     const selectListitem = (item: {
@@ -183,7 +172,7 @@ export default defineComponent({
       customStyles,
       buttonData,
       isLeftPanelOpen,
-      eventBinder,
+      onHeaderBtnClick,
       selectListitem,
       toggleLeftPanel,
     };

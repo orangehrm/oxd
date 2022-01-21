@@ -17,13 +17,7 @@
              "size": "long",
              "display-type": "label-info",
              "icon-name": "plus"
-           },
-           "events": [
-             {
-               "type": "click",
-               "identifier": "get-add-candidates-modal"
-             }
-           ]
+           }
          }
        },
        "body": {
