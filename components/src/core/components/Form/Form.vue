@@ -1,5 +1,10 @@
 <template>
-  <form class="oxd-form" novalidate @submit.prevent="validate">
+  <form
+    class="oxd-form"
+    novalidate
+    @submit.prevent="validate"
+    v-focus-first-element
+  >
     <div v-if="loading" class="oxd-form-loader">
       <oxd-loading-spinner />
     </div>
@@ -16,6 +21,7 @@ import {defineComponent} from 'vue';
 import ErrorBag from './errorbag.interface';
 import ErrorField from './errorfield.interface';
 import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
+import focusFirstElement from '../../../directives/focus-first-element';
 
 export default defineComponent({
   name: 'oxd-form',
@@ -40,6 +46,10 @@ export default defineComponent({
 
   components: {
     'oxd-loading-spinner': Spinner,
+  },
+
+  directives: {
+    'focus-first-element': focusFirstElement,
   },
 
   computed: {

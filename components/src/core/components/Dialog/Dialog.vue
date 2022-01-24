@@ -11,6 +11,8 @@
           v-bind="$attrs"
           role="document"
           @click="onClickSheet"
+          v-focus-trap
+          v-focus-first-element
         >
           <oxd-dialog-close-button
             v-if="withClose"
@@ -29,6 +31,8 @@ import {defineComponent} from 'vue';
 import Overlay from '@orangehrm/oxd/core/components/Dialog/Overlay.vue';
 import CloseButton from '@orangehrm/oxd/core/components/Dialog/CloseButton.vue';
 import Sheet from '@orangehrm/oxd/core/components/Sheet/Sheet.vue';
+import focusTrapDirective from '../../../directives/focus-trap';
+import focusFirstElement from '../../../directives/focus-first-element';
 
 // Containers
 import DefaultContainer from '@orangehrm/oxd/core/components/Dialog/Container/Default.vue';
@@ -44,6 +48,11 @@ export default defineComponent({
 
     // Containers
     'oxd-dialog-container-default': DefaultContainer,
+  },
+
+  directives: {
+    'focus-trap': focusTrapDirective,
+    'focus-first-element': focusFirstElement,
   },
 
   emits: ['update:show'],
