@@ -1,13 +1,14 @@
 <template>
   <oxd-form>
-    <oxd-grid :cols="form.columnsPerRow">
-      <oxd-grid-item v-for="(element, index) in form.elements" :key="index" :style="columnOverride(element.column)">
+    <oxd-grid :cols="formObj.columnsPerRow">
+      <oxd-grid-item v-for="(element, index) in formObj.elements" :key="index" :style="columnOverride(element.column)">
         <oxd-form-row>
           <oxd-input-group :label="element.label">
             <component
               :is="element.type"
               v-bind="element.props" 
               v-on="eventBinder(element.events)"
+              v-model="element.value"
             />
           </oxd-input-group>
         </oxd-form-row>
@@ -17,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, ref, watch} from 'vue';
 import Form from '@orangehrm/oxd/core/components/Form/Form.vue';
 import FormRow from '@orangehrm/oxd/core/components/Form/FormRow.vue';
 import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue';
@@ -53,6 +54,7 @@ export default defineComponent({
     }
   },
   setup(props, {emit}) {
+    const formObj = ref(props.form);
     const eventBinder = events => {
       let mappedEvents, mappedEventsObj;
       if (events) {
@@ -67,7 +69,7 @@ export default defineComponent({
       }
       return mappedEventsObj;
     };
-    const columnOverride = (column) => {
+    const columnOverride = (column: number) => {
       let gridCol
       if (column) {
         gridCol = {
@@ -76,7 +78,15 @@ export default defineComponent({
       }
       return gridCol;
     }
+    watch(formObj.value, (val) => {
+      const initialObj = {}
+      val.elements.forEach(element => {
+        initialObj[element.key] = element.type === "oxd-file-input" && !element.multitple ? element.value[0] : element.value
+      })
+      emit('get-form-obj', initialObj)
+    })
     return {
+      formObj,
       eventBinder,
       columnOverride,
     }
