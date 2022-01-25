@@ -54,7 +54,7 @@ export default defineComponent({
     }
   },
   setup(props, {emit}) {
-    const formObj = ref(props.form);
+    const formObj = ref(JSON.parse(JSON.stringify(props.form)));
     const eventBinder = events => {
       let mappedEvents, mappedEventsObj;
       if (events) {
@@ -81,7 +81,35 @@ export default defineComponent({
     watch(formObj.value, (val) => {
       const initialObj = {}
       val.elements.forEach(element => {
-        initialObj[element.key] = element.type === "oxd-file-input" && !element.multitple ? element.value[0] : element.value
+        if (element.type === "oxd-file-input") {
+          if (element.value?.length > 0) {
+            if (element.multiselect) {
+              initialObj[element.key] = element.value
+            } else {
+              initialObj[element.key] = element.value[0]
+            }
+          }
+        } else {
+          initialObj[element.key] = element.value
+        }
+        // map key values to return
+        if (element.getValueFrom) {
+          if (element.getValueType === "number" && element.getValueFrom) {
+            initialObj[element.key] = element.value ? parseInt(element.value[element.getValueFrom]) : undefined
+          } else {
+            initialObj[element.key] = element.value ? element.value[element.getValueFrom] : undefined
+          }
+        }
+        // map object to return
+        if (element.getValueType === "object" && element.getValueObject) {
+          initialObj[element.key]
+          const newObj = {}
+          for (const key in initialObj[element.key]) {
+            const newKey = element.getValueObject[key]
+            newObj[newKey] = initialObj[element.key][key]
+          }
+          initialObj[element.key] = Object.keys(newObj).length > 0 ? newObj : undefined
+        }
       })
       emit('get-form-obj', initialObj)
     })
