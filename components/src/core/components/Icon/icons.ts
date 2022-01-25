@@ -279,7 +279,7 @@ export const oxdHRAdministration: icon = {
 export const oxdAdd: icon = {
   name: 'oxd-add',
   value:
-    '<svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"> <path d="m810 554h-256v256h-84v-256h-256v-84h256v-256h84v256h256v84z"/> </svg> ',
+    '<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 459.3 459.3" style="enable-background:new 0 0 459.3 459.3;" xml:space="preserve"> <style type="text/css"> .st0{fill:#FFFFFF;} </style> <g> <path class="st0" d="M459.3,229.7c0,22.2-18,40.2-40.2,40.2H269.9v149.3c0,22.2-18,40.2-40.2,40.2c-11.1,0-21.1-4.5-28.4-11.8 c-7.3-7.3-11.8-17.3-11.8-28.4l0-149.3H40.2c-11.1,0-21.1-4.5-28.4-11.8C4.5,250.8,0,240.8,0,229.7c0-22.2,18-40.2,40.2-40.2h149.3 V40.2c0-22.2,18-40.2,40.2-40.2c22.2,0,40.2,18,40.2,40.2v149.3h149.3C441.3,189.5,459.3,207.5,459.3,229.7z"/> </g> </svg>',
 };
 
 const icons: Icons = {
