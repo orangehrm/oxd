@@ -19,6 +19,7 @@ export default defineComponent({
           label: 'Select resume',
           type: "oxd-file-input",
           props: {
+            isFileArray: true,
           },
           column: 1
         },

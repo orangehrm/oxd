@@ -3,7 +3,8 @@
     <oxd-grid :cols="formObj.columnsPerRow">
       <oxd-grid-item v-for="(element, index) in formObj.elements" :key="index" :style="columnOverride(element.column)">
         <oxd-form-row>
-          <oxd-input-group :label="`${element.label} ${element.rules?.indexOf('required') > -1 ? ' *' : ''}`">
+          <oxd-input-group :label="requiredLabel(element)">
+            {{element.value}}
             <component
               :is="element.type"
               v-bind="element.props" 
@@ -98,6 +99,9 @@ export default defineComponent({
       }
       return gridCol;
     }
+    const requiredLabel = (element) => {
+      return `${element.label} ${element.rules?.indexOf('required') > -1 ? '*' : ''}`
+    }
     watch(formObj.value, (val) => {
       const initialObj = {}
       val.elements.forEach(element => {
@@ -138,6 +142,7 @@ export default defineComponent({
       formObj,
       rulesBinder,
       eventBinder,
+      requiredLabel,
       columnOverride,
     }
   },
