@@ -4,7 +4,6 @@
       <oxd-grid-item v-for="(element, index) in formObj.elements" :key="index" :style="columnOverride(element.column)">
         <oxd-form-row>
           <oxd-input-group :label="requiredLabel(element)">
-            {{element.value}}
             <component
               :is="element.type"
               v-bind="element.props" 
