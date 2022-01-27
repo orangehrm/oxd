@@ -5,6 +5,8 @@
     type="button"
     :class="classes"
     @click="onClick"
+    :tooltip="tooltip"
+    :flow="flow"
   >
     <oxd-icon :class="{'--disabled': disabled}" :name="name" />
   </button>
@@ -13,11 +15,14 @@
     :name="name"
     :class="{'oxd-icon-button__icon': true, '--disabled': disabled}"
     @click="onClick"
+    :tooltip="tooltip"
+    :flow="flow"
   />
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import {TooltipPosition, TOOLTIP_TOP, TOOLTIP_POSITIONS} from './types';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
@@ -39,6 +44,17 @@ export default defineComponent({
     disabled: {
       type: Boolean,
       default: false,
+    },
+    tooltip: {
+      type: String,
+      default: null,
+    },
+    flow: {
+      type: String,
+      default: TOOLTIP_TOP,
+      validator: (value: TooltipPosition) => {
+        return TOOLTIP_POSITIONS.indexOf(value) !== 1;
+      },
     },
   },
 

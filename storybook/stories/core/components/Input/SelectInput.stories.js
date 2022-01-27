@@ -67,7 +67,7 @@ const options = [
 
 const Template = args => ({
   setup() {
-    const selected = ref(null);
+    const selected = ref(args.value ?? null);
     return {args, selected};
   },
   render() {
@@ -116,4 +116,13 @@ LongLabels.args = {
     {id: 4, label: null},
     {id: 5, label: 'ඔක්තෝබර්'},
   ],
+};
+export const PreSelected = Template.bind({});
+PreSelected.args = {
+  options: options,
+  value: {
+    id: 4,
+    label: 'Manager',
+  },
+  showEmptySelector: false,
 };

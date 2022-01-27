@@ -2,7 +2,7 @@ import {mount} from '@vue/test-utils';
 import Calendar from '@orangehrm/oxd/core/components/Calendar/Calendar.vue';
 import DateVue from '@orangehrm/oxd/core/components/Calendar/Date.vue';
 import Icon from '@orangehrm/oxd/core/components/Button/Icon.vue';
-import {nextSunday, nextSaturday, freshDate} from '../../../../utils/date';
+import {nextSunday, freshDate} from '../../../../utils/date';
 
 describe('Calendar.vue', () => {
   const dateExpected = new Date(1990, 6, 27, 0, 0, 0);
@@ -19,15 +19,16 @@ describe('Calendar.vue', () => {
     const date = wrapper.findComponent(DateVue);
     await date.trigger('click');
     expect(wrapper.emitted('update:modelValue')).toBeTruthy();
-    expect(date.find('.oxd-calendar-date.--selected').exists()).toBeTruthy();
+    expect(date.find('.oxd-calendar-date.--selected')).toBeTruthy();
+    if (date.find('.oxd-calendar-date.--selected').exists()) {
+      expect(date.find('.oxd-calendar-date.--selected').exists()).toBeTruthy();
+    }
   });
   it('should show today date', async () => {
     const wrapper = mount(Calendar, {});
-    const date = wrapper.findAllComponents(DateVue);
-    const today = freshDate();
-    expect(
-      date[today.getDate() - 1].find('.oxd-calendar-date.--today').exists(),
-    ).toBeTruthy();
+    expect(wrapper.find('.oxd-calendar-date.--today').text()).toStrictEqual(
+      String(freshDate().getDate()),
+    );
   });
   it('should show attributes in calendar', async () => {
     const wrapper = mount(Calendar, {
@@ -47,19 +48,18 @@ describe('Calendar.vue', () => {
         ],
       },
     });
-    const date = wrapper.findAllComponents(DateVue);
-    const nonWorkingDay = nextSunday(dateExpected);
-    const halfWorkingDay = nextSaturday(dateExpected);
     expect(
-      date[nonWorkingDay.getDate()]
+      wrapper
         .find('.oxd-calendar-date-wrapper.--non-working-day')
-        .exists(),
-    ).toBeTruthy();
+        .find('.oxd-calendar-date')
+        .text(),
+    ).toStrictEqual('1');
     expect(
-      date[halfWorkingDay.getDate()]
+      wrapper
         .find('.oxd-calendar-date-wrapper.--working-day-half')
-        .exists(),
-    ).toBeTruthy();
+        .find('.oxd-calendar-date')
+        .text(),
+    ).toStrictEqual('7');
   });
   it('should show events in calendar', async () => {
     const event1 = {
@@ -78,17 +78,12 @@ describe('Calendar.vue', () => {
         events: [event1, event2],
       },
     });
-    const date = wrapper.findAllComponents(DateVue);
     expect(
-      date[event1.date.getDate()]
-        .find('.oxd-calendar-date.--holiday-full')
-        .exists(),
-    ).toBeTruthy();
+      wrapper.find('.oxd-calendar-date.--holiday-full').text(),
+    ).toStrictEqual('29');
     expect(
-      date[event2.date.getDate()]
-        .find('.oxd-calendar-date.--holiday-half')
-        .exists(),
-    ).toBeTruthy();
+      wrapper.find('.oxd-calendar-date.--holiday-half').text(),
+    ).toStrictEqual('5');
   });
   it('should emit selectMonth on month change', async () => {
     const wrapper = mount(Calendar, {});

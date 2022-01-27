@@ -147,12 +147,12 @@ export default defineComponent({
       this.$emit('input', e);
     },
 
-    readFiles(files: any) {
-      let count = files.length;
+    readFiles(files: Array<File>) {
+      const count = files.length;
       const outputFileArray: OutputFile[] = [];
       for (let i = count - 1; i >= 0; i--) {
-        let file = files[i];
-        let reader = new FileReader();
+        const file = files[i];
+        const reader = new FileReader();
         reader.onload = (event: ProgressEvent<FileReader>) => {
           if (
             typeof event.target?.result === 'string' ||

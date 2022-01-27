@@ -1,12 +1,18 @@
 <template>
   <div :class="classes">
-    <slot> </slot>
+    <slot>
+      <a v-if="link && link.url" :href="link.url" :target="link.target">
+        <img :src="imageSrc ? imageSrc : userPlaceholderImage" />
+      </a>
+      <img v-else :src="imageSrc ? imageSrc : userPlaceholderImage" />
+    </slot>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {SIZES, SIZE_MEDIUM, ImageSize} from './types';
+import {defaultUser} from './images';
 export default defineComponent({
   name: 'oxd-profile-pic',
   props: {
@@ -17,6 +23,17 @@ export default defineComponent({
         return SIZES.indexOf(value) !== -1;
       },
     },
+    style: {
+      type: Object,
+    },
+    imageSrc: {
+      type: String,
+      default: null,
+    },
+    link: {
+      type: String,
+      default: null,
+    },
   },
   computed: {
     classes(): object {
@@ -24,6 +41,9 @@ export default defineComponent({
         'header-image': true,
         [`profile-image--${this.size}`]: true,
       };
+    },
+    userPlaceholderImage() {
+      return defaultUser.value;
     },
   },
 });

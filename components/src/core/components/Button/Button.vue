@@ -1,9 +1,19 @@
 <template>
-  <button type="button" :class="classes" :style="style">
+  <button
+    type="button"
+    :class="classes"
+    :style="style"
+    :tooltip="tooltip"
+    :flow="flow"
+  >
     <slot name="icon">
       <oxd-icon v-if="iconName" :name="iconName" class="oxd-button-icon" />
     </slot>
-    {{ label }}
+    <div class="oxd-button-label-wrapper">
+      <slot name="label">
+        {{ label }}
+      </slot>
+    </div>
     <slot name="iconRight">
       <oxd-icon
         v-if="iconRightName"
@@ -19,10 +29,13 @@ import {defineComponent} from 'vue';
 import {
   ButtonSize,
   ButtonType,
+  TooltipPosition,
   SIZES,
   SIZE_MEDIUM,
   TYPES,
   TYPE_MAIN,
+  TOOLTIP_TOP,
+  TOOLTIP_POSITIONS,
 } from './types';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
@@ -60,6 +73,17 @@ export default defineComponent({
     },
     iconRightName: {
       type: String,
+    },
+    tooltip: {
+      type: String,
+      default: null,
+    },
+    flow: {
+      type: String,
+      default: TOOLTIP_TOP,
+      validator: (value: TooltipPosition) => {
+        return TOOLTIP_POSITIONS.indexOf(value) !== 1;
+      },
     },
   },
 

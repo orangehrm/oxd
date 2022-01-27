@@ -1,0 +1,83 @@
+@import '../../../styles';
+@import './variables';
+
+* {
+  box-sizing: border-box;
+}
+
+.overlay {
+  z-index: $oxd-drawer-overlay-z-index;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0, 0.1);
+  width: 100%;
+  height: 100%;
+}
+
+.oxd-drawer {
+  font-family: $oxd-drawer-font-family;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  background-color: $oxd-white-color;
+  border-radius: $oxd-border-radius 0 0 $oxd-border-radius;
+  box-shadow: $oxd-dialog-sheet-box-shadow;
+  transition: 1s;
+  z-index: $oxd-drawer-z-index;
+  .drawer-header {
+    border-bottom: 1px solid $oxd-interface-gray-lighten-3-color;
+    padding-bottom: 0.5rem;
+    h5 {
+      font-weight: 700;
+      font-size: 16px;
+      color: $oxd-interface-gray-darken-1-color;
+      margin: 0;
+    }
+  }
+  .drawer-body {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    overflow-y: auto;
+  }
+  .drawer-footer {
+    position: absolute;
+    width: calc(100% - 2rem);
+    bottom: 1rem;
+    display: flex;
+    padding-top: 0.75rem;
+    border-top: 1px solid $oxd-interface-gray-lighten-3-color;
+    justify-content: flex-end;
+    .default-btn {
+      &--save {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+  &.left {
+    border-radius: 0 $oxd-border-radius $oxd-border-radius 0;
+    right: unset;
+    left: 0;
+    .footer {
+      justify-content: flex-start;
+      .default-btn {
+        &--save {
+          margin-left: 0;
+        }
+        &--cancel {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+  &.sticky-footer {
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 1rem;
+      width: calc(100% - 2rem);
+      display: flex;
+      padding: 1rem;
+    }
+  }
+}

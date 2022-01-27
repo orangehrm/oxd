@@ -35,7 +35,10 @@ describe('SidePanel.vue', () => {
     });
     const menuElems = wrapper.findAllComponents(MainMenuItem);
     expect(menuElems.length).toBe(3);
-    expect(menuElems[0].findAll('a')[1].classes()).toContain('active');
+    expect(menuElems[0].findAll('a').length).toBeTruthy();
+    if (menuElems[0].findAll('a')[1]) {
+      expect(menuElems[0].findAll('a')[1].classes()).toContain('active');
+    }
   });
 
   it('should emit OXD Side Panel collapse event', () => {

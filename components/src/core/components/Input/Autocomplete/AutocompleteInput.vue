@@ -172,25 +172,27 @@ export default defineComponent({
       });
     },
     selectedItem(): string {
-      if (!this.multiple && this.modelValue?.label) {
-        return this.modelValue.label;
-      }
-      return null;
+      return !this.multiple && this.modelValue?.label
+        ? this.modelValue.label
+        : null;
     },
     inputValue(): string {
-      return (
-        this.computedOptions[this.pointer]?.label ||
-        this.searchTerm ||
-        this.selectedItem
-      );
+      if (this.computedOptions[this.pointer]?.label) {
+        return this.computedOptions[this.pointer].label;
+      } else if (this.searchTerm) {
+        return this.searchTerm;
+      } else if (!this.dropdownOpen) {
+        return this.selectedItem;
+      }
+      return '';
     },
     showClear(): boolean {
-      return (
+      const a =
         !this.disabled &&
         !this.readonly &&
         this.clear &&
-        this.selectedItem !== null
-      );
+        this.selectedItem !== null;
+      return a;
     },
   },
 
@@ -202,6 +204,10 @@ export default defineComponent({
         this.loading = true;
         this.dropdownOpen = true;
         this.search(this, searchTerm);
+      } else {
+        this.loading = false;
+        this.dropdownOpen = false;
+        this.$emit('update:modelValue', null);
       }
     },
     onSelect(option: Option) {

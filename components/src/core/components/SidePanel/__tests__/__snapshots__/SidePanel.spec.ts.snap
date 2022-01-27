@@ -4,11 +4,11 @@ exports[`SidePanel.vue renders OXD Side Panel 1`] = `
 <aside class="oxd-sidepanel">
   <nav class="oxd-navbar-nav" role="navigation" aria-label="Sidepanel">
     <div class="oxd-sidepanel-header">
-      <oxd-branding-stub></oxd-branding-stub>
-      <oxd-icon-stub class="oxd-sidepanel-header-close"></oxd-icon-stub>
+      <oxd-branding-stub url="/" imagesrc="" toggle="false"></oxd-branding-stub>
+      <oxd-icon-stub name="x" class="oxd-sidepanel-header-close"></oxd-icon-stub>
     </div>
     <div class="oxd-sidepanel-body">
-      <oxd-main-menu-stub></oxd-main-menu-stub>
+      <oxd-main-menu-stub menuitems="" url="/" toggle="false"></oxd-main-menu-stub>
     </div>
   </nav>
 </aside>

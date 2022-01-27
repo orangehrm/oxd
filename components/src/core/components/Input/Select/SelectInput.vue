@@ -23,8 +23,11 @@
       :loading="loading"
       :empty="computedOptions.length === 0"
     >
-      <oxd-select-option @select="onClear">
-        {{ placeholder }}
+      <oxd-select-option
+        v-if="showEmptySelector && !hideDropdownDefaultLabel"
+        @select="onClear"
+      >
+        {{ $vt(placeholder) }}
       </oxd-select-option>
       <oxd-select-option
         v-for="(option, i) in computedOptions"
@@ -35,7 +38,7 @@
         @select="onSelect(option)"
       >
         <slot name="option" :data="option"></slot>
-        <span v-if="!$slots['option']">{{ option.label }}</span>
+        <span v-if="!$slots['option']">{{ $vt(option.label) }}</span>
       </oxd-select-option>
     </oxd-select-dropdown>
   </div>
@@ -49,6 +52,7 @@ import {TOP, BOTTOM, Option, Position, DROPDOWN_POSITIONS} from '../types';
 import SelectText from '@orangehrm/oxd/core/components/Input/Select/SelectText.vue';
 import SelectDropdown from '@orangehrm/oxd/core/components/Input/Select/SelectDropdown.vue';
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
+import translateMixin from '../../../../mixins/translate';
 
 export default defineComponent({
   name: 'oxd-select-input',
@@ -60,7 +64,7 @@ export default defineComponent({
     'oxd-select-option': SelectOption,
   },
 
-  mixins: [navigationMixin, eventsMixin],
+  mixins: [navigationMixin, eventsMixin, translateMixin],
 
   emits: [
     'update:modelValue',
@@ -78,6 +82,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    hideDropdownDefaultLabel: {
+      type: Boolean,
+      default: false,
+    },
     options: {
       type: Array,
       required: true,
@@ -92,6 +100,10 @@ export default defineComponent({
       validator: function(value: Position) {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
+    },
+    showEmptySelector: {
+      type: Boolean,
+      default: true,
     },
   },
 
@@ -131,7 +143,11 @@ export default defineComponent({
       });
     },
     selectedItem(): string {
-      return this.modelValue?.label ? this.modelValue.label : this.placeholder;
+      return this.modelValue?.label
+        ? this.$vt(this.modelValue.label)
+        : this.hideDropdownDefaultLabel
+        ? null
+        : this.$vt(this.placeholder);
     },
     inputValue(): string {
       return this.computedOptions[this.pointer]?.label || this.selectedItem;
