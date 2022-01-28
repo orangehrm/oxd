@@ -21,11 +21,6 @@ export const navigationMixin = defineComponent({
     };
   },
   methods: {
-    onOpenDropdown() {
-      if (this.disabled || this.dropdownOpen) return;
-      this.dropdownOpen = true;
-      this.$emit('dropdown:opened');
-    },
     onSelectDown() {
       if (this.dropdownOpen) {
         if (this.computedOptions.length - 1 > this.pointer) {
@@ -46,7 +41,7 @@ export const navigationMixin = defineComponent({
     },
     onSelectEnter() {
       if (!this.dropdownOpen) {
-       this.onOpenDropdown();
+       this.openDropdown();
       } else {
         if (this.pointer >= 0) {
           const option = this.computedOptions[this.pointer];
@@ -70,8 +65,13 @@ export const navigationMixin = defineComponent({
         this.pointer = cycleIndexes(this.pointer, filtered);
       }
     },
+
+    openDropdown() {
+      if (this.disabled || this.dropdownOpen) return;
+      this.dropdownOpen = true;
+      this.$emit('dropdown:opened');
+    },
     /* eslint-disable */
-    openDropdown() {},
     onSelect(option: Option) {},
     /* eslint-enable */
   },
