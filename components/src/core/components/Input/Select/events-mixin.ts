@@ -20,8 +20,9 @@ export const eventsMixin = defineComponent({
       this.dropdownOpen = true;
       this.$emit('dropdown:opened');
     },
-    onCloseDropdown() {
+    onCloseDropdown($e: KeyboardEvent | null) {
       if (this.disabled || !this.dropdownOpen) return;
+      if ($e && $e.key === 'Escape') $e.stopPropagation();
       this.dropdownOpen = false;
       this.$emit('dropdown:closed');
     },
@@ -29,11 +30,11 @@ export const eventsMixin = defineComponent({
       if (!this.dropdownOpen) {
         this.onOpenDropdown();
       } else {
-        this.onCloseDropdown();
+        this.onCloseDropdown(null);
       }
     },
     onBlur() {
-      this.onCloseDropdown();
+      this.onCloseDropdown(null);
       this.$emit('dropdown:blur');
     },
     onSelect(option: Option) {
