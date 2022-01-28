@@ -25,8 +25,6 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
-import eventsMixin from './events-mixin';
-import navigationMixin from './navigation-mixin';
 
 export default defineComponent({
   name: 'oxd-select-text',
@@ -36,17 +34,7 @@ export default defineComponent({
     'oxd-icon': Icon,
   },
 
-  mixins: [navigationMixin, eventsMixin],
-
-  emits: [
-    'icon:clicked',
-  ],
-
   props: {
-    dropdownOpened: {
-      type: Boolean,
-      default: true,
-    },
     value: {
       type: String,
     },
@@ -85,7 +73,7 @@ export default defineComponent({
       };
     },
     dropdownIcon(): string {
-      return this.dropdownOpened ? 'caret-up-fill' : 'caret-down-fill';
+      return this.focused ? 'caret-up-fill' : 'caret-down-fill';
     },
     dropdownIconClasses(): object {
       return {
@@ -112,7 +100,6 @@ export default defineComponent({
     },
     onToggle() {
       this.$refs.oxdInput.focus();
-      this.$emit('icon:clicked');
     },
   },
 });
