@@ -103,7 +103,7 @@ export default defineComponent({
     background: $oxd-dropdown-dropdown-background--disabled;
   }
   &:deep(.oxd-autocomplete-dropdown) {
-    margin-top: 25px;
+    margin-top: 44px;
   }
 }
 </style>
