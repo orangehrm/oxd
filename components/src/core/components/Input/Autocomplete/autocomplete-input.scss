@@ -51,7 +51,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    background: transparent;
+    background-color: $oxd-input-background;
   }
 
   &--before,
@@ -117,7 +117,7 @@
   border-bottom: $oxd-dropdown-option-border-bottom;
   background-color: $oxd-dropdown-option-background;
   min-height: $oxd-dropdown-option-min-height;
-
+  overflow-wrap: anywhere;
   span {
     word-break: break-word;
     display: -webkit-box;
