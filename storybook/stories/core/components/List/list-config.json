@@ -122,15 +122,13 @@
             "class": "quick-search-btn",
             "style": {
               "background-color": "rgba(100, 114, 140, 0.1)",
-              "padding": "0",
               "min-width": "unset",
-              "min-height": "unset",
-              "width": "28px",
-              "height": "28px"
+              "min-height": "unset"
             },
             "props": {
               "name": "oxd-search",
-              "displayType": "label-info"
+              "displayType": "label-info",
+              "size": "small"
             }
           }
        },
