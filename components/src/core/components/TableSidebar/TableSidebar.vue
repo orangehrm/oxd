@@ -134,8 +134,8 @@ export default defineComponent({
         displayType: 'secondary',
         style: null,
       };
-      for (const key in props.button) {
-        const value = props.button[key];
+      for (const key in props.button.props) {
+        const value = props.button.props[key];
         if (value) {
           initialObject[key] = value;
         }

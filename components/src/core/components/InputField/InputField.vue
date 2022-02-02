@@ -87,7 +87,9 @@ export default defineComponent({
   emits: ['update:modelValue', 'errors'],
 
   props: {
-    modelValue: {},
+    modelValue: {
+      type: [String, Number, Object],
+    },
     label: {
       type: String,
     },
