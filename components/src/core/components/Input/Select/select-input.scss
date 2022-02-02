@@ -136,6 +136,7 @@
   font-family: $oxd-dropdown-option-font-family;
   font-weight: $oxd-dropdown-option-font-weight;
   padding: $oxd-dropdown-option-padding;
+  margin: $oxd-dropdown-option-margin;
   border-bottom: $oxd-dropdown-option-border-bottom;
   background-color: $oxd-dropdown-option-background;
   min-height: $oxd-dropdown-option-min-height;
@@ -168,12 +169,8 @@
   }
   &.--selected {
     border-radius: $oxd-dropdown-option-border-radius;
-    color: $oxd-dropdown-option-color--selected;
+    background-color: $oxd-dropdown-option-background--focused;
     cursor: unset;
-    &:hover,
-    &.--focused {
-      background-color: transparent;
-    }
   }
   @for $i from 1 through 20 {
     $value: $i * 0.5;
@@ -231,11 +228,5 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-  }
-}
-.oxd-select-wrapper {
-  ::v-deep(.oxd-select-dropdown) {
-    left: 0;
-    top: 30px;
   }
 }
