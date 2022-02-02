@@ -3,6 +3,7 @@
     :size="profilePicObj.size"
     :imageSrc="profilePicObj.profilePic"
     :link="profilePicObj.link"
+    :link-mode="linkMode"
   />
 </template>
 
@@ -22,16 +23,16 @@ export default defineComponent({
       type: Object as PropType<ProfilePicItem>,
       required: true,
     },
+    linkMode: {
+      type: String,
+    },
   },
   setup(props) {
     const profilePicObj = computed(() => {
       const initialObject = {
         profilePic: null,
         size: SIZE_SMALL,
-        link: {
-          url: null,
-          target: null,
-        },
+        link: null,
       };
       for (const key in props.rowItem) {
         const value = props.rowItem[key];

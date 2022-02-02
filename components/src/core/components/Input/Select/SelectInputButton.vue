@@ -44,6 +44,7 @@
       :style="dropdownStyles"
       :loading="loading"
       :empty="computedOptions.length === 0"
+      v-click-outside="clickOutside"
     >
       <oxd-select-option
         v-for="(option, i) in computedOptions"
@@ -65,6 +66,7 @@ import {defineComponent} from 'vue';
 import eventsMixin from './events-mixin';
 import navigationMixin from './navigation-mixin';
 import {TOP, BOTTOM, Option, Position, DROPDOWN_POSITIONS} from '../types';
+import clickOutsideDirective from './../../../../directives/click-outside';
 import {
   TooltipPosition,
   TOOLTIP_TOP,
@@ -87,6 +89,10 @@ export default defineComponent({
   },
 
   mixins: [navigationMixin, eventsMixin],
+
+  directives: {
+    'click-outside': clickOutsideDirective,
+  },
 
   emits: [
     'update:modelValue',
@@ -208,6 +214,12 @@ export default defineComponent({
         this.hideDropdownLabel ? 'no-label' : 'w-100'
       }`;
     },
+  },
+
+  methods: {
+    clickOutside() {
+      this.dropdownOpen = false
+    }
   },
 
   watch: {

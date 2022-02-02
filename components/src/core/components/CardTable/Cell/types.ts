@@ -11,6 +11,7 @@ export type ActionsCellConfigOnClickFunction<T> = (
 
 export interface Action<T> {
   onClick?: ActionsCellConfigOnClickFunction<T>;
+  onChange?: ActionsCellConfigOnClickFunction<T>;
   component?: string;
   props?: VNodeProps;
 }
