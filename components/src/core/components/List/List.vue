@@ -69,7 +69,7 @@
             :clear="config.table.topBar.quickSearch.clear"
             :createOptions="quickSearchOptions"
             :modelValue="state.selectedQuickSearch"
-            @dropdown:modelValue="quickSearchSelect"
+            @update:modelValue="quickSearchSelect"
           >
             <template v-slot:iconSlot>
               <oxd-icon-button
