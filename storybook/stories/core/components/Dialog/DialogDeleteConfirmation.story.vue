@@ -3,7 +3,7 @@
 
   <oxd-dialog v-if="show" @update:show="onCancel" :style="{maxWidth: '450px'}">
     <div class="orangehrm-modal-header">
-      <oxd-text type="card-title">Are you sure?</oxd-text>
+      <oxd-text type="modal-title">Are you sure?</oxd-text>
     </div>
     <div class="orangehrm-text-center-align">
       <oxd-text type="subtitle-2">
