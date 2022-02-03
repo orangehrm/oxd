@@ -25,13 +25,6 @@ import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue
 import Grid from '@orangehrm/oxd/core/components/Grid/Grid.vue';
 import GridItem from '@orangehrm/oxd/core/components/Grid/GridItem.vue';
 import InputField from '@orangehrm/oxd/core/components/InputField/InputField.vue';
-import AutocompleteInput from "@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteInput.vue";
-import SelectInput from "@orangehrm/oxd/core/components/Input/Select/SelectInput.vue";
-import DateInput from "@orangehrm/oxd/core/components/Input/DateInput.vue";
-import SwitchInput from "@orangehrm/oxd/core/components/Input/SwitchInput.vue";
-import Textarea from "@orangehrm/oxd/core/components/Textarea/Textarea.vue";
-import FileInput from "@orangehrm/oxd/core/components/Input/FileInput.vue";
-import Label from "@orangehrm/oxd/core/components/Label/Label.vue";
 
 export default defineComponent({
   name: 'oxd-form-dynamic',
@@ -42,13 +35,6 @@ export default defineComponent({
     'oxd-grid': Grid,
     'oxd-grid-item': GridItem,
     'oxd-input-field': InputField,
-    'oxd-textarea': Textarea,
-    "oxd-autocomplete-input": AutocompleteInput,
-    "oxd-select-input": SelectInput,
-    "oxd-date-input": DateInput,
-    "oxd-switch-input": SwitchInput,
-    "oxd-file-input": FileInput,
-    "oxd-label": Label,
   },
   props: {
     form: {
