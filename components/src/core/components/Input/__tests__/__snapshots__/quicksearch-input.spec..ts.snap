@@ -12,5 +12,6 @@ exports[`QuickSearchInput.vue renders OXD Autocomplete Input 1`] = `
     <!--v-if-->
     <!--v-if-->
   </div>
+  <div class="append-element"></div>
 </div>
 `;
