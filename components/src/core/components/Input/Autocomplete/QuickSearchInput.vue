@@ -12,9 +12,7 @@
         <slot :name="slot" v-bind="scope" />
       </template>
     </oxd-autocomplete-input>
-    <div class="append-element">
-      <slot name="iconSlot"></slot>
-    </div>
+    <slot name="iconSlot"></slot>
   </div>
 </template>
 
@@ -66,15 +64,7 @@ export default defineComponent({
   align-items: center;
   border-radius: 2rem;
   min-height: 1rem;
-  background-color: $oxd-white-color;
-  border: 1px solid $oxd-interface-gray-lighten-2-color;
-  .append-element {
-    position: absolute;
-    right: 0.25rem;
-    &:empty {
-      display: none;
-    }
-  }
+  background-color: $oxd-background-pastel-white-color;
   .oxd-autocomplete-wrapper {
     display: flex;
     align-content: center;
@@ -82,19 +72,19 @@ export default defineComponent({
   &:deep(.oxd-icon-button) {
     background-color: $oxd-white-color;
     color: $oxd-interface-gray-darken-2-color;
-    min-width: 33px;
-    min-height: 33px;
+    position: absolute;
+    right: 3px;
   }
   &:deep(.oxd-autocomplete-text-input) {
-    border: none !important;
-    box-shadow: none !important;
+    border: none;
+    box-shadow: none;
     border-radius: 2rem;
     min-height: 1rem;
     background-color: transparent;
     input {
-      padding: 0.5rem;
       border-radius: 2rem;
       font-size: 0.875rem;
+      padding: 0.5rem 40px 0.5rem 0.5rem;
     }
   }
   &:deep(.oxd-autocomplete-text-input--active) {
