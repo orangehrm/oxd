@@ -1,6 +1,6 @@
 <template>
   <div
-    class="list-container w-100 h-100 d-flex align-start"
+    class="list-container w-100 vh-100 d-flex align-start"
     :class="{
       'table-left-panel-open':
         config.table.leftPanel.visible && state.isLeftPanelOpen,
