@@ -4,13 +4,14 @@ export interface ActionsCellConfig<T> {
   [key: string]: Action<T>;
 }
 
-export type ActionsCellConfigOnClickFunction<T> = (
+export type ActionsCellConfigOnEventFunction<T> = (
   rowItem: T,
   e: Event,
 ) => void;
 
 export interface Action<T> {
-  onClick?: ActionsCellConfigOnClickFunction<T>;
+  onClick?: ActionsCellConfigOnEventFunction<T>;
+  onChange?: ActionsCellConfigOnEventFunction<T>;
   component?: string;
   props?: VNodeProps;
 }

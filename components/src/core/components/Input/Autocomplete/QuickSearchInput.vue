@@ -72,10 +72,7 @@ export default defineComponent({
   &:deep(.oxd-icon-button) {
     background-color: $oxd-white-color;
     color: $oxd-interface-gray-darken-2-color;
-    min-width: 33px;
-    min-height: 33px;
     position: absolute;
-    top: 2px;
     right: 3px;
   }
   &:deep(.oxd-autocomplete-text-input) {

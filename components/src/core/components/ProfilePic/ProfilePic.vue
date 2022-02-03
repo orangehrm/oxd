@@ -1,7 +1,7 @@
 <template>
   <div :class="classes">
     <slot>
-      <a v-if="link && link.url" :href="link.url" :target="link.target">
+      <a v-if="link" :href="link" :target="linkMode">
         <img :src="imageSrc ? imageSrc : userPlaceholderImage" />
       </a>
       <img v-else :src="imageSrc ? imageSrc : userPlaceholderImage" />
@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {SIZES, SIZE_MEDIUM, ImageSize} from './types';
+import {SIZES, SIZE_MEDIUM, ImageSize, TargetTypes, TARGET_SELF, TARGETS} from './types';
 import {defaultUser} from './images';
 export default defineComponent({
   name: 'oxd-profile-pic',
@@ -33,6 +33,13 @@ export default defineComponent({
     link: {
       type: String,
       default: null,
+    },
+    linkMode: {
+      type: String,
+      default: TARGET_SELF,
+      validator: (value: TargetTypes) => {
+        return TARGETS.indexOf(value) !== 1;
+      },
     },
   },
   computed: {
