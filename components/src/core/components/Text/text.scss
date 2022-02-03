@@ -69,6 +69,13 @@
     color: $oxd-text-card-title-color;
   }
 
+  &--modal-title {
+    font-size: $oxd-text-modal-title-font-size;
+    font-weight: $oxd-text-modal-title-font-weight;
+    letter-spacing: $oxd-text-modal-title-letter-spacing;
+    color: $oxd-text-modal-title-color;
+  }
+
   &--toast-title {
     font-size: $oxd-text-toast-title-font-size;
     font-weight: $oxd-text-toast-title-font-weight;

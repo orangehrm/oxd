@@ -1,6 +1,5 @@
 import {defineComponent} from 'vue';
 import {Option} from '../types';
-import eventsMixin from './events-mixin';
 
 interface State {
   dropdownOpen: boolean;
