@@ -74,6 +74,9 @@ export default defineComponent({
     color: $oxd-interface-gray-darken-2-color;
     min-width: 33px;
     min-height: 33px;
+    position: absolute;
+    top: 2px;
+    right: 3px;
   }
   &:deep(.oxd-autocomplete-text-input) {
     border: none;
@@ -82,9 +85,9 @@ export default defineComponent({
     min-height: 1rem;
     background-color: transparent;
     input {
-      padding: 0.5rem;
       border-radius: 2rem;
       font-size: 0.875rem;
+      padding: 0.5rem 40px 0.5rem 0.5rem;
     }
   }
   &:deep(.oxd-autocomplete-text-input--active) {
