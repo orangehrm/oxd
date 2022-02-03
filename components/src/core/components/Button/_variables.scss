@@ -225,7 +225,7 @@ $oxd-button-color--label-danger-pressed: rgba(
   $oxd-feedback-danger-color,
   0.2
 ) !default;
-$oxd-button-color--label-danger-hover: rgba($oxd-button-font-color--label-danger, 0.15) !default;
+$oxd-button-color--label-danger-hover: $oxd-button-font-color--label-danger !default;
 $oxd-button-color--label-danger-focus: $oxd-button-color--label-danger-hover !default;
 $oxd-button-color--label-danger-inactive: $oxd-interface-gray-lighten-1-color !default;
 
