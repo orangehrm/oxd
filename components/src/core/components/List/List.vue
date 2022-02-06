@@ -116,6 +116,7 @@
           :selectable="true"
           :clickable="false"
           :class="oxdCardTableStyleClasses"
+          :loading="isListLoading"
           v-model:selected="state.checkedItems"
           v-model:order="order"
           @update:order="tableSort"
@@ -209,6 +210,10 @@ export default defineComponent({
       type: Number,
       default: 5,
     },
+    isListLoading: {
+      type: Boolean,
+      default: false,
+    }
   },
   setup(props, {emit}) {
     const sampleImages = images;
