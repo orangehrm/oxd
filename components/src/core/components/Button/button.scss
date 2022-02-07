@@ -120,7 +120,12 @@
   color: inherit;
   vertical-align: bottom;
   position: relative;
-  left: -0.5rem;
+  &:not(.oxd-button-icon-right) {
+    margin-right: 0.5rem;
+  }
+  &.oxd-button-icon-right {
+    margin-left: 0.5rem;
+  }
 }
 
 .oxd-button--glass {
