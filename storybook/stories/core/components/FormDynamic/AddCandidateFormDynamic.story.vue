@@ -76,6 +76,11 @@ export default defineComponent({
           type: "input",
           props: {
           },
+          rules: [
+            {
+              rule: "tel",
+            }
+          ]
         },
         {
           label: 'LinkedIn',
