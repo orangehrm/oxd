@@ -7,5 +7,8 @@ export const rulesList = [
   },
   {
     "email": (v: any) => !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid',
+  },
+  {
+    "tel": (v: any) => !v || /^[0-9+()-\/]+$/.test(v) || 'Allows numbers and only + - / ( )',
   }
 ];
