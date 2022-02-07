@@ -63,7 +63,6 @@
 <script lang="ts">
 import {defineComponent, computed, ref} from 'vue';
 import Chip from '@orangehrm/oxd/core/components/Chip/Chip.vue';
-import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';
 import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 
@@ -72,7 +71,6 @@ export default defineComponent({
 
   components: {
     'oxd-chip': Chip,
-    'oxd-divider': Divider,
     'oxd-button': Button,
     'oxd-icon-button': IconButton,
   },
