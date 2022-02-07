@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, watch, computed} from 'vue';
+import {defineComponent, watch, computed} from 'vue';
 import Form from '@orangehrm/oxd/core/components/Form/Form.vue';
 import FormRow from '@orangehrm/oxd/core/components/Form/FormRow.vue';
 import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue';
