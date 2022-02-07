@@ -54,9 +54,6 @@
 .oxd-button {
   display: flex;
   align-items: center;
-  :deep(.oxd-button-icon) {
-    margin-right: 0.5rem;
-  }
   &:disabled {
     :deep(svg) {
       * {
