@@ -26,6 +26,8 @@ import Grid from '@orangehrm/oxd/core/components/Grid/Grid.vue';
 import GridItem from '@orangehrm/oxd/core/components/Grid/GridItem.vue';
 import InputField from '@orangehrm/oxd/core/components/InputField/InputField.vue';
 
+import { rulesList } from './rules'
+
 export default defineComponent({
   name: 'oxd-form-dynamic',
   components: {
@@ -49,22 +51,18 @@ export default defineComponent({
     const formObj = computed(() => {
       return form.value;
     });
-    const rulesList = [
-      {
-        "required": v => (!!v && typeof v === 'string' ? v.trim() !== '' : true) || 'Required'
-      }
-    ]
     const rulesBinder = (rules) => {
-      return rules && rules.length > 0 ? rulesList.filter(rule => {
-        const ruleNames = Object.keys(rule);
-        const ruleName = ruleNames.length > 0 ? ruleNames[0] : '';
-        const ruleExists = rules.indexOf(ruleName) > -1;
-        return ruleExists;
-      }).map(rule => {
-        const values = Object.values(rule)
-        const ruleFunction = values.length > 0 ? values[0] : undefined
-        return ruleFunction
-      }) : undefined
+      const mappedRules = [];
+      rules?.forEach(rule => {
+        if (rule.rule) {
+          const filteredRule = rulesList.find(ruleItem => rule.rule === Object.keys(ruleItem)[0]);
+          const filteredRuleMethod = filteredRule ? filteredRule[rule.rule] : undefined;
+          if (filteredRuleMethod) {
+            mappedRules.push(filteredRuleMethod);
+          };
+        };
+      });
+      return mappedRules.length > 0 ? mappedRules : undefined;
     }
     const eventBinder = events => {
       let mappedEvents, mappedEventsObj;
@@ -90,7 +88,7 @@ export default defineComponent({
       return gridCol;
     }
     const requiredLabel = (element) => {
-      return element.label ? `${element.label} ${element.rules?.indexOf('required') > -1 ? '*' : ''}` : null
+      return element.label ? `${element.label} ${element.rules?.findIndex(rule => rule?.rule === 'required') > -1 ? '*' : ''}` : null
     }
     watch(formObj.value, (val) => {
       const initialObj = {}
@@ -169,7 +167,6 @@ export default defineComponent({
 
     return {
       formObj,
-      rulesBinder,
       eventBinder,
       requiredLabel,
       columnOverride,
