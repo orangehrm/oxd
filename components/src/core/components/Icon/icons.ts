@@ -282,6 +282,12 @@ export const oxdAdd: icon = {
     '<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 459.3 459.3" style="enable-background:new 0 0 459.3 459.3;" xml:space="preserve"> <style type="text/css"> .st0{fill:#FFFFFF;} </style> <g> <path class="st0" d="M459.3,229.7c0,22.2-18,40.2-40.2,40.2H269.9v149.3c0,22.2-18,40.2-40.2,40.2c-11.1,0-21.1-4.5-28.4-11.8 c-7.3-7.3-11.8-17.3-11.8-28.4l0-149.3H40.2c-11.1,0-21.1-4.5-28.4-11.8C4.5,250.8,0,240.8,0,229.7c0-22.2,18-40.2,40.2-40.2h149.3 V40.2c0-22.2,18-40.2,40.2-40.2c22.2,0,40.2,18,40.2,40.2v149.3h149.3C441.3,189.5,459.3,207.5,459.3,229.7z"/> </g> </svg>',
 };
 
+export const oxdLocation: icon = {
+  name: 'oxd-location',
+  value:
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 473.68 699.37"><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path d="M223.67,0h26a37.1,37.1,0,0,0,4.84,1,239,239,0,0,1,75,18.18C439,64.9,498.08,189.73,464.1,303.41c-16.85,56.34-41.41,109.28-69.94,160.49-44.12,79.21-95,153.93-149.94,226-2.38,3.12-4.9,6.13-7.59,9.49-1.77-2.2-3.15-3.84-4.46-5.54-43.82-57-84.92-115.85-122.27-177.27-39-64.2-74.36-130.15-97.27-202.18C.69,276.85-3.17,239,2.71,200c14.84-98.22,94-179.19,191.84-195.83C204.21,2.49,214,1.37,223.67,0ZM353.1,237.12A116.43,116.43,0,1,0,236.66,353.51,116.21,116.21,0,0,0,353.1,237.12Z"/></g></g></svg>',
+};
+
 const icons: Icons = {
   'oxd-likes': oxdLikes,
   'oxd-birthday': oxdBirthday,
@@ -327,6 +333,7 @@ const icons: Icons = {
   'oxd-report-catalogue': oxdReportCatalogue,
   'oxd-hr-administration': oxdHRAdministration,
   'oxd-add': oxdAdd,
+  'oxd-location': oxdLocation,
 };
 
 export default icons;
