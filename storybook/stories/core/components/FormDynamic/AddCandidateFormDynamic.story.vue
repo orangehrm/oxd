@@ -19,9 +19,9 @@ export default defineComponent({
           label: 'Select resume',
           type: "file",
           props: {
-            isFileArray: true,
           },
-          span: 1
+          span: 1,
+          accept: "image/*" // TODO: to be implemented
         },
         {
           label: 'First Name',

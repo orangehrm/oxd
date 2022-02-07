@@ -47,9 +47,8 @@ export default defineComponent({
     }
   },
   setup(props, {emit}) {
-    const form = ref(JSON.parse(JSON.stringify(props.form)));
     const formObj = computed(() => {
-      return form.value;
+      return props.form;
     });
     const rulesBinder = (rules) => {
       const mappedRules = [];
