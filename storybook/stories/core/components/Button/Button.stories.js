@@ -131,7 +131,7 @@ Disabled.args = {
 export const ButtonWithIcon = Template.bind({});
 ButtonWithIcon.args = {
   label: 'Button',
-  iconName: 'trash',
+  iconName: 'oxd-archive',
 };
 
 export const ButtonWithIconRight = Template.bind({});
