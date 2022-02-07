@@ -18,7 +18,6 @@
             <img :src="buttonData.iconImageSrc" />
           </template>
         </oxd-button>
-        <oxd-divider class="table-left-panel-divider" />
       </slot>
     </div>
     <div v-if="bodyVisible" class="body">
