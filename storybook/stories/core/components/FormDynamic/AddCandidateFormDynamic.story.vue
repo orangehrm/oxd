@@ -28,6 +28,14 @@ export default defineComponent({
           type: "input",
           props: {
           },
+          rules: [
+            {
+              rule: "required",
+            },
+            {
+              rule: "name",
+            }
+          ]
         },
         {
           label: 'Middle Name',
@@ -40,12 +48,28 @@ export default defineComponent({
           type: "input",
           props: {
           },
+          rules: [
+            {
+              rule: "required",
+            },
+            {
+              rule: "name",
+            }
+          ],
         },
         {
           label: 'Email',
           type: "input",
           props: {
           },
+          rules: [
+            {
+              rule: "required",
+            },
+            {
+              rule: "email",
+            }
+          ],
         },
         {
           label: 'Contact Number',
