@@ -4,6 +4,7 @@ import DialogWithoutCloseStory from './DialogWithoutClose.story.vue';
 import DialogPersistentStory from './DialogPersistent.story.vue';
 import DialogDeleteConfirmationStory from './DialogDeleteConfirmation.story.vue';
 import DialogWithoutTransition from './DialogWithoutTransition.story.vue';
+import DialogSizeStory from './DialogSize.story.vue';
 
 export default {
   title: 'Example/Dialog/Dialog',
@@ -48,6 +49,23 @@ Default.args = {
 
 export const Close = () => DialogClose;
 Close.args = {};
+
+export const Size = args => ({
+  setup() {
+    return {
+      args: {
+        dialogSizeClass: args.dialogSizeClass,
+        withClose: args.withClose,
+      },
+    };
+  },
+  components: {DialogSizeStory},
+  template: `<DialogSizeStory v-bind="args" />`,
+});
+Size.args = {
+  dialogSizeClass: 'modal-sm',
+  withClose: false,
+};
 
 export const WithoutTransition = () => DialogWithoutTransition;
 WithoutTransition.args = {};

@@ -26,3 +26,19 @@
 .fade-leave-to {
   opacity: 0;
 }
+
+.modal-md {
+  max-width: $modal-md;
+}
+
+.modal-sm { 
+  max-width: $modal-sm; 
+}
+
+.modal-lg {
+    max-width: $modal-lg;
+  }
+
+.modal-xl { 
+  max-width: $modal-xl; 
+}
