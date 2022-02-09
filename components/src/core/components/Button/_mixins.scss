@@ -42,11 +42,9 @@
     }
   } @else {
     &:focus {
-      color: $oxd-button-font-color;
       background-color: map-get($oxd-button, 'focus');
     }
     &:hover {
-      color: $oxd-button-font-color;
       background-color: map-get($oxd-button, 'hover');
     }
   }
@@ -106,6 +104,9 @@
 
   &:disabled {
     @include oxd-button-color-ghost(map-get($oxd-button, 'inactive'));
+  }
+  &:hover {
+    @include oxd-button-color-ghost(map-get($oxd-button, 'hover'), true);
   }
 }
 

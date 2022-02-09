@@ -121,7 +121,6 @@
             "visible": true,
             "class": "quick-search-btn",
             "style": {
-              "background-color": "rgba(100, 114, 140, 0.1)",
               "min-width": "unset",
               "min-height": "unset"
             },

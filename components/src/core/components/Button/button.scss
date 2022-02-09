@@ -8,7 +8,8 @@
   border: 0;
   border-radius: 3em;
   cursor: pointer;
-  display: inline-block;
+  display: flex;
+  align-items: center;
   padding-right: $oxd-button-horizontal-padding;
   padding-left: $oxd-button-horizontal-padding;
   min-width: $oxd-button-min-width;
@@ -114,12 +115,23 @@
 }
 
 /*Glass Button */
-
-.oxd-button-icon {
-  color: inherit;
-  vertical-align: bottom;
-  position: relative;
-  left: -0.5rem;
+.oxd-button {
+  .oxd-button-icon {
+    color: inherit;
+    vertical-align: bottom;
+    position: relative;
+    &:not(.oxd-button-icon-right) {
+      margin-right: 0.5rem;
+    }
+    &.oxd-button-icon-right {
+      margin-left: 0.5rem;
+    }
+  }
+  &.no-label {
+    .oxd-button-icon {
+      margin: 0;
+    }
+  }
 }
 
 .oxd-button--glass {

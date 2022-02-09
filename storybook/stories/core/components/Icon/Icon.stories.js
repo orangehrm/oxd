@@ -26,5 +26,5 @@ Default.args = {
 
 export const OhrmIcon = Template.bind({});
 OhrmIcon.args = {
-  name: 'oxd-kudos',
+  name: 'oxd-archive',
 };
