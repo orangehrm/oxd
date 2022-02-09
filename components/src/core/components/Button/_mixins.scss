@@ -1,11 +1,6 @@
 @mixin oxd-button-color($background-color) {
   color: $oxd-button-font-color;
   background-color: $background-color;
-  :deep(svg) {
-    * {
-      fill: $oxd-button-font-color;
-    }
-  }
 }
 
 @mixin oxd-button-solid($type: 'main') {
@@ -20,11 +15,6 @@
 
   &:hover {
     @include oxd-button-color(map-get($oxd-button, 'hover'));
-    :deep(svg) {
-      * {
-        fill: $oxd-button-font-color;
-      }
-    }
   }
 
   &:active {
@@ -42,11 +32,6 @@
 
   color: map-get($oxd-button, 'font');
   background-color: map-get($oxd-button, 'active');
-  :deep(svg) {
-    * {
-      fill: map-get($oxd-button, 'font');
-    }
-  }
 
   @if ($type == 'default' or $type == 'text') {
     &:focus {
@@ -85,11 +70,6 @@
   @if ($hover) {
     color: $oxd-button-font-color;
     background-color: $color;
-    :deep(svg) {
-      * {
-        fill: $oxd-button-font-color;
-      }
-    }
   } @else {
     color: $color;
     background-color: transparent;
@@ -99,11 +79,6 @@
 @mixin oxd-button-ghost($type: 'default') {
   @include oxd-button-base;
   $oxd-button: map-get($oxd-ghost-buttons, $type);
-  :deep(svg) {
-    * {
-      fill: map-get($oxd-button, 'hover');
-    }
-  }
 
   @include oxd-button-color-ghost(map-get($oxd-button, 'active'));
 
@@ -113,11 +88,6 @@
     }
     &:hover {
       @include oxd-button-color-ghost(map-get($oxd-button, 'hover'));
-      :deep(svg) {
-        * {
-          fill: $oxd-button-font-color;
-        }
-      }
     }
   } @else {
     &:focus {
@@ -125,11 +95,6 @@
     }
     &:hover {
       @include oxd-button-color-ghost(map-get($oxd-button, 'hover'), true);
-      :deep(svg) {
-        * {
-          fill: $oxd-button-font-color;
-        }
-      }
     }
   }
 
@@ -142,11 +107,6 @@
   }
   &:hover {
     @include oxd-button-color-ghost(map-get($oxd-button, 'hover'), true);
-    :deep(svg) {
-      * {
-        fill: $oxd-button-font-color;
-      }
-    }
   }
 }
 

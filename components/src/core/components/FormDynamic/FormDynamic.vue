@@ -26,7 +26,7 @@ import Grid from '@orangehrm/oxd/core/components/Grid/Grid.vue';
 import GridItem from '@orangehrm/oxd/core/components/Grid/GridItem.vue';
 import InputField from '@orangehrm/oxd/core/components/InputField/InputField.vue';
 
-import { rulesList } from './rules'
+import { setRules } from './rules'
 
 export default defineComponent({
   name: 'oxd-form-dynamic',
@@ -54,7 +54,7 @@ export default defineComponent({
       const mappedRules = [];
       rules?.forEach(rule => {
         if (rule.rule) {
-          const filteredRule = rulesList.find(ruleItem => rule.rule === Object.keys(ruleItem)[0]);
+          const filteredRule = setRules(rule.params).find(ruleItem => rule.rule === Object.keys(ruleItem)[0]);
           const filteredRuleMethod = filteredRule ? filteredRule[rule.rule] : undefined;
           if (filteredRuleMethod) {
             mappedRules.push(filteredRuleMethod);

@@ -10,6 +10,12 @@
   }
 }
 
+svg {
+  * {
+    fill: currentColor;
+  }
+}
+
 .oxd-svg-icon {
   display: flex;
   height: 1rem;

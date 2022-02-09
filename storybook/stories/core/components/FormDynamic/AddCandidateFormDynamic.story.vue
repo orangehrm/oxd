@@ -33,7 +33,10 @@ export default defineComponent({
               rule: "required",
             },
             {
-              rule: "name",
+              rule: "length",
+              params: {
+                charLength: 30
+              }
             }
           ]
         },
@@ -42,6 +45,14 @@ export default defineComponent({
           type: "input",
           props: {
           },
+          rules: [
+            {
+              rule: "length",
+              params: {
+                charLength: 30
+              }
+            }
+          ],
         },
         {
           label: 'Last Name',
@@ -53,7 +64,10 @@ export default defineComponent({
               rule: "required",
             },
             {
-              rule: "name",
+              rule: "length",
+              params: {
+                charLength: 30
+              }
             }
           ],
         },
@@ -78,7 +92,7 @@ export default defineComponent({
           },
           rules: [
             {
-              rule: "tel",
+              rule: "number",
             }
           ]
         },
@@ -87,6 +101,14 @@ export default defineComponent({
           type: "input",
           props: {
           },
+          rules: [
+            {
+              rule: "length",
+              params: {
+                charLength: 100
+              }
+            }
+          ],
         },
         {
           label: 'Vacancy',
@@ -109,6 +131,14 @@ export default defineComponent({
           props: {
             placeholder: 'Enter comma separate keywords...'
           },
+          rules: [
+            {
+              rule: "length",
+              params: {
+                charLength: 254
+              }
+            }
+          ],
         },
         {
           label: 'Noted',
