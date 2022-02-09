@@ -140,21 +140,11 @@
   color: $oxd-interface-gray-darken-2-color;
   background-color: $oxd-background-white-color;
   cursor: pointer;
-  :deep(svg) {
-    * {
-      fill: $oxd-interface-gray-darken-2-color;
-    }
-  }
 
   &:focus,
   &:hover {
     outline: 0;
     background-color: $oxd-interface-gray-lighten-2-color;
-    :deep(svg) {
-      * {
-        fill: $oxd-interface-gray-darken-2-color;
-      }
-    }
   }
 
   &:active {
