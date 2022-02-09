@@ -15,6 +15,11 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0.5rem;
+    .oxd-calendar {
+      &-selector {
+        margin: 0;
+      }
+    }
   }
   &-week-grid,
   &-dates-grid {
@@ -112,8 +117,8 @@
     position: relative;
     list-style: none;
     display: flex;
-    margin: 0 !important;
-    padding: 0 !important;
+    margin: 0;
+    padding: 0;
     width: 65%;
 
     &.--month,

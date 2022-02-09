@@ -19,7 +19,7 @@
       />
     </div>
     <transition name="transition-fade-down">
-      <div v-if="open" class="oxd-date-input-calendar">
+      <div v-if="true" class="oxd-date-input-calendar">
         <oxd-calendar
           v-bind="$attrs"
           @update:modelValue="onDateSelected"
