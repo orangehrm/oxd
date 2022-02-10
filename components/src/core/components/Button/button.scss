@@ -78,6 +78,24 @@
     }
   }
 
+  /* Label Feedaback Button */
+  &--label-feedback {
+    @include oxd-button-label-feedback('default');
+
+    &-info {
+      @include oxd-button-label-feedback('info');
+    }
+    &-danger {
+      @include oxd-button-label-feedback('danger');
+    }
+    &-warn {
+      @include oxd-button-label-feedback('warn');
+    }
+    &-success {
+      @include oxd-button-label-feedback('success');
+    }
+  }
+
   /* Text Button */
   &--text {
     @include oxd-button-label('text');
