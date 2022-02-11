@@ -39,14 +39,18 @@
           @click="$emit('order', 'ASC')"
         >
           <oxd-icon name="sort-alpha-down" />
-          <oxd-text tag="span">Ascending</oxd-text>
+          <oxd-text tag="span">
+            {{ t('general.ascending', 'Ascending') }}
+          </oxd-text>
         </li>
         <li
           class="oxd-table-header-sort-dropdown-item"
           @click="$emit('order', 'DESC')"
         >
           <oxd-icon name="sort-alpha-up" />
-          <oxd-text tag="span">Decending</oxd-text>
+          <oxd-text tag="span">
+            {{ t('general.decending', 'Decending') }}
+          </oxd-text>
         </li>
       </ul>
     </div>
@@ -60,6 +64,7 @@ import Text from '@ohrm/oxd/core/components/Text/Text.vue';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
 import clickOutsideDirective from '../../../../directives/click-outside';
+import usei18n from '../../../../composables/usei18n';
 
 export default defineComponent({
   name: 'oxd-card-th-sort',
@@ -71,6 +76,12 @@ export default defineComponent({
       type: String,
       required: false,
     },
+  },
+
+  setup() {
+    return {
+      ...usei18n(),
+    };
   },
 
   emits: ['order'],
