@@ -13,7 +13,7 @@
     "core-js": "^3.6.5",
     "date-fns": "^2.22.1",
     "mitt": "^2.1.0",
-    "nanoid": "^3.1.21",
+    "nanoid": "^3.1.31",
     "vue": "^3.2.2"
   },
   "devDependencies": {
