@@ -12,6 +12,7 @@ const cycleIndexes = (currentValue: number, array: number[]) => {
 };
 
 export const navigationMixin = defineComponent({
+  props: ['disabled'],
   data(): State {
     return {
       dropdownOpen: false,
@@ -39,9 +40,9 @@ export const navigationMixin = defineComponent({
     },
     onSelectEnter() {
       if (!this.dropdownOpen) {
-        this.openDropdown();
+       this.openDropdown();
       } else {
-        if (this.pointer > 0) {
+        if (this.pointer >= 0) {
           const option = this.computedOptions[this.pointer];
           if (!option?._selected && !option?._disabled) this.onSelect(option);
         }
@@ -63,8 +64,13 @@ export const navigationMixin = defineComponent({
         this.pointer = cycleIndexes(this.pointer, filtered);
       }
     },
+
+    openDropdown() {
+      if (this.disabled || this.dropdownOpen) return;
+      this.dropdownOpen = true;
+      this.$emit('dropdown:opened');
+    },
     /* eslint-disable */
-    openDropdown() {},
     onSelect(option: Option) {},
     /* eslint-enable */
   },

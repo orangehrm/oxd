@@ -37,7 +37,7 @@ export default defineComponent({
   ],
   methods: {
     onModelUpdate($event: Option) {
-      this.$emit('dropdown:modelValue', $event);
+      this.$emit('update:modelValue', $event);
     },
     onClear() {
       this.$emit('dropdown:clear');
@@ -62,11 +62,9 @@ export default defineComponent({
   position: relative;
   display: flex;
   align-items: center;
-  padding-right: 0.25rem;
   border-radius: 2rem;
   min-height: 1rem;
   background-color: $oxd-background-pastel-white-color;
-  border: 1px solid $oxd-interface-gray-lighten-2-color;
   .oxd-autocomplete-wrapper {
     display: flex;
     align-content: center;
@@ -74,8 +72,8 @@ export default defineComponent({
   &:deep(.oxd-icon-button) {
     background-color: $oxd-white-color;
     color: $oxd-interface-gray-darken-2-color;
-    min-width: 33px;
-    min-height: 33px;
+    position: absolute;
+    right: 3px;
   }
   &:deep(.oxd-autocomplete-text-input) {
     border: none;
@@ -84,11 +82,28 @@ export default defineComponent({
     min-height: 1rem;
     background-color: transparent;
     input {
-      padding: 0.5rem;
+      border-radius: 2rem;
+      font-size: 0.875rem;
+      padding: 0.5rem 40px 0.5rem 0.5rem;
     }
   }
+  &:deep(.oxd-autocomplete-text-input--active) {
+    border: $oxd-input-border--active;
+  }
+  &:deep(.oxd-autocomplete-text-input--focus) {
+    border: $oxd-input-border--focus;
+    box-shadow: $oxd-input-box-shadow--focus;
+    outline: 0;
+  }
+  &:deep(.oxd-autocomplete-text-input--error) {
+    border: $oxd-input-border--error;
+    box-shadow: $oxd-input-box-shadow--error;
+  }
+  &:deep(.oxd-autocomplete-text-input--disabled, .oxd-autocomplete-text-input--readonly) {
+    background: $oxd-dropdown-dropdown-background--disabled;
+  }
   &:deep(.oxd-autocomplete-dropdown) {
-    margin-top: 25px;
+    margin-top: 44px;
   }
 }
 </style>

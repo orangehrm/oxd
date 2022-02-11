@@ -18,7 +18,7 @@
       <oxd-icon
         v-if="iconRightName"
         :name="iconRightName"
-        class="oxd-button-icon"
+        class="oxd-button-icon oxd-button-icon-right"
       />
     </slot>
   </button>

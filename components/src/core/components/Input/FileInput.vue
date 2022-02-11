@@ -69,7 +69,7 @@ export default defineComponent({
     readonly: {
       type: Boolean,
       default: false,
-    },
+    }
   },
 
   components: {
@@ -89,7 +89,7 @@ export default defineComponent({
     modelValue(newValue, oldValue) {
       if (newValue !== oldValue) {
         if (newValue !== undefined && newValue !== null) {
-          this.inputValue = newValue.name;
+          this.inputValue = Array.isArray(newValue) ? newValue[0].name : newValue.name;
         } else {
           this.inputValue = '';
         }

@@ -11,7 +11,7 @@ import {
   TYPE_GHOST,
   TYPE_GHOST_DANGER,
   TYPE_LABEL,
-  TYPE_LABEL_DANGER,
+  TYPE_LABEL_FEEDBACK_DANGER,
   TYPE_TEXT,
   TYPE_TOOL,
 } from '@orangehrm/oxd/core/components/Button/types';
@@ -89,17 +89,25 @@ Label.args = {
   displayType: TYPE_LABEL,
   label: 'Button',
 };
+Label.argTypes = {
+  displayType: {
+    control: {
+      type: 'select',
+      options: ['label-info', 'label-danger', 'label-warn', 'label-success'],
+    },
+  },
+};
 
 export const LabelFeedback = Template.bind({});
 LabelFeedback.args = {
-  displayType: TYPE_LABEL_DANGER,
+  displayType: TYPE_LABEL_FEEDBACK_DANGER,
   label: 'Button',
 };
 LabelFeedback.argTypes = {
   displayType: {
     control: {
       type: 'select',
-      options: ['label-info', 'label-danger', 'label-warn', 'label-success'],
+      options: ['label-feedback-info', 'label-feedback-danger', 'label-feedback-warn', 'label-feedback-success'],
     },
   },
 };

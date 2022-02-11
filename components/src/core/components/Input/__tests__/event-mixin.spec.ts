@@ -18,7 +18,7 @@ describe('eventsMixin.ts', () => {
   it('should emits dropdown:closed', () => {
     const wrapper = mount(MockComponent, {});
     wrapper.vm.dropdownOpen = true;
-    wrapper.vm.onCloseDropdown();
+    wrapper.vm.onCloseDropdown(null);
     expect(wrapper.emitted()).toHaveProperty('dropdown:closed');
   });
   it('should emits dropdown:blur', () => {
@@ -82,7 +82,7 @@ describe('eventsMixin.ts', () => {
         disabled: true,
       },
     });
-    wrapper.vm.onCloseDropdown();
+    wrapper.vm.onCloseDropdown(null);
     expect(wrapper.emitted('dropdown:closed')).toBeFalsy();
   });
 });
