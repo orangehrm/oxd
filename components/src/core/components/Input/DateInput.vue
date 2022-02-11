@@ -49,13 +49,13 @@
         >
           <div class="oxd-date-input-links">
             <div @click="onClickToday" class="oxd-date-input-link --today">
-              Today
+              {{ t('general.today', 'Today') }}
             </div>
             <div @click="onClickClear" class="oxd-date-input-link --clear">
-              Clear
+              {{ t('general.clear', 'Clear') }}
             </div>
             <div @click="closeDropdown" class="oxd-date-input-link --close">
-              Close
+              {{ t('general.close', 'Close') }}
             </div>
           </div>
         </oxd-calendar>
@@ -65,6 +65,7 @@
 </template>
 
 <script lang="ts">
+import usei18n from '../../../composables/usei18n';
 import {formatDate, parseDate, freshDate} from '../../../utils/date';
 import {defineComponent, reactive, toRefs} from 'vue';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
@@ -124,6 +125,7 @@ export default defineComponent({
     });
 
     return {
+      ...usei18n(),
       ...toRefs(state),
     };
   },

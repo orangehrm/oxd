@@ -22,10 +22,10 @@
 <template>
   <div role="listbox" class="oxd-autocomplete-dropdown">
     <oxd-autocomplete-option v-if="loading">
-      Searching...
+      {{ t('general.searching', 'Searching...') }}
     </oxd-autocomplete-option>
     <oxd-autocomplete-option v-else-if="empty">
-      No results found
+      {{ t('general.no_results_found', 'No results found') }}
     </oxd-autocomplete-option>
     <slot v-else></slot>
   </div>
@@ -34,6 +34,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import AutocompleteOption from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteOption.vue';
+import usei18n from '../../../../composables/usei18n';
 
 export default defineComponent({
   name: 'oxd-autocomplete-dropdown',
@@ -51,6 +52,12 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+  },
+
+  setup() {
+    return {
+      ...usei18n(),
+    };
   },
 });
 </script>

@@ -81,7 +81,7 @@
           v-if="filteredOptions.length === 0"
           class="oxd-dropdown-options-item --disabled"
         >
-          No options
+          {{ t('general.no_options', 'No options') }}
         </li>
       </ul>
     </transition>
@@ -108,6 +108,7 @@ import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@ohrm/oxd/core/components/Input/Input.vue';
 import Spinner from '@ohrm/oxd/core/components/Loader/Spinner.vue';
 import debounce from '../../../utils/debounce';
+import usei18n from '../../../composables/usei18n';
 import {defineComponent, onBeforeMount, PropType, reactive, toRefs} from 'vue';
 
 interface Option {
@@ -215,6 +216,7 @@ export default defineComponent({
     }
 
     return {
+      ...usei18n(),
       ...toRefs(state),
       loadOptions,
     };
