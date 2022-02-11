@@ -148,9 +148,6 @@
   &:disabled {
     @include oxd-button-color-ghost(map-get($oxd-button, 'inactive'));
   }
-  &:hover {
-    @include oxd-button-color-ghost(map-get($oxd-button, 'hover'), true);
-  }
 }
 
 @mixin oxd-button-base {
