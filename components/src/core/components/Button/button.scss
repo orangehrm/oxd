@@ -13,6 +13,9 @@
   padding-right: $oxd-button-horizontal-padding;
   padding-left: $oxd-button-horizontal-padding;
   min-width: $oxd-button-min-width;
+  &.with-icon {
+    display: flex;
+  }
 
   &:focus {
     outline: 0;
