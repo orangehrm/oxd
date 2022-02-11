@@ -54,9 +54,6 @@
 .oxd-button {
   display: flex;
   align-items: center;
-  :deep(.oxd-button-icon) {
-    margin-right: 0.5rem;
-  }
   &:disabled {
     :deep(svg) {
       * {
@@ -82,7 +79,6 @@
         fill: $oxd-feedback-danger-color;
       }
     }
-    color: $oxd-feedback-danger-color;
     &:disabled {
       background-color: $oxd-interface-gray-lighten-1-color !important;
       color: $oxd-white-color !important;

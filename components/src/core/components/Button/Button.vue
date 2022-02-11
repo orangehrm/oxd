@@ -18,7 +18,7 @@
       <oxd-icon
         v-if="iconRightName"
         :name="iconRightName"
-        class="oxd-button-icon"
+        class="oxd-button-icon oxd-button-icon-right"
       />
     </slot>
   </button>
@@ -93,6 +93,7 @@ export default defineComponent({
         'oxd-button': true,
         [`oxd-button--${this.size}`]: true,
         [`oxd-button--${this.displayType}`]: true,
+        'with-icon': this.iconName || this.iconRightName
       };
     },
   },
