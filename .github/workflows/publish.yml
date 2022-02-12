@@ -1,0 +1,49 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  publish:
+    # if: github.repository == 'orangehrm/oxd'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Check version already published
+        run: |
+          cd scripts
+          echo "is_current_version_published=$(node ./is-current-version-published.js)" >> $GITHUB_ENV
+          echo  "-----"
+          echo  "${{ env.is_current_version_published }}"
+          echo  "-----"
+
+      - name: Allow only make patch, pre-releases
+        run: |
+          echo  "-----"
+          echo  "${{ env.is_current_version_published }}"
+          echo  "-----"
+          echo  "-----"
+          echo  "${{ !env.is_current_version_published }}"
+          echo  "-----"
+
+      - name: Build
+        if: ${{ env.is_current_version_published == 'false' }}
+        run: |
+          cd scripts
+          node ./build.js
+
+      - name: Publish
+        if: ${{ env.is_current_version_published == 'false' }}
+        run: |
+          cd build
+          npm publish --tag dev
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

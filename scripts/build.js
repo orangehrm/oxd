@@ -23,42 +23,58 @@ const path = require('path');
 const projectRootDir = path.join(__dirname, '..');
 const pathToBuildDir = path.join(projectRootDir, 'build');
 if (fs.existsSync(pathToBuildDir)) {
-    fs.rmdirSync(pathToBuildDir, { recursive: true })
+  fs.rmdirSync(pathToBuildDir, {recursive: true});
 }
 
 fs.mkdirSync(pathToBuildDir);
 
-const rootDirFiles = ['LICENSE', 'README.md', 'tsconfig.json', 'postcss.config.js'];
-rootDirFiles.forEach(function (file) {
-    fs.copyFileSync(path.join(projectRootDir, file), path.join(pathToBuildDir, file));
+const rootDirFiles = [
+  'LICENSE',
+  'README.md',
+  'tsconfig.json',
+  'postcss.config.js',
+];
+rootDirFiles.forEach(function(file) {
+  fs.copyFileSync(
+    path.join(projectRootDir, file),
+    path.join(pathToBuildDir, file),
+  );
 });
 
 const pathToComponentsDir = path.join(projectRootDir, 'components');
 const componentsDirFiles = ['babel.config.js', '.browserslistrc'];
-componentsDirFiles.forEach(function (file) {
-    fs.copyFileSync(path.join(pathToComponentsDir, file), path.join(pathToBuildDir, file));
-})
+componentsDirFiles.forEach(function(file) {
+  fs.copyFileSync(
+    path.join(pathToComponentsDir, file),
+    path.join(pathToBuildDir, file),
+  );
+});
 
 const packageJson = require(path.join(pathToComponentsDir, 'package.json'));
-packageJson.name = '@ohrm/oxd';
-fs.writeFileSync(path.join(pathToBuildDir, 'package.json'), JSON.stringify(packageJson, null, 2) + "\n");
+// packageJson.name = '@ohrm/oxd';
+packageJson.name = 'oxd-components';
+fs.writeFileSync(
+  path.join(pathToBuildDir, 'package.json'),
+  JSON.stringify(packageJson, null, 2) + '\n',
+);
 
-const copyRecursiveSync = function (src, dest) {
-    const exists = fs.existsSync(src);
-    const stats = exists && fs.statSync(src);
-    const isDirectory = exists && stats.isDirectory();
-    if (isDirectory) {
-        if (!fs.existsSync(dest)) {
-            fs.mkdirSync(dest, { recursive: true });
-        }
-        fs.readdirSync(src).forEach(function (childItemName) {
-            copyRecursiveSync(path.join(src, childItemName),
-                path.join(dest, childItemName));
-        });
-    } else {
-        fs.copyFileSync(src, dest);
+const copyRecursiveSync = function(src, dest) {
+  const exists = fs.existsSync(src);
+  const stats = exists && fs.statSync(src);
+  const isDirectory = exists && stats.isDirectory();
+  if (isDirectory) {
+    if (!fs.existsSync(dest)) {
+      fs.mkdirSync(dest, {recursive: true});
     }
+    fs.readdirSync(src).forEach(function(childItemName) {
+      copyRecursiveSync(
+        path.join(src, childItemName),
+        path.join(dest, childItemName),
+      );
+    });
+  } else {
+    fs.copyFileSync(src, dest);
+  }
 };
 
 copyRecursiveSync(path.join(pathToComponentsDir, 'src'), pathToBuildDir);
-

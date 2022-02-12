@@ -1,7 +1,7 @@
 {
   "name": "oxd",
   "license": "GPL-3.0",
-  "version": "1.0.5-alpha.2",
+  "version": "1.0.4-alpha.2",
   "private": true,
   "workspaces": [
     "components",
