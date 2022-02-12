@@ -51,8 +51,7 @@ componentsDirFiles.forEach(function(file) {
 });
 
 const packageJson = require(path.join(pathToComponentsDir, 'package.json'));
-// packageJson.name = '@ohrm/oxd';
-packageJson.name = 'oxd-components';
+packageJson.name = '@ohrm/oxd';
 fs.writeFileSync(
   path.join(pathToBuildDir, 'package.json'),
   JSON.stringify(packageJson, null, 2) + '\n',

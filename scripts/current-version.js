@@ -17,12 +17,5 @@
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
 
-const {execSync} = require('child_process');
-
 const packageJson = require('../components/package.json');
-
-const version = execSync(
-  'npm show @ohrm/oxd@' + packageJson.version + ' version',
-);
-
-console.log(version.toString().trim() === packageJson.version);
+console.log(packageJson.version);

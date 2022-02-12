@@ -7,7 +7,7 @@ on:
 
 jobs:
   publish:
-    # if: github.repository == 'orangehrm/oxd'
+    if: github.repository == 'orangehrm/oxd'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -20,28 +20,38 @@ jobs:
       - name: Check version already published
         run: |
           cd scripts
-          echo "is_current_version_published=$(node ./is-current-version-published.js)" >> $GITHUB_ENV
-          echo  "-----"
-          echo  "${{ env.is_current_version_published }}"
-          echo  "-----"
+          current_version=$(node ./current-version.js)
+          fetched_current_version=$(npm show @ohrm/oxd@$current_version version)
+          echo "current_version=$current_version" >> $GITHUB_ENV
+          echo "fetched_current_version=$fetched_current_version" >> $GITHUB_ENV
+          echo "current_published_version=$(npm show @ohrm/oxd version)" >> $GITHUB_ENV
 
       - name: Allow only make patch, pre-releases
         run: |
+          npm i -g semver
+          current_published_version=${{ env.current_published_version }}
+          current_version=${{ env.current_version }}
+          fetched_current_version=${{ env.fetched_current_version }}
+          allowed_max_version=$(semver $current_published_version -i minor)
           echo  "-----"
-          echo  "${{ env.is_current_version_published }}"
+          echo "Latest published: $current_published_version"
+          echo "Allowed upper bound: $allowed_max_version"
+          echo "Current version: $current_version"
           echo  "-----"
-          echo  "-----"
-          echo  "${{ !env.is_current_version_published }}"
-          echo  "-----"
+          version=$(semver -r ">$current_published_version <$allowed_max_version" $current_version -p)
+          if [[ $version != $current_version ]];
+          then
+            exit 1
+          fi
 
       - name: Build
-        if: ${{ env.is_current_version_published == 'false' }}
+        if: ${{ env.fetched_current_version == '' }}
         run: |
           cd scripts
           node ./build.js
 
       - name: Publish
-        if: ${{ env.is_current_version_published == 'false' }}
+        if: ${{ env.fetched_current_version == '' }}
         run: |
           cd build
           npm publish --tag dev
