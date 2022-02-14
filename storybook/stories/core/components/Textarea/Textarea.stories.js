@@ -56,3 +56,9 @@ Error.args = {
   value: 'Textarea',
   hasError: true,
 };
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  value: 'Textarea',
+  disabled: true,
+};

@@ -53,4 +53,8 @@
   &--resize-none {
     resize: none;
   }
+
+  &:disabled {
+    background-color: $oxd-textarea-background-color--disabled;
+  }
 }
