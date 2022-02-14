@@ -29,8 +29,9 @@
           <li
             v-for="(item, id) in sidePanelList"
             :key="id"
-            @click="selectListitem(item)"
             :class="{collapsed: !isLeftPanelOpen}"
+            @click="selectListitem(item)"
+            @keyup.enter="selectListitem(item)"
           >
             <div
               class="count-container"
