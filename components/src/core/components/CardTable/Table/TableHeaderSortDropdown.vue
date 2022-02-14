@@ -1,28 +1,50 @@
 <template>
-  <div class="oxd-table-header-sort">
+  <div
+      class="oxd-table-header-sort"
+      @keyup.esc="closeDropdown"
+  >
     <oxd-icon-button
       :withContainer="false"
       :name="sortIcon"
       class="oxd-table-header-sort-icon"
+      tabindex="0"
       @click="openDropdown"
+      @keydown.enter="openDropdown"
+      @keydown.down.exact.prevent="onSelectDown"
+      @keydown.up.exact.prevent="onSelectUp"
+      @keydown.tab="closeDropdown"
     />
     <div
       v-click-outside="closeDropdown"
       v-show="isActive"
       :class="classes"
       role="dropdown"
+      tabindex="-1"
+      @keydown.down.exact.prevent="onSelectDown"
+      @keydown.up.exact.prevent="onSelectUp"
+      @keydown.tab="closeDropdown"
     >
-      <ul @click.stop="closeDropdown" role="menu">
+      <ul
+          role="menu"
+          @click.stop="closeDropdown"
+          @keydown.enter.prevent.stop="closeDropdown"
+      >
         <li
+          ref="firstItem"
           class="oxd-table-header-sort-dropdown-item"
+          tabindex="-1"
           @click="$emit('order', 'ASC')"
+          @keydown.enter.prevent="$emit('order', 'ASC')"
         >
           <oxd-icon name="sort-alpha-down" />
           <oxd-text tag="span">Ascending</oxd-text>
         </li>
         <li
+          ref="secondItem"
+          tabindex="-1"
           class="oxd-table-header-sort-dropdown-item"
           @click="$emit('order', 'DESC')"
+          @keydown.enter.prevent="$emit('order', 'DESC')"
         >
           <oxd-icon name="sort-alpha-up" />
           <oxd-text tag="span">Decending</oxd-text>
@@ -78,6 +100,12 @@ export default defineComponent({
       if (this.isActive) {
         this.isActive = false;
       }
+    },
+    onSelectDown(){
+      this.$refs.secondItem.focus();
+    },
+    onSelectUp(){
+      this.$refs.firstItem.focus();
     },
   },
 

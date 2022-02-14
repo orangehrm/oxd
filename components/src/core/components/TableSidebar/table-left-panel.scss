@@ -57,6 +57,7 @@
           font-family: $oxd-left-panel-font-family;
         }
         &:hover,
+        &:focus-within,
         &.active {
           background-color: rgba(100, 114, 140, 0.1);
           cursor: pointer;
