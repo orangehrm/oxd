@@ -6,6 +6,7 @@
   position: relative;
   border-right: 1px solid $oxd-interface-gray-lighten-4-color;
   padding-right: 10px;
+  padding-left: 1rem;
   .table-left-panel-divider {
     width: calc(100% + 10px);
   }
@@ -16,7 +17,7 @@
     position: absolute;
     width: 28px;
     height: 28px;
-    top: 38px;
+    top: 39px;
     right: -15px;
     font-size: 14px;
     min-width: 22px;

@@ -18,7 +18,6 @@
             <img :src="buttonData.iconImageSrc" />
           </template>
         </oxd-button>
-        <oxd-divider class="table-left-panel-divider" />
       </slot>
     </div>
     <div v-if="bodyVisible" class="body">
@@ -64,7 +63,6 @@
 <script lang="ts">
 import {defineComponent, computed, ref} from 'vue';
 import Chip from '@orangehrm/oxd/core/components/Chip/Chip.vue';
-import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';
 import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 
@@ -73,7 +71,6 @@ export default defineComponent({
 
   components: {
     'oxd-chip': Chip,
-    'oxd-divider': Divider,
     'oxd-button': Button,
     'oxd-icon-button': IconButton,
   },
@@ -134,8 +131,8 @@ export default defineComponent({
         displayType: 'secondary',
         style: null,
       };
-      for (const key in props.button) {
-        const value = props.button[key];
+      for (const key in props.button.props) {
+        const value = props.button.props[key];
         if (value) {
           initialObject[key] = value;
         }

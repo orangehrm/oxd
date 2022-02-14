@@ -8,6 +8,7 @@
       class="oxd-table-cell-action-space"
       :disabled="isDisabled"
       @click="onClickAction(action, key, $event)"
+      @update:modelValue="onChangeAction(action, key, $event)"
     />
   </div>
 </template>
@@ -68,6 +69,14 @@ export default defineComponent({
         action.onClick(this.rowItem, e);
       } else if (cellConfig && typeof cellConfig[key]?.onClick === 'function') {
         this.header?.cellConfig[key]?.onClick(this.rowItem, e);
+      }
+    },
+    onChangeAction(action: Action<RowItem>, key: string, e: Event) {
+      const cellConfig = this.header?.cellConfig;
+      if (typeof action.onChange === 'function') {
+        action.onChange(this.rowItem, e);
+      } else if (cellConfig && typeof cellConfig[key]?.onChange === 'function') {
+        this.header?.cellConfig[key]?.onChange(this.rowItem, e);
       }
     },
     getProps(action: Action<RowItem>, key: string) {
