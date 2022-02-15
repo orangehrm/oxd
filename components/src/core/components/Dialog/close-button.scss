@@ -6,20 +6,21 @@
   padding: 0;
   border: 0;
   outline: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: normal;
   width: $oxd-dialog-close-button-size;
   height: $oxd-dialog-close-button-size;
-  background-color: $oxd-dialog-close-button-bg-color;
+  min-width: unset;
+  min-height: unset;
+  color: $oxd-dialog-close-button-font-color;
+  font-size: $oxd-dialog-close-button-font-size;
+  font-weight: $oxd-dialog-close-button-font-weight;
   border-radius: $oxd-dialog-close-button-border-radius;
-  .oxd-dialog-close-button-icon {
-    position: relative;
-    top: -0.5px;
-    left: 0.5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: $oxd-white-color;
-    font-size: $oxd-dialog-close-button-font-size;
-  }
+  background-color: $oxd-dialog-close-button-bg-color;
+
   &:hover {
     background-color: $oxd-dialog-close-button-bg-color-hover;
   }
