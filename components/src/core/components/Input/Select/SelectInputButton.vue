@@ -212,8 +212,6 @@ export default defineComponent({
         this.buttonData.doubleLineLabel ? 'button-double-line' : ''
       } ${
         this.hideDropdownLabel ? 'no-label' : 'w-100'
-      } ${
-        this.modelValue && this.modelValue.id > -1 ? 'double-line-item-selected' : ''
       }`;
     },
   },

@@ -1,11 +1,11 @@
 <template>
-  <div class="oxd-dialog-close-button-wrapper d-flex align-center justify-center">
+  <button class="oxd-dialog-close-button d-flex align-center justify-center">
     <oxd-icon-button
       class="oxd-dialog-close-button-icon"
       :withContainer="false"
       :name="'x'"
     />
-  </div>
+  </button>
 </template>
 
 <script lang="ts">

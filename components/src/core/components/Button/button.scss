@@ -15,6 +15,7 @@
   min-width: $oxd-button-min-width;
   &.with-icon {
     display: flex;
+    justify-content: center;
   }
 
   &:focus {
