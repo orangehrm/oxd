@@ -1,11 +1,11 @@
 <template>
-  <button class="oxd-dialog-close-button d-flex align-center justify-center">
-    <oxd-icon-button
-      class="oxd-dialog-close-button-icon"
-      :withContainer="false"
-      :name="'x'"
-    />
-  </button>
+  <oxd-icon-button
+    :icon-styles="{
+      color: '#fff'
+    }"
+    class="oxd-dialog-close-button"
+    :name="'x'"
+  />
 </template>
 
 <script lang="ts">
