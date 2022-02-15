@@ -8,8 +8,8 @@
       :name="sortIcon"
       class="oxd-table-header-sort-icon"
       tabindex="0"
-      @click="openDropdown"
-      @keydown.enter="openDropdown"
+      @click="openDropdown($event)"
+      @keydown.enter="openDropdown($event)"
       @keydown.down.exact.prevent="onSelectDown"
       @keydown.up.exact.prevent="onSelectUp"
       @keydown.tab="closeDropdown"
@@ -93,8 +93,14 @@ export default defineComponent({
   },
 
   methods: {
-    openDropdown() {
+    openDropdown($e :Event) {
       this.isActive = true;
+      this.$nextTick(() => {
+        const firstFocusableElement = ($e?.target as Element).parentElement?.querySelector('.oxd-table-header-sort-dropdown-item');
+        if(firstFocusableElement){
+          (firstFocusableElement as HTMLElement).focus();
+        }
+      })
     },
     closeDropdown() {
       if (this.isActive) {
