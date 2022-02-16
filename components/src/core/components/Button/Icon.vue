@@ -8,10 +8,11 @@
     :tooltip="tooltip"
     :flow="flow"
   >
-    <oxd-icon :class="{'--disabled': disabled}" :name="name" />
+    <oxd-icon :style="iconStyles" :class="{'--disabled': disabled}" :name="name" />
   </button>
   <oxd-icon
     v-else
+    :style="iconStyles"
     :name="name"
     :class="{'oxd-icon-button__icon': true, '--disabled': disabled}"
     @click="onClick"
@@ -56,6 +57,10 @@ export default defineComponent({
         return TOOLTIP_POSITIONS.indexOf(value) !== 1;
       },
     },
+    iconStyles: {
+      type: Object,
+      default: () => ({})
+    }
   },
 
   emits: ['click'],
