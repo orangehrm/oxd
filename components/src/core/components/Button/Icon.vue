@@ -59,7 +59,7 @@ export default defineComponent({
     },
     iconStyles: {
       type: Object,
-      default: () => {}
+      default: () => ({})
     }
   },
 
