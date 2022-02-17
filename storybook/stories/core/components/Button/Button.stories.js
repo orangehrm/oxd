@@ -15,6 +15,16 @@ import {
   TYPE_TEXT,
   TYPE_TOOL,
 } from '@orangehrm/oxd/core/components/Button/types';
+import {
+  ICON_SIZES,
+  ICON_SIZE_MEDIUM,
+} from '@orangehrm/oxd/core/components/Icon/types';
+import icons from 'bootstrap-icons/font/bootstrap-icons.json';
+import oxdIcons from '@orangehrm/oxd/core/components/Icon/icons'
+
+const bootstrapIconsNames = Object.keys(icons)
+const oxdIconsNames = Object.keys(oxdIcons)
+const iconNames = [...bootstrapIconsNames, ...oxdIconsNames]
 
 export default {
   title: 'Example/Button',
@@ -30,6 +40,20 @@ export default {
     },
     style: {control: {type: 'object'}},
     disabled: {control: {type: 'boolean'}},
+    iconName: {
+      control: {type: 'select', options: iconNames},
+    },
+    iconSize: {
+      control: {type: 'select', options: ICON_SIZES},
+      defaultValue: ICON_SIZE_MEDIUM,
+    },
+    iconRightName: {
+      control: {type: 'select', options: iconNames},
+    },
+    iconRightSize: {
+      control: {type: 'select', options: ICON_SIZES},
+      defaultValue: ICON_SIZE_MEDIUM,
+    },
   },
 };
 
