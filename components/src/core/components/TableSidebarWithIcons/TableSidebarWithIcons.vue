@@ -19,6 +19,7 @@
           </template>
         </oxd-button>
       </slot>
+      <oxd-divider />
     </div>
     <div v-if="bodyVisible" class="body">
       <slot name="sidePanelBody"></slot>
@@ -55,12 +56,14 @@
 import {defineComponent, computed, ref} from 'vue';
 import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
-import Icon from "@orangehrm/oxd/core/components/Icon/Icon.vue";
+import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
+import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';
 
 export default defineComponent({
   name: 'oxd-table-icon-filter',
 
   components: {
+    'oxd-divider': Divider,
     'oxd-icon': Icon,
     'oxd-button': Button,
     'oxd-icon-button': IconButton,
