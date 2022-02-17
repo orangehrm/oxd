@@ -65,7 +65,7 @@ exports[`Button.vue should renders OXD ghost-warn button 1`] = `
 `;
 
 exports[`Button.vue should renders OXD iconName button 1`] = `
-<button type="button" class="oxd-button oxd-button--medium oxd-button--main with-icon" flow="up"><i class="oxd-icon bi-arrow-left oxd-button-icon"></i>
+<button type="button" class="oxd-button oxd-button--medium oxd-button--main with-icon" flow="up"><i class="oxd-icon oxd-icon--medium bi-arrow-left oxd-button-icon"></i>
   <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
@@ -74,7 +74,7 @@ exports[`Button.vue should renders OXD iconName button 1`] = `
 exports[`Button.vue should renders OXD iconRightName button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--main with-icon" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper">Button</div><i class="oxd-icon bi-arrow-right oxd-button-icon oxd-button-icon-right"></i>
+  <div class="oxd-button-label-wrapper">Button</div><i class="oxd-icon oxd-icon--medium bi-arrow-right oxd-button-icon oxd-button-icon-right"></i>
 </button>
 `;
 

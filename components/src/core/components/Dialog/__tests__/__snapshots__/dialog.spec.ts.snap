@@ -9,7 +9,7 @@ exports[`Dialog > Dialog.vue should renders OXD Dialog > Dialog 1`] = `
     -->
     <div class="oxd-dialog-container-default">
       <div class="oxd-dialog-container-default--inner">
-        <div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow" role="document"><button type="button" class="oxd-icon-button oxd-dialog-close-button oxd-dialog-close-button-position" flow="top"><i class="oxd-icon bi-x" style="color: rgb(255, 255, 255);"></i></button></div>
+        <div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow" role="document"><button type="button" class="oxd-icon-button oxd-dialog-close-button oxd-dialog-close-button-position" flow="top"><i class="oxd-icon oxd-icon--medium bi-x" style="color: rgb(255, 255, 255);"></i></button></div>
       </div>
     </div>
   </div>
@@ -24,7 +24,7 @@ exports[`Dialog > Dialog.vue should renders OXD Dialog > Dialog dialogContainer-
     :aria-describedby="'dialogDesc_' + id"
     -->
     <div>
-      <div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow" show="true" role="document"><button type="button" class="oxd-icon-button oxd-dialog-close-button oxd-dialog-close-button-position" flow="top"><i class="oxd-icon bi-x" style="color: rgb(255, 255, 255);"></i></button></div>
+      <div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow" show="true" role="document"><button type="button" class="oxd-icon-button oxd-dialog-close-button oxd-dialog-close-button-position" flow="top"><i class="oxd-icon oxd-icon--medium bi-x" style="color: rgb(255, 255, 255);"></i></button></div>
     </div>
   </div>
 </transition-stub>
@@ -39,7 +39,7 @@ exports[`Dialog > Dialog.vue should renders OXD Dialog > Dialog no shadow 1`] = 
     -->
     <div class="oxd-dialog-container-default">
       <div class="oxd-dialog-container-default--inner">
-        <div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white oxd-dialog-sheet" show="true" role="document"><button type="button" class="oxd-icon-button oxd-dialog-close-button oxd-dialog-close-button-position" flow="top"><i class="oxd-icon bi-x" style="color: rgb(255, 255, 255);"></i></button></div>
+        <div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white oxd-dialog-sheet" show="true" role="document"><button type="button" class="oxd-icon-button oxd-dialog-close-button oxd-dialog-close-button-position" flow="top"><i class="oxd-icon oxd-icon--medium bi-x" style="color: rgb(255, 255, 255);"></i></button></div>
       </div>
     </div>
   </div>
@@ -55,7 +55,7 @@ exports[`Dialog > Dialog.vue should renders OXD Dialog > Dialog persistent 1`] =
     -->
     <div class="oxd-dialog-container-default">
       <div class="oxd-dialog-container-default--inner">
-        <div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow" show="true" role="document"><button type="button" class="oxd-icon-button oxd-dialog-close-button oxd-dialog-close-button-position" flow="top"><i class="oxd-icon bi-x" style="color: rgb(255, 255, 255);"></i></button></div>
+        <div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow" show="true" role="document"><button type="button" class="oxd-icon-button oxd-dialog-close-button oxd-dialog-close-button-position" flow="top"><i class="oxd-icon oxd-icon--medium bi-x" style="color: rgb(255, 255, 255);"></i></button></div>
       </div>
     </div>
   </div>
@@ -71,7 +71,7 @@ exports[`Dialog > Dialog.vue should renders OXD Dialog > Dialog show 1`] = `
     -->
     <div class="oxd-dialog-container-default">
       <div class="oxd-dialog-container-default--inner">
-        <div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow" show="true" role="document"><button type="button" class="oxd-icon-button oxd-dialog-close-button oxd-dialog-close-button-position" flow="top"><i class="oxd-icon bi-x" style="color: rgb(255, 255, 255);"></i></button></div>
+        <div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow" show="true" role="document"><button type="button" class="oxd-icon-button oxd-dialog-close-button oxd-dialog-close-button-position" flow="top"><i class="oxd-icon oxd-icon--medium bi-x" style="color: rgb(255, 255, 255);"></i></button></div>
       </div>
     </div>
   </div>
