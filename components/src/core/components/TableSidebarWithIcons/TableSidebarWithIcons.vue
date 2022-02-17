@@ -116,7 +116,7 @@ export default defineComponent({
     const buttonData = computed(() => {
       const initialObject = {
         label: 'Button',
-        iconName: 'plus',
+        iconName: 'oxd-add',
         iconImageSrc: null,
         size: 'long',
         displayType: 'secondary',
