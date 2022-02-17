@@ -1,4 +1,4 @@
-import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput';
+import SelectInputButton from '@orangehrm/oxd/core/components/Input/Select/SelectInputButton';
 import {
   BOTTOM,
   DROPDOWN_POSITIONS,
@@ -7,7 +7,7 @@ import {h, ref} from 'vue';
 
 export default {
   title: 'Example/SelectInputButton',
-  component: SelectInput,
+  component: SelectInputButton,
   argTypes: {
     style: {control: {type: 'object'}},
     hasError: {control: {type: 'boolean'}},
@@ -19,6 +19,7 @@ export default {
       control: {type: 'array'},
       defaultValue: [],
     },
+    button: {control: {type: 'object'}}
   },
 };
 
@@ -65,13 +66,26 @@ const options = [
   },
 ];
 
+const buttonObject = {
+  label: 'Button',
+  labelMini: null,
+  iconName: 'plus',
+  iconSize: 'small',
+  iconImageSrc: null,
+  size: 'long',
+  displayType: 'label',
+  style: null,
+  doubleLineLabel: false,
+  showLabel: true,
+}
+
 const Template = args => ({
   setup() {
     const selected = ref(null);
     return {args, selected};
   },
   render() {
-    return h(SelectInput, {
+    return h(SelectInputButton, {
       ...this.args,
       modelValue: this.selected,
       'onUpdate:modelValue': value => {
@@ -84,6 +98,7 @@ const Template = args => ({
 export const Default = Template.bind({});
 Default.args = {
   options: options,
+  button: buttonObject,
 };
 
 export const Error = Template.bind({});

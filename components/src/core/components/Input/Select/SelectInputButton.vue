@@ -8,6 +8,7 @@
       :class="dropdownButtonClasses"
       :label="buttonData.label"
       :iconName="buttonData.iconName"
+      :iconSize="buttonData.iconSize"
       :hide-dropdown-label="hideDropdownLabel"
       :size="buttonData.size"
       :style="buttonData.style"
@@ -192,6 +193,7 @@ export default defineComponent({
         label: 'Button',
         labelMini: null,
         iconName: 'plus',
+        iconSize: 'small',
         iconImageSrc: null,
         size: 'long',
         displayType: 'label',

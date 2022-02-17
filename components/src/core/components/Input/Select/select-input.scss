@@ -196,13 +196,8 @@
 .dropdown-btn {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between !important;
   font-size: 12px;
-  padding-left: 16px;
-  padding-right: 16px;
-  ::v-deep(.oxd-icon) {
-    font-size: 14px;
-  }
   &.button-double-line {
     padding: 0.65rem 1rem;
   }
