@@ -36,7 +36,7 @@
                 class="count-container"
                 :class="{active: selectedListItem.id === item.id}"
             >
-              <oxd-icon :name="item.iconName"/>
+              <oxd-icon class="left-icon" :name="item.iconName"/>
               <p v-if="isLeftPanelOpen" class="oxd-label">{{ item.label }}</p>
             </div>
           </li>
@@ -169,4 +169,4 @@ export default defineComponent({
 </script>
 
 <style src="../Label/label.scss" lang="scss" scoped></style>
-<style src="../TableSidebar/table-left-panel.scss" lang="scss" scoped></style>
+<style src="../TableSidebarWithIcons/table-left-panel.scss" lang="scss" scoped></style>
