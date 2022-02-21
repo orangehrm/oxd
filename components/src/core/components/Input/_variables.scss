@@ -21,10 +21,7 @@ $oxd-input-border--focus: $oxd-input-control-border--focus !default;
 $oxd-input-border--error: $oxd-input-control-border--error !default;
 $oxd-input-box-shadow--focus: $oxd-input-control-box-shadow--focus !default;
 $oxd-input-box-shadow--error: $oxd-input-control-box-shadow--error !default;
-$oxd-input-background--disabled: darken(
-  $oxd-background-white-shadow-color,
-  3%
-) !default;
+$oxd-input-background--disabled: #f0f0fc !default;
 
 $oxd-file-input-horizontal-margin: 0.25rem !default;
 $oxd-file-input-background-color: $oxd-white-color !default;
