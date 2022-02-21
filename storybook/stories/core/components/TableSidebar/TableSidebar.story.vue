@@ -4,7 +4,7 @@
       v-if="configurations.table.leftPanel.visible"
       class="oxd-table-left-panel"
       :class="{'with-filters': configurations.table.topBar.visible}"
-      width="230px"
+      width="250px"
       :side-panel-list="dataObj.stages"
       :header-visible="configurations.table.leftPanel.header.visible"
       :body-visible="configurations.table.leftPanel.body.visible"
