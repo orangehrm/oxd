@@ -82,10 +82,6 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    bubbleVisible: {
-      type: Boolean,
-      default: true,
-    },
     button: {
       type: Object,
       default: () => null,

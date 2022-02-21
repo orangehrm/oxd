@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableSidebarWithIcons.vue renders OXD TableSidebarWithIcons 1`] = `
+<div class="oxd-table-left-panel" style="width: 230px;">
+  <div class="header">
+    <oxd-button-stub label="New Candidate" iconname="oxd-add" displaytype="secondary" size="long" flow="right" class="table-header-action-btn w-100"></oxd-button-stub>
+    <oxd-divider-stub class="oxd-header-separator"></oxd-divider-stub>
+  </div>
+  <div class="body"></div>
+  <div class="oxd-sidebar-footer list">
+    <ul>
+      <li class="">
+        <div class="count-container">
+          <oxd-icon-stub name="oxd-standard-reports" class="left-icon"></oxd-icon-stub>
+          <p class="oxd-label">All Candidates</p>
+        </div>
+      </li>
+      <li class="">
+        <div class="count-container">
+          <oxd-icon-stub name="oxd-all-reports" class="left-icon"></oxd-icon-stub>
+          <p class="oxd-label">Application Received</p>
+        </div>
+      </li>
+      <li class="">
+        <div class="count-container">
+          <oxd-icon-stub name="oxd-my-reports" class="left-icon"></oxd-icon-stub>
+          <p class="oxd-label">Phone Screening</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <oxd-icon-button-stub name="chevron-left" withcontainer="true" disabled="false" flow="top" iconstyles="[object Object]" class="oxd-table-left-panel-toggle-btn"></oxd-icon-button-stub>
+</div>
+`;
+
+exports[`TableSidebarWithIcons.vue renders OXD TableSidebarWithIcons with diffeent item selected 1`] = `
+<div class="oxd-table-left-panel" style="width: 230px;">
+  <div class="header">
+    <oxd-button-stub label="New Candidate" iconname="oxd-add" displaytype="secondary" size="long" flow="right" class="table-header-action-btn w-100"></oxd-button-stub>
+    <oxd-divider-stub class="oxd-header-separator"></oxd-divider-stub>
+  </div>
+  <div class="body"></div>
+  <div class="oxd-sidebar-footer list">
+    <ul>
+      <li class="">
+        <div class="count-container">
+          <oxd-icon-stub name="oxd-standard-reports" class="left-icon"></oxd-icon-stub>
+          <p class="oxd-label">All Candidates</p>
+        </div>
+      </li>
+      <li class="">
+        <div class="count-container">
+          <oxd-icon-stub name="oxd-all-reports" class="left-icon"></oxd-icon-stub>
+          <p class="oxd-label">Application Received</p>
+        </div>
+      </li>
+      <li class="">
+        <div class="count-container">
+          <oxd-icon-stub name="oxd-my-reports" class="left-icon"></oxd-icon-stub>
+          <p class="oxd-label">Phone Screening</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <oxd-icon-button-stub name="chevron-left" withcontainer="true" disabled="false" flow="top" iconstyles="[object Object]" class="oxd-table-left-panel-toggle-btn"></oxd-icon-button-stub>
+</div>
+`;
+
+exports[`TableSidebarWithIcons.vue renders OXD TableSidebarWithIcons with empty list 1`] = `
+<div class="oxd-table-left-panel" style="width: 230px;">
+  <div class="header">
+    <oxd-button-stub label="New Candidate" iconname="oxd-add" displaytype="secondary" size="long" flow="right" class="table-header-action-btn w-100"></oxd-button-stub>
+    <oxd-divider-stub class="oxd-header-separator"></oxd-divider-stub>
+  </div>
+  <div class="body"></div>
+  <div class="oxd-sidebar-footer list">
+    <ul></ul>
+  </div>
+  <oxd-icon-button-stub name="chevron-left" withcontainer="true" disabled="false" flow="top" iconstyles="[object Object]" class="oxd-table-left-panel-toggle-btn"></oxd-icon-button-stub>
+</div>
+`;
+
+exports[`TableSidebarWithIcons.vue renders OXD TableSidebarWithIcons without body 1`] = `
+<div class="oxd-table-left-panel" style="width: 230px;">
+  <div class="header">
+    <oxd-button-stub label="New Candidate" iconname="oxd-add" displaytype="secondary" size="long" flow="right" class="table-header-action-btn w-100"></oxd-button-stub>
+    <oxd-divider-stub class="oxd-header-separator"></oxd-divider-stub>
+  </div>
+  <!--v-if-->
+  <div class="oxd-sidebar-footer list">
+    <ul>
+      <li class="">
+        <div class="count-container">
+          <oxd-icon-stub name="oxd-standard-reports" class="left-icon"></oxd-icon-stub>
+          <p class="oxd-label">All Candidates</p>
+        </div>
+      </li>
+      <li class="">
+        <div class="count-container">
+          <oxd-icon-stub name="oxd-all-reports" class="left-icon"></oxd-icon-stub>
+          <p class="oxd-label">Application Received</p>
+        </div>
+      </li>
+      <li class="">
+        <div class="count-container">
+          <oxd-icon-stub name="oxd-my-reports" class="left-icon"></oxd-icon-stub>
+          <p class="oxd-label">Phone Screening</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <oxd-icon-button-stub name="chevron-left" withcontainer="true" disabled="false" flow="top" iconstyles="[object Object]" class="oxd-table-left-panel-toggle-btn"></oxd-icon-button-stub>
+</div>
+`;
+
+exports[`TableSidebarWithIcons.vue renders OXD TableSidebarWithIcons without header 1`] = `
+<div class="oxd-table-left-panel" style="width: 230px;">
+  <!--v-if-->
+  <div class="body"></div>
+  <div class="oxd-sidebar-footer list">
+    <ul>
+      <li class="">
+        <div class="count-container">
+          <oxd-icon-stub name="oxd-standard-reports" class="left-icon"></oxd-icon-stub>
+          <p class="oxd-label">All Candidates</p>
+        </div>
+      </li>
+      <li class="">
+        <div class="count-container">
+          <oxd-icon-stub name="oxd-all-reports" class="left-icon"></oxd-icon-stub>
+          <p class="oxd-label">Application Received</p>
+        </div>
+      </li>
+      <li class="">
+        <div class="count-container">
+          <oxd-icon-stub name="oxd-my-reports" class="left-icon"></oxd-icon-stub>
+          <p class="oxd-label">Phone Screening</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <oxd-icon-button-stub name="chevron-left" withcontainer="true" disabled="false" flow="top" iconstyles="[object Object]" class="oxd-table-left-panel-toggle-btn"></oxd-icon-button-stub>
+</div>
+`;
+
+exports[`TableSidebarWithIcons.vue renders OXD TableSidebarWithIcons without list 1`] = `
+<div class="oxd-table-left-panel" style="width: 230px;">
+  <div class="header">
+    <oxd-button-stub label="New Candidate" iconname="oxd-add" displaytype="secondary" size="long" flow="right" class="table-header-action-btn w-100"></oxd-button-stub>
+    <oxd-divider-stub class="oxd-header-separator"></oxd-divider-stub>
+  </div>
+  <div class="body"></div>
+  <!--v-if-->
+  <oxd-icon-button-stub name="chevron-left" withcontainer="true" disabled="false" flow="top" iconstyles="[object Object]" class="oxd-table-left-panel-toggle-btn"></oxd-icon-button-stub>
+</div>
+`;
