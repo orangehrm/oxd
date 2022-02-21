@@ -209,7 +209,8 @@
   }
 }
 .label-double-line-wrapper {
-  padding: 0 0.5rem 0 0.25rem;
+  vertical-align: middle;
+  display: inline-grid;
   &.label-double-line {
     width: 100%;
     * {
@@ -223,14 +224,14 @@
       line-height: 1;
     }
     .label {
-      line-height: 1;
+      line-height: 0.75rem;
       font-size: 0.75rem;
       font-weight: 800;
-      display: -webkit-box;
-      max-width: 250px;
-      -webkit-line-clamp: 1;
-      -webkit-box-orient: vertical;
+      max-width: 150px;
       overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: inline-block;
     }
   }
 }
