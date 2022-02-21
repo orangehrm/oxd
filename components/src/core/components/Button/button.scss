@@ -8,11 +8,15 @@
   border: 0;
   border-radius: 3em;
   cursor: pointer;
-  display: flex;
+  display: inline-block;
   align-items: center;
   padding-right: $oxd-button-horizontal-padding;
   padding-left: $oxd-button-horizontal-padding;
   min-width: $oxd-button-min-width;
+  &.with-icon {
+    display: flex;
+    justify-content: center;
+  }
 
   &:focus {
     outline: 0;

@@ -209,8 +209,8 @@ export default defineComponent({
     },
     dropdownButtonClasses(): string {
       return `${
-        this.buttonData.doubleLineLabel
-      } ? 'button-double-line' : null ${
+        this.buttonData.doubleLineLabel ? 'button-double-line' : ''
+      } ${
         this.hideDropdownLabel ? 'no-label' : 'w-100'
       }`;
     },

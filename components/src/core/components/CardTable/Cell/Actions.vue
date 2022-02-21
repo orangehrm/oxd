@@ -4,9 +4,9 @@
       v-for="(action, key) in actions"
       :key="key"
       :is="getComponent(action, key)"
-      v-bind="getProps(action, key)"
       class="oxd-table-cell-action-space"
       :disabled="isDisabled"
+      v-bind="getProps(action, key)"
       @click="onClickAction(action, key, $event)"
       @update:modelValue="onChangeAction(action, key, $event)"
     />
