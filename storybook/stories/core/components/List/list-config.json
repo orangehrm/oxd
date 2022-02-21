@@ -26,6 +26,8 @@
            "label": "All Vacancy",
            "labelMini": "Vacancy",
            "iconName": "eye",
+           "iconSize": "large",
+           "iconStyle": "height: 20px",
            "displayType": "label",
            "doubleLineLabel": true
          },

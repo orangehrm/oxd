@@ -30,6 +30,8 @@
             label: selectedVacancyLabel,
             labelMini: configurations.table.leftPanel.body.button.labelMini,
             iconName: configurations.table.leftPanel.body.button.iconName,
+            iconSize: configurations.table.leftPanel.body.button.iconSize,
+            iconStyle: configurations.table.leftPanel.body.button.iconStyle,
             displayType: configurations.table.leftPanel.body.button.displayType,
             doubleLineLabel:
               configurations.table.leftPanel.body.button.doubleLineLabel,
