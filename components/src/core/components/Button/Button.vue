@@ -7,7 +7,7 @@
     :flow="flow"
   >
     <slot name="icon">
-      <oxd-icon v-if="iconName" :name="iconName" :size="iconSize" class="oxd-button-icon" />
+      <oxd-icon v-if="iconName" :name="iconName" :size="iconSize" :style="iconStyle" class="oxd-button-icon" />
     </slot>
     <div class="oxd-button-label-wrapper">
       <slot name="label">
@@ -37,7 +37,6 @@ import {
   TYPE_MAIN,
   TOOLTIP_TOP,
   TOOLTIP_POSITIONS,
-  SIZE_SMALL,
 } from './types';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
@@ -68,6 +67,9 @@ export default defineComponent({
       },
     },
     style: {
+      type: Object,
+    },
+    iconStyle: {
       type: Object,
     },
     iconName: {

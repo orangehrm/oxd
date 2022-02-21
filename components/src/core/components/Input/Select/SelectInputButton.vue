@@ -9,6 +9,7 @@
       :label="buttonData.label"
       :iconName="buttonData.iconName"
       :iconSize="buttonData.iconSize"
+      :iconStyle="buttonData.iconStyle"
       :hide-dropdown-label="hideDropdownLabel"
       :size="buttonData.size"
       :style="buttonData.style"
@@ -35,7 +36,7 @@
         </div>
       </template>
       <template v-slot:iconRight>
-        <oxd-icon :name="dropdownOpen ? 'chevron-up' : 'chevron-down'" />
+        <oxd-icon style="height: 14px" size="medium" :name="dropdownOpen ? 'chevron-up' : 'chevron-down'" />
       </template>
     </oxd-button>
 
@@ -194,6 +195,7 @@ export default defineComponent({
         labelMini: null,
         iconName: 'plus',
         iconSize: 'small',
+        iconStyle: null,
         iconImageSrc: null,
         size: 'long',
         displayType: 'label',

@@ -67,7 +67,7 @@ const options = [
 ];
 
 const buttonObject = {
-  label: 'Button',
+  label: 'All User Roles',
   labelMini: null,
   iconName: 'plus',
   iconSize: 'small',
@@ -75,8 +75,9 @@ const buttonObject = {
   size: 'long',
   displayType: 'label',
   style: null,
-  doubleLineLabel: false,
+  doubleLineLabel: true,
   showLabel: true,
+  labelMini: 'User Role'
 }
 
 const Template = args => ({
