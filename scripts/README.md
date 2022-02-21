@@ -9,6 +9,8 @@ Update version in `components/package.json` and `package.json`
 E.g.
 
 ```bash
+$ node scripts/update-current-version.js 1.0.5-alpha.1
+# OR
 $ yarn version --no-git-tag-version --new-version 1.0.5-alpha.1
 $ yarn workspace oxd-components version --no-git-tag-version --new-version 1.0.5-alpha.1
 ```
@@ -41,4 +43,12 @@ $ npm publish
 $ npm dist-tag add @ohrm/oxd@1.0.4 latest
 
 $ npm dist-tag add @ohrm/oxd@1.0.5-alpha.1 dev
+```
+
+## How to publish dev release
+
+Update package version to make patch or pre-release.
+
+```bash
+$ node scripts/update-current-version.js 1.0.5-alpha.1
 ```
