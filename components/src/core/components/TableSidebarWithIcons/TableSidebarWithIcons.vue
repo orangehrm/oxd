@@ -19,7 +19,7 @@
           </template>
         </oxd-button>
       </slot>
-      <oxd-divider />
+      <oxd-divider class="oxd-header-separator"/>
     </div>
     <div v-if="bodyVisible" class="body">
       <slot name="sidePanelBody"></slot>
@@ -30,7 +30,7 @@
           <li
               v-for="(item, id) in sidePanelList"
               :key="id"
-              @click="selectListitem(item)"
+              @click="selectListItem(item)"
               :class="{collapsed: !isLeftPanelOpen}"
           >
             <div
@@ -144,7 +144,7 @@ export default defineComponent({
       emit('sidePanelList:onHeaderBtnClick');
     };
 
-    const selectListitem = (item: {
+    const selectListItem = (item: {
       id: number;
       label: string;
       active: boolean;
@@ -164,7 +164,7 @@ export default defineComponent({
       buttonData,
       isLeftPanelOpen,
       onHeaderBtnClick,
-      selectListitem,
+      selectListItem,
       toggleLeftPanel,
     };
   },
@@ -172,4 +172,4 @@ export default defineComponent({
 </script>
 
 <style src="../Label/label.scss" lang="scss" scoped></style>
-<style src="../TableSidebarWithIcons/table-left-panel.scss" lang="scss" scoped></style>
+<style src="./table-left-panel.scss" lang="scss" scoped></style>
