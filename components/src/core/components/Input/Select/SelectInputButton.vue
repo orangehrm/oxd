@@ -36,7 +36,14 @@
         </div>
       </template>
       <template v-slot:iconRight>
-        <oxd-icon style="height: 14px" size="medium" :name="dropdownOpen ? 'chevron-up' : 'chevron-down'" />
+        <oxd-icon
+          class="oxd-button-icon oxd-button-icon-right d-flex align-center"
+          style="height: 14px"
+          size="medium"
+          :name="dropdownOpen
+            ? 'chevron-up'
+            : 'chevron-down'"
+        />
       </template>
     </oxd-button>
 

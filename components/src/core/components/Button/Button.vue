@@ -9,7 +9,7 @@
     <slot name="icon">
       <oxd-icon v-if="iconName" :name="iconName" :size="iconSize" :style="iconStyle" class="oxd-button-icon" />
     </slot>
-    <div class="oxd-button-label-wrapper">
+    <div class="oxd-button-label-wrapper mx-w-100">
       <slot name="label">
         {{ label }}
       </slot>

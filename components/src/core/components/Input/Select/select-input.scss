@@ -203,9 +203,15 @@
     padding: 0.5rem 0.75rem 0.5rem 1rem;
   }
 }
+.oxd-icon {
+  &.oxd-button-icon-right {
+    margin-left: 0.5rem;
+  }
+}
 .label-double-line-wrapper {
   padding: 0 0.5rem 0 0.25rem;
   &.label-double-line {
+    width: 100%;
     * {
       display: block;
       text-align: left;
@@ -221,7 +227,7 @@
       font-size: 0.75rem;
       font-weight: 800;
       display: -webkit-box;
-      max-width: 200px;
+      max-width: 250px;
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
       overflow: hidden;
