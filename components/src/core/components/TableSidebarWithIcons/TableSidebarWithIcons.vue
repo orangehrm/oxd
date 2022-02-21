@@ -30,14 +30,15 @@
           <li
               v-for="(item, id) in sidePanelList"
               :key="id"
-              @click="selectListItem(item)"
               :class="{collapsed: !isLeftPanelOpen}"
+              @click="selectListItem(item)"
+              @keyup.enter="selectListItem(item)"
           >
             <div
                 class="count-container"
                 :class="{active: selectedListItem.id === item.id}"
             >
-              <oxd-icon class="left-icon" :name="item.iconName" :tooltip="item.tooltip"/>
+              <oxd-icon tabindex="0" class="left-icon" :name="item.iconName" :tooltip="item.tooltip"/>
               <p v-if="isLeftPanelOpen" class="oxd-label">{{ item.label }}</p>
             </div>
           </li>
