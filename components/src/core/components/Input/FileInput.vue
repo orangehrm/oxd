@@ -7,7 +7,7 @@
     @focus="onFocus"
     @blur="onBlur"
     @input="onInput"
-    @keydown.esc.once.prevent="closeUploadWindow"
+    @keyup.esc.stop="closeUploadWindow"
   />
   <div :class="classes" :style="style" @click="onClick">
     <slot></slot>
