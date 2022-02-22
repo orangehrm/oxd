@@ -7,22 +7,22 @@ exports[`TableSidebar.vue with oxd-chip on left renders OXD TableSidebar  with c
   <div class="oxd-footer list">
     <ul>
       <li class="">
-        <div class="count-container" tabindex="0">
-          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
+        <div class="count-container">
+          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" tabindex="0" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
           <!--v-if-->
           <p class="oxd-label">All Candidates</p>
         </div>
       </li>
       <li class="">
-        <div class="count-container" tabindex="0">
-          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
+        <div class="count-container">
+          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" tabindex="0" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
           <!--v-if-->
           <p class="oxd-label">Application Received</p>
         </div>
       </li>
       <li class="">
-        <div class="count-container" tabindex="0">
-          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
+        <div class="count-container">
+          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" tabindex="0" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
           <!--v-if-->
           <p class="oxd-label">Phone Screening</p>
         </div>
@@ -55,22 +55,22 @@ exports[`TableSidebar.vue with oxd-chip on left renders OXD TableSidebar with ch
   <div class="oxd-footer list">
     <ul>
       <li class="">
-        <div class="count-container" tabindex="0">
-          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
+        <div class="count-container">
+          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" tabindex="0" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
           <!--v-if-->
           <p class="oxd-label">All Candidates</p>
         </div>
       </li>
       <li class="">
-        <div class="count-container" tabindex="0">
-          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
+        <div class="count-container">
+          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" tabindex="0" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
           <!--v-if-->
           <p class="oxd-label">Application Received</p>
         </div>
       </li>
       <li class="">
-        <div class="count-container" tabindex="0">
-          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
+        <div class="count-container">
+          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" tabindex="0" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
           <!--v-if-->
           <p class="oxd-label">Phone Screening</p>
         </div>
@@ -91,22 +91,22 @@ exports[`TableSidebar.vue with oxd-chip on left renders OXD TableSidebar with ch
   <div class="oxd-footer list">
     <ul>
       <li class="">
-        <div class="count-container" tabindex="0">
-          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
+        <div class="count-container">
+          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" tabindex="0" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
           <!--v-if-->
           <p class="oxd-label">All Candidates</p>
         </div>
       </li>
       <li class="">
-        <div class="count-container" tabindex="0">
-          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
+        <div class="count-container">
+          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" tabindex="0" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
           <!--v-if-->
           <p class="oxd-label">Application Received</p>
         </div>
       </li>
       <li class="">
-        <div class="count-container" tabindex="0">
-          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
+        <div class="count-container">
+          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" tabindex="0" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
           <!--v-if-->
           <p class="oxd-label">Phone Screening</p>
         </div>
@@ -141,22 +141,22 @@ exports[`TableSidebar.vue with oxd-chip on left renders OXD TableSidebar with ch
   <div class="oxd-footer list">
     <ul>
       <li class="">
-        <div class="count-container" tabindex="0">
-          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
+        <div class="count-container">
+          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" tabindex="0" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
           <!--v-if-->
           <p class="oxd-label">All Candidates</p>
         </div>
       </li>
       <li class="">
-        <div class="count-container" tabindex="0">
-          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
+        <div class="count-container">
+          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" tabindex="0" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
           <!--v-if-->
           <p class="oxd-label">Application Received</p>
         </div>
       </li>
       <li class="">
-        <div class="count-container" tabindex="0">
-          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
+        <div class="count-container">
+          <oxd-chip-stub backgroundcolor="#f9e3e9" color="#e74432" displaytype="main" transparent="false" tabindex="0" flow="right" class="oxd-dropdown-selected-chip"></oxd-chip-stub>
           <!--v-if-->
           <p class="oxd-label">Phone Screening</p>
         </div>
@@ -174,23 +174,23 @@ exports[`TableSidebar.vue with oxd-icon on left renders OXD TableSidebar  with i
   <div class="oxd-footer list">
     <ul>
       <li class="">
-        <div class="count-container" tabindex="0">
+        <div class="count-container">
           <!--v-if-->
-          <oxd-icon-stub name="oxd-standard-reports" class="oxd-left-icon"></oxd-icon-stub>
+          <oxd-icon-stub name="oxd-standard-reports" tabindex="0" class="oxd-left-icon"></oxd-icon-stub>
           <p class="oxd-label">All Candidates</p>
         </div>
       </li>
       <li class="">
-        <div class="count-container" tabindex="0">
+        <div class="count-container">
           <!--v-if-->
-          <oxd-icon-stub name="oxd-all-reports" class="oxd-left-icon"></oxd-icon-stub>
+          <oxd-icon-stub name="oxd-all-reports" tabindex="0" class="oxd-left-icon"></oxd-icon-stub>
           <p class="oxd-label">Application Received</p>
         </div>
       </li>
       <li class="">
-        <div class="count-container" tabindex="0">
+        <div class="count-container">
           <!--v-if-->
-          <oxd-icon-stub name="oxd-my-reports" class="oxd-left-icon"></oxd-icon-stub>
+          <oxd-icon-stub name="oxd-my-reports" tabindex="0" class="oxd-left-icon"></oxd-icon-stub>
           <p class="oxd-label">Phone Screening</p>
         </div>
       </li>
@@ -222,23 +222,23 @@ exports[`TableSidebar.vue with oxd-icon on left renders OXD TableSidebar with ic
   <div class="oxd-footer list">
     <ul>
       <li class="">
-        <div class="count-container" tabindex="0">
+        <div class="count-container">
           <!--v-if-->
-          <oxd-icon-stub name="oxd-standard-reports" class="oxd-left-icon"></oxd-icon-stub>
+          <oxd-icon-stub name="oxd-standard-reports" tabindex="0" class="oxd-left-icon"></oxd-icon-stub>
           <p class="oxd-label">All Candidates</p>
         </div>
       </li>
       <li class="">
-        <div class="count-container" tabindex="0">
+        <div class="count-container">
           <!--v-if-->
-          <oxd-icon-stub name="oxd-all-reports" class="oxd-left-icon"></oxd-icon-stub>
+          <oxd-icon-stub name="oxd-all-reports" tabindex="0" class="oxd-left-icon"></oxd-icon-stub>
           <p class="oxd-label">Application Received</p>
         </div>
       </li>
       <li class="">
-        <div class="count-container" tabindex="0">
+        <div class="count-container">
           <!--v-if-->
-          <oxd-icon-stub name="oxd-my-reports" class="oxd-left-icon"></oxd-icon-stub>
+          <oxd-icon-stub name="oxd-my-reports" tabindex="0" class="oxd-left-icon"></oxd-icon-stub>
           <p class="oxd-label">Phone Screening</p>
         </div>
       </li>
@@ -258,23 +258,23 @@ exports[`TableSidebar.vue with oxd-icon on left renders OXD TableSidebar with ic
   <div class="oxd-footer list">
     <ul>
       <li class="">
-        <div class="count-container" tabindex="0">
+        <div class="count-container">
           <!--v-if-->
-          <oxd-icon-stub name="oxd-standard-reports" class="oxd-left-icon"></oxd-icon-stub>
+          <oxd-icon-stub name="oxd-standard-reports" tabindex="0" class="oxd-left-icon"></oxd-icon-stub>
           <p class="oxd-label">All Candidates</p>
         </div>
       </li>
       <li class="">
-        <div class="count-container" tabindex="0">
+        <div class="count-container">
           <!--v-if-->
-          <oxd-icon-stub name="oxd-all-reports" class="oxd-left-icon"></oxd-icon-stub>
+          <oxd-icon-stub name="oxd-all-reports" tabindex="0" class="oxd-left-icon"></oxd-icon-stub>
           <p class="oxd-label">Application Received</p>
         </div>
       </li>
       <li class="">
-        <div class="count-container" tabindex="0">
+        <div class="count-container">
           <!--v-if-->
-          <oxd-icon-stub name="oxd-my-reports" class="oxd-left-icon"></oxd-icon-stub>
+          <oxd-icon-stub name="oxd-my-reports" tabindex="0" class="oxd-left-icon"></oxd-icon-stub>
           <p class="oxd-label">Phone Screening</p>
         </div>
       </li>
@@ -308,23 +308,23 @@ exports[`TableSidebar.vue with oxd-icon on left renders OXD TableSidebar with ic
   <div class="oxd-footer list">
     <ul>
       <li class="">
-        <div class="count-container" tabindex="0">
+        <div class="count-container">
           <!--v-if-->
-          <oxd-icon-stub name="oxd-standard-reports" class="oxd-left-icon"></oxd-icon-stub>
+          <oxd-icon-stub name="oxd-standard-reports" tabindex="0" class="oxd-left-icon"></oxd-icon-stub>
           <p class="oxd-label">All Candidates</p>
         </div>
       </li>
       <li class="">
-        <div class="count-container" tabindex="0">
+        <div class="count-container">
           <!--v-if-->
-          <oxd-icon-stub name="oxd-all-reports" class="oxd-left-icon"></oxd-icon-stub>
+          <oxd-icon-stub name="oxd-all-reports" tabindex="0" class="oxd-left-icon"></oxd-icon-stub>
           <p class="oxd-label">Application Received</p>
         </div>
       </li>
       <li class="">
-        <div class="count-container" tabindex="0">
+        <div class="count-container">
           <!--v-if-->
-          <oxd-icon-stub name="oxd-my-reports" class="oxd-left-icon"></oxd-icon-stub>
+          <oxd-icon-stub name="oxd-my-reports" tabindex="0" class="oxd-left-icon"></oxd-icon-stub>
           <p class="oxd-label">Phone Screening</p>
         </div>
       </li>
