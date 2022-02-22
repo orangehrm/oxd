@@ -7,13 +7,10 @@
   border-right: 1px solid $oxd-interface-gray-lighten-4-color;
   padding-right: 10px;
   padding-left: 1rem;
-  .table-left-panel-divider {
-    width: calc(100% + 10px);
-  }
-  .body {
+  &--body {
     margin-top: 1rem;
   }
-  .oxd-table-left-panel-toggle-btn {
+  &--toggle-btn {
     position: absolute;
     width: 28px;
     height: 28px;
