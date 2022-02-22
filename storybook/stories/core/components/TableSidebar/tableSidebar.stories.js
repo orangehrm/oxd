@@ -1,8 +1,5 @@
 import TableSidebarStory from './TableSidebar.story.vue';
 import TableSidebarWithIconsStory from './TableSidebarWithIcons.story.vue';
-import data from "../List/list-data.json";
-// import {Configurable} from "../List/list.stories";
-// import ListStory from "../List/List.story";
 
 export default {
   title: 'Example/TableSidebar',
@@ -19,7 +16,7 @@ export const TableSidebar = () => TableSidebarStory;
 export const TableSidebarWithIcons = Template.bind({});
 TableSidebarWithIcons.args = {
   headerVisible: true,
-  bodyVisible: true,
+  bodyVisible: false,
   listVisible: true,
   stages: [
     {
