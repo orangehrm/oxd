@@ -37,6 +37,7 @@
       <oxd-table-filter
         v-if="config.table.topBar.visible"
         class="list-table-filter"
+        :class="state.selectedItemIndexes.length > 0 ? 'items-selected' : ''"
         :filter-title="filterTitle"
       >
         <template v-slot:actionOptions>

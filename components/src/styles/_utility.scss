@@ -91,7 +91,7 @@
   padding: 0.25rem 0.5rem;
   border-radius: 0.5rem;
   box-shadow: 0px 25px 25px 0 rgba(0, 0, 0, 0.18);
-  background: #64728c;
+  background: $oxd-interface-gray-darken-1-color;
   color: #fff;
   z-index: $oxd-tooltip-font-z-index; /* absurdity 2 */
 }
@@ -115,7 +115,7 @@
 [tooltip][flow^="top"]::before {
   bottom: 100%;
   border-bottom-width: 0;
-  border-top-color: #64728c;
+  border-top-color: $oxd-interface-gray-darken-1-color;
 }
 [tooltip]:not([flow])::after,
 [tooltip][flow^="top"]::after {
@@ -133,7 +133,7 @@
 [tooltip][flow^="bottom"]::before {
   top: 100%;
   border-top-width: 0;
-  border-bottom-color: #64728c;
+  border-bottom-color: $oxd-interface-gray-darken-1-color;
 }
 [tooltip][flow^="bottom"]::after {
   top: calc(100% + 5px);
@@ -148,7 +148,7 @@
 [tooltip][flow^="left"]::before {
   top: 50%;
   border-right-width: 0;
-  border-left-color: #64728c;
+  border-left-color: $oxd-interface-gray-darken-1-color;
   left: calc(0em - 5px);
   transform: translate(-.5em, -50%);
 }
@@ -162,7 +162,7 @@
 [tooltip][flow^="right"]::before {
   top: 50%;
   border-left-width: 0;
-  border-right-color: #64728c;
+  border-right-color: $oxd-interface-gray-darken-1-color;
   right: calc(0em - 5px);
   transform: translate(.5rem, -50%);
 }
