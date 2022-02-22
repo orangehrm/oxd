@@ -30,9 +30,9 @@
           @keydown.enter.prevent.stop="closeDropdown"
       >
         <li
-          ref="firstItem"
-          class="oxd-table-header-sort-dropdown-item"
+          ref="topDropdownElement"
           tabindex="-1"
+          class="oxd-table-header-sort-dropdown-item"
           @click="$emit('order', 'ASC')"
           @keydown.enter.prevent="$emit('order', 'ASC')"
         >
@@ -40,7 +40,7 @@
           <oxd-text tag="span">Ascending</oxd-text>
         </li>
         <li
-          ref="secondItem"
+          ref="bottomDropdownElement"
           tabindex="-1"
           class="oxd-table-header-sort-dropdown-item"
           @click="$emit('order', 'DESC')"
@@ -108,10 +108,10 @@ export default defineComponent({
       }
     },
     onSelectDown(){
-      this.$refs.secondItem.focus();
+      this.$refs.bottomDropdownElement.focus();
     },
     onSelectUp(){
-      this.$refs.firstItem.focus();
+      this.$refs.topDropdownElement.focus();
     },
   },
 

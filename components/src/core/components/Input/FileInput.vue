@@ -7,7 +7,7 @@
     @focus="onFocus"
     @blur="onBlur"
     @input="onInput"
-    @keyup.esc.stop="closeUploadWindow"
+    @keyup.esc.stop
   />
   <div :class="classes" :style="style" @click="onClick">
     <slot></slot>
@@ -177,9 +177,6 @@ export default defineComponent({
     },
     onFilesReadComplete(files: OutputFile[]) {
       this.$emit('update:modelValue', files);
-    },
-    closeUploadWindow(){
-      return;
     },
   },
 });
