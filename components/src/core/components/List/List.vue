@@ -256,23 +256,14 @@ export default defineComponent({
     });
 
     const filterTitle = computed((): string => {
-      let title = '';
-      if (state.selectedItemIndexes.length > 0) {
-        if (state.selectedItemIndexes.length > 1) {
-          title = config.value.table.topBar.listRecordCount.multiTerm;
-        } else {
-          title = config.value.table.topBar.listRecordCount.singleTerm;
-        }
-        title = `(${state.selectedItemIndexes.length}) ${title} selected`;
-      } else {
-        if (props.filteredTotalRecordsCount > 1) {
-          title = config.value.table.topBar.listRecordCount.multiTerm;
-        } else {
-          title = config.value.table.topBar.listRecordCount.singleTerm;
-        }
-        title = `(${props.filteredTotalRecordsCount}) ${title} found`;
-      }
-      return title;
+      let itemCount = state.selectedItemIndexes.length || props.filteredTotalRecordsCount;
+      return `
+        ${itemCount}
+        ${itemCount > 1 || itemCount === 0
+          ? config.value.table.topBar.listRecordCount.multiTerm
+          : config.value.table.topBar.listRecordCount.singleTerm}
+        ${state.selectedItemIndexes.length > 0 ? 'Selected' : 'Found'}
+      `
     });
 
     const sidePanelListOnHeaderBtnClick = () => {
