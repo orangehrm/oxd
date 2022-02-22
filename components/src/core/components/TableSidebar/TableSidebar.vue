@@ -36,11 +36,11 @@
           >
             <div
               class="count-container"
+              tabindex="0"
               :class="{active: selectedListItem.id === item.id}"
             >
               <oxd-chip
                 v-if="bubbleVisible"
-                tabindex="0"
                 :label="item.count"
                 :tooltip="!isLeftPanelOpen ? item.label : null"
                 flow="right"
@@ -50,7 +50,6 @@
                 :color="item.style.color"
               />
               <oxd-icon
-                tabindex="0"
                 v-if="sidePanelIconVisible"
                 class="oxd-left-icon"
                 :name="item.iconName"
