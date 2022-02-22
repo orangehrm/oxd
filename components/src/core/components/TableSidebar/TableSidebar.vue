@@ -40,6 +40,7 @@
               :class="{active: selectedListItem.id === item.id}"
             >
               <oxd-chip
+                tabindex="0"
                 v-if="bubbleVisible"
                 :label="item.count"
                 :tooltip="!isLeftPanelOpen ? item.label : null"

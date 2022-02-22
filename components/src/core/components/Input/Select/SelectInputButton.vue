@@ -14,7 +14,13 @@
       :displayType="buttonData.displayType"
       :tooltip="tooltip"
       :flow="flow"
+      @blur="onBlur"
       @click="onToggleDropdown"
+      @keyup.esc="onCloseDropdown"
+      @keydown.enter.prevent="onSelectEnter"
+      @keydown.down.exact.prevent="onSelectDown"
+      @keydown.up.exact.prevent="onSelectUp"
+      @keydown="onKeypress"
     >
       <template v-if="buttonData.iconImageSrc" v-slot:icon>
         <img :src="buttonData.iconImageSrc" />
