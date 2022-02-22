@@ -24,7 +24,7 @@
     <div v-if="bodyVisible" class="body">
       <slot name="sidePanelBody"></slot>
     </div>
-    <div v-if="listVisible" class="footer list">
+    <div v-if="listVisible" class="oxd-footer list">
       <slot name="footer">
         <ul>
           <li
