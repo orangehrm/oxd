@@ -19,6 +19,7 @@
           </template>
         </oxd-button>
       </slot>
+      <oxd-divider class="oxd-header-separator"/>
     </div>
     <div v-if="bodyVisible" class="body">
       <slot name="sidePanelBody"></slot>
@@ -75,7 +76,7 @@ import Chip from '@orangehrm/oxd/core/components/Chip/Chip.vue';
 import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
-
+import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';
 export default defineComponent({
   name: 'oxd-table-filter',
 
@@ -84,6 +85,7 @@ export default defineComponent({
     'oxd-button': Button,
     'oxd-icon-button': IconButton,
     'oxd-icon': Icon,
+    'oxd-divider': Divider,
   },
 
   props: {

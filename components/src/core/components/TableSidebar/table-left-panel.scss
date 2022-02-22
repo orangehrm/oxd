@@ -11,6 +11,9 @@
   .table-left-panel-divider {
     width: calc(100% + 10px);
   }
+  .oxd-header-separator {
+    margin-top: 1rem;
+  }
   .body {
     margin-top: 1rem;
   }
@@ -33,7 +36,6 @@
 }
 
 .list {
-  padding-top: 1.25rem !important;
   ul {
     list-style: none;
     margin: 0;
