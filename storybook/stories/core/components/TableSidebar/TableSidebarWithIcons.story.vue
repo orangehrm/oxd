@@ -30,51 +30,36 @@
 
 <script lang="ts">
 import TableSidebar from '@orangehrm/oxd/core/components/TableSidebar/TableSidebar.vue';
-import SelectInputButton from '@orangehrm/oxd/core/components/Input/Select/SelectInputButton.vue';
-import list from './../List/list-config.json'
-import data from './../List/list-data.json';
 
 import {defineComponent, ref, computed} from 'vue';
 export default defineComponent({
   components: {
     'oxd-table-sidebar': TableSidebar
   },
+  props: {
+    headerVisible: {
+      type: Boolean,
+      default: true
+    },
+    bodyVisible: {
+      type: Boolean,
+      default: true
+    },
+    listVisible: {
+      type: Boolean,
+      default: true
+    },
+    stages: {
+      type: Array,
+      default:  []
+    },
+    buttonInfo: {
+      type: Object,
+      default: {}
+    }
+  },
   setup() {
     const isLeftPanelOpen = ref<boolean>(false)
-    const configurations = computed(() => list)
-    const dataObj = computed(() => {
-      return data
-    })
-    const stages = [
-      {
-        "id": 1,
-        "label": "All Reports",
-        "iconName": "oxd-all-reports",
-      },
-      {
-        "id": 2,
-        "label": "Standard Reports",
-        "iconName": "oxd-standard-reports",
-      },
-      {
-        "id": 3,
-        "label": "My Reports",
-        "iconName": "oxd-my-reports",
-      }
-    ];
-
-    const headerVisible = true;
-    const bodyVisible = true;
-    const listVisible = true;
-    const buttonInfo = {
-      "props": {
-        "label": "New Report",
-        "displayType": "secondary",
-        "size": "long",
-        "display-type": "label-info",
-        "icon-name": "oxd-add"
-      }
-    }
 
     const sidePanelListOnSelect = item => {
       alert(`stage selected ${item}`)
@@ -90,17 +75,10 @@ export default defineComponent({
     };
 
     return {
-      configurations,
-      dataObj,
       isLeftPanelOpen,
       sidePanelListOnSelect,
       toggleSidePanel,
       sidePanelListOnHeaderBtnClick,
-      stages,
-      headerVisible,
-      bodyVisible,
-      listVisible,
-      buttonInfo
     }
   }
 })
