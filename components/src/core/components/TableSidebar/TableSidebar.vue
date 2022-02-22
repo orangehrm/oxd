@@ -19,19 +19,20 @@
           </template>
         </oxd-button>
       </slot>
+      <oxd-divider class="oxd-header-separator"/>
     </div>
     <div v-if="bodyVisible" class="body">
       <slot name="sidePanelBody"></slot>
     </div>
-    <div v-if="listVisible" class="footer list">
+    <div v-if="listVisible" class="oxd-footer list">
       <slot name="footer">
         <ul>
           <li
             v-for="(item, id) in sidePanelList"
             :key="id"
             :class="{collapsed: !isLeftPanelOpen}"
-            @click="selectListitem(item)"
-            @keyup.enter="selectListitem(item)"
+            @click="selectListItem(item)"
+            @keyup.enter="selectListItem(item)"
           >
             <div
               class="count-container"
@@ -47,6 +48,13 @@
                 :displayType="item.displayType"
                 :background-color="item.style.backgroundColor"
                 :color="item.style.color"
+              />
+              <oxd-icon
+                tabindex="0"
+                v-if="sidePanelIconVisible"
+                class="oxd-left-icon"
+                :name="item.iconName"
+                :tooltip="!isLeftPanelOpen ? item.label : null"
               />
               <p v-if="isLeftPanelOpen" class="oxd-label">{{ item.label }}</p>
             </div>
@@ -67,7 +75,8 @@ import {defineComponent, computed, ref} from 'vue';
 import Chip from '@orangehrm/oxd/core/components/Chip/Chip.vue';
 import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
-
+import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
+import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';
 export default defineComponent({
   name: 'oxd-table-filter',
 
@@ -75,6 +84,8 @@ export default defineComponent({
     'oxd-chip': Chip,
     'oxd-button': Button,
     'oxd-icon-button': IconButton,
+    'oxd-icon': Icon,
+    'oxd-divider': Divider,
   },
 
   props: {
@@ -93,6 +104,10 @@ export default defineComponent({
     bubbleVisible: {
       type: Boolean,
       default: true,
+    },
+    sidePanelIconVisible: {
+      type: Boolean,
+      default: false,
     },
     button: {
       type: Object,
@@ -127,7 +142,7 @@ export default defineComponent({
     const buttonData = computed(() => {
       const initialObject = {
         label: 'Button',
-        iconName: 'plus',
+        iconName: 'oxd-add',
         iconImageSrc: null,
         size: 'long',
         displayType: 'secondary',
@@ -152,7 +167,7 @@ export default defineComponent({
       emit('sidePanelList:onHeaderBtnClick');
     };
 
-    const selectListitem = (item: {
+    const selectListItem = (item: {
       id: number;
       label: string;
       active: boolean;
@@ -172,7 +187,7 @@ export default defineComponent({
       buttonData,
       isLeftPanelOpen,
       onHeaderBtnClick,
-      selectListitem,
+      selectListItem,
       toggleLeftPanel,
     };
   },
