@@ -39,6 +39,7 @@
               :class="{active: selectedListItem.id === item.id}"
             >
               <oxd-chip
+                tabindex="0"
                 v-if="bubbleVisible"
                 tabindex="0"
                 :label="item.count"
