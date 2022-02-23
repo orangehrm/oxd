@@ -32,6 +32,7 @@
             iconName: configurations.table.leftPanel.body.button.iconName,
             iconSize: configurations.table.leftPanel.body.button.iconSize,
             iconStyle: configurations.table.leftPanel.body.button.iconStyle,
+            style: configurations.table.leftPanel.body.button.style,
             displayType: configurations.table.leftPanel.body.button.displayType,
             doubleLineLabel:
               configurations.table.leftPanel.body.button.doubleLineLabel,
