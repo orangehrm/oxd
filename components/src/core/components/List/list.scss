@@ -11,6 +11,8 @@
   }
   .table-card-list-wrapper {
     width: 100%;
+    height: 100%;
+    border-left: 1px solid $oxd-interface-gray-lighten-4-color;
     .list-table-filter {
       padding-bottom: 0;
       :deep(.oxd-table-filter-header) {

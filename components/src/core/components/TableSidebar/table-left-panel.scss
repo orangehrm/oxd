@@ -1,19 +1,20 @@
-
 @import '../../../styles';
 @import './variables';
 
 .oxd-table-left-panel {
   position: relative;
-  border-right: 1px solid $oxd-interface-gray-lighten-4-color;
   padding-right: 10px;
   padding-left: 1rem;
-  .table-left-panel-divider {
-    width: calc(100% + 10px);
+  padding-bottom: 2rem;
+  height: 100%;
+  &--separator {
+    margin-top: 1rem;
+    width: 90%;
   }
-  .body {
+  &--body {
     margin-top: 1rem;
   }
-  .oxd-table-left-panel-toggle-btn {
+  &--toggle-btn {
     position: absolute;
     width: 28px;
     height: 28px;
@@ -32,7 +33,7 @@
 }
 
 .list {
-  padding-top: 1.25rem !important;
+  padding-top: 0.5rem !important;
   ul {
     list-style: none;
     margin: 0;
@@ -47,6 +48,11 @@
         padding: 0.5rem;
         border-radius: 1.5rem;
         width: 100%;
+        .oxd-left-icon {
+          height: 1.5rem;
+          width: 1.5rem;
+          padding: 0.25rem;
+        }
         .oxd-dropdown-selected-chip {
           position: relative;
           min-width: 20px;
@@ -57,6 +63,7 @@
           font-family: $oxd-left-panel-font-family;
         }
         &:hover,
+        &:focus-within,
         &.active {
           background-color: rgba(100, 114, 140, 0.1);
           cursor: pointer;
