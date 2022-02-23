@@ -10,7 +10,7 @@
       v-if="config.table.leftPanel.visible"
       class="oxd-table-left-panel"
       :class="{'with-filters': config.table.topBar.visible}"
-      width="230px"
+      width="250px"
       :side-panel-list="sidePanelList"
       :header-visible="config.table.leftPanel.header.visible"
       :body-visible="config.table.leftPanel.body.visible"
