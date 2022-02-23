@@ -5,7 +5,7 @@
     type="button"
     :class="classes"
     @click="onClick"
-    :tooltip="tooltip"
+    :tooltip="tooltipText"
     :flow="flow"
   >
     <oxd-icon :style="iconStyles" :class="{'--disabled': disabled}" :name="name" />
@@ -60,6 +60,10 @@ export default defineComponent({
     iconStyles: {
       type: Object,
       default: () => ({})
+    },
+    showTooltipWhenDisabled: {
+      type: Boolean,
+      default: false,
     }
   },
 
@@ -71,6 +75,9 @@ export default defineComponent({
         'oxd-icon-button': true,
       };
     },
+    tooltipText() {
+      return this.disabled && !this.showTooltipWhenDisabled ? null : this.tooltip;
+    }
   },
 
   methods: {
