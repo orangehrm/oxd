@@ -3,22 +3,18 @@
 
 .oxd-table-left-panel {
   position: relative;
-  border-right: 1px solid $oxd-interface-gray-lighten-4-color;
   padding-right: 10px;
   padding-left: 1rem;
-  height: 100%;
   padding-bottom: 2rem;
-  .table-left-panel-divider {
-    width: calc(100% + 10px);
-  }
-  .oxd-header-separator {
+  height: 100%;
+  &--separator {
     margin-top: 1rem;
     width: 90%;
   }
-  .body {
+  &--body {
     margin-top: 1rem;
   }
-  .oxd-table-left-panel-toggle-btn {
+  &--toggle-btn {
     position: absolute;
     width: 28px;
     height: 28px;

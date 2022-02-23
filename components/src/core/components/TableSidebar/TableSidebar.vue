@@ -1,6 +1,6 @@
 <template>
   <div class="oxd-table-left-panel" :style="customStyles">
-    <div v-if="headerVisible" class="header">
+    <div v-if="headerVisible" class="oxd-table-left-panel--header">
       <slot name="header">
         <oxd-button
           class="table-header-action-btn"
@@ -19,12 +19,12 @@
           </template>
         </oxd-button>
       </slot>
-      <oxd-divider class="oxd-header-separator"/>
+      <oxd-divider class="oxd-table-left-panel--separator"/>
     </div>
-    <div v-if="bodyVisible" class="body">
+    <div v-if="bodyVisible" class="oxd-table-left-panel--body">
       <slot name="sidePanelBody"></slot>
     </div>
-    <div v-if="listVisible" class="oxd-footer list">
+    <div v-if="listVisible" class="oxd-table-left-panel--footer list">
       <slot name="footer">
         <ul>
           <li
@@ -64,7 +64,7 @@
     </div>
     <oxd-icon-button
       :name="isLeftPanelOpen ? 'chevron-left' : 'chevron-right'"
-      class="oxd-table-left-panel-toggle-btn"
+      class="oxd-table-left-panel--toggle-btn"
       @click="toggleLeftPanel"
     />
   </div>
