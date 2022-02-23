@@ -3,7 +3,7 @@
 exports[`Button.vue renders OXD button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--main" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
@@ -11,7 +11,7 @@ exports[`Button.vue renders OXD button 1`] = `
 exports[`Button.vue should renders OXD Glass button 1`] = `
 <button type="button" class="oxd-button oxd-button--large oxd-button--glass" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Share Photos</div>
+  <div class="oxd-button-label-wrapper">Share Photos</div>
   <!--v-if-->
 </button>
 `;
@@ -19,7 +19,7 @@ exports[`Button.vue should renders OXD Glass button 1`] = `
 exports[`Button.vue should renders OXD button with custom color 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--main" style="background-color: palegreen;" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
@@ -27,7 +27,7 @@ exports[`Button.vue should renders OXD button with custom color 1`] = `
 exports[`Button.vue should renders OXD ghost button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--ghost" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
@@ -35,7 +35,7 @@ exports[`Button.vue should renders OXD ghost button 1`] = `
 exports[`Button.vue should renders OXD ghost-danger button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--ghost-danger" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
@@ -43,7 +43,7 @@ exports[`Button.vue should renders OXD ghost-danger button 1`] = `
 exports[`Button.vue should renders OXD ghost-info button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--ghost-info" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
@@ -51,7 +51,7 @@ exports[`Button.vue should renders OXD ghost-info button 1`] = `
 exports[`Button.vue should renders OXD ghost-success button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--ghost-success" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
@@ -59,14 +59,14 @@ exports[`Button.vue should renders OXD ghost-success button 1`] = `
 exports[`Button.vue should renders OXD ghost-warn button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--ghost-warn" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
 
 exports[`Button.vue should renders OXD iconName button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--main with-icon" flow="up"><i class="oxd-icon oxd-icon--medium bi-arrow-left oxd-button-icon"></i>
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
@@ -74,14 +74,14 @@ exports[`Button.vue should renders OXD iconName button 1`] = `
 exports[`Button.vue should renders OXD iconRightName button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--main with-icon" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div><i class="oxd-icon oxd-icon--medium bi-arrow-right oxd-button-icon oxd-button-icon-right"></i>
+  <div class="oxd-button-label-wrapper">Button</div><i class="oxd-icon oxd-icon--medium bi-arrow-right oxd-button-icon oxd-button-icon-right"></i>
 </button>
 `;
 
 exports[`Button.vue should renders OXD label button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--label" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
@@ -89,7 +89,7 @@ exports[`Button.vue should renders OXD label button 1`] = `
 exports[`Button.vue should renders OXD label-danger button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--label-danger" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
@@ -97,7 +97,7 @@ exports[`Button.vue should renders OXD label-danger button 1`] = `
 exports[`Button.vue should renders OXD label-info button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--label-info" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
@@ -105,7 +105,7 @@ exports[`Button.vue should renders OXD label-info button 1`] = `
 exports[`Button.vue should renders OXD label-success button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--label-success" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
@@ -113,7 +113,7 @@ exports[`Button.vue should renders OXD label-success button 1`] = `
 exports[`Button.vue should renders OXD label-warn button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--label-warn" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
@@ -121,7 +121,7 @@ exports[`Button.vue should renders OXD label-warn button 1`] = `
 exports[`Button.vue should renders OXD large button 1`] = `
 <button type="button" class="oxd-button oxd-button--large oxd-button--main" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
@@ -129,7 +129,7 @@ exports[`Button.vue should renders OXD large button 1`] = `
 exports[`Button.vue should renders OXD main button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--main" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
@@ -137,7 +137,7 @@ exports[`Button.vue should renders OXD main button 1`] = `
 exports[`Button.vue should renders OXD medium button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--main" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
@@ -145,7 +145,7 @@ exports[`Button.vue should renders OXD medium button 1`] = `
 exports[`Button.vue should renders OXD secondary button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--secondary" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
@@ -153,7 +153,7 @@ exports[`Button.vue should renders OXD secondary button 1`] = `
 exports[`Button.vue should renders OXD small button 1`] = `
 <button type="button" class="oxd-button oxd-button--small oxd-button--main" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
@@ -161,7 +161,7 @@ exports[`Button.vue should renders OXD small button 1`] = `
 exports[`Button.vue should renders OXD solid danger button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--danger" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
@@ -169,7 +169,7 @@ exports[`Button.vue should renders OXD solid danger button 1`] = `
 exports[`Button.vue should renders OXD solid info button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--info" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
@@ -177,7 +177,7 @@ exports[`Button.vue should renders OXD solid info button 1`] = `
 exports[`Button.vue should renders OXD solid success button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--success" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
@@ -185,7 +185,7 @@ exports[`Button.vue should renders OXD solid success button 1`] = `
 exports[`Button.vue should renders OXD solid warn button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--warn" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
@@ -193,7 +193,7 @@ exports[`Button.vue should renders OXD solid warn button 1`] = `
 exports[`Button.vue should renders OXD text button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--text" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
@@ -201,7 +201,7 @@ exports[`Button.vue should renders OXD text button 1`] = `
 exports[`Button.vue should renders OXD tool button 1`] = `
 <button type="button" class="oxd-button oxd-button--medium oxd-button--tool" flow="up">
   <!--v-if-->
-  <div class="oxd-button-label-wrapper mx-w-100">Button</div>
+  <div class="oxd-button-label-wrapper">Button</div>
   <!--v-if-->
 </button>
 `;
