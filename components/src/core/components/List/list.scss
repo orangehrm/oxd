@@ -15,6 +15,24 @@
     border-left: 1px solid $oxd-interface-gray-lighten-4-color;
     .list-table-filter {
       padding-bottom: 0;
+      :deep(.oxd-table-filter-header) {
+        .oxd-table-filter-header-title {
+          .oxd-table-filter-title {
+            font-weight: 600;
+            color: $oxd-interface-gray-color;
+          }
+        }
+      }
+      &.items-selected {
+        :deep(.oxd-table-filter-header) {
+          .oxd-table-filter-header-title {
+            .oxd-table-filter-title {
+              font-weight: 700;
+              color: $oxd-interface-gray-darken-1-color;
+            }
+          }
+        }
+      }
       :deep(.oxd-divider) {
         margin-top: 0.55rem;
         margin-bottom: 0;
