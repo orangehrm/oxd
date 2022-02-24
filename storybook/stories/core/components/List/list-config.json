@@ -139,7 +139,9 @@
            "props": {
              "size": "medium",
              "display-type": "label-info",
-             "name": "funnel"
+             "name": "funnel",
+             "tooltip": "Filter",
+             "flow": "top"
            },
            "class": "btn-large",
            "style": {
@@ -158,7 +160,9 @@
              "label": "CSV",
              "size": "medium",
              "display-type": "label-info",
-             "icon-name": "file-earmark-spreadsheet"
+             "icon-name": "file-earmark-spreadsheet",
+             "tooltip": "Export to CSV",
+             "flow": "top"
            },
            "events": [
              {
