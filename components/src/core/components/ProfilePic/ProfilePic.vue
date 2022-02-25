@@ -60,7 +60,8 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .header-image {
-  .img-tag {
+  .img-tag,
+  :deep(img) {
     display: block;
     width: 2.8rem;
     height: 2.8rem;
@@ -73,14 +74,16 @@ export default defineComponent({
 }
 
 .header-image.profile-image--medium {
-  .img-tag {
+  .img-tag,
+  :deep(img) {
     width: 3.15rem;
     height: 3.15rem;
   }
 }
 
 .header-image.profile-image--small {
-  .img-tag {
+  .img-tag,
+  :deep(img) {
     width: 2.8rem;
     height: 2.8rem;
   }
