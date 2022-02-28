@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, onUnmounted} from 'vue';
 import Overlay from '@orangehrm/oxd/core/components/Dialog/Overlay.vue';
 import CloseButton from '@orangehrm/oxd/core/components/Dialog/CloseButton.vue';
 import Sheet from '@orangehrm/oxd/core/components/Sheet/Sheet.vue';
@@ -96,6 +96,20 @@ export default defineComponent({
       e.stopPropagation();
     },
   },
+
+  mounted() {
+    const body = document.getElementsByTagName('body')
+    if (body) {
+      body[0].style.overflow = 'hidden'
+    }
+  },
+
+  unmounted() {
+    const body = document.getElementsByTagName('body')
+    if (body) {
+      body[0].removeAttribute('style')
+    }
+  }
 });
 </script>
 
