@@ -5,7 +5,6 @@
   position: relative;
   padding-right: 10px;
   padding-left: 1rem;
-  padding-bottom: 2rem;
   height: 100%;
   &--separator {
     margin-top: 1rem;
@@ -93,7 +92,12 @@
   &.no-label {
     min-width: initial;
     ::v-deep(.oxd-button-label-wrapper) {
-      display: none;
+      visibility: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      width: 0;
     }
   }
 }
