@@ -100,14 +100,14 @@ export default defineComponent({
   mounted() {
     const body = document.getElementsByTagName('body')
     if (body) {
-      body[0].style.overflow = 'hidden'
+      body[0].classList.add('overflow-hidden')
     }
   },
 
   unmounted() {
     const body = document.getElementsByTagName('body')
     if (body) {
-      body[0].removeAttribute('style')
+      body[0].classList.remove('overflow-hidden')
     }
   }
 });

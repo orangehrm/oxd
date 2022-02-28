@@ -49,6 +49,11 @@
   width: 100vh;
 }
 
+.overflow {
+  &-hidden {
+    overflow: hidden;
+  }
+}
 
 
 /* START TOOLTIP STYLES */
