@@ -13,6 +13,8 @@
   letter-spacing: normal;
   width: $oxd-dialog-close-button-size;
   height: $oxd-dialog-close-button-size;
+  min-width: unset;
+  min-height: unset;
   color: $oxd-dialog-close-button-font-color;
   font-size: $oxd-dialog-close-button-font-size;
   font-weight: $oxd-dialog-close-button-font-weight;

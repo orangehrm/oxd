@@ -1,12 +1,22 @@
 <template>
-  <button class="oxd-dialog-close-button">×</button>
+  <oxd-icon-button
+    :icon-styles="{
+      color: '#fff'
+    }"
+    class="oxd-dialog-close-button"
+    :name="'x'"
+  />
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 
 export default defineComponent({
   name: 'oxd-dialog-close-button',
+  components: {
+    'oxd-icon-button': IconButton,
+  },
 });
 </script>
 

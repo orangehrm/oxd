@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProgressBar > ProgressBar.vue renders OXD linear Progress Bar 1`] = `
+<div class="oxd">
+  <div class="modal progress-modal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">List to CSV</h5>
+        </div>
+        <div class="modal-body">
+          <div class="progress linear-progress">
+            <div class="indeterminate"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -11,10 +11,20 @@ import {
   TYPE_GHOST,
   TYPE_GHOST_DANGER,
   TYPE_LABEL,
-  TYPE_LABEL_DANGER,
+  TYPE_LABEL_FEEDBACK_DANGER,
   TYPE_TEXT,
   TYPE_TOOL,
 } from '@orangehrm/oxd/core/components/Button/types';
+import {
+  ICON_SIZES,
+  ICON_SIZE_MEDIUM,
+} from '@orangehrm/oxd/core/components/Icon/types';
+import icons from 'bootstrap-icons/font/bootstrap-icons.json';
+import oxdIcons from '@orangehrm/oxd/core/components/Icon/icons'
+
+const bootstrapIconsNames = Object.keys(icons)
+const oxdIconsNames = Object.keys(oxdIcons)
+const iconNames = [...bootstrapIconsNames, ...oxdIconsNames]
 
 export default {
   title: 'Example/Button',
@@ -30,6 +40,20 @@ export default {
     },
     style: {control: {type: 'object'}},
     disabled: {control: {type: 'boolean'}},
+    iconName: {
+      control: {type: 'select', options: iconNames},
+    },
+    iconSize: {
+      control: {type: 'select', options: ICON_SIZES},
+      defaultValue: ICON_SIZE_MEDIUM,
+    },
+    iconRightName: {
+      control: {type: 'select', options: iconNames},
+    },
+    iconRightSize: {
+      control: {type: 'select', options: ICON_SIZES},
+      defaultValue: ICON_SIZE_MEDIUM,
+    },
   },
 };
 
@@ -89,17 +113,25 @@ Label.args = {
   displayType: TYPE_LABEL,
   label: 'Button',
 };
+Label.argTypes = {
+  displayType: {
+    control: {
+      type: 'select',
+      options: ['label-info', 'label-danger', 'label-warn', 'label-success'],
+    },
+  },
+};
 
 export const LabelFeedback = Template.bind({});
 LabelFeedback.args = {
-  displayType: TYPE_LABEL_DANGER,
+  displayType: TYPE_LABEL_FEEDBACK_DANGER,
   label: 'Button',
 };
 LabelFeedback.argTypes = {
   displayType: {
     control: {
       type: 'select',
-      options: ['label-info', 'label-danger', 'label-warn', 'label-success'],
+      options: ['label-feedback-info', 'label-feedback-danger', 'label-feedback-warn', 'label-feedback-success'],
     },
   },
 };

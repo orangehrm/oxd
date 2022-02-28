@@ -1,6 +1,6 @@
 <template>
   <div
-    class="list-container w-100 vh-100 d-flex align-start"
+    class="oxd-list-container w-100 vh-100 d-flex align-start"
     :class="{
       'table-left-panel-open':
         config.table.leftPanel.visible && state.isLeftPanelOpen,
@@ -10,7 +10,7 @@
       v-if="config.table.leftPanel.visible"
       class="oxd-table-left-panel"
       :class="{'with-filters': config.table.topBar.visible}"
-      width="230px"
+      width="250px"
       :side-panel-list="sidePanelList"
       :header-visible="config.table.leftPanel.header.visible"
       :body-visible="config.table.leftPanel.body.visible"
@@ -37,6 +37,7 @@
       <oxd-table-filter
         v-if="config.table.topBar.visible"
         class="list-table-filter"
+        :class="state.selectedItemIndexes.length > 0 ? 'items-selected' : ''"
         :filter-title="filterTitle"
       >
         <template v-slot:actionOptions>
@@ -70,7 +71,7 @@
             :clear="config.table.topBar.quickSearch.clear"
             :createOptions="quickSearchOptions"
             :modelValue="state.selectedQuickSearch"
-            @dropdown:modelValue="quickSearchSelect"
+            @update:modelValue="quickSearchSelect"
           >
             <template v-slot:iconSlot>
               <oxd-icon-button
@@ -117,6 +118,7 @@
           :selectable="true"
           :clickable="false"
           :class="oxdCardTableStyleClasses"
+          :loading="isListLoading"
           v-model:selected="state.checkedItems"
           v-model:order="order"
           @update:order="tableSort"
@@ -210,6 +212,10 @@ export default defineComponent({
       type: Number,
       default: 5,
     },
+    isListLoading: {
+      type: Boolean,
+      default: false,
+    }
   },
   setup(props, {emit}) {
     const sampleImages = images;
@@ -252,23 +258,14 @@ export default defineComponent({
     });
 
     const filterTitle = computed((): string => {
-      let title = '';
-      if (state.selectedItemIndexes.length > 0) {
-        if (state.selectedItemIndexes.length > 1) {
-          title = config.value.table.topBar.listRecordCount.multiTerm;
-        } else {
-          title = config.value.table.topBar.listRecordCount.singleTerm;
-        }
-        title = `(${state.selectedItemIndexes.length}) ${title} selected`;
-      } else {
-        if (props.filteredTotalRecordsCount > 1) {
-          title = config.value.table.topBar.listRecordCount.multiTerm;
-        } else {
-          title = config.value.table.topBar.listRecordCount.singleTerm;
-        }
-        title = `(${props.filteredTotalRecordsCount}) ${title} found`;
-      }
-      return title;
+      let itemCount = state.selectedItemIndexes.length || props.filteredTotalRecordsCount;
+      return `
+        ${itemCount}
+        ${itemCount > 1 || itemCount === 0
+          ? config.value.table.topBar.listRecordCount.multiTerm
+          : config.value.table.topBar.listRecordCount.singleTerm}
+        ${state.selectedItemIndexes.length > 0 ? 'Selected' : 'Found'}
+      `
     });
 
     const sidePanelListOnHeaderBtnClick = () => {

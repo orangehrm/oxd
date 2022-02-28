@@ -9,9 +9,14 @@
   border-radius: 3em;
   cursor: pointer;
   display: inline-block;
+  align-items: center;
   padding-right: $oxd-button-horizontal-padding;
   padding-left: $oxd-button-horizontal-padding;
   min-width: $oxd-button-min-width;
+  &.with-icon {
+    display: flex;
+    justify-content: center;
+  }
 
   &:focus {
     outline: 0;
@@ -77,6 +82,24 @@
     }
   }
 
+  /* Label Feedaback Button */
+  &--label-feedback {
+    @include oxd-button-label-feedback('default');
+
+    &-info {
+      @include oxd-button-label-feedback('info');
+    }
+    &-danger {
+      @include oxd-button-label-feedback('danger');
+    }
+    &-warn {
+      @include oxd-button-label-feedback('warn');
+    }
+    &-success {
+      @include oxd-button-label-feedback('success');
+    }
+  }
+
   /* Text Button */
   &--text {
     @include oxd-button-label('text');
@@ -114,12 +137,23 @@
 }
 
 /*Glass Button */
-
-.oxd-button-icon {
-  color: inherit;
-  vertical-align: bottom;
-  position: relative;
-  left: -0.5rem;
+.oxd-button {
+  .oxd-button-icon {
+    color: inherit;
+    vertical-align: bottom;
+    position: relative;
+    &:not(.oxd-button-icon-right) {
+      margin-right: 0.5rem;
+    }
+    &.oxd-button-icon-right {
+      margin-left: 0.5rem;
+    }
+  }
+  &.no-label {
+    .oxd-button-icon {
+      margin: 0;
+    }
+  }
 }
 
 .oxd-button--glass {

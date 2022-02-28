@@ -225,7 +225,7 @@ $oxd-button-color--label-danger-pressed: rgba(
   $oxd-feedback-danger-color,
   0.2
 ) !default;
-$oxd-button-color--label-danger-hover: $oxd-button-font-color--label-danger !default;
+$oxd-button-color--label-danger-hover: rgba($oxd-button-font-color--label-danger, 0.15) !default;
 $oxd-button-color--label-danger-focus: $oxd-button-color--label-danger-hover !default;
 $oxd-button-color--label-danger-inactive: $oxd-interface-gray-lighten-1-color !default;
 
@@ -253,6 +253,66 @@ $oxd-button-color--label-success-pressed: rgba(
 $oxd-button-color--label-success-hover: rgba($oxd-button-font-color--label-success, 0.15) !default;
 $oxd-button-color--label-success-focus: $oxd-button-color--label-success-hover !default;
 $oxd-button-color--label-success-inactive: $oxd-interface-gray-lighten-1-color !default;
+
+/**
+ * Label Feedback Button
+**/
+$oxd-button-font-color--label-feedback: #68a61d !default;
+$oxd-button-color--label-feedback: rgba($oxd-button-font-color--label, 0.1) !default;
+$oxd-button-color--label-feedback-pressed: rgba(
+  $oxd-button-font-color--label-feedback,
+  0.2
+) !default;
+$oxd-button-color--label-feedback-hover: $oxd-button-font-color--label-feedback !default;
+$oxd-button-color--label-feedback-focus: $oxd-button-color--label-feedback-hover !default;
+$oxd-button-color--label-feedback-inactive: $oxd-interface-gray-lighten-1-color !default;
+
+/* Info */
+$oxd-button-font-color--label-feedback-info: $oxd-feedback-info-color !default;
+$oxd-button-color--label-feedback-info: rgba($oxd-feedback-info-color, 0.1) !default;
+$oxd-button-color--label-feedback-info-pressed: rgba(
+  $oxd-feedback-info-color,
+  0.2
+) !default;
+$oxd-button-color--label-feedback-info-hover: $oxd-button-font-color--label-info !default;
+$oxd-button-color--label-feedback-info-focus: $oxd-button-color--label-feedback-info-hover !default;
+$oxd-button-color--label-feedback-info-inactive: $oxd-interface-gray-lighten-1-color !default;
+
+/* Danger */
+$oxd-button-font-color--label-feedback-danger: $oxd-feedback-danger-color !default;
+$oxd-button-color--label-feedback-danger: rgba($oxd-feedback-danger-color, 0.1) !default;
+$oxd-button-color--label-feedback-danger-pressed: rgba(
+  $oxd-feedback-danger-color,
+  0.2
+) !default;
+$oxd-button-color--label-feedback-danger-hover: $oxd-button-font-color--label-feedback-danger !default;
+$oxd-button-color--label-feedback-danger-focus: $oxd-button-color--label-feedback-danger-hover !default;
+$oxd-button-color--label-feedback-danger-inactive: $oxd-interface-gray-lighten-1-color !default;
+
+/* Warning */
+$oxd-button-font-color--label-feedback-warn: $oxd-feedback-warn-color !default;
+$oxd-button-color--label-feedback-warn: rgba($oxd-feedback-warn-color, 0.1) !default;
+$oxd-button-color--label-feedback-warn-pressed: rgba(
+  $oxd-feedback-warn-color,
+  0.2
+) !default;
+$oxd-button-color--label-feedback-warn-hover: $oxd-button-font-color--label-feedback-warn !default;
+$oxd-button-color--label-feedback-warn-focus: $oxd-button-color--label-feedback-warn-hover !default;
+$oxd-button-color--label-feedback-warn-inactive: $oxd-interface-gray-lighten-1-color !default;
+
+/* Success */
+$oxd-button-font-color--label-feedback-success: $oxd-feedback-success-color !default;
+$oxd-button-color--label-feedback-success: rgba(
+  $oxd-feedback-success-color,
+  0.1
+) !default;
+$oxd-button-color--label-feedback-success-pressed: rgba(
+  $oxd-feedback-success-color,
+  0.2
+) !default;
+$oxd-button-color--label-feedback-success-hover: $oxd-button-font-color--label-feedback-success !default;
+$oxd-button-color--label-feedback-success-focus: $oxd-button-color--label-feedback-success-hover !default;
+$oxd-button-color--label-feedback-success-inactive: $oxd-interface-gray-lighten-1-color !default;
 
 /* Text button */
 $oxd-button-font-color--label-text: $oxd-interface-gray-darken-1-color !default;
@@ -312,6 +372,58 @@ $oxd-label-buttons: (
     focus: $oxd-button-color--label-success-focus,
     hover: $oxd-button-color--label-success-hover,
     inactive: $oxd-button-color--label-success-inactive,
+  ),
+  text: (
+    font: $oxd-button-font-color--label-text,
+    active: $oxd-button-color--label-text,
+    pressed: $oxd-button-color--label-text-pressed,
+    focus: $oxd-button-color--label-text-focus,
+    hover: $oxd-button-color--label-text-hover,
+    inactive: $oxd-button-color--label-text-inactive,
+    font-inactive: $oxd-button-font-color--label-text-inactive,
+  ),
+);
+
+$oxd-label-feedback-buttons: (
+  default: (
+    font: $oxd-button-font-color--label-feedback,
+    active: $oxd-button-color--label-feedback,
+    pressed: $oxd-button-color--label-feedback-pressed,
+    focus: $oxd-button-color--label-feedback-focus,
+    hover: $oxd-button-color--label-feedback-hover,
+    inactive: $oxd-button-color--label-feedback-inactive,
+  ),
+  info: (
+    font: $oxd-button-font-color--label-feedback-info,
+    active: $oxd-button-color--label-feedback-info,
+    pressed: $oxd-button-color--label-feedback-info-pressed,
+    focus: $oxd-button-color--label-feedback-info-focus,
+    hover: $oxd-button-color--label-feedback-info-hover,
+    inactive: $oxd-button-color--label-feedback-info-inactive,
+  ),
+  danger: (
+    font: $oxd-button-font-color--label-feedback-danger,
+    active: $oxd-button-color--label-feedback-danger,
+    pressed: $oxd-button-color--label-feedback-danger-pressed,
+    focus: $oxd-button-color--label-feedback-danger-focus,
+    hover: $oxd-button-color--label-feedback-danger-hover,
+    inactive: $oxd-button-color--label-feedback-danger-inactive,
+  ),
+  warn: (
+    font: $oxd-button-font-color--label-feedback-warn,
+    active: $oxd-button-color--label-feedback-warn,
+    pressed: $oxd-button-color--label-feedback-warn-pressed,
+    focus: $oxd-button-color--label-feedback-warn-focus,
+    hover: $oxd-button-color--label-feedback-warn-hover,
+    inactive: $oxd-button-color--label-feedback-warn-inactive,
+  ),
+  success: (
+    font: $oxd-button-font-color--label-feedback-success,
+    active: $oxd-button-color--label-feedback-success,
+    pressed: $oxd-button-color--label-feedback-success-pressed,
+    focus: $oxd-button-color--label-feedback-success-focus,
+    hover: $oxd-button-color--label-feedback-success-hover,
+    inactive: $oxd-button-color--label-feedback-success-inactive,
   ),
   text: (
     font: $oxd-button-font-color--label-text,

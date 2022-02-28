@@ -1,20 +1,41 @@
 @import '../../../styles';
 
-.list-container {
+.oxd-list-container {
   margin-top: 2rem;
   background-color: #fff;
   border-radius: 1.2rem;
   .oxd-table-left-panel {
     &.with-filters {
       margin-top: 1.25rem;
+      margin-bottom: 1.25rem;
     }
   }
   .table-card-list-wrapper {
     width: 100%;
+    height: 100%;
+    border-left: 1px solid $oxd-interface-gray-lighten-4-color;
     .list-table-filter {
       padding-bottom: 0;
+      :deep(.oxd-table-filter-header) {
+        .oxd-table-filter-header-title {
+          .oxd-table-filter-title {
+            font-weight: 600;
+            color: $oxd-interface-gray-color;
+          }
+        }
+      }
+      &.items-selected {
+        :deep(.oxd-table-filter-header) {
+          .oxd-table-filter-header-title {
+            .oxd-table-filter-title {
+              font-weight: 700;
+              color: $oxd-interface-gray-darken-1-color;
+            }
+          }
+        }
+      }
       :deep(.oxd-divider) {
-        margin-top: 0.25rem;
+        margin-top: 0.55rem;
         margin-bottom: 0;
       }
     }
@@ -57,9 +78,6 @@
 .oxd-button {
   display: flex;
   align-items: center;
-  :deep(.oxd-button-icon) {
-    margin-right: 0.5rem;
-  }
   &:disabled {
     :deep(svg) {
       * {
@@ -85,7 +103,6 @@
         fill: $oxd-feedback-danger-color;
       }
     }
-    color: $oxd-feedback-danger-color;
     &:disabled {
       background-color: $oxd-interface-gray-lighten-1-color !important;
       color: $oxd-white-color !important;

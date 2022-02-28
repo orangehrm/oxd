@@ -1,12 +1,26 @@
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon';
 import icons from 'bootstrap-icons/font/bootstrap-icons.json';
+import {
+  ICON_SIZES,
+  ICON_SIZE_MEDIUM,
+} from '@orangehrm/oxd/core/components/Icon/types';
+
+import oxdIcons from '@orangehrm/oxd/core/components/Icon/icons'
+
+const bootstrapIconsNames = Object.keys(icons)
+const oxdIconsNames = Object.keys(oxdIcons)
+const iconNames = [...bootstrapIconsNames, ...oxdIconsNames]
 
 export default {
   title: 'Example/Icon',
   component: Icon,
   argTypes: {
     name: {
-      control: {type: 'select', options: Object.keys(icons)},
+      control: {type: 'select', options: iconNames},
+    },
+    size: {
+      control: {type: 'select', options: ICON_SIZES},
+      defaultValue: ICON_SIZE_MEDIUM,
     },
   },
 };
@@ -26,5 +40,5 @@ Default.args = {
 
 export const OhrmIcon = Template.bind({});
 OhrmIcon.args = {
-  name: 'oxd-kudos',
+  name: 'oxd-archive',
 };

@@ -26,6 +26,8 @@
            "label": "All Vacancy",
            "labelMini": "Vacancy",
            "iconName": "eye",
+           "iconSize": "large",
+           "iconStyle": "height: 20px",
            "displayType": "label",
            "doubleLineLabel": true
          },
@@ -115,7 +117,6 @@
             "visible": true,
             "class": "quick-search-btn",
             "style": {
-              "background-color": "rgba(100, 114, 140, 0.1)",
               "min-width": "unset",
               "min-height": "unset"
             },
@@ -132,7 +133,9 @@
            "props": {
              "size": "medium",
              "display-type": "label-info",
-             "name": "funnel"
+             "name": "funnel",
+             "tooltip": "Filter",
+             "flow": "top"
            },
            "class": "btn-large",
            "style": {
@@ -151,7 +154,9 @@
              "label": "CSV",
              "size": "medium",
              "display-type": "label-info",
-             "icon-name": "file-earmark-spreadsheet"
+             "icon-name": "file-earmark-spreadsheet",
+             "tooltip": "Export to CSV",
+             "flow": "top"
            },
            "events": [
              {
