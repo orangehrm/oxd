@@ -7,7 +7,6 @@
       <!-- oxd-card-table header start -->
       <component :is="tableDeco.headerDecorator"></component>
       <!-- oxd-card-table header end -->
-
       <!-- oxd-card-table body start -->
       <component :is="tableDeco.bodyDecorator"></component>
       <!-- oxd-card-table body end -->
@@ -26,7 +25,7 @@ import {
   readonly,
   watch,
 } from 'vue';
-import {CardSelector, CardHeaders, SortDefinition} from './types';
+import {CardSelector, CardHeaders, SortDefinition, HilightRows, HighlightType, HIGHLIGHT_TYPES, HIGHLIGHT_TYPE_SUCCESS} from './types';
 import useResponsive from '../../../composables/useResponsive';
 import Table from '@orangehrm/oxd/core/components/CardTable/Table/Table.vue';
 import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
@@ -52,6 +51,16 @@ export default defineComponent({
     items: {
       type: Array,
       default: () => [],
+    },
+    highlightRows: {
+      type: Object as PropType<HilightRows>,
+      default: () => ({
+        rowIndexes: [],
+        type: HIGHLIGHT_TYPE_SUCCESS,
+      }),
+      validator: (value: HighlightType) => {
+        return HIGHLIGHT_TYPES.indexOf(value) !== -1;
+      },
     },
     clickable: {
       type: Boolean,

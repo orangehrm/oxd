@@ -25,6 +25,21 @@
   }
 }
 
+.oxd-row-highlight {
+  &--info {
+    background-color: rgba($oxd-feedback-info-color, 0.10);
+  }
+  &--success {
+    background-color: rgba($oxd-feedback-success-color, 0.10);
+  }
+  &--warn {
+    background-color: rgba($oxd-feedback-warn-color, 0.10);
+  }
+  &--error {
+    background-color: rgba($oxd-feedback-danger-color, 0.10);
+  }
+}
+
 .card-item {
   padding: $oxd-card-table-decorator-card-item-padding;
   min-width: 0;
