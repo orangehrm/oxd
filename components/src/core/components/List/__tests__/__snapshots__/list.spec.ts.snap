@@ -1,11 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`List > List.vue renders OXD List > List 1`] = `
-<div class="oxd-table" role="table" configurations="[object Object]">
-  <!-- oxd-card-table header start -->
+<div class="oxd-list-container w-100 vh-100 d-flex align-start">
   <!--v-if-->
-  <!-- oxd-card-table header end -->
-  <!-- oxd-card-table body start -->
-  <div class="oxd-table-body oxd-card-table-body" role="rowgroup"></div><!-- oxd-card-table body end -->
+  <div class="table-card-list-wrapper">
+    <!--v-if-->
+    <div class="oxd-card-table-wrapper">
+      <div class="oxd-table oxd-classic-table" role="table" rowdecorator="oxd-table-decorator-card">
+        <!-- oxd-card-table header start -->
+        <!--v-if-->
+        <!-- oxd-card-table header end -->
+        <!-- oxd-card-table body start -->
+        <div class="oxd-table-body oxd-card-table-body" role="rowgroup"></div><!-- oxd-card-table body end -->
+      </div>
+      <nav role="navigation" aria-label="Pagination Navigation" class="list-pagination d-flex align-center justify-end">
+        <ul class="oxd-pagination__ul">
+          <!--v-if-->
+          <li><button type="button" class="oxd-pagination-page-item oxd-pagination-page-item--previous-next"><i class="oxd-icon oxd-icon--medium bi-chevron-right"></i></button></li>
+          <div class="oxd-select-wrapper">
+            <div class="oxd-select-text oxd-select-text--active">
+              <div class="oxd-select-text-input pagination-dropdown" tabindex="0">10</div>
+              <div class="oxd-select-text--after"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill oxd-select-text--arrow"></i></div>
+            </div>
+            <!--v-if-->
+          </div>
+        </ul>
+      </nav>
+    </div>
+  </div>
 </div>
 `;
