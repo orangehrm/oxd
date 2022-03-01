@@ -66,6 +66,6 @@ export type HighlightType =
   | typeof HIGHLIGHT_TYPE_INFO;
 
 export interface HighlightRows {
-  rowIndexes: number[],
-  type?: string
+  rowIndexes: number[];
+  type?: string;
 }
