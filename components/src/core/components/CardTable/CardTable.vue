@@ -25,7 +25,7 @@ import {
   readonly,
   watch,
 } from 'vue';
-import {CardSelector, CardHeaders, SortDefinition, HilightRows, HighlightType, HIGHLIGHT_TYPES, HIGHLIGHT_TYPE_SUCCESS} from './types';
+import {CardSelector, CardHeaders, SortDefinition, HighlightRows, HighlightType, HIGHLIGHT_TYPES, HIGHLIGHT_TYPE_SUCCESS} from './types';
 import useResponsive from '../../../composables/useResponsive';
 import Table from '@orangehrm/oxd/core/components/CardTable/Table/Table.vue';
 import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
@@ -53,7 +53,7 @@ export default defineComponent({
       default: () => [],
     },
     highlightRows: {
-      type: Object as PropType<HilightRows>,
+      type: Object as PropType<HighlightRows>,
       default: () => ({
         rowIndexes: [],
         type: HIGHLIGHT_TYPE_SUCCESS,

@@ -65,7 +65,7 @@ export type HighlightType =
   | typeof HIGHLIGHT_TYPE_ERROR
   | typeof HIGHLIGHT_TYPE_INFO;
 
-export interface HilightRows {
+export interface HighlightRows {
   rowIndexes: number[],
   type?: string
 }
