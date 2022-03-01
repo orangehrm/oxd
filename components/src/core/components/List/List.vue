@@ -44,6 +44,7 @@
           <div
             v-for="(action, index) in config.table.topBar.bulkActions"
             :key="index"
+            class="bulk-actions"
           >
             <component
               :is="action.type"

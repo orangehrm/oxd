@@ -21,6 +21,7 @@
           .oxd-table-filter-title {
             font-weight: 600;
             color: $oxd-interface-gray-color;
+            font-size: 0.875rem;
           }
         }
       }
@@ -61,6 +62,9 @@
         max-width: 267px;
       }
     }
+  }
+  .list-table-filter .bulk-actions button.oxd-button {
+    margin-left: 0.5rem;
   }
 }
 .margin-left {

@@ -69,6 +69,10 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
+    dialogSizeClass: {
+      type: String,
+      default: 'modal-md',
+    },
   },
 
   computed: {
@@ -76,6 +80,7 @@ export default defineComponent({
       return {
         'oxd-dialog-sheet': true,
         'oxd-dialog-sheet--shadow': this.shadow,
+        [`${this.dialogSizeClass}`]: true,
       };
     },
     computedTransition(): string {

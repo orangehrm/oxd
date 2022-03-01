@@ -83,9 +83,6 @@
              "icon-name": "oxd-archive"
            },
            "class": "oxd-btn-info-custom",
-           "style": {
-             "margin-left": "0.5rem"
-           },
            "events": [
              {
                "type": "click",
@@ -102,9 +99,6 @@
              "icon-name": "trash"
            },
            "class": "oxd-btn-danger-custom",
-           "style": {
-             "margin-left": "0.5rem"
-           },
            "events": [
              {
                "type": "click",
