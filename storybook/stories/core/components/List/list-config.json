@@ -16,7 +16,8 @@
              "displayType": "secondary",
              "size": "long",
              "display-type": "label-info",
-             "icon-name": "plus"
+             "icon-name": "plus",
+             "iconSize": "small"
            }
          }
        },
