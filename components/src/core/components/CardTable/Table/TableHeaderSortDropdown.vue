@@ -121,13 +121,13 @@ export default defineComponent({
       if (this.order !== undefined) {
         switch (this.order as Order) {
           case 'ASC':
-            icon = 'sort-alpha-down';
+            icon = 'oxd-sort-asc';
             break;
           case 'DESC':
-            icon = 'sort-alpha-up';
+            icon = 'oxd-sort-desc';
             break;
           default:
-            icon = 'arrow-down-up';
+            icon = 'oxd-sort';
         }
       }
       return icon;
