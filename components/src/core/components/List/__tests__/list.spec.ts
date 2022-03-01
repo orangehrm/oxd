@@ -1,141 +1,33 @@
-import {mount} from '@vue/test-utils';
-import CardTable from '@orangehrm/oxd/core/components/CardTable/CardTable.vue';
-
-const DUMMY_DATA = {
-  table: {
-    leftPanel: {
-      visible: true,
-      header: {
-        visible: true,
-        button: {
-          label: 'Add Candidate',
-        },
-      },
-      body: {
-        visible: true,
-        button: {
-          label: 'All Vacancy',
-          iconName: 'eye',
-          displayType: 'label',
-          doubleLineLabel: true,
-        },
-        dropdown: {
-          style: {
-            width: '220px',
-          },
-        },
-      },
-      list: {
-        visible: true,
-        bubble: {
-          visible: true,
-        },
-      },
-    },
-    topBar: {
-      visible: true,
-      listRecordCount: {
-        singleTerm: 'Candidate',
-        multiTerm: 'Candidates',
-      },
-      quickSearch: {
-        visible: true,
-        searchPlaceholder: 'Search',
-        clearButton: true,
-        buttonIcon: 'oxd-search',
-        buttonDisplayType: 'label-info',
-      },
-    },
-    headers: [
-      {
-        name: 'profilepic',
-        slot: 'footer',
-        title: '',
-        style: {
-          width: '50px',
-        },
-        cellType: 'oxd-table-cell-actions',
-        cellRenderer: 'profilePicRenderer',
-      },
-      {
-        name: 'candidate',
-        sortField: 'candidate',
-        initialSortOrder: 'ASC',
-        title: 'Candidate',
-        style: {
-          flex: 1,
-        },
-      },
-      {
-        name: 'email',
-        sortField: 'email',
-        initialSortOrder: 'ASC',
-        title: 'Email',
-        style: {
-          flex: 1,
-        },
-      },
-      {
-        name: 'contactNumber',
-        sortField: 'contactNumber',
-        initialSortOrder: 'ASC',
-        title: 'Contact Number',
-        style: {
-          flex: 1,
-        },
-      },
-      {
-        name: 'dateOfApplication',
-        sortField: 'dateOfApplication',
-        initialSortOrder: 'DESC',
-        title: 'Date Applied',
-        style: {
-          flex: 1,
-        },
-      },
-      {
-        name: 'action',
-        slot: 'footer',
-        title: 'Stage',
-        style: {
-          width: '300px',
-        },
-        cellType: 'oxd-table-cell-actions',
-        cellRenderer: 'actionsRenderer',
-      },
-    ],
-  },
-  drawer: {
-    visible: true,
-    width: '600px',
-    height: '100%',
-    fullHeight: false,
-    stickyFooter: true,
-    fixedPosition: true,
-    position: 'right',
-    header: {
-      visible: true,
-      title: 'Filter',
-      charmButton: {
-        visible: true,
-        icon: 'oxd-refresh',
-      },
-    },
-    footer: {
-      okButton: {
-        label: 'Search',
-      },
-    },
-  },
-};
+import {shallowMount} from '@vue/test-utils';
+import List from "@orangehrm/oxd/core/components/List/List.vue";
+import minimalListConfig from './list-minimal.json'
 
 describe('List > List.vue', () => {
-  it('renders OXD List > List', () => {
-    const wrapper = mount(CardTable, {
+  it('correctly computes initial sort order', () => {
+    const wrapper = shallowMount(List, {
       props: {
-        configurations: DUMMY_DATA,
+        configurations: minimalListConfig,
       },
     });
-    expect(wrapper.html()).toMatchSnapshot();
+    expect(wrapper.vm.order).toStrictEqual({
+      'candidate': 'DEFAULT', 'email': 'DEFAULT', 'contactNumber': 'DEFAULT', 'dateOfApplication': 'DESC'});
+  });
+
+  it('changes sort order when sort changes', () => {
+    const wrapper = shallowMount(List, {
+      props: {
+        configurations: minimalListConfig,
+      },
+    });
+    wrapper.vm.tableSort({'candidate': 'ASC', 'email': 'DEFAULT', 'contactNumber': 'DEFAULT', 'dateOfApplication': 'DEFAULT'});
+
+    // assert event has been emitted
+    expect(wrapper.emitted()['update:order']).toBeTruthy()
+    expect(wrapper.emitted()['update:order'].length).toBe(1)
+    expect(wrapper.emitted()['update:order'][0]).toStrictEqual([{'candidate': 'ASC', 'email': 'DEFAULT', 'contactNumber': 'DEFAULT', 'dateOfApplication': 'DEFAULT'}])
+
+    // assert sort order has been updated
+    expect(wrapper.vm.order).toStrictEqual({
+      'candidate': 'ASC', 'email': 'DEFAULT', 'contactNumber': 'DEFAULT', 'dateOfApplication': 'DEFAULT'});
   });
 });

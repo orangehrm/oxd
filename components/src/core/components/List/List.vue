@@ -230,6 +230,7 @@ export default defineComponent({
       modalState: false as boolean,
       selectedQuickSearch: null,
       selectedItemIndexes: [],
+      currentSortFields: {},
     });
 
     const config = computed(() => props.configurations);
@@ -244,7 +245,7 @@ export default defineComponent({
       const sortableFieldsObj = {};
       config.value.table.headers.forEach(header => {
         if (header.initialSortOrder) {
-          sortableFieldsObj[header.sortField] = header.initialSortOrder;
+          sortableFieldsObj[header.sortField] = state.currentSortFields[header.sortField] ? state.currentSortFields[header.sortField] : header.initialSortOrder;
         }
       });
       return sortableFieldsObj;
@@ -292,6 +293,7 @@ export default defineComponent({
     };
 
     const tableSort = value => {
+      state.currentSortFields = value;
       emit('update:order', value);
     };
 

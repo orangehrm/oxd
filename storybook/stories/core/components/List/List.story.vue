@@ -790,7 +790,6 @@ export default defineComponent({
           );
           const query = [`orderField=${orderField}`, `orderBy=${value}`];
           let includes;
-          getCandidates(appliedFilters.value, includes, query);
         }
       }
     };
