@@ -67,5 +67,5 @@ export type HighlightType =
 
 export interface HighlightRows {
   rowIndexes: number[];
-  type?: string;
+  type: string;
 }

@@ -3,7 +3,7 @@
     <div
       v-for="(item, index) in items"
       :key="item"
-      :class="[classes, bindClasses(index)]"
+      :class="classes[index]"
       @click="onClick(item)($event)"
     >
       <oxd-card-tr :clickable="tableProps.clickable">
@@ -39,10 +39,18 @@ export default defineComponent({
   },
 
   computed: {
-    classes(): object {
-      return {
-        'oxd-table-card': true,
+    classes(): object[] {
+      const highlightObject = this.tableProps.highlightRows ?? {
+        rowIndexes: [],
+        type: HIGHLIGHT_TYPE_SUCCESS,
       };
+      return this.items.map((_, index) => {
+        return {
+          'oxd-table-card': true,
+          [`oxd-row-highlight--${highlightObject.type}`]:
+            highlightObject.rowIndexes.indexOf(index) > -1,
+        };
+      });
     },
     defaultSlot(): Array<CardHeaders> {
       if (this.tableProps.selectable) {
@@ -68,23 +76,6 @@ export default defineComponent({
   },
 
   methods: {
-    bindClasses(index: number) {
-      const highlightRows = this.tableProps.highlightRows
-      const initialObject = {
-        rowIndexes: [],
-        type: HIGHLIGHT_TYPE_SUCCESS,
-      };
-      for (const key in highlightRows) {
-        const value = highlightRows[key];
-        if (value) {
-          initialObject[key] = value;
-        }
-      }
-      const isHighlighted = initialObject?.rowIndexes?.indexOf(index) > -1
-      return {
-        [`oxd-row-highlight--${initialObject?.type}`]: isHighlighted,
-      }
-    },
     onClick(item: any) {
       return (e: Event) => {
         emitter.emit(`${this.tableProps.tableId}-datatable:clickRow`, {
