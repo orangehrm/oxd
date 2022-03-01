@@ -114,6 +114,7 @@
           :selector="state.selector"
           :headers="config.table.headers"
           :items="listItems"
+          :highlight-rows="listHighlightRows"
           :selectable="true"
           :clickable="false"
           :class="oxdCardTableStyleClasses"
@@ -214,6 +215,9 @@ export default defineComponent({
     isListLoading: {
       type: Boolean,
       default: false,
+    },
+    listHighlightRows: {
+      type: Object
     }
   },
   setup(props, {emit}) {
