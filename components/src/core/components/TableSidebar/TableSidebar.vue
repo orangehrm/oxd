@@ -9,6 +9,7 @@
           flow="right"
           :label="buttonData.label"
           :iconName="buttonData.iconName"
+          :iconSize="buttonData.iconSize"
           :size="buttonData.size"
           :style="buttonData.style"
           :displayType="buttonData.displayType"
@@ -144,6 +145,7 @@ export default defineComponent({
         label: 'Button',
         iconName: 'oxd-add',
         iconImageSrc: null,
+        iconSize: "medium",
         size: 'long',
         displayType: 'secondary',
         style: null,
