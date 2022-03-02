@@ -1,8 +1,5 @@
 <template>
-  <div
-      class="oxd-table-header-sort"
-      @keyup.esc="closeDropdown"
-  >
+  <div class="oxd-table-header-sort" @keyup.esc="closeDropdown">
     <oxd-icon-button
       :withContainer="false"
       :name="sortIcon"
@@ -25,9 +22,9 @@
       @keydown.tab="closeDropdown"
     >
       <ul
-          role="menu"
-          @click.stop="closeDropdown"
-          @keydown.enter.prevent.stop="closeDropdown"
+        role="menu"
+        @click.stop="closeDropdown"
+        @keydown.enter.prevent.stop="closeDropdown"
       >
         <li
           ref="topDropdownElement"
@@ -93,24 +90,26 @@ export default defineComponent({
   },
 
   methods: {
-    openDropdown($e :Event) {
+    openDropdown($e: Event) {
       this.isActive = true;
       this.$nextTick(() => {
-        const firstFocusableElement = ($e?.target as Element).parentElement?.querySelector('.oxd-table-header-sort-dropdown-item');
-        if(firstFocusableElement){
+        const firstFocusableElement = ($e?.target as Element).parentElement?.querySelector(
+          '.oxd-table-header-sort-dropdown-item',
+        );
+        if (firstFocusableElement) {
           (firstFocusableElement as HTMLElement).focus();
         }
-      })
+      });
     },
     closeDropdown() {
       if (this.isActive) {
         this.isActive = false;
       }
     },
-    onSelectDown(){
+    onSelectDown() {
       this.$refs.bottomDropdownElement.focus();
     },
-    onSelectUp(){
+    onSelectUp() {
       this.$refs.topDropdownElement.focus();
     },
   },

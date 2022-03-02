@@ -3,28 +3,36 @@ import TableHeaderSortDropdown from '@orangehrm/oxd/core/components/CardTable/Ta
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 
 describe('CardTable > TableHeaderCell > TableHeaderSortDropdown.vue', () => {
-    it('renders sort icon for asc', () => {
-        const wrapper = shallowMount(TableHeaderSortDropdown, {
-            props: {order: 'ASC'},
-        });
-        expect(wrapper.findComponent(IconButton).attributes('name')).toBe('oxd-sort-asc');
+  it('renders sort icon for asc', () => {
+    const wrapper = shallowMount(TableHeaderSortDropdown, {
+      props: {order: 'ASC'},
     });
-    it('renders sort icon for desc', () => {
-        const wrapper = shallowMount(TableHeaderSortDropdown, {
-            props: {order: 'DESC'},
-        });
-        expect(wrapper.findComponent(IconButton).attributes('name')).toBe('oxd-sort-desc');
+    expect(wrapper.findComponent(IconButton).attributes('name')).toBe(
+      'oxd-sort-asc',
+    );
+  });
+  it('renders sort icon for desc', () => {
+    const wrapper = shallowMount(TableHeaderSortDropdown, {
+      props: {order: 'DESC'},
     });
-    it('renders sort icon for default', () => {
-        const wrapper = shallowMount(TableHeaderSortDropdown, {
-            props: {order: 'DEFAULT'},
-        });
-        expect(wrapper.findComponent(IconButton).attributes('name')).toBe('oxd-sort');
+    expect(wrapper.findComponent(IconButton).attributes('name')).toBe(
+      'oxd-sort-desc',
+    );
+  });
+  it('renders sort icon for default', () => {
+    const wrapper = shallowMount(TableHeaderSortDropdown, {
+      props: {order: 'DEFAULT'},
     });
-    it('renders sort icon for any other value', () => {
-        const wrapper = shallowMount(TableHeaderSortDropdown, {
-            props: {order: 'A'},
-        });
-        expect(wrapper.findComponent(IconButton).attributes('name')).toBe('oxd-sort');
+    expect(wrapper.findComponent(IconButton).attributes('name')).toBe(
+      'oxd-sort',
+    );
+  });
+  it('renders sort icon for any other value', () => {
+    const wrapper = shallowMount(TableHeaderSortDropdown, {
+      props: {order: 'A'},
     });
+    expect(wrapper.findComponent(IconButton).attributes('name')).toBe(
+      'oxd-sort',
+    );
+  });
 });

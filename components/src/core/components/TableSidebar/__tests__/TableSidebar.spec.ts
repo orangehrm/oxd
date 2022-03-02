@@ -16,7 +16,7 @@ describe('TableSidebar.vue', () => {
             id: -1,
             label: 'All Candidates',
             iconName: 'oxd-standard-reports',
-          }
+          },
         ],
         width: '230px',
         button: {
@@ -25,12 +25,14 @@ describe('TableSidebar.vue', () => {
             displayType: 'secondary',
             size: 'long',
             'display-type': 'label-info',
-            'icon-name': 'plus'
+            'icon-name': 'plus',
           },
         },
       },
     });
-    expect(wrapper.findComponent('.table-header-action-btn').attributes('iconsize')).toBe('medium');
+    expect(
+      wrapper.findComponent('.table-header-action-btn').attributes('iconsize'),
+    ).toBe('medium');
   });
 
   it('renders header action button with specified iconSize', () => {
@@ -47,7 +49,7 @@ describe('TableSidebar.vue', () => {
             id: -1,
             label: 'All Candidates',
             iconName: 'oxd-standard-reports',
-          }
+          },
         ],
         width: '230px',
         button: {
@@ -57,13 +59,15 @@ describe('TableSidebar.vue', () => {
             size: 'long',
             iconSize: 'large',
             'display-type': 'label-info',
-            'icon-name': 'plus'
+            'icon-name': 'plus',
           },
         },
       },
     });
-    expect(wrapper.findComponent('.table-header-action-btn').attributes('iconsize')).toBe('large');
-  })
+    expect(
+      wrapper.findComponent('.table-header-action-btn').attributes('iconsize'),
+    ).toBe('large');
+  });
 });
 
 describe('TableSidebar.vue with oxd-icon on left', () => {
@@ -312,28 +316,28 @@ describe('TableSidebar.vue with oxd-chip on left', () => {
             id: -1,
             label: 'All Candidates',
             iconName: 'oxd-standard-reports',
-            "style": {
-              "backgroundColor": "#f9e3e9",
-              "color": "#e74432"
-            }
+            style: {
+              backgroundColor: '#f9e3e9',
+              color: '#e74432',
+            },
           },
           {
             id: 1,
             label: 'Application Received',
             iconName: 'oxd-all-reports',
-            "style": {
-              "backgroundColor": "#f9e3e9",
-              "color": "#e74432"
-            }
+            style: {
+              backgroundColor: '#f9e3e9',
+              color: '#e74432',
+            },
           },
           {
             id: 2,
             label: 'Phone Screening',
             iconName: 'oxd-my-reports',
-            "style": {
-              "backgroundColor": "#f9e3e9",
-              "color": "#e74432"
-            }
+            style: {
+              backgroundColor: '#f9e3e9',
+              color: '#e74432',
+            },
           },
         ],
         width: '230px',
@@ -364,28 +368,28 @@ describe('TableSidebar.vue with oxd-chip on left', () => {
             id: -1,
             label: 'All Candidates',
             iconName: 'oxd-standard-reports',
-            "style": {
-              "backgroundColor": "#f9e3e9",
-              "color": "#e74432"
-            }
+            style: {
+              backgroundColor: '#f9e3e9',
+              color: '#e74432',
+            },
           },
           {
             id: 1,
             label: 'Application Received',
             iconName: 'oxd-all-reports',
-            "style": {
-              "backgroundColor": "#f9e3e9",
-              "color": "#e74432"
-            }
+            style: {
+              backgroundColor: '#f9e3e9',
+              color: '#e74432',
+            },
           },
           {
             id: 2,
             label: 'Phone Screening',
             iconName: 'oxd-my-reports',
-            "style": {
-              "backgroundColor": "#f9e3e9",
-              "color": "#e74432"
-            }
+            style: {
+              backgroundColor: '#f9e3e9',
+              color: '#e74432',
+            },
           },
         ],
         width: '230px',
@@ -416,28 +420,28 @@ describe('TableSidebar.vue with oxd-chip on left', () => {
             id: -1,
             label: 'All Candidates',
             iconName: 'oxd-standard-reports',
-            "style": {
-              "backgroundColor": "#f9e3e9",
-              "color": "#e74432"
-            }
+            style: {
+              backgroundColor: '#f9e3e9',
+              color: '#e74432',
+            },
           },
           {
             id: 1,
             label: 'Application Received',
             iconName: 'oxd-all-reports',
-            "style": {
-              "backgroundColor": "#f9e3e9",
-              "color": "#e74432"
-            }
+            style: {
+              backgroundColor: '#f9e3e9',
+              color: '#e74432',
+            },
           },
           {
             id: 2,
             label: 'Phone Screening',
             iconName: 'oxd-my-reports',
-            "style": {
-              "backgroundColor": "#f9e3e9",
-              "color": "#e74432"
-            }
+            style: {
+              backgroundColor: '#f9e3e9',
+              color: '#e74432',
+            },
           },
         ],
         width: '230px',
@@ -468,28 +472,28 @@ describe('TableSidebar.vue with oxd-chip on left', () => {
             id: -1,
             label: 'All Candidates',
             iconName: 'oxd-standard-reports',
-            "style": {
-              "backgroundColor": "#f9e3e9",
-              "color": "#e74432"
-            }
+            style: {
+              backgroundColor: '#f9e3e9',
+              color: '#e74432',
+            },
           },
           {
             id: 1,
             label: 'Application Received',
             iconName: 'oxd-all-reports',
-            "style": {
-              "backgroundColor": "#f9e3e9",
-              "color": "#e74432"
-            }
+            style: {
+              backgroundColor: '#f9e3e9',
+              color: '#e74432',
+            },
           },
           {
             id: 2,
             label: 'Phone Screening',
             iconName: 'oxd-my-reports',
-            "style": {
-              "backgroundColor": "#f9e3e9",
-              "color": "#e74432"
-            }
+            style: {
+              backgroundColor: '#f9e3e9',
+              color: '#e74432',
+            },
           },
         ],
         width: '230px',
@@ -520,28 +524,28 @@ describe('TableSidebar.vue with oxd-chip on left', () => {
             id: -1,
             label: 'All Candidates',
             iconName: 'oxd-standard-reports',
-            "style": {
-              "backgroundColor": "#f9e3e9",
-              "color": "#e74432"
-            }
+            style: {
+              backgroundColor: '#f9e3e9',
+              color: '#e74432',
+            },
           },
           {
             id: 1,
             label: 'Application Received',
             iconName: 'oxd-all-reports',
-            "style": {
-              "backgroundColor": "#f9e3e9",
-              "color": "#e74432"
-            }
+            style: {
+              backgroundColor: '#f9e3e9',
+              color: '#e74432',
+            },
           },
           {
             id: 2,
             label: 'Phone Screening',
             iconName: 'oxd-my-reports',
-            "style": {
-              "backgroundColor": "#f9e3e9",
-              "color": "#e74432"
-            }
+            style: {
+              backgroundColor: '#f9e3e9',
+              color: '#e74432',
+            },
           },
         ],
         width: '230px',
