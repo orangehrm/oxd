@@ -40,7 +40,7 @@ export const navigationMixin = defineComponent({
     },
     onSelectEnter() {
       if (!this.dropdownOpen) {
-       this.openDropdown();
+        this.openDropdown();
       } else {
         if (this.pointer >= 0) {
           const option = this.computedOptions[this.pointer];

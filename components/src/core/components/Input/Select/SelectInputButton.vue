@@ -46,9 +46,7 @@
           class="oxd-button-icon oxd-button-icon-right d-flex align-center"
           style="height: 14px"
           size="medium"
-          :name="dropdownOpen
-            ? 'chevron-up'
-            : 'chevron-down'"
+          :name="dropdownOpen ? 'chevron-up' : 'chevron-down'"
         />
       </template>
     </oxd-button>
@@ -225,9 +223,7 @@ export default defineComponent({
       return initialObject;
     },
     dropdownButtonClasses(): string {
-      return `${
-        this.buttonData.doubleLineLabel ? 'button-double-line' : ''
-      } ${
+      return `${this.buttonData.doubleLineLabel ? 'button-double-line' : ''} ${
         this.hideDropdownLabel ? 'no-label' : 'w-100'
       }`;
     },
@@ -235,8 +231,8 @@ export default defineComponent({
 
   methods: {
     clickOutside() {
-      this.dropdownOpen = false
-    }
+      this.dropdownOpen = false;
+    },
   },
 
   watch: {
