@@ -25,6 +25,7 @@
           @update:modelValue="onDateSelected"
           @mousedown.prevent
           v-model="dateSelected"
+          :locale="locale"
         >
           <div class="oxd-date-input-links">
             <div @click="onClickToday" class="oxd-date-input-link --today">
@@ -44,8 +45,9 @@
 </template>
 
 <script lang="ts">
+import {enUS} from 'date-fns/locale';
 import {formatDate, parseDate, freshDate} from '../../../utils/date';
-import {defineComponent, reactive, toRefs} from 'vue';
+import {defineComponent, PropType, reactive, toRefs} from 'vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import Calendar from '@orangehrm/oxd/core/components/Calendar/Calendar.vue';
@@ -89,6 +91,10 @@ export default defineComponent({
       type: String,
       default: null,
     },
+    locale: {
+      type: Object as PropType<Locale>,
+      default: enUS,
+    },
   },
 
   setup(props) {
@@ -106,13 +112,10 @@ export default defineComponent({
   methods: {
     onBlur(e: Event) {
       if (this.dateTyped) {
-        const format =
-          this.displayFormat && this.displayFormat.trim() !== ''
-            ? this.displayFormat
-            : this.ioformat;
-        const parsedDate = parseDate(this.dateTyped, format);
+        this.dateSelected = this.displayFormat
+          ? parseDate(this.dateTyped, this.displayFormat, {locale: this.locale})
+          : parseDate(this.dateTyped, this.ioformat);
         this.dateTyped = '';
-        this.dateSelected = parsedDate;
       }
       this.closeDropdown();
       e.stopImmediatePropagation();
@@ -164,8 +167,10 @@ export default defineComponent({
     },
     displayDate(): string {
       return this.displayFormat && this.displayFormat.trim() !== ''
-        ? formatDate(this.dateSelected, this.displayFormat)
-        : formatDate(this.dateSelected, this.ioformat);
+        ? formatDate(this.dateSelected, this.displayFormat, {
+            locale: this.locale,
+          })
+        : formatDate(this.dateSelected, this.ioformat, {locale: this.locale});
     },
     dateIconClasses(): object {
       return {

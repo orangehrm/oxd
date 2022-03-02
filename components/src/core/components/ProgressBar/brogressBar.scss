@@ -17,11 +17,13 @@
   max-width: $oxd-progress-modal-sm-max-width;
 }
 
+
 .progress-modal-content {
   background-color: $oxd-modal-background-color;
   box-shadow: $oxd-progress-modal-box-shadow;
   padding: 1.2rem;
   border-radius: 1.2rem;
+
   border-width: 0;
 }
 
@@ -30,10 +32,12 @@ h5 {
 }
 
 .oxd .progress-modal-title {
+
   font-size: $oxd-progress-modal-title-font-size;
   font-weight: $oxd-progress-modal-title-font-weight;
   line-height: 1; 
 }
+
 
 .oxd .progress-modal-header {
   border-bottom: 0;
@@ -56,6 +60,7 @@ h5 {
 .progress-bar-modal {
   display: block;
 }
+
 .linear-progress {
   background-color: $oxd-progress-modal-progressBar-background-color;
   height: 8px;
@@ -93,6 +98,7 @@ h5 {
       animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
       animation-delay: 1.15s; 
 }
+
 .oxd-overlay {
   position: fixed;
   top: 0;
@@ -104,6 +110,7 @@ h5 {
   box-sizing: border-box;
   background-color: $oxd-overlay-background-color;
 }
+
 @keyframes indeterminate {
   0% {
     left: -35%;

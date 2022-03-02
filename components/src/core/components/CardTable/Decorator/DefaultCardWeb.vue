@@ -1,9 +1,9 @@
 <template>
   <oxd-card-tbody>
     <div
-      :class="classes"
       v-for="(item, index) in items"
       :key="item"
+      :class="classes[index]"
       @click="onClick(item)($event)"
     >
       <oxd-card-tr :clickable="tableProps.clickable">
@@ -24,7 +24,7 @@ import {decoratorMixin} from './decorator-mixin';
 import TableBody from '@orangehrm/oxd/core/components/CardTable/Table/TableBody.vue';
 import TableRow from '@orangehrm/oxd/core/components/CardTable/Table/TableRow.vue';
 import DefaultCellContainer from '@orangehrm/oxd/core/components/CardTable/Cell/DefaultCellContainer.vue';
-import {CardHeaders} from '../types';
+import {CardHeaders, HIGHLIGHT_TYPE_SUCCESS} from '../types';
 import emitter from '../../../../utils/emitter';
 
 export default defineComponent({
@@ -39,10 +39,18 @@ export default defineComponent({
   },
 
   computed: {
-    classes(): object {
-      return {
-        'oxd-table-card': true,
+    classes(): object[] {
+      const highlightObject = this.tableProps.highlightRows ?? {
+        rowIndexes: [],
+        type: HIGHLIGHT_TYPE_SUCCESS,
       };
+      return this.items.map((_, index) => {
+        return {
+          'oxd-table-card': true,
+          [`oxd-row-highlight--${highlightObject.type}`]:
+            highlightObject.rowIndexes.indexOf(index) > -1,
+        };
+      });
     },
     defaultSlot(): Array<CardHeaders> {
       if (this.tableProps.selectable) {

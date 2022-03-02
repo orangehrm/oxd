@@ -38,9 +38,7 @@ export default defineComponent({
 
   mixins: [navigationMixin, eventsMixin],
 
-  emits: [
-    'icon:clicked',
-  ],
+  emits: ['icon:clicked'],
 
   props: {
     dropdownOpened: {
