@@ -8,6 +8,7 @@
         type="checkbox"
         @focus="onFocus"
         @blur="onBlur"
+        @click="onClick"
         @change="onChange"
         :disabled="disabled"
         v-bind="$attrs"
@@ -108,6 +109,10 @@ export default defineComponent({
     onBlur(e: Event) {
       this.focused = false;
       this.$emit('blur', e);
+    },
+    onClick(e: Event) {
+      this.focused = false;
+      this.$emit('click', e);    
     },
     onChange(e: Event) {
       this.$emit('update:modelValue', this.checkedProxy);
