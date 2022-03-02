@@ -64,8 +64,9 @@
       </slot>
     </div>
     <oxd-icon-button
-      :name="isLeftPanelOpen ? 'chevron-left' : 'chevron-right'"
+      :name="isLeftPanelOpen ? 'oxd-arrow-left' : 'oxd-arrow-right'"
       class="oxd-table-left-panel--toggle-btn"
+      size="xx-small"
       @click="toggleLeftPanel"
     />
   </div>
