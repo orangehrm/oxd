@@ -9,6 +9,7 @@
           flow="right"
           :label="buttonData.label"
           :iconName="buttonData.iconName"
+          :iconSize="buttonData.iconSize"
           :size="buttonData.size"
           :style="buttonData.style"
           :displayType="buttonData.displayType"
@@ -19,7 +20,7 @@
           </template>
         </oxd-button>
       </slot>
-      <oxd-divider class="oxd-table-left-panel--separator"/>
+      <oxd-divider class="oxd-table-left-panel--separator" />
     </div>
     <div v-if="bodyVisible" class="oxd-table-left-panel--body">
       <slot name="sidePanelBody"></slot>
@@ -144,6 +145,7 @@ export default defineComponent({
         label: 'Button',
         iconName: 'oxd-add',
         iconImageSrc: null,
+        iconSize: 'medium',
         size: 'long',
         displayType: 'secondary',
         style: null,

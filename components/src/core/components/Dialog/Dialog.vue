@@ -96,6 +96,20 @@ export default defineComponent({
       e.stopPropagation();
     },
   },
+
+  mounted() {
+    const body = document.getElementsByTagName('body');
+    if (body) {
+      body[0].classList.add('overflow-hidden');
+    }
+  },
+
+  unmounted() {
+    const body = document.getElementsByTagName('body');
+    if (body) {
+      body[0].classList.remove('overflow-hidden');
+    }
+  },
 });
 </script>
 

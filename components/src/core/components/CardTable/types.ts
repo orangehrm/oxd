@@ -46,3 +46,26 @@ export type Order = 'ASC' | 'DESC' | 'DEFAULT';
 export interface SortDefinition {
   [column: string]: Order;
 }
+
+export const HIGHLIGHT_TYPE_SUCCESS = 'success';
+export const HIGHLIGHT_TYPE_WARN = 'warn';
+export const HIGHLIGHT_TYPE_ERROR = 'error';
+export const HIGHLIGHT_TYPE_INFO = 'info';
+
+export const HIGHLIGHT_TYPES = [
+  HIGHLIGHT_TYPE_SUCCESS,
+  HIGHLIGHT_TYPE_WARN,
+  HIGHLIGHT_TYPE_ERROR,
+  HIGHLIGHT_TYPE_INFO,
+];
+
+export type HighlightType =
+  | typeof HIGHLIGHT_TYPE_SUCCESS
+  | typeof HIGHLIGHT_TYPE_WARN
+  | typeof HIGHLIGHT_TYPE_ERROR
+  | typeof HIGHLIGHT_TYPE_INFO;
+
+export interface HighlightRows {
+  rowIndexes: number[];
+  type: string;
+}

@@ -16,7 +16,8 @@
              "displayType": "secondary",
              "size": "long",
              "display-type": "label-info",
-             "icon-name": "plus"
+             "icon-name": "plus",
+             "iconSize": "small"
            }
          }
        },
@@ -188,7 +189,7 @@
          "target": "_blank",
          "name": "candidate",
          "sortField": "candidate",
-         "initialSortOrder": "ASC",
+         "initialSortOrder": "DEFAULT",
          "title": "Candidate",
          "style": {
            "flex": 1
@@ -197,7 +198,7 @@
        {
          "name": "email",
          "sortField": "email",
-         "initialSortOrder": "ASC",
+         "initialSortOrder": "DEFAULT",
          "title": "Email",
          "style": {
            "flex": 1
@@ -206,7 +207,7 @@
        {
          "name": "contactNumber",
          "sortField": "contactNumber",
-         "initialSortOrder": "ASC",
+         "initialSortOrder": "DEFAULT",
          "title": "Contact Number",
          "style": {
            "flex": 1
@@ -226,7 +227,7 @@
          "slot": "footer",
          "title": "Stage",
          "style": {
-           "width": "300px"
+           "flex": "1 1 200px"
          },
          "cellType": "oxd-table-cell-actions",
          "cellRenderer": "actionsRenderer"
