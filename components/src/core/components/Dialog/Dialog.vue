@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, onUnmounted} from 'vue';
+import {defineComponent} from 'vue';
 import Overlay from '@orangehrm/oxd/core/components/Dialog/Overlay.vue';
 import CloseButton from '@orangehrm/oxd/core/components/Dialog/CloseButton.vue';
 import Sheet from '@orangehrm/oxd/core/components/Sheet/Sheet.vue';
