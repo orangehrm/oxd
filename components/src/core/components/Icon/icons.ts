@@ -429,8 +429,8 @@ const icons: Icons = {
   'oxd-sort': oxdSort,
   'oxd-sort-asc': oxdSortAsc,
   'oxd-sort-desc': oxdSortDesc,
-  'oxd-filter': oxdFilter
-  'oxd-question': oxdQuestion,
+  'oxd-filter': oxdFilter,
+  'oxd-question': oxdQuestion
 };
 
 export default icons;
