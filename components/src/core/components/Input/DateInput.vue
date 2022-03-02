@@ -45,7 +45,7 @@
 </template>
 
 <script lang="ts">
-import {enGB} from 'date-fns/locale';
+import {enUS} from 'date-fns/locale';
 import {formatDate, parseDate, freshDate} from '../../../utils/date';
 import {defineComponent, PropType, reactive, toRefs} from 'vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
@@ -93,7 +93,7 @@ export default defineComponent({
     },
     locale: {
       type: Object as PropType<Locale>,
-      default: enGB,
+      default: enUS,
     },
   },
 
