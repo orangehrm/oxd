@@ -1,13 +1,19 @@
 <template>
   <li
     @click="openSubmenu"
+    @keyup.enter="openSubmenu"
+    @keyup.esc="closeSubMenu"
     v-click-outside="closeSubMenu"
     :class="{'--active': isActive}"
+    tabindex="0"
+    ref="dropdownSelector"
   >
     <slot></slot>
     <transition name="transition-fade-down">
       <ul
         @click.stop="closeSubMenu"
+        @keyup.enter.stop="closeSubMenu"
+        @keyup.esc="closeSubMenu"
         v-if="isActive"
         class="oxd-calendar-dropdown"
         role="menu"
@@ -39,9 +45,11 @@ export default defineComponent({
     openSubmenu() {
       this.isActive = true;
     },
-    closeSubMenu() {
+    closeSubMenu($e: KeyboardEvent | null) {
+      if ($e && $e.key === 'Escape') $e.stopPropagation();
       if (this.isActive) {
         this.isActive = false;
+        this.$refs.dropdownSelector.focus();
       }
     },
   },
