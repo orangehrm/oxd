@@ -5,6 +5,7 @@
     :style="style"
     :tooltip="tooltip"
     :flow="flow"
+    @mousedown="mouseDown"
   >
     <slot name="icon">
       <oxd-icon v-if="iconName" :name="iconName" :size="iconSize" :style="iconStyle" class="oxd-button-icon" />
@@ -113,6 +114,12 @@ export default defineComponent({
         [`oxd-button--${this.displayType}`]: true,
         'with-icon': this.iconName || this.iconRightName
       };
+    },
+  },
+
+  methods: {
+    mouseDown(e: Event) {
+      e.preventDefault();
     },
   },
 });
