@@ -1,7 +1,7 @@
 <template>
   <oxd-icon-button
     :icon-styles="{
-      color: '#fff'
+      color: '#fff',
     }"
     class="oxd-dialog-close-button"
     :name="'x'"

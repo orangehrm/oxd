@@ -1,4 +1,4 @@
-import { RulesParams } from "./types";
+import {RulesParams} from './types';
 
 /* eslint-disable */
 export const setRules = (params: RulesParams) => {

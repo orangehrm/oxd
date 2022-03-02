@@ -1,7 +1,7 @@
 <template>
   <div v-if="show" class="oxd">
-    <div class="modal progress-modal" >
-      <div class="modal-dialog modal-sm" >
+    <div class="modal progress-modal">
+      <div class="modal-dialog modal-sm">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">{{ title }}</h5>
@@ -33,7 +33,6 @@ export default defineComponent({
       default: '',
     },
   },
-
 });
 </script>
 

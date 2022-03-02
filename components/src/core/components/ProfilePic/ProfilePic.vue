@@ -2,16 +2,30 @@
   <div :class="classes">
     <slot>
       <a v-if="link" :href="link" :target="linkMode">
-        <span class="img-tag" :style="`background-image: url(${profileImage})`"></span>
+        <span
+          class="img-tag"
+          :style="`background-image: url(${profileImage})`"
+        ></span>
       </a>
-      <span v-else class="img-tag" :style="`background-image: url(${profileImage})`"></span>
+      <span
+        v-else
+        class="img-tag"
+        :style="`background-image: url(${profileImage})`"
+      ></span>
     </slot>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {SIZES, SIZE_MEDIUM, ImageSize, TargetTypes, TARGET_SELF, TARGETS} from './types';
+import {
+  SIZES,
+  SIZE_MEDIUM,
+  ImageSize,
+  TargetTypes,
+  TARGET_SELF,
+  TARGETS,
+} from './types';
 import {defaultUser} from './images';
 export default defineComponent({
   name: 'oxd-profile-pic',
@@ -50,7 +64,7 @@ export default defineComponent({
       };
     },
     profileImage(): string {
-      return this.imageSrc ? this.imageSrc : this.userPlaceholderImage
+      return this.imageSrc ? this.imageSrc : this.userPlaceholderImage;
     },
     userPlaceholderImage() {
       return defaultUser.value;

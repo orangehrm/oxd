@@ -14,4 +14,4 @@ export type IconSize =
   | typeof ICON_SIZE_SMALL
   | typeof ICON_SIZE_MEDIUM
   | typeof ICON_SIZE_LARGE
-  | typeof ICON_SIZE_EXTRA_LARGE
+  | typeof ICON_SIZE_EXTRA_LARGE;
