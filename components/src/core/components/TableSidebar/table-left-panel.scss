@@ -1,19 +1,19 @@
-
 @import '../../../styles';
 @import './variables';
 
 .oxd-table-left-panel {
   position: relative;
-  border-right: 1px solid $oxd-interface-gray-lighten-4-color;
   padding-right: 10px;
   padding-left: 1rem;
-  .table-left-panel-divider {
-    width: calc(100% + 10px);
+  height: 100%;
+  &--separator {
+    margin-top: 1rem;
+    width: 90%;
   }
-  .body {
+  &--body {
     margin-top: 1rem;
   }
-  .oxd-table-left-panel-toggle-btn {
+  &--toggle-btn {
     position: absolute;
     width: 28px;
     height: 28px;
@@ -32,7 +32,7 @@
 }
 
 .list {
-  padding-top: 1.25rem !important;
+  padding-top: 0.5rem !important;
   ul {
     list-style: none;
     margin: 0;
@@ -47,6 +47,11 @@
         padding: 0.5rem;
         border-radius: 1.5rem;
         width: 100%;
+        .oxd-left-icon {
+          height: 1.5rem;
+          width: 1.5rem;
+          padding: 0.25rem;
+        }
         .oxd-dropdown-selected-chip {
           position: relative;
           min-width: 20px;
@@ -57,6 +62,7 @@
           font-family: $oxd-left-panel-font-family;
         }
         &:hover,
+        &:focus-within,
         &.active {
           background-color: rgba(100, 114, 140, 0.1);
           cursor: pointer;
@@ -66,6 +72,7 @@
         margin: 0.25rem 0.5rem;
         font-size: 0.75rem;
         line-height: normal;
+        font-weight: 600;
       }
       &:not(:last-child) {
         margin-bottom: 5px;
@@ -86,7 +93,12 @@
   &.no-label {
     min-width: initial;
     ::v-deep(.oxd-button-label-wrapper) {
-      display: none;
+      visibility: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      width: 0;
     }
   }
 }

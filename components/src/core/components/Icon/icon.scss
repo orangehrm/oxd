@@ -5,16 +5,49 @@
 
 .oxd-icon {
   color: $oxd-icon-font-color;
-  &.--disabled {
+  &--disabled {
     color: $oxd-icon-font-color--disabled;
+  }
+  &--extra-small {
+    font-size: $oxd-icon-font-size--extra-small;
+  }
+  &--small {
+    font-size: $oxd-icon-font-size--small;
+  }
+  &--medium {
+    font-size: $oxd-icon-font-size--medium;
+  }
+  &--large {
+    font-size: $oxd-icon-font-size--large;
+  }
+  &--extra-large {
+    font-size: $oxd-icon-font-size--extra-large;
   }
 }
 
 .oxd-svg-icon {
   display: flex;
-  height: 1rem;
-  width: 1rem;
   fill: currentColor;
+  &--extra-small {
+    width: $oxd-svg-icon-font-size--extra-small;
+    height: $oxd-svg-icon-font-size--extra-small;
+  }
+  &--small {
+    width: $oxd-svg-icon-font-size--small;
+    height: $oxd-svg-icon-font-size--small;
+  }
+  &--medium {
+    width: $oxd-svg-icon-font-size--medium;
+    height: $oxd-svg-icon-font-size--medium;
+  }
+  &--large {
+    width: $oxd-svg-icon-font-size--large;
+    height: $oxd-svg-icon-font-size--large;
+  }
+  &--extra-large {
+    width: $oxd-svg-icon-font-size--extra-large;
+    height: $oxd-svg-icon-font-size--extra-large;
+  }
 }
 
 [class^='bi-']::before,

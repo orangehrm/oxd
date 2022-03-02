@@ -13,7 +13,7 @@
     right: 0;
     display: block;
     position: absolute;
-    overflow: hidden auto;
+    overflow: visible;
     top: $oxd-table-sort-dropdown-top-margin;
     max-height: $oxd-table-sort-dropdown-height;
     width: $oxd-table-sort-dropdown-width;
@@ -41,6 +41,8 @@
         margin-left: 5px;
       }
       &:hover,
+      &:focus-visible,
+      &:focus,
       &.--selected {
         background-color: $oxd-dropdown-item-hover-color;
       }

@@ -8,13 +8,21 @@
       :class="dropdownButtonClasses"
       :label="buttonData.label"
       :iconName="buttonData.iconName"
+      :iconSize="buttonData.iconSize"
+      :iconStyle="buttonData.iconStyle"
       :hide-dropdown-label="hideDropdownLabel"
       :size="buttonData.size"
       :style="buttonData.style"
       :displayType="buttonData.displayType"
       :tooltip="tooltip"
       :flow="flow"
+      @blur="onBlur"
       @click="onToggleDropdown"
+      @keyup.esc="onCloseDropdown"
+      @keydown.enter.prevent="onSelectEnter"
+      @keydown.down.exact.prevent="onSelectDown"
+      @keydown.up.exact.prevent="onSelectUp"
+      @keydown="onKeypress"
     >
       <template v-if="buttonData.iconImageSrc" v-slot:icon>
         <img :src="buttonData.iconImageSrc" />
@@ -34,7 +42,14 @@
         </div>
       </template>
       <template v-slot:iconRight>
-        <oxd-icon :name="dropdownOpen ? 'chevron-up' : 'chevron-down'" />
+        <oxd-icon
+          class="oxd-button-icon oxd-button-icon-right d-flex align-center"
+          style="height: 14px"
+          size="medium"
+          :name="dropdownOpen
+            ? 'chevron-up'
+            : 'chevron-down'"
+        />
       </template>
     </oxd-button>
 
@@ -192,6 +207,8 @@ export default defineComponent({
         label: 'Button',
         labelMini: null,
         iconName: 'plus',
+        iconSize: 'small',
+        iconStyle: null,
         iconImageSrc: null,
         size: 'long',
         displayType: 'label',

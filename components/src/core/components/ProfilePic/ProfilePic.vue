@@ -2,9 +2,9 @@
   <div :class="classes">
     <slot>
       <a v-if="link" :href="link" :target="linkMode">
-        <img :src="imageSrc ? imageSrc : userPlaceholderImage" />
+        <span class="img-tag" :style="`background-image: url(${profileImage})`"></span>
       </a>
-      <img v-else :src="imageSrc ? imageSrc : userPlaceholderImage" />
+      <span v-else class="img-tag" :style="`background-image: url(${profileImage})`"></span>
     </slot>
   </div>
 </template>
@@ -49,6 +49,9 @@ export default defineComponent({
         [`profile-image--${this.size}`]: true,
       };
     },
+    profileImage(): string {
+      return this.imageSrc ? this.imageSrc : this.userPlaceholderImage
+    },
     userPlaceholderImage() {
       return defaultUser.value;
     },
@@ -56,19 +59,33 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-.header-image :deep(img) {
-  border-radius: 50%;
-  height: auto;
-  cursor: pointer;
+.header-image {
+  .img-tag,
+  :deep(img) {
+    display: block;
+    width: 2.8rem;
+    height: 2.8rem;
+    cursor: pointer;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 }
 
-.header-image.profile-image--medium :deep(img) {
-  width: 3.15rem;
-  max-height: 3.15rem;
+.header-image.profile-image--medium {
+  .img-tag,
+  :deep(img) {
+    width: 3.15rem;
+    height: 3.15rem;
+  }
 }
 
-.header-image.profile-image--small :deep(img) {
-  width: 2.8rem;
-  max-height: 2.8rem;
+.header-image.profile-image--small {
+  .img-tag,
+  :deep(img) {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
 }
 </style>

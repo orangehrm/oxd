@@ -10,6 +10,13 @@ export default {
       control: {type: 'object'},
       defaultValue: data.items,
     },
+    listHighlightRows: {
+      control: {type: 'object'},
+      defaultValue: {
+        rowIndexes: [0,2],
+        type: 'success',
+      },
+    },
     configurations: {
       control: {type: 'object'},
       defaultValue: configurations,
@@ -67,6 +74,10 @@ export const Configurable = Template.bind({});
 Configurable.args = {
   configurations: configurations,
   listItems: data.items,
+  listHighlightRows: {
+    rowIndexes: [0,2],
+    type: 'success',
+  },
   sidePanelList: data.stages,
   pagination: {
     perPage: {

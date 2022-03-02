@@ -1,28 +1,50 @@
 <template>
-  <div class="oxd-table-header-sort">
+  <div
+      class="oxd-table-header-sort"
+      @keyup.esc="closeDropdown"
+  >
     <oxd-icon-button
       :withContainer="false"
       :name="sortIcon"
       class="oxd-table-header-sort-icon"
-      @click="openDropdown"
+      tabindex="0"
+      @click="openDropdown($event)"
+      @keydown.enter="openDropdown($event)"
+      @keydown.down.exact.prevent="onSelectDown"
+      @keydown.up.exact.prevent="onSelectUp"
+      @keydown.tab="closeDropdown"
     />
     <div
       v-click-outside="closeDropdown"
       v-show="isActive"
       :class="classes"
       role="dropdown"
+      tabindex="-1"
+      @keydown.down.exact.prevent="onSelectDown"
+      @keydown.up.exact.prevent="onSelectUp"
+      @keydown.tab="closeDropdown"
     >
-      <ul @click.stop="closeDropdown" role="menu">
+      <ul
+          role="menu"
+          @click.stop="closeDropdown"
+          @keydown.enter.prevent.stop="closeDropdown"
+      >
         <li
+          ref="topDropdownElement"
+          tabindex="-1"
           class="oxd-table-header-sort-dropdown-item"
           @click="$emit('order', 'ASC')"
+          @keydown.enter.prevent="$emit('order', 'ASC')"
         >
           <oxd-icon name="sort-alpha-down" />
           <oxd-text tag="span">Ascending</oxd-text>
         </li>
         <li
+          ref="bottomDropdownElement"
+          tabindex="-1"
           class="oxd-table-header-sort-dropdown-item"
           @click="$emit('order', 'DESC')"
+          @keydown.enter.prevent="$emit('order', 'DESC')"
         >
           <oxd-icon name="sort-alpha-up" />
           <oxd-text tag="span">Decending</oxd-text>
@@ -71,13 +93,25 @@ export default defineComponent({
   },
 
   methods: {
-    openDropdown() {
+    openDropdown($e :Event) {
       this.isActive = true;
+      this.$nextTick(() => {
+        const firstFocusableElement = ($e?.target as Element).parentElement?.querySelector('.oxd-table-header-sort-dropdown-item');
+        if(firstFocusableElement){
+          (firstFocusableElement as HTMLElement).focus();
+        }
+      })
     },
     closeDropdown() {
       if (this.isActive) {
         this.isActive = false;
       }
+    },
+    onSelectDown(){
+      this.$refs.bottomDropdownElement.focus();
+    },
+    onSelectUp(){
+      this.$refs.topDropdownElement.focus();
     },
   },
 
@@ -87,13 +121,13 @@ export default defineComponent({
       if (this.order !== undefined) {
         switch (this.order as Order) {
           case 'ASC':
-            icon = 'sort-alpha-down';
+            icon = 'oxd-sort-asc';
             break;
           case 'DESC':
-            icon = 'sort-alpha-up';
+            icon = 'oxd-sort-desc';
             break;
           default:
-            icon = 'arrow-down-up';
+            icon = 'oxd-sort';
         }
       }
       return icon;

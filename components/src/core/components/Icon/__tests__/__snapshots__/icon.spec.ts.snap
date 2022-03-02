@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Icon.vue renders OXD Icon 1`] = `<i class="oxd-icon bi-trash"></i>`;
+exports[`Icon.vue renders OXD Icon 1`] = `<i class="oxd-icon oxd-icon--medium bi-trash"></i>`;
 
-exports[`Icon.vue should not renders ohrm icon 1`] = `<i class="oxd-svg-icon"></i>`;
+exports[`Icon.vue should not renders ohrm icon 1`] = `<i class="oxd-svg-icon oxd-svg-icon--medium"></i>`;
 
 exports[`Icon.vue should renders ohrm icon 1`] = `
-<i class="oxd-svg-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve">
+<i class="oxd-svg-icon oxd-svg-icon--medium"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve">
     <path d="M288.3 191.4 265.4 214c-5.2 5.1-13.6 5.1-18.9 0l-22.9-22.6c-10-9.9-23.2-14.9-36.3-14.9-13.2 0-26.3 5-36.3 14.9-9.7 9.6-15 22.3-15 35.9 0 13.6 5.3 26.3 15 35.9L256 367l105-103.8c9.7-9.6 15-22.3 15-35.9 0-13.6-5.3-26.3-15-35.9-20.1-19.8-52.7-19.8-72.7 0z" style="fill:#64728c"></path>
     <path d="M256 0C114.8 0 0 114.8 0 256s114.8 256 256 256 256-114.8 256-256S397.2 0 256 0zm139.3 284.4L266.6 413.1c-2.9 2.9-6.8 4.4-10.6 4.4s-7.7-1.5-10.6-4.4L116.7 284.4C100.1 267.8 91 245.8 91 222.3c0-23.4 9.1-45.5 25.7-62.1s38.6-25.7 62.1-25.7 45.5 9.1 62.1 25.7l15.1 15.1 15.1-15.1c16.6-16.6 38.6-25.7 62.1-25.7s45.5 9.1 62.1 25.7 25.7 38.6 25.7 62.1-9.1 45.5-25.7 62.1z" style="fill:#64728c;stroke:#64728c;stroke-miterlimit:10"></path>
   </svg></i>
