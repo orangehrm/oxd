@@ -7,7 +7,13 @@
     :flow="flow"
   >
     <slot name="icon">
-      <oxd-icon v-if="iconName" :name="iconName" :size="iconSize" :style="iconStyle" class="oxd-button-icon" />
+      <oxd-icon
+        v-if="iconName"
+        :name="iconName"
+        :size="iconSize"
+        :style="iconStyle"
+        class="oxd-button-icon"
+      />
     </slot>
     <div class="oxd-button-label-wrapper">
       <slot name="label">
@@ -111,7 +117,7 @@ export default defineComponent({
         'oxd-button': true,
         [`oxd-button--${this.size}`]: true,
         [`oxd-button--${this.displayType}`]: true,
-        'with-icon': this.iconName || this.iconRightName
+        'with-icon': this.iconName || this.iconRightName,
       };
     },
   },
