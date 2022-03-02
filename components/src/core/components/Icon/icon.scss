@@ -28,6 +28,10 @@
 .oxd-svg-icon {
   display: flex;
   fill: currentColor;
+  &--xxx-small {
+    width: $oxd-svg-icon-font-size--xxx-small;
+    height: $oxd-svg-icon-font-size--xxx-small;
+  }
   &--xx-small {
     width: $oxd-svg-icon-font-size--xx-small;
     height: $oxd-svg-icon-font-size--xx-small;

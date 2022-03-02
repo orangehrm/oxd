@@ -66,7 +66,7 @@
     <oxd-icon-button
       :name="isLeftPanelOpen ? 'oxd-arrow-left' : 'oxd-arrow-right'"
       class="oxd-table-left-panel--toggle-btn"
-      size="xx-small"
+      size="xxx-small"
       @click="toggleLeftPanel"
     />
   </div>
