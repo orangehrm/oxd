@@ -1,0 +1,112 @@
+{
+  "permission": {
+    "create": true,
+    "read": true,
+    "update": true,
+    "delete": true
+  },
+  "table": {
+    "leftPanel": {
+      "visible": false
+    },
+    "topBar": {
+      "visible": false,
+      "listRecordCount": {
+        "singleTerm": "Candidate",
+        "multiTerm": "Candidates"
+      }
+    },
+    "headers": [
+      {
+        "name": "profilepic",
+        "slot": "footer",
+        "title": "",
+        "style": {
+          "width": "50px"
+        },
+        "cellType": "oxd-table-cell-profile-pic"
+      },
+      {
+        "clickable": true,
+        "target": "_blank",
+        "name": "candidate",
+        "sortField": "candidate",
+        "initialSortOrder": "DEFAULT",
+        "title": "Candidate",
+        "style": {
+          "flex": 1
+        }
+      },
+      {
+        "name": "email",
+        "sortField": "email",
+        "initialSortOrder": "DEFAULT",
+        "title": "Email",
+        "style": {
+          "flex": 1
+        }
+      },
+      {
+        "name": "contactNumber",
+        "sortField": "contactNumber",
+        "initialSortOrder": "DEFAULT",
+        "title": "Contact Number",
+        "style": {
+          "flex": 1
+        }
+      },
+      {
+        "name": "dateOfApplication",
+        "sortField": "dateOfApplication",
+        "initialSortOrder": "DESC",
+        "title": "Date Applied",
+        "style": {
+          "flex": 1
+        }
+      },
+      {
+        "name": "action",
+        "slot": "footer",
+        "title": "Stage",
+        "style": {
+          "width": "300px"
+        },
+        "cellType": "oxd-table-cell-actions",
+        "cellRenderer": "actionsRenderer"
+      }
+    ],
+    "tdMapper": [
+      {
+        "name": "",
+        "title": "",
+        "style": "",
+        "link": ""
+      }
+    ],
+    "pagination": {
+      "maxPageLimit": 5
+    }
+  },
+  "drawer": {
+    "visible": false,
+    "width": "600px",
+    "height": "100%",
+    "fullHeight": false,
+    "stickyFooter": true,
+    "fixedPosition": true,
+    "position": "right",
+    "header": {
+      "visible": true,
+      "title": "Filter",
+      "charmButton": {
+        "visible": true,
+        "icon": "oxd-refresh"
+      }
+    },
+    "footer": {
+      "okButton": {
+        "label": "Search"
+      }
+    }
+  }
+}
