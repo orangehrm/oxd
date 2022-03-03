@@ -12,6 +12,8 @@ import DefaultCell from './Default.vue';
 import ActionsCell from './Actions.vue';
 import CheckboxCell from './Checkbox.vue';
 import ProfilePicCell from './ProfilePicCell.vue';
+import LinkCell from './Link.vue';
+import DateCell from './Date.vue';
 import {CardHeaders} from '../types';
 import {RowItem} from './../Cell/types';
 
@@ -23,6 +25,8 @@ export default defineComponent({
     'oxd-table-cell-actions': ActionsCell,
     'oxd-table-cell-checkbox': CheckboxCell,
     'oxd-table-cell-profile-pic': ProfilePicCell,
+    'oxd-table-cell-link': LinkCell,
+    'oxd-table-cell-date': DateCell,
   },
 
   props: {
@@ -51,14 +55,6 @@ export default defineComponent({
         cellRenderResponse = null;
 
       const cellData = this.items[header.name];
-      cellProps = {
-        key: cellData,
-        item: cellData,
-        header: header,
-        rowItem: rowData,
-        clickableCell: header.clickable,
-        linkMode: header.target,
-      };
 
       if (typeof header.cellRenderer === 'function') {
         cellRenderResponse = header.cellRenderer(
@@ -77,13 +73,16 @@ export default defineComponent({
         cellType = cellRenderResponse.component;
       }
 
-      if (cellRenderResponse?.props) {
-        cellProps = mergeProps(cellProps, cellRenderResponse.props);
-      }
-
-      if (cellRenderResponse?.directives) {
-        cellDirectives = cellRenderResponse.directives;
-      }
+      cellProps = mergeProps(
+        {
+          key: cellData,
+          item: cellData,
+          header: header,
+          rowItem: rowData,
+        },
+        header.cellProps ?? {},
+        cellRenderResponse?.props ?? {},
+      );
 
       return withDirectives(
         h(

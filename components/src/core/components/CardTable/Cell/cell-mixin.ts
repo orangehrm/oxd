@@ -13,6 +13,10 @@ export const cellMixin = defineComponent({
       type: Object,
       default: () => ({}),
     },
+    item: {
+      type: [Number, String, Object],
+      default: () => null,
+    },
   },
 });
 

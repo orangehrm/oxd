@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardTable > Cell > Checkbox.vue should renders OXD CardTable > Cell > Checkbox Cell 1`] = `
+<div class="oxd-checkbox-wrapper"><label class="">
+    <!--v-if--><input type="checkbox" value="0"><span class="oxd-checkbox-input oxd-checkbox-input--active --label-right oxd-checkbox-input"><i class="oxd-icon oxd-icon--medium bi-check oxd-checkbox-input-icon"></i></span>
+  </label></div>
+`;

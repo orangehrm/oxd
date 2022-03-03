@@ -1,273 +1,277 @@
 {
-   "permission": {
-     "create": true,
-     "read": true,
-     "update": true,
-     "delete": true
-   },
-   "table": {
-     "leftPanel": {
-       "visible": true,
-       "header": {
-         "visible": true,
-         "button": {
-           "props": {
-             "label": "Add Candidate",
-             "displayType": "secondary",
-             "size": "long",
-             "display-type": "label-info",
-             "icon-name": "plus",
-             "iconSize": "small"
-           }
-         }
-       },
-       "body": {
-         "visible": true,
-         "button": {
-           "label": "All Vacancy",
-           "labelMini": "Vacancy",
-           "iconName": "eye",
-           "iconSize": "large",
-           "iconStyle": "height: 20px",
-           "displayType": "label",
-           "doubleLineLabel": true
-         },
-         "dropdown": {
-           "style": {
-             "width": "220px"
-           }
-         }
-       },
-       "list": {
-         "visible": true,
-         "bubble": {
-           "visible": true
-         }
-       }
-     },
-     "topBar": {
-       "visible": true,
-       "listRecordCount": {
-         "singleTerm": "Candidate",
-         "multiTerm": "Candidates"
-       },
-       "bulkActions": [
-         {
-           "conditional": true,
-           "type": "oxd-button",
-           "props": {
-             "label": "Archive",
-             "size": "medium",
-             "display-type": "label-info",
-             "icon-name": "oxd-archive"
-           },
-           "class": "oxd-btn-info-custom",
-           "style": {
-             "margin-left": "0.5rem"
-           },
-           "events": [
-             {
-               "type": "click",
-               "identifier": "archive-candidates"
-             }
-           ]
-         },
-         {
-           "conditional": true,
-           "visible": false,
-           "type": "oxd-button",
-           "props": {
-             "label": "Unarchive",
-             "size": "medium",
-             "display-type": "label-info",
-             "icon-name": "oxd-archive"
-           },
-           "class": "oxd-btn-info-custom",
-           "style": {
-             "margin-left": "0.5rem"
-           },
-           "events": [
-             {
-               "type": "click",
-               "identifier": "unarchive-candidates"
-             }
-           ]
-         },
-         {
-           "type": "oxd-button",
-           "props": {
-             "label": "Delete Selected",
-             "size": "medium",
-             "display-type": "label-danger",
-             "icon-name": "trash"
-           },
-           "class": "oxd-btn-danger-custom",
-           "style": {
-             "margin-left": "0.5rem"
-           },
-           "events": [
-             {
-               "type": "click",
-               "identifier": "delete-candidates"
-             }
-           ]
-         }
-       ],
-       "quickSearch": {
-          "visible": true,
-          "placeholder": "Search",
-          "clear": true,
-          "style": {
-            "width": "261px"
-          },
-          "button": {
-            "visible": true,
-            "class": "quick-search-btn",
-            "style": {
-              "min-width": "unset",
-              "min-height": "unset"
-            },
-            "props": {
-              "name": "oxd-search",
-              "displayType": "label-info",
-              "size": "small"
-            }
+  "permission": {
+    "create": true,
+    "read": true,
+    "update": true,
+    "delete": true
+  },
+  "table": {
+    "leftPanel": {
+      "visible": true,
+      "header": {
+        "visible": true,
+        "button": {
+          "props": {
+            "label": "Add Candidate",
+            "displayType": "secondary",
+            "size": "long",
+            "display-type": "label-info",
+            "icon-name": "plus",
+            "iconSize": "small"
           }
-       },
-       "singleActions": [
-         {
-           "type": "oxd-icon-button",
-           "props": {
-             "size": "xx-small",
-             "display-type": "label-info",
-             "name": "oxd-filter",
-             "tooltip": "Filter",
-             "flow": "top"
-           },
-           "class": "btn-large",
-           "style": {
-             "margin-left": "font-size: 14px"
-           },
-           "events": [
-             {
-               "type": "click",
-               "identifier": "drawer:show"
-             }
-           ]
-         },
-         {
-           "type": "oxd-button",
-           "props": {
-             "label": "CSV",
-             "size": "medium",
-             "display-type": "label-info",
-             "icon-name": "file-earmark-spreadsheet",
-             "tooltip": "Export to CSV",
-             "flow": "top"
-           },
-           "events": [
-             {
-               "type": "click",
-               "identifier": "topfilters:onExportBtnClick"
-             }
-           ]
-         }
-       ]
-     },
-     "headers": [
-       {
-         "name": "profilepic",
-         "slot": "footer",
-         "title": "",
-         "style": {
-           "width": "50px",
-           "justify-content": "center"
-         },
-         "cellType": "oxd-table-cell-profile-pic",
-         "iconName": "oxd-profile-pic",
-         "iconStyle": "color: #929baa;"
-       },
-       {
-         "clickable": true,
-         "target": "_blank",
-         "name": "candidate",
-         "sortField": "candidate",
-         "initialSortOrder": "DEFAULT",
-         "title": "Candidate",
-         "style": {
-           "flex": 1
-         }
-       },
-       {
-         "name": "email",
-         "sortField": "email",
-         "initialSortOrder": "DEFAULT",
-         "title": "Email",
-         "style": {
-           "flex": 1
-         }
-       },
-       {
-         "name": "contactNumber",
-         "sortField": "contactNumber",
-         "initialSortOrder": "DEFAULT",
-         "title": "Contact Number",
-         "style": {
-           "flex": 1
-         }
-       },
-       {
-         "name": "dateOfApplication",
-         "sortField": "dateOfApplication",
-         "initialSortOrder": "DESC",
-         "title": "Date Applied",
-         "style": {
-           "flex": 1
-         }
-       },
-       {
-         "name": "action",
-         "slot": "footer",
-         "title": "Stage",
-         "style": {
-           "flex": "1 1 200px"
-         },
-         "cellType": "oxd-table-cell-actions",
-         "cellRenderer": "actionsRenderer"
-       }
-     ],
-     "tdMapper": [
-       {
-         "name": "",
-         "title": "",
-         "style": "",
-         "link": ""
-       }
-     ],
-     "pagination": {
-       "maxPageLimit": 5
-     }
-   },
-   "drawer": {
-     "visible": true,
-     "width": "600px",
-     "height": "100%",
-     "fullHeight": false,
-     "stickyFooter": true,
-     "fixedPosition": true,
-     "position": "right",
-     "header": {
-       "visible": true,
-       "title": "Filter",
-       "charmButton": {
-         "visible": true,
-         "icon": "oxd-refresh"
-       }
-     },
-     "footer": {
-       "okButton": {
-         "label": "Search"
-       }
-     }
-   }
+        }
+      },
+      "body": {
+        "visible": true,
+        "button": {
+          "label": "All Vacancy",
+          "labelMini": "Vacancy",
+          "iconName": "eye",
+          "iconSize": "large",
+          "iconStyle": "height: 20px",
+          "displayType": "label",
+          "doubleLineLabel": true
+        },
+        "dropdown": {
+          "style": {
+            "width": "220px"
+          }
+        }
+      },
+      "list": {
+        "visible": true,
+        "bubble": {
+          "visible": true
+        }
+      }
+    },
+    "topBar": {
+      "visible": true,
+      "listRecordCount": {
+        "singleTerm": "Candidate",
+        "multiTerm": "Candidates"
+      },
+      "bulkActions": [
+        {
+          "conditional": true,
+          "type": "oxd-button",
+          "props": {
+            "label": "Archive",
+            "size": "medium",
+            "display-type": "label-info",
+            "icon-name": "oxd-archive"
+          },
+          "class": "oxd-btn-info-custom",
+          "style": {
+            "margin-left": "0.5rem"
+          },
+          "events": [
+            {
+              "type": "click",
+              "identifier": "archive-candidates"
+            }
+          ]
+        },
+        {
+          "conditional": true,
+          "visible": false,
+          "type": "oxd-button",
+          "props": {
+            "label": "Unarchive",
+            "size": "medium",
+            "display-type": "label-info",
+            "icon-name": "oxd-archive"
+          },
+          "class": "oxd-btn-info-custom",
+          "style": {
+            "margin-left": "0.5rem"
+          },
+          "events": [
+            {
+              "type": "click",
+              "identifier": "unarchive-candidates"
+            }
+          ]
+        },
+        {
+          "type": "oxd-button",
+          "props": {
+            "label": "Delete Selected",
+            "size": "medium",
+            "display-type": "label-danger",
+            "icon-name": "trash"
+          },
+          "class": "oxd-btn-danger-custom",
+          "style": {
+            "margin-left": "0.5rem"
+          },
+          "events": [
+            {
+              "type": "click",
+              "identifier": "delete-candidates"
+            }
+          ]
+        }
+      ],
+      "quickSearch": {
+        "visible": true,
+        "placeholder": "Search",
+        "clear": true,
+        "style": {
+          "width": "261px"
+        },
+        "button": {
+          "visible": true,
+          "class": "quick-search-btn",
+          "style": {
+            "min-width": "unset",
+            "min-height": "unset"
+          },
+          "props": {
+            "name": "oxd-search",
+            "displayType": "label-info",
+            "size": "small"
+          }
+        }
+      },
+      "singleActions": [
+        {
+          "type": "oxd-icon-button",
+          "props": {
+            "size": "xx-small",
+            "display-type": "label-info",
+            "name": "oxd-filter",
+            "tooltip": "Filter",
+            "flow": "top"
+          },
+          "class": "btn-large",
+          "style": {
+            "margin-left": "font-size: 14px"
+          },
+          "events": [
+            {
+              "type": "click",
+              "identifier": "drawer:show"
+            }
+          ]
+        },
+        {
+          "type": "oxd-button",
+          "props": {
+            "label": "CSV",
+            "size": "medium",
+            "display-type": "label-info",
+            "icon-name": "file-earmark-spreadsheet",
+            "tooltip": "Export to CSV",
+            "flow": "top"
+          },
+          "events": [
+            {
+              "type": "click",
+              "identifier": "topfilters:onExportBtnClick"
+            }
+          ]
+        }
+      ]
+    },
+    "headers": [
+      {
+        "name": "profilepic",
+        "slot": "footer",
+        "title": "",
+        "style": {
+          "width": "50px",
+          "justify-content": "center"
+        },
+        "cellType": "oxd-table-cell-profile-pic",
+        "iconName": "oxd-profile-pic",
+        "iconStyle": "color: #929baa;"
+      },
+      {
+        "target": "_blank",
+        "name": "candidate",
+        "sortField": "candidate",
+        "initialSortOrder": "DEFAULT",
+        "title": "Candidate",
+        "style": {
+          "flex": 1
+        },
+        "cellType": "oxd-table-cell-link"
+      },
+      {
+        "name": "email",
+        "sortField": "email",
+        "initialSortOrder": "DEFAULT",
+        "title": "Email",
+        "style": {
+          "flex": 1
+        }
+      },
+      {
+        "name": "contactNumber",
+        "sortField": "contactNumber",
+        "initialSortOrder": "DEFAULT",
+        "title": "Contact Number",
+        "style": {
+          "flex": 1
+        }
+      },
+      {
+        "name": "dateOfApplication",
+        "sortField": "dateOfApplication",
+        "initialSortOrder": "DESC",
+        "title": "Date Applied",
+        "style": {
+          "flex": 1
+        },
+        "cellType": "oxd-table-cell-date",
+        "cellProps": {
+          "displayFormat": "l, d-M-Y"
+        }
+      },
+      {
+        "name": "action",
+        "slot": "footer",
+        "title": "Stage",
+        "style": {
+          "flex": "1 1 200px"
+        },
+        "cellType": "oxd-table-cell-actions",
+        "cellRenderer": "actionsRenderer"
+      }
+    ],
+    "tdMapper": [
+      {
+        "name": "",
+        "title": "",
+        "style": "",
+        "link": ""
+      }
+    ],
+    "pagination": {
+      "maxPageLimit": 5
+    }
+  },
+  "drawer": {
+    "visible": true,
+    "width": "600px",
+    "height": "100%",
+    "fullHeight": false,
+    "stickyFooter": true,
+    "fixedPosition": true,
+    "position": "right",
+    "header": {
+      "visible": true,
+      "title": "Filter",
+      "charmButton": {
+        "visible": true,
+        "icon": "oxd-refresh"
+      }
+    },
+    "footer": {
+      "okButton": {
+        "label": "Search"
+      }
+    }
+  }
 }
