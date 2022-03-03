@@ -132,7 +132,8 @@ export default defineComponent({
       return {
         '--positon-bottom': this.dropdownPosition === BOTTOM,
         '--positon-top': this.dropdownPosition === TOP,
-        '--with-empty-selector': this.showEmptySelector && !this.hideDropdownDefaultLabel
+        '--with-empty-selector':
+          this.showEmptySelector && !this.hideDropdownDefaultLabel,
       };
     },
     optionClasses(): object[] {

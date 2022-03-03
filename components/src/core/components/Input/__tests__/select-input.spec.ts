@@ -97,7 +97,7 @@ describe('SelectInput.vue', () => {
     expect(nodes.length).toBe(3);
   });
 
-  it ('When place holder is there should have class --with-empty-selector', async () => {
+  it('When place holder is there should have class --with-empty-selector', async () => {
     const wrapper = shallowMount(SelectInput, {
       props: {
         options,
@@ -117,7 +117,7 @@ describe('SelectInput.vue', () => {
     });
   });
 
-  it ('When place holder not there should not have class --with-empty-selector', async () => {
+  it('When place holder not there should not have class --with-empty-selector', async () => {
     const wrapper = shallowMount(SelectInput, {
       props: {
         options,
@@ -137,7 +137,7 @@ describe('SelectInput.vue', () => {
     });
   });
 
-  it ('When place holder is hidden should not have class --with-empty-selector', async () => {
+  it('When place holder is hidden should not have class --with-empty-selector', async () => {
     const wrapper = shallowMount(SelectInput, {
       props: {
         options,
@@ -156,5 +156,4 @@ describe('SelectInput.vue', () => {
       '--with-empty-selector': false,
     });
   });
-
 });
