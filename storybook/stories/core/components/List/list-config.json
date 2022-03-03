@@ -180,9 +180,12 @@
          "slot": "footer",
          "title": "",
          "style": {
-           "width": "50px"
+           "width": "50px",
+           "justify-content": "center"
          },
-         "cellType": "oxd-table-cell-profile-pic"
+         "cellType": "oxd-table-cell-profile-pic",
+         "iconName": "oxd-profile-pic",
+         "iconStyle": "color: #929baa;"
        },
        {
          "clickable": true,
