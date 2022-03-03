@@ -133,6 +133,12 @@ export const oxdDownload: icon = {
     '<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 609.88 609.88"><defs><style>.cls-1{fill:currentColor;}</style></defs><path class="cls-1" d="M304.94,522.75A43.56,43.56,0,0,1,274,510.12L99.76,335.87a43.56,43.56,0,0,1,61.42-61.43L304.94,417.76,448.26,274.44a43.56,43.56,0,0,1,61.42,61.43L335.43,510.12A43.58,43.58,0,0,1,304.94,522.75Z"/><path class="cls-1" d="M304.94,457.41a38.12,38.12,0,0,1-38.12-38.12V38.12a38.12,38.12,0,1,1,76.23,0V419.29A38.12,38.12,0,0,1,304.94,457.41ZM571.76,609.88H38.12a38.12,38.12,0,1,1,0-76.24H571.76a38.12,38.12,0,0,1,0,76.24Z"/></svg>',
 };
 
+export const oxdDocumentText: icon = {
+  name: 'oxd-document-text',
+  value:
+    '<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><style>.cls-1{fill:currentColor;}</style></defs><g><path class="cls-1" d="m446.605 124.392-119.997-119.997c-2.801-2.802-6.624-4.395-10.608-4.395h-210c-24.813 0-45 20.187-45 45v422c0 24.813 20.187 45 45 45h300c24.813 0 45-20.187 45-45v-332c0-4.09-1.717-7.931-4.395-10.608zm-115.605-73.179 68.787 68.787h-53.787c-8.271 0-15-6.729-15-15zm75 430.787h-300c-8.271 0-15-6.729-15-15v-422c0-8.271 6.729-15 15-15h195v75c0 24.813 20.187 45 45 45h75v317c0 8.271-6.729 15-15 15z"/><path class="cls-1" d="m346 212h-180c-8.284 0-15 6.716-15 15s6.716 15 15 15h180c8.284 0 15-6.716 15-15s-6.716-15-15-15z"/><path class="cls-1" d="m346 272h-180c-8.284 0-15 6.716-15 15s6.716 15 15 15h180c8.284 0 15-6.716 15-15s-6.716-15-15-15z"/><path class="cls-1" d="m346 332h-180c-8.284 0-15 6.716-15 15s6.716 15 15 15h180c8.284 0 15-6.716 15-15s-6.716-15-15-15z"/><path class="cls-1" d="m286 392h-120c-8.284 0-15 6.716-15 15s6.716 15 15 15h120c8.284 0 15-6.716 15-15s-6.716-15-15-15z"/></g></svg>',
+};
+
 export const oxdRefresh: icon = {
   name: 'oxd-refresh',
   value: `
@@ -402,6 +408,7 @@ const icons: Icons = {
   'oxd-users': oxdUsers,
   'oxd-download-doc': oxdDownloadDoc,
   'oxd-download': oxdDownload,
+  'oxd-document-text': oxdDocumentText,
   'oxd-refresh': oxdRefresh,
   'oxd-archive': oxdArchive,
   'oxd-trash': oxdTrash,
