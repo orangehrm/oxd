@@ -123,6 +123,10 @@ export default defineComponent({
     .oxd-button {
       margin-left: 5px;
     }
+    .oxd-button.with-icon {
+      padding: 0.5rem 1rem;
+      min-width: unset;
+    }
   }
 }
 </style>
