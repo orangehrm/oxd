@@ -138,9 +138,9 @@
          {
            "type": "oxd-icon-button",
            "props": {
-             "size": "medium",
+             "size": "xx-small",
              "display-type": "label-info",
-             "name": "funnel",
+             "name": "oxd-filter",
              "tooltip": "Filter",
              "flow": "top"
            },
