@@ -438,7 +438,6 @@ const icons: Icons = {
   'oxd-question': oxdQuestion,
   'oxd-profile-pic': oxdProfilePic,
   'oxd-filter': oxdFilter,
-  'oxd-question': oxdQuestion,
 };
 
 export default icons;
