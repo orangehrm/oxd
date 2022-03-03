@@ -19,8 +19,6 @@ describe('ProgressBar > ProgressBar.vue', () => {
         show: true,
       },
     });
-    expect(wrapper.html()).toContain(
-      '<h5 class="modal-title">List to CSV</h5>',
-    );
+    expect(wrapper.html()).toContain("<h5 class=\"progress-modal-title\">List to CSV</h5>");
   });
 });
