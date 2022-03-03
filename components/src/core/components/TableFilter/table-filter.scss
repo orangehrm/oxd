@@ -8,7 +8,7 @@
 
   .oxd-table-filter-header {
     display: flex;
-    padding: 0.5rem;
+    padding: 0.5rem 0.5rem 1rem 0.5rem;
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -24,6 +24,12 @@
 
     &.spilled .oxd-table-filter-header-bulk-actions {
       order: 1;
+      margin-top: 0.5rem;
+      --actions {
+        div:first-child > button {
+          padding-left: 0;
+        }
+      }
     }
 
     .oxd-table-filter-header-bulk-actions .--actions {
