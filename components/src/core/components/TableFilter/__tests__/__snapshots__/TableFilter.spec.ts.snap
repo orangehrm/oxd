@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableFilter renders 1`] = `
+<div class="oxd-table-filter">
+  <div class="oxd-table-filter-header spilled">
+    <div class="oxd-table-filter-header-title">
+      <oxd-text-stub tag="h5" class="oxd-table-filter-title"></oxd-text-stub>
+    </div>
+    <div class="oxd-table-filter-header-bulk-actions">
+      <div class="--actions"></div>
+    </div>
+    <div class="oxd-table-filter-header-options">
+      <div class="--toggle"></div>
+      <div class="--export"></div>
+    </div>
+  </div>
+  <oxd-divider-stub style="display: none;"></oxd-divider-stub>
+</div>
+`;
