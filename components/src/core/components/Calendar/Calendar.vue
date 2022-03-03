@@ -203,12 +203,6 @@ export default defineComponent({
               offset: i === 0 ? getDayOffset(date, this.firstDayOfWeek) : 0,
               attributes: this.attributes[i],
               event: this.parsedEvents[i],
-              onKeyup: ($event: KeyboardEvent) => {
-                if ($event.key === 'Enter') {
-                  $event.stopPropagation();
-                  this.$emit('update:modelValue', date);
-                }
-              },
               onClick: ($event: Event) => {
                 $event.stopPropagation();
                 this.$emit('update:modelValue', date);

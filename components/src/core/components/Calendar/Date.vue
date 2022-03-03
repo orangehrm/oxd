@@ -58,7 +58,6 @@ export default defineComponent({
       h(
         'div',
         {
-          tabindex: 0,
           class: [
             ...this.innerClasses,
             {'oxd-calendar-date': true},

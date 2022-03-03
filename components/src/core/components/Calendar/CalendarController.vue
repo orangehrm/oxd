@@ -13,9 +13,7 @@
             class="oxd-calendar-selector --month"
             v-for="(month, index) in months"
             :key="`oxd-month-${index}`"
-            tabindex="0"
             @click="onSelectMonth(index)"
-            @keyup.enter="onSelectMonth(index)"
           >
             {{ month }}
           </li>
@@ -32,9 +30,7 @@
             class="oxd-calendar-selector --year"
             v-for="(year, index) in years"
             :key="`oxd-year-${index}`"
-            tabindex="0"
             @click="onSelectYear(year)"
-            @keyup.enter="onSelectYear(year)"
           >
             {{ year }}
           </li>
