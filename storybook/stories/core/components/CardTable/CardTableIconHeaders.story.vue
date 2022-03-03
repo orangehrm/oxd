@@ -12,11 +12,6 @@
 import CardTable from '@orangehrm/oxd/core/components/CardTable/CardTable';
 
 export default {
-  data() {
-    return {
-    };
-  },
-
   props: {
     headers: {
       type: Array,
