@@ -90,7 +90,8 @@ export default defineComponent({
             )[0].clientWidth
           : 0;
         isSpilled.value =
-          titleWidth + actionButtonWidth + 16 > fullWidth - filterWidth;
+          props.itemsSelected &&
+          titleWidth + actionButtonWidth + filterWidth > fullWidth;
       });
     };
 
