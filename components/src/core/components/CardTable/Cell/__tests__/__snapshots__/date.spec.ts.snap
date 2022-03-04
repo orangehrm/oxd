@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardTable > Cell > Date.vue should renders OXD CardTable > Cell > Date Cell Parse date from different format 1`] = `
+<div class="oxd-table-card-cell">
+  <div class="header"></div><span>2022-03-31</span>
+  <!--v-if-->
+</div>
+`;
+
+exports[`CardTable > Cell > Date.vue should renders OXD CardTable > Cell > Date Cell with default format 1`] = `
+<div class="oxd-table-card-cell">
+  <div class="header"></div><span>2022-03-03</span>
+  <!--v-if-->
+</div>
+`;
+
+exports[`CardTable > Cell > Date.vue should renders OXD CardTable > Cell > Date Cell with l, d-M-Y format 1`] = `
+<div class="oxd-table-card-cell">
+  <div class="header"></div><span>Thursday, 03-Mar-2022</span>
+  <!--v-if-->
+</div>
+`;
+
+exports[`CardTable > Cell > Date.vue should renders OXD CardTable > Cell > Date Cell with l, d-M-Y format and russian locale 1`] = `
+<div class="oxd-table-card-cell">
+  <div class="header"></div><span>четверг, 03-мар.-2022</span>
+  <!--v-if-->
+</div>
+`;
