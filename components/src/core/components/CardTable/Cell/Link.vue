@@ -1,7 +1,11 @@
 <template>
   <oxd-table-cell-default>
-    <template #body="{cell}">
-      <a :href="link" :target="target" class="oxd-table-cell-link ">
+    <template #body="{cell, row}">
+      <a
+        :href="link ? row[link] : '#'"
+        :target="target"
+        class="oxd-table-cell-link "
+      >
         {{ cell }}
       </a>
     </template>
@@ -20,13 +24,13 @@ export default defineComponent({
   props: {
     link: {
       type: String,
-      default: '#',
+      default: null,
     },
     target: {
       type: String,
       default: TARGET_SELF,
       validator: (value: TargetTypes) => {
-        return TARGETS.indexOf(value) !== 1;
+        return TARGETS.indexOf(value) !== -1;
       },
     },
   },

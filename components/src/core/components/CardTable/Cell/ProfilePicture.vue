@@ -33,7 +33,7 @@ export default defineComponent({
       type: String,
       default: null,
       validator: (value: TargetTypes) => {
-        return TARGETS.indexOf(value) !== 1;
+        return TARGETS.indexOf(value) !== -1;
       },
     },
   },
@@ -42,7 +42,10 @@ export default defineComponent({
       return {
         src: props.item ?? null,
         size: props.size ?? SIZE_SMALL,
-        link: props.link ?? null,
+        link:
+          props.link && props.rowItem[props.link]
+            ? props.rowItem[props.link]
+            : null,
         target: props.target ?? TARGET_SELF,
       };
     });

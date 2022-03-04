@@ -31,7 +31,10 @@ describe('CardTable > Cell > Link.vue', () => {
       props: {
         item: 'This is a link',
         target: '_parent',
-        link: 'https://orangehrm.com',
+        link: 'url1',
+        rowItem: {
+          url1: 'https://orangehrm.com',
+        },
       },
     });
     expect(wrapper.html()).toMatchSnapshot();

@@ -33,8 +33,11 @@ describe('CardTable > Cell > ProfilePicture.vue', () => {
       props: {
         item: imgSrc,
         size: 'small',
-        link: 'https://orangehrm.com',
         target: '_parent',
+        link: 'url1',
+        rowItem: {
+          url1: 'https://orangehrm.com',
+        },
       },
     });
     expect(wrapper.html()).toMatchSnapshot();
