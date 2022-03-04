@@ -37,6 +37,7 @@
       color: $oxd-table-sort-dropdown-font-color;
       padding: $oxd-dropdown-padding;
       border-radius: $oxd-dropdown-border-radius;
+      display: flex;
       span {
         margin-left: 5px;
       }
