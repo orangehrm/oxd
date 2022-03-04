@@ -64,8 +64,9 @@
       </slot>
     </div>
     <oxd-icon-button
-      :name="isLeftPanelOpen ? 'chevron-left' : 'chevron-right'"
+      :name="isLeftPanelOpen ? 'oxd-arrow-left' : 'oxd-arrow-right'"
       class="oxd-table-left-panel--toggle-btn"
+      size="xxx-small"
       @click="toggleLeftPanel"
     />
   </div>
@@ -181,6 +182,9 @@ export default defineComponent({
     const toggleLeftPanel = () => {
       isLeftPanelOpen.value = !isLeftPanelOpen.value;
       emit('side-panel:onToggle', isLeftPanelOpen.value);
+      document.dispatchEvent(
+        new CustomEvent('collapsibleViewToggled', {bubbles: true}),
+      );
     };
 
     return {

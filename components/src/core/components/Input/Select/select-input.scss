@@ -104,8 +104,6 @@
   position: absolute;
   width: inherit;
   box-sizing: border-box;
-  overflow-y: auto;
-  overflow-x: hidden;
   color: $oxd-dropdown-dropdown-color;
   z-index: $oxd-dropdown-dropdown-z-index;
   border: $oxd-dropdown-dropdown-border;
@@ -113,8 +111,6 @@
   box-shadow: $oxd-dropdown-dropdown-box-shadow;
   border-radius: $oxd-dropdown-dropdown-border-radius;
   background-color: $oxd-dropdown-dropdown-background;
-  max-height: $oxd-dropdown-dropdown-max-height;
-  @include oxd-scrollbar();
 
   &.--positon-top {
     bottom: 100%;
@@ -122,6 +118,18 @@
   }
   &.--positon-bottom {
     margin-top: $oxd-dropdown-dropdown-margin;
+  }
+
+  .oxd-select-dropdown-inner {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: $oxd-dropdown-dropdown-inner-padding;
+    max-height: $oxd-dropdown-dropdown-max-height;
+    @include oxd-scrollbar();
+  }
+
+  &.--with-empty-selector .oxd-select-dropdown-inner {
+    max-height: $oxd-dropdown-dropdown-with-empty-selector-max-height;
   }
 }
 
