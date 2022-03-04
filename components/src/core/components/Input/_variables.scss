@@ -25,9 +25,10 @@ $oxd-checkbox-check-font-size: 1rem !default;
 $oxd-checkbox-height: 1rem !default;
 $oxd-checkbox-width: 1rem !default;
 $oxd-checkbox-border: 1px solid $oxd-interface-gray-lighten-1-color !default;
-$oxd-checkbox-border-radius: 0.35rem !default;
+$oxd-checkbox-border-radius: 0.25rem !default;
 $oxd-checkbox-label-margin: 0.5em !default;
 $oxd-checkbox-checked-background-color: $oxd-primary-input-color !default;
+$oxd-checkbox-checked-border: 1px solid $oxd-primary-input-color !default;
 $oxd-checkbox-disabled-background-color: $oxd-interface-gray-lighten-2-color !default;
 
 $oxd-switch-label-color: $oxd-input-control-font-color !default;
