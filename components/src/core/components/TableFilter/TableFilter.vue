@@ -61,33 +61,28 @@ export default defineComponent({
       isActive.value = !isActive.value;
     };
 
+    const filterElement = document.getElementsByClassName(
+      'oxd-table-filter-header',
+    );
+    const titleElement = document.getElementsByClassName(
+      'oxd-table-filter-header-title',
+    );
+    const bulkActionElement = document.getElementsByClassName(
+      'oxd-table-filter-header-bulk-actions',
+    );
+    const optionsElement = document.getElementsByClassName(
+      'oxd-table-filter-header-options',
+    );
+
     const updateIsSpilled = () => {
       nextTick(function() {
-        const titleWidth = document.getElementsByClassName(
-          'oxd-table-filter-header-title',
-        )[0]
-          ? document.getElementsByClassName('oxd-table-filter-header-title')[0]
-              .clientWidth
+        const fullWidth = filterElement[0] ? filterElement[0].clientWidth : 0;
+        const titleWidth = titleElement[0] ? titleElement[0].clientWidth : 0;
+        const actionButtonWidth = bulkActionElement[0]
+          ? bulkActionElement[0].clientWidth
           : 0;
-        const actionButtonWidth = document.getElementsByClassName(
-          'oxd-table-filter-header-bulk-actions',
-        )[0]
-          ? document.getElementsByClassName(
-              'oxd-table-filter-header-bulk-actions',
-            )[0].clientWidth
-          : 0;
-        const fullWidth = document.getElementsByClassName(
-          'oxd-table-filter-header',
-        )[0]
-          ? document.getElementsByClassName('oxd-table-filter-header')[0]
-              .clientWidth
-          : 0;
-        const filterWidth = document.getElementsByClassName(
-          'oxd-table-filter-header-options',
-        )[0]
-          ? document.getElementsByClassName(
-              'oxd-table-filter-header-options',
-            )[0].clientWidth
+        const filterWidth = optionsElement[0]
+          ? optionsElement[0].clientWidth
           : 0;
         isSpilled.value =
           props.itemsSelected &&
@@ -101,9 +96,7 @@ export default defineComponent({
         responsiveState.screenType === DEVICE_XL;
     });
     watchEffect(() => {
-      props.itemsSelected;
-      responsiveState.windowWidth;
-      updateIsSpilled();
+      props.itemsSelected && responsiveState.windowWidth && updateIsSpilled();
     });
 
     document.addEventListener('collapsibleViewToggled', updateIsSpilled);
@@ -111,7 +104,15 @@ export default defineComponent({
       isActive,
       isSpilled,
       toggleFilters,
+      updateIsSpilled,
     };
+  },
+
+  unmounted() {
+    document.removeEventListener(
+      'collapsibleViewToggled',
+      this.updateIsSpilled,
+    );
   },
 });
 </script>
