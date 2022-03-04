@@ -268,9 +268,7 @@ export default defineComponent({
 
     const filterTitle = computed((): string => {
       const itemCount =
-        props.filteredTotalRecordsCount > 0 ?
-          props.filteredTotalRecordsCount :
-          state.selectedItemIndexes.length ;
+        props.filteredTotalRecordsCount || state.selectedItemIndexes.length;
       return `
         ${itemCount}
         ${
