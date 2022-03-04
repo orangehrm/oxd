@@ -182,6 +182,9 @@ export default defineComponent({
     const toggleLeftPanel = () => {
       isLeftPanelOpen.value = !isLeftPanelOpen.value;
       emit('side-panel:onToggle', isLeftPanelOpen.value);
+      document.dispatchEvent(
+        new CustomEvent('collapsibleViewToggled', {bubbles: true}),
+      );
     };
 
     return {

@@ -39,6 +39,7 @@
         class="list-table-filter"
         :class="state.selectedItemIndexes.length > 0 ? 'items-selected' : ''"
         :filter-title="filterTitle"
+        :items-selected="state.selectedItemIndexes.length > 0"
       >
         <template v-slot:actionOptions>
           <div
