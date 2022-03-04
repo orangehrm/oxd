@@ -122,12 +122,22 @@ export default defineComponent({
 .oxd-table-filter {
   .oxd-table-filter-header-options {
     & .oxd-icon-button,
-    .oxd-button {
-      margin-left: 5px;
+    .oxd-button,
+    .oxd-autocomplete-search-wrapper {
+      margin-left: 0.5rem;
     }
     .oxd-button.with-icon {
       padding: 0.5rem 1rem;
       min-width: unset;
+    }
+  }
+
+  .oxd-table-filter-header {
+    .--actions button.oxd-button {
+      margin-left: 0.5rem;
+    }
+    &.spilled .--actions div:first-child > button.oxd-button {
+      margin-left: 0;
     }
   }
 }
