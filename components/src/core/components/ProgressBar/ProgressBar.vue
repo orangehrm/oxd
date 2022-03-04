@@ -1,14 +1,16 @@
 <template>
-  <div v-if="show" class="oxd">
-    <div class="modal progress-modal" >
-      <div class="modal-dialog modal-sm" >
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">{{ title }}</h5>
-          </div>
-          <div class="modal-body">
-            <div class="progress linear-progress">
-              <div class="indeterminate"></div>
+  <div v-if="show" class="oxd-overlay">
+    <div class="oxd">
+      <div class="progress-bar-modal" >
+        <div class="modal-dialog modal-sm" >
+          <div class="progress-modal-content">
+            <div class="progress-modal-header">
+              <h5 class="progress-modal-title">{{ title }}</h5>
+            </div>
+            <div class="progress-modal-body">
+              <div class="progress linear-progress">
+                <div class="indeterminate"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -33,7 +35,6 @@ export default defineComponent({
       default: '',
     },
   },
-
 });
 </script>
 

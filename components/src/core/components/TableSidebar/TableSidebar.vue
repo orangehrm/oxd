@@ -20,7 +20,7 @@
           </template>
         </oxd-button>
       </slot>
-      <oxd-divider class="oxd-table-left-panel--separator"/>
+      <oxd-divider class="oxd-table-left-panel--separator" />
     </div>
     <div v-if="bodyVisible" class="oxd-table-left-panel--body">
       <slot name="sidePanelBody"></slot>
@@ -64,8 +64,9 @@
       </slot>
     </div>
     <oxd-icon-button
-      :name="isLeftPanelOpen ? 'chevron-left' : 'chevron-right'"
+      :name="isLeftPanelOpen ? 'oxd-arrow-left' : 'oxd-arrow-right'"
       class="oxd-table-left-panel--toggle-btn"
+      size="xxx-small"
       @click="toggleLeftPanel"
     />
   </div>
@@ -145,7 +146,7 @@ export default defineComponent({
         label: 'Button',
         iconName: 'oxd-add',
         iconImageSrc: null,
-        iconSize: "medium",
+        iconSize: 'medium',
         size: 'long',
         displayType: 'secondary',
         style: null,

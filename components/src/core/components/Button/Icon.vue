@@ -65,15 +65,15 @@ export default defineComponent({
     },
     iconStyles: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     size: {
-      type: String
+      type: String,
     },
     showTooltipWhenDisabled: {
       type: Boolean,
       default: false,
-    }
+    },
   },
 
   emits: ['click'],
@@ -85,8 +85,10 @@ export default defineComponent({
       };
     },
     tooltipText() {
-      return this.disabled && !this.showTooltipWhenDisabled ? null : this.tooltip;
-    }
+      return this.disabled && !this.showTooltipWhenDisabled
+        ? null
+        : this.tooltip;
+    },
   },
 
   methods: {
