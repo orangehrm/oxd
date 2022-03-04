@@ -176,7 +176,7 @@
     },
     "headers": [
       {
-        "name": "profilepic",
+        "name": "profilePic",
         "slot": "footer",
         "title": "",
         "style": {
@@ -185,10 +185,13 @@
         },
         "cellType": "oxd-table-cell-profile-pic",
         "iconName": "oxd-profile-pic",
-        "iconStyle": "color: #929baa;"
+        "iconStyle": "color: #929baa;",
+        "cellProps": {
+          "link": "url2",
+          "target": "_blank"
+        }
       },
       {
-        "target": "_blank",
         "name": "candidate",
         "sortField": "candidate",
         "initialSortOrder": "DEFAULT",
@@ -196,7 +199,11 @@
         "style": {
           "flex": 1
         },
-        "cellType": "oxd-table-cell-link"
+        "cellType": "oxd-table-cell-link",
+        "cellProps": {
+          "link": "url1",
+          "target": "_blank"
+        }
       },
       {
         "name": "email",

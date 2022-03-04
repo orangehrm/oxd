@@ -2,7 +2,7 @@
 
 exports[`CardTable > Cell > Link.vue should renders OXD CardTable > Cell > Cell with custom link 1`] = `
 <div class="oxd-table-card-cell">
-  <div class="header"></div><a href="https://orangehrm.com" target="_blank" class="oxd-table-cell-link">This is a link</a>
+  <div class="header"></div><a href="https://orangehrm.com" target="_parent" class="oxd-table-cell-link">This is a link</a>
   <!--v-if-->
 </div>
 `;

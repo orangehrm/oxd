@@ -1,11 +1,7 @@
 <template>
   <oxd-table-cell-default>
-    <template #body="{row, cell, header}">
-      <a
-        :href="row.link || '#'"
-        :target="header.target || '_self'"
-        class="oxd-table-cell-link "
-      >
+    <template #body="{cell}">
+      <a :href="link" :target="target" class="oxd-table-cell-link ">
         {{ cell }}
       </a>
     </template>
@@ -15,10 +11,24 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import DefaultCell from './Default.vue';
+import {TargetTypes, TARGET_SELF, TARGETS} from './types';
 
 export default defineComponent({
   components: {
     'oxd-table-cell-default': DefaultCell,
+  },
+  props: {
+    link: {
+      type: String,
+      default: '#',
+    },
+    target: {
+      type: String,
+      default: TARGET_SELF,
+      validator: (value: TargetTypes) => {
+        return TARGETS.indexOf(value) !== 1;
+      },
+    },
   },
 });
 </script>

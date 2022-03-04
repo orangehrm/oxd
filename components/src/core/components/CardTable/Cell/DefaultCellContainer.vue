@@ -11,7 +11,7 @@ import TableDataCell from '@orangehrm/oxd/core/components/CardTable/Table/TableD
 import DefaultCell from './Default.vue';
 import ActionsCell from './Actions.vue';
 import CheckboxCell from './Checkbox.vue';
-import ProfilePicCell from './ProfilePicCell.vue';
+import ProfilePicCell from './ProfilePicture.vue';
 import LinkCell from './Link.vue';
 import DateCell from './Date.vue';
 import {CardHeaders} from '../types';
@@ -50,7 +50,6 @@ export default defineComponent({
 
     return this.headers.map(header => {
       let cellType,
-        cellProps,
         cellDirectives,
         cellRenderResponse = null;
 
@@ -73,7 +72,7 @@ export default defineComponent({
         cellType = cellRenderResponse.component;
       }
 
-      cellProps = mergeProps(
+      const cellProps = mergeProps(
         {
           key: cellData,
           item: cellData,

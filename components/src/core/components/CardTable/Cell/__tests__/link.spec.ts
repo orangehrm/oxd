@@ -29,14 +29,9 @@ describe('CardTable > Cell > Link.vue', () => {
     const wrapper = mount(Link, {
       global: GLOBAL,
       props: {
-        header: {
-          name: 'url',
-          target: '_blank',
-        },
-        rowItem: {
-          link: 'https://orangehrm.com',
-        },
         item: 'This is a link',
+        target: '_parent',
+        link: 'https://orangehrm.com',
       },
     });
     expect(wrapper.html()).toMatchSnapshot();

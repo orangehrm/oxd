@@ -227,7 +227,8 @@ export default defineComponent({
       items: [
         {
           profilePic: candidateAvatars.avatars[0],
-          link: 'google.com',
+          url1: 'google.com',
+          url2: 'yahoo.com',
           candidate: 'Venkatanarasimharajuvar Narasimha Rajuvaripet',
           email: 'trevor@o.com',
           contactNumber: '+8552616462',
@@ -279,7 +280,8 @@ export default defineComponent({
         },
         {
           profilePic: candidateAvatars.avatars[1],
-          link: 'google.com',
+          url1: 'google.com',
+          url2: 'yahoo.com',
           candidate: 'Lucy Valdez',
           email: 'lucy@o.com',
           contactNumber: '+8523616462',
@@ -319,7 +321,8 @@ export default defineComponent({
         },
         {
           profilePic: candidateAvatars.avatars[2],
-          link: 'google.com',
+          url1: 'google.com',
+          url2: 'yahoo.com',
           candidate: 'Lucy Valdez',
           email: 'lucy@o.com',
           contactNumber: '+8523616462',

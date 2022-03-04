@@ -28,14 +28,6 @@ export default defineComponent({
     'oxd-icon-button': IconButton,
   },
 
-  props: {
-    item: {
-      type: Object,
-      // not required, since actions evaluate from `this.header.cellConfig`
-      required: false,
-    },
-  },
-
   computed: {
     actions(): object {
       if (this.item) {
