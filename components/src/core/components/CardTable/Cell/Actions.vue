@@ -28,14 +28,6 @@ export default defineComponent({
     'oxd-icon-button': IconButton,
   },
 
-  props: {
-    item: {
-      type: Object,
-      // not required, since actions evaluate from `this.header.cellConfig`
-      required: false,
-    },
-  },
-
   computed: {
     actions(): object {
       if (this.item) {
@@ -75,7 +67,10 @@ export default defineComponent({
       const cellConfig = this.header?.cellConfig;
       if (typeof action.onChange === 'function') {
         action.onChange(this.rowItem, e);
-      } else if (cellConfig && typeof cellConfig[key]?.onChange === 'function') {
+      } else if (
+        cellConfig &&
+        typeof cellConfig[key]?.onChange === 'function'
+      ) {
         this.header?.cellConfig[key]?.onChange(this.rowItem, e);
       }
     },

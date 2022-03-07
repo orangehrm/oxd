@@ -5,7 +5,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import { IconSize, ICON_SIZES, ICON_SIZE_MEDIUM } from '../Icon/types';
+import {IconSize, ICON_SIZES, ICON_SIZE_MEDIUM} from '../Icon/types';
 import icons from './icons';
 export default defineComponent({
   name: 'oxd-icon',

@@ -23,7 +23,12 @@
         :order="tableProps.order[header.sortField]"
         @order="onColumnOrderChanged($event, header)"
       >
-        {{ header.title }}
+        <oxd-icon
+          v-if="header.iconName"
+          :name="header.iconName"
+          :style="header.iconStyle"
+        />
+        <span v-else>{{ header.title }}</span>
       </oxd-card-th>
     </oxd-card-tr>
   </oxd-card-thead>
@@ -36,6 +41,7 @@ import TableHeader from '@orangehrm/oxd/core/components/CardTable/Table/TableHea
 import TableRow from '@orangehrm/oxd/core/components/CardTable/Table/TableRow.vue';
 import TableHeaderCell from '@orangehrm/oxd/core/components/CardTable/Table/TableHeaderCell.vue';
 import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
+import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import {DEVICE_LG, DEVICE_XL} from '../../../../composables/useResponsive';
 import {CardHeader, Order} from '../types';
 
@@ -49,6 +55,7 @@ export default defineComponent({
   name: 'oxd-table-header-default',
 
   components: {
+    'oxd-icon': Icon,
     'oxd-card-thead': TableHeader,
     'oxd-card-tr': TableRow,
     'oxd-card-th': TableHeaderCell,

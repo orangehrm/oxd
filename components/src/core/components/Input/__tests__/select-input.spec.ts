@@ -1,7 +1,8 @@
-import {mount} from '@vue/test-utils';
+import {mount, shallowMount} from '@vue/test-utils';
 import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
 import SelectText from '@orangehrm/oxd/core/components/Input/Select/SelectText.vue';
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
+import {BOTTOM} from '@orangehrm/oxd/core/components/Input/types.ts';
 
 const options = [
   {
@@ -94,5 +95,65 @@ describe('SelectInput.vue', () => {
     const nodes = wrapper.findAllComponents(SelectOption);
     await nodes[0].trigger('mousedown');
     expect(nodes.length).toBe(3);
+  });
+
+  it('When place holder is there should have class --with-empty-selector', async () => {
+    const wrapper = shallowMount(SelectInput, {
+      props: {
+        options,
+        modelValue: {
+          id: 1,
+          label: 'HR Admin',
+        },
+        dropdownPosition: BOTTOM,
+        showEmptySelector: true,
+        hideDropdownDefaultLabel: false,
+      },
+    });
+    expect(wrapper.vm.dropdownClasses).toStrictEqual({
+      '--positon-bottom': true,
+      '--positon-top': false,
+      '--with-empty-selector': true,
+    });
+  });
+
+  it('When place holder not there should not have class --with-empty-selector', async () => {
+    const wrapper = shallowMount(SelectInput, {
+      props: {
+        options,
+        modelValue: {
+          id: 1,
+          label: 'HR Admin',
+        },
+        dropdownPosition: BOTTOM,
+        showEmptySelector: false,
+        hideDropdownDefaultLabel: false,
+      },
+    });
+    expect(wrapper.vm.dropdownClasses).toStrictEqual({
+      '--positon-bottom': true,
+      '--positon-top': false,
+      '--with-empty-selector': false,
+    });
+  });
+
+  it('When place holder is hidden should not have class --with-empty-selector', async () => {
+    const wrapper = shallowMount(SelectInput, {
+      props: {
+        options,
+        modelValue: {
+          id: 1,
+          label: 'HR Admin',
+        },
+        dropdownPosition: BOTTOM,
+        showEmptySelector: true,
+        hideDropdownDefaultLabel: true,
+      },
+    });
+    expect(wrapper.vm.dropdownClasses).toStrictEqual({
+      '--positon-bottom': true,
+      '--positon-top': false,
+      '--with-empty-selector': false,
+    });
   });
 });

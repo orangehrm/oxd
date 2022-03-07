@@ -1,10 +1,12 @@
 <template>
-  <div class="oxd-table-filter" :class="{'no-filter-slot': hideFilterSlot}">
-    <div class="oxd-table-filter-header">
+  <div class="oxd-table-filter">
+    <div class="oxd-table-filter-header" :class="{spilled: isSpilled}">
       <div class="oxd-table-filter-header-title">
         <oxd-text class="oxd-table-filter-title" tag="h5">{{
           filterTitle
         }}</oxd-text>
+      </div>
+      <div class="oxd-table-filter-header-bulk-actions">
         <div class="--actions">
           <slot name="actionOptions"></slot>
         </div>
@@ -23,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, watchEffect} from 'vue';
+import {defineComponent, nextTick, ref, watchEffect} from 'vue';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';
 import useResponsive, {
@@ -44,14 +46,48 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    itemsSelected: {
+      type: Boolean,
+      default: false,
+    },
   },
 
-  setup() {
+  setup(props) {
     const responsiveState = useResponsive();
     const isActive = ref(true);
+    const isSpilled = ref(true);
 
     const toggleFilters = () => {
       isActive.value = !isActive.value;
+    };
+
+    const filterElement = document.getElementsByClassName(
+      'oxd-table-filter-header',
+    );
+    const titleElement = document.getElementsByClassName(
+      'oxd-table-filter-header-title',
+    );
+    const bulkActionElement = document.getElementsByClassName(
+      'oxd-table-filter-header-bulk-actions',
+    );
+    const optionsElement = document.getElementsByClassName(
+      'oxd-table-filter-header-options',
+    );
+
+    const updateIsSpilled = () => {
+      nextTick(function() {
+        const fullWidth = filterElement[0] ? filterElement[0].clientWidth : 0;
+        const titleWidth = titleElement[0] ? titleElement[0].clientWidth : 0;
+        const actionButtonWidth = bulkActionElement[0]
+          ? bulkActionElement[0].clientWidth
+          : 0;
+        const filterWidth = optionsElement[0]
+          ? optionsElement[0].clientWidth
+          : 0;
+        isSpilled.value =
+          props.itemsSelected &&
+          titleWidth + actionButtonWidth + filterWidth > fullWidth;
+      });
     };
 
     watchEffect(() => {
@@ -59,11 +95,24 @@ export default defineComponent({
         responsiveState.screenType === DEVICE_LG ||
         responsiveState.screenType === DEVICE_XL;
     });
+    watchEffect(() => {
+      props.itemsSelected && responsiveState.windowWidth && updateIsSpilled();
+    });
 
+    document.addEventListener('collapsibleViewToggled', updateIsSpilled);
     return {
       isActive,
+      isSpilled,
       toggleFilters,
+      updateIsSpilled,
     };
+  },
+
+  unmounted() {
+    document.removeEventListener(
+      'collapsibleViewToggled',
+      this.updateIsSpilled,
+    );
   },
 });
 </script>
@@ -71,20 +120,24 @@ export default defineComponent({
 <style src="./table-filter.scss" lang="scss" scoped></style>
 <style lang="scss">
 .oxd-table-filter {
-  &.no-filter-slot {
-    .oxd-divider {
-      margin: 0;
-    }
-  }
-  .oxd-table-filter-header-title,
-  .--actions {
-    display: flex;
-    align-items: center;
-  }
   .oxd-table-filter-header-options {
     & .oxd-icon-button,
-    .oxd-button {
-      margin-left: 5px;
+    .oxd-button,
+    .oxd-autocomplete-search-wrapper {
+      margin-left: 0.5rem;
+    }
+    .oxd-button.with-icon {
+      padding: 0.5rem 1rem;
+      min-width: unset;
+    }
+  }
+
+  .oxd-table-filter-header {
+    .--actions button.oxd-button {
+      margin-left: 0.5rem;
+    }
+    &.spilled .--actions div:first-child > button.oxd-button {
+      margin-left: 0;
     }
   }
 }

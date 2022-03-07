@@ -5,21 +5,22 @@ describe('ProgressBar > ProgressBar.vue', () => {
   it('renders OXD linear Progress Bar', () => {
     const wrapper = mount(ProgressBar, {
       props: {
-        title: "List to CSV",
-        show: true
+        title: 'List to CSV',
+        show: true,
       },
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
 
-  it("header title", () => {
+  it('header title', () => {
     const wrapper = shallowMount(ProgressBar, {
       props: {
-        title: "List to CSV",
-        show: true
+        title: 'List to CSV',
+        show: true,
       },
     });
-    expect(wrapper.html()).toContain("<h5 class=\"modal-title\">List to CSV</h5>");
+    expect(wrapper.html()).toContain(
+      '<h5 class="progress-modal-title">List to CSV</h5>',
+    );
   });
-
 });
