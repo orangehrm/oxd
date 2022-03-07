@@ -64,8 +64,13 @@
         &:hover,
         &:focus-within,
         &.active {
-          background-color: rgba(100, 114, 140, 0.1);
+          background-color: $oxd-background-light-gray-color;
           cursor: pointer;
+        }
+        &.active {
+          .oxd-label {
+            font-weight: 700;
+          }
         }
       }
       .oxd-label {
