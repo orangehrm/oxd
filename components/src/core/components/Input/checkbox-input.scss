@@ -30,7 +30,7 @@
 
       &:checked + .oxd-checkbox-input {
         background-color: $oxd-checkbox-checked-background-color;
-        border: none;
+        border: $oxd-checkbox-checked-border;
         .oxd-checkbox-input-icon {
           opacity: 1;
         }

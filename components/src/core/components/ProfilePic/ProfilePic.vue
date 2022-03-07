@@ -52,7 +52,7 @@ export default defineComponent({
       type: String,
       default: TARGET_SELF,
       validator: (value: TargetTypes) => {
-        return TARGETS.indexOf(value) !== 1;
+        return TARGETS.indexOf(value) !== -1;
       },
     },
   },

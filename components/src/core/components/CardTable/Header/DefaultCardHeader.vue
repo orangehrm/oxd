@@ -23,7 +23,11 @@
         :order="tableProps.order[header.sortField]"
         @order="onColumnOrderChanged($event, header)"
       >
-        <oxd-icon v-if="header.iconName" :name="header.iconName" :style="header.iconStyle" />
+        <oxd-icon
+          v-if="header.iconName"
+          :name="header.iconName"
+          :style="header.iconStyle"
+        />
         <span v-else>{{ header.title }}</span>
       </oxd-card-th>
     </oxd-card-tr>

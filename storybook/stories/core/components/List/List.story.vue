@@ -2,7 +2,7 @@
   <div class="container">
     <oxd-list
       :configurations="configurations"
-      :list-items="state.items" 
+      :list-items="state.items"
       :list-highlightRows="listHighlightRows"
       :whole-records-count="110"
       :filtered-total-records-count="100"
@@ -24,7 +24,8 @@
       @pagination:onPrevious="selectPreviousPage"
       @pagination:onNext="selectNextPaginate"
       @pagination:onSelectPage="selectExactPage"
-      @pagination:onSelectPerPage="selectPerPage">
+      @pagination:onSelectPerPage="selectPerPage"
+    >
       <template v-slot:sidePanelBody>
         <oxd-select-input-btn
           :button="{
@@ -54,8 +55,6 @@
           :modelValue="state.selectedVacancy"
         />
       </template>
-      <template v-slot:list>
-      </template>
     </oxd-list>
   </div>
 </template>
@@ -63,11 +62,11 @@
 <script lang="ts">
 import {defineComponent, reactive, computed, ref} from 'vue';
 import List from '@orangehrm/oxd/core/components/List/List';
-import SelectInput from "@orangehrm/oxd/core/components/Input/Select/SelectInput";
+import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput';
 import SelectInputButton from '@orangehrm/oxd/core/components/Input/Select/SelectInputButton.vue';
-import list from './list-config.json'
-import candidateAvatars from './candidate-avatars.json'
-import map from 'lodash/map'
+import list from './list-config.json';
+import candidateAvatars from './candidate-avatars.json';
+import map from 'lodash/map';
 
 interface SelectedVacancyI extends SelectUII {
   id: number;
@@ -102,39 +101,37 @@ const initialFilters: IAppliedFilter = {
   orderField: null,
   orderBy: null,
   nameTxt: null,
-  appliedDateFrom: "2021-02-21",
-  appliedDateTo: "2022-02-21",
+  appliedDateFrom: '2021-02-21',
+  appliedDateTo: '2022-02-21',
 };
 
 export default defineComponent({
   components: {
     'oxd-list': List,
-    'oxd-select-input-btn': SelectInputButton
+    'oxd-select-input-btn': SelectInputButton,
   },
 
   props: {
     listHighlightRows: {
-      type: Object
+      type: Object,
     },
   },
 
   setup() {
-    const appliedFilters = ref(
-      JSON.parse(JSON.stringify(initialFilters))
-    );
+    const appliedFilters = ref(JSON.parse(JSON.stringify(initialFilters)));
 
     const configurations = computed(() => {
-      list.table.headers =  map(list.table.headers, item => {
+      list.table.headers = map(list.table.headers, (item) => {
         return {
           ...item,
-          cellRenderer: eval(item.cellRenderer)
-        }
-      })
-      return list
-    })
+          cellRenderer: eval(item.cellRenderer),
+        };
+      });
+      return list;
+    });
 
     const selectedVacancyLabel = computed(() => {
-      let label = "";
+      let label = '';
       if (state.selectedVacancy) {
         label = state.selectedVacancy.label;
       }
@@ -147,7 +144,7 @@ export default defineComponent({
         rowObj.candidateStages && rowObj.candidateStages.length > 0
           ? rowObj.candidateStages
           : [];
-      const mappedStages = candidateStages.map(candidateState => {
+      const mappedStages = candidateStages.map((candidateState) => {
         return {
           ...candidateState,
           id: candidateState.id,
@@ -166,7 +163,7 @@ export default defineComponent({
         props: {
           options: mappedStages,
           modelValue: selectedStage,
-          'onUpdate:modelValue': params => {
+          'onUpdate:modelValue': (params) => {
             console.log(params);
           },
         },
@@ -178,7 +175,7 @@ export default defineComponent({
           displayType: 'label',
           size: 'medium',
           name: 'oxd-download-doc',
-          tooltip: "Download Resume",
+          tooltip: 'Download Resume',
         },
       };
       const downloadApplicationForm = {
@@ -188,7 +185,7 @@ export default defineComponent({
           displayType: 'label',
           size: 'medium',
           name: 'oxd-download',
-          tooltip: "Download Application Form",
+          tooltip: 'Download Application Form',
         },
       };
       const compare = {
@@ -198,7 +195,7 @@ export default defineComponent({
           displayType: 'label',
           size: 'medium',
           name: 'oxd-users',
-          tooltip: "Compare With Other Candidates",
+          tooltip: 'Compare With Other Candidates',
         },
       };
       return {
@@ -230,11 +227,12 @@ export default defineComponent({
       items: [
         {
           profilePic: candidateAvatars.avatars[0],
-          link: 'google.com',
+          url1: 'google.com',
+          url2: 'yahoo.com',
           candidate: 'Venkatanarasimharajuvar Narasimha Rajuvaripet',
           email: 'trevor@o.com',
           contactNumber: '+8552616462',
-          dateOfApplication: 'Thu, 11 Mar 2021',
+          dateOfApplication: '2021-03-11',
           selectedStage: {
             eventTitle: 'Application Received',
             id: '1',
@@ -282,11 +280,12 @@ export default defineComponent({
         },
         {
           profilePic: candidateAvatars.avatars[1],
-          link: 'google.com',
+          url1: 'google.com',
+          url2: 'yahoo.com',
           candidate: 'Lucy Valdez',
           email: 'lucy@o.com',
           contactNumber: '+8523616462',
-          dateOfApplication: 'Thu, 10 Mar 2021',
+          dateOfApplication: '2021-03-10',
           selectedStage: {
             eventTitle: "Interview, CEO's interview, One on one interview",
             id: '1',
@@ -322,11 +321,12 @@ export default defineComponent({
         },
         {
           profilePic: candidateAvatars.avatars[2],
-          link: 'google.com',
+          url1: 'google.com',
+          url2: 'yahoo.com',
           candidate: 'Lucy Valdez',
           email: 'lucy@o.com',
           contactNumber: '+8523616462',
-          dateOfApplication: 'Thu, 10 Mar 2021',
+          dateOfApplication: '2021-03-10',
           selectedStage: {
             eventTitle: "Interview, CEO's interview, One on one interview",
             id: '1',
@@ -365,7 +365,7 @@ export default defineComponent({
           candidate: 'SRIMANSI JOSHE',
           email: 'JOSHE@gmail.com',
           contactNumber: '+6523616462',
-          dateOfApplication: 'Wed, 30 Sep 2020',
+          dateOfApplication: '2020-09-30',
           selectedStage: {
             eventTitle: 'Shortlisted',
             id: '2',
@@ -416,7 +416,7 @@ export default defineComponent({
           candidate: 'Peter Smith',
           email: 'petersmith@gmail.com',
           contactNumber: '+1 876-345-1505',
-          dateOfApplication: 'Tue, 30 Apr 2019',
+          dateOfApplication: '2019-04-30',
           selectedStage: {
             eventTitle: 'Shortlisted',
             id: '2',
@@ -467,7 +467,7 @@ export default defineComponent({
           candidate: 'Jo Denton',
           email: 'jodentan@gmail.com',
           contactNumber: '+1 888-452-2314',
-          dateOfApplication: 'Tue, 30 Apr 2019',
+          dateOfApplication: '2019-04-30',
           selectedStage: {
             eventTitle: 'Shortlisted',
             id: '2',
@@ -518,7 +518,7 @@ export default defineComponent({
           candidate: 'Garry White',
           email: 'garrywhite@gmail.com',
           contactNumber: '+1 788-482-1505',
-          dateOfApplication: 'Fri, 26 Apr 2019',
+          dateOfApplication: '2019-04-26',
           selectedStage: {
             eventTitle: 'Shortlisted',
             id: '2',
@@ -567,7 +567,7 @@ export default defineComponent({
       ],
       checkedItems: [],
       highlightRows: {
-        rowIndexes: [0,2],
+        rowIndexes: [0, 2],
         type: 'success',
       },
       order: {
@@ -712,13 +712,13 @@ export default defineComponent({
           label: '20',
         },
         limit: 20,
-        pages: [10, 20, 50, 100]
+        pages: [10, 20, 50, 100],
       } as {
         perPage: {
-          id: number,
-          label: string,
-        },
-        limit: number,
+          id: number;
+          label: string;
+        };
+        limit: number;
         pages: number[];
       },
       modalState: false,
@@ -743,7 +743,7 @@ export default defineComponent({
       ];
     });
     const selectedStage = computed(() => {
-      return dropdownStages.value.find(stage => stage.selected);
+      return dropdownStages.value.find((stage) => stage.selected);
     });
     const showAddCandidatesModal = () => {
       console.log('show add candidates modal');
@@ -771,22 +771,22 @@ export default defineComponent({
       appliedQueries.value = initialQueries;
       state.selectedVacancy = {
         id: -1,
-        label: "All Vacancy",
+        label: 'All Vacancy',
       };
       state.modalState = false;
     };
     const cancelDrawerSearch = (): void => {
       state.modalState = false;
     };
-    const tableSort = (obj: { [key: string]: string }) => {
+    const tableSort = (obj: {[key: string]: string}) => {
       for (const key in obj) {
         const value = obj[key];
-        if (value !== "DEFAULT") {
+        if (value !== 'DEFAULT') {
           const orderFieldKey =
-            key === "dateOfApplication" ? "dateOfApplication" : key;
+            key === 'dateOfApplication' ? 'dateOfApplication' : key;
           const orderField = orderFieldKey.replace(
             /[A-Z]/g,
-            (letter) => `_${letter.toLowerCase()}`
+            (letter) => `_${letter.toLowerCase()}`,
           );
           const query = [`orderField=${orderField}`, `orderBy=${value}`];
           let includes;
@@ -804,18 +804,18 @@ export default defineComponent({
       alert(`Drawer state: ${state.modalState}`);
     };
     const exportCSV = () => {
-      alert('Exported')
-    }
+      alert('Exported');
+    };
 
     const candidateQuickSearch = (name: string) => {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         if (name.trim()) {
           fetch(`https://api.github.com/search/users?q=${name}`)
-            .then(response => response.json())
-            .then(json => {
+            .then((response) => response.json())
+            .then((json) => {
               const {items} = json;
               resolve(
-                items.map(item => {
+                items.map((item) => {
                   return {
                     id: item.id,
                     label: item.login,
@@ -830,21 +830,21 @@ export default defineComponent({
       });
     };
     const selectPreviousPage = (currentPage: number) => {
-      console.log(currentPage)
+      console.log(currentPage);
     };
     const selectNextPaginate = (currentPage: number) => {
-      console.log(currentPage)
+      console.log(currentPage);
     };
-    const selectExactPage = (page: { native: Event; page: number }) => {
-      console.log(page.page)
+    const selectExactPage = (page: {native: Event; page: number}) => {
+      console.log(page.page);
     };
     const selectPerPage = (page: {
       id: number;
       label: number | number;
       _selected: boolean;
     }) => {
-      state.pagination.perPage = page
-      console.log(page.label)
+      state.pagination.perPage = page;
+      console.log(page.label);
     };
 
     return {
@@ -877,6 +877,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss" scoped>
-</style>
