@@ -1,48 +1,49 @@
 <template>
   <div class="oxd-table-header-sort" @keyup.esc="closeDropdown">
     <oxd-icon-button
-      :withContainer="false"
-      :name="sortIcon"
-      size="extra-small"
-      class="oxd-table-header-sort-icon"
-      tabindex="0"
-      @click="openDropdown($event)"
-      @keydown.enter="openDropdown($event)"
-      @keydown.down.exact.prevent="onSelectDown"
-      @keydown.up.exact.prevent="onSelectUp"
-      @keydown.tab="closeDropdown"
+        :withContainer="false"
+        :name="sortIcon"
+        size="extra-small"
+        class="oxd-table-header-sort-icon"
+        tabindex="0"
+        ref="oxdIcon"
+        @click="openDropdown($event)"
+        @keydown.enter="openDropdown($event)"
+        @keydown.down.exact.prevent="onSelectDown"
+        @keydown.up.exact.prevent="onSelectUp"
+        @keydown.tab="closeDropdown"
     />
     <div
-      v-click-outside="closeDropdown"
-      v-show="isActive"
-      :class="classes"
-      role="dropdown"
-      tabindex="-1"
-      @keydown.down.exact.prevent="onSelectDown"
-      @keydown.up.exact.prevent="onSelectUp"
-      @keydown.tab="closeDropdown"
+        v-click-outside="closeDropdown"
+        v-show="isActive"
+        :class="classes"
+        role="dropdown"
+        tabindex="-1"
+        @keydown.down.exact.prevent="onSelectDown"
+        @keydown.up.exact.prevent="onSelectUp"
+        @keydown.tab="closeDropdown"
     >
       <ul
-        role="menu"
-        @click.stop="closeDropdown"
-        @keydown.enter.prevent.stop="closeDropdown"
+          role="menu"
+          @click.stop="closeDropdown"
+          @keydown.enter.prevent.stop="closeDropdown"
       >
         <li
-          ref="topDropdownElement"
-          tabindex="-1"
-          class="oxd-table-header-sort-dropdown-item"
-          @click="$emit('order', 'ASC')"
-          @keydown.enter.prevent="$emit('order', 'ASC')"
+            ref="topDropdownElement"
+            tabindex="-1"
+            class="oxd-table-header-sort-dropdown-item ascending"
+            @click="$emit('order', 'ASC')"
+            @keydown.enter.prevent="$emit('order', 'ASC')"
         >
           <oxd-icon name="oxd-sort-asc" size="extra-small"/>
           <oxd-text tag="span">Ascending</oxd-text>
         </li>
         <li
-          ref="bottomDropdownElement"
-          tabindex="-1"
-          class="oxd-table-header-sort-dropdown-item"
-          @click="$emit('order', 'DESC')"
-          @keydown.enter.prevent="$emit('order', 'DESC')"
+            ref="bottomDropdownElement"
+            tabindex="-1"
+            class="oxd-table-header-sort-dropdown-item descending"
+            @click="$emit('order', 'DESC')"
+            @keydown.enter.prevent="$emit('order', 'DESC')"
         >
           <oxd-icon name="oxd-sort-desc" size="extra-small"/>
           <oxd-text tag="span">Decending</oxd-text>
@@ -93,18 +94,21 @@ export default defineComponent({
   methods: {
     openDropdown($e: Event) {
       this.isActive = true;
-      this.$nextTick(() => {
-        const firstFocusableElement = ($e?.target as Element).parentElement?.querySelector(
-          '.oxd-table-header-sort-dropdown-item',
-        );
-        if (firstFocusableElement) {
-          (firstFocusableElement as HTMLElement).focus();
-        }
-      });
+      if(this.sortIcon === 'oxd-sort-desc'){
+        this.$nextTick(() => {
+          this.$refs.bottomDropdownElement.focus();
+        });
+      }
+      else{
+        this.$nextTick(() => {
+          this.$refs.topDropdownElement.focus();
+        });
+      }
     },
     closeDropdown() {
       if (this.isActive) {
         this.isActive = false;
+        this.$refs.oxdIcon.$el.focus();
       }
     },
     onSelectDown() {
