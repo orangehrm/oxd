@@ -4,11 +4,10 @@
   margin-top: 2rem;
   background-color: $oxd-white-color;
   border-radius: 1.2rem;
-  padding: 0.5rem;
+  padding: 1rem;
   box-sizing: border-box;
   .oxd-table-left-panel {
     &.with-filters {
-      margin-top: 0.25rem;
       margin-bottom: 0.25rem;
     }
   }
@@ -38,10 +37,6 @@
             }
           }
         }
-      }
-      :deep(.oxd-divider) {
-        margin-top: 1rem;
-        margin-bottom: 0;
       }
     }
   }
