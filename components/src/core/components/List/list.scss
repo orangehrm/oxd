@@ -2,12 +2,13 @@
 
 .oxd-list-container {
   margin-top: 2rem;
-  background-color: #fff;
+  background-color: $oxd-white-color;
   border-radius: 1.2rem;
+  padding: 1rem;
+  box-sizing: border-box;
   .oxd-table-left-panel {
     &.with-filters {
-      margin-top: 1.25rem;
-      margin-bottom: 1.25rem;
+      margin-bottom: 0.25rem;
     }
   }
   .table-card-list-wrapper {
@@ -15,7 +16,9 @@
     height: 100%;
     border-left: 1px solid $oxd-interface-gray-lighten-4-color;
     .list-table-filter {
-      padding-bottom: 0;
+      padding: 0 0 0 0;
+      margin: 0 0 0 1rem;
+      border-radius: 0;
       :deep(.oxd-table-filter-header) {
         .oxd-table-filter-header-title {
           .oxd-table-filter-title {
@@ -34,10 +37,6 @@
             }
           }
         }
-      }
-      :deep(.oxd-divider) {
-        margin-top: 0;
-        margin-bottom: 0;
       }
     }
   }
