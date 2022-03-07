@@ -9,9 +9,7 @@
         :placeholder="placeholder"
         ref="oxdInput"
         @update:modelValue="onDateTyped"
-        @click="toggleDropdown"
         @blur="onBlur"
-        @keyup.esc="closeDropdown"
       />
       <oxd-icon
         :class="dateIconClasses"
@@ -23,9 +21,9 @@
     </div>
     <transition name="transition-fade-down">
       <div
+          v-click-outside="closeDropdown"
           v-if="open"
           class="oxd-date-input-calendar"
-          v-click-outside="onBlur"
           @keyup.esc="closeDropdown"
       >
         <oxd-calendar
@@ -130,11 +128,6 @@ export default defineComponent({
           : parseDate(this.dateTyped, this.ioformat);
         this.dateTyped = '';
       }
-      const calendarDropdown = (e.target as Element).parentElement?.nextElementSibling;
-      if(calendarDropdown === document.querySelector('.oxd-date-input-calendar')){
-        return;
-      }
-      this.closeDropdown();
       e.stopImmediatePropagation();
       this.$emit('blur');
     },
@@ -161,15 +154,18 @@ export default defineComponent({
     closeDropdown($e: KeyboardEvent | null) {
       if ($e && $e.key === 'Escape') $e.stopPropagation();
       this.open = false;
+      this.$refs.oxdInput.$el.focus();
       this.$emit('dateselect:closed');
     },
     onClickToday() {
       this.dateSelected = freshDate();
       this.open = false;
+      this.$refs.oxdInput.$el.focus();
     },
     onClickClear() {
       this.dateSelected = null;
       this.open = false;
+      this.$refs.oxdInput.$el.focus();
     },
   },
 
