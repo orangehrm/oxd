@@ -12,20 +12,4 @@
       cursor: unset !important;
     }
   }
-  a {
-    color: red;
-    &:hover {
-      color: $oxd-interface-gray-darken-2-color;
-    }
-  }
-}
-
-.oxd-table-cell {
-  a {
-    color: $oxd-interface-gray-darken-2-color;
-    text-decoration: none;
-    &:hover {
-      color: $oxd-interface-gray-darken-2-color;
-    }
-  }
 }

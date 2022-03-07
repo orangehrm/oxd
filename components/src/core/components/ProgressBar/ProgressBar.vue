@@ -1,8 +1,8 @@
 <template>
   <div v-if="show" class="oxd-overlay">
     <div class="oxd">
-      <div class="progress-bar-modal" >
-        <div class="modal-dialog modal-sm" >
+      <div class="progress-bar-modal">
+        <div class="modal-dialog modal-sm">
           <div class="progress-modal-content">
             <div class="progress-modal-header">
               <h5 class="progress-modal-title">{{ title }}</h5>

@@ -3,6 +3,7 @@
     <oxd-icon-button
       :withContainer="false"
       :name="sortIcon"
+      size="extra-small"
       class="oxd-table-header-sort-icon"
       tabindex="0"
       @click="openDropdown($event)"
@@ -33,7 +34,7 @@
           @click="$emit('order', 'ASC')"
           @keydown.enter.prevent="$emit('order', 'ASC')"
         >
-          <oxd-icon name="sort-alpha-down" />
+          <oxd-icon name="oxd-sort-asc" size="extra-small"/>
           <oxd-text tag="span">Ascending</oxd-text>
         </li>
         <li
@@ -43,7 +44,7 @@
           @click="$emit('order', 'DESC')"
           @keydown.enter.prevent="$emit('order', 'DESC')"
         >
-          <oxd-icon name="sort-alpha-up" />
+          <oxd-icon name="oxd-sort-desc" size="extra-small"/>
           <oxd-text tag="span">Decending</oxd-text>
         </li>
       </ul>

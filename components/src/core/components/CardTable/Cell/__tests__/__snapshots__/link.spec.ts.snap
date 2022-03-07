@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardTable > Cell > Link.vue should renders OXD CardTable > Cell > Cell with custom link 1`] = `
+<div class="oxd-table-card-cell">
+  <div class="header"></div><a href="https://orangehrm.com" target="_parent" class="oxd-table-cell-link">This is a link</a>
+  <!--v-if-->
+</div>
+`;
+
+exports[`CardTable > Cell > Link.vue should renders OXD CardTable > Cell > Link Cell 1`] = `
+<div class="oxd-table-card-cell">
+  <div class="header"></div><a href="#" target="_self" class="oxd-table-cell-link">This is a link</a>
+  <!--v-if-->
+</div>
+`;

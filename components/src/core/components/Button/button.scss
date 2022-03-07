@@ -187,3 +187,9 @@
 .oxd-button-label-wrapper {
   display: initial;
 }
+
+.oxd-button--glass {
+  .oxd-button-label-wrapper {
+    display: flex;
+  }
+}
