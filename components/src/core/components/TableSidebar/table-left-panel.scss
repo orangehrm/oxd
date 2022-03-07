@@ -12,6 +12,7 @@
   }
   &--body {
     margin-top: 1rem;
+    padding-bottom: 0.5rem !important;
   }
   &--toggle-btn {
     position: absolute;
@@ -32,7 +33,6 @@
 }
 
 .list {
-  padding-top: 0.5rem !important;
   ul {
     list-style: none;
     margin: 0;
