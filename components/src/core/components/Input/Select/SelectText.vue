@@ -1,9 +1,9 @@
 <template>
   <div
     v-bind="$attrs"
-    :tabindex="tabIndex"
     :class="classes"
     :style="style"
+    :tabindex="tabIndex"
     @focus="onFocus"
     @blur="onBlur"
   >
