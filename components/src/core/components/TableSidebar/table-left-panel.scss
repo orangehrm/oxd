@@ -11,6 +11,7 @@
   }
   &--body {
     margin-top: 1rem;
+    padding-bottom: 0.5rem !important;
   }
   &--toggle-btn {
     position: absolute;
@@ -25,13 +26,12 @@
     border: 1px solid $oxd-interface-gray-lighten-2-color;
     &:hover,
     &:focus {
-      color: $oxd-interface-gray-darken-1-color;
+      background-color: $oxd-white-color;
     }
   }
 }
 
 .list {
-  padding-top: 0.5rem !important;
   ul {
     list-style: none;
     margin: 0;
@@ -63,8 +63,13 @@
         &:hover,
         &:focus-within,
         &.active {
-          background-color: rgba(100, 114, 140, 0.1);
+          background-color: $oxd-background-light-gray-color;
           cursor: pointer;
+        }
+        &.active {
+          .oxd-label {
+            font-weight: 700;
+          }
         }
       }
       .oxd-label {
