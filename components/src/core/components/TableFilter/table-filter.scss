@@ -8,11 +8,10 @@
 
   .oxd-table-filter-header {
     display: flex;
-    margin: 0.5rem 0.5rem 1rem 0.5rem;
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-between;
-
+    margin-bottom: 0.75rem;
     .oxd-table-filter-header-title {
       display: flex;
       align-items: center;
