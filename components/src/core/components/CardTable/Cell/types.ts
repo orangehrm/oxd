@@ -30,6 +30,7 @@ export interface ActionCellEvent extends MouseEvent {
 export type DropdownOption = {
   label: string;
   context: string;
+  icon?: string;
 };
 
 export interface ProfilePicItem {
