@@ -1,20 +1,56 @@
 @import '../../../../styles';
+@import '../../Input/variables';
 @import 'variables';
 
 .oxd-table-dropdown {
   list-style: none;
   position: relative;
+
   &-item {
     cursor: pointer;
-    padding: 6px 16px;
-    border-bottom: $oxd-dropdown-border;
-    &:hover {
-      background-color: $oxd-dropdown-item-hover-color;
+    border: 0;
+    display: flex;
+    align-items: center;
+    text-align: inherit;
+    color: $oxd-dropdown-option-color;
+    font-size: $oxd-dropdown-option-font-size;
+    font-family: $oxd-dropdown-option-font-family;
+    font-weight: $oxd-dropdown-option-font-weight;
+    padding: $oxd-dropdown-option-padding;
+    margin: $oxd-dropdown-option-margin;
+    border-bottom: $oxd-dropdown-option-border-bottom;
+    background-color: $oxd-dropdown-option-background;
+    min-height: $oxd-dropdown-option-min-height;
+    p {
+      word-break: break-word;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .oxd-svg-icon, .oxd-icon {
+      margin-right: 0.5rem;
+    }
+
+    &:last-child {
+      border-bottom: unset;
+    }
+    &:hover,
+    &.--focused {
+      border-radius: $oxd-dropdown-option-border-radius;
+      background-color: $oxd-dropdown-option-background--focused;
     }
   }
   ::v-deep(.oxd-dropdown-menu) {
     right: 0;
     left: unset;
-    padding: unset;
+    color: $oxd-dropdown-dropdown-color;
+    border: $oxd-dropdown-dropdown-border;
+    padding: $oxd-dropdown-dropdown-padding;
+    box-shadow: $oxd-dropdown-dropdown-box-shadow;
+    border-radius: $oxd-dropdown-dropdown-border-radius;
+    background-color: $oxd-dropdown-dropdown-background;
   }
 }

@@ -8,6 +8,7 @@
         @click="onClick($event, option.context)"
         class="oxd-table-dropdown-item"
       >
+        <oxd-icon v-if="option.icon" :name="option.icon" size="extra-small"/>
         <oxd-text tag="p">{{ option.label }}</oxd-text>
       </li>
     </template>
@@ -19,6 +20,7 @@ import {defineComponent, PropType} from 'vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import DropdownMenu from '@orangehrm/oxd/core/components/DropdownMenu/DropdownMenu.vue';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
+import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import {ActionCellEvent, DropdownOption} from './types';
 
 export default defineComponent({
@@ -33,6 +35,7 @@ export default defineComponent({
     'oxd-icon-button': IconButton,
     'oxd-dropdown-menu': DropdownMenu,
     'oxd-text': Text,
+    'oxd-icon': Icon,
   },
   methods: {
     noOp(e: MouseEvent) {
