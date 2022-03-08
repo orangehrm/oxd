@@ -42,7 +42,7 @@ export const TYPES = [
   TYPE_TIME,
 ];
 
-export const TYPE_MAP: TypeMap = {
+export const TYPE_MAP: TypeMap<Components> = {
   [TYPE_INPUT]: COMPONENT_INPUT,
   [TYPE_FILE_INPUT]: COMPONENT_FILE_INPUT,
   [TYPE_TEXTAREA]: COMPONENT_TEXTAREA,
@@ -88,6 +88,6 @@ export type Components =
   | typeof COMPONENT_MULTISELECT_INPUT
   | typeof COMPONENT_TIME_INPUT;
 
-export interface TypeMap {
-  [key: string]: Components;
+export interface TypeMap<T> {
+  [key: string]: T;
 }
