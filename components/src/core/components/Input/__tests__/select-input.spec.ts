@@ -2,7 +2,7 @@ import {mount, shallowMount} from '@vue/test-utils';
 import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
 import SelectText from '@orangehrm/oxd/core/components/Input/Select/SelectText.vue';
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
-import {BOTTOM} from '@orangehrm/oxd/core/components/Input/types.ts';
+import {BOTTOM} from '@orangehrm/oxd/core/components/Input/types';
 
 const options = [
   {
@@ -155,5 +155,31 @@ describe('SelectInput.vue', () => {
       '--positon-top': false,
       '--with-empty-selector': false,
     });
+  });
+
+  it('when click on icon opens the dropdown', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {options},
+    });
+    wrapper.find('.oxd-select-text--after i.oxd-icon').trigger('click');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.emitted('click'));
+
+    wrapper.find('.oxd-select-text--after i.oxd-icon').trigger('click');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.emitted('click'));
+  });
+
+  it('when click on input to opens the dropdown', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {options},
+    });
+    wrapper.find('.oxd-select-text').trigger('click');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.emitted('click'));
+
+    wrapper.find('.oxd-select-text').trigger('click');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.emitted('click'));
   });
 });
