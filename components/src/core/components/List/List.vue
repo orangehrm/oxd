@@ -72,6 +72,7 @@
             :createOptions="quickSearchOptions"
             :modelValue="state.selectedQuickSearch"
             @update:modelValue="quickSearchSelect"
+            @dropdown:clear="quickSearchOnClear"
           >
             <template v-slot:iconSlot>
               <oxd-icon-button
@@ -294,11 +295,13 @@ export default defineComponent({
           label: value.candidateName,
         };
         emit('quick-search:onSelect', value);
-      } else {
-        state.selectedQuickSearch = null;
-        emit('quick-search:onClear');
       }
     };
+
+    const quickSearchOnClear = () => {
+      state.selectedQuickSearch = null;
+      emit('quick-search:onClear')
+    }
 
     const tableSort = value => {
       state.currentSortFields = value;
@@ -379,6 +382,7 @@ export default defineComponent({
       sidePanelListOnHeaderBtnClick,
       sidePanelListOnSelect,
       quickSearchSelect,
+      quickSearchOnClear,
       showFilterDrawer,
       applySearch,
       resetSearch,
