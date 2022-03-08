@@ -15,6 +15,7 @@
         :class="dateIconClasses"
         name="calendar"
         tabindex="0"
+        ref="oxdIcon"
         @click="toggleDropdown"
         @keyup.enter.prevent.stop="toggleDropdown"
       />
@@ -140,7 +141,6 @@ export default defineComponent({
     toggleDropdown() {
       if (!this.disabled && !this.readonly) {
         if (!this.open) {
-          this.$refs.oxdInput.$el.focus();
           this.openDropdown();
         } else {
           this.closeDropdown();
@@ -154,18 +154,18 @@ export default defineComponent({
     closeDropdown($e: KeyboardEvent | null) {
       if ($e && $e.key === 'Escape') $e.stopPropagation();
       this.open = false;
-      this.$refs.oxdInput.$el.focus();
+      this.$refs.oxdIcon.$el.focus();
       this.$emit('dateselect:closed');
     },
     onClickToday() {
       this.dateSelected = freshDate();
       this.open = false;
-      this.$refs.oxdInput.$el.focus();
+      this.$refs.oxdIcon.$el.focus();
     },
     onClickClear() {
       this.dateSelected = null;
       this.open = false;
-      this.$refs.oxdInput.$el.focus();
+      this.$refs.oxdIcon.$el.focus();
     },
   },
 

@@ -48,8 +48,8 @@ export default defineComponent({
       this.$refs.dropdownSelector.focus();
     },
     closeSubMenu($e: KeyboardEvent | null) {
-      if ($e && $e.key === 'Escape') $e.stopPropagation();
       if (this.isActive) {
+        if ($e && $e.key === 'Escape') $e.stopPropagation();
         this.isActive = false;
         this.$refs.dropdownSelector.focus();
       }

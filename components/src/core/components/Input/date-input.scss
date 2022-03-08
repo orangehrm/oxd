@@ -32,7 +32,7 @@
       background-color: $oxd-dropdown-arrow-background-color--readonly;
       color: $oxd-dropdown-arrow-color--readonly;
     }
-    &:focus-visible {
+    &:focus, {
       background-color: $oxd-interface-gray-lighten-2-color;
       border: $oxd-input-border--focus;
       box-shadow: $oxd-input-box-shadow--focus;
