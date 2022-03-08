@@ -85,7 +85,7 @@
               ></oxd-icon-button>
             </template>
             <template v-slot:option="{data}">
-              <oxd-profile-pic size="small" :imageSrc="data.avatar_url" />
+              <oxd-profile-pic size="extra-small" :imageSrc="data.avatar_url" />
               <span class="margin-left">{{ data.label }}</span>
             </template>
           </oxd-quick-search>
