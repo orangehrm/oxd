@@ -197,7 +197,7 @@ export default defineComponent({
 <style src="./pagination.scss" lang="scss" scoped></style>
 
 <style lang="scss" scoped>
-:deep(.pagination-dropdown) {
+:deep(.pagination-dropdown .oxd-select-text-input) {
   min-width: 59px;
 }
 </style>

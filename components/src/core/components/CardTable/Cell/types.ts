@@ -23,6 +23,16 @@ export interface RowItem {
   isDisabled?: boolean;
 }
 
+export interface ActionCellEvent extends MouseEvent {
+  context?: string;
+}
+
+export type DropdownOption = {
+  label: string;
+  context: string;
+  icon?: string;
+};
+
 export interface ProfilePicItem {
   profilePic?: string | null;
   size?: string | null;
