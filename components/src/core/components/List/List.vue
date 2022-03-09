@@ -315,8 +315,9 @@ export default defineComponent({
 
     const quickSearchOnClear = () => {
       state.selectedQuickSearch = null;
-      emit('quick-search:onClear')
-    }
+      state.selectedQuickSearch = null;
+      emit('quick-search:onClear');
+    };
 
     const tableSort = value => {
       state.currentSortFields = value;
