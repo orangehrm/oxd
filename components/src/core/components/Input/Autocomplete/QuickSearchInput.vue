@@ -1,6 +1,7 @@
 <template>
   <div class="oxd-autocomplete-search-wrapper">
     <oxd-autocomplete-input
+      ref="autocompleteInput"
       v-bind="$attrs"
       @update:modelValue="onModelUpdate($event)"
       @update:searchTerm="onSearchTerm"
@@ -45,6 +46,7 @@ export default defineComponent({
       this.$emit('update:searchTerm', searchTerm);
     },
     onClear() {
+      this.$refs.autocompleteInput.searchTerm = null;
       this.$emit('dropdown:clear');
     },
     onOpen() {
