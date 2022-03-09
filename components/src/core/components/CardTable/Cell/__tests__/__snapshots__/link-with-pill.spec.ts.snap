@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardTable > Cell > LinkWithPill.vue should render OXD CardTable > Cell > LinkWithPill Cell - no pill 1`] = `
+<div class="oxd-table-card-cell">
+  <div class="header"></div><a href="https://orangehrm.com" target="_parent" class="oxd-table-cell-link">This is a link</a>
+  <!--v-if-->
+  <!--v-if-->
+</div>
+`;
+
+exports[`CardTable > Cell > LinkWithPill.vue should render OXD CardTable > Cell > LinkWithPill Cell - with nested property pill 1`] = `
+<div class="oxd-table-card-cell">
+  <div class="header"></div><a href="https://orangehrm.com" target="_parent" class="oxd-table-cell-link">This is a link</a>
+  <div class="oxd-table-cell-pill">external</div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`CardTable > Cell > LinkWithPill.vue should render OXD CardTable > Cell > LinkWithPill Cell - with pill 1`] = `
+<div class="oxd-table-card-cell">
+  <div class="header"></div><a href="https://orangehrm.com" target="_parent" class="oxd-table-cell-link">This is a link</a>
+  <div class="oxd-table-cell-pill">external</div>
+  <!--v-if-->
+</div>
+`;

@@ -199,10 +199,11 @@
         "style": {
           "flex": 1
         },
-        "cellType": "oxd-table-cell-link",
+        "cellType": "oxd-table-cell-link-with-pill",
         "cellProps": {
           "link": "url1",
-          "target": "_blank"
+          "target": "_blank",
+          "pillProperty": ["vacancy", "vacancyName"]
         }
       },
       {
