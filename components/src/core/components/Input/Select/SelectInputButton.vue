@@ -57,7 +57,6 @@
       :style="dropdownStyles"
       :loading="loading"
       :empty="computedOptions.length === 0"
-      v-click-outside="clickOutside"
     >
       <oxd-select-option
         v-for="(option, i) in computedOptions"
