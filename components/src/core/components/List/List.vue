@@ -73,6 +73,7 @@
             :modelValue="state.selectedQuickSearch"
             @update:modelValue="quickSearchSelect"
             @dropdown:clear="quickSearchOnClear"
+            @update:searchTerm="setQuickSearchTerm"
           >
             <template v-slot:iconSlot>
               <oxd-icon-button
@@ -83,6 +84,7 @@
                 v-bind="config.table.topBar.quickSearch.button.props"
                 :class="config.table.topBar.quickSearch.button.class"
                 :style="config.table.topBar.quickSearch.button.style"
+                @click="quickSearchKeywordSearch"
               ></oxd-icon-button>
             </template>
             <template v-slot:option="{data}">
@@ -231,6 +233,7 @@ export default defineComponent({
       checkedItems: [],
       modalState: false as boolean,
       selectedQuickSearch: null,
+      quickSearchTerm: null as string | null,
       selectedItemIndexes: [],
       currentSortFields: {},
     });
@@ -302,6 +305,15 @@ export default defineComponent({
       state.selectedQuickSearch = null;
       emit('quick-search:onClear')
     }
+
+    const setQuickSearchTerm = (value: string) => {
+      state.quickSearchTerm = value
+      emit('quick-search:onSetSearchTerm', value);
+    };
+
+    const quickSearchKeywordSearch = () => {
+      emit('quick-search:onSearch', state.quickSearchTerm);
+    };
 
     const tableSort = value => {
       state.currentSortFields = value;
@@ -383,6 +395,8 @@ export default defineComponent({
       sidePanelListOnSelect,
       quickSearchSelect,
       quickSearchOnClear,
+      quickSearchKeywordSearch,
+      setQuickSearchTerm,
       showFilterDrawer,
       applySearch,
       resetSearch,
