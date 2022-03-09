@@ -106,3 +106,12 @@
     }
   }
 }
+
+.oxd-autocomplete-search-wrapper {
+  :deep(.oxd-autocomplete-dropdown) {
+    padding: 0.5rem 0.25rem 0.5rem 0.25rem;
+  }
+  :deep(.oxd-autocomplete-option) {
+    padding: 0.25rem 0.75rem;
+  }
+}
