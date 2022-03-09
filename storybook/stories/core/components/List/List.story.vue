@@ -16,6 +16,7 @@
       @sidePanelList:onSelect="selectStage"
       @quick-search:onSelect="candidateQuickSearchSelect"
       @quick-search:onClear="candidateQuickSearchClear"
+      @quick-search:onSearch="candidateQuickSearchKeywordSearch"
       @drawer:show="drawerShow"
       @drawer-search:apply="applyDrawerSearch"
       @drawer-search:reset="resetDrawerSearch"
@@ -757,6 +758,9 @@ export default defineComponent({
     const candidateQuickSearchClear = () => {
       delete appliedFilters.value.candidateIdList;
     };
+    const candidateQuickSearchKeywordSearch = (value) => {
+      console.log('Keyword search');
+    };
     const selectVacancy = (modelValue: SelectedVacancyI) => {
       state.selectedVacancy = modelValue;
     };
@@ -853,6 +857,7 @@ export default defineComponent({
       selectStage,
       candidateQuickSearchSelect,
       candidateQuickSearchClear,
+      candidateQuickSearchKeywordSearch,
       selectedStage,
       selectVacancy,
       dropdownStages,

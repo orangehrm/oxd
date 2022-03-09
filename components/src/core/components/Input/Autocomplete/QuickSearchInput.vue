@@ -3,6 +3,7 @@
     <oxd-autocomplete-input
       v-bind="$attrs"
       @update:modelValue="onModelUpdate($event)"
+      @update:searchTerm="onSearchTerm"
       @dropdown:clear="onClear()"
       @dropdown:opened="onOpen()"
       @dropdown:closed="onClosed()"
@@ -30,6 +31,7 @@ export default defineComponent({
   },
   emits: [
     'update:modelValue',
+    'update:searchTerm',
     'dropdown:clear',
     'dropdown:opened',
     'dropdown:closed',
@@ -38,6 +40,9 @@ export default defineComponent({
   methods: {
     onModelUpdate($event: Option) {
       this.$emit('update:modelValue', $event);
+    },
+    onSearchTerm(searchTerm: string) {
+      this.$emit('update:searchTerm', searchTerm);
     },
     onClear() {
       this.$emit('dropdown:clear');
