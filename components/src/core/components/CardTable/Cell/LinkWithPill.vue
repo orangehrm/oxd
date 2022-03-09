@@ -9,7 +9,7 @@
         {{ cell }}
       </a>
       <div v-if="pillProperty" class="oxd-table-cell-pill">
-      {{ getPillValue(row) }}
+        {{ getPillValue(row) }}
       </div>
     </template>
   </oxd-table-cell-default>
@@ -18,30 +18,27 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import DefaultCell from './Default.vue';
-import {TargetTypes, TARGET_SELF, TARGETS} from './types';
+import {TargetTypes, TARGET_SELF, TARGETS, RowItem} from './types';
 
 export default defineComponent({
   components: {
     'oxd-table-cell-default': DefaultCell,
   },
   methods: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    getPillValue(row: any) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      let value:any = null;
+    getPillValue(row: RowItem) {
+      let value: string | Array = null;
 
-      if (this.pillProperty) {
-        value = row;
-        if (Array.isArray(this.pillProperty)) {
-          this.pillProperty.forEach(property => {
-
+      if (Array.isArray(this.pillProperty)) {
+        this.pillProperty.forEach((property, index) => {
+          if (index === 0) {
+            value = row?.[property];
+          } else {
             value = value?.[property];
-          });
-        } else {
-          value = row[this.pillProperty];
-        }
+          }
+        });
+      } else if (this.pillProperty) {
+        value = row[this.pillProperty];
       }
-
       return value;
     },
   },
