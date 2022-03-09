@@ -65,6 +65,7 @@
         </template>
         <template v-slot:toggleOptions>
           <oxd-quick-search
+            ref="quickSearchComponent"
             v-if="config.table.topBar.quickSearch.visible"
             :style="config.table.topBar.quickSearch.style"
             :placeholder="config.table.topBar.quickSearch.placeholder"
@@ -157,7 +158,7 @@ import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue
 import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination.vue';
 import images from '../ProfilePic/images';
 
-import {defineComponent, reactive, computed} from 'vue';
+import {defineComponent, reactive, computed, ref} from 'vue';
 
 export default defineComponent({
   components: {
@@ -238,6 +239,8 @@ export default defineComponent({
       currentSortFields: {},
     });
 
+    const quickSearchComponent = ref(null);
+
     const config = computed(() => props.configurations);
 
     const oxdCardTableStyleClasses = computed(() => {
@@ -312,6 +315,7 @@ export default defineComponent({
     };
 
     const quickSearchKeywordSearch = () => {
+      quickSearchComponent.value.onClear()
       state.selectedQuickSearch = {
         label: state.quickSearchTerm,
       };
@@ -321,7 +325,6 @@ export default defineComponent({
 <<<<<<< HEAD
 =======
     const quickSearchOnClear = () => {
-      state.selectedQuickSearch = null;
       state.selectedQuickSearch = null;
       emit('quick-search:onClear');
     };
@@ -424,6 +427,7 @@ export default defineComponent({
       exportBtn,
       eventBinder,
       config,
+      quickSearchComponent,
     };
   },
 });
