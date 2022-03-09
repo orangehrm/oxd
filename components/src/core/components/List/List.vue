@@ -322,14 +322,11 @@ export default defineComponent({
       emit('quick-search:onSearch', state.quickSearchTerm);
     };
 
-<<<<<<< HEAD
-=======
     const quickSearchOnClear = () => {
       state.selectedQuickSearch = null;
       emit('quick-search:onClear');
     };
 
->>>>>>> e9cc686... RMP-348
     const tableSort = value => {
       state.currentSortFields = value;
       emit('update:order', value);
