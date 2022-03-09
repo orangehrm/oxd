@@ -1,4 +1,4 @@
-import {mount, shallowMount} from '@vue/test-utils';
+import {shallowMount} from '@vue/test-utils';
 import TableFilter from '@orangehrm/oxd/core/components/TableFilter/TableFilter.vue';
 
 describe('TableFilter', () => {
