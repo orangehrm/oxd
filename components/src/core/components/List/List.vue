@@ -308,13 +308,13 @@ export default defineComponent({
 
     const setQuickSearchTerm = (value: string) => {
       state.quickSearchTerm = value;
-      state.selectedQuickSearch = {
-        label: value,
-      };
       emit('quick-search:onSetSearchTerm', value);
     };
 
     const quickSearchKeywordSearch = () => {
+      state.selectedQuickSearch = {
+        label: state.quickSearchTerm,
+      };
       emit('quick-search:onSearch', state.quickSearchTerm);
     };
 
