@@ -323,6 +323,15 @@ export default defineComponent({
       emit('quick-search:onSearch', state.quickSearchTerm);
     };
 
+    const setQuickSearchTerm = (value: string) => {
+      state.quickSearchTerm = value
+      emit('quick-search:onSetSearchTerm', value);
+    };
+
+    const quickSearchKeywordSearch = () => {
+      emit('quick-search:onSearch', state.quickSearchTerm);
+    };
+
     const tableSort = value => {
       state.currentSortFields = value;
       emit('update:order', value);
