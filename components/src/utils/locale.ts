@@ -1,10 +1,21 @@
 import {enUS} from 'date-fns/locale';
 
+export type DayPeriod = {
+  [name: string]: string;
+};
+
 export type LangPack = {
   narrow?: string[];
   short?: string[];
   abbreviated?: string[];
   wide?: string[];
+};
+
+export type DayPeriodLangPack = {
+  narrow?: DayPeriod;
+  short?: DayPeriod;
+  abbreviated?: DayPeriod;
+  wide?: DayPeriod;
 };
 
 export type RealtiveDates = {
@@ -19,6 +30,7 @@ export type RealtiveDates = {
 export interface LangStrings {
   months: LangPack;
   days: LangPack;
+  dayPeriodValues: DayPeriodLangPack;
   relativeDate: RealtiveDates;
 }
 
@@ -69,6 +81,39 @@ const daysDefaultValues = {
   ],
 };
 
+const dayPeriodValues = {
+  narrow: {
+    am: 'a',
+    pm: 'p',
+    midnight: 'mi',
+    noon: 'n',
+    morning: 'morning',
+    afternoon: 'afternoon',
+    evening: 'evening',
+    night: 'night',
+  },
+  abbreviated: {
+    am: 'AM',
+    pm: 'PM',
+    midnight: 'midnight',
+    noon: 'noon',
+    morning: 'morning',
+    afternoon: 'afternoon',
+    evening: 'evening',
+    night: 'night',
+  },
+  wide: {
+    am: 'a.m.',
+    pm: 'p.m.',
+    midnight: 'midnight',
+    noon: 'noon',
+    morning: 'morning',
+    afternoon: 'afternoon',
+    evening: 'evening',
+    night: 'night',
+  },
+};
+
 const formatRelativeLocale = {
   lastWeek: "'last' eeee 'at' p",
   yesterday: "'yesterday at' p",
@@ -90,6 +135,19 @@ function buildLocale(langstrings: LangStrings): Locale {
     };
   };
 
+  const buildDayPeriodLocalizeStrings = (
+    langPack: DayPeriodLangPack,
+    fallback: DayPeriodLangPack,
+  ) => {
+    return (
+      index: string,
+      options: {width: keyof LangPack} = {width: 'wide'},
+    ) => {
+      const _default = fallback[options.width]?.[index];
+      return langPack[options.width]?.[index] ?? _default;
+    };
+  };
+
   const buildRealtiveDatesLocalizeStrings = (
     langPack: RealtiveDates,
     fallback: RealtiveDates,
@@ -98,18 +156,21 @@ function buildLocale(langstrings: LangStrings): Locale {
       return langPack[token] ? langPack[token] : fallback[token];
     };
   };
-  const {dayPeriod, era, ordinalNumber, quarter} = enUS.localize;
+  const {era, ordinalNumber, quarter} = enUS.localize;
 
   return {
     ...enUS,
     code: 'orange-enUS',
     localize: {
-      dayPeriod,
       era,
       ordinalNumber,
       quarter,
       day: buildLocalizeStrings(langstrings.days, daysDefaultValues),
       month: buildLocalizeStrings(langstrings.months, monthDefaultValues),
+      dayPeriod: buildDayPeriodLocalizeStrings(
+        langstrings.dayPeriodValues,
+        dayPeriodValues,
+      ),
     },
     formatRelative: buildRealtiveDatesLocalizeStrings(
       langstrings.relativeDate,
