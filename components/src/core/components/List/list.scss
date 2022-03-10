@@ -1,6 +1,7 @@
 @import '../../../styles';
 
 .oxd-list-container {
+  min-width: 65rem;
   margin-top: 2rem;
   background-color: $oxd-white-color;
   border-radius: 1.2rem;
@@ -60,7 +61,7 @@
     :deep(.oxd-table-cell) {
       flex-wrap: nowrap;
       .oxd-select-wrapper {
-        max-width: 267px;
+        max-width: 195px;
       }
     }
   }
