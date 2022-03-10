@@ -154,7 +154,7 @@ import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue
 import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination.vue';
 import images from '../ProfilePic/images';
 
-import {defineComponent, reactive, computed, ref} from 'vue';
+import {defineComponent, reactive, computed} from 'vue';
 
 export default defineComponent({
   components: {
@@ -290,6 +290,14 @@ export default defineComponent({
       emit('sidePanelList:onSelect', item);
     };
 
+    const quickSearchOnClear = () => {
+      if (state.quickSearchTriggered) {
+        state.selectedQuickSearch = null;
+        state.quickSearchTriggered = false;
+        emit('quick-search:onClear');
+      }
+    };
+
     const quickSearchSelect = value => {
       if (value) {
         state.selectedQuickSearch = {
@@ -302,21 +310,12 @@ export default defineComponent({
       }
     };
 
-    const quickSearchOnClear = () => {
-      if (state.quickSearchTriggered) {
-        state.selectedQuickSearch = null;
-        state.quickSearchTriggered = false;
-        emit('quick-search:onClear');
-      }
-    };
-
     const setQuickSearchTerm = (value: string) => {
       state.quickSearchTerm = value;
       emit('quick-search:onSetSearchTerm', value);
     };
 
     const quickSearchKeywordSearch = () => {
-      debugger
       state.quickSearchTriggered = true;
       state.selectedQuickSearch = {
         label: state.quickSearchTerm,
