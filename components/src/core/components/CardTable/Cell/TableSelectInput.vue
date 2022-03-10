@@ -1,7 +1,5 @@
 <template>
   <oxd-select-input
-    v-bind="$attrs"
-    :options="options"
     up-icon="chevron-up"
     down-icon="chevron-down"
   ></oxd-select-input>
@@ -13,12 +11,6 @@ import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput
 
 export default defineComponent({
   name: 'oxd-table-select-input',
-  props: {
-    options: {
-      type: Array,
-      required: true,
-    },
-  },
   components: {
     'oxd-select-input': SelectInput,
   },
