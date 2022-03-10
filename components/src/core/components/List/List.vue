@@ -1,6 +1,6 @@
 <template>
   <div
-    class="oxd-list-container w-100 vh-100 d-flex align-start"
+    class="oxd-list-container w-100 min-vh-100 d-flex align-start"
     :class="{
       'table-left-panel-open':
         config.table.leftPanel.visible && state.isLeftPanelOpen,
