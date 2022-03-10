@@ -14,6 +14,7 @@ import {
   TYPE_LABEL_FEEDBACK_DANGER,
   TYPE_TEXT,
   TYPE_TOOL,
+  TOOLTIP_BOTTOM,
 } from '@orangehrm/oxd/core/components/Button/types';
 import {
   ICON_SIZES,
@@ -158,6 +159,14 @@ export const Disabled = Template.bind({});
 Disabled.args = {
   label: 'Button',
   disabled: true,
+};
+
+export const DisabledWithTooltip = Template.bind({});
+DisabledWithTooltip.args = {
+  label: 'Button',
+  disabled: true,
+  disabledTooltip: 'Disabled',
+  flow: TOOLTIP_BOTTOM,
 };
 
 export const ButtonWithIcon = Template.bind({});
