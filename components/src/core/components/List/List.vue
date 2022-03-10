@@ -73,16 +73,15 @@
             :modelValue="state.selectedQuickSearch"
             @update:modelValue="quickSearchSelect"
             @dropdown:clear="quickSearchOnClear"
+            @update:searchTerm="setQuickSearchTerm"
           >
             <template v-slot:iconSlot>
               <oxd-icon-button
-                v-if="
-                  config.table.topBar.quickSearch.button.visible &&
-                    !state.selectedQuickSearch
-                "
+                v-if="config.table.topBar.quickSearch.button.visible"
                 v-bind="config.table.topBar.quickSearch.button.props"
                 :class="config.table.topBar.quickSearch.button.class"
                 :style="config.table.topBar.quickSearch.button.style"
+                @click="quickSearchKeywordSearch"
               ></oxd-icon-button>
             </template>
             <template v-slot:option="{data}">
@@ -231,8 +230,10 @@ export default defineComponent({
       checkedItems: [],
       modalState: false as boolean,
       selectedQuickSearch: null,
+      quickSearchTerm: null as string | null,
       selectedItemIndexes: [],
       currentSortFields: {},
+      quickSearchTriggered: false,
     });
 
     const config = computed(() => props.configurations);
@@ -289,19 +290,38 @@ export default defineComponent({
       emit('sidePanelList:onSelect', item);
     };
 
+    const quickSearchOnClear = () => {
+      if (state.quickSearchTriggered) {
+        state.selectedQuickSearch = null;
+        state.quickSearchTriggered = false;
+        emit('quick-search:onClear');
+      }
+    };
+
     const quickSearchSelect = value => {
       if (value) {
         state.selectedQuickSearch = {
           label: value.candidateName,
         };
         emit('quick-search:onSelect', value);
+        state.quickSearchTriggered = true;
+      } else {
+        quickSearchOnClear();
       }
     };
 
-    const quickSearchOnClear = () => {
-      state.selectedQuickSearch = null;
-      emit('quick-search:onClear')
-    }
+    const setQuickSearchTerm = (value: string) => {
+      state.quickSearchTerm = value;
+      emit('quick-search:onSetSearchTerm', value);
+    };
+
+    const quickSearchKeywordSearch = () => {
+      state.quickSearchTriggered = true;
+      state.selectedQuickSearch = {
+        label: state.quickSearchTerm,
+      };
+      emit('quick-search:onSearch', state.quickSearchTerm);
+    };
 
     const tableSort = value => {
       state.currentSortFields = value;
@@ -383,6 +403,8 @@ export default defineComponent({
       sidePanelListOnSelect,
       quickSearchSelect,
       quickSearchOnClear,
+      quickSearchKeywordSearch,
+      setQuickSearchTerm,
       showFilterDrawer,
       applySearch,
       resetSearch,

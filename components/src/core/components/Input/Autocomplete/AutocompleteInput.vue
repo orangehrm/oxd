@@ -204,6 +204,7 @@ export default defineComponent({
         this.loading = true;
         this.dropdownOpen = true;
         this.search(this, searchTerm);
+        this.$emit('update:searchTerm', searchTerm);
       } else {
         this.loading = false;
         this.dropdownOpen = false;

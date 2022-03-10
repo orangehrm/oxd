@@ -92,7 +92,7 @@ export default defineComponent({
   },
 
   methods: {
-    openDropdown($e: Event) {
+    openDropdown() {
       this.isActive = true;
       if(this.sortIcon === 'oxd-sort-desc'){
         this.$nextTick(() => {
