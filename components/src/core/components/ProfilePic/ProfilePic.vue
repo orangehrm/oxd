@@ -102,4 +102,12 @@ export default defineComponent({
     height: 2.8rem;
   }
 }
+
+.header-image.profile-image--extra-small {
+  .img-tag,
+  :deep(img) {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+}
 </style>

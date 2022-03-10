@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardTable > Cell > Dropdown.vue should render OXD CardTable > Cell > Dropdown Cell (with icons) 1`] = `
+<li class="oxd-table-dropdown"><button type="button" class="oxd-icon-button" flow="top"><i class="oxd-icon oxd-icon--medium bi-three-dots-vertical"></i></button>
+  <transition-stub>
+    <!--v-if-->
+  </transition-stub>
+</li>
+`;
+
+exports[`CardTable > Cell > Dropdown.vue should render OXD CardTable > Cell > Dropdown Cell (with icons) 2`] = `
+<li class="--active oxd-table-dropdown"><button type="button" class="oxd-icon-button" flow="top"><i class="oxd-icon oxd-icon--medium bi-three-dots-vertical"></i></button>
+  <transition-stub>
+    <ul class="oxd-dropdown-menu" role="menu">
+      <li class="oxd-table-dropdown-item"><i class="oxd-svg-icon oxd-svg-icon--extra-small"></i>
+        <p class="oxd-text oxd-text--p">Add Comment</p>
+      </li>
+      <li class="oxd-table-dropdown-item"><i class="oxd-svg-icon oxd-svg-icon--extra-small"></i>
+        <p class="oxd-text oxd-text--p">View Leave Details</p>
+      </li>
+      <li class="oxd-table-dropdown-item"><i class="oxd-svg-icon oxd-svg-icon--extra-small"></i>
+        <p class="oxd-text oxd-text--p">View PIM Info</p>
+      </li>
+      <li class="oxd-table-dropdown-item"><i class="oxd-svg-icon oxd-svg-icon--extra-small"></i>
+        <p class="oxd-text oxd-text--p">Cancel Leave</p>
+      </li>
+    </ul>
+  </transition-stub>
+</li>
+`;
+
+exports[`CardTable > Cell > Dropdown.vue should render OXD CardTable > Cell > Dropdown Cell 1`] = `
+<li class="oxd-table-dropdown"><button type="button" class="oxd-icon-button" flow="top"><i class="oxd-icon oxd-icon--medium bi-three-dots-vertical"></i></button>
+  <transition-stub>
+    <!--v-if-->
+  </transition-stub>
+</li>
+`;
+
+exports[`CardTable > Cell > Dropdown.vue should render OXD CardTable > Cell > Dropdown Cell 2`] = `
+<li class="--active oxd-table-dropdown"><button type="button" class="oxd-icon-button" flow="top"><i class="oxd-icon oxd-icon--medium bi-three-dots-vertical"></i></button>
+  <transition-stub>
+    <ul class="oxd-dropdown-menu" role="menu">
+      <li class="oxd-table-dropdown-item">
+        <!--v-if-->
+        <p class="oxd-text oxd-text--p">Add Comment</p>
+      </li>
+      <li class="oxd-table-dropdown-item">
+        <!--v-if-->
+        <p class="oxd-text oxd-text--p">View Leave Details</p>
+      </li>
+      <li class="oxd-table-dropdown-item">
+        <!--v-if-->
+        <p class="oxd-text oxd-text--p">View PIM Info</p>
+      </li>
+      <li class="oxd-table-dropdown-item">
+        <!--v-if-->
+        <p class="oxd-text oxd-text--p">Cancel Leave</p>
+      </li>
+    </ul>
+  </transition-stub>
+</li>
+`;

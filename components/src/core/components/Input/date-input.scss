@@ -32,6 +32,12 @@
       background-color: $oxd-dropdown-arrow-background-color--readonly;
       color: $oxd-dropdown-arrow-color--readonly;
     }
+    &:focus, {
+      background-color: $oxd-interface-gray-lighten-2-color;
+      border: $oxd-input-border--focus;
+      box-shadow: $oxd-input-box-shadow--focus;
+      outline: 0;
+    }
   }
   ::v-deep(.oxd-input) {
     text-overflow: ellipsis;
@@ -65,7 +71,8 @@
     &.--close {
       color: $oxd-date-input-link-highlight-color;
     }
-    &:hover {
+    &:hover,
+    &:focus-visible {
       background-color: $oxd-date-input-link-background;
     }
   }

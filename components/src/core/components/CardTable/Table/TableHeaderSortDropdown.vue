@@ -6,6 +6,7 @@
       size="extra-small"
       class="oxd-table-header-sort-icon"
       tabindex="0"
+      ref="oxdIcon"
       @click="openDropdown($event)"
       @keydown.enter="openDropdown($event)"
       @keydown.down.exact.prevent="onSelectDown"
@@ -93,18 +94,21 @@ export default defineComponent({
   methods: {
     openDropdown($e: Event) {
       this.isActive = true;
-      this.$nextTick(() => {
-        const firstFocusableElement = ($e?.target as Element).parentElement?.querySelector(
-          '.oxd-table-header-sort-dropdown-item',
-        );
-        if (firstFocusableElement) {
-          (firstFocusableElement as HTMLElement).focus();
-        }
-      });
+      if(this.sortIcon === 'oxd-sort-desc'){
+        this.$nextTick(() => {
+          this.$refs.bottomDropdownElement.focus();
+        });
+      }
+      else{
+        this.$nextTick(() => {
+          this.$refs.topDropdownElement.focus();
+        });
+      }
     },
     closeDropdown() {
       if (this.isActive) {
         this.isActive = false;
+        this.$refs.oxdIcon.$el.focus();
       }
     },
     onSelectDown() {

@@ -5,21 +5,28 @@
         :hasError="hasError"
         :disabled="disabled"
         :readonly="readonly"
-        @blur="onBlur"
-        @update:modelValue="onDateTyped"
-        @click="toggleDropdown"
         :value="displayDate"
         :placeholder="placeholder"
         ref="oxdInput"
+        @update:modelValue="onDateTyped"
+        @blur="onBlur"
       />
       <oxd-icon
         :class="dateIconClasses"
         name="calendar"
+        tabindex="0"
+        ref="oxdIcon"
         @click="toggleDropdown"
+        @keyup.enter.prevent.stop="toggleDropdown"
       />
     </div>
     <transition name="transition-fade-down">
-      <div v-if="open" class="oxd-date-input-calendar">
+      <div
+          v-click-outside="closeDropdown"
+          v-if="open"
+          class="oxd-date-input-calendar"
+          @keyup.esc="closeDropdown"
+      >
         <oxd-calendar
           v-bind="$attrs"
           @update:modelValue="onDateSelected"
@@ -28,13 +35,13 @@
           :locale="locale"
         >
           <div class="oxd-date-input-links">
-            <div @click="onClickToday" class="oxd-date-input-link --today">
+            <div @keyup.enter="onClickToday" @click="onClickToday" class="oxd-date-input-link --today" tabindex="0">
               Today
             </div>
-            <div @click="onClickClear" class="oxd-date-input-link --clear">
+            <div @keyup.enter="onClickClear" @click="onClickClear" class="oxd-date-input-link --clear" tabindex="0">
               Clear
             </div>
-            <div @click="closeDropdown" class="oxd-date-input-link --close">
+            <div @keyup.enter="closeDropdown" @click="closeDropdown" class="oxd-date-input-link --close" tabindex="0">
               Close
             </div>
           </div>
@@ -51,6 +58,7 @@ import {defineComponent, PropType, reactive, toRefs} from 'vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import Calendar from '@orangehrm/oxd/core/components/Calendar/Calendar.vue';
+import clickOutsideDirective from '../../../directives/click-outside';
 
 export default defineComponent({
   name: 'oxd-date-input',
@@ -60,6 +68,10 @@ export default defineComponent({
     'oxd-icon': Icon,
     'oxd-input': Input,
     'oxd-calendar': Calendar,
+  },
+
+  directives: {
+    'click-outside': clickOutsideDirective,
   },
 
   props: {
@@ -117,7 +129,6 @@ export default defineComponent({
           : parseDate(this.dateTyped, this.ioformat);
         this.dateTyped = '';
       }
-      this.closeDropdown();
       e.stopImmediatePropagation();
       this.$emit('blur');
     },
@@ -130,7 +141,6 @@ export default defineComponent({
     toggleDropdown() {
       if (!this.disabled && !this.readonly) {
         if (!this.open) {
-          this.$refs.oxdInput.$el.focus();
           this.openDropdown();
         } else {
           this.closeDropdown();
@@ -141,17 +151,21 @@ export default defineComponent({
       this.open = true;
       this.$emit('dateselect:opened');
     },
-    closeDropdown() {
+    closeDropdown($e: KeyboardEvent | null) {
+      if ($e && $e.key === 'Escape') $e.stopPropagation();
       this.open = false;
+      this.$refs.oxdIcon.$el.focus();
       this.$emit('dateselect:closed');
     },
     onClickToday() {
       this.dateSelected = freshDate();
       this.open = false;
+      this.$refs.oxdIcon.$el.focus();
     },
     onClickClear() {
       this.dateSelected = null;
       this.open = false;
+      this.$refs.oxdIcon.$el.focus();
     },
   },
 

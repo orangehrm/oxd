@@ -1,13 +1,13 @@
 <template>
-  <div @click="onToggle" :class="classes" :style="style">
-    <div
-      class="oxd-select-text-input"
-      :tabindex="tabIndex"
-      @focus="onFocus"
-      @blur="onBlur"
-      v-bind="$attrs"
-      ref="oxdInput"
-    >
+  <div
+    v-bind="$attrs"
+    :class="classes"
+    :style="style"
+    :tabindex="tabIndex"
+    @focus="onFocus"
+    @blur="onBlur"
+  >
+    <div class="oxd-select-text-input">
       {{ value }}
     </div>
     <div class="oxd-select-text--after">
@@ -16,7 +16,6 @@
         v-if="!disabled"
         :class="dropdownIconClasses"
         :name="dropdownIcon"
-        @click="onToggle"
       />
     </div>
   </div>
@@ -63,6 +62,14 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    downIcon: {
+      type: String,
+      default: 'caret-down-fill',
+    },
+    upIcon: {
+      type: String,
+      default: 'caret-up-fill',
+    },
   },
 
   data() {
@@ -83,7 +90,7 @@ export default defineComponent({
       };
     },
     dropdownIcon(): string {
-      return this.dropdownOpened ? 'caret-up-fill' : 'caret-down-fill';
+      return this.dropdownOpened ? this.upIcon : this.downIcon;
     },
     dropdownIconClasses(): object {
       return {
@@ -107,10 +114,6 @@ export default defineComponent({
     },
     onBlur() {
       this.focused = false;
-    },
-    onToggle() {
-      this.$refs.oxdInput.focus();
-      this.$emit('icon:clicked');
     },
   },
 });

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="oxd-list-container w-100 vh-100 d-flex align-start"
+    class="oxd-list-container w-100 min-vh-100 d-flex align-start"
     :class="{
       'table-left-panel-open':
         config.table.leftPanel.visible && state.isLeftPanelOpen,
@@ -10,7 +10,7 @@
       v-if="config.table.leftPanel.visible"
       class="oxd-table-left-panel"
       :class="{'with-filters': config.table.topBar.visible}"
-      width="250px"
+      width="200px"
       :side-panel-list="sidePanelList"
       :header-visible="config.table.leftPanel.header.visible"
       :body-visible="config.table.leftPanel.body.visible"
@@ -72,6 +72,7 @@
             :createOptions="quickSearchOptions"
             :modelValue="state.selectedQuickSearch"
             @update:modelValue="quickSearchSelect"
+            @dropdown:clear="quickSearchOnClear"
           >
             <template v-slot:iconSlot>
               <oxd-icon-button
@@ -85,7 +86,7 @@
               ></oxd-icon-button>
             </template>
             <template v-slot:option="{data}">
-              <oxd-profile-pic size="small" :imageSrc="data.avatar_url" />
+              <oxd-profile-pic size="extra-small" :imageSrc="data.avatar_url" />
               <span class="margin-left">{{ data.label }}</span>
             </template>
           </oxd-quick-search>
@@ -294,11 +295,13 @@ export default defineComponent({
           label: value.candidateName,
         };
         emit('quick-search:onSelect', value);
-      } else {
-        state.selectedQuickSearch = null;
-        emit('quick-search:onClear');
       }
     };
+
+    const quickSearchOnClear = () => {
+      state.selectedQuickSearch = null;
+      emit('quick-search:onClear')
+    }
 
     const tableSort = value => {
       state.currentSortFields = value;
@@ -379,6 +382,7 @@ export default defineComponent({
       sidePanelListOnHeaderBtnClick,
       sidePanelListOnSelect,
       quickSearchSelect,
+      quickSearchOnClear,
       showFilterDrawer,
       applySearch,
       resetSearch,
