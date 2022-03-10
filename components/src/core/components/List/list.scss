@@ -62,6 +62,11 @@
       flex-wrap: nowrap;
       .oxd-select-wrapper {
         max-width: 195px;
+        .oxd-select-text {
+          max-width: 195px;
+          width: -moz-fit-content;
+          width: fit-content;
+        }
       }
     }
   }
