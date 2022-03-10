@@ -92,8 +92,7 @@ export default defineComponent({
   },
 
   methods: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    openDropdown($e: Event) {
+    openDropdown() {
       this.isActive = true;
       if(this.sortIcon === 'oxd-sort-desc'){
         this.$nextTick(() => {

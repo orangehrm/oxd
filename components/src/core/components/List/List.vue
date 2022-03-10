@@ -65,7 +65,6 @@
         </template>
         <template v-slot:toggleOptions>
           <oxd-quick-search
-            ref="quickSearchComponent"
             v-if="config.table.topBar.quickSearch.visible"
             :style="config.table.topBar.quickSearch.style"
             :placeholder="config.table.topBar.quickSearch.placeholder"
@@ -78,10 +77,7 @@
           >
             <template v-slot:iconSlot>
               <oxd-icon-button
-                v-if="
-                  config.table.topBar.quickSearch.button.visible &&
-                    !state.selectedQuickSearch
-                "
+                v-if="config.table.topBar.quickSearch.button.visible"
                 v-bind="config.table.topBar.quickSearch.button.props"
                 :class="config.table.topBar.quickSearch.button.class"
                 :style="config.table.topBar.quickSearch.button.style"
@@ -237,9 +233,8 @@ export default defineComponent({
       quickSearchTerm: null as string | null,
       selectedItemIndexes: [],
       currentSortFields: {},
+      quickSearchTriggered: false,
     });
-
-    const quickSearchComponent = ref(null);
 
     const config = computed(() => props.configurations);
 
@@ -301,12 +296,18 @@ export default defineComponent({
           label: value.candidateName,
         };
         emit('quick-search:onSelect', value);
+        state.quickSearchTriggered = true;
+      } else {
+        quickSearchOnClear();
       }
     };
 
     const quickSearchOnClear = () => {
-      state.selectedQuickSearch = null;
-      emit('quick-search:onClear');
+      if (state.quickSearchTriggered) {
+        state.selectedQuickSearch = null;
+        state.quickSearchTriggered = false;
+        emit('quick-search:onClear');
+      }
     };
 
     const setQuickSearchTerm = (value: string) => {
@@ -315,7 +316,8 @@ export default defineComponent({
     };
 
     const quickSearchKeywordSearch = () => {
-      quickSearchComponent.value.onClear();
+      debugger
+      state.quickSearchTriggered = true;
       state.selectedQuickSearch = {
         label: state.quickSearchTerm,
       };
@@ -419,7 +421,6 @@ export default defineComponent({
       exportBtn,
       eventBinder,
       config,
-      quickSearchComponent,
     };
   },
 });
