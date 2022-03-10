@@ -62,6 +62,14 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    downIcon: {
+      type: String,
+      default: 'caret-down-fill',
+    },
+    upIcon: {
+      type: String,
+      default: 'caret-up-fill',
+    },
   },
 
   data() {
@@ -82,7 +90,7 @@ export default defineComponent({
       };
     },
     dropdownIcon(): string {
-      return this.dropdownOpened ? 'caret-up-fill' : 'caret-down-fill';
+      return this.dropdownOpened ? this.upIcon : this.downIcon;
     },
     dropdownIconClasses(): object {
       return {

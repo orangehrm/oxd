@@ -1,6 +1,6 @@
 <template>
   <div
-    class="oxd-list-container w-100 vh-100 d-flex align-start"
+    class="oxd-list-container w-100 min-vh-100 d-flex align-start"
     :class="{
       'table-left-panel-open':
         config.table.leftPanel.visible && state.isLeftPanelOpen,
@@ -10,7 +10,7 @@
       v-if="config.table.leftPanel.visible"
       class="oxd-table-left-panel"
       :class="{'with-filters': config.table.topBar.visible}"
-      width="250px"
+      width="200px"
       :side-panel-list="sidePanelList"
       :header-visible="config.table.leftPanel.header.visible"
       :body-visible="config.table.leftPanel.body.visible"

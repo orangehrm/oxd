@@ -13,6 +13,7 @@ import ActionsCell from './Actions.vue';
 import CheckboxCell from './Checkbox.vue';
 import ProfilePicCell from './ProfilePicture.vue';
 import LinkCell from './Link.vue';
+import LinkWithPillCell from './LinkWithPill.vue';
 import DateCell from './Date.vue';
 import {CardHeaders} from '../types';
 import {RowItem} from './../Cell/types';
@@ -27,6 +28,7 @@ export default defineComponent({
     'oxd-table-cell-profile-pic': ProfilePicCell,
     'oxd-table-cell-link': LinkCell,
     'oxd-table-cell-date': DateCell,
+    'oxd-table-cell-link-with-pill': LinkWithPillCell,
   },
 
   props: {

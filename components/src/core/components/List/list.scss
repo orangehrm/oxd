@@ -1,12 +1,14 @@
 @import '../../../styles';
 
 .oxd-list-container {
+  min-width: 65rem;
   margin-top: 2rem;
   background-color: $oxd-white-color;
   border-radius: 1.2rem;
   padding: 1rem;
   box-sizing: border-box;
   .oxd-table-left-panel {
+    flex-shrink: 0;
     &.with-filters {
       margin-bottom: 0.25rem;
     }
@@ -42,10 +44,11 @@
   }
   &.table-left-panel-open {
     .table-card-list-wrapper {
-      width: calc(100% - 230px);
+      flex-grow: 1;
     }
   }
   .oxd-classic-table {
+    padding-right: 0;
     flex-wrap: nowrap;
     :deep(.oxd-icon-button) {
       font-size: 15px;
@@ -58,7 +61,7 @@
     :deep(.oxd-table-cell) {
       flex-wrap: nowrap;
       .oxd-select-wrapper {
-        max-width: 267px;
+        max-width: 195px;
       }
     }
   }
@@ -69,7 +72,7 @@
 .list-pagination {
   height: initial;
   line-height: initial;
-  padding: 25px;
+  padding: 25px 0 25px 25px;
   box-shadow: none;
 }
 .oxd-button {
