@@ -1,10 +1,5 @@
-import {Component, HTMLAttributes} from 'vue';
-import {
-  TypeMap,
-  Types as FieldType,
-  TYPE_MAP as FIELD_TYPE_MAP,
-  Components as FieldComponents,
-} from '../InputField/types';
+import {ConcreteComponent, HTMLAttributes, VNode} from 'vue';
+import {TypeMap, Types} from '../InputField/types';
 
 const TYPE_CUSTOM = 'custom';
 const TYPE_BUTTON = 'button';
@@ -19,7 +14,11 @@ const COMPONENT_GRID = 'oxd-grid';
 const COMPONENT_DIVIDER = 'oxd-divider';
 const COMPONENT_ACTIONS = 'oxd-form-actions';
 
-type LayoutType = typeof TYPE_GRID | typeof TYPE_ACTION | typeof TYPE_DIVIDER;
+type LayoutType =
+  | typeof TYPE_GRID
+  | typeof TYPE_ACTION
+  | typeof TYPE_DIVIDER
+  | typeof TYPE_CUSTOM;
 
 type LayoutComponent =
   | typeof COMPONENT_GRID
@@ -38,53 +37,61 @@ type Props = Record<string, any>;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Validator = (value: any) => boolean | string;
 
-type FieldSchema<T = object> = {
+type CommonSchemaProperties = {
   id?: HTMLAttributes['id'];
-  name: string;
-  label: string;
-  type: FieldType | typeof TYPE_CUSTOM;
-  component?: Component;
-  props?: Props;
-  value?: string | number | T | Array<T>;
-  placeholder?: string;
-  visible?: boolean;
-  required?: boolean | Validator;
+  key?: string;
   style?: HTMLAttributes['style'];
   class?: HTMLAttributes['class'];
-  hook?: (schema: FieldSchema, model: object) => FieldSchema;
-  validators?: Array<Validator>;
 };
+
+type ComponentSchemaProperties<T> = {
+  type: T;
+  component?: ConcreteComponent;
+  props?: Props;
+};
+
+type FieldType = Types | typeof TYPE_BUTTON | typeof TYPE_CUSTOM;
+
+type EventListners = {
+  [key: string]: ($event: Event) => void;
+};
+
+type FieldSchema = CommonSchemaProperties &
+  ComponentSchemaProperties<FieldType> & {
+    name: string;
+    label: string;
+    value?: string | number | object | unknown;
+    placeholder?: string;
+    visible?: boolean;
+    required?: boolean | Validator;
+    hook?: (schema: FieldSchema, model: object) => FieldSchema;
+    validators?: Array<Validator>;
+    listners?: EventListners;
+  };
 
 type LayoutChild = {
-  slot?: string;
-  fields: Array<FieldSchema>;
+  [slot: string]: Array<FieldSchema>;
 };
 
-type LayoutSchema = {
-  id?: HTMLAttributes['id'];
-  style?: HTMLAttributes['style'];
-  class?: HTMLAttributes['class'];
-  type: LayoutType | typeof TYPE_CUSTOM;
-  component?: Component;
-  props?: Props;
-  children?: Array<LayoutChild>;
-};
+type LayoutSchema = CommonSchemaProperties &
+  ComponentSchemaProperties<LayoutType> & {
+    children?: LayoutChild | Array<string> | Array<VNode>;
+  };
 
-type FormSchema = {
-  id?: HTMLAttributes['id'];
-  style?: HTMLAttributes['style'];
-  class?: HTMLAttributes['class'];
+type FormSchema = CommonSchemaProperties & {
   layout: Array<LayoutSchema>;
 };
 
 export {
+  Props,
   FieldType,
   LayoutType,
+  LayoutChild,
   FormSchema,
   FieldSchema,
   LayoutSchema,
   LayoutComponent,
-  FieldComponents,
-  FIELD_TYPE_MAP,
   LAYOUT_TYPE_MAP,
+  CommonSchemaProperties,
+  ComponentSchemaProperties,
 };
