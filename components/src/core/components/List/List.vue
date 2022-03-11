@@ -272,7 +272,7 @@ export default defineComponent({
       const itemCount =
         state.selectedItemIndexes.length || props.filteredTotalRecordsCount;
       return `
-        ${itemCount}
+        (${itemCount})
         ${
           itemCount > 1 || itemCount === 0
             ? config.value.table.topBar.listRecordCount.multiTerm
