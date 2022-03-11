@@ -88,7 +88,9 @@
             </template>
             <template v-slot:option="{data}">
               <oxd-profile-pic size="extra-small" :imageSrc="data.avatar_url" />
-              <span class="margin-left">{{ data.label }}</span>
+              <div class="margin-left">
+                <div v-html="highlight(data.label)"></div>
+              </div>
             </template>
           </oxd-quick-search>
           <div class="d-flex align-center">
@@ -398,6 +400,13 @@ export default defineComponent({
       return mappedEventsObj;
     };
 
+    const highlight = (label: string) => {
+      const reg = new RegExp(state.quickSearchTerm || '', 'gi');
+      return label.replace(reg, function(str) {
+        return '<span class="highlight"><b>' + str + '</b></span>';
+      });
+    };
+
     return {
       state,
       filterTitle,
@@ -426,6 +435,7 @@ export default defineComponent({
       eventBinder,
       config,
       quickSearchComponent,
+      highlight,
     };
   },
 });
