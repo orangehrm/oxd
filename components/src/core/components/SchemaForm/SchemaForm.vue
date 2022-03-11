@@ -119,7 +119,7 @@ export default defineComponent({
               label: field.label,
               required: field.required,
               ...(field.props ?? {}),
-              ...(field.listners ?? {}),
+              ...(field.listeners ?? {}),
               rules: field.validators ?? [],
               modelValue: formModel.value[field.name],
               'onUpdate:modelValue': value => {
@@ -139,7 +139,7 @@ export default defineComponent({
         style: field.style,
         class: field.class,
         ...(field.props ?? {}),
-        ...(field.listners ?? {}),
+        ...(field.listeners ?? {}),
       });
     };
 

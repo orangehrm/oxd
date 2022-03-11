@@ -52,7 +52,7 @@ type ComponentSchemaProperties<T> = {
 
 type FieldType = Types | typeof TYPE_BUTTON | typeof TYPE_CUSTOM;
 
-type EventListners = {
+type EventListeners = {
   [key: string]: ($event: Event) => void;
 };
 
@@ -66,7 +66,7 @@ type FieldSchema = CommonSchemaProperties &
     required?: boolean | Validator;
     hook?: (schema: FieldSchema, model: object) => FieldSchema;
     validators?: Array<Validator>;
-    listners?: EventListners;
+    listeners?: EventListeners;
   };
 
 type LayoutChild = {
