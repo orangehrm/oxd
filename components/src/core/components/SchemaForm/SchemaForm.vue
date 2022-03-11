@@ -124,7 +124,7 @@ export default defineComponent({
               'onUpdate:modelValue': value => {
                 formModel.value[field.name] = value;
               },
-              type: field.type !== 'custom' ? field.type : undefined,
+              ...(field.type !== 'custom' && {type: field.type}),
             }),
         },
       );
