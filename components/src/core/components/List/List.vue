@@ -75,6 +75,7 @@
             @update:modelValue="quickSearchSelect"
             @dropdown:clear="quickSearchOnClear"
             @update:searchTerm="setQuickSearchTerm"
+            @select:enter="quickSearchKeywordSearch"
           >
             <template v-slot:iconSlot>
               <oxd-icon-button
@@ -319,29 +320,11 @@ export default defineComponent({
     };
 
     const quickSearchKeywordSearch = () => {
-      state.quickSearchTriggered = true;
+      quickSearchComponent.value.onClear();
       state.selectedQuickSearch = {
         label: state.quickSearchTerm,
       };
       emit('quick-search:onSearch', state.quickSearchTerm);
-    };
-
-    const setQuickSearchTerm = (value: string) => {
-      state.quickSearchTerm = value;
-      emit('quick-search:onSetSearchTerm', value);
-    };
-
-    const quickSearchKeywordSearch = () => {
-      quickSearchComponent.value.onClear()
-      state.selectedQuickSearch = {
-        label: state.quickSearchTerm,
-      };
-      emit('quick-search:onSearch', state.quickSearchTerm);
-    };
-
-    const quickSearchOnClear = () => {
-      state.selectedQuickSearch = null;
-      emit('quick-search:onClear');
     };
 
     const tableSort = value => {
