@@ -10,6 +10,7 @@ import {
   getDay,
   nextSaturday,
   nextSunday,
+  compareAsc,
 } from 'date-fns';
 
 const freshDate = () => {
@@ -147,6 +148,74 @@ function convertPHPDateFormat(format: string) {
     .join('');
 }
 
+const isBefore = (
+  reference: string,
+  comparable: string,
+  dateFormat: string,
+): boolean => {
+  const referenceDate = parseDate(reference, dateFormat);
+  const comparableDate = parseDate(comparable, dateFormat);
+
+  if (referenceDate && comparableDate) {
+    return compareAsc(referenceDate, comparableDate) === -1 ? true : false;
+  }
+
+  return false;
+};
+
+const isAfter = (
+  reference: string,
+  comparable: string,
+  dateFormat: string,
+): boolean => {
+  const referenceDate = parseDate(reference, dateFormat);
+  const comparableDate = parseDate(comparable, dateFormat);
+
+  if (referenceDate && comparableDate) {
+    return compareAsc(referenceDate, comparableDate) === 1 ? true : false;
+  }
+
+  return false;
+};
+
+const isSame = (
+  reference: string,
+  comparable: string,
+  dateFormat: string,
+): boolean => {
+  const referenceDate = parseDate(reference, dateFormat);
+  const comparableDate = parseDate(comparable, dateFormat);
+
+  if (referenceDate && comparableDate) {
+    return compareAsc(referenceDate, comparableDate) === 0 ? true : false;
+  }
+
+  return false;
+};
+
+const compareTime = (
+  reference: string,
+  comparable: string,
+  timeFormat: string,
+): number => {
+  const referenceTime = parseDate(reference, timeFormat);
+  const comparableTime = parseDate(comparable, timeFormat);
+
+  if (referenceTime && comparableTime) {
+    if (referenceTime.valueOf() < comparableTime.valueOf()) {
+      return 1;
+    }
+    if (referenceTime.valueOf() > comparableTime.valueOf()) {
+      return -1;
+    }
+    if (referenceTime.valueOf() === comparableTime.valueOf()) {
+      return 0;
+    }
+  }
+
+  return NaN;
+};
+
 export {
   isDate,
   isEqual,
@@ -162,4 +231,8 @@ export {
   nextSaturday,
   nextSunday,
   convertPHPDateFormat,
+  isSame,
+  isAfter,
+  isBefore,
+  compareTime,
 };
