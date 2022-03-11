@@ -74,6 +74,7 @@
             @update:modelValue="quickSearchSelect"
             @dropdown:clear="quickSearchOnClear"
             @update:searchTerm="setQuickSearchTerm"
+            @select:enter="quickSearchKeywordSearch"
           >
             <template v-slot:iconSlot>
               <oxd-icon-button

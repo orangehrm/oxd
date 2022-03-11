@@ -8,6 +8,7 @@
       @dropdown:opened="onOpen()"
       @dropdown:closed="onClosed()"
       @dropdown:blur="onBlur()"
+      @select:enter="onSelectEnter"
     >
       <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
         <slot :name="slot" v-bind="scope" />
@@ -36,6 +37,7 @@ export default defineComponent({
     'dropdown:opened',
     'dropdown:closed',
     'dropdown:blur',
+    'select:enter',
   ],
   methods: {
     onModelUpdate($event: Option) {
@@ -55,6 +57,9 @@ export default defineComponent({
     },
     onBlur() {
       this.$emit('dropdown:blur');
+    },
+    onSelectEnter() {
+      this.$emit('select:enter');
     },
   },
 });

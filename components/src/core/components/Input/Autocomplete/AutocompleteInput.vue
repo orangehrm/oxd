@@ -10,8 +10,8 @@
       @blur="onBlur"
       @input="onSearch"
       @clear="onClear"
-      @keyup.esc="onCloseDropdown"
       @keydown.enter.prevent="onSelectEnter"
+      @keyup.esc="onCloseDropdown"
       @keydown.down.exact.prevent="onSelectDown"
       @keydown.up.exact.prevent="onSelectUp"
     >
@@ -89,6 +89,7 @@ export default defineComponent({
     'dropdown:opened',
     'dropdown:closed',
     'dropdown:blur',
+    'select:enter',
   ],
 
   props: {
@@ -251,6 +252,9 @@ export default defineComponent({
       }
       this.dropdownOpen = false;
       this.$emit('dropdown:blur');
+    },
+    onSelectEnter() {
+      this.$emit('select:enter');
     },
   },
 });
