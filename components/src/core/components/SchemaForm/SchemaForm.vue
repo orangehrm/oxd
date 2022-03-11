@@ -47,6 +47,7 @@ export default defineComponent({
       required: true,
     },
   },
+  emits: ['submitValid'],
   setup(props, context) {
     const formModel = ref<Record<string, any>>({});
 
@@ -185,18 +186,9 @@ export default defineComponent({
         {
           style: props.schema.style,
           class: props.schema.class,
-          onSubmit: withModifiers(
-            $e => {
-              context.emit('submit', $e, formModel.value);
-            },
-            ['stop', 'prevent'],
-          ),
-          onReset: withModifiers(
-            $e => {
-              context.emit('reset', $e);
-            },
-            ['stop'],
-          ),
+          onSubmitValid: ($e: SubmitEvent) => {
+            context.emit('submitValid', formModel.value, $e);
+          },
         },
         {
           default: () =>

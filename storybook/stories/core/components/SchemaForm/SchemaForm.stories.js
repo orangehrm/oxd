@@ -7,10 +7,13 @@ export default {
 
 const Template = (args) => ({
   setup() {
-    return {args};
+    const onSubmit = (...args) => {
+      console.log(args);
+    };
+    return {args, onSubmit};
   },
   components: {'oxd-schema-form': SchemaForm},
-  template: `<oxd-schema-form v-bind="args"></oxd-schema-form>`,
+  template: `<oxd-schema-form v-bind="args" v-on:submitValid="onSubmit" ></oxd-schema-form>`,
 });
 
 export const Default = Template.bind({});
@@ -22,20 +25,36 @@ Default.args = {
         props: {
           cols: 2,
         },
-        children: [
-          {
-            slot: 'default',
-            fields: [
-              {
-                name: 'firstName',
-                label: 'First Name',
-                type: 'input',
-                asterisk: true,
-                validation: [],
+        children: {
+          default: [
+            {
+              name: 'firstName',
+              label: 'First Name',
+              type: 'input',
+              required: true,
+              validators: [(v) => (!!v && v.trim() !== '') || 'Required'],
+            },
+          ],
+        },
+      },
+      {
+        type: 'divider',
+      },
+      {
+        type: 'action',
+        children: {
+          default: [
+            {
+              name: 'submit',
+              label: 'Submit',
+              type: 'button',
+              props: {
+                type: 'submit',
+                displayType: 'secondary',
               },
-            ],
-          },
-        ],
+            },
+          ],
+        },
       },
     ],
   },
