@@ -320,7 +320,8 @@ export default defineComponent({
     };
 
     const quickSearchKeywordSearch = () => {
-      quickSearchComponent.value.onClear();
+      state.quickSearchTriggered = true;
+      quickSearchComponent.value.onBlur();
       state.selectedQuickSearch = {
         label: state.quickSearchTerm,
       };

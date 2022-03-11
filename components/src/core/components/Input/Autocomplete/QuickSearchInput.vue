@@ -48,7 +48,6 @@ export default defineComponent({
       this.$emit('update:searchTerm', searchTerm);
     },
     onClear() {
-      this.$refs.autocompleteInput.searchTerm = null;
       this.$emit('dropdown:clear');
     },
     onOpen() {
@@ -58,6 +57,7 @@ export default defineComponent({
       this.$emit('dropdown:closed');
     },
     onBlur() {
+      this.$refs.autocompleteInput.dropdownOpen = false;
       this.$emit('dropdown:blur');
     },
     onSelectEnter() {
