@@ -5,7 +5,7 @@
       <li
         v-for="option in options"
         :key="option.context"
-        @click.once="onClick($event, option.context)"
+        @click="onClick($event, option.context)"
         class="oxd-table-dropdown-item"
       >
         <oxd-icon v-if="option.icon" :name="option.icon" size="extra-small"/>
