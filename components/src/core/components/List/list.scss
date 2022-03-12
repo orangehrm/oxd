@@ -54,11 +54,17 @@
       font-size: 15px;
     }
     :deep(.oxd-table-th) {
+      &:first-child {
+        padding-left: 0;
+      }
       text-align: left;
       padding-top: 0.65rem;
       padding-bottom: 0.65rem;
     }
     :deep(.oxd-table-cell) {
+      &:first-child {
+        padding-left: 0;
+      }
       flex-wrap: nowrap;
       .oxd-select-wrapper {
         max-width: 195px;
