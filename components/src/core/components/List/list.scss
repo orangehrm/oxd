@@ -12,9 +12,8 @@
     &.with-filters {
       margin-bottom: 0.25rem;
     }
-    &--separator {
+    :deep(.oxd-table-left-panel--separator) {
       margin-top: 0.9375rem;
-      width: 90%;
     }
   }
   .table-card-list-wrapper {
