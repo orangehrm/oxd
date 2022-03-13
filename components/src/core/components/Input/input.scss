@@ -6,6 +6,10 @@
   @include oxd-input-control-size;
   min-height: $oxd-input-min-height;
 
+  &::placeholder {
+    color: $oxd-input-placeholder-color;
+  }
+
   &--active {
     border: $oxd-input-border--active;
   }

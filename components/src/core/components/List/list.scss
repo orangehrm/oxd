@@ -12,6 +12,9 @@
     &.with-filters {
       margin-bottom: 0.25rem;
     }
+    :deep(.oxd-table-left-panel--separator) {
+      margin-top: 0.9375rem;
+    }
   }
   .table-card-list-wrapper {
     width: 100%;
@@ -22,6 +25,8 @@
       margin: 0 0 0 1rem;
       border-radius: 0;
       :deep(.oxd-table-filter-header) {
+        min-height: 2.5rem;
+        margin-bottom: 0.625rem;
         .oxd-table-filter-header-title {
           .oxd-table-filter-title {
             font-weight: 600;
@@ -54,11 +59,17 @@
       font-size: 15px;
     }
     :deep(.oxd-table-th) {
+      &:first-child {
+        padding-left: 0;
+      }
       text-align: left;
       padding-top: 0.65rem;
       padding-bottom: 0.65rem;
     }
     :deep(.oxd-table-cell) {
+      &:first-child {
+        padding-left: 0;
+      }
       flex-wrap: nowrap;
       .oxd-select-wrapper {
         max-width: 195px;

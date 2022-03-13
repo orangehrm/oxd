@@ -102,3 +102,4 @@ export default defineComponent({
 </script>
 
 <style src="./default.scss" lang="scss"></style>
+<style src="./checkbox.scss" lang="scss" scoped></style>
