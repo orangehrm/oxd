@@ -12,6 +12,10 @@
     &.with-filters {
       margin-bottom: 0.25rem;
     }
+    &--separator {
+      margin-top: 0.9375rem;
+      width: 90%;
+    }
   }
   .table-card-list-wrapper {
     width: 100%;
@@ -22,6 +26,8 @@
       margin: 0 0 0 1rem;
       border-radius: 0;
       :deep(.oxd-table-filter-header) {
+        min-height: 2.5rem;
+        margin-bottom: 0.625rem;
         .oxd-table-filter-header-title {
           .oxd-table-filter-title {
             font-weight: 600;
