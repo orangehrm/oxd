@@ -5,6 +5,7 @@
     }"
     class="oxd-dialog-close-button"
     :name="'x'"
+    :size="'extra-large'"
   />
 </template>
 
