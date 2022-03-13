@@ -1,9 +1,0 @@
-diff --git a/components/src/core/components/Textarea/_variables.scss b/components/src/core/components/Textarea/_variables.scss
-index cbe87e5..266140b 100644
---- a/components/src/core/components/Textarea/_variables.scss
-+++ b/components/src/core/components/Textarea/_variables.scss
-@@ -7,4 +7,3 @@ $oxd-textarea-box-shadow--error: $oxd-input-control-box-shadow--error !default;
- $oxd-textarea-scrollbar-thumb-color: $oxd-scrollbar-thumb-color !default;
- $oxd-textarea-scrollbar-track-color: $oxd-scrollbar-track-color !default;
- $oxd-textarea-placeholder-color: $oxd-interface-gray-color !default;
--
