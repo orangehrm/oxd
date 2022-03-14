@@ -12,8 +12,14 @@
     &.with-filters {
       margin-bottom: 0.25rem;
     }
+    :deep(.oxd-table-left-panel--header) {
+      min-height: 3.125rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
     :deep(.oxd-table-left-panel--separator) {
-      margin-top: 0.9375rem;
+      margin-top: 0;
     }
   }
   .table-card-list-wrapper {
@@ -54,6 +60,7 @@
   }
   .oxd-classic-table {
     padding-right: 0;
+    padding-top: 0;
     flex-wrap: nowrap;
     :deep(.oxd-icon-button) {
       font-size: 15px;
@@ -78,6 +85,11 @@
           width: -moz-fit-content;
           width: fit-content;
         }
+      }
+    }
+    :deep(.oxd-checkbox-input) {
+      @media (min-width: 0px) and (max-width: 1366px) {
+        margin-right: 0;
       }
     }
   }
