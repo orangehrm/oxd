@@ -14,6 +14,7 @@
       <slot name="afterInput"></slot>
       <oxd-icon
         v-if="!disabled"
+        :size="dropdownIconSize"
         :class="dropdownIconClasses"
         :name="dropdownIcon"
       />
@@ -69,6 +70,10 @@ export default defineComponent({
     upIcon: {
       type: String,
       default: 'caret-up-fill',
+    },
+    dropdownIconSize: {
+      type: String,
+      default: 'medium',
     },
   },
 
