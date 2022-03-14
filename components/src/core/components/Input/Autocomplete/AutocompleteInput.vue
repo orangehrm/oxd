@@ -134,7 +134,7 @@ export default defineComponent({
       dropdownOpen: false,
       searchTerm: null,
       options: [],
-      debouncer: null as any,
+      debouncer: null,
     };
   },
 
@@ -224,54 +224,30 @@ export default defineComponent({
         this.$emit('update:modelValue', option);
       }
     },
-    // search: debounce((vm, searchTerm: string) => {
-    //   new Promise(resolve => {
-    //     if (vm.createOptions) {
-    //       resolve(vm.createOptions(searchTerm));
-    //     } else {
-    //       throw new Error('createOptions not defined');
-    //     }
-    //   })
-    //     .then(resolved => {
-    //       if (resolved && Array.isArray(resolved)) {
-    //         if (resolved.length > 0) {
-    //           vm.options = resolved.slice(0, 5);
-    //         } else {
-    //           vm.options = [];
-    //         }
-    //       } else {
-    //         throw new Error('options returned are not array');
-    //       }
-    //     })
-    //     .finally(() => {
-    //       vm.loading = false;
-    //     });
-    // }, 800),
-    search(searchTerm: string) {
-      const doSearch = () => {
-        new Promise(resolve => {
-          if (this.createOptions) {
-            resolve(this.createOptions(searchTerm));
+    doSearch() {
+      new Promise(resolve => {
+        if (this.createOptions) {
+          resolve(this.createOptions(this.searchTerm));
+        } else {
+          throw new Error('createOptions not defined');
+        }
+      })
+      .then(resolved => {
+        if (resolved && Array.isArray(resolved)) {
+          if (resolved.length > 0) {
+            this.options = resolved.slice(0, 5);
           } else {
-            throw new Error('createOptions not defined');
+            this.options = [];
           }
-        })
-        .then(resolved => {
-          if (resolved && Array.isArray(resolved)) {
-            if (resolved.length > 0) {
-              this.options = resolved.slice(0, 5);
-            } else {
-              this.options = [];
-            }
-          } else {
-            throw new Error('options returned are not array');
-          }
-        })
-        .finally(() => {
-          this.loading = false;
-        });
-      }
-      this.debouncer = debounce(doSearch, 800, {trailing: true})
+        } else {
+          throw new Error('options returned are not array');
+        }
+      })
+      .finally(() => {
+        this.loading = false;
+      });
+    },
+    search() {
       this.debouncer()
     },
     onBlur() {
@@ -285,6 +261,9 @@ export default defineComponent({
       this.$emit('select:enter');
     },
   },
+  mounted () {
+    this.debouncer = debounce(this.doSearch, 800)
+  }
 });
 </script>
 
