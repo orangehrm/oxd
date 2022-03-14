@@ -69,6 +69,7 @@ import AutocompleteTextInput from '@orangehrm/oxd/core/components/Input/Autocomp
 import AutocompleteDropdown from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteDropdown.vue';
 import AutocompleteOption from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteOption.vue';
 import AutocompleteChips from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteChips.vue';
+import sanitizeHtml from 'sanitize-html';
 
 export default defineComponent({
   name: 'oxd-autocomplete-input',
@@ -168,7 +169,7 @@ export default defineComponent({
       const filter = new RegExp(this.searchTerm, 'i');
       return this.computedOptions.map((option: Option) => {
         return option.label.replace(filter, match => {
-          return `<b>${match}</b>`;
+          return sanitizeHtml(`<b>${match}</b>`);
         });
       });
     },

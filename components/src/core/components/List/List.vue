@@ -86,9 +86,11 @@
                 @click="quickSearchKeywordSearch"
               ></oxd-icon-button>
             </template>
-            <template v-slot:option="{data}">
+            <template v-slot:option="{data, text}">
               <oxd-profile-pic size="extra-small" :imageSrc="data.avatar_url" />
-              <span class="margin-left">{{ data.label }}</span>
+              <div class="margin-left">
+                <div v-html="text"></div>
+              </div>
             </template>
           </oxd-quick-search>
           <div class="d-flex align-center">
