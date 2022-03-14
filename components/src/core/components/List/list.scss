@@ -86,6 +86,11 @@
         }
       }
     }
+    :deep(.oxd-checkbox-input) {
+      @media (min-width: 0px) and (max-width: 1366px) {
+        margin-right: 0;
+      }
+    }
   }
 }
 .margin-left {
