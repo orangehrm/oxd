@@ -400,13 +400,6 @@ export default defineComponent({
       return mappedEventsObj;
     };
 
-    const highlight = (label: string) => {
-      const reg = new RegExp(state.quickSearchTerm || '', 'gi');
-      return label.replace(reg, function(str) {
-        return '<span class="highlight"><b>' + str + '</b></span>';
-      });
-    };
-
     return {
       state,
       filterTitle,
@@ -435,7 +428,6 @@ export default defineComponent({
       eventBinder,
       config,
       quickSearchComponent,
-      highlight,
     };
   },
 });
