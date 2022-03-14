@@ -61,7 +61,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import debounce from '../../../../utils/debounce';
+import debounce from 'lodash.debounce';
 import eventsMixin from '../Select/events-mixin';
 import navigationMixin from '../Select/navigation-mixin';
 import {TOP, BOTTOM, Option, Position, DROPDOWN_POSITIONS} from '../types';
@@ -134,6 +134,7 @@ export default defineComponent({
       dropdownOpen: false,
       searchTerm: null,
       options: [],
+      debouncer: null as any,
     };
   },
 
@@ -204,7 +205,7 @@ export default defineComponent({
       if (searchTerm) {
         this.loading = true;
         this.dropdownOpen = true;
-        this.search(this, searchTerm);
+        this.search(searchTerm);
         this.$emit('update:searchTerm', searchTerm);
       } else {
         this.loading = false;
@@ -223,29 +224,56 @@ export default defineComponent({
         this.$emit('update:modelValue', option);
       }
     },
-    search: debounce((vm, searchTerm: string) => {
-      new Promise(resolve => {
-        if (vm.createOptions) {
-          resolve(vm.createOptions(searchTerm));
-        } else {
-          throw new Error('createOptions not defined');
-        }
-      })
+    // search: debounce((vm, searchTerm: string) => {
+    //   new Promise(resolve => {
+    //     if (vm.createOptions) {
+    //       resolve(vm.createOptions(searchTerm));
+    //     } else {
+    //       throw new Error('createOptions not defined');
+    //     }
+    //   })
+    //     .then(resolved => {
+    //       if (resolved && Array.isArray(resolved)) {
+    //         if (resolved.length > 0) {
+    //           vm.options = resolved.slice(0, 5);
+    //         } else {
+    //           vm.options = [];
+    //         }
+    //       } else {
+    //         throw new Error('options returned are not array');
+    //       }
+    //     })
+    //     .finally(() => {
+    //       vm.loading = false;
+    //     });
+    // }, 800),
+    search(searchTerm: string) {
+      const doSearch = () => {
+        new Promise(resolve => {
+          if (this.createOptions) {
+            resolve(this.createOptions(searchTerm));
+          } else {
+            throw new Error('createOptions not defined');
+          }
+        })
         .then(resolved => {
           if (resolved && Array.isArray(resolved)) {
             if (resolved.length > 0) {
-              vm.options = resolved.slice(0, 5);
+              this.options = resolved.slice(0, 5);
             } else {
-              vm.options = [];
+              this.options = [];
             }
           } else {
             throw new Error('options returned are not array');
           }
         })
         .finally(() => {
-          vm.loading = false;
+          this.loading = false;
         });
-    }, 800),
+      }
+      this.debouncer = debounce(doSearch, 800, {trailing: true})
+      this.debouncer()
+    },
     onBlur() {
       if (!this.multiple && this.searchTerm) {
         this.$emit('update:modelValue', null);
