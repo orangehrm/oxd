@@ -89,7 +89,7 @@
             <template v-slot:option="{data}">
               <oxd-profile-pic size="extra-small" :imageSrc="data.avatar_url" />
               <div class="margin-left">
-                <div v-html="highlight(data.label)"></div>
+                <div v-html="HtmlSanitizer(highlight(data.label))"></div>
               </div>
             </template>
           </oxd-quick-search>
@@ -157,6 +157,7 @@ import TableSidebar from '@orangehrm/oxd/core/components/TableSidebar/TableSideb
 import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue';
 import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination.vue';
 import images from '../ProfilePic/images';
+import sanitizeHtml from 'sanitize-html';
 
 import {defineComponent, reactive, computed, ref} from 'vue';
 
@@ -400,6 +401,8 @@ export default defineComponent({
       return mappedEventsObj;
     };
 
+    const HtmlSanitizer = (html: string) => sanitizeHtml(html);
+
     const highlight = (label: string) => {
       const reg = new RegExp(state.quickSearchTerm || '', 'gi');
       return label.replace(reg, function(str) {
@@ -436,6 +439,7 @@ export default defineComponent({
       config,
       quickSearchComponent,
       highlight,
+      HtmlSanitizer,
     };
   },
 });
