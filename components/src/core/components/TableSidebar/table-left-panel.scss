@@ -84,7 +84,7 @@
       &.collapsed {
         justify-content: center;
         .count-container {
-          display: table-cell;
+          display: grid;
           text-align: center;
           vertical-align: middle;
           width: auto;
