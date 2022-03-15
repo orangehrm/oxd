@@ -1,12 +1,15 @@
 <template>
   <div class="oxd-autocomplete-search-wrapper">
     <oxd-autocomplete-input
+      ref="autocompleteInput"
       v-bind="$attrs"
       @update:modelValue="onModelUpdate($event)"
+      @update:searchTerm="onSearchTerm"
       @dropdown:clear="onClear()"
       @dropdown:opened="onOpen()"
       @dropdown:closed="onClosed()"
       @dropdown:blur="onBlur()"
+      @select:enter="onSelectEnter"
     >
       <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
         <slot :name="slot" v-bind="scope" />
@@ -30,14 +33,19 @@ export default defineComponent({
   },
   emits: [
     'update:modelValue',
+    'update:searchTerm',
     'dropdown:clear',
     'dropdown:opened',
     'dropdown:closed',
     'dropdown:blur',
+    'select:enter',
   ],
   methods: {
     onModelUpdate($event: Option) {
       this.$emit('update:modelValue', $event);
+    },
+    onSearchTerm(searchTerm: string) {
+      this.$emit('update:searchTerm', searchTerm);
     },
     onClear() {
       this.$emit('dropdown:clear');
@@ -49,7 +57,11 @@ export default defineComponent({
       this.$emit('dropdown:closed');
     },
     onBlur() {
+      this.$refs.autocompleteInput.dropdownOpen = false;
       this.$emit('dropdown:blur');
+    },
+    onSelectEnter() {
+      this.$emit('select:enter');
     },
   },
 });

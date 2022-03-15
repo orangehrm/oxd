@@ -12,5 +12,6 @@ exports[`QuickSearchInput.vue renders OXD Autocomplete Input 1`] = `
     <!--v-if-->
     <!--v-if-->
   </div>
+  <icon-button name="oxd-search" displaytype="label-info" size="small"></icon-button>
 </div>
 `;

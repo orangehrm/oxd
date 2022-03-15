@@ -1,6 +1,7 @@
 @import '../../../styles';
 
 .oxd-list-container {
+  min-width: 65rem;
   margin-top: 2rem;
   background-color: $oxd-white-color;
   border-radius: 1.2rem;
@@ -10,6 +11,15 @@
     flex-shrink: 0;
     &.with-filters {
       margin-bottom: 0.25rem;
+    }
+    :deep(.oxd-table-left-panel--header) {
+      min-height: 3.125rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    :deep(.oxd-table-left-panel--separator) {
+      margin-top: 0;
     }
   }
   .table-card-list-wrapper {
@@ -21,6 +31,8 @@
       margin: 0 0 0 1rem;
       border-radius: 0;
       :deep(.oxd-table-filter-header) {
+        min-height: 2.5rem;
+        margin-bottom: 0.625rem;
         .oxd-table-filter-header-title {
           .oxd-table-filter-title {
             font-weight: 600;
@@ -48,19 +60,36 @@
   }
   .oxd-classic-table {
     padding-right: 0;
+    padding-top: 0;
     flex-wrap: nowrap;
     :deep(.oxd-icon-button) {
       font-size: 15px;
     }
     :deep(.oxd-table-th) {
+      &:first-child {
+        padding-left: 0;
+      }
       text-align: left;
       padding-top: 0.65rem;
       padding-bottom: 0.65rem;
     }
     :deep(.oxd-table-cell) {
+      &:first-child {
+        padding-left: 0;
+      }
       flex-wrap: nowrap;
       .oxd-select-wrapper {
-        max-width: 267px;
+        max-width: 195px;
+        .oxd-select-text {
+          max-width: 195px;
+          width: -moz-fit-content;
+          width: fit-content;
+        }
+      }
+    }
+    :deep(.oxd-checkbox-input) {
+      @media (min-width: 0px) and (max-width: 1366px) {
+        margin-right: 0;
       }
     }
   }

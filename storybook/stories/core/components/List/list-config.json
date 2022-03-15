@@ -116,7 +116,7 @@
       "quickSearch": {
         "visible": true,
         "placeholder": "Search",
-        "clear": true,
+        "clear": false,
         "style": {
           "width": "261px"
         },

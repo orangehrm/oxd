@@ -3,7 +3,7 @@
     type="button"
     :class="classes"
     :style="style"
-    :tooltip="tooltip"
+    :tooltip="computedTooltip"
     :flow="flow"
   >
     <slot name="icon">
@@ -102,6 +102,10 @@ export default defineComponent({
       type: String,
       default: null,
     },
+    disabledTooltip: {
+      type: String,
+      default: null,
+    },
     flow: {
       type: String,
       default: TOOLTIP_TOP,
@@ -112,6 +116,14 @@ export default defineComponent({
   },
 
   computed: {
+    computedTooltip(): string {
+      if (this.$attrs.disabled) {
+        return this.disabledTooltip;
+      } else {
+        return this.tooltip;
+      }
+    },
+    
     classes(): object {
       return {
         'oxd-button': true,

@@ -1,5 +1,7 @@
 import {mount} from '@vue/test-utils';
 import QuickSearchInput from '@orangehrm/oxd/core/components/Input/Autocomplete/QuickSearchInput.vue';
+import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
+
 const options = [
   {
     id: 1,
@@ -24,6 +26,9 @@ describe('QuickSearchInput.vue', () => {
     const wrapper = mount(QuickSearchInput, {
       props: {
         createOptions: syncFunction,
+      },
+      slots: {
+        iconSlot: '<icon-button name="oxd-search" displayType="label-info" size="small"></icon-button>'
       },
     });
     expect(wrapper.html()).toMatchSnapshot();

@@ -61,7 +61,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import debounce from '../../../../utils/debounce';
+import debounce from 'lodash.debounce';
 import eventsMixin from '../Select/events-mixin';
 import navigationMixin from '../Select/navigation-mixin';
 import {TOP, BOTTOM, Option, Position, DROPDOWN_POSITIONS} from '../types';
@@ -69,6 +69,7 @@ import AutocompleteTextInput from '@orangehrm/oxd/core/components/Input/Autocomp
 import AutocompleteDropdown from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteDropdown.vue';
 import AutocompleteOption from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteOption.vue';
 import AutocompleteChips from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteChips.vue';
+import sanitizeHtml from 'sanitize-html';
 
 export default defineComponent({
   name: 'oxd-autocomplete-input',
@@ -89,6 +90,7 @@ export default defineComponent({
     'dropdown:opened',
     'dropdown:closed',
     'dropdown:blur',
+    'select:enter',
   ],
 
   props: {
@@ -133,6 +135,7 @@ export default defineComponent({
       dropdownOpen: false,
       searchTerm: null,
       options: [],
+      debouncer: null,
     };
   },
 
@@ -167,7 +170,7 @@ export default defineComponent({
       const filter = new RegExp(this.searchTerm, 'i');
       return this.computedOptions.map((option: Option) => {
         return option.label.replace(filter, match => {
-          return `<b>${match}</b>`;
+          return sanitizeHtml(`<b>${match}</b>`);
         });
       });
     },
@@ -203,7 +206,8 @@ export default defineComponent({
       if (searchTerm) {
         this.loading = true;
         this.dropdownOpen = true;
-        this.search(this, searchTerm);
+        this.search(searchTerm);
+        this.$emit('update:searchTerm', searchTerm);
       } else {
         this.loading = false;
         this.dropdownOpen = false;
@@ -221,35 +225,45 @@ export default defineComponent({
         this.$emit('update:modelValue', option);
       }
     },
-    search: debounce((vm, searchTerm: string) => {
+    doSearch() {
       new Promise(resolve => {
-        if (vm.createOptions) {
-          resolve(vm.createOptions(searchTerm));
+        if (this.createOptions) {
+          resolve(this.createOptions(this.searchTerm));
         } else {
           throw new Error('createOptions not defined');
         }
       })
-        .then(resolved => {
-          if (resolved && Array.isArray(resolved)) {
-            if (resolved.length > 0) {
-              vm.options = resolved.slice(0, 5);
-            } else {
-              vm.options = [];
-            }
+      .then(resolved => {
+        if (resolved && Array.isArray(resolved)) {
+          if (resolved.length > 0) {
+            this.options = resolved.slice(0, 5);
           } else {
-            throw new Error('options returned are not array');
+            this.options = [];
           }
-        })
-        .finally(() => {
-          vm.loading = false;
-        });
-    }, 800),
+        } else {
+          throw new Error('options returned are not array');
+        }
+      })
+      .finally(() => {
+        this.loading = false;
+      });
+    },
+    search() {
+      if (this.debouncer) {
+        this.debouncer.cancel()
+      }
+      this.debouncer = debounce(this.doSearch, 300)
+      this.debouncer()
+    },
     onBlur() {
       if (!this.multiple && this.searchTerm) {
         this.$emit('update:modelValue', null);
       }
       this.dropdownOpen = false;
       this.$emit('dropdown:blur');
+    },
+    onSelectEnter() {
+      this.$emit('select:enter');
     },
   },
 });

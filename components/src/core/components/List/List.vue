@@ -65,6 +65,7 @@
         </template>
         <template v-slot:toggleOptions>
           <oxd-quick-search
+            ref="quickSearchComponent"
             v-if="config.table.topBar.quickSearch.visible"
             :style="config.table.topBar.quickSearch.style"
             :placeholder="config.table.topBar.quickSearch.placeholder"
@@ -73,21 +74,23 @@
             :modelValue="state.selectedQuickSearch"
             @update:modelValue="quickSearchSelect"
             @dropdown:clear="quickSearchOnClear"
+            @update:searchTerm="setQuickSearchTerm"
+            @select:enter="quickSearchKeywordSearch"
           >
             <template v-slot:iconSlot>
               <oxd-icon-button
-                v-if="
-                  config.table.topBar.quickSearch.button.visible &&
-                    !state.selectedQuickSearch
-                "
+                v-if="config.table.topBar.quickSearch.button.visible"
                 v-bind="config.table.topBar.quickSearch.button.props"
                 :class="config.table.topBar.quickSearch.button.class"
                 :style="config.table.topBar.quickSearch.button.style"
+                @click="quickSearchKeywordSearch"
               ></oxd-icon-button>
             </template>
-            <template v-slot:option="{data}">
+            <template v-slot:option="{data, text}">
               <oxd-profile-pic size="extra-small" :imageSrc="data.avatar_url" />
-              <span class="margin-left">{{ data.label }}</span>
+              <div class="margin-left">
+                <div v-html="text"></div>
+              </div>
             </template>
           </oxd-quick-search>
           <div class="d-flex align-center">
@@ -155,7 +158,7 @@ import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue
 import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination.vue';
 import images from '../ProfilePic/images';
 
-import {defineComponent, reactive, computed} from 'vue';
+import {defineComponent, reactive, computed, ref} from 'vue';
 
 export default defineComponent({
   components: {
@@ -231,9 +234,13 @@ export default defineComponent({
       checkedItems: [],
       modalState: false as boolean,
       selectedQuickSearch: null,
+      quickSearchTerm: null as string | null,
       selectedItemIndexes: [],
       currentSortFields: {},
+      quickSearchTriggered: false,
     });
+
+    const quickSearchComponent = ref(null);
 
     const config = computed(() => props.configurations);
 
@@ -271,7 +278,7 @@ export default defineComponent({
       const itemCount =
         state.selectedItemIndexes.length || props.filteredTotalRecordsCount;
       return `
-        ${itemCount}
+        (${itemCount})
         ${
           itemCount > 1 || itemCount === 0
             ? config.value.table.topBar.listRecordCount.multiTerm
@@ -289,19 +296,39 @@ export default defineComponent({
       emit('sidePanelList:onSelect', item);
     };
 
+    const quickSearchOnClear = () => {
+      if (state.quickSearchTriggered) {
+        state.selectedQuickSearch = null;
+        state.quickSearchTriggered = false;
+        emit('quick-search:onClear');
+      }
+    };
+
     const quickSearchSelect = value => {
       if (value) {
         state.selectedQuickSearch = {
           label: value.candidateName,
         };
         emit('quick-search:onSelect', value);
+        state.quickSearchTriggered = true;
+      } else {
+        quickSearchOnClear();
       }
     };
 
-    const quickSearchOnClear = () => {
-      state.selectedQuickSearch = null;
-      emit('quick-search:onClear')
-    }
+    const setQuickSearchTerm = (value: string) => {
+      state.quickSearchTerm = value;
+      emit('quick-search:onSetSearchTerm', value);
+    };
+
+    const quickSearchKeywordSearch = () => {
+      state.quickSearchTriggered = true;
+      quickSearchComponent.value.onBlur();
+      state.selectedQuickSearch = {
+        label: state.quickSearchTerm,
+      };
+      emit('quick-search:onSearch', state.quickSearchTerm);
+    };
 
     const tableSort = value => {
       state.currentSortFields = value;
@@ -383,6 +410,8 @@ export default defineComponent({
       sidePanelListOnSelect,
       quickSearchSelect,
       quickSearchOnClear,
+      quickSearchKeywordSearch,
+      setQuickSearchTerm,
       showFilterDrawer,
       applySearch,
       resetSearch,
@@ -398,6 +427,7 @@ export default defineComponent({
       exportBtn,
       eventBinder,
       config,
+      quickSearchComponent,
     };
   },
 });
