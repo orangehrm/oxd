@@ -55,7 +55,7 @@
           position: relative;
           min-width: 20px;
           width: auto;
-          padding: 4px 9px;
+          padding: 6px 9px 4px 9px;
           font-size: 0.75rem;
           font-weight: 700;
           font-family: $oxd-left-panel-font-family;
@@ -84,7 +84,7 @@
       &.collapsed {
         justify-content: center;
         .count-container {
-          display: table-cell;
+          display: grid;
           text-align: center;
           vertical-align: middle;
           width: auto;

@@ -29,7 +29,7 @@ export const shouldNotExceedCharLength = function(charLength: number) {
     return (
       !value ||
       new String(value).length <= charLength ||
-      `Should be less than ${charLength} characters`
+      `Should not exceed ${charLength} characters`
     );
   };
 };
