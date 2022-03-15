@@ -10,6 +10,10 @@
   );
   min-height: $oxd-textarea-min-height;
 
+  &::placeholder {
+    color: $oxd-textarea-placeholder-color;
+  }
+
   &--active {
     border: $oxd-textarea-border--active;
   }

@@ -52,6 +52,10 @@
     white-space: nowrap;
     overflow: hidden;
     background-color: $oxd-input-background;
+
+    &::placeholder {
+      color: $oxd-input-placeholder-color;
+    }
   }
 
   &--before,

@@ -2,6 +2,7 @@
   <oxd-select-input
     up-icon="chevron-up"
     down-icon="chevron-down"
+    dropdown-icon-size="small"
   ></oxd-select-input>
 </template>
 
