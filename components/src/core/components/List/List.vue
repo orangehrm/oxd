@@ -200,8 +200,8 @@ export default defineComponent({
       default: () => ({
         limit: 20 as number,
         perPage: {
-          id: 1,
-          label: '10',
+          id: 2,
+          label: '20',
         } as {
           id: number;
           label: string;

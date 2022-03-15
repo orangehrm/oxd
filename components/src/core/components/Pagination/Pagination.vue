@@ -47,8 +47,8 @@ export default defineComponent({
     return {
       pagePointer: this.current,
       perPageData: {
-        id: 1,
-        label: '10',
+        id: 2,
+        label: '20',
       },
     };
   },
