@@ -248,6 +248,10 @@ export default defineComponent({
       });
     },
     search() {
+      if (this.debouncer) {
+        this.debouncer.cancel()
+      }
+      this.debouncer = debounce(this.doSearch, 300)
       this.debouncer()
     },
     onBlur() {
@@ -261,9 +265,6 @@ export default defineComponent({
       this.$emit('select:enter');
     },
   },
-  mounted () {
-    this.debouncer = debounce(this.doSearch, 800)
-  }
 });
 </script>
 
