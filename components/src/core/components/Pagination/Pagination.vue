@@ -112,10 +112,10 @@ export default defineComponent({
       },
     },
     showPrevious(): boolean {
-      return this.currentPage !== 1;
+      return this.currentPage > 1;
     },
     showNext(): boolean {
-      return this.currentPage !== this.length;
+      return this.currentPage < this.length;
     },
     pageItems(): Array<number> {
       if (this.currentPage < 1 || this.currentPage > this.length) {
@@ -184,6 +184,7 @@ export default defineComponent({
     },
     selectPerPage(val) {
       this.perPageData = val;
+      this.currentPage = 1;
       this.$emit('onPerPageSelect', val);
     },
   },
