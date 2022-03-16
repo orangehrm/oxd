@@ -7,7 +7,6 @@ const leftPanel = {
         label: "Add Candidate",
         displayType: "secondary",
         size: "long",
-        displayType: "label-info",
         iconName: "plus",
         iconSize: "small",
       },
