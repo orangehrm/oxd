@@ -39,7 +39,7 @@ interface ListButton {
   style?: Style;
 }
 
-interface ListBulkAction extends ListButton, Visible {
+interface ListAction extends ListButton, Visible {
   conditional?: boolean;
   type?: string;
 }
@@ -97,8 +97,8 @@ interface ListTopBar extends Visible {
     singleTerm: string;
     multiTerm: string;
   };
-  bulkActions: ListBulkAction[];
-  singleActions: ListBulkAction[];
+  bulkActions: ListAction[];
+  singleActions: ListAction[];
   quickSearch: ListQuickSearch;
 }
 
