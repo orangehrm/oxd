@@ -65,7 +65,7 @@ import {defineComponent, reactive, computed, ref} from 'vue';
 import List from '@orangehrm/oxd/core/components/List/List';
 import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput';
 import SelectInputButton from '@orangehrm/oxd/core/components/Input/Select/SelectInputButton.vue';
-import list from './list-config.json';
+import list from './list-schema';
 import candidateAvatars from './candidate-avatars.json';
 import map from 'lodash/map';
 
