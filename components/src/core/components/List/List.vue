@@ -298,6 +298,7 @@ export default defineComponent({
 
     const quickSearchOnClear = () => {
       if (state.quickSearchTriggered) {
+        state.quickSearchTerm = null;
         state.selectedQuickSearch = null;
         state.quickSearchTriggered = false;
         emit('quick-search:onClear');
