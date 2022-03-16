@@ -40,7 +40,6 @@ TableSidebarWithIcons.args = {
       "label": "New Report",
       "displayType": "secondary",
       "size": "long",
-      displayType: "label-info",
       iconName: "oxd-add"
     }
   }
