@@ -76,7 +76,7 @@ export interface ListLeftPanelBody extends Visible {
   };
 }
 
-interface cellProps {
+interface CellProps {
   link?: string;
   target?: string;
   pillProperty?: string[];
@@ -110,7 +110,7 @@ interface ListTableHeaderCell extends Icon {
   title?: string;
   style?: Style;
   cellType?: string;
-  cellProps?: cellProps;
+  cellProps?: CellProps;
   cellRenderer?: string;
   sortField?: string;
   initialSortOrder?: string;
