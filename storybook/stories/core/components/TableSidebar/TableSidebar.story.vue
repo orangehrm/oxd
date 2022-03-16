@@ -1,16 +1,16 @@
 <template>
   <div class="container">
     <oxd-table-sidebar
-      v-if="configurations.table.leftPanel.visible"
+      v-if="leftPanel.visible"
       class="oxd-table-left-panel"
-      :class="{'with-filters': configurations.table.topBar.visible}"
+      :class="{'with-filters': topBar.visible}"
       width="250px"
       :side-panel-list="dataObj.stages"
-      :header-visible="configurations.table.leftPanel.header.visible"
-      :body-visible="configurations.table.leftPanel.body.visible"
-      :list-visible="configurations.table.leftPanel.list.visible"
-      :bubble-visible="configurations.table.leftPanel.list.bubble.visible"
-      :button="configurations.table.leftPanel.header.button"
+      :header-visible="leftPanel.header.visible"
+      :body-visible="leftPanel.body.visible"
+      :list-visible="leftPanel.list.visible"
+      :bubble-visible="leftPanel.list.bubble.visible"
+      :button="leftPanel.header.button"
       :selected-list-item-id="1"
       @sidePanelList:onSelect="sidePanelListOnSelect"
       @side-panel:onToggle="toggleSidePanel"
@@ -29,8 +29,8 @@
 
 <script lang="ts">
 import TableSidebar from '@orangehrm/oxd/core/components/TableSidebar/TableSidebar.vue';
-import SelectInputButton from '@orangehrm/oxd/core/components/Input/Select/SelectInputButton.vue';
-import list from './../List/list-config.json'
+import leftPanelTableList from './../List/list-schema/left-panel.table.list';
+import topBarTableList from './../List/list-schema/top-bar.table.list';
 import data from './../List/list-data.json';
 
 import {defineComponent, ref, computed} from 'vue';
@@ -40,7 +40,8 @@ export default defineComponent({
   },
   setup() {
     const isLeftPanelOpen = ref<boolean>(false)
-    const configurations = computed(() => list)
+    const leftPanel = computed(() => leftPanelTableList)
+    const topBar = computed(() => topBarTableList)
     const dataObj = computed(() => {
       return data
     })
@@ -59,7 +60,8 @@ export default defineComponent({
     };
 
     return {
-      configurations,
+      leftPanel,
+      topBar,
       dataObj,
       isLeftPanelOpen,
       sidePanelListOnSelect,
