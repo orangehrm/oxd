@@ -136,7 +136,6 @@ export default defineComponent({
       searchTerm: null,
       options: [],
       debouncer: null,
-      keypressed: false,
     };
   },
 
@@ -270,16 +269,6 @@ export default defineComponent({
       this.$emit('select:enter');
     },
   },
-
-  watch: {
-    computedOptions: {
-      handler(val, oldVal) {
-        if (val.length > 0) {
-          this.pointer = 0;
-        }
-      }
-    },
-  }
 });
 </script>
 
