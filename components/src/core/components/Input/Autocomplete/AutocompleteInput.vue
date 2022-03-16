@@ -211,6 +211,7 @@ export default defineComponent({
       } else {
         this.loading = false;
         this.dropdownOpen = false;
+        this.pointer = -1;
         this.$emit('update:modelValue', null);
       }
     },
@@ -260,12 +261,23 @@ export default defineComponent({
         this.$emit('update:modelValue', null);
       }
       this.dropdownOpen = false;
+      this.pointer = -1;
       this.$emit('dropdown:blur');
     },
     onSelectEnter() {
       this.$emit('select:enter');
     },
   },
+
+  watch: {
+    computedOptions: {
+      handler(val) {
+        if (val.length > 0) {
+          this.pointer = 0;
+        }
+      }
+    },
+  }
 });
 </script>
 
