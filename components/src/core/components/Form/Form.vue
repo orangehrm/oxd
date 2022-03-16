@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent} from 'vue';
+import {unref, computed, defineComponent} from 'vue';
 import useFormValidation from '../../../composables/useFormValidation';
 import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
 
@@ -36,7 +36,7 @@ export default defineComponent({
 
     const isProcessing = computed(() => {
       return fieldset.value.reduce((acc, field) => {
-        return acc || field.processing.value;
+        return acc || unref(field.processing);
       }, false);
     });
 
@@ -45,7 +45,7 @@ export default defineComponent({
     });
 
     const isFormBusy = computed(() => {
-      return props.loading || isProcessing.value;
+      return props.loading || unref(isProcessing);
     });
 
     const onSubmit = (e: Event) => {

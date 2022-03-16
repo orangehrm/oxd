@@ -1,5 +1,5 @@
 <template>
-  <oxd-text tag="h5">Sync/Async Validations</oxd-text>
+  <oxd-text tag="h5">Cross Validations</oxd-text>
 
   <oxd-divider />
 
@@ -7,9 +7,10 @@
     <oxd-form-row>
       <oxd-input-group class="orangehrm-bottom-space">
         <oxd-input-field
-          label="Github Username (real async validation)"
-          v-model="name"
-          :rules="rules.name"
+          label="Start Date"
+          type="date"
+          v-model="startDate"
+          :rules="rules.startDate"
         />
       </oxd-input-group>
     </oxd-form-row>
@@ -17,19 +18,10 @@
     <oxd-form-row>
       <oxd-input-group class="orangehrm-bottom-space">
         <oxd-input-field
-          label="Email (simulated slow async validation)"
-          v-model="email"
-          :rules="rules.email"
-        />
-      </oxd-input-group>
-    </oxd-form-row>
-
-    <oxd-form-row>
-      <oxd-input-group class="orangehrm-bottom-space">
-        <oxd-input-field
-          label="Number (sync validation)"
-          v-model="number"
-          :rules="rules.number"
+          label="End Date"
+          type="date"
+          v-model="endDate"
+          :rules="rules.endDate"
         />
       </oxd-input-group>
     </oxd-form-row>
@@ -62,41 +54,13 @@ import InputField from '@orangehrm/oxd/core/components/InputField/InputField';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider';
 import Button from '@orangehrm/oxd/core/components/Button/Button';
 import Text from '@orangehrm/oxd/core/components/Text/Text';
-import promiseDebounce from '@orangehrm/oxd/utils/promiseDebounce';
-
-const checkGithub = function (value) {
-  return new Promise((resolve) => {
-    if (value.trim()) {
-      fetch(`https://api.github.com/search/users?q=${value}`)
-        .then((response) => response.json())
-        .then((json) => {
-          const {total_count} = json;
-          return total_count === 0
-            ? resolve(true)
-            : resolve('Existing Github User');
-        });
-    } else {
-      resolve(true);
-    }
-  });
-};
-
-const delayedFunc = function (value) {
-  return new Promise((resolve) => {
-    if (value === 'test@test.com') {
-      setTimeout(() => {
-        resolve(true);
-      }, 5000);
-    } else {
-      setTimeout(() => {
-        resolve('Invalid email!');
-      }, 5000);
-    }
-  });
-};
+import {
+  startDateShouldBeBeforeEndDate,
+  endDateShouldBeAfterStartDate,
+} from '../../../../../components/src/validation/rules.ts';
 
 export default {
-  name: 'ValidatableFrom',
+  name: 'CrossValidatableFrom',
 
   setup() {
     const form = ref(null);
@@ -109,23 +73,16 @@ export default {
   data() {
     return {
       isValid: 'valid',
-      name: '',
-      email: '',
-      number: '',
+      startDate: null,
+      endDate: null,
       rules: {
-        name: [
+        startDate: [
           (v) => (!!v && v.trim() !== '') || 'Required',
-          (v) => (v && v.length <= 6) || 'Should be less than 6 characters',
-          promiseDebounce(checkGithub, 500),
+          startDateShouldBeBeforeEndDate(() => this.endDate),
         ],
-        email: [
+        endDate: [
           (v) => (!!v && v.trim() !== '') || 'Required',
-          (v) => (v && v.length <= 15) || 'Should be less than 15 characters',
-          promiseDebounce(delayedFunc, 500),
-        ],
-        number: [
-          (v) => (!!v && v.trim() !== '') || 'Required',
-          (v) => (v && v.length <= 10) || 'Should be less than 10 characters',
+          endDateShouldBeAfterStartDate(() => this.startDate),
         ],
       },
     };
