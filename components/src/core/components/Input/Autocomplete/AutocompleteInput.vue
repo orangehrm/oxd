@@ -136,6 +136,7 @@ export default defineComponent({
       searchTerm: null,
       options: [],
       debouncer: null,
+      keypressed: false,
     };
   },
 
@@ -206,6 +207,7 @@ export default defineComponent({
       if (searchTerm) {
         this.loading = true;
         this.dropdownOpen = true;
+        this.pointer = -1;
         this.search(searchTerm);
         this.$emit('update:searchTerm', searchTerm);
       } else {
@@ -271,7 +273,7 @@ export default defineComponent({
 
   watch: {
     computedOptions: {
-      handler(val) {
+      handler(val, oldVal) {
         if (val.length > 0) {
           this.pointer = 0;
         }
