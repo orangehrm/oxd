@@ -18,7 +18,6 @@ interface Style {
 
 interface Icon {
   iconName?: string;
-  "icon-size"?: string;
   iconSize?: string;
   iconStyle?: string;
 }
@@ -31,7 +30,6 @@ interface ListButtonProps extends Tooltip, ButtonIcon {
   label?: string;
   displayType?: string;
   size?: string;
-  displayType?: string;
 }
 
 interface ListButton {
