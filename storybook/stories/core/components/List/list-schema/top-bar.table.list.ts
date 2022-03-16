@@ -11,8 +11,8 @@ const topBar = {
       props: {
         label: "Archive",
         size: "medium",
-        "display-type": "label-info",
-        "icon-name": "oxd-archive",
+        displayType: "label-info",
+        iconName: "oxd-archive",
         "disabled-tooltip":
           "Your selection should contain only active candidates",
         flow: "bottom",
@@ -32,8 +32,8 @@ const topBar = {
       props: {
         label: "Unarchive",
         size: "medium",
-        "display-type": "label-info",
-        "icon-name": "oxd-archive",
+        displayType: "label-info",
+        iconName: "oxd-archive",
         "icon-size": "small",
         "disabled-tooltip":
           "Your selection should contain only archived candidates",
@@ -52,8 +52,8 @@ const topBar = {
       props: {
         label: "Delete Selected",
         size: "medium",
-        "display-type": "label-feedback-danger",
-        "icon-name": "oxd-trash",
+        displayType: "label-feedback-danger",
+        iconName: "oxd-trash",
         "icon-size": "extra-small",
       },
       events: [
@@ -93,7 +93,7 @@ const topBar = {
       type: "oxd-icon-button",
       props: {
         size: "medium",
-        "display-type": "label-info",
+        displayType: "label-info",
         name: "funnel",
         tooltip: "Filter",
         flow: "top",
@@ -115,8 +115,8 @@ const topBar = {
       props: {
         label: "CSV",
         size: "medium",
-        "display-type": "label-info",
-        "icon-name": "oxd-document-text",
+        displayType: "label-info",
+        iconName: "oxd-document-text",
         tooltip: "Export to CSV",
         flow: "top",
       },

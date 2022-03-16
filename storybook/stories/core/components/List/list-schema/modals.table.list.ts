@@ -208,7 +208,7 @@ const modals = [
           props: {
             label: "Cancel",
             size: "medium",
-            "display-type": "ghost",
+            displayType: "ghost",
           },
           class: "default-btn--cancel",
           events: [
@@ -223,7 +223,7 @@ const modals = [
           props: {
             label: "Search",
             size: "medium",
-            "display-type": "secondary",
+            displayType: "secondary",
           },
           class: "default-btn--save",
           events: [

@@ -24,14 +24,14 @@ interface Icon {
 }
 
 interface ButtonIcon extends Icon {
-  "icon-name"?: string;
+  iconName?: string;
 }
 
 interface ListButtonProps extends Tooltip, ButtonIcon {
   label?: string;
   displayType?: string;
   size?: string;
-  "display-type"?: string;
+  displayType?: string;
 }
 
 interface ListButton {

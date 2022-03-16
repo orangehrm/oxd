@@ -40,8 +40,8 @@ TableSidebarWithIcons.args = {
       "label": "New Report",
       "displayType": "secondary",
       "size": "long",
-      "display-type": "label-info",
-      "icon-name": "oxd-add"
+      displayType: "label-info",
+      iconName: "oxd-add"
     }
   }
 };

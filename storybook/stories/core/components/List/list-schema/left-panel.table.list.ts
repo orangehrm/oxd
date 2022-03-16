@@ -7,8 +7,8 @@ const leftPanel = {
         label: "Add Candidate",
         displayType: "secondary",
         size: "long",
-        "display-type": "label-info",
-        "icon-name": "plus",
+        displayType: "label-info",
+        iconName: "plus",
         iconSize: "small",
       },
       events: [
