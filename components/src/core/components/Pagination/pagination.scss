@@ -6,4 +6,22 @@
   display: inline-flex;
   margin: 0;
   padding: 0;
+
+  .pagination-dropdown {
+    font-size: $oxd-pagination-page-item-font-size;
+    font-weight:600;
+    border-radius: 50px;
+    min-height: 36px;
+    color: $oxd-pagination-page-item-font-color;
+    border: 1px solid $oxd-pagination-page-item-border-color; 
+    margin-top: 2px;
+
+    .oxd-select-text--after .oxd-icon {
+      border-radius: 1.2rem !important;
+      width: 30px;
+      height: 30px;
+    }
+  }
 }
+
+

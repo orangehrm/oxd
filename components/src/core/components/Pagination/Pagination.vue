@@ -195,7 +195,7 @@ export default defineComponent({
 });
 </script>
 
-<style src="./pagination.scss" lang="scss" scoped></style>
+<style src="./pagination.scss" lang="scss"></style>
 
 <style lang="scss" scoped>
 :deep(.pagination-dropdown .oxd-select-text-input) {
