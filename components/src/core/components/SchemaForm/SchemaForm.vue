@@ -120,7 +120,7 @@ export default defineComponent({
               label: field.label,
               ...(field.props ?? {}),
               ...(field.listeners ?? {}),
-              rules: field.validators ?? [],
+              rules: Array.from(field.validators?.values() ?? []),
               modelValue: props.model[field.name],
               'onUpdate:modelValue': value => {
                 context.emit('update:model', {
@@ -128,9 +128,7 @@ export default defineComponent({
                   [field.name]: value,
                 });
               },
-              required: field.validators?.reduce((acc, curr) => {
-                return acc || curr.name === 'required';
-              }, false),
+              required: field.validators?.has('required'),
               ...(field.type !== 'custom' && {type: field.type}),
             }),
         },
