@@ -97,6 +97,7 @@ export default defineComponent({
 
   setup(props, context) {
     const modelValue = toRef(props, 'modelValue');
+    const rules = toRef(props, 'rules');
     const initialValue = modelValue.value;
 
     const onReset = async () => {
@@ -106,7 +107,7 @@ export default defineComponent({
 
     const {hasError, message, startWatcher, dirty} = useField({
       fieldLabel: props.label ? props.label : '',
-      rules: props.rules,
+      rules,
       modelValue,
       onReset,
     });

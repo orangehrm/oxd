@@ -7,11 +7,11 @@ import {
 } from 'vue';
 import {nanoid} from 'nanoid';
 import {injectStrict} from '../utils/injectable';
-import {ErrorField, FormAPI, formKey, ModelValue, Rule} from './types';
+import {ErrorField, FormAPI, formKey, ModelValue, Rules} from './types';
 
 export default function useField(fieldContext: {
   fieldLabel: string;
-  rules: Rule[];
+  rules: Rules;
   modelValue: ModelValue;
   onReset: () => Promise<void>;
 }) {
@@ -23,10 +23,10 @@ export default function useField(fieldContext: {
   const processing = ref<boolean>(false);
   let watchHandler: WatchStopHandle | undefined;
 
-  const validate = (modelValue: ModelValue, rules: Rule[]) => {
+  const validate = (modelValue: ModelValue, rules: Rules) => {
     processing.value = true;
     const allValidations = Promise.all(
-      rules.map(func => {
+      rules.value.map(func => {
         return new Promise<boolean>((resolve, reject) => {
           Promise.resolve(func(modelValue.value)).then(valid => {
             if (valid === true) {
