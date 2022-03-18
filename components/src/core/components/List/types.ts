@@ -30,6 +30,7 @@ interface ListButtonProps extends Tooltip, ButtonIcon {
   label?: string;
   displayType?: string;
   size?: string;
+  disabled?: boolean;
 }
 
 interface ListButton {
@@ -78,7 +79,11 @@ interface CellProps {
   link?: string;
   target?: string;
   pillProperty?: string[];
+  displayFormat?: string;
+  locale?: string;
 }
+
+type CellRendererFunction = () => void;
 
 interface ListLeftPanel {
   visible: boolean;
@@ -109,7 +114,7 @@ interface ListTableHeaderCell extends Icon {
   style?: Style;
   cellType?: string;
   cellProps?: CellProps;
-  cellRenderer?: string;
+  cellRenderer?: string | CellRendererFunction;
   sortField?: string;
   initialSortOrder?: string;
 }
