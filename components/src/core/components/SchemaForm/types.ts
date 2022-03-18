@@ -67,7 +67,7 @@ type FieldSchema = CommonSchemaProperties &
     placeholder?: string;
     visible?: boolean;
     hook?: (schema: FieldSchema, model: object) => FieldSchema;
-    validators?: Array<Validator>;
+    validators?: Map<string, Validator>;
     listeners?: EventListeners;
   };
 
