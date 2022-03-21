@@ -30,13 +30,6 @@ export default defineComponent({
       isActive: false,
     };
   },
-  props: {
-    enableToggle: {
-      type: Boolean,
-      default: false,
-    },
-  },
-
   directives: {
     'click-outside': clickOutsideDirective,
   },
@@ -44,19 +37,11 @@ export default defineComponent({
   emits: ['show'],
   methods: {
     openSubmenu() {
-      if (this.enableToggle) {
-        this.isActive = !this.isActive;
-        this.$emit('show', this.isActive);
-      } else {
-        this.isActive = true;
-      }
+      this.isActive = !this.isActive;
     },
     closeSubMenu() {
       if (this.isActive) {
         this.isActive = false;
-        if (this.enableToggle) {
-          this.$emit('show', this.isActive);
-        }
       }
     },
   },
