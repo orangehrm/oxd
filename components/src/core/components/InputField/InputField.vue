@@ -11,7 +11,7 @@
       v-bind="$attrs"
       :hasError="hasError"
       :modelValue="modelValue"
-      @update:modelValue="$emit('update:modelValue', $event)"
+      @update:modelValue="onChange"
     >
       <template v-for="(_, name) in $slots" v-slot:[name]="slotData">
         <slot :name="name" v-bind="slotData" />
@@ -97,6 +97,7 @@ export default defineComponent({
 
   setup(props, context) {
     const modelValue = toRef(props, 'modelValue');
+    const rules = toRef(props, 'rules');
     const initialValue = modelValue.value;
 
     const onReset = async () => {
@@ -104,16 +105,25 @@ export default defineComponent({
       await nextTick();
     };
 
-    const {hasError, message} = useField({
+    const {hasError, message, startWatcher, dirty} = useField({
       fieldLabel: props.label ? props.label : '',
-      rules: props.rules,
+      rules,
       modelValue,
       onReset,
     });
 
+    const onChange = $event => {
+      if (!dirty.value) {
+        dirty.value = true;
+        startWatcher();
+      }
+      context.emit('update:modelValue', $event);
+    };
+
     return {
       message,
       hasError,
+      onChange,
     };
   },
 

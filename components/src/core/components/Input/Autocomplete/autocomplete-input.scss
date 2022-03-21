@@ -109,7 +109,9 @@
 
 .oxd-autocomplete-option {
   border: 0;
-  display: flex;
+  display: inline-flex;
+  width: 100%;
+  box-sizing: border-box;
   align-items: center;
   text-align: inherit;
   cursor: pointer;
@@ -117,7 +119,7 @@
   font-size: $oxd-dropdown-option-font-size;
   font-family: $oxd-dropdown-option-font-family;
   font-weight: $oxd-dropdown-option-font-weight;
-  padding: $oxd-dropdown-option-padding;
+  padding: $oxd-autocomplete-dropdown-option-padding;
   margin: $oxd-dropdown-option-margin;
   border-bottom: $oxd-dropdown-option-border-bottom;
   background-color: $oxd-dropdown-option-background;

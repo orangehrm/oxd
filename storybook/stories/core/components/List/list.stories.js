@@ -1,6 +1,6 @@
 import ListComponent from '@orangehrm/oxd/core/components/List/List';
 import ListStory from './List.story.vue';
-import configurations from './list-config.json';
+import configurations from './list-schema';
 import data from './list-data.json';
 
 export default {

@@ -206,11 +206,13 @@ export default defineComponent({
       if (searchTerm) {
         this.loading = true;
         this.dropdownOpen = true;
+        this.pointer = -1;
         this.search(searchTerm);
         this.$emit('update:searchTerm', searchTerm);
       } else {
         this.loading = false;
         this.dropdownOpen = false;
+        this.pointer = -1;
         this.$emit('update:modelValue', null);
       }
     },
@@ -260,6 +262,7 @@ export default defineComponent({
         this.$emit('update:modelValue', null);
       }
       this.dropdownOpen = false;
+      this.pointer = -1;
       this.$emit('dropdown:blur');
     },
     onSelectEnter() {

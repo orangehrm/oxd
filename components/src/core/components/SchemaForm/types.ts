@@ -35,6 +35,9 @@ const LAYOUT_TYPE_MAP: TypeMap<LayoutComponent> = {
 type Props = Record<string, any>;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Model = {[key: string]: any};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Validator = (value: any) => boolean | string;
 
 type CommonSchemaProperties = {
@@ -63,9 +66,8 @@ type FieldSchema = CommonSchemaProperties &
     value?: string | number | object | unknown;
     placeholder?: string;
     visible?: boolean;
-    required?: boolean | Validator;
     hook?: (schema: FieldSchema, model: object) => FieldSchema;
-    validators?: Array<Validator>;
+    validators?: Map<string, Validator>;
     listeners?: EventListeners;
   };
 
@@ -84,6 +86,7 @@ type FormSchema = CommonSchemaProperties & {
 
 export {
   Props,
+  Model,
   FieldType,
   LayoutType,
   LayoutChild,

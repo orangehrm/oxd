@@ -47,8 +47,8 @@ export default defineComponent({
     return {
       pagePointer: this.current,
       perPageData: {
-        id: 1,
-        label: '10',
+        id: 2,
+        label: '20',
       },
     };
   },
@@ -85,6 +85,15 @@ export default defineComponent({
     },
   },
 
+  watch: {
+    current: {
+      deep: true,
+      handler(value){
+        this.currentPage = value;
+      }
+    }
+  },
+
   computed: {
     perPages() {
       return this.pagesList.map((page, index) => {
@@ -99,6 +108,8 @@ export default defineComponent({
         if (this.current < 1 || this.current > this.length) {
           // eslint-disable-next-line no-console
           console.error('Invalid `current` prop');
+        } else if (this.pagePointer < 1 || this.pagePointer > this.length) {
+          return 1;
         }
         return this.pagePointer;
       },
@@ -112,10 +123,10 @@ export default defineComponent({
       },
     },
     showPrevious(): boolean {
-      return this.currentPage !== 1;
+      return this.currentPage > 1;
     },
     showNext(): boolean {
-      return this.currentPage !== this.length;
+      return this.currentPage < this.length;
     },
     pageItems(): Array<number> {
       if (this.currentPage < 1 || this.currentPage > this.length) {
@@ -184,6 +195,7 @@ export default defineComponent({
     },
     selectPerPage(val) {
       this.perPageData = val;
+      this.currentPage = 1;
       this.$emit('onPerPageSelect', val);
     },
   },

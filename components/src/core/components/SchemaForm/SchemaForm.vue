@@ -1,17 +1,16 @@
 <script lang="ts">
 import {
   h,
-  ref,
   VNode,
   computed,
   PropType,
-  withModifiers,
   defineComponent,
   DefineComponent,
   resolveComponent,
   ConcreteComponent,
 } from 'vue';
 import {
+  Model,
   Props,
   FieldType,
   LayoutType,
@@ -46,11 +45,13 @@ export default defineComponent({
       type: Object as PropType<FormSchema>,
       required: true,
     },
+    model: {
+      type: Object as PropType<Model>,
+      required: true,
+    },
   },
-  emits: ['submitValid'],
+  emits: ['submitValid', 'update:model'],
   setup(props, context) {
-    const formModel = ref<Record<string, any>>({});
-
     const layoutSchema = computed(() => {
       return props.schema.layout.map(layout => ({
         id: layout.id,
@@ -68,7 +69,7 @@ export default defineComponent({
         for (const slot in children) {
           children[slot] = children[slot].map(field => {
             if (field.hook && typeof field.hook === 'function') {
-              field = field.hook(field, formModel.value);
+              field = field.hook(field, props.model as Model);
             }
             return {
               ...field,
@@ -117,14 +118,17 @@ export default defineComponent({
               id: field.id,
               key: field.key,
               label: field.label,
-              required: field.required,
               ...(field.props ?? {}),
               ...(field.listeners ?? {}),
-              rules: field.validators ?? [],
-              modelValue: formModel.value[field.name],
+              rules: Array.from(field.validators?.values() ?? []),
+              modelValue: props.model[field.name],
               'onUpdate:modelValue': value => {
-                formModel.value[field.name] = value;
+                context.emit('update:model', {
+                  ...(props.model as Model),
+                  [field.name]: value,
+                });
               },
+              required: field.validators?.has('required'),
               ...(field.type !== 'custom' && {type: field.type}),
             }),
         },
@@ -187,7 +191,7 @@ export default defineComponent({
           style: props.schema.style,
           class: props.schema.class,
           onSubmitValid: ($e: SubmitEvent) => {
-            context.emit('submitValid', formModel.value, $e);
+            context.emit('submitValid', props.model, $e);
           },
         },
         {

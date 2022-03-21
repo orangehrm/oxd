@@ -158,7 +158,7 @@ import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue
 import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination.vue';
 import images from '../ProfilePic/images';
 
-import {defineComponent, reactive, computed, ref} from 'vue';
+import {defineComponent, reactive, computed, ref, watch} from 'vue';
 
 export default defineComponent({
   components: {
@@ -200,13 +200,14 @@ export default defineComponent({
       default: () => ({
         limit: 20 as number,
         perPage: {
-          id: 1,
-          label: '10',
+          id: 2,
+          label: '20',
         } as {
           id: number;
           label: string;
         },
         pages: [10, 20, 50, 100] as number[],
+        currentPage: 1 as number,
       }),
     },
     selectedListItem: {
@@ -239,6 +240,14 @@ export default defineComponent({
       currentSortFields: {},
       quickSearchTriggered: false,
     });
+
+    watch(
+        () => props.pagination,
+        newVal => {
+          state.currentPage = newVal.currentPage;
+        },
+        {deep: true},
+    );
 
     const quickSearchComponent = ref(null);
 
@@ -293,11 +302,13 @@ export default defineComponent({
     };
 
     const sidePanelListOnSelect = item => {
+      state.currentPage = 1;
       emit('sidePanelList:onSelect', item);
     };
 
     const quickSearchOnClear = () => {
       if (state.quickSearchTriggered) {
+        state.quickSearchTerm = null;
         state.selectedQuickSearch = null;
         state.quickSearchTriggered = false;
         emit('quick-search:onClear');
