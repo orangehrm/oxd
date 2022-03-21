@@ -244,7 +244,6 @@ export default defineComponent({
     watch(
         () => props.pagination,
         newVal => {
-          debugger;
           state.currentPage = newVal.currentPage;
         },
         {deep: true},
