@@ -109,7 +109,7 @@ export default defineComponent({
           // eslint-disable-next-line no-console
           console.error('Invalid `current` prop');
         } else if (this.pagePointer < 1 || this.pagePointer > this.length) {
-          this.pagePointer = 1;
+          return 1;
         }
         return this.pagePointer;
       },
