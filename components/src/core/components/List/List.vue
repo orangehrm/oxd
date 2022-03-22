@@ -242,11 +242,11 @@ export default defineComponent({
     });
 
     watch(
-        () => props.pagination,
-        newVal => {
-          state.currentPage = newVal.currentPage;
-        },
-        {deep: true},
+      () => props.pagination,
+      newVal => {
+        state.currentPage = newVal.currentPage;
+      },
+      {deep: true},
     );
 
     const quickSearchComponent = ref(null);
@@ -322,6 +322,7 @@ export default defineComponent({
         };
         emit('quick-search:onSelect', value);
         state.quickSearchTriggered = true;
+        state.quickSearchTerm = value.candidateName;
       } else {
         quickSearchOnClear();
       }
