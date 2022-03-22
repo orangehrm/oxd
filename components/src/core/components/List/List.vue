@@ -335,7 +335,6 @@ export default defineComponent({
 
     const quickSearchKeywordSearch = () => {
       state.quickSearchTriggered = true;
-      quickSearchComponent.value.onBlur();
       state.selectedQuickSearch = {
         label: state.quickSearchTerm,
       };

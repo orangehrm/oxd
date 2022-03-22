@@ -272,6 +272,7 @@ export default defineComponent({
       } else {
         this.$emit('select:enter');
       }
+      this.dropdownOpen = false;
     },
   },
 });
