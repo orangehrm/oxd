@@ -186,6 +186,9 @@
 
 .oxd-button-label-wrapper {
   display: initial;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .oxd-button--glass {

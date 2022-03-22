@@ -6,6 +6,7 @@ import DynamicValidatableFrom from './DynamicValidatableFrom.story.vue';
 import GeneralInformation from './GeneralInformation.story.vue';
 import InputGroupedForm from './InputGroupedForm.story.vue';
 import AsyncValidatableForm from './AsyncValidatableForm.story.vue';
+import CrossValidationForm from './CrossValidationForm.story.vue';
 
 export default {
   title: 'Example/Form',
@@ -26,3 +27,5 @@ export const GeneralInformationForm = () => GeneralInformation;
 export const InputGroupForm = () => InputGroupedForm;
 
 export const FormWithAsyncValidation = () => AsyncValidatableForm;
+
+export const CrossValidation = () => CrossValidationForm;

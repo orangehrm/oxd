@@ -1,17 +1,16 @@
 <script lang="ts">
 import {
   h,
-  ref,
   VNode,
   computed,
   PropType,
-  withModifiers,
   defineComponent,
   DefineComponent,
   resolveComponent,
   ConcreteComponent,
 } from 'vue';
 import {
+  Model,
   Props,
   FieldType,
   LayoutType,
@@ -30,6 +29,7 @@ import GridItem from '@orangehrm/oxd/core/components/Grid/GridItem.vue';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';
 import FormActions from '@orangehrm/oxd/core/components/Form/FormActions.vue';
 import InputField from '@orangehrm/oxd/core/components/InputField/InputField.vue';
+import useTranslate from '../../../composables/useTranslate';
 
 export default defineComponent({
   name: 'oxd-schema-form',
@@ -44,31 +44,39 @@ export default defineComponent({
   props: {
     schema: {
       type: Object as PropType<FormSchema>,
-      required: true,
+      required: false,
+    },
+    model: {
+      type: Object as PropType<Model>,
+      required: false,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
     },
   },
-  emits: ['submitValid'],
+  emits: ['submitValid', 'update:model'],
   setup(props, context) {
-    const formModel = ref<Record<string, any>>({});
-
+    const {$t} = useTranslate();
     const layoutSchema = computed(() => {
-      return props.schema.layout.map(layout => ({
+      return props.schema?.layout.map(layout => ({
         id: layout.id,
         style: layout.style,
         class: layout.class,
         type: layout.type,
         props: layout.props,
+        component: layout.component,
         key: layout.key ?? nanoid(6),
       }));
     });
 
     const fieldSchema = computed(() => {
-      return props.schema.layout.map(({children}) => {
+      return props.schema?.layout.map(({children}) => {
         if (Array.isArray(children)) return children;
         for (const slot in children) {
           children[slot] = children[slot].map(field => {
             if (field.hook && typeof field.hook === 'function') {
-              field = field.hook(field, formModel.value);
+              field = field.hook(field, props.model as Model);
             }
             return {
               ...field,
@@ -79,6 +87,10 @@ export default defineComponent({
         return children;
       });
     });
+
+    const isLoading = computed(() =>
+      !props.schema || props.loading ? true : false,
+    );
 
     const extractLayoutComponent = (
       schema: ComponentSchemaProperties<LayoutType>,
@@ -116,15 +128,18 @@ export default defineComponent({
             h(extractFieldComponent(field), {
               id: field.id,
               key: field.key,
-              label: field.label,
-              required: field.required,
+              label: $t(field.label),
               ...(field.props ?? {}),
               ...(field.listeners ?? {}),
-              rules: field.validators ?? [],
-              modelValue: formModel.value[field.name],
+              rules: Array.from(field.validators?.values() ?? []),
+              modelValue: props.model[field.name],
               'onUpdate:modelValue': value => {
-                formModel.value[field.name] = value;
+                context.emit('update:model', {
+                  ...(props.model as Model),
+                  [field.name]: value,
+                });
               },
+              required: field.validators?.has('required'),
               ...(field.type !== 'custom' && {type: field.type}),
             }),
         },
@@ -135,7 +150,7 @@ export default defineComponent({
       return h(resolveComponent('oxd-button'), {
         id: field.id,
         key: field.key,
-        label: field.label,
+        label: $t(field.label),
         style: field.style,
         class: field.class,
         ...(field.props ?? {}),
@@ -160,9 +175,10 @@ export default defineComponent({
     };
 
     const createLayoutNode = (
-      component: string | ConcreteComponent,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      component: string | ConcreteComponent<any>,
       props: Props,
-      children: string[] | VNode[] | LayoutChild,
+      children: string | Array<VNode | string> | LayoutChild,
     ) => {
       if (typeof component === 'string' && Array.isArray(children)) {
         return h(component, children);
@@ -173,9 +189,12 @@ export default defineComponent({
         // https://github.com/vuejs/core/blob/9c304bfe7942a20264235865b4bb5f6e53fdee0d/packages/runtime-core/src/h.ts#L137
         // maybe able to refactor with vue upgrade
         return h(
-          component as DefineComponent,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          component as DefineComponent<any>,
           props,
-          Array.isArray(children) ? children : extractSlots(children),
+          typeof children === 'string' || Array.isArray(children)
+            ? children
+            : extractSlots(children),
         );
       }
     };
@@ -184,27 +203,30 @@ export default defineComponent({
       h(
         Form,
         {
-          style: props.schema.style,
-          class: props.schema.class,
+          style: props.schema?.style,
+          class: props.schema?.class,
+          loading: isLoading.value,
           onSubmitValid: ($e: SubmitEvent) => {
-            context.emit('submitValid', formModel.value, $e);
+            context.emit('submitValid', props.model, $e);
           },
         },
         {
-          default: () =>
-            layoutSchema.value.map((layout, index) =>
-              createLayoutNode(
-                extractLayoutComponent(layout),
-                {
-                  id: layout.id,
-                  key: layout.key,
-                  style: layout.style,
-                  class: layout.class,
-                  ...(layout.props ?? {}),
-                },
-                fieldSchema.value[index],
+          ...(props.schema && {
+            default: () =>
+              layoutSchema.value.map((layout, index) =>
+                createLayoutNode(
+                  extractLayoutComponent(layout),
+                  {
+                    id: layout.id,
+                    key: layout.key,
+                    style: layout.style,
+                    class: layout.class,
+                    ...(layout.props ?? {}),
+                  },
+                  fieldSchema.value[index],
+                ),
               ),
-            ),
+          }),
         },
       );
   },

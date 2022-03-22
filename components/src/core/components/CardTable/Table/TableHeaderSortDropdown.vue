@@ -35,7 +35,7 @@
           @click="$emit('order', 'ASC')"
           @keydown.enter.prevent="$emit('order', 'ASC')"
         >
-          <oxd-icon name="oxd-sort-asc" size="extra-small"/>
+          <oxd-icon name="oxd-sort-asc" size="extra-small" />
           <oxd-text tag="span">Ascending</oxd-text>
         </li>
         <li
@@ -45,7 +45,7 @@
           @click="$emit('order', 'DESC')"
           @keydown.enter.prevent="$emit('order', 'DESC')"
         >
-          <oxd-icon name="oxd-sort-desc" size="extra-small"/>
+          <oxd-icon name="oxd-sort-desc" size="extra-small" />
           <oxd-text tag="span">Decending</oxd-text>
         </li>
       </ul>
@@ -94,12 +94,11 @@ export default defineComponent({
   methods: {
     openDropdown() {
       this.isActive = true;
-      if(this.sortIcon === 'oxd-sort-desc'){
+      if (this.sortIcon === 'oxd-sort-desc') {
         this.$nextTick(() => {
           this.$refs.bottomDropdownElement.focus();
         });
-      }
-      else{
+      } else {
         this.$nextTick(() => {
           this.$refs.topDropdownElement.focus();
         });

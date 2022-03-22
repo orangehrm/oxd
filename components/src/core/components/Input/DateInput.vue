@@ -22,10 +22,10 @@
     </div>
     <transition name="transition-fade-down">
       <div
-          v-click-outside="closeDropdown"
-          v-if="open"
-          class="oxd-date-input-calendar"
-          @keyup.esc="closeDropdown"
+        v-click-outside="closeDropdown"
+        v-if="open"
+        class="oxd-date-input-calendar"
+        @keyup.esc="closeDropdown"
       >
         <oxd-calendar
           v-bind="$attrs"
@@ -35,13 +35,28 @@
           :locale="locale"
         >
           <div class="oxd-date-input-links">
-            <div @keyup.enter="onClickToday" @click="onClickToday" class="oxd-date-input-link --today" tabindex="0">
+            <div
+              @keyup.enter="onClickToday"
+              @click="onClickToday"
+              class="oxd-date-input-link --today"
+              tabindex="0"
+            >
               Today
             </div>
-            <div @keyup.enter="onClickClear" @click="onClickClear" class="oxd-date-input-link --clear" tabindex="0">
+            <div
+              @keyup.enter="onClickClear"
+              @click="onClickClear"
+              class="oxd-date-input-link --clear"
+              tabindex="0"
+            >
               Clear
             </div>
-            <div @keyup.enter="closeDropdown" @click="closeDropdown" class="oxd-date-input-link --close" tabindex="0">
+            <div
+              @keyup.enter="closeDropdown"
+              @click="closeDropdown"
+              class="oxd-date-input-link --close"
+              tabindex="0"
+            >
               Close
             </div>
           </div>

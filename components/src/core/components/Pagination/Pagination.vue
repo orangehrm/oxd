@@ -85,6 +85,15 @@ export default defineComponent({
     },
   },
 
+  watch: {
+    current: {
+      deep: true,
+      handler(value) {
+        this.currentPage = value;
+      },
+    },
+  },
+
   computed: {
     perPages() {
       return this.pagesList.map((page, index) => {
@@ -99,6 +108,8 @@ export default defineComponent({
         if (this.current < 1 || this.current > this.length) {
           // eslint-disable-next-line no-console
           console.error('Invalid `current` prop');
+        } else if (this.pagePointer < 1 || this.pagePointer > this.length) {
+          return 1;
         }
         return this.pagePointer;
       },

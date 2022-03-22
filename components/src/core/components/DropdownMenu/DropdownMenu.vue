@@ -30,14 +30,14 @@ export default defineComponent({
       isActive: false,
     };
   },
-
   directives: {
     'click-outside': clickOutsideDirective,
   },
 
+  emits: ['show'],
   methods: {
     openSubmenu() {
-      this.isActive = true;
+      this.isActive = !this.isActive;
     },
     closeSubMenu() {
       if (this.isActive) {

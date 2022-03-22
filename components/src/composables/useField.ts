@@ -1,13 +1,18 @@
-import {ref, Ref, watch, computed, onBeforeUnmount, WatchStopHandle} from 'vue';
+import {
+  ref,
+  computed,
+  watchEffect,
+  onBeforeUnmount,
+  WatchStopHandle,
+} from 'vue';
 import {nanoid} from 'nanoid';
 import {injectStrict} from '../utils/injectable';
-import {ErrorField, FormAPI, formKey, rule} from './types';
+import {ErrorField, FormAPI, formKey, ModelValue, Rules} from './types';
 
 export default function useField(fieldContext: {
   fieldLabel: string;
-  rules: rule[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  modelValue: Ref<any>;
+  rules: Rules;
+  modelValue: ModelValue;
   onReset: () => Promise<void>;
 }) {
   const form = injectStrict<FormAPI>(formKey);
@@ -16,14 +21,14 @@ export default function useField(fieldContext: {
   const dirty = ref<boolean>(false);
   const touched = ref<boolean>(false);
   const processing = ref<boolean>(false);
-  let watchHandler: WatchStopHandle;
+  let watchHandler: WatchStopHandle | undefined;
 
-  const validate = () => {
+  const validate = (modelValue: ModelValue, rules: Rules) => {
     processing.value = true;
     const allValidations = Promise.all(
-      fieldContext.rules.map(func => {
+      rules.value.map(func => {
         return new Promise<boolean>((resolve, reject) => {
-          Promise.resolve(func(fieldContext.modelValue.value)).then(valid => {
+          Promise.resolve(func(modelValue.value)).then(valid => {
             if (valid === true) {
               resolve(valid);
             } else if (typeof valid === 'string') {
@@ -65,24 +70,35 @@ export default function useField(fieldContext: {
   };
 
   const startWatcher = () => {
-    watchHandler = watch(fieldContext.modelValue, () => {
-      validate().then(result => {
-        form.addError(result);
-      });
-    });
+    watchHandler = watchEffect(
+      () => {
+        validate(fieldContext.modelValue, fieldContext.rules).then(result => {
+          form.addError(result);
+        });
+      },
+      {
+        flush: 'post',
+      },
+    );
   };
-
-  startWatcher();
 
   const reset = () => {
     dirty.value = false;
     touched.value = false;
     processing.value = false;
-    watchHandler(); // stop the validation watcher
-    fieldContext.onReset().then(() => startWatcher());
+    watchHandler && watchHandler(); // stop the validation watcher
+    fieldContext.onReset();
   };
 
-  form.registerField({cid, label, dirty, touched, processing, validate, reset});
+  form.registerField({
+    cid,
+    label,
+    dirty,
+    touched,
+    processing,
+    validate: () => validate(fieldContext.modelValue, fieldContext.rules),
+    reset,
+  });
 
   onBeforeUnmount(() => {
     form.unregisterField({
@@ -91,7 +107,7 @@ export default function useField(fieldContext: {
       dirty,
       touched,
       processing,
-      validate,
+      validate: () => validate(fieldContext.modelValue, fieldContext.rules),
       reset,
     });
   });
@@ -110,5 +126,7 @@ export default function useField(fieldContext: {
     validate,
     hasError,
     message,
+    dirty,
+    startWatcher,
   };
 }
