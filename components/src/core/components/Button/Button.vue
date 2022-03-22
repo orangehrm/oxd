@@ -17,7 +17,7 @@
     </slot>
     <div class="oxd-button-label-wrapper">
       <slot name="label">
-        {{ label }}
+        {{ $vt(label) }}
       </slot>
     </div>
     <slot name="iconRight">
@@ -45,6 +45,7 @@ import {
   TOOLTIP_POSITIONS,
 } from './types';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
+import translateMixin from '../../../mixins/translate';
 
 export default defineComponent({
   name: 'oxd-button',
@@ -52,6 +53,8 @@ export default defineComponent({
   components: {
     'oxd-icon': Icon,
   },
+
+  mixins: [translateMixin],
 
   props: {
     label: {
@@ -118,12 +121,12 @@ export default defineComponent({
   computed: {
     computedTooltip(): string {
       if (this.$attrs.disabled) {
-        return this.disabledTooltip;
+        return this.$vt(this.disabledTooltip);
       } else {
-        return this.tooltip;
+        return this.$vt(this.tooltip);
       }
     },
-    
+
     classes(): object {
       return {
         'oxd-button': true,

@@ -1,6 +1,6 @@
 import {mount} from '@vue/test-utils';
 import LinkWithPill from '@orangehrm/oxd/core/components/CardTable/Cell/LinkWithPill.vue';
-import {DEVICE_LG} from "@orangehrm/oxd/composables/useResponsive";
+import {DEVICE_LG} from '@orangehrm/oxd/composables/useResponsive';
 
 const GLOBAL = {
   provide: {

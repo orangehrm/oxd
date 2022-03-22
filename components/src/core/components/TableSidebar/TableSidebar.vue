@@ -43,7 +43,7 @@
                 tabindex="0"
                 v-if="bubbleVisible"
                 :label="item.count"
-                :tooltip="!isLeftPanelOpen ? item.label : null"
+                :tooltip="!isLeftPanelOpen ? $vt(item.label) : null"
                 flow="right"
                 class="oxd-dropdown-selected-chip"
                 :displayType="item.displayType"
@@ -55,9 +55,11 @@
                 v-if="sidePanelIconVisible"
                 class="oxd-left-icon"
                 :name="item.iconName"
-                :tooltip="!isLeftPanelOpen ? item.label : null"
+                :tooltip="!isLeftPanelOpen ? $vt(item.label) : null"
               />
-              <p v-if="isLeftPanelOpen" class="oxd-label">{{ item.label }}</p>
+              <p v-if="isLeftPanelOpen" class="oxd-label">
+                {{ $vt(item.label) }}
+              </p>
             </div>
           </li>
         </ul>
@@ -79,6 +81,8 @@ import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';
+import translateMixin from '../../../mixins/translate';
+
 export default defineComponent({
   name: 'oxd-table-filter',
 
@@ -89,6 +93,8 @@ export default defineComponent({
     'oxd-icon': Icon,
     'oxd-divider': Divider,
   },
+
+  mixins: [translateMixin],
 
   props: {
     headerVisible: {

@@ -36,9 +36,9 @@
           }"
         >
           <span class="label-small" v-if="modelValue && modelValue.id > -1">{{
-            buttonData.labelMini
+            $vt(buttonData.labelMini)
           }}</span>
-          <span class="label">{{ buttonData.label }}</span>
+          <span class="label">{{ $vt(buttonData.label) }}</span>
         </div>
       </template>
       <template v-slot:iconRight>
@@ -67,7 +67,7 @@
         @select="onSelect(option)"
       >
         <slot name="option" :data="option"></slot>
-        <span v-if="!$slots['option']">{{ option.label }}</span>
+        <span v-if="!$slots['option']">{{ $vt(option.label) }}</span>
       </oxd-select-option>
     </oxd-select-dropdown>
   </div>
@@ -77,6 +77,7 @@
 import {defineComponent} from 'vue';
 import eventsMixin from './events-mixin';
 import navigationMixin from './navigation-mixin';
+import translateMixin from '../../../../mixins/translate';
 import {
   TOP,
   BOTTOM,
@@ -108,7 +109,7 @@ export default defineComponent({
     'oxd-select-option': SelectOption,
   },
 
-  mixins: [navigationMixin, eventsMixin],
+  mixins: [navigationMixin, eventsMixin, translateMixin],
 
   directives: {
     'click-outside': clickOutsideDirective,
@@ -204,7 +205,9 @@ export default defineComponent({
       });
     },
     selectedItem(): string {
-      return this.modelValue?.label ? this.modelValue.label : this.button;
+      return this.modelValue?.label
+        ? this.$vt(this.modelValue.label)
+        : this.button;
     },
     inputValue(): string {
       return this.computedOptions[this.pointer]?.label || this.selectedItem;
