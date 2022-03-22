@@ -235,27 +235,27 @@ export default defineComponent({
           throw new Error('createOptions not defined');
         }
       })
-      .then(resolved => {
-        if (resolved && Array.isArray(resolved)) {
-          if (resolved.length > 0) {
-            this.options = resolved.slice(0, 5);
+        .then(resolved => {
+          if (resolved && Array.isArray(resolved)) {
+            if (resolved.length > 0) {
+              this.options = resolved.slice(0, 5);
+            } else {
+              this.options = [];
+            }
           } else {
-            this.options = [];
+            throw new Error('options returned are not array');
           }
-        } else {
-          throw new Error('options returned are not array');
-        }
-      })
-      .finally(() => {
-        this.loading = false;
-      });
+        })
+        .finally(() => {
+          this.loading = false;
+        });
     },
     search() {
       if (this.debouncer) {
-        this.debouncer.cancel()
+        this.debouncer.cancel();
       }
-      this.debouncer = debounce(this.doSearch, 300)
-      this.debouncer()
+      this.debouncer = debounce(this.doSearch, 300);
+      this.debouncer();
     },
     onBlur() {
       if (!this.multiple && this.searchTerm) {
@@ -266,7 +266,12 @@ export default defineComponent({
       this.$emit('dropdown:blur');
     },
     onSelectEnter() {
-      this.$emit('select:enter');
+      if (this.pointer >= 0) {
+        const option = this.computedOptions[this.pointer];
+        if (!option?._disabled) this.onSelect(option);
+      } else {
+        this.$emit('select:enter');
+      }
     },
   },
 });
