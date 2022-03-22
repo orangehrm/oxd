@@ -170,7 +170,8 @@ export default defineComponent({
                 base64,
               };
               outputFileArray.push(outputFile);
-              if (!i) this.onFilesReadComplete(outputFileArray);
+              if (outputFileArray.length === files.length)
+                this.onFilesReadComplete(outputFileArray);
             }
           }
         };
