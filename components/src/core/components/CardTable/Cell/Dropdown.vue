@@ -8,7 +8,7 @@
         @click.once="onClick($event, option.context)"
         class="oxd-table-dropdown-item"
       >
-        <oxd-icon v-if="option.icon" :name="option.icon" size="extra-small"/>
+        <oxd-icon v-if="option.icon" :name="option.icon" size="extra-small" />
         <oxd-text tag="p">{{ option.label }}</oxd-text>
       </li>
     </template>

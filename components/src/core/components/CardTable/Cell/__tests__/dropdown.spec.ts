@@ -23,10 +23,26 @@ describe('CardTable > Cell > Dropdown.vue', () => {
     const wrapper = mount(DropDown, {
       props: {
         options: [
-          {label: 'Add Comment', context: 'add_comment', icon: 'oxd-icon-comment'},
-          {label: 'View Leave Details', context: 'leave_details', icon: 'oxd-icon-leave'},
-          {label: 'View PIM Info', context: 'pim_details', icon: 'oxd-icon-leave'},
-          {label: 'Cancel Leave', context: 'cancel_leave', icon: 'oxd-icon-cancel'},
+          {
+            label: 'Add Comment',
+            context: 'add_comment',
+            icon: 'oxd-icon-comment',
+          },
+          {
+            label: 'View Leave Details',
+            context: 'leave_details',
+            icon: 'oxd-icon-leave',
+          },
+          {
+            label: 'View PIM Info',
+            context: 'pim_details',
+            icon: 'oxd-icon-leave',
+          },
+          {
+            label: 'Cancel Leave',
+            context: 'cancel_leave',
+            icon: 'oxd-icon-cancel',
+          },
         ],
       },
     });
@@ -35,5 +51,4 @@ describe('CardTable > Cell > Dropdown.vue', () => {
     await wrapper.vm.$nextTick();
     expect(wrapper.html()).toMatchSnapshot();
   });
-
 });

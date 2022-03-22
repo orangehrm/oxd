@@ -22,7 +22,7 @@
     :name="name"
     :class="{'oxd-icon-button__icon': true, '--disabled': disabled}"
     @click="onClick"
-    :tooltip="tooltip"
+    :tooltip="$vt(tooltip)"
     :flow="flow"
   />
 </template>
@@ -31,6 +31,7 @@
 import {defineComponent} from 'vue';
 import {TooltipPosition, TOOLTIP_TOP, TOOLTIP_POSITIONS} from './types';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
+import translateMixin from '../../../mixins/translate';
 
 export default defineComponent({
   name: 'oxd-icon-button',
@@ -38,6 +39,8 @@ export default defineComponent({
   components: {
     'oxd-icon': Icon,
   },
+
+  mixins: [translateMixin],
 
   props: {
     name: {
@@ -87,7 +90,7 @@ export default defineComponent({
     tooltipText() {
       return this.disabled && !this.showTooltipWhenDisabled
         ? null
-        : this.tooltip;
+        : this.$vt(this.tooltip);
     },
   },
 

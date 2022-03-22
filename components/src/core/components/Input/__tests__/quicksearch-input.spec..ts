@@ -27,7 +27,8 @@ describe('QuickSearchInput.vue', () => {
         createOptions: syncFunction,
       },
       slots: {
-        iconSlot: '<icon-button name="oxd-search" displayType="label-info" size="small"></icon-button>'
+        iconSlot:
+          '<icon-button name="oxd-search" displayType="label-info" size="small"></icon-button>',
       },
     });
     expect(wrapper.html()).toMatchSnapshot();

@@ -88,10 +88,10 @@ export default defineComponent({
   watch: {
     current: {
       deep: true,
-      handler(value){
+      handler(value) {
         this.currentPage = value;
-      }
-    }
+      },
+    },
   },
 
   computed: {
