@@ -1,6 +1,9 @@
 <template>
   <form
-    class="oxd-form"
+    :class="{
+      'oxd-form': true,
+      '--empty': !$slots.default,
+    }"
     novalidate
     @submit.prevent="onSubmit"
     @reset.prevent="onReset"
