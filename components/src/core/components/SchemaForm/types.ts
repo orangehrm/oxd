@@ -49,7 +49,8 @@ type CommonSchemaProperties = {
 
 type ComponentSchemaProperties<T> = {
   type: T;
-  component?: ConcreteComponent;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  component?: ConcreteComponent<any>;
   props?: Props;
 };
 

@@ -17,9 +17,20 @@ const generateModel = (rawSchema: FormSchema) => {
   return _model;
 };
 
-export default function useSchemaForm(rawSchema: FormSchema) {
-  const schema = ref(rawSchema);
-  const model = ref(generateModel(rawSchema));
+export default function useSchemaForm(
+  rawSchema: FormSchema | Promise<FormSchema>,
+) {
+  const schema = ref<FormSchema>();
+  const model = ref<Model>();
+
+  Promise.resolve(rawSchema)
+    .then(_schema => {
+      schema.value = _schema;
+      model.value = generateModel(_schema);
+    })
+    .catch(() => {
+      throw new Error('Form schema resolution failed!');
+    });
 
   return {
     model,
