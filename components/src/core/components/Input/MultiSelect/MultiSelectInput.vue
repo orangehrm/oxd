@@ -23,6 +23,7 @@
     </oxd-select-text>
 
     <oxd-select-dropdown
+      v-dropdown-direction
       v-if="dropdownOpen"
       :class="dropdownClasses"
       :loading="loading"
@@ -59,6 +60,8 @@ import SelectText from '@orangehrm/oxd/core/components/Input/Select/SelectText.v
 import SelectDropdown from '@orangehrm/oxd/core/components/Input/Select/SelectDropdown.vue';
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
 import MultiSelectChips from '@orangehrm/oxd/core/components/Input/MultiSelect/MultiSelectChips.vue';
+import dropdownDirectionDirective from '../../../../directives/dropdown-direction';
+
 
 export default defineComponent({
   name: 'oxd-multiselect-input',
@@ -69,6 +72,10 @@ export default defineComponent({
     'oxd-select-dropdown': SelectDropdown,
     'oxd-select-option': SelectOption,
     'oxd-mutliselect-chips': MultiSelectChips,
+  },
+
+  directives: {
+    'dropdown-direction': dropdownDirectionDirective,
   },
 
   mixins: [navigationMixin, eventsMixin],
