@@ -36,15 +36,6 @@ describe('DateInput.vue', () => {
     await wrapper.vm.$nextTick();
     expect(wrapper.emitted('update:modelValue')).toEqual([['2021-07-30']]);
   });
-  it('should not accept invalid input', async () => {
-    const wrapper = mount(DateInput, {});
-    const input = wrapper.findComponent(Input);
-    (input.element as HTMLInputElement).value = '2021-15-30';
-    await input.trigger('input');
-    await input.trigger('blur');
-    await wrapper.vm.$nextTick();
-    expect(wrapper.emitted('update:modelValue')).toEqual([['']]);
-  });
   it('should return today date onclick today', async () => {
     const wrapper = mount(DateInput, {});
     await wrapper.findComponent(Icon).trigger('click');
