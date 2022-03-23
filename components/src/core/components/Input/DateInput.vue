@@ -127,15 +127,17 @@ export default defineComponent({
   data() {
     return {
       open: false,
-      dateTyped: '',
+      dateTyped: null,
     };
   },
 
   methods: {
     onBlur(e: Event) {
-      this.dateSelected = parseDate(this.dateTyped, this.format, {
-        locale: this.locale,
-      });
+      if (this.dateTyped !== null) {
+        this.dateSelected = parseDate(this.dateTyped, this.format, {
+          locale: this.locale,
+        });
+      }
       e.stopImmediatePropagation();
       this.$emit('blur');
     },
