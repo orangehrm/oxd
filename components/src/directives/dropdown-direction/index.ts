@@ -1,8 +1,7 @@
 import {Directive, DirectiveBinding} from 'vue';
 
 function fixPosition(el: HTMLElement) {
-  el.classList.remove('--positon-top');
-  el.classList.remove('--positon-bottom');
+  el.classList.remove('--positon-top', '--positon-bottom');
   if (window.innerHeight - el.getBoundingClientRect().bottom < 0) {
     el.classList.add('--positon-top');
     if (el.getBoundingClientRect().top < 0) {
