@@ -19,9 +19,9 @@
 
 import {h, ref} from 'vue';
 import {ru} from 'date-fns/locale';
-import DateInput from '@orangehrm/oxd/core/components/Input/DateInput';
-import buildLocale from '@orangehrm/oxd/utils/locale.ts';
-import {convertPHPDateFormat} from '@orangehrm/oxd/utils/date.ts';
+import DateInput from '@ohrm/oxd/core/components/Input/DateInput';
+import buildLocale from '@ohrm/oxd/utils/locale.ts';
+import {convertPHPDateFormat} from '@ohrm/oxd/utils/date.ts';
 
 export default {
   title: 'Example/DateInput',
