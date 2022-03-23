@@ -68,8 +68,8 @@
 
 <script lang="ts">
 import {enUS} from 'date-fns/locale';
+import {defineComponent, PropType} from 'vue';
 import {formatDate, parseDate, freshDate} from '../../../utils/date';
-import {defineComponent, PropType, reactive, toRefs} from 'vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import Calendar from '@orangehrm/oxd/core/components/Calendar/Calendar.vue';
@@ -124,31 +124,23 @@ export default defineComponent({
     },
   },
 
-  setup(props) {
-    const state = reactive({
-      open: false,
-      dateProxy: parseDate(props.modelValue, props.ioformat),
-      dateTyped: '',
-    });
-
+  data() {
     return {
-      ...toRefs(state),
+      open: false,
+      dateTyped: '',
     };
   },
 
   methods: {
     onBlur(e: Event) {
-      if (this.dateTyped) {
-        this.dateSelected = this.displayFormat
-          ? parseDate(this.dateTyped, this.displayFormat, {locale: this.locale})
-          : parseDate(this.dateTyped, this.ioformat);
-        this.dateTyped = '';
-      }
+      this.dateSelected = parseDate(this.dateTyped, this.format, {
+        locale: this.locale,
+      });
       e.stopImmediatePropagation();
       this.$emit('blur');
     },
     onDateTyped(value: string) {
-      this.dateTyped = value ? value : ' ';
+      this.dateTyped = value;
     },
     onDateSelected() {
       this.closeDropdown();
@@ -190,16 +182,17 @@ export default defineComponent({
         return parseDate(this.modelValue, this.ioformat);
       },
       set(value) {
-        this.dateProxy = value;
-        this.$emit('update:modelValue', formatDate(value, this.ioformat));
+        this.$emit(
+          'update:modelValue',
+          formatDate(value, this.ioformat) || this.dateTyped,
+        );
       },
     },
     displayDate(): string {
-      return this.displayFormat && this.displayFormat.trim() !== ''
-        ? formatDate(this.dateSelected, this.displayFormat, {
-            locale: this.locale,
-          })
-        : formatDate(this.dateSelected, this.ioformat, {locale: this.locale});
+      return (
+        formatDate(this.dateSelected, this.format, {locale: this.locale}) ||
+        this.dateTyped
+      );
     },
     dateIconClasses(): object {
       return {
@@ -207,6 +200,11 @@ export default defineComponent({
         '--disabled': this.disabled,
         '--readonly': this.readonly,
       };
+    },
+    format(): string {
+      return this.displayFormat && this.displayFormat.trim()
+        ? this.displayFormat
+        : this.ioformat;
     },
   },
 });
