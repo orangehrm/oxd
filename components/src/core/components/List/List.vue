@@ -65,7 +65,6 @@
         </template>
         <template v-slot:toggleOptions>
           <oxd-quick-search
-            ref="quickSearchComponent"
             v-if="config.table.topBar.quickSearch.visible"
             :style="config.table.topBar.quickSearch.style"
             :placeholder="config.table.topBar.quickSearch.placeholder"
@@ -249,8 +248,6 @@ export default defineComponent({
       {deep: true},
     );
 
-    const quickSearchComponent = ref(null);
-
     const config = computed(() => props.configurations);
 
     const oxdCardTableStyleClasses = computed(() => {
@@ -335,7 +332,6 @@ export default defineComponent({
 
     const quickSearchKeywordSearch = () => {
       state.quickSearchTriggered = true;
-      quickSearchComponent.value.onBlur();
       state.selectedQuickSearch = {
         label: state.quickSearchTerm,
       };
@@ -439,7 +435,6 @@ export default defineComponent({
       exportBtn,
       eventBinder,
       config,
-      quickSearchComponent,
     };
   },
 });
