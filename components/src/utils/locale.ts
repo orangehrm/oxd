@@ -1,4 +1,6 @@
 import {enUS} from 'date-fns/locale';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const buildMatchFn = require('date-fns/locale/_lib/buildMatchFn');
 
 export type DayPeriod = {

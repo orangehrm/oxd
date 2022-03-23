@@ -172,6 +172,7 @@ export default defineComponent({
       this.$refs.oxdIcon.$el.focus();
     },
     onClickClear() {
+      this.dateTyped = '';
       this.dateSelected = null;
       this.open = false;
       this.$refs.oxdIcon.$el.focus();
