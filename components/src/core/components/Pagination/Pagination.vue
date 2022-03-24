@@ -79,8 +79,8 @@ export default defineComponent({
         label: string;
       }>,
       default: () => ({
-        id: 1,
-        label: '10',
+        id: 2,
+        label: '20',
       }),
     },
   },
