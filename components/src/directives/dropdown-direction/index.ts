@@ -13,20 +13,12 @@ function fixPosition(el: HTMLElement) {
   }
 }
 
-function handleScroll(this: any) {
-  fixPosition(this);
-}
-
 const dropdownDirectionDirective: Directive = {
   mounted(el: HTMLElement) {
-    window.addEventListener('scroll', handleScroll.bind(el));
     fixPosition(el);
   },
   updated(el: HTMLElement) {
     fixPosition(el);
-  },
-  unmounted(el: HTMLElement) {
-    window.removeEventListener('scroll', handleScroll.bind(el));
   },
 };
 
