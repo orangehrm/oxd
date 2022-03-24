@@ -36,6 +36,7 @@
       :class="dropdownClasses"
       :loading="loading"
       :empty="computedOptions.length === 0"
+      v-dropdown-direction
     >
       <oxd-autocomplete-option
         v-for="(option, i) in computedOptions"
@@ -70,6 +71,8 @@ import AutocompleteDropdown from '@orangehrm/oxd/core/components/Input/Autocompl
 import AutocompleteOption from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteOption.vue';
 import AutocompleteChips from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteChips.vue';
 import sanitizeHtml from 'sanitize-html';
+import dropdownDirectionDirective from '../../../../directives/dropdown-direction';
+
 
 export default defineComponent({
   name: 'oxd-autocomplete-input',
@@ -80,6 +83,10 @@ export default defineComponent({
     'oxd-autocomplete-dropdown': AutocompleteDropdown,
     'oxd-autocomplete-option': AutocompleteOption,
     'oxd-autocomplete-chips': AutocompleteChips,
+  },
+
+  directives: {
+    'dropdown-direction': dropdownDirectionDirective,
   },
 
   mixins: [navigationMixin, eventsMixin],

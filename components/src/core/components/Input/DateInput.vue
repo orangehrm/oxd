@@ -22,10 +22,11 @@
     </div>
     <transition name="transition-fade-down">
       <div
-        v-click-outside="closeDropdown"
-        v-if="open"
-        class="oxd-date-input-calendar"
-        @keyup.esc="closeDropdown"
+          v-click-outside="closeDropdown"
+          v-if="open"
+          class="oxd-date-input-calendar"
+          @keyup.esc="closeDropdown"
+          v-dropdown-direction
       >
         <oxd-calendar
           v-bind="$attrs"
@@ -74,6 +75,8 @@ import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import Calendar from '@orangehrm/oxd/core/components/Calendar/Calendar.vue';
 import clickOutsideDirective from '../../../directives/click-outside';
+import dropdownDirectionDirective from '../../../directives/dropdown-direction';
+
 
 export default defineComponent({
   name: 'oxd-date-input',
@@ -87,6 +90,7 @@ export default defineComponent({
 
   directives: {
     'click-outside': clickOutsideDirective,
+    'dropdown-direction': dropdownDirectionDirective,
   },
 
   props: {

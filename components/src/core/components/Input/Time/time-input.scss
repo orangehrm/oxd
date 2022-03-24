@@ -120,4 +120,13 @@
       }
     }
   }
+
+  &.--positon-top {
+    bottom: 100%;
+    margin-bottom: $oxd-dropdown-dropdown-margin;
+  }
+
+  &.--positon-bottom {
+    margin-top: $oxd-dropdown-dropdown-margin;
+  }
 }

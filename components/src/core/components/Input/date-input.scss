@@ -3,12 +3,26 @@
 
 .oxd-date-wrapper {
   @include oxd-input-control-size;
-  position: relative;
+  position: absolute;
   &:focus {
     outline: none;
   }
   & > *:focus {
     outline: none;
+  }
+}
+
+.oxd-date-input-calendar {
+  &.--positon-top > .oxd-calendar-wrapper {
+    width: 88%;
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: calc(50px + $oxd-dropdown-dropdown-margin);
+  }
+  &.--positon-bottom > .oxd-calendar-wrapper {
+    width: 88%;
+    position: absolute;
+    margin-top: $oxd-dropdown-dropdown-margin;
   }
 }
 
@@ -32,7 +46,7 @@
       background-color: $oxd-dropdown-arrow-background-color--readonly;
       color: $oxd-dropdown-arrow-color--readonly;
     }
-    &:focus, {
+    &:focus {
       background-color: $oxd-interface-gray-lighten-2-color;
       border: $oxd-input-border--focus;
       box-shadow: $oxd-input-box-shadow--focus;
