@@ -65,6 +65,7 @@
         </template>
         <template v-slot:toggleOptions>
           <oxd-quick-search
+            ref="quickSearch"
             v-if="config.table.topBar.quickSearch.visible"
             :style="config.table.topBar.quickSearch.style"
             :placeholder="config.table.topBar.quickSearch.placeholder"
@@ -228,6 +229,7 @@ export default defineComponent({
   setup(props, {emit}) {
     const sampleImages = images;
 
+    const quickSearch = ref(null);
     const state = reactive({
       currentPage: 1,
       isLeftPanelOpen: true,
@@ -435,6 +437,7 @@ export default defineComponent({
       exportBtn,
       eventBinder,
       config,
+      quickSearch,
     };
   },
 });
