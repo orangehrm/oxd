@@ -1,6 +1,6 @@
 <template>
   <nav role="navigation" aria-label="Pagination Navigation">
-    <ul class="oxd-pagination__ul">
+    <ul v-if="showPagination" class="oxd-pagination__ul">
       <oxd-pagination-page-item
         previous
         @click="onClickPrevious"
@@ -160,6 +160,13 @@ export default defineComponent({
 
       return this.range(start, end);
     },
+
+    showPagination() {
+      if ((this.totalRecordsCount <= this.pagesList[0]) && (this.length <= 1)) {
+        return false;
+      }
+      return true;
+    }
   },
 
   methods: {
