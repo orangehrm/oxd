@@ -3,7 +3,7 @@
 
 .oxd-date-wrapper {
   @include oxd-input-control-size;
-  position: absolute;
+  position: relative;
   &:focus {
     outline: none;
   }
@@ -14,15 +14,16 @@
 
 .oxd-date-input-calendar {
   &.--positon-top > .oxd-calendar-wrapper {
+    right: 0;
     width: 88%;
     position: absolute;
     bottom: 100%;
     margin-bottom: calc(50px + $oxd-dropdown-dropdown-margin);
   }
   &.--positon-bottom > .oxd-calendar-wrapper {
+    right: 0;
     width: 88%;
     position: absolute;
-    margin-top: $oxd-dropdown-dropdown-margin;
   }
 }
 
