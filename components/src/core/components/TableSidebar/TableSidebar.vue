@@ -37,7 +37,7 @@
           >
             <div
               class="count-container"
-              :class="{active: selectedListItem.id === item.id}"
+              :class="{active: selectedListItemId === item.id}"
             >
               <oxd-chip
                 tabindex="0"
@@ -75,7 +75,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, computed, ref} from 'vue';
+import {defineComponent, computed, ref, toRef, Ref} from 'vue';
 import Chip from '@orangehrm/oxd/core/components/Chip/Chip.vue';
 import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
@@ -135,17 +135,6 @@ export default defineComponent({
   },
 
   setup(props, {emit}) {
-    const selectedListItem = computed({
-      get() {
-        return {
-          id: props.selectedListItemId,
-          label: null,
-          active: false,
-        };
-      },
-      // eslint-disable-next-line
-      set() {},
-    });
     const isLeftPanelOpen = ref<boolean>(true);
 
     const buttonData = computed(() => {
@@ -182,7 +171,6 @@ export default defineComponent({
       label: string;
       active: boolean;
     }) => {
-      selectedListItem.value = item;
       emit('sidePanelList:onSelect', item);
     };
 
@@ -195,7 +183,6 @@ export default defineComponent({
     };
 
     return {
-      selectedListItem,
       customStyles,
       buttonData,
       isLeftPanelOpen,
