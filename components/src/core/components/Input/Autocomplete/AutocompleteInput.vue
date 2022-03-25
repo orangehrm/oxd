@@ -156,7 +156,7 @@ export default defineComponent({
           _selected = true;
         }
         return {...option, _selected};
-      });
+      }).filter((option: Option) =>  !option._selected);
     },
     dropdownClasses(): object {
       return {
