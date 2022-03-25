@@ -75,7 +75,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, computed, ref} from 'vue';
+import {defineComponent, computed, ref, computed} from 'vue';
 import Chip from '@orangehrm/oxd/core/components/Chip/Chip.vue';
 import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
@@ -135,18 +135,18 @@ export default defineComponent({
   },
 
   setup(props, {emit}) {
-    const selectedListItem = ref<{
-      id: number;
-      label: string;
-      active: boolean;
-    }>({
-      id: props.selectedListItemId,
-      label: null,
-      active: false,
-    });
+    const selectedListItem = computed({
+      get() {
+        return {
+          id: props.selectedListItemId,
+          label: null,
+          active: false,
+        }
+      },
+      set() {}
+    })
     const isLeftPanelOpen = ref<boolean>(true);
 
-    // TODO: Optimize these duplicated methods; Sandamal
     const buttonData = computed(() => {
       const initialObject = {
         label: 'Button',
