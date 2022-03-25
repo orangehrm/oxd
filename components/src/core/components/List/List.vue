@@ -137,6 +137,7 @@
           :max="maxPages"
           :pages-list="pagination.pages"
           :per-page="pagination.perPage"
+          :total-records-count="filteredTotalRecordsCount"
           @previous="previous"
           @next="next"
           @clickPage="clickPage"
