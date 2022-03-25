@@ -62,7 +62,6 @@ import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOpti
 import MultiSelectChips from '@orangehrm/oxd/core/components/Input/MultiSelect/MultiSelectChips.vue';
 import dropdownDirectionDirective from '../../../../directives/dropdown-direction';
 
-
 export default defineComponent({
   name: 'oxd-multiselect-input',
   inheritAttrs: false,
