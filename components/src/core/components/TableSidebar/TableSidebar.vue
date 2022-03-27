@@ -75,7 +75,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, computed, ref, toRef, Ref} from 'vue';
+import {defineComponent, computed, ref} from 'vue';
 import Chip from '@orangehrm/oxd/core/components/Chip/Chip.vue';
 import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
