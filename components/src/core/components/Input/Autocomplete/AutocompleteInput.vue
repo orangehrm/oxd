@@ -73,7 +73,6 @@ import AutocompleteChips from '@orangehrm/oxd/core/components/Input/Autocomplete
 import sanitizeHtml from 'sanitize-html';
 import dropdownDirectionDirective from '../../../../directives/dropdown-direction';
 
-
 export default defineComponent({
   name: 'oxd-autocomplete-input',
   inheritAttrs: false,
@@ -148,15 +147,17 @@ export default defineComponent({
 
   computed: {
     computedOptions(): Option[] {
-      return this.options.map((option: Option) => {
-        let _selected = false;
-        if (Array.isArray(this.modelValue)) {
-          _selected = this.modelValue.findIndex(o => o.id === option.id) > -1;
-        } else if (this.modelValue?.id === option.id) {
-          _selected = true;
-        }
-        return {...option, _selected};
-      }).filter((option: Option) =>  !option._selected);
+      return this.options
+        .map((option: Option) => {
+          let _selected = false;
+          if (Array.isArray(this.modelValue)) {
+            _selected = this.modelValue.findIndex(o => o.id === option.id) > -1;
+          } else if (this.modelValue?.id === option.id) {
+            _selected = true;
+          }
+          return {...option, _selected};
+        })
+        .filter((option: Option) => !option._selected);
     },
     dropdownClasses(): object {
       return {

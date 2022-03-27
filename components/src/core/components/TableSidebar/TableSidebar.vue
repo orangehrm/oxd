@@ -37,7 +37,7 @@
           >
             <div
               class="count-container"
-              :class="{active: selectedListItem.id === item.id}"
+              :class="{active: selectedListItemId === item.id}"
             >
               <oxd-chip
                 tabindex="0"
@@ -135,18 +135,8 @@ export default defineComponent({
   },
 
   setup(props, {emit}) {
-    const selectedListItem = ref<{
-      id: number;
-      label: string;
-      active: boolean;
-    }>({
-      id: props.selectedListItemId,
-      label: null,
-      active: false,
-    });
     const isLeftPanelOpen = ref<boolean>(true);
 
-    // TODO: Optimize these duplicated methods; Sandamal
     const buttonData = computed(() => {
       const initialObject = {
         label: 'Button',
@@ -181,7 +171,6 @@ export default defineComponent({
       label: string;
       active: boolean;
     }) => {
-      selectedListItem.value = item;
       emit('sidePanelList:onSelect', item);
     };
 
@@ -194,7 +183,6 @@ export default defineComponent({
     };
 
     return {
-      selectedListItem,
       customStyles,
       buttonData,
       isLeftPanelOpen,

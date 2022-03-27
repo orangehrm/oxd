@@ -1,4 +1,4 @@
-import {Directive, DirectiveBinding} from 'vue';
+import {Directive} from 'vue';
 
 function fixPosition(el: HTMLElement) {
   el.classList.remove('--positon-top', '--positon-bottom');
