@@ -89,6 +89,7 @@
     &:hover,
     &:focus-visible {
       background-color: $oxd-date-input-link-background;
+      font-weight: $oxd-date-input-link-font-weight-hover;
     }
   }
 }
