@@ -133,6 +133,10 @@ export default defineComponent({
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
+    stopSearchKeyClearOnBlur: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -265,7 +269,7 @@ export default defineComponent({
       this.debouncer();
     },
     onBlur() {
-      if (!this.multiple && this.searchTerm) {
+      if (!this.multiple && this.searchTerm && !this.stopSearchKeyClearOnBlur) {
         this.$emit('update:modelValue', null);
       }
       this.dropdownOpen = false;

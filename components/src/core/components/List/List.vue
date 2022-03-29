@@ -72,6 +72,7 @@
             :clear="config.table.topBar.quickSearch.clear"
             :createOptions="quickSearchOptions"
             :modelValue="state.selectedQuickSearch"
+            :stopSearchKeyClearOnBlur="true"
             @update:modelValue="quickSearchSelect"
             @dropdown:clear="quickSearchOnClear"
             @update:searchTerm="setQuickSearchTerm"
