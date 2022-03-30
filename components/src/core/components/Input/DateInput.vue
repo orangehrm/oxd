@@ -11,14 +11,19 @@
         @update:modelValue="onDateTyped"
         @blur="onBlur"
       />
-      <oxd-icon
-        :class="dateIconClasses"
-        name="calendar"
+      <div
+        class="oxd-date-input-icon-wrapper"
         tabindex="0"
         ref="oxdIcon"
         @click="toggleDropdown"
         @keyup.enter.prevent.stop="toggleDropdown"
-      />
+      >
+        <oxd-icon
+          :class="dateIconClasses"
+          name="oxd-calendar"
+          size="small"
+        />
+      </div>
     </div>
     <transition name="transition-fade-down">
       <div
