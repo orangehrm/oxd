@@ -56,6 +56,6 @@ describe('DateInput.vue', () => {
     await wrapper.findComponent(Icon).trigger('click');
     await wrapper.vm.$nextTick();
     await wrapper.find('.oxd-date-input-link.--close').trigger('click');
-    expect(wrapper.emitted('dateselect:closed')).toBeTruthy();
+    expect(wrapper.emitted('dateselect:closed'))?.toBeTruthy();
   });
 });

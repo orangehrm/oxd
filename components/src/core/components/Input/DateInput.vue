@@ -172,19 +172,19 @@ export default defineComponent({
     closeDropdown($e: KeyboardEvent | null) {
       if ($e && $e.key === 'Escape') $e.stopPropagation();
       this.open = false;
-      this.$refs.oxdIcon.$el.focus();
+      this.$refs.oxdIcon.$el?.focus();
       this.$emit('dateselect:closed');
     },
     onClickToday() {
       this.dateSelected = freshDate();
       this.open = false;
-      this.$refs.oxdIcon.$el.focus();
+      this.$refs.oxdIcon.$el?.focus();
     },
     onClickClear() {
       this.dateTyped = '';
       this.dateSelected = null;
       this.open = false;
-      this.$refs.oxdIcon.$el.focus();
+      this.$refs.oxdIcon.$el?.focus();
     },
   },
 
