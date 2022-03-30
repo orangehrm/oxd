@@ -17,7 +17,7 @@
       :list-visible="config.table.leftPanel.list.visible"
       :bubble-visible="config.table.leftPanel.list.bubble.visible"
       :button="config.table.leftPanel.header.button"
-      :selected-list-item-id="selectedListItem.id"
+      :selected-list-item-id="selectedListItemId"
       @sidePanelList:onSelect="sidePanelListOnSelect"
       @side-panel:onToggle="toggleSidePanel"
       @sidePanelList:onHeaderBtnClick="sidePanelListOnHeaderBtnClick"
@@ -211,9 +211,8 @@ export default defineComponent({
         currentPage: 1 as number,
       }),
     },
-    selectedListItem: {
-      type: Object,
-      default: () => ({}),
+    selectedListItemId: {
+      type: Number,
     },
     maxPages: {
       type: Number,
