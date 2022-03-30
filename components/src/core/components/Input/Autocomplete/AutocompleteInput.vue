@@ -265,9 +265,6 @@ export default defineComponent({
       this.debouncer();
     },
     onBlur() {
-      if (!this.multiple && this.searchTerm) {
-        this.$emit('update:modelValue', null);
-      }
       this.dropdownOpen = false;
       this.pointer = -1;
       this.$emit('dropdown:blur');
