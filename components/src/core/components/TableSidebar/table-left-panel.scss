@@ -10,7 +10,7 @@
     margin: 1rem 0.5rem;
   }
   &--body {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     padding-bottom: 0.5rem !important;
   }
   &--toggle-btn {
@@ -93,6 +93,8 @@
   }
 }
 .table-header-action-btn {
+  margin: 0.5rem 0;
+
   &.no-label {
     min-width: initial;
     ::v-deep(.oxd-button-label-wrapper) {
