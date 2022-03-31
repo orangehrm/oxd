@@ -41,6 +41,7 @@
     height: $oxd-dropdown-arrow-height;
     border-radius: $oxd-dropdown-arrow-border-radius;
     background-color: $oxd-dropdown-arrow-background-color;
+    color: $oxd-file-button-color;
     &.--disabled,
     &.--readonly {
       cursor: unset;
