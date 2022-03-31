@@ -6,6 +6,7 @@ describe('TableSidebar.vue', () => {
     const wrapper = shallowMount(TableSidebar, {
       props: {
         headerVisible: true,
+        headerActionButtonVisible: true,
         bodyVisible: true,
         listVisible: true,
         selectedListItemId: '1',
@@ -39,6 +40,7 @@ describe('TableSidebar.vue', () => {
     const wrapper = shallowMount(TableSidebar, {
       props: {
         headerVisible: true,
+        headerActionButtonVisible: true,
         bodyVisible: true,
         listVisible: true,
         selectedListItemId: '1',
