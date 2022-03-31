@@ -36,8 +36,7 @@ exports[`TableSidebar.vue with oxd-chip on left renders OXD TableSidebar  with c
 exports[`TableSidebar.vue with oxd-chip on left renders OXD TableSidebar  with chip on left without list 1`] = `
 <div class="oxd-table-left-panel" style="width: 230px;">
   <div class="oxd-table-left-panel--header">
-    <oxd-button-stub label="New Candidate" iconname="oxd-add" displaytype="secondary" size="long" iconsize="medium" iconrightsize="medium" flow="right" class="table-header-action-btn w-100"></oxd-button-stub>
-    <oxd-divider-stub class="oxd-table-left-panel--separator"></oxd-divider-stub>
+    <!--v-if-->
   </div>
   <div class="oxd-table-left-panel--body"></div>
   <!--v-if-->
@@ -48,8 +47,7 @@ exports[`TableSidebar.vue with oxd-chip on left renders OXD TableSidebar  with c
 exports[`TableSidebar.vue with oxd-chip on left renders OXD TableSidebar with chip on left 1`] = `
 <div class="oxd-table-left-panel" style="width: 230px;">
   <div class="oxd-table-left-panel--header">
-    <oxd-button-stub label="New Candidate" iconname="oxd-add" displaytype="secondary" size="long" iconsize="medium" iconrightsize="medium" flow="right" class="table-header-action-btn w-100"></oxd-button-stub>
-    <oxd-divider-stub class="oxd-table-left-panel--separator"></oxd-divider-stub>
+    <!--v-if-->
   </div>
   <div class="oxd-table-left-panel--body"></div>
   <div class="oxd-table-left-panel--footer list">
@@ -84,8 +82,7 @@ exports[`TableSidebar.vue with oxd-chip on left renders OXD TableSidebar with ch
 exports[`TableSidebar.vue with oxd-chip on left renders OXD TableSidebar with chip on left with different item selected 1`] = `
 <div class="oxd-table-left-panel" style="width: 230px;">
   <div class="oxd-table-left-panel--header">
-    <oxd-button-stub label="New Candidate" iconname="oxd-add" displaytype="secondary" size="long" iconsize="medium" iconrightsize="medium" flow="right" class="table-header-action-btn w-100"></oxd-button-stub>
-    <oxd-divider-stub class="oxd-table-left-panel--separator"></oxd-divider-stub>
+    <!--v-if-->
   </div>
   <div class="oxd-table-left-panel--body"></div>
   <div class="oxd-table-left-panel--footer list">
@@ -120,8 +117,7 @@ exports[`TableSidebar.vue with oxd-chip on left renders OXD TableSidebar with ch
 exports[`TableSidebar.vue with oxd-chip on left renders OXD TableSidebar with chip on left with empty list 1`] = `
 <div class="oxd-table-left-panel" style="width: 230px;">
   <div class="oxd-table-left-panel--header">
-    <oxd-button-stub label="New Candidate" iconname="oxd-add" displaytype="secondary" size="long" iconsize="medium" iconrightsize="medium" flow="right" class="table-header-action-btn w-100"></oxd-button-stub>
-    <oxd-divider-stub class="oxd-table-left-panel--separator"></oxd-divider-stub>
+    <!--v-if-->
   </div>
   <div class="oxd-table-left-panel--body"></div>
   <div class="oxd-table-left-panel--footer list">
@@ -134,8 +130,7 @@ exports[`TableSidebar.vue with oxd-chip on left renders OXD TableSidebar with ch
 exports[`TableSidebar.vue with oxd-chip on left renders OXD TableSidebar with chip on left without body 1`] = `
 <div class="oxd-table-left-panel" style="width: 230px;">
   <div class="oxd-table-left-panel--header">
-    <oxd-button-stub label="New Candidate" iconname="oxd-add" displaytype="secondary" size="long" iconsize="medium" iconrightsize="medium" flow="right" class="table-header-action-btn w-100"></oxd-button-stub>
-    <oxd-divider-stub class="oxd-table-left-panel--separator"></oxd-divider-stub>
+    <!--v-if-->
   </div>
   <!--v-if-->
   <div class="oxd-table-left-panel--footer list">
@@ -203,8 +198,7 @@ exports[`TableSidebar.vue with oxd-icon on left renders OXD TableSidebar  with i
 exports[`TableSidebar.vue with oxd-icon on left renders OXD TableSidebar  with icon on left without list 1`] = `
 <div class="oxd-table-left-panel" style="width: 230px;">
   <div class="oxd-table-left-panel--header">
-    <oxd-button-stub label="New Candidate" iconname="oxd-add" displaytype="secondary" size="long" iconsize="medium" iconrightsize="medium" flow="right" class="table-header-action-btn w-100"></oxd-button-stub>
-    <oxd-divider-stub class="oxd-table-left-panel--separator"></oxd-divider-stub>
+    <!--v-if-->
   </div>
   <div class="oxd-table-left-panel--body"></div>
   <!--v-if-->
@@ -215,8 +209,7 @@ exports[`TableSidebar.vue with oxd-icon on left renders OXD TableSidebar  with i
 exports[`TableSidebar.vue with oxd-icon on left renders OXD TableSidebar with icon on left 1`] = `
 <div class="oxd-table-left-panel" style="width: 230px;">
   <div class="oxd-table-left-panel--header">
-    <oxd-button-stub label="New Candidate" iconname="oxd-add" displaytype="secondary" size="long" iconsize="medium" iconrightsize="medium" flow="right" class="table-header-action-btn w-100"></oxd-button-stub>
-    <oxd-divider-stub class="oxd-table-left-panel--separator"></oxd-divider-stub>
+    <!--v-if-->
   </div>
   <div class="oxd-table-left-panel--body"></div>
   <div class="oxd-table-left-panel--footer list">
@@ -251,8 +244,7 @@ exports[`TableSidebar.vue with oxd-icon on left renders OXD TableSidebar with ic
 exports[`TableSidebar.vue with oxd-icon on left renders OXD TableSidebar with icon on left with different item selected 1`] = `
 <div class="oxd-table-left-panel" style="width: 230px;">
   <div class="oxd-table-left-panel--header">
-    <oxd-button-stub label="New Candidate" iconname="oxd-add" displaytype="secondary" size="long" iconsize="medium" iconrightsize="medium" flow="right" class="table-header-action-btn w-100"></oxd-button-stub>
-    <oxd-divider-stub class="oxd-table-left-panel--separator"></oxd-divider-stub>
+    <!--v-if-->
   </div>
   <div class="oxd-table-left-panel--body"></div>
   <div class="oxd-table-left-panel--footer list">
@@ -287,8 +279,7 @@ exports[`TableSidebar.vue with oxd-icon on left renders OXD TableSidebar with ic
 exports[`TableSidebar.vue with oxd-icon on left renders OXD TableSidebar with icon on left with empty list 1`] = `
 <div class="oxd-table-left-panel" style="width: 230px;">
   <div class="oxd-table-left-panel--header">
-    <oxd-button-stub label="New Candidate" iconname="oxd-add" displaytype="secondary" size="long" iconsize="medium" iconrightsize="medium" flow="right" class="table-header-action-btn w-100"></oxd-button-stub>
-    <oxd-divider-stub class="oxd-table-left-panel--separator"></oxd-divider-stub>
+    <!--v-if-->
   </div>
   <div class="oxd-table-left-panel--body"></div>
   <div class="oxd-table-left-panel--footer list">
@@ -301,8 +292,7 @@ exports[`TableSidebar.vue with oxd-icon on left renders OXD TableSidebar with ic
 exports[`TableSidebar.vue with oxd-icon on left renders OXD TableSidebar with icon on left without body 1`] = `
 <div class="oxd-table-left-panel" style="width: 230px;">
   <div class="oxd-table-left-panel--header">
-    <oxd-button-stub label="New Candidate" iconname="oxd-add" displaytype="secondary" size="long" iconsize="medium" iconrightsize="medium" flow="right" class="table-header-action-btn w-100"></oxd-button-stub>
-    <oxd-divider-stub class="oxd-table-left-panel--separator"></oxd-divider-stub>
+    <!--v-if-->
   </div>
   <!--v-if-->
   <div class="oxd-table-left-panel--footer list">

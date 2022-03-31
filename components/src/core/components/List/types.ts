@@ -126,4 +126,6 @@ export interface ListTable {
   pagination?: {
     maxPageLimit: number;
   };
+  selectable?: boolean;
+  addable?: boolean;
 }

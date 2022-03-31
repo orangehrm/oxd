@@ -2,25 +2,30 @@
   <div class="oxd-table-left-panel" :style="customStyles">
     <div v-if="headerVisible" class="oxd-table-left-panel--header">
       <slot name="header">
-        <oxd-button
-          class="table-header-action-btn"
-          :class="!isLeftPanelOpen ? 'no-label' : 'w-100'"
-          :tooltip="!isLeftPanelOpen ? buttonData.label : null"
-          flow="right"
-          :label="buttonData.label"
-          :iconName="buttonData.iconName"
-          :iconSize="buttonData.iconSize"
-          :size="buttonData.size"
-          :style="buttonData.style"
-          :displayType="buttonData.displayType"
-          @click="onHeaderBtnClick"
+        <div
+          v-if="headerActionButtonVisible"
+          class="table-header-action-btn-container"
         >
-          <template v-if="buttonData.iconImageSrc" v-slot:icon>
-            <img :src="buttonData.iconImageSrc" />
-          </template>
-        </oxd-button>
+          <oxd-button
+            class="table-header-action-btn"
+            :class="!isLeftPanelOpen ? 'no-label' : 'w-100'"
+            :tooltip="!isLeftPanelOpen ? buttonData.label : null"
+            flow="right"
+            :label="buttonData.label"
+            :iconName="buttonData.iconName"
+            :iconSize="buttonData.iconSize"
+            :size="buttonData.size"
+            :style="buttonData.style"
+            :displayType="buttonData.displayType"
+            @click="onHeaderBtnClick"
+          >
+            <template v-if="buttonData.iconImageSrc" v-slot:icon>
+              <img :src="buttonData.iconImageSrc" />
+            </template>
+          </oxd-button>
+          <oxd-divider class="oxd-table-left-panel--separator" />
+        </div>
       </slot>
-      <oxd-divider class="oxd-table-left-panel--separator" />
     </div>
     <div v-if="bodyVisible" class="oxd-table-left-panel--body">
       <slot name="sidePanelBody"></slot>
@@ -98,6 +103,10 @@ export default defineComponent({
 
   props: {
     headerVisible: {
+      type: Boolean,
+      default: false,
+    },
+    headerActionButtonVisible: {
       type: Boolean,
       default: false,
     },
