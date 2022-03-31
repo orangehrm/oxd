@@ -11,6 +11,7 @@
           <li
             role="none"
             class="oxd-calendar-selector --month"
+            :class="{'--selected' : index === modelValue.month}"
             v-for="(month, index) in months"
             :key="`oxd-month-${index}`"
             tabindex="0"
