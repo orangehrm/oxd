@@ -30,7 +30,7 @@
 .oxd-date-input {
   display: flex;
   align-items: center;
-  &-icon {
+  &-icon-wrapper {
     right: 0.25rem;
     display: flex;
     cursor: pointer;
@@ -41,6 +41,7 @@
     height: $oxd-dropdown-arrow-height;
     border-radius: $oxd-dropdown-arrow-border-radius;
     background-color: $oxd-dropdown-arrow-background-color;
+    color: $oxd-file-button-color;
     &.--disabled,
     &.--readonly {
       cursor: unset;

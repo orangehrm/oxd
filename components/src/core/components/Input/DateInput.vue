@@ -11,14 +11,19 @@
         @update:modelValue="onDateTyped"
         @blur="onBlur"
       />
-      <oxd-icon
-        :class="dateIconClasses"
-        name="calendar"
+      <div
+        class="oxd-date-input-icon-wrapper"
         tabindex="0"
         ref="oxdIcon"
         @click="toggleDropdown"
         @keyup.enter.prevent.stop="toggleDropdown"
-      />
+      >
+        <oxd-icon
+          :class="dateIconClasses"
+          name="oxd-calendar"
+          size="small"
+        />
+      </div>
     </div>
     <transition name="transition-fade-down">
       <div
@@ -167,19 +172,19 @@ export default defineComponent({
     closeDropdown($e: KeyboardEvent | null) {
       if ($e && $e.key === 'Escape') $e.stopPropagation();
       this.open = false;
-      this.$refs.oxdIcon.$el.focus();
+      this.$refs.oxdIcon.$el?.focus();
       this.$emit('dateselect:closed');
     },
     onClickToday() {
       this.dateSelected = freshDate();
       this.open = false;
-      this.$refs.oxdIcon.$el.focus();
+      this.$refs.oxdIcon.$el?.focus();
     },
     onClickClear() {
       this.dateTyped = '';
       this.dateSelected = null;
       this.open = false;
-      this.$refs.oxdIcon.$el.focus();
+      this.$refs.oxdIcon.$el?.focus();
     },
   },
 
