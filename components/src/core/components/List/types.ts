@@ -123,6 +123,8 @@ export interface ListTable {
   leftPanel?: ListLeftPanel;
   topBar?: ListTopBar;
   headers?: ListTableHeaderCell[];
+  selectable?: boolean,
+  addable?: boolean,
   pagination?: {
     maxPageLimit: number;
   };
