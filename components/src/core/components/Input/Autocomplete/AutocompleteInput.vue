@@ -132,6 +132,10 @@ export default defineComponent({
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
+    isQuickSearch: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -280,7 +284,7 @@ export default defineComponent({
       this.dropdownOpen = false;
       this.pointer = -1;
       this.$emit('dropdown:blur');
-      if (!this.selectedValues) {
+      if (!this.selectedValues && !this.isQuickSearch) {
         this.$emit('update:modelValue', this.searchTerm);
       }
     },
@@ -292,7 +296,7 @@ export default defineComponent({
         this.$emit('select:enter');
         if (this.multiple && !this.selectedValues) {
           this.$emit('update:modelValue', this.searchTerm);
-        } else if (!this.multiple) {
+        } else if (!this.multiple && !this.isQuickSearch) {
           this.$emit('update:modelValue', this.searchTerm);
         }
       }
