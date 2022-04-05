@@ -5,7 +5,7 @@ export interface FocusFirstHTMLElement extends HTMLElement {
 }
 
 const focusableElements = 'input, select, textarea, [tabindex], [href]';
-const excludeElements= 'button:not(.oxd-dialog-close-button)';
+const excludeElements = 'button:not(.oxd-dialog-close-button)';
 
 const focusOnFirstElement = (element: Element, matchingString: string) => {
   const firstFocusableElement = element.querySelectorAll(matchingString)[0];
@@ -20,9 +20,8 @@ const focusonFirstElementDirective: Directive = {
     focusOnFirstElement(el, focusableElements + ', ' + excludeElements);
   },
   beforeUnmount(el: FocusFirstHTMLElement, binding) {
-    const { arg } = binding;
-    if(arg==="return-focus"){
-      console.log("retuned focus");
+    const {arg} = binding;
+    if (arg === 'return-focus') {
       if (el.activeElement && (el.activeElement as HTMLElement).offsetParent) {
         (el.activeElement as HTMLElement).focus();
       } else {
@@ -32,13 +31,12 @@ const focusonFirstElementDirective: Directive = {
         }
         if (rightPanel) {
           focusOnFirstElement(
-              rightPanel,
-              focusableElements + ', ' + excludeElements,
+            rightPanel,
+            focusableElements + ', ' + excludeElements,
           );
         }
       }
-    }
-    else{
+    } else {
       return;
     }
   },
