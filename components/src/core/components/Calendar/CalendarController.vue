@@ -1,5 +1,5 @@
 <template>
-  <div class="oxd-calendar-header">
+  <div class="oxd-calendar-header" v-focus-first-element>
     <oxd-icon name="oxd-arrow-left" size="extra-small" @click="gotoPreviousMonth"></oxd-icon>
     <ul class="oxd-calendar-selector">
       <oxd-calendar-dropdown class="oxd-calendar-selector-month">
@@ -51,6 +51,7 @@ import {defineComponent} from 'vue';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import Icon from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import CalendarDropdown from '@orangehrm/oxd/core/components/Calendar/CalendarDropdown.vue';
+import focusFirstElementDirective from '../../../directives/focus-first-element';
 
 export default defineComponent({
   name: 'oxd-calendar-controller',
@@ -73,6 +74,9 @@ export default defineComponent({
     'oxd-text': Text,
     'oxd-icon': Icon,
     'oxd-calendar-dropdown': CalendarDropdown,
+  },
+  directives: {
+    'focus-first-element': focusFirstElementDirective,
   },
   methods: {
     calculateMonth(value: number) {
