@@ -162,11 +162,11 @@ export default defineComponent({
     },
 
     showPagination() {
-      if ((this.totalRecordsCount <= this.pagesList[0]) && (this.length <= 1)) {
+      if (this.totalRecordsCount <= this.pagesList[0] && this.length <= 1) {
         return false;
       }
       return true;
-    }
+    },
   },
 
   methods: {

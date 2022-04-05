@@ -18,7 +18,8 @@
       </template>
     </oxd-select-text>
 
-    <oxd-select-dropdown v-dropdown-direction
+    <oxd-select-dropdown
+      v-dropdown-direction
       v-if="dropdownOpen"
       :class="dropdownClasses"
       :loading="loading"
@@ -55,7 +56,6 @@ import SelectDropdown from '@orangehrm/oxd/core/components/Input/Select/SelectDr
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
 import translateMixin from '../../../../mixins/translate';
 import dropdownDirectionDirective from '../../../../directives/dropdown-direction';
-
 
 export default defineComponent({
   name: 'oxd-select-input',
