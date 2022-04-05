@@ -292,6 +292,8 @@ export default defineComponent({
         this.$emit('select:enter');
         if (this.multiple && !this.selectedValues) {
           this.$emit('update:modelValue', this.searchTerm);
+        } else if (!this.multiple) {
+          this.$emit('update:modelValue', this.searchTerm);
         }
       }
       this.dropdownOpen = false;
