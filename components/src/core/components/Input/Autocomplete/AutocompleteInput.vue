@@ -51,7 +51,7 @@
     </oxd-autocomplete-dropdown>
 
     <oxd-autocomplete-chips
-      v-if="multiple"
+      v-if="showChips"
       :disabled="disabled"
       :readonly="readonly"
       :selected="showChips ? modelValue : []"
@@ -132,10 +132,6 @@ export default defineComponent({
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
-    isQuickSearch: {
-      type: Boolean,
-      default: false,
-    },
   },
 
   data() {
@@ -152,7 +148,7 @@ export default defineComponent({
 
   computed: {
     showChips(): boolean {
-      return Array.isArray(this.modelValue) || false;
+      return Array.isArray(this.modelValue) && this.multiple;
     },
     computedOptions(): Option[] {
       return this.options
@@ -230,11 +226,11 @@ export default defineComponent({
         this.loading = false;
         this.dropdownOpen = false;
         this.pointer = -1;
+        if (Array.isArray(this.modelValue) && this.modelValue.length > 0)
+          return;
+        if (typeof this.searchTerm === 'string')
+          this.$emit('update:modelValue', null);
         this.searchTerm = null;
-        this.$emit(
-          'update:modelValue',
-          this.multiple ? this.selectedValues : this.searchTerm,
-        );
       }
     },
     onSelect(option: Option) {
@@ -243,11 +239,9 @@ export default defineComponent({
       this.searchTerm = null;
       if (this.multiple) {
         const selected = Array.isArray(this.modelValue) ? this.modelValue : [];
-        this.selectedValues = [...selected, option];
-        this.$emit('update:modelValue', this.selectedValues);
+        this.$emit('update:modelValue', [...selected, option]);
       } else {
-        this.selectedValues = option;
-        this.$emit('update:modelValue', this.selectedValues);
+        this.$emit('update:modelValue', option);
       }
     },
     doSearch() {
@@ -284,7 +278,8 @@ export default defineComponent({
       this.dropdownOpen = false;
       this.pointer = -1;
       this.$emit('dropdown:blur');
-      if (!this.selectedValues && !this.isQuickSearch) {
+      if (Array.isArray(this.modelValue) && this.modelValue.length > 0) return;
+      if (typeof this.searchTerm === 'string' && this.searchTerm) {
         this.$emit('update:modelValue', this.searchTerm);
       }
     },
@@ -294,20 +289,13 @@ export default defineComponent({
         if (!option?._disabled) this.onSelect(option);
       } else {
         this.$emit('select:enter');
-        if (this.multiple && !this.selectedValues) {
+        if (this.multiple && this.modelValue.length === 0) {
           this.$emit('update:modelValue', this.searchTerm);
-        } else if (!this.multiple && !this.isQuickSearch) {
+        } else if (!this.multiple) {
           this.$emit('update:modelValue', this.searchTerm);
         }
       }
       this.dropdownOpen = false;
-    },
-    onRemoveSelected(option: Option) {
-      const filteredOptions = this.modelValue.filter(
-        (item: Option) => item.id !== option.id,
-      );
-      this.selectedValues = filteredOptions.length > 0 ? filteredOptions : null;
-      this.$emit('update:modelValue', this.selectedValues);
     },
   },
 });
