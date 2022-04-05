@@ -31,7 +31,6 @@ import TimePicker from '@orangehrm/oxd/core/components/Input/Time/TimePicker.vue
 import {parseDate, formatDate} from '../../../../utils/date';
 import dropdownDirectionDirective from '../../../../directives/dropdown-direction';
 
-
 export default defineComponent({
   name: 'oxd-time-input',
 
@@ -45,7 +44,6 @@ export default defineComponent({
     'click-outside': clickOutsideDirective,
     'dropdown-direction': dropdownDirectionDirective,
   },
-
 
   emits: [
     'update:modelValue',
@@ -80,7 +78,7 @@ export default defineComponent({
       default: 1,
     },
   },
-  
+
   setup(props) {
     const state = reactive({
       open: false,

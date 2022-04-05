@@ -18,20 +18,16 @@
         @click="toggleDropdown"
         @keyup.enter.prevent.stop="toggleDropdown"
       >
-        <oxd-icon
-          :class="dateIconClasses"
-          name="oxd-calendar"
-          size="small"
-        />
+        <oxd-icon :class="dateIconClasses" name="oxd-calendar" size="small" />
       </div>
     </div>
     <transition name="transition-fade-down">
       <div
-          v-click-outside="closeDropdown"
-          v-if="open"
-          class="oxd-date-input-calendar"
-          @keyup.esc="closeDropdown"
-          v-dropdown-direction
+        v-click-outside="closeDropdown"
+        v-if="open"
+        class="oxd-date-input-calendar"
+        @keyup.esc="closeDropdown"
+        v-dropdown-direction
       >
         <oxd-calendar
           v-bind="$attrs"
@@ -81,7 +77,6 @@ import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import Calendar from '@orangehrm/oxd/core/components/Calendar/Calendar.vue';
 import clickOutsideDirective from '../../../directives/click-outside';
 import dropdownDirectionDirective from '../../../directives/dropdown-direction';
-
 
 export default defineComponent({
   name: 'oxd-date-input',

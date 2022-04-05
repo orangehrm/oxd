@@ -1,6 +1,10 @@
 <template>
   <div class="oxd-calendar-header">
-    <oxd-icon name="oxd-arrow-left" size="extra-small" @click="gotoPreviousMonth"></oxd-icon>
+    <oxd-icon
+      name="oxd-arrow-left"
+      size="extra-small"
+      @click="gotoPreviousMonth"
+    ></oxd-icon>
     <ul class="oxd-calendar-selector">
       <oxd-calendar-dropdown class="oxd-calendar-selector-month">
         <div class="oxd-calendar-selector-month-selected">
@@ -11,7 +15,7 @@
           <li
             role="none"
             class="oxd-calendar-selector --month"
-            :class="{'--selected' : index === modelValue.month}"
+            :class="{'--selected': index === modelValue.month}"
             v-for="(month, index) in months"
             :key="`oxd-month-${index}`"
             tabindex="0"
@@ -31,7 +35,7 @@
           <li
             role="none"
             class="oxd-calendar-selector --year"
-            :class="{'--selected' : year === modelValue.year}"
+            :class="{'--selected': year === modelValue.year}"
             v-for="(year, index) in years"
             :key="`oxd-year-${index}`"
             tabindex="0"
@@ -43,7 +47,11 @@
         </template>
       </oxd-calendar-dropdown>
     </ul>
-    <oxd-icon name="oxd-arrow-right" size="extra-small" @click="gotoNextMonth"></oxd-icon>
+    <oxd-icon
+      name="oxd-arrow-right"
+      size="extra-small"
+      @click="gotoNextMonth"
+    ></oxd-icon>
   </div>
 </template>
 <script lang="ts">
