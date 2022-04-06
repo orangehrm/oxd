@@ -645,6 +645,6 @@ describe('TableSidebar.vue with oxd-chip on left', () => {
       .findComponent(TableSidebar)
       .find('.table-header-action-secondary-btn')
       .trigger('click');
-    expect(wrapper.emitted('sidePanelList:onSecondaryBtnClick'));
+    expect(wrapper.emitted('sidePanelList:onHeaderSecondaryBtnClick')).toBeTruthy();
   });
 });

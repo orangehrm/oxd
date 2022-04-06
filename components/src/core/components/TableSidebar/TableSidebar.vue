@@ -5,7 +5,7 @@
         <div
           v-if="headerActionButtonVisible"
           :class="headerSecondaryBtnVisible
-          ? 'table-header-action-btn-with-secondary-btn'
+          ? 'table-header-container-with-secondary-btn'
           : 'table-header-action-btn-container'" >    
           <oxd-button
             class="table-header-action-btn"
@@ -189,7 +189,7 @@ export default defineComponent({
     };
 
     const onHeaderSecondaryBtnClick = () => {
-      emit('sidePanelList:onSecondaryBtnClick');
+      emit('sidePanelList:onHeaderSecondaryBtnClick');
     };
 
     const selectListItem = (item: {
@@ -213,6 +213,7 @@ export default defineComponent({
       buttonData,
       isLeftPanelOpen,
       onHeaderBtnClick,
+      onHeaderSecondaryBtnClick,
       selectListItem,
       toggleLeftPanel,
     };
