@@ -107,3 +107,14 @@
     }
   }
 }
+.table-header-action-btn-with-secondary-btn {
+  :deep(.oxd-button) {
+    display: inline-flex;
+  }
+}
+.table-header-action-secondary-btn{
+  display: inline-flex;
+  margin-left: 0.5rem !important;
+  color: $oxd-button-color--secondary ;
+  background-color: #e6f5cd;
+}

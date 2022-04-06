@@ -4,11 +4,13 @@
       <slot name="header">
         <div
           v-if="headerActionButtonVisible"
-          class="table-header-action-btn-container"
+          :class="headerSecondaryBtnVisible
+          ? 'table-header-action-btn-with-secondary-btn'
+          : 'table-header-action-btn-container'">
         >
           <oxd-button
             class="table-header-action-btn"
-            :class="!isLeftPanelOpen ? 'no-label' : 'w-100'"
+            :class="!isLeftPanelOpen ? 'no-label' :  headerSecondaryBtnVisible ? 'w-75' : 'w-100'"
             :tooltip="!isLeftPanelOpen ? buttonData.label : null"
             flow="right"
             :label="buttonData.label"
@@ -23,6 +25,13 @@
               <img :src="buttonData.iconImageSrc" />
             </template>
           </oxd-button>
+          <oxd-icon-button
+            v-if="headerSecondaryBtnVisible"
+            class="table-header-action-secondary-btn"
+            :name="buttonData.secondaryBtnIcon"
+            :tooltip="buttonData.secondaryBtnLabel"
+            @click="onHeaderSecondaryBtnClick"
+          />
           <oxd-divider class="oxd-table-left-panel--separator" />
         </div>
       </slot>
@@ -110,6 +119,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    headerSecondaryBtnVisible: {
+      type: Boolean,
+      default: false,
+    },
     bodyVisible: {
       type: Boolean,
       default: false,
@@ -174,6 +187,10 @@ export default defineComponent({
 
     const onHeaderBtnClick = () => {
       emit('sidePanelList:onHeaderBtnClick');
+    };
+
+    const onHeaderSecondaryBtnClick = () => {
+      emit('sidePanelList:onSecondaryBtnClick');
     };
 
     const selectListItem = (item: {
