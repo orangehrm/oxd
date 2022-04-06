@@ -6,8 +6,7 @@
           v-if="headerActionButtonVisible"
           :class="headerSecondaryBtnVisible
           ? 'table-header-action-btn-with-secondary-btn'
-          : 'table-header-action-btn-container'">
-        >
+          : 'table-header-action-btn-container'" >    
           <oxd-button
             class="table-header-action-btn"
             :class="!isLeftPanelOpen ? 'no-label' :  headerSecondaryBtnVisible ? 'w-75' : 'w-100'"
