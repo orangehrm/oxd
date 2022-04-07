@@ -163,8 +163,6 @@ import useTranslate from './../../../composables/useTranslate';
 
 import {defineComponent, reactive, computed, ref, watch} from 'vue';
 
-const {$t} = useTranslate();
-
 export default defineComponent({
   components: {
     'oxd-card-table': CardTable,
@@ -232,6 +230,7 @@ export default defineComponent({
   },
   setup(props, {emit}) {
     const sampleImages = images;
+    const {$t} = useTranslate();
 
     const quickSearch = ref(null);
     const state = reactive({
@@ -293,8 +292,8 @@ export default defineComponent({
         (${itemCount})
         ${
           itemCount > 1 || itemCount === 0
-            ? config.value.table.topBar.listRecordCount.multiTerm
-            : config.value.table.topBar.listRecordCount.singleTerm
+            ? $t(config.value.table.topBar.listRecordCount.multiTerm)
+            : $t(config.value.table.topBar.listRecordCount.singleTerm)
         }
         ${state.selectedItemIndexes.length > 0 ? $t('Selected') : $t('Found')}
       `;
