@@ -71,11 +71,6 @@ export default defineComponent({
       type: Object,
       required: false,
     },
-    specificSort: {
-      type: Boolean,
-      default: false,
-      required: false,
-    },
   },
 
   emits: ['order'],

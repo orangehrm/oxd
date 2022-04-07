@@ -106,7 +106,7 @@ export default defineComponent({
 
   setup(props, context) {
     const responsiveState = useResponsive();
-    
+
     provide('tableProps', readonly(props));
     provide('screenState', readonly(responsiveState));
 

@@ -67,7 +67,7 @@ export default defineComponent({
     const tableProps: any = inject('tableProps');
     const screenState: any = inject('screenState');
     /* eslint-enable @typescript-eslint/no-explicit-any */
-    
+
     const state: State = reactive({
       checkIcon: 'check',
       checkedItems: [...tableProps.selected],
