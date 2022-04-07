@@ -69,6 +69,12 @@ const headers = [
   },
   {
     name: "action",
+    sortField: "stage",
+    initialSortOrder: "DEFAULT",
+    sortIcons: {
+      asc: "oxd-sort-asc-arrow",
+      desc: "oxd-sort-desc-arrow"
+    },
     slot: "footer",
     title: "Stage",
     style: {

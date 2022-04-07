@@ -265,15 +265,20 @@ export default defineComponent({
       const sortableFieldsObj = {};
       config.value.table.headers.forEach((header) => {
         if (header.initialSortOrder) {
-          sortableFieldsObj[header.sortField] = state.currentSortFields[
+          sortableFieldsObj[header.sortField] = {
+            order: state.currentSortFields[
             header.sortField
           ]
             ? state.currentSortFields[header.sortField]
-            : header.initialSortOrder;
+            : header.initialSortOrder,
+            iconAsc: (header.sortIcons !== undefined)? header.sortIcons.asc: "",
+            iconDesc: (header.sortIcons !== undefined)? header.sortIcons.desc: "",
+          }
         }
       });
       return sortableFieldsObj;
     });
+
 
     const isFloat = (n) => {
       return n === +n && n !== (n | 0);
