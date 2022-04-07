@@ -36,7 +36,7 @@
           @keydown.enter.prevent="$emit('order', 'ASC')"
         >
           <oxd-icon name="oxd-sort-asc" size="extra-small" />
-          <oxd-text tag="span">Ascending</oxd-text>
+          <oxd-text tag="span">{{ $t('Ascending') }}</oxd-text>
         </li>
         <li
           ref="bottomDropdownElement"
@@ -46,7 +46,7 @@
           @keydown.enter.prevent="$emit('order', 'DESC')"
         >
           <oxd-icon name="oxd-sort-desc" size="extra-small" />
-          <oxd-text tag="span">Decending</oxd-text>
+          <oxd-text tag="span">{{ $t('Decending') }}</oxd-text>
         </li>
       </ul>
     </div>
