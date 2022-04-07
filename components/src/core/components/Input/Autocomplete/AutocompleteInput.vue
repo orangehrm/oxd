@@ -128,7 +128,7 @@ export default defineComponent({
     dropdownPosition: {
       type: String,
       default: BOTTOM,
-      validator: function(value: Position) {
+      validator: function (value: Position) {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
@@ -155,7 +155,8 @@ export default defineComponent({
         .map((option: Option) => {
           let _selected = false;
           if (Array.isArray(this.modelValue)) {
-            _selected = this.modelValue.findIndex(o => o.id === option.id) > -1;
+            _selected =
+              this.modelValue.findIndex((o) => o.id === option.id) > -1;
           } else if (this.modelValue?.id === option.id) {
             _selected = true;
           }
@@ -181,7 +182,7 @@ export default defineComponent({
     highlightedOptions(): string[] {
       const filter = new RegExp(this.searchTerm, 'i');
       return this.computedOptions.map((option: Option) => {
-        return option.label.replace(filter, match => {
+        return option.label.replace(filter, (match) => {
           return sanitizeHtml(`<b>${match}</b>`);
         });
       });
@@ -244,14 +245,14 @@ export default defineComponent({
       }
     },
     doSearch() {
-      new Promise(resolve => {
+      new Promise((resolve) => {
         if (this.createOptions) {
           resolve(this.createOptions(this.searchTerm));
         } else {
           throw new Error('createOptions not defined');
         }
       })
-        .then(resolved => {
+        .then((resolved) => {
           if (resolved && Array.isArray(resolved)) {
             if (resolved.length > 0) {
               this.options = resolved.slice(0, 5);
