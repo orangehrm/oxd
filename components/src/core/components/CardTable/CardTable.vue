@@ -29,7 +29,6 @@ import {
   CardSelector,
   CardHeaders,
   SortDefinition,
-  SpecificSortDefinition,
   HighlightRows,
   HighlightType,
   HIGHLIGHT_TYPES,
@@ -93,11 +92,6 @@ export default defineComponent({
     },
     order: {
       type: Object as PropType<SortDefinition>,
-      default: () => ({}),
-    },
-
-    specificSort: {
-      type: Object as PropType<SpecificSortDefinition>,
       default: () => ({}),
     },
     loading: {

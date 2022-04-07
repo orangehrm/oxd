@@ -127,7 +127,6 @@
           :loading="isListLoading"
           v-model:selected="state.checkedItems"
           v-model:order="order"
-          :specific-sort="specificSort"
           @update:order="tableSort"
           @update:selected="tableSelect"
           rowDecorator="oxd-table-decorator-card"
@@ -264,25 +263,20 @@ export default defineComponent({
       const sortableFieldsObj = {};
       config.value.table.headers.forEach((header) => {
         if (header.initialSortOrder) {
-          sortableFieldsObj[header.sortField] = state.currentSortFields[
+          sortableFieldsObj[header.sortField] = {
+            order: state.currentSortFields[
             header.sortField
           ]
             ? state.currentSortFields[header.sortField]
-            : header.initialSortOrder;
+            : header.initialSortOrder,
+            iconAsc: (header.sortIcons !== undefined)? header.sortIcons.asc: "",
+            iconDesc: (header.sortIcons !== undefined)? header.sortIcons.desc: "",
+          }
         }
       });
       return sortableFieldsObj;
     });
 
-    const specificSort = computed(() => {
-      const specificSortFieldsObj = {};
-      config.value.table.headers.forEach((header) => {
-          specificSortFieldsObj[header.sortField] = header.specificSort
-            ? true
-            : false;
-      });
-      return specificSortFieldsObj;
-    });
 
     const isFloat = (n) => {
       return n === +n && n !== (n | 0);
@@ -429,7 +423,6 @@ export default defineComponent({
       sampleImages,
       oxdCardTableStyleClasses,
       order,
-      specificSort,
       sidePanelListOnHeaderBtnClick,
       sidePanelListOnSelect,
       quickSearchSelect,

@@ -71,7 +71,10 @@ const headers = [
     name: "action",
     sortField: "stage",
     initialSortOrder: "DEFAULT",
-    specificSort: true,
+    sortIcons: {
+      asc: "oxd-sort-asc-specific",
+      desc: "oxd-sort-desc-specific"
+    },
     slot: "footer",
     title: "Stage",
     style: {

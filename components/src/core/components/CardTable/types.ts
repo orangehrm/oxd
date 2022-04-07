@@ -43,12 +43,14 @@ export type StyleAttribute = Properties;
 
 export type Order = 'ASC' | 'DESC' | 'DEFAULT';
 
-export interface SortDefinition {
-  [column: string]: Order;
+export interface SortObject {
+  order: String;
+  iconAsc: String;
+  iconDesc: String
 }
 
-export interface SpecificSortDefinition {
-  [column: string]: boolean;
+export interface SortDefinition {
+  [column: string]: SortObject;
 }
 
 export const HIGHLIGHT_TYPE_SUCCESS = 'success';

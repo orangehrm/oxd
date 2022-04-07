@@ -21,7 +21,6 @@
         :style="header.style"
         :class="header.class"
         :order="tableProps.order[header.sortField]"
-        :specific-sort="tableProps.specificSort[header.sortField]"
         @order="onColumnOrderChanged($event, header)"
       >
         <oxd-icon

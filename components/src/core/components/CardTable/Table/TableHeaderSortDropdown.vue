@@ -68,7 +68,7 @@ export default defineComponent({
 
   props: {
     order: {
-      type: String,
+      type: Object,
       required: false,
     },
     specificSort: {
@@ -127,12 +127,12 @@ export default defineComponent({
     sortIcon(): string {
       let icon = '';
       if (this.order !== undefined) {
-        switch (this.order as Order) {
+        switch (this.order.order as Order) {
           case 'ASC':
-            icon = 'oxd-sort-asc' + ((this.specificSort)? ("-specific"): (""));
+            icon = (this.order.iconAsc !== "")? this.order.iconAsc: 'oxd-sort-asc';
             break;
           case 'DESC':
-            icon = 'oxd-sort-desc' + ((this.specificSort)? ("-specific"): (""));
+            icon = (this.order.iconDesc !== "")? this.order.iconDesc: 'oxd-sort-desc';
             break;
           default:
             icon = 'oxd-sort';
@@ -142,11 +142,11 @@ export default defineComponent({
     },
 
     sortIconAsc(): string {
-      return 'oxd-sort-asc' + ((this.specificSort)? ("-specific"): (""));
+      return (this.order.iconAsc !== "")? this.order.iconAsc: 'oxd-sort-asc';
     },
 
     sortIconDesc(): string {
-      return 'oxd-sort-desc' + ((this.specificSort)? ("-specific"): (""));
+      return (this.order.iconDesc !== "")? this.order.iconDesc: 'oxd-sort-desc';
     },
 
     classes(): object {
