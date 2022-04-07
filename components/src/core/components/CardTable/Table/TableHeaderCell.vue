@@ -4,6 +4,7 @@
     <oxd-card-th-sort
       v-if="order !== undefined"
       :order="order"
+      :specific-sort="specificSort"
       @order="onOrder"
     ></oxd-card-th-sort>
   </div>
@@ -20,6 +21,11 @@ export default defineComponent({
   props: {
     order: {
       type: String,
+      required: false,
+    },
+    specificSort: {
+      type: Boolean,
+      default: false,
       required: false,
     },
   },

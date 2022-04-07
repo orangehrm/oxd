@@ -35,7 +35,7 @@
           @click="$emit('order', 'ASC')"
           @keydown.enter.prevent="$emit('order', 'ASC')"
         >
-          <oxd-icon name="oxd-sort-asc" size="extra-small" />
+          <oxd-icon :name="sortIconAsc" size="extra-small" />
           <oxd-text tag="span">Ascending</oxd-text>
         </li>
         <li
@@ -45,7 +45,7 @@
           @click="$emit('order', 'DESC')"
           @keydown.enter.prevent="$emit('order', 'DESC')"
         >
-          <oxd-icon name="oxd-sort-desc" size="extra-small" />
+          <oxd-icon :name="sortIconDesc" size="extra-small" />
           <oxd-text tag="span">Decending</oxd-text>
         </li>
       </ul>
@@ -69,6 +69,11 @@ export default defineComponent({
   props: {
     order: {
       type: String,
+      required: false,
+    },
+    specificSort: {
+      type: Boolean,
+      default: false,
       required: false,
     },
   },
@@ -124,16 +129,24 @@ export default defineComponent({
       if (this.order !== undefined) {
         switch (this.order as Order) {
           case 'ASC':
-            icon = 'oxd-sort-asc';
+            icon = 'oxd-sort-asc' + ((this.specificSort)? ("-specific"): (""));
             break;
           case 'DESC':
-            icon = 'oxd-sort-desc';
+            icon = 'oxd-sort-desc' + ((this.specificSort)? ("-specific"): (""));
             break;
           default:
             icon = 'oxd-sort';
         }
       }
       return icon;
+    },
+
+    sortIconAsc(): string {
+      return 'oxd-sort-asc' + ((this.specificSort)? ("-specific"): (""));
+    },
+
+    sortIconDesc(): string {
+      return 'oxd-sort-desc' + ((this.specificSort)? ("-specific"): (""));
     },
 
     classes(): object {

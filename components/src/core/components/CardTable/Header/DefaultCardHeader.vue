@@ -21,6 +21,7 @@
         :style="header.style"
         :class="header.class"
         :order="tableProps.order[header.sortField]"
+        :specific-sort="tableProps.specificSort[header.sortField]"
         @order="onColumnOrderChanged($event, header)"
       >
         <oxd-icon
@@ -67,7 +68,7 @@ export default defineComponent({
     const tableProps: any = inject('tableProps');
     const screenState: any = inject('screenState');
     /* eslint-enable @typescript-eslint/no-explicit-any */
-
+    
     const state: State = reactive({
       checkIcon: 'check',
       checkedItems: [...tableProps.selected],

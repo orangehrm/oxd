@@ -127,6 +127,7 @@
           :loading="isListLoading"
           v-model:selected="state.checkedItems"
           v-model:order="order"
+          :specific-sort="specificSort"
           @update:order="tableSort"
           @update:selected="tableSelect"
           rowDecorator="oxd-table-decorator-card"
@@ -271,6 +272,16 @@ export default defineComponent({
         }
       });
       return sortableFieldsObj;
+    });
+
+    const specificSort = computed(() => {
+      const specificSortFieldsObj = {};
+      config.value.table.headers.forEach((header) => {
+          specificSortFieldsObj[header.sortField] = header.specificSort
+            ? true
+            : false;
+      });
+      return specificSortFieldsObj;
     });
 
     const isFloat = (n) => {
@@ -418,6 +429,7 @@ export default defineComponent({
       sampleImages,
       oxdCardTableStyleClasses,
       order,
+      specificSort,
       sidePanelListOnHeaderBtnClick,
       sidePanelListOnSelect,
       quickSearchSelect,

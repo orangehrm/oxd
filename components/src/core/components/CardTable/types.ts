@@ -47,6 +47,10 @@ export interface SortDefinition {
   [column: string]: Order;
 }
 
+export interface SpecificSortDefinition {
+  [column: string]: boolean;
+}
+
 export const HIGHLIGHT_TYPE_SUCCESS = 'success';
 export const HIGHLIGHT_TYPE_WARN = 'warn';
 export const HIGHLIGHT_TYPE_ERROR = 'error';

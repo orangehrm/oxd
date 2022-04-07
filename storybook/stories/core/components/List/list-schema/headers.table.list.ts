@@ -69,6 +69,9 @@ const headers = [
   },
   {
     name: "action",
+    sortField: "stage",
+    initialSortOrder: "DEFAULT",
+    specificSort: true,
     slot: "footer",
     title: "Stage",
     style: {
