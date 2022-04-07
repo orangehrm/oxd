@@ -159,8 +159,11 @@ import TableSidebar from '@orangehrm/oxd/core/components/TableSidebar/TableSideb
 import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue';
 import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination.vue';
 import images from '../ProfilePic/images';
+import useTranslate from './../../../composables/useTranslate';
 
 import {defineComponent, reactive, computed, ref, watch} from 'vue';
+
+const {$t} = useTranslate();
 
 export default defineComponent({
   components: {
@@ -293,7 +296,7 @@ export default defineComponent({
             ? config.value.table.topBar.listRecordCount.multiTerm
             : config.value.table.topBar.listRecordCount.singleTerm
         }
-        ${state.selectedItemIndexes.length > 0 ? 'Selected' : 'Found'}
+        ${state.selectedItemIndexes.length > 0 ? $t('Selected') : $t('Found')}
       `;
     });
 
