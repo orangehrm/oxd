@@ -163,11 +163,11 @@ exports[`TableSidebar.vue with oxd-chip on left renders OXD TableSidebar with ch
 `;
 
 exports[`TableSidebar.vue with oxd-chip on left renders OXD TableSidebar with secondary header button 1`] = `
-<div class="oxd-table-left-panel" style="width: 230px;">
+<div class="oxd-table-left-panel with-secondary" style="width: 230px;">
   <div class="oxd-table-left-panel--header">
-    <div class="table-header-container-with-secondary-btn">
+    <div class="table-header-action-btn-container">
       <oxd-button-stub label="New Candidate" iconname="oxd-add" displaytype="secondary" size="long" iconsize="medium" iconrightsize="medium" flow="right" class="table-header-action-btn w-75"></oxd-button-stub>
-      <oxd-icon-button-stub name="oxd-new-folder" withcontainer="true" disabled="false" tooltip="New Folder" flow="top" iconstyles="[object Object]" showtooltipwhendisabled="false" class="table-header-action-secondary-btn"></oxd-icon-button-stub>
+      <oxd-icon-button-stub size="extra-large" name="oxd-new-folder" withcontainer="true" disabled="false" tooltip="New Folder" flow="top" iconstyles="[object Object]" showtooltipwhendisabled="false" class="table-header-action-secondary-btn"></oxd-icon-button-stub>
       <oxd-divider-stub class="oxd-table-left-panel--separator"></oxd-divider-stub>
     </div>
   </div>
