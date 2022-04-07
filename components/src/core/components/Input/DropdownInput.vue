@@ -39,7 +39,12 @@
       />
     </div>
     <transition name="transition-fade-down">
-      <ul role="listbox" v-if="open" class="oxd-dropdown-options" v-dropdown-direction>
+      <ul
+        role="listbox"
+        v-if="open"
+        class="oxd-dropdown-options"
+        v-dropdown-direction
+      >
         <li
           v-for="(option, index) in filteredOptions"
           :ref="`optElm-${index}`"
