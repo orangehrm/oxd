@@ -1,12 +1,11 @@
 <template>
-  <div class="oxd-table-left-panel" :style="customStyles">
+  <div class="oxd-table-left-panel" :style="customStyles"
+  :class="headerSecondaryBtnVisible ? 'with-secondary':''">
     <div v-if="headerVisible" class="oxd-table-left-panel--header">
       <slot name="header">
         <div
           v-if="headerActionButtonVisible"
-          :class="headerSecondaryBtnVisible
-          ? 'table-header-container-with-secondary-btn'
-          : 'table-header-action-btn-container'" >    
+          class='table-header-action-btn-container' >    
           <oxd-button
             class="table-header-action-btn"
             :class="!isLeftPanelOpen ? 'no-label' :  headerSecondaryBtnVisible ? 'w-75' : 'w-100'"
@@ -27,6 +26,7 @@
           <oxd-icon-button
             v-if="headerSecondaryBtnVisible"
             class="table-header-action-secondary-btn"
+            size="extra-large"
             :name="buttonData.secondaryBtnIcon"
             :tooltip="buttonData.secondaryBtnLabel"
             @click="onHeaderSecondaryBtnClick"

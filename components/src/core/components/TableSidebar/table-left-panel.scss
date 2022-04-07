@@ -13,6 +13,28 @@
     margin-top: 0.5rem;
     padding-bottom: 0.5rem !important;
   }
+  &.with-secondary {
+    :deep(.oxd-button) {
+      display: inline-flex;
+    }
+    :deep(.table-header-action-btn) {
+      margin: 0.5rem 0 0 0;
+    }
+    :deep(.count-container) {
+      width: 95%;
+    }
+    :deep(.oxd-button) {
+      padding-right: 10px;
+    padding-left: 10px;
+    }
+    .oxd-table-left-panel--toggle-btn {
+      top: 48px;
+    }
+    .oxd-table-left-panel--separator {
+      margin: 1rem 0.9rem 1rem 0.5rem;
+    } 
+    padding-right: 0px;
+  }
   &--toggle-btn {
     position: absolute;
     width: 20px;
@@ -107,14 +129,9 @@
     }
   }
 }
-.table-header-container-with-secondary-btn {
-  :deep(.oxd-button) {
-    display: inline-flex;
-  }
-}
 .table-header-action-secondary-btn{
   display: inline-flex;
   margin-left: 0.5rem !important;
   color: $oxd-button-color--secondary ;
-  background-color: #e6f5cd;
+  background-color: #f0fae4;
 }
