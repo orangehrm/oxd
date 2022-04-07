@@ -72,8 +72,8 @@ const headers = [
     sortField: "stage",
     initialSortOrder: "DEFAULT",
     sortIcons: {
-      asc: "oxd-sort-asc-specific",
-      desc: "oxd-sort-desc-specific"
+      asc: "oxd-sort-asc-arrow",
+      desc: "oxd-sort-desc-arrow"
     },
     slot: "footer",
     title: "Stage",
