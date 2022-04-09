@@ -1,36 +1,43 @@
 <template>
-  <div class="oxd-table-left-panel" :style="customStyles"
-  :class="headerSecondaryBtnVisible ? 'with-secondary':''">
+  <div
+    class="oxd-table-left-panel"
+    :style="customStyles"
+    :class="headerSecondaryBtnVisible ? 'with-secondary' : ''"
+  >
     <div v-if="headerVisible" class="oxd-table-left-panel--header">
       <slot name="header">
         <div
           v-if="headerActionButtonVisible"
-          class='table-header-action-btn-container' >    
-          <oxd-button
-            class="table-header-action-btn"
-            :class="!isLeftPanelOpen ? 'no-label' :  headerSecondaryBtnVisible ? 'w-75' : 'w-100'"
-            :tooltip="!isLeftPanelOpen ? buttonData.label : null"
-            flow="right"
-            :label="buttonData.label"
-            :iconName="buttonData.iconName"
-            :iconSize="buttonData.iconSize"
-            :size="buttonData.size"
-            :style="buttonData.style"
-            :displayType="buttonData.displayType"
-            @click="onHeaderBtnClick"
-          >
-            <template v-if="buttonData.iconImageSrc" v-slot:icon>
-              <img :src="buttonData.iconImageSrc" />
-            </template>
-          </oxd-button>
-          <oxd-icon-button
-            v-if="headerSecondaryBtnVisible"
-            class="table-header-action-secondary-btn"
-            size="extra-large"
-            :name="buttonData.secondaryBtnIcon"
-            :tooltip="buttonData.secondaryBtnLabel"
-            @click="onHeaderSecondaryBtnClick"
-          />
+          class="table-header-action-btn-container"
+        >
+          <div class="table-header-action-btns">
+            <oxd-button
+              class="table-header-action-btn" 
+              :class="!isLeftPanelOpen? 'no-label': headerSecondaryBtnVisible? 'w-75': 'w-100'"
+              :tooltip="!isLeftPanelOpen ? buttonData.label : null"
+              flow="right"
+              :label="buttonData.label"
+              :iconName="buttonData.iconName"
+              :iconSize="buttonData.iconSize"
+              :size="buttonData.size"
+              :style="buttonData.style"
+              :displayType="buttonData.displayType"
+              @click="onHeaderBtnClick"
+            >
+              <template v-if="buttonData.iconImageSrc" v-slot:icon>
+                <img :src="buttonData.iconImageSrc" />
+              </template>
+            </oxd-button>
+            <oxd-icon-button
+              v-if="headerSecondaryBtnVisible"
+              class="table-header-action-secondary-btn"
+              :class="!isLeftPanelOpen ? 'collapsed-btn' : ''"
+              size="extra-large"
+              :name="buttonData.secondaryBtnIcon"
+              :tooltip="buttonData.secondaryBtnLabel"
+              @click="onHeaderSecondaryBtnClick"
+            />
+          </div>
           <oxd-divider class="oxd-table-left-panel--separator" />
         </div>
       </slot>

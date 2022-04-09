@@ -1,4 +1,4 @@
-import {mount,shallowMount} from '@vue/test-utils';
+import {mount, shallowMount} from '@vue/test-utils';
 import TableSidebar from '@orangehrm/oxd/core/components/TableSidebar/TableSidebar.vue';
 
 describe('TableSidebar.vue', () => {
@@ -608,8 +608,8 @@ describe('TableSidebar.vue with oxd-chip on left', () => {
             size: 'long',
             'display-type': 'label-info',
             'icon-name': 'plus',
-            secondaryBtnLabel: "New Folder",
-            secondaryBtnIcon: "oxd-new-folder",
+            secondaryBtnLabel: 'New Folder',
+            secondaryBtnIcon: 'oxd-new-folder',
           },
         },
       },
@@ -635,8 +635,8 @@ describe('TableSidebar.vue with oxd-chip on left', () => {
             size: 'long',
             'display-type': 'label-info',
             'icon-name': 'plus',
-            secondaryBtnLabel: "New Folder",
-            secondaryBtnIcon: "oxd-new-folder",
+            secondaryBtnLabel: 'New Folder',
+            secondaryBtnIcon: 'oxd-new-folder',
           },
         },
       },
@@ -645,6 +645,8 @@ describe('TableSidebar.vue with oxd-chip on left', () => {
       .findComponent(TableSidebar)
       .find('.table-header-action-secondary-btn')
       .trigger('click');
-    expect(wrapper.emitted('sidePanelList:onHeaderSecondaryBtnClick')).toBeTruthy();
+    expect(
+      wrapper.emitted('sidePanelList:onHeaderSecondaryBtnClick'),
+    ).toBeTruthy();
   });
 });

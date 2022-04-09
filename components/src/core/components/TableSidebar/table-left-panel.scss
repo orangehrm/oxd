@@ -17,22 +17,24 @@
     :deep(.oxd-button) {
       display: inline-flex;
     }
-    :deep(.table-header-action-btn) {
-      margin: 0.5rem 0 0 0;
-    }
     :deep(.count-container) {
       width: 95%;
     }
     :deep(.oxd-button) {
       padding-right: 10px;
-    padding-left: 10px;
+      padding-left: 10px;
     }
     .oxd-table-left-panel--toggle-btn {
       top: 48px;
     }
+    .table-header-action-secondary-btn{
+      margin-left: 0.5rem;
+    }
     .oxd-table-left-panel--separator {
-      margin: 1rem 0.9rem 1rem 0.5rem;
-    } 
+      margin: 0.5rem 0.9rem 1rem 0.5rem;
+    }
+    .no-label{padding-right: 20px;
+      padding-left: 20px;}
     padding-right: 0px;
   }
   &--toggle-btn {
@@ -129,9 +131,21 @@
     }
   }
 }
+.table-header-action-btns{
+  display: flex;
+  align-items: center;
+}
 .table-header-action-secondary-btn{
   display: inline-flex;
-  margin-left: 0.5rem !important;
-  color: $oxd-button-color--secondary ;
   background-color: #f0fae4;
+  :deep(.oxd-svg-icon) {
+    height: 1.3rem;
+    width: 1.3rem;
+  }
+  :deep(.cls-1) {
+    fill: $oxd-button-color--secondary;
+  }
+  &.collapsed-btn {
+    margin-right: 0.5rem !important;
+    }
 }
