@@ -32,7 +32,7 @@
       ></oxd-icon>
       <oxd-input
         v-model="searchTerm"
-        placeholder="Search"
+        :placeholder="t('general.search', 'Search')"
         :class="{toggled: toggle}"
       />
       <oxd-icon-button
@@ -67,11 +67,18 @@ import MainMenuItem from './MainMenuItem.vue';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@ohrm/oxd/core/components/Input/Input.vue';
 import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
+import usei18n from '../../../composables/usei18n';
 
 export default defineComponent({
   name: 'oxd-main-menu',
 
   emits: ['collapse'],
+
+  setup() {
+    return {
+      ...usei18n(),
+    };
+  },
 
   data() {
     return {

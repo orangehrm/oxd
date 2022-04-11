@@ -46,7 +46,7 @@
       :empty-text="emptyText"
     >
       <oxd-select-option v-if="showEmptySelector" @select="onClear">
-        {{ placeholder }}
+        {{ placeholderText }}
       </oxd-select-option>
       <oxd-select-option
         v-for="(option, i) in computedOptions"
@@ -71,6 +71,7 @@ import {TOP, BOTTOM, Option, Position, DROPDOWN_POSITIONS} from '../types';
 import SelectText from '@ohrm/oxd/core/components/Input/Select/SelectText.vue';
 import SelectDropdown from '@ohrm/oxd/core/components/Input/Select/SelectDropdown.vue';
 import SelectOption from '@ohrm/oxd/core/components/Input/Select/SelectOption.vue';
+import usei18n from '../../../../composables/usei18n';
 
 export default defineComponent({
   name: 'oxd-select-input',
@@ -106,7 +107,7 @@ export default defineComponent({
     },
     placeholder: {
       type: String,
-      default: '-- Select --',
+      default: null,
     },
     showEmptySelector: {
       type: Boolean,
@@ -123,6 +124,12 @@ export default defineComponent({
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
+  },
+
+  setup() {
+    return {
+      ...usei18n(),
+    };
   },
 
   data() {
@@ -161,10 +168,15 @@ export default defineComponent({
       });
     },
     selectedItem(): string {
-      return this.modelValue?.label ? this.modelValue.label : this.placeholder;
+      return this.modelValue?.label
+        ? this.modelValue.label
+        : this.placeholderText;
     },
     inputValue(): string {
       return this.computedOptions[this.pointer]?.label || this.selectedItem;
+    },
+    placeholderText(): string {
+      return this.placeholder ?? this.t('general.select', '-- Select --');
     },
   },
 
