@@ -17,12 +17,18 @@
       flex-direction: column;
       justify-content: space-between;
       .table-header-action-btn {
-        margin-top: 0 !important;
+        margin: 0 0 1rem 0;
+      }
+      .oxd-table-left-panel--separator {
+        margin-bottom: 1rem;
       }
     }
+    :deep(.oxd-table-left-panel--body) {
+      margin-top: 0;
+    }
     :deep(.oxd-table-left-panel--separator) {
-      margin-top: 1rem;
-      margin-bottom: 0.5rem;
+      margin-top: 0;
+      margin-bottom: 0;
     }
     &--toggle-btn {
       top: 43px;
