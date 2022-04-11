@@ -596,22 +596,26 @@ describe('TableSidebar.vue with oxd-chip on left', () => {
         bodyVisible: true,
         listVisible: true,
         headerActionButtonVisible: true,
-        headerSecondaryBtnVisible: true,
         selectedListItemId: '2',
         sidePanelList: [],
         bubbleVisible: true,
         width: '230px',
         button: {
           props: {
-            label: 'New Candidate',
-            displayType: 'secondary',
-            size: 'long',
-            'display-type': 'label-info',
-            'icon-name': 'plus',
-            secondaryBtnLabel: 'New Folder',
-            secondaryBtnIcon: 'oxd-new-folder',
+            label: "New Report",
+            displayType: "secondary",
+            size: "long",
+            "display-type": "label-info",
+            "icon-name": "oxd-add",
           },
         },
+        secondaryButton: {
+          props: {
+            label: "New Folder",
+            icon: "oxd-new-folder",
+            size: "extra-large",
+          },
+        }
       },
     });
     expect(wrapper.html()).toMatchSnapshot();
@@ -623,20 +627,24 @@ describe('TableSidebar.vue with oxd-chip on left', () => {
         bodyVisible: true,
         listVisible: true,
         headerActionButtonVisible: true,
-        headerSecondaryBtnVisible: true,
         selectedListItemId: '2',
         sidePanelList: [],
         bubbleVisible: true,
         width: '230px',
         button: {
           props: {
-            label: 'New Candidate',
-            displayType: 'secondary',
-            size: 'long',
-            'display-type': 'label-info',
-            'icon-name': 'plus',
-            secondaryBtnLabel: 'New Folder',
-            secondaryBtnIcon: 'oxd-new-folder',
+            label: "New Report",
+            displayType: "secondary",
+            size: "long",
+            "display-type": "label-info",
+            "icon-name": "oxd-add",
+          },
+        },
+        secondaryButton: {
+          props: {
+            label: "New Folder",
+            icon: "oxd-new-folder",
+            size: "extra-large",
           },
         },
       },

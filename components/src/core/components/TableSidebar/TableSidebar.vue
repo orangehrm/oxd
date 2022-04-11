@@ -2,7 +2,7 @@
   <div
     class="oxd-table-left-panel"
     :style="customStyles"
-    :class="headerSecondaryBtnVisible ? 'with-secondary' : ''"
+    :class="secondaryButton ? 'with-secondary' : ''"
   >
     <div v-if="headerVisible" class="oxd-table-left-panel--header">
       <slot name="header">
@@ -13,7 +13,7 @@
           <div class="table-header-action-btns">
             <oxd-button
               class="table-header-action-btn" 
-              :class="!isLeftPanelOpen? 'no-label': headerSecondaryBtnVisible? 'w-75': 'w-100'"
+              :class="!isLeftPanelOpen? 'no-label': secondaryButton? 'w-75': 'w-100'"
               :tooltip="!isLeftPanelOpen ? buttonData.label : null"
               flow="right"
               :label="buttonData.label"
@@ -29,12 +29,12 @@
               </template>
             </oxd-button>
             <oxd-icon-button
-              v-if="headerSecondaryBtnVisible"
+              v-if="secondaryButton"
               class="table-header-action-secondary-btn"
               :class="!isLeftPanelOpen ? 'collapsed-btn' : ''"
-              size="extra-large"
-              :name="buttonData.secondaryBtnIcon"
-              :tooltip="buttonData.secondaryBtnLabel"
+              :size="secondaryButton.size || 'extra-large'"
+              :name="secondaryButton.icon || 'oxd-folder'"
+              :tooltip="secondaryButton.label || 'New Folder'"
               @click="onHeaderSecondaryBtnClick"
             />
           </div>
@@ -125,10 +125,6 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    headerSecondaryBtnVisible: {
-      type: Boolean,
-      default: false,
-    },
     bodyVisible: {
       type: Boolean,
       default: false,
@@ -146,6 +142,10 @@ export default defineComponent({
       default: false,
     },
     button: {
+      type: Object,
+      default: () => null,
+    },
+    secondaryButton: {
       type: Object,
       default: () => null,
     },

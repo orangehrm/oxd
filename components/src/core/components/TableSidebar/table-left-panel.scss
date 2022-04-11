@@ -140,14 +140,10 @@
 .table-header-action-secondary-btn{
   display: inline-flex;
   background-color: #f0fae4;
-  :deep(.oxd-svg-icon) {
-    height: 1.3rem;
-    width: 1.3rem;
-  }
   :deep(.cls-1) {
     fill: $oxd-button-color--secondary;
   }
   &.collapsed-btn {
-    margin-right: 0.5rem !important;
+    margin-right: 0.5rem;
     }
 }
