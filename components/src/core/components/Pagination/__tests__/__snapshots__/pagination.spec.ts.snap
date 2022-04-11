@@ -13,7 +13,9 @@ exports[`Pagination.vue renders OXD Pagination 1`] = `
     <div class="oxd-select-wrapper">
       <div class="pagination-dropdown oxd-select-text oxd-select-text--active" tabindex="0">
         <div class="oxd-select-text-input">20</div>
-        <div class="oxd-select-text--after"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill oxd-select-text--arrow"></i></div>
+        <div class="oxd-select-text--after">
+          <div class="oxd-select-text--arrow"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill"></i></div>
+        </div>
       </div>
       <!--v-if-->
     </div>
@@ -34,7 +36,9 @@ exports[`Pagination.vue should renders OXD Pagination with |1|, 2, 3, 4, 5 1`] =
     <div class="oxd-select-wrapper">
       <div class="pagination-dropdown oxd-select-text oxd-select-text--active" tabindex="0">
         <div class="oxd-select-text-input">20</div>
-        <div class="oxd-select-text--after"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill oxd-select-text--arrow"></i></div>
+        <div class="oxd-select-text--after">
+          <div class="oxd-select-text--arrow"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill"></i></div>
+        </div>
       </div>
       <!--v-if-->
     </div>
@@ -55,7 +59,9 @@ exports[`Pagination.vue should renders OXD Pagination with |17|, 18, 19, 20, 21 
     <div class="oxd-select-wrapper">
       <div class="pagination-dropdown oxd-select-text oxd-select-text--active" tabindex="0">
         <div class="oxd-select-text-input">20</div>
-        <div class="oxd-select-text--after"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill oxd-select-text--arrow"></i></div>
+        <div class="oxd-select-text--after">
+          <div class="oxd-select-text--arrow"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill"></i></div>
+        </div>
       </div>
       <!--v-if-->
     </div>
@@ -76,7 +82,9 @@ exports[`Pagination.vue should renders OXD Pagination with 1, |2|, 3, 4, 5 1`] =
     <div class="oxd-select-wrapper">
       <div class="pagination-dropdown oxd-select-text oxd-select-text--active" tabindex="0">
         <div class="oxd-select-text-input">20</div>
-        <div class="oxd-select-text--after"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill oxd-select-text--arrow"></i></div>
+        <div class="oxd-select-text--after">
+          <div class="oxd-select-text--arrow"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill"></i></div>
+        </div>
       </div>
       <!--v-if-->
     </div>
@@ -97,7 +105,9 @@ exports[`Pagination.vue should renders OXD Pagination with 1, 2, |3|, 4, 5 1`] =
     <div class="oxd-select-wrapper">
       <div class="pagination-dropdown oxd-select-text oxd-select-text--active" tabindex="0">
         <div class="oxd-select-text-input">20</div>
-        <div class="oxd-select-text--after"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill oxd-select-text--arrow"></i></div>
+        <div class="oxd-select-text--after">
+          <div class="oxd-select-text--arrow"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill"></i></div>
+        </div>
       </div>
       <!--v-if-->
     </div>
@@ -119,7 +129,9 @@ exports[`Pagination.vue should renders OXD Pagination with 1, 2, 3, |4|, 5, 6 1`
     <div class="oxd-select-wrapper">
       <div class="pagination-dropdown oxd-select-text oxd-select-text--active" tabindex="0">
         <div class="oxd-select-text-input">20</div>
-        <div class="oxd-select-text--after"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill oxd-select-text--arrow"></i></div>
+        <div class="oxd-select-text--after">
+          <div class="oxd-select-text--arrow"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill"></i></div>
+        </div>
       </div>
       <!--v-if-->
     </div>
@@ -140,7 +152,9 @@ exports[`Pagination.vue should renders OXD Pagination with 17, |18|, 19, 20, 21 
     <div class="oxd-select-wrapper">
       <div class="pagination-dropdown oxd-select-text oxd-select-text--active" tabindex="0">
         <div class="oxd-select-text-input">20</div>
-        <div class="oxd-select-text--after"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill oxd-select-text--arrow"></i></div>
+        <div class="oxd-select-text--after">
+          <div class="oxd-select-text--arrow"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill"></i></div>
+        </div>
       </div>
       <!--v-if-->
     </div>
@@ -161,7 +175,9 @@ exports[`Pagination.vue should renders OXD Pagination with 17, 18, |19|, 20, 21 
     <div class="oxd-select-wrapper">
       <div class="pagination-dropdown oxd-select-text oxd-select-text--active" tabindex="0">
         <div class="oxd-select-text-input">20</div>
-        <div class="oxd-select-text--after"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill oxd-select-text--arrow"></i></div>
+        <div class="oxd-select-text--after">
+          <div class="oxd-select-text--arrow"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill"></i></div>
+        </div>
       </div>
       <!--v-if-->
     </div>
@@ -182,7 +198,9 @@ exports[`Pagination.vue should renders OXD Pagination with 17, 18, 19, |20|, 21 
     <div class="oxd-select-wrapper">
       <div class="pagination-dropdown oxd-select-text oxd-select-text--active" tabindex="0">
         <div class="oxd-select-text-input">20</div>
-        <div class="oxd-select-text--after"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill oxd-select-text--arrow"></i></div>
+        <div class="oxd-select-text--after">
+          <div class="oxd-select-text--arrow"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill"></i></div>
+        </div>
       </div>
       <!--v-if-->
     </div>
@@ -203,7 +221,9 @@ exports[`Pagination.vue should renders OXD Pagination with 17, 18, 19, 20, |21| 
     <div class="oxd-select-wrapper">
       <div class="pagination-dropdown oxd-select-text oxd-select-text--active" tabindex="0">
         <div class="oxd-select-text-input">20</div>
-        <div class="oxd-select-text--after"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill oxd-select-text--arrow"></i></div>
+        <div class="oxd-select-text--after">
+          <div class="oxd-select-text--arrow"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill"></i></div>
+        </div>
       </div>
       <!--v-if-->
     </div>
@@ -224,7 +244,9 @@ exports[`Pagination.vue should renders OXD Pagination with current 1`] = `
     <div class="oxd-select-wrapper">
       <div class="pagination-dropdown oxd-select-text oxd-select-text--active" tabindex="0">
         <div class="oxd-select-text-input">20</div>
-        <div class="oxd-select-text--after"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill oxd-select-text--arrow"></i></div>
+        <div class="oxd-select-text--after">
+          <div class="oxd-select-text--arrow"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill"></i></div>
+        </div>
       </div>
       <!--v-if-->
     </div>
@@ -243,7 +265,9 @@ exports[`Pagination.vue should renders OXD Pagination with length < max 1`] = `
     <div class="oxd-select-wrapper">
       <div class="pagination-dropdown oxd-select-text oxd-select-text--active" tabindex="0">
         <div class="oxd-select-text-input">20</div>
-        <div class="oxd-select-text--after"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill oxd-select-text--arrow"></i></div>
+        <div class="oxd-select-text--after">
+          <div class="oxd-select-text--arrow"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill"></i></div>
+        </div>
       </div>
       <!--v-if-->
     </div>
@@ -265,7 +289,9 @@ exports[`Pagination.vue should renders OXD Pagination with length > max 1`] = `
     <div class="oxd-select-wrapper">
       <div class="pagination-dropdown oxd-select-text oxd-select-text--active" tabindex="0">
         <div class="oxd-select-text-input">20</div>
-        <div class="oxd-select-text--after"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill oxd-select-text--arrow"></i></div>
+        <div class="oxd-select-text--after">
+          <div class="oxd-select-text--arrow"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill"></i></div>
+        </div>
       </div>
       <!--v-if-->
     </div>
