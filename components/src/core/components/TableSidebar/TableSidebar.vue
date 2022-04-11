@@ -33,7 +33,7 @@
               class="table-header-action-secondary-btn"
               :class="!isLeftPanelOpen ? 'collapsed-btn' : ''"
               :size="secondaryButton.size || 'extra-large'"
-              :name="secondaryButton.icon || 'oxd-folder'"
+              :name="secondaryButton.icon || 'oxd-new-folder'"
               :tooltip="secondaryButton.label || 'New Folder'"
               @click="onHeaderSecondaryBtnClick"
             />
