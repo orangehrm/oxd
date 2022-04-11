@@ -16,10 +16,16 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      .table-header-action-btn {
+        margin-top: 0 !important;
+      }
     }
     :deep(.oxd-table-left-panel--separator) {
-      margin-top: 0;
-      margin-bottom: 0;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    &--toggle-btn {
+      top: 43px;
     }
   }
   .table-card-list-wrapper {
@@ -32,7 +38,7 @@
       border-radius: 0;
       :deep(.oxd-table-filter-header) {
         min-height: 2.5rem;
-        margin-bottom: 0.625rem;
+        margin-bottom: 0.85rem;
         .oxd-table-filter-header-title {
           .oxd-table-filter-title {
             font-weight: 600;
@@ -60,6 +66,7 @@
   }
   .oxd-classic-table {
     padding-right: 0;
+    padding-left: 0.625rem;
     padding-top: 0;
     flex-wrap: nowrap;
     :deep(.oxd-icon-button) {
@@ -72,6 +79,13 @@
       text-align: left;
       padding-top: 0.65rem;
       padding-bottom: 0.65rem;
+      .oxd-table-header-sort {
+        .oxd-svg-icon {
+          &:hover {
+            color: $oxd-interface-gray-darken-1-color;
+          }
+        }
+      }
     }
     :deep(.oxd-table-cell) {
       &:first-child {
