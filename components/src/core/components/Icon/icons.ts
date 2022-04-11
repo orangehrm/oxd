@@ -451,6 +451,7 @@ const icons: Icons = {
   'oxd-filter': oxdFilter,
   'oxd-calendar': oxdCalendar,
   'oxd-new-folder': oxdNewFolder,
+  'oxd-folder': oxdFolder,
 };
 
 export default icons;
