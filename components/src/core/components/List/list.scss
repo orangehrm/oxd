@@ -19,19 +19,13 @@
       .table-header-action-btn {
         margin: 0 0 1rem 0;
       }
-      .oxd-table-left-panel--separator {
-        margin-bottom: 1rem;
-      }
-    }
-    :deep(.oxd-table-left-panel--body) {
-      margin-top: 0;
     }
     :deep(.oxd-table-left-panel--separator) {
       margin-top: 0;
       margin-bottom: 0;
     }
     &--toggle-btn {
-      top: 43px;
+      top: 42px;
     }
   }
   .table-card-list-wrapper {
