@@ -25,7 +25,7 @@
       {{ t('general.searching', 'Searching...') }}
     </oxd-autocomplete-option>
     <oxd-autocomplete-option v-else-if="empty">
-      {{ t('general.no_results_found', 'No results found') }}
+      {{ t('general.no_records_found', 'No records found') }}
     </oxd-autocomplete-option>
     <slot v-else></slot>
   </div>

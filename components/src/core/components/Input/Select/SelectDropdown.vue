@@ -22,7 +22,7 @@
 <template>
   <div role="listbox" class="oxd-select-dropdown">
     <oxd-select-option v-if="empty">
-      {{ emptyText }}
+      {{ placeholderText }}
     </oxd-select-option>
     <slot v-else></slot>
   </div>
@@ -31,6 +31,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import SelectOption from '@ohrm/oxd/core/components/Input/Select/SelectOption.vue';
+import usei18n from '../../../../composables/usei18n';
 
 export default defineComponent({
   name: 'oxd-select-dropdown',
@@ -46,7 +47,21 @@ export default defineComponent({
     },
     emptyText: {
       type: String,
-      default: 'No results found',
+      default: null,
+    },
+  },
+
+  setup() {
+    return {
+      ...usei18n(),
+    };
+  },
+
+  computed: {
+    placeholderText(): string {
+      return (
+        this.emptyText ?? this.t('general.no_records_found', 'No records found')
+      );
     },
   },
 });

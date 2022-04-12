@@ -24,7 +24,7 @@
     <oxd-autocomplete-text-input
       v-bind="$attrs"
       :clear="showClear"
-      :placeholder="placeholder"
+      :placeholder="placeholderText"
       :value="inputValue"
       :disabled="disabled"
       :readonly="readonly"
@@ -90,6 +90,7 @@ import AutocompleteTextInput from '@ohrm/oxd/core/components/Input/Autocomplete/
 import AutocompleteDropdown from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteDropdown.vue';
 import AutocompleteOption from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteOption.vue';
 import AutocompleteChips from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteChips.vue';
+import usei18n from '../../../../composables/usei18n';
 
 export default defineComponent({
   name: 'oxd-autocomplete-input',
@@ -128,7 +129,7 @@ export default defineComponent({
     },
     placeholder: {
       type: String,
-      default: 'Type for hints...',
+      default: null,
     },
     createOptions: {
       type: Function,
@@ -145,6 +146,12 @@ export default defineComponent({
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
+  },
+
+  setup() {
+    return {
+      ...usei18n(),
+    };
   },
 
   data() {
@@ -214,6 +221,12 @@ export default defineComponent({
         !this.readonly &&
         this.clear &&
         this.selectedItem !== null
+      );
+    },
+    placeholderText(): string {
+      return (
+        this.placeholder ??
+        this.t('general.type_for_hints', 'Type for hints...')
       );
     },
   },

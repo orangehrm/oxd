@@ -39,7 +39,7 @@
         {{ buttonLabel }}
       </div>
       <div class="oxd-file-input-div">
-        {{ inputValue ? inputValue : placeholder }}
+        {{ inputValue ? inputValue : placeholderText }}
       </div>
       <oxd-icon
         :class="{'oxd-file-input-icon': true, '--disabled': disabled}"
@@ -53,6 +53,7 @@
 import {defineComponent} from 'vue';
 import {OutputFile} from './types';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
+import usei18n from '../../../composables/usei18n';
 
 export interface State {
   focused: boolean;
@@ -81,7 +82,7 @@ export default defineComponent({
     },
     placeholder: {
       type: String,
-      default: 'No file chosen',
+      default: null,
     },
     disabled: {
       type: Boolean,
@@ -95,6 +96,12 @@ export default defineComponent({
 
   components: {
     'oxd-icon': Icon,
+  },
+
+  setup() {
+    return {
+      ...usei18n(),
+    };
   },
 
   data(): State {
@@ -133,6 +140,11 @@ export default defineComponent({
       return {
         'oxd-file-input': true,
       };
+    },
+    placeholderText(): string {
+      return (
+        this.placeholder ?? this.t('general.no_file_chosen', 'No file chosen')
+      );
     },
   },
 
