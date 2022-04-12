@@ -27,6 +27,9 @@ export default {
     type: {
       control: {type: 'select', options: TYPES},
     },
+    progress: {
+      control: {type: 'range', min: 0, max: 100, step: 1},
+    },
   },
 };
 
@@ -41,12 +44,14 @@ const Template = args => ({
 export const Default = Template.bind({});
 Default.args = {
   type: 'default',
+  progress: 15,
 };
 
 export const WithoutLabel = Template.bind({});
 WithoutLabel.args = {
   showLabel: false,
   type: 'secondary',
+  progress: 85,
 };
 
 export const WithStripes = Template.bind({});
@@ -54,6 +59,7 @@ WithStripes.args = {
   stripe: true,
   showLabel: false,
   type: 'main',
+  progress: 10.22,
 };
 
 export const WithAnimation = Template.bind({});
@@ -62,4 +68,5 @@ WithAnimation.args = {
   animation: true,
   showLabel: false,
   type: 'warn',
+  progress: 25.22222,
 };

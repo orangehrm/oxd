@@ -50,6 +50,13 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    progress: {
+      type: Number,
+      default: 0,
+      validator: function(value: number) {
+        return value >= 0 && value <= 100;
+      },
+    },
     type: {
       type: String,
       default: TYPE_DEFAULT,
@@ -60,11 +67,6 @@ export default defineComponent({
   },
   components: {
     'oxd-text': Text,
-  },
-  data() {
-    return {
-      progress: 50,
-    };
   },
   computed: {
     styles(): object {

@@ -29,6 +29,7 @@
   }
   &-wrapper {
     width: 100%;
+    overflow: hidden;
     height: $oxd-progressbar-height;
     border-radius: $oxd-progressbar-border-radius;
     background-color: $oxd-progressbar-background-color;
