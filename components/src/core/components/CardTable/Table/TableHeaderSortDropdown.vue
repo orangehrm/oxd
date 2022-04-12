@@ -46,7 +46,7 @@
           @keydown.enter.prevent="$emit('order', 'DESC')"
         >
           <oxd-icon :name="sortIconDesc" size="extra-small" />
-          <oxd-text tag="span">{{ $t('Decending') }}</oxd-text>
+          <oxd-text tag="span">{{ $t('Descending') }}</oxd-text>
         </li>
       </ul>
     </div>
@@ -124,10 +124,14 @@ export default defineComponent({
       if (this.order !== undefined) {
         switch (this.order.order as Order) {
           case 'ASC':
-            icon = (this.order.iconAsc !== "")? this.order.iconAsc: 'oxd-sort-asc';
+            icon =
+              this.order.iconAsc !== '' ? this.order.iconAsc : 'oxd-sort-asc';
             break;
           case 'DESC':
-            icon = (this.order.iconDesc !== "")? this.order.iconDesc: 'oxd-sort-desc';
+            icon =
+              this.order.iconDesc !== ''
+                ? this.order.iconDesc
+                : 'oxd-sort-desc';
             break;
           default:
             icon = 'oxd-sort';
@@ -137,11 +141,11 @@ export default defineComponent({
     },
 
     sortIconAsc(): string {
-      return (this.order.iconAsc !== "")? this.order.iconAsc: 'oxd-sort-asc';
+      return this.order.iconAsc !== '' ? this.order.iconAsc : 'oxd-sort-asc';
     },
 
     sortIconDesc(): string {
-      return (this.order.iconDesc !== "")? this.order.iconDesc: 'oxd-sort-desc';
+      return this.order.iconDesc !== '' ? this.order.iconDesc : 'oxd-sort-desc';
     },
 
     classes(): object {

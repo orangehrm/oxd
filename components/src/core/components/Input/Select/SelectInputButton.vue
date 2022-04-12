@@ -45,8 +45,8 @@
         <oxd-icon
           class="oxd-button-icon oxd-button-icon-right d-flex align-center"
           style="height: 14px"
-          size="medium"
-          :name="dropdownOpen ? 'chevron-up' : 'chevron-down'"
+          size="xxx-small"
+          :name="dropdownOpen ? 'oxd-chevron-up' : 'oxd-chevron-down'"
         />
       </template>
     </oxd-button>
@@ -138,7 +138,7 @@ export default defineComponent({
     dropdownPosition: {
       type: String,
       default: BOTTOM,
-      validator: function(value: TooltipPosition) {
+      validator: function (value: TooltipPosition) {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
