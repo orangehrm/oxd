@@ -71,6 +71,7 @@ $oxd-report-table-frame-offset: $oxd-report-table-frame-header-height * 2;
     background-color: $oxd-report-table-body-background-color;
     font-family: $oxd-report-table-body-font-family !important;
     height: calc(100% - #{$oxd-report-table-frame-offset}) !important;
+    width: calc(100% + 1px);
 
     [data-rgcol] {
       color: $oxd-report-table-cell-font-color !important;

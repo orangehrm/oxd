@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Progressbar.vue renders OXD Progressbar 1`] = `
+<div class="oxd-progressbar">
+  <div class="oxd-progressbar-wrapper">
+    <div style="width: 0%;" class="oxd-progressbar-ticker oxd-progressbar-ticker--default"></div>
+  </div>
+  <p class="oxd-text oxd-text--p oxd-progressbar-text">0%</p>
+</div>
+`;

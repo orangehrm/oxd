@@ -1,0 +1,42 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+$oxd-progressbar-height: 30px !default;
+$oxd-progressbar-border-radius: $oxd-progressbar-height !default;
+$oxd-progressbar-color-default: $oxd-interface-gray-darken-1-color !default;
+$oxd-progressbar-color-main: $oxd-primary-one-color !default;
+$oxd-progressbar-color-secondary: $oxd-secondary-four-color !default;
+$oxd-progressbar-color-success: $oxd-feedback-success-color !default;
+$oxd-progressbar-color-warn: $oxd-feedback-warn-color !default;
+$oxd-progressbar-color-error: $oxd-feedback-danger-color !default;
+$oxd-progressbar-color-info: $oxd-feedback-info-color !default;
+$oxd-progressbar-background-color: $oxd-background-light-gray-color !default;
+$oxd-progressbar-text-margin: 1rem !default;
+$oxd-progressbar-font-size: 14px !default;
+$oxd-progressbar-font-weight: 800 !default;
+$oxd-progressbar-bg-striped: linear-gradient(
+  -45deg,
+  rgba(255, 255, 255, 0.2) 25%,
+  transparent 25%,
+  transparent 50%,
+  rgba(255, 255, 255, 0.2) 50%,
+  rgba(255, 255, 255, 0.2) 75%,
+  transparent 75%,
+  transparent
+) !default;
+$oxd-progressbar-bg-size: 50px 50px !default;
+$oxd-progressbar-animation: move 2s linear infinite !default;
