@@ -9,6 +9,7 @@
       v-bind="$attrs"
       :disabled="disabled"
       :readonly="readonly"
+      :placeholder="placeholder"
     />
     <div class="oxd-autocomplete-text-input--after">
       <slot name="afterInput"></slot>
@@ -55,6 +56,10 @@ export default defineComponent({
     readonly: {
       type: Boolean,
       default: false,
+    },
+    placeholder: {
+      type: String,
+      default: null,
     },
   },
 

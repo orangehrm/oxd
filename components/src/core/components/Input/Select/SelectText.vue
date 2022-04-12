@@ -12,12 +12,13 @@
     </div>
     <div class="oxd-select-text--after">
       <slot name="afterInput"></slot>
-      <oxd-icon
-        v-if="!disabled"
-        :size="dropdownIconSize"
-        :class="dropdownIconClasses"
-        :name="dropdownIcon"
-      />
+      <div :class="dropdownIconClasses">
+        <oxd-icon
+          v-if="!disabled"
+          :size="dropdownIconSize"
+          :name="dropdownIcon"
+        />
+      </div>
     </div>
   </div>
 </template>

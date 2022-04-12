@@ -1,6 +1,10 @@
 <template>
-  <div class="oxd-calendar-header">
-    <oxd-icon name="chevron-left" @click="gotoPreviousMonth"></oxd-icon>
+  <div class="oxd-calendar-header" v-focus-first-element>
+    <oxd-icon
+      name="oxd-arrow-left"
+      size="extra-small"
+      @click="gotoPreviousMonth"
+    ></oxd-icon>
     <ul class="oxd-calendar-selector">
       <oxd-calendar-dropdown class="oxd-calendar-selector-month">
         <div class="oxd-calendar-selector-month-selected">
@@ -11,6 +15,7 @@
           <li
             role="none"
             class="oxd-calendar-selector --month"
+            :class="{'--selected': index === modelValue.month}"
             v-for="(month, index) in months"
             :key="`oxd-month-${index}`"
             tabindex="0"
@@ -30,6 +35,7 @@
           <li
             role="none"
             class="oxd-calendar-selector --year"
+            :class="{'--selected': year === modelValue.year}"
             v-for="(year, index) in years"
             :key="`oxd-year-${index}`"
             tabindex="0"
@@ -41,7 +47,11 @@
         </template>
       </oxd-calendar-dropdown>
     </ul>
-    <oxd-icon name="chevron-right" @click="gotoNextMonth"></oxd-icon>
+    <oxd-icon
+      name="oxd-arrow-right"
+      size="extra-small"
+      @click="gotoNextMonth"
+    ></oxd-icon>
   </div>
 </template>
 <script lang="ts">
@@ -49,6 +59,7 @@ import {defineComponent} from 'vue';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import Icon from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import CalendarDropdown from '@orangehrm/oxd/core/components/Calendar/CalendarDropdown.vue';
+import focusFirstElementDirective from '../../../directives/focus-first-element';
 
 export default defineComponent({
   name: 'oxd-calendar-controller',
@@ -71,6 +82,9 @@ export default defineComponent({
     'oxd-text': Text,
     'oxd-icon': Icon,
     'oxd-calendar-dropdown': CalendarDropdown,
+  },
+  directives: {
+    'focus-first-element': focusFirstElementDirective,
   },
   methods: {
     calculateMonth(value: number) {

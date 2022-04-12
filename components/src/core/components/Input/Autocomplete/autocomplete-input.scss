@@ -36,6 +36,11 @@
   &--error {
     border: $oxd-input-border--error;
     box-shadow: $oxd-input-box-shadow--error;
+    + .oxd-autocomplete-chips-area {
+      &:empty {
+        display: none;
+      }
+    }
   }
 
   &--disabled,

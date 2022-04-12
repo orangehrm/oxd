@@ -10,8 +10,38 @@
     margin: 1rem 0.5rem;
   }
   &--body {
-    margin-top: 1rem;
+    padding-top: 0.5rem;
     padding-bottom: 0.5rem !important;
+  }
+  &.with-secondary {
+    :deep(.oxd-button) {
+      display: inline-flex;
+    }
+    :deep(.count-container) {
+      width: 95%;
+    }
+    :deep(.oxd-button) {
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+    .oxd-table-left-panel--toggle-btn {
+      top: 48px;
+    }
+    .table-header-action-secondary-btn{
+      margin-left: 0.5rem;
+    }
+    .oxd-table-left-panel--separator {
+      margin: 0.5rem 0.9rem 1rem 0.5rem;
+    }
+    .no-label{
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+    .table-header-action-btns{
+      display: flex;
+      align-items: center;
+    }
+    padding-right: 0px;
   }
   &--toggle-btn {
     position: absolute;
@@ -93,6 +123,8 @@
   }
 }
 .table-header-action-btn {
+  margin: 0.5rem 0;
+
   &.no-label {
     min-width: initial;
     ::v-deep(.oxd-button-label-wrapper) {
@@ -104,4 +136,14 @@
       width: 0;
     }
   }
+}
+.table-header-action-secondary-btn{
+  display: inline-flex;
+  background-color: #f0fae4;
+  :deep(.cls-1) {
+    fill: $oxd-button-color--secondary;
+  }
+  &.collapsed-btn {
+    margin-right: 0.5rem;
+    }
 }
