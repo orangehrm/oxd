@@ -27,4 +27,14 @@ describe('Progressbar.vue', () => {
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
+  it('shows correct progress in Progressbar', () => {
+    const wrapper = mount(Progressbar, {
+      props: {
+        progress: 25,
+      },
+    });
+    expect(wrapper.find('.oxd-progressbar-ticker').attributes().style).toBe(
+      'width: 25%;',
+    );
+  });
 });
