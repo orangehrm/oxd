@@ -3,7 +3,7 @@
     <oxd-autocomplete-text-input
       v-bind="$attrs"
       :clear="showClear"
-      :placeholder="placeholder"
+      :placeholder="$t(placeholder)"
       :value="inputValue"
       :disabled="disabled"
       :readonly="readonly"
