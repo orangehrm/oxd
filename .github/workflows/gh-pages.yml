@@ -1,0 +1,23 @@
+name: Publish Storybook
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install npm dependencies
+        run: yarn install
+      - name: Build storybook
+        run: yarn workspace oxd-storybook build
+      - name: Deploy github pages
+        uses: JamesIves/github-pages-deploy-action@v4.3.0
+        with:
+          branch: gh-pages-dev
+          folder: storybook/dist
