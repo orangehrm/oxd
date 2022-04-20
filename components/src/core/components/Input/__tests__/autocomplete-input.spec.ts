@@ -1,6 +1,10 @@
-import {mount} from '@vue/test-utils';
+import {config, mount} from '@vue/test-utils';
 import AutocompleteInput from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteInput.vue';
 import AutocompleteTextInput from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteTextInput.vue';
+
+config.global.mocks = {
+  $t: (text: string) => text,
+};
 
 const options = [
   {

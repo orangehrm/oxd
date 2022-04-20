@@ -3,7 +3,7 @@
     <oxd-autocomplete-text-input
       v-bind="$attrs"
       :clear="showClear"
-      :placeholder="placeholder"
+      :placeholder="$t(placeholder)"
       :value="inputValue"
       :disabled="disabled"
       :readonly="readonly"
@@ -72,6 +72,7 @@ import AutocompleteOption from '@orangehrm/oxd/core/components/Input/Autocomplet
 import AutocompleteChips from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteChips.vue';
 import sanitizeHtml from 'sanitize-html';
 import dropdownDirectionDirective from '../../../../directives/dropdown-direction';
+import translateMixin from '../../../../mixins/translate';
 
 export default defineComponent({
   name: 'oxd-autocomplete-input',
@@ -88,7 +89,7 @@ export default defineComponent({
     'dropdown-direction': dropdownDirectionDirective,
   },
 
-  mixins: [navigationMixin, eventsMixin],
+  mixins: [navigationMixin, eventsMixin, translateMixin],
 
   emits: [
     'update:modelValue',
