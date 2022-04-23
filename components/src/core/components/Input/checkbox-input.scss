@@ -26,6 +26,11 @@
         background-color: $oxd-white-color;
         .oxd-checkbox-input-icon {
           opacity: 0;
+          :deep(svg) {
+            path {
+              fill: $oxd-white-color;
+            }
+          }
         }
       }
 
