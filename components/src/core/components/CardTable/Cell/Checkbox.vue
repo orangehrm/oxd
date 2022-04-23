@@ -21,11 +21,6 @@ export default defineComponent({
   name: 'oxd-table-cell-checkbox',
   components: {'oxd-checkbox-input': CheckboxInput},
   mixins: [cellMixin],
-  props: {
-    item: {
-      required: true,
-    },
-  },
   setup(props) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const tableProps: any = inject('tableProps');

@@ -1,0 +1,11 @@
+@import '../../../../styles';
+@import 'variables';
+
+.oxd-table-cell-link {
+  color: $oxd-interface-gray-darken-2-color;
+  text-decoration: none;
+  &:hover {
+    color: $oxd-interface-gray-darken-2-color;
+    text-decoration: none;
+  }
+}

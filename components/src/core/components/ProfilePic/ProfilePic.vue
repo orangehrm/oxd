@@ -52,7 +52,7 @@ export default defineComponent({
       type: String,
       default: TARGET_SELF,
       validator: (value: TargetTypes) => {
-        return TARGETS.indexOf(value) !== 1;
+        return TARGETS.indexOf(value) !== -1;
       },
     },
   },
@@ -100,6 +100,14 @@ export default defineComponent({
   :deep(img) {
     width: 2.8rem;
     height: 2.8rem;
+  }
+}
+
+.header-image.profile-image--extra-small {
+  .img-tag,
+  :deep(img) {
+    width: 2.4rem;
+    height: 2.4rem;
   }
 }
 </style>

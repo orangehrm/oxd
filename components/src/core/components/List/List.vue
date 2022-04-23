@@ -1,6 +1,6 @@
 <template>
   <div
-    class="oxd-list-container w-100 vh-100 d-flex align-start"
+    class="oxd-list-container w-100 min-vh-100 d-flex align-start"
     :class="{
       'table-left-panel-open':
         config.table.leftPanel.visible && state.isLeftPanelOpen,
@@ -10,14 +10,15 @@
       v-if="config.table.leftPanel.visible"
       class="oxd-table-left-panel"
       :class="{'with-filters': config.table.topBar.visible}"
-      width="250px"
+      width="200px"
       :side-panel-list="sidePanelList"
       :header-visible="config.table.leftPanel.header.visible"
+      :header-action-button-visible="config.table.addable"
       :body-visible="config.table.leftPanel.body.visible"
       :list-visible="config.table.leftPanel.list.visible"
       :bubble-visible="config.table.leftPanel.list.bubble.visible"
       :button="config.table.leftPanel.header.button"
-      :selected-list-item-id="selectedListItem.id"
+      :selected-list-item-id="selectedListItemId"
       @sidePanelList:onSelect="sidePanelListOnSelect"
       @side-panel:onToggle="toggleSidePanel"
       @sidePanelList:onHeaderBtnClick="sidePanelListOnHeaderBtnClick"
@@ -50,11 +51,11 @@
               :is="action.type"
               v-if="
                 state.selectedItemIndexes.length > 0 &&
-                  (action.conditional
-                    ? action.visible === undefined
-                      ? true
-                      : action.visible
-                    : true)
+                (action.conditional
+                  ? action.visible === undefined
+                    ? true
+                    : action.visible
+                  : true)
               "
               v-bind="action.props"
               v-on="eventBinder(action.events)"
@@ -65,6 +66,7 @@
         </template>
         <template v-slot:toggleOptions>
           <oxd-quick-search
+            ref="quickSearch"
             v-if="config.table.topBar.quickSearch.visible"
             :style="config.table.topBar.quickSearch.style"
             :placeholder="config.table.topBar.quickSearch.placeholder"
@@ -72,21 +74,24 @@
             :createOptions="quickSearchOptions"
             :modelValue="state.selectedQuickSearch"
             @update:modelValue="quickSearchSelect"
+            @dropdown:clear="quickSearchOnClear"
+            @update:searchTerm="setQuickSearchTerm"
+            @select:enter="quickSearchKeywordSearch"
           >
             <template v-slot:iconSlot>
               <oxd-icon-button
-                v-if="
-                  config.table.topBar.quickSearch.button.visible &&
-                    !state.selectedQuickSearch
-                "
+                v-if="config.table.topBar.quickSearch.button.visible"
                 v-bind="config.table.topBar.quickSearch.button.props"
                 :class="config.table.topBar.quickSearch.button.class"
                 :style="config.table.topBar.quickSearch.button.style"
+                @click="quickSearchKeywordSearch"
               ></oxd-icon-button>
             </template>
-            <template v-slot:option="{data}">
-              <oxd-profile-pic size="small" :imageSrc="data.avatar_url" />
-              <span class="margin-left">{{ data.label }}</span>
+            <template v-slot:option="{data, text}">
+              <oxd-profile-pic size="extra-small" :imageSrc="data.avatar_url" />
+              <div class="margin-left">
+                <div v-html="text"></div>
+              </div>
             </template>
           </oxd-quick-search>
           <div class="d-flex align-center">
@@ -116,7 +121,7 @@
           :headers="config.table.headers"
           :items="listItems"
           :highlight-rows="listHighlightRows"
-          :selectable="true"
+          :selectable="config.table.selectable"
           :clickable="false"
           :class="oxdCardTableStyleClasses"
           :loading="isListLoading"
@@ -133,6 +138,7 @@
           :max="maxPages"
           :pages-list="pagination.pages"
           :per-page="pagination.perPage"
+          :total-records-count="filteredTotalRecordsCount"
           @previous="previous"
           @next="next"
           @clickPage="clickPage"
@@ -153,8 +159,9 @@ import TableSidebar from '@orangehrm/oxd/core/components/TableSidebar/TableSideb
 import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue';
 import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination.vue';
 import images from '../ProfilePic/images';
+import useTranslate from './../../../composables/useTranslate';
 
-import {defineComponent, reactive, computed} from 'vue';
+import {defineComponent, reactive, computed, ref, watch} from 'vue';
 
 export default defineComponent({
   components: {
@@ -196,18 +203,18 @@ export default defineComponent({
       default: () => ({
         limit: 20 as number,
         perPage: {
-          id: 1,
-          label: '10',
+          id: 2,
+          label: '20',
         } as {
           id: number;
           label: string;
         },
         pages: [10, 20, 50, 100] as number[],
+        currentPage: 1 as number,
       }),
     },
-    selectedListItem: {
-      type: Object,
-      default: () => ({}),
+    selectedListItemId: {
+      type: Number,
     },
     maxPages: {
       type: Number,
@@ -223,16 +230,28 @@ export default defineComponent({
   },
   setup(props, {emit}) {
     const sampleImages = images;
+    const {$t} = useTranslate();
 
+    const quickSearch = ref(null);
     const state = reactive({
       currentPage: 1,
       isLeftPanelOpen: true,
       checkedItems: [],
       modalState: false as boolean,
       selectedQuickSearch: null,
+      quickSearchTerm: null as string | null,
       selectedItemIndexes: [],
       currentSortFields: {},
+      quickSearchTriggered: false,
     });
+
+    watch(
+      () => props.pagination,
+      (newVal) => {
+        state.currentPage = newVal.currentPage;
+      },
+      {deep: true},
+    );
 
     const config = computed(() => props.configurations);
 
@@ -244,19 +263,24 @@ export default defineComponent({
 
     const order = computed(() => {
       const sortableFieldsObj = {};
-      config.value.table.headers.forEach(header => {
+      config.value.table.headers.forEach((header) => {
         if (header.initialSortOrder) {
-          sortableFieldsObj[header.sortField] = state.currentSortFields[
+          sortableFieldsObj[header.sortField] = {
+            order: state.currentSortFields[
             header.sortField
           ]
             ? state.currentSortFields[header.sortField]
-            : header.initialSortOrder;
+            : header.initialSortOrder,
+            iconAsc: (header.sortIcons !== undefined)? header.sortIcons.asc: "",
+            iconDesc: (header.sortIcons !== undefined)? header.sortIcons.desc: "",
+          }
         }
       });
       return sortableFieldsObj;
     });
 
-    const isFloat = n => {
+
+    const isFloat = (n) => {
       return n === +n && n !== (n | 0);
     };
 
@@ -270,13 +294,13 @@ export default defineComponent({
       const itemCount =
         state.selectedItemIndexes.length || props.filteredTotalRecordsCount;
       return `
-        ${itemCount}
+        (${itemCount})
         ${
           itemCount > 1 || itemCount === 0
-            ? config.value.table.topBar.listRecordCount.multiTerm
-            : config.value.table.topBar.listRecordCount.singleTerm
+            ? $t(config.value.table.topBar.listRecordCount.multiTerm)
+            : $t(config.value.table.topBar.listRecordCount.singleTerm)
         }
-        ${state.selectedItemIndexes.length > 0 ? 'Selected' : 'Found'}
+        ${state.selectedItemIndexes.length > 0 ? $t('Selected') : $t('Found')}
       `;
     });
 
@@ -284,28 +308,53 @@ export default defineComponent({
       emit('sidePanelList:onHeaderBtnClick');
     };
 
-    const sidePanelListOnSelect = item => {
+    const sidePanelListOnSelect = (item) => {
+      state.currentPage = 1;
       emit('sidePanelList:onSelect', item);
     };
 
-    const quickSearchSelect = value => {
+    const quickSearchOnClear = () => {
+      if (state.quickSearchTriggered) {
+        state.quickSearchTerm = null;
+        state.selectedQuickSearch = null;
+        state.quickSearchTriggered = false;
+        emit('quick-search:onClear');
+      }
+    };
+
+    const quickSearchSelect = (value) => {
+      if (typeof value === 'string') return;
       if (value) {
         state.selectedQuickSearch = {
           label: value.candidateName,
         };
         emit('quick-search:onSelect', value);
+        state.quickSearchTriggered = true;
+        state.quickSearchTerm = value.candidateName;
       } else {
-        state.selectedQuickSearch = null;
-        emit('quick-search:onClear');
+        quickSearchOnClear();
       }
     };
 
-    const tableSort = value => {
+    const setQuickSearchTerm = (value: string) => {
+      state.quickSearchTerm = value;
+      emit('quick-search:onSetSearchTerm', value);
+    };
+
+    const quickSearchKeywordSearch = () => {
+      state.quickSearchTriggered = true;
+      state.selectedQuickSearch = {
+        label: state.quickSearchTerm,
+      };
+      emit('quick-search:onSearch', state.quickSearchTerm);
+    };
+
+    const tableSort = (value) => {
       state.currentSortFields = value;
       emit('update:order', value);
     };
 
-    const tableSelect = items => {
+    const tableSelect = (items) => {
       state.selectedItemIndexes = items;
       emit('update:selected', items);
     };
@@ -355,12 +404,12 @@ export default defineComponent({
       emit('topfilters:onExportBtnClick');
     };
 
-    const eventBinder = events => {
+    const eventBinder = (events) => {
       let mappedEvents, mappedEventsObj;
       if (events) {
-        mappedEvents = events.map(event => {
+        mappedEvents = events.map((event) => {
           return {
-            [event.type]: vals => {
+            [event.type]: (vals) => {
               emit(event.identifier, vals);
             },
           };
@@ -379,6 +428,9 @@ export default defineComponent({
       sidePanelListOnHeaderBtnClick,
       sidePanelListOnSelect,
       quickSearchSelect,
+      quickSearchOnClear,
+      quickSearchKeywordSearch,
+      setQuickSearchTerm,
       showFilterDrawer,
       applySearch,
       resetSearch,
@@ -394,6 +446,7 @@ export default defineComponent({
       exportBtn,
       eventBinder,
       config,
+      quickSearch,
     };
   },
 });

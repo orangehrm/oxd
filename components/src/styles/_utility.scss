@@ -49,6 +49,10 @@
   width: 100vh;
 }
 
+.min-vh-100 {
+  min-height: 100vh;
+}
+
 .overflow {
   &-hidden {
     overflow: hidden;
@@ -79,6 +83,7 @@
   z-index: $oxd-tooltip-bg-z-index; /* absurdity 1 */
 }
 [tooltip]::after {
+  line-height: 1.5;
   content: attr(tooltip); /* magic! */
   
   /* most of the rest of this is opinion */

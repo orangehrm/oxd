@@ -1,26 +1,46 @@
 <template>
-  <div class="oxd-table-left-panel" :style="customStyles">
+  <div
+    class="oxd-table-left-panel"
+    :style="customStyles"
+    :class="secondaryButton ? 'with-secondary' : ''"
+  >
     <div v-if="headerVisible" class="oxd-table-left-panel--header">
       <slot name="header">
-        <oxd-button
-          class="table-header-action-btn"
-          :class="!isLeftPanelOpen ? 'no-label' : 'w-100'"
-          :tooltip="!isLeftPanelOpen ? buttonData.label : null"
-          flow="right"
-          :label="buttonData.label"
-          :iconName="buttonData.iconName"
-          :iconSize="buttonData.iconSize"
-          :size="buttonData.size"
-          :style="buttonData.style"
-          :displayType="buttonData.displayType"
-          @click="onHeaderBtnClick"
+        <div
+          v-if="headerActionButtonVisible"
+          class="table-header-action-btn-container"
         >
-          <template v-if="buttonData.iconImageSrc" v-slot:icon>
-            <img :src="buttonData.iconImageSrc" />
-          </template>
-        </oxd-button>
+          <div class="table-header-action-btns">
+            <oxd-button
+              class="table-header-action-btn" 
+              :class="!isLeftPanelOpen? 'no-label': secondaryButton? 'w-75': 'w-100'"
+              :tooltip="!isLeftPanelOpen ? buttonData.label : null"
+              flow="right"
+              :label="buttonData.label"
+              :iconName="buttonData.iconName"
+              :iconSize="buttonData.iconSize"
+              :size="buttonData.size"
+              :style="buttonData.style"
+              :displayType="buttonData.displayType"
+              @click="onHeaderBtnClick"
+            >
+              <template v-if="buttonData.iconImageSrc" v-slot:icon>
+                <img :src="buttonData.iconImageSrc" />
+              </template>
+            </oxd-button>
+            <oxd-icon-button
+              v-if="secondaryButton"
+              class="table-header-action-secondary-btn"
+              :class="!isLeftPanelOpen ? 'collapsed-btn' : ''"
+              :size="secondaryButton.size || 'extra-large'"
+              :name="secondaryButton.icon || 'oxd-new-folder'"
+              :tooltip="secondaryButton.label || 'New Folder'"
+              @click="onHeaderSecondaryBtnClick"
+            />
+          </div>
+          <oxd-divider class="oxd-table-left-panel--separator" />
+        </div>
       </slot>
-      <oxd-divider class="oxd-table-left-panel--separator" />
     </div>
     <div v-if="bodyVisible" class="oxd-table-left-panel--body">
       <slot name="sidePanelBody"></slot>
@@ -37,13 +57,13 @@
           >
             <div
               class="count-container"
-              :class="{active: selectedListItem.id === item.id}"
+              :class="{active: selectedListItemId === item.id}"
             >
               <oxd-chip
                 tabindex="0"
                 v-if="bubbleVisible"
                 :label="item.count"
-                :tooltip="!isLeftPanelOpen ? item.label : null"
+                :tooltip="!isLeftPanelOpen ? $vt(item.label) : null"
                 flow="right"
                 class="oxd-dropdown-selected-chip"
                 :displayType="item.displayType"
@@ -55,9 +75,11 @@
                 v-if="sidePanelIconVisible"
                 class="oxd-left-icon"
                 :name="item.iconName"
-                :tooltip="!isLeftPanelOpen ? item.label : null"
+                :tooltip="!isLeftPanelOpen ? $vt(item.label) : null"
               />
-              <p v-if="isLeftPanelOpen" class="oxd-label">{{ item.label }}</p>
+              <p v-if="isLeftPanelOpen" class="oxd-label">
+                {{ $vt(item.label) }}
+              </p>
             </div>
           </li>
         </ul>
@@ -79,6 +101,8 @@ import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';
+import translateMixin from '../../../mixins/translate';
+
 export default defineComponent({
   name: 'oxd-table-filter',
 
@@ -90,8 +114,14 @@ export default defineComponent({
     'oxd-divider': Divider,
   },
 
+  mixins: [translateMixin],
+
   props: {
     headerVisible: {
+      type: Boolean,
+      default: false,
+    },
+    headerActionButtonVisible: {
       type: Boolean,
       default: false,
     },
@@ -115,6 +145,10 @@ export default defineComponent({
       type: Object,
       default: () => null,
     },
+    secondaryButton: {
+      type: Object,
+      default: () => null,
+    },
     width: {
       type: String,
       default: '100%',
@@ -129,18 +163,8 @@ export default defineComponent({
   },
 
   setup(props, {emit}) {
-    const selectedListItem = ref<{
-      id: number;
-      label: string;
-      active: boolean;
-    }>({
-      id: props.selectedListItemId,
-      label: null,
-      active: false,
-    });
     const isLeftPanelOpen = ref<boolean>(true);
 
-    // TODO: Optimize these duplicated methods; Sandamal
     const buttonData = computed(() => {
       const initialObject = {
         label: 'Button',
@@ -170,12 +194,15 @@ export default defineComponent({
       emit('sidePanelList:onHeaderBtnClick');
     };
 
+    const onHeaderSecondaryBtnClick = () => {
+      emit('sidePanelList:onHeaderSecondaryBtnClick');
+    };
+
     const selectListItem = (item: {
       id: number;
       label: string;
       active: boolean;
     }) => {
-      selectedListItem.value = item;
       emit('sidePanelList:onSelect', item);
     };
 
@@ -188,11 +215,11 @@ export default defineComponent({
     };
 
     return {
-      selectedListItem,
       customStyles,
       buttonData,
       isLeftPanelOpen,
       onHeaderBtnClick,
+      onHeaderSecondaryBtnClick,
       selectListItem,
       toggleLeftPanel,
     };

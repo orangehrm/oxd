@@ -11,7 +11,10 @@ import TableDataCell from '@orangehrm/oxd/core/components/CardTable/Table/TableD
 import DefaultCell from './Default.vue';
 import ActionsCell from './Actions.vue';
 import CheckboxCell from './Checkbox.vue';
-import ProfilePicCell from './ProfilePicCell.vue';
+import ProfilePicCell from './ProfilePicture.vue';
+import LinkCell from './Link.vue';
+import LinkWithPillCell from './LinkWithPill.vue';
+import DateCell from './Date.vue';
 import {CardHeaders} from '../types';
 import {RowItem} from './../Cell/types';
 
@@ -23,6 +26,9 @@ export default defineComponent({
     'oxd-table-cell-actions': ActionsCell,
     'oxd-table-cell-checkbox': CheckboxCell,
     'oxd-table-cell-profile-pic': ProfilePicCell,
+    'oxd-table-cell-link': LinkCell,
+    'oxd-table-cell-date': DateCell,
+    'oxd-table-cell-link-with-pill': LinkWithPillCell,
   },
 
   props: {
@@ -46,19 +52,10 @@ export default defineComponent({
 
     return this.headers.map(header => {
       let cellType,
-        cellProps,
         cellDirectives,
         cellRenderResponse = null;
 
       const cellData = this.items[header.name];
-      cellProps = {
-        key: cellData,
-        item: cellData,
-        header: header,
-        rowItem: rowData,
-        clickableCell: header.clickable,
-        linkMode: header.target,
-      };
 
       if (typeof header.cellRenderer === 'function') {
         cellRenderResponse = header.cellRenderer(
@@ -77,13 +74,16 @@ export default defineComponent({
         cellType = cellRenderResponse.component;
       }
 
-      if (cellRenderResponse?.props) {
-        cellProps = mergeProps(cellProps, cellRenderResponse.props);
-      }
-
-      if (cellRenderResponse?.directives) {
-        cellDirectives = cellRenderResponse.directives;
-      }
+      const cellProps = mergeProps(
+        {
+          key: cellData,
+          item: cellData,
+          header: header,
+          rowItem: rowData,
+        },
+        header.cellProps ?? {},
+        cellRenderResponse?.props ?? {},
+      );
 
       return withDirectives(
         h(

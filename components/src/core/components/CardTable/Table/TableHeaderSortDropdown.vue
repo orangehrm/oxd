@@ -3,8 +3,10 @@
     <oxd-icon-button
       :withContainer="false"
       :name="sortIcon"
+      size="extra-small"
       class="oxd-table-header-sort-icon"
       tabindex="0"
+      ref="oxdIcon"
       @click="openDropdown($event)"
       @keydown.enter="openDropdown($event)"
       @keydown.down.exact.prevent="onSelectDown"
@@ -33,8 +35,8 @@
           @click="$emit('order', 'ASC')"
           @keydown.enter.prevent="$emit('order', 'ASC')"
         >
-          <oxd-icon name="sort-alpha-down" />
-          <oxd-text tag="span">Ascending</oxd-text>
+          <oxd-icon :name="sortIconAsc" size="extra-small" />
+          <oxd-text tag="span">{{ $t('Ascending') }}</oxd-text>
         </li>
         <li
           ref="bottomDropdownElement"
@@ -43,8 +45,8 @@
           @click="$emit('order', 'DESC')"
           @keydown.enter.prevent="$emit('order', 'DESC')"
         >
-          <oxd-icon name="sort-alpha-up" />
-          <oxd-text tag="span">Decending</oxd-text>
+          <oxd-icon :name="sortIconDesc" size="extra-small" />
+          <oxd-text tag="span">{{ $t('Descending') }}</oxd-text>
         </li>
       </ul>
     </div>
@@ -66,7 +68,7 @@ export default defineComponent({
 
   props: {
     order: {
-      type: String,
+      type: Object,
       required: false,
     },
   },
@@ -90,20 +92,22 @@ export default defineComponent({
   },
 
   methods: {
-    openDropdown($e: Event) {
+    openDropdown() {
       this.isActive = true;
-      this.$nextTick(() => {
-        const firstFocusableElement = ($e?.target as Element).parentElement?.querySelector(
-          '.oxd-table-header-sort-dropdown-item',
-        );
-        if (firstFocusableElement) {
-          (firstFocusableElement as HTMLElement).focus();
-        }
-      });
+      if (this.sortIcon === 'oxd-sort-desc') {
+        this.$nextTick(() => {
+          this.$refs.bottomDropdownElement.focus();
+        });
+      } else {
+        this.$nextTick(() => {
+          this.$refs.topDropdownElement.focus();
+        });
+      }
     },
     closeDropdown() {
       if (this.isActive) {
         this.isActive = false;
+        this.$refs.oxdIcon.$el.focus();
       }
     },
     onSelectDown() {
@@ -118,18 +122,30 @@ export default defineComponent({
     sortIcon(): string {
       let icon = '';
       if (this.order !== undefined) {
-        switch (this.order as Order) {
+        switch (this.order.order as Order) {
           case 'ASC':
-            icon = 'oxd-sort-asc';
+            icon =
+              this.order.iconAsc !== '' ? this.order.iconAsc : 'oxd-sort-asc';
             break;
           case 'DESC':
-            icon = 'oxd-sort-desc';
+            icon =
+              this.order.iconDesc !== ''
+                ? this.order.iconDesc
+                : 'oxd-sort-desc';
             break;
           default:
             icon = 'oxd-sort';
         }
       }
       return icon;
+    },
+
+    sortIconAsc(): string {
+      return this.order.iconAsc !== '' ? this.order.iconAsc : 'oxd-sort-asc';
+    },
+
+    sortIconDesc(): string {
+      return this.order.iconDesc !== '' ? this.order.iconDesc : 'oxd-sort-desc';
     },
 
     classes(): object {

@@ -6,6 +6,7 @@ $oxd-input-box-shadow--focus: $oxd-input-control-box-shadow--focus !default;
 $oxd-input-box-shadow--error: $oxd-input-control-box-shadow--error !default;
 $oxd-input-background--disabled: #f0f0f6 !default;
 $oxd-input-background: $oxd-white-color !default;
+$oxd-input-placeholder-color: $oxd-interface-gray-color !default;
 
 $oxd-file-input-horizontal-margin: 0.25rem !default;
 $oxd-file-input-background-color: $oxd-white-color !default;
@@ -25,9 +26,10 @@ $oxd-checkbox-check-font-size: 1rem !default;
 $oxd-checkbox-height: 1rem !default;
 $oxd-checkbox-width: 1rem !default;
 $oxd-checkbox-border: 1px solid $oxd-interface-gray-lighten-1-color !default;
-$oxd-checkbox-border-radius: 0.35rem !default;
+$oxd-checkbox-border-radius: 0.25rem !default;
 $oxd-checkbox-label-margin: 0.5em !default;
 $oxd-checkbox-checked-background-color: $oxd-primary-input-color !default;
+$oxd-checkbox-checked-border: 1px solid $oxd-primary-input-color !default;
 $oxd-checkbox-disabled-background-color: $oxd-interface-gray-lighten-2-color !default;
 
 $oxd-switch-label-color: $oxd-input-control-font-color !default;
@@ -122,6 +124,9 @@ $oxd-date-input-link-border-radius: 0.75rem !default;
 $oxd-date-input-link-font-family: $oxd-input-control-font-family !default;
 $oxd-date-input-link-font-color: $oxd-input-control-font-color !default;
 $oxd-date-input-link-font-weight: 500 !default;
+$oxd-date-input-link-font-weight-hover: 600 !default;
 $oxd-date-input-link-font-size: 14px !default;
 $oxd-date-input-link-highlight-color: $oxd-primary-input-color !default;
 $oxd-date-input-link-background: $oxd-background-light-gray-color !default;
+
+$oxd-autocomplete-dropdown-option-padding: 0.3rem 0.75rem !default;

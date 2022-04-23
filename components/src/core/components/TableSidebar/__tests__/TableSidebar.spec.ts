@@ -1,4 +1,4 @@
-import {shallowMount} from '@vue/test-utils';
+import {mount, shallowMount} from '@vue/test-utils';
 import TableSidebar from '@orangehrm/oxd/core/components/TableSidebar/TableSidebar.vue';
 
 describe('TableSidebar.vue', () => {
@@ -6,6 +6,7 @@ describe('TableSidebar.vue', () => {
     const wrapper = shallowMount(TableSidebar, {
       props: {
         headerVisible: true,
+        headerActionButtonVisible: true,
         bodyVisible: true,
         listVisible: true,
         selectedListItemId: '1',
@@ -39,6 +40,7 @@ describe('TableSidebar.vue', () => {
     const wrapper = shallowMount(TableSidebar, {
       props: {
         headerVisible: true,
+        headerActionButtonVisible: true,
         bodyVisible: true,
         listVisible: true,
         selectedListItemId: '1',
@@ -515,6 +517,7 @@ describe('TableSidebar.vue with oxd-chip on left', () => {
     const wrapper = shallowMount(TableSidebar, {
       props: {
         headerVisible: true,
+
         bodyVisible: true,
         listVisible: true,
         selectedListItemId: '2',
@@ -585,5 +588,73 @@ describe('TableSidebar.vue with oxd-chip on left', () => {
       },
     });
     expect(wrapper.html()).toMatchSnapshot();
+  });
+  it('renders OXD TableSidebar with secondary header button', () => {
+    const wrapper = shallowMount(TableSidebar, {
+      props: {
+        headerVisible: true,
+        bodyVisible: true,
+        listVisible: true,
+        headerActionButtonVisible: true,
+        selectedListItemId: '2',
+        sidePanelList: [],
+        bubbleVisible: true,
+        width: '230px',
+        button: {
+          props: {
+            label: "New Report",
+            displayType: "secondary",
+            size: "long",
+            "display-type": "label-info",
+            "icon-name": "oxd-add",
+          },
+        },
+        secondaryButton: {
+          props: {
+            label: "New Folder",
+            icon: "oxd-new-folder",
+            size: "extra-large",
+          },
+        }
+      },
+    });
+    expect(wrapper.html()).toMatchSnapshot();
+  });
+  it('should emit OXD secondary button click', () => {
+    const wrapper = mount(TableSidebar, {
+      props: {
+        headerVisible: true,
+        bodyVisible: true,
+        listVisible: true,
+        headerActionButtonVisible: true,
+        selectedListItemId: '2',
+        sidePanelList: [],
+        bubbleVisible: true,
+        width: '230px',
+        button: {
+          props: {
+            label: "New Report",
+            displayType: "secondary",
+            size: "long",
+            "display-type": "label-info",
+            "icon-name": "oxd-add",
+          },
+        },
+        secondaryButton: {
+          props: {
+            label: "New Folder",
+            icon: "oxd-new-folder",
+            size: "extra-large",
+          },
+        },
+      },
+    });
+    wrapper
+      .findComponent(TableSidebar)
+      .find('.table-header-action-secondary-btn')
+      .trigger('click');
+    expect(
+      wrapper.emitted('sidePanelList:onHeaderSecondaryBtnClick'),
+    ).toBeTruthy();
   });
 });

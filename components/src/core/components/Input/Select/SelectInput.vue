@@ -5,9 +5,8 @@
       :value="inputValue"
       :disabled="disabled"
       :dropdownOpened="dropdownOpen"
-      @icon:clicked="onOpenDropdown"
+      @click="onToggleDropdown"
       @blur="onBlur"
-      @click="onOpenDropdown"
       @keyup.esc="onCloseDropdown"
       @keydown.enter.prevent="onSelectEnter"
       @keydown.down.exact.prevent="onSelectDown"
@@ -20,6 +19,7 @@
     </oxd-select-text>
 
     <oxd-select-dropdown
+      v-dropdown-direction
       v-if="dropdownOpen"
       :class="dropdownClasses"
       :loading="loading"
@@ -55,6 +55,7 @@ import SelectText from '@orangehrm/oxd/core/components/Input/Select/SelectText.v
 import SelectDropdown from '@orangehrm/oxd/core/components/Input/Select/SelectDropdown.vue';
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
 import translateMixin from '../../../../mixins/translate';
+import dropdownDirectionDirective from '../../../../directives/dropdown-direction';
 
 export default defineComponent({
   name: 'oxd-select-input',
@@ -64,6 +65,10 @@ export default defineComponent({
     'oxd-select-text': SelectText,
     'oxd-select-dropdown': SelectDropdown,
     'oxd-select-option': SelectOption,
+  },
+
+  directives: {
+    'dropdown-direction': dropdownDirectionDirective,
   },
 
   mixins: [navigationMixin, eventsMixin, translateMixin],

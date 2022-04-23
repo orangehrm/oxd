@@ -28,6 +28,7 @@
       $oxd-pagination-page-item-border-color;
 
     &:hover {
+      border-color: transparent;
       background-color: $oxd-pagination-page-item--previous-next-hover-bg-color;
     }
   }
@@ -36,6 +37,7 @@
     border: 0;
 
     &-selected {
+      color: $oxd-pagination-page-item-font-color;
       background-color: $oxd-pagination-page-item--page-selected-bg-color;
     }
 

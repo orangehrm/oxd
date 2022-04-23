@@ -39,7 +39,12 @@
       />
     </div>
     <transition name="transition-fade-down">
-      <ul role="listbox" v-if="open" class="oxd-dropdown-options">
+      <ul
+        role="listbox"
+        v-if="open"
+        class="oxd-dropdown-options"
+        v-dropdown-direction
+      >
         <li
           v-for="(option, index) in filteredOptions"
           :ref="`optElm-${index}`"
@@ -87,6 +92,8 @@ import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
 import debounce from '../../../utils/debounce';
+import dropdownDirectionDirective from '../../../directives/dropdown-direction';
+
 import {defineComponent, onBeforeMount, PropType, reactive, toRefs} from 'vue';
 
 interface Option {
@@ -99,6 +106,10 @@ interface Option {
 
 export default defineComponent({
   name: 'oxd-dropdown-input',
+
+  directives: {
+    'dropdown-direction': dropdownDirectionDirective,
+  },
 
   props: {
     modelValue: {

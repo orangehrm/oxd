@@ -36,17 +36,17 @@
           }"
         >
           <span class="label-small" v-if="modelValue && modelValue.id > -1">{{
-            buttonData.labelMini
+            $vt(buttonData.labelMini)
           }}</span>
-          <span class="label">{{ buttonData.label }}</span>
+          <span class="label">{{ $vt(buttonData.label) }}</span>
         </div>
       </template>
       <template v-slot:iconRight>
         <oxd-icon
           class="oxd-button-icon oxd-button-icon-right d-flex align-center"
           style="height: 14px"
-          size="medium"
-          :name="dropdownOpen ? 'chevron-up' : 'chevron-down'"
+          size="xxx-small"
+          :name="dropdownOpen ? 'oxd-chevron-up' : 'oxd-chevron-down'"
         />
       </template>
     </oxd-button>
@@ -57,7 +57,6 @@
       :style="dropdownStyles"
       :loading="loading"
       :empty="computedOptions.length === 0"
-      v-click-outside="clickOutside"
     >
       <oxd-select-option
         v-for="(option, i) in computedOptions"
@@ -68,7 +67,7 @@
         @select="onSelect(option)"
       >
         <slot name="option" :data="option"></slot>
-        <span v-if="!$slots['option']">{{ option.label }}</span>
+        <span v-if="!$slots['option']">{{ $vt(option.label) }}</span>
       </oxd-select-option>
     </oxd-select-dropdown>
   </div>
@@ -78,7 +77,16 @@
 import {defineComponent} from 'vue';
 import eventsMixin from './events-mixin';
 import navigationMixin from './navigation-mixin';
-import {TOP, BOTTOM, Option, Position, DROPDOWN_POSITIONS} from '../types';
+import translateMixin from '../../../../mixins/translate';
+import {
+  TOP,
+  BOTTOM,
+  LEFT,
+  RIGHT,
+  Option,
+  Position,
+  DROPDOWN_POSITIONS,
+} from '../types';
 import clickOutsideDirective from './../../../../directives/click-outside';
 import {
   TooltipPosition,
@@ -101,7 +109,7 @@ export default defineComponent({
     'oxd-select-option': SelectOption,
   },
 
-  mixins: [navigationMixin, eventsMixin],
+  mixins: [navigationMixin, eventsMixin, translateMixin],
 
   directives: {
     'click-outside': clickOutsideDirective,
@@ -130,7 +138,7 @@ export default defineComponent({
     dropdownPosition: {
       type: String,
       default: BOTTOM,
-      validator: function(value: TooltipPosition) {
+      validator: function (value: TooltipPosition) {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
@@ -182,6 +190,8 @@ export default defineComponent({
       return {
         '--positon-bottom': this.dropdownPosition === BOTTOM,
         '--positon-top': this.dropdownPosition === TOP,
+        '--positon-left': this.dropdownPosition === LEFT,
+        '--positon-right': this.dropdownPosition === RIGHT,
       };
     },
     optionClasses(): object[] {
@@ -195,7 +205,9 @@ export default defineComponent({
       });
     },
     selectedItem(): string {
-      return this.modelValue?.label ? this.modelValue.label : this.button;
+      return this.modelValue?.label
+        ? this.$vt(this.modelValue.label)
+        : this.button;
     },
     inputValue(): string {
       return this.computedOptions[this.pointer]?.label || this.selectedItem;

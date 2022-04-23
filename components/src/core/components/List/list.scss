@@ -1,13 +1,34 @@
 @import '../../../styles';
 
 .oxd-list-container {
-  margin-top: 2rem;
-  background-color: #fff;
+  min-width: 65rem;
+  margin-top: 1.5rem;
+  background-color: $oxd-white-color;
   border-radius: 1.2rem;
+  padding: 1rem;
+  box-sizing: border-box;
   .oxd-table-left-panel {
+    flex-shrink: 0;
     &.with-filters {
-      margin-top: 1.25rem;
-      margin-bottom: 1.25rem;
+      margin-bottom: 0.25rem;
+    }
+    :deep(.oxd-table-left-panel--header) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .table-header-action-btn-container {
+        margin-bottom: 0.5rem;
+      }
+      .table-header-action-btn {
+        margin: 0 0 1rem 0;
+      }
+    }
+    :deep(.oxd-table-left-panel--separator) {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    :deep(.oxd-table-left-panel--toggle-btn) {
+      top: 42px;
     }
   }
   .table-card-list-wrapper {
@@ -15,8 +36,12 @@
     height: 100%;
     border-left: 1px solid $oxd-interface-gray-lighten-4-color;
     .list-table-filter {
-      padding-bottom: 0;
+      padding: 0 0 0 0;
+      margin: 0 0 0 1rem;
+      border-radius: 0;
       :deep(.oxd-table-filter-header) {
+        min-height: 2.5rem;
+        margin-bottom: 0.85rem;
         .oxd-table-filter-header-title {
           .oxd-table-filter-title {
             font-weight: 600;
@@ -35,31 +60,53 @@
           }
         }
       }
-      :deep(.oxd-divider) {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
     }
   }
   &.table-left-panel-open {
     .table-card-list-wrapper {
-      width: calc(100% - 230px);
+      flex-grow: 1;
     }
   }
   .oxd-classic-table {
+    padding-right: 0;
+    padding-left: 0.625rem;
+    padding-top: 0;
     flex-wrap: nowrap;
     :deep(.oxd-icon-button) {
       font-size: 15px;
     }
     :deep(.oxd-table-th) {
+      &:first-child {
+        padding-left: 0;
+      }
       text-align: left;
       padding-top: 0.65rem;
       padding-bottom: 0.65rem;
+      .oxd-table-header-sort {
+        .oxd-svg-icon {
+          &:hover {
+            color: $oxd-interface-gray-darken-1-color;
+          }
+        }
+      }
     }
     :deep(.oxd-table-cell) {
+      &:first-child {
+        padding-left: 0;
+      }
       flex-wrap: nowrap;
       .oxd-select-wrapper {
-        max-width: 267px;
+        max-width: 195px;
+        .oxd-select-text {
+          max-width: 195px;
+          width: -moz-fit-content;
+          width: fit-content;
+        }
+      }
+    }
+    :deep(.oxd-checkbox-input) {
+      @media (min-width: 0px) and (max-width: 1366px) {
+        margin-right: 0;
       }
     }
   }
@@ -70,7 +117,7 @@
 .list-pagination {
   height: initial;
   line-height: initial;
-  padding: 25px;
+  padding: 25px 0 25px 25px;
   box-shadow: none;
 }
 .oxd-button {
@@ -105,5 +152,14 @@
       background-color: $oxd-interface-gray-lighten-1-color !important;
       color: $oxd-white-color !important;
     }
+  }
+}
+
+.oxd-autocomplete-search-wrapper {
+  :deep(.oxd-autocomplete-dropdown) {
+    padding: 0.5rem 0.25rem 0.5rem 0.25rem;
+  }
+  :deep(.oxd-autocomplete-option) {
+    padding: 0.25rem 0.75rem;
   }
 }

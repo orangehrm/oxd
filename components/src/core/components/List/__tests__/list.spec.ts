@@ -10,10 +10,26 @@ describe('List > List.vue', () => {
       },
     });
     expect(wrapper.vm.order).toStrictEqual({
-      candidate: 'DEFAULT',
-      email: 'DEFAULT',
-      contactNumber: 'DEFAULT',
-      dateOfApplication: 'DESC',
+      "candidate": {
+        "iconAsc": "",
+        "iconDesc": "",
+        "order": "DEFAULT",
+      },
+      "contactNumber": {
+        "iconAsc": "",
+        "iconDesc": "",
+        "order": "DEFAULT",
+      },
+      "dateOfApplication": {
+        "iconAsc": "",
+        "iconDesc": "",
+        "order": "DESC",
+      },
+      "email": {
+        "iconAsc": "",
+        "iconDesc": "",
+        "order": "DEFAULT",
+      },
     });
   });
 
@@ -44,10 +60,26 @@ describe('List > List.vue', () => {
 
     // assert sort order has been updated
     expect(wrapper.vm.order).toStrictEqual({
-      candidate: 'ASC',
-      email: 'DEFAULT',
-      contactNumber: 'DEFAULT',
-      dateOfApplication: 'DEFAULT',
+      "candidate": {
+        "iconAsc": "",
+        "iconDesc": "",
+        "order": "ASC",
+      },
+      "contactNumber": {
+        "iconAsc": "",
+        "iconDesc": "",
+        "order": "DEFAULT",
+      },
+      "dateOfApplication": {
+        "iconAsc": "",
+        "iconDesc": "",
+        "order": "DEFAULT",
+      },
+      "email": {
+        "iconAsc": "",
+        "iconDesc": "",
+        "order": "DEFAULT",
+      },
     });
   });
 });

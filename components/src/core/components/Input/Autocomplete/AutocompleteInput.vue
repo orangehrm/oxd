@@ -3,7 +3,7 @@
     <oxd-autocomplete-text-input
       v-bind="$attrs"
       :clear="showClear"
-      :placeholder="placeholder"
+      :placeholder="$t(placeholder)"
       :value="inputValue"
       :disabled="disabled"
       :readonly="readonly"
@@ -36,6 +36,7 @@
       :class="dropdownClasses"
       :loading="loading"
       :empty="computedOptions.length === 0"
+      v-dropdown-direction
     >
       <oxd-autocomplete-option
         v-for="(option, i) in computedOptions"
@@ -50,10 +51,10 @@
     </oxd-autocomplete-dropdown>
 
     <oxd-autocomplete-chips
-      v-if="multiple"
+      v-if="showChips"
       :disabled="disabled"
       :readonly="readonly"
-      :selected="modelValue"
+      :selected="showChips ? modelValue : []"
       @chipRemoved="onRemoveSelected"
     ></oxd-autocomplete-chips>
   </div>
@@ -61,7 +62,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import debounce from '../../../../utils/debounce';
+import debounce from 'lodash.debounce';
 import eventsMixin from '../Select/events-mixin';
 import navigationMixin from '../Select/navigation-mixin';
 import {TOP, BOTTOM, Option, Position, DROPDOWN_POSITIONS} from '../types';
@@ -69,6 +70,9 @@ import AutocompleteTextInput from '@orangehrm/oxd/core/components/Input/Autocomp
 import AutocompleteDropdown from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteDropdown.vue';
 import AutocompleteOption from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteOption.vue';
 import AutocompleteChips from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteChips.vue';
+import sanitizeHtml from 'sanitize-html';
+import dropdownDirectionDirective from '../../../../directives/dropdown-direction';
+import translateMixin from '../../../../mixins/translate';
 
 export default defineComponent({
   name: 'oxd-autocomplete-input',
@@ -81,7 +85,11 @@ export default defineComponent({
     'oxd-autocomplete-chips': AutocompleteChips,
   },
 
-  mixins: [navigationMixin, eventsMixin],
+  directives: {
+    'dropdown-direction': dropdownDirectionDirective,
+  },
+
+  mixins: [navigationMixin, eventsMixin, translateMixin],
 
   emits: [
     'update:modelValue',
@@ -89,6 +97,7 @@ export default defineComponent({
     'dropdown:opened',
     'dropdown:closed',
     'dropdown:blur',
+    'select:enter',
   ],
 
   props: {
@@ -120,7 +129,7 @@ export default defineComponent({
     dropdownPosition: {
       type: String,
       default: BOTTOM,
-      validator: function(value: Position) {
+      validator: function (value: Position) {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
@@ -133,20 +142,28 @@ export default defineComponent({
       dropdownOpen: false,
       searchTerm: null,
       options: [],
+      debouncer: null,
+      selectedValues: null,
     };
   },
 
   computed: {
+    showChips(): boolean {
+      return Array.isArray(this.modelValue) && this.multiple;
+    },
     computedOptions(): Option[] {
-      return this.options.map((option: Option) => {
-        let _selected = false;
-        if (Array.isArray(this.modelValue)) {
-          _selected = this.modelValue.findIndex(o => o.id === option.id) > -1;
-        } else if (this.modelValue?.id === option.id) {
-          _selected = true;
-        }
-        return {...option, _selected};
-      });
+      return this.options
+        .map((option: Option) => {
+          let _selected = false;
+          if (Array.isArray(this.modelValue)) {
+            _selected =
+              this.modelValue.findIndex((o) => o.id === option.id) > -1;
+          } else if (this.modelValue?.id === option.id) {
+            _selected = true;
+          }
+          return {...option, _selected};
+        })
+        .filter((option: Option) => !option._selected);
     },
     dropdownClasses(): object {
       return {
@@ -166,8 +183,8 @@ export default defineComponent({
     highlightedOptions(): string[] {
       const filter = new RegExp(this.searchTerm, 'i');
       return this.computedOptions.map((option: Option) => {
-        return option.label.replace(filter, match => {
-          return `<b>${match}</b>`;
+        return option.label.replace(filter, (match) => {
+          return sanitizeHtml(`<b>${match}</b>`);
         });
       });
     },
@@ -203,11 +220,18 @@ export default defineComponent({
       if (searchTerm) {
         this.loading = true;
         this.dropdownOpen = true;
-        this.search(this, searchTerm);
+        this.pointer = -1;
+        this.search(searchTerm);
+        this.$emit('update:searchTerm', searchTerm);
       } else {
         this.loading = false;
         this.dropdownOpen = false;
-        this.$emit('update:modelValue', null);
+        this.pointer = -1;
+        if (Array.isArray(this.modelValue) && this.modelValue.length > 0)
+          return;
+        if (typeof this.searchTerm === 'string')
+          this.$emit('update:modelValue', null);
+        this.searchTerm = null;
       }
     },
     onSelect(option: Option) {
@@ -221,35 +245,58 @@ export default defineComponent({
         this.$emit('update:modelValue', option);
       }
     },
-    search: debounce((vm, searchTerm: string) => {
-      new Promise(resolve => {
-        if (vm.createOptions) {
-          resolve(vm.createOptions(searchTerm));
+    doSearch() {
+      new Promise((resolve) => {
+        if (this.createOptions) {
+          resolve(this.createOptions(this.searchTerm));
         } else {
           throw new Error('createOptions not defined');
         }
       })
-        .then(resolved => {
+        .then((resolved) => {
           if (resolved && Array.isArray(resolved)) {
             if (resolved.length > 0) {
-              vm.options = resolved.slice(0, 5);
+              this.options = resolved.slice(0, 5);
             } else {
-              vm.options = [];
+              this.options = [];
             }
           } else {
             throw new Error('options returned are not array');
           }
         })
         .finally(() => {
-          vm.loading = false;
+          this.loading = false;
         });
-    }, 800),
+    },
+    search() {
+      if (this.debouncer) {
+        this.debouncer.cancel();
+      }
+      this.debouncer = debounce(this.doSearch, 300);
+      this.debouncer();
+    },
     onBlur() {
-      if (!this.multiple && this.searchTerm) {
-        this.$emit('update:modelValue', null);
+      this.dropdownOpen = false;
+      this.pointer = -1;
+      this.$emit('dropdown:blur');
+      if (Array.isArray(this.modelValue) && this.modelValue.length > 0) return;
+      if (typeof this.searchTerm === 'string' && this.searchTerm) {
+        this.$emit('update:modelValue', this.searchTerm);
+      }
+    },
+    onSelectEnter() {
+      if (this.pointer >= 0) {
+        const option = this.computedOptions[this.pointer];
+        if (!option?._disabled) this.onSelect(option);
+      } else {
+        this.$emit('select:enter');
+        if (this.multiple && this.modelValue.length === 0) {
+          this.$emit('update:modelValue', this.searchTerm);
+        } else if (!this.multiple) {
+          this.$emit('update:modelValue', this.searchTerm);
+        }
       }
       this.dropdownOpen = false;
-      this.$emit('dropdown:blur');
     },
   },
 });

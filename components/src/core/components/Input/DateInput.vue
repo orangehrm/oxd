@@ -5,36 +5,61 @@
         :hasError="hasError"
         :disabled="disabled"
         :readonly="readonly"
-        @blur="onBlur"
-        @update:modelValue="onDateTyped"
-        @click="toggleDropdown"
         :value="displayDate"
         :placeholder="placeholder"
         ref="oxdInput"
+        @update:modelValue="onDateTyped"
+        @blur="onBlur"
       />
-      <oxd-icon
-        :class="dateIconClasses"
-        name="calendar"
+      <div
+        class="oxd-date-input-icon-wrapper"
+        tabindex="0"
+        ref="oxdIcon"
         @click="toggleDropdown"
-      />
+        @keyup.enter.prevent.stop="toggleDropdown"
+      >
+        <oxd-icon :class="dateIconClasses" name="oxd-calendar" size="small" />
+      </div>
     </div>
     <transition name="transition-fade-down">
-      <div v-if="open" class="oxd-date-input-calendar">
+      <div
+        v-click-outside="onClickOutside"
+        v-if="open"
+        class="oxd-date-input-calendar"
+        @keyup.esc="closeDropdown"
+        v-dropdown-direction
+      >
         <oxd-calendar
           v-bind="$attrs"
           @update:modelValue="onDateSelected"
           @mousedown.prevent
           v-model="dateSelected"
           :locale="locale"
+          v-focus-trap
         >
           <div class="oxd-date-input-links">
-            <div @click="onClickToday" class="oxd-date-input-link --today">
+            <div
+              @keyup.enter="onClickToday"
+              @click="onClickToday"
+              class="oxd-date-input-link --today"
+              tabindex="0"
+            >
               Today
             </div>
-            <div @click="onClickClear" class="oxd-date-input-link --clear">
+            <div
+              @keyup.enter="onClickClear"
+              @click="onClickClear"
+              class="oxd-date-input-link --clear"
+              tabindex="0"
+            >
               Clear
             </div>
-            <div @click="closeDropdown" class="oxd-date-input-link --close">
+            <div
+              @keyup.enter="closeDropdown"
+              @click="closeDropdown"
+              class="oxd-date-input-link --close"
+              tabindex="0"
+            >
               Close
             </div>
           </div>
@@ -46,11 +71,14 @@
 
 <script lang="ts">
 import {enUS} from 'date-fns/locale';
+import {defineComponent, PropType} from 'vue';
 import {formatDate, parseDate, freshDate} from '../../../utils/date';
-import {defineComponent, PropType, reactive, toRefs} from 'vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import Calendar from '@orangehrm/oxd/core/components/Calendar/Calendar.vue';
+import clickOutsideDirective from '../../../directives/click-outside';
+import dropdownDirectionDirective from '../../../directives/dropdown-direction';
+import focusTrapDirective from '../../../directives/focus-trap';
 
 export default defineComponent({
   name: 'oxd-date-input',
@@ -60,6 +88,12 @@ export default defineComponent({
     'oxd-icon': Icon,
     'oxd-input': Input,
     'oxd-calendar': Calendar,
+  },
+
+  directives: {
+    'click-outside': clickOutsideDirective,
+    'dropdown-direction': dropdownDirectionDirective,
+    'focus-trap': focusTrapDirective,
   },
 
   props: {
@@ -97,32 +131,25 @@ export default defineComponent({
     },
   },
 
-  setup(props) {
-    const state = reactive({
-      open: false,
-      dateProxy: parseDate(props.modelValue, props.ioformat),
-      dateTyped: '',
-    });
-
+  data() {
     return {
-      ...toRefs(state),
+      open: false,
+      dateTyped: null,
     };
   },
 
   methods: {
     onBlur(e: Event) {
-      if (this.dateTyped) {
-        this.dateSelected = this.displayFormat
-          ? parseDate(this.dateTyped, this.displayFormat, {locale: this.locale})
-          : parseDate(this.dateTyped, this.ioformat);
-        this.dateTyped = '';
+      if (this.dateTyped !== null) {
+        this.dateSelected = parseDate(this.dateTyped, this.format, {
+          locale: this.locale,
+        });
       }
-      this.closeDropdown();
       e.stopImmediatePropagation();
       this.$emit('blur');
     },
     onDateTyped(value: string) {
-      this.dateTyped = value ? value : ' ';
+      this.dateTyped = value;
     },
     onDateSelected() {
       this.closeDropdown();
@@ -130,7 +157,6 @@ export default defineComponent({
     toggleDropdown() {
       if (!this.disabled && !this.readonly) {
         if (!this.open) {
-          this.$refs.oxdInput.$el.focus();
           this.openDropdown();
         } else {
           this.closeDropdown();
@@ -141,17 +167,26 @@ export default defineComponent({
       this.open = true;
       this.$emit('dateselect:opened');
     },
-    closeDropdown() {
+    closeDropdown($e: KeyboardEvent | null) {
+      if ($e && $e.key === 'Escape') $e.stopPropagation();
+      this.open = false;
+      this.$refs.oxdIcon.focus();
+      this.$emit('dateselect:closed');
+    },
+    onClickOutside() {
       this.open = false;
       this.$emit('dateselect:closed');
     },
     onClickToday() {
       this.dateSelected = freshDate();
       this.open = false;
+      this.$refs.oxdIcon.focus();
     },
     onClickClear() {
+      this.dateTyped = '';
       this.dateSelected = null;
       this.open = false;
+      this.$refs.oxdIcon.focus();
     },
   },
 
@@ -161,16 +196,17 @@ export default defineComponent({
         return parseDate(this.modelValue, this.ioformat);
       },
       set(value) {
-        this.dateProxy = value;
-        this.$emit('update:modelValue', formatDate(value, this.ioformat));
+        this.$emit(
+          'update:modelValue',
+          formatDate(value, this.ioformat) || this.dateTyped,
+        );
       },
     },
     displayDate(): string {
-      return this.displayFormat && this.displayFormat.trim() !== ''
-        ? formatDate(this.dateSelected, this.displayFormat, {
-            locale: this.locale,
-          })
-        : formatDate(this.dateSelected, this.ioformat, {locale: this.locale});
+      return (
+        formatDate(this.dateSelected, this.format, {locale: this.locale}) ||
+        this.dateTyped
+      );
     },
     dateIconClasses(): object {
       return {
@@ -178,6 +214,11 @@ export default defineComponent({
         '--disabled': this.disabled,
         '--readonly': this.readonly,
       };
+    },
+    format(): string {
+      return this.displayFormat && this.displayFormat.trim()
+        ? this.displayFormat
+        : this.ioformat;
     },
   },
 });

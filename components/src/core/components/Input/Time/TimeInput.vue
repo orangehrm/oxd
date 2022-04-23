@@ -14,6 +14,7 @@
       <oxd-icon :class="timeIconClasses" name="clock" @click="toggleDropdown" />
     </div>
     <oxd-time-picker
+      v-dropdown-direction
       v-if="open"
       v-model="timeInput"
       :step="step"
@@ -28,6 +29,7 @@ import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import clickOutsideDirective from '../../../../directives/click-outside';
 import TimePicker from '@orangehrm/oxd/core/components/Input/Time/TimePicker.vue';
 import {parseDate, formatDate} from '../../../../utils/date';
+import dropdownDirectionDirective from '../../../../directives/dropdown-direction';
 
 export default defineComponent({
   name: 'oxd-time-input',
@@ -36,6 +38,11 @@ export default defineComponent({
     'oxd-icon': Icon,
     'oxd-input': Input,
     'oxd-time-picker': TimePicker,
+  },
+
+  directives: {
+    'click-outside': clickOutsideDirective,
+    'dropdown-direction': dropdownDirectionDirective,
   },
 
   emits: [
@@ -70,10 +77,6 @@ export default defineComponent({
       type: Number,
       default: 1,
     },
-  },
-
-  directives: {
-    'click-outside': clickOutsideDirective,
   },
 
   setup(props) {

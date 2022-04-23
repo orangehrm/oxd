@@ -1,6 +1,6 @@
 <template>
   <nav role="navigation" aria-label="Pagination Navigation">
-    <ul class="oxd-pagination__ul">
+    <ul v-if="showPagination" class="oxd-pagination__ul">
       <oxd-pagination-page-item
         previous
         @click="onClickPrevious"
@@ -47,8 +47,8 @@ export default defineComponent({
     return {
       pagePointer: this.current,
       perPageData: {
-        id: 1,
-        label: '10',
+        id: 2,
+        label: '20',
       },
     };
   },
@@ -69,6 +69,11 @@ export default defineComponent({
       default: 1,
       validator: (val: number) => Number.isInteger(val),
     },
+    totalRecordsCount: {
+      type: Number,
+      default: 0,
+      validator: (val: number) => Number.isInteger(val),
+    },
     pagesList: {
       type: Array,
       default: () => ['10', '20', '50', '100'],
@@ -79,9 +84,18 @@ export default defineComponent({
         label: string;
       }>,
       default: () => ({
-        id: 1,
-        label: '10',
+        id: 2,
+        label: '20',
       }),
+    },
+  },
+
+  watch: {
+    current: {
+      deep: true,
+      handler(value) {
+        this.currentPage = value;
+      },
     },
   },
 
@@ -99,6 +113,8 @@ export default defineComponent({
         if (this.current < 1 || this.current > this.length) {
           // eslint-disable-next-line no-console
           console.error('Invalid `current` prop');
+        } else if (this.pagePointer < 1 || this.pagePointer > this.length) {
+          return 1;
         }
         return this.pagePointer;
       },
@@ -112,10 +128,10 @@ export default defineComponent({
       },
     },
     showPrevious(): boolean {
-      return this.currentPage !== 1;
+      return this.currentPage > 1;
     },
     showNext(): boolean {
-      return this.currentPage !== this.length;
+      return this.currentPage < this.length;
     },
     pageItems(): Array<number> {
       if (this.currentPage < 1 || this.currentPage > this.length) {
@@ -148,6 +164,13 @@ export default defineComponent({
       }
 
       return this.range(start, end);
+    },
+
+    showPagination() {
+      if (this.totalRecordsCount <= this.pagesList[0] && this.length <= 1) {
+        return false;
+      }
+      return true;
     },
   },
 
@@ -184,6 +207,7 @@ export default defineComponent({
     },
     selectPerPage(val) {
       this.perPageData = val;
+      this.currentPage = 1;
       this.$emit('onPerPageSelect', val);
     },
   },
@@ -197,7 +221,7 @@ export default defineComponent({
 <style src="./pagination.scss" lang="scss" scoped></style>
 
 <style lang="scss" scoped>
-:deep(.pagination-dropdown) {
+:deep(.pagination-dropdown .oxd-select-text-input) {
   min-width: 59px;
 }
 </style>

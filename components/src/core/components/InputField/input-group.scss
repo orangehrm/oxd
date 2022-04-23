@@ -17,6 +17,9 @@
     flex-direction: row;
     align-items: baseline;
     margin-bottom: $oxd-input-group-label-margin-bottom;
+    &:empty {
+      display: none;
+    }
   }
 
   &__label-icon {

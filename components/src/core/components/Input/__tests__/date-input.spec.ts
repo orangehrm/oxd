@@ -1,6 +1,7 @@
 import {mount} from '@vue/test-utils';
 import DateInput from '@orangehrm/oxd/core/components/Input/DateInput.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
+import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import {formatDate, freshDate} from '../../../../utils/date';
 
 describe('DateInput.vue', () => {
@@ -10,7 +11,7 @@ describe('DateInput.vue', () => {
   });
   it('should open datepicker on click', async () => {
     const wrapper = mount(DateInput, {});
-    wrapper.findComponent(Input).trigger('click');
+    wrapper.findComponent(Icon).trigger('click');
     await wrapper.vm.$nextTick();
     expect(wrapper.vm.open).toBeTruthy();
     expect(wrapper.emitted('dateselect:opened')).toBeTruthy();
@@ -20,7 +21,7 @@ describe('DateInput.vue', () => {
     const wrapper = mount(DateInput, {
       props: {disabled: true},
     });
-    wrapper.findComponent(Input).trigger('click');
+    wrapper.findComponent(Icon).trigger('click');
     await wrapper.vm.$nextTick();
     expect(wrapper.vm.open).toBeFalsy();
     expect(wrapper.emitted('dateselect:opened')).toBeFalsy();
@@ -35,18 +36,9 @@ describe('DateInput.vue', () => {
     await wrapper.vm.$nextTick();
     expect(wrapper.emitted('update:modelValue')).toEqual([['2021-07-30']]);
   });
-  it('should not accept invalid input', async () => {
-    const wrapper = mount(DateInput, {});
-    const input = wrapper.findComponent(Input);
-    (input.element as HTMLInputElement).value = '2021-15-30';
-    await input.trigger('input');
-    await input.trigger('blur');
-    await wrapper.vm.$nextTick();
-    expect(wrapper.emitted('update:modelValue')).toEqual([['']]);
-  });
   it('should return today date onclick today', async () => {
     const wrapper = mount(DateInput, {});
-    await wrapper.findComponent(Input).trigger('click');
+    await wrapper.findComponent(Icon).trigger('click');
     await wrapper.vm.$nextTick();
     await wrapper.find('.oxd-date-input-link.--today').trigger('click');
     const dateExpected = formatDate(freshDate(), 'yyyy-MM-dd');
@@ -54,16 +46,16 @@ describe('DateInput.vue', () => {
   });
   it('should clear date onclick clear', async () => {
     const wrapper = mount(DateInput, {});
-    await wrapper.findComponent(Input).trigger('click');
+    await wrapper.findComponent(Icon).trigger('click');
     await wrapper.vm.$nextTick();
     await wrapper.find('.oxd-date-input-link.--clear').trigger('click');
     expect(wrapper.emitted('update:modelValue')).toEqual([['']]);
   });
   it('should close datepicker onclick close', async () => {
     const wrapper = mount(DateInput, {});
-    await wrapper.findComponent(Input).trigger('click');
+    await wrapper.findComponent(Icon).trigger('click');
     await wrapper.vm.$nextTick();
     await wrapper.find('.oxd-date-input-link.--close').trigger('click');
-    expect(wrapper.emitted('dateselect:closed')).toBeTruthy();
+    expect(wrapper.emitted('dateselect:closed'))?.toBeTruthy();
   });
 });

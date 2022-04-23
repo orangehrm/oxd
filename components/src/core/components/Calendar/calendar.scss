@@ -92,7 +92,8 @@
       color: $oxd-calendar-date-highlight-full-font-color;
       font-weight: $oxd-calendar-date-highlight-full-font-weight;
     }
-    &:hover {
+    &:hover,
+    &:focus-visible {
       background-color: $oxd-calendar-date-hover-background-color;
       color: $oxd-calendar-date-hover-font-color;
       font-weight: $oxd-calendar-date-hover-font-weight;
@@ -133,6 +134,7 @@
       border-radius: $oxd-calendar-controller-item-radius;
       width: auto;
       &:hover,
+      &:focus-visible,
       &.--selected {
         background-color: $oxd-calendar-controller-item-background-color;
       }
@@ -159,6 +161,7 @@
       padding-right: calc(#{$oxd-calendar-controller-padding}/ 2);
       border-top-left-radius: 2.375rem;
       border-bottom-left-radius: 2.375rem;
+      font-size: $oxd-input-control-font-size;
     }
 
     &-year {
@@ -166,6 +169,7 @@
       padding-left: calc(#{$oxd-calendar-controller-padding}/ 2);
       border-top-right-radius: 2.375rem;
       border-bottom-right-radius: 2.375rem;
+      font-size: $oxd-input-control-font-size;
     }
   }
 }

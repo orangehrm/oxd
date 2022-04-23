@@ -12,10 +12,25 @@
   }
 }
 
+.oxd-date-input-calendar {
+  &.--positon-top > .oxd-calendar-wrapper {
+    right: 0;
+    width: 88%;
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: calc(50px + $oxd-dropdown-dropdown-margin);
+  }
+  &.--positon-bottom > .oxd-calendar-wrapper {
+    right: 0;
+    width: 88%;
+    position: absolute;
+  }
+}
+
 .oxd-date-input {
   display: flex;
   align-items: center;
-  &-icon {
+  &-icon-wrapper {
     right: 0.25rem;
     display: flex;
     cursor: pointer;
@@ -26,11 +41,18 @@
     height: $oxd-dropdown-arrow-height;
     border-radius: $oxd-dropdown-arrow-border-radius;
     background-color: $oxd-dropdown-arrow-background-color;
+    color: $oxd-file-button-color;
     &.--disabled,
     &.--readonly {
       cursor: unset;
       background-color: $oxd-dropdown-arrow-background-color--readonly;
       color: $oxd-dropdown-arrow-color--readonly;
+    }
+    &:focus {
+      background-color: $oxd-interface-gray-lighten-2-color;
+      border: $oxd-input-border--focus;
+      box-shadow: $oxd-input-box-shadow--focus;
+      outline: 0;
     }
   }
   ::v-deep(.oxd-input) {
@@ -65,8 +87,10 @@
     &.--close {
       color: $oxd-date-input-link-highlight-color;
     }
-    &:hover {
+    &:hover,
+    &:focus-visible {
       background-color: $oxd-date-input-link-background;
+      font-weight: $oxd-date-input-link-font-weight-hover;
     }
   }
 }
