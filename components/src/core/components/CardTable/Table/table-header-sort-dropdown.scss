@@ -40,6 +40,7 @@
         margin-left: 5px;
       }
       &:hover,
+      &:focus,
       &:focus-visible,
       &.--selected {
         background-color: $oxd-dropdown-item-hover-color;
