@@ -75,19 +75,18 @@ export default defineComponent({
     );
 
     const updateIsSpilled = () => {
-      nextTick(function() {
-        const fullWidth = filterElement[0] ? filterElement[0].clientWidth : 0;
-        const titleWidth = titleElement[0] ? titleElement[0].clientWidth : 0;
-        const actionButtonWidth = bulkActionElement[0]
-          ? bulkActionElement[0].clientWidth
-          : 0;
-        const filterWidth = optionsElement[0]
-          ? optionsElement[0].clientWidth
-          : 0;
-        isSpilled.value =
-          props.itemsSelected &&
-          titleWidth + actionButtonWidth + filterWidth > fullWidth;
-      });
+      const fullWidth = filterElement[0] ? filterElement[0].clientWidth : 0;
+      const titleWidth = titleElement[0] ? titleElement[0].clientWidth : 0;
+      const actionButtonWidth = bulkActionElement[0]
+        ? bulkActionElement[0].clientWidth
+        : 0;
+      const filterWidth = optionsElement[0] ? optionsElement[0].clientWidth : 0;
+
+      console.error(titleWidth + actionButtonWidth + filterWidth);
+      console.error(fullWidth);
+      isSpilled.value =
+        props.itemsSelected &&
+        titleWidth + actionButtonWidth + filterWidth >= fullWidth;
     };
 
     watchEffect(() => {
@@ -136,8 +135,11 @@ export default defineComponent({
     .--actions button.oxd-button {
       margin-left: 0.5rem;
     }
-    &.spilled .--actions div:first-child > button.oxd-button {
-      margin-left: 0;
+    &.spilled .--actions {
+      padding-right: 0.5rem;
+      div:first-child > button.oxd-button {
+        margin-left: 0;
+      }
     }
   }
 }
