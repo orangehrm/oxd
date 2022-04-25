@@ -26,6 +26,14 @@
         background-color: $oxd-white-color;
         .oxd-checkbox-input-icon {
           opacity: 0;
+          &.oxd-svg-icon--xxx-small {
+            transform: scale(0.8);
+            :deep(svg) {
+              path {
+                fill: $oxd-white-color;
+              }
+            }
+          }
         }
       }
 
