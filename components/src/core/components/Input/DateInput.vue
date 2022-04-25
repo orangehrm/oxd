@@ -198,7 +198,8 @@ export default defineComponent({
       set(value) {
         this.$emit(
           'update:modelValue',
-          formatDate(value, this.ioformat) || this.dateTyped,
+          formatDate(value, this.ioformat) ||
+            (this.dateTyped ? this.dateTyped : null),
         );
       },
     },
