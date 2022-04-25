@@ -45,6 +45,9 @@
       &.--selected {
         background-color: $oxd-dropdown-item-hover-color;
       }
+      &:not(:first-child) {
+        margin-top: 5px;
+      }
     }
   }
 }
