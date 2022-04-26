@@ -130,7 +130,15 @@ export default defineComponent({
       context.emit('clickCheckbox', value);
     });
     emitter.on(`${props.tableId}-datatable:clickRow`, value => {
-      context.emit('click', value);
+      if (
+        !(
+          (value.native.target.classList.contains('oxd-checkbox-input-icon') &&
+            value.native.target.closest('.oxd-table-cell')) ||
+          value.native.target?.type === 'checkbox'
+        )
+      ) {
+        context.emit('click', value);
+      }
     });
 
     watch(
