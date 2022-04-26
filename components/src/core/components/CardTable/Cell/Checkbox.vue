@@ -20,15 +20,17 @@
 -->
 
 <template>
-  <oxd-checkbox-input
-    v-if="isSelectable"
-    v-model="checkState"
-    :value="item"
-    @click="onClickCheckbox(item, $event)"
-    :disabled="isDisabled"
-  />
-  <div v-else class="oxd-table-card-cell-hidden">
-    <oxd-checkbox-input />
+  <div @click.stop class="oxd-table-card-cell-checkbox">
+    <oxd-checkbox-input
+      v-if="isSelectable"
+      v-model="checkState"
+      :value="item"
+      @click="onClickCheckbox(item, $event)"
+      :disabled="isDisabled"
+    />
+    <div v-else class="oxd-table-card-cell-hidden">
+      <oxd-checkbox-input />
+    </div>
   </div>
 </template>
 
