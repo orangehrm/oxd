@@ -1,1 +1,3 @@
 2022-04-19 - 64859152abe759529d145b96af6bcdf232501517 - AutocompleteInput.vue - Added translation to placeholder, imported translationMixin and updated unit tests [autocomplete-input.spec.ts, quicksearch-input.spec.ts]
+
+2022-04-27 - 142465669cff13509290ca84ea9914cdfad613b8 - AutocompleteInput.vue - cleared options each on every search initiation to refrain from showing old list items untill the API request resolves
