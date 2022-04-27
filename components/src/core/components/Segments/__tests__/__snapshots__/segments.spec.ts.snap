@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Segments > Segments.vue renders OXD Segments 1`] = `
+<div class="oxd-segments-wrapper">
+  <div class="oxd-segment-wrapper d-flex align-center"><label for="1" class="oxd-segment-label">Item one</label><input name="zERZhWrN" id="1" type="radio" class="oxd-segment-input" modelvalue="[object Object]"></div>
+  <div class="oxd-segment-wrapper d-flex align-center"><label for="2" class="oxd-segment-label">Item two</label><input name="zERZhWrN" id="2" type="radio" class="oxd-segment-input" modelvalue="[object Object]"></div>
+</div>
+`;

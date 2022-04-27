@@ -98,7 +98,7 @@ export default defineComponent({
         });
       }
 
-      return week.map(index => {
+      return week.map((index) => {
         return days[index];
       });
     });
@@ -124,17 +124,17 @@ export default defineComponent({
     });
 
     const attributes = computed(() => {
-      return datesOfMonth.value.map(date => {
+      return datesOfMonth.value.map((date) => {
         const attrs = props.dayAttributes.find(
-          attr => date.getDay() === attr.index,
+          (attr) => date.getDay() === attr.index,
         );
         return attrs;
       });
     });
 
     const parsedEvents = computed(() => {
-      return datesOfMonth.value.map(date => {
-        const event = props.events.find(e => isEqual(date, e.date));
+      return datesOfMonth.value.map((date) => {
+        const event = props.events.find((e) => isEqual(date, e.date));
         return event;
       });
     });
