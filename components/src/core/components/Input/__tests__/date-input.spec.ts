@@ -49,7 +49,7 @@ describe('DateInput.vue', () => {
     await wrapper.findComponent(Icon).trigger('click');
     await wrapper.vm.$nextTick();
     await wrapper.find('.oxd-date-input-link.--clear').trigger('click');
-    expect(wrapper.emitted('update:modelValue')).toEqual([['']]);
+    expect(wrapper.emitted('update:modelValue')).toEqual([[null]]);
   });
   it('should close datepicker onclick close', async () => {
     const wrapper = mount(DateInput, {});

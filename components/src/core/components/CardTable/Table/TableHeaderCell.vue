@@ -19,7 +19,7 @@ export default defineComponent({
 
   props: {
     order: {
-      type: String,
+      type: Object,
       required: false,
     },
   },

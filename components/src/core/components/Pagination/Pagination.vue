@@ -69,6 +69,11 @@ export default defineComponent({
       default: 1,
       validator: (val: number) => Number.isInteger(val),
     },
+    totalRecordsCount: {
+      type: Number,
+      default: 0,
+      validator: (val: number) => Number.isInteger(val),
+    },
     pagesList: {
       type: Array,
       default: () => ['10', '20', '50', '100'],
@@ -162,11 +167,11 @@ export default defineComponent({
     },
 
     showPagination() {
-      if ((this.totalRecordsCount <= this.pagesList[0]) && (this.length <= 1)) {
+      if (this.totalRecordsCount <= this.pagesList[0] && this.length <= 1) {
         return false;
       }
       return true;
-    }
+    },
   },
 
   methods: {

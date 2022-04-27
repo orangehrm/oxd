@@ -165,7 +165,6 @@ export default defineComponent({
   setup(props, {emit}) {
     const isLeftPanelOpen = ref<boolean>(true);
 
-    // TODO: Optimize these duplicated methods; Sandamal
     const buttonData = computed(() => {
       const initialObject = {
         label: 'Button',

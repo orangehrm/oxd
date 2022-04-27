@@ -18,20 +18,16 @@
         @click="toggleDropdown"
         @keyup.enter.prevent.stop="toggleDropdown"
       >
-        <oxd-icon
-          :class="dateIconClasses"
-          name="oxd-calendar"
-          size="small"
-        />
+        <oxd-icon :class="dateIconClasses" name="oxd-calendar" size="small" />
       </div>
     </div>
     <transition name="transition-fade-down">
       <div
-          v-click-outside="closeDropdown"
-          v-if="open"
-          class="oxd-date-input-calendar"
-          @keyup.esc="closeDropdown"
-          v-dropdown-direction
+        v-click-outside="onClickOutside"
+        v-if="open"
+        class="oxd-date-input-calendar"
+        @keyup.esc="closeDropdown"
+        v-dropdown-direction
       >
         <oxd-calendar
           v-bind="$attrs"
@@ -39,6 +35,7 @@
           @mousedown.prevent
           v-model="dateSelected"
           :locale="locale"
+          v-focus-trap
         >
           <div class="oxd-date-input-links">
             <div
@@ -81,7 +78,7 @@ import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import Calendar from '@orangehrm/oxd/core/components/Calendar/Calendar.vue';
 import clickOutsideDirective from '../../../directives/click-outside';
 import dropdownDirectionDirective from '../../../directives/dropdown-direction';
-
+import focusTrapDirective from '../../../directives/focus-trap';
 
 export default defineComponent({
   name: 'oxd-date-input',
@@ -96,6 +93,7 @@ export default defineComponent({
   directives: {
     'click-outside': clickOutsideDirective,
     'dropdown-direction': dropdownDirectionDirective,
+    'focus-trap': focusTrapDirective,
   },
 
   props: {
@@ -172,19 +170,23 @@ export default defineComponent({
     closeDropdown($e: KeyboardEvent | null) {
       if ($e && $e.key === 'Escape') $e.stopPropagation();
       this.open = false;
-      this.$refs.oxdIcon.$el?.focus();
+      this.$refs.oxdIcon.focus();
+      this.$emit('dateselect:closed');
+    },
+    onClickOutside() {
+      this.open = false;
       this.$emit('dateselect:closed');
     },
     onClickToday() {
       this.dateSelected = freshDate();
       this.open = false;
-      this.$refs.oxdIcon.$el?.focus();
+      this.$refs.oxdIcon.focus();
     },
     onClickClear() {
       this.dateTyped = '';
       this.dateSelected = null;
       this.open = false;
-      this.$refs.oxdIcon.$el?.focus();
+      this.$refs.oxdIcon.focus();
     },
   },
 
@@ -196,7 +198,8 @@ export default defineComponent({
       set(value) {
         this.$emit(
           'update:modelValue',
-          formatDate(value, this.ioformat) || this.dateTyped,
+          formatDate(value, this.ioformat) ||
+            (this.dateTyped ? this.dateTyped : null),
         );
       },
     },

@@ -1,1 +1,1 @@
-2022-03-29 - 7e7fca5 - AutocompleteInput.vue - Removed setting model value null onBlur. Possible affected components, QuickSearchInput.vue
+2022-04-19 - 64859152abe759529d145b96af6bcdf232501517 - AutocompleteInput.vue - Added translation to placeholder, imported translationMixin and updated unit tests [autocomplete-input.spec.ts, quicksearch-input.spec.ts]

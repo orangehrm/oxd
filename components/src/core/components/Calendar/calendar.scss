@@ -161,6 +161,7 @@
       padding-right: calc(#{$oxd-calendar-controller-padding}/ 2);
       border-top-left-radius: 2.375rem;
       border-bottom-left-radius: 2.375rem;
+      font-size: $oxd-input-control-font-size;
     }
 
     &-year {
@@ -168,6 +169,7 @@
       padding-left: calc(#{$oxd-calendar-controller-padding}/ 2);
       border-top-right-radius: 2.375rem;
       border-bottom-right-radius: 2.375rem;
+      font-size: $oxd-input-control-font-size;
     }
   }
 }

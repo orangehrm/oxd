@@ -14,7 +14,11 @@
         v-model="checked"
       />
       <span :class="classes" :style="style" class="oxd-checkbox-input">
-        <oxd-icon class="oxd-checkbox-input-icon" :name="checkIcon" />
+        <oxd-icon
+          class="oxd-checkbox-input-icon"
+          :name="checkIcon"
+          :size="checkIconSize"
+        />
       </span>
       <template v-if="labelPosition === 'right'">
         {{ optionLabel }}
@@ -52,7 +56,11 @@ export default defineComponent({
     },
     checkIcon: {
       type: String,
-      default: 'check',
+      default: 'oxd-check',
+    },
+    checkIconSize: {
+      type: String,
+      default: 'xxx-small',
     },
     optionLabel: {
       type: String,
@@ -61,7 +69,7 @@ export default defineComponent({
     labelPosition: {
       type: String,
       default: RIGHT,
-      validator: function(value: Position) {
+      validator: function (value: Position) {
         return LABEL_POSITIONS.indexOf(value) !== -1;
       },
     },

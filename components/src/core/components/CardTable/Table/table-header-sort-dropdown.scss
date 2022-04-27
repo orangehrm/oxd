@@ -15,8 +15,6 @@
     position: absolute;
     overflow: visible;
     top: $oxd-table-sort-dropdown-top-margin;
-    max-height: $oxd-table-sort-dropdown-height;
-    width: $oxd-table-sort-dropdown-width;
     box-shadow: $oxd-dropdown-shadow;
     border: $oxd-dropdown-border;
     border-radius: $oxd-dropdown-border-radius;
@@ -25,7 +23,7 @@
 
     ul {
       list-style: none;
-      padding: $oxd-dropdown-padding;
+      padding: $oxd-dropdown-ul-padding;
       margin: 0;
     }
 
@@ -35,17 +33,20 @@
       font-size: $oxd-table-sort-dropdown-font-size;
       font-weight: $oxd-table-sort-dropdown-font-weight;
       color: $oxd-table-sort-dropdown-font-color;
-      padding: $oxd-dropdown-padding;
+      padding: $oxd-dropdown-li-padding;
       border-radius: $oxd-dropdown-border-radius;
       display: flex;
       span {
         margin-left: 5px;
       }
       &:hover,
-      &:focus-visible,
       &:focus,
+      &:focus-visible,
       &.--selected {
         background-color: $oxd-dropdown-item-hover-color;
+      }
+      &:not(:first-child) {
+        margin-top: 3px;
       }
     }
   }

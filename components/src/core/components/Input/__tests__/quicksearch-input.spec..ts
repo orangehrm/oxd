@@ -1,5 +1,9 @@
-import {mount} from '@vue/test-utils';
+import {config, mount} from '@vue/test-utils';
 import QuickSearchInput from '@orangehrm/oxd/core/components/Input/Autocomplete/QuickSearchInput.vue';
+
+config.global.mocks = {
+  $t: (text: string) => text,
+};
 
 const options = [
   {
