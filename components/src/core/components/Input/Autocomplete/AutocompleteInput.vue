@@ -246,6 +246,7 @@ export default defineComponent({
       }
     },
     doSearch() {
+      this.options = [];
       new Promise((resolve) => {
         if (this.createOptions) {
           resolve(this.createOptions(this.searchTerm));
