@@ -25,10 +25,11 @@
       padding-left: 10px;
     }
     .oxd-table-left-panel--toggle-btn {
-      top: 48px;
+      top: 40px;
     }
     .table-header-action-secondary-btn{
       margin-left: 0.5rem;
+      margin-top: -0.5rem;
     }
     .oxd-table-left-panel--separator {
       margin: 0.5rem 0.9rem 1rem 0.5rem;
@@ -42,6 +43,12 @@
       align-items: center;
     }
     padding-right: 0px;
+    &.with-secondary-collapsed{
+      padding-right: 10px;
+      .oxd-table-left-panel--separator {
+        margin: 0.5rem 0.3rem 1rem 0.5rem;
+      }
+    }
   }
   &--toggle-btn {
     position: absolute;
