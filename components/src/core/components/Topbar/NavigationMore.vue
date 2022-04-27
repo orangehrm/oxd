@@ -22,7 +22,7 @@
 <template>
   <oxd-dropdown-menu @dropdown:closed="onClose" class="oxd-topbar-body-nav-tab">
     <span class="oxd-topbar-body-nav-tab-item">
-      More
+      {{ t('general.more', 'More') }}
       <oxd-icon name="three-dots-vertical" :with-container="false" />
     </span>
     <template v-slot:content>
@@ -61,6 +61,7 @@ import {defineComponent, PropType, ref} from 'vue';
 import {TopMenuItem} from './types';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 import DropdownMenu from '@ohrm/oxd/core/components/DropdownMenu/DropdownMenu.vue';
+import usei18n from '../../../composables/usei18n';
 
 export default defineComponent({
   name: 'oxd-navigation-more',
@@ -97,6 +98,7 @@ export default defineComponent({
       onClose,
       onClickMenu,
       expandedIndex,
+      ...usei18n(),
     };
   },
 });
