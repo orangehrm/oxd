@@ -253,21 +253,19 @@ export default defineComponent({
         } else {
           throw new Error('createOptions not defined');
         }
-      })
-        .then((resolved) => {
-          if (resolved && Array.isArray(resolved)) {
-            if (resolved.length > 0) {
-              this.options = resolved.slice(0, 5);
-            } else {
-              this.options = [];
-            }
+      }).then((resolved) => {
+        if (resolved && Array.isArray(resolved)) {
+          if (resolved.length > 0) {
+            this.options = resolved.slice(0, 5);
           } else {
-            throw new Error('options returned are not array');
+            this.options = [];
           }
-        })
-        .finally(() => {
-          this.loading = false;
-        });
+        } else {
+          this.options = [];
+          throw new Error('options returned are not array');
+        }
+        this.loading = false;
+      });
     },
     search() {
       if (this.debouncer) {
