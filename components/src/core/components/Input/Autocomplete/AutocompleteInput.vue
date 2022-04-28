@@ -246,7 +246,6 @@ export default defineComponent({
       }
     },
     doSearch() {
-      this.options = [];
       new Promise((resolve) => {
         if (this.createOptions) {
           resolve(this.createOptions(this.searchTerm));
@@ -254,6 +253,7 @@ export default defineComponent({
           throw new Error('createOptions not defined');
         }
       }).then((resolved) => {
+        this.loading = false;
         if (resolved && Array.isArray(resolved)) {
           if (resolved.length > 0) {
             this.options = resolved.slice(0, 5);
@@ -261,10 +261,8 @@ export default defineComponent({
             this.options = [];
           }
         } else {
-          this.options = [];
           throw new Error('options returned are not array');
         }
-        this.loading = false;
       });
     },
     search() {
