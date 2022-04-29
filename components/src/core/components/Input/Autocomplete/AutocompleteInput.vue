@@ -181,7 +181,8 @@ export default defineComponent({
       });
     },
     highlightedOptions(): string[] {
-      const filter = new RegExp(this.searchTerm, 'i');
+      const searchValue = this.searchTerm.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+      const filter = new RegExp(searchValue, 'i');
       return this.computedOptions.map((option: Option) => {
         return option.label.replace(filter, (match) => {
           return sanitizeHtml(`<b>${match}</b>`);
