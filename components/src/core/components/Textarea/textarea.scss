@@ -10,7 +10,8 @@
   );
   min-height: $oxd-textarea-min-height;
 
-  &::placeholder {
+  &::placeholder,
+  :deep(.oxd-textarea-placeholder) {
     color: $oxd-textarea-placeholder-color;
   }
 
@@ -40,4 +41,20 @@
   &--resize-none {
     resize: none;
   }
+
+  .oxd-content-editable-div {
+    min-height: $oxd-textarea-min-height;
+    outline: none;
+    height: 100%;
+  }
+}
+.oxd-content-editable-wrapper {
+  position: relative;
+  overflow-y: auto;
+}
+.resize-handle {
+  position: absolute;
+  bottom: 6px;
+  right: 2px;
+  color: $oxd-background-gray-color;
 }

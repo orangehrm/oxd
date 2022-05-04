@@ -1,16 +1,37 @@
 <template>
-  <textarea
-    :class="classes"
-    :style="style"
-    :value="modelValue"
-    @focus="onFocus"
-    @blur="onBlur"
-    @input="onInput"
-  />
+  <div class="oxd-content-editable-wrapper" :class="classes" :style="style">
+    <!-- <textarea
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+      :class="classes"
+      :style="style"
+      :value="modelValue"
+      @focus="onFocus"
+      @blur="onBlur"
+      @input="onInput"
+    /> -->
+    <div
+      class="oxd-content-editable-div"
+      contenteditable="true"
+      :value="modelValue"
+      @focus="onFocus"
+      @blur="onBlur"
+      @input="onInputNew($event)"
+      v-html="
+        focused || text
+          ? null
+          : `<span class='oxd-textarea-placeholder'>${placeholder}</span>`
+      "
+    ></div>
+  </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
+
 import {
   TextareaResize,
   RESIZE_NONE,
@@ -20,17 +41,22 @@ import {
 
 export interface State {
   focused: boolean;
+  text: string | null;
 }
 
 export default defineComponent({
   name: 'oxd-textarea',
+
+  components: {
+    'oxd-icon': Icon,
+  },
 
   props: {
     modelValue: {},
     resize: {
       type: String,
       default: RESIZE_VERTICAL,
-      validator: function(value: TextareaResize) {
+      validator: function (value: TextareaResize) {
         return (
           [RESIZE_VERTICAL, RESIZE_HORIZONTAL, RESIZE_NONE].indexOf(value) !==
           -1
@@ -44,11 +70,16 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    placeholder: {
+      type: String,
+      default: 'asdasd',
+    },
   },
 
   data: (): State => {
     return {
       focused: false,
+      text: '' as string | null,
     };
   },
 
@@ -75,7 +106,16 @@ export default defineComponent({
     },
     onInput(e: Event) {
       e.preventDefault();
-      this.$emit('update:modelValue', (e.target as HTMLTextAreaElement).value);
+      const value = (e.target as HTMLTextAreaElement).value;
+      this.$emit('update:modelValue', value);
+      this.$emit('input', e);
+    },
+    onInputNew(e: Event) {
+      e.preventDefault();
+      const value: string | null = (e.currentTarget as HTMLTextAreaElement)
+        .textContent;
+      this.text = value;
+      this.$emit('update:modelValue', value);
       this.$emit('input', e);
     },
   },
