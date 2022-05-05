@@ -60,7 +60,23 @@ exports[`InputField.vue renders OXD InputField type \`textarea\` 1`] = `
     <!--v-if-->
     <!--v-if-->
   </div>
-  <div class=""><textarea class="oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical"></textarea></div>
+  <div class="">
+    <div class="oxd-content-editable-wrapper oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical">
+      <!-- <textarea
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+      :class="classes"
+      :style="style"
+      :value="modelValue"
+      @focus="onFocus"
+      @blur="onBlur"
+      @input="onInput"
+    /> -->
+      <div class="oxd-content-editable-div" contenteditable="true"><span class="oxd-textarea-placeholder">asdasd</span></div>
+    </div>
+  </div>
   <!--v-if-->
 </div>
 `;

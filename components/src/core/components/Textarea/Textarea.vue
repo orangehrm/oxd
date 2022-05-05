@@ -30,7 +30,6 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
 import {
   TextareaResize,
@@ -46,10 +45,6 @@ export interface State {
 
 export default defineComponent({
   name: 'oxd-textarea',
-
-  components: {
-    'oxd-icon': Icon,
-  },
 
   props: {
     modelValue: {},
