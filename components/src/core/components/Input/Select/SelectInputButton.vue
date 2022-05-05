@@ -6,8 +6,10 @@
     <oxd-button
       class="dropdown-btn"
       :class="dropdownButtonClasses"
-      :label="buttonData.label"
-      :iconName="buttonData.iconName"
+      :label="!(modelValue && modelValue.id > -1) ? buttonData.label : null"
+      :iconName="
+        !(modelValue && modelValue.id > -1) ? buttonData.iconName : null
+      "
       :iconSize="buttonData.iconSize"
       :iconStyle="buttonData.iconStyle"
       :hide-dropdown-label="hideDropdownLabel"
@@ -17,7 +19,6 @@
       :tooltip="tooltip"
       :flow="flow"
       @blur="onBlur"
-      @click="onToggleDropdown"
       @keyup.esc="onCloseDropdown"
       @keydown.enter.prevent="onSelectEnter"
       @keydown.down.exact.prevent="onSelectDown"
@@ -27,26 +28,51 @@
       <template v-if="buttonData.iconImageSrc" v-slot:icon>
         <img :src="buttonData.iconImageSrc" />
       </template>
-      <template #label>
+      <template v-if="modelValue && modelValue.id > -1" #label>
         <div
           v-if="buttonData.doubleLineLabel"
-          class="label-double-line-wrapper"
+          class="label-double-line-wrapper w-100"
           :class="{
             'label-double-line': modelValue,
           }"
         >
-          <span class="label-small" v-if="modelValue && modelValue.id > -1">{{
-            $vt(buttonData.labelMini)
-          }}</span>
-          <span class="label">{{ $vt(buttonData.label) }}</span>
+          <div class="label-small w-100 d-flex align-center justify-between">
+            <div class="w-100 d-flex align-center justify-start">
+              <oxd-icon
+                :size="buttonData.iconSize"
+                :style="buttonData.iconStyle"
+                :name="buttonData.iconName"
+                class="mini-icon-left"
+              />
+              <span>{{ $vt(buttonData.labelMini) }}</span>
+            </div>
+            <div
+              class="d-flex align-center justify-center oxd-select-info-button"
+            >
+              <oxd-icon
+                size="xx-small"
+                :name="'oxd-info'"
+                @click="$emit('onInfoClick')"
+              />
+            </div>
+          </div>
+          <div class="w-100 d-flex align-center justify-between">
+            <span class="label">{{ $vt(buttonData.label) }}</span>
+            <oxd-icon-button
+              :name="dropdownOpen ? 'oxd-chevron-up' : 'oxd-chevron-down'"
+              size="xxx-small"
+              class="oxd-select-dropdown-trigger"
+              @click="onToggleDropdown"
+            />
+          </div>
         </div>
       </template>
-      <template v-slot:iconRight>
-        <oxd-icon
-          class="oxd-button-icon oxd-button-icon-right d-flex align-center"
-          style="height: 14px"
-          size="xxx-small"
+      <template v-if="!(modelValue && modelValue.id > -1)" v-slot:iconRight>
+        <oxd-icon-button
           :name="dropdownOpen ? 'oxd-chevron-up' : 'oxd-chevron-down'"
+          size="xxx-small"
+          class="oxd-select-dropdown-trigger"
+          @click="onToggleDropdown"
         />
       </template>
     </oxd-button>
@@ -97,6 +123,7 @@ import SelectDropdown from '@orangehrm/oxd/core/components/Input/Select/SelectDr
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
+import ButtonIcon from '@orangehrm/oxd/core/components/Button/Icon.vue';
 
 export default defineComponent({
   name: 'oxd-select-input',
@@ -105,6 +132,7 @@ export default defineComponent({
   components: {
     'oxd-icon': Icon,
     'oxd-button': Button,
+    'oxd-icon-button': ButtonIcon,
     'oxd-select-dropdown': SelectDropdown,
     'oxd-select-option': SelectOption,
   },

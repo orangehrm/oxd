@@ -25,59 +25,67 @@ export default {
 
 const options = [
   {
+    id: -1,
+    label: 'All Vacancies',
+  },
+  {
     id: 1,
-    label: 'HR Admin',
+    label: 'Account Rec/Pay Clerk Vacancy',
   },
   {
     id: 2,
-    label: 'ESS User',
+    label: 'Assistant to the Associate Dean Vacancy',
   },
   {
     id: 3,
-    label: 'Supervisor',
+    label: 'Assistant to the Vice Charncellor Vacancy',
   },
   {
     id: 4,
-    label: 'Manager',
+    label: 'Associate Author Vacancy',
   },
   {
     id: 5,
-    label: 'Employee',
+    label: 'Audit Clerk',
   },
   {
     id: 6,
-    label: 'Assistant Manager',
+    label: 'Benefits Specialist Vacancy',
   },
   {
     id: 7,
-    label: 'Director',
+    label: 'Clerk-Typist Vacancy',
   },
   {
     id: 8,
-    label: 'Officer',
+    label: 'Conference Assistant Vacancy',
   },
   {
     id: 9,
-    label: 'Appraiser',
+    label: 'Fee Control Clerk Vacancy',
   },
   {
     id: 10,
-    label: 'Senior Executive',
+    label: 'Loan Clerk Vacancy',
   },
 ];
 
 const buttonObject = {
-  label: 'All User Roles',
+  label: 'All Vacancies',
   labelMini: null,
-  iconName: 'plus',
+  iconName: 'eye',
   iconSize: 'small',
+  iconStyle: "height: 20px; display: flex; align-items: center; color: #68a61d",
   iconImageSrc: null,
   size: 'long',
   displayType: 'label',
-  style: null,
   doubleLineLabel: true,
   showLabel: true,
-  labelMini: 'User Role'
+  labelMini: 'Vacancy',
+  style: {
+    "background-color": "#ebfcd6",
+    "justify-content": "space-between",
+  },
 }
 
 const Template = args => ({
@@ -86,7 +94,8 @@ const Template = args => ({
     return {args, selected};
   },
   render() {
-    return h(SelectInputButton, {
+    return h(
+      SelectInputButton, {
       ...this.args,
       modelValue: this.selected,
       'onUpdate:modelValue': value => {

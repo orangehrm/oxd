@@ -198,7 +198,6 @@
     }
   }
 }
-
 .no-label {
   min-width: initial;
   justify-content: center !important;
@@ -220,6 +219,7 @@
   border-radius: 0.85rem;
   &.button-double-line {
     padding: 0.5rem 0.75rem 0.5rem 1rem;
+    cursor: default;
   }
 }
 .oxd-icon {
@@ -227,16 +227,22 @@
     margin-left: 0.5rem;
   }
 }
+.mini-icon-left {
+  margin-right: 0.5rem;
+}
+$dropdown-button-size: 24px;
+.oxd-select-info-button {
+  min-width: $dropdown-button-size;
+}
+.oxd-select-dropdown-trigger {
+  min-width: $dropdown-button-size;
+  min-height: $dropdown-button-size;
+}
 .label-double-line-wrapper {
   vertical-align: middle;
   display: inline-grid;
   &.label-double-line {
     width: 100%;
-    * {
-      display: block;
-      text-align: left;
-      width: 100%;
-    }
     .label-small {
       margin-bottom: 0.25rem;
       font-size: 0.625rem;

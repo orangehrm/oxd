@@ -139,7 +139,7 @@
 /*Glass Button */
 .oxd-button {
   .oxd-button-icon,
-  :deep(.oxd-svg-icon) {
+  > :deep(.oxd-svg-icon) {
     color: inherit;
     vertical-align: bottom;
     position: relative;
@@ -190,6 +190,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  width: 100%;
 }
 
 .oxd-button--glass {
