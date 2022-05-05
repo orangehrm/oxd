@@ -219,7 +219,21 @@
   border-radius: 0.85rem;
   &.button-double-line {
     padding: 0.5rem 0.75rem 0.5rem 1rem;
-    cursor: default;
+    cursor: default !important;
+    :deep(.oxd-button-label-wrapper) {
+      display: block;
+      overflow: initial;
+      white-space: initial;
+      text-overflow: initial;
+      .label-double-line-wrapper.label-double-line .label {
+        overflow: initial;
+        text-overflow: initial;
+        white-space: initial;
+        word-break: break-word;
+        text-align: left;
+        padding-right: 5px;
+      }
+    }
   }
 }
 .oxd-icon {
@@ -229,14 +243,22 @@
 }
 .mini-icon-left {
   margin-right: 0.5rem;
+  color: $oxd-select-input-button-color--secondary-pressed;
 }
 $dropdown-button-size: 24px;
-.oxd-select-info-button {
+.oxd-select-info-button-container {
   min-width: $dropdown-button-size;
+  .oxd-select-info-button {
+    cursor: pointer;
+    :deep(path) {
+      fill: $oxd-select-input-button-color--secondary-pressed;
+    }
+  }
 }
 .oxd-select-dropdown-trigger {
   min-width: $dropdown-button-size;
   min-height: $dropdown-button-size;
+  color: $oxd-select-input-button-color--secondary-pressed;
 }
 .label-double-line-wrapper {
   vertical-align: middle;

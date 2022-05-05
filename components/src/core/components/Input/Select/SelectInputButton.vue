@@ -16,7 +16,7 @@
       :size="buttonData.size"
       :style="buttonData.style"
       :displayType="buttonData.displayType"
-      :tooltip="tooltip"
+      :tooltip="$vt(tooltip)"
       :flow="flow"
       @blur="onBlur"
       @keyup.esc="onCloseDropdown"
@@ -47,9 +47,17 @@
               <span>{{ $vt(buttonData.labelMini) }}</span>
             </div>
             <div
-              class="d-flex align-center justify-center oxd-select-info-button"
+              class="
+                d-flex
+                align-center
+                justify-center
+                oxd-select-info-button-container
+              "
             >
               <oxd-icon
+                :tooltip="$vt(infoTooltip)"
+                :flow="infoTooltipFlow"
+                class="oxd-select-info-button"
                 size="xx-small"
                 :name="'oxd-info'"
                 @click="$emit('onInfoClick')"
@@ -187,6 +195,17 @@ export default defineComponent({
       default: null,
     },
     flow: {
+      type: String,
+      default: TOOLTIP_TOP,
+      validator: (value: Position) => {
+        return TOOLTIP_POSITIONS.indexOf(value) !== 1;
+      },
+    },
+    infoTooltip: {
+      type: String,
+      default: null,
+    },
+    infoTooltipFlow: {
       type: String,
       default: TOOLTIP_TOP,
       validator: (value: Position) => {
