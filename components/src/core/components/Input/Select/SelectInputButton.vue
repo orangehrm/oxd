@@ -6,10 +6,8 @@
     <oxd-button
       class="dropdown-btn"
       :class="dropdownButtonClasses"
-      :label="!(modelValue && modelValue.id > -1) ? buttonData.label : null"
-      :iconName="
-        !(modelValue && modelValue.id > -1) ? buttonData.iconName : null
-      "
+      :label="modelValue ? modelValue.label : buttonData.label"
+      :iconName="!modelValue ? buttonData.iconName : null"
       :iconSize="buttonData.iconSize"
       :iconStyle="buttonData.iconStyle"
       :hide-dropdown-label="hideDropdownLabel"
@@ -28,7 +26,7 @@
       <template v-if="buttonData.iconImageSrc" v-slot:icon>
         <img :src="buttonData.iconImageSrc" />
       </template>
-      <template v-if="modelValue && modelValue.id > -1" #label>
+      <template v-if="modelValue" #label>
         <div
           v-if="buttonData.doubleLineLabel"
           class="label-double-line-wrapper w-100"
@@ -55,17 +53,18 @@
               "
             >
               <oxd-icon
-                :tooltip="$vt(infoTooltip)"
+                v-if="moreIconName"
+                :tooltip="$vt(moreTooltip)"
                 :flow="infoTooltipFlow"
                 class="oxd-select-info-button"
-                size="xx-small"
-                :name="'oxd-info'"
-                @click="$emit('onInfoClick')"
+                :size="moreIconSize"
+                :name="moreIconName"
+                @click="$emit('onMoreClick')"
               />
             </div>
           </div>
           <div class="w-100 d-flex align-center justify-between">
-            <span class="label">{{ $vt(buttonData.label) }}</span>
+            <span class="label">{{ $vt(modelValue.label) }}</span>
             <oxd-icon-button
               :name="dropdownOpen ? 'oxd-chevron-up' : 'oxd-chevron-down'"
               size="xxx-small"
@@ -75,7 +74,7 @@
           </div>
         </div>
       </template>
-      <template v-if="!(modelValue && modelValue.id > -1)" v-slot:iconRight>
+      <template v-if="!modelValue" v-slot:iconRight>
         <oxd-icon-button
           :name="dropdownOpen ? 'oxd-chevron-up' : 'oxd-chevron-down'"
           size="xxx-small"
@@ -201,11 +200,18 @@ export default defineComponent({
         return TOOLTIP_POSITIONS.indexOf(value) !== 1;
       },
     },
-    infoTooltip: {
+    moreIconName: {
+      type: String,
+    },
+    moreIconSize: {
+      type: String,
+      default: 'xx-small',
+    },
+    moreTooltip: {
       type: String,
       default: null,
     },
-    infoTooltipFlow: {
+    moreTooltipFlow: {
       type: String,
       default: TOOLTIP_TOP,
       validator: (value: Position) => {

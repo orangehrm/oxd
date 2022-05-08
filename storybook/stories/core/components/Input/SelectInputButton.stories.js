@@ -19,7 +19,7 @@ export default {
       control: {type: 'array'},
       defaultValue: [],
     },
-    button: {control: {type: 'object'}}
+    button: {control: {type: 'object'}},
   },
 };
 
@@ -99,7 +99,11 @@ const Template = args => ({
       ...this.args,
       modelValue: this.selected,
       'onUpdate:modelValue': value => {
-        this.selected = value;
+        if (value.id > -1) {
+          this.selected = value;
+        } else {
+          this.selected = null;
+        }
       },
     });
   },
@@ -109,6 +113,7 @@ export const Default = Template.bind({});
 Default.args = {
   options: options,
   button: buttonObject,
+  moreIconName: 'oxd-info',
 };
 
 export const Error = Template.bind({});
