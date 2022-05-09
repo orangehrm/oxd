@@ -53,6 +53,61 @@
   }
 }
 
+@mixin hueslider() {
+  border: none;
+  width: 100%;
+  height: $oxd-color-picker-hueslider-height;
+  border-radius: $oxd-color-picker-hueslider-height;
+  background: linear-gradient(
+    to right,
+    hsl(0, 100%, 50%),
+    hsl(10, 100%, 50%),
+    hsl(20, 100%, 50%),
+    hsl(30, 100%, 50%),
+    hsl(40, 100%, 50%),
+    hsl(50, 100%, 50%),
+    hsl(60, 100%, 50%),
+    hsl(70, 100%, 50%),
+    hsl(80, 100%, 50%),
+    hsl(90, 100%, 50%),
+    hsl(100, 100%, 50%),
+    hsl(110, 100%, 50%),
+    hsl(120, 100%, 50%),
+    hsl(130, 100%, 50%),
+    hsl(140, 100%, 50%),
+    hsl(150, 100%, 50%),
+    hsl(160, 100%, 50%),
+    hsl(170, 100%, 50%),
+    hsl(180, 100%, 50%),
+    hsl(190, 100%, 50%),
+    hsl(200, 100%, 50%),
+    hsl(210, 100%, 50%),
+    hsl(220, 100%, 50%),
+    hsl(230, 100%, 50%),
+    hsl(240, 100%, 50%),
+    hsl(250, 100%, 50%),
+    hsl(260, 100%, 50%),
+    hsl(270, 100%, 50%),
+    hsl(280, 100%, 50%),
+    hsl(290, 100%, 50%),
+    hsl(300, 100%, 50%),
+    hsl(310, 100%, 50%),
+    hsl(320, 100%, 50%),
+    hsl(330, 100%, 50%),
+    hsl(340, 100%, 50%),
+    hsl(350, 100%, 50%),
+    hsl(360, 100%, 50%)
+  );
+}
+
+@mixin thumb() {
+  border: $oxd-input-border--active;
+  background-color: $oxd-white-color;
+  width: $oxd-color-picker-huethumb-height;
+  height: $oxd-color-picker-huethumb-height;
+  border-radius: $oxd-color-picker-huethumb-height;
+}
+
 .oxd-color-picker {
   position: absolute;
   box-sizing: border-box;
@@ -74,5 +129,39 @@
     display: block;
     margin-bottom: 0.4rem;
     border-radius: $oxd-dropdown-dropdown-border-radius;
+  }
+  &-range {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background: transparent;
+    min-height: $oxd-color-picker-huethumb-height;
+
+    &,
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+    }
+
+    &::-webkit-slider-runnable-track {
+      @include hueslider;
+    }
+    &::-moz-range-track {
+      @include hueslider;
+    }
+    &::-ms-track {
+      @include hueslider;
+    }
+
+    &::-webkit-slider-thumb {
+      margin-top: -4px;
+      @include thumb;
+    }
+    &::-moz-range-thumb {
+      @include thumb;
+    }
+    &::-ms-thumb {
+      @include thumb;
+    }
   }
 }

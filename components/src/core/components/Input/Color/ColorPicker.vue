@@ -27,6 +27,13 @@
       width="230"
       height="230"
     ></canvas>
+    <input
+      class="oxd-color-picker-range"
+      type="range"
+      max="360"
+      :value="hue"
+      @change.stop="updateHue"
+    />
     <oxd-label
       :label="t('general.hex', 'HEX')"
       class="oxd-color-picker-label"
@@ -39,8 +46,9 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, watchEffect} from 'vue';
+import {computed, defineComponent, ref, watchEffect} from 'vue';
 import usei18n from '../../../../composables/usei18n';
+import {hex2Hsl, hsl2Hex} from '../../../../utils/color';
 import Input from '@ohrm/oxd/core/components/Input/Input.vue';
 import Label from '@ohrm/oxd/core/components/Label/Label.vue';
 
@@ -61,7 +69,7 @@ export default defineComponent({
 
   emits: ['update:modelValue'],
 
-  setup(props) {
+  setup(props, context) {
     const colorPallete = ref<HTMLCanvasElement>();
 
     const rendercolorPallete = (color: string) => {
@@ -83,12 +91,24 @@ export default defineComponent({
       }
     };
 
+    const updateHue = ($e: Event) => {
+      const _hue = ($e.target as HTMLInputElement).value;
+      context.emit('update:modelValue', hsl2Hex(`hsl(${_hue}, 100%, 50%)`));
+    };
+
+    const hue = computed(() => {
+      const [h] = hex2Hsl(props.modelValue);
+      return h;
+    });
+
     watchEffect(() => {
       rendercolorPallete(props.modelValue);
     });
 
     return {
+      hue,
       colorPallete,
+      updateHue,
       ...usei18n(),
     };
   },
