@@ -1,0 +1,78 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+@import '../../../../styles';
+@import '../variables';
+
+.oxd-color-input {
+  display: block;
+  cursor: pointer;
+  padding: 0.1rem;
+  position: relative;
+  border-radius: 100%;
+  box-sizing: border-box;
+  width: $oxd-color-input-width;
+  height: $oxd-color-input-height;
+  &-preview {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+  }
+  &:focus {
+    outline: none;
+  }
+  &--active {
+    border: $oxd-input-border--active;
+  }
+  &--focus {
+    border: $oxd-input-border--focus;
+    box-shadow: $oxd-input-box-shadow--focus;
+    outline: 0;
+  }
+  &--error {
+    border: $oxd-input-border--error;
+    box-shadow: $oxd-input-box-shadow--error;
+  }
+  &--disabled,
+  &--readonly {
+    cursor: unset;
+  }
+}
+
+.oxd-color-picker {
+  position: absolute;
+  box-sizing: border-box;
+  color: $oxd-dropdown-dropdown-color;
+  z-index: $oxd-dropdown-dropdown-z-index;
+  border: $oxd-dropdown-dropdown-border;
+  box-shadow: $oxd-dropdown-dropdown-box-shadow;
+  border-radius: $oxd-dropdown-dropdown-border-radius;
+  background-color: $oxd-dropdown-dropdown-background;
+  margin-top: $oxd-dropdown-dropdown-margin;
+  padding: $oxd-color-picker-dropdown-margin;
+  width: $oxd-color-picker-dropdown-width;
+  &-label {
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  &-pallete {
+    margin: 0;
+    display: block;
+    margin-bottom: 0.4rem;
+    border-radius: $oxd-dropdown-dropdown-border-radius;
+  }
+}
