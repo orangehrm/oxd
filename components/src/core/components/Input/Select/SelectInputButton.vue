@@ -7,7 +7,7 @@
       class="dropdown-btn"
       :class="dropdownButtonClasses"
       :label="modelValue ? modelValue.label : buttonData.label"
-      :iconName="!modelValue ? buttonData.iconName : null"
+      :iconName="buttonIconName"
       :iconSize="buttonData.iconSize"
       :iconStyle="buttonData.iconStyle"
       :hide-dropdown-label="hideDropdownLabel"
@@ -16,6 +16,7 @@
       :displayType="buttonData.displayType"
       :tooltip="$vt(tooltip)"
       :flow="flow"
+      :disabled="disabled"
       @blur="onBlur"
       @keyup.esc="onCloseDropdown"
       @keydown.enter.prevent="onSelectEnter"
@@ -26,9 +27,8 @@
       <template v-if="buttonData.iconImageSrc" v-slot:icon>
         <img :src="buttonData.iconImageSrc" />
       </template>
-      <template v-if="modelValue" #label>
+      <template v-if="doubleLineLabel && modelValue" #label>
         <div
-          v-if="buttonData.doubleLineLabel"
           class="label-double-line-wrapper w-100"
           :class="{
             'label-double-line': modelValue,
@@ -74,12 +74,13 @@
           </div>
         </div>
       </template>
-      <template v-if="!modelValue" v-slot:iconRight>
+      <template v-if="doubleLineLabel ? !modelValue : true" v-slot:iconRight>
         <oxd-icon-button
           :name="dropdownOpen ? 'oxd-chevron-up' : 'oxd-chevron-down'"
           size="xxx-small"
           class="oxd-select-dropdown-trigger"
           @click="onToggleDropdown"
+          :disabled="disabled"
         />
       </template>
     </oxd-button>
@@ -218,6 +219,10 @@ export default defineComponent({
         return TOOLTIP_POSITIONS.indexOf(value) !== 1;
       },
     },
+    doubleLineLabel: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -230,6 +235,13 @@ export default defineComponent({
   },
 
   computed: {
+    buttonIconName(): boolean {
+      return this.doubleLineLabel
+        ? !this.modelValue
+          ? this.buttonData.iconName
+          : null
+        : this.buttonData.iconName;
+    },
     computedOptions(): Option[] {
       return this.options.map((option: Option) => {
         let _selected = false;
@@ -276,7 +288,6 @@ export default defineComponent({
         size: 'long',
         displayType: 'label',
         style: null,
-        doubleLineLabel: false,
         showLabel: true,
       };
       for (const key in this.button) {
@@ -288,7 +299,7 @@ export default defineComponent({
       return initialObject;
     },
     dropdownButtonClasses(): string {
-      return `${this.buttonData.doubleLineLabel ? 'button-double-line' : ''} ${
+      return `${this.doubleLineLabel ? 'button-double-line' : ''} ${
         this.hideDropdownLabel ? 'no-label' : 'w-100'
       }`;
     },
@@ -309,4 +320,4 @@ export default defineComponent({
 });
 </script>
 
-<style src="./select-input.scss" lang="scss" scoped></style>
+<style src="./select-input-button.scss" lang="scss" scoped></style>

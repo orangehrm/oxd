@@ -10,6 +10,11 @@
   & > *:focus {
     outline: none;
   }
+  .oxd-select-dropdown-trigger {
+    :deep(.oxd-svg-icon) {
+      margin-right: 0;
+    }
+  }
 }
 
 .oxd-select-text {
@@ -219,11 +224,13 @@
   border-radius: 0.85rem;
   &.button-double-line {
     padding: 0.5rem 0.75rem 0.5rem 1rem;
+    cursor: default !important;
     :deep(.oxd-button-label-wrapper) {
       display: block;
       overflow: initial;
       white-space: initial;
       text-overflow: initial;
+      width: 100%;
       .label-double-line-wrapper.label-double-line .label {
         overflow: initial;
         text-overflow: initial;
@@ -248,6 +255,7 @@ $dropdown-button-size: 24px;
 .oxd-select-info-button-container {
   min-width: $dropdown-button-size;
   .oxd-select-info-button {
+    margin-right: 0 !important;
     cursor: pointer;
     :deep(path) {
       fill: $oxd-select-input-button-color--secondary-pressed;
@@ -273,7 +281,7 @@ $dropdown-button-size: 24px;
       line-height: 0.75rem;
       font-size: 0.75rem;
       font-weight: 800;
-      max-width: 150px;
+      max-width: calc(100% - 32px);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;

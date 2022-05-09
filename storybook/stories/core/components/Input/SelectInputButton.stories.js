@@ -114,23 +114,30 @@ Default.args = {
   options: options,
   button: buttonObject,
   moreIconName: 'oxd-info',
+  doubleLineLabel: true,
 };
 
 export const Error = Template.bind({});
 Error.args = {
   hasError: true,
+  moreIconName: 'oxd-info',
+  doubleLineLabel: true,
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
   options: options,
   disabled: true,
+  moreIconName: 'oxd-info',
+  doubleLineLabel: true,
 };
 
 export const Readonly = Template.bind({});
 Readonly.args = {
   options: options,
   readonly: true,
+  moreIconName: 'oxd-info',
+  doubleLineLabel: true,
 };
 
 export const LongLabels = Template.bind({});
@@ -140,10 +147,12 @@ LongLabels.args = {
     {
       id: 2,
       label:
-        'aaaaaaaaaaa bbbbbbbbbbbbbbbbbbbbbbbbbbb cccccccccccccccccccccc ddddddddddddddddddddddddddddd',
+        'aaaaaaaaaaa bbbbbbbbbbbbbbbbbbbbbbbbbbb cccccccccccccccccccccc ddddddddddddddddddddddddddddd eeeeeeeeeeeeeeeeeeeee fffffffffffffffff gggggggggggggggggggggggggg hhhhhhhhhhhhhhh iiiiiiiiiiiiiiiiiiiiii jjjjjjjjjjjjjjjjjjjjjj aaaaaaaaaaa bbbbbbbbbbbbbbbbbbbbbbbbbbb cccccccccccccccccccccc ddddddddddddddddddddddddddddd eeeeeeeeeeeeeeeeeeeee fffffffffffffffff gggggggggggggggggggggggggg hhhhhhhhhhhhhhh iiiiiiiiiiiiiiiiiiiiii jjjjjjjjjjjjjjjjjjjjjj',
     },
     {id: 3, label: 'normal length label'},
     {id: 4, label: null},
     {id: 5, label: 'ඔක්තෝබර්'},
   ],
+  moreIconName: 'oxd-info',
+  doubleLineLabel: true,
 };
