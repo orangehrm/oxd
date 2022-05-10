@@ -20,7 +20,6 @@
 
 .oxd-color-input {
   display: block;
-  cursor: pointer;
   padding: 0.1rem;
   position: relative;
   border-radius: 100%;
@@ -124,9 +123,10 @@
     display: block;
     margin-bottom: 0.4rem;
   }
-  &-pallete {
+  &-palette {
     margin: 0;
     display: block;
+    cursor: pointer;
     margin-bottom: 0.4rem;
     border-radius: $oxd-dropdown-dropdown-border-radius;
   }

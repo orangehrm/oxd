@@ -68,6 +68,7 @@ export default defineComponent({
     const previewStyles = computed(() => ({
       backgroundColor: props.modelValue ?? state.color,
       opacity: props.disabled || props.readonly ? 0.5 : 1,
+      cursor: props.disabled || props.readonly ? 'unset' : 'pointer',
     }));
 
     const classes = computed(() => ({

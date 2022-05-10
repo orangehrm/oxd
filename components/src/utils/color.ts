@@ -111,19 +111,33 @@ export const hex2Hsl = (hex: string) => {
   return [h, s, l];
 };
 
-export const hsl2Hex = (hsl: string) => {
-  const [r, g, b] = hsl2Rgb(hsl);
-  console.log(r, g, b);
-  let _r = r.toString(16);
-  let _g = g.toString(16);
-  let _b = b.toString(16);
-
-  console.log(_r, _g, _b);
+export const rgb2Hex = (red: number, green: number, blue: number): string => {
+  let _r = red.toString(16);
+  let _g = green.toString(16);
+  let _b = blue.toString(16);
 
   // prepend 0s if necessary
-  if (_r.length == 1) _r = '0' + r;
-  if (_g.length == 1) _g = '0' + g;
-  if (_b.length == 1) _b = '0' + b;
+  if (_r.length === 1) _r = '0' + _r;
+  if (_g.length === 1) _g = '0' + _g;
+  if (_b.length === 1) _b = '0' + _b;
 
   return `#${_r}${_g}${_b}`;
+};
+
+export const hsl2Hex = (hsl: string) => {
+  const [r, g, b] = hsl2Rgb(hsl);
+  return rgb2Hex(r, g, b);
+};
+
+export const sanitizeHex = (hex: string | null) => {
+  if (!hex) return null;
+  if (hex.substring(0, 1) === '#') hex = hex.substring(1);
+  if (hex.length === 3) {
+    hex = hex
+      .split('')
+      .map(_hex => _hex + _hex)
+      .join('');
+  }
+  if (hex.length > 6) hex = hex.substring(0, 5);
+  return /^[0-9A-F]{6}$/i.test(hex) ? `#${hex}` : null;
 };

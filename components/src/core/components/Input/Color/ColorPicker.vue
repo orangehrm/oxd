@@ -22,17 +22,20 @@
 <template>
   <div role="alert" class="oxd-color-picker">
     <canvas
-      ref="colorPallete"
-      class="oxd-color-picker-pallete"
+      ref="colorPalette"
       width="230"
       height="230"
+      class="oxd-color-picker-palette"
+      @mousemove.prevent="pickColor"
+      @touchmove.prevent="pickColor"
+      @mousedown.prevent="captureOn"
+      @touchstart.prevent="captureOn"
     ></canvas>
     <input
+      v-model.lazy="hue"
       class="oxd-color-picker-range"
       type="range"
-      max="360"
-      :value="hue"
-      @change.stop="updateHue"
+      max="359"
     />
     <oxd-label
       :label="t('general.hex', 'HEX')"
@@ -46,11 +49,19 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, ref, watchEffect} from 'vue';
+import {
+  ref,
+  toRefs,
+  reactive,
+  watchEffect,
+  onBeforeMount,
+  onBeforeUnmount,
+  defineComponent,
+} from 'vue';
 import usei18n from '../../../../composables/usei18n';
-import {hex2Hsl, hsl2Hex} from '../../../../utils/color';
 import Input from '@ohrm/oxd/core/components/Input/Input.vue';
 import Label from '@ohrm/oxd/core/components/Label/Label.vue';
+import {hex2Hsl, hsl2Hex, rgb2Hex, sanitizeHex} from '../../../../utils/color';
 
 export default defineComponent({
   name: 'oxd-color-picker',
@@ -58,7 +69,7 @@ export default defineComponent({
   props: {
     modelValue: {
       type: String,
-      required: true,
+      required: false,
     },
   },
 
@@ -70,46 +81,78 @@ export default defineComponent({
   emits: ['update:modelValue'],
 
   setup(props, context) {
-    const colorPallete = ref<HTMLCanvasElement>();
+    const state = reactive({
+      hue: 0,
+      pickEnabled: false,
+    });
+    const colorPalette = ref<HTMLCanvasElement>();
 
-    const rendercolorPallete = (color: string) => {
-      const colorPalleteCTX = colorPallete.value?.getContext('2d');
-      if (colorPalleteCTX) {
-        const {width, height} = colorPalleteCTX.canvas;
-        colorPalleteCTX.clearRect(0, 0, width, height);
-        const gradientH = colorPalleteCTX.createLinearGradient(0, 0, width, 0);
+    const rendercolorPalette = (color: string) => {
+      const colorPaletteCTX = colorPalette.value?.getContext('2d');
+      if (colorPaletteCTX) {
+        const {width, height} = colorPaletteCTX.canvas;
+        colorPaletteCTX.clearRect(0, 0, width, height);
+        const gradientH = colorPaletteCTX.createLinearGradient(0, 0, width, 0);
         gradientH.addColorStop(0, 'rgba(255,255,255,1)');
         gradientH.addColorStop(1, color);
-        colorPalleteCTX.fillStyle = gradientH;
-        colorPalleteCTX.fillRect(0, 0, width, height);
+        colorPaletteCTX.fillStyle = gradientH;
+        colorPaletteCTX.fillRect(0, 0, width, height);
 
-        const gradientV = colorPalleteCTX.createLinearGradient(0, 0, 0, height);
+        const gradientV = colorPaletteCTX.createLinearGradient(0, 0, 0, height);
         gradientV.addColorStop(0, 'rgba(0,0,0,0)');
         gradientV.addColorStop(1, 'rgba(0,0,0,1)');
-        colorPalleteCTX.fillStyle = gradientV;
-        colorPalleteCTX.fillRect(0, 0, width, height);
+        colorPaletteCTX.fillStyle = gradientV;
+        colorPaletteCTX.fillRect(0, 0, width, height);
       }
     };
 
-    const updateHue = ($e: Event) => {
-      const _hue = ($e.target as HTMLInputElement).value;
-      context.emit('update:modelValue', hsl2Hex(`hsl(${_hue}, 100%, 50%)`));
+    const pickColor = ($e: MouseEvent) => {
+      if (!state.pickEnabled) return;
+      const {offsetX: x, offsetY: y} = $e;
+      const colorPaletteCTX = colorPalette.value?.getContext('2d');
+      if (colorPaletteCTX) {
+        const pixel = colorPaletteCTX.getImageData(x, y, 1, 1)['data']; // Read pixel Color
+        context.emit(
+          'update:modelValue',
+          rgb2Hex(pixel[0], pixel[1], pixel[2]),
+        );
+      }
     };
 
-    const hue = computed(() => {
-      const [h] = hex2Hsl(props.modelValue);
-      return h;
+    const captureOn = ($e: MouseEvent) => {
+      state.pickEnabled = true;
+      pickColor($e);
+    };
+
+    const captureOff = () => {
+      state.pickEnabled = false;
+    };
+
+    watchEffect(() => {
+      const hex = sanitizeHex(props.modelValue);
+      if (hex) [state.hue] = hex2Hsl(hex);
     });
 
     watchEffect(() => {
-      rendercolorPallete(props.modelValue);
+      rendercolorPalette(hsl2Hex(`hsl(${state.hue}, 100%, 50%)`));
+    });
+
+    onBeforeMount(() => {
+      window.addEventListener('mouseup', captureOff);
+      window.addEventListener('touchend', captureOff);
+    });
+
+    onBeforeUnmount(() => {
+      window.removeEventListener('mouseup', captureOff);
+      window.removeEventListener('touchend', captureOff);
     });
 
     return {
-      hue,
-      colorPallete,
-      updateHue,
+      captureOn,
+      pickColor,
+      colorPalette,
       ...usei18n(),
+      ...toRefs(state),
     };
   },
 });
