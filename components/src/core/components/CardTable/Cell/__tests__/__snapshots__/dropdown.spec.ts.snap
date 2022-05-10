@@ -11,7 +11,7 @@ exports[`CardTable > Cell > Dropdown.vue should render OXD CardTable > Cell > Dr
 exports[`CardTable > Cell > Dropdown.vue should render OXD CardTable > Cell > Dropdown Cell (with icons) 2`] = `
 <li class="--active oxd-table-dropdown"><button type="button" class="oxd-icon-button" flow="top"><i class="oxd-icon oxd-icon--medium bi-three-dots-vertical"></i></button>
   <transition-stub>
-    <ul class="oxd-dropdown-menu" role="menu">
+    <ul class="oxd-dropdown-menu --positon-bottom" role="menu">
       <li class="oxd-table-dropdown-item"><i class="oxd-svg-icon oxd-svg-icon--extra-small"></i>
         <p class="oxd-text oxd-text--p">Add Comment</p>
       </li>
@@ -40,7 +40,7 @@ exports[`CardTable > Cell > Dropdown.vue should render OXD CardTable > Cell > Dr
 exports[`CardTable > Cell > Dropdown.vue should render OXD CardTable > Cell > Dropdown Cell 2`] = `
 <li class="--active oxd-table-dropdown"><button type="button" class="oxd-icon-button" flow="top"><i class="oxd-icon oxd-icon--medium bi-three-dots-vertical"></i></button>
   <transition-stub>
-    <ul class="oxd-dropdown-menu" role="menu">
+    <ul class="oxd-dropdown-menu --positon-bottom" role="menu">
       <li class="oxd-table-dropdown-item">
         <!--v-if-->
         <p class="oxd-text oxd-text--p">Add Comment</p>
