@@ -7,6 +7,7 @@
     <slot></slot>
     <transition name="transition-fade-down">
       <ul
+        v-dropdown-direction
         @click.stop="closeSubMenu"
         v-if="isActive"
         class="oxd-dropdown-menu"
@@ -21,6 +22,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import clickOutsideDirective from '../../../directives/click-outside';
+import dropdownDirectionDirective from '../../../directives/dropdown-direction';
 
 export default defineComponent({
   name: 'oxd-dropdown-menu',
@@ -32,6 +34,7 @@ export default defineComponent({
   },
   directives: {
     'click-outside': clickOutsideDirective,
+    'dropdown-direction': dropdownDirectionDirective,
   },
 
   emits: ['show'],
