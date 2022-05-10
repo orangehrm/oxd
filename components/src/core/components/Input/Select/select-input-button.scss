@@ -226,7 +226,6 @@
     padding: 0.5rem 0.75rem 0.5rem 1rem;
     cursor: default !important;
     :deep(.oxd-button-label-wrapper) {
-      display: block;
       overflow: initial;
       white-space: initial;
       text-overflow: initial;
@@ -266,6 +265,9 @@ $dropdown-button-size: 24px;
   min-width: $dropdown-button-size;
   min-height: $dropdown-button-size;
   color: $oxd-select-input-button-color--secondary-pressed;
+  &.dropdown-minimized {
+    margin-left: 0.5rem;
+  }
 }
 .label-double-line-wrapper {
   vertical-align: middle;
