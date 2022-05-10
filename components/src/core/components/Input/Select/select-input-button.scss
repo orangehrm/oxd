@@ -230,6 +230,7 @@
       white-space: initial;
       text-overflow: initial;
       width: 100%;
+      font-weight: 800;
       .label-double-line-wrapper.label-double-line .label {
         overflow: initial;
         text-overflow: initial;
@@ -278,11 +279,11 @@ $dropdown-button-size: 24px;
       margin-bottom: 0.25rem;
       font-size: 0.625rem;
       line-height: 1;
+      font-weight: 600;
     }
     .label {
       line-height: 0.75rem;
       font-size: 0.75rem;
-      font-weight: 800;
       max-width: calc(100% - 32px);
       overflow: hidden;
       text-overflow: ellipsis;
