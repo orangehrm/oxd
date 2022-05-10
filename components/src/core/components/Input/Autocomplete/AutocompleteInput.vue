@@ -149,7 +149,7 @@ export default defineComponent({
 
   computed: {
     showChips(): boolean {
-      return Array.isArray(this.modelValue) && this.multiple;
+      return Array.isArray(this.modelValue || []) && this.multiple;
     },
     computedOptions(): Option[] {
       return this.options
