@@ -187,7 +187,7 @@ export default defineComponent({
       );
       const filter = new RegExp(searchValue, 'i');
       return this.computedOptions.map((option: Option) => {
-        return option.label.replace(filter, match => {
+        return option.label.replace(filter, (match) => {
           return sanitizeHtml(`<b>${match}</b>`);
         });
       });
@@ -298,6 +298,15 @@ export default defineComponent({
         }
       }
       this.dropdownOpen = false;
+    },
+  },
+  watch: {
+    modelValue: {
+      handler(val) {
+        if (Array.isArray(this.modelValue) && this.modelValue.length === 0) {
+          this.searchTerm = null;
+        }
+      },
     },
   },
 });
