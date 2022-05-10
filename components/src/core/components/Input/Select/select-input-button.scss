@@ -265,7 +265,7 @@ $dropdown-button-size: 24px;
 .oxd-select-dropdown-trigger {
   min-width: $dropdown-button-size;
   min-height: $dropdown-button-size;
-  color: $oxd-select-input-button-color--secondary-pressed
+  color: $oxd-select-input-button-color--secondary-pressed;
   &.dropdown-minimized {
     margin-left: 0.5rem;
   }

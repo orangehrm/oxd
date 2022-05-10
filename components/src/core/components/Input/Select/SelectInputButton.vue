@@ -37,7 +37,7 @@
             'label-double-line': modelValue,
           }"
         >
-          <div class="label-small w-100 d-flex align-center justify-between">
+          <div class="label-small w-100 d-flex align-end justify-between">
             <div class="w-100 d-flex align-center justify-start">
               <oxd-icon
                 :size="buttonData.iconSize"
