@@ -17,7 +17,7 @@
   align-items: center;
   flex-direction: column;
 
-  &:focus,
+  &:not(.no-focus):focus,
   &:hover {
     outline: 0;
     background-color: $oxd-icon-button--hover;

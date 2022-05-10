@@ -77,6 +77,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    noFocus: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   emits: ['click'],
@@ -85,6 +89,7 @@ export default defineComponent({
     classes(): object {
       return {
         'oxd-icon-button': true,
+        'no-focus': this.noFocus,
       };
     },
     tooltipText() {
