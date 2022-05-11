@@ -21,10 +21,16 @@
 
 <template>
   <div role="alert" class="oxd-color-picker">
+    <div
+      class="oxd-color-picker-indicator"
+      :style="indicatorStyles"
+      @mousedown.prevent="captureOn"
+      @touchstart.prevent="captureOn"
+    ></div>
     <canvas
       ref="colorPalette"
-      width="230"
-      height="230"
+      width="228"
+      height="228"
       class="oxd-color-picker-palette"
       @mousemove.prevent="pickColor"
       @touchmove.prevent="pickColor"
@@ -32,7 +38,8 @@
       @touchstart.prevent="captureOn"
     ></canvas>
     <input
-      v-model.lazy="hue"
+      :value="hue"
+      @change="onHueChange"
       class="oxd-color-picker-range"
       type="range"
       max="359"
@@ -41,10 +48,7 @@
       :label="t('general.hex', 'HEX')"
       class="oxd-color-picker-label"
     />
-    <oxd-input
-      :value="modelValue"
-      @update:modelValue="$emit('update:modelValue', $event)"
-    />
+    <oxd-input :value="modelValue" @update:modelValue="onHexInput" />
   </div>
 </template>
 
@@ -53,6 +57,7 @@ import {
   ref,
   toRefs,
   reactive,
+  computed,
   watchEffect,
   onBeforeMount,
   onBeforeUnmount,
@@ -61,7 +66,7 @@ import {
 import usei18n from '../../../../composables/usei18n';
 import Input from '@ohrm/oxd/core/components/Input/Input.vue';
 import Label from '@ohrm/oxd/core/components/Label/Label.vue';
-import {hex2Hsl, hsl2Hex, rgb2Hex, sanitizeHex} from '../../../../utils/color';
+import {clamp, hex2Hsv, hsv2Hex, sanitizeHex} from '../../../../utils/color';
 
 export default defineComponent({
   name: 'oxd-color-picker',
@@ -83,6 +88,8 @@ export default defineComponent({
   setup(props, context) {
     const state = reactive({
       hue: 0,
+      sat: 0,
+      val: 0,
       pickEnabled: false,
     });
     const colorPalette = ref<HTMLCanvasElement>();
@@ -106,15 +113,26 @@ export default defineComponent({
       }
     };
 
-    const pickColor = ($e: MouseEvent) => {
+    const pickColor = ($e: MouseEvent | TouchEvent) => {
       if (!state.pickEnabled) return;
-      const {offsetX: x, offsetY: y} = $e;
-      const colorPaletteCTX = colorPalette.value?.getContext('2d');
-      if (colorPaletteCTX) {
-        const pixel = colorPaletteCTX.getImageData(x, y, 1, 1)['data']; // Read pixel Color
+      const boundry = colorPalette.value?.getBoundingClientRect();
+      if (boundry) {
+        const {width, height, top, left} = boundry;
+        let x = 0,
+          y = 0;
+        if ($e instanceof TouchEvent) {
+          x = Math.max(0, $e.touches[0].clientX - left);
+          y = Math.max(0, $e.touches[0].clientY - top);
+        } else {
+          x = Math.max(0, $e.clientX - left);
+          y = Math.max(0, $e.clientY - top);
+        }
+
+        state.sat = clamp(x / width, 0, 1);
+        state.val = clamp((height - y) / height, 0, 1);
         context.emit(
           'update:modelValue',
-          rgb2Hex(pixel[0], pixel[1], pixel[2]),
+          hsv2Hex(state.hue, state.sat, state.val),
         );
       }
     };
@@ -128,16 +146,40 @@ export default defineComponent({
       state.pickEnabled = false;
     };
 
-    watchEffect(() => {
-      const hex = sanitizeHex(props.modelValue);
-      if (hex) [state.hue] = hex2Hsl(hex);
+    const setHue = (value: string | null) => {
+      const hex = sanitizeHex(value);
+      if (hex) [state.hue, state.sat, state.val] = hex2Hsv(hex);
+    };
+
+    const onHexInput = (value: string | null) => {
+      setHue(value);
+      context.emit('update:modelValue', value);
+    };
+
+    const onHueChange = ($e: InputEvent) => {
+      state.hue = parseInt(($e.target as HTMLInputElement).value);
+      context.emit(
+        'update:modelValue',
+        hsv2Hex(state.hue, state.sat, state.val),
+      );
+    };
+
+    const indicatorStyles = computed(() => {
+      const boundry = colorPalette.value?.getBoundingClientRect();
+      if (!boundry) return {};
+      const {width, height} = boundry;
+      return {
+        top: `${height - Math.round(state.val * height)}px`,
+        left: `${Math.round(state.sat * width)}px`,
+      };
     });
 
     watchEffect(() => {
-      rendercolorPalette(hsl2Hex(`hsl(${state.hue}, 100%, 50%)`));
+      rendercolorPalette(hsv2Hex(state.hue, 1, 1));
     });
 
     onBeforeMount(() => {
+      setHue(props.modelValue);
       window.addEventListener('mouseup', captureOff);
       window.addEventListener('touchend', captureOff);
     });
@@ -150,7 +192,10 @@ export default defineComponent({
     return {
       captureOn,
       pickColor,
+      onHexInput,
+      onHueChange,
       colorPalette,
+      indicatorStyles,
       ...usei18n(),
       ...toRefs(state),
     };

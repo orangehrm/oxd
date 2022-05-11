@@ -119,6 +119,9 @@
   margin-top: $oxd-dropdown-dropdown-margin;
   padding: $oxd-color-picker-dropdown-margin;
   width: $oxd-color-picker-dropdown-width;
+  &.--positon-left {
+    right: 0;
+  }
   &-label {
     display: block;
     margin-bottom: 0.4rem;
@@ -126,15 +129,23 @@
   &-palette {
     margin: 0;
     display: block;
-    cursor: pointer;
     margin-bottom: 0.4rem;
-    border-radius: $oxd-dropdown-dropdown-border-radius;
+  }
+  &-indicator {
+    cursor: pointer;
+    position: absolute;
+    border-radius: 100%;
+    background: transparent;
+    width: $oxd-color-picker-indicator-height;
+    height: $oxd-color-picker-indicator-height;
+    border: $oxd-color-picker-indicator-border;
   }
   &-range {
     width: 100%;
     margin: 0;
     padding: 0;
     outline: none;
+    box-sizing: border-box;
     background: transparent;
     min-height: $oxd-color-picker-huethumb-height;
 
@@ -163,5 +174,21 @@
     &::-ms-thumb {
       @include thumb;
     }
+
+    &:focus {
+      border: $oxd-input-border--focus;
+    }
   }
+}
+
+.transition-fade-down-leave-to {
+  transform: translateY(-5px);
+  opacity: 0;
+}
+
+.transition-fade-down-enter-active,
+.transition-fade-down-leave-active {
+  transition: transform $oxd-dropdown-animation-time
+      cubic-bezier(0.53, 2, 0.36, 0.85),
+    opacity $oxd-dropdown-animation-time cubic-bezier(0.53, 2, 0.36, 0.85);
 }

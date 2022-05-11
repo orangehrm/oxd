@@ -17,100 +17,27 @@
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
 
+/**
+ * Clamp value between min and max amount
+ * @param value
+ * @param min
+ * @param max
+ * @returns {number}
+ */
+export const clamp = (value: number, min: number, max: number) => {
+  // return Math.max(min, Math.min(value, max));
+  return Math.max(0, Math.min(1, value - min / max - min));
+};
+
 // simplified verison from https://css-tricks.com/converting-color-spaces-in-javascript/
-export const hsl2Rgb = (hsl = 'hsl(0, 0%, 100%)') => {
-  const _hsl = hsl
-    .substring(4)
-    .split(')')[0]
-    .split(',');
 
-  let h = parseInt(_hsl[0]);
-  const s = parseInt(_hsl[1].substring(0, _hsl[1].length - 1)) / 100;
-  const l = parseInt(_hsl[2].substring(0, _hsl[2].length - 1)) / 100;
-
-  if (h >= 360) h %= 360;
-
-  const c = (1 - Math.abs(2 * l - 1)) * s,
-    x = c * (1 - Math.abs(((h / 60) % 2) - 1)),
-    m = l - c / 2;
-  let r = 0,
-    g = 0,
-    b = 0;
-
-  if (0 <= h && h < 60) {
-    r = c;
-    g = x;
-    b = 0;
-  } else if (60 <= h && h < 120) {
-    r = x;
-    g = c;
-    b = 0;
-  } else if (120 <= h && h < 180) {
-    r = 0;
-    g = c;
-    b = x;
-  } else if (180 <= h && h < 240) {
-    r = 0;
-    g = x;
-    b = c;
-  } else if (240 <= h && h < 300) {
-    r = x;
-    g = 0;
-    b = c;
-  } else if (300 <= h && h < 360) {
-    r = c;
-    g = 0;
-    b = x;
-  }
-
-  r = Math.round((r + m) * 255);
-  g = Math.round((g + m) * 255);
-  b = Math.round((b + m) * 255);
-
-  return [r, g, b];
-};
-
-export const hex2Hsl = (hex: string) => {
-  let r = 0,
-    g = 0,
-    b = 0;
-  if (hex.length == 4) {
-    r = parseInt(`0x${hex[1]}${hex[1]}`);
-    g = parseInt(`0x${hex[2]}${hex[2]}`);
-    b = parseInt(`0x${hex[3]}${hex[3]}`);
-  } else if (hex.length == 7) {
-    r = parseInt(`0x${hex[1]}${hex[2]}`);
-    g = parseInt(`0x${hex[3]}${hex[4]}`);
-    b = parseInt(`0x${hex[5]}${hex[6]}`);
-  }
-  // then to HSL
-  r /= 255;
-  g /= 255;
-  b /= 255;
-  const cmin = Math.min(r, g, b),
-    cmax = Math.max(r, g, b),
-    delta = cmax - cmin;
-  let h = 0,
-    s = 0,
-    l = 0;
-
-  if (delta == 0) h = 0;
-  else if (cmax == r) h = ((g - b) / delta) % 6;
-  else if (cmax == g) h = (b - r) / delta + 2;
-  else h = (r - g) / delta + 4;
-
-  h = Math.round(h * 60);
-
-  if (h < 0) h += 360;
-
-  l = (cmax + cmin) / 2;
-  s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
-  s = +(s * 100).toFixed(1);
-  l = +(l * 100).toFixed(1);
-
-  return [h, s, l];
-};
-
+/**
+ * Convert RGB to Hex color
+ * @param red Value between [0-255]
+ * @param green Value between [0-255]
+ * @param blue Value between [0-255]
+ * @returns {string} Hex string
+ */
 export const rgb2Hex = (red: number, green: number, blue: number): string => {
   let _r = red.toString(16);
   let _g = green.toString(16);
@@ -124,11 +51,95 @@ export const rgb2Hex = (red: number, green: number, blue: number): string => {
   return `#${_r}${_g}${_b}`;
 };
 
-export const hsl2Hex = (hsl: string) => {
-  const [r, g, b] = hsl2Rgb(hsl);
+/**
+ * Convert Hex color to RGB
+ * @param hex Hex color code
+ * @returns {Array<number>} Array containing red, green, blue values [0-255]
+ */
+export const hex2Rgb = (hex: string) => {
+  let r = 0,
+    g = 0,
+    b = 0;
+  if (hex.length == 4) {
+    r = parseInt(`0x${hex[1]}${hex[1]}`);
+    g = parseInt(`0x${hex[2]}${hex[2]}`);
+    b = parseInt(`0x${hex[3]}${hex[3]}`);
+  } else if (hex.length == 7) {
+    r = parseInt(`0x${hex[1]}${hex[2]}`);
+    g = parseInt(`0x${hex[3]}${hex[4]}`);
+    b = parseInt(`0x${hex[5]}${hex[6]}`);
+  }
+
+  return [r, g, b];
+};
+
+/**
+ * Convert HSV color to RGB
+ * @param hue Hue in degrees (0-360)
+ * @param sat Staturation (0-1)
+ * @param val Value (0-1)
+ * @returns {Array<number>} Array containing red, green, blue values [0-255]
+ */
+export const hsv2Rgb = (hue: number, sat: number, val: number) => {
+  const f = (n: number, k = (n + hue / 60) % 6) =>
+    val - val * sat * Math.max(Math.min(k, 4 - k, 1), 0);
+  return [
+    Math.round(f(5) * 255),
+    Math.round(f(3) * 255),
+    Math.round(f(1) * 255),
+  ];
+};
+
+/**
+ * Convert RGB to HSV color
+ * @param red Value between [0-255]
+ * @param green Value between [0-255]
+ * @param blue Value between [0-255]
+ * @returns {Array<number>} Array containing hue[0-360], saturation[0-1], value [0-1]
+ */
+export const rgb2Hsv = (red: number, green: number, blue: number) => {
+  red = clamp(red / 255, 0, 1);
+  green = clamp(green / 255, 0, 1);
+  blue = clamp(blue / 255, 0, 1);
+  const v = Math.max(red, green, blue);
+  const c = v - Math.min(red, green, blue);
+  const h =
+    c &&
+    (v == red
+      ? (green - blue) / c
+      : v == green
+      ? 2 + (blue - red) / c
+      : 4 + (red - green) / c);
+  return [60 * (h < 0 ? h + 6 : h), v && c / v, v];
+};
+
+/**
+ * Convert HSV color to HEX
+ * @param hue Hue in degrees (0-360)
+ * @param sat Staturation (0-1)
+ * @param val Value (0-1)
+ * @returns {string} Hex color code
+ */
+export const hsv2Hex = (hue: number, sat: number, val: number) => {
+  const [r, g, b] = hsv2Rgb(hue, sat, val);
   return rgb2Hex(r, g, b);
 };
 
+/**
+ * Convert HEX to HSV color
+ * @param hex hex code
+ * @returns {Array<number>} Array containing hue[0-360], saturation[0-1], value [0-1]
+ */
+export const hex2Hsv = (hex: string) => {
+  const [r, g, b] = hex2Rgb(hex);
+  return rgb2Hsv(r, g, b);
+};
+
+/**
+ * Validate and sanitize hex color codes
+ * @param hex Hex color code
+ * @returns {string|null}
+ */
 export const sanitizeHex = (hex: string | null) => {
   if (!hex) return null;
   if (hex.substring(0, 1) === '#') hex = hex.substring(1);

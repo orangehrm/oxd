@@ -20,14 +20,30 @@
 -->
 
 <template>
-  <div :class="classes" :tabindex="tabIndex" @focus="onFocus" @blur="onBlur">
+  <div
+    :class="classes"
+    :tabindex="tabIndex"
+    @focus="onFocus"
+    @blur="onBlur"
+    @keyup.esc="onClose"
+    v-click-outside="onClose"
+  >
     <div class="oxd-color-input-preview" :style="previewStyles"></div>
-    <oxd-color-picker v-model="color"></oxd-color-picker>
+    <transition name="transition-fade-down">
+      <oxd-color-picker
+        v-if="open"
+        :modelValue="modelValue"
+        :class="dropdownClasses"
+        @update:modelValue="$emit('update:modelValue', $event)"
+      ></oxd-color-picker>
+    </transition>
   </div>
 </template>
 
 <script lang="ts">
 import {computed, defineComponent, reactive, toRefs} from 'vue';
+import {Position, COLOR_DROPDOWN_POSITIONS, LEFT, RIGHT} from '../types';
+import clickOutsideDirective from '../../../../directives/click-outside';
 import ColorPicker from '@ohrm/oxd/core/components/Input/Color/ColorPicker.vue';
 
 export default defineComponent({
@@ -36,9 +52,6 @@ export default defineComponent({
     modelValue: {
       type: String,
       default: null,
-    },
-    style: {
-      type: Object,
     },
     hasError: {
       type: Boolean,
@@ -52,9 +65,19 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    dropdownPosition: {
+      type: String,
+      default: RIGHT,
+      validator: (value: Position) =>
+        COLOR_DROPDOWN_POSITIONS.indexOf(value) !== -1,
+    },
   },
 
-  emits: ['update:modelValue', 'blur', 'focus', 'change'],
+  emits: ['update:modelValue'],
+
+  directives: {
+    'click-outside': clickOutsideDirective,
+  },
 
   components: {
     'oxd-color-picker': ColorPicker,
@@ -62,11 +85,11 @@ export default defineComponent({
 
   setup(props) {
     const state = reactive({
-      color: '#000',
+      open: false,
       focused: false,
     });
     const previewStyles = computed(() => ({
-      backgroundColor: props.modelValue ?? state.color,
+      backgroundColor: props.modelValue ?? '#000',
       opacity: props.disabled || props.readonly ? 0.5 : 1,
       cursor: props.disabled || props.readonly ? 'unset' : 'pointer',
     }));
@@ -74,10 +97,15 @@ export default defineComponent({
     const classes = computed(() => ({
       'oxd-color-input': true,
       'oxd-color-input--active': !state.focused,
-      'oxd-color-input--focus': state.focused,
+      'oxd-color-input--focus': state.focused || state.open,
       'oxd-color-input--error': props.hasError,
       'oxd-color-input--disabled': props.disabled,
       'oxd-color-input--readonly': props.readonly,
+    }));
+
+    const dropdownClasses = computed(() => ({
+      '--positon-right': props.dropdownPosition === RIGHT,
+      '--positon-left': props.dropdownPosition === LEFT,
     }));
 
     const tabIndex = computed(() => {
@@ -89,6 +117,7 @@ export default defineComponent({
         $e.stopImmediatePropagation();
         return;
       }
+      state.open = true;
       state.focused = true;
     };
 
@@ -96,12 +125,18 @@ export default defineComponent({
       state.focused = false;
     };
 
+    const onClose = () => {
+      state.open = false;
+    };
+
     return {
       tabIndex,
       classes,
       previewStyles,
+      dropdownClasses,
       onBlur,
       onFocus,
+      onClose,
       ...toRefs(state),
     };
   },

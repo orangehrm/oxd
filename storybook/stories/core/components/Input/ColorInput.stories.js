@@ -17,6 +17,7 @@
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
 
+import {h, ref} from 'vue';
 import ColorInput from '@ohrm/oxd/core/components/Input/Color/ColorInput.vue';
 
 export default {
@@ -30,13 +31,30 @@ export default {
 
 const Template = args => ({
   setup() {
-    return {args};
+    const selected = ref(args.value ?? null);
+    return {args, selected};
   },
-  components: {'oxd-color-input': ColorInput},
-  template: '<oxd-color-input v-bind="args" />',
+  render() {
+    return h(ColorInput, {
+      ...this.args,
+      modelValue: this.selected,
+      'onUpdate:modelValue': value => {
+        this.selected = value;
+      },
+    });
+  },
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  value: 'Input',
+  value: '#ff0000',
+};
+
+export const Left = Template.bind({});
+Left.args = {
+  value: null,
+  dropdownPosition: 'left',
+  style: {
+    marginLeft: 'auto',
+  },
 };
