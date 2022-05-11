@@ -27,14 +27,17 @@
       <template v-if="buttonData.iconImageSrc" v-slot:icon>
         <img :src="buttonData.iconImageSrc" />
       </template>
-      <template v-if="doubleLineLabel && modelValue" #label>
+      <template
+        v-if="!hideDropdownLabel && doubleLineLabel && modelValue"
+        #label
+      >
         <div
           class="label-double-line-wrapper w-100"
           :class="{
             'label-double-line': modelValue,
           }"
         >
-          <div class="label-small w-100 d-flex align-center justify-between">
+          <div class="label-small w-100 d-flex align-end justify-between">
             <div class="w-100 d-flex align-center justify-start">
               <oxd-icon
                 :size="buttonData.iconSize"
@@ -74,11 +77,15 @@
           </div>
         </div>
       </template>
-      <template v-if="doubleLineLabel ? !modelValue : true" v-slot:iconRight>
+      <template
+        v-if="!hideDropdownLabel && doubleLineLabel ? !modelValue : true"
+        v-slot:iconRight
+      >
         <oxd-icon-button
           :name="dropdownOpen ? 'oxd-chevron-up' : 'oxd-chevron-down'"
           size="xxx-small"
           class="oxd-select-dropdown-trigger"
+          :class="{'dropdown-minimized': hideDropdownLabel && doubleLineLabel}"
           @click="onToggleDropdown"
           :disabled="disabled"
         />
@@ -236,11 +243,19 @@ export default defineComponent({
 
   computed: {
     buttonIconName(): boolean {
-      return this.doubleLineLabel
-        ? !this.modelValue
-          ? this.buttonData.iconName
-          : null
-        : this.buttonData.iconName;
+      if (this.hideDropdownLabel) {
+        return this.buttonData.iconName;
+      } else {
+        if (this.doubleLineLabel) {
+          if (!this.modelValue) {
+            return this.buttonData.iconName;
+          } else {
+            return null;
+          }
+        } else {
+          return this.buttonData.iconName;
+        }
+      }
     },
     computedOptions(): Option[] {
       return this.options.map((option: Option) => {
