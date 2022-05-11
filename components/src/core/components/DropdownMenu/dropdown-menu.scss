@@ -18,25 +18,21 @@
 
   &.--positon-top {
     top: inherit !important;
-    bottom: 100%;
-    margin-bottom: $oxd-dropdown-menu-margin;
+    @extend .--positon-top;
   }
 
   &.--positon-right {
     right: inherit !important;
-    left: 100%;
-    margin-left: $oxd-dropdown-menu-margin;
+    @extend .--positon-right;
   }
 
   &.--positon-left {
     left: inherit !important;
-    right: 100%;
-    margin-right: $oxd-dropdown-menu-margin;
+    @extend .--positon-left;
   }
 
   &.--positon-bottom {
-    bottom: inherit !important;
-    margin-top: $oxd-dropdown-menu-margin;
+    @extend .--positon-bottom;
   }
 }
 
