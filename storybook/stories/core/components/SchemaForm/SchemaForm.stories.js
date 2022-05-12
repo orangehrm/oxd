@@ -73,6 +73,94 @@ Default.args = {
   schema: {...sample},
 };
 
+const CrossValidationTemplate = (args) => ({
+  components: {'oxd-schema-form': SchemaForm},
+  setup() {
+    const {schema, model} = useSchemaForm(args.schema);
+    const onSubmit = (...args) => {
+      console.log(args);
+    };
+    return {
+      model,
+      schema,
+      onSubmit,
+    };
+  },
+  components: {'oxd-schema-form': SchemaForm},
+  template: `<oxd-schema-form :schema="schema" v-model:model="model" v-on:submitValid="onSubmit"></oxd-schema-form>`,
+});
+
+const crossValidationSample = {
+  layout: [
+    {
+      type: 'grid',
+      props: {
+        cols: 2,
+      },
+      children: {
+        default: [
+          {
+            name: 'vacancy',
+            label: 'Vacancy',
+            type: 'select',
+            props: {
+              options: [
+                {id: 1, label: 'Vaccancy One'},
+                {id: 2, label: 'Vaccancy Two'},
+              ],
+            },
+            validators: new Map([['required', required]]),
+          },
+          {
+            name: 'firstName',
+            label: 'First Name',
+            type: 'input',
+            // eslint-disable-next-line @typescript-eslint/ban-types
+            hook: (field, modelvalue) => {
+              const model = modelvalue;
+              const defaultValidtors = new Map();
+              if (model.vacancy?.id === 1) {
+                defaultValidtors.set('required', required);
+              }
+              field.validators = defaultValidtors;
+              return {
+                ...field,
+              };
+            },
+          },
+        ],
+      },
+    },
+    {
+      type: 'divider',
+    },
+    {
+      type: 'action',
+      style: {
+        'margin-top': '0.5rem',
+      },
+      children: {
+        default: [
+          {
+            name: 'submit',
+            label: 'Submit',
+            type: 'button',
+            props: {
+              type: 'submit',
+              displayType: 'secondary',
+            },
+          },
+        ],
+      },
+    },
+  ],
+};
+
+export const CrossValidation = CrossValidationTemplate.bind({});
+CrossValidation.args = {
+  schema: {...crossValidationSample},
+};
+
 export const PromiseBased = Template.bind({});
 PromiseBased.args = {
   schema: new Promise((resolve) => {

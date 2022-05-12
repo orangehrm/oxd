@@ -22,6 +22,8 @@ export interface FormField {
   processing: Ref<boolean>;
   validate: () => Promise<ErrorField>;
   reset: () => void;
+  startWatcher: () => void;
+  setDirty: (value: boolean) => void;
 }
 
 export interface FormAPI {

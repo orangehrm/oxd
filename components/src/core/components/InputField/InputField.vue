@@ -2,6 +2,7 @@
   <oxd-input-group
     :label="label"
     :labelIcon="labelIcon"
+    :id="id"
     :message="message"
     class="oxd-input-field-bottom-space"
     :classes="classes"
@@ -9,6 +10,7 @@
     <component
       :is="component"
       v-bind="$attrs"
+      :id="id"
       :hasError="hasError"
       :modelValue="modelValue"
       @update:modelValue="onChange"
@@ -73,6 +75,9 @@ export default defineComponent({
     required: {
       type: Boolean,
       default: false,
+    },
+    id: {
+      type: String,
     },
     type: {
       type: String,
