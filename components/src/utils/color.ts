@@ -148,6 +148,6 @@ export const sanitizeHex = (hex: string | null) => {
       .map(_hex => _hex + _hex)
       .join('');
   }
-  if (hex.length > 6) hex = hex.substring(0, 5);
+  if (hex.length > 6) hex = hex.substring(0, 6);
   return /^[0-9A-F]{6}$/i.test(hex) ? `#${hex}` : null;
 };
