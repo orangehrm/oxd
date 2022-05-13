@@ -15,8 +15,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    & .oxd-loading-spinner-container {
-      background-color: $oxd-white-color;
+    & .oxd-loading-spinner {
+      width: 35px;
+      height: 35px;
     }
   }
   &.oxd-classic-table {
