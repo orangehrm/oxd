@@ -25,7 +25,6 @@
  * @returns {number}
  */
 export const clamp = (value: number, min: number, max: number) => {
-  // return Math.max(min, Math.min(value, max));
   return Math.max(0, Math.min(1, value - min / max - min));
 };
 

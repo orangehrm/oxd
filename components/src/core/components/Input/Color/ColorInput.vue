@@ -23,9 +23,11 @@
   <div
     :class="classes"
     :tabindex="tabIndex"
+    @click="onClick"
     @focus="onFocus"
     @blur="onBlur"
-    @keyup.esc="onClose"
+    @keydown.esc.prevent="onClose"
+    @keydown.enter.prevent="onEnter"
     v-click-outside="onClose"
   >
     <div class="oxd-color-input-preview" :style="previewStyles"></div>
@@ -34,6 +36,7 @@
         v-if="open"
         :modelValue="modelValue"
         :class="dropdownClasses"
+        @click.stop
         @update:modelValue="$emit('update:modelValue', $event)"
       ></oxd-color-picker>
     </transition>
@@ -117,7 +120,6 @@ export default defineComponent({
         $e.stopImmediatePropagation();
         return;
       }
-      state.open = true;
       state.focused = true;
     };
 
@@ -129,6 +131,14 @@ export default defineComponent({
       state.open = false;
     };
 
+    const togglePicker = ($e: Event) => {
+      if (props.disabled || props.readonly) {
+        $e.stopImmediatePropagation();
+        return;
+      }
+      state.open = !state.open;
+    };
+
     return {
       tabIndex,
       classes,
@@ -137,6 +147,8 @@ export default defineComponent({
       onBlur,
       onFocus,
       onClose,
+      onClick: togglePicker,
+      onEnter: togglePicker,
       ...toRefs(state),
     };
   },
