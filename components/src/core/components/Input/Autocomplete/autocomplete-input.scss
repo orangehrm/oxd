@@ -191,6 +191,8 @@
       background-color: $oxd-dropdown-chip-clear-background-color;
       color: $oxd-dropdown-chip-clear-font-color;
       margin-left: $oxd-dropdown-chip-margin;
+      width: $oxd-file-button-font-size;
+      height: $oxd-file-button-font-size;
     }
     & .--disabled,
     & .--readonly {
