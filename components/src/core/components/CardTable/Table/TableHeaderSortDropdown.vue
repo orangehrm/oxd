@@ -36,7 +36,7 @@
           @keydown.enter.prevent="$emit('order', 'ASC')"
         >
           <oxd-icon :name="sortIconAsc" size="extra-small" />
-          <oxd-text tag="span">{{ $t('Ascending') }}</oxd-text>
+          <oxd-text tag="span">{{ $vt('Ascending') }}</oxd-text>
         </li>
         <li
           ref="bottomDropdownElement"
@@ -46,7 +46,7 @@
           @keydown.enter.prevent="$emit('order', 'DESC')"
         >
           <oxd-icon :name="sortIconDesc" size="extra-small" />
-          <oxd-text tag="span">{{ $t('Descending') }}</oxd-text>
+          <oxd-text tag="span">{{ $vt('Descending') }}</oxd-text>
         </li>
       </ul>
     </div>
@@ -60,9 +60,12 @@ import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import clickOutsideDirective from '../../../../directives/click-outside';
+import translateMixin from '../../../../mixins/translate';
 
 export default defineComponent({
   name: 'oxd-card-th-sort',
+
+  mixins: [translateMixin],
 
   inheritAttrs: false,
 
