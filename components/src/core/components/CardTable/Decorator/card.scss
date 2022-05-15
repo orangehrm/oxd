@@ -40,6 +40,10 @@
   }
 }
 
+.oxd-row-selected {
+  background-color: $oxd-background-white-shadow-color;
+}
+
 .card-item {
   padding: $oxd-card-table-decorator-card-item-padding;
   min-width: 0;

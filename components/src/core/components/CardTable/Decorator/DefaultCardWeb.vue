@@ -49,6 +49,7 @@ export default defineComponent({
           'oxd-table-card': true,
           [`oxd-row-highlight--${highlightObject.type}`]:
             highlightObject.rowIndexes.indexOf(index) > -1,
+          'oxd-row-selected': this.tableProps.selected.indexOf(index) > -1,
         };
       });
     },
