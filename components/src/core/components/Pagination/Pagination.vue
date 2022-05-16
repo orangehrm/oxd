@@ -7,11 +7,35 @@
         v-if="showPrevious"
       />
       <oxd-pagination-page-item
+        v-if="pageItems.indexOf(1) === -1"
+        :page="1"
+        :selected="length === currentPage"
+        @click="onClickPage(1, $event)"
+      />
+      <span
+        v-if="pageItems.indexOf(1) === -1"
+        class="d-flex align-end oxd-pagination-separator"
+        last
+        >...</span
+      >
+      <oxd-pagination-page-item
         v-for="page in pageItems"
         :key="page"
         :page="page"
         :selected="page === currentPage"
         @click="onClickPage(page, $event)"
+      />
+      <span
+        v-if="!(pageItems[pageItems.length - 1] === length)"
+        class="d-flex align-end oxd-pagination-separator"
+        last
+        >...</span
+      >
+      <oxd-pagination-page-item
+        v-if="!(pageItems[pageItems.length - 1] === length)"
+        :page="length"
+        :selected="length === currentPage"
+        @click="onClickPage(length, $event)"
       />
       <oxd-pagination-page-item next @click="onClickNext" v-if="showNext" />
       <oxd-select-input
