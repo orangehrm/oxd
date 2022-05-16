@@ -72,6 +72,7 @@
     padding-left: 0.625rem;
     padding-top: 0;
     flex-wrap: nowrap;
+    min-height: calc(75vh - 100px);
     :deep(.oxd-icon-button) {
       font-size: 15px;
     }
