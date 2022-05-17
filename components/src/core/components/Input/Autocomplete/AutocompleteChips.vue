@@ -4,7 +4,7 @@
       v-for="(option, index) in selected"
       :key="`${index}-selected-${option.id}`"
       :label="option.label"
-      class="oxd-autocomplete-chips-selected align-end"
+      class="oxd-autocomplete-chips-selected align-center"
     >
       <oxd-icon
         name="x"
