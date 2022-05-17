@@ -355,6 +355,7 @@ export default defineComponent({
     const tableSelect = (items) => {
       state.selectedItemIndexes = items;
       if (items.length > 0) {
+        // eslint-disable-next-line
         props.listHighlightRows.rowIndexes = items.map((itemIndex) => {
           return {
             index: itemIndex,
