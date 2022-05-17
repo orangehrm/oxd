@@ -237,7 +237,7 @@ exports[`Pagination.vue should renders OXD Pagination with 17, 18, 19, 20, |21| 
 <nav role="navigation" aria-label="Pagination Navigation">
   <ul class="oxd-pagination__ul">
     <li><button type="button" class="oxd-pagination-page-item oxd-pagination-page-item--previous-next"><i class="oxd-icon oxd-icon--medium bi-chevron-left"></i></button></li>
-    <li><button type="button" class="oxd-pagination-page-item oxd-pagination-page-item--page oxd-pagination-page-item--page-selected">1</button></li><span class="d-flex align-end oxd-pagination-separator" last="">...</span>
+    <li><button type="button" class="oxd-pagination-page-item oxd-pagination-page-item--page">1</button></li><span class="d-flex align-end oxd-pagination-separator" last="">...</span>
     <li><button type="button" class="oxd-pagination-page-item oxd-pagination-page-item--page">17</button></li>
     <li><button type="button" class="oxd-pagination-page-item oxd-pagination-page-item--page">18</button></li>
     <li><button type="button" class="oxd-pagination-page-item oxd-pagination-page-item--page">19</button></li>
@@ -263,7 +263,7 @@ exports[`Pagination.vue should renders OXD Pagination with current 1`] = `
 <nav role="navigation" aria-label="Pagination Navigation">
   <ul class="oxd-pagination__ul">
     <li><button type="button" class="oxd-pagination-page-item oxd-pagination-page-item--previous-next"><i class="oxd-icon oxd-icon--medium bi-chevron-left"></i></button></li>
-    <li><button type="button" class="oxd-pagination-page-item oxd-pagination-page-item--page oxd-pagination-page-item--page-selected">1</button></li><span class="d-flex align-end oxd-pagination-separator" last="">...</span>
+    <li><button type="button" class="oxd-pagination-page-item oxd-pagination-page-item--page">1</button></li><span class="d-flex align-end oxd-pagination-separator" last="">...</span>
     <li><button type="button" class="oxd-pagination-page-item oxd-pagination-page-item--page">17</button></li>
     <li><button type="button" class="oxd-pagination-page-item oxd-pagination-page-item--page">18</button></li>
     <li><button type="button" class="oxd-pagination-page-item oxd-pagination-page-item--page">19</button></li>
