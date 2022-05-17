@@ -54,6 +54,7 @@
   padding-left: $oxd-toast-content-padding-horizontal;
   padding-right: $oxd-toast-content-padding-horizontal;
   color: $oxd-toast-font-color;
+  justify-content: center;
 
   &--default {
     color: $oxd-toast-font-color-default;
