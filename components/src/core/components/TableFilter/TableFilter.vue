@@ -75,18 +75,19 @@ export default defineComponent({
     );
 
     const updateIsSpilled = () => {
-      const fullWidth = filterElement[0] ? filterElement[0].clientWidth : 0;
-      const titleWidth = titleElement[0] ? titleElement[0].clientWidth : 0;
-      const actionButtonWidth = bulkActionElement[0]
-        ? bulkActionElement[0].clientWidth
-        : 0;
-      const filterWidth = optionsElement[0] ? optionsElement[0].clientWidth : 0;
-
-      console.error(titleWidth + actionButtonWidth + filterWidth);
-      console.error(fullWidth);
-      isSpilled.value =
-        props.itemsSelected &&
-        titleWidth + actionButtonWidth + filterWidth >= fullWidth;
+      nextTick(function() {
+        const fullWidth = filterElement[0] ? filterElement[0].clientWidth : 0;
+        const titleWidth = titleElement[0] ? titleElement[0].clientWidth : 0;
+        const actionButtonWidth = bulkActionElement[0]
+          ? bulkActionElement[0].clientWidth
+          : 0;
+        const filterWidth = optionsElement[0]
+          ? optionsElement[0].clientWidth
+          : 0;
+        isSpilled.value =
+          props.itemsSelected &&
+          titleWidth + actionButtonWidth + filterWidth >= fullWidth;
+      });
     };
 
     watchEffect(() => {

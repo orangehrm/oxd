@@ -149,7 +149,7 @@ export default defineComponent({
 
   computed: {
     showChips(): boolean {
-      return Array.isArray(this.modelValue) && this.multiple;
+      return Array.isArray(this.modelValue || []) && this.multiple;
     },
     computedOptions(): Option[] {
       return this.options
@@ -181,7 +181,11 @@ export default defineComponent({
       });
     },
     highlightedOptions(): string[] {
-      const filter = new RegExp(this.searchTerm, 'i');
+      const searchValue = this.searchTerm.replace(
+        /[-/\\^$*+?.()|[\]{}]/g,
+        '\\$&',
+      );
+      const filter = new RegExp(searchValue, 'i');
       return this.computedOptions.map((option: Option) => {
         return option.label.replace(filter, (match) => {
           return sanitizeHtml(`<b>${match}</b>`);
@@ -252,21 +256,18 @@ export default defineComponent({
         } else {
           throw new Error('createOptions not defined');
         }
-      })
-        .then((resolved) => {
-          if (resolved && Array.isArray(resolved)) {
-            if (resolved.length > 0) {
-              this.options = resolved.slice(0, 5);
-            } else {
-              this.options = [];
-            }
+      }).then((resolved) => {
+        this.loading = false;
+        if (resolved && Array.isArray(resolved)) {
+          if (resolved.length > 0) {
+            this.options = resolved.slice(0, 5);
           } else {
-            throw new Error('options returned are not array');
+            this.options = [];
           }
-        })
-        .finally(() => {
-          this.loading = false;
-        });
+        } else {
+          throw new Error('options returned are not array');
+        }
+      });
     },
     search() {
       if (this.debouncer) {
@@ -297,6 +298,16 @@ export default defineComponent({
         }
       }
       this.dropdownOpen = false;
+    },
+  },
+
+  watch: {
+    modelValue: {
+      handler() {
+        if (Array.isArray(this.modelValue) && this.modelValue.length === 0) {
+          this.searchTerm = null;
+        }
+      },
     },
   },
 });

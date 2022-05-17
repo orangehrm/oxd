@@ -10,6 +10,11 @@
   & > *:focus {
     outline: none;
   }
+  .oxd-select-dropdown-trigger {
+    :deep(.oxd-svg-icon) {
+      margin-right: 0;
+    }
+  }
 }
 
 .oxd-select-text {
@@ -195,6 +200,96 @@
     $value: $i * 0.5;
     &.--indent-#{$i} {
       padding-left: #{$value}rem;
+    }
+  }
+}
+.no-label {
+  min-width: initial;
+  justify-content: center !important;
+  ::v-deep(.oxd-button-label-wrapper) {
+    display: none;
+  }
+  ::v-deep(.oxd-icon.bi-chevron-down) {
+    display: none !important;
+  }
+  ::v-deep(.oxd-icon.bi-chevron-up) {
+    display: none !important;
+  }
+}
+.dropdown-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  border-radius: 0.85rem;
+  &.button-double-line {
+    padding: 0.5rem 0.75rem 0.5rem 1rem;
+    cursor: default !important;
+    :deep(.oxd-button-label-wrapper) {
+      overflow: initial;
+      white-space: initial;
+      text-overflow: initial;
+      width: 100%;
+      font-weight: 800;
+      .label-double-line-wrapper.label-double-line .label {
+        overflow: initial;
+        text-overflow: initial;
+        white-space: initial;
+        word-break: break-word;
+        text-align: left;
+        padding-right: 5px;
+      }
+    }
+  }
+}
+.oxd-icon {
+  &.oxd-button-icon-right {
+    margin-left: 0.5rem;
+  }
+}
+.mini-icon-left {
+  margin-right: 0.5rem;
+  color: $oxd-select-input-button-color--secondary-pressed;
+}
+$dropdown-button-size: 24px;
+.oxd-select-info-button-container {
+  min-width: $dropdown-button-size;
+  .oxd-select-info-button {
+    margin-right: 0 !important;
+    cursor: pointer;
+    :deep(path) {
+      fill: $oxd-select-input-button-color--secondary-pressed;
+    }
+  }
+}
+.oxd-select-dropdown-trigger {
+  min-width: $dropdown-button-size;
+  min-height: $dropdown-button-size;
+  color: $oxd-select-input-button-color--secondary-pressed;
+  &.dropdown-minimized {
+    margin-left: 0.5rem;
+  }
+}
+.label-double-line-wrapper {
+  vertical-align: middle;
+  display: inline-grid;
+  &.label-double-line {
+    width: 100%;
+    .label-small {
+      margin-bottom: 0.25rem;
+      font-size: 0.625rem;
+      line-height: 1;
+      font-weight: 600;
+    }
+    .label {
+      line-height: 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 800;
+      max-width: calc(100% - 32px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: inline-block;
     }
   }
 }
