@@ -57,19 +57,22 @@ export const HIGHLIGHT_TYPE_SUCCESS = 'success';
 export const HIGHLIGHT_TYPE_WARN = 'warn';
 export const HIGHLIGHT_TYPE_ERROR = 'error';
 export const HIGHLIGHT_TYPE_INFO = 'info';
+export const HIGHLIGHT_TYPE_SELECTED = 'selected';
 
 export const HIGHLIGHT_TYPES = [
   HIGHLIGHT_TYPE_SUCCESS,
   HIGHLIGHT_TYPE_WARN,
   HIGHLIGHT_TYPE_ERROR,
   HIGHLIGHT_TYPE_INFO,
+  HIGHLIGHT_TYPE_SELECTED,
 ];
 
 export type HighlightType =
   | typeof HIGHLIGHT_TYPE_SUCCESS
   | typeof HIGHLIGHT_TYPE_WARN
   | typeof HIGHLIGHT_TYPE_ERROR
-  | typeof HIGHLIGHT_TYPE_INFO;
+  | typeof HIGHLIGHT_TYPE_INFO
+  | typeof HIGHLIGHT_TYPE_SELECTED;
 
 export interface HighlightRows {
   rowIndexes: number[];

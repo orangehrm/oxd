@@ -45,11 +45,13 @@ export default defineComponent({
         type: HIGHLIGHT_TYPE_SUCCESS,
       };
       return this.items.map((_, index) => {
+        const highlighObj = highlightObject.rowIndexes.find(
+          (row: {index: number; type: string}) => row.index === index,
+        );
         return {
           'oxd-table-card': true,
-          [`oxd-row-highlight--${highlightObject.type}`]:
-            highlightObject.rowIndexes.indexOf(index) > -1,
-          'oxd-row-selected': this.tableProps.selected.indexOf(index) > -1,
+          [`oxd-row-highlight--${highlighObj && highlighObj.type}`]:
+            highlighObj,
         };
       });
     },

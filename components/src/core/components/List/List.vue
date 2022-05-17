@@ -354,6 +354,14 @@ export default defineComponent({
 
     const tableSelect = (items) => {
       state.selectedItemIndexes = items;
+      if (items.length > 0) {
+        props.listHighlightRows.rowIndexes = items.map((itemIndex) => {
+          return {
+            index: itemIndex,
+            type: 'selected',
+          };
+        });
+      }
       emit('update:selected', items);
     };
 

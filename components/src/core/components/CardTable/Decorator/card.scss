@@ -38,10 +38,9 @@
   &--error {
     background-color: rgba($oxd-feedback-danger-color, 0.10);
   }
-}
-
-.oxd-row-selected {
-  background-color: $oxd-background-white-shadow-color;
+  &--selected {
+    background-color: $oxd-background-white-shadow-color;
+  }
 }
 
 .card-item {
