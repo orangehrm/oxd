@@ -126,7 +126,7 @@ export default defineComponent({
         {
           default: () =>
             h(extractFieldComponent(field), {
-              id: field.id,
+              id: field.id ?? nanoid(6),
               key: field.key,
               label: $t(field.label),
               ...(field.props ?? {}),

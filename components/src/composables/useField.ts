@@ -82,6 +82,10 @@ export default function useField(fieldContext: {
     );
   };
 
+  const setDirty = (value: boolean) => {
+    dirty.value = value;
+  };
+
   const reset = () => {
     dirty.value = false;
     touched.value = false;
@@ -98,6 +102,8 @@ export default function useField(fieldContext: {
     processing,
     validate: () => validate(fieldContext.modelValue, fieldContext.rules),
     reset,
+    startWatcher,
+    setDirty,
   });
 
   onBeforeUnmount(() => {
@@ -109,6 +115,8 @@ export default function useField(fieldContext: {
       processing,
       validate: () => validate(fieldContext.modelValue, fieldContext.rules),
       reset,
+      startWatcher,
+      setDirty,
     });
   });
 
