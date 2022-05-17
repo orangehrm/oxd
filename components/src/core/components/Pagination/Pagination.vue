@@ -9,7 +9,7 @@
       <oxd-pagination-page-item
         v-if="pageItems.indexOf(1) === -1"
         :page="1"
-        :selected="length === currentPage"
+        :selected="1 === currentPage"
         @click="onClickPage(1, $event)"
       />
       <span
