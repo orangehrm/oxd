@@ -184,14 +184,22 @@ export default defineComponent({
         /[-/\\^$*+?.()|[\]{}]/g,
         '\\$&',
       );
+      const filter = new RegExp(searchValue, 'ig');
       const sanitizeHtml = useSanitize().sanitizeHtml;
+
       return this.computedOptions.map((option: Option) => {
-        var textParts = option.label.split(searchValue);
-        var sanitizedTextParts = [];
+        var sanitizedOption = '';
+        const matchedSearchValues = [...option.label.matchAll(filter)].map(
+          a => a[0],
+        );
+        const textParts = option.label.split(filter);
         for (var i = 0; i < textParts.length; i++) {
-          sanitizedTextParts[i] = sanitizeHtml(textParts[i]);
+          sanitizedOption += sanitizeHtml(textParts[i]);
+          if (i < textParts.length - 1) {
+            sanitizedOption += `<b>${sanitizeHtml(matchedSearchValues[i])}</b>`;
+          }
         }
-        return sanitizedTextParts.join(`<b>${sanitizeHtml(searchValue)}</b>`);
+        return sanitizedOption;
       });
     },
     selectedItem(): string {
