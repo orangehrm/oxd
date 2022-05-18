@@ -16,12 +16,13 @@
     border: 1px solid $oxd-pagination-page-item-border-color; 
     margin-top: 2px;
 
-    .oxd-select-text--after .oxd-icon {
+    .oxd-select-text--after .oxd-select-text--arrow {
       border-radius: 1.2rem !important;
       width: 30px;
       height: 30px;
     }
   }
+  .oxd-pagination-separator {
+    padding-bottom: 12px;
+  }
 }
-
-

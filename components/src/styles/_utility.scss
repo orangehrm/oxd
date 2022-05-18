@@ -1,6 +1,9 @@
 .d-flex {
   display: flex;
 }
+.flex-wrap {
+  flex-wrap: wrap;
+};
 .align-center {
   align-items: center;
 }
@@ -221,4 +224,23 @@
 [tooltip][flow^="right"]:focus-visible::before,
 [tooltip][flow^="right"]:focus-visible::after {
   animation: tooltips-horz 300ms ease-out forwards;
+}
+
+.--positon-top {
+  bottom: 100%;
+  margin-bottom: $oxd-dropdown-dropdown-margin;
+}
+
+.--positon-right {
+  left: 100%;
+  margin-left: $oxd-dropdown-dropdown-margin;
+}
+
+.--positon-left {
+  right: 100%;
+  margin-right: $oxd-dropdown-dropdown-margin;
+}
+
+.--positon-bottom {
+  margin-top: $oxd-dropdown-dropdown-margin;
 }

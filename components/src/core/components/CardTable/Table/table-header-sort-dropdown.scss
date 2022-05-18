@@ -40,10 +40,13 @@
         margin-left: 5px;
       }
       &:hover,
-      &:focus-visible,
       &:focus,
+      &:focus-visible,
       &.--selected {
         background-color: $oxd-dropdown-item-hover-color;
+      }
+      &:not(:first-child) {
+        margin-top: 3px;
       }
     }
   }

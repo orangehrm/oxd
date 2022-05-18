@@ -6,18 +6,18 @@
     <oxd-button
       class="dropdown-btn"
       :class="dropdownButtonClasses"
-      :label="buttonData.label"
-      :iconName="buttonData.iconName"
+      :label="modelValue ? modelValue.label : buttonData.label"
+      :iconName="buttonIconName"
       :iconSize="buttonData.iconSize"
       :iconStyle="buttonData.iconStyle"
       :hide-dropdown-label="hideDropdownLabel"
       :size="buttonData.size"
       :style="buttonData.style"
       :displayType="buttonData.displayType"
-      :tooltip="tooltip"
+      :tooltip="$vt(tooltip)"
       :flow="flow"
+      :disabled="disabled"
       @blur="onBlur"
-      @click="onToggleDropdown"
       @keyup.esc="onCloseDropdown"
       @keydown.enter.prevent="onSelectEnter"
       @keydown.down.exact.prevent="onSelectDown"
@@ -27,26 +27,67 @@
       <template v-if="buttonData.iconImageSrc" v-slot:icon>
         <img :src="buttonData.iconImageSrc" />
       </template>
-      <template #label>
+      <template
+        v-if="!hideDropdownLabel && doubleLineLabel && modelValue"
+        #label
+      >
         <div
-          v-if="buttonData.doubleLineLabel"
-          class="label-double-line-wrapper"
+          class="label-double-line-wrapper w-100"
           :class="{
             'label-double-line': modelValue,
           }"
         >
-          <span class="label-small" v-if="modelValue && modelValue.id > -1">{{
-            $vt(buttonData.labelMini)
-          }}</span>
-          <span class="label">{{ $vt(buttonData.label) }}</span>
+          <div class="label-small w-100 d-flex align-end justify-between">
+            <div class="w-100 d-flex align-center justify-start">
+              <oxd-icon
+                :size="buttonData.iconSize"
+                :style="buttonData.iconStyle"
+                :name="buttonData.iconName"
+                class="mini-icon-left"
+              />
+              <span>{{ $vt(buttonData.labelMini) }}</span>
+            </div>
+            <div
+              class="
+                d-flex
+                align-center
+                justify-center
+                oxd-select-info-button-container
+              "
+            >
+              <oxd-icon
+                v-if="moreIconName"
+                :tooltip="$vt(moreTooltip)"
+                :flow="infoTooltipFlow"
+                class="oxd-select-info-button"
+                :size="moreIconSize"
+                :name="moreIconName"
+                @click="$emit('onMoreClick')"
+              />
+            </div>
+          </div>
+          <div class="w-100 d-flex align-center justify-between">
+            <span class="label">{{ $vt(modelValue.label) }}</span>
+            <oxd-icon-button
+              :name="dropdownOpen ? 'oxd-chevron-up' : 'oxd-chevron-down'"
+              size="xxx-small"
+              class="oxd-select-dropdown-trigger"
+              @click="onToggleDropdown"
+            />
+          </div>
         </div>
       </template>
-      <template v-slot:iconRight>
-        <oxd-icon
-          class="oxd-button-icon oxd-button-icon-right d-flex align-center"
-          style="height: 14px"
-          size="xxx-small"
+      <template
+        v-if="!hideDropdownLabel && doubleLineLabel ? !modelValue : true"
+        v-slot:iconRight
+      >
+        <oxd-icon-button
           :name="dropdownOpen ? 'oxd-chevron-up' : 'oxd-chevron-down'"
+          size="xxx-small"
+          class="oxd-select-dropdown-trigger"
+          :class="{'dropdown-minimized': hideDropdownLabel && doubleLineLabel}"
+          @click="onToggleDropdown"
+          :disabled="disabled"
         />
       </template>
     </oxd-button>
@@ -97,6 +138,7 @@ import SelectDropdown from '@orangehrm/oxd/core/components/Input/Select/SelectDr
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
+import ButtonIcon from '@orangehrm/oxd/core/components/Button/Icon.vue';
 
 export default defineComponent({
   name: 'oxd-select-input',
@@ -105,6 +147,7 @@ export default defineComponent({
   components: {
     'oxd-icon': Icon,
     'oxd-button': Button,
+    'oxd-icon-button': ButtonIcon,
     'oxd-select-dropdown': SelectDropdown,
     'oxd-select-option': SelectOption,
   },
@@ -165,6 +208,28 @@ export default defineComponent({
         return TOOLTIP_POSITIONS.indexOf(value) !== 1;
       },
     },
+    moreIconName: {
+      type: String,
+    },
+    moreIconSize: {
+      type: String,
+      default: 'xx-small',
+    },
+    moreTooltip: {
+      type: String,
+      default: null,
+    },
+    moreTooltipFlow: {
+      type: String,
+      default: TOOLTIP_TOP,
+      validator: (value: Position) => {
+        return TOOLTIP_POSITIONS.indexOf(value) !== 1;
+      },
+    },
+    doubleLineLabel: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -177,6 +242,21 @@ export default defineComponent({
   },
 
   computed: {
+    buttonIconName(): boolean {
+      if (this.hideDropdownLabel) {
+        return this.buttonData.iconName;
+      } else {
+        if (this.doubleLineLabel) {
+          if (!this.modelValue) {
+            return this.buttonData.iconName;
+          } else {
+            return null;
+          }
+        } else {
+          return this.buttonData.iconName;
+        }
+      }
+    },
     computedOptions(): Option[] {
       return this.options.map((option: Option) => {
         let _selected = false;
@@ -223,7 +303,6 @@ export default defineComponent({
         size: 'long',
         displayType: 'label',
         style: null,
-        doubleLineLabel: false,
         showLabel: true,
       };
       for (const key in this.button) {
@@ -235,7 +314,7 @@ export default defineComponent({
       return initialObject;
     },
     dropdownButtonClasses(): string {
-      return `${this.buttonData.doubleLineLabel ? 'button-double-line' : ''} ${
+      return `${this.doubleLineLabel ? 'button-double-line' : ''} ${
         this.hideDropdownLabel ? 'no-label' : 'w-100'
       }`;
     },
@@ -256,4 +335,4 @@ export default defineComponent({
 });
 </script>
 
-<style src="./select-input.scss" lang="scss" scoped></style>
+<style src="./select-input-button.scss" lang="scss" scoped></style>

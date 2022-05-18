@@ -70,7 +70,7 @@ import AutocompleteTextInput from '@orangehrm/oxd/core/components/Input/Autocomp
 import AutocompleteDropdown from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteDropdown.vue';
 import AutocompleteOption from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteOption.vue';
 import AutocompleteChips from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteChips.vue';
-import sanitizeHtml from 'sanitize-html';
+import useSanitize from '../../../../composables/useSanitize';
 import dropdownDirectionDirective from '../../../../directives/dropdown-direction';
 import translateMixin from '../../../../mixins/translate';
 
@@ -129,7 +129,7 @@ export default defineComponent({
     dropdownPosition: {
       type: String,
       default: BOTTOM,
-      validator: function (value: Position) {
+      validator: function(value: Position) {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
@@ -149,15 +149,14 @@ export default defineComponent({
 
   computed: {
     showChips(): boolean {
-      return Array.isArray(this.modelValue) && this.multiple;
+      return Array.isArray(this.modelValue || []) && this.multiple;
     },
     computedOptions(): Option[] {
       return this.options
         .map((option: Option) => {
           let _selected = false;
           if (Array.isArray(this.modelValue)) {
-            _selected =
-              this.modelValue.findIndex((o) => o.id === option.id) > -1;
+            _selected = this.modelValue.findIndex(o => o.id === option.id) > -1;
           } else if (this.modelValue?.id === option.id) {
             _selected = true;
           }
@@ -181,11 +180,26 @@ export default defineComponent({
       });
     },
     highlightedOptions(): string[] {
-      const filter = new RegExp(this.searchTerm, 'i');
+      const searchValue = this.searchTerm.replace(
+        /[-/\\^$*+?.()|[\]{}]/g,
+        '\\$&',
+      );
+      const filter = new RegExp(searchValue, 'ig');
+      const sanitizeHtml = useSanitize().sanitizeHtml;
+
       return this.computedOptions.map((option: Option) => {
-        return option.label.replace(filter, (match) => {
-          return sanitizeHtml(`<b>${match}</b>`);
-        });
+        var sanitizedOption = '';
+        const matchedSearchValues = [...option.label.matchAll(filter)].map(
+          a => a[0],
+        );
+        const textParts = option.label.split(filter);
+        for (var i = 0; i < textParts.length; i++) {
+          sanitizedOption += sanitizeHtml(textParts[i]);
+          if (i < textParts.length - 1) {
+            sanitizedOption += `<b>${sanitizeHtml(matchedSearchValues[i])}</b>`;
+          }
+        }
+        return sanitizedOption;
       });
     },
     selectedItem(): string {
@@ -246,27 +260,24 @@ export default defineComponent({
       }
     },
     doSearch() {
-      new Promise((resolve) => {
+      new Promise(resolve => {
         if (this.createOptions) {
           resolve(this.createOptions(this.searchTerm));
         } else {
           throw new Error('createOptions not defined');
         }
-      })
-        .then((resolved) => {
-          if (resolved && Array.isArray(resolved)) {
-            if (resolved.length > 0) {
-              this.options = resolved.slice(0, 5);
-            } else {
-              this.options = [];
-            }
+      }).then(resolved => {
+        this.loading = false;
+        if (resolved && Array.isArray(resolved)) {
+          if (resolved.length > 0) {
+            this.options = resolved.slice(0, 5);
           } else {
-            throw new Error('options returned are not array');
+            this.options = [];
           }
-        })
-        .finally(() => {
-          this.loading = false;
-        });
+        } else {
+          throw new Error('options returned are not array');
+        }
+      });
     },
     search() {
       if (this.debouncer) {
@@ -297,6 +308,16 @@ export default defineComponent({
         }
       }
       this.dropdownOpen = false;
+    },
+  },
+
+  watch: {
+    modelValue: {
+      handler() {
+        if (Array.isArray(this.modelValue) && this.modelValue.length === 0) {
+          this.searchTerm = null;
+        }
+      },
     },
   },
 });

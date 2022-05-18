@@ -86,7 +86,7 @@ export default defineComponent({
           : 0;
         isSpilled.value =
           props.itemsSelected &&
-          titleWidth + actionButtonWidth + filterWidth > fullWidth;
+          titleWidth + actionButtonWidth + filterWidth >= fullWidth;
       });
     };
 
@@ -136,8 +136,11 @@ export default defineComponent({
     .--actions button.oxd-button {
       margin-left: 0.5rem;
     }
-    &.spilled .--actions div:first-child > button.oxd-button {
-      margin-left: 0;
+    &.spilled .--actions {
+      padding-right: 0.5rem;
+      div:first-child > button.oxd-button {
+        margin-left: 0;
+      }
     }
   }
 }

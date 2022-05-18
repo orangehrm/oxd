@@ -2,7 +2,7 @@
   <div
     class="oxd-table-left-panel"
     :style="customStyles"
-    :class="secondaryButton ? 'with-secondary' : ''"
+    :class="secondaryButton ? isLeftPanelOpen ? 'with-secondary' : 'with-secondary with-secondary-collapsed' : ''"
   >
     <div v-if="headerVisible" class="oxd-table-left-panel--header">
       <slot name="header">
