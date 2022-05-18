@@ -10,6 +10,7 @@ export type Rule = (value?: any) => string | boolean;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ModelValue = Ref<any>;
 export type Rules = Ref<Array<Rule>>;
+export type Disabled = Ref<boolean>;
 
 export type ErrorBag = Array<ErrorField>;
 export type Fieldset = Array<FormField>;

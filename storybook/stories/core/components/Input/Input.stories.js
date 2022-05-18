@@ -9,7 +9,7 @@ export default {
   },
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     return {args};
   },
@@ -22,14 +22,66 @@ Default.args = {
   value: 'Input',
 };
 
+Default.parameters = {
+  docs: {
+    source: {
+      code: '<oxd-input \n' + '/>',
+    },
+  },
+};
+
 export const Colored = Template.bind({});
 Colored.args = {
   value: 'Input',
   style: {backgroundColor: 'aliceblue'},
 };
 
+Colored.parameters = {
+  docs: {
+    source: {
+      code: '<oxd-input \n' + ': style={"backgroundColor": "aliceblue"}/>',
+    },
+  },
+};
+
 export const Error = Template.bind({});
 Error.args = {
   value: 'Input',
   hasError: true,
+};
+
+Error.parameters = {
+  docs: {
+    source: {
+      code: '<oxd-input \n' + ': style={"backgroundColor": "aliceblue"}/>',
+    },
+  },
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  value: 'Input',
+  Disabled: true,
+};
+
+Disabled.parameters = {
+  docs: {
+    source: {
+      code: '<oxd-input \n' + ': Disabled=true/>',
+    },
+  },
+};
+
+export const ReadOnly = Template.bind({});
+ReadOnly.args = {
+  value: 'Input',
+  readonly: true,
+};
+
+ReadOnly.parameters = {
+  docs: {
+    source: {
+      code: '<oxd-input \n' + ':readonly=true/>',
+    },
+  },
 };

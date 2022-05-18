@@ -117,6 +117,7 @@ export default defineComponent({
     };
 
     const createFieldNode = (field: FieldSchema) => {
+      console.error(field);
       return h(
         GridItem,
         {
@@ -126,7 +127,10 @@ export default defineComponent({
         {
           default: () =>
             h(extractFieldComponent(field), {
-              id: field.id ?? nanoid(6),
+              id:
+                field.type === 'radio'
+                  ? field.name + '_' + field.value
+                  : field.name,
               key: field.key,
               label: $t(field.label),
               ...(field.props ?? {}),
