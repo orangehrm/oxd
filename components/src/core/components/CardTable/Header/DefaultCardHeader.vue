@@ -55,8 +55,6 @@ interface State {
 export default defineComponent({
   name: 'oxd-table-header-default',
 
-  // mixins: [translateMixin],
-
   components: {
     'oxd-icon': Icon,
     'oxd-card-thead': TableHeader,
