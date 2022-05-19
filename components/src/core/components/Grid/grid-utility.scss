@@ -1,0 +1,16 @@
+@import '../../../styles';
+@import 'variables';
+
+@for $i from 1 through 12 {
+  @include oxd-respond-to('md') {
+    .--span-column-#{$i} {
+      grid-column: span #{$i};
+    }
+    .--offset-column-#{$i} {
+      grid-column-start: #{$i};
+    }
+    .--offset-row-#{$i} {
+      grid-row-start: #{$i};
+    }
+  }
+}
