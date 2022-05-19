@@ -44,7 +44,7 @@
               class="oxd-date-input-link --today"
               tabindex="0"
             >
-              Today
+               {{ $t("Today") }}
             </div>
             <div
               @keyup.enter="onClickClear"
@@ -52,7 +52,7 @@
               class="oxd-date-input-link --clear"
               tabindex="0"
             >
-              Clear
+               {{ $t("Clear") }}
             </div>
             <div
               @keyup.enter="closeDropdown"
@@ -60,7 +60,7 @@
               class="oxd-date-input-link --close"
               tabindex="0"
             >
-              Close
+               {{ $t("Close") }}
             </div>
           </div>
         </oxd-calendar>
