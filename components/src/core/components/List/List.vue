@@ -131,6 +131,15 @@
           @update:selected="tableSelect"
           rowDecorator="oxd-table-decorator-card"
         />
+        <div
+          v-if="wholeRecordsCount === 0 && !isListLoading"
+          class="empty-msg-container"
+        >
+          <div class="empty-msg">
+            <oxd-icon class="empty-msg-pic" name="oxd-no-data" />
+            <div class="caption">{{ $t('Sorry, No Data Found!') }}</div>
+          </div>
+        </div>
         <oxd-pagination
           class="list-pagination d-flex align-center justify-end"
           :length="paginationLength"
@@ -160,7 +169,7 @@ import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue
 import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination.vue';
 import images from '../ProfilePic/images';
 import useTranslate from './../../../composables/useTranslate';
-
+import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import {defineComponent, reactive, computed, ref, watch} from 'vue';
 
 export default defineComponent({
@@ -172,6 +181,7 @@ export default defineComponent({
     'oxd-icon-button': IconButton,
     'oxd-quick-search': QuickSearchInput,
     'oxd-profile-pic': ProfilePic,
+    'oxd-icon': Icon,
     'oxd-pagination': Pagination,
   },
   props: {
