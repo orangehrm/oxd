@@ -117,37 +117,44 @@ export default defineComponent({
     };
 
     const createFieldNode = (field: FieldSchema) => {
-      console.error(field);
-      return h(
-        GridItem,
-        {
-          style: field.style,
-          class: field.class,
-        },
-        {
-          default: () =>
-            h(extractFieldComponent(field), {
-              id:
-                field.type === 'radio'
-                  ? field.name + '_' + field.value
-                  : field.name,
-              key: field.key,
-              label: $t(field.label),
-              ...(field.props ?? {}),
-              ...(field.listeners ?? {}),
-              rules: Array.from(field.validators?.values() ?? []),
-              modelValue: props.model[field.name],
-              'onUpdate:modelValue': value => {
-                context.emit('update:model', {
-                  ...(props.model as Model),
-                  [field.name]: value,
-                });
-              },
-              required: field.validators?.has('required'),
-              ...(field.type !== 'custom' && {type: field.type}),
-            }),
-        },
-      );
+      if (!props.schema?.name) {
+        throw new Error('Form name is must for schema form');
+      } else {
+        return h(
+          GridItem,
+          {
+            style: field.style,
+            class: field.class,
+          },
+          {
+            default: () =>
+              h(extractFieldComponent(field), {
+                id:
+                  field.type === 'radio'
+                    ? props.schema?.name.toString().trim() +
+                      '_' +
+                      field.name.toString().trim() +
+                      '_' +
+                      field.value.toString().trim()
+                    : props.schema?.name + '_' + field.name,
+                key: field.key,
+                label: $t(field.label),
+                ...(field.props ?? {}),
+                ...(field.listeners ?? {}),
+                rules: Array.from(field.validators?.values() ?? []),
+                modelValue: props.model[field.name],
+                'onUpdate:modelValue': value => {
+                  context.emit('update:model', {
+                    ...(props.model as Model),
+                    [field.name]: value,
+                  });
+                },
+                required: field.validators?.has('required'),
+                ...(field.type !== 'custom' && {type: field.type}),
+              }),
+          },
+        );
+      }
     };
 
     const createActionNode = (field: FieldSchema) => {
@@ -207,6 +214,7 @@ export default defineComponent({
       h(
         Form,
         {
+          name: props.schema?.name,
           style: props.schema?.style,
           class: props.schema?.class,
           loading: isLoading.value,

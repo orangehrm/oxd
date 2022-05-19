@@ -26,6 +26,7 @@ const Template = (args) => ({
 });
 
 const sample = {
+  name: 'sampleForm',
   layout: [
     {
       type: 'grid',
@@ -91,6 +92,7 @@ const CrossValidationTemplate = (args) => ({
 });
 
 const crossValidationSample = {
+  name: 'crossValidationForm',
   layout: [
     {
       type: 'grid',
@@ -179,6 +181,7 @@ const getSchemaWithUser = async function (username) {
       .then((response) => response.json())
       .then((user) => {
         const _schema = {
+          name: 'functionBasedForm',
           layout: [
             {
               type: 'custom',
@@ -228,6 +231,7 @@ FunctionBased.args = {
 export const Advance = Template.bind({});
 Advance.args = {
   schema: {
+    name: 'AdvanceForm',
     layout: [
       {
         type: 'grid',
