@@ -116,6 +116,25 @@ export default defineComponent({
       }
     };
 
+    const getFormElementId = (
+      fieldType: string,
+      fieldName: string,
+      fieldValue: string | unknown,
+      formName: String,
+    ) => {
+      if (fieldType === 'radio') {
+        return (
+          formName.toString().trim() +
+          '_' +
+          fieldName.toString().trim() +
+          '_' +
+          fieldValue.toString().trim()
+        );
+      } else {
+        return formName.toString().trim() + '_' + fieldName.toString().trim();
+      }
+    };
+
     const createFieldNode = (field: FieldSchema) => {
       if (!props.schema?.name) {
         throw new Error('Form name is must for schema form');
@@ -129,14 +148,12 @@ export default defineComponent({
           {
             default: () =>
               h(extractFieldComponent(field), {
-                id:
-                  field.type === 'radio'
-                    ? props.schema?.name.toString().trim() +
-                      '_' +
-                      field.name.toString().trim() +
-                      '_' +
-                      field.value.toString().trim()
-                    : props.schema?.name + '_' + field.name,
+                id: getFormElementId(
+                  field.type,
+                  field.name,
+                  field.value,
+                  props.schema.name,
+                ),
                 key: field.key,
                 label: $t(field.label),
                 ...(field.props ?? {}),

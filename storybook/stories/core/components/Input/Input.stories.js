@@ -2,7 +2,7 @@ import Input from '@orangehrm/oxd/core/components/Input/Input';
 import InputEvents from './InputEvents.story.vue';
 
 export default {
-  title: 'Example/Input',
+  title: 'Form_Widgets/Input',
   component: Input,
   argTypes: {
     modelValue: {
@@ -20,25 +20,28 @@ export default {
     focus: {
       control: {type: 'function'},
       table: {
-        type: {summary: 'Emit focus event from input'},
+        type: {summary: 'Native Inherited Event: Emit focus event from input'},
       },
     },
     blur: {
       control: {type: 'function'},
       table: {
-        type: {summary: 'Emit blur event from input'},
+        type: {
+          summary: `Native Inherited Event:` + 'Emit blur event from input',
+        },
       },
     },
     keyUp: {
       control: {type: 'function'},
       table: {
-        type: {summary: 'Emit keyUp event from input'},
+        type: {summary: 'Native Inherited Event:" Emit keyUp event from input'},
       },
     },
     click: {
       control: {type: 'function'},
+      action: 'clicked',
       table: {
-        type: {summary: 'Emit click event from input'},
+        type: {summary: 'Native Inherited Event:: Emit click event from input'},
       },
     },
     input: {
@@ -72,7 +75,7 @@ const Template = (args) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  value: 'Input',
+  modelValue: 'input',
 };
 
 Default.parameters = {
@@ -85,7 +88,7 @@ Default.parameters = {
 
 export const Colored = Template.bind({});
 Colored.args = {
-  value: 'Input',
+  modelValue: 'input',
   style: {backgroundColor: 'aliceblue'},
 };
 
@@ -99,7 +102,7 @@ Colored.parameters = {
 
 export const Error = Template.bind({});
 Error.args = {
-  value: 'Input',
+  modelValue: 'input',
   hasError: true,
 };
 
@@ -113,7 +116,7 @@ Error.parameters = {
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  value: 'Input',
+  modelValue: 'input',
   Disabled: true,
 };
 
@@ -127,7 +130,7 @@ Disabled.parameters = {
 
 export const ReadOnly = Template.bind({});
 ReadOnly.args = {
-  value: 'Input',
+  modelValue: 'input',
   readonly: true,
 };
 
@@ -139,17 +142,30 @@ ReadOnly.parameters = {
   },
 };
 
-export const InputEvent = () => InputEvents;
+export const Events = () => InputEvents;
 
-InputEvent.parameters = {
+Events.parameters = {
   docs: {
     source: {
       code:
-        ' <oxd-input @input="onInput()" /> \n\n\n\n\n' +
-        '// in method \n' +
-        'onInput() {' +
-        ' alert("input");' +
-        ' },',
+        '  <div> \n' +
+        '<oxd-input \n' +
+        '@input="onInput()"\n' +
+        '@focus="onFocus()"\n' +
+        '@blur="onBlur()"\n' +
+        '@click="onClick()"\n' +
+        '@keyup="onKeyUp()"\n' +
+        '/>\n' +
+        '</div>\n' +
+        '<div style="margin-top: 2rem">\n' +
+        '<span v-if="InputEvent">Input Event Triggered</span>\n' +
+        '<span v-if="FocusEvent">Focus Event Triggered</span>\n' +
+        '<span v-if="BlurEvent">Blur Event Triggered</span>\n' +
+        '<span v-if="ClickEvent">Click Event Triggered</span>\n' +
+        '<span v-if="KeyUpEvent">KeyUp Event Triggered</span>\n' +
+        '</div>\n' +
+        '//\n' +
+        'File -> InputEvents.story.vue',
     },
   },
 };
