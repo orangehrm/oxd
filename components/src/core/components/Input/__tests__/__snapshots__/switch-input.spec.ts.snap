@@ -9,9 +9,9 @@ exports[`SwitchInput.vue renders OXD Switch Input 1`] = `
 
 exports[`SwitchInput.vue renders OXD Switch Input with label on left and full width 1`] = `
 <div class="oxd-switch-wrapper"><label class="">
-    <!--v-if--><input type="checkbox" label="Checkbox" position="left" fullwidth="true"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span> <i class="oxd-svg-icon oxd-svg-icon--small" help-tooltip="This is a help text describing what this switch does" position="bottom-right"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" fill="currentColor">
+    <!--v-if--><input type="checkbox" label="Checkbox" position="left" fullwidth="true"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span> <i class="oxd-svg-icon oxd-svg-icon--small" help-tooltip="This is a help text describing what this switch does" position="bottom-right"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
         <g>
-          <path d="M256,0C115.391,0,0.002,115.389,0.002,255.998c0,45.747,12.378,90.526,35.859,130.004L0.778,492.25
+          <path style="fill:currentColor" d="M256,0C115.391,0,0.002,115.389,0.002,255.998c0,45.747,12.378,90.526,35.859,130.004L0.778,492.25
       c-1.802,5.391-0.396,11.338,3.618,15.352c4.043,4.043,10.031,5.425,15.352,3.618l106.248-35.083
       c39.478,23.481,84.257,35.859,130.004,35.859c140.609,0,255.998-115.389,255.998-255.998S396.609,0,256,0z M256,450.996
       c-24.814,0-45-20.186-45-45c0-24.814,20.186-45,45-45s45,20.186,45,45C301,430.811,280.814,450.996,256,450.996z M319.237,235.183
@@ -33,9 +33,9 @@ exports[`SwitchInput.vue renders OXD Switch Input with label on left and full wi
 
 exports[`SwitchInput.vue renders OXD Switch Input with label on left and help popup 1`] = `
 <div class="oxd-switch-wrapper"><label class="">
-    <!--v-if--><input type="checkbox" label="Checkbox" position="left"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span> <i class="oxd-svg-icon oxd-svg-icon--small" help-tooltip="This is a help text describing what this switch does" position="bottom-right"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" fill="currentColor">
+    <!--v-if--><input type="checkbox" label="Checkbox" position="left"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span> <i class="oxd-svg-icon oxd-svg-icon--small" help-tooltip="This is a help text describing what this switch does" position="bottom-right"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
         <g>
-          <path d="M256,0C115.391,0,0.002,115.389,0.002,255.998c0,45.747,12.378,90.526,35.859,130.004L0.778,492.25
+          <path style="fill:currentColor" d="M256,0C115.391,0,0.002,115.389,0.002,255.998c0,45.747,12.378,90.526,35.859,130.004L0.778,492.25
       c-1.802,5.391-0.396,11.338,3.618,15.352c4.043,4.043,10.031,5.425,15.352,3.618l106.248-35.083
       c39.478,23.481,84.257,35.859,130.004,35.859c140.609,0,255.998-115.389,255.998-255.998S396.609,0,256,0z M256,450.996
       c-24.814,0-45-20.186-45-45c0-24.814,20.186-45,45-45s45,20.186,45,45C301,430.811,280.814,450.996,256,450.996z M319.237,235.183
@@ -57,9 +57,9 @@ exports[`SwitchInput.vue renders OXD Switch Input with label on right and full w
 
 exports[`SwitchInput.vue renders OXD Switch Input with label on right and full width with helpText 1`] = `
 <div class="oxd-switch-wrapper"><label class="">
-    <!--v-if--><input type="checkbox" label="Checkbox" position="right" fullwidth="true"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span> <i class="oxd-svg-icon oxd-svg-icon--small" help-tooltip="This is a help text describing what this switch does" position="bottom-right"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" fill="currentColor">
+    <!--v-if--><input type="checkbox" label="Checkbox" position="right" fullwidth="true"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span> <i class="oxd-svg-icon oxd-svg-icon--small" help-tooltip="This is a help text describing what this switch does" position="bottom-right"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
         <g>
-          <path d="M256,0C115.391,0,0.002,115.389,0.002,255.998c0,45.747,12.378,90.526,35.859,130.004L0.778,492.25
+          <path style="fill:currentColor" d="M256,0C115.391,0,0.002,115.389,0.002,255.998c0,45.747,12.378,90.526,35.859,130.004L0.778,492.25
       c-1.802,5.391-0.396,11.338,3.618,15.352c4.043,4.043,10.031,5.425,15.352,3.618l106.248-35.083
       c39.478,23.481,84.257,35.859,130.004,35.859c140.609,0,255.998-115.389,255.998-255.998S396.609,0,256,0z M256,450.996
       c-24.814,0-45-20.186-45-45c0-24.814,20.186-45,45-45s45,20.186,45,45C301,430.811,280.814,450.996,256,450.996z M319.237,235.183
@@ -74,9 +74,9 @@ exports[`SwitchInput.vue renders OXD Switch Input with label on right and full w
 
 exports[`SwitchInput.vue renders OXD Switch Input with label on right and help popup 1`] = `
 <div class="oxd-switch-wrapper"><label class="">
-    <!--v-if--><input type="checkbox" label="Checkbox" position="right"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span> <i class="oxd-svg-icon oxd-svg-icon--small" help-tooltip="This is a help text describing what this switch does" position="bottom-right"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" fill="currentColor">
+    <!--v-if--><input type="checkbox" label="Checkbox" position="right"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span> <i class="oxd-svg-icon oxd-svg-icon--small" help-tooltip="This is a help text describing what this switch does" position="bottom-right"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
         <g>
-          <path d="M256,0C115.391,0,0.002,115.389,0.002,255.998c0,45.747,12.378,90.526,35.859,130.004L0.778,492.25
+          <path style="fill:currentColor" d="M256,0C115.391,0,0.002,115.389,0.002,255.998c0,45.747,12.378,90.526,35.859,130.004L0.778,492.25
       c-1.802,5.391-0.396,11.338,3.618,15.352c4.043,4.043,10.031,5.425,15.352,3.618l106.248-35.083
       c39.478,23.481,84.257,35.859,130.004,35.859c140.609,0,255.998-115.389,255.998-255.998S396.609,0,256,0z M256,450.996
       c-24.814,0-45-20.186-45-45c0-24.814,20.186-45,45-45s45,20.186,45,45C301,430.811,280.814,450.996,256,450.996z M319.237,235.183
