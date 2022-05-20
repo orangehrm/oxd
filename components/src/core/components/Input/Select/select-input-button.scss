@@ -257,6 +257,7 @@ $dropdown-button-size: 24px;
   .oxd-select-info-button {
     margin-right: 0 !important;
     cursor: pointer;
+    font-style: initial;
     :deep(path) {
       fill: $oxd-select-input-button-color--secondary-pressed;
     }
