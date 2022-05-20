@@ -1,6 +1,6 @@
 <template>
   <oxd-icon
-    :size="ICON_SIZE_MEDIUM"
+    :size="ICON_SIZE_SMALL"
     name="oxd-help-popup"
     :help-tooltip="$vt(helpText)"
   />
@@ -8,10 +8,9 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {TOOLTIP_RIGHT} from './../Button/types';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import translateMixin from '@orangehrm/oxd/mixins/translate';
-import {ICON_SIZE_MEDIUM} from '@orangehrm/oxd/core/components/Icon/types';
+import {ICON_SIZE_SMALL} from '@orangehrm/oxd/core/components/Icon/types';
 
 export default defineComponent({
   name: 'oxd-help-popup-icon',
@@ -24,8 +23,7 @@ export default defineComponent({
 
   data() {
     return {
-      TOOLTIP_RIGHT,
-      ICON_SIZE_MEDIUM,
+      ICON_SIZE_SMALL,
     };
   },
 
