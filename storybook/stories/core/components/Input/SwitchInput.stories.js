@@ -73,5 +73,20 @@ LabelLeftWithHelpPopup.args = {
   helpText: 'These leave will be excluded from reports unless there\'s some activity. E.g. maternity leave, jury duty leave.',
 };
 
+export const LabelLeftUseFullWidth = Template.bind({});
+LabelLeftUseFullWidth.args = {
+  optionLabel: 'Include in Bradford Factor Report',
+  labelPosition: 'left',
+  useFullWidth: true,
+};
+
+
+export const LabelRightUseFullWidth = Template.bind({});
+LabelRightUseFullWidth.args = {
+  optionLabel: 'Include in Bradford Factor Report',
+  labelPosition: 'right',
+  useFullWidth: true,
+};
+
 
 export const Vmodel = VmodelSample.bind({});

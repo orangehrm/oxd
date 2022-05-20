@@ -1,6 +1,6 @@
 <template>
   <div class="oxd-switch-wrapper">
-    <label :class="{'--disabled': disabled}">
+    <label :class="{'--disabled': disabled, '--full-width': useFullWidth}">
       <template v-if="labelPosition === 'left'">
         {{ optionLabel }}
         <oxd-help-popup-icon
@@ -71,6 +71,10 @@ export default defineComponent({
     helpText: {
       type: String,
       default: '',
+    },
+    useFullWidth: {
+      type: Boolean,
+      default: false,
     },
   },
 

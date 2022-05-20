@@ -95,3 +95,17 @@
     transform: translate(0, -50%);
   }
 }
+
+// label left: move switch to right
+.oxd-switch-wrapper label.--full-width {
+  width: 100%;
+  .oxd-switch-input.--label-left {
+    margin-left: auto;
+  }
+
+  .oxd-switch-input.--label-right {
+    margin-right: auto;
+  }
+}
+
+
