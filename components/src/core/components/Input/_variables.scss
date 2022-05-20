@@ -45,7 +45,8 @@ $oxd-switch-label-margin: 0.5em;
 $oxd-switch-off-background-color: $oxd-interface-gray-lighten-2-color !default;
 $oxd-switch-on-background-color: $oxd-primary-input-color !default;
 $oxd-switch-on-disabled-background-color: hsl(25, 100%, 56%, 0.5) !default;
-$oxd-switch-off-disabled-background-color: $oxd-interface-gray-lighten-2-color !default;
+$oxd-switch-off-disabled-background-color: $oxd-interface-gray-lighten-1-color !default;
+$oxd-switch-off-disabled-selector-color: $oxd-interface-gray-lighten-2-color !default;
 $oxd-switch-disabled-background-color: $oxd-interface-gray-lighten-2-color !default;
 
 $oxd-radio-label-color: $oxd-input-control-font-color !default;
