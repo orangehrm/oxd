@@ -252,11 +252,12 @@ export default defineComponent({
       this.pointer = -1;
       this.dropdownOpen = false;
       this.searchTerm = null;
+      const selectedOption = {id: option.id, label: option.label};
       if (this.multiple) {
         const selected = Array.isArray(this.modelValue) ? this.modelValue : [];
-        this.$emit('update:modelValue', [...selected, option]);
+        this.$emit('update:modelValue', [...selected, selectedOption]);
       } else {
-        this.$emit('update:modelValue', option);
+        this.$emit('update:modelValue', selectedOption);
       }
     },
     doSearch() {
