@@ -3,6 +3,7 @@ import {
   RIGHT,
   LABEL_POSITIONS,
 } from '@orangehrm/oxd/core/components/Input/types';
+import {BOTTOM_RIGHT, HELP_POSITIONS} from '@orangehrm/oxd/core/components/Icon/types';
 
 export default {
   title: 'Example/SwitchInput',
@@ -14,7 +15,12 @@ export default {
       control: {type: 'select', options: LABEL_POSITIONS},
       defaultValue: RIGHT,
     },
+    helpTextPosition: {
+      control: {type: 'select', options: HELP_POSITIONS},
+      defaultValue: BOTTOM_RIGHT,
+    },
   },
+  decorators: [() => ({ template: '<div style="max-width: 400px; margin-top:3em"><story/></div>' })],
 };
 
 const Template = args => ({

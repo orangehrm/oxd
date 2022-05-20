@@ -1,5 +1,5 @@
-import HelpPopupIcon from 'oxd-components/src/core/components/Icon/HelpPopupIcon.vue'
-import {BOTTOM_RIGHT, HELP_POSITIONS} from 'oxd-components/src/core/components/Icon/types';
+import HelpPopupIcon from '@orangehrm/oxd/core/components/Icon/HelpPopupIcon.vue'
+import {BOTTOM_RIGHT, HELP_POSITIONS} from '@orangehrm/oxd/core/components/Icon/types';
 
 export default {
   title: 'Example/Icon/HelpPopup',
