@@ -44,7 +44,7 @@
               class="oxd-date-input-link --today"
               tabindex="0"
             >
-              Today
+               {{ $vt("Today") }}
             </div>
             <div
               @keyup.enter="onClickClear"
@@ -52,7 +52,7 @@
               class="oxd-date-input-link --clear"
               tabindex="0"
             >
-              Clear
+               {{ $vt("Clear") }}
             </div>
             <div
               @keyup.enter="closeDropdown"
@@ -60,7 +60,7 @@
               class="oxd-date-input-link --close"
               tabindex="0"
             >
-              Close
+               {{ $vt("Close") }}
             </div>
           </div>
         </oxd-calendar>
@@ -79,6 +79,7 @@ import Calendar from '@orangehrm/oxd/core/components/Calendar/Calendar.vue';
 import clickOutsideDirective from '../../../directives/click-outside';
 import dropdownDirectionDirective from '../../../directives/dropdown-direction';
 import focusTrapDirective from '../../../directives/focus-trap';
+import translateMixin from '../../../mixins/translate';
 
 export default defineComponent({
   name: 'oxd-date-input',
@@ -89,6 +90,8 @@ export default defineComponent({
     'oxd-input': Input,
     'oxd-calendar': Calendar,
   },
+
+  mixins: [translateMixin],
 
   directives: {
     'click-outside': clickOutsideDirective,
