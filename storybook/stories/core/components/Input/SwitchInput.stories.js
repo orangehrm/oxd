@@ -60,4 +60,18 @@ Error.args = {
   hasError: true,
 };
 
+export const LabelRightWithHelpPopup = Template.bind({});
+LabelRightWithHelpPopup.args = {
+  optionLabel: 'Include in Bradford Factor Report',
+  helpText: 'These leave will be excluded from reports unless there\'s some activity. E.g. maternity leave, jury duty leave.',
+};
+
+export const LabelLeftWithHelpPopup = Template.bind({});
+LabelLeftWithHelpPopup.args = {
+  optionLabel: 'Include in Bradford Factor Report',
+  labelPosition: 'left',
+  helpText: 'These leave will be excluded from reports unless there\'s some activity. E.g. maternity leave, jury duty leave.',
+};
+
+
 export const Vmodel = VmodelSample.bind({});

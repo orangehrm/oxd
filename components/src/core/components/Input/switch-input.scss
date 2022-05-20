@@ -42,6 +42,14 @@
       color: $oxd-switch-label-color--disabled;
       cursor: unset;
     }
+
+    i.oxd-svg-icon {
+      left: 0.25rem;
+      bottom: 0.625rem;
+      &.left {
+        margin-right: 0.5rem;
+      }
+    }
   }
 }
 
