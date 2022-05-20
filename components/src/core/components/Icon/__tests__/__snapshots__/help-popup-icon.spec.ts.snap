@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Icon > HelpPopupIcon.vue should render HelpPopupIcon 1`] = `
-<i class="oxd-svg-icon oxd-svg-icon--medium" help-tooltip="Test help"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" fill="currentColor">
+<i class="oxd-svg-icon oxd-svg-icon--small" help-tooltip="Test help"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" fill="currentColor">
     <g>
       <path d="M256,0C115.391,0,0.002,115.389,0.002,255.998c0,45.747,12.378,90.526,35.859,130.004L0.778,492.25
       c-1.802,5.391-0.396,11.338,3.618,15.352c4.043,4.043,10.031,5.425,15.352,3.618l106.248-35.083
