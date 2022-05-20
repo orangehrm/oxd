@@ -8,4 +8,11 @@ describe('Icon > HelpPopupIcon.vue', () => {
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
+
+  it('should render HelpPopupIcon with custom position', () => {
+    const wrapper = mount(HelpPopupIcon, {
+      props: {helpText: 'Test help', position: 'top_left'},
+    });
+    expect(wrapper.html()).toMatchSnapshot();
+  });
 });

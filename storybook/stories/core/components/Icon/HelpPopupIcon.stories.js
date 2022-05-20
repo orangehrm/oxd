@@ -1,8 +1,16 @@
 import HelpPopupIcon from 'oxd-components/src/core/components/Icon/HelpPopupIcon.vue'
+import {BOTTOM_RIGHT, HELP_POSITIONS} from 'oxd-components/src/core/components/Icon/types';
 
 export default {
   title: 'Example/Icon/HelpPopup',
   component: HelpPopupIcon,
+  argTypes: {
+    helpPosition: {
+      control: {type: 'select', options: HELP_POSITIONS},
+      defaultValue: BOTTOM_RIGHT,
+    },
+  },
+  decorators: [() => ({ template: '<div style="margin-left: 15em; margin-top:3em"><story/></div>' })],
 };
 
 const Template = args => ({

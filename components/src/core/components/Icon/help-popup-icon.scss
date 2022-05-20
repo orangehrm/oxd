@@ -45,8 +45,24 @@
   background: #fff;
   color: $oxd-interface-gray-darken-1-color;
   z-index: $oxd-tooltip-font-z-index;
+}
+
+[help-tooltip]:not([position])::after,
+[help-tooltip][position^="bottom-right"]::after {
   top: 50%;
   left: 50%;
+}
+[help-tooltip][position^="bottom-left"]::after {
+  top: 50%;
+  right: 50%;
+}
+[help-tooltip][position^="top-right"]::after {
+  bottom: 50%;
+  left: 50%;
+}
+[help-tooltip][position^="top-left"]::after {
+  bottom: 50%;
+  right: 50%;
 }
 
 /* Make the tooltips respond to hover */
@@ -62,12 +78,6 @@
 }
 
 /* KEYFRAMES */
-@keyframes tooltips-vert {
-  to {
-    opacity: .9;
-  }
-}
-
 @keyframes tooltips-horz {
   to {
     opacity: .9;
