@@ -45,9 +45,8 @@
   background: #fff;
   color: $oxd-interface-gray-darken-1-color;
   z-index: $oxd-tooltip-font-z-index;
-  top: calc(100% + 18px);
+  top: 50%;
   left: 50%;
-  transform: translate(.5em, -50%);
 }
 
 /* Make the tooltips respond to hover */
@@ -66,13 +65,11 @@
 @keyframes tooltips-vert {
   to {
     opacity: .9;
-    transform: translate(-50%, 0);
   }
 }
 
 @keyframes tooltips-horz {
   to {
     opacity: .9;
-    transform: translate(0, -50%);
   }
 }
