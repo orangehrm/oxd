@@ -164,3 +164,17 @@
     padding: 0.25rem 0.75rem;
   }
 }
+
+.empty-msg-container {
+  vertical-align: top;
+  display: flex;
+  justify-content: center;
+}
+.empty-msg-pic {
+  width: 10rem;
+  height: 10rem;
+}
+.empty-msg {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
