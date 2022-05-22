@@ -55,7 +55,15 @@ export default function useFormValidation() {
   };
 
   const validate = () => {
-    return Promise.all(formState.fieldset.map(field => field.validate()))
+    return Promise.all(
+      formState.fieldset.map(field => {
+        if (!field.dirty.value) {
+          field.setDirty(true);
+          field.startWatcher();
+        }
+        return field.validate();
+      }),
+    )
       .then(results => {
         results.map(errorField => {
           addError(errorField);

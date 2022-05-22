@@ -7,7 +7,7 @@
           :name="labelIcon"
           class="oxd-input-group__label-icon"
         />
-        <oxd-label v-if="label" :label="label" :class="labelClasses" />
+        <oxd-label v-if="label" :id="id" :label="label" :class="labelClasses" />
       </div>
     </slot>
     <div :class="wrapperClasses">
@@ -44,6 +44,9 @@ export default defineComponent({
       type: String,
     },
     message: {
+      type: String,
+    },
+    id: {
       type: String,
     },
     classes: {

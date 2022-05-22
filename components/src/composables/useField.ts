@@ -7,12 +7,20 @@ import {
 } from 'vue';
 import {nanoid} from 'nanoid';
 import {injectStrict} from '../utils/injectable';
-import {ErrorField, FormAPI, formKey, ModelValue, Rules} from './types';
+import {
+  Disabled,
+  ErrorField,
+  FormAPI,
+  formKey,
+  ModelValue,
+  Rules,
+} from './types';
 
 export default function useField(fieldContext: {
   fieldLabel: string;
   rules: Rules;
   modelValue: ModelValue;
+  isDisabled: Disabled;
   onReset: () => Promise<void>;
 }) {
   const form = injectStrict<FormAPI>(formKey);
@@ -24,6 +32,8 @@ export default function useField(fieldContext: {
   let watchHandler: WatchStopHandle | undefined;
 
   const validate = (modelValue: ModelValue, rules: Rules) => {
+    if (fieldContext.isDisabled.value)
+      return Promise.resolve({cid: cid.value, errors: []});
     processing.value = true;
     const allValidations = Promise.all(
       rules.value.map(func => {
@@ -82,6 +92,10 @@ export default function useField(fieldContext: {
     );
   };
 
+  const setDirty = (value: boolean) => {
+    dirty.value = value;
+  };
+
   const reset = () => {
     dirty.value = false;
     touched.value = false;
@@ -98,6 +112,8 @@ export default function useField(fieldContext: {
     processing,
     validate: () => validate(fieldContext.modelValue, fieldContext.rules),
     reset,
+    startWatcher,
+    setDirty,
   });
 
   onBeforeUnmount(() => {
@@ -109,6 +125,8 @@ export default function useField(fieldContext: {
       processing,
       validate: () => validate(fieldContext.modelValue, fieldContext.rules),
       reset,
+      startWatcher,
+      setDirty,
     });
   });
 
