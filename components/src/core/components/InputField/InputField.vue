@@ -11,6 +11,7 @@
       :is="component"
       v-bind="$attrs"
       :id="id"
+      :disabled="disabled"
       :hasError="hasError"
       :modelValue="modelValue"
       @update:modelValue="onChange"
@@ -79,6 +80,10 @@ export default defineComponent({
     id: {
       type: String,
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
     type: {
       type: String,
       default: TYPE_INPUT,
@@ -103,6 +108,8 @@ export default defineComponent({
   setup(props, context) {
     const modelValue = toRef(props, 'modelValue');
     const rules = toRef(props, 'rules');
+    const isDisabled = toRef(props, 'disabled');
+
     const initialValue = modelValue.value;
 
     const onReset = async () => {
@@ -114,6 +121,7 @@ export default defineComponent({
       fieldLabel: props.label ? props.label : '',
       rules,
       modelValue,
+      isDisabled,
       onReset,
     });
 
