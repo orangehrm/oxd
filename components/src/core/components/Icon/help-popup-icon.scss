@@ -1,0 +1,85 @@
+@import '../../../styles';
+
+.oxd-svg-icon {
+  color: $oxd-interface-gray-color;
+  &:hover {
+    color: $oxd-primary-one-color;
+  }
+}
+
+[help-tooltip] {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Make help icon show over the tooltip */
+[help-tooltip]:hover > svg {
+  z-index: $oxd-tooltip-font-z-index;
+}
+
+/* Applies to all tooltips */
+[help-tooltip]::after {
+  text-transform: none;
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+
+  pointer-events: none;
+  position: absolute;
+  display: none;
+  opacity: 0;
+
+  content: attr(help-tooltip);
+
+  font-family: $oxd-font-family;
+  text-align: left;
+
+  max-width: 200px;
+  width: max-content;
+  overflow: auto;
+  white-space: pre-wrap;
+  padding: 0.8rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.18);
+  background: #fff;
+  color: $oxd-interface-gray-darken-1-color;
+  z-index: $oxd-tooltip-font-z-index;
+}
+
+[help-tooltip]:not([position])::after,
+[help-tooltip][position^="bottom-right"]::after {
+  top: 50%;
+  left: 50%;
+}
+[help-tooltip][position^="bottom-left"]::after {
+  top: 50%;
+  right: 50%;
+}
+[help-tooltip][position^="top-right"]::after {
+  bottom: 50%;
+  left: 50%;
+}
+[help-tooltip][position^="top-left"]::after {
+  bottom: 50%;
+  right: 50%;
+}
+
+/* Make the tooltips respond to hover */
+[help-tooltip]:hover::after,
+[help-tooltip]:focus-visible::after {
+  display: block;
+  animation: tooltips-horz 300ms ease-out forwards;
+}
+
+/* don't show empty tooltips */
+[help-tooltip='']::after {
+  display: none !important;
+}
+
+/* KEYFRAMES */
+@keyframes tooltips-horz {
+  to {
+    opacity: 1;
+  }
+}
