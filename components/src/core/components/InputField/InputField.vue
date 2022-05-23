@@ -20,6 +20,9 @@
         <slot :name="name" v-bind="slotData" />
       </template>
     </component>
+    <oxd-text v-if="hint" class="orangehrm-input-hint" tag="p">
+      {{ $vt(hint) }}
+    </oxd-text>
   </oxd-input-group>
 </template>
 
@@ -39,8 +42,10 @@ import AutocompleteInput from '@orangehrm/oxd/core/components/Input/Autocomplete
 import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
 import MultiSelectInput from '@orangehrm/oxd/core/components/Input/MultiSelect/MultiSelectInput.vue';
 import TimeInput from '@orangehrm/oxd/core/components/Input/Time/TimeInput.vue';
+import Text from "@orangehrm/oxd/core/components/Text/Text.vue";
 import {Types, Components, TYPES, TYPE_INPUT, TYPE_MAP} from './types';
 import useField from '../../../composables/useField';
+import translateMixin from '../../../mixins/translate';
 
 export default defineComponent({
   name: 'oxd-input-field',
@@ -61,8 +66,10 @@ export default defineComponent({
     'oxd-select-input': SelectInput,
     'oxd-multiselect-input': MultiSelectInput,
     'oxd-time-input': TimeInput,
+    'oxd-text': Text,
   },
 
+  mixins: [translateMixin],
   emits: ['update:modelValue'],
 
   props: {
@@ -102,6 +109,10 @@ export default defineComponent({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       type: Array as PropType<any>,
       default: () => [],
+    },
+    hint: {
+      type: String,
+      default: null,
     },
   },
 
