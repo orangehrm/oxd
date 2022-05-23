@@ -69,4 +69,16 @@ describe('InputField.vue', () => {
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
+
+  it('renders OXD InputField type `input` with Hint', () => {
+    const wrapper = mount(InputField, {
+      props: {type: 'input', hint: 'This field has a hint'},
+      global: {
+        provide: {
+          [formKey as symbol]: mockFormAPI,
+        },
+      },
+    });
+    expect(wrapper.html()).toMatchSnapshot();
+  });
 });
