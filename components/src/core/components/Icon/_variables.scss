@@ -14,3 +14,19 @@ $oxd-svg-icon-font-size--small: 16px !default;
 $oxd-svg-icon-font-size--extra-small: 14px !default;
 $oxd-svg-icon-font-size--xx-small: 12px !default;
 $oxd-svg-icon-font-size--xxx-small: 10px !default;
+
+$oxd-help-popup-icon-color: $oxd-interface-gray-color !default;
+$oxd-help-popup-icon-hover-color: $oxd-primary-one-color !default;
+$oxd-help-popup-icon-z-index: $oxd-tooltip-font-z-index !default;
+
+$oxd-help-popup-icon-text-font-family: $oxd-font-family !default;
+$oxd-help-popup-icon-text-font-size: 0.75rem !default;
+$oxd-help-popup-icon-text-font-style: normal !default;
+$oxd-help-popup-icon-text-font-weight: 600 !default;
+$oxd-help-popup-icon-text-color: $oxd-interface-gray-darken-1-color !default;
+$oxd-help-popup-icon-text-background: $oxd-white-color !default;
+
+$oxd-help-popup-icon-text-max-width: 200px !default;
+$oxd-help-popup-icon-text-padding: 0.8rem !default;
+$oxd-help-popup-icon-text-border-radius: 1rem !default;
+$oxd-help-popup-icon-text-box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.18) !default;
