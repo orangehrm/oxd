@@ -1,4 +1,7 @@
 import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput';
+import SelectInputEvents from './SelectInputEvents.story.vue';
+import SelectInputAfterSelect from './SelectInputAfterSelect.story.vue';
+
 import {
   BOTTOM,
   DROPDOWN_POSITIONS,
@@ -6,18 +9,83 @@ import {
 import {h, ref} from 'vue';
 
 export default {
-  title: 'Example/SelectInput',
+  title: 'Form_Widgets/SelectInput',
   component: SelectInput,
   argTypes: {
-    style: {control: {type: 'object'}},
-    hasError: {control: {type: 'boolean'}},
+    style: {
+      control: {type: 'object'},
+      table: {
+        type: {summary: 'Set custom style to the select'},
+      },
+    },
+    hasError: {
+      control: {type: 'boolean'},
+      table: {
+        type: {summary: 'Set error state to the select'},
+      },
+    },
     dropdownPosition: {
       options: DROPDOWN_POSITIONS,
       defaultValue: BOTTOM,
+      table: {
+        type: {summary: 'Set drop down position for select'},
+      },
     },
     options: {
       control: {type: 'array'},
       defaultValue: [],
+      table: {
+        type: {summary: 'Set options for select'},
+      },
+    },
+    'dropdown:opened': {
+      control: {type: 'array'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'emit event when dropdown opened'},
+      },
+    },
+    'dropdown:closed': {
+      control: {type: 'array'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'emit event when dropdown closed'},
+      },
+    },
+    'dropdown:blur': {
+      control: {type: 'array'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'emit event when dropdown blur'},
+      },
+    },
+    'dropdown:clear': {
+      control: {type: 'array'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'emit event when dropdown clear'},
+      },
+    },
+    'update:modelValue': {
+      control: {type: 'array'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'emit event when select value updates'},
+      },
+    },
+    option: {
+      control: {type: 'object'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'Interal Slot to manage option'},
+      },
+    },
+    afterSelected: {
+      control: {type: 'object'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'Attend a specific text to the end of the select'},
+      },
     },
   },
 };
@@ -65,7 +133,7 @@ const options = [
   },
 ];
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     const selected = ref(args.value ?? null);
     return {args, selected};
@@ -74,7 +142,7 @@ const Template = args => ({
     return h(SelectInput, {
       ...this.args,
       modelValue: this.selected,
-      'onUpdate:modelValue': value => {
+      'onUpdate:modelValue': (value) => {
         this.selected = value;
       },
     });
@@ -86,9 +154,28 @@ Default.args = {
   options: options,
 };
 
+Default.parameters = {
+  docs: {
+    source: {
+      code: '<oxd-select \n :options=' + JSON.stringify(options) + '\n/>',
+    },
+  },
+};
+
 export const Error = Template.bind({});
 Error.args = {
   hasError: true,
+};
+
+Error.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-select \n :hasError="true"\n :options=' +
+        JSON.stringify(options) +
+        '\n/>',
+    },
+  },
 };
 
 export const Disabled = Template.bind({});
@@ -97,32 +184,118 @@ Disabled.args = {
   disabled: true,
 };
 
+Disabled.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-select \n :disabled="true"\n :options=' +
+        JSON.stringify(options) +
+        '\n/>',
+    },
+  },
+};
+
 export const Readonly = Template.bind({});
 Readonly.args = {
   options: options,
   readonly: true,
 };
 
-export const LongLabels = Template.bind({});
-LongLabels.args = {
-  options: [
-    {id: 1, label: 'This is a very long label for testing the dropdown field'},
-    {
-      id: 2,
-      label:
-        'aaaaaaaaaaa bbbbbbbbbbbbbbbbbbbbbbbbbbb cccccccccccccccccccccc ddddddddddddddddddddddddddddd',
+Readonly.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-select \n :readonly="true"\n :options=' +
+        JSON.stringify(options) +
+        '\n/>',
     },
-    {id: 3, label: 'normal length label'},
-    {id: 4, label: null},
-    {id: 5, label: 'ඔක්තෝබර්'},
-  ],
+  },
 };
+
+export const LongLabels = Template.bind({});
+const optionsLongLabel = [
+  {id: 1, label: 'This is a very long label for testing the dropdown field'},
+  {
+    id: 2,
+    label:
+      'aaaaaaaaaaa bbbbbbbbbbbbbbbbbbbbbbbbbbb cccccccccccccccccccccc ddddddddddddddddddddddddddddd',
+  },
+  {id: 3, label: 'normal length label'},
+  {id: 4, label: null},
+  {id: 5, label: 'ඔක්තෝබර්'},
+];
+LongLabels.args = {
+  options: optionsLongLabel,
+};
+
+LongLabels.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-select \n :options=' + JSON.stringify(optionsLongLabel) + '\n/>',
+    },
+  },
+};
+
 export const PreSelected = Template.bind({});
 PreSelected.args = {
   options: options,
-  value: {
+  modelValue: {
     id: 4,
     label: 'Manager',
   },
   showEmptySelector: false,
 };
+
+PreSelected.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-select \n :modelValue={id:4,label:"Manager"}\n :options=' +
+        JSON.stringify(options) +
+        '\n/>',
+    },
+  },
+};
+
+const disabledOptions = [
+  {id: 1, label: 'This is a very long label for testing the dropdown field'},
+  {id: 2, label: 'This field is disabled', _disabled: true},
+  {id: 3, label: 'test field'},
+  {id: 4, label: 'Test'},
+];
+
+export const DisabledOption = Template.bind({});
+DisabledOption.args = {
+  options: disabledOptions,
+};
+
+DisabledOption.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-select \n :options=' + JSON.stringify(disabledOptions) + '\n/>',
+    },
+  },
+};
+
+const nestedOptions = [
+  {id: 1, label: 'This is a very long label for testing the dropdown field'},
+  {id: 4, label: 'Test Field indented', _indent: 5},
+];
+export const NestedOptions = Template.bind({});
+NestedOptions.args = {
+  options: nestedOptions,
+};
+
+NestedOptions.parameters = {
+  docs: {
+    source: {
+      code: '<oxd-select \n :options=' + JSON.stringify(nestedOptions) + '\n/>',
+    },
+  },
+};
+
+export const AfterSelect = () => SelectInputAfterSelect;
+
+export const Events = () => SelectInputEvents;

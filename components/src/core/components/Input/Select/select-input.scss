@@ -54,6 +54,26 @@
     overflow: hidden;
     background: transparent;
     padding: $oxd-dropdown-text-padding;
+    align-items: center;
+    display: flex;
+    flex: 1 1;
+    flex-wrap: wrap;
+    line-height: 18px;
+    max-width: 100%;
+    min-width: 0;
+    .selected-content {
+      min-height: 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    input {
+      border-style: none;
+      background-color: transparent;
+      pointer-events: none;
+      outline: none;
+    }
   }
 
   &--before,
@@ -77,6 +97,9 @@
   &--after {
     margin-right: auto;
     padding-left: 0;
+  }
+  &--after-slot-option {
+    color: $oxd-dropdown-dropdown-slot-color;
   }
 
   &--arrow {
