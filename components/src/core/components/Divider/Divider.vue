@@ -34,12 +34,7 @@ export default defineComponent({
 
   computed: {
     classes(): object {
-      if (this.orientation == 'vertical') {
-        return { 'oxd-divider-vertical': true };
-      }
-      return {
-        'oxd-divider-horizontal': true
-      };
+      return this.orientation == 'vertical'? { 'oxd-divider-vertical': true } : { 'oxd-divider-horizontal': true };
     },
     areaOrientation(): AreaOrientation {
       if (this.orientation == 'vertical') {
