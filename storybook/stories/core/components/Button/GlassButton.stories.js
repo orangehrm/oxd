@@ -1,7 +1,7 @@
 import CustomGlassTemplate from './CustomGlassTemplate';
 
 export default {
-  title: 'Example/Button/GlassButton',
+  title: 'Button',
   component: GlassButton,
 };
 export const GlassButton = () => CustomGlassTemplate;

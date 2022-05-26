@@ -9,7 +9,7 @@ import AsyncValidatableForm from './AsyncValidatableForm.story.vue';
 import CrossValidationForm from './CrossValidationForm.story.vue';
 
 export default {
-  title: 'Example/Form',
+  title: 'Form',
 };
 
 export const Default = () => DefaultForm;

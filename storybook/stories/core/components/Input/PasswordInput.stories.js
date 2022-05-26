@@ -1,7 +1,7 @@
 import PasswordInput from '@orangehrm/oxd/core/components/Input/PasswordInput';
 
 export default {
-  title: 'Example/PasswordInput',
+  title: 'Inputs/PasswordInput',
   component: PasswordInput,
   argTypes: {
     style: {control: {type: 'object'}},

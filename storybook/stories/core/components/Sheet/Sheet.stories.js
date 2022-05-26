@@ -4,7 +4,7 @@ import SheetWithGuttersStory from './SheetWithGutters.story.vue';
 import SheetWithBackgroundStory from './SheetWithBackground.story.vue';
 
 export default {
-  title: 'Example/Sheet',
+  title: 'Layout/Sheet',
   component: Sheet,
   argTypes: {
     type: {

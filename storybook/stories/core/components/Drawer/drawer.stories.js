@@ -1,7 +1,7 @@
 import DrawerStory from './Drawer.story.vue';
 
 export default {
-  title: 'Example/Drawer',
+  title: 'PopUps/Drawer',
 };
 
 export const Drawer = () => DrawerStory;

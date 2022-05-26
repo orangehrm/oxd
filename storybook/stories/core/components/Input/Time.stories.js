@@ -2,7 +2,7 @@ import {h, ref} from 'vue';
 import TimeInput from '@orangehrm/oxd/core/components/Input/Time/TimeInput';
 
 export default {
-  title: 'Example/TimeInput',
+  title: 'Inputs/TimeInput',
   component: TimeInput,
   argTypes: {
     style: {control: {type: 'object'}},

@@ -4,7 +4,7 @@ import configurations from './list-schema';
 import data from './list-data.json';
 
 export default {
-  title: 'Example/List',
+  title: 'Data Tables/List',
   argTypes: {
     listItems: {
       control: {type: 'object'},

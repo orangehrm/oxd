@@ -2,7 +2,7 @@ import TableSidebarStory from './TableSidebar.story.vue';
 import TableSidebarWithIconsStory from './TableSidebarWithIcons.story.vue';
 
 export default {
-  title: 'Example/TableSidebar',
+  title: 'Data Tables/TableSidebar',
 };
 const Template = args => ({
   setup() {

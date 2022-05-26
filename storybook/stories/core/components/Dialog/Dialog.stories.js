@@ -6,7 +6,7 @@ import DialogDeleteConfirmationStory from './DialogDeleteConfirmation.story.vue'
 import DialogWithoutTransition from './DialogWithoutTransition.story.vue';
 
 export default {
-  title: 'Example/Dialog/Dialog',
+  title: 'PopUps/Dialog',
   component: Dialog,
   args: {
     dialogContainer: 'oxd-dialog-container-default',

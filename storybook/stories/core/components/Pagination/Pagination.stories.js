@@ -1,7 +1,7 @@
 import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination';
 
 export default {
-  title: 'Example/Pagination',
+  title: 'Data Tables/Pagination',
   component: Pagination,
 };
 

@@ -5,7 +5,7 @@ import {
 } from '@orangehrm/oxd/core/components/Input/types';
 
 export default {
-  title: 'Example/RadioInput',
+  title: 'Inputs/RadioInput',
   component: RadioInput,
   argTypes: {
     style: {control: {type: 'object'}},

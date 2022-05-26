@@ -1,7 +1,7 @@
 import Label from '@orangehrm/oxd/core/components/Label/Label';
 
 export default {
-  title: 'Example/Label',
+  title: 'Information/Label',
   component: Label,
 };
 

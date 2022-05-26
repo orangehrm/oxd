@@ -7,7 +7,7 @@ import ToastContainerCustomAnimationStory from './ToastContainerCustomAnimation.
 import ToastContainerCustomWrapperStory from './ToastContainerCustomWrapper.story.vue';
 
 export default {
-  title: 'Example/Toast/Container',
+  title: 'Information/Toast/Container',
   component: ToastContainer,
   argTypes: {
     position: {

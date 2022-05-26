@@ -1,7 +1,7 @@
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider';
 
 export default {
-  title: 'Example/Divider',
+  title: 'Layout/Divider',
   component: Divider,
   argTypes: {
     style: {control: {type: 'object'}},

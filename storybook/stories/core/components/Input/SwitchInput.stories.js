@@ -5,7 +5,7 @@ import {
 } from '@orangehrm/oxd/core/components/Input/types';
 
 export default {
-  title: 'Example/SwitchInput',
+  title: 'Inputs/SwitchInput',
   component: SwitchInput,
   argTypes: {
     style: {control: {type: 'object'}},

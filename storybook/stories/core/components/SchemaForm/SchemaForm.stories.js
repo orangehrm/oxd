@@ -4,7 +4,7 @@ import {required} from '../../../../../components/src/validation/rules.ts';
 import {h} from 'vue';
 
 export default {
-  title: 'Example/SchemaForm',
+  title: 'Form/SchemaForm',
   component: SchemaForm,
 };
 

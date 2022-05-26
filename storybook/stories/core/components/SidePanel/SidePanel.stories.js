@@ -1,7 +1,7 @@
 import SidePanel from '@orangehrm/oxd/core/components/SidePanel/SidePanel';
 
 export default {
-  title: 'Example/Sidepanel',
+  title: 'Panels/Sidepanel',
   component: SidePanel,
 };
 
