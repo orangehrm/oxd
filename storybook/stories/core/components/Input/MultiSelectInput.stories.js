@@ -6,7 +6,7 @@ import {
 import {h, ref} from 'vue';
 
 export default {
-  title: 'Example/MultiSelectInput',
+  title: 'Inputs/MultiSelectInput',
   component: MultiSelectInput,
   argTypes: {
     style: {control: {type: 'object'}},

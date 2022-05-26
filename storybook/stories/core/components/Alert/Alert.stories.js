@@ -4,7 +4,7 @@ import {TYPES} from '@orangehrm/oxd/core/components/Alert/types';
 import AlertContainer from './AlertContainer';
 
 export default {
-  title: 'Example/Alert',
+  title: 'Information/Alert',
   component: Alert,
   argTypes: {
     type: {

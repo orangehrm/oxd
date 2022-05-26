@@ -6,7 +6,7 @@ import {
 import {h, ref} from 'vue';
 
 export default {
-  title: 'Example/SelectInputButton',
+  title: 'Inputs/SelectInputButton',
   component: SelectInputButton,
   argTypes: {
     style: {control: {type: 'object'}},

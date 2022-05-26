@@ -1,7 +1,7 @@
 import CellActions from '@orangehrm/oxd/core/components/CardTable/Cell/Actions';
 
 export default {
-  title: 'Example/CardTable/Cell',
+  title: 'Data Tables/CardTable/Cell',
   argTypes: {onClick: {action: 'clicked'}},
 };
 

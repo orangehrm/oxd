@@ -4,7 +4,7 @@ import {enGB, ru} from 'date-fns/locale';
 import {getDaysInMonth} from 'date-fns';
 
 export default {
-  title: 'Example/Calendar',
+  title: 'Inputs/Calendar',
 };
 
 const argTypes = {

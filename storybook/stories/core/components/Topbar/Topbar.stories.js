@@ -1,7 +1,7 @@
 import Topbar from '@orangehrm/oxd/core/components/Topbar/Topbar.vue';
 
 export default {
-  title: 'Example/Topbar',
+  title: 'Panels/Topbar',
   component: Topbar,
 };
 

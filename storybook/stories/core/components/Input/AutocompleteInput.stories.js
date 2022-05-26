@@ -8,7 +8,7 @@ import AutocompleteCustom from './AutocompleteCustom.story.vue';
 import QuickSearchWidget from './QuickSearchInput.story.vue';
 
 export default {
-  title: 'Example/AutocompleteInput',
+  title: 'Inputs/AutocompleteInput',
   component: AutocompleteInput,
   argTypes: {
     style: {control: {type: 'object'}},

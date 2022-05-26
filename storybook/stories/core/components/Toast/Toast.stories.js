@@ -3,7 +3,7 @@ import {TYPES} from '@orangehrm/oxd/core/components/Toast/types';
 import ToastAnimation from './ToastAnimation.story.vue';
 
 export default {
-  title: 'Example/Toast/Toast',
+  title: 'Information/Toast',
   component: Toast,
   argTypes: {
     type: {

@@ -1,7 +1,7 @@
 import Input from '@orangehrm/oxd/core/components/Input/Input';
 
 export default {
-  title: 'Example/Input',
+  title: 'Inputs/Text',
   component: Input,
   argTypes: {
     style: {control: {type: 'object'}},
