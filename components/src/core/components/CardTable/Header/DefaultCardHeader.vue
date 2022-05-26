@@ -28,7 +28,7 @@
           :name="header.iconName"
           :style="header.iconStyle"
         />
-        <span v-else>{{ $t(header.title) }}</span>
+        <span v-else>{{ $vt(header.title) }}</span>
       </oxd-card-th>
     </oxd-card-tr>
   </oxd-card-thead>
@@ -44,6 +44,7 @@ import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vu
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import {DEVICE_LG, DEVICE_XL} from '../../../../composables/useResponsive';
 import {CardHeader, Order} from '../types';
+import translateMixin from '../../../../mixins/translate';
 
 interface State {
   checkIcon: string;
@@ -61,6 +62,8 @@ export default defineComponent({
     'oxd-card-th': TableHeaderCell,
     'oxd-checkbox-input': CheckboxInput,
   },
+
+  mixins: [translateMixin],
 
   setup() {
     /* eslint-disable @typescript-eslint/no-explicit-any */
