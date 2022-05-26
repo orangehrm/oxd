@@ -4,7 +4,7 @@
     ref="dropdownSelector"
     v-click-outside="closeSubMenu"
     :class="{'--active': isActive}"
-    @click="openSubmenu"
+    @click="toggleSubmenu"
     @keyup.enter="openSubmenu"
     @keyup.esc="closeSubMenu"
   >
@@ -43,9 +43,21 @@ export default defineComponent({
   },
 
   methods: {
+    toggleSubmenu() {
+      this.isActive = !this.isActive;
+      if (this.isActive) {
+        this.openSubmenu();
+      }
+    },
     openSubmenu() {
       this.isActive = true;
       this.$refs.dropdownSelector.focus();
+      this.$nextTick(() => {
+        const selectedItem = document.getElementsByClassName('--selected');
+        for (let item of selectedItem) {
+          item.scrollIntoView({block: 'end'});
+        }
+      });
     },
     closeSubMenu($e: KeyboardEvent | null) {
       if (this.isActive) {

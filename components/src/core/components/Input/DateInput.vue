@@ -1,6 +1,10 @@
 <template>
   <div class="oxd-date-wrapper">
-    <div class="oxd-date-input">
+    <div
+      class="oxd-date-input"
+      :tooltip="isLengthyDate ? displayDate : null"
+      flow="bottom"
+    >
       <oxd-input
         :hasError="hasError"
         :disabled="disabled"
@@ -44,7 +48,7 @@
               class="oxd-date-input-link --today"
               tabindex="0"
             >
-               {{ $vt("Today") }}
+              {{ $vt('Today') }}
             </div>
             <div
               @keyup.enter="onClickClear"
@@ -52,7 +56,7 @@
               class="oxd-date-input-link --clear"
               tabindex="0"
             >
-               {{ $vt("Clear") }}
+              {{ $vt('Clear') }}
             </div>
             <div
               @keyup.enter="closeDropdown"
@@ -60,7 +64,7 @@
               class="oxd-date-input-link --close"
               tabindex="0"
             >
-               {{ $vt("Close") }}
+              {{ $vt('Close') }}
             </div>
           </div>
         </oxd-calendar>
@@ -194,6 +198,12 @@ export default defineComponent({
   },
 
   computed: {
+    isLengthyDate() {
+      return (
+        this.format === 'EEEE, dd-MMM-yyyy' ||
+        this.format === 'EEE, dd MMM yyyy'
+      );
+    },
     dateSelected: {
       get() {
         return parseDate(this.modelValue, this.ioformat);
@@ -214,6 +224,7 @@ export default defineComponent({
     },
     dateIconClasses(): object {
       return {
+        'justify-center': true,
         'oxd-date-input-icon': true,
         '--disabled': this.disabled,
         '--readonly': this.readonly,
