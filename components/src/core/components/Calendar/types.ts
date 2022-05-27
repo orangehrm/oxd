@@ -44,10 +44,7 @@ export const MONTHS_OF_YEAR = [
   DECEMBER,
 ];
 
-export const LENGTHY_DATE_FORMATS = [
-  'EEEE, dd-MMM-yyyy',
-  'EEE, dd MMM yyyy',
-];
+export const LENGTHY_DATE_FORMATS = ['EEEE, dd-MMM-yyyy', 'EEE, dd MMM yyyy'];
 
 export type CalendarEvent = {
   date: Date;

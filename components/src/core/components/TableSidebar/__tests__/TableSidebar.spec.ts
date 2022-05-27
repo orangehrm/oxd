@@ -602,20 +602,20 @@ describe('TableSidebar.vue with oxd-chip on left', () => {
         width: '230px',
         button: {
           props: {
-            label: "New Report",
-            displayType: "secondary",
-            size: "long",
-            "display-type": "label-info",
-            "icon-name": "oxd-add",
+            label: 'New Report',
+            displayType: 'secondary',
+            size: 'long',
+            'display-type': 'label-info',
+            'icon-name': 'oxd-add',
           },
         },
         secondaryButton: {
           props: {
-            label: "New Folder",
-            icon: "oxd-new-folder",
-            size: "extra-large",
+            label: 'New Folder',
+            icon: 'oxd-new-folder',
+            size: 'extra-large',
           },
-        }
+        },
       },
     });
     expect(wrapper.html()).toMatchSnapshot();
@@ -633,18 +633,18 @@ describe('TableSidebar.vue with oxd-chip on left', () => {
         width: '230px',
         button: {
           props: {
-            label: "New Report",
-            displayType: "secondary",
-            size: "long",
-            "display-type": "label-info",
-            "icon-name": "oxd-add",
+            label: 'New Report',
+            displayType: 'secondary',
+            size: 'long',
+            'display-type': 'label-info',
+            'icon-name': 'oxd-add',
           },
         },
         secondaryButton: {
           props: {
-            label: "New Folder",
-            icon: "oxd-new-folder",
-            size: "extra-large",
+            label: 'New Folder',
+            icon: 'oxd-new-folder',
+            size: 'extra-large',
           },
         },
       },

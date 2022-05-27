@@ -1,8 +1,7 @@
 <template>
   <oxd-card-table-container>
     <div v-if="loading" class="oxd-table-loader">
-      <oxd-loading-spinner
-      :withContainer=false />
+      <oxd-loading-spinner :withContainer="false" />
     </div>
     <template v-else>
       <!-- oxd-card-table header start -->

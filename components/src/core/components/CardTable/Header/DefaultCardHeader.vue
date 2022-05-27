@@ -76,15 +76,15 @@ export default defineComponent({
         tableProps.selected.length === tableProps.items.length,
     });
 
-    emitter.on(`${tableProps.tableId}-datatable:rowSelected`, (value) => {
-      const itemIndex = state.checkedItems.findIndex((item) => item === value);
+    emitter.on(`${tableProps.tableId}-datatable:rowSelected`, value => {
+      const itemIndex = state.checkedItems.findIndex(item => item === value);
       if (itemIndex === -1) {
         state.checkedItems.push(value);
       }
     });
 
-    emitter.on(`${tableProps.tableId}-datatable:rowUnselected`, (value) => {
-      const itemIndex = state.checkedItems.findIndex((item) => item === value);
+    emitter.on(`${tableProps.tableId}-datatable:rowUnselected`, value => {
+      const itemIndex = state.checkedItems.findIndex(item => item === value);
       if (itemIndex > -1) {
         state.checkedItems.splice(itemIndex, 1);
       }
@@ -92,7 +92,7 @@ export default defineComponent({
 
     watch(
       () => state.checkedItems,
-      (newVal) => {
+      newVal => {
         emitter.emit(`${tableProps.tableId}-datatable:updateSelected`, newVal);
         if (tableProps.items.length > 0 && newVal.length > 0) {
           state.selectedAll = true;

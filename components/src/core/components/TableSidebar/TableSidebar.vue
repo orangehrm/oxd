@@ -2,7 +2,13 @@
   <div
     class="oxd-table-left-panel"
     :style="customStyles"
-    :class="secondaryButton ? isLeftPanelOpen ? 'with-secondary' : 'with-secondary with-secondary-collapsed' : ''"
+    :class="
+      secondaryButton
+        ? isLeftPanelOpen
+          ? 'with-secondary'
+          : 'with-secondary with-secondary-collapsed'
+        : ''
+    "
   >
     <div v-if="headerVisible" class="oxd-table-left-panel--header">
       <slot name="header">
@@ -12,8 +18,14 @@
         >
           <div class="table-header-action-btns">
             <oxd-button
-              class="table-header-action-btn" 
-              :class="!isLeftPanelOpen? 'no-label': secondaryButton? 'w-75': 'w-100'"
+              class="table-header-action-btn"
+              :class="
+                !isLeftPanelOpen
+                  ? 'no-label'
+                  : secondaryButton
+                  ? 'w-75'
+                  : 'w-100'
+              "
               :tooltip="!isLeftPanelOpen ? buttonData.label : null"
               flow="right"
               :label="buttonData.label"
