@@ -61,7 +61,6 @@ describe('SelectInput.vue', () => {
     await wrapper.vm.$nextTick();
     expect(wrapper.find('.oxd-select-text--focus').exists()).toBe(true);
   });
-
   it('on Focus it should not add class "oxd-select-text--focus" when Select is disabled', async () => {
     const wrapper = mount(SelectInput, {
       props: {options, readonly: false, disabled: true},

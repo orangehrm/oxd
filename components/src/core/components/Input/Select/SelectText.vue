@@ -18,7 +18,7 @@
       />
     </div>
     <div class="oxd-select-text--after-slot-option">
-      <slot name="afterInput"></slot>-
+      <slot name="afterInput"></slot>
     </div>
     <div class="oxd-select-text--after">
       <div :class="dropdownIconClasses">

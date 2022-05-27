@@ -6,7 +6,7 @@ exports[`SelectInput.vue renders OXD Select Input 1`] = `
     <div class="oxd-select-text-input">
       <div class="selected-content">-- Select --</div><input type="text" readonly="">
     </div>
-    <div class="oxd-select-text--after-slot-option">- </div>
+    <div class="oxd-select-text--after-slot-option"></div>
     <div class="oxd-select-text--after">
       <div class="oxd-select-text--arrow"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill oxd-select-text--arrow"></i></div>
     </div>

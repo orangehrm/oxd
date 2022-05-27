@@ -236,7 +236,7 @@ LongLabels.parameters = {
 export const PreSelected = Template.bind({});
 PreSelected.args = {
   options: options,
-  value: {
+  modelValue: {
     id: 4,
     label: 'Manager',
   },
