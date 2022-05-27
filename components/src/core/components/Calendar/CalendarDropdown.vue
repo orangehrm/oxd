@@ -54,6 +54,7 @@ export default defineComponent({
       this.isActive = true;
       this.$refs.dropdownSelector.focus();
       this.$nextTick(() => {
+        Element.prototype.scrollIntoView = jest.fn();
         const oxdCalendarDropdown = this.$refs
           .oxdCalendarDropdown as HTMLElement;
         const selectedItem: HTMLElement | null =
