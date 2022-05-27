@@ -54,7 +54,6 @@ export default defineComponent({
       this.isActive = true;
       this.$refs.dropdownSelector.focus();
       this.$nextTick(() => {
-        debugger;
         const selectedItem = this.$refs.oxdCalendarDropdown.querySelector(
           '.oxd-calendar-selector.--selected',
         );
