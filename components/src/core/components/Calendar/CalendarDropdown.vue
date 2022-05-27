@@ -12,6 +12,7 @@
     <transition name="transition-fade-down">
       <ul
         v-if="isActive"
+        ref="oxdCalendarDropdown"
         class="oxd-calendar-dropdown"
         role="menu"
         tabindex="-1"
@@ -53,12 +54,10 @@ export default defineComponent({
       this.isActive = true;
       this.$refs.dropdownSelector.focus();
       this.$nextTick(() => {
-        const selectedItem = document.querySelectorAll(
+        const selectedItem = this.$refs.oxdCalendarDropdown.querySelector(
           '.oxd-calendar-selector.--selected',
         );
-        for (let item of selectedItem) {
-          item.scrollIntoView({block: 'end'});
-        }
+        selectedItem.scrollIntoView({block: 'end'});
       });
     },
     closeSubMenu($e: KeyboardEvent | null) {

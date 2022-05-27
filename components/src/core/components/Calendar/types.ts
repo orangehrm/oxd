@@ -19,18 +19,6 @@ export const OCTOBER = 'October';
 export const NOVEMBER = 'November';
 export const DECEMBER = 'December';
 
-export const DATE_FORMAT_1 = 'yyyy-MM-dd';
-export const DATE_FORMAT_2 = 'dd-MM-yyyy';
-export const DATE_FORMAT_3 = 'MM-dd-yyyy';
-export const DATE_FORMAT_4 = 'dd-yyyy-MM';
-export const DATE_FORMAT_5 = 'yyyy-dd-MM';
-export const DATE_FORMAT_6 = 'MM-yyyy-dd';
-export const DATE_FORMAT_7 = 'yyyy/MM/dd';
-export const DATE_FORMAT_8 = 'yyyy-MM-dd';
-export const DATE_FORMAT_9 = 'yyyy-MMM-dd';
-export const DATE_FORMAT_10 = 'EEEE, dd-MMM-yyyy';
-export const DATE_FORMAT_11 = 'EEE, dd MMM yyyy';
-
 export const DAYS_OF_WEEK = [
   SUNDAY,
   MONDAY,
@@ -57,8 +45,8 @@ export const MONTHS_OF_YEAR = [
 ];
 
 export const LENGTHY_DATE_FORMATS = [
-  DATE_FORMAT_10,
-  DATE_FORMAT_11,
+  'EEEE, dd-MMM-yyyy',
+  'EEE, dd MMM yyyy',
 ];
 
 export type CalendarEvent = {
