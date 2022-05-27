@@ -69,7 +69,7 @@ export default defineComponent({
     labelPosition: {
       type: String,
       default: RIGHT,
-      validator: function (value: Position) {
+      validator: function(value: Position) {
         return LABEL_POSITIONS.indexOf(value) !== -1;
       },
     },

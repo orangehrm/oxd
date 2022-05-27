@@ -44,9 +44,9 @@ export type StyleAttribute = Properties;
 export type Order = 'ASC' | 'DESC' | 'DEFAULT';
 
 export interface SortObject {
-  order: String;
-  iconAsc: String;
-  iconDesc: String
+  order: string;
+  iconAsc: string;
+  iconDesc: string;
 }
 
 export interface SortDefinition {

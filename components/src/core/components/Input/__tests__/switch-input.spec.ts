@@ -54,7 +54,11 @@ describe('SwitchInput.vue', () => {
   it('renders OXD Switch Input with label on left and help popup', () => {
     const value = 'Checkbox';
     const wrapper = mount(SwitchInput, {
-      props: {label: value, position: 'left', helpText: 'This is a help text describing what this switch does'},
+      props: {
+        label: value,
+        position: 'left',
+        helpText: 'This is a help text describing what this switch does',
+      },
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -62,7 +66,11 @@ describe('SwitchInput.vue', () => {
   it('renders OXD Switch Input with label on right and help popup', () => {
     const value = 'Checkbox';
     const wrapper = mount(SwitchInput, {
-      props: {label: value, position: 'right', helpText: 'This is a help text describing what this switch does'},
+      props: {
+        label: value,
+        position: 'right',
+        helpText: 'This is a help text describing what this switch does',
+      },
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -70,7 +78,12 @@ describe('SwitchInput.vue', () => {
   it('renders OXD Switch Input with label on left and full width', () => {
     const value = 'Checkbox';
     const wrapper = mount(SwitchInput, {
-      props: {label: value, position: 'left', fullWidth: true, helpText: 'This is a help text describing what this switch does'},
+      props: {
+        label: value,
+        position: 'left',
+        fullWidth: true,
+        helpText: 'This is a help text describing what this switch does',
+      },
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -94,7 +107,12 @@ describe('SwitchInput.vue', () => {
   it('renders OXD Switch Input with label on right and full width with helpText', () => {
     const value = 'Checkbox';
     const wrapper = mount(SwitchInput, {
-      props: {label: value, position: 'right', fullWidth: true, helpText: 'This is a help text describing what this switch does'},
+      props: {
+        label: value,
+        position: 'right',
+        fullWidth: true,
+        helpText: 'This is a help text describing what this switch does',
+      },
     });
     expect(wrapper.html()).toMatchSnapshot();
   });

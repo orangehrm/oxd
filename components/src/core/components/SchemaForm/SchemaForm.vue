@@ -120,7 +120,7 @@ export default defineComponent({
       fieldType: string,
       fieldName: string,
       fieldValue: string | unknown,
-      formName: String,
+      formName: string,
     ) => {
       if (fieldType === 'radio') {
         return (

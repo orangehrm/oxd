@@ -42,7 +42,7 @@ import AutocompleteInput from '@orangehrm/oxd/core/components/Input/Autocomplete
 import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
 import MultiSelectInput from '@orangehrm/oxd/core/components/Input/MultiSelect/MultiSelectInput.vue';
 import TimeInput from '@orangehrm/oxd/core/components/Input/Time/TimeInput.vue';
-import Text from "@orangehrm/oxd/core/components/Text/Text.vue";
+import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import {Types, Components, TYPES, TYPE_INPUT, TYPE_MAP} from './types';
 import useField from '../../../composables/useField';
 import translateMixin from '../../../mixins/translate';

@@ -2,8 +2,8 @@
 
 exports[`DateInput.vue renders OXD Date Input 1`] = `
 <div class="oxd-date-wrapper">
-  <div class="oxd-date-input"><input class="oxd-input oxd-input--active">
-    <div class="oxd-date-input-icon-wrapper" tabindex="0"><i class="oxd-svg-icon oxd-svg-icon--small oxd-date-input-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 364.6 383.74">
+  <div class="oxd-date-input" flow="bottom"><input class="oxd-input oxd-input--active">
+    <div class="oxd-date-input-icon-wrapper" tabindex="0"><i class="oxd-svg-icon oxd-svg-icon--small justify-center oxd-date-input-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 364.6 383.74">
           <defs>
             <style>
               .cls-1 {

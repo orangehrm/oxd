@@ -362,7 +362,7 @@ export const oxdSortAscArrow: icon = {
 export const oxdSortDescArrow: icon = {
   name: 'oxd-sort-desc-arrow',
   value:
-  '<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174.09 352.9"><defs><style>.cls-1{fill:currentColor;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><g id="_7YTy7L.tif" data-name="7YTy7L.tif"><path d="M88,.94l13,16.38q11.53,14.54,23.09,29.06,16.74,20.92,33.55,41.79,7.69,9.6,15.28,19.28c.47.59,1.48,1.11,1.05,2s-1.48.51-2.24.51c-19.49,0-39,.06-58.48,0-3.69,0-4.11.5-4.11,4q.06,117.57,0,235.16c0,3.62,0,3.62-3.53,3.62-12.66,0-25.32-.07-38,.07-2.41,0-2.82-.77-2.82-2.94q.08-117.7,0-235.41c0-.67,0-1.34,0-2,.06-2-1.06-2.54-2.84-2.53-6.33,0-12.66,0-19,0q-20.37,0-40.74,0c-.76,0-1.8.46-2.24-.51s.58-1.46,1-2Q19.84,84.07,38.56,60.74,52.5,43.31,66.34,25.82L86.07.94A1.29,1.29,0,0,1,88,.94Z"/><path class="cls-1" d="M88,.94h-2A.92.92,0,0,1,87.16,0C87.75,0,88,.43,88,.94Z"/></g></g></g></svg>',
+    '<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174.09 352.9"><defs><style>.cls-1{fill:currentColor;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><g id="_7YTy7L.tif" data-name="7YTy7L.tif"><path d="M88,.94l13,16.38q11.53,14.54,23.09,29.06,16.74,20.92,33.55,41.79,7.69,9.6,15.28,19.28c.47.59,1.48,1.11,1.05,2s-1.48.51-2.24.51c-19.49,0-39,.06-58.48,0-3.69,0-4.11.5-4.11,4q.06,117.57,0,235.16c0,3.62,0,3.62-3.53,3.62-12.66,0-25.32-.07-38,.07-2.41,0-2.82-.77-2.82-2.94q.08-117.7,0-235.41c0-.67,0-1.34,0-2,.06-2-1.06-2.54-2.84-2.53-6.33,0-12.66,0-19,0q-20.37,0-40.74,0c-.76,0-1.8.46-2.24-.51s.58-1.46,1-2Q19.84,84.07,38.56,60.74,52.5,43.31,66.34,25.82L86.07.94A1.29,1.29,0,0,1,88,.94Z"/><path class="cls-1" d="M88,.94h-2A.92.92,0,0,1,87.16,0C87.75,0,88,.43,88,.94Z"/></g></g></g></svg>',
 };
 
 export const oxdQuestion: icon = {
@@ -391,20 +391,17 @@ export const oxdCalendar: icon = {
 
 export const oxdCheck: icon = {
   name: 'oxd-check',
-  value:
-    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'><path fill='fill:currentColor' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26l2.974 2.99L8 2.193z'/></svg`,
+  value: `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'><path fill='fill:currentColor' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26l2.974 2.99L8 2.193z'/></svg`,
 };
 
 export const oxdChevronUp: icon = {
   name: 'oxd-chevron-up',
-  value:
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 209.45 129.51"><defs><style>.cls-1{stroke:currentColor;stroke-miterlimit:10;stroke-width:9px;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><g id="Layer_2-2" data-name="Layer 2"><g id="Layer_1-2-2" data-name="Layer 1-2"><path class="cls-1" d="M104.47,38.22c-12.12,13.21-24.1,26.21-36,39.21L30.23,119.07c-3.49,3.8-7.77,5.83-13.2,5.18a13.44,13.44,0,0,1-11.47-8.42c-2.09-5-1-9.59,2.67-13.64,6.12-6.72,12.3-13.41,18.45-20.12Q59.56,46.27,92.45,10.4c4.08-4.46,8.85-6.83,15.24-5.56a14.67,14.67,0,0,1,8,4.69q42.86,46.72,85.7,93.47a12.53,12.53,0,0,1-1.24,18.54l-.22.17c-6.25,5-14.89,4.24-20.47-1.83q-33.15-36-66.23-72.14C110.39,44.61,107.49,41.48,104.47,38.22Z"/></g></g></g></g></svg>`,
+  value: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 209.45 129.51"><defs><style>.cls-1{stroke:currentColor;stroke-miterlimit:10;stroke-width:9px;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><g id="Layer_2-2" data-name="Layer 2"><g id="Layer_1-2-2" data-name="Layer 1-2"><path class="cls-1" d="M104.47,38.22c-12.12,13.21-24.1,26.21-36,39.21L30.23,119.07c-3.49,3.8-7.77,5.83-13.2,5.18a13.44,13.44,0,0,1-11.47-8.42c-2.09-5-1-9.59,2.67-13.64,6.12-6.72,12.3-13.41,18.45-20.12Q59.56,46.27,92.45,10.4c4.08-4.46,8.85-6.83,15.24-5.56a14.67,14.67,0,0,1,8,4.69q42.86,46.72,85.7,93.47a12.53,12.53,0,0,1-1.24,18.54l-.22.17c-6.25,5-14.89,4.24-20.47-1.83q-33.15-36-66.23-72.14C110.39,44.61,107.49,41.48,104.47,38.22Z"/></g></g></g></g></svg>`,
 };
 
 export const oxdChevronDown: icon = {
   name: 'oxd-chevron-down',
-  value:
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 209.45 129.51"><defs><style>.cls-1{stroke:currentColor;stroke-miterlimit:10;stroke-width:9px;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><g id="Layer_2-2" data-name="Layer 2"><g id="Layer_1-2-2" data-name="Layer 1-2"><path class="cls-1" d="M105,91.28c12.12-13.2,24.1-26.2,36-39.2l38.23-41.64c3.49-3.81,7.78-5.83,13.2-5.18a13.48,13.48,0,0,1,11.48,8.41c2.08,5,1,9.59-2.68,13.64-6.12,6.73-12.3,13.42-18.45,20.12Q149.89,83.23,117,119.11c-4.07,4.45-8.85,6.83-15.24,5.55a14.67,14.67,0,0,1-8-4.69L8,26.5A12.52,12.52,0,0,1,9.27,8l.21-.18c6.25-5,14.9-4.24,20.47,1.83Q63.1,45.68,96.18,81.77C99.06,84.9,102,88,105,91.28Z"/></g></g></g></g></svg>`,
+  value: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 209.45 129.51"><defs><style>.cls-1{stroke:currentColor;stroke-miterlimit:10;stroke-width:9px;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><g id="Layer_2-2" data-name="Layer 2"><g id="Layer_1-2-2" data-name="Layer 1-2"><path class="cls-1" d="M105,91.28c12.12-13.2,24.1-26.2,36-39.2l38.23-41.64c3.49-3.81,7.78-5.83,13.2-5.18a13.48,13.48,0,0,1,11.48,8.41c2.08,5,1,9.59-2.68,13.64-6.12,6.73-12.3,13.42-18.45,20.12Q149.89,83.23,117,119.11c-4.07,4.45-8.85,6.83-15.24,5.55a14.67,14.67,0,0,1-8-4.69L8,26.5A12.52,12.52,0,0,1,9.27,8l.21-.18c6.25-5,14.9-4.24,20.47,1.83Q63.1,45.68,96.18,81.77C99.06,84.9,102,88,105,91.28Z"/></g></g></g></g></svg>`,
 };
 
 export const oxdNewFolder: icon = {

@@ -188,12 +188,12 @@ export default defineComponent({
       const sanitizeHtml = useSanitize().sanitizeHtml;
 
       return this.computedOptions.map((option: Option) => {
-        var sanitizedOption = '';
+        let sanitizedOption = '';
         const matchedSearchValues = [...option.label.matchAll(filter)].map(
           a => a[0],
         );
         const textParts = option.label.split(filter);
-        for (var i = 0; i < textParts.length; i++) {
+        for (let i = 0; i < textParts.length; i++) {
           sanitizedOption += sanitizeHtml(textParts[i]);
           if (i < textParts.length - 1) {
             sanitizedOption += `<b>${sanitizeHtml(matchedSearchValues[i])}</b>`;
