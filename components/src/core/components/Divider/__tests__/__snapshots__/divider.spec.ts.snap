@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Divider.vue renders OXD Divider 1`] = `<hr class="oxd-divider" role="separator" aria-orientation="horizontal">`;
+exports[`Divider.vue renders OXD Divider 1`] = `
+<hr class="oxd-divider-horizontal" role="separator" aria-orientation="vertical">
+<!--v-if-->
+`;
 
-exports[`Divider.vue should renders OXD Divider with style 1`] = `<hr class="oxd-divider" style="border-color: red;" role="separator" aria-orientation="horizontal">`;
+exports[`Divider.vue should renders OXD Divider with style 1`] = `
+<hr class="oxd-divider-horizontal" style="border-color: red;" role="separator" aria-orientation="vertical">
+<!--v-if-->
+`;
