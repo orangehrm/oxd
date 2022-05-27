@@ -1,4 +1,4 @@
-import {mount, shallowMount} from '@vue/test-utils';
+import {flushPromises, mount, shallowMount} from '@vue/test-utils';
 import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
 import SelectText from '@orangehrm/oxd/core/components/Input/Select/SelectText.vue';
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
@@ -53,6 +53,24 @@ describe('SelectInput.vue', () => {
       ],
     ]);
   });
+  it('on Focus it should add class "oxd-select-text--focus"', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {options, readonly: false, disabled: false},
+    });
+    wrapper.findComponent(SelectText).trigger('focus');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find('.oxd-select-text--focus').exists()).toBe(true);
+  });
+
+  it('on Blur it should add class "oxd-select-text--active"', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {options, readonly: false, disabled: false},
+    });
+    wrapper.findComponent(SelectText).trigger('blur');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find('.oxd-select-text--active').exists()).toBe(true);
+  });
+
   it('should select none if placeholder selected', async () => {
     const wrapper = mount(SelectInput, {
       props: {options},
