@@ -54,11 +54,11 @@ export default defineComponent({
       this.isActive = true;
       this.$refs.dropdownSelector.focus();
       this.$nextTick(() => {
-        const oxdCalendarDropdown: any = this.$refs.oxdCalendarDropdown;
-        const elm = oxdCalendarDropdown.querySelector(
+        debugger;
+        const selectedItem = this.$refs.oxdCalendarDropdown.querySelector(
           '.oxd-calendar-selector.--selected',
         );
-        elm && elm.scrollIntoView({block: 'end'});
+        selectedItem.scrollIntoView({block: 'end'});
       });
     },
     closeSubMenu($e: KeyboardEvent | null) {
