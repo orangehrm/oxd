@@ -53,7 +53,9 @@ export default defineComponent({
       this.isActive = true;
       this.$refs.dropdownSelector.focus();
       this.$nextTick(() => {
-        const selectedItem = document.getElementsByClassName('--selected');
+        const selectedItem = document.querySelectorAll(
+          '.oxd-calendar-selector.--selected',
+        );
         for (let item of selectedItem) {
           item.scrollIntoView({block: 'end'});
         }

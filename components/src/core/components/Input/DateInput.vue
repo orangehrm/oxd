@@ -84,6 +84,7 @@ import clickOutsideDirective from '../../../directives/click-outside';
 import dropdownDirectionDirective from '../../../directives/dropdown-direction';
 import focusTrapDirective from '../../../directives/focus-trap';
 import translateMixin from '../../../mixins/translate';
+import {LENGTHY_DATE_FORMATS} from '../Calendar/types';
 
 export default defineComponent({
   name: 'oxd-date-input',
@@ -199,10 +200,7 @@ export default defineComponent({
 
   computed: {
     isLengthyDate() {
-      return (
-        this.format === 'EEEE, dd-MMM-yyyy' ||
-        this.format === 'EEE, dd MMM yyyy'
-      );
+      return LENGTHY_DATE_FORMATS.indexOf(this.format) > -1;
     },
     dateSelected: {
       get() {
