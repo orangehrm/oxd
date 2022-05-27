@@ -7,7 +7,7 @@
       @click="gotoPreviousMonth"
     ></oxd-icon>
     <ul class="oxd-calendar-selector">
-      <oxd-calendar-dropdown class="oxd-calendar-selector-month" :for="'month'">
+      <oxd-calendar-dropdown class="oxd-calendar-selector-month">
         <div class="oxd-calendar-selector-month-selected">
           <oxd-text tag="p">{{ months[modelValue.month] }}</oxd-text>
           <oxd-icon name="caret-down-fill" :with-container="false" />
@@ -27,7 +27,7 @@
           </li>
         </template>
       </oxd-calendar-dropdown>
-      <oxd-calendar-dropdown class="oxd-calendar-selector-year" :for="'year'">
+      <oxd-calendar-dropdown class="oxd-calendar-selector-year">
         <div class="oxd-calendar-selector-year-selected">
           <oxd-text tag="p">{{ modelValue.year }}</oxd-text>
           <oxd-icon name="caret-down-fill" :with-container="false" />

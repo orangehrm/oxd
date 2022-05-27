@@ -23,7 +23,7 @@ exports[`CalendarController.vue renders OXD CalendarController 1`] = `
         <g></g>
       </svg></i></button>
   <ul class="oxd-calendar-selector">
-    <li tabindex="0" class="oxd-calendar-selector-month" for="month">
+    <li tabindex="0" class="oxd-calendar-selector-month">
       <div class="oxd-calendar-selector-month-selected">
         <p class="oxd-text oxd-text--p">March</p><i class="oxd-icon oxd-icon--medium bi-caret-down-fill oxd-icon-button__icon" flow="top"></i>
       </div>
@@ -31,7 +31,7 @@ exports[`CalendarController.vue renders OXD CalendarController 1`] = `
         <!--v-if-->
       </transition-stub>
     </li>
-    <li tabindex="0" class="oxd-calendar-selector-year" for="year">
+    <li tabindex="0" class="oxd-calendar-selector-year">
       <div class="oxd-calendar-selector-year-selected">
         <p class="oxd-text oxd-text--p">2020</p><i class="oxd-icon oxd-icon--medium bi-caret-down-fill oxd-icon-button__icon" flow="top"></i>
       </div>
