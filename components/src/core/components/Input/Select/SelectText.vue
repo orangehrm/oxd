@@ -18,12 +18,13 @@
       />
     </div>
     <div class="oxd-select-text--after-slot-option">
-      <slot name="afterInput"></slot>-
+      <slot name="afterInput"></slot>
     </div>
     <div class="oxd-select-text--after">
       <div :class="dropdownIconClasses">
         <oxd-icon
           v-if="!disabled"
+          :class="dropdownIconClasses"
           :size="dropdownIconSize"
           :name="dropdownIcon"
         />
@@ -115,7 +116,7 @@ export default defineComponent({
       };
     },
     tabIndex(): number {
-      return this.disabled || this.readonly ? -1 : 0;
+      return this.disabled ? -1 : 0;
     },
     inputAttrs() {
       const allowed = ['id'];
@@ -139,7 +140,7 @@ export default defineComponent({
 
   methods: {
     onFocus($e: Event) {
-      if (this.disabled || this.readonly) {
+      if (this.disabled) {
         $e.stopImmediatePropagation();
         return;
       }
