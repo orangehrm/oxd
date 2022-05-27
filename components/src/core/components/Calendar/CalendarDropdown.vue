@@ -54,16 +54,11 @@ export default defineComponent({
       this.isActive = true;
       this.$refs.dropdownSelector.focus();
       this.$nextTick(() => {
-        Element.prototype.scrollIntoView = jest.fn();
-        const oxdCalendarDropdown = this.$refs
-          .oxdCalendarDropdown as HTMLElement;
-        const selectedItem: HTMLElement | null =
-          oxdCalendarDropdown.querySelector(
-            '.oxd-calendar-selector.--selected',
-          );
-        if (selectedItem) {
-          selectedItem.scrollIntoView({block: 'end'});
-        }
+        const oxdCalendarDropdown: any = this.$refs.oxdCalendarDropdown;
+        const elm = oxdCalendarDropdown.querySelector(
+          '.oxd-calendar-selector.--selected',
+        );
+        elm && elm.scrollIntoView({block: 'end'});
       });
     },
     closeSubMenu($e: KeyboardEvent | null) {
