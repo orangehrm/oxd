@@ -1,11 +1,6 @@
 import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput';
 import SelectInputEvents from './SelectInputEvents.story.vue';
 import SelectInputAfterSelect from './SelectInputAfterSelect.story.vue';
-
-import {
-  BOTTOM,
-  DROPDOWN_POSITIONS,
-} from '@orangehrm/oxd/core/components/Input/types';
 import {h, ref} from 'vue';
 
 export default {
@@ -25,8 +20,9 @@ export default {
       },
     },
     dropdownPosition: {
-      options: DROPDOWN_POSITIONS,
-      defaultValue: BOTTOM,
+      options: ['top', 'bottom'],
+      control: {type: 'select'},
+      defaultValue: 'bottom',
       table: {
         type: {summary: 'Set drop down position for select'},
       },
@@ -240,7 +236,7 @@ LongLabels.parameters = {
 export const PreSelected = Template.bind({});
 PreSelected.args = {
   options: options,
-  modelValue: {
+  value: {
     id: 4,
     label: 'Manager',
   },
