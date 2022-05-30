@@ -221,4 +221,13 @@ TimeInput.args = {
   type: 'time',
 };
 
+export const WithHint = Template.bind({});
+WithHint.argTypes = argTypes;
+WithHint.args = {
+  label: 'Name as in Passport',
+  type: 'input',
+  hint: 'Only needed if different from the name in your driving license'
+};
+
+
 export const WithValidation = () => InputFieldValidation;

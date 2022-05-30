@@ -83,6 +83,7 @@ type LayoutSchema = CommonSchemaProperties &
 
 type FormSchema = CommonSchemaProperties & {
   layout: Array<LayoutSchema>;
+  name: string;
 };
 
 export {

@@ -1,5 +1,5 @@
 <template>
-  <label :class="classes" :style="style">
+  <label :class="classes" :for="id" :style="style">
     {{ label }}
   </label>
 </template>
@@ -15,6 +15,9 @@ export default {
     },
     style: {
       type: Object,
+    },
+    id: {
+      type: String,
     },
   },
 

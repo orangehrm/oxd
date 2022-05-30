@@ -1,8 +1,14 @@
 <template>
   <div class="oxd-switch-wrapper">
-    <label :class="{'--disabled': disabled}">
+    <label :class="{'--disabled': disabled, '--full-width': useFullWidth}">
       <template v-if="labelPosition === 'left'">
         {{ optionLabel }}
+        <oxd-help-popup-icon
+          class="left"
+          v-if="helpText"
+          :help-text="helpText"
+          :help-position="helpTextPosition"
+        />
       </template>
       <input
         type="checkbox"
@@ -16,6 +22,11 @@
       <span :class="classes" :style="style"> </span>
       <template v-if="labelPosition === 'right'">
         {{ optionLabel }}
+        <oxd-help-popup-icon
+          v-if="helpText"
+          :help-text="helpText"
+          :help-position="helpTextPosition"
+        />
       </template>
     </label>
   </div>
@@ -24,6 +35,12 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {Position, LABEL_POSITIONS, RIGHT} from './types';
+import HelpPopupIcon from '@orangehrm/oxd/core/components/Icon/HelpPopupIcon.vue';
+import {
+  BOTTOM_RIGHT,
+  HELP_POSITIONS,
+  HelpPosition,
+} from '@orangehrm/oxd/core/components/Icon/types';
 
 export interface State {
   focused: boolean;
@@ -33,6 +50,9 @@ export interface State {
 
 export default defineComponent({
   name: 'oxd-switch-input',
+  components: {
+    'oxd-help-popup-icon': HelpPopupIcon,
+  },
   inheritAttrs: false,
   props: {
     modelValue: {},
@@ -57,6 +77,21 @@ export default defineComponent({
       validator: function(value: Position) {
         return LABEL_POSITIONS.indexOf(value) !== -1;
       },
+    },
+    helpText: {
+      type: String,
+      default: '',
+    },
+    helpTextPosition: {
+      type: String,
+      default: BOTTOM_RIGHT,
+      validator: (value: HelpPosition) => {
+        return HELP_POSITIONS.indexOf(value) !== -1;
+      },
+    },
+    useFullWidth: {
+      type: Boolean,
+      default: false,
     },
   },
 

@@ -1,6 +1,10 @@
 <template>
   <div class="oxd-date-wrapper">
-    <div class="oxd-date-input">
+    <div
+      class="oxd-date-input"
+      :tooltip="isLengthyDate ? displayDate : null"
+      flow="bottom"
+    >
       <oxd-input
         :hasError="hasError"
         :disabled="disabled"
@@ -44,7 +48,7 @@
               class="oxd-date-input-link --today"
               tabindex="0"
             >
-              Today
+              {{ $vt('Today') }}
             </div>
             <div
               @keyup.enter="onClickClear"
@@ -52,7 +56,7 @@
               class="oxd-date-input-link --clear"
               tabindex="0"
             >
-              Clear
+              {{ $vt('Clear') }}
             </div>
             <div
               @keyup.enter="closeDropdown"
@@ -60,7 +64,7 @@
               class="oxd-date-input-link --close"
               tabindex="0"
             >
-              Close
+              {{ $vt('Close') }}
             </div>
           </div>
         </oxd-calendar>
@@ -79,6 +83,8 @@ import Calendar from '@orangehrm/oxd/core/components/Calendar/Calendar.vue';
 import clickOutsideDirective from '../../../directives/click-outside';
 import dropdownDirectionDirective from '../../../directives/dropdown-direction';
 import focusTrapDirective from '../../../directives/focus-trap';
+import translateMixin from '../../../mixins/translate';
+import {LENGTHY_DATE_FORMATS} from '../Calendar/types';
 
 export default defineComponent({
   name: 'oxd-date-input',
@@ -89,6 +95,8 @@ export default defineComponent({
     'oxd-input': Input,
     'oxd-calendar': Calendar,
   },
+
+  mixins: [translateMixin],
 
   directives: {
     'click-outside': clickOutsideDirective,
@@ -191,6 +199,9 @@ export default defineComponent({
   },
 
   computed: {
+    isLengthyDate() {
+      return LENGTHY_DATE_FORMATS.indexOf(this.format) > -1;
+    },
     dateSelected: {
       get() {
         return parseDate(this.modelValue, this.ioformat);
@@ -211,6 +222,7 @@ export default defineComponent({
     },
     dateIconClasses(): object {
       return {
+        'justify-center': true,
         'oxd-date-input-icon': true,
         '--disabled': this.disabled,
         '--readonly': this.readonly,

@@ -1,0 +1,87 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-svg-icon {
+  color: $oxd-help-popup-icon-color;
+  &:hover {
+    color: $oxd-help-popup-icon-hover-color;
+  }
+}
+
+[help-tooltip] {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Make help icon show over the tooltip */
+[help-tooltip]:hover > svg {
+  z-index: $oxd-help-popup-icon-z-index;
+}
+
+/* Applies to all tooltips */
+[help-tooltip]::after {
+  text-transform: none;
+  font-family: $oxd-help-popup-icon-text-font-family;
+  font-size: $oxd-help-popup-icon-text-font-size;
+  font-style: $oxd-help-popup-icon-text-font-style;
+  font-weight: $oxd-help-popup-icon-text-font-weight;
+  line-height: 1;
+
+  color: $oxd-help-popup-icon-text-color;
+  background: $oxd-help-popup-icon-text-background;
+
+  pointer-events: none;
+  position: absolute;
+  display: none;
+  opacity: 0;
+
+  content: attr(help-tooltip);
+
+  text-align: left;
+
+  max-width: $oxd-help-popup-icon-text-max-width;
+  width: max-content;
+  overflow: auto;
+  white-space: pre-wrap;
+  padding: $oxd-help-popup-icon-text-padding;
+  border-radius: $oxd-help-popup-icon-text-border-radius;
+  box-shadow: $oxd-help-popup-icon-text-box-shadow;
+  z-index: $oxd-help-popup-icon-z-index;
+}
+
+[help-tooltip]:not([position])::after,
+[help-tooltip][position^="bottom-right"]::after {
+  top: 50%;
+  left: 50%;
+}
+[help-tooltip][position^="bottom-left"]::after {
+  top: 50%;
+  right: 50%;
+}
+[help-tooltip][position^="top-right"]::after {
+  bottom: 50%;
+  left: 50%;
+}
+[help-tooltip][position^="top-left"]::after {
+  bottom: 50%;
+  right: 50%;
+}
+
+/* Make the tooltips respond to hover */
+[help-tooltip]:hover::after,
+[help-tooltip]:focus-visible::after {
+  display: block;
+  animation: tooltips-horz 300ms ease-out forwards;
+}
+
+/* don't show empty tooltips */
+[help-tooltip='']::after {
+  display: none !important;
+}
+
+/* KEYFRAMES */
+@keyframes tooltips-horz {
+  to {
+    opacity: 1;
+  }
+}

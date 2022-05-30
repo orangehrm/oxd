@@ -51,11 +51,11 @@
               :is="action.type"
               v-if="
                 state.selectedItemIndexes.length > 0 &&
-                (action.conditional
-                  ? action.visible === undefined
-                    ? true
-                    : action.visible
-                  : true)
+                  (action.conditional
+                    ? action.visible === undefined
+                      ? true
+                      : action.visible
+                    : true)
               "
               v-bind="action.props"
               v-on="eventBinder(action.events)"
@@ -131,6 +131,15 @@
           @update:selected="tableSelect"
           rowDecorator="oxd-table-decorator-card"
         />
+        <div
+          v-if="filteredTotalRecordsCount === 0 && !isListLoading"
+          class="empty-msg-container"
+        >
+          <div class="empty-msg">
+            <oxd-icon class="empty-msg-pic" name="oxd-no-data" />
+            <div class="caption">{{ $vt('Sorry, No Data Found!') }}</div>
+          </div>
+        </div>
         <oxd-pagination
           class="list-pagination d-flex align-center justify-end"
           :length="paginationLength"
@@ -160,8 +169,9 @@ import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue
 import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination.vue';
 import images from '../ProfilePic/images';
 import useTranslate from './../../../composables/useTranslate';
-
+import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import {defineComponent, reactive, computed, ref, watch} from 'vue';
+import translateMixin from '../../../mixins/translate';
 
 export default defineComponent({
   components: {
@@ -172,8 +182,10 @@ export default defineComponent({
     'oxd-icon-button': IconButton,
     'oxd-quick-search': QuickSearchInput,
     'oxd-profile-pic': ProfilePic,
+    'oxd-icon': Icon,
     'oxd-pagination': Pagination,
   },
+  mixins: [translateMixin],
   props: {
     configurations: {
       type: Object,
@@ -247,7 +259,7 @@ export default defineComponent({
 
     watch(
       () => props.pagination,
-      (newVal) => {
+      newVal => {
         state.currentPage = newVal.currentPage;
       },
       {deep: true},
@@ -263,24 +275,22 @@ export default defineComponent({
 
     const order = computed(() => {
       const sortableFieldsObj = {};
-      config.value.table.headers.forEach((header) => {
+      config.value.table.headers.forEach(header => {
         if (header.initialSortOrder) {
           sortableFieldsObj[header.sortField] = {
-            order: state.currentSortFields[
-            header.sortField
-          ]
-            ? state.currentSortFields[header.sortField]
-            : header.initialSortOrder,
-            iconAsc: (header.sortIcons !== undefined)? header.sortIcons.asc: "",
-            iconDesc: (header.sortIcons !== undefined)? header.sortIcons.desc: "",
-          }
+            order: state.currentSortFields[header.sortField]
+              ? state.currentSortFields[header.sortField]
+              : header.initialSortOrder,
+            iconAsc: header.sortIcons !== undefined ? header.sortIcons.asc : '',
+            iconDesc:
+              header.sortIcons !== undefined ? header.sortIcons.desc : '',
+          };
         }
       });
       return sortableFieldsObj;
     });
 
-
-    const isFloat = (n) => {
+    const isFloat = n => {
       return n === +n && n !== (n | 0);
     };
 
@@ -308,7 +318,7 @@ export default defineComponent({
       emit('sidePanelList:onHeaderBtnClick');
     };
 
-    const sidePanelListOnSelect = (item) => {
+    const sidePanelListOnSelect = item => {
       state.currentPage = 1;
       emit('sidePanelList:onSelect', item);
     };
@@ -322,7 +332,7 @@ export default defineComponent({
       }
     };
 
-    const quickSearchSelect = (value) => {
+    const quickSearchSelect = value => {
       if (typeof value === 'string') return;
       if (value) {
         state.selectedQuickSearch = {
@@ -349,12 +359,12 @@ export default defineComponent({
       emit('quick-search:onSearch', state.quickSearchTerm);
     };
 
-    const tableSort = (value) => {
+    const tableSort = value => {
       state.currentSortFields = value;
       emit('update:order', value);
     };
 
-    const tableSelect = (items) => {
+    const tableSelect = items => {
       state.selectedItemIndexes = items;
       emit('update:selected', items);
     };
@@ -404,12 +414,12 @@ export default defineComponent({
       emit('topfilters:onExportBtnClick');
     };
 
-    const eventBinder = (events) => {
+    const eventBinder = events => {
       let mappedEvents, mappedEventsObj;
       if (events) {
-        mappedEvents = events.map((event) => {
+        mappedEvents = events.map(event => {
           return {
-            [event.type]: (vals) => {
+            [event.type]: vals => {
               emit(event.identifier, vals);
             },
           };

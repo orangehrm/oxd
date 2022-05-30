@@ -22,7 +22,7 @@
   }
   &.--positon-bottom > .oxd-calendar-wrapper {
     right: 0;
-    width: 88%;
+    width: 271px;
     position: absolute;
   }
 }
@@ -89,7 +89,6 @@
     }
     &:hover,
     &:focus-visible {
-      background-color: $oxd-date-input-link-background;
       font-weight: $oxd-date-input-link-font-weight-hover;
     }
   }
