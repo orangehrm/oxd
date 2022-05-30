@@ -1,4 +1,4 @@
-import {mount, shallowMount} from '@vue/test-utils';
+import {flushPromises, mount, shallowMount} from '@vue/test-utils';
 import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
 import SelectText from '@orangehrm/oxd/core/components/Input/Select/SelectText.vue';
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
@@ -53,6 +53,52 @@ describe('SelectInput.vue', () => {
       ],
     ]);
   });
+  it('on Focus it should add class "oxd-select-text--focus"', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {options, readonly: false, disabled: false},
+    });
+    wrapper.findComponent(SelectText).trigger('focus');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find('.oxd-select-text--focus').exists()).toBe(true);
+  });
+  it('on Focus it should not add class "oxd-select-text--focus" when Select is disabled', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {options, readonly: false, disabled: true},
+    });
+    wrapper.findComponent(SelectText).trigger('focus');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find('.oxd-select-text--focus').exists()).toBe(false);
+  });
+
+  it('on Blur it should add class "oxd-select-text--active"', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {options, readonly: false, disabled: false},
+    });
+    wrapper.findComponent(SelectText).trigger('blur');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find('.oxd-select-text--active').exists()).toBe(true);
+  });
+
+  it('Id filed append to the input field of Select"', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {id: 'form_select', options},
+    });
+    wrapper.findComponent(SelectText).trigger('blur');
+    await wrapper.vm.$nextTick();
+    const Input = wrapper.find('input');
+    expect(Input.attributes('id')).toBe('form_select');
+  });
+
+  it('Class filed not to append to the input field of Select"', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {class: 'sampleClass', options},
+    });
+    wrapper.findComponent(SelectText).trigger('blur');
+    await wrapper.vm.$nextTick();
+    const Input = wrapper.find('input');
+    expect(Input.classes('sampleClass')).not.toBe(true);
+  });
+
   it('should select none if placeholder selected', async () => {
     const wrapper = mount(SelectInput, {
       props: {options},
