@@ -30,3 +30,5 @@ export {default as maintenance} from './svg/maintenance-svg.vue';
 export {default as myinfo} from './svg/myinfo-svg.vue';
 export {default as search} from './svg/search-svg.vue';
 export {default as guide} from './svg/guide-svg.vue';
+export {default as thumbsup} from './svg/thumbsup-svg.vue';
+export {default as thumbsdown} from './svg/thumbsdown-svg.vue';
