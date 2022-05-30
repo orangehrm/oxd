@@ -1,7 +1,7 @@
 <template>
   <div class="oxd-toast-icon-container">
     <div :class="iconWrapClasses">
-      <oxd-icon :name="iconName" class="oxd-toast-icon" />
+      <oxd-icon :name="iconName" class="oxd-toast-icon d-flex align-center" />
     </div>
   </div>
 </template>
