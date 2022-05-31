@@ -121,7 +121,7 @@ describe('MultiSelectInput.vue', () => {
     expect(wrapper.emitted()).toHaveProperty('update:modelValue');
     expect(wrapper.emitted('update:modelValue')).toEqual([[[]]]);
   });
-  it('should able to remove selected chip when readonly mode', async () => {
+  it('should not able to remove selected chip when readonly mode', async () => {
     const wrapper = mount(MultiSelectInput, {
       props: {
         options,
@@ -138,7 +138,7 @@ describe('MultiSelectInput.vue', () => {
     await cancelButton.trigger('click');
     expect(wrapper.emitted('update:modelValue')).toBeFalsy();
   });
-  it('should able to remove selected chip when disabled mode', async () => {
+  it('should not able to remove selected chip when disabled mode', async () => {
     const wrapper = mount(MultiSelectInput, {
       props: {
         options,
