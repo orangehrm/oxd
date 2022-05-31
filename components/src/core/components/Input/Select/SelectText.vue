@@ -13,7 +13,6 @@
         type="text"
         readonly="readonly"
         v-bind="inputAttrs"
-        @focus="onFocus"
         @blur="$attrs.onBlur"
       />
     </div>
