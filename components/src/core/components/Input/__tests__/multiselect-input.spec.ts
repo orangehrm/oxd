@@ -104,4 +104,55 @@ describe('MultiSelectInput.vue', () => {
       ],
     ]);
   });
+  it('should able to remove selected chip', async () => {
+    const wrapper = mount(MultiSelectInput, {
+      props: {
+        options,
+        modelValue: [
+          {
+            id: 1,
+            label: 'HR Admin',
+          },
+        ],
+      },
+    });
+    const cancelButton = wrapper.find("[data-test='removeIcon']");
+    await cancelButton.trigger('click');
+    expect(wrapper.emitted()).toHaveProperty('update:modelValue');
+    expect(wrapper.emitted('update:modelValue')).toEqual([[[]]]);
+  });
+  it('should able to remove selected chip when readonly mode', async () => {
+    const wrapper = mount(MultiSelectInput, {
+      props: {
+        options,
+        readonly: true,
+        modelValue: [
+          {
+            id: 1,
+            label: 'HR Admin',
+          },
+        ],
+      },
+    });
+    const cancelButton = wrapper.find("[data-test='removeIcon']");
+    await cancelButton.trigger('click');
+    expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+  });
+  it('should able to remove selected chip when disabled mode', async () => {
+    const wrapper = mount(MultiSelectInput, {
+      props: {
+        options,
+        disabled: true,
+        modelValue: [
+          {
+            id: 1,
+            label: 'HR Admin',
+          },
+        ],
+      },
+    });
+    const cancelButton = wrapper.find("[data-test='removeIcon']");
+    await cancelButton.trigger('click');
+    expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+  });
 });

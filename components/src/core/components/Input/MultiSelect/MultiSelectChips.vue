@@ -9,6 +9,7 @@
       <oxd-icon
         name="x"
         @click="onClick(option)"
+        data-test="removeIcon"
         :class="{
           '--clear': true,
           '--disabled': disabled,
