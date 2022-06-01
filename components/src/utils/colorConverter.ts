@@ -1,4 +1,5 @@
 export const hexToRgb = (hex: string | null, alpha: string = '1') => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const result: any = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex || '');
   const rgbObj = result ? {
     r: parseInt(result[1], 16),
