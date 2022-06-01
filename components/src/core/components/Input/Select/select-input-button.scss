@@ -193,7 +193,7 @@
   }
   &.--selected {
     border-radius: $oxd-dropdown-option-border-radius;
-    background-color: $oxd-dropdown-option-background--focused;
+    background-color: $oxd-dropdown-option-background--selected;
     cursor: unset;
   }
   @for $i from 1 through 20 {
