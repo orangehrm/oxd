@@ -4,6 +4,7 @@
       v-bind="$attrs"
       :disabled="disabled"
       :readonly="readonly"
+      :value="placeholder"
       :dropdownOpened="dropdownOpen"
       @blur="onBlur"
       @click="onToggleDropdown"
@@ -90,6 +91,9 @@ export default defineComponent({
   props: {
     modelValue: {
       type: Array,
+    },
+    placeholder: {
+      type: String,
     },
     disabled: {
       type: Boolean,

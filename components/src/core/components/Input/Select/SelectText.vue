@@ -12,6 +12,7 @@
       <input
         type="text"
         readonly="readonly"
+        tabIndex="-1"
         v-bind="inputAttrs"
         @blur="$attrs.onBlur"
       />
