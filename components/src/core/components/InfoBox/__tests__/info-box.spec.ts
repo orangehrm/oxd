@@ -1,8 +1,7 @@
-import {mount, shallowMount} from '@vue/test-utils';
+import {mount} from '@vue/test-utils';
 import InfoBox from '@orangehrm/oxd/core/components/InfoBox/InfoBox.vue';
 import ButtonIcon from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
-import SelectDropdown from '@orangehrm/oxd/core/components/Input/Select/SelectDropdown.vue';
 
 const options = [
   {

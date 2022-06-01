@@ -103,16 +103,14 @@ import clickOutsideDirective from './../../../directives/click-outside';
 import {TooltipPosition} from './../Button/types';
 import SelectDropdown from '@orangehrm/oxd/core/components/Input/Select/SelectDropdown.vue';
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
-import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import ButtonIcon from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import {hexToRgb} from './../../../utils/colorConverter';
 
 export default defineComponent({
-  name: 'oxd-select-input',
+  name: 'oxd-info-box',
   inheritAttrs: false,
 
   components: {
-    'oxd-icon': Icon,
     'oxd-icon-button': ButtonIcon,
     'oxd-select-dropdown': SelectDropdown,
     'oxd-select-option': SelectOption,
@@ -230,6 +228,8 @@ export default defineComponent({
     isModelValueString(): boolean {
       return typeof this.modelValue === 'string';
     },
+    // modelValue can be anything
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     getLabel(): any {
       if (this.isModelValueString) {
         return this.modelValue;
@@ -237,7 +237,9 @@ export default defineComponent({
         return this.modelValue ? this.modelValue.label : null;
       }
     },
-    subtitleWrapperStyles(): any {
+    subtitleWrapperStyles(): {
+      height: string;
+    } {
       const lineHeight = 16;
       const subtitleWrapperHeight = this.rows * lineHeight;
       return {
