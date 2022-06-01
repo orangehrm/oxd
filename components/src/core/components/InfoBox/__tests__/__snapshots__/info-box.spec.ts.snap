@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InfoBox.vue renders OXD Select Input 1`] = `
+<div class="oxd-select-wrapper"><button class="oxd-select-fill-container">
+    <div class="d-flex flex-wrap w-100">
+      <div class="d-flex align-center justify-start w-100 oxd-select-fill-title-row --mb"><label class="oxd-select-fill-title"></label></div>
+      <div class="d-flex align-end justify-between oxd-select-fill-subtitle-row w-100">
+        <div class="d-flex align-start justify-start oxd-select-fill-subtitle-wrapper" style="height: 32px;"><label class="oxd-select-fill-subtitle text-left" style="font-weight: 600;"></label></div>
+        <div class="d-flex align-center justify-start"><button type="button" class="oxd-icon-button oxd-select-dropdown-trigger" flow="top"><i class="oxd-svg-icon oxd-svg-icon--xxx-small"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 209.45 129.51">
+                <defs>
+                  <style>
+                    .cls-1 {
+                      stroke: currentColor;
+                      stroke-miterlimit: 10;
+                      stroke-width: 9px;
+                    }
+                  </style>
+                </defs>
+                <g id="Layer_2" data-name="Layer 2">
+                  <g id="Layer_1-2" data-name="Layer 1">
+                    <g id="Layer_2-2" data-name="Layer 2">
+                      <g id="Layer_1-2-2" data-name="Layer 1-2">
+                        <path class="cls-1" d="M105,91.28c12.12-13.2,24.1-26.2,36-39.2l38.23-41.64c3.49-3.81,7.78-5.83,13.2-5.18a13.48,13.48,0,0,1,11.48,8.41c2.08,5,1,9.59-2.68,13.64-6.12,6.73-12.3,13.42-18.45,20.12Q149.89,83.23,117,119.11c-4.07,4.45-8.85,6.83-15.24,5.55a14.67,14.67,0,0,1-8-4.69L8,26.5A12.52,12.52,0,0,1,9.27,8l.21-.18c6.25-5,14.9-4.24,20.47,1.83Q63.1,45.68,96.18,81.77C99.06,84.9,102,88,105,91.28Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </svg></i></button></div>
+      </div>
+    </div>
+  </button>
+  <!--v-if-->
+</div>
+`;

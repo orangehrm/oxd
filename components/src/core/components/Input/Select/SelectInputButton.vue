@@ -181,7 +181,7 @@ export default defineComponent({
     dropdownPosition: {
       type: String,
       default: BOTTOM,
-      validator: function(value: TooltipPosition) {
+      validator: function (value: TooltipPosition) {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
