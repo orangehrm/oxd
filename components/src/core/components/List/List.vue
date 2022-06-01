@@ -1,6 +1,6 @@
 <template>
   <div
-    class="oxd-list-container w-100 d-flex align-start"
+    class="oxd-list-container w-100 d-table align-start"
     :class="{
       'table-left-panel-open':
         config.table.leftPanel.visible && state.isLeftPanelOpen,
@@ -8,7 +8,7 @@
   >
     <oxd-table-sidebar
       v-if="config.table.leftPanel.visible"
-      class="oxd-table-left-panel"
+      class="oxd-table-left-panel d-table-cell"
       :class="{'with-filters': config.table.topBar.visible}"
       width="200px"
       :side-panel-list="sidePanelList"
@@ -32,7 +32,7 @@
       </template>
     </oxd-table-sidebar>
     <div
-      class="table-card-list-wrapper"
+      class="table-card-list-wrapper d-table-cell"
       :class="{'w-100': !state.isLeftPanelOpen}"
     >
       <oxd-table-filter
@@ -51,11 +51,11 @@
               :is="action.type"
               v-if="
                 state.selectedItemIndexes.length > 0 &&
-                  (action.conditional
-                    ? action.visible === undefined
-                      ? true
-                      : action.visible
-                    : true)
+                (action.conditional
+                  ? action.visible === undefined
+                    ? true
+                    : action.visible
+                  : true)
               "
               v-bind="action.props"
               v-on="eventBinder(action.events)"
@@ -259,7 +259,7 @@ export default defineComponent({
 
     watch(
       () => props.pagination,
-      newVal => {
+      (newVal) => {
         state.currentPage = newVal.currentPage;
       },
       {deep: true},
@@ -275,7 +275,7 @@ export default defineComponent({
 
     const order = computed(() => {
       const sortableFieldsObj = {};
-      config.value.table.headers.forEach(header => {
+      config.value.table.headers.forEach((header) => {
         if (header.initialSortOrder) {
           sortableFieldsObj[header.sortField] = {
             order: state.currentSortFields[header.sortField]
@@ -290,7 +290,7 @@ export default defineComponent({
       return sortableFieldsObj;
     });
 
-    const isFloat = n => {
+    const isFloat = (n) => {
       return n === +n && n !== (n | 0);
     };
 
@@ -318,7 +318,7 @@ export default defineComponent({
       emit('sidePanelList:onHeaderBtnClick');
     };
 
-    const sidePanelListOnSelect = item => {
+    const sidePanelListOnSelect = (item) => {
       state.currentPage = 1;
       emit('sidePanelList:onSelect', item);
     };
@@ -332,7 +332,7 @@ export default defineComponent({
       }
     };
 
-    const quickSearchSelect = value => {
+    const quickSearchSelect = (value) => {
       if (typeof value === 'string') return;
       if (value) {
         state.selectedQuickSearch = {
@@ -359,12 +359,12 @@ export default defineComponent({
       emit('quick-search:onSearch', state.quickSearchTerm);
     };
 
-    const tableSort = value => {
+    const tableSort = (value) => {
       state.currentSortFields = value;
       emit('update:order', value);
     };
 
-    const tableSelect = items => {
+    const tableSelect = (items) => {
       state.selectedItemIndexes = items;
       emit('update:selected', items);
     };
@@ -414,12 +414,12 @@ export default defineComponent({
       emit('topfilters:onExportBtnClick');
     };
 
-    const eventBinder = events => {
+    const eventBinder = (events) => {
       let mappedEvents, mappedEventsObj;
       if (events) {
-        mappedEvents = events.map(event => {
+        mappedEvents = events.map((event) => {
           return {
-            [event.type]: vals => {
+            [event.type]: (vals) => {
               emit(event.identifier, vals);
             },
           };
