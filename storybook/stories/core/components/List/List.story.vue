@@ -62,10 +62,11 @@
 
 <script lang="ts">
 import {defineComponent, reactive, computed, ref} from 'vue';
-import List from '@orangehrm/oxd/core/components/List/List';
-import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput';
+import List from '@orangehrm/oxd/core/components/List/List.vue';
+import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
 import SelectInputButton from '@orangehrm/oxd/core/components/Input/Select/SelectInputButton.vue';
-import list from './list-schema';
+import list from './list-with-sidebar';
+import basicList from './basic-list-schema';
 import candidateAvatars from './candidate-avatars.json';
 import map from 'lodash/map';
 
@@ -127,7 +128,7 @@ export default defineComponent({
           ...item,
           cellRenderer: eval(item.cellRenderer),
         };
-      });
+      });     
       return list;
     });
 

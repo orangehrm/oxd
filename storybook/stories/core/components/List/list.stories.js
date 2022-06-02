@@ -1,6 +1,7 @@
 import ListComponent from '@orangehrm/oxd/core/components/List/List';
 import ListStory from './List.story.vue';
-import configurations from './list-schema';
+import basicList from './basic-list-schema';
+import listWithSidebar from './list-with-sidebar';
 import data from './list-data.json';
 
 export default {
@@ -8,7 +9,10 @@ export default {
   argTypes: {
     listItems: {
       control: {type: 'object'},
-      defaultValue: data.items,
+      defaultValue: data.candidates,
+      table: {
+        type: {summary: 'Set value to the input'},
+      },
     },
     listHighlightRows: {
       control: {type: 'object'},
@@ -19,7 +23,7 @@ export default {
     },
     configurations: {
       control: {type: 'object'},
-      defaultValue: configurations,
+      defaultValue: listWithSidebar,
     },
     pagination: {
       control: {type: 'object'},
@@ -69,11 +73,34 @@ const Template = args => ({
 });
 export const Default = () => ListStory;
 
+export const BasicList = Template.bind({});
+const basicListArgs = {
+  configurations: basicList,
+  listItems: data.historyEvents,
+  listHighlightRows: null,
+  pagination: null,
+  wholeRecordsCount: 4,
+  filteredTotalRecordsCount: 4,
+};
+BasicList.args = basicListArgs;
+BasicList.storyName = 'Basic List';
+
+
+export const EmptyList = Template.bind({});
+EmptyList.args = {
+  configurations: basicList,
+  listItems: [],
+  listHighlightRows: null,
+  pagination: null,
+  wholeRecordsCount: 0,
+  filteredTotalRecordsCount: 0,
+};
+EmptyList.storyName = 'Empty List';
 
 export const Configurable = Template.bind({});
 Configurable.args = {
-  configurations: configurations,
-  listItems: data.items,
+  configurations: listWithSidebar,
+  listItems: data.candidates,
   listHighlightRows: {
     rowIndexes: [0,2],
     type: 'success',

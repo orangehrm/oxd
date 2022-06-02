@@ -3,11 +3,11 @@
     class="oxd-list-container w-100 d-flex align-start"
     :class="{
       'table-left-panel-open':
-        config.table.leftPanel.visible && state.isLeftPanelOpen,
+        config.table.leftPanel && config.table.leftPanel.visible && state.isLeftPanelOpen,
     }"
   >
     <oxd-table-sidebar
-      v-if="config.table.leftPanel.visible"
+      v-if="config.table.leftPanel && config.table.leftPanel.visible"
       class="oxd-table-left-panel"
       :class="{'with-filters': config.table.topBar.visible}"
       width="200px"
@@ -67,7 +67,7 @@
         <template v-slot:toggleOptions>
           <oxd-quick-search
             ref="quickSearch"
-            v-if="config.table.topBar.quickSearch.visible"
+            v-if="config.table.topBar.quickSearch && config.table.topBar.quickSearch.visible"
             :style="config.table.topBar.quickSearch.style"
             :placeholder="config.table.topBar.quickSearch.placeholder"
             :clear="config.table.topBar.quickSearch.clear"
@@ -142,6 +142,7 @@
         </div>
         <oxd-pagination
           class="list-pagination d-flex align-center justify-end"
+          v-if="pagination"
           :length="paginationLength"
           v-model:current="state.currentPage"
           :max="maxPages"
@@ -208,7 +209,6 @@ export default defineComponent({
     },
     quickSearchOptions: {
       type: Function,
-      required: true,
     },
     pagination: {
       type: Object,
