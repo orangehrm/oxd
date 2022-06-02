@@ -128,7 +128,7 @@ export default defineComponent({
           ...item,
           cellRenderer: eval(item.cellRenderer),
         };
-      });     
+      });
       return list;
     });
 
