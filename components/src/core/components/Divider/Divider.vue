@@ -1,5 +1,6 @@
 <template>
-  <hr v-if="areaOrientation=='horizontal'"
+<div>
+   <hr v-if="areaOrientation=='horizontal'"
     :class="classes"
     :style="style"
     role="separator"
@@ -9,6 +10,7 @@
   :class="classes"
   :style="style">
   </div>
+</div>
   
 </template>
 
