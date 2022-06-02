@@ -1,4 +1,5 @@
 <template>
+<div>
   <hr v-if="areaOrientation=='horizontal'"
     :class="classes"
     :style="style"
@@ -9,7 +10,7 @@
   :class="classes"
   :style="style">
   </div>
-  
+</div>
 </template>
 
 <script lang="ts">
