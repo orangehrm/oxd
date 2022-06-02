@@ -68,7 +68,7 @@ export default defineComponent({
     'oxd-multiselect-input': MultiSelectInput,
     'oxd-time-input': TimeInput,
     'oxd-text': Text,
-    'oxd-info-box': InfoBox,
+    'oxd-infobox': InfoBox,
   },
 
   mixins: [translateMixin],

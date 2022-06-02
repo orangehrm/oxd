@@ -4,12 +4,14 @@
       v-bind="$attrs"
       class="oxd-select-fill-container"
       :style="infoBoxContainerStyles"
+      :class="classes"
       @blur="onBlur"
       @keyup.esc="onCloseDropdown"
       @keydown.enter.prevent="onSelectEnter"
       @keydown.down.exact.prevent="onSelectDown"
       @keydown.up.exact.prevent="onSelectUp"
       @keydown="onKeypress"
+      @click.prevent=""
       v-click-outside="clickOutside"
     >
       <div class="d-flex flex-wrap w-100">
@@ -23,7 +25,7 @@
             --mb
           "
         >
-          <label class="oxd-select-fill-title">{{ $vt(label) }}</label>
+          <label class="oxd-select-fill-title">{{ $vt(infoLabel) }}</label>
         </div>
         <div
           class="
@@ -57,6 +59,7 @@
               :name="dropdownOpen ? 'oxd-chevron-up' : 'oxd-chevron-down'"
               size="xxx-small"
               class="oxd-select-dropdown-trigger"
+              :class="{'cursor-default': readonly}"
               :style="infoBoxTriggerButtonStyles"
               :disabled="disabled"
               @click="onToggleDropdown"
@@ -108,7 +111,7 @@ import ButtonIcon from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import {hexToRgb} from './../../../utils/colorConverter';
 
 export default defineComponent({
-  name: 'oxd-info-box',
+  name: 'oxd-infobox',
   inheritAttrs: false,
 
   components: {
@@ -135,7 +138,15 @@ export default defineComponent({
     modelValue: {
       type: Object,
     },
+    hasError: {
+      type: Boolean,
+      default: false,
+    },
     disabled: {
+      type: Boolean,
+      default: false,
+    },
+    readonly: {
       type: Boolean,
       default: false,
     },
@@ -158,7 +169,7 @@ export default defineComponent({
       type: Number,
       default: 2,
     },
-    label: {
+    infoLabel: {
       type: String,
     },
   },
@@ -245,6 +256,15 @@ export default defineComponent({
       const subtitleWrapperHeight = this.rows * lineHeight;
       return {
         height: `${subtitleWrapperHeight}px`,
+      };
+    },
+    classes(): object {
+      return {
+        'oxd-select-fill-container--active': !this.focused,
+        'oxd-select-fill-container--focus': this.focused,
+        'oxd-select-fill-container--error': this.hasError,
+        'oxd-select-fill-container--disabled': this.disabled,
+        'oxd-select-fill-container--readonly': this.readonly,
       };
     },
   },

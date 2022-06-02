@@ -4,7 +4,7 @@ import {required} from '../../../../../components/src/validation/rules.ts';
 import {h} from 'vue';
 
 export default {
-  title: 'Form/SchemaForm',
+  title: 'Example/SchemaForm',
   component: SchemaForm,
 };
 
@@ -303,19 +303,6 @@ Advance.args = {
                 ],
               },
               validators: new Map([['required', required]]),
-            },
-            {
-              name: 'user',
-              label: 'Users',
-              type: 'multiselect',
-              value: [],
-              props: {
-                autofocus: true,
-                options: [
-                  {id: 1, label: 'HR'},
-                  {id: 2, label: 'Admin'},
-                ],
-              },
             },
             {
               name: 'date',

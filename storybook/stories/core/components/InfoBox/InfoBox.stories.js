@@ -1,8 +1,11 @@
 import InfoBox from '@orangehrm/oxd/core/components/InfoBox/InfoBox';
+import SchemaForm from '@orangehrm/oxd/core/components/SchemaForm/SchemaForm';
+import useSchemaForm from '../../../../../components/src/composables/useSchemaForm.ts';
+import {required} from '../../../../../components/src/validation/rules.ts';
 import {h, ref} from 'vue';
 
 export default {
-  title: 'Example/InfoBox',
+  title: 'Inputs/InfoBox',
   component: InfoBox,
   argTypes: {
     modelValue: {
@@ -11,7 +14,7 @@ export default {
         type: {summary: 'Set value to the input. It can be a string or an object with id, label'},
       },
     },
-    label: {
+    infoLabel: {
       control: {type: 'text'},
       table: {
         type: {summary: 'Set value to the label'},
@@ -114,13 +117,6 @@ const Template = args => ({
   },
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  label: 'Current Stage of Recruitment',
-  options: options,
-  rows: 2,
-};
-
 const TemplateString = args => ({
   setup() {
     const selected = ref(null);
@@ -135,18 +131,137 @@ const TemplateString = args => ({
   },
 });
 
+const TemplateSchema = (args) => ({
+  components: {'oxd-schema-form': SchemaForm},
+  setup() {
+    const {schema, model} = useSchemaForm(args.schema);
+    const onSubmit = (...args) => {
+      console.log(args);
+    };
+    return {
+      model,
+      schema,
+      onSubmit,
+    };
+  },
+  components: {'oxd-schema-form': SchemaForm},
+  template: `<oxd-schema-form :schema="schema" v-model:model="model" v-on:submitValid="onSubmit"></oxd-schema-form>`,
+});
+
+const sample = {
+  name: 'sampleForm',
+  layout: [
+    {
+      type: 'grid',
+      props: {
+        cols: 2,
+      },
+      children: {
+        default: [
+          {
+            name: 'currentstagerequired',
+            label: 'Infobox required',
+            type: 'infobox',
+            validators: new Map([['required', required]]),
+            props: {
+              infoLabel: 'Current Stage of Recruitment',
+              options,
+            }
+          },
+          {
+            name: 'currentstagedisabled',
+            label: 'Infobox disabled',
+            type: 'infobox',
+            props: {
+              disabled: true,
+              infoLabel: 'Current Stage of Recruitment',
+              options,
+            }
+          },
+          {
+            name: 'currentstagereadonly',
+            label: 'Infobox readonly',
+            type: 'infobox',
+            props: {
+              readonly: true,
+              infoLabel: 'Current Stage of Recruitment',
+              options,
+            }
+          },
+        ],
+      },
+    },
+    {
+      type: 'divider',
+    },
+    {
+      type: 'action',
+      style: {
+        'margin-top': '0.5rem',
+      },
+      children: {
+        default: [
+          {
+            name: 'submit',
+            label: 'Submit',
+            type: 'button',
+            props: {
+              type: 'submit',
+              displayType: 'secondary',
+            },
+          },
+        ],
+      },
+    },
+  ],
+};
+
+export const InfoboxInSchemaForm = TemplateSchema.bind({});
+InfoboxInSchemaForm.args = {
+  schema: {...sample},
+};
+
+export const Default = Template.bind({});
+Default.args = {
+  infoLabel: 'Current Stage of Recruitment',
+  options: options,
+  rows: 2,
+};
+
 export const StringModalValue = TemplateString.bind({});
 StringModalValue.args = {
-  label: 'Date of Application',
+  infoLabel: 'Date of Application',
   rows: 2,
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  label: 'Current Stage of Recruitment',
+  infoLabel: 'Current Stage of Recruitment',
   options: options,
   rows: 2,
   disabled: true,
+};
+
+export const Readonly = Template.bind({});
+Readonly.args = {
+  infoLabel: 'Current Stage of Recruitment',
+  options: options,
+  rows: 2,
+  readonly: true,
+};
+
+export const NoOptions = Template.bind({});
+NoOptions.args = {
+  infoLabel: 'Current Stage of Recruitment',
+  rows: 2,
+};
+
+export const Error = Template.bind({});
+Error.args = {
+  infoLabel: 'Current Stage of Recruitment',
+  options: options,
+  rows: 2,
+  hasError: true,
 };
 
 const TemplateWithoutInitialValue = args => ({
@@ -164,9 +279,10 @@ const TemplateWithoutInitialValue = args => ({
 
 export const WithoutInitialValue = TemplateWithoutInitialValue.bind({});
 WithoutInitialValue.args = {
-  label: 'Date of Application',
+  infoLabel: 'Date of Application',
   rows: 2,
 };
+
 
 Default.parameters = {
   docs: {
@@ -194,7 +310,7 @@ Default.parameters = {
           },
         ]"
         :rows="3"
-        :label="'Current Stage of Recruitment'"
+        :infoLabel="'Current Stage of Recruitment'"
       />`,
     },
   },
@@ -207,7 +323,7 @@ StringModalValue.parameters = {
       <info-box
         :modelValue="'2022-05-03'"
         :rows="3"
-        :label="'Date of Application'"
+        :infoLabel="'Date of Application'"
       />`,
     },
   },
@@ -240,7 +356,7 @@ Disabled.parameters = {
           },
         ]"
         :rows="3"
-        :label="'Current Stage of Recruitment'"
+        :infoLabel="'Current Stage of Recruitment'"
       />`,
     },
   },
@@ -266,7 +382,7 @@ Disabled.parameters = {
           },
         ]"
         :rows="3"
-        :label="'Current Stage of Recruitment'"
+        :infoLabel="'Current Stage of Recruitment'"
       />`,
     },
   },

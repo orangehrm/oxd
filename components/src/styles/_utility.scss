@@ -269,3 +269,14 @@
 .--positon-bottom {
   margin-top: $oxd-dropdown-dropdown-margin;
 }
+
+// cursor types begins
+.cursor {
+  &-pointer {
+    cursor: pointer;
+  }
+  &-default {
+    cursor: default;
+  }
+}
+// cursor types ends
