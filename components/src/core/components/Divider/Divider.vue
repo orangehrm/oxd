@@ -4,7 +4,7 @@
     :class="classes"
     :style="style"
     role="separator"
-    aria-orientation="vertical"
+    :aria-orientation="areaOrientation"
   />
   <div v-if="areaOrientation=='vertical'"
   :class="classes"
