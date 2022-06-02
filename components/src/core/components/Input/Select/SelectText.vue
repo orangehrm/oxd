@@ -21,7 +21,7 @@
       <slot name="afterInput"></slot>
     </div>
     <div class="oxd-select-text--after">
-      <div :class="dropdownIconClasses">
+      <div class="oxd-select-text--arrow" :class="dropdownIconClasses">
         <oxd-icon
           v-if="!disabled"
           :class="dropdownIconClasses"
@@ -110,7 +110,6 @@ export default defineComponent({
     },
     dropdownIconClasses(): object {
       return {
-        'oxd-select-text--arrow': true,
         '--disabled': this.disabled,
         '--readonly': this.readonly,
       };
