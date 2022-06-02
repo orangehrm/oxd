@@ -19,4 +19,13 @@
     padding: 0 0 0 0.25rem;
     color: $oxd-interface-gray-darken-1-color;
   }
+  :deep(.oxd-select-dropdown) {
+    .oxd-select-dropdown-inner {
+      .oxd-select-option {
+        span {
+          display: block;
+        }
+      }
+    }
+  }
 }
