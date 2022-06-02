@@ -1,7 +1,8 @@
 import InfoBox from '@orangehrm/oxd/core/components/InfoBox/InfoBox';
-import SchemaForm from '@orangehrm/oxd/core/components/SchemaForm/SchemaForm';
-import useSchemaForm from '../../../../../components/src/composables/useSchemaForm.ts';
-import {required} from '../../../../../components/src/validation/rules.ts';
+// import SchemaForm from '@orangehrm/oxd/core/components/SchemaForm/SchemaForm';
+// import useSchemaForm from '../../../../../components/src/composables/useSchemaForm.ts';
+// import {required} from '../../../../../components/src/validation/rules.ts';
+import InfoBoxEvents from './InfoBoxEvents.story.vue';
 import {h, ref} from 'vue';
 
 export default {
@@ -58,6 +59,48 @@ export default {
       control: {type: 'object'},
       table: {
         type: {summary: 'Set object as styles'},
+      },
+    },
+    'dropdown:opened': {
+      control: {type: 'array'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'emit event when dropdown opened'},
+      },
+    },
+    'dropdown:closed': {
+      control: {type: 'array'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'emit event when dropdown closed'},
+      },
+    },
+    'dropdown:blur': {
+      control: {type: 'array'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'emit event when dropdown blur'},
+      },
+    },
+    'dropdown:clear': {
+      control: {type: 'array'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'emit event when dropdown clear'},
+      },
+    },
+    'update:modelValue': {
+      control: {type: 'array'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'emit event when select value updates'},
+      },
+    },
+    option: {
+      control: {type: 'object'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'Should be passed as an array object'},
       },
     },
   },
@@ -131,95 +174,96 @@ const TemplateString = args => ({
   },
 });
 
-const TemplateSchema = (args) => ({
-  components: {'oxd-schema-form': SchemaForm},
-  setup() {
-    const {schema, model} = useSchemaForm(args.schema);
-    const onSubmit = (...args) => {
-      console.log(args);
-    };
-    return {
-      model,
-      schema,
-      onSubmit,
-    };
-  },
-  components: {'oxd-schema-form': SchemaForm},
-  template: `<oxd-schema-form :schema="schema" v-model:model="model" v-on:submitValid="onSubmit"></oxd-schema-form>`,
-});
+// const TemplateSchema = (args) => ({
+//   components: {'oxd-schema-form': SchemaForm},
+//   setup() {
+//     const {schema, model} = useSchemaForm(args.schema);
+//     const onSubmit = (...args) => {
+//       console.log(args);
+//     };
+//     return {
+//       model,
+//       schema,
+//       onSubmit,
+//     };
+//   },
+//   components: {'oxd-schema-form': SchemaForm},
+//   template: `<oxd-schema-form :schema="schema" v-model:model="model" v-on:submitValid="onSubmit"></oxd-schema-form>`,
+// });
 
-const sample = {
-  name: 'sampleForm',
-  layout: [
-    {
-      type: 'grid',
-      props: {
-        cols: 2,
-      },
-      children: {
-        default: [
-          {
-            name: 'currentstagerequired',
-            label: 'Infobox required',
-            type: 'infobox',
-            validators: new Map([['required', required]]),
-            props: {
-              infoLabel: 'Current Stage of Recruitment',
-              options,
-            }
-          },
-          {
-            name: 'currentstagedisabled',
-            label: 'Infobox disabled',
-            type: 'infobox',
-            props: {
-              disabled: true,
-              infoLabel: 'Current Stage of Recruitment',
-              options,
-            }
-          },
-          {
-            name: 'currentstagereadonly',
-            label: 'Infobox readonly',
-            type: 'infobox',
-            props: {
-              readonly: true,
-              infoLabel: 'Current Stage of Recruitment',
-              options,
-            }
-          },
-        ],
-      },
-    },
-    {
-      type: 'divider',
-    },
-    {
-      type: 'action',
-      style: {
-        'margin-top': '0.5rem',
-      },
-      children: {
-        default: [
-          {
-            name: 'submit',
-            label: 'Submit',
-            type: 'button',
-            props: {
-              type: 'submit',
-              displayType: 'secondary',
-            },
-          },
-        ],
-      },
-    },
-  ],
-};
+// const sample = {
+//   name: 'sampleForm',
+//   layout: [
+//     {
+//       type: 'grid',
+//       props: {
+//         cols: 2,
+//       },
+//       children: {
+//         default: [
+//           {
+//             name: 'currentstagerequired',
+//             value: 'asdad',
+//             label: 'Infobox required',
+//             type: 'infobox',
+//             validators: new Map([['required', required]]),
+//             props: {
+//               infoLabel: 'Current Stage of Recruitment',
+//               options,
+//             }
+//           },
+//           {
+//             name: 'currentstagedisabled',
+//             label: 'Infobox disabled',
+//             type: 'infobox',
+//             props: {
+//               disabled: true,
+//               infoLabel: 'Current Stage of Recruitment',
+//               options,
+//             }
+//           },
+//           {
+//             name: 'currentstagereadonly',
+//             label: 'Infobox readonly',
+//             type: 'infobox',
+//             props: {
+//               readonly: true,
+//               infoLabel: 'Current Stage of Recruitment',
+//               options,
+//             }
+//           },
+//         ],
+//       },
+//     },
+//     {
+//       type: 'divider',
+//     },
+//     {
+//       type: 'action',
+//       style: {
+//         'margin-top': '0.5rem',
+//       },
+//       children: {
+//         default: [
+//           {
+//             name: 'submit',
+//             label: 'Submit',
+//             type: 'button',
+//             props: {
+//               type: 'submit',
+//               displayType: 'secondary',
+//             },
+//           },
+//         ],
+//       },
+//     },
+//   ],
+// };
 
-export const InfoboxInSchemaForm = TemplateSchema.bind({});
-InfoboxInSchemaForm.args = {
-  schema: {...sample},
-};
+// export const InfoboxInSchemaForm = TemplateSchema.bind({});
+// InfoboxInSchemaForm.args = {
+//   schema: {...sample},
+// };
 
 export const Default = Template.bind({});
 Default.args = {
@@ -283,12 +327,13 @@ WithoutInitialValue.args = {
   rows: 2,
 };
 
+export const Events = () => InfoBoxEvents;
 
 Default.parameters = {
   docs: {
     source: {
       code: `
-      <info-box
+      <oxd-infobox
         :modelValue="
           {
             id: 3,
@@ -320,7 +365,7 @@ StringModalValue.parameters = {
   docs: {
     source: {
       code: `
-      <info-box
+      <oxd-infobox
         :modelValue="'2022-05-03'"
         :rows="3"
         :infoLabel="'Date of Application'"
@@ -333,7 +378,7 @@ Disabled.parameters = {
   docs: {
     source: {
       code: `
-      <info-box
+      <oxd-infobox
         :disabled="true"
         :modelValue="
           {
@@ -362,11 +407,18 @@ Disabled.parameters = {
   },
 };
 
-Disabled.parameters = {
+Readonly.parameters = {
   docs: {
     source: {
       code: `
-      <info-box
+      <oxd-infobox
+        :readonly="true"
+        :modelValue="
+          {
+            id: 3,
+            label: 'Shortlisted',
+          }
+        "
         :options="[
           {
             id: 2,
@@ -384,6 +436,106 @@ Disabled.parameters = {
         :rows="3"
         :infoLabel="'Current Stage of Recruitment'"
       />`,
+    },
+  },
+};
+
+NoOptions.parameters = {
+  docs: {
+    source: {
+      code: `
+      <oxd-infobox
+        :modelValue="
+          {
+            id: 3,
+            label: 'Shortlisted',
+          }
+        "
+        :rows="3"
+        :infoLabel="'Current Stage of Recruitment'"
+      />`,
+    },
+  },
+};
+
+Error.parameters = {
+  docs: {
+    source: {
+      code: `
+      <oxd-infobox
+        :hasError="true"
+        :modelValue="
+          {
+            id: 3,
+            label: 'Shortlisted',
+          }
+        "
+        :options="[
+          {
+            id: 2,
+            label: 'Application Received',
+          },
+          {
+            id: 3,
+            label: 'Shortlisted',
+          },
+          {
+            id: 4,
+            label: 'In Progress',
+          },
+        ]"
+        :rows="3"
+        :infoLabel="'Current Stage of Recruitment'"
+      />`,
+    },
+  },
+};
+
+WithoutInitialValue.parameters = {
+  docs: {
+    source: {
+      code: `
+      <oxd-infobox
+        :hasError="true"
+        :options="[
+          {
+            id: 2,
+            label: 'Application Received',
+          },
+          {
+            id: 3,
+            label: 'Shortlisted',
+          },
+          {
+            id: 4,
+            label: 'In Progress',
+          },
+        ]"
+        :rows="3"
+        :infoLabel="'Current Stage of Recruitment'"
+      />`,
+    },
+  },
+};
+
+Events.parameters = {
+  docs: {
+    source: {
+      code: `
+      <oxd-infobox
+      :infoLabel="'Current Stage of Recruitment'"
+      :options="options"
+      @input="onInput()"
+      @focus="onFocus()"
+      @click="onClick()"
+      @keyup="onKeyUp()"
+      @dropdown:opened="onDropDownOpen()"
+      @dropdown:closed="onDropDownClosed()"
+      @dropdown:blur="onDropDownBlur()"
+      @dropdown:clear="onDropDownClear()"
+      v-model="value"
+      @update:modelValue="updatedValue(event)"
+    />`,
     },
   },
 };
