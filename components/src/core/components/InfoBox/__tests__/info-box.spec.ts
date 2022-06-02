@@ -104,11 +104,22 @@ describe('InfoBox.vue', () => {
         dropdownPosition,
       },
     });
-    wrapper.trigger('blur');
+    wrapper.vm.clickOutside();
     await wrapper.vm.$nextTick();
     expect(wrapper.emitted('dropdown:opened')).toBeFalsy();
     expect(wrapper.vm.dropdownOpen).toEqual(false);
     expect(wrapper.find('.oxd-select-dropdown').exists()).toBeFalsy();
+  });
+
+  it('should select one option 2', async () => {
+    const wrapper: any = mount(InfoBox, {
+      props: {label, rows, options, dropdownPosition},
+    });
+    wrapper.setProps({
+      modelValue: options[4]
+    })
+    await wrapper.vm.$nextTick();
+    expect(wrapper.vm.infoBoxContainerStyles).toStrictEqual({'background-color': 'rgba(104, 166, 29, 7%)'});
   });
 
 });

@@ -1,6 +1,7 @@
 <template>
   <div class="oxd-select-wrapper" :class="{'--selected': modelValue}">
     <button
+      v-bind="$attrs"
       class="oxd-select-fill-container"
       :style="infoBoxContainerStyles"
       @blur="onBlur"
