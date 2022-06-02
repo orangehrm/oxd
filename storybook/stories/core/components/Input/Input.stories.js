@@ -2,7 +2,7 @@ import Input from '@orangehrm/oxd/core/components/Input/Input';
 import InputEvents from './InputEvents.story.vue';
 
 export default {
-  title: 'Form_Widgets/Input',
+  title: 'Inputs/Text',
   component: Input,
   argTypes: {
     modelValue: {

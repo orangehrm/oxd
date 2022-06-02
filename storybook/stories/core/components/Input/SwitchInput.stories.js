@@ -6,7 +6,7 @@ import {
 import {BOTTOM_RIGHT, HELP_POSITIONS} from '@orangehrm/oxd/core/components/Icon/types';
 
 export default {
-  title: 'Example/SwitchInput',
+  title: 'Inputs/SwitchInput',
   component: SwitchInput,
   argTypes: {
     style: {control: {type: 'object'}},

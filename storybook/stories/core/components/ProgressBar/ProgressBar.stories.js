@@ -1,7 +1,7 @@
 import ProgressBar from '@orangehrm/oxd/core/components/ProgressBar/ProgressBar';
 
 export default {
-  title: 'Example/ProgressBar/Linear',
+  title: 'Information/ProgressBar/Linear',
   component: ProgressBar,
 };
 

@@ -5,7 +5,7 @@ import Form from '@orangehrm/oxd/core/components/Form/Form';
 import {h, ref} from 'vue';
 
 export default {
-  title: 'Example/InputField',
+  title: 'Inputs/InputFields',
   component: InputField,
 };
 

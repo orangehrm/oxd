@@ -2,6 +2,7 @@
   <div
     class="oxd-select-wrapper"
     :class="{'d-flex justify-center': hideDropdownLabel}"
+    v-click-outside="clickOutside"
   >
     <oxd-button
       class="dropdown-btn"
@@ -37,7 +38,7 @@
             'label-double-line': modelValue,
           }"
         >
-          <div class="label-small w-100 d-flex align-end justify-between">
+          <div class="label-small w-100 d-flex align-center justify-between">
             <div class="w-100 d-flex align-center justify-start">
               <oxd-icon
                 :size="buttonData.iconSize"
@@ -58,7 +59,7 @@
               <oxd-icon
                 v-if="moreIconName"
                 :tooltip="$vt(moreTooltip)"
-                :flow="infoTooltipFlow"
+                :flow="moreTooltipFlow"
                 class="oxd-select-info-button"
                 :size="moreIconSize"
                 :name="moreIconName"

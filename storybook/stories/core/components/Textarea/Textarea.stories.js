@@ -1,7 +1,7 @@
 import Textarea from '@orangehrm/oxd/core/components/Textarea/Textarea';
 
 export default {
-  title: 'Example/Textarea',
+  title: 'Inputs/Textarea',
   component: Textarea,
   argTypes: {
     resize: {

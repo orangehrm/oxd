@@ -1,7 +1,7 @@
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon';
 
 export default {
-  title: 'Example/Button/IconButton',
+  title: 'Button/IconButton',
   component: IconButton,
 };
 

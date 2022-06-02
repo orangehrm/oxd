@@ -5,7 +5,7 @@ import {
 } from '@orangehrm/oxd/core/components/Input/types';
 
 export default {
-  title: 'Example/CheckboxInput',
+  title: 'Inputs/CheckboxInput',
   component: CheckboxInput,
   argTypes: {
     style: {control: {type: 'object'}},

@@ -4,6 +4,7 @@
       v-bind="$attrs"
       :value="inputValue"
       :disabled="disabled"
+      :readonly="readonly"
       :dropdownOpened="dropdownOpen"
       @click="onToggleDropdown"
       @blur="onBlur"
@@ -86,6 +87,10 @@ export default defineComponent({
       type: Object,
     },
     disabled: {
+      type: Boolean,
+      default: false,
+    },
+    readonly: {
       type: Boolean,
       default: false,
     },

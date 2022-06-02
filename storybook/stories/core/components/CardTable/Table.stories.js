@@ -11,7 +11,7 @@ import CardTableIconHeaders from './CardTableIconHeaders.story.vue';
 import candidateAvatars from './../List/candidate-avatars.json'
 
 export default {
-  title: 'Example/CardTable',
+  title: 'Data Tables/CardTable',
 };
 
 const Template = args => ({

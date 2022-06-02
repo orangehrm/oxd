@@ -1,7 +1,7 @@
 import Overlay from '@orangehrm/oxd/core/components/Dialog/Overlay';
 
 export default {
-  title: 'Example/Dialog/Overlay',
+  title: 'PopUps/Dialog/Overlay',
   component: Overlay,
 };
 
