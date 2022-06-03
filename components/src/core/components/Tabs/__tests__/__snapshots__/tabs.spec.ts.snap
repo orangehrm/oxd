@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tabs.vue Renders two tabs along with icons 1`] = `
+<ul class="tab-list">
+  <li class="tab-items"><span tabindex="0" class="tab-item active" id="tab1"><oxd-icon-stub name="oxd-posts" size="medium" class="tab-icon"></oxd-icon-stub>Details</span>
+    <div class="selected-tab-indicator active"></div>
+  </li>
+  <li class="tab-items"><span tabindex="0" class="tab-item" id="tab2"><oxd-icon-stub name="oxd-profile" size="medium" class="tab-icon"></oxd-icon-stub>Resume</span>
+    <div class="selected-tab-indicator"></div>
+  </li>
+</ul>
+<div class="tab-content">
+  <keep-alive-stub></keep-alive-stub>
+</div>
+`;
