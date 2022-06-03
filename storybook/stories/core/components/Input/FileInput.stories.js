@@ -2,7 +2,7 @@ import FileInput from '@orangehrm/oxd/core/components/Input/FileInput';
 import {computed, h, ref} from 'vue';
 
 export default {
-  title: 'Example/FileInput',
+  title: 'Inputs/FileInput',
   component: FileInput,
   argTypes: {
     style: {control: {type: 'object'}},

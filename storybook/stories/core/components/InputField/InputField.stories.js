@@ -5,7 +5,7 @@ import Form from '@orangehrm/oxd/core/components/Form/Form';
 import {h, ref} from 'vue';
 
 export default {
-  title: 'Example/InputField',
+  title: 'Inputs/InputFields',
   component: InputField,
 };
 
@@ -220,5 +220,14 @@ TimeInput.args = {
   label: 'Time Input Field',
   type: 'time',
 };
+
+export const WithHint = Template.bind({});
+WithHint.argTypes = argTypes;
+WithHint.args = {
+  label: 'Name as in Passport',
+  type: 'input',
+  hint: 'Only needed if different from the name in your driving license'
+};
+
 
 export const WithValidation = () => InputFieldValidation;

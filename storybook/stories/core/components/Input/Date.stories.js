@@ -5,7 +5,7 @@ import buildLocale from '@orangehrm/oxd/utils/locale.ts';
 import {convertPHPDateFormat} from '@orangehrm/oxd/utils/date.ts';
 
 export default {
-  title: 'Example/DateInput',
+  title: 'Inputs/DateInput',
   component: DateInput,
   argTypes: {
     style: {control: {type: 'object'}},

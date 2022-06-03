@@ -1,6 +1,8 @@
 export const AREA_ORIENTATION_VERTICAL = 'vertical';
 export const AREA_ORIENTATION_HORIZONTAL = 'horizontal';
 
+export const ORIENTATION_TYPES = [AREA_ORIENTATION_HORIZONTAL, AREA_ORIENTATION_VERTICAL];
+
 export type AreaOrientation =
   | typeof AREA_ORIENTATION_VERTICAL
   | typeof AREA_ORIENTATION_HORIZONTAL;

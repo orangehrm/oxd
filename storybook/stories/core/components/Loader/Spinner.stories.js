@@ -1,7 +1,7 @@
 import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner';
 
 export default {
-  title: 'Example/Loader/Spinner',
+  title: 'Information/Loader/Spinner',
   component: Spinner,
 };
 

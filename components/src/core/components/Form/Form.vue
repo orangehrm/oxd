@@ -1,5 +1,6 @@
 <template>
   <form
+    :name="name"
     :class="{
       'oxd-form': true,
       '--empty': !$slots.default,
@@ -28,6 +29,7 @@ export default defineComponent({
   },
 
   props: {
+    name: String,
     loading: {
       type: Boolean,
       default: false,

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="oxd-list-container w-100 min-vh-100 d-flex align-start"
+    class="oxd-list-container w-100 d-table align-start"
     :class="{
       'table-left-panel-open':
         config.table.leftPanel.visible && state.isLeftPanelOpen,
@@ -8,7 +8,7 @@
   >
     <oxd-table-sidebar
       v-if="config.table.leftPanel.visible"
-      class="oxd-table-left-panel"
+      class="oxd-table-left-panel d-table-cell"
       :class="{'with-filters': config.table.topBar.visible}"
       width="200px"
       :side-panel-list="sidePanelList"
@@ -32,7 +32,7 @@
       </template>
     </oxd-table-sidebar>
     <div
-      class="table-card-list-wrapper"
+      class="table-card-list-wrapper d-table-cell"
       :class="{'w-100': !state.isLeftPanelOpen}"
     >
       <oxd-table-filter
@@ -131,6 +131,15 @@
           @update:selected="tableSelect"
           rowDecorator="oxd-table-decorator-card"
         />
+        <div
+          v-if="filteredTotalRecordsCount === 0 && !isListLoading"
+          class="empty-msg-container"
+        >
+          <div class="empty-msg">
+            <oxd-icon class="empty-msg-pic" name="oxd-no-data" />
+            <div class="caption">{{ $vt('Sorry, No Data Found!') }}</div>
+          </div>
+        </div>
         <oxd-pagination
           class="list-pagination d-flex align-center justify-end"
           :length="paginationLength"
@@ -160,8 +169,9 @@ import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue
 import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination.vue';
 import images from '../ProfilePic/images';
 import useTranslate from './../../../composables/useTranslate';
-
+import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import {defineComponent, reactive, computed, ref, watch} from 'vue';
+import translateMixin from '../../../mixins/translate';
 
 export default defineComponent({
   components: {
@@ -172,8 +182,10 @@ export default defineComponent({
     'oxd-icon-button': IconButton,
     'oxd-quick-search': QuickSearchInput,
     'oxd-profile-pic': ProfilePic,
+    'oxd-icon': Icon,
     'oxd-pagination': Pagination,
   },
+  mixins: [translateMixin],
   props: {
     configurations: {
       type: Object,
@@ -266,19 +278,17 @@ export default defineComponent({
       config.value.table.headers.forEach((header) => {
         if (header.initialSortOrder) {
           sortableFieldsObj[header.sortField] = {
-            order: state.currentSortFields[
-            header.sortField
-          ]
-            ? state.currentSortFields[header.sortField]
-            : header.initialSortOrder,
-            iconAsc: (header.sortIcons !== undefined)? header.sortIcons.asc: "",
-            iconDesc: (header.sortIcons !== undefined)? header.sortIcons.desc: "",
-          }
+            order: state.currentSortFields[header.sortField]
+              ? state.currentSortFields[header.sortField]
+              : header.initialSortOrder,
+            iconAsc: header.sortIcons !== undefined ? header.sortIcons.asc : '',
+            iconDesc:
+              header.sortIcons !== undefined ? header.sortIcons.desc : '',
+          };
         }
       });
       return sortableFieldsObj;
     });
-
 
     const isFloat = (n) => {
       return n === +n && n !== (n | 0);

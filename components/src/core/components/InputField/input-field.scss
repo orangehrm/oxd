@@ -13,3 +13,10 @@
   content: '*';
   color: $oxd-input-field-required-asterisk-color;
 }
+
+.oxd-text.orangehrm-input-hint {
+  font-size: $oxd-input-field-hint-font-size;
+  font-family: $oxd-input-field-hint-font-family;
+  font-weight: $oxd-input-field-hint-font-weight;
+  color: $oxd-input-field-hint-color;
+}

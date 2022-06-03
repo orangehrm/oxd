@@ -2,7 +2,7 @@ import TreeView from '@orangehrm/oxd/core/components/TreeView/TreeView.vue';
 import CustomTemplate from './CustomTemplate.vue';
 
 export default {
-  title: 'Example/TreeView',
+  title: 'Data Tables/TreeView',
   component: TreeView,
 };
 

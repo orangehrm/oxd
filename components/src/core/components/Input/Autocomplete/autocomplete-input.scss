@@ -126,7 +126,6 @@
   font-weight: $oxd-dropdown-option-font-weight;
   padding: $oxd-autocomplete-dropdown-option-padding;
   margin: $oxd-dropdown-option-margin;
-  border-bottom: $oxd-dropdown-option-border-bottom;
   background-color: $oxd-dropdown-option-background;
   min-height: $oxd-dropdown-option-min-height;
   overflow-wrap: anywhere;
@@ -176,7 +175,6 @@
 .oxd-autocomplete-chips-area {
   display: flex;
   flex-wrap: wrap;
-  padding: $oxd-dropdown-chip-area-padding;
   justify-content: flex-start;
   & .oxd-autocomplete-chips-selected {
     display: flex;
@@ -184,17 +182,25 @@
     color: $oxd-input-control-font-color;
     background-color: $oxd-dropdown-chip-background-color;
     margin-right: $oxd-dropdown-chip-margin;
-    margin-bottom: $oxd-dropdown-chip-margin;
+    margin-top: $oxd-dropdown-chip-margin;
     & .--clear {
       cursor: pointer;
       border-radius: $oxd-dropdown-chip-border-radius;
       background-color: $oxd-dropdown-chip-clear-background-color;
       color: $oxd-dropdown-chip-clear-font-color;
       margin-left: $oxd-dropdown-chip-margin;
+      width: $oxd-file-button-font-size;
+      height: $oxd-file-button-font-size;
+      &:hover {
+        background-color: $oxd-interface-gray-darken-1-color;
+      }
     }
     & .--disabled,
     & .--readonly {
       cursor: unset;
     }
+  }
+  &:empty {
+    display: none;
   }
 }

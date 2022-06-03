@@ -59,7 +59,7 @@ export default defineComponent({
   setup(props, context) {
     const {$t} = useTranslate();
     const layoutSchema = computed(() => {
-      return props.schema?.layout.map(layout => ({
+      return props.schema?.layout.map((layout) => ({
         id: layout.id,
         style: layout.style,
         class: layout.class,
@@ -74,7 +74,7 @@ export default defineComponent({
       return props.schema?.layout.map(({children}) => {
         if (Array.isArray(children)) return children;
         for (const slot in children) {
-          children[slot] = children[slot].map(field => {
+          children[slot] = children[slot].map((field) => {
             if (field.hook && typeof field.hook === 'function') {
               field = field.hook(field, props.model as Model);
             }
@@ -116,34 +116,62 @@ export default defineComponent({
       }
     };
 
+    const getFormElementId = (
+      fieldType: string,
+      fieldName: string,
+      fieldValue: string | unknown,
+      formName: string,
+    ) => {
+      if (fieldType === 'radio') {
+        return (
+          formName.toString().trim() +
+          '_' +
+          fieldName.toString().trim() +
+          '_' +
+          fieldValue.toString().trim()
+        );
+      } else {
+        return formName.toString().trim() + '_' + fieldName.toString().trim();
+      }
+    };
+
     const createFieldNode = (field: FieldSchema) => {
-      return h(
-        GridItem,
-        {
-          style: field.style,
-          class: field.class,
-        },
-        {
-          default: () =>
-            h(extractFieldComponent(field), {
-              id: field.id,
-              key: field.key,
-              label: $t(field.label),
-              ...(field.props ?? {}),
-              ...(field.listeners ?? {}),
-              rules: Array.from(field.validators?.values() ?? []),
-              modelValue: props.model[field.name],
-              'onUpdate:modelValue': value => {
-                context.emit('update:model', {
-                  ...(props.model as Model),
-                  [field.name]: value,
-                });
-              },
-              required: field.validators?.has('required'),
-              ...(field.type !== 'custom' && {type: field.type}),
-            }),
-        },
-      );
+      if (!props.schema?.name) {
+        throw new Error('Form name is must for schema form');
+      } else {
+        return h(
+          GridItem,
+          {
+            style: field.style,
+            class: field.class,
+          },
+          {
+            default: () =>
+              h(extractFieldComponent(field), {
+                id: getFormElementId(
+                  field.type,
+                  field.name,
+                  field.value,
+                  props.schema.name,
+                ),
+                key: field.key,
+                label: $t(field.label),
+                ...(field.props ?? {}),
+                ...(field.listeners ?? {}),
+                rules: Array.from(field.validators?.values() ?? []),
+                modelValue: props.model[field.name],
+                'onUpdate:modelValue': value => {
+                  context.emit('update:model', {
+                    ...(props.model as Model),
+                    [field.name]: value,
+                  });
+                },
+                required: field.validators?.has('required'),
+                ...(field.type !== 'custom' && {type: field.type}),
+              }),
+          },
+        );
+      }
     };
 
     const createActionNode = (field: FieldSchema) => {
@@ -163,13 +191,13 @@ export default defineComponent({
       for (const slotName in layoutChildObj) {
         _slots[slotName] = () =>
           layoutChildObj[slotName]
-            .map(field => {
+            .map((field) => {
               if (field.visible !== false && field.type === 'button') {
                 return createActionNode(field);
               }
               return field.visible !== false ? createFieldNode(field) : null;
             })
-            .filter(field => field !== null);
+            .filter((field) => field !== null);
       }
       return _slots;
     };
@@ -203,8 +231,9 @@ export default defineComponent({
       h(
         Form,
         {
+          name: props.schema?.name,
           style: props.schema?.style,
-          class: props.schema?.class,
+          class: 'oxd-schema-form-container ' + props.schema?.class,
           loading: isLoading.value,
           onSubmitValid: ($e: SubmitEvent) => {
             context.emit('submitValid', props.model, $e);

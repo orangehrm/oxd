@@ -25,4 +25,12 @@ describe('Input.vue', () => {
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
+
+  it('on input', async () => {
+    const wrapper = mount(Input, {});
+    const input = wrapper.find('input');
+    await input.trigger('input');
+    expect(wrapper.emitted()).toHaveProperty('update:modelValue');
+    expect(wrapper.emitted()).toHaveProperty('input');
+  });
 });

@@ -3,9 +3,10 @@ import {
   RIGHT,
   LABEL_POSITIONS,
 } from '@orangehrm/oxd/core/components/Input/types';
+import {BOTTOM_RIGHT, HELP_POSITIONS} from '@orangehrm/oxd/core/components/Icon/types';
 
 export default {
-  title: 'Example/SwitchInput',
+  title: 'Inputs/SwitchInput',
   component: SwitchInput,
   argTypes: {
     style: {control: {type: 'object'}},
@@ -14,7 +15,12 @@ export default {
       control: {type: 'select', options: LABEL_POSITIONS},
       defaultValue: RIGHT,
     },
+    helpTextPosition: {
+      control: {type: 'select', options: HELP_POSITIONS},
+      defaultValue: BOTTOM_RIGHT,
+    },
   },
+  decorators: [() => ({ template: '<div style="max-width: 400px; margin-top:3em"><story/></div>' })],
 };
 
 const Template = args => ({
@@ -59,5 +65,34 @@ Error.args = {
   optionLabel: 'Error!',
   hasError: true,
 };
+
+export const LabelRightWithHelpPopup = Template.bind({});
+LabelRightWithHelpPopup.args = {
+  optionLabel: 'Include in Bradford Factor Report',
+  helpText: 'These leave will be excluded from reports unless there\'s some activity. E.g. maternity leave, jury duty leave.',
+};
+
+export const LabelLeftWithHelpPopup = Template.bind({});
+LabelLeftWithHelpPopup.args = {
+  optionLabel: 'Include in Bradford Factor Report',
+  labelPosition: 'left',
+  helpText: 'These leave will be excluded from reports unless there\'s some activity. E.g. maternity leave, jury duty leave.',
+};
+
+export const LabelLeftUseFullWidth = Template.bind({});
+LabelLeftUseFullWidth.args = {
+  optionLabel: 'Include in Bradford Factor Report',
+  labelPosition: 'left',
+  useFullWidth: true,
+};
+
+
+export const LabelRightUseFullWidth = Template.bind({});
+LabelRightUseFullWidth.args = {
+  optionLabel: 'Include in Bradford Factor Report',
+  labelPosition: 'right',
+  useFullWidth: true,
+};
+
 
 export const Vmodel = VmodelSample.bind({});

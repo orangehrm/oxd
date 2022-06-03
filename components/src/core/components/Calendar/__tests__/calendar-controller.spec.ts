@@ -3,6 +3,10 @@ import CalendarController from '@orangehrm/oxd/core/components/Calendar/Calendar
 import Icon from '@orangehrm/oxd/core/components/Button/Icon.vue';
 
 describe('CalendarController.vue', () => {
+  window.HTMLElement.prototype.scrollIntoView = function() {
+    //do nothing
+  };
+
   const months = [
     'January',
     'February',

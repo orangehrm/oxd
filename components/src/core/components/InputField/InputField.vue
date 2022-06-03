@@ -2,6 +2,7 @@
   <oxd-input-group
     :label="label"
     :labelIcon="labelIcon"
+    :id="id"
     :message="message"
     class="oxd-input-field-bottom-space"
     :classes="classes"
@@ -9,6 +10,8 @@
     <component
       :is="component"
       v-bind="$attrs"
+      :id="id"
+      :disabled="disabled"
       :hasError="hasError"
       :modelValue="modelValue"
       @update:modelValue="onChange"
@@ -17,6 +20,9 @@
         <slot :name="name" v-bind="slotData" />
       </template>
     </component>
+    <oxd-text v-if="hint" class="orangehrm-input-hint" tag="p">
+      {{ $vt(hint) }}
+    </oxd-text>
   </oxd-input-group>
 </template>
 
@@ -36,8 +42,10 @@ import AutocompleteInput from '@orangehrm/oxd/core/components/Input/Autocomplete
 import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
 import MultiSelectInput from '@orangehrm/oxd/core/components/Input/MultiSelect/MultiSelectInput.vue';
 import TimeInput from '@orangehrm/oxd/core/components/Input/Time/TimeInput.vue';
+import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import {Types, Components, TYPES, TYPE_INPUT, TYPE_MAP} from './types';
 import useField from '../../../composables/useField';
+import translateMixin from '../../../mixins/translate';
 
 export default defineComponent({
   name: 'oxd-input-field',
@@ -58,8 +66,10 @@ export default defineComponent({
     'oxd-select-input': SelectInput,
     'oxd-multiselect-input': MultiSelectInput,
     'oxd-time-input': TimeInput,
+    'oxd-text': Text,
   },
 
+  mixins: [translateMixin],
   emits: ['update:modelValue'],
 
   props: {
@@ -71,6 +81,13 @@ export default defineComponent({
       type: String,
     },
     required: {
+      type: Boolean,
+      default: false,
+    },
+    id: {
+      type: String,
+    },
+    disabled: {
       type: Boolean,
       default: false,
     },
@@ -93,11 +110,17 @@ export default defineComponent({
       type: Array as PropType<any>,
       default: () => [],
     },
+    hint: {
+      type: String,
+      default: null,
+    },
   },
 
   setup(props, context) {
     const modelValue = toRef(props, 'modelValue');
     const rules = toRef(props, 'rules');
+    const isDisabled = toRef(props, 'disabled');
+
     const initialValue = modelValue.value;
 
     const onReset = async () => {
@@ -109,6 +132,7 @@ export default defineComponent({
       fieldLabel: props.label ? props.label : '',
       rules,
       modelValue,
+      isDisabled,
       onReset,
     });
 

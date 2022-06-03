@@ -1,7 +1,7 @@
 import CustomTemplate from './CustomTemplate.vue';
 
 export default {
-  title: 'Example/ProfilePic',
+  title: 'Information/ProfilePic',
   component: ProfilePic,
 };
 
