@@ -305,6 +305,19 @@ Advance.args = {
               validators: new Map([['required', required]]),
             },
             {
+              name: 'user',
+              label: 'Users',
+              type: 'multiselect',
+              value: [],
+              props: {
+                autofocus: true,
+                options: [
+                  {id: 1, label: 'HR'},
+                  {id: 2, label: 'Admin'},
+                ],
+              },
+            },
+            {
               name: 'date',
               label: 'Date of Application',
               type: 'date',

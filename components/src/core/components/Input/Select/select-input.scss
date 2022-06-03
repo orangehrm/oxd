@@ -57,7 +57,7 @@
     align-items: center;
     display: flex;
     flex: 1 1;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     line-height: 18px;
     max-width: 100%;
     min-width: 0;
@@ -73,6 +73,7 @@
       background-color: transparent;
       pointer-events: none;
       outline: none;
+      max-width: 0;
     }
   }
 
