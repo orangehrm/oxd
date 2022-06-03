@@ -21,11 +21,12 @@ $oxd-topbar-patch-color: $oxd-primary-gradient-start-color !default;
 
 $oxd-topbar-title-font-size: 14px !default;
 $oxd-topbar-title-font-weight: 400 !default;
-$oxd-topbar-title-font-color: $oxd-white-color !default;
+$oxd-topbar-title-font-color: $oxd-primary-font-color !default;
 $oxd-topbar-tab-font-color: $oxd-interface-gray-color !default;
 $oxd-topbar-tab-font-size: 12px !default;
 $oxd-topbar-tab-font-weight: 600 !default;
-$oxd-topbar-tab-hover-color: #fff2e9 !default;
+$oxd-topbar-tab-hover-color: rgba($oxd-primary-one-color, 0.1) !default;
+$oxd-topbar-tab-hover-font-color: $oxd-primary-one-color !default;
 $oxd-topbar-tab-background-color: #f8f9fa !default;
 $oxd-topbar-visited-border: 3px solid $oxd-primary-one-color !default;
 $oxd-topbar-visited-border-radius: 4px !default;
@@ -34,7 +35,7 @@ $oxd-topbar-visited-border-width: 1.875rem !default;
 $oxd-userdropdown-hr: 1px solid rgba(143, 143, 143, 0.15) !default;
 $oxd-userdropdown-img-border: 4px solid rgba(225, 225, 255, 0.37) !default;
 $oxd-userdropdown-gap-border: 1px solid #da630b !default;
-$oxd-userdropdown-font-color: $oxd-white-color !default;
+$oxd-userdropdown-font-color: $oxd-primary-font-color !default;
 $oxd-userdropdown-font-size: 12px !default;
 
 $oxd-notifdropdown-counter-bg: #ffd3c0 !default;

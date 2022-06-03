@@ -15,31 +15,30 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see  http://www.gnu.org/licenses
 
-@mixin oxd-button-color($background-color) {
-  color: $oxd-button-font-color;
-  background-color: $background-color;
-}
-
 @mixin oxd-button-solid($type: 'main') {
   @include oxd-button-base;
   $oxd-button: map-get($oxd-solid-buttons, $type);
-
-  @include oxd-button-color(map-get($oxd-button, 'active'));
+  color: map-get($oxd-button, 'font');
+  background-color: map-get($oxd-button, 'active');
 
   &:focus {
-    @include oxd-button-color(map-get($oxd-button, 'focus'));
+    color: map-get($oxd-button, 'font');
+    background-color: map-get($oxd-button, 'focus');
   }
 
   &:hover {
-    @include oxd-button-color(map-get($oxd-button, 'hover'));
+    color: map-get($oxd-button, 'font');
+    background-color: map-get($oxd-button, 'hover');
   }
 
   &:active {
-    @include oxd-button-color(map-get($oxd-button, 'pressed'));
+    color: map-get($oxd-button, 'font');
+    background-color: map-get($oxd-button, 'pressed');
   }
 
   &:disabled {
-    @include oxd-button-color(map-get($oxd-button, 'inactive'));
+    color: map-get($oxd-button, 'font');
+    background-color: map-get($oxd-button, 'inactive');
   }
 }
 
@@ -149,19 +148,17 @@
 }
 
 @mixin oxd-icon-button-solid($type: 'default') {
-  $oxd-icon-bg-color: map-get($oxd-list-button-pallete, $type);
-
   color: $oxd-white-color;
-  background-color: $oxd-icon-bg-color;
+  background-color: map-get($oxd-list-button-pallete, $type);
 
   &:focus,
   &:hover {
     outline: 0;
-    background-color: lighten($oxd-icon-bg-color, 5%);
+    background-color: map-get($oxd-list-button-pallete, '#{$type}-lighten-5');
   }
 
   &:active {
-    background-color: darken($oxd-icon-bg-color, 5%);
+    background-color: map-get($oxd-list-button-pallete, '#{$type}-darken-5');
   }
 }
 
@@ -175,13 +172,13 @@
   &:focus,
   &:hover {
     outline: 0;
-    color: lighten($oxd-icon-color, 5%);
-    border: $oxd-border lighten($oxd-icon-color, 5%);
+    color: map-get($oxd-list-button-pallete, '#{$type}-lighten-5');
+    border: $oxd-border map-get($oxd-list-button-pallete, '#{$type}-lighten-5');
   }
 
   &:active {
-    color: lighten($oxd-icon-color, 5%);
-    border: $oxd-border lighten($oxd-icon-color, 5%);
+    color: map-get($oxd-list-button-pallete, '#{$type}-lighten-5');
+    border: $oxd-border map-get($oxd-list-button-pallete, '#{$type}-lighten-5');
   }
 
   &:disabled {

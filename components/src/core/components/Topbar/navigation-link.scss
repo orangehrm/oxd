@@ -38,7 +38,7 @@
   &:hover,
   &.--active,
   &.--visited {
-    color: $oxd-primary-one-color;
+    color: $oxd-topbar-tab-hover-font-color;
     background-color: $oxd-topbar-tab-hover-color;
     .oxd-icon {
       color: $oxd-primary-one-color;

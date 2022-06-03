@@ -21,19 +21,17 @@
 
 <template>
   <a class="oxd-brand" :class="classes" :href="url">
-    <div class="oxd-brand-icon">
-      <img alt="orangehrm logo" :src="imageSrc" />
+    <div v-show="toggle" class="oxd-brand-logo">
+      <img alt="client brand logo" :src="logoSrc" />
     </div>
-    <div class="oxd-brand-text" :class="classes">
-      <oxd-text tag="p" class="oxd-brand-text-main">Orange</oxd-text>
-      <span><oxd-text tag="p" class="oxd-brand-text-sub">HRM</oxd-text></span>
+    <div class="oxd-brand-banner" :class="classes">
+      <img alt="client brand banner" :src="bannerSrc" />
     </div>
   </a>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import Text from '@ohrm/oxd/core/components/Text/Text.vue';
 
 export default defineComponent({
   name: 'oxd-branding',
@@ -43,7 +41,11 @@ export default defineComponent({
       type: String,
       default: '/',
     },
-    imageSrc: {
+    logoSrc: {
+      type: String,
+      default: '',
+    },
+    bannerSrc: {
       type: String,
       default: '',
     },
@@ -51,10 +53,6 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-  },
-
-  components: {
-    'oxd-text': Text,
   },
 
   computed: {

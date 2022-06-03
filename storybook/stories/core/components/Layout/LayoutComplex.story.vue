@@ -25,7 +25,8 @@
     context-title="Personal Information Manager"
     :sidepanel-menu-items="sidepanelMenuItems"
     :topbar-menu-items="topbarMenuItems"
-    :brand-image-src="brandImageSrc"
+    :brand-logo-src="brandLogoSrc"
+    :brand-banner-src="brandBannerSrc"
     :breadcrumb="breadcrumb"
   >
     <div class="orangehrm-container">
@@ -124,7 +125,8 @@ export default {
   },
   data() {
     return {
-      brandImageSrc: require('@ohrm/oxd/assets/images/orange.png'),
+      brandLogoSrc: require('@ohrm/oxd/assets/images/orange.png'),
+      brandBannerSrc: require('@ohrm/oxd/assets/images/orangehrm-logo.png'),
       user: {
         firstName: 'Jeff',
         lastName: 'Winger',
