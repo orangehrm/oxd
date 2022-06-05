@@ -160,4 +160,16 @@ describe('InfoBox.vue', () => {
     expect(wrapper.find('.oxd-select-dropdown').exists()).toBeFalsy();
   });
 
+  it('Selected option should marked as selected true', async () => {
+    const wrapper = mount(InfoBox, {
+      props: {infoLabel, rows, options, dropdownPosition},
+    });
+    wrapper.setProps({
+      modelValue: options[1]
+    });
+    wrapper.findComponent(ButtonIcon).trigger('click');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.vm.computedOptions[1]._selected).toStrictEqual(true);
+  });
+
 });

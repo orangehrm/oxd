@@ -18,7 +18,7 @@
       :options="options"
       @input="onInput()"
       @focus="onFocus()"
-      @click="onClick()"
+      @click="(e) => e.preventDefault()"
       @keyup="onKeyUp()"
       @dropdown:opened="onDropDownOpen()"
       @dropdown:closed="onDropDownClosed()"

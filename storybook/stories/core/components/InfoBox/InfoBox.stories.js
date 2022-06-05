@@ -1,7 +1,7 @@
 import InfoBox from '@orangehrm/oxd/core/components/InfoBox/InfoBox';
-// import SchemaForm from '@orangehrm/oxd/core/components/SchemaForm/SchemaForm';
-// import useSchemaForm from '../../../../../components/src/composables/useSchemaForm.ts';
-// import {required} from '../../../../../components/src/validation/rules.ts';
+import SchemaForm from '@orangehrm/oxd/core/components/SchemaForm/SchemaForm';
+import useSchemaForm from '../../../../../components/src/composables/useSchemaForm.ts';
+import {required} from '../../../../../components/src/validation/rules.ts';
 import InfoBoxEvents from './InfoBoxEvents.story.vue';
 import {h, ref} from 'vue';
 
@@ -174,96 +174,95 @@ const TemplateString = args => ({
   },
 });
 
-// const TemplateSchema = (args) => ({
-//   components: {'oxd-schema-form': SchemaForm},
-//   setup() {
-//     const {schema, model} = useSchemaForm(args.schema);
-//     const onSubmit = (...args) => {
-//       console.log(args);
-//     };
-//     return {
-//       model,
-//       schema,
-//       onSubmit,
-//     };
-//   },
-//   components: {'oxd-schema-form': SchemaForm},
-//   template: `<oxd-schema-form :schema="schema" v-model:model="model" v-on:submitValid="onSubmit"></oxd-schema-form>`,
-// });
+const TemplateSchema = (args) => ({
+  components: {'oxd-schema-form': SchemaForm},
+  setup() {
+    const {schema, model} = useSchemaForm(args.schema);
+    const onSubmit = (...args) => {
+      console.log(args);
+    };
+    return {
+      model,
+      schema,
+      onSubmit,
+    };
+  },
+  components: {'oxd-schema-form': SchemaForm},
+  template: `<oxd-schema-form :schema="schema" v-model:model="model" v-on:submitValid="onSubmit"></oxd-schema-form>`,
+});
 
-// const sample = {
-//   name: 'sampleForm',
-//   layout: [
-//     {
-//       type: 'grid',
-//       props: {
-//         cols: 2,
-//       },
-//       children: {
-//         default: [
-//           {
-//             name: 'currentstagerequired',
-//             value: 'asdad',
-//             label: 'Infobox required',
-//             type: 'infobox',
-//             validators: new Map([['required', required]]),
-//             props: {
-//               infoLabel: 'Current Stage of Recruitment',
-//               options,
-//             }
-//           },
-//           {
-//             name: 'currentstagedisabled',
-//             label: 'Infobox disabled',
-//             type: 'infobox',
-//             props: {
-//               disabled: true,
-//               infoLabel: 'Current Stage of Recruitment',
-//               options,
-//             }
-//           },
-//           {
-//             name: 'currentstagereadonly',
-//             label: 'Infobox readonly',
-//             type: 'infobox',
-//             props: {
-//               readonly: true,
-//               infoLabel: 'Current Stage of Recruitment',
-//               options,
-//             }
-//           },
-//         ],
-//       },
-//     },
-//     {
-//       type: 'divider',
-//     },
-//     {
-//       type: 'action',
-//       style: {
-//         'margin-top': '0.5rem',
-//       },
-//       children: {
-//         default: [
-//           {
-//             name: 'submit',
-//             label: 'Submit',
-//             type: 'button',
-//             props: {
-//               type: 'submit',
-//               displayType: 'secondary',
-//             },
-//           },
-//         ],
-//       },
-//     },
-//   ],
-// };
+const sample = {
+  name: 'sampleForm',
+  layout: [
+    {
+      type: 'grid',
+      props: {
+        cols: 2,
+      },
+      children: {
+        default: [
+          {
+            name: 'currentstagerequired',
+            label: 'Infobox required',
+            type: 'infobox',
+            validators: new Map([['required', required]]),
+            props: {
+              infoLabel: 'Current Stage of Recruitment',
+              options,
+            }
+          },
+          {
+            name: 'currentstagedisabled',
+            label: 'Infobox disabled',
+            type: 'infobox',
+            props: {
+              disabled: true,
+              infoLabel: 'Current Stage of Recruitment',
+              options,
+            }
+          },
+          {
+            name: 'currentstagereadonly',
+            label: 'Infobox readonly',
+            type: 'infobox',
+            props: {
+              readonly: true,
+              infoLabel: 'Current Stage of Recruitment',
+              options,
+            }
+          },
+        ],
+      },
+    },
+    {
+      type: 'divider',
+    },
+    {
+      type: 'action',
+      style: {
+        'margin-top': '0.5rem',
+      },
+      children: {
+        default: [
+          {
+            name: 'submit',
+            label: 'Submit',
+            type: 'button',
+            props: {
+              type: 'submit',
+              displayType: 'secondary',
+            },
+          },
+        ],
+      },
+    },
+  ],
+};
 
-// export const InfoboxInSchemaForm = TemplateSchema.bind({});
-// InfoboxInSchemaForm.args = {
-//   schema: {...sample},
-// };
+export const InfoboxInSchemaForm = TemplateSchema.bind({});
+InfoboxInSchemaForm.args = {
+  schema: {...sample},
+};
 
 export const Default = Template.bind({});
 Default.args = {

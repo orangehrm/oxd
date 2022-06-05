@@ -274,13 +274,6 @@ export default defineComponent({
       this.dropdownOpen = false;
     },
   },
-
-  watch: {
-    pointer(newIndex: number) {
-      const option = this.$refs[`option-${newIndex}`];
-      if (option?.$el) this.scrollToView(option.$el);
-    },
-  },
 });
 </script>
 
