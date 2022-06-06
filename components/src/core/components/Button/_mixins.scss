@@ -134,16 +134,16 @@
   $oxd-icon-button-color: map-get($oxd-list-button-pallete, $type);
 
   color: $oxd-icon-button-color;
-  background-color: rgba($oxd-icon-button-color, 0.1);
+  background-color: map-get($oxd-list-button-pallete, '#{$type}-alpha-10');
 
   &:focus,
   &:hover {
     outline: 0;
-    background-color: rgba($oxd-icon-button-color, 0.15);
+    background-color: map-get($oxd-list-button-pallete, '#{$type}-alpha-15');
   }
 
   &:active {
-    background-color: rgba($oxd-icon-button-color, 0.2);
+    background-color: map-get($oxd-list-button-pallete, '#{$type}-alpha-20');
   }
 }
 

@@ -25,7 +25,7 @@ $oxd-topbar-title-font-color: $oxd-primary-font-color !default;
 $oxd-topbar-tab-font-color: $oxd-interface-gray-color !default;
 $oxd-topbar-tab-font-size: 12px !default;
 $oxd-topbar-tab-font-weight: 600 !default;
-$oxd-topbar-tab-hover-color: rgba($oxd-primary-one-color, 0.1) !default;
+$oxd-topbar-tab-hover-color: $oxd-primary-one-alpha-10-color !default;
 $oxd-topbar-tab-hover-font-color: $oxd-primary-one-color !default;
 $oxd-topbar-tab-background-color: #f8f9fa !default;
 $oxd-topbar-visited-border: 3px solid $oxd-primary-one-color !default;

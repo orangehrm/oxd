@@ -62,62 +62,6 @@ $oxd-secondary-gradient: linear-gradient(
   $oxd-primary-secondary-end-color 90%
 ) !default;
 
-/* OXD - Dervied Shades */
-$oxd-primary-one-lighten-5-color: lighten($oxd-primary-one-color, 5%) !default;
-$oxd-primary-one-lighten-30-color: lighten(
-  $oxd-primary-one-color,
-  30%
-) !default;
-$oxd-primary-one-darken-5-color: darken($oxd-primary-one-color, 5%) !default;
-$oxd-interface-gray-lighten-5-color: lighten(
-  $oxd-interface-gray-darken-1-color,
-  5%
-) !default;
-$oxd-interface-gray-darken-5-color: darken(
-  $oxd-interface-gray-darken-1-color,
-  5%
-) !default;
-$oxd-secondary-four-lighten-5-color: lighten(
-  $oxd-secondary-four-color,
-  5%
-) !default;
-$oxd-secondary-four-darken-5-color: darken(
-  $oxd-secondary-four-color,
-  5%
-) !default;
-$oxd-feedback-info-lighten-5-color: lighten(
-  $oxd-feedback-info-color,
-  5%
-) !default;
-$oxd-feedback-info-darken-5-color: darken(
-  $oxd-feedback-info-color,
-  5%
-) !default;
-$oxd-feedback-danger-lighten-5-color: lighten(
-  $oxd-feedback-danger-color,
-  5%
-) !default;
-$oxd-feedback-danger-darken-5-color: darken(
-  $oxd-feedback-danger-color,
-  5%
-) !default;
-$oxd-feedback-warn-lighten-5-color: lighten(
-  $oxd-feedback-warn-color,
-  5%
-) !default;
-$oxd-feedback-warn-darken-5-color: darken(
-  $oxd-feedback-warn-color,
-  5%
-) !default;
-$oxd-feedback-success-lighten-5-color: lighten(
-  $oxd-feedback-success-color,
-  5%
-) !default;
-$oxd-feedback-success-darken-5-color: darken(
-  $oxd-feedback-success-color,
-  5%
-) !default;
-
 /* OXD Font Color */
 $oxd-primary-font-color: $oxd-white-color !default;
 $oxd-secondary-font-color: $oxd-white-color !default;
