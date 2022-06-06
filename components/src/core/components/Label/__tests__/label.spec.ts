@@ -15,4 +15,18 @@ describe('Label.vue', () => {
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
+
+  it('should contains the help text specified', () => {
+    const wrapper = mount(Label, {
+      props: {label: 'Label', style: {color: 'red'}, labelHelpText: '(help text)'},
+    });
+    expect(wrapper.find('.oxd-label-help-text').text()).toContain(
+      '(help text)'
+    );
+
+  });
+
+  
 });
+
+

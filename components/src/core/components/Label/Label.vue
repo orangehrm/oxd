@@ -2,6 +2,9 @@
   <label :class="classes" :for="id" :style="style">
     {{ label }}
   </label>
+  <label v-if="labelHelpText" :class="'oxd-label-help-text'">
+    {{labelHelpText}}
+  </label>
 </template>
 
 <script>
@@ -12,6 +15,9 @@ export default {
     label: {
       type: String,
       required: true,
+    },
+    labelHelpText:{
+      type: String
     },
     style: {
       type: Object,
