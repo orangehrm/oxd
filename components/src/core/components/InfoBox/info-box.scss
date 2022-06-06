@@ -1,0 +1,266 @@
+@import '../../../styles';
+@import 'variables';
+@import './../Input/variables';
+
+$dropdown-button-size: 24px;
+
+.oxd-select-wrapper {
+  @include oxd-input-control-size;
+  position: relative;
+  &:focus {
+    outline: none;
+  }
+  & > *:focus {
+    outline: none;
+  }
+  .oxd-select-dropdown-trigger {
+    min-width: $dropdown-button-size;
+    min-height: $dropdown-button-size;
+    &.dropdown-minimized {
+      margin-left: 0.5rem;
+    }
+    :deep(.oxd-svg-icon) {
+      margin-right: 0;
+    }
+  }
+}
+
+.oxd-select-fill-container {
+  box-sizing: border-box;
+  position: relative;
+  border: none;
+  background: rgba(100, 114, 140, 7%);
+  width: 100%;
+  padding: 10px;
+  border-radius: 0.85rem;
+
+  &--active {
+    border: $oxd-input-border--active;
+  }
+
+  &--focus {
+    border: $oxd-input-border--focus;
+    box-shadow: $oxd-input-box-shadow--focus;
+    outline: 0;
+  }
+
+  &--error {
+    border: $oxd-input-border--error;
+    box-shadow: $oxd-input-box-shadow--error;
+  }
+
+  &--disabled,
+  &--readonly {
+    cursor: unset;
+    background: $oxd-dropdown-dropdown-background--disabled;
+  }
+
+  .oxd-select-fill-title-row {
+    &.--mb {
+      margin-bottom: 0.25rem;
+    }
+  }
+  .oxd-select-fill-subtitle-wrapper {
+    width: 100%;
+    padding-right: 5px;
+    .oxd-select-fill-subtitle {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+  .oxd-select-fill {
+    &-title,
+    &-subtitle {
+      font-family: "Nunito", sans-serif;
+      color: #64728c;
+      font-size: 0.75rem;
+    }
+    &-title {
+      font-weight: 800;
+    }
+    &-subtitle {
+      font-weight: 600;
+    }
+  }
+}
+
+.oxd-select-dropdown {
+  position: absolute;
+  width: inherit;
+  box-sizing: border-box;
+  color: $oxd-dropdown-dropdown-color;
+  z-index: $oxd-dropdown-dropdown-z-index;
+  border: $oxd-dropdown-dropdown-border;
+  padding: $oxd-dropdown-dropdown-padding;
+  box-shadow: $oxd-dropdown-dropdown-box-shadow;
+  border-radius: $oxd-dropdown-dropdown-border-radius;
+  background-color: $oxd-dropdown-dropdown-background;
+
+  &.--positon-top {
+    bottom: 100%;
+    margin-bottom: $oxd-dropdown-dropdown-margin;
+  }
+
+  &.--positon-right {
+    left: 100%;
+    margin-left: $oxd-dropdown-dropdown-margin;
+  }
+
+  &.--positon-left {
+    right: 100%;
+    margin-right: $oxd-dropdown-dropdown-margin;
+  }
+
+  &.--positon-bottom {
+    margin-top: $oxd-dropdown-dropdown-margin;
+  }
+
+  .oxd-select-dropdown-inner {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: $oxd-dropdown-dropdown-inner-padding;
+    max-height: $oxd-dropdown-dropdown-max-height;
+    @include oxd-scrollbar();
+  }
+
+  &.--with-empty-selector .oxd-select-dropdown-inner {
+    max-height: $oxd-dropdown-dropdown-with-empty-selector-max-height;
+  }
+}
+
+.oxd-select-option {
+  border: 0;
+  display: flex;
+  align-items: center;
+  text-align: inherit;
+  cursor: pointer;
+  color: $oxd-dropdown-option-color;
+  font-size: $oxd-dropdown-option-font-size;
+  font-family: $oxd-dropdown-option-font-family;
+  font-weight: $oxd-dropdown-option-font-weight;
+  padding: $oxd-dropdown-option-padding;
+  margin: $oxd-dropdown-option-margin;
+  border-bottom: $oxd-dropdown-option-border-bottom;
+  background-color: $oxd-dropdown-option-background;
+  min-height: $oxd-dropdown-option-min-height;
+
+  span {
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &:last-child {
+    border-bottom: unset;
+  }
+  &:hover,
+  &.--focused {
+    border-radius: $oxd-dropdown-option-border-radius;
+    background-color: $oxd-dropdown-option-background--focused;
+  }
+  &.--disabled {
+    border-radius: $oxd-dropdown-option-border-radius;
+    color: $oxd-dropdown-option-color--disabled;
+    cursor: unset;
+    &:hover,
+    &.--focused {
+      background-color: transparent;
+    }
+  }
+  &.--selected {
+    border-radius: $oxd-dropdown-option-border-radius;
+    background-color: $oxd-dropdown-option-background--focused;
+    cursor: unset;
+  }
+  @for $i from 1 through 20 {
+    $value: $i * 0.5;
+    &.--indent-#{$i} {
+      padding-left: #{$value}rem;
+    }
+  }
+}
+.no-label {
+  min-width: initial;
+  justify-content: center !important;
+  ::v-deep(.oxd-button-label-wrapper) {
+    display: none;
+  }
+  ::v-deep(.oxd-icon.bi-chevron-down) {
+    display: none !important;
+  }
+  ::v-deep(.oxd-icon.bi-chevron-up) {
+    display: none !important;
+  }
+}
+.dropdown-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  border-radius: 0.85rem;
+  &.button-double-line {
+    padding: 0.5rem 0.75rem 0.5rem 1rem;
+    cursor: default !important;
+    :deep(.oxd-button-label-wrapper) {
+      overflow: initial;
+      white-space: initial;
+      text-overflow: initial;
+      width: 100%;
+      font-weight: 800;
+      .label-double-line-wrapper.label-double-line .label {
+        overflow: initial;
+        text-overflow: initial;
+        white-space: initial;
+        word-break: break-word;
+        text-align: left;
+        padding-right: 5px;
+      }
+    }
+  }
+}
+.oxd-icon {
+  &.oxd-button-icon-right {
+    margin-left: 0.5rem;
+  }
+}
+.mini-icon-left {
+  margin-right: 0.5rem;
+  color: $oxd-select-input-button-color--secondary-pressed;
+}
+.oxd-select-info-button-container {
+  min-width: $dropdown-button-size;
+  .oxd-select-info-button {
+    margin-right: 0 !important;
+    cursor: pointer;
+    :deep(path) {
+      fill: $oxd-select-input-button-color--secondary-pressed;
+    }
+  }
+}
+.label-double-line-wrapper {
+  vertical-align: middle;
+  display: inline-grid;
+  &.label-double-line {
+    width: 100%;
+    .label-small {
+      margin-bottom: 0.25rem;
+      font-size: 0.625rem;
+      line-height: 1;
+      font-weight: 600;
+    }
+    .label {
+      line-height: 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 800;
+      max-width: calc(100% - 32px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: inline-block;
+    }
+  }
+}
