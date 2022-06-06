@@ -41,9 +41,11 @@
       }
       &:hover,
       &:focus,
-      &:focus-visible,
-      &.--selected {
+      &:focus-visible {
         background-color: $oxd-dropdown-item-hover-color;
+      }
+      &.--selected {
+        background-color: $oxd-dropdown-item-selected-color;
       }
       &:not(:first-child) {
         margin-top: 3px;

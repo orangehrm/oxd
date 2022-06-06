@@ -134,9 +134,11 @@
       border-radius: $oxd-calendar-controller-item-radius;
       width: auto;
       &:hover,
-      &:focus-visible,
-      &.--selected {
+      &:focus-visible {
         background-color: $oxd-calendar-controller-item-background-color;
+      }
+      &.--selected {
+        background-color: $oxd-calendar-controller-item-background-color-selected;
       }
       :deep(.oxd-text--p) {
         white-space: nowrap;
