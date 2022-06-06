@@ -1,23 +1,23 @@
-import {shallowMount} from '@vue/test-utils';
+import {mount, shallowMount} from '@vue/test-utils';
 import Tabs from '@orangehrm/oxd/core/components/Tabs/Tabs.vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
 describe('Tabs.vue', () => {
-    it('Renders two tabs along with icons', () => {
-        const wrapper = shallowMount(Tabs, {
+    it('Renders two tabs along with icons', async () => {
+        const wrapper = mount(Tabs, {
             props: {
                 tabs : [ { id: "tab1", title: "Details", icon : 'oxd-posts' }, { id: "tab2", title: "Resume", icon : 'oxd-profile' }]
             },
             slots: {
                 tab1: '<div> This is the content of tab 1</div>',
-                tab2: '<div>This is the content of tab 2</div>'
+                tab2: '<div> This is the content of tab 2</div>'
             }
         });
-        wrapper.vm.$nextTick();
+        await wrapper.vm.$nextTick();
+
         expect(wrapper.html()).toMatchSnapshot();
         const icon = wrapper.findComponent(Icon);
         expect(icon.find('.tab-icon')).toBeTruthy();
-        // console.log("Selected Item----------",wrapper.vm.currentTabId);
     });
 
     it('Renders two tabs without icons', () => {
@@ -78,8 +78,6 @@ describe('Tabs.vue', () => {
                     title: "Resume"
                 }]
             );
-            // expect(wrapper.find('.tab-content')).toContain("<div>This is the content of tab 2</div>");
-            //wrapper html>check the new element
         });
 
         it('Hit Enter when focusing on the 2nd tab on the first tab', () => {
