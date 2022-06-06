@@ -160,17 +160,25 @@
       &-selected {
         display: flex;
         align-items: center;
+        i.oxd-icon-button__icon {
+          &:hover {
+            color: $oxd-interface-gray-darken-1-color;
+          }
+        }
+      }
+      &:hover {
+        background-color: $oxd-calendar-date-hover-background-color;
       }
     }
     &-month {
-      flex-basis: 70%;
+      flex-basis: 60%;
       padding-right: calc(#{$oxd-calendar-controller-padding}/ 2);
       border-top-left-radius: 2.375rem;
       border-bottom-left-radius: 2.375rem;
     }
 
     &-year {
-      flex-basis: 30%;
+      flex-basis: 40%;
       padding-left: calc(#{$oxd-calendar-controller-padding}/ 2);
       border-top-right-radius: 2.375rem;
       border-bottom-right-radius: 2.375rem;
