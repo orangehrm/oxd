@@ -64,6 +64,7 @@ type FieldSchema = CommonSchemaProperties &
   ComponentSchemaProperties<FieldType> & {
     name: string;
     label: string;
+    labelHelpText? : string;
     value?: string | number | object | unknown;
     placeholder?: string;
     visible?: boolean;
