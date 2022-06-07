@@ -14,11 +14,11 @@
       @click.prevent=""
       v-click-outside="clickOutside"
     >
-      <div class="d-flex flex-wrap w-100">
+      <div class="d-flex flex-wrap w-100 h-100">
         <div
           class="
             d-flex
-            align-center
+            align-start
             justify-start
             w-100
             oxd-select-fill-title-row
@@ -172,6 +172,13 @@ export default defineComponent({
     infoLabel: {
       type: String,
     },
+    height: {
+      type: Number,
+    },
+    subtitleLineHeight: {
+      type: Number,
+      default: () => 16,
+    },
   },
 
   data() {
@@ -223,9 +230,11 @@ export default defineComponent({
     },
     infoBoxContainerStyles(): {
       'background-color': string | null;
+      height?: string | undefined;
     } {
       return {
         'background-color': hexToRgb(this.modelValue?.color, '7%'),
+        height: this.height ? `${this.height}px` : undefined,
       };
     },
     infoBoxTriggerButtonStyles(): {
@@ -252,8 +261,7 @@ export default defineComponent({
     subtitleWrapperStyles(): {
       height: string;
     } {
-      const lineHeight = 16;
-      const subtitleWrapperHeight = this.rows * lineHeight;
+      const subtitleWrapperHeight = this.rows * this.subtitleLineHeight;
       return {
         height: `${subtitleWrapperHeight}px`,
       };

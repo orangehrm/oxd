@@ -39,6 +39,7 @@ const options = [
 const infoLabel = 'Current Stage of Recruitment';
 const rows = 3;
 const dropdownPosition = BOTTOM;
+const height = 90;
 
 describe('InfoBox.vue', () => {
 
@@ -51,7 +52,7 @@ describe('InfoBox.vue', () => {
 
   it('should load options to Select', async () => {
     const wrapper = mount(InfoBox, {
-      props: {infoLabel, rows, options, dropdownPosition},
+      props: {infoLabel, rows, options, dropdownPosition, height},
     });
     wrapper.findComponent(ButtonIcon).trigger('click');
     await wrapper.vm.$nextTick();
@@ -61,7 +62,7 @@ describe('InfoBox.vue', () => {
 
   it('should select one option', async () => {
     const wrapper = mount(InfoBox, {
-      props: {infoLabel, rows, options, dropdownPosition},
+      props: {infoLabel, rows, options, dropdownPosition, height},
     });
     wrapper.findComponent(ButtonIcon).trigger('click');
     await wrapper.vm.$nextTick();
@@ -86,6 +87,7 @@ describe('InfoBox.vue', () => {
         options,
         dropdownPosition,
         disabled: true,
+        height,
       },
     });
     wrapper.findComponent(ButtonIcon).trigger('click');
@@ -102,6 +104,7 @@ describe('InfoBox.vue', () => {
         rows,
         options,
         dropdownPosition,
+        height,
       },
     });
     wrapper.vm.clickOutside();
@@ -113,18 +116,19 @@ describe('InfoBox.vue', () => {
 
   it('should select one option with color attribute and return converted rgba color', async () => {
     const wrapper: any = mount(InfoBox, {
-      props: {infoLabel, rows, options, dropdownPosition},
+      props: {infoLabel, rows, options, dropdownPosition, height},
     });
     wrapper.setProps({
       modelValue: options[4]
     })
     await wrapper.vm.$nextTick();
-    expect(wrapper.vm.infoBoxContainerStyles).toStrictEqual({'background-color': 'rgba(104, 166, 29, 7%)'});
+    console.log(wrapper.vm.infoBoxContainerStyles);
+    expect(wrapper.vm.infoBoxContainerStyles).toStrictEqual({'background-color': 'rgba(104, 166, 29, 7%)', height: '90px'});
   });
 
   it('should select one option with color attribute and return converted rgba color', async () => {
     const wrapper: any = mount(InfoBox, {
-      props: {infoLabel, rows, options, dropdownPosition},
+      props: {infoLabel, rows, options, dropdownPosition, height},
     });
     wrapper.setProps({
       modelValue: '2022-05-03'
@@ -135,7 +139,7 @@ describe('InfoBox.vue', () => {
 
   it('should set empty array as default when didnot pass options', async () => {
     const wrapper: any = shallowMount(InfoBox, {
-      props: {infoLabel, rows, dropdownPosition},
+      props: {infoLabel, rows, dropdownPosition, height},
     });
     wrapper.findComponent(ButtonIcon).trigger('click');
     await wrapper.vm.$nextTick();
@@ -151,6 +155,7 @@ describe('InfoBox.vue', () => {
         options,
         dropdownPosition,
         readonly: true,
+        height,
       },
     });
     wrapper.findComponent(ButtonIcon).trigger('click');
@@ -162,7 +167,7 @@ describe('InfoBox.vue', () => {
 
   it('Selected option should marked as selected true', async () => {
     const wrapper = mount(InfoBox, {
-      props: {infoLabel, rows, options, dropdownPosition},
+      props: {infoLabel, rows, options, dropdownPosition, height},
     });
     wrapper.setProps({
       modelValue: options[1]

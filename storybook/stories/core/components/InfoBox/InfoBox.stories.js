@@ -103,6 +103,20 @@ export default {
         type: {summary: 'Should be passed as an array object'},
       },
     },
+    height: {
+      control: {type: 'number'},
+      defaultValue: 90,
+      table: {
+        type: {summary: 'Set a height for the wrapper'},
+      },
+    },
+    subtitleLineHeight: {
+      control: {type: 'number'},
+      defaultValue: 32,
+      table: {
+        type: {summary: 'Set a line height and default will be 16'},
+      },
+    }
   },
 };
 
@@ -197,7 +211,7 @@ const sample = {
     {
       type: 'grid',
       props: {
-        cols: 2,
+        cols: 4,
       },
       children: {
         default: [
@@ -209,6 +223,7 @@ const sample = {
             props: {
               infoLabel: 'Current Stage of Recruitment',
               options,
+              height: 106,
             }
           },
           {
@@ -219,6 +234,7 @@ const sample = {
               disabled: true,
               infoLabel: 'Current Stage of Recruitment',
               options,
+              height: 106,
             }
           },
           {
@@ -229,7 +245,19 @@ const sample = {
               readonly: true,
               infoLabel: 'Current Stage of Recruitment',
               options,
+              height: 106,
             }
+          },
+          {
+            name: 'currentstagepreselectedwithlongcaption',
+            label: 'Pre-Selected with Long Caption',
+            type: 'infobox',
+            props: {
+              infoLabel: 'Current Stage of Recruitment with a Pre-Selected Value and a Much Longer Caption',
+              options,
+              height: 106,
+            },
+            value: options[6]
           },
         ],
       },
@@ -355,6 +383,8 @@ Default.parameters = {
         ]"
         :rows="3"
         :infoLabel="'Current Stage of Recruitment'"
+        :height="90"
+        :subtitleLineHeight="24"
       />`,
     },
   },
