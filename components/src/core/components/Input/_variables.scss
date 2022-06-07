@@ -57,14 +57,11 @@ $oxd-switch-radius: calc(#{$oxd-switch-height} / 2);
 $oxd-switch-selector-height: calc(#{$oxd-switch-height} - 2px);
 $oxd-switch-selector-width: calc(#{$oxd-switch-height} - 2px);
 $oxd-switch-selector-radius: calc(#{$oxd-switch-selector-height} / 2);
-$oxd-switch-selector-color: $oxd-white-color !default;
+$oxd-switch-selector-color: $oxd-primary-font-color !default;
 $oxd-switch-label-margin: 0.5em;
 $oxd-switch-off-background-color: $oxd-interface-gray-lighten-2-color !default;
 $oxd-switch-on-background-color: $oxd-primary-one-color !default;
-$oxd-switch-on-disabled-background-color: rgba(
-  $oxd-primary-one-color,
-  0.5
-) !default;
+$oxd-switch-on-disabled-background-color: $oxd-primary-one-alpha-50-color !default;
 $oxd-switch-off-disabled-background-color: $oxd-interface-gray-lighten-2-color !default;
 $oxd-switch-disabled-background-color: $oxd-interface-gray-lighten-2-color !default;
 
@@ -74,10 +71,7 @@ $oxd-radio-height: 1rem !default;
 $oxd-radio-width: 1rem !default;
 $oxd-radio-label-margin: 0.5em !default;
 $oxd-radio-checked-color: $oxd-primary-one-color !default;
-$oxd-radio-checked-disabled-color: lighten(
-  $oxd-radio-checked-color,
-  30%
-) !default;
+$oxd-radio-checked-disabled-color: $oxd-primary-one-lighten-30-color !default;
 
 $oxd-dropdown-text-padding: 0 0.25rem 0 0.5rem !default;
 $oxd-dropdown-animation-time: 300ms !default;
@@ -137,7 +131,7 @@ $oxd-time-picker-period-vertical-padding: 8px !default;
 $oxd-time-picker-period-font-size: 14px !default;
 $oxd-time-picker-period-font-weight: 600 !default;
 $oxd-time-picker-period-font-family: $oxd-font-family !default;
-$oxd-time-picker-period-font-color: $oxd-white-color !default;
+$oxd-time-picker-period-font-color: $oxd-primary-font-color !default;
 $oxd-time-picker-period-border-radius: 0.5rem !default;
 $oxd-time-picker-dropdown-margin: 1.5rem 1rem !default;
 $oxd-time-picker-dropdown-width: 250px !default;

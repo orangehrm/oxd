@@ -26,22 +26,20 @@
   padding: 1.5rem 1rem;
   z-index: 1;
   align-items: center;
-  &-icon {
-    vertical-align: middle;
+  &-logo {
+    display: none;
     border-style: none;
     & img {
-      width: 50px;
+      height: $oxd-brand-logo-height;
+      width: $oxd-brand-logo-width;
+    }
+    @include oxd-respond-to('md') {
+      display: block;
     }
   }
-  &-text {
-    padding-left: 5px;
-    display: inline-flex;
-    &-main {
-      color: $oxd-brand-color-black;
-    }
-    &-sub {
-      color: $oxd-brand-color-green;
-    }
+  &-banner {
+    height: $oxd-brand-banner-height;
+    width: $oxd-brand-banner-width;
     &.toggled {
       @include oxd-respond-to('md') {
         display: none;

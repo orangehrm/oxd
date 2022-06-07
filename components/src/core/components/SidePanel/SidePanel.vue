@@ -25,7 +25,8 @@
       <div class="oxd-sidepanel-header">
         <oxd-branding
           :toggle="toggle"
-          :image-src="brandImageSrc"
+          :logo-src="brandLogoSrc"
+          :banner-src="brandBannerSrc"
           :url="homeUrl"
         />
         <oxd-icon
@@ -62,7 +63,11 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    brandImageSrc: {
+    brandLogoSrc: {
+      type: String,
+      default: '',
+    },
+    brandBannerSrc: {
       type: String,
       default: '',
     },

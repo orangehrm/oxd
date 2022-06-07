@@ -26,7 +26,8 @@
         @collapse="onCollapse"
         :toggle="collapse"
         :menu-items="sidepanelMenuItems"
-        :brand-image-src="brandImageSrc"
+        :brand-logo-src="brandLogoSrc"
+        :brand-banner-src="brandBannerSrc"
         :home-url="homeUrl"
       >
       </oxd-side-panel>
@@ -79,7 +80,11 @@ export default defineComponent({
       type: Object as PropType<TopMenuItem[]>,
       required: true,
     },
-    brandImageSrc: {
+    brandLogoSrc: {
+      type: String,
+      required: true,
+    },
+    brandBannerSrc: {
       type: String,
       required: true,
     },
