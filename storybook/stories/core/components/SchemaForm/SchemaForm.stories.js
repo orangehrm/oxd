@@ -310,12 +310,29 @@ Advance.args = {
               type: 'multiselect',
               value: [],
               props: {
-                autofocus: true,
                 options: [
                   {id: 1, label: 'HR'},
                   {id: 2, label: 'Admin'},
                 ],
               },
+            },
+            {
+              name: 'autofocusUser',
+              label: 'Search Users',
+              type: 'autocomplete',
+              value: [],
+              props: {
+                placeholder: 'test',
+                autofocus: true,
+                createOptions: function (serachParam) {
+                  const filter = new RegExp(serachParam, 'i');
+                  return [
+                    {id: 1, label: 'HR'},
+                    {id: 2, label: 'Admin'},
+                  ].filter((item) => item.label.match(filter));
+                },
+              },
+              validators: new Map([['required', required]]),
             },
             {
               name: 'date',

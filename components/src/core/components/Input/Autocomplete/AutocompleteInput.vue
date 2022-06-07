@@ -186,12 +186,10 @@ export default defineComponent({
       );
       const filter = new RegExp(searchValue, 'ig');
       const sanitizeHtml = useSanitize().sanitizeHtml;
-
       return this.computedOptions.map((option: Option) => {
         let sanitizedOption = '';
-        const matchedSearchValues = [...option.label.matchAll(filter)].map(
-          a => a[0],
-        );
+        const matchedString = option.label.matchAll(filter) ?? [];
+        const matchedSearchValues = Array.from(matchedString).map(a => a[0]);
         const textParts = option.label.split(filter);
         for (let i = 0; i < textParts.length; i++) {
           sanitizedOption += sanitizeHtml(textParts[i]);

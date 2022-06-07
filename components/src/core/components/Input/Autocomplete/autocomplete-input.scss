@@ -89,6 +89,11 @@
     font-size: inherit;
     vertical-align: middle;
     cursor: pointer;
+    font-size: 14px;
+    min-width: auto;
+    min-height: auto;
+    background-color: inherit;
+    padding: 0 2px;
   }
 }
 
@@ -191,6 +196,13 @@
       margin-left: $oxd-dropdown-chip-margin;
       width: $oxd-file-button-font-size;
       height: $oxd-file-button-font-size;
+      font-size: 14px;
+      min-width: auto;
+      min-height: auto;
+      padding: 0;
+      :deep(.oxd-icon) {
+        color: $oxd-dropdown-chip-clear-font-color;
+      }
       &:hover {
         background-color: $oxd-interface-gray-darken-1-color;
       }
@@ -198,6 +210,9 @@
     & .--disabled,
     & .--readonly {
       cursor: unset;
+    }
+    &:focus-within {
+      border: $oxd-input-border--focus;
     }
   }
   &:empty {

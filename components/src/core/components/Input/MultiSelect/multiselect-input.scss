@@ -43,7 +43,7 @@
       cursor: unset;
     }
     &:focus-within {
-      border: $oxd-dropdown-dropdown-border;
+      border: $oxd-input-border--focus;
     }
   }
 }
