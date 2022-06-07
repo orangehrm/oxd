@@ -56,9 +56,10 @@ describe('Tabs.vue', () => {
                 title: "Details", 
                 icon : 'oxd-posts' 
             }]
-        );});
+        );
+    });
    
-        it('Click on the second tab', () => {
+    it('Click on the second tab', () => {
             const wrapper = shallowMount(Tabs, {
                 props: {
                     tabs : [ { id: "tab1", title: "Details" }, { id: "tab2", title: "Resume"}]
@@ -78,9 +79,9 @@ describe('Tabs.vue', () => {
                     title: "Resume"
                 }]
             );
-        });
+    });
 
-        it('Hit Enter when focusing on the 2nd tab on the first tab', () => {
+    it('Hit Enter when focusing on the 2nd tab on the first tab', () => {
             const wrapper = shallowMount(Tabs, {
                 props: {
                     tabs : [ { id: "tab1", title: "Details" }, { id: "tab2", title: "Resume"}]
@@ -95,5 +96,5 @@ describe('Tabs.vue', () => {
                     title: "Resume"
                 }]
             );
-        });
+    });
 });

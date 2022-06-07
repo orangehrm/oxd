@@ -5,9 +5,9 @@ export default {
   component: Tabs,
   argTypes: {
     tabs: {
-      control: {type: 'Array'},
+      control: {type: 'array'},
       table: {
-        type: {summary: 'there are three attributes, "id", "title" and the "icon". Icon is not mandatory. i.e [{ id: "tab1", title: "Details", icon : "oxd-posts" }, { id: "tab2", title: "Resume", icon : "oxd-profile" }]'}
+        type: {summary: 'There are three attributes, "id", "title" and the "icon" for an object. Icon is not mandatory.'}
       }
     }
   }
