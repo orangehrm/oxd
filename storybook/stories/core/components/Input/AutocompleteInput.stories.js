@@ -33,6 +33,13 @@ export default {
         type: {summary: 'Set custom style to the select'},
       },
     },
+    'dropdown:opened': {
+      control: {type: 'array'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'emit event when dropdown opened'},
+      },
+    },
     'dropdown:closed': {
       control: {type: 'array'},
       defaultValue: [],
@@ -79,14 +86,14 @@ export default {
       control: {type: 'object'},
       defaultValue: [],
       table: {
-        type: {summary: 'Attend a specific text to the start of the select'},
+        type: {summary: 'A slot which  renders before the selected option'},
       },
     },
     afterSelected: {
       control: {type: 'object'},
       defaultValue: [],
       table: {
-        type: {summary: 'Attend a specific text to the end of the select'},
+        type: {summary: 'A slot which  renders after the selected option'},
       },
     },
     option: {
@@ -246,10 +253,10 @@ LoadSync.parameters = {
     source: {
       code:
         '<oxd-auto-complete \n :createOptions="syncFunction" />\n' +
-        ' const syncFunction = function (serachParam) {\n' +
-        '        const filter = new RegExp(serachParam, "i");\n' +
-        '       return options.filter((item) => item.label.match(filter));\n' +
-        '     }',
+        '         const syncFunction = function (serachParam) {\n' +
+        '           const filter = new RegExp(serachParam, "i");\n' +
+        '           return options.filter((item) => item.label.match(filter));\n' +
+        '         }',
     },
   },
 };
@@ -264,13 +271,13 @@ LoadAsync.parameters = {
     source: {
       code:
         '<oxd-auto-complete \n :createOptions="asyncFunction" />\n' +
-        ' const syncFunction = function (serachParam) {\n' +
-        '        const filter = new RegExp(serachParam, "i");\n' +
+        '       const syncFunction = function (serachParam) {\n' +
+        '       const filter = new RegExp(serachParam, "i");\n' +
         '       setTimeout(() => {\n' +
         '       resolve(options.filter((item) => item.label.match(filter)));\n' +
-        ' }, 2500);\n' +
-        '});\n' +
-        '     }',
+        '       }, 2500);\n' +
+        '         });\n' +
+        '       }',
     },
   },
 };
@@ -284,23 +291,23 @@ LoadAPI.parameters = {
   docs: {
     source: {
       code:
-        '<oxd-auto-complete \n :createOptions="callAPI" \n/>' +
+        '<oxd-auto-complete \n :createOptions="callAPI" >\n/' +
         ' const callAPI = async function (serachParam) {\n' +
         '       if (serachParam.trim()) {\n' +
         '        fetch(`https://api.github.com/search/users?q=${serachParam}`)\n' +
         '       .then((response) => response.json())\n' +
-        ' .then((json) => {\n' +
-        'const {items} = json;\n' +
-        ' resolve(\n' +
-        ' items.map((item) => {\n' +
-        ' label: item.login,\n' +
-        ' }),\n' +
-        ' });\n' +
-        '} else {\n' +
-        'resolve([]);\n' +
-        '} \n' +
-        ' });\n' +
-        '     }',
+        '       .then((json) => {\n' +
+        '         const {items} = json;\n' +
+        '         resolve(\n' +
+        '         items.map((item) => {\n' +
+        '         label: item.login,\n' +
+        '         }),\n' +
+        '         });\n' +
+        '         } else {\n' +
+        '         resolve([]);\n' +
+        '         } \n' +
+        '         });\n' +
+        '         }',
     },
   },
 };
@@ -316,10 +323,10 @@ MultiSelect.parameters = {
     source: {
       code:
         '<oxd-auto-complete \n  :multiple="true" \n :createOptions="syncFunction" />\n' +
-        ' const syncFunction = function (serachParam) {\n' +
+        '        const syncFunction = function (serachParam) {\n' +
         '        const filter = new RegExp(serachParam, "i");\n' +
-        '       return options.filter((item) => item.label.match(filter));\n' +
-        '     }',
+        '         return options.filter((item) => item.label.match(filter));\n' +
+        '         }',
     },
   },
 };

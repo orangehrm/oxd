@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
+import Icon from '@orangehrm/oxd/core/components/Button/Icon.vue';
 
 export default defineComponent({
   name: 'oxd-autocomplete-text-input',
@@ -98,6 +98,7 @@ export default defineComponent({
     },
     onClear() {
       this.$emit('clear');
+      this.focused = true;
     },
   },
 });

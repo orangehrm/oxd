@@ -23,7 +23,7 @@ export default {
 
 export const Default = () => QuickSearchWidget;
 
-QuickSearchInput.parameters = {
+Default.parameters = {
   docs: {
     source: {
       code:
