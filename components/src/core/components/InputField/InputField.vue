@@ -1,6 +1,5 @@
 <template>
   <oxd-input-group
-    :labelHelpText="labelHelpText"
     :label="label"
     :labelIcon="labelIcon"
     :id="id"
@@ -77,9 +76,6 @@ export default defineComponent({
     modelValue: {},
     label: {
       type: String,
-    },
-    labelHelpText:{
-      type : String
     },
     labelIcon: {
       type: String,

@@ -2,7 +2,7 @@
   <label :class="classes" :for="id" :style="style">
     {{ label }}
   </label>
-  <label v-if="labelHelpText" :class="'oxd-label-help-text'" :style="style">
+  <label v-if="labelHelpText" :class="'oxd-label-help-text'">
     {{labelHelpText}}
   </label>
 </template>

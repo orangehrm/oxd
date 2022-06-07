@@ -156,7 +156,6 @@ export default defineComponent({
                 ),
                 key: field.key,
                 label: $t(field.label),
-                labelHelpText : $t(field.labelHelpText),
                 ...(field.props ?? {}),
                 ...(field.listeners ?? {}),
                 rules: Array.from(field.validators?.values() ?? []),
