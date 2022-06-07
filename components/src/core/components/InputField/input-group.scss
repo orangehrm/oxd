@@ -26,3 +26,11 @@
     margin-right: $oxd-input-group-label-icon-margin-right;
   }
 }
+.oxd-label-help-text{
+  font-family: $oxd-label-help-text-font-family;
+  font-size: $oxd-label-help-text-font-size;
+  font-weight:$oxd-label-help-text-font-weight;
+  color: $oxd-label-help-text-color;
+  margin-left: 2px;
+  overflow-wrap: break-word;
+}

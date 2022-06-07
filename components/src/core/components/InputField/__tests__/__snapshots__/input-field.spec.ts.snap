@@ -4,6 +4,9 @@ exports[`InputField.vue renders OXD InputField 1`] = `
 <div class="oxd-input-group oxd-input-field-bottom-space">
   <div class="oxd-input-group__label-wrapper">
     <!--v-if-->
+    <div style="min-width: max-content;">
+      <!--v-if-->
+    </div>
     <!--v-if-->
   </div>
   <div class=""><input class="oxd-input oxd-input--active">
@@ -17,6 +20,9 @@ exports[`InputField.vue renders OXD InputField type \`file\` 1`] = `
 <div class="oxd-input-group oxd-input-field-bottom-space">
   <div class="oxd-input-group__label-wrapper">
     <!--v-if-->
+    <div style="min-width: max-content;">
+      <!--v-if-->
+    </div>
     <!--v-if-->
   </div>
   <div class=""><input type="file" class="oxd-file-input">
@@ -34,6 +40,9 @@ exports[`InputField.vue renders OXD InputField type \`file\` with button 1`] = `
 <div class="oxd-input-group oxd-input-field-bottom-space">
   <div class="oxd-input-group__label-wrapper">
     <!--v-if-->
+    <div style="min-width: max-content;">
+      <!--v-if-->
+    </div>
     <!--v-if-->
   </div>
   <div class=""><input type="file" class="oxd-file-input">
@@ -51,6 +60,9 @@ exports[`InputField.vue renders OXD InputField type \`input\` 1`] = `
 <div class="oxd-input-group oxd-input-field-bottom-space">
   <div class="oxd-input-group__label-wrapper">
     <!--v-if-->
+    <div style="min-width: max-content;">
+      <!--v-if-->
+    </div>
     <!--v-if-->
   </div>
   <div class=""><input class="oxd-input oxd-input--active">
@@ -64,6 +76,9 @@ exports[`InputField.vue renders OXD InputField type \`input\` with Hint 1`] = `
 <div class="oxd-input-group oxd-input-field-bottom-space">
   <div class="oxd-input-group__label-wrapper">
     <!--v-if-->
+    <div style="min-width: max-content;">
+      <!--v-if-->
+    </div>
     <!--v-if-->
   </div>
   <div class=""><input class="oxd-input oxd-input--active">
@@ -77,6 +92,9 @@ exports[`InputField.vue renders OXD InputField type \`textarea\` 1`] = `
 <div class="oxd-input-group oxd-input-field-bottom-space">
   <div class="oxd-input-group__label-wrapper">
     <!--v-if-->
+    <div style="min-width: max-content;">
+      <!--v-if-->
+    </div>
     <!--v-if-->
   </div>
   <div class=""><textarea class="oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical"></textarea>
