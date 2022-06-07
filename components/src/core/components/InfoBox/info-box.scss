@@ -72,16 +72,16 @@ $dropdown-button-size: 24px;
   .oxd-select-fill {
     &-title,
     &-subtitle {
-      font-family: "Nunito", sans-serif;
-      color: #64728c;
-      font-size: 0.75rem;
+      font-family: $oxd-info-box-font-family;
+      color: $oxd-info-box-title-color;
+      font-size: $oxd-info-box-font-size;
+      font-weight: $oxd-info-box-font-weight;
     }
     &-title {
       text-align: left;
-      font-weight: 800;
     }
     &-subtitle {
-      font-weight: 600;
+      font-weight: $oxd-info-box-font-weight;
     }
   }
 }

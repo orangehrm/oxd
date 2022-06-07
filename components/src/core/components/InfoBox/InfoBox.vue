@@ -177,7 +177,7 @@ export default defineComponent({
     },
     subtitleLineHeight: {
       type: Number,
-      default: () => 16,
+      default: () => 22,
     },
   },
 
