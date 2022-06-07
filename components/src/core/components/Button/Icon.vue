@@ -21,17 +21,18 @@
 
 <template>
   <button
-    :disabled="disabled"
     v-if="withContainer"
-    type="button"
+    :disabled="disabled"
     :class="classes"
+    type="button"
     @click="onClick"
   >
-    <oxd-icon :class="{'--disabled': disabled}" :name="name" />
+    <oxd-icon :class="{'--disabled': disabled}" :name="name" :type="iconType" />
   </button>
   <oxd-icon
     v-else
     :name="name"
+    :type="iconType"
     :class="{'oxd-icon-button__icon': true, '--disabled': disabled}"
     @click="onClick"
   />
@@ -40,6 +41,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {ICON_TYPES, ButtonType} from './types';
+import {TYPE_BOOTSTRAP, TYPES} from '../Icon/types';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
@@ -67,6 +69,13 @@ export default defineComponent({
       default: null,
       validator: function(value: ButtonType) {
         return !value || ICON_TYPES.indexOf(value) !== -1;
+      },
+    },
+    iconType: {
+      type: String,
+      default: TYPE_BOOTSTRAP,
+      validator: (value: string) => {
+        return TYPES.indexOf(value) !== -1;
       },
     },
   },

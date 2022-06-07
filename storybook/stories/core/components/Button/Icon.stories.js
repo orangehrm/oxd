@@ -58,3 +58,10 @@ CustomIcon.args = {
   disabled: false,
   displayType: 'secondary',
 };
+
+export const SVGIcon = Template.bind({});
+SVGIcon.args = {
+  name: 'pim',
+  iconType: 'svg',
+  displayType: 'main',
+};
