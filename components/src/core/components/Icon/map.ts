@@ -32,3 +32,7 @@ export {default as search} from './svg/search-svg.vue';
 export {default as guide} from './svg/guide-svg.vue';
 export {default as thumbsup} from './svg/thumbsup-svg.vue';
 export {default as thumbsdown} from './svg/thumbsdown-svg.vue';
+export {default as facebookFill} from './svg/facebook-fill-svg.vue';
+export {default as twitterFill} from './svg/twitter-fill-svg.vue';
+export {default as linkedinFill} from './svg/linkedin-fill-svg.vue';
+export {default as youtubeFill} from './svg/youtube-fill-svg.vue';
