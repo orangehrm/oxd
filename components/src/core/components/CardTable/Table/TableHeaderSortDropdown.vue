@@ -99,7 +99,6 @@ export default defineComponent({
 
   methods: {
     toggleDropdown() {
-      debugger;
       if (!this.isActive) {
         this.openDropdown();
       } else {
