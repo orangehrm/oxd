@@ -8,3 +8,10 @@
   gap: $oxd-table-cell-action-gap;
   align-items: center;
 }
+
+.oxd-table-cell-actions.oxd-action-render-button-visibility-on-hover {
+  opacity: 0;
+  &:hover {
+    opacity: 1;
+  }
+}
