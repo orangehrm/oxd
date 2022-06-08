@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`InfoBox.vue renders OXD Select Input 1`] = `
-<div class="oxd-select-wrapper"><button class="oxd-select-fill-container oxd-select-fill-container--active">
+<div class="oxd-select-wrapper"><button class="oxd-select-fill-container">
     <div class="d-flex flex-wrap w-100 h-100">
       <div class="d-flex align-start justify-start w-100 oxd-select-fill-title-row --mb"><label class="oxd-select-fill-title">Current Stage of Recruitment</label></div>
       <div class="d-flex align-end justify-between oxd-select-fill-subtitle-row w-100">

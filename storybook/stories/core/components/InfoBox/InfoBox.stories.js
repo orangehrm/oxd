@@ -103,13 +103,6 @@ export default {
         type: {summary: 'Should be passed as an array object'},
       },
     },
-    height: {
-      control: {type: 'number'},
-      defaultValue: 114,
-      table: {
-        type: {summary: 'Set a height for the wrapper'},
-      },
-    },
     subtitleLineHeight: {
       control: {type: 'number'},
       defaultValue: 44,
@@ -223,7 +216,6 @@ const sample = {
             props: {
               infoLabel: 'Current Stage of Recruitment',
               options,
-              height: 114,
             }
           },
           {
@@ -234,7 +226,6 @@ const sample = {
               disabled: true,
               infoLabel: 'Current Stage of Recruitment',
               options,
-              height: 114,
             }
           },
           {
@@ -245,7 +236,6 @@ const sample = {
               readonly: true,
               infoLabel: 'Current Stage of Recruitment',
               options,
-              height: 114,
             }
           },
           {
@@ -255,9 +245,18 @@ const sample = {
             props: {
               infoLabel: 'With a Pre-Selected Value and a Long Caption',
               options,
-              height: 114,
             },
             value: options[6]
+          },
+          {
+            name: 'dateOfApplication',
+            label: 'Value as a String',
+            type: 'infobox',
+            props: {
+              infoLabel: 'Date of Application',
+              options,
+            },
+            value: '2022-05-03'
           },
         ],
       },
@@ -383,7 +382,6 @@ Default.parameters = {
         ]"
         :rows="3"
         :infoLabel="'Current Stage of Recruitment'"
-        :height="114"
         :subtitleLineHeight="24"
       />`,
     },

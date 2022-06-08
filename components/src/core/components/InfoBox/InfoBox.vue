@@ -5,6 +5,7 @@
       class="oxd-select-fill-container"
       :style="infoBoxContainerStyles"
       :class="classes"
+      @focus="onFocus"
       @blur="onBlur"
       @keyup.esc="onCloseDropdown"
       @keydown.enter.prevent="onSelectEnter"
@@ -52,7 +53,7 @@
             >
           </div>
           <div
-            v-if="!isModelValueString"
+            v-if="!(isModelValueString || disabled)"
             class="d-flex align-center justify-start"
           >
             <oxd-icon-button
@@ -61,7 +62,7 @@
               class="oxd-select-dropdown-trigger"
               :class="{'cursor-default': readonly}"
               :style="infoBoxTriggerButtonStyles"
-              :disabled="disabled"
+              :disabled="readonly"
               @click="onToggleDropdown"
             />
           </div>
@@ -172,9 +173,6 @@ export default defineComponent({
     infoLabel: {
       type: String,
     },
-    height: {
-      type: Number,
-    },
     subtitleLineHeight: {
       type: Number,
       default: () => 22,
@@ -230,11 +228,9 @@ export default defineComponent({
     },
     infoBoxContainerStyles(): {
       'background-color': string | null;
-      height?: string | undefined;
     } {
       return {
         'background-color': hexToRgb(this.modelValue?.color, '7%'),
-        height: this.height ? `${this.height}px` : undefined,
       };
     },
     infoBoxTriggerButtonStyles(): {
@@ -268,7 +264,6 @@ export default defineComponent({
     },
     classes(): object {
       return {
-        'oxd-select-fill-container--active': !this.focused,
         'oxd-select-fill-container--focus': this.focused,
         'oxd-select-fill-container--error': this.hasError,
         'oxd-select-fill-container--disabled': this.disabled,
@@ -278,6 +273,16 @@ export default defineComponent({
   },
 
   methods: {
+    onFocus($e: Event) {
+      if (this.disabled) {
+        $e.stopImmediatePropagation();
+      } else {
+        this.focused = true;
+      }
+    },
+    onBlur() {
+      this.focused = false;
+    },
     clickOutside() {
       this.dropdownOpen = false;
     },
