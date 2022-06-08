@@ -1,0 +1,169 @@
+import {config, mount} from '@vue/test-utils';
+import QuickSearchInput from '@orangehrm/oxd/core/components/Input/Autocomplete/QuickSearchInput.vue';
+import AutocompleteInput from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteInput.vue';
+import AutocompleteTextInput from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteTextInput.vue';
+import AutocompleteOption from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteOption.vue';
+
+config.global.mocks = {
+  $t: (text: string) => text,
+};
+
+const options = [
+  {
+    id: 1,
+    label: 'HR Admin',
+  },
+  {
+    id: 2,
+    label: 'ESS User',
+  },
+  {
+    id: 3,
+    label: 'Supervisor',
+  },
+];
+
+const disabledptions = [
+  {
+    id: 1,
+    label: 'HR Admin',
+    _disabled: true,
+  },
+  {
+    id: 2,
+    label: 'ESS User',
+  },
+  {
+    id: 3,
+    label: 'Supervisor',
+  },
+];
+
+const syncFunction = function() {
+  return options;
+};
+
+const syncDisabledOptionFunction = function() {
+  return disabledptions;
+};
+
+describe('QuickSearchInput.vue', () => {
+  it('renders OXD QuickSearchInput Input', () => {
+    const wrapper = mount(QuickSearchInput, {
+      props: {
+        createOptions: syncFunction,
+      },
+    });
+    expect(wrapper.html()).toMatchSnapshot();
+  });
+
+  it('on Focus it should add class "oxd-autocomplete-text--focus"', async () => {
+    const wrapper = mount(QuickSearchInput, {
+      props: {createOptions: syncFunction, readonly: false, disabled: false},
+    });
+    wrapper.find('[data-test="autocompleteSelect"]').trigger('focus');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find('.oxd-autocomplete-text-input--focus').exists()).toBe(
+      true,
+    );
+  });
+
+  it('on Blur it should add class "oxd-autocomplete-text--active"', async () => {
+    const wrapper = mount(QuickSearchInput, {
+      props: {createOptions: syncFunction, readonly: false, disabled: false},
+    });
+    wrapper.find('[data-test="autocompleteSelect"]').trigger('blur');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find('.oxd-autocomplete-text-input--active').exists()).toBe(
+      true,
+    );
+    expect(wrapper.emitted('dropdown:blur')).toBeTruthy();
+  });
+
+  it('on Clear  it will empty QuickSearchInput', async () => {
+    const wrapper = mount(QuickSearchInput, {
+      props: {
+        createOptions: syncFunction,
+        modelValue: {
+          id: 1,
+          label: 'HR Admin',
+        },
+      },
+    });
+    wrapper.find('[data-test="autocompleteSelectClearIcon"]').trigger('click');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.emitted('update:modelValue')).toEqual([[null]]);
+  });
+
+  it('on AutoComplete component emits "select enter"  will emit "select enter"', async () => {
+    const wrapper = mount(QuickSearchInput, {
+      props: {
+        createOptions: syncFunction,
+        modelValue: {
+          id: 1,
+          label: 'HR Admin',
+        },
+      },
+    });
+    const input = wrapper.findComponent(AutocompleteInput);
+    input.vm.onSelectEnter();
+    await wrapper.vm.$nextTick();
+    expect(wrapper.emitted('select:enter')).toBeTruthy();
+  });
+
+  it('on AutoComplete component emits "dropdown:closed" will emit  "dropdown:closed"', async () => {
+    const wrapper = mount(QuickSearchInput, {
+      props: {
+        createOptions: syncFunction,
+        modelValue: {
+          id: 1,
+          label: 'HR Admin',
+        },
+      },
+    });
+    const input = wrapper.findComponent(AutocompleteInput);
+    input.setData({dropdownOpen: true});
+    input.vm.onCloseDropdown();
+    await wrapper.vm.$nextTick();
+    expect(wrapper.emitted('dropdown:closed')).toBeTruthy();
+  });
+
+  it('should not able to remove selected chip when readonly mode and  multi select mode', async () => {
+    const wrapper = mount(QuickSearchInput, {
+      props: {
+        createOptions: syncDisabledOptionFunction,
+        multiple: true,
+        readonly: true,
+        modelValue: [
+          {
+            id: 1,
+            label: 'HR Admin',
+          },
+        ],
+      },
+    });
+
+    const cancelButton = wrapper.find("[data-test='removeIcon']");
+    await cancelButton.trigger('click');
+    expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+  });
+  it('should not able to remove selected chip when disabled mode and  multi select mode', async () => {
+    const wrapper = mount(QuickSearchInput, {
+      props: {
+        createOptions: syncDisabledOptionFunction,
+        multiple: true,
+        disabled: true,
+        modelValue: [
+          {
+            id: 1,
+            label: 'HR Admin',
+          },
+        ],
+      },
+    });
+
+    const cancelButton = wrapper.find("[data-test='removeIcon']");
+    await cancelButton.trigger('click');
+    expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+  });
+});
