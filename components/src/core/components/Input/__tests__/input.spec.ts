@@ -33,4 +33,22 @@ describe('Input.vue', () => {
     expect(wrapper.emitted()).toHaveProperty('update:modelValue');
     expect(wrapper.emitted()).toHaveProperty('input');
   });
+
+  it('input field with icon', () => {
+    const wrapper = mount(Input, {
+      props: {
+        hasError: true, imageIcon : require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg')
+      }
+  });
+      expect(wrapper.find('.input-text-field-icon').exists()).toBe(true);
+  });
+
+  it('input field without icon', () => {
+    const value = 'Input';
+    const wrapper = mount(Input, {
+      props: {label: value}
+    });
+    expect(wrapper.find('.input-text-field-icon').exists()).toBe(false);
+  });
+
 });
