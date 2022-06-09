@@ -10,7 +10,19 @@ export default {
     style: {
       control: {type: 'object'},
       table: {
-        type: {summary: 'Set custom style to the select'},
+        type: {summary: 'Set custom style to the quicksearch'},
+      },
+    },
+    disabled: {
+      control: {type: 'boolean'},
+      table: {
+        type: {summary: 'Set disabled property for quicksearch'},
+      },
+    },
+    readonly: {
+      control: {type: 'boolean'},
+      table: {
+        type: {summary: 'Set readonly property for quicksearch'},
       },
     },
     dropdownPosition: {
@@ -21,18 +33,11 @@ export default {
         type: {summary: 'Set drop down position for select'},
       },
     },
-    'dropdown:opened': {
-      control: {type: 'array'},
-      defaultValue: [],
-      table: {
-        type: {summary: 'emit event when dropdown opened'},
-      },
-    },
     'dropdown:closed': {
       control: {type: 'array'},
       defaultValue: [],
       table: {
-        type: {summary: 'emit event when dropdown closed'},
+        type: {summary: 'Emit event when dropdown closed'},
       },
     },
     'dropdown:blur': {
@@ -46,21 +51,28 @@ export default {
       control: {type: 'array'},
       defaultValue: [],
       table: {
-        type: {summary: 'emit event when dropdown clear'},
+        type: {summary: 'Emit event when dropdown clear'},
       },
     },
     'update:modelValue': {
       control: {type: 'array'},
       defaultValue: [],
       table: {
-        type: {summary: 'emit event when select value updates'},
+        type: {summary: 'Emit event when quicksearch value updates'},
       },
     },
-    default: {
+    beforeInput: {
       control: {type: 'object'},
       defaultValue: [],
       table: {
-        type: {summary: 'Default slots for autocomplete'},
+        type: {summary: 'Inherited beforeInput slot for  autocomplete'},
+      },
+    },
+    afterInput: {
+      control: {type: 'object'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'Inherited afterInput slot for  autocomplete'},
       },
     },
     iconSlot: {
