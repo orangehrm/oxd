@@ -8,7 +8,6 @@
       :dropdownOpened="dropdownOpen"
       @click="onToggleDropdown"
       @blur="onBlur"
-      @input:blur="onBlur"
       @keyup.esc="onCloseDropdown"
       @keydown.enter.prevent="onSelectEnter"
       @keydown.down.exact.prevent="onSelectDown"
