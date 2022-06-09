@@ -6,7 +6,6 @@ import useTranslate from '../../../composables/useTranslate';
 
 export default defineComponent({
   name: 'oxd-checkbox-group',
-  emits: ['update:modelValue', 'blur', 'focus'],
   components: {
     CheckboxInput,
     InputGroup,
@@ -17,6 +16,7 @@ export default defineComponent({
     },
     class: {
       type: String,
+      default: 'check-box-column',
     },
     style: {
       type: Object,
@@ -26,14 +26,10 @@ export default defineComponent({
     },
     modelValue: {
       type: Array as PropType<any>,
+      default: () => [],
     },
   },
 
-  data() {
-    return {
-      focused: false,
-    };
-  },
   render() {
     const inputId = this.id == undefined ? 'check-box-group-id' : this.id;
     const inputClass = this.class == '' ? 'check-box-column' : this.class;
