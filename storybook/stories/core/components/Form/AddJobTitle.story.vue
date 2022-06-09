@@ -26,52 +26,48 @@
   <oxd-divider />
 
   <oxd-form>
-    <oxd-grid :cols="2">
-      <div>
-        <oxd-form-row>
-          <oxd-input-field label="Job Title" v-model="jobTitle.title" />
-        </oxd-form-row>
+    <oxd-form-row>
+      <oxd-input-field label="Job Title" v-model="jobTitle.title" />
+    </oxd-form-row>
 
-        <oxd-form-row>
-          <oxd-input-field
-            type="textarea"
-            label="Job Description"
-            placeholder="Type description here"
-            v-model="jobTitle.description"
-          />
-        </oxd-form-row>
+    <oxd-form-row>
+      <oxd-input-field
+        type="textarea"
+        label="Job Description"
+        placeholder="Type description here"
+        v-model="jobTitle.description"
+      />
+    </oxd-form-row>
 
-        <oxd-form-row>
-          <oxd-input-field
-            type="file"
-            label="Job Specification"
-            buttonLabel="Browse"
-            v-model="jobTitle.specification"
-          />
-        </oxd-form-row>
+    <oxd-form-row>
+      <oxd-input-field
+        type="file"
+        label="Job Specification"
+        buttonLabel="Browse"
+        v-model="jobTitle.specification"
+      />
+    </oxd-form-row>
 
-        <oxd-form-row>
-          <oxd-input-field
-            type="textarea"
-            label="Note"
-            placeholder="Add note"
-            v-model="jobTitle.note"
-          />
-        </oxd-form-row>
+    <oxd-form-row>
+      <oxd-input-field
+        type="textarea"
+        label="Note"
+        placeholder="Add note"
+        v-model="jobTitle.note"
+      />
+    </oxd-form-row>
 
-        <oxd-form-row>
-          <oxd-input-field
-            type="checkbox"
-            value="1"
-            label="Check this"
-            option-label="I agree"
-            v-model="jobTitle.consent"
-            true-value="yes"
-            false-value="no"
-          />
-        </oxd-form-row>
-      </div>
-    </oxd-grid>
+    <oxd-form-row>
+      <oxd-input-field
+        type="checkbox"
+        value="1"
+        label="Check this"
+        option-label="I agree"
+        v-model="jobTitle.consent"
+        true-value="yes"
+        false-value="no"
+      />
+    </oxd-form-row>
   </oxd-form>
 
   <oxd-divider />
@@ -96,7 +92,6 @@ import InputField from '@ohrm/oxd/core/components/InputField/InputField';
 import Divider from '@ohrm/oxd/core/components/Divider/Divider';
 import Button from '@ohrm/oxd/core/components/Button/Button';
 import Text from '@ohrm/oxd/core/components/Text/Text';
-import Grid from '@ohrm/oxd/core/components/Grid/Grid';
 
 const initialJobTitle = {
   title: '',
@@ -123,7 +118,6 @@ export default {
     'oxd-divider': Divider,
     'oxd-button': Button,
     'oxd-text': Text,
-    'oxd-grid': Grid,
   },
 
   methods: {

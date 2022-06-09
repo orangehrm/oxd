@@ -65,3 +65,10 @@
     grid-template-columns: $oxd-grid-two-lg-template-columns;
   }
 }
+
+.oxd-grid-1 {
+  display: grid;
+  margin: $oxd-grid-one-margin;
+  grid-gap: $oxd-grid-one-gap;
+  grid-template-columns: $oxd-grid-one-template-columns;
+}
