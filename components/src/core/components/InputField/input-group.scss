@@ -32,5 +32,5 @@
   font-weight:$oxd-label-help-text-font-weight;
   color: $oxd-label-help-text-color;
   margin-left: 2px;
-  overflow-wrap: break-word;
+  word-break: break-all;
 }

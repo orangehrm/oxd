@@ -7,14 +7,9 @@
           :name="labelIcon"
           class="oxd-input-group__label-icon"
         />
-        <div :style="{
-          minWidth : 'max-content'
-        }">
           <oxd-label v-if="label" :id="id" :label="label" :class="labelClasses" />
-        </div>
-        <div>
         <span :class="labelHelpTextClasses" v-if="labelHelpText" :labelHelpText="labelHelpText" > {{"(" + labelHelpText + ")"}}</span>
-        </div>
+      
       </div>
     </slot>
     <div :class="wrapperClasses">
