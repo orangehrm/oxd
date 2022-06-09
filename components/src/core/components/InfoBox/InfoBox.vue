@@ -25,8 +25,11 @@
             oxd-select-fill-title-row
             --mb
           "
+          :style="titleWrapperStyles"
         >
-          <label class="oxd-select-fill-title">{{ $vt(infoLabel) }}</label>
+          <label class="oxd-select-fill-title" :style="titleLabelStyles">{{
+            $vt(infoLabel)
+          }}</label>
         </div>
         <div
           class="
@@ -166,16 +169,24 @@ export default defineComponent({
       type: Object,
       default: () => null,
     },
-    rows: {
+    titleRows: {
+      type: Number,
+      default: 1,
+    },
+    subtitleRows: {
       type: Number,
       default: 2,
     },
     infoLabel: {
       type: String,
     },
-    subtitleLineHeight: {
+    titleLineHeight: {
       type: Number,
       default: () => 22,
+    },
+    subtitleLineHeight: {
+      type: Number,
+      default: () => 19,
     },
   },
 
@@ -215,6 +226,13 @@ export default defineComponent({
         };
       });
     },
+    titleLabelStyles(): {
+      '-webkit-line-clamp'?: number;
+    } {
+      return {
+        '-webkit-line-clamp': this.titleRows,
+      };
+    },
     selectedItemLabelStyles(): {
       color: string | null;
       'font-weight'?: number;
@@ -222,7 +240,7 @@ export default defineComponent({
     } {
       return {
         color: hexToRgb(this.modelValue?.color),
-        '-webkit-line-clamp': this.rows,
+        '-webkit-line-clamp': this.subtitleRows,
         'font-weight': this.modelValue?.color ? 700 : 600,
       };
     },
@@ -257,9 +275,17 @@ export default defineComponent({
     subtitleWrapperStyles(): {
       height: string;
     } {
-      const subtitleWrapperHeight = this.rows * this.subtitleLineHeight;
+      const subtitleWrapperHeight = this.subtitleRows * this.subtitleLineHeight;
       return {
         height: `${subtitleWrapperHeight}px`,
+      };
+    },
+    titleWrapperStyles(): {
+      height: string;
+    } {
+      const titleWrapperHeight = this.titleRows * this.titleLineHeight;
+      return {
+        height: `${titleWrapperHeight}px`,
       };
     },
     classes(): object {

@@ -55,6 +55,11 @@ $dropdown-button-size: 24px;
     &.--mb {
       margin-bottom: 0.25rem;
     }
+    .oxd-select-fill-title {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
   }
   .oxd-select-fill-subtitle-wrapper {
     width: 100%;
