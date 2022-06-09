@@ -34,7 +34,7 @@
       </template>
     </oxd-table-sidebar>
     <div
-      class="table-card-list-wrapper d-table-cell v-align-top"
+      class="table-card-list-wrapper d-table-cell"
       :class="{'w-100': !state.isLeftPanelOpen}"
     >
       <oxd-table-filter
