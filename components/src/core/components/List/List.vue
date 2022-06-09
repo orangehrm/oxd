@@ -3,7 +3,9 @@
     class="oxd-list-container w-100 d-table align-start"
     :class="{
       'table-left-panel-open':
-        config.table.leftPanel && config.table.leftPanel.visible && state.isLeftPanelOpen,
+        config.table.leftPanel &&
+        config.table.leftPanel.visible &&
+        state.isLeftPanelOpen,
     }"
   >
     <oxd-table-sidebar
@@ -32,7 +34,7 @@
       </template>
     </oxd-table-sidebar>
     <div
-      class="table-card-list-wrapper d-table-cell"
+      class="table-card-list-wrapper d-table-cell v-align-top"
       :class="{'w-100': !state.isLeftPanelOpen}"
     >
       <oxd-table-filter
@@ -67,7 +69,10 @@
         <template v-slot:toggleOptions>
           <oxd-quick-search
             ref="quickSearch"
-            v-if="config.table.topBar.quickSearch && config.table.topBar.quickSearch.visible"
+            v-if="
+              config.table.topBar.quickSearch &&
+              config.table.topBar.quickSearch.visible
+            "
             :style="config.table.topBar.quickSearch.style"
             :placeholder="config.table.topBar.quickSearch.placeholder"
             :clear="config.table.topBar.quickSearch.clear"
