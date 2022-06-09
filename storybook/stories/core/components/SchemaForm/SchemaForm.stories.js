@@ -285,6 +285,13 @@ Advance.args = {
               validators: new Map([['required', required]]),
             },
             {
+              name: 'facebook',
+              label: 'Facebook',
+              type: 'input',
+              visible: true,
+              props : {imageIcon : require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg')}
+            },
+            {
               name: 'contactNumber',
               label: 'Contact Number',
               type: 'input',
@@ -349,3 +356,5 @@ Advance.args = {
     ],
   },
 };
+
+
