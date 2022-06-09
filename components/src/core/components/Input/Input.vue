@@ -54,27 +54,21 @@ export default defineComponent({
 
   computed: {
     classes(): object {
-      const styleClasses = !this.imageIcon ?  {
-        'oxd-input': true,
-        'oxd-input--active': !this.focused,
-        'oxd-input--focus': this.focused,
-        'oxd-input--error': this.hasError
-      } : {
-        'oxd-input--with-icon': true,
-        'oxd-input--with-icon--active': !this.focused,
-        'oxd-input--with-icon--focus': this.focused,
-        'oxd-input--with-icon--error': this.hasError
+      const isIconExists=this.imageIcon ? '--with-icon' : '';
+      return {
+        [`oxd-input${isIconExists}`]: true,
+        [`oxd-input${isIconExists}--active`]: !this.focused,
+        [`oxd-input${isIconExists}--focus`] : this.focused,
+        [`oxd-input${isIconExists}--error`] : this.hasError
       };
-      return styleClasses;
     },
     outerClasses(): object {
-      const styleClasses = this.imageIcon ? {
+      return this.imageIcon ? {
         'input-outer' : true,
         'input-outer--active': !this.focused,
         'input-outer--focus': this.focused,
         'input-outer--error': this.hasError,
       } : {'input-outer' : false};
-      return styleClasses;
     },
   },
 
