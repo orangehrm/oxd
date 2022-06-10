@@ -34,14 +34,14 @@ export default {
         type: {summary: 'Set an array of objects which has id, label mandatory and color as optional'},
       },
     },
-    noOftitleRows: {
+    numOfTitleRows: {
       control: {type: 'number'},
       defaultValue: 1,
       table: {
         type: {summary: 'Set row counts defined row and max lines to truncate'},
       },
     },
-    noOfValueRows: {
+    numOfValueRows: {
       control: {type: 'number'},
       defaultValue: 2,
       table: {
@@ -230,7 +230,7 @@ const sample = {
             props: {
               infoLabel: 'Current Stage of Recruitment',
               options,
-              noOftitleRows: 1,
+              numOfTitleRows: 1,
             }
           },
           {
@@ -241,7 +241,7 @@ const sample = {
               disabled: true,
               infoLabel: 'Current Stage of Recruitment',
               options,
-              noOftitleRows: 1,
+              numOfTitleRows: 1,
             }
           },
           {
@@ -252,7 +252,7 @@ const sample = {
               readonly: true,
               infoLabel: 'Current Stage of Recruitment',
               options,
-              noOftitleRows: 1,
+              numOfTitleRows: 1,
             }
           },
           {
@@ -262,7 +262,7 @@ const sample = {
             props: {
               infoLabel: 'With a Pre-Selected Value and a Long Caption',
               options,
-              noOftitleRows: 1,
+              numOfTitleRows: 1,
             },
             value: options[6]
           },
@@ -273,7 +273,7 @@ const sample = {
             props: {
               infoLabel: 'Date of Application',
               options,
-              noOftitleRows: 1,
+              numOfTitleRows: 1,
             },
             value: '2022-05-03'
           },
@@ -314,23 +314,23 @@ export const Default = Template.bind({});
 Default.args = {
   infoLabel: 'Current Stage of Recruitment',
   options: options,
-  noOftitleRows: 1,
-  noOfValueRows: 2,
+  numOfTitleRows: 1,
+  numOfValueRows: 2,
 };
 
 export const StringModalValue = TemplateString.bind({});
 StringModalValue.args = {
   infoLabel: 'Date of Application',
-  noOftitleRows: 1,
-  noOfValueRows: 2,
+  numOfTitleRows: 1,
+  numOfValueRows: 2,
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
   infoLabel: 'Current Stage of Recruitment',
   options: options,
-  noOftitleRows: 1,
-  noOfValueRows: 2,
+  numOfTitleRows: 1,
+  numOfValueRows: 2,
   disabled: true,
 };
 
@@ -338,24 +338,24 @@ export const Readonly = Template.bind({});
 Readonly.args = {
   infoLabel: 'Current Stage of Recruitment',
   options: options,
-  noOftitleRows: 1,
-  noOfValueRows: 2,
+  numOfTitleRows: 1,
+  numOfValueRows: 2,
   readonly: true,
 };
 
 export const NoOptions = Template.bind({});
 NoOptions.args = {
   infoLabel: 'Current Stage of Recruitment',
-  noOftitleRows: 1,
-  noOfValueRows: 2,
+  numOfTitleRows: 1,
+  numOfValueRows: 2,
 };
 
 export const Error = Template.bind({});
 Error.args = {
   infoLabel: 'Current Stage of Recruitment',
   options: options,
-  noOftitleRows: 1,
-  noOfValueRows: 2,
+  numOfTitleRows: 1,
+  numOfValueRows: 2,
   hasError: true,
 };
 
@@ -375,8 +375,8 @@ const TemplateWithoutInitialValue = args => ({
 export const WithoutInitialValue = TemplateWithoutInitialValue.bind({});
 WithoutInitialValue.args = {
   infoLabel: 'Date of Application',
-  noOftitleRows: 1,
-  noOfValueRows: 2,
+  numOfTitleRows: 1,
+  numOfValueRows: 2,
 };
 
 export const Events = () => InfoBoxEvents;
@@ -406,8 +406,8 @@ Default.parameters = {
             label: 'In Progress',
           },
         ]"
-        :noOftitleRows="2"
-        :noOfValueRows="3"
+        :numOfTitleRows="2"
+        :numOfValueRows="3"
         :infoLabel="'Current Stage of Recruitment'"
         :titleLineHeight="44"
         :subtitleLineHeight="38"
@@ -422,8 +422,8 @@ StringModalValue.parameters = {
       code: `
       <oxd-infobox
         :modelValue="'2022-05-03'"
-        :noOftitleRows="2"
-        :noOfValueRows="3"
+        :numOfTitleRows="2"
+        :numOfValueRows="3"
         :infoLabel="'Date of Application'"
       />`,
     },
@@ -456,8 +456,8 @@ Disabled.parameters = {
             label: 'In Progress',
           },
         ]"
-        :noOftitleRows="2"
-        :noOfValueRows="3"
+        :numOfTitleRows="2"
+        :numOfValueRows="3"
         :infoLabel="'Current Stage of Recruitment'"
       />`,
     },
@@ -490,8 +490,8 @@ Readonly.parameters = {
             label: 'In Progress',
           },
         ]"
-        :noOftitleRows="2"
-        :noOfValueRows="3"
+        :numOfTitleRows="2"
+        :numOfValueRows="3"
         :infoLabel="'Current Stage of Recruitment'"
       />`,
     },
@@ -509,8 +509,8 @@ NoOptions.parameters = {
             label: 'Shortlisted',
           }
         "
-        :noOftitleRows="2"
-        :noOfValueRows="3"
+        :numOfTitleRows="2"
+        :numOfValueRows="3"
         :infoLabel="'Current Stage of Recruitment'"
       />`,
     },
@@ -543,8 +543,8 @@ Error.parameters = {
             label: 'In Progress',
           },
         ]"
-        :noOftitleRows="2"
-        :noOfValueRows="3"
+        :numOfTitleRows="2"
+        :numOfValueRows="3"
         :infoLabel="'Current Stage of Recruitment'"
       />`,
     },
@@ -571,8 +571,8 @@ WithoutInitialValue.parameters = {
             label: 'In Progress',
           },
         ]"
-        :noOftitleRows="2"
-        :noOfValueRows="3"
+        :numOfTitleRows="2"
+        :numOfValueRows="3"
         :infoLabel="'Current Stage of Recruitment'"
       />`,
     },

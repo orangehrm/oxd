@@ -169,11 +169,11 @@ export default defineComponent({
       type: Object,
       default: () => null,
     },
-    noOftitleRows: {
+    numOfTitleRows: {
       type: Number,
       default: 1,
     },
-    noOfValueRows: {
+    numOfValueRows: {
       type: Number,
       default: 2,
     },
@@ -230,7 +230,7 @@ export default defineComponent({
       '-webkit-line-clamp'?: number;
     } {
       return {
-        '-webkit-line-clamp': this.noOftitleRows,
+        '-webkit-line-clamp': this.numOfTitleRows,
       };
     },
     selectedItemLabelStyles(): {
@@ -240,7 +240,7 @@ export default defineComponent({
     } {
       return {
         color: hexToRgb(this.modelValue?.color),
-        '-webkit-line-clamp': this.noOfValueRows,
+        '-webkit-line-clamp': this.numOfValueRows,
         'font-weight': this.modelValue?.color ? 700 : 600,
       };
     },
@@ -276,7 +276,7 @@ export default defineComponent({
       height: string;
     } {
       const subtitleWrapperHeight =
-        this.noOfValueRows * this.subtitleLineHeight;
+        this.numOfValueRows * this.subtitleLineHeight;
       return {
         height: `${subtitleWrapperHeight}px`,
       };
@@ -284,7 +284,7 @@ export default defineComponent({
     titleWrapperStyles(): {
       height: string;
     } {
-      const titleWrapperHeight = this.noOftitleRows * this.titleLineHeight;
+      const titleWrapperHeight = this.numOfTitleRows * this.titleLineHeight;
       return {
         height: `${titleWrapperHeight}px`,
       };
