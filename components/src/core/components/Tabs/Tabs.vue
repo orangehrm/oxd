@@ -4,9 +4,11 @@
       <span
         tabindex="0"
         class="tab-item"
-        @click="setCurrentTabId(tab)"
+        @click="onClick($event, tab)"
+        @focus="onFocus($event,tab)"
+        @blur="onBlur($event,tab)"
         :class="{ active: currentTabId == tab.id }"
-        @keyup.enter="setCurrentTabId(tab)"
+        @keyup.enter="onClick($event,tab)"
         :id="tab.id"
       >
         <oxd-icon class="tab-icon" :name="tab.icon" v-if="tab.icon" />{{
@@ -44,18 +46,32 @@ export default defineComponent({
     "oxd-icon": Icon,
   },
   mixins: [translateMixin],
-  setup: function (props, context) {
-    const currentTabId = ref(props.tabs[0].id);
-    context.emit('selectTabItem', props.tabs[0]);
+  setup: function (props) {
+    const currentTabId = ref<string>("");
+
+    const setCurrentTabId = (tab: Tab): void => {
+       currentTabId.value=tab.id;
+    };
+
+    setCurrentTabId(props.tabs[0]);
     return {
-      currentTabId
+      currentTabId,
+      setCurrentTabId
     };
   },
-  emits: ['selectTabItem'], 
+  emits: ['click','focus','blur','change'], 
   methods: {
-    setCurrentTabId(tab: Tab) {
-      this.currentTabId = tab.id;
-      this.$emit("selectTabItem", tab);
+    onClick( $e: Event, tab: Tab) {
+      this.$emit('click', $e, tab);
+      this.$emit('change', $e, tab);
+      this.setCurrentTabId(tab);
+    
+    },
+    onFocus($e: Event, tab: Tab) {
+      this.$emit('focus',$e, tab);
+    },
+    onBlur($e: Event, tab: Tab) {
+      this.$emit('blur', $e, tab);
     }
   },
 });

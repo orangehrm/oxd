@@ -41,23 +41,6 @@ describe('Tabs.vue', () => {
         });
         expect(wrapper.vm.currentTabId).toBe("tab1");
     });
-
-    it('In initial rendering first tab is set to the selectTabItem by default', () => {
-        const wrapper = shallowMount(Tabs, {
-            props: {
-                tabs : [ { id: "tab1", title: "Details", icon : 'oxd-posts' }, { id: "tab2", title: "Resume", icon : 'oxd-profile' }]
-            }
-        });
-    
-        expect(wrapper.emitted('selectTabItem')).toBeTruthy();
-        expect(wrapper.emitted('selectTabItem')).toContainEqual(
-            [{ 
-                id: "tab1", 
-                title: "Details", 
-                icon : 'oxd-posts' 
-            }]
-        );
-    });
    
     it('Click on the second tab', () => {
             const wrapper = shallowMount(Tabs, {
@@ -73,15 +56,18 @@ describe('Tabs.vue', () => {
     
             wrapper.find('#tab2').trigger('click');
             wrapper.vm.$nextTick();
-            expect(wrapper.emitted('selectTabItem')).toContainEqual(
-                [{ 
+            expect(wrapper.emitted().click[0]).toContainEqual(
+                { 
                     id: "tab2", 
                     title: "Resume"
-                }]
+                }
             );
+
+            expect(wrapper.emitted('change')).toBeTruthy();
+            expect(wrapper.emitted('click')).toBeTruthy();
     });
 
-    it('Hit Enter when focusing on the 2nd tab on the first tab', () => {
+    it('Hit Enter when focusing on the 2nd tab', () => {
             const wrapper = shallowMount(Tabs, {
                 props: {
                     tabs : [ { id: "tab1", title: "Details" }, { id: "tab2", title: "Resume"}]
@@ -90,11 +76,49 @@ describe('Tabs.vue', () => {
             
             wrapper.find('#tab2').trigger('keyup.enter');
             wrapper.vm.$nextTick();
-            expect(wrapper.emitted('selectTabItem')).toContainEqual(
-                [{ 
+            expect(wrapper.emitted().change[0]).toContainEqual(
+                { 
                     id: "tab2", 
                     title: "Resume"
-                }]
+                }
             );
+            expect(wrapper.emitted('change')).toBeTruthy();
+            expect(wrapper.emitted('click')).toBeTruthy();
+    });
+
+    it('Focusing on the third tab', () => {
+        const wrapper = shallowMount(Tabs, {
+            props: {
+                tabs : [ { id: "tab1", title: "Details" }, { id: "tab2", title: "Resume"}, { id: "tab3", title: "Notes"}]
+            }
+        });
+        
+        wrapper.find('#tab3').trigger('focus');
+        wrapper.vm.$nextTick();
+        expect(wrapper.emitted().focus[0]).toContainEqual(
+            { 
+                id: "tab3", 
+                title: "Notes"
+            }
+        );
+        expect(wrapper.emitted('focus')).toBeTruthy();
+    });
+
+    it('Bluring on the first tab', () => {
+        const wrapper = shallowMount(Tabs, {
+            props: {
+                tabs : [ { id: "tab1", title: "Details" }, { id: "tab2", title: "Resume"}]
+            }
+        });
+        
+        wrapper.find('#tab1').trigger('blur');
+        wrapper.vm.$nextTick();
+        expect(wrapper.emitted().blur[0]).toContainEqual(
+            { 
+                id: "tab1", 
+                title: "Details"
+            }
+        );
+        expect(wrapper.emitted('blur')).toBeTruthy();
     });
 });
