@@ -37,22 +37,22 @@ const options = [
   }
 ];
 const infoLabel = 'Current Stage of Recruitment';
-const titleRows = 2;
-const subtitleRows = 3;
+const noOftitleRows = 2;
+const noOfValueRows = 3;
 const dropdownPosition = BOTTOM;
 
 describe('InfoBox.vue', () => {
 
   it('renders OXD Select Input', () => {
     const wrapper = mount(InfoBox, {
-      props: { infoLabel, titleRows, subtitleRows, options, dropdownPosition },
+      props: { infoLabel, noOftitleRows, noOfValueRows, options, dropdownPosition },
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('should load options to Select', async () => {
     const wrapper = mount(InfoBox, {
-      props: { infoLabel, titleRows, subtitleRows, options, dropdownPosition },
+      props: { infoLabel, noOftitleRows, noOfValueRows, options, dropdownPosition },
     });
     wrapper.findComponent(ButtonIcon).trigger('click');
     await wrapper.vm.$nextTick();
@@ -62,7 +62,7 @@ describe('InfoBox.vue', () => {
 
   it('should select one option', async () => {
     const wrapper = mount(InfoBox, {
-      props: { infoLabel, titleRows, subtitleRows, options, dropdownPosition },
+      props: { infoLabel, noOftitleRows, noOfValueRows, options, dropdownPosition },
     });
     wrapper.findComponent(ButtonIcon).trigger('click');
     await wrapper.vm.$nextTick();
@@ -83,8 +83,8 @@ describe('InfoBox.vue', () => {
     const wrapper = mount(InfoBox, {
       props: {
         infoLabel,
-        titleRows,
-        subtitleRows,
+        noOftitleRows,
+        noOfValueRows,
         options,
         dropdownPosition,
         disabled: true,
@@ -97,8 +97,8 @@ describe('InfoBox.vue', () => {
     const wrapper = mount(InfoBox, {
       props: {
         infoLabel,
-        titleRows,
-        subtitleRows,
+        noOftitleRows,
+        noOfValueRows,
         options,
         dropdownPosition,
       },
@@ -112,7 +112,7 @@ describe('InfoBox.vue', () => {
 
   it('should select one option with color attribute and return converted rgba color', async () => {
     const wrapper: any = mount(InfoBox, {
-      props: { infoLabel, titleRows, subtitleRows, options, dropdownPosition },
+      props: { infoLabel, noOftitleRows, noOfValueRows, options, dropdownPosition },
     });
     wrapper.setProps({
       modelValue: options[4]
@@ -123,7 +123,7 @@ describe('InfoBox.vue', () => {
 
   it('should select one option with color attribute and return converted rgba color', async () => {
     const wrapper: any = mount(InfoBox, {
-      props: { infoLabel, titleRows, subtitleRows, options, dropdownPosition },
+      props: { infoLabel, noOftitleRows, noOfValueRows, options, dropdownPosition },
     });
     wrapper.setProps({
       modelValue: '2022-05-03'
@@ -134,7 +134,7 @@ describe('InfoBox.vue', () => {
 
   it('should set empty array as default when didnot pass options', async () => {
     const wrapper: any = shallowMount(InfoBox, {
-      props: { infoLabel, titleRows, subtitleRows, dropdownPosition },
+      props: { infoLabel, noOftitleRows, noOfValueRows, dropdownPosition },
     });
     wrapper.findComponent(ButtonIcon).trigger('click');
     await wrapper.vm.$nextTick();
@@ -146,8 +146,8 @@ describe('InfoBox.vue', () => {
     const wrapper = mount(InfoBox, {
       props: {
         infoLabel,
-        titleRows,
-        subtitleRows,
+        noOftitleRows,
+        noOfValueRows,
         options,
         dropdownPosition,
         readonly: true,
@@ -162,7 +162,7 @@ describe('InfoBox.vue', () => {
 
   it('Selected option should marked as selected true', async () => {
     const wrapper = mount(InfoBox, {
-      props: { infoLabel, titleRows, subtitleRows, options, dropdownPosition },
+      props: { infoLabel, noOftitleRows, noOfValueRows, options, dropdownPosition },
     });
     wrapper.setProps({
       modelValue: options[1]
@@ -174,7 +174,7 @@ describe('InfoBox.vue', () => {
 
   it('on Focus it should NOT add a class "--focus" to the .oxd-select-fill-container when disabled', async () => {
     const wrapper = mount(InfoBox, {
-      props: { infoLabel, titleRows, subtitleRows, options, dropdownPosition, disabled: true },
+      props: { infoLabel, noOftitleRows, noOfValueRows, options, dropdownPosition, disabled: true },
     });
     const fillContainer = wrapper.find('.oxd-select-fill-container');
     fillContainer.trigger('focus');
@@ -186,7 +186,7 @@ describe('InfoBox.vue', () => {
 
   it('on Focus it should add a class "--readonly" to the .oxd-select-fill-container when readonly', async () => {
     const wrapper = mount(InfoBox, {
-      props: { infoLabel, titleRows, subtitleRows, options, dropdownPosition, readonly: true },
+      props: { infoLabel, noOftitleRows, noOfValueRows, options, dropdownPosition, readonly: true },
     });
     const fillContainer = wrapper.find('.oxd-select-fill-container');
     fillContainer.trigger('focus');
@@ -198,7 +198,7 @@ describe('InfoBox.vue', () => {
 
   it('on Focus it should add a class "--focus" to the .oxd-select-fill-container', async () => {
     const wrapper = mount(InfoBox, {
-      props: { infoLabel, titleRows, subtitleRows, options, dropdownPosition },
+      props: { infoLabel, noOftitleRows, noOfValueRows, options, dropdownPosition },
     });
     const fillContainer = wrapper.find('.oxd-select-fill-container');
     fillContainer.trigger('focus');
@@ -210,7 +210,7 @@ describe('InfoBox.vue', () => {
 
   it('on Blur it should remove the class "--focus" from .oxd-select-fill-container', async () => {
     const wrapper = mount(InfoBox, {
-      props: { infoLabel, titleRows, subtitleRows, options, dropdownPosition },
+      props: { infoLabel, noOftitleRows, noOfValueRows, options, dropdownPosition },
     });
     wrapper.vm.onBlur();
     await wrapper.vm.$nextTick();
