@@ -11,7 +11,12 @@
 
 .oxd-table-cell-actions.oxd-action-render-button-visibility-on-hover {
   opacity: 0;
+}
+
+.oxd-table-card {
   &:hover {
-    opacity: 1;
+    .oxd-action-render-button-visibility-on-hover {
+      opacity: 1;
+    }
   }
 }
