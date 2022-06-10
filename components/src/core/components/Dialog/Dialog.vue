@@ -29,6 +29,7 @@
       <component :is="dialogContainer">
         <oxd-sheet
           :class="classes"
+          :gutters="false"
           v-bind="$attrs"
           role="document"
           @click="onClickSheet"
