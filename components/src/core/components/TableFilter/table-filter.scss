@@ -19,24 +19,23 @@
 @import 'variables';
 
 .oxd-table-filter {
-  background-color: $oxd-white-color;
-  border-radius: 1.2rem;
-  padding: 0.5rem;
+  background-color: $oxd-table-filter-background-color;
+  border-radius: $oxd-table-filter-border-radius;
+  padding-top: $oxd-table-filter-padding-top;
+  padding-bottom: $oxd-table-filter-padding-bottom;
+  padding-left: $oxd-table-filter-padding-left;
+  padding-right: $oxd-table-filter-padding-right;
   &-title {
-    font-size: 14px;
-    font-weight: 800;
+    font-size: $oxd-table-filter-title-font-size;
+    font-weight: $oxd-table-filter-title-font-weight;
   }
   &-header {
     display: flex;
-    padding: 0.5rem;
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-between;
     &-options {
       display: flex;
-      @include oxd-respond-to('md') {
-        padding: 0;
-      }
       & .--toggle,
       .--export {
         display: flex;

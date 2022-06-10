@@ -41,6 +41,7 @@ export const TYPE_SUBTITLE_2 = 'subtitle-2';
 export const TYPE_CARD_TITLE = 'card-title';
 export const TYPE_TOAST_TITLE = 'toast-title';
 export const TYPE_TOAST_MESSAGE = 'toast-message';
+export const TYPE_CARD_BODY = 'card-body';
 
 export const TYPES = [
   TYPE_SUBTITLE_1,
@@ -48,6 +49,7 @@ export const TYPES = [
   TYPE_CARD_TITLE,
   TYPE_TOAST_TITLE,
   TYPE_TOAST_MESSAGE,
+  TYPE_CARD_BODY,
 ];
 
 export type Tags =
@@ -65,4 +67,5 @@ export type TextTypes =
   | typeof TYPE_SUBTITLE_2
   | typeof TYPE_CARD_TITLE
   | typeof TYPE_TOAST_TITLE
-  | typeof TYPE_TOAST_MESSAGE;
+  | typeof TYPE_TOAST_MESSAGE
+  | typeof TYPE_CARD_BODY;

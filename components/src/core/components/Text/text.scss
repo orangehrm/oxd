@@ -23,6 +23,14 @@
   margin-top: 0;
   margin-bottom: 0;
 
+  &--p {
+    color: $oxd-text-p-color;
+  }
+
+  &--span {
+    color: $oxd-text-span-color;
+  }
+
   &--h1 {
     font-size: $oxd-text-h1-font-size;
     font-weight: $oxd-text-h1-font-weight;
@@ -100,11 +108,10 @@
     color: $oxd-text-toast-message-color;
   }
 
-  &--p {
-    color: $oxd-text-p-color;
-  }
-
-  &--span {
-    color: $oxd-text-span-color;
+  &--card-body {
+    font-size: $oxd-text-card-body-font-size;
+    font-weight: $oxd-text-card-body-font-weight;
+    letter-spacing: $oxd-text-card-body-letter-spacing;
+    color: $oxd-text-card-body-color;
   }
 }

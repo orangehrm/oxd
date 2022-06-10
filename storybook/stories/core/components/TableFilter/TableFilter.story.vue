@@ -44,13 +44,13 @@
       </template>
       <oxd-form @submitValid="filterItems">
         <oxd-form-row>
-          <oxd-grid :cols="4" class="orangehrm-filter-grid">
+          <oxd-grid :cols="4">
             <oxd-grid-item>
               <oxd-input-field label="Username" v-model="filters.username" />
             </oxd-grid-item>
             <oxd-grid-item>
               <oxd-input-field
-                type="dropdown"
+                type="select"
                 label="User Role"
                 v-model="filters.role"
                 :clear="false"
@@ -63,7 +63,7 @@
             </oxd-grid-item>
             <oxd-grid-item>
               <oxd-input-field
-                type="dropdown"
+                type="autocomplete"
                 label="Employee Name"
                 v-model="filters.empName"
                 :createOptions="loadEmployees"
@@ -71,10 +71,9 @@
             </oxd-grid-item>
             <oxd-grid-item>
               <oxd-input-field
-                type="dropdown"
+                type="select"
                 label="Status"
                 v-model="filters.status"
-                :clear="false"
                 :options="[
                   {id: 1, label: 'All'},
                   {id: 2, label: 'Enabled'},
@@ -195,13 +194,9 @@ export default {
   background-color: #f6f5fb;
   padding: 1rem;
 }
-.orangehrm-filter-grid {
-  width: 100%;
-}
 .orangehrm-left-space {
   margin-left: 10px;
 }
-
 .orangehrm-table-container {
   background-color: #fff;
   border-radius: 1.2rem;

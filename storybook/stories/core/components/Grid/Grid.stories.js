@@ -1,4 +1,3 @@
-<!--
 /*
  * This file is part of OrangeHRM Inc
  *
@@ -17,34 +16,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
--->
 
-<template>
-  <div :class="classes">
-    <slot></slot>
-  </div>
-</template>
+import DefaultGrid from './Grid.story.vue';
 
-<script lang="ts">
-import {defineComponent} from 'vue';
+export default {
+  title: 'Example/Grid',
+};
 
-export default defineComponent({
-  name: 'oxd-grid-item',
-  props: {
-    gutters: {
-      type: Boolean,
-      default: true,
-    },
-  },
-  computed: {
-    classes(): object {
-      return {
-        'oxd-grid-item': true,
-        'oxd-grid-item--gutters': this.gutters,
-      };
-    },
-  },
-});
-</script>
-
-<style src="./grid-item.scss" lang="scss" scoped></style>
+export const Default = () => DefaultGrid;
