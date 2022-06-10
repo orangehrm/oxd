@@ -33,7 +33,7 @@ export default defineComponent({
   props: {
     gutters: {
       type: Boolean,
-      default: false,
+      default: true,
     },
   },
   computed: {
