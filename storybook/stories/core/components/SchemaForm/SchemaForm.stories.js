@@ -4,7 +4,7 @@ import {required} from '../../../../../components/src/validation/rules.ts';
 import {h} from 'vue';
 
 export default {
-  title: 'Form/SchemaForm',
+  title: 'Example/SchemaForm',
   component: SchemaForm,
 };
 
@@ -285,151 +285,15 @@ Advance.args = {
               validators: new Map([['required', required]]),
             },
             {
-              name: 'contactNumber',
-              label: 'Contact Number',
-              type: 'input',
-              listners: {
-                onChange: ($event) => console.log($event),
-              },
-            },
-            {
-              name: 'vacancy',
-              label: 'Vacancy',
-              type: 'select',
-              props: {
-                options: [
-                  {id: 1, label: 'Vaccancy One'},
-                  {id: 2, label: 'Vaccancy Two'},
-                ],
-              },
-              validators: new Map([['required', required]]),
-            },
-            {
-              name: 'user',
-              label: 'Users',
-              type: 'multiselect',
-              value: [],
-              props: {
-                autofocus: true,
-                options: [
-                  {id: 1, label: 'HR'},
-                  {id: 2, label: 'Admin'},
-                ],
-              },
-            },
-            {
-              name: 'date',
-              label: 'Date of Application',
-              type: 'date',
-            },
-          ],
-        },
-      },
-      {
-        type: 'divider',
-      },
-      {
-        type: 'action',
-        style: {
-          'margin-top': '0.5rem',
-        },
-        children: {
-          default: [
-            {
-              name: 'reset',
-              label: 'Reset',
-              type: 'button',
-              props: {
-                type: 'reset',
-                displayType: 'ghost',
-              },
-            },
-            {
-              name: 'submit',
-              label: 'Submit',
-              type: 'button',
-              style: {
-                'margin-left': '0.5rem',
-              },
-              props: {
-                type: 'submit',
-                displayType: 'secondary',
-              },
-            },
-          ],
-        },
-      },
-    ],
-  },
-};
-
-
-
-export const HelpTextSupportLabels = Template.bind({});
-HelpTextSupportLabels.args = {
-  schema: {
-    name: 'HelpTextSupportLabels',
-    layout: [
-      {
-        type: 'grid',
-        props: {
-          cols: 1,
-        },
-        children: {
-          default: [
-            {
-              name: 'resume',
-              label: 'Select resume',
-              labelHelpText : "slect your resume",
-              type: 'file',
-              class: ['--span-column-2'],
-            },
-          ],
-        },
-      },
-      {
-        type: 'grid',
-        props: {
-          cols: 2,
-        },
-        children: {
-          default: [
-            {
-              name: 'firstName',
-              label: 'First Name',
-              labelHelpText : "your first name should comes here",
-              type: 'input',
-              validators: new Map([['required', required]]),
-              value: 'test',
-            },
-            {
-              name: 'middleName',
-              label: 'Middle Name',
-              labelHelpText : "your middle name should comes here",
-              type: 'input',
-            },
-            {
-              name: 'lastName',
-              label: 'Last Name',
-              labelHelpText : "your last name should comes here",
-              type: 'input',
-              validators: new Map([['required', required]]),
-            },
-            {
-              name: 'email',
-              label: 'Email',
-              labelHelpText : "your email should comes here",
+              name: 'facebook',
+              label: 'Facebook',
               type: 'input',
               visible: true,
-              style: {
-                color: 'red',
-              },
-              validators: new Map([['required', required]]),
+              props : {imageIcon : require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg')}
             },
             {
               name: 'contactNumber',
               label: 'Contact Number',
-              labelHelpText : "your contact number should comes here",
               type: 'input',
               listners: {
                 onChange: ($event) => console.log($event),
@@ -438,7 +302,6 @@ HelpTextSupportLabels.args = {
             {
               name: 'vacancy',
               label: 'Vacancy',
-              labelHelpText : "select a vacancy",
               type: 'select',
               props: {
                 options: [
@@ -449,46 +312,10 @@ HelpTextSupportLabels.args = {
               validators: new Map([['required', required]]),
             },
             {
-              name: 'user',
-              label: 'Users',
-              labelHelpText : "select a user",
-              type: 'multiselect',
-              value: [],
-              props: {
-                autofocus: true,
-                options: [
-                  {id: 1, label: 'HR'},
-                  {id: 2, label: 'Admin'},
-                ],
-              },
-            },
-            {
               name: 'date',
               label: 'Date of Application',
-              labelHelpText : "select a date",
               type: 'date',
             },
-            {
-              name: 'check',
-              label: 'Checkbox input',
-              labelHelpText : "tick on me",
-              type : 'checkbox',
-              props : {optionLabel : 'check this!'}
-            },
-            {
-              name: 'check',
-              label: 'Switch input ',
-              labelHelpText : "switch me",
-              type : 'switch',
-              props : {optionLabel : 'switch me!'}
-            },
-            {
-              name: 'time',
-              label: 'Time',
-              labelHelpText : "Select the time",
-              type : 'time'
-        
-            }
           ],
         },
       },
@@ -529,4 +356,6 @@ HelpTextSupportLabels.args = {
     ],
   },
 };
+
+
 

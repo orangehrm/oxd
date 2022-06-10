@@ -1,4 +1,9 @@
 <template>
+<div :class="outerClasses">
+  <div v-if="imageIcon" class="input-text-field-icon"> 
+    <img :src="imageIcon" />
+  </div>
+  <oxd-divider v-if="imageIcon" :orientation="'vertical'" :style="{ height:'100%' }"/>
   <input
     :class="classes"
     :style="style"
@@ -6,11 +11,14 @@
     @focus="onFocus"
     @blur="onBlur"
     @input="onInput"
+    v-bind="$attrs"
   />
+</div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';
 
 export interface State {
   focused: boolean;
@@ -18,6 +26,10 @@ export interface State {
 
 export default defineComponent({
   name: 'oxd-input',
+
+  components :{
+    'oxd-divider' : Divider
+  },
 
   props: {
     // https://v3.vuejs.org/guide/migration/v-model.html#overview
@@ -29,6 +41,9 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    imageIcon: {
+      type: String
+    }
   },
 
   data(): State {
@@ -39,12 +54,21 @@ export default defineComponent({
 
   computed: {
     classes(): object {
+      const isIconExists=this.imageIcon ? '--with-icon' : '';
       return {
-        'oxd-input': true,
-        'oxd-input--active': !this.focused,
-        'oxd-input--focus': this.focused,
-        'oxd-input--error': this.hasError,
+        [`oxd-input${isIconExists}`]: true,
+        [`oxd-input${isIconExists}--active`]: !this.focused,
+        [`oxd-input${isIconExists}--focus`] : this.focused,
+        [`oxd-input${isIconExists}--error`] : this.hasError
       };
+    },
+    outerClasses(): object {
+      return this.imageIcon ? {
+        'input-outer' : true,
+        'input-outer--active': !this.focused,
+        'input-outer--focus': this.focused,
+        'input-outer--error': this.hasError,
+      } : {'input-outer' : false};
     },
   },
 
