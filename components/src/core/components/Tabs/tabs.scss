@@ -1,0 +1,55 @@
+@import '../../../styles/_colors.scss';
+
+
+.tab-list {
+    border: none;
+    display: flex;
+    border-bottom: 1px solid #dee2e6;
+    padding: 0;
+    .tab-items {
+        cursor: pointer;
+        width: fit-content;
+        .tab-item{
+          font-size: 0.875rem;
+          color: $oxd-interface-gray-color;
+          font-weight: 700;
+          display: flex;
+          padding: 0.5rem 1rem;
+          margin-left: -10px;
+          margin-right: 15px;
+          margin-bottom: -5px;
+          &.active {
+            color: $oxd-interface-gray-darken-1-color;
+          }
+          &:hover, &:focus {
+            background-color: $oxd-background-light-gray-color;
+            border-radius: 2.5rem;
+            color: $oxd-interface-gray-darken-1-color;
+          }
+          .tab-icon{
+            font-size: 1.125rem;
+            margin-right: 0.5rem;
+          }
+        }
+
+        .selected-tab-indicator{
+          margin-top: 8px;
+          width: 30px;
+          height: 4px;
+          border-radius: 1.5rem;
+          display: block;
+          margin-bottom: -1px;
+          &.active {
+            background-color: $oxd-primary-one-color;
+          }
+        }
+
+      }
+    }
+
+    ul {
+      list-style-type: none;
+    }
+
+
+
