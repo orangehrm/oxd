@@ -1,12 +1,13 @@
 <template>
-  <div class="oxd-autocomplete-search-wrapper">
+  <div class="oxd-autocomplete-search-wrapper" :class="classes">
     <oxd-autocomplete-input
       ref="autocompleteInput"
       v-bind="$attrs"
+      :disabled="disabled"
+      :readonly="readonly"
       @update:modelValue="onModelUpdate($event)"
       @update:searchTerm="onSearchTerm"
       @dropdown:clear="onClear()"
-      @dropdown:opened="onOpen()"
       @dropdown:closed="onClosed()"
       @dropdown:blur="onBlur()"
       @select:enter="onSelectEnter"
@@ -15,7 +16,7 @@
         <slot :name="slot" v-bind="scope" />
       </template>
     </oxd-autocomplete-input>
-    <slot name="iconSlot"></slot>
+    <slot v-if="!disabled" name="iconSlot"></slot>
   </div>
 </template>
 
@@ -31,15 +32,31 @@ export default defineComponent({
   components: {
     'oxd-autocomplete-input': AutocompleteInput,
   },
+  props: {
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    readonly: {
+      type: Boolean,
+      default: false,
+    },
+  },
   emits: [
     'update:modelValue',
     'update:searchTerm',
     'dropdown:clear',
-    'dropdown:opened',
     'dropdown:closed',
     'dropdown:blur',
     'select:enter',
   ],
+  computed: {
+    classes(): object {
+      return {
+        'oxd-autocomplete-search-wrapper--readonly': this.readonly,
+      };
+    },
+  },
   methods: {
     onModelUpdate($event: Option) {
       this.$emit('update:modelValue', $event);
@@ -49,9 +66,6 @@ export default defineComponent({
     },
     onClear() {
       this.$emit('dropdown:clear');
-    },
-    onOpen() {
-      this.$emit('dropdown:opened');
     },
     onClosed() {
       this.$emit('dropdown:closed');
@@ -77,15 +91,27 @@ export default defineComponent({
   border-radius: 2rem;
   min-height: 1rem;
   background-color: $oxd-background-pastel-white-color;
-  .oxd-autocomplete-wrapper {
-    display: flex;
-    align-content: center;
-  }
   &:deep(.oxd-icon-button) {
     background-color: $oxd-white-color;
     color: $oxd-interface-gray-darken-2-color;
     position: absolute;
     right: 3px;
+    &:focus {
+      border: 1px solid $oxd-interface-gray-color;
+      box-shadow: 1px 1px 6px rgba(35, 35, 36, 0.12);
+    }
+  }
+  &--readonly {
+    &:deep(.oxd-icon-button) {
+      color: #cfd3de;
+      background-color: #fff;
+      border-color: #cfd3de;
+      cursor: unset;
+    }
+  }
+  .oxd-autocomplete-wrapper {
+    display: flex;
+    align-content: center;
   }
   &:deep(.oxd-autocomplete-text-input) {
     border: none;

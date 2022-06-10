@@ -39,6 +39,7 @@ import SwitchInput from '@orangehrm/oxd/core/components/Input/SwitchInput.vue';
 import RadioInput from '@orangehrm/oxd/core/components/Input/RadioInput.vue';
 import DateInput from '@orangehrm/oxd/core/components/Input/DateInput.vue';
 import AutocompleteInput from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteInput.vue';
+import QuickSearchInput from '@orangehrm/oxd/core/components/Input/Autocomplete/QuickSearchInput.vue';
 import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
 import MultiSelectInput from '@orangehrm/oxd/core/components/Input/MultiSelect/MultiSelectInput.vue';
 import TimeInput from '@orangehrm/oxd/core/components/Input/Time/TimeInput.vue';
@@ -67,6 +68,7 @@ export default defineComponent({
     'oxd-multiselect-input': MultiSelectInput,
     'oxd-time-input': TimeInput,
     'oxd-text': Text,
+    'oxd-quicksearch-input': QuickSearchInput,
   },
 
   mixins: [translateMixin],
