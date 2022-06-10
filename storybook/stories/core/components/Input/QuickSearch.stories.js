@@ -54,6 +54,20 @@ export default {
         type: {summary: 'Emit event when dropdown clear'},
       },
     },
+    'select:enter': {
+      control: {type: 'array'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'Emit event when key enter is pressed'},
+      },
+    },
+    'update:searchTerm': {
+      control: {type: 'array'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'Emit updated searchTerm from quicksearch'},
+      },
+    },
     'update:modelValue': {
       control: {type: 'array'},
       defaultValue: [],
