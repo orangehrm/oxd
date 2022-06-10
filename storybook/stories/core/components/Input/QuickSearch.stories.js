@@ -44,7 +44,7 @@ export default {
       control: {type: 'array'},
       defaultValue: [],
       table: {
-        type: {summary: 'emit event when dropdown blur'},
+        type: {summary: 'Emit event when dropdown blur'},
       },
     },
     'dropdown:clear': {
@@ -73,6 +73,13 @@ export default {
       defaultValue: [],
       table: {
         type: {summary: 'Inherited afterInput slot for  autocomplete'},
+      },
+    },
+    default: {
+      control: {type: 'object'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'Slot options for beforeInput,afterInput slots'},
       },
     },
     iconSlot: {
