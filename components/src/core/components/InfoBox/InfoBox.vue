@@ -5,6 +5,7 @@
       class="oxd-select-fill-container"
       :style="infoBoxContainerStyles"
       :class="classes"
+      @focus="onFocus"
       @blur="onBlur"
       @keyup.esc="onCloseDropdown"
       @keydown.enter.prevent="onSelectEnter"
@@ -14,18 +15,21 @@
       @click.prevent=""
       v-click-outside="clickOutside"
     >
-      <div class="d-flex flex-wrap w-100">
+      <div class="d-flex flex-wrap w-100 h-100">
         <div
           class="
             d-flex
-            align-center
+            align-start
             justify-start
             w-100
             oxd-select-fill-title-row
             --mb
           "
+          :style="titleWrapperStyles"
         >
-          <label class="oxd-select-fill-title">{{ $vt(infoLabel) }}</label>
+          <label class="oxd-select-fill-title" :style="titleLabelStyles">{{
+            $vt(infoLabel)
+          }}</label>
         </div>
         <div
           class="
@@ -52,7 +56,7 @@
             >
           </div>
           <div
-            v-if="!isModelValueString"
+            v-if="!(isModelValueString || disabled)"
             class="d-flex align-center justify-start"
           >
             <oxd-icon-button
@@ -61,7 +65,7 @@
               class="oxd-select-dropdown-trigger"
               :class="{'cursor-default': readonly}"
               :style="infoBoxTriggerButtonStyles"
-              :disabled="disabled"
+              :disabled="readonly"
               @click="onToggleDropdown"
             />
           </div>
@@ -165,12 +169,24 @@ export default defineComponent({
       type: Object,
       default: () => null,
     },
-    rows: {
+    numOfTitleRows: {
+      type: Number,
+      default: 1,
+    },
+    numOfValueRows: {
       type: Number,
       default: 2,
     },
     infoLabel: {
       type: String,
+    },
+    titleLineHeight: {
+      type: Number,
+      default: () => 22,
+    },
+    subtitleLineHeight: {
+      type: Number,
+      default: () => 19,
     },
   },
 
@@ -210,6 +226,13 @@ export default defineComponent({
         };
       });
     },
+    titleLabelStyles(): {
+      '-webkit-line-clamp'?: number;
+    } {
+      return {
+        '-webkit-line-clamp': this.numOfTitleRows,
+      };
+    },
     selectedItemLabelStyles(): {
       color: string | null;
       'font-weight'?: number;
@@ -217,7 +240,7 @@ export default defineComponent({
     } {
       return {
         color: hexToRgb(this.modelValue?.color),
-        '-webkit-line-clamp': this.rows,
+        '-webkit-line-clamp': this.numOfValueRows,
         'font-weight': this.modelValue?.color ? 700 : 600,
       };
     },
@@ -252,15 +275,22 @@ export default defineComponent({
     subtitleWrapperStyles(): {
       height: string;
     } {
-      const lineHeight = 16;
-      const subtitleWrapperHeight = this.rows * lineHeight;
+      const subtitleWrapperHeight =
+        this.numOfValueRows * this.subtitleLineHeight;
       return {
         height: `${subtitleWrapperHeight}px`,
       };
     },
+    titleWrapperStyles(): {
+      height: string;
+    } {
+      const titleWrapperHeight = this.numOfTitleRows * this.titleLineHeight;
+      return {
+        height: `${titleWrapperHeight}px`,
+      };
+    },
     classes(): object {
       return {
-        'oxd-select-fill-container--active': !this.focused,
         'oxd-select-fill-container--focus': this.focused,
         'oxd-select-fill-container--error': this.hasError,
         'oxd-select-fill-container--disabled': this.disabled,
@@ -270,6 +300,16 @@ export default defineComponent({
   },
 
   methods: {
+    onFocus($e: Event) {
+      if (this.disabled) {
+        $e.stopImmediatePropagation();
+      } else {
+        this.focused = true;
+      }
+    },
+    onBlur() {
+      this.focused = false;
+    },
     clickOutside() {
       this.dropdownOpen = false;
     },

@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`InfoBox.vue renders OXD Select Input 1`] = `
-<div class="oxd-select-wrapper"><button class="oxd-select-fill-container oxd-select-fill-container--active">
-    <div class="d-flex flex-wrap w-100">
-      <div class="d-flex align-center justify-start w-100 oxd-select-fill-title-row --mb"><label class="oxd-select-fill-title">Current Stage of Recruitment</label></div>
+<div class="oxd-select-wrapper"><button class="oxd-select-fill-container">
+    <div class="d-flex flex-wrap w-100 h-100">
+      <div class="d-flex align-start justify-start w-100 oxd-select-fill-title-row --mb" style="height: 44px;"><label class="oxd-select-fill-title">Current Stage of Recruitment</label></div>
       <div class="d-flex align-end justify-between oxd-select-fill-subtitle-row w-100">
-        <div class="d-flex align-start justify-start oxd-select-fill-subtitle-wrapper" style="height: 48px;"><label class="oxd-select-fill-subtitle text-left" style="font-weight: 600;"></label></div>
+        <div class="d-flex align-start justify-start oxd-select-fill-subtitle-wrapper" style="height: 57px;"><label class="oxd-select-fill-subtitle text-left" style="font-weight: 600;"></label></div>
         <div class="d-flex align-center justify-start"><button type="button" class="oxd-icon-button oxd-select-dropdown-trigger" flow="top"><i class="oxd-svg-icon oxd-svg-icon--xxx-small"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 209.45 129.51">
                 <defs>
                   <style>

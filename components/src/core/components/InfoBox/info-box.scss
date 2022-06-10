@@ -34,10 +34,6 @@ $dropdown-button-size: 24px;
   padding: 10px;
   border-radius: 0.85rem;
 
-  &--active {
-    border: $oxd-input-border--active;
-  }
-
   &--focus {
     border: $oxd-input-border--focus;
     box-shadow: $oxd-input-box-shadow--focus;
@@ -59,6 +55,11 @@ $dropdown-button-size: 24px;
     &.--mb {
       margin-bottom: 0.25rem;
     }
+    .oxd-select-fill-title {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
   }
   .oxd-select-fill-subtitle-wrapper {
     width: 100%;
@@ -72,15 +73,17 @@ $dropdown-button-size: 24px;
   .oxd-select-fill {
     &-title,
     &-subtitle {
-      font-family: "Nunito", sans-serif;
-      color: #64728c;
-      font-size: 0.75rem;
+      font-family: $oxd-info-box-font-family;
+      color: $oxd-info-box-title-color;
+      font-size: $oxd-info-box-title-font-size;
+      font-weight: $oxd-info-box-font-weight;
     }
     &-title {
-      font-weight: 800;
+      text-align: left;
     }
     &-subtitle {
-      font-weight: 600;
+      font-weight: $oxd-info-box-font-weight;
+      font-size: $oxd-info-box-sub-title-font-size;
     }
   }
 }

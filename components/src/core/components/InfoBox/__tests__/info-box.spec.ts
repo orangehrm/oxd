@@ -1,4 +1,4 @@
-import {mount, shallowMount} from '@vue/test-utils';
+import { mount, shallowMount } from '@vue/test-utils';
 import InfoBox from '@orangehrm/oxd/core/components/InfoBox/InfoBox.vue';
 import ButtonIcon from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
@@ -37,21 +37,22 @@ const options = [
   }
 ];
 const infoLabel = 'Current Stage of Recruitment';
-const rows = 3;
+const numOfTitleRows = 2;
+const numOfValueRows = 3;
 const dropdownPosition = BOTTOM;
 
 describe('InfoBox.vue', () => {
 
   it('renders OXD Select Input', () => {
     const wrapper = mount(InfoBox, {
-      props: {infoLabel, rows, options, dropdownPosition},
+      props: { infoLabel, numOfTitleRows, numOfValueRows, options, dropdownPosition },
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('should load options to Select', async () => {
     const wrapper = mount(InfoBox, {
-      props: {infoLabel, rows, options, dropdownPosition},
+      props: { infoLabel, numOfTitleRows, numOfValueRows, options, dropdownPosition },
     });
     wrapper.findComponent(ButtonIcon).trigger('click');
     await wrapper.vm.$nextTick();
@@ -61,7 +62,7 @@ describe('InfoBox.vue', () => {
 
   it('should select one option', async () => {
     const wrapper = mount(InfoBox, {
-      props: {infoLabel, rows, options, dropdownPosition},
+      props: { infoLabel, numOfTitleRows, numOfValueRows, options, dropdownPosition },
     });
     wrapper.findComponent(ButtonIcon).trigger('click');
     await wrapper.vm.$nextTick();
@@ -78,28 +79,26 @@ describe('InfoBox.vue', () => {
     ]);
   });
 
-  it('should not open the dropdown when the button icon is clicked but the component is disabled', async () => {
+  it('Dropdown trigger button should NOT be available when disabled', async () => {
     const wrapper = mount(InfoBox, {
       props: {
         infoLabel,
-        rows,
+        numOfTitleRows,
+        numOfValueRows,
         options,
         dropdownPosition,
         disabled: true,
       },
     });
-    wrapper.findComponent(ButtonIcon).trigger('click');
-    await wrapper.vm.$nextTick();
-    expect(wrapper.emitted('dropdown:opened')).toBeFalsy();
-    expect(wrapper.vm.dropdownOpen).toEqual(false);
-    expect(wrapper.find('.oxd-select-dropdown').exists()).toBeFalsy();
+    expect(wrapper.findComponent(ButtonIcon).exists()).toBeFalsy();
   });
 
   it('should close the dropdown when clicked outside', async () => {
     const wrapper = mount(InfoBox, {
       props: {
         infoLabel,
-        rows,
+        numOfTitleRows,
+        numOfValueRows,
         options,
         dropdownPosition,
       },
@@ -113,18 +112,18 @@ describe('InfoBox.vue', () => {
 
   it('should select one option with color attribute and return converted rgba color', async () => {
     const wrapper: any = mount(InfoBox, {
-      props: {infoLabel, rows, options, dropdownPosition},
+      props: { infoLabel, numOfTitleRows, numOfValueRows, options, dropdownPosition },
     });
     wrapper.setProps({
       modelValue: options[4]
     })
     await wrapper.vm.$nextTick();
-    expect(wrapper.vm.infoBoxContainerStyles).toStrictEqual({'background-color': 'rgba(104, 166, 29, 7%)'});
+    expect(wrapper.vm.infoBoxContainerStyles).toStrictEqual({ 'background-color': 'rgba(104, 166, 29, 7%)' });
   });
 
   it('should select one option with color attribute and return converted rgba color', async () => {
     const wrapper: any = mount(InfoBox, {
-      props: {infoLabel, rows, options, dropdownPosition},
+      props: { infoLabel, numOfTitleRows, numOfValueRows, options, dropdownPosition },
     });
     wrapper.setProps({
       modelValue: '2022-05-03'
@@ -135,7 +134,7 @@ describe('InfoBox.vue', () => {
 
   it('should set empty array as default when didnot pass options', async () => {
     const wrapper: any = shallowMount(InfoBox, {
-      props: {infoLabel, rows, dropdownPosition},
+      props: { infoLabel, numOfTitleRows, numOfValueRows, dropdownPosition },
     });
     wrapper.findComponent(ButtonIcon).trigger('click');
     await wrapper.vm.$nextTick();
@@ -147,7 +146,8 @@ describe('InfoBox.vue', () => {
     const wrapper = mount(InfoBox, {
       props: {
         infoLabel,
-        rows,
+        numOfTitleRows,
+        numOfValueRows,
         options,
         dropdownPosition,
         readonly: true,
@@ -162,7 +162,7 @@ describe('InfoBox.vue', () => {
 
   it('Selected option should marked as selected true', async () => {
     const wrapper = mount(InfoBox, {
-      props: {infoLabel, rows, options, dropdownPosition},
+      props: { infoLabel, numOfTitleRows, numOfValueRows, options, dropdownPosition },
     });
     wrapper.setProps({
       modelValue: options[1]
@@ -170,6 +170,53 @@ describe('InfoBox.vue', () => {
     wrapper.findComponent(ButtonIcon).trigger('click');
     await wrapper.vm.$nextTick();
     expect(wrapper.vm.computedOptions[1]._selected).toStrictEqual(true);
+  });
+
+  it('on Focus it should NOT add a class "--focus" to the .oxd-select-fill-container when disabled', async () => {
+    const wrapper = mount(InfoBox, {
+      props: { infoLabel, numOfTitleRows, numOfValueRows, options, dropdownPosition, disabled: true },
+    });
+    const fillContainer = wrapper.find('.oxd-select-fill-container');
+    fillContainer.trigger('focus');
+    await wrapper.vm.$nextTick();
+    expect(fillContainer.find('.oxd-select-fill-container--focus').exists()).toBe(
+      false
+    );
+  });
+
+  it('on Focus it should add a class "--readonly" to the .oxd-select-fill-container when readonly', async () => {
+    const wrapper = mount(InfoBox, {
+      props: { infoLabel, numOfTitleRows, numOfValueRows, options, dropdownPosition, readonly: true },
+    });
+    const fillContainer = wrapper.find('.oxd-select-fill-container');
+    fillContainer.trigger('focus');
+    await wrapper.vm.$nextTick();
+    expect(fillContainer.find('.oxd-select-fill-container--readonly').exists()).toBe(
+      true
+    );
+  });
+
+  it('on Focus it should add a class "--focus" to the .oxd-select-fill-container', async () => {
+    const wrapper = mount(InfoBox, {
+      props: { infoLabel, numOfTitleRows, numOfValueRows, options, dropdownPosition },
+    });
+    const fillContainer = wrapper.find('.oxd-select-fill-container');
+    fillContainer.trigger('focus');
+    await wrapper.vm.$nextTick();
+    expect(fillContainer.find('.oxd-select-fill-container--focus').exists()).toBe(
+      true
+    );
+  });
+
+  it('on Blur it should remove the class "--focus" from .oxd-select-fill-container', async () => {
+    const wrapper = mount(InfoBox, {
+      props: { infoLabel, numOfTitleRows, numOfValueRows, options, dropdownPosition },
+    });
+    wrapper.vm.onBlur();
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find('.oxd-select-fill-container--focus').exists()).toBe(
+      false
+    );
   });
 
 });

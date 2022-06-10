@@ -34,7 +34,14 @@ export default {
         type: {summary: 'Set an array of objects which has id, label mandatory and color as optional'},
       },
     },
-    rows: {
+    numOfTitleRows: {
+      control: {type: 'number'},
+      defaultValue: 1,
+      table: {
+        type: {summary: 'Set row counts defined row and max lines to truncate'},
+      },
+    },
+    numOfValueRows: {
       control: {type: 'number'},
       defaultValue: 2,
       table: {
@@ -103,6 +110,20 @@ export default {
         type: {summary: 'Should be passed as an array object'},
       },
     },
+    titleLineHeight: {
+      control: {type: 'number'},
+      defaultValue: 44,
+      table: {
+        type: {summary: 'Set a line height and default will be 22'},
+      },
+    },
+    subtitleLineHeight: {
+      control: {type: 'number'},
+      defaultValue: 38,
+      table: {
+        type: {summary: 'Set a line height and default will be 19'},
+      },
+    }
   },
 };
 
@@ -197,7 +218,7 @@ const sample = {
     {
       type: 'grid',
       props: {
-        cols: 2,
+        cols: 4,
       },
       children: {
         default: [
@@ -209,6 +230,7 @@ const sample = {
             props: {
               infoLabel: 'Current Stage of Recruitment',
               options,
+              numOfTitleRows: 1,
             }
           },
           {
@@ -219,6 +241,7 @@ const sample = {
               disabled: true,
               infoLabel: 'Current Stage of Recruitment',
               options,
+              numOfTitleRows: 1,
             }
           },
           {
@@ -229,7 +252,30 @@ const sample = {
               readonly: true,
               infoLabel: 'Current Stage of Recruitment',
               options,
+              numOfTitleRows: 1,
             }
+          },
+          {
+            name: 'currentstagepreselectedwithlongcaption',
+            label: 'Pre-Selected with Long Caption',
+            type: 'infobox',
+            props: {
+              infoLabel: 'With a Pre-Selected Value and a Long Caption',
+              options,
+              numOfTitleRows: 1,
+            },
+            value: options[6]
+          },
+          {
+            name: 'dateOfApplication',
+            label: 'Value as a String',
+            type: 'infobox',
+            props: {
+              infoLabel: 'Date of Application',
+              options,
+              numOfTitleRows: 1,
+            },
+            value: '2022-05-03'
           },
         ],
       },
@@ -268,20 +314,23 @@ export const Default = Template.bind({});
 Default.args = {
   infoLabel: 'Current Stage of Recruitment',
   options: options,
-  rows: 2,
+  numOfTitleRows: 1,
+  numOfValueRows: 2,
 };
 
 export const StringModalValue = TemplateString.bind({});
 StringModalValue.args = {
   infoLabel: 'Date of Application',
-  rows: 2,
+  numOfTitleRows: 1,
+  numOfValueRows: 2,
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
   infoLabel: 'Current Stage of Recruitment',
   options: options,
-  rows: 2,
+  numOfTitleRows: 1,
+  numOfValueRows: 2,
   disabled: true,
 };
 
@@ -289,21 +338,24 @@ export const Readonly = Template.bind({});
 Readonly.args = {
   infoLabel: 'Current Stage of Recruitment',
   options: options,
-  rows: 2,
+  numOfTitleRows: 1,
+  numOfValueRows: 2,
   readonly: true,
 };
 
 export const NoOptions = Template.bind({});
 NoOptions.args = {
   infoLabel: 'Current Stage of Recruitment',
-  rows: 2,
+  numOfTitleRows: 1,
+  numOfValueRows: 2,
 };
 
 export const Error = Template.bind({});
 Error.args = {
   infoLabel: 'Current Stage of Recruitment',
   options: options,
-  rows: 2,
+  numOfTitleRows: 1,
+  numOfValueRows: 2,
   hasError: true,
 };
 
@@ -323,7 +375,8 @@ const TemplateWithoutInitialValue = args => ({
 export const WithoutInitialValue = TemplateWithoutInitialValue.bind({});
 WithoutInitialValue.args = {
   infoLabel: 'Date of Application',
-  rows: 2,
+  numOfTitleRows: 1,
+  numOfValueRows: 2,
 };
 
 export const Events = () => InfoBoxEvents;
@@ -353,8 +406,11 @@ Default.parameters = {
             label: 'In Progress',
           },
         ]"
-        :rows="3"
+        :numOfTitleRows="2"
+        :numOfValueRows="3"
         :infoLabel="'Current Stage of Recruitment'"
+        :titleLineHeight="44"
+        :subtitleLineHeight="38"
       />`,
     },
   },
@@ -366,7 +422,8 @@ StringModalValue.parameters = {
       code: `
       <oxd-infobox
         :modelValue="'2022-05-03'"
-        :rows="3"
+        :numOfTitleRows="2"
+        :numOfValueRows="3"
         :infoLabel="'Date of Application'"
       />`,
     },
@@ -399,7 +456,8 @@ Disabled.parameters = {
             label: 'In Progress',
           },
         ]"
-        :rows="3"
+        :numOfTitleRows="2"
+        :numOfValueRows="3"
         :infoLabel="'Current Stage of Recruitment'"
       />`,
     },
@@ -432,7 +490,8 @@ Readonly.parameters = {
             label: 'In Progress',
           },
         ]"
-        :rows="3"
+        :numOfTitleRows="2"
+        :numOfValueRows="3"
         :infoLabel="'Current Stage of Recruitment'"
       />`,
     },
@@ -450,7 +509,8 @@ NoOptions.parameters = {
             label: 'Shortlisted',
           }
         "
-        :rows="3"
+        :numOfTitleRows="2"
+        :numOfValueRows="3"
         :infoLabel="'Current Stage of Recruitment'"
       />`,
     },
@@ -483,7 +543,8 @@ Error.parameters = {
             label: 'In Progress',
           },
         ]"
-        :rows="3"
+        :numOfTitleRows="2"
+        :numOfValueRows="3"
         :infoLabel="'Current Stage of Recruitment'"
       />`,
     },
@@ -510,7 +571,8 @@ WithoutInitialValue.parameters = {
             label: 'In Progress',
           },
         ]"
-        :rows="3"
+        :numOfTitleRows="2"
+        :numOfValueRows="3"
         :infoLabel="'Current Stage of Recruitment'"
       />`,
     },
