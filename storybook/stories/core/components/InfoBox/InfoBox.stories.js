@@ -230,7 +230,7 @@ const sample = {
             props: {
               infoLabel: 'Current Stage of Recruitment',
               options,
-              titleRows: 2,
+              titleRows: 1,
             }
           },
           {
@@ -241,7 +241,7 @@ const sample = {
               disabled: true,
               infoLabel: 'Current Stage of Recruitment',
               options,
-              titleRows: 2,
+              titleRows: 1,
             }
           },
           {
@@ -252,7 +252,7 @@ const sample = {
               readonly: true,
               infoLabel: 'Current Stage of Recruitment',
               options,
-              titleRows: 2,
+              titleRows: 1,
             }
           },
           {
@@ -262,7 +262,7 @@ const sample = {
             props: {
               infoLabel: 'With a Pre-Selected Value and a Long Caption',
               options,
-              titleRows: 2,
+              titleRows: 1,
             },
             value: options[6]
           },
@@ -273,7 +273,7 @@ const sample = {
             props: {
               infoLabel: 'Date of Application',
               options,
-              titleRows: 2,
+              titleRows: 1,
             },
             value: '2022-05-03'
           },
