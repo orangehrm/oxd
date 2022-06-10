@@ -2,6 +2,7 @@
   <oxd-input-group
     :label="label"
     :labelIcon="labelIcon"
+    :labelHelpText="labelHelpText"
     :id="id"
     :message="message"
     class="oxd-input-field-bottom-space"
@@ -81,6 +82,9 @@ export default defineComponent({
     },
     labelIcon: {
       type: String,
+    },
+    labelHelpText: {
+      type: String
     },
     required: {
       type: Boolean,
