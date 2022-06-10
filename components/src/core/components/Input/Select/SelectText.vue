@@ -14,7 +14,7 @@
         readonly="readonly"
         tabIndex="-1"
         v-bind="inputAttrs"
-        @blur="$attrs.onBlur"
+        @blur="onBlur"
       />
     </div>
     <div class="oxd-select-text--after-slot-option">
@@ -145,8 +145,10 @@ export default defineComponent({
       }
       this.focused = true;
     },
-    onBlur() {
+    onBlur($e: Event) {
+      $e.stopImmediatePropagation();
       this.focused = false;
+      this.$emit('blur', $e);
     },
   },
 });
