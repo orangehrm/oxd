@@ -34,3 +34,9 @@
   margin-left: 2px;
   word-break: break-all;
 }
+
+.oxd-input-group__label-icon {
+  width: $oxd-input-group-label-icon-size;
+  height: $oxd-input-group-label-icon-size;
+  align-self: end;
+}
