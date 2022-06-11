@@ -12,6 +12,7 @@ export const COMPONENT_QUICKSEARCH_INPUT = 'oxd-quicksearch-input';
 export const COMPONENT_SELECT_INPUT = 'oxd-select-input';
 export const COMPONENT_MULTISELECT_INPUT = 'oxd-multiselect-input';
 export const COMPONENT_TIME_INPUT = 'oxd-time-input';
+export const COMPONENT_INFOBOX = 'oxd-infobox';
 
 export const TYPE_INPUT = 'input';
 export const TYPE_FILE_INPUT = 'file';
@@ -27,6 +28,7 @@ export const TYPE_QUICKSEARCH = 'quicksearch';
 export const TYPE_SELECT = 'select';
 export const TYPE_MULTISELECT = 'multiselect';
 export const TYPE_TIME = 'time';
+export const TYPE_INFOBOX = 'infobox';
 
 export const TYPES = [
   TYPE_INPUT,
@@ -43,6 +45,7 @@ export const TYPES = [
   TYPE_SELECT,
   TYPE_MULTISELECT,
   TYPE_TIME,
+  TYPE_INFOBOX,
 ];
 
 export const TYPE_MAP: TypeMap<Components> = {
@@ -60,6 +63,7 @@ export const TYPE_MAP: TypeMap<Components> = {
   [TYPE_SELECT]: COMPONENT_SELECT_INPUT,
   [TYPE_MULTISELECT]: COMPONENT_MULTISELECT_INPUT,
   [TYPE_TIME]: COMPONENT_TIME_INPUT,
+  [TYPE_INFOBOX]: COMPONENT_INFOBOX,
 };
 
 export type Types =
@@ -75,7 +79,8 @@ export type Types =
   | typeof TYPE_AUTOCOMPLETE
   | typeof TYPE_SELECT
   | typeof TYPE_MULTISELECT
-  | typeof TYPE_TIME;
+  | typeof TYPE_TIME
+  | typeof TYPE_INFOBOX;
 
 export type Components =
   | typeof COMPONENT_INPUT
@@ -91,7 +96,8 @@ export type Components =
   | typeof COMPONENT_QUICKSEARCH_INPUT
   | typeof COMPONENT_SELECT_INPUT
   | typeof COMPONENT_MULTISELECT_INPUT
-  | typeof COMPONENT_TIME_INPUT;
+  | typeof COMPONENT_TIME_INPUT
+  | typeof COMPONENT_INFOBOX;
 
 export interface TypeMap<T> {
   [key: string]: T;
