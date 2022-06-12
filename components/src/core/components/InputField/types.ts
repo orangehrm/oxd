@@ -8,6 +8,7 @@ export const COMPONENT_SWITCH_INPUT = 'oxd-switch-input';
 export const COMPONENT_RADIO_INPUT = 'oxd-radio-input';
 export const COMPONENT_DATE_INPUT = 'oxd-date-input';
 export const COMPONENT_AUTOCOMPLETE_INPUT = 'oxd-autocomplete-input';
+export const COMPONENT_QUICKSEARCH_INPUT = 'oxd-quicksearch-input';
 export const COMPONENT_SELECT_INPUT = 'oxd-select-input';
 export const COMPONENT_MULTISELECT_INPUT = 'oxd-multiselect-input';
 export const COMPONENT_TIME_INPUT = 'oxd-time-input';
@@ -23,6 +24,7 @@ export const TYPE_SWITCH = 'switch';
 export const TYPE_RADIO = 'radio';
 export const TYPE_DATE = 'date';
 export const TYPE_AUTOCOMPLETE = 'autocomplete';
+export const TYPE_QUICKSEARCH = 'quicksearch';
 export const TYPE_SELECT = 'select';
 export const TYPE_MULTISELECT = 'multiselect';
 export const TYPE_TIME = 'time';
@@ -39,6 +41,7 @@ export const TYPES = [
   TYPE_RADIO,
   TYPE_DATE,
   TYPE_AUTOCOMPLETE,
+  TYPE_QUICKSEARCH,
   TYPE_SELECT,
   TYPE_MULTISELECT,
   TYPE_TIME,
@@ -56,6 +59,7 @@ export const TYPE_MAP: TypeMap<Components> = {
   [TYPE_RADIO]: COMPONENT_RADIO_INPUT,
   [TYPE_DATE]: COMPONENT_DATE_INPUT,
   [TYPE_AUTOCOMPLETE]: COMPONENT_AUTOCOMPLETE_INPUT,
+  [TYPE_QUICKSEARCH]: COMPONENT_QUICKSEARCH_INPUT,
   [TYPE_SELECT]: COMPONENT_SELECT_INPUT,
   [TYPE_MULTISELECT]: COMPONENT_MULTISELECT_INPUT,
   [TYPE_TIME]: COMPONENT_TIME_INPUT,
@@ -89,6 +93,7 @@ export type Components =
   | typeof COMPONENT_RADIO_INPUT
   | typeof COMPONENT_DATE_INPUT
   | typeof COMPONENT_AUTOCOMPLETE_INPUT
+  | typeof COMPONENT_QUICKSEARCH_INPUT
   | typeof COMPONENT_SELECT_INPUT
   | typeof COMPONENT_MULTISELECT_INPUT
   | typeof COMPONENT_TIME_INPUT

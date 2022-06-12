@@ -160,6 +160,12 @@ export default defineComponent({
       this.dateTyped = value;
     },
     onDateSelected() {
+      const oxdDatePicker = this.$refs.oxdInput;
+      oxdDatePicker.focused = true;
+      this.$nextTick(() => {
+        const oxdDateInputTriggerBtn = this.$refs.oxdIcon;
+        oxdDateInputTriggerBtn.blur();
+      });
       this.closeDropdown();
     },
     toggleDropdown() {

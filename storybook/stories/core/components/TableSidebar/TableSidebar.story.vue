@@ -29,8 +29,8 @@
 
 <script lang="ts">
 import TableSidebar from '@orangehrm/oxd/core/components/TableSidebar/TableSidebar.vue';
-import leftPanelTableList from './../List/list-schema/left-panel.table.list';
-import topBarTableList from './../List/list-schema/top-bar.table.list';
+import leftPanelTableList from './../List/list-with-sidebar/left-panel.table.list';
+import topBarTableList from './../List/list-with-sidebar/top-bar.table.list';
 import data from './../List/list-data.json';
 
 import {defineComponent, ref, computed} from 'vue';

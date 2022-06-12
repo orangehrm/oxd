@@ -104,7 +104,7 @@ interface ListTopBar extends Visible {
   };
   bulkActions: ListAction[];
   singleActions: ListAction[];
-  quickSearch: ListQuickSearch;
+  quickSearch?: ListQuickSearch;
 }
 
 interface ListTableHeaderCell extends Icon {

@@ -312,6 +312,36 @@ Advance.args = {
               validators: new Map([['required', required]]),
             },
             {
+              name: 'user',
+              label: 'Users',
+              type: 'multiselect',
+              value: [],
+              props: {
+                options: [
+                  {id: 1, label: 'HR'},
+                  {id: 2, label: 'Admin'},
+                ],
+              },
+            },
+            {
+              name: 'autofocusUser',
+              label: 'Search Users',
+              type: 'autocomplete',
+              value: [],
+              props: {
+                placeholder: 'test',
+                autofocus: true,
+                createOptions: function (serachParam) {
+                  const filter = new RegExp(serachParam, 'i');
+                  return [
+                    {id: 1, label: 'HR'},
+                    {id: 2, label: 'Admin'},
+                  ].filter((item) => item.label.match(filter));
+                },
+              },
+              validators: new Map([['required', required]]),
+            },
+            {
               name: 'date',
               label: 'Date of Application',
               type: 'date',

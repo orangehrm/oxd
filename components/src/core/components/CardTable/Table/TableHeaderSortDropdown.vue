@@ -1,5 +1,9 @@
 <template>
-  <div class="oxd-table-header-sort" @keyup.esc="closeDropdown">
+  <div
+    class="oxd-table-header-sort"
+    @keyup.esc="closeDropdown"
+    v-click-outside="closeDropdown"
+  >
     <oxd-icon-button
       :withContainer="false"
       :name="sortIcon"
@@ -7,14 +11,13 @@
       class="oxd-table-header-sort-icon"
       tabindex="0"
       ref="oxdIcon"
-      @click="openDropdown($event)"
+      @click="toggleDropdown($event)"
       @keydown.enter="openDropdown($event)"
       @keydown.down.exact.prevent="onSelectDown"
       @keydown.up.exact.prevent="onSelectUp"
       @keydown.tab="closeDropdown"
     />
     <div
-      v-click-outside="closeDropdown"
       v-show="isActive"
       :class="classes"
       role="dropdown"
@@ -95,6 +98,13 @@ export default defineComponent({
   },
 
   methods: {
+    toggleDropdown() {
+      if (!this.isActive) {
+        this.openDropdown();
+      } else {
+        this.closeDropdown();
+      }
+    },
     openDropdown() {
       this.isActive = true;
       if (this.sortIcon === 'oxd-sort-desc') {
