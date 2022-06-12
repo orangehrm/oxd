@@ -1,3 +1,5 @@
+2022-06-11 - d54e259faa978699db974f1113f8c470f5bc1590 - InputGroup.vue - Input label icon size related styles changed. Check any places where input field label has an icon.
+
 2022-06-10 - 78f3c1344de36cf5d95fe13c6e91c8c1147eccba - Input.vue - Added icon suppport for the input text field. Can be affected to the other places which use oxd-input. Date input, text area,  time, checkbox, select, multiselect, autocomplete
 
 2022-06-03 - e45f6bee3abf87ffc71b9265746d2d372a53253f - Label.vue - Explicitly set .oxd-label margin to zero, since it's getting overridden by angular application styles.
