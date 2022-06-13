@@ -28,10 +28,12 @@
   z-index: $oxd-dialog-z-index;
   position: relative;
   box-sizing: border-box;
-  padding: $oxd-dialog-sheet-padding;
 
   &--shadow {
     box-shadow: $oxd-dialog-sheet-box-shadow;
+  }
+  &--gutters {
+    padding: $oxd-dialog-sheet-padding;
   }
 }
 
