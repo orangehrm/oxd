@@ -2,7 +2,12 @@
 
 exports[`TimeInput.vue renders OXD Time Input 1`] = `
 <div class="oxd-time-wrapper">
-  <div class="oxd-time-input"><input class="oxd-input oxd-input--active"><i class="oxd-icon oxd-icon--medium bi-clock oxd-time-input--clock"></i></div>
+  <div class="oxd-time-input">
+    <div class="input-outer-wrapper" disabled="false" value="">
+      <!--v-if-->
+      <!--v-if--><input class="oxd-input oxd-input--active">
+    </div><i class="oxd-icon oxd-icon--medium bi-clock oxd-time-input--clock"></i>
+  </div>
   <!--v-if-->
 </div>
 `;

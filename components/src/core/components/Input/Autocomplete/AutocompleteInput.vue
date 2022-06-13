@@ -94,7 +94,6 @@ export default defineComponent({
   emits: [
     'update:modelValue',
     'dropdown:clear',
-    'dropdown:opened',
     'dropdown:closed',
     'dropdown:blur',
     'select:enter',

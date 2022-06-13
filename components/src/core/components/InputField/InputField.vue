@@ -2,6 +2,7 @@
   <oxd-input-group
     :label="label"
     :labelIcon="labelIcon"
+    :labelHelpText="labelHelpText"
     :id="id"
     :message="message"
     class="oxd-input-field-bottom-space"
@@ -39,10 +40,12 @@ import SwitchInput from '@orangehrm/oxd/core/components/Input/SwitchInput.vue';
 import RadioInput from '@orangehrm/oxd/core/components/Input/RadioInput.vue';
 import DateInput from '@orangehrm/oxd/core/components/Input/DateInput.vue';
 import AutocompleteInput from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteInput.vue';
+import QuickSearchInput from '@orangehrm/oxd/core/components/Input/Autocomplete/QuickSearchInput.vue';
 import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
 import MultiSelectInput from '@orangehrm/oxd/core/components/Input/MultiSelect/MultiSelectInput.vue';
 import TimeInput from '@orangehrm/oxd/core/components/Input/Time/TimeInput.vue';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
+import InfoBox from '@orangehrm/oxd/core/components/InfoBox/InfoBox.vue';
 import {Types, Components, TYPES, TYPE_INPUT, TYPE_MAP} from './types';
 import useField from '../../../composables/useField';
 import translateMixin from '../../../mixins/translate';
@@ -69,6 +72,8 @@ export default defineComponent({
     'oxd-time-input': TimeInput,
     'oxd-text': Text,
     'oxd-checkboxgroup-input': CheckboxGroup,
+    'oxd-infobox': InfoBox,
+    'oxd-quicksearch-input': QuickSearchInput,
   },
 
   mixins: [translateMixin],
@@ -81,6 +86,9 @@ export default defineComponent({
     },
     labelIcon: {
       type: String,
+    },
+    labelHelpText: {
+      type: String
     },
     required: {
       type: Boolean,
@@ -138,7 +146,7 @@ export default defineComponent({
       onReset,
     });
 
-    const onChange = $event => {
+    const onChange = ($event) => {
       if (!dirty.value) {
         dirty.value = true;
         startWatcher();

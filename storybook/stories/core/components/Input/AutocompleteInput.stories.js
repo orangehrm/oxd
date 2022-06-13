@@ -105,6 +105,9 @@ export default {
     },
     createOptions: {
       control: {type: 'function'},
+      table: {
+        type: {summary: 'function to load options for the autocomplete'},
+      },
       defaultValue: () => [],
     },
   },

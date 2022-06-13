@@ -5,8 +5,13 @@ exports[`InputField.vue renders OXD InputField 1`] = `
   <div class="oxd-input-group__label-wrapper">
     <!--v-if-->
     <!--v-if-->
+    <!--v-if-->
   </div>
-  <div class=""><input class="oxd-input oxd-input--active">
+  <div class="">
+    <div class="input-outer-wrapper" disabled="false">
+      <!--v-if-->
+      <!--v-if--><input class="oxd-input oxd-input--active">
+    </div>
     <!--v-if-->
   </div>
   <!--v-if-->
@@ -16,6 +21,7 @@ exports[`InputField.vue renders OXD InputField 1`] = `
 exports[`InputField.vue renders OXD InputField type \`file\` 1`] = `
 <div class="oxd-input-group oxd-input-field-bottom-space">
   <div class="oxd-input-group__label-wrapper">
+    <!--v-if-->
     <!--v-if-->
     <!--v-if-->
   </div>
@@ -35,6 +41,7 @@ exports[`InputField.vue renders OXD InputField type \`file\` with button 1`] = `
   <div class="oxd-input-group__label-wrapper">
     <!--v-if-->
     <!--v-if-->
+    <!--v-if-->
   </div>
   <div class=""><input type="file" class="oxd-file-input">
     <div class="oxd-file-div oxd-file-div--active">
@@ -52,8 +59,13 @@ exports[`InputField.vue renders OXD InputField type \`input\` 1`] = `
   <div class="oxd-input-group__label-wrapper">
     <!--v-if-->
     <!--v-if-->
+    <!--v-if-->
   </div>
-  <div class=""><input class="oxd-input oxd-input--active">
+  <div class="">
+    <div class="input-outer-wrapper" disabled="false">
+      <!--v-if-->
+      <!--v-if--><input class="oxd-input oxd-input--active">
+    </div>
     <!--v-if-->
   </div>
   <!--v-if-->
@@ -65,8 +77,13 @@ exports[`InputField.vue renders OXD InputField type \`input\` with Hint 1`] = `
   <div class="oxd-input-group__label-wrapper">
     <!--v-if-->
     <!--v-if-->
+    <!--v-if-->
   </div>
-  <div class=""><input class="oxd-input oxd-input--active">
+  <div class="">
+    <div class="input-outer-wrapper" disabled="false">
+      <!--v-if-->
+      <!--v-if--><input class="oxd-input oxd-input--active">
+    </div>
     <p class="oxd-text oxd-text--p orangehrm-input-hint">This field has a hint</p>
   </div>
   <!--v-if-->
@@ -76,6 +93,7 @@ exports[`InputField.vue renders OXD InputField type \`input\` with Hint 1`] = `
 exports[`InputField.vue renders OXD InputField type \`textarea\` 1`] = `
 <div class="oxd-input-group oxd-input-field-bottom-space">
   <div class="oxd-input-group__label-wrapper">
+    <!--v-if-->
     <!--v-if-->
     <!--v-if-->
   </div>

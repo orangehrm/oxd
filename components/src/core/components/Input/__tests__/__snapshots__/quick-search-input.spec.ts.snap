@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`QuickSearchInput.vue renders OXD Autocomplete Input 1`] = `
+exports[`QuickSearchInput.vue Renders OXD QuickSearchInput Input 1`] = `
 <div class="oxd-autocomplete-search-wrapper">
   <div class="oxd-autocomplete-wrapper">
     <div class="oxd-autocomplete-text-input oxd-autocomplete-text-input--active">
@@ -12,6 +12,5 @@ exports[`QuickSearchInput.vue renders OXD Autocomplete Input 1`] = `
     <!--v-if-->
     <!--v-if-->
   </div>
-  <icon-button name="oxd-search" displaytype="label-info" size="small"></icon-button>
 </div>
 `;

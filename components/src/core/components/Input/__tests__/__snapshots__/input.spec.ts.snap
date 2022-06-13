@@ -1,7 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Input.vue renders OXD Input 1`] = `<input class="oxd-input oxd-input--active" label="Input">`;
+exports[`Input.vue input field with icon 1`] = `
+<div class="input-outer input-outer--active input-outer-wrapper">
+  <div class="input-text-field-icon"><img src="@orangehrm/oxd/assets/images/facebook_logo_icon.svg"></div>
+  <div>
+    <!--v-if-->
+    <div class="oxd-divider-vertical" style="height: 100%;"></div>
+  </div><input class="oxd-input--with-icon oxd-input--with-icon--active">
+</div>
+`;
 
-exports[`Input.vue should renders OXD Input with custom color 1`] = `<input class="oxd-input oxd-input--active" style="background-color: aliceblue;" label="Input">`;
+exports[`Input.vue renders OXD Input 1`] = `
+<div class="input-outer-wrapper" label="Input">
+  <!--v-if-->
+  <!--v-if--><input class="oxd-input oxd-input--active" label="Input">
+</div>
+`;
 
-exports[`Input.vue should renders OXD Input with error 1`] = `<input class="oxd-input oxd-input--active oxd-input--error" label="Input">`;
+exports[`Input.vue should renders OXD Input with custom color 1`] = `
+<div class="input-outer-wrapper" label="Input">
+  <!--v-if-->
+  <!--v-if--><input class="oxd-input oxd-input--active" style="background-color: aliceblue;" label="Input">
+</div>
+`;
+
+exports[`Input.vue should renders OXD Input with error 1`] = `
+<div class="input-outer-wrapper" label="Input">
+  <!--v-if-->
+  <!--v-if--><input class="oxd-input oxd-input--active oxd-input--error" label="Input">
+</div>
+`;
