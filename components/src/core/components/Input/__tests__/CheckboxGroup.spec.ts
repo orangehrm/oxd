@@ -2,7 +2,7 @@ import {mount} from '@vue/test-utils';
 import CheckboxGroup from '@orangehrm/oxd/core/components/Input/CheckboxGroup.vue';
 
 describe('CheckboxGroup > CheckboxGroup.vue', () => {
-  it('renders OXD MultiCheckBox', () => {
+  it('renders OXD CheckboxGroup', () => {
     const wrapper = mount(CheckboxGroup, {
       props: {
         options: [

@@ -1,8 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CheckboxGroup > CheckboxGroup.vue renders OXD MultiCheckBox 1`] = `
+exports[`CheckboxGroup > CheckboxGroup.vue renders OXD CheckboxGroup 1`] = `
 <div class="oxd-input-group" disabled="true">
   <div class="oxd-input-group__label-wrapper">
+    <!--v-if-->
     <!--v-if-->
     <!--v-if-->
   </div>
