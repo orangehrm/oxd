@@ -19,4 +19,9 @@
       opacity: 1;
     }
   }
+  &:focus-within {
+    .oxd-action-render-button-visibility-on-hover {
+      opacity: 1;
+    }
+  }
 }

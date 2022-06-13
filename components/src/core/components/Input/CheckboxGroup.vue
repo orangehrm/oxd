@@ -4,6 +4,10 @@ import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vu
 import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue';
 import useTranslate from '../../../composables/useTranslate';
 
+export interface State {
+  focused: boolean;
+}
+
 export default defineComponent({
   name: 'oxd-checkbox-group',
   components: {
@@ -29,7 +33,11 @@ export default defineComponent({
       default: () => [],
     },
   },
-
+  data(): State {
+    return {
+      focused: false,
+    };
+  },
   render() {
     const inputId = this.id == undefined ? 'check-box-group-id' : this.id;
     const inputClass = this.class == '' ? 'check-box-column' : this.class;
@@ -52,6 +60,16 @@ export default defineComponent({
             optionLabel: $t(option.label),
             modelValue: this.modelValue,
             disabled: option.disabled,
+            focus: this.focus,
+            blur: this.focus,
+            onFocus: () => {
+              this.focused = true;
+              this.$emit('focus', this.focused);
+            },
+            onBlur: () => {
+              this.focused = false;
+              this.$emit('blur', this.focused);
+            },
             onChange: () => {
               if (this.modelValue.includes(option.id)) {
                 for (var val in this.modelValue) {
