@@ -138,18 +138,40 @@ const options = [
     id: 6,
     label: 'Appraiser',
   },
+  {
+    id: 7,
+    label: 'Crítico',
+  },
 ];
 
 const syncFunction = function (serachParam) {
-  const filter = new RegExp(serachParam, 'i');
-  return options.filter((item) => item.label.match(filter));
+  const normalizedSearchValue = serachParam
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '');
+  const normalizedFilter = new RegExp(normalizedSearchValue, 'i');
+  return options.filter((item) =>
+    item.label
+      .normalize('NFD')
+      .replace(/\p{Diacritic}/gu, '')
+      .match(normalizedFilter),
+  );
 };
 
 const asyncFunction = async function (serachParam) {
-  const filter = new RegExp(serachParam, 'i');
+  const normalizedSearchValue = serachParam
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '');
+  const normalizedFilter = new RegExp(normalizedSearchValue, 'i');
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(options.filter((item) => item.label.match(filter)));
+      resolve(
+        options.filter((item) =>
+          item.label
+            .normalize('NFD')
+            .replace(/\p{Diacritic}/gu, '')
+            .match(normalizedFilter),
+        ),
+      );
     }, 2500);
   });
 };
