@@ -67,6 +67,7 @@
   &.table-left-panel-open {
     .table-card-list-wrapper {
       flex-grow: 1;
+      width: calc(100% - 200px);
     }
   }
   .oxd-classic-table {

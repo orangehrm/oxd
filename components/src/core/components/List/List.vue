@@ -12,7 +12,10 @@
       v-if="config.table.leftPanel && config.table.leftPanel.visible"
       class="oxd-table-left-panel d-table-cell"
       :class="{'with-filters': config.table.topBar.visible}"
-      width="200px"
+      :style="{
+        width: '200px',
+        'max-width': '200px',
+      }"
       :side-panel-list="sidePanelList"
       :header-visible="config.table.leftPanel.header.visible"
       :header-action-button-visible="config.table.addable"
