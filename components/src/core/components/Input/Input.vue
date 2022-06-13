@@ -1,5 +1,5 @@
 <template>
-<div :class="outerClasses">
+<div :class="outerClasses" class="input-outer-wrapper">
   <div v-if="imageIcon" class="input-text-field-icon"> 
     <img :src="imageIcon" />
   </div>
