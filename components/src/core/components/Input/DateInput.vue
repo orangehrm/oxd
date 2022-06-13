@@ -11,6 +11,7 @@
         :readonly="readonly"
         :value="displayDate"
         :placeholder="placeholder"
+        v-click-outside="onClickTextOutside"
         ref="oxdInput"
         @update:modelValue="onDateTyped"
         @blur="onBlur"
@@ -190,6 +191,10 @@ export default defineComponent({
     onClickOutside() {
       this.open = false;
       this.$emit('dateselect:closed');
+    },
+    onClickTextOutside() {
+      const oxdDatePicker = this.$refs.oxdInput;
+      oxdDatePicker.focused = false;
     },
     onClickToday() {
       this.dateSelected = freshDate();
