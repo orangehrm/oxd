@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Input.vue input field with icon 1`] = `
-<div class="input-outer input-outer--active">
+<div class="input-outer input-outer--active input-outer-wrapper">
   <div class="input-text-field-icon"><img src="@orangehrm/oxd/assets/images/facebook_logo_icon.svg"></div>
   <div>
     <!--v-if-->
@@ -11,21 +11,21 @@ exports[`Input.vue input field with icon 1`] = `
 `;
 
 exports[`Input.vue renders OXD Input 1`] = `
-<div class="" label="Input">
+<div class="input-outer-wrapper" label="Input">
   <!--v-if-->
   <!--v-if--><input class="oxd-input oxd-input--active" label="Input">
 </div>
 `;
 
 exports[`Input.vue should renders OXD Input with custom color 1`] = `
-<div class="" label="Input">
+<div class="input-outer-wrapper" label="Input">
   <!--v-if-->
   <!--v-if--><input class="oxd-input oxd-input--active" style="background-color: aliceblue;" label="Input">
 </div>
 `;
 
 exports[`Input.vue should renders OXD Input with error 1`] = `
-<div class="" label="Input">
+<div class="input-outer-wrapper" label="Input">
   <!--v-if-->
   <!--v-if--><input class="oxd-input oxd-input--active oxd-input--error" label="Input">
 </div>

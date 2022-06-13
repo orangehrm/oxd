@@ -3,7 +3,7 @@
 exports[`DateInput.vue renders OXD Date Input 1`] = `
 <div class="oxd-date-wrapper">
   <div class="oxd-date-input" flow="bottom">
-    <div class="" disabled="false">
+    <div class="input-outer-wrapper" disabled="false">
       <!--v-if-->
       <!--v-if--><input class="oxd-input oxd-input--active">
     </div>
