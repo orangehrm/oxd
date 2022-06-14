@@ -1,11 +1,17 @@
 <script lang="ts">
-import {defineComponent, h, PropType} from 'vue';
+import {defineComponent, h} from 'vue';
 import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
 import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue';
 import useTranslate from '../../../composables/useTranslate';
 
 export interface State {
   focused: boolean;
+}
+
+export interface Options {
+  id: number;
+  label: string;
+  disabled?: boolean;
 }
 
 export default defineComponent({
@@ -26,10 +32,10 @@ export default defineComponent({
       type: Object,
     },
     options: {
-      type: Array as PropType<any>,
+      type: Array,
     },
     modelValue: {
-      type: Array as PropType<any>,
+      type: Array,
       default: () => [],
     },
   },
@@ -53,7 +59,7 @@ export default defineComponent({
         disabled: true,
       },
       [
-        this.options.map((option: any, i: number) => {
+        this.options.map((option: Options) => {
           return h(CheckboxInput, {
             id: inputId + '_' + option.id,
             value: option.id,
@@ -71,18 +77,17 @@ export default defineComponent({
               this.$emit('blur', this.focused);
             },
             onChange: () => {
+              let idArray: number[];
               if (this.modelValue.includes(option.id)) {
-                for (var val in this.modelValue) {
-                  if (this.modelValue[val] == option.id) {
-                    delete this.modelValue[val];
-                  }
-                }
+                idArray = [...this.modelValue].filter(
+                  value => value !== option.id,
+                );
               } else {
-                this.modelValue.push(option.id);
+                idArray = [...this.modelValue, option.id];
               }
               this.$emit(
                 'update:modelValue',
-                this.modelValue.filter((id: Number) => id).sort(),
+                idArray.filter((id: number) => id).sort(),
               );
             },
           });
