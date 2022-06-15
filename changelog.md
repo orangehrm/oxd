@@ -1,3 +1,5 @@
+2022-06-13 - 146f216bd9e2ae408eced6af09fe5c937185f20f - components/List/list.scss - Fix the position of 'No Data Found' icon in the List component
+
 2022-06-03 - e45f6bee3abf87ffc71b9265746d2d372a53253f - Label.vue - Explicitly set .oxd-label margin to zero, since it's getting overridden by angular application styles.
 
 2022-06-02 - dbc3b27a1b82ef7a5bf485a37b0f0332404dcd92 - List.vue - Added changes make QuickSearch, Pagination and leftSideBar optional. No need to send empty values for these props hereafter.
