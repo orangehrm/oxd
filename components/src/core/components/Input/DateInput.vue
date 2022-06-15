@@ -11,13 +11,14 @@
         :readonly="readonly"
         :value="displayDate"
         :placeholder="placeholder"
+        v-bind="$attrs"
         ref="oxdInput"
         @update:modelValue="onDateTyped"
         @blur="onBlur"
       />
       <div
         class="oxd-date-input-icon-wrapper"
-        tabindex="0"
+        :tabindex="setTabIndexForIcon"
         ref="oxdIcon"
         @click="toggleDropdown"
         @keyup.enter.prevent.stop="toggleDropdown"
@@ -34,11 +35,20 @@
         v-dropdown-direction
       >
         <oxd-calendar
-          v-bind="$attrs"
           @update:modelValue="onDateSelected"
+          @selectMonth="selectMonth"
+          @selectYear="selectYear"
           @mousedown.prevent
           v-model="dateSelected"
           :locale="locale"
+          :firstDayOfWeek="firstDayOfWeek"
+          :years="years"
+          :monthFormat="monthFormat"
+          :months="months"
+          :dayFormat="dayFormat"
+          :days="days"
+          :dayAttributes="dayAttributes"
+          :events="events"
           v-focus-trap
         >
           <div class="oxd-date-input-links">
@@ -76,7 +86,7 @@
 <script lang="ts">
 import {enUS} from 'date-fns/locale';
 import {defineComponent, PropType} from 'vue';
-import {formatDate, parseDate, freshDate} from '../../../utils/date';
+import {formatDate, parseDate, freshDate, getYear} from '../../../utils/date';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import Calendar from '@orangehrm/oxd/core/components/Calendar/Calendar.vue';
@@ -85,6 +95,7 @@ import dropdownDirectionDirective from '../../../directives/dropdown-direction';
 import focusTrapDirective from '../../../directives/focus-trap';
 import translateMixin from '../../../mixins/translate';
 import {LENGTHY_DATE_FORMATS} from '../Calendar/types';
+import {CalendarDayAttributes, CalendarEvent} from '../Calendar/types';
 
 export default defineComponent({
   name: 'oxd-date-input',
@@ -136,6 +147,43 @@ export default defineComponent({
     locale: {
       type: Object as PropType<Locale>,
       default: enUS,
+    },
+    firstDayOfWeek: {
+      type: Number,
+      default: 0, // 0 | 1 | 2 | 3 | 4 | 5 | 6 => 0 represents Sunday
+    },
+    years: {
+      type: Array,
+      default: () => {
+        return Array.from(
+          {length: getYear(new Date()) - 1969},
+          (_, i) => 1970 + i,
+        );
+      },
+    },
+    monthFormat: {
+      type: String,
+      default: 'wide',
+    },
+    months: {
+      type: Array,
+      default: () => [],
+    },
+    dayFormat: {
+      type: String,
+      default: 'narrow',
+    },
+    days: {
+      type: Array,
+      default: () => [],
+    },
+    dayAttributes: {
+      type: Array as PropType<CalendarDayAttributes[]>,
+      default: () => [],
+    },
+    events: {
+      type: Array as PropType<CalendarEvent[]>,
+      default: () => [],
     },
   },
 
@@ -202,9 +250,18 @@ export default defineComponent({
       this.open = false;
       this.$refs.oxdIcon.focus();
     },
+    selectMonth($e: Event) {
+      this.$emit('selectMonth', $e);
+    },
+    selectYear($e: Event) {
+      this.$emit('selectYear', $e);
+    },
   },
 
   computed: {
+    setTabIndexForIcon() {
+      return this.disabled ? '-1' : '0';
+    },
     isLengthyDate() {
       return LENGTHY_DATE_FORMATS.indexOf(this.format) > -1;
     },
