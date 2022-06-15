@@ -86,10 +86,7 @@ export default defineComponent({
               } else {
                 idArray = [...this.modelValue, option.id];
               }
-              this.$emit(
-                'update:modelValue',
-                idArray.filter((id: number) => id).sort(),
-              );
+              this.$emit('update:modelValue', idArray.sort());
             },
           });
         }),
