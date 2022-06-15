@@ -23,6 +23,7 @@ export default defineComponent({
   props: {
     id: {
       type: String,
+      default: 'check-box-group-id',
     },
     class: {
       type: String,
@@ -45,7 +46,7 @@ export default defineComponent({
     };
   },
   render() {
-    const inputId = this.id == undefined ? 'check-box-group-id' : this.id;
+    const inputId = this.id == '' ? 'check-box-group-id' : this.id;
     const inputClass = this.class == '' ? 'check-box-column' : this.class;
     const {$t} = useTranslate();
     return h(
