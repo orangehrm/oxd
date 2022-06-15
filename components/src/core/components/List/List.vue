@@ -155,7 +155,7 @@
           v-model:current="state.currentPage"
           :max="maxPages"
           :pages-list="pagination.pages"
-          :per-page="pagination.perPage"
+          :per-page="pagination.limit"
           :total-records-count="filteredTotalRecordsCount"
           @previous="previous"
           @next="next"
@@ -270,7 +270,10 @@ export default defineComponent({
       (newVal) => {
         state.currentPage = newVal.currentPage;
       },
-      {deep: true},
+      {
+        immediate: true,
+        deep: true,
+      },
     );
 
     const config = computed(() => props.configurations);
