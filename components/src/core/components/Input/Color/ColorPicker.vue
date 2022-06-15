@@ -120,12 +120,12 @@ export default defineComponent({
         const {width, height, top, left} = boundry;
         let x = 0,
           y = 0;
-        if ($e instanceof TouchEvent) {
+        if (window.TouchEvent && $e instanceof TouchEvent) {
           x = Math.max(0, $e.touches[0].clientX - left);
           y = Math.max(0, $e.touches[0].clientY - top);
         } else {
-          x = Math.max(0, $e.clientX - left);
-          y = Math.max(0, $e.clientY - top);
+          x = Math.max(0, ($e as MouseEvent).clientX - left);
+          y = Math.max(0, ($e as MouseEvent).clientY - top);
         }
 
         state.sat = clamp(x / width, 0, 1);

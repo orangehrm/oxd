@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
- 
+
 import CardTableStory from './CardTable.story.vue';
 import CardTableSlots from './CardTableSlots.story.vue';
 import ActionCardTable from './ActionCardTable.story.vue';
@@ -25,6 +25,7 @@ import CardTableJobs from './CardTableJobs.story.vue';
 import CardTableRowOptions from './CardTableRowOptions.story.vue';
 import CardTableLeavelist from './CardTableLeavelist.story.vue';
 import CardTableLeavelistAlt from './CardTableLeavelistAlt.story.vue';
+import CardTableLangStringList from './CardTableLangStringList.story.vue';
 
 export default {
   title: 'Example/CardTable',
@@ -50,6 +51,7 @@ export const SortableTable = () => SortableCardTable;
 export const JobTitleExample = () => CardTableJobs;
 export const LeaveListExample = () => CardTableLeavelist;
 export const LeaveListExample2 = () => CardTableLeavelistAlt;
+export const LanguagPackageEdit = () => CardTableLangStringList;
 
 const RowOptionsTemplate = args => ({
   setup() {

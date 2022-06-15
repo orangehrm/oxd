@@ -17,7 +17,7 @@
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
 
-import {provide, reactive, toRefs, unref} from 'vue';
+import {provide, reactive, Ref, toRefs, unref} from 'vue';
 import {
   ErrorBag,
   ErrorField,
@@ -32,13 +32,14 @@ interface State {
   errorbag: ErrorBag;
 }
 
-export default function useFormValidation() {
+export default function useFormValidation(isLoading: Ref<boolean>) {
   const formState: State = reactive({
     fieldset: [],
     errorbag: [],
   });
 
   const searchErrors = (id: string) => {
+    if (isLoading.value === true) return [];
     return formState.errorbag.filter(item => {
       return item.cid === id;
     });
