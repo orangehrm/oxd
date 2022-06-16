@@ -1,3 +1,5 @@
+2022-06-16 - aff5d11f5a3a65a227df1053a959355d959a4348 - components/Input/SwitchInput.vue - css only change to increase space between switch label and switch to 15px.
+
 2022-06-13 - 146f216bd9e2ae408eced6af09fe5c937185f20f - components/List/list.scss - Fix the position of 'No Data Found' icon in the List component
 
 2022-06-03 - e45f6bee3abf87ffc71b9265746d2d372a53253f - Label.vue - Explicitly set .oxd-label margin to zero, since it's getting overridden by angular application styles.
