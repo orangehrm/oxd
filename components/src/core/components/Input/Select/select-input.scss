@@ -98,10 +98,8 @@
   &--after {
     margin-right: auto;
     padding-left: 0;
-  }
-  &--after-slot-option {
-    @include oxd-input-control;
-    color: $oxd-dropdown-dropdown-slot-color;
+    display: flex;
+    align-items: center;
   }
 
   &--arrow {
