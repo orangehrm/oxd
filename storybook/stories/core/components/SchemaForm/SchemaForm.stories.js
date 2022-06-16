@@ -287,7 +287,12 @@ Advance.args = {
             {
               name: 'contactNumber',
               label: 'Contact Number',
-              type: 'input',
+              type: 'textarea',
+              props: {
+                style: {
+                  'background-color': 'black',
+                },
+              },
               listners: {
                 onChange: ($event) => console.log($event),
               },
@@ -323,7 +328,6 @@ Advance.args = {
               value: [],
               props: {
                 placeholder: 'test',
-                autofocus: true,
                 createOptions: function (serachParam) {
                   const filter = new RegExp(serachParam, 'i');
                   return [
