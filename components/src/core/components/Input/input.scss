@@ -29,4 +29,77 @@
   &:read-only {
     background-color: $oxd-input-background--disabled;
   }
+
+  &--with-icon {
+    @include oxd-input-control;
+    @include oxd-input-control-size;
+    min-height: $oxd-input-min-height;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: $oxd-input-control-border-radius;
+    border-bottom-right-radius: $oxd-input-control-border-radius;
+    border: none;
+
+    &::placeholder {
+      color: $oxd-input-placeholder-color;
+    }
+  
+    &--active {
+      border: none;
+    }
+  
+    &--focus {
+      border: none;
+      box-shadow: none;
+      outline: 0;
+    }
+  
+    &--error {
+      border: none;
+      box-shadow: none;
+    }
+  
+    &:disabled,
+    &:read-only {
+      background-color: $oxd-input-background--disabled;
+    }
+
+  }
+}
+
+.input-outer-wrapper{
+  width: 100%;
+}
+.input-outer{
+  display: flex;
+  padding: 0px; 
+  min-height: $oxd-input-min-height;
+  width: $oxd-input-control-width;
+  border-radius: $oxd-input-control-border-radius;
+
+  &--active {
+    border: $oxd-input-border--active;
+  }
+
+  &--focus {
+    border: $oxd-input-border--focus;
+    box-shadow: $oxd-input-box-shadow--focus;
+    outline: 0;
+  }
+
+  &--error {
+    border: $oxd-input-border--error;
+    box-shadow: $oxd-input-box-shadow--error;
+  }
+
+  .input-text-field-icon{
+    padding: 0.6rem 0.5rem;
+    :deep(img) {
+      display: block;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+    }
+  }
+
 }

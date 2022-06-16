@@ -7,7 +7,9 @@
           :name="labelIcon"
           class="oxd-input-group__label-icon"
         />
-        <oxd-label v-if="label" :id="id" :label="label" :class="labelClasses" />
+          <oxd-label v-if="label" :id="id" :label="label" :class="labelClasses" />
+        <span :class="labelHelpTextClasses" v-if="labelHelpText" :labelHelpText="labelHelpText" > {{"(" + labelHelpText + ")"}}</span>
+      
       </div>
     </slot>
     <div :class="wrapperClasses">
@@ -43,6 +45,9 @@ export default defineComponent({
     labelIcon: {
       type: String,
     },
+    labelHelpText: {
+      type: String
+    },
     message: {
       type: String,
     },
@@ -70,6 +75,11 @@ export default defineComponent({
     labelClasses(): object {
       return {
         ...this.classes.label,
+      };
+    },
+    labelHelpTextClasses(): object {
+      return {
+        'oxd-label-help-text': true
       };
     },
     messageClasses(): object {

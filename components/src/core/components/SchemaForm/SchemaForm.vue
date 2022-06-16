@@ -156,11 +156,13 @@ export default defineComponent({
                 ),
                 key: field.key,
                 label: $t(field.label),
+                labelHelpText : $t(field.labelHelpText),
                 ...(field.props ?? {}),
                 ...(field.listeners ?? {}),
                 rules: Array.from(field.validators?.values() ?? []),
-                modelValue: props.model[field.name],
-                'onUpdate:modelValue': value => {
+                modelValue:
+                  props && props.model ? props.model[field.name] : null,
+                'onUpdate:modelValue': (value) => {
                   context.emit('update:model', {
                     ...(props.model as Model),
                     [field.name]: value,

@@ -4,7 +4,7 @@ import {required} from '../../../../../components/src/validation/rules.ts';
 import {h} from 'vue';
 
 export default {
-  title: 'Form/SchemaForm',
+  title: 'Example/SchemaForm',
   component: SchemaForm,
 };
 
@@ -285,6 +285,13 @@ Advance.args = {
               validators: new Map([['required', required]]),
             },
             {
+              name: 'facebook',
+              label: 'Facebook',
+              type: 'input',
+              visible: true,
+              props : {imageIcon : require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg')}
+            },
+            {
               name: 'contactNumber',
               label: 'Contact Number',
               type: 'textarea',
@@ -383,3 +390,6 @@ Advance.args = {
     ],
   },
 };
+
+
+
