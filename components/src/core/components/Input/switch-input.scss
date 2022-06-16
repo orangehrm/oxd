@@ -103,6 +103,7 @@
 // label left: move switch to right
 .oxd-switch-wrapper label.--full-width {
   width: 100%;
+  column-gap: $oxd-switch-label-margin;
   .oxd-switch-input.--label-left {
     margin-left: auto;
   }
