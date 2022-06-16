@@ -41,7 +41,7 @@ $oxd-switch-selector-height: calc(#{$oxd-switch-height} - 2px);
 $oxd-switch-selector-width: calc(#{$oxd-switch-height} - 2px);
 $oxd-switch-selector-radius: calc(#{$oxd-switch-selector-height} / 2);
 $oxd-switch-selector-color: $oxd-white-color !default;
-$oxd-switch-label-margin: 0.5em;
+$oxd-switch-label-margin: 15px;
 $oxd-switch-off-background-color: $oxd-interface-gray-lighten-2-color !default;
 $oxd-switch-on-background-color: $oxd-primary-input-color !default;
 $oxd-switch-on-disabled-background-color: hsl(25, 100%, 56%, 0.5) !default;
