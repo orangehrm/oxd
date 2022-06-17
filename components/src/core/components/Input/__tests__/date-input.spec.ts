@@ -9,16 +9,6 @@ describe('DateInput.vue', () => {
     const wrapper = mount(DateInput, {});
     expect(wrapper.html()).toMatchSnapshot();
   });
-  it('renders OXD Date Input with Calendar', () => {
-    const wrapper = mount(DateInput, {
-      data() {
-        return {
-          open: true,
-        };
-      },
-    });
-    expect(wrapper.html()).toMatchSnapshot();
-  });
   it('should open datepicker on click', async () => {
     const wrapper = mount(DateInput, {});
     wrapper.findComponent(Icon).trigger('click');
