@@ -3,6 +3,48 @@ import CheckboxGroupEvents from './CheckboxGroupEvents.story.vue';
 
 export default {
   title: 'Inputs/CheckboxGroup',
+  argTypes: {
+    style: {
+      control: {type: 'object'},
+      table: {
+        type: {summary: 'Set custom style to the checkboxes'},
+      },
+    },
+    options: {
+      control: {type: 'array'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'Set options for checkboxes'},
+      },
+    },
+    'update:modelValue': {
+      control: {type: 'array'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'emit event when select value updates'},
+      },
+    },
+    disabled: {
+      control: {type: 'boolean'},
+      defaultValue: false,
+      table: {
+        type: {
+          summary:
+            'Disable the checkbox list (Individual checkboxes can be disabled via the options)',
+        },
+      },
+    },
+    class: {
+      control: {type: 'text'},
+      table: {
+        type: {
+          summary:
+            'Set custom class (Can align row wise using "check-box-row")',
+        },
+      },
+      defaultValue: 'check-box-column',
+    },
+  },
 };
 
 const Template = (args) => ({
@@ -13,22 +55,42 @@ const Template = (args) => ({
   template: '<oxd-check-box-group-story v-bind="args" />',
 });
 
+const options = [
+  {
+    id: 1,
+    label: 'Job',
+  },
+  {
+    id: 2,
+    label: 'Salary',
+  },
+  {
+    id: 3,
+    label: 'Other',
+  },
+];
+
 export const Default = Template.bind({});
 Default.args = {
-  options: [
-    {
-      id: 1,
-      label: 'Job',
+  options: options,
+};
+
+Default.parameters = {
+  docs: {
+    source: {
+      code:
+        '  <div> \n' +
+        '<oxd-checkbox-group \n' +
+        ':options=' +
+        JSON.stringify(options) +
+        '\n' +
+        'v-model="selectedValue""\n' +
+        '/>\n' +
+        '<div>\n' +
+        '<span v-if="value">Value Selected : {{ selectedValue }}</span>\n' +
+        '</div>\n',
     },
-    {
-      id: 2,
-      label: 'Salary',
-    },
-    {
-      id: 3,
-      label: 'Other',
-    },
-  ],
+  },
 };
 
 export const Disabled = Template.bind({});
@@ -41,7 +103,6 @@ Disabled.args = {
     {
       id: 2,
       label: 'Salary',
-      disabled: true,
     },
     {
       id: 3,
@@ -49,6 +110,24 @@ Disabled.args = {
       disabled: true,
     },
   ],
+  disabled: true,
+};
+
+Disabled.parameters = {
+  docs: {
+    source: {
+      code:
+        '  <div> \n' +
+        '<oxd-checkbox-group \n' +
+        ':options="options"\n' +
+        ':disabled="true"\n' +
+        'v-model="value""\n' +
+        '/>\n' +
+        '<div>\n' +
+        '<span v-if="value">Value Selected : {{ value }}</span>\n' +
+        '</div>\n',
+    },
+  },
 };
 
 export const Events = () => CheckboxGroupEvents;
@@ -60,10 +139,9 @@ Events.parameters = {
         '  <div> \n' +
         '<oxd-checkbox-group \n' +
         ':options="options"\n' +
-        '@focus="onFocus()"\n' +
-        '@click="onClick()"\n' +
         'v-model="value""\n' +
-        ' @update:modelValue="updatedValue(event)' +
+        '@focus="onFocus()"\n' +
+        '@blur="onBlur()"\n' +
         '/>\n' +
         '</div>\n' +
         '<div style="margin-top: 2rem">\n' +
@@ -73,8 +151,7 @@ Events.parameters = {
         '</div>\n' +
         '<div>\n' +
         '<span v-if="value">Value Selected : {{ value }}</span>\n' +
-        '</div>\n' +
-        '//\n',
+        '</div>\n',
     },
   },
 };

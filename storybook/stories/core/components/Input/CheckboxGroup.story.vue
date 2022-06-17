@@ -6,6 +6,7 @@
       :class="class"
       :id="id"
       :style="style"
+      :disabled="disabled"
     />
     <br />
     <span>Selected value: {{ selectedValue }}</span>
@@ -27,6 +28,7 @@ export default {
     class: '',
     id: '',
     style: {},
+    disabled: false,
   },
 
   components: {

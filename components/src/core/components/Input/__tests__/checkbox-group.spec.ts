@@ -34,6 +34,17 @@ describe('CheckboxGroup > CheckboxGroup.vue', () => {
     expect(wrapper.emitted('update:modelValue')).toEqual([[[1]]]);
   });
 
+  it('should emit checked value on click', async () => {
+    const wrapper = mount(CheckboxGroup, {
+      props: {
+        options: optionsList,
+      },
+    });
+    wrapper.find('#check-box-group-id_1').trigger('click');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.emitted('update:modelValue')).toEqual([[[1]]]);
+  });
+
   it('should return both the selected values', async () => {
     const wrapper = mount(CheckboxGroup, {
       props: {
@@ -101,5 +112,17 @@ describe('CheckboxGroup > CheckboxGroup.vue', () => {
 
     expect(wrapper.find('.check-box-column').exists()).toBeTruthy();
     expect(wrapper.find('#check-box-group-id_1').exists()).toBeTruthy();
+  });
+
+  it('should not emit any value if disabled', async () => {
+    const wrapper = mount(CheckboxGroup, {
+      props: {
+        options: optionsList,
+        disabled: true,
+      },
+    });
+    wrapper.find('#check-box-group-id_1').trigger('click');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.emitted('update:modelValue')).toBeFalsy();
   });
 });

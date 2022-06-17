@@ -32,6 +32,9 @@ export default defineComponent({
     style: {
       type: Object,
     },
+    disabled: {
+      type: Boolean,
+    },
     options: {
       type: Array,
     },
@@ -57,7 +60,6 @@ export default defineComponent({
         },
         id: inputId,
         style: this.style,
-        disabled: true,
       },
       [
         this.options.map((option: Options) => {
@@ -66,9 +68,7 @@ export default defineComponent({
             value: option.id,
             optionLabel: $t(option.label),
             modelValue: this.modelValue,
-            disabled: option.disabled,
-            focus: this.focus,
-            blur: this.focus,
+            disabled: this.disabled ? 'true' : option.disabled,
             onFocus: () => {
               this.focused = true;
               this.$emit('focus', this.focused);
