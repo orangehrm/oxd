@@ -199,6 +199,9 @@ export default defineComponent({
           layoutChildObj[slotName]
             .map((field) => {
               if (field.visible !== false && field.type === 'button') {
+                if(isDisabled.value){
+                  return null;
+                }
                 return createActionNode(field);
               }
               return field.visible !== false ? createFieldNode(field) : null;
