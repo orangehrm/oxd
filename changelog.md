@@ -1,3 +1,5 @@
+2022-06-17 - 76707a16abb47778eca8b30784ccd82ae851cf47 - components/List/list.scss - Fixing the issue of When changing the resolutions with "No data found" screen in leave type ,it shows a gap between 2 panels
+
 2022-06-16 - aff5d11f5a3a65a227df1053a959355d959a4348 - components/Input/SwitchInput.vue - css only change to increase space between switch label and switch to 15px.
 
 2022-06-13 - 146f216bd9e2ae408eced6af09fe5c937185f20f - components/List/list.scss - Fix the position of 'No Data Found' icon in the List component
