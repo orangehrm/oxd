@@ -18,7 +18,9 @@
       />
       <div
         class="oxd-date-input-icon-wrapper"
-        :tabindex="setTabIndexForIcon"
+        tabindex="0"
+        :class="dateIconAttributeClasses"
+        v-if="!disabled"
         ref="oxdIcon"
         @click="toggleDropdown"
         @keyup.enter.prevent.stop="toggleDropdown"
@@ -259,9 +261,6 @@ export default defineComponent({
   },
 
   computed: {
-    setTabIndexForIcon() {
-      return this.disabled ? '-1' : '0';
-    },
     isLengthyDate() {
       return LENGTHY_DATE_FORMATS.indexOf(this.format) > -1;
     },
@@ -287,6 +286,12 @@ export default defineComponent({
       return {
         'justify-center': true,
         'oxd-date-input-icon': true,
+        '--disabled': this.disabled,
+        '--readonly': this.readonly,
+      };
+    },
+    dateIconAttributeClasses(): object {
+      return {
         '--disabled': this.disabled,
         '--readonly': this.readonly,
       };
