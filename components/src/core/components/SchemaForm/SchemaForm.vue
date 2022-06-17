@@ -58,6 +58,9 @@ export default defineComponent({
   emits: ['submitValid', 'update:model'],
   setup(props, context) {
     const {$t} = useTranslate();
+     const isDisabled = computed(() => {
+      return props.schema?.disabled || false; 
+    });
     const layoutSchema = computed(() => {
       return props.schema?.layout.map((layout) => ({
         id: layout.id,
@@ -157,6 +160,7 @@ export default defineComponent({
                 key: field.key,
                 label: $t(field.label),
                 labelHelpText : $t(field.labelHelpText),
+                disabled: isDisabled.value,
                 ...(field.props ?? {}),
                 ...(field.listeners ?? {}),
                 rules: Array.from(field.validators?.values() ?? []),
