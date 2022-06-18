@@ -3,11 +3,11 @@
     class="oxd-list-container w-100 d-table align-start"
     :class="{
       'table-left-panel-open':
-        config.table.leftPanel.visible && state.isLeftPanelOpen,
+        isLeftPanelVisible && state.isLeftPanelOpen,
     }"
   >
     <oxd-table-sidebar
-      v-if="config.table.leftPanel.visible"
+      v-if="isLeftPanelVisible"
       class="oxd-table-left-panel d-table-cell"
       :class="{'with-filters': config.table.topBar.visible}"
       width="200px"
@@ -265,6 +265,10 @@ export default defineComponent({
       {deep: true},
     );
 
+    const isLeftPanelVisible = computed(() => {
+      return config.value.table['leftPanel'] !== undefined && Object.keys(config.value.table.leftPanel).length > 0;
+    });
+
     const config = computed(() => props.configurations);
 
     const oxdCardTableStyleClasses = computed(() => {
@@ -433,6 +437,7 @@ export default defineComponent({
       state,
       filterTitle,
       sampleImages,
+      isLeftPanelVisible,
       oxdCardTableStyleClasses,
       order,
       sidePanelListOnHeaderBtnClick,

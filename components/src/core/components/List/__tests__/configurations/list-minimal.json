@@ -6,9 +6,6 @@
     "delete": true
   },
   "table": {
-    "leftPanel": {
-      "visible": false
-    },
     "topBar": {
       "visible": false,
       "listRecordCount": {

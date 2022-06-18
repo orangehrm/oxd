@@ -1,6 +1,6 @@
 import {shallowMount} from '@vue/test-utils';
 import List from '@orangehrm/oxd/core/components/List/List.vue';
-import minimalListConfig from './list-minimal.json';
+import minimalListConfig from './configurations/list-minimal.json';
 
 describe('List > List.vue', () => {
   it('correctly computes initial sort order', () => {
