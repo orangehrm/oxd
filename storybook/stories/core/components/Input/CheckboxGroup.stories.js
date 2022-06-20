@@ -67,6 +67,7 @@ const options = [
   {
     id: 3,
     label: 'Other',
+    disabled: true,
   },
 ];
 
@@ -95,21 +96,7 @@ Default.parameters = {
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  options: [
-    {
-      id: 1,
-      label: 'Job',
-    },
-    {
-      id: 2,
-      label: 'Salary',
-    },
-    {
-      id: 3,
-      label: 'Other',
-      disabled: true,
-    },
-  ],
+  options: options,
   disabled: true,
 };
 
@@ -121,6 +108,33 @@ Disabled.parameters = {
         '<oxd-checkbox-group \n' +
         ':options="options"\n' +
         ':disabled="true"\n' +
+        'v-model="value""\n' +
+        '/>\n' +
+        '<div>\n' +
+        '<span v-if="value">Value Selected : {{ value }}</span>\n' +
+        '</div>\n',
+    },
+  },
+};
+
+export const CustomClass = Template.bind({});
+CustomClass.args = {
+  options: options.slice(0, -1),
+  class: 'check-box-row',
+  id: 'check-box-id',
+  style: {},
+};
+
+CustomClass.parameters = {
+  docs: {
+    source: {
+      code:
+        '  <div> \n' +
+        '<oxd-checkbox-group \n' +
+        ':options="options"\n' +
+        ':class="check-box-row"\n' +
+        ':id="check-box-id"\n' +
+        ':style="{}"\n' +
         'v-model="value""\n' +
         '/>\n' +
         '<div>\n' +
