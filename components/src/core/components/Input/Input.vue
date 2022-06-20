@@ -1,19 +1,23 @@
 <template>
-<div :class="outerClasses" class="input-outer-wrapper">
-  <div v-if="imageIcon" class="input-text-field-icon"> 
-    <img :src="imageIcon" />
+  <div :class="outerClasses" class="input-outer-wrapper">
+    <div v-if="imageIcon" class="input-text-field-icon">
+      <img :src="imageIcon" />
+    </div>
+    <oxd-divider
+      v-if="imageIcon"
+      :orientation="'vertical'"
+      :style="{height: '100%'}"
+    />
+    <input
+      :class="classes"
+      :style="style"
+      :value="modelValue"
+      @focus="onFocus"
+      @blur="onBlur"
+      @input="onInput"
+      v-bind="$attrs"
+    />
   </div>
-  <oxd-divider v-if="imageIcon" :orientation="'vertical'" :style="{ height:'100%' }"/>
-  <input
-    :class="classes"
-    :style="style"
-    :value="modelValue"
-    @focus="onFocus"
-    @blur="onBlur"
-    @input="onInput"
-    v-bind="$attrs"
-  />
-</div>
 </template>
 
 <script lang="ts">
@@ -26,9 +30,9 @@ export interface State {
 
 export default defineComponent({
   name: 'oxd-input',
-
-  components :{
-    'oxd-divider' : Divider
+  inheritAttrs: false,
+  components: {
+    'oxd-divider': Divider,
   },
 
   props: {
@@ -42,8 +46,8 @@ export default defineComponent({
       default: false,
     },
     imageIcon: {
-      type: String
-    }
+      type: String,
+    },
   },
 
   data(): State {
@@ -54,21 +58,23 @@ export default defineComponent({
 
   computed: {
     classes(): object {
-      const isIconExists=this.imageIcon ? '--with-icon' : '';
+      const isIconExists = this.imageIcon ? '--with-icon' : '';
       return {
         [`oxd-input${isIconExists}`]: true,
         [`oxd-input${isIconExists}--active`]: !this.focused,
-        [`oxd-input${isIconExists}--focus`] : this.focused,
-        [`oxd-input${isIconExists}--error`] : this.hasError
+        [`oxd-input${isIconExists}--focus`]: this.focused,
+        [`oxd-input${isIconExists}--error`]: this.hasError,
       };
     },
     outerClasses(): object {
-      return this.imageIcon ? {
-        'input-outer' : true,
-        'input-outer--active': !this.focused,
-        'input-outer--focus': this.focused,
-        'input-outer--error': this.hasError,
-      } : {'input-outer' : false};
+      return this.imageIcon
+        ? {
+            'input-outer': true,
+            'input-outer--active': !this.focused,
+            'input-outer--focus': this.focused,
+            'input-outer--error': this.hasError,
+          }
+        : {'input-outer': false};
     },
   },
 

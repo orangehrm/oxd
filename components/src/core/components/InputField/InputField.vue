@@ -33,7 +33,6 @@ import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import FileInput from '@orangehrm/oxd/core/components/Input/FileInput.vue';
 import Textarea from '@orangehrm/oxd/core/components/Textarea/Textarea.vue';
-import DropdownInput from '@orangehrm/oxd/core/components/Input/DropdownInput.vue';
 import PasswordInput from '@orangehrm/oxd/core/components/Input/PasswordInput.vue';
 import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
 import SwitchInput from '@orangehrm/oxd/core/components/Input/SwitchInput.vue';
@@ -59,7 +58,6 @@ export default defineComponent({
     'oxd-input': Input,
     'oxd-file-input': FileInput,
     'oxd-textarea': Textarea,
-    'oxd-dropdown-input': DropdownInput,
     'oxd-password-input': PasswordInput,
     'oxd-checkbox-input': CheckboxInput,
     'oxd-switch-input': SwitchInput,
@@ -86,7 +84,7 @@ export default defineComponent({
       type: String,
     },
     labelHelpText: {
-      type: String
+      type: String,
     },
     required: {
       type: Boolean,
@@ -144,7 +142,7 @@ export default defineComponent({
       onReset,
     });
 
-    const onChange = ($event) => {
+    const onChange = $event => {
       if (!dirty.value) {
         dirty.value = true;
         startWatcher();
