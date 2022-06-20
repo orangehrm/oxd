@@ -146,6 +146,22 @@ export default {
           id: 4,
           label: '4 Columns',
         },
+        {
+          id: 5,
+          label: '5 Column',
+        },
+        {
+          id: 6,
+          label: '6 Columns',
+        },
+        {
+          id: 7,
+          label: '7 Columns',
+        },
+        {
+          id: 8,
+          label: '8 Columns',
+        },
       ],
     };
   },
