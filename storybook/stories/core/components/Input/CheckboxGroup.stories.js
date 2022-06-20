@@ -122,7 +122,7 @@ CustomClass.args = {
   options: options.slice(0, -1),
   class: 'check-box-row',
   id: 'check-box-id',
-  style: {},
+  style: {'font-style': 'italic'},
 };
 
 CustomClass.parameters = {
@@ -134,7 +134,7 @@ CustomClass.parameters = {
         ':options="options"\n' +
         ':class="check-box-row"\n' +
         ':id="check-box-id"\n' +
-        ':style="{}"\n' +
+        ':style="{font-style: italic}"\n' +
         'v-model="value""\n' +
         '/>\n' +
         '<div>\n' +
