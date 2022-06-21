@@ -7,15 +7,22 @@ export interface FocusFirstHTMLElement extends HTMLElement {
 const focusableElements = 'input, select, textarea, [tabindex], [href]';
 const excludeElements =
   'button:not(.oxd-dialog-close-button,.modal-reset-button)';
+let firstFocusableElement: Element;
 
 const focusOnFirstElement = (element: Element, matchingString: string) => {
-  const firstFocusableElement = element.querySelectorAll(matchingString)[0];
+  firstFocusableElement = element.querySelectorAll(matchingString)[0];
   if (firstFocusableElement) {
     (firstFocusableElement as HTMLElement).focus();
   }
 };
 
 const focusonFirstElementDirective: Directive = {
+  updated(el: FocusFirstHTMLElement) {
+    el.activeElement = document.activeElement;
+    if (!firstFocusableElement) {
+      focusOnFirstElement(el, focusableElements + ', ' + excludeElements);
+    }
+  },
   mounted(el: FocusFirstHTMLElement) {
     el.activeElement = document.activeElement;
     focusOnFirstElement(el, focusableElements + ', ' + excludeElements);
