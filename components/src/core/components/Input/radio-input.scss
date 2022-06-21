@@ -40,12 +40,16 @@
 
       &:checked + .oxd-radio-input {
         box-shadow: inset 0 0 0 0.3rem $oxd-radio-checked-color;
-        border: $oxd-radio-checked-active-border;
+        &:not(.oxd-radio-input--error) {
+          border: $oxd-radio-checked-active-border;
+        }
       }
 
       &:checked:disabled + .oxd-radio-input {
         box-shadow: inset 0 0 0 0.3rem $oxd-radio-checked-disabled-color;
-        border: $oxd-radio-checked-disabled-border;
+        &:not(.oxd-radio-input--error) {
+          border: $oxd-radio-checked-disabled-border;
+        }
       }
     }
   }
