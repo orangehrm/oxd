@@ -29,6 +29,18 @@ export default {
         type: {summary: 'Set custom style to the textarea'},
       },
     },
+    disabled: {
+      control: {type: 'boolean'},
+      table: {
+        type: {summary: 'Set native disabled attribute to the textarea'},
+      },
+    },
+    readonly: {
+      control: {type: 'boolean'},
+      table: {
+        type: {summary: 'Set native readonly attribute to the textarea'},
+      },
+    },
     focus: {
       control: {type: 'function'},
       table: {
