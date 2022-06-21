@@ -183,43 +183,17 @@ export default defineComponent({
         /[-/\\^$*+?.()|[\]{}]/g,
         '\\$&',
       );
-      const normalizedSearchValue = searchValue
-        .normalize('NFD')
-        .replace(/\p{Diacritic}/gu, '');
-      const normalizedFilter = new RegExp(normalizedSearchValue, 'ig');
+      const filter = new RegExp(searchValue, 'ig');
       const sanitizeHtml = useSanitize().sanitizeHtml;
-
       return this.computedOptions.map((option: Option) => {
-        const matches =
-          option.label
-            .normalize('NFD')
-            .replace(/\p{Diacritic}/gu, '')
-            .matchAll(normalizedFilter) ?? [];
-
-        const matchedSearchIndexes = Array.from(matches).map(a => a.index);
-        const searchValueLength = searchValue.length;
-
-        let sanitizedOption = sanitizeHtml(
-          option.label.substring(0, matchedSearchIndexes[0]),
-        );
-        for (var i = 0; i < matchedSearchIndexes.length; i++) {
-          sanitizedOption += `<b>${sanitizeHtml(
-            option.label.substr(matchedSearchIndexes[i], searchValueLength),
-          )}</b>`;
-          option.label.substr(matchedSearchIndexes[i], searchValueLength);
-          if (i < matchedSearchIndexes.length - 1) {
-            sanitizedOption += sanitizeHtml(
-              option.label.substring(
-                matchedSearchIndexes[i] + searchValueLength,
-                matchedSearchIndexes[i + 1],
-              ),
-            );
-          } else {
-            sanitizedOption += sanitizeHtml(
-              option.label.substring(
-                matchedSearchIndexes[i] + searchValueLength,
-              ),
-            );
+        let sanitizedOption = '';
+        const matchedString = option.label.matchAll(filter) ?? [];
+        const matchedSearchValues = Array.from(matchedString).map(a => a[0]);
+        const textParts = option.label.split(filter);
+        for (let i = 0; i < textParts.length; i++) {
+          sanitizedOption += sanitizeHtml(textParts[i]);
+          if (i < textParts.length - 1) {
+            sanitizedOption += `<b>${sanitizeHtml(matchedSearchValues[i])}</b>`;
           }
         }
         return sanitizedOption;
