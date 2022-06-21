@@ -32,9 +32,11 @@
     }
     .oxd-table-body {
       grid-gap: 0;
-      .oxd-table-card:not(:first-child) {
-        border-top: 1px solid $oxd-interface-gray-lighten-2-color;
+      .oxd-table-card {
         border-radius: 0;
+        &:not(:first-child) {
+          border-top: 1px solid $oxd-interface-gray-lighten-2-color;
+        }
         .oxd-table-row {
           .oxd-table-cell {
             .oxd-table-cell-actions {
