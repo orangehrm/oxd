@@ -15,6 +15,34 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see  http://www.gnu.org/licenses
 
+$oxd-grid-eight-margin: auto -0.625rem !default;
+$oxd-grid-eight-gap: 0 !default;
+$oxd-grid-eight-md-gap: 0 !default;
+$oxd-grid-eight-lg-gap: 0 !default;
+$oxd-grid-eight-md-template-columns: repeat(2, 1fr) !default;
+$oxd-grid-eight-lg-template-columns: repeat(8, 1fr) !default;
+
+$oxd-grid-seven-margin: auto -0.625rem !default;
+$oxd-grid-seven-gap: 0 !default;
+$oxd-grid-seven-md-gap: 0 !default;
+$oxd-grid-seven-lg-gap: 0 !default;
+$oxd-grid-seven-md-template-columns: repeat(2, 1fr) !default;
+$oxd-grid-seven-lg-template-columns: repeat(7, 1fr) !default;
+
+$oxd-grid-six-margin: auto -0.625rem !default;
+$oxd-grid-six-gap: 0 !default;
+$oxd-grid-six-md-gap: 0 !default;
+$oxd-grid-six-lg-gap: 0 !default;
+$oxd-grid-six-md-template-columns: repeat(2, 1fr) !default;
+$oxd-grid-six-lg-template-columns: repeat(6, 1fr) !default;
+
+$oxd-grid-five-margin: auto -0.625rem !default;
+$oxd-grid-five-gap: 0 !default;
+$oxd-grid-five-md-gap: 0 !default;
+$oxd-grid-five-lg-gap: 0 !default;
+$oxd-grid-five-md-template-columns: repeat(2, 1fr) !default;
+$oxd-grid-five-lg-template-columns: repeat(5, 1fr) !default;
+
 $oxd-grid-four-margin: auto -0.625rem !default;
 $oxd-grid-four-gap: 0 !default;
 $oxd-grid-four-md-gap: 0 !default;

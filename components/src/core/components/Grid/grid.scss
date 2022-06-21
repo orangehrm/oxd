@@ -18,6 +18,70 @@
 @import '../../../styles';
 @import 'variables';
 
+.oxd-grid-8 {
+  display: grid;
+  margin: $oxd-grid-eight-margin;
+  grid-gap: $oxd-grid-eight-gap;
+
+  @include oxd-respond-to('md') {
+    grid-gap: $oxd-grid-eight-md-gap;
+    grid-template-columns: $oxd-grid-eight-md-template-columns;
+  }
+
+  @include oxd-respond-to('lg') {
+    grid-gap: $oxd-grid-eight-lg-gap;
+    grid-template-columns: $oxd-grid-eight-lg-template-columns;
+  }
+}
+
+.oxd-grid-7 {
+  display: grid;
+  margin: $oxd-grid-seven-margin;
+  grid-gap: $oxd-grid-seven-gap;
+
+  @include oxd-respond-to('md') {
+    grid-gap: $oxd-grid-seven-md-gap;
+    grid-template-columns: $oxd-grid-seven-md-template-columns;
+  }
+
+  @include oxd-respond-to('lg') {
+    grid-gap: $oxd-grid-seven-lg-gap;
+    grid-template-columns: $oxd-grid-seven-lg-template-columns;
+  }
+}
+
+.oxd-grid-6 {
+  display: grid;
+  margin: $oxd-grid-six-margin;
+  grid-gap: $oxd-grid-six-gap;
+
+  @include oxd-respond-to('md') {
+    grid-gap: $oxd-grid-six-md-gap;
+    grid-template-columns: $oxd-grid-six-md-template-columns;
+  }
+
+  @include oxd-respond-to('lg') {
+    grid-gap: $oxd-grid-six-lg-gap;
+    grid-template-columns: $oxd-grid-six-lg-template-columns;
+  }
+}
+
+.oxd-grid-5 {
+  display: grid;
+  margin: $oxd-grid-five-margin;
+  grid-gap: $oxd-grid-five-gap;
+
+  @include oxd-respond-to('md') {
+    grid-gap: $oxd-grid-five-md-gap;
+    grid-template-columns: $oxd-grid-five-md-template-columns;
+  }
+
+  @include oxd-respond-to('lg') {
+    grid-gap: $oxd-grid-five-lg-gap;
+    grid-template-columns: $oxd-grid-five-lg-template-columns;
+  }
+}
+
 .oxd-grid-4 {
   display: grid;
   margin: $oxd-grid-four-margin;

@@ -76,4 +76,37 @@ describe('AutocompleteInput.vue', () => {
       expect(wrapper.vm.options).toEqual(3);
     }, 1000);
   });
+
+  it('should clear selected option when single autocomplete is emptied', async () => {
+    const wrapper = mount(AutocompleteInput, {
+      props: {
+        createOptions: syncFunction,
+        modelValue: {
+          id: 1,
+          label: 'HR Admin',
+        },
+      },
+    });
+    wrapper.find('input').setValue('');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.emitted('update:modelValue')).toEqual([[null]]);
+  });
+
+  it('should not clear selected option when multi autocomplete is emptied', async () => {
+    const wrapper = mount(AutocompleteInput, {
+      props: {
+        createOptions: syncFunction,
+        modelValue: [
+          {
+            id: 1,
+            label: 'HR Admin',
+          },
+        ],
+        multiple: true,
+      },
+    });
+    wrapper.find('input').setValue('');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+  });
 });
