@@ -40,4 +40,25 @@ describe('RadioInput.vue', () => {
     await wrapper.vm.$nextTick();
     expect(wrapper.emitted('update:modelValue')).toBeFalsy();
   });
+
+  it('classes added to elements when focused', async () => {
+    const wrapper = mount(RadioInput, {
+      props: {
+        label: 'Test this button',
+      },
+    });
+    wrapper.find("input[type='radio']").trigger('focus');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find('label').classes()).toContain('--focus');
+    expect(wrapper.find('span.oxd-radio-input').classes()).toContain(
+      'oxd-radio-input--focus',
+    );
+
+    wrapper.find("input[type='radio']").trigger('blur');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find('label').classes()).not.toContain('--focus');
+    expect(wrapper.find('span.oxd-radio-input').classes()).not.toContain(
+      'oxd-radio-input--focus',
+    );
+  });
 });
