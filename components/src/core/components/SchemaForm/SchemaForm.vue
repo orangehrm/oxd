@@ -59,7 +59,7 @@ export default defineComponent({
   setup(props, context) {
     const {$t} = useTranslate();
     const layoutSchema = computed(() => {
-      return props.schema?.layout.map((layout) => ({
+      return props.schema?.layout.map(layout => ({
         id: layout.id,
         style: layout.style,
         class: layout.class,
@@ -74,7 +74,7 @@ export default defineComponent({
       return props.schema?.layout.map(({children}) => {
         if (Array.isArray(children)) return children;
         for (const slot in children) {
-          children[slot] = children[slot].map((field) => {
+          children[slot] = children[slot].map(field => {
             if (field.hook && typeof field.hook === 'function') {
               field = field.hook(field, props.model as Model);
             }
@@ -191,13 +191,13 @@ export default defineComponent({
       for (const slotName in layoutChildObj) {
         _slots[slotName] = () =>
           layoutChildObj[slotName]
-            .map((field) => {
+            .map(field => {
               if (field.visible !== false && field.type === 'button') {
                 return createActionNode(field);
               }
               return field.visible !== false ? createFieldNode(field) : null;
             })
-            .filter((field) => field !== null);
+            .filter(field => field !== null);
       }
       return _slots;
     };
