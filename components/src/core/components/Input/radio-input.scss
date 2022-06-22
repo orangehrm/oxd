@@ -40,10 +40,16 @@
 
       &:checked + .oxd-radio-input {
         box-shadow: inset 0 0 0 0.3rem $oxd-radio-checked-color;
+        &:not(.oxd-radio-input--error) {
+          border: $oxd-radio-checked-active-border;
+        }
       }
 
       &:checked:disabled + .oxd-radio-input {
         box-shadow: inset 0 0 0 0.3rem $oxd-radio-checked-disabled-color;
+        &:not(.oxd-radio-input--error) {
+          border: $oxd-radio-checked-disabled-border;
+        }
       }
     }
   }
@@ -65,11 +71,11 @@
   }
 
   &--active {
-    border: $oxd-input-border--active;
+    border: $oxd-radio-active-border;
   }
 
   &--focus {
-    border: $oxd-border $oxd-radio-checked-color;
+    border: $oxd-radio-checked-active-border;
     outline: 0;
   }
 

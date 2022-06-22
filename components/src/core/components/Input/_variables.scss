@@ -56,6 +56,10 @@ $oxd-radio-width: 1rem !default;
 $oxd-radio-label-margin: 0.5em !default;
 $oxd-radio-checked-color: $oxd-primary-input-color !default;
 $oxd-radio-checked-disabled-color: #ffd4b6 !default;
+$oxd-radio-active-border: $oxd-border $oxd-interface-gray-lighten-1-color !default;
+$oxd-radio-checked-active-border: $oxd-border $oxd-radio-checked-color !default;
+$oxd-radio-checked-disabled-border: $oxd-border $oxd-radio-checked-disabled-color !default;
+
 
 $oxd-dropdown-text-padding: 0 0.25rem 0 0.5rem !default;
 $oxd-dropdown-animation-time: 300ms !default;
