@@ -72,45 +72,39 @@ export default defineComponent({
       pagePointer: this.current,
       perPageData: {
         id: 2,
-        label: '20',
+        label: 20,
       },
     };
   },
 
   props: {
     length: {
-      type: Number,
+      type: Number as PropType<number>,
       required: true,
       validator: (val: number) => Number.isInteger(val),
     },
     max: {
-      type: Number,
+      type: Number as PropType<number>,
       default: 5,
       validator: (val: number) => Number.isInteger(val),
     },
     current: {
-      type: Number,
+      type: Number as PropType<number>,
       default: 1,
       validator: (val: number) => Number.isInteger(val),
     },
     totalRecordsCount: {
-      type: Number,
+      type: Number as PropType<number>,
       default: 0,
       validator: (val: number) => Number.isInteger(val),
     },
     pagesList: {
-      type: Array,
-      default: () => ['10', '20', '50', '100'],
+      type: Array as PropType<number[]>,
+      default: () => [10, 20, 50, 100],
     },
     perPage: {
-      type: Object as PropType<{
-        id: number;
-        label: string;
-      }>,
-      default: () => ({
-        id: 2,
-        label: '20',
-      }),
+      type: Number as PropType<number>,
+      default: () => 20,
     },
   },
 
@@ -229,7 +223,7 @@ export default defineComponent({
       }
       return range;
     },
-    selectPerPage(val) {
+    selectPerPage(val: {id: number; label: number}) {
       this.perPageData = val;
       this.currentPage = 1;
       this.$emit('onPerPageSelect', val);
@@ -237,7 +231,12 @@ export default defineComponent({
   },
 
   mounted() {
-    this.perPageData = this.perPage;
+    const pageIndex: number =
+      this.pagesList.findIndex((page: number) => page === this.perPage) + 1;
+    this.perPageData = {
+      id: pageIndex,
+      label: this.perPage,
+    };
   },
 });
 </script>

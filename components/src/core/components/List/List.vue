@@ -12,7 +12,10 @@
       v-if="config.table.leftPanel && config.table.leftPanel.visible"
       class="oxd-table-left-panel d-table-cell"
       :class="{'with-filters': config.table.topBar.visible}"
-      width="200px"
+      :style="{
+        width: '200px',
+        'max-width': '200px',
+      }"
       :side-panel-list="sidePanelList"
       :header-visible="config.table.leftPanel.header.visible"
       :header-action-button-visible="config.table.addable"
@@ -152,7 +155,7 @@
           v-model:current="state.currentPage"
           :max="maxPages"
           :pages-list="pagination.pages"
-          :per-page="pagination.perPage"
+          :per-page="pagination.limit"
           :total-records-count="filteredTotalRecordsCount"
           @previous="previous"
           @next="next"
@@ -267,7 +270,10 @@ export default defineComponent({
       (newVal) => {
         state.currentPage = newVal.currentPage;
       },
-      {deep: true},
+      {
+        immediate: true,
+        deep: true,
+      },
     );
 
     const config = computed(() => props.configurations);

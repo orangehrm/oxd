@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pageination.vue renders OXD Pagination 1`] = `
+<nav role="navigation" aria-label="Pagination Navigation">
+  <ul class="oxd-pagination__ul">
+    <!--v-if-->
+    <!--v-if-->
+    <!--v-if-->
+    <oxd-pagination-page-item-stub previous="false" next="false" selected="true" page="1"></oxd-pagination-page-item-stub>
+    <oxd-pagination-page-item-stub previous="false" next="false" selected="false" page="2"></oxd-pagination-page-item-stub>
+    <oxd-pagination-page-item-stub previous="false" next="false" selected="false" page="3"></oxd-pagination-page-item-stub>
+    <oxd-pagination-page-item-stub previous="false" next="false" selected="false" page="4"></oxd-pagination-page-item-stub>
+    <oxd-pagination-page-item-stub previous="false" next="false" selected="false" page="5"></oxd-pagination-page-item-stub><span class="d-flex align-end oxd-pagination-separator" last="">...</span>
+    <oxd-pagination-page-item-stub previous="false" next="false" selected="false" page="20"></oxd-pagination-page-item-stub>
+    <oxd-pagination-page-item-stub previous="false" next="true" selected="false"></oxd-pagination-page-item-stub>
+    <oxd-select-input-stub options="[object Object],[object Object],[object Object],[object Object]" modelvalue="[object Object]" disabled="false" hidedropdowndefaultlabel="true" placeholder="-- Select --" dropdownposition="bottom" showemptyselector="true" class="pagination-dropdown"></oxd-select-input-stub>
+  </ul>
+</nav>
+`;
