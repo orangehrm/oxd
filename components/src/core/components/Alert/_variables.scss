@@ -5,6 +5,10 @@ $oxd-alert-border-radius: 1.2rem !default;
 $oxd-alert-margin: 1rem 0 !default;
 $oxd-alert-padding: 1rem !default;
 
+$oxd-alert-compact-border-radius: 0.8rem !default;
+$oxd-alert-compact-padding: 0.5rem 1rem 0.5rem 1rem !default;
+$oxd-alert-compact-height: 46px !default;
+
 $oxd-alert-bg-color-default: $oxd-white-color !default;
 $oxd-alert-bg-color-success: rgba($oxd-feedback-success-color, 0.06) !default;
 $oxd-alert-bg-color-warn: rgba($oxd-feedback-warn-color, 0.06) !default;

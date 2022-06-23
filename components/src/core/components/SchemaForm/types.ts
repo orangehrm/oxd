@@ -38,7 +38,7 @@ type Props = Record<string, any>;
 type Model = {[key: string]: any};
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Validator = (value: any) => boolean | string;
+type Validator = (value: any) => boolean | string | Promise<boolean | string>;
 
 type CommonSchemaProperties = {
   id?: HTMLAttributes['id'];
