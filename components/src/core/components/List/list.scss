@@ -33,6 +33,9 @@
       top: 42px;
     }
   }
+  .oxd-card-table-wrapper {
+    min-height: calc(75vh - 140px);
+  }
   .table-card-list-wrapper {
     width: 100%;
     height: 100%;
@@ -67,6 +70,7 @@
   &.table-left-panel-open {
     .table-card-list-wrapper {
       flex-grow: 1;
+      width: calc(100% - 200px);
     }
   }
   .oxd-classic-table {
@@ -171,6 +175,7 @@
   vertical-align: top;
   display: flex;
   justify-content: center;
+  margin-top: -50vh;
 }
 .empty-msg-pic {
   width: 10rem;

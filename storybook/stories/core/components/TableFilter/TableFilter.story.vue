@@ -28,7 +28,7 @@
             </oxd-grid-item>
             <oxd-grid-item>
               <oxd-input-field
-                type="dropdown"
+                type="select"
                 label="User Role"
                 v-model="filters.role"
                 :clear="false"
@@ -41,7 +41,7 @@
             </oxd-grid-item>
             <oxd-grid-item>
               <oxd-input-field
-                type="dropdown"
+                type="select"
                 label="Employee Name"
                 v-model="filters.empName"
                 :createOptions="loadEmployees"
@@ -49,7 +49,7 @@
             </oxd-grid-item>
             <oxd-grid-item>
               <oxd-input-field
-                type="dropdown"
+                type="select"
                 label="Status"
                 v-model="filters.status"
                 :clear="false"
@@ -144,7 +144,7 @@ export default {
       console.log(this.filters);
     },
     async loadEmployees() {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         setTimeout(() => {
           resolve([
             {

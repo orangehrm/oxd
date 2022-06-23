@@ -2,6 +2,7 @@
 @import 'variables';
 
 .oxd-alert {
+  box-sizing: content-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -33,6 +34,11 @@
     background-color: $oxd-alert-bg-color-info;
   }
 
+  &--compact {
+    min-height: $oxd-alert-compact-height;
+    border-radius: $oxd-alert-compact-border-radius;
+  }
+
   &-content {
     display: flex;
     align-items: center;
@@ -47,6 +53,9 @@
       font-size: $oxd-alert-icon-font-size;
       color: inherit;
     }
+    &--compact {
+      padding: $oxd-alert-compact-padding;
+    }
   }
 
   &-action {
@@ -54,6 +63,11 @@
     flex-wrap: wrap;
     justify-content: flex-end;
     padding: $oxd-alert-padding;
+
+    &--compact {
+      padding: $oxd-alert-compact-padding;
+    }
+
     ::v-deep(.oxd-button) {
       font-size: inherit;
       margin: 0.1rem 0.2rem;

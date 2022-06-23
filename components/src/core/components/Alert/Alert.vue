@@ -6,7 +6,7 @@
         {{ message }}
       </oxd-text>
     </div>
-    <div class="oxd-alert-action">
+    <div :class="actionClasses">
       <slot></slot>
     </div>
   </div>
@@ -45,6 +45,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    compact: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   computed: {
@@ -52,12 +56,20 @@ export default defineComponent({
       return {
         'oxd-alert': true,
         [`oxd-alert--${this.type}`]: true,
+        'oxd-alert--compact': this.compact,
       };
     },
     contentClasses(): object {
       return {
         'oxd-alert-content': true,
         [`oxd-alert-content--${this.type}`]: true,
+        'oxd-alert-content--compact': this.compact,
+      };
+    },
+    actionClasses(): object {
+      return {
+        'oxd-alert-action': true,
+        'oxd-alert-action--compact': this.compact,
       };
     },
     iconName(): string {

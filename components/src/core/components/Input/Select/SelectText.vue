@@ -17,10 +17,9 @@
         @blur="onBlur"
       />
     </div>
-    <div class="oxd-select-text--after-slot-option">
-      <slot name="afterInput"></slot>
-    </div>
+
     <div class="oxd-select-text--after">
+      <slot name="afterInput"></slot>
       <div class="oxd-select-text--arrow" :class="dropdownIconClasses">
         <oxd-icon
           v-if="!disabled"

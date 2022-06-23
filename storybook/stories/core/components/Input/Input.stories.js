@@ -115,7 +115,7 @@ Error.args = {
 Error.parameters = {
   docs: {
     source: {
-      code: '<oxd-input \n' + ': style={"backgroundColor": "aliceblue"}/>',
+      code: '<oxd-input \n' + ':hasError="true"}/>',
     },
   },
 };
@@ -129,7 +129,7 @@ Disabled.args = {
 Disabled.parameters = {
   docs: {
     source: {
-      code: '<oxd-input \n' + ': Disabled=true/>',
+      code: '<oxd-input \n' + ': disabled=true/>',
     },
   },
 };

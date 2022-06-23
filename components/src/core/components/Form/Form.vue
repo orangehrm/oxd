@@ -6,6 +6,7 @@
       '--empty': !$slots.default,
     }"
     novalidate
+    v-focus-first-element
     @submit.prevent="onSubmit"
     @reset.prevent="onReset"
   >
@@ -20,12 +21,17 @@
 import {unref, computed, defineComponent} from 'vue';
 import useFormValidation from '../../../composables/useFormValidation';
 import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
+import focusFirstElementDirective from '../../../directives/focus-first-element';
 
 export default defineComponent({
   name: 'oxd-form',
 
   components: {
     'oxd-loading-spinner': Spinner,
+  },
+
+  directives: {
+    'focus-first-element': focusFirstElementDirective,
   },
 
   props: {

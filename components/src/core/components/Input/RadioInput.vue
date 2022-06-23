@@ -1,6 +1,6 @@
 <template>
   <div class="oxd-radio-wrapper">
-    <label :class="{'--disabled': disabled}">
+    <label :class="labelClasses">
       <template v-if="labelPosition === 'left'">
         {{ optionLabel }}
       </template>
@@ -77,6 +77,12 @@ export default defineComponent({
         'oxd-radio-input--focus': this.focused,
         'oxd-radio-input--error': this.hasError,
         [`--label-${this.labelPosition}`]: true,
+      };
+    },
+    labelClasses(): object {
+      return {
+        '--disabled': this.disabled,
+        '--focus': this.focused,
       };
     },
     checked: {
