@@ -20,6 +20,9 @@ export default defineComponent({
     CheckboxInput,
     InputGroup,
   },
+
+  emits: ['update:modelValue', 'blur', 'focus', 'change'],
+
   props: {
     id: {
       type: String,
@@ -43,11 +46,7 @@ export default defineComponent({
       default: () => [],
     },
   },
-  data(): State {
-    return {
-      focused: false,
-    };
-  },
+
   render() {
     const inputId = this.id == '' ? 'check-box-group-id' : this.id;
     const inputClass = this.class == '' ? 'check-box-column' : this.class;
@@ -70,12 +69,13 @@ export default defineComponent({
             modelValue: this.modelValue,
             disabled: this.disabled ? 'true' : option.disabled,
             onFocus: () => {
-              this.focused = true;
-              this.$emit('focus', this.focused);
+              this.$emit('focus', true);
             },
             onBlur: () => {
-              this.focused = false;
-              this.$emit('blur', this.focused);
+              this.$emit('blur', true);
+            },
+            onClick: () => {
+              this.$emit('click', true);
             },
             onChange: () => {
               let idArray: number[];
@@ -87,6 +87,7 @@ export default defineComponent({
                 idArray = [...this.modelValue, option.id];
               }
               this.$emit('update:modelValue', idArray.sort());
+              this.$emit('change', true);
             },
           });
         }),

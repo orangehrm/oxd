@@ -85,7 +85,7 @@ describe('CheckboxGroup > CheckboxGroup.vue', () => {
       },
     });
     wrapper.find('#check-box-group-id_1').trigger('blur');
-    expect(wrapper.emitted('blur')).toEqual([[false]]);
+    expect(wrapper.emitted('blur')).toEqual([[true]]);
   });
 
   it('should change the class and id', async () => {

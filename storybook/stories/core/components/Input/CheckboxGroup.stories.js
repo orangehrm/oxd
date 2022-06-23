@@ -1,8 +1,10 @@
 import CheckboxGroupStory from './CheckboxGroup.story.vue';
 import CheckboxGroupEvents from './CheckboxGroupEvents.story.vue';
+import CheckboxGroup from '@orangehrm/oxd/core/components/Input/CheckboxGroup';
 
 export default {
   title: 'Inputs/CheckboxGroup',
+  component: CheckboxGroup,
   argTypes: {
     style: {
       control: {type: 'object'},
@@ -15,6 +17,13 @@ export default {
       defaultValue: [],
       table: {
         type: {summary: 'Set options for checkboxes'},
+      },
+    },
+    modelValue: {
+      control: {type: 'array'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'Set value to the checkboxes'},
       },
     },
     'update:modelValue': {
@@ -43,6 +52,32 @@ export default {
         },
       },
       defaultValue: 'check-box-column',
+    },
+    focus: {
+      control: {type: 'function'},
+      table: {
+        type: {summary: 'Native Inherited Event: Emit focus event from input'},
+      },
+    },
+    blur: {
+      control: {type: 'function'},
+      table: {
+        type: {
+          summary: 'Native Inherited Event: Emit blur event from input',
+        },
+      },
+    },
+    change: {
+      control: {type: 'function'},
+      table: {
+        type: {summary: 'Native Inherited Event: Emit change event from input'},
+      },
+    },
+    click: {
+      control: {type: 'function'},
+      table: {
+        type: {summary: 'Native Inherited Event: Emit click event from input'},
+      },
     },
   },
 };

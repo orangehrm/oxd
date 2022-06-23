@@ -4,6 +4,7 @@
       @focus="onFocus()"
       @blur="onBlur()"
       @change="onChange()"
+      @onClick="onClick()"
       :options="options"
       v-model="modelValue"
       :class="class"
@@ -18,6 +19,7 @@
       <span v-if="FocusEvent">Focus Event Triggered</span>
       <span v-if="BlurEvent">Blur Event Triggered</span>
       <span v-if="ChangeEvent">Change Event Triggered</span>
+      <span v-if="ClickEvent">Click Event Triggered</span>
     </div>
   </div>
 </template>
@@ -31,6 +33,7 @@ export default {
       FocusEvent: false,
       BlurEvent: false,
       ChangeEvent: false,
+      ClickEvent: false,
       modelValue: [],
       options: [
         {
@@ -53,6 +56,7 @@ export default {
       this.FocusEvent = false;
       this.BlurEvent = false;
       this.ChangeEvent = false;
+      this.ClickEvent = false;
     },
 
     updatedValue(event) {
@@ -72,6 +76,11 @@ export default {
     onChange() {
       this.clearFields();
       this.ChangeEvent = true;
+    },
+
+    onClick() {
+      this.clearFields();
+      this.ClickEvent = true;
     },
   },
 };
