@@ -9,6 +9,7 @@
         <oxd-sheet
           :class="classes"
           v-bind="$attrs"
+          v-focus-trap
           role="document"
           @click="onClickSheet"
         >
@@ -29,6 +30,7 @@ import {defineComponent} from 'vue';
 import Overlay from '@orangehrm/oxd/core/components/Dialog/Overlay.vue';
 import CloseButton from '@orangehrm/oxd/core/components/Dialog/CloseButton.vue';
 import Sheet from '@orangehrm/oxd/core/components/Sheet/Sheet.vue';
+import focusTrapDirective from '../../../directives/focus-trap';
 
 // Containers
 import DefaultContainer from '@orangehrm/oxd/core/components/Dialog/Container/Default.vue';
@@ -44,6 +46,10 @@ export default defineComponent({
 
     // Containers
     'oxd-dialog-container-default': DefaultContainer,
+  },
+
+  directives: {
+    'focus-trap': focusTrapDirective,
   },
 
   emits: ['update:show'],
