@@ -3,7 +3,7 @@ import CheckboxGroupEvents from './CheckboxGroupEvents.story.vue';
 import CheckboxGroup from '@orangehrm/oxd/core/components/Input/CheckboxGroup';
 
 export default {
-  title: 'Inputs/CheckboxGroup',
+  title: 'Inputs/Checkbox Group',
   component: CheckboxGroup,
   argTypes: {
     style: {
