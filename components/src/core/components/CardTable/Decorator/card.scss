@@ -23,6 +23,11 @@
     color: $oxd-card-table-row-hover-font-color;
     background-color: $oxd-card-table-row-hover-bg-color;
   }
+
+  &:focus-within {
+    color: $oxd-card-table-row-hover-font-color;
+    background-color: $oxd-card-table-row-hover-bg-color;
+  }
 }
 
 .oxd-row-highlight {

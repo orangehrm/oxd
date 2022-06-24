@@ -48,6 +48,7 @@ import InfoBox from '@orangehrm/oxd/core/components/InfoBox/InfoBox.vue';
 import {Types, Components, TYPES, TYPE_INPUT, TYPE_MAP} from './types';
 import useField from '../../../composables/useField';
 import translateMixin from '../../../mixins/translate';
+import CheckboxGroup from '@orangehrm/oxd/core/components/Input/CheckboxGroup.vue';
 
 export default defineComponent({
   name: 'oxd-input-field',
@@ -68,6 +69,7 @@ export default defineComponent({
     'oxd-multiselect-input': MultiSelectInput,
     'oxd-time-input': TimeInput,
     'oxd-text': Text,
+    'oxd-checkboxgroup-input': CheckboxGroup,
     'oxd-infobox': InfoBox,
     'oxd-quicksearch-input': QuickSearchInput,
   },
