@@ -1,3 +1,5 @@
+2022-06-24 - 0f6416adf5331113ba1741b95a9e00c5a673e2c1 - components/CardTable/Cell/\_variables.scss, actions.scss - Change the action button gap according to oxd-guide and in components/TableFilter/table-filter.scss - Action buttons moved further to the right
+
 2022-06-21 - 424bfb945f611fc0eb875299196452f7c4bf9350 - components/Input/RadioInput.vue - Focus style changed
 
 2022-06-17 - 76707a16abb47778eca8b30784ccd82ae851cf47 - components/List/list.scss - Fixing the issue of When changing the resolutions with "No data found" screen in leave type ,it shows a gap between 2 panels
