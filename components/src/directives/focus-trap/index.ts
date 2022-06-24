@@ -21,13 +21,11 @@ const getFocusableContent = (element: Element, matchingString: string) => {
     focusableContent.length - 1
   ] as Element;
 };
-
 const onTabClick = (e: KeyboardEvent) => {
   const isTabPressed = e.key === 'Tab' || e.keyCode === 9;
   if (!isTabPressed) {
     return;
   }
-
   if (e.shiftKey) {
     // if shift key pressed for shift + tab combination
     if (document.activeElement === firstFocusableElement) {
