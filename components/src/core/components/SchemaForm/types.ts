@@ -85,6 +85,7 @@ type LayoutSchema = CommonSchemaProperties &
 type FormSchema = CommonSchemaProperties & {
   layout: Array<LayoutSchema>;
   name: string;
+  disabled? : boolean;
 };
 
 export {

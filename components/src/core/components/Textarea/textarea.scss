@@ -40,4 +40,9 @@
   &--resize-none {
     resize: none;
   }
+
+  &:disabled,
+  &:read-only {
+    background-color: $oxd-textarea-background--disabled;
+  }
 }

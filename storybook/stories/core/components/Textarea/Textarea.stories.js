@@ -134,6 +134,7 @@ Error.parameters = {
 
 export const Disabled = Template.bind({});
 Disabled.args = {
+  modelValue: 'Textarea',
   Disabled: true,
 };
 
@@ -147,6 +148,7 @@ Disabled.parameters = {
 
 export const ReadOnly = Template.bind({});
 ReadOnly.args = {
+  modelValue: 'Textarea',
   readonly: true,
 };
 

@@ -388,4 +388,170 @@ Advance.args = {
 };
 
 
+export const Disabled = Template.bind({});
+Disabled.args = {
+  schema: {
+    name: 'DisabledForm',
+    disabled : true,
+    layout: [
+      {
+        type: 'grid',
+        props: {
+          cols: 1,
+        },
+        children: {
+          default: [
+            {
+              name: 'resume',
+              label: 'Select resume',
+              type: 'file',
+              class: ['--span-column-2'],
+            },
+          ],
+        },
+      },
+      {
+        type: 'grid',
+        props: {
+          cols: 2,
+        },
+        children: {
+          default: [
+            {
+              name: 'firstName',
+              label: 'First Name',
+              type: 'input',
+              validators: new Map([['required', required]]),
+              value: 'test',
+            },
+            {
+              name: 'middleName',
+              label: 'Middle Name',
+              type: 'input',
+            },
+            {
+              name: 'lastName',
+              label: 'Last Name',
+              type: 'input',
+              validators: new Map([['required', required]]),
+            },
+            {
+              name: 'email',
+              label: 'Email',
+              type: 'input',
+              visible: true,
+              style: {
+                color: 'red',
+              },
+              validators: new Map([['required', required]]),
+            },
+            {
+              name: 'facebook',
+              label: 'Facebook',
+              type: 'input',
+              visible: true,
+              props : {imageIcon : require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg')}
+            },
+            {
+              name: 'contactNumber',
+              label: 'Contact Number',
+              type: 'input',
+              listners: {
+                onChange: ($event) => console.log($event),
+              },
+            },
+            {
+              name: 'vacancy',
+              label: 'Vacancy',
+              type: 'select',
+              props: {
+                options: [
+                  {id: 1, label: 'Vaccancy One'},
+                  {id: 2, label: 'Vaccancy Two'},
+                ],
+              },
+              validators: new Map([['required', required]]),
+            },
+            {
+              name: 'user',
+              label: 'Users',
+              type: 'multiselect',
+              value: [],
+              props: {
+                options: [
+                  {id: 1, label: 'HR'},
+                  {id: 2, label: 'Admin'},
+                ],
+              },
+            },
+            {
+              name: 'autofocusUser',
+              label: 'Search Users',
+              type: 'autocomplete',
+              value: [],
+              props: {
+                placeholder: 'test',
+                autofocus: true,
+                createOptions: function (serachParam) {
+                  const filter = new RegExp(serachParam, 'i');
+                  return [
+                    {id: 1, label: 'HR'},
+                    {id: 2, label: 'Admin'},
+                  ].filter((item) => item.label.match(filter));
+                },
+              },
+              validators: new Map([['required', required]]),
+            },
+            {
+              name: 'date',
+              label: 'Date of Application',
+              type: 'date',
+            },
+            {
+              name: 'comment',
+              label: 'Comment',
+              type: 'textarea'
+            }
+          ],
+        },
+      },
+      {
+        type: 'divider'
+      },
+      {
+        type: 'action',
+        style: {
+          'margin-top': '0.5rem',
+        },
+        children: {
+          default: [
+            {
+              name: 'reset',
+              label: 'Reset',
+              type: 'button',
+              props: {
+                type: 'reset',
+                displayType: 'ghost',
+              },
+            },
+            {
+              name: 'submit',
+              label: 'Submit',
+              type: 'button',
+              style: {
+                'margin-left': '0.5rem',
+              },
+              props: {
+                type: 'submit',
+                displayType: 'secondary',
+              },
+            },
+          ],
+        },
+      }
+    ],
+  },
+};
+
+
 

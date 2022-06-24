@@ -156,7 +156,8 @@ export default defineComponent({
                 ),
                 key: field.key,
                 label: $t(field.label),
-                labelHelpText : $t(field.labelHelpText),
+                labelHelpText: $t(field.labelHelpText),
+                disabled: props.schema?.disabled? props.schema.disabled : false,
                 ...(field.props ?? {}),
                 ...(field.listeners ?? {}),
                 rules: Array.from(field.validators?.values() ?? []),
@@ -168,7 +169,7 @@ export default defineComponent({
                     [field.name]: value,
                   });
                 },
-                required: field.validators?.has('required'),
+                required: (field.validators?.has('required') && !props.schema?.disabled),
                 ...(field.type !== 'custom' && {type: field.type}),
               }),
           },
@@ -185,6 +186,7 @@ export default defineComponent({
         class: field.class,
         ...(field.props ?? {}),
         ...(field.listeners ?? {}),
+        disabled: props.schema?.disabled? props.schema.disabled : false
       });
     };
 
