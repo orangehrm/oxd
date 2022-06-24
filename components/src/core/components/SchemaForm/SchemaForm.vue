@@ -169,7 +169,7 @@ export default defineComponent({
                     [field.name]: value,
                   });
                 },
-                required: field.validators?.has('required'),
+                required: (field.validators?.has('required') && !props.schema?.disabled),
                 ...(field.type !== 'custom' && {type: field.type}),
               }),
           },
@@ -186,6 +186,7 @@ export default defineComponent({
         class: field.class,
         ...(field.props ?? {}),
         ...(field.listeners ?? {}),
+        disabled: props.schema?.disabled? props.schema.disabled : false
       });
     };
 
@@ -196,9 +197,6 @@ export default defineComponent({
           layoutChildObj[slotName]
             .map((field) => {
               if (field.visible !== false && field.type === 'button') {
-                if (props.schema?.disabled && props.schema?.disabled===true){
-                  return null;
-                }
                 return createActionNode(field);
               }
               return field.visible !== false ? createFieldNode(field) : null;

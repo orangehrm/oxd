@@ -391,7 +391,7 @@ Advance.args = {
 export const Disabled = Template.bind({});
 Disabled.args = {
   schema: {
-    name: 'AdvanceForm',
+    name: 'DisabledForm',
     disabled : true,
     layout: [
       {
@@ -512,6 +512,40 @@ Disabled.args = {
               label: 'Comment',
               type: 'textarea'
             }
+          ],
+        },
+      },
+      {
+        type: 'divider'
+      },
+      {
+        type: 'action',
+        style: {
+          'margin-top': '0.5rem',
+        },
+        children: {
+          default: [
+            {
+              name: 'reset',
+              label: 'Reset',
+              type: 'button',
+              props: {
+                type: 'reset',
+                displayType: 'ghost',
+              },
+            },
+            {
+              name: 'submit',
+              label: 'Submit',
+              type: 'button',
+              style: {
+                'margin-left': '0.5rem',
+              },
+              props: {
+                type: 'submit',
+                displayType: 'secondary',
+              },
+            },
           ],
         },
       }
