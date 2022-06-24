@@ -5,6 +5,7 @@
       class="oxd-select-fill-container"
       :style="infoBoxContainerStyles"
       :class="classes"
+      :disabled="disabled"
       @focus="onFocus"
       @blur="onBlur"
       @keyup.esc="onCloseDropdown"
@@ -73,7 +74,7 @@
       </div>
     </button>
     <oxd-select-dropdown
-      v-if="dropdownOpen"
+      v-if="dropdownOpen && !isModelValueString"
       :class="dropdownClasses"
       :style="dropdownStyles"
       :loading="loading"
