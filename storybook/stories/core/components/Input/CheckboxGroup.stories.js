@@ -16,7 +16,10 @@ export default {
       control: {type: 'array'},
       defaultValue: [],
       table: {
-        type: {summary: 'Set options for checkboxes'},
+        type: {
+          summary:
+            'Set choises for checkboxes. Currently only id, label and disable are supported',
+        },
       },
     },
     modelValue: {
