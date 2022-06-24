@@ -507,6 +507,11 @@ Disabled.args = {
               label: 'Date of Application',
               type: 'date',
             },
+            {
+              name: 'comment',
+              label: 'Comment',
+              type: 'textarea'
+            }
           ],
         },
       }
