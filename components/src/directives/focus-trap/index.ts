@@ -8,7 +8,7 @@ export interface FocusTrapHTMLElement extends HTMLElement {
 }
 
 const focusableElements = 'input, select, textarea, [tabindex], [href]';
-const focusableButtonElements = 'button';
+const focusableButtonElements = 'button:not([disabled])';
 
 let focusableContent: NodeList,
   firstFocusableElement: Element,
@@ -21,13 +21,11 @@ const getFocusableContent = (element: Element, matchingString: string) => {
     focusableContent.length - 1
   ] as Element;
 };
-
 const onTabClick = (e: KeyboardEvent) => {
   const isTabPressed = e.key === 'Tab' || e.keyCode === 9;
   if (!isTabPressed) {
     return;
   }
-
   if (e.shiftKey) {
     // if shift key pressed for shift + tab combination
     if (document.activeElement === firstFocusableElement) {
@@ -53,7 +51,11 @@ const focusTrapDirective: Directive = {
     document.addEventListener('keydown', el._tabClicking);
   },
   updated(el: FocusTrapHTMLElement) {
-    if (focusableContent && focusableContent.length <= 1) {
+    const currentFocusableElementCount = focusableContent?.length;
+    const updatedFocusableElementCount = el.querySelectorAll(
+      focusableElements + ', ' + focusableButtonElements,
+    )?.length;
+    if (currentFocusableElementCount !== updatedFocusableElementCount) {
       getFocusableContent(
         el,
         focusableElements + ', ' + focusableButtonElements,
