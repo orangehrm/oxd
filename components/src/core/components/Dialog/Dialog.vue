@@ -11,7 +11,7 @@
           v-bind="$attrs"
           v-focus-trap
           role="document"
-          @keydown.esc="onClose"
+          @keydown="onEscape"
           @click="onClickSheet"
         >
           <oxd-dialog-close-button
@@ -94,6 +94,12 @@ export default defineComponent({
     onClose() {
       this.$emit('update:show', false);
     },
+
+    onEscape(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        this.$emit('update:show', false);
+      }
+    },
     onClickOverlay() {
       if (!this.persistent) {
         this.$emit('update:show', false);
@@ -105,6 +111,7 @@ export default defineComponent({
   },
 
   mounted() {
+    window.addEventListener('keyup', this.onEscape);
     const body = document.getElementsByTagName('body');
     if (body) {
       body[0].classList.add('overflow-hidden');
@@ -112,6 +119,7 @@ export default defineComponent({
   },
 
   unmounted() {
+    window.removeEventListener('keyup', this.onEscape);
     const body = document.getElementsByTagName('body');
     if (body) {
       body[0].classList.remove('overflow-hidden');
