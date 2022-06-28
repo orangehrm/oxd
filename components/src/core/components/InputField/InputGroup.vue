@@ -7,9 +7,14 @@
           :name="labelIcon"
           class="oxd-input-group__label-icon"
         />
-          <oxd-label v-if="label" :id="id" :label="label" :class="labelClasses" />
-        <span :class="labelHelpTextClasses" v-if="labelHelpText" :labelHelpText="labelHelpText" > {{"(" + labelHelpText + ")"}}</span>
-      
+        <oxd-label v-if="label" :id="id" :label="label" :class="labelClasses" />
+        <oxd-text
+          v-if="hint && hintPlacement === HINT_PLACEMENT_TOP"
+          class="oxd-input-field-hint placement-top"
+          tag="p"
+        >
+          {{ '(' + hint + ')' }}
+        </oxd-text>
       </div>
     </slot>
     <div :class="wrapperClasses">
@@ -20,6 +25,13 @@
         {{ message }}
       </oxd-text>
     </slot>
+    <oxd-text
+      v-if="hint && hintPlacement === HINT_PLACEMENT_BOTTOM"
+      class="oxd-input-field-hint placement-bottom"
+      tag="p"
+    >
+      {{ hint }}
+    </oxd-text>
   </div>
 </template>
 
@@ -28,6 +40,7 @@ import {defineComponent} from 'vue';
 import Label from '@orangehrm/oxd/core/components/Label/Label.vue';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
+import {HINT_PLACEMENT_TOP, HINT_PLACEMENT_BOTTOM} from './types';
 
 export default defineComponent({
   name: 'oxd-input-group',
@@ -38,6 +51,13 @@ export default defineComponent({
     'oxd-icon': Icon,
   },
 
+  data() {
+    return {
+      HINT_PLACEMENT_TOP: HINT_PLACEMENT_TOP,
+      HINT_PLACEMENT_BOTTOM: HINT_PLACEMENT_BOTTOM,
+    };
+  },
+
   props: {
     label: {
       type: String,
@@ -45,8 +65,13 @@ export default defineComponent({
     labelIcon: {
       type: String,
     },
-    labelHelpText: {
-      type: String
+    hint: {
+      type: String,
+      default: null,
+    },
+    hintPlacement: {
+      type: String,
+      default: HINT_PLACEMENT_TOP,
     },
     message: {
       type: String,
@@ -75,11 +100,6 @@ export default defineComponent({
     labelClasses(): object {
       return {
         ...this.classes.label,
-      };
-    },
-    labelHelpTextClasses(): object {
-      return {
-        'oxd-label-help-text': true
       };
     },
     messageClasses(): object {
