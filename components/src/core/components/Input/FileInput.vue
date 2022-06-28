@@ -7,7 +7,6 @@
     @focus="onFocus"
     @blur="onBlur"
     @input="onInput"
-    @keyup.esc.stop
   />
   <div :class="classes" :style="style" @click="onClick">
     <slot></slot>
