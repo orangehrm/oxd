@@ -11,7 +11,7 @@
           v-bind="$attrs"
           v-focus-trap
           role="document"
-          @keydown="onEscape"
+          @keyup="onEscape"
           @click="onClickSheet"
         >
           <oxd-dialog-close-button
