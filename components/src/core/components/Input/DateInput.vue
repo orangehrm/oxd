@@ -183,7 +183,7 @@ export default defineComponent({
       this.$emit('dateselect:opened');
     },
     closeDropdown($e: KeyboardEvent | null) {
-      if ($e && $e.key === 'Escape') $e.stopPropagation();
+      if ($e && $e.key === 'Escape' && this.open) $e.stopPropagation();
       this.open = false;
       this.$refs.oxdIcon.focus();
       this.$emit('dateselect:closed');
