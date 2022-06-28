@@ -22,7 +22,7 @@ export const eventsMixin = defineComponent({
     },
     onCloseDropdown($e: KeyboardEvent | null) {
       if (this.disabled || this.readonly || !this.dropdownOpen) return;
-      if ($e && $e.key === 'Escape') $e.stopPropagation();
+      if ($e && $e.key === 'Escape' && this.dropdownOpen) $e.stopPropagation();
       this.dropdownOpen = false;
       this.$emit('dropdown:closed');
     },
