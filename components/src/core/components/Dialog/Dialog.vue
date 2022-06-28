@@ -100,6 +100,7 @@ export default defineComponent({
         this.$emit('update:show', false);
       }
     },
+
     onClickOverlay() {
       if (!this.persistent) {
         this.$emit('update:show', false);
