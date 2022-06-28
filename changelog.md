@@ -1,3 +1,5 @@
+2022-06-28 - 411232e32b8d2c16ce8d3b91bd6e8d0e0037de24 - components/Input/Dialog.vue - esc event updated
+
 2022-06-21 - 424bfb945f611fc0eb875299196452f7c4bf9350 - components/Input/RadioInput.vue - Focus style changed
 
 2022-06-17 - 76707a16abb47778eca8b30784ccd82ae851cf47 - components/List/list.scss - Fixing the issue of When changing the resolutions with "No data found" screen in leave type ,it shows a gap between 2 panels
