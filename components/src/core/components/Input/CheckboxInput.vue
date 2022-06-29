@@ -9,6 +9,8 @@
         @focus="onFocus"
         @blur="onBlur"
         @change="onChange"
+        :true-value="trueValue"
+        :false-value="falseValue"
         :disabled="disabled"
         v-bind="$attrs"
         v-model="checked"
@@ -28,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, PropType} from 'vue';
 import {Position, LABEL_POSITIONS, RIGHT} from './types';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
@@ -46,10 +48,6 @@ export default defineComponent({
     style: {
       type: Object,
     },
-    hasError: {
-      type: Boolean,
-      default: false,
-    },
     disabled: {
       type: Boolean,
       default: false,
@@ -60,7 +58,15 @@ export default defineComponent({
     },
     checkIconSize: {
       type: String,
-      default: 'xxx-small',
+      default: 'xx-small',
+    },
+    trueValue: {
+      type: Object as PropType<String | Boolean>,
+      default: true,
+    },
+    falseValue: {
+      type: Object as PropType<String | Boolean>,
+      default: false,
     },
     optionLabel: {
       type: String,
@@ -94,7 +100,6 @@ export default defineComponent({
         'oxd-checkbox-input': true,
         'oxd-checkbox-input--active': !this.focused,
         'oxd-checkbox-input--focus': this.focused,
-        'oxd-checkbox-input--error': this.hasError,
         [`--label-${this.labelPosition}`]: true,
       };
     },

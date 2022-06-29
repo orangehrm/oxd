@@ -37,20 +37,18 @@ describe('Input.vue', () => {
   it('input field with icon', () => {
     const wrapper = mount(Input, {
       props: {
-        imageIcon : '@orangehrm/oxd/assets/images/facebook_logo_icon.svg'
-      }
-  });
+        imageIcon: '@orangehrm/oxd/assets/images/facebook_logo_icon.svg',
+      },
+    });
     expect(wrapper.find('.input-text-field-icon').exists()).toBe(true);
     expect(wrapper.html()).toMatchSnapshot();
-
   });
 
   it('input field without icon', () => {
     const value = 'Input';
     const wrapper = mount(Input, {
-      props: {label: value}
+      props: {label: value},
     });
     expect(wrapper.find('.input-text-field-icon').exists()).toBe(false);
   });
-
 });
