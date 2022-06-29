@@ -23,6 +23,18 @@ export default {
         type: {summary: 'Set path to the image icon'},
       },
     },
+    isIconClickable: {
+      control: {type: 'boolean'},
+      table: {
+        type: {summary: 'Set whether the input field should be clickable or not'},
+      },
+    },
+    imageIconClick: {
+      control: {type: 'function'},
+      table: {
+        type: {summary: 'Can be any function which needs to be triggered in the click event on image icon'},
+      },
+    },
     focus: {
       control: {type: 'function'},
       table: {
@@ -176,17 +188,37 @@ Events.parameters = {
   },
 };
 
+const openFacebookTab = function() {
+  window.open('https://www.facebook.com/OrangeHRM/', "_blank");
+};
+
 
 export const DefaultWithIcon = Template.bind({});
 DefaultWithIcon.args = {
   modelValue: 'https://www.facebook.com/OrangeHRM/',
-  imageIcon : require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg')
+  imageIcon : require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg'),
 };
 
 DefaultWithIcon.parameters = {
   docs: {
     source: {
       code: '<oxd-input \n' + ' :imageIcon="path to image" />',
+    },
+  },
+};
+
+export const WithClickableIcon = Template.bind({});
+WithClickableIcon.args = {
+  modelValue: 'https://www.facebook.com/OrangeHRM/',
+  imageIcon : require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg'),
+  imageIconClick: openFacebookTab,
+  isIconClickable: true
+};
+
+WithClickableIcon.parameters = {
+  docs: {
+    source: {
+      code: '<oxd-input \n' + ' :imageIcon="path to image" @click="imageIconClick()"/>',
     },
   },
 };
