@@ -30,6 +30,9 @@ export const TYPE_TIME = 'time';
 export const TYPE_CHECKBOXGROUP = 'checkboxgroup';
 export const TYPE_INFOBOX = 'infobox';
 
+export const HINT_PLACEMENT_TOP = 'top';
+export const HINT_PLACEMENT_BOTTOM = 'bottom';
+
 export const TYPES = [
   TYPE_INPUT,
   TYPE_FILE_INPUT,
@@ -82,7 +85,6 @@ export type Types =
   | typeof TYPE_CHECKBOXGROUP
   | typeof TYPE_INFOBOX;
 
-
 export type Components =
   | typeof COMPONENT_INPUT
   | typeof COMPONENT_FILE_INPUT
@@ -103,3 +105,7 @@ export type Components =
 export interface TypeMap<T> {
   [key: string]: T;
 }
+
+export type HintPlacements =
+  | typeof HINT_PLACEMENT_TOP
+  | typeof HINT_PLACEMENT_BOTTOM;

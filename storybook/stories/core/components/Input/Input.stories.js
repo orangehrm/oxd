@@ -93,7 +93,7 @@ const Template = (args) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  modelValue: 'input'
+  modelValue: 'input',
 };
 
 Default.parameters = {
@@ -107,7 +107,7 @@ Default.parameters = {
 export const Colored = Template.bind({});
 Colored.args = {
   modelValue: 'input',
-  style: {backgroundColor: 'aliceblue'}
+  style: {backgroundColor: 'aliceblue'},
 };
 
 Colored.parameters = {
@@ -121,7 +121,7 @@ Colored.parameters = {
 export const Error = Template.bind({});
 Error.args = {
   modelValue: 'input',
-  hasError: true
+  hasError: true,
 };
 
 Error.parameters = {
@@ -135,7 +135,7 @@ Error.parameters = {
 export const Disabled = Template.bind({});
 Disabled.args = {
   modelValue: 'input',
-  Disabled: true
+  Disabled: true,
 };
 
 Disabled.parameters = {
@@ -192,7 +192,6 @@ const openFacebookTab = function() {
   window.open('https://www.facebook.com/OrangeHRM/', "_blank");
 };
 
-
 export const DefaultWithIcon = Template.bind({});
 DefaultWithIcon.args = {
   modelValue: 'https://www.facebook.com/OrangeHRM/',
@@ -227,13 +226,15 @@ export const ColoredWithIcon = Template.bind({});
 ColoredWithIcon.args = {
   modelValue: 'https://www.facebook.com/OrangeHRM/',
   style: {backgroundColor: 'aliceblue'},
-  imageIcon : require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg')
+  imageIcon: require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg'),
 };
 
 ColoredWithIcon.parameters = {
   docs: {
     source: {
-      code: '<oxd-input \n' + ': style={"backgroundColor": "aliceblue"} :imageIcon="path to image" />',
+      code:
+        '<oxd-input \n' +
+        ': style={"backgroundColor": "aliceblue"} :imageIcon="path to image" />',
     },
   },
 };
@@ -242,7 +243,7 @@ export const ErrorWithIcon = Template.bind({});
 ErrorWithIcon.args = {
   modelValue: 'https://www.facebook.com/OrangeHRM/',
   hasError: true,
-  imageIcon : require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg')
+  imageIcon: require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg'),
 };
 
 ErrorWithIcon.parameters = {
@@ -257,7 +258,7 @@ export const DisabledWithIcon = Template.bind({});
 DisabledWithIcon.args = {
   modelValue: 'https://www.facebook.com/OrangeHRM/',
   Disabled: true,
-  imageIcon : require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg')
+  imageIcon: require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg'),
 };
 
 DisabledWithIcon.parameters = {
@@ -272,7 +273,7 @@ export const ReadOnlyWithIcon = Template.bind({});
 ReadOnlyWithIcon.args = {
   modelValue: 'https://www.facebook.com/OrangeHRM/',
   readonly: true,
-  imageIcon : require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg')
+  imageIcon: require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg'),
 };
 
 ReadOnlyWithIcon.parameters = {
