@@ -12,8 +12,8 @@ exports[`InputField.vue renders OXD InputField 1`] = `
       <!--v-if-->
       <!--v-if--><input class="oxd-input oxd-input--active">
     </div>
-    <!--v-if-->
   </div>
+  <!--v-if-->
   <!--v-if-->
 </div>
 `;
@@ -30,8 +30,8 @@ exports[`InputField.vue renders OXD InputField type \`file\` 1`] = `
       <!--v-if-->
       <div class="oxd-file-input-div">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon"></i>
     </div>
-    <!--v-if-->
   </div>
+  <!--v-if-->
   <!--v-if-->
 </div>
 `;
@@ -48,8 +48,8 @@ exports[`InputField.vue renders OXD InputField type \`file\` with button 1`] = `
       <div class="oxd-file-button">Browse</div>
       <div class="oxd-file-input-div">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon"></i>
     </div>
-    <!--v-if-->
   </div>
+  <!--v-if-->
   <!--v-if-->
 </div>
 `;
@@ -66,8 +66,8 @@ exports[`InputField.vue renders OXD InputField type \`input\` 1`] = `
       <!--v-if-->
       <!--v-if--><input class="oxd-input oxd-input--active">
     </div>
-    <!--v-if-->
   </div>
+  <!--v-if-->
   <!--v-if-->
 </div>
 `;
@@ -77,15 +77,15 @@ exports[`InputField.vue renders OXD InputField type \`input\` with Hint 1`] = `
   <div class="oxd-input-group__label-wrapper">
     <!--v-if-->
     <!--v-if-->
-    <!--v-if-->
+    <p class="oxd-text oxd-text--p oxd-input-field-hint placement-top">(This field has a hint)</p>
   </div>
   <div class="">
     <div class="input-outer-wrapper">
       <!--v-if-->
       <!--v-if--><input class="oxd-input oxd-input--active">
     </div>
-    <p class="oxd-text oxd-text--p orangehrm-input-hint">This field has a hint</p>
   </div>
+  <!--v-if-->
   <!--v-if-->
 </div>
 `;
@@ -97,9 +97,8 @@ exports[`InputField.vue renders OXD InputField type \`textarea\` 1`] = `
     <!--v-if-->
     <!--v-if-->
   </div>
-  <div class=""><textarea class="oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical"></textarea>
-    <!--v-if-->
-  </div>
+  <div class=""><textarea class="oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical"></textarea></div>
+  <!--v-if-->
   <!--v-if-->
 </div>
 `;

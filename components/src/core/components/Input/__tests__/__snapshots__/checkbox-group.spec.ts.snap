@@ -16,5 +16,6 @@ exports[`CheckboxGroup > CheckboxGroup.vue renders OXD CheckboxGroup 1`] = `
       </label></div>
   </div>
   <!--v-if-->
+  <!--v-if-->
 </div>
 `;

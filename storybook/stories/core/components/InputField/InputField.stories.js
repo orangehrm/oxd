@@ -7,6 +7,22 @@ import {h, ref} from 'vue';
 export default {
   title: 'Inputs/InputFields',
   component: InputField,
+
+  argTypes: {
+    hint: {
+      control: {type: 'text'},
+      table: {
+        type: {summary: 'Set the hint'},
+      },
+    },
+    hintPlacement: {
+      control: {type: 'select', options: ['top', 'bottom']},
+      defaultValue: 'top',
+      table: {
+        type: {summary: 'Set the hint placement'},
+      },
+    },
+  },
 };
 
 const argTypes = {
@@ -15,7 +31,7 @@ const argTypes = {
   },
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     return {args};
   },
@@ -23,7 +39,7 @@ const Template = args => ({
   template: '<oxd-form><oxd-input-field v-bind="args" /></oxd-form>',
 });
 
-const DropdownTemplate = args => ({
+const DropdownTemplate = (args) => ({
   setup() {
     const selected = ref([]);
     return {args, selected};
@@ -37,7 +53,7 @@ const DropdownTemplate = args => ({
           return h(InputField, {
             ...this.args,
             modelValue: this.selected,
-            'onUpdate:modelValue': value => {
+            'onUpdate:modelValue': (value) => {
               this.selected = [...value];
             },
           });
@@ -74,8 +90,8 @@ Dropdown.argTypes = argTypes;
 Dropdown.args = {
   label: 'Dropdown Input Field',
   type: 'dropdown',
-  createOptions: async function() {
-    return new Promise(resolve => {
+  createOptions: async function () {
+    return new Promise((resolve) => {
       setTimeout(() => {
         resolve([
           {
@@ -148,8 +164,8 @@ AutocompleteInput.args = {
   label: 'Autocomplete Input Field',
   type: 'autocomplete',
   modelValue: null,
-  createOptions: async function() {
-    return new Promise(resolve => {
+  createOptions: async function () {
+    return new Promise((resolve) => {
       setTimeout(() => {
         resolve([
           {
@@ -226,8 +242,8 @@ WithHint.argTypes = argTypes;
 WithHint.args = {
   label: 'Name as in Passport',
   type: 'input',
-  hint: 'Only needed if different from the name in your driving license'
+  hint: 'Only needed if different from the name in your driving license',
+  hintPlacement: 'bottom',
 };
-
 
 export const WithValidation = () => InputFieldValidation;

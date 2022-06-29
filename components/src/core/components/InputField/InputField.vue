@@ -2,7 +2,8 @@
   <oxd-input-group
     :label="label"
     :labelIcon="labelIcon"
-    :labelHelpText="labelHelpText"
+    :hint="hint"
+    :hintPlacement="hintPlacement"
     :id="id"
     :message="message"
     class="oxd-input-field-bottom-space"
@@ -21,9 +22,6 @@
         <slot :name="name" v-bind="slotData" />
       </template>
     </component>
-    <oxd-text v-if="hint" class="orangehrm-input-hint" tag="p">
-      {{ $vt(hint) }}
-    </oxd-text>
   </oxd-input-group>
 </template>
 
@@ -45,7 +43,14 @@ import MultiSelectInput from '@orangehrm/oxd/core/components/Input/MultiSelect/M
 import TimeInput from '@orangehrm/oxd/core/components/Input/Time/TimeInput.vue';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import InfoBox from '@orangehrm/oxd/core/components/InfoBox/InfoBox.vue';
-import {Types, Components, TYPES, TYPE_INPUT, TYPE_MAP} from './types';
+import {
+  Types,
+  Components,
+  TYPES,
+  TYPE_INPUT,
+  TYPE_MAP,
+  HINT_PLACEMENT_TOP,
+} from './types';
 import useField from '../../../composables/useField';
 import translateMixin from '../../../mixins/translate';
 import CheckboxGroup from '@orangehrm/oxd/core/components/Input/CheckboxGroup.vue';
@@ -85,9 +90,6 @@ export default defineComponent({
     labelIcon: {
       type: String,
     },
-    labelHelpText: {
-      type: String,
-    },
     required: {
       type: Boolean,
       default: false,
@@ -121,6 +123,10 @@ export default defineComponent({
     hint: {
       type: String,
       default: null,
+    },
+    hintPlacement: {
+      type: String,
+      default: HINT_PLACEMENT_TOP,
     },
   },
 

@@ -82,11 +82,11 @@ describe('InputField.vue', () => {
     expect(wrapper.html()).toMatchSnapshot();
   });
 
-  it('renders OXD InputField type `input` with label help text', () => {
+  it('renders OXD InputField type `input` with hint', () => {
     const wrapper = mount(InputField, {
       props: {
         type: 'input',
-        labelHelpText: 'This is the input field help text',
+        hint: 'This is the input field hint',
       },
       global: {
         provide: {
@@ -94,16 +94,16 @@ describe('InputField.vue', () => {
         },
       },
     });
-    expect(wrapper.find('.oxd-label-help-text').text()).toContain(
-      'This is the input field help text',
+    expect(wrapper.find('.oxd-input-field-hint').text()).toContain(
+      'This is the input field hint',
     );
   });
 
-  it('renders OXD InputField type `select` with label help text', () => {
+  it('renders OXD InputField type `select` with hint', () => {
     const wrapper = mount(InputField, {
       props: {
         type: 'select',
-        labelHelpText: 'This is the select field help text',
+        hint: 'This is the select field hint',
         label: 'Vacancy',
         options: [
           {id: 1, label: 'Vaccancy One'},
@@ -116,16 +116,16 @@ describe('InputField.vue', () => {
         },
       },
     });
-    expect(wrapper.find('.oxd-label-help-text').text()).toContain(
-      'This is the select field help text',
+    expect(wrapper.find('.oxd-input-field-hint').text()).toContain(
+      'This is the select field hint',
     );
   });
 
-  it('renders OXD InputField type `date` with label help text', () => {
+  it('renders OXD InputField type `date` with hint', () => {
     const wrapper = mount(InputField, {
       props: {
         type: 'date',
-        labelHelpText: 'This is date field help text',
+        hint: 'This is date field hint',
         label: 'Date',
       },
       global: {
@@ -134,16 +134,16 @@ describe('InputField.vue', () => {
         },
       },
     });
-    expect(wrapper.find('.oxd-label-help-text').text()).toContain(
-      'This is date field help text',
+    expect(wrapper.find('.oxd-input-field-hint').text()).toContain(
+      'This is date field hint',
     );
   });
 
-  it('renders OXD InputField type `textarea` with label help text', () => {
+  it('renders OXD InputField type `textarea` with hint', () => {
     const wrapper = mount(InputField, {
       props: {
         type: 'textarea',
-        labelHelpText: 'This is textarea field help text',
+        hint: 'This is textarea field hint',
         label: 'Date',
       },
       global: {
@@ -152,12 +152,12 @@ describe('InputField.vue', () => {
         },
       },
     });
-    expect(wrapper.find('.oxd-label-help-text').text()).toContain(
-      'This is textarea field help text',
+    expect(wrapper.find('.oxd-input-field-hint').text()).toContain(
+      'This is textarea field hint',
     );
   });
 
-  it('renders OXD InputField type `input` without label help text', () => {
+  it('renders OXD InputField type `input` without hint', () => {
     const wrapper = mount(InputField, {
       props: {type: 'input', label: 'First Name'},
       global: {
@@ -166,6 +166,41 @@ describe('InputField.vue', () => {
         },
       },
     });
-    expect(wrapper.find('.oxd-label-help-text').exists()).toBeFalsy();
+    expect(wrapper.find('.oxd-input-field-hint').exists()).toBeFalsy();
+  });
+
+  it('renders OXD InputField type `input` with hint default positioned to top', () => {
+    const wrapper = mount(InputField, {
+      props: {
+        type: 'input',
+        hint: 'This is the input field hint',
+      },
+      global: {
+        provide: {
+          [formKey as symbol]: mockFormAPI,
+        },
+      },
+    });
+    expect(wrapper.find('.oxd-input-field-hint').classes()).toContain(
+      'placement-top',
+    );
+  });
+
+  it('renders OXD InputField type `input` with hint positioned to bottom', () => {
+    const wrapper = mount(InputField, {
+      props: {
+        type: 'input',
+        hint: 'This is the input field hint',
+        hintPlacement: 'bottom',
+      },
+      global: {
+        provide: {
+          [formKey as symbol]: mockFormAPI,
+        },
+      },
+    });
+    expect(wrapper.find('.oxd-input-field-hint').classes()).toContain(
+      'placement-bottom',
+    );
   });
 });
