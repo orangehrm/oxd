@@ -8,6 +8,10 @@ export default {
   component: SchemaForm,
 };
 
+const openFacebookTab = function() {
+  window.open('https://www.facebook.com/OrangeHRM/', "_blank");
+};
+
 const Template = (args) => ({
   components: {'oxd-schema-form': SchemaForm},
   setup() {
@@ -289,7 +293,11 @@ Advance.args = {
               label: 'Facebook',
               type: 'input',
               visible: true,
-              props : {imageIcon : require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg')}
+              props : {
+                imageIcon : require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg'),
+                imageIconClick: openFacebookTab,
+                isIconClickable: true
+              }
             },
             {
               name: 'contactNumber',

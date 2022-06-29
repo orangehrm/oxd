@@ -100,6 +100,9 @@
       height: 25px;
       cursor: pointer;
     }
+    .click-disabled {
+      pointer-events: none;
+   }
   }
 
 }
