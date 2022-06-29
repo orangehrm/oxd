@@ -54,7 +54,7 @@ export default defineComponent({
     },
     imageIconClick: {
       type: Function,
-      default: ()=>{}
+      required: false
     }
   },
 
