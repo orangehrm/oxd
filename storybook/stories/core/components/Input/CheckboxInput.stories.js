@@ -27,7 +27,7 @@ export default {
         type: {summary: 'Set value for the checkbox'},
       },
     },
-    modelValue: {
+    disabled: {
       control: {type: 'boolean'},
       table: {
         type: {summary: 'Set disabled attribute for the checkbox'},
@@ -188,7 +188,7 @@ Disabled.parameters = {
 
 export const Colored = Template.bind({});
 Colored.args = {
-  optionLabel: 'Cant check this!',
+  optionLabel: 'Styled checkbox',
   style: {'background-color': 'blue'},
 };
 

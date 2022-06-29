@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from 'vue';
+import {defineComponent} from 'vue';
 import {Position, LABEL_POSITIONS, RIGHT} from './types';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
@@ -61,11 +61,11 @@ export default defineComponent({
       default: 'xx-small',
     },
     trueValue: {
-      type: Object as PropType<String | Boolean>,
+      type: [String, Boolean],
       default: true,
     },
     falseValue: {
-      type: Object as PropType<String | Boolean>,
+      type: [String, Boolean],
       default: false,
     },
     optionLabel: {
