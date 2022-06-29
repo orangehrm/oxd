@@ -272,7 +272,6 @@ const sample = {
             type: 'infobox',
             props: {
               infoLabel: 'Date of Application',
-              options,
               numOfTitleRows: 1,
             },
             value: '2022-05-03'

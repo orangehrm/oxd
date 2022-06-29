@@ -1,4 +1,6 @@
-2022-06-24 - 0f6416adf5331113ba1741b95a9e00c5a673e2c1 - components/CardTable/Cell/\_variables.scss, actions.scss - Change the action button gap according to oxd-guide and in components/TableFilter/table-filter.scss - Action buttons moved further to the right
+2022-06-29 - 0f6416adf5331113ba1741b95a9e00c5a673e2c1 - components/CardTable/Cell/\_variables.scss, actions.scss - Change the action button gap according to oxd-guide and in components/TableFilter/table-filter.scss - Action buttons moved further to the right
+
+2022-06-28 - 424bfb945f611fc0eb875299196452f7c4bf9350 - components/Input/InputField.vue, components/Input/InputGroup.vue - this refectoring effects to label help text and hint. Need to test and correct the usage
 
 2022-06-21 - 424bfb945f611fc0eb875299196452f7c4bf9350 - components/Input/RadioInput.vue - Focus style changed
 
@@ -10,7 +12,7 @@
 
 2022-06-11 - d54e259faa978699db974f1113f8c470f5bc1590 - InputGroup.vue - Input label icon size related styles changed. Check any places where input field label has an icon.
 
-2022-06-10 - 78f3c1344de36cf5d95fe13c6e91c8c1147eccba - Input.vue - Added icon suppport for the input text field. Can be affected to the other places which use oxd-input. Date input, text area,  time, checkbox, select, multiselect, autocomplete
+2022-06-10 - 78f3c1344de36cf5d95fe13c6e91c8c1147eccba - Input.vue - Added icon suppport for the input text field. Can be affected to the other places which use oxd-input. Date input, text area, time, checkbox, select, multiselect, autocomplete
 
 2022-06-03 - e45f6bee3abf87ffc71b9265746d2d372a53253f - Label.vue - Explicitly set .oxd-label margin to zero, since it's getting overridden by angular application styles.
 

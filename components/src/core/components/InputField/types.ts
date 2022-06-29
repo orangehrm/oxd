@@ -11,6 +11,7 @@ export const COMPONENT_QUICKSEARCH_INPUT = 'oxd-quicksearch-input';
 export const COMPONENT_SELECT_INPUT = 'oxd-select-input';
 export const COMPONENT_MULTISELECT_INPUT = 'oxd-multiselect-input';
 export const COMPONENT_TIME_INPUT = 'oxd-time-input';
+export const COMPONENT_CHECKBOXGROUP_INPUT = 'oxd-checkboxgroup-input';
 export const COMPONENT_INFOBOX = 'oxd-infobox';
 
 export const TYPE_INPUT = 'input';
@@ -26,7 +27,11 @@ export const TYPE_QUICKSEARCH = 'quicksearch';
 export const TYPE_SELECT = 'select';
 export const TYPE_MULTISELECT = 'multiselect';
 export const TYPE_TIME = 'time';
+export const TYPE_CHECKBOXGROUP = 'checkboxgroup';
 export const TYPE_INFOBOX = 'infobox';
+
+export const HINT_PLACEMENT_TOP = 'top';
+export const HINT_PLACEMENT_BOTTOM = 'bottom';
 
 export const TYPES = [
   TYPE_INPUT,
@@ -42,6 +47,7 @@ export const TYPES = [
   TYPE_SELECT,
   TYPE_MULTISELECT,
   TYPE_TIME,
+  TYPE_CHECKBOXGROUP,
   TYPE_INFOBOX,
 ];
 
@@ -59,6 +65,7 @@ export const TYPE_MAP: TypeMap<Components> = {
   [TYPE_SELECT]: COMPONENT_SELECT_INPUT,
   [TYPE_MULTISELECT]: COMPONENT_MULTISELECT_INPUT,
   [TYPE_TIME]: COMPONENT_TIME_INPUT,
+  [TYPE_CHECKBOXGROUP]: COMPONENT_CHECKBOXGROUP_INPUT,
   [TYPE_INFOBOX]: COMPONENT_INFOBOX,
 };
 
@@ -75,6 +82,7 @@ export type Types =
   | typeof TYPE_SELECT
   | typeof TYPE_MULTISELECT
   | typeof TYPE_TIME
+  | typeof TYPE_CHECKBOXGROUP
   | typeof TYPE_INFOBOX;
 
 export type Components =
@@ -91,8 +99,13 @@ export type Components =
   | typeof COMPONENT_SELECT_INPUT
   | typeof COMPONENT_MULTISELECT_INPUT
   | typeof COMPONENT_TIME_INPUT
+  | typeof COMPONENT_CHECKBOXGROUP_INPUT
   | typeof COMPONENT_INFOBOX;
 
 export interface TypeMap<T> {
   [key: string]: T;
 }
+
+export type HintPlacements =
+  | typeof HINT_PLACEMENT_TOP
+  | typeof HINT_PLACEMENT_BOTTOM;

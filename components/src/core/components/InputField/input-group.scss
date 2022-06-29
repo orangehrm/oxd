@@ -26,13 +26,20 @@
     margin-right: $oxd-input-group-label-icon-margin-right;
   }
 }
-.oxd-label-help-text{
-  font-family: $oxd-label-help-text-font-family;
-  font-size: $oxd-label-help-text-font-size;
-  font-weight:$oxd-label-help-text-font-weight;
-  color: $oxd-label-help-text-color;
-  margin-left: 2px;
+
+.oxd-text.oxd-input-field-hint {
+  font-size: $oxd-input-field-hint-font-size;
+  font-family: $oxd-input-field-hint-font-family;
+  font-weight: $oxd-input-field-hint-font-weight;
+  color: $oxd-input-field-hint-color;
   word-break: break-all;
+
+  &.placement-top {
+    margin: $oxd-input-field-hint-margin-positioned-top;
+  }
+  &.placement-bottom {
+    margin: $oxd-input-field-hint-margin-positioned-bottom;
+  }
 }
 
 .oxd-input-group__label-icon {
