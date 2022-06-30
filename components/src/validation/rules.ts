@@ -16,6 +16,8 @@ export const required = function(
     return (!!value && value.length !== 0) || 'Required';
   } else if (typeof value === 'object') {
     return value !== null || 'Required';
+  } else if (typeof value === 'boolean') {
+    return value || 'Required';
   } else {
     return 'Required';
   }
