@@ -70,10 +70,10 @@ describe('core/util/validation/rules::required', () => {
     expect(result).toBe('Required');
   });
 
-  test('required::unsupported type', () => {
+  test('required::boolean type', () => {
     // @ts-expect-error
     const result = required(true);
-    expect(result).toBe('Required');
+    expect(result).toBeTruthy();
   });
 });
 
