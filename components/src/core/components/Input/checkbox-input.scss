@@ -94,11 +94,6 @@
     outline: 0;
   }
 
-  &--error {
-    border: $oxd-input-border--error;
-    box-shadow: $oxd-input-box-shadow--error;
-  }
-
   &-icon {
     color: $oxd-white-color;
     font-size: $oxd-checkbox-check-font-size;

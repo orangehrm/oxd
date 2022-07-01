@@ -10,10 +10,9 @@ describe('CheckboxInput.vue', () => {
     expect(wrapper.html()).toMatchSnapshot();
   });
 
-  it('should renders OXD Input with error', () => {
-    const value = 'Checkbox';
+  it('should renders OXD Checkbox with string values', () => {
     const wrapper = mount(CheckboxInput, {
-      props: {label: value, hasError: true},
+      props: {trueValue: 'testtrue', falseValue: 'testfalse'},
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
