@@ -72,7 +72,7 @@ export default defineComponent({
     /* eslint-enable @typescript-eslint/no-explicit-any */
 
     const state: State = reactive({
-      checkIcon: 'check',
+      checkIcon: 'oxd-check',
       checkedItems: [...tableProps.selected],
       selectedAll:
         tableProps.selected.length > 0 &&
@@ -100,7 +100,7 @@ export default defineComponent({
         if (tableProps.items.length > 0 && newVal.length > 0) {
           state.selectedAll = true;
           if (newVal.length === tableProps.items.length) {
-            state.checkIcon = 'check';
+            state.checkIcon = 'oxd-check';
           } else {
             state.checkIcon = 'dash';
           }
