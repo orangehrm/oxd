@@ -1,8 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Input.vue input field with icon - in default mode, the icon is not clickable 1`] = `
+<div class="input-outer input-outer--active input-outer-wrapper">
+  <div class="input-text-field-icon"><img src="@orangehrm/oxd/assets/images/facebook_logo_icon.svg" class="click-disabled"></div>
+  <div>
+    <!--v-if-->
+    <div class="oxd-divider-vertical" style="height: 100%;"></div>
+  </div><input class="oxd-input--with-icon oxd-input--with-icon--active">
+</div>
+`;
+
 exports[`Input.vue input field with icon 1`] = `
 <div class="input-outer input-outer--active input-outer-wrapper">
-  <div class="input-text-field-icon"><img src="@orangehrm/oxd/assets/images/facebook_logo_icon.svg"></div>
+  <div class="input-text-field-icon"><img src="@orangehrm/oxd/assets/images/facebook_logo_icon.svg" class="click-disabled"></div>
   <div>
     <!--v-if-->
     <div class="oxd-divider-vertical" style="height: 100%;"></div>

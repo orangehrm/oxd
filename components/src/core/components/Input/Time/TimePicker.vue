@@ -155,4 +155,4 @@ export default defineComponent({
 });
 </script>
 
-<style src="./time-input.scss" lang="scss" scoped></style>
+<style src="./time-picker.scss" lang="scss" scoped></style>
