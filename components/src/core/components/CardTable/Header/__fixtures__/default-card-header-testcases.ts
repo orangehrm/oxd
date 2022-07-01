@@ -19,7 +19,7 @@ export const getCheckIconTestCases = [
     ],
     rowToSelect: 3,
     selected: [1, 2],
-    icon: 'check',
+    icon: 'oxd-check',
   },
   {
     message: 'renders OXD CardTable > TableBody with unselecting one',
@@ -41,7 +41,7 @@ export const getCheckIconTestCases = [
     ],
     rowToSelect: 3,
     selected: [2],
-    icon: 'check',
+    icon: 'oxd-check',
   },
   {
     message:
@@ -64,6 +64,6 @@ export const getCheckIconTestCases = [
     ],
     rowToSelect: 3,
     selected: [2],
-    icon: 'check',
+    icon: 'oxd-check',
   },
 ];
