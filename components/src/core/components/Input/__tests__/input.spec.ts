@@ -43,6 +43,7 @@ describe('Input.vue', () => {
       },
     });
     expect(wrapper.find('.input-text-field-icon').exists()).toBe(true);
+    expect(wrapper.html()).toMatchSnapshot();
 
   });
 
