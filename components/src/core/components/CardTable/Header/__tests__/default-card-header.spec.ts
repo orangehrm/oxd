@@ -1,7 +1,7 @@
 import {shallowMount} from '@vue/test-utils';
 import DefaultCardHeader from '@orangehrm/oxd/core/components/CardTable/Header/DefaultCardHeader.vue';
 import emitter from '@orangehrm/oxd/utils/emitter';
-import {getCheckIconTestCases} from './default-card-header-test-cases';
+import {getCheckIconTestCases} from '../__fixtures__/default-card-header-testcases';
 
 describe('DefaultCardHeader > DefaultCardHeader.vue', () => {
   getCheckIconTestCases.forEach(testCase => {
