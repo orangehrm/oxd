@@ -84,12 +84,12 @@ export default defineComponent({
             !item.isDisabled)
         );
       }).length === selectedItems.length
-        ? 'check'
+        ? 'oxd-check'
         : 'dash';
     };
 
     const state: State = reactive({
-      checkIcon: 'check',
+      checkIcon: 'oxd-check',
       checkedItems: [...tableProps.selected],
       selectedAll:
         tableProps.selected.length > 0 &&

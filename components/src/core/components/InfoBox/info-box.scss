@@ -33,6 +33,7 @@ $dropdown-button-size: 24px;
   width: 100%;
   padding: 10px;
   border-radius: 0.85rem;
+  cursor: unset;
 
   &--focus {
     border: $oxd-input-border--focus;
@@ -47,7 +48,6 @@ $dropdown-button-size: 24px;
 
   &--disabled,
   &--readonly {
-    cursor: unset;
     background: $oxd-dropdown-dropdown-background--disabled;
   }
 
