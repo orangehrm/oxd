@@ -188,7 +188,7 @@ export default defineComponent({
         size: 'long',
         displayType: 'secondary',
         style: null,
-        disabled: false,
+        disabled: null,
         disabledTooltip: null,
       };
       for (const key in props.button.props) {
