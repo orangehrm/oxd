@@ -7,6 +7,7 @@
   flex-wrap: wrap;
   gap: $oxd-table-cell-action-gap;
   align-items: center;
+  padding-left: $oxd-table-cell-action-gap;
 }
 
 .oxd-table-cell-actions.oxd-action-render-button-visibility-on-hover {

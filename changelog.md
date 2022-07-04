@@ -1,3 +1,5 @@
+2022-06-30 - 0f6416adf5331113ba1741b95a9e00c5a673e2c1 - components/CardTable/Cell/\_variables.scss, actions.scss - Change the action button gap according to oxd-guide and in components/TableFilter/table-filter.scss - Action buttons moved further to the right
+
 2022-06-30 - 8378af0e1a2dc9182389dc0f43ff9dd8d22e0682 - components/Icon/Icons.ts, components/Icon/Icons.ts, - this refectoring effects to change the colour of the oxd-calendar icon
 
 2022-06-28 - 424bfb945f611fc0eb875299196452f7c4bf9350 - components/Input/InputField.vue, components/Input/InputGroup.vue - this refectoring effects to label help text and hint. Need to test and correct the usage
