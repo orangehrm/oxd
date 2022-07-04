@@ -1,5 +1,6 @@
 import {mount} from '@vue/test-utils';
 import CheckboxGroup from '@orangehrm/oxd/core/components/Input/CheckboxGroup.vue';
+import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
 
 const optionsList = [
   {
@@ -124,5 +125,22 @@ describe('CheckboxGroup > CheckboxGroup.vue', () => {
     wrapper.find('#check-box-group-id_1').trigger('click');
     await wrapper.vm.$nextTick();
     expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+  });
+
+  it('autofocus should apply to first element of checkboxgroup', async () => {
+    const wrapper = mount(CheckboxGroup, {
+      props: {
+        options: optionsList,
+        autofocus: true,
+      },
+    });
+    const firstCheckBox = wrapper
+      .findAllComponents(CheckboxInput)[0]
+      .find('input[type=checkbox]');
+    const secondCheckBox = wrapper
+      .findAllComponents(CheckboxInput)[1]
+      .find('input[type=checkbox]');
+    expect(firstCheckBox.attributes('autofocus')).toEqual('');
+    expect(secondCheckBox.attributes('autofocus')).toEqual(undefined);
   });
 });

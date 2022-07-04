@@ -18,7 +18,7 @@ export default {
       table: {
         type: {
           summary:
-            'Set choises for checkboxes. Currently only id, label and disable are supported',
+            'Set choises for checkboxes. Currently only id, label, style and disable are supported',
         },
       },
     },
@@ -33,7 +33,7 @@ export default {
       control: {type: 'array'},
       defaultValue: [],
       table: {
-        type: {summary: 'emit event when select value updates'},
+        type: {summary: 'Emit event when select value updates'},
       },
     },
     disabled: {
@@ -52,6 +52,15 @@ export default {
         type: {
           summary:
             'Set custom class (Can align row wise using "check-box-row")',
+        },
+      },
+      defaultValue: 'check-box-column',
+    },
+    id: {
+      control: {type: 'text'},
+      table: {
+        type: {
+          summary: 'Set individual checkbox id prefix',
         },
       },
       defaultValue: 'check-box-column',
@@ -157,27 +166,48 @@ Disabled.parameters = {
 
 export const CustomClass = Template.bind({});
 CustomClass.args = {
-  options: options.slice(0, -1),
+  options: [
+    {
+      id: 1,
+      label: 'Job',
+      style: {'background-color': 'red'},
+    },
+    {
+      id: 2,
+      label: 'Salary',
+      style: {'background-color': 'blue'},
+    },
+  ],
   class: 'check-box-row',
   id: 'check-box-id',
-  style: {'font-style': 'italic'},
+  style: {border: '2px solid black', padding: '5px'},
 };
 
 CustomClass.parameters = {
   docs: {
     source: {
-      code:
-        '  <div> \n' +
-        '<oxd-checkbox-group \n' +
-        ':options="options"\n' +
-        ':class="check-box-row"\n' +
-        ':id="check-box-id"\n' +
-        ':style="{font-style: italic}"\n' +
-        'v-model="value""\n' +
-        '/>\n' +
-        '<div>\n' +
-        '<span v-if="value">Value Selected : {{ value }}</span>\n' +
-        '</div>\n',
+      code: `  <div> 
+        <oxd-checkbox-group 
+        :options="[
+          {
+            id: 1,
+            label: 'Job',
+            style:{'background-color':'red'}
+          },
+          {
+            id: 2,
+            label: 'Salary',
+            style:{'background-color':'blue'}
+          },
+        ]"
+        :class="check-box-row"
+        :id="check-box-id"
+        :style="{border: '2px solid black', padding: '5px'}"
+        v-model="value""
+        />
+        <div>
+        <span v-if="value">Value Selected : {{ value }}</span>
+  </div>,`,
     },
   },
 };

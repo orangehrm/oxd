@@ -12,6 +12,7 @@ export interface Options {
   id: number;
   label: string;
   disabled?: boolean;
+  style?: Record<string, any>;
 }
 
 export default defineComponent({
@@ -61,10 +62,12 @@ export default defineComponent({
         style: this.style,
       },
       [
-        this.options.map((option: Options) => {
+        this.options.map((option: Options, index: number) => {
           return h(CheckboxInput, {
             id: inputId + '_' + option.id,
             value: option.id,
+            style: option.style,
+            autofocus: this.$attrs.autofocus && index === 0 ? true : false,
             optionLabel: $t(option.label),
             modelValue: this.modelValue,
             disabled: this.disabled ? 'true' : option.disabled,
