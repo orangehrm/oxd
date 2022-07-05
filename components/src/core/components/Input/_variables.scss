@@ -36,7 +36,7 @@ $oxd-switch-label-color: $oxd-input-control-font-color !default;
 $oxd-switch-label-color--disabled: $oxd-interface-gray-color !default;
 $oxd-switch-width: 2rem !default;
 $oxd-switch-height: calc(#{$oxd-switch-width} / 2);
-$oxd-switch-radius: calc(#{$oxd-switch-height} / 2);
+$oxd-switch-radius: calc(#{$oxd-switch-width} / 2);
 $oxd-switch-selector-height: calc(#{$oxd-switch-height} - 2px);
 $oxd-switch-selector-width: calc(#{$oxd-switch-height} - 2px);
 $oxd-switch-selector-radius: calc(#{$oxd-switch-selector-height} / 2);

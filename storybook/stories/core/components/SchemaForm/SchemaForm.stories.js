@@ -8,8 +8,8 @@ export default {
   component: SchemaForm,
 };
 
-const openFacebookTab = function() {
-  window.open('https://www.facebook.com/OrangeHRM/', "_blank");
+const openFacebookTab = function () {
+  window.open('https://www.facebook.com/OrangeHRM/', '_blank');
 };
 
 const Template = (args) => ({
@@ -263,7 +263,7 @@ Advance.args = {
             {
               name: 'firstName',
               label: 'First Name',
-              type: 'input',
+              type: 'switch',
               validators: new Map([['required', required]]),
               value: 'test',
             },
@@ -293,11 +293,11 @@ Advance.args = {
               label: 'Facebook',
               type: 'input',
               visible: true,
-              props : {
-                imageIcon : require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg'),
+              props: {
+                imageIcon: require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg'),
                 imageIconClick: openFacebookTab,
-                isIconClickable: true
-              }
+                isIconClickable: true,
+              },
             },
             {
               name: 'contactNumber',
@@ -395,12 +395,11 @@ Advance.args = {
   },
 };
 
-
 export const Disabled = Template.bind({});
 Disabled.args = {
   schema: {
     name: 'DisabledForm',
-    disabled : true,
+    disabled: true,
     layout: [
       {
         type: 'grid',
@@ -458,7 +457,9 @@ Disabled.args = {
               label: 'Facebook',
               type: 'input',
               visible: true,
-              props : {imageIcon : require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg')}
+              props: {
+                imageIcon: require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg'),
+              },
             },
             {
               name: 'contactNumber',
@@ -518,13 +519,13 @@ Disabled.args = {
             {
               name: 'comment',
               label: 'Comment',
-              type: 'textarea'
-            }
+              type: 'textarea',
+            },
           ],
         },
       },
       {
-        type: 'divider'
+        type: 'divider',
       },
       {
         type: 'action',
@@ -556,10 +557,7 @@ Disabled.args = {
             },
           ],
         },
-      }
+      },
     ],
   },
 };
-
-
-

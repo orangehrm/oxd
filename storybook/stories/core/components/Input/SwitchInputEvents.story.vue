@@ -1,27 +1,29 @@
 <template>
   <div>
-    <oxd-checkbox-input
+    <oxd-switch-input
       @focus="onFocus()"
       @blur="onBlur()"
       @change="onChange()"
       @onClick="onClick()"
       :modelValue="value"
-      @update:modelValue="updatedValue(event)"
+      @update:modelValue="updatedValue($event)"
     >
-    </oxd-checkbox-input>
+    </oxd-switch-input>
     <br />
     <div style="margin-top: 2rem; margin-bottom: 2rem">
       <span v-if="FocusEvent">Focus Event Triggered</span>
       <span v-if="BlurEvent">Blur Event Triggered</span>
       <span v-if="ChangeEvent">Change Event Triggered</span>
       <span v-if="ClickEvent">Click Event Triggered</span>
-      updated balue {{ updatedValue }}
+      <br />
+      <br />
+      <span>Updated Value {{ value }}</span>
     </div>
   </div>
 </template>
 
 <script>
-import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput';
+import SwitchInput from '@orangehrm/oxd/core/components/Input/SwitchInput';
 
 export default {
   data() {
@@ -30,12 +32,12 @@ export default {
       BlurEvent: false,
       ChangeEvent: false,
       ClickEvent: false,
-      updatedValue: '',
+      value: '',
     };
   },
 
   components: {
-    'oxd-checkbox-input': CheckboxInput,
+    'oxd-switch-input': SwitchInput,
   },
   methods: {
     clearFields() {
@@ -45,10 +47,8 @@ export default {
       this.ClickEvent = false;
     },
 
-    updatedValue(event) {
-      this.clearFields();
-      console.error(event);
-      this.updatedValue = event;
+    updatedValue($event) {
+      this.value = $event;
     },
 
     onFocus() {

@@ -17,6 +17,8 @@
         @change="onChange"
         v-bind="$attrs"
         v-model="checked"
+        :true-value="trueValue"
+        :false-value="falseValue"
         :disabled="disabled"
       />
       <span :class="classes" :style="style"> </span>
@@ -63,10 +65,6 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    hasError: {
-      type: Boolean,
-      default: false,
-    },
     optionLabel: {
       type: String,
       default: '',
@@ -81,6 +79,14 @@ export default defineComponent({
     helpText: {
       type: String,
       default: '',
+    },
+    trueValue: {
+      type: [String, Boolean],
+      default: true,
+    },
+    falseValue: {
+      type: [String, Boolean],
+      default: false,
     },
     helpTextPosition: {
       type: String,
@@ -110,7 +116,6 @@ export default defineComponent({
         'oxd-switch-input': true,
         'oxd-switch-input--active': !this.focused,
         'oxd-switch-input--focus': this.focused,
-        'oxd-switch-input--error': this.hasError,
         [`--label-${this.labelPosition}`]: true,
       };
     },
