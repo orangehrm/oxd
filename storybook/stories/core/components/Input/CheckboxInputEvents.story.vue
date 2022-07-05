@@ -15,7 +15,6 @@
       <span v-if="BlurEvent">Blur Event Triggered</span>
       <span v-if="ChangeEvent">Change Event Triggered</span>
       <span v-if="ClickEvent">Click Event Triggered</span>
-      updated balue {{ updatedValue }}
     </div>
   </div>
 </template>
@@ -30,7 +29,6 @@ export default {
       BlurEvent: false,
       ChangeEvent: false,
       ClickEvent: false,
-      updatedValue: '',
     };
   },
 
@@ -47,8 +45,6 @@ export default {
 
     updatedValue(event) {
       this.clearFields();
-      console.error(event);
-      this.updatedValue = event;
     },
 
     onFocus() {
