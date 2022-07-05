@@ -263,7 +263,7 @@ Advance.args = {
             {
               name: 'firstName',
               label: 'First Name',
-              type: 'switch',
+              type: 'input',
               validators: new Map([['required', required]]),
               value: 'test',
             },
