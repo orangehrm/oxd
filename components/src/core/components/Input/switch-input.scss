@@ -74,11 +74,6 @@
     outline: 0;
   }
 
-  &--error {
-    border: $oxd-input-border--error;
-    box-shadow: $oxd-input-box-shadow--error;
-  }
-
   &.--label-left {
     margin-left: $oxd-switch-label-margin;
   }
@@ -112,5 +107,3 @@
     margin-right: auto;
   }
 }
-
-

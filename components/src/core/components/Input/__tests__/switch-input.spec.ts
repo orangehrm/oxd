@@ -40,6 +40,28 @@ describe('SwitchInput.vue', () => {
     expect(wrapper.emitted('update:modelValue')).toContainEqual([false]);
   });
 
+  it('should emit focus when focued', async () => {
+    const wrapper = mount(SwitchInput, {
+      props: {
+        modelValue: true,
+      },
+    });
+    wrapper.find("input[type='checkbox']").trigger('focus');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.emitted('focus')).toBeTruthy();
+  });
+
+  it('should emit blur when blured', async () => {
+    const wrapper = mount(SwitchInput, {
+      props: {
+        modelValue: true,
+      },
+    });
+    wrapper.find("input[type='checkbox']").trigger('blur');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.emitted('blur')).toBeTruthy();
+  });
+
   it('should not emit any value if disabled', async () => {
     const wrapper = mount(SwitchInput, {
       props: {
