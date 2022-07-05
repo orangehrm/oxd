@@ -17,6 +17,24 @@ export default {
         type: {summary: 'Set custom style to the input'},
       },
     },
+    imageIcon: {
+      control: {type: 'string'},
+      table: {
+        type: {summary: 'Set path to the image icon'},
+      },
+    },
+    isIconClickable: {
+      control: {type: 'boolean'},
+      table: {
+        type: {summary: 'Set whether the input field should be clickable or not'},
+      },
+    },
+    imageIconClick: {
+      control: {type: 'function'},
+      table: {
+        type: {summary: 'Can be any function which needs to be triggered in the click event on image icon'},
+      },
+    },
     focus: {
       control: {type: 'function'},
       table: {
@@ -166,6 +184,102 @@ Events.parameters = {
         '</div>\n' +
         '//\n' +
         'File -> InputEvents.story.vue',
+    },
+  },
+};
+
+const openFacebookTab = function() {
+  window.open('https://www.facebook.com/OrangeHRM/', "_blank");
+};
+
+export const DefaultWithIcon = Template.bind({});
+DefaultWithIcon.args = {
+  modelValue: 'https://www.facebook.com/OrangeHRM/',
+  imageIcon : require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg'),
+};
+
+DefaultWithIcon.parameters = {
+  docs: {
+    source: {
+      code: '<oxd-input \n' + ' :imageIcon="path to image" />',
+    },
+  },
+};
+
+export const WithClickableIcon = Template.bind({});
+WithClickableIcon.args = {
+  modelValue: 'https://www.facebook.com/OrangeHRM/',
+  imageIcon : require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg'),
+  imageIconClick: openFacebookTab,
+  isIconClickable: true
+};
+
+WithClickableIcon.parameters = {
+  docs: {
+    source: {
+      code: '<oxd-input \n' + ' :imageIcon="path to image" @click="imageIconClick()"/>',
+    },
+  },
+};
+
+export const ColoredWithIcon = Template.bind({});
+ColoredWithIcon.args = {
+  modelValue: 'https://www.facebook.com/OrangeHRM/',
+  style: {backgroundColor: 'aliceblue'},
+  imageIcon: require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg'),
+};
+
+ColoredWithIcon.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-input \n' +
+        ': style={"backgroundColor": "aliceblue"} :imageIcon="path to image" />',
+    },
+  },
+};
+
+export const ErrorWithIcon = Template.bind({});
+ErrorWithIcon.args = {
+  modelValue: 'https://www.facebook.com/OrangeHRM/',
+  hasError: true,
+  imageIcon: require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg'),
+};
+
+ErrorWithIcon.parameters = {
+  docs: {
+    source: {
+      code: '<oxd-input \n' + ':hasError=true :imageIcon="path to image" />',
+    },
+  },
+};
+
+export const DisabledWithIcon = Template.bind({});
+DisabledWithIcon.args = {
+  modelValue: 'https://www.facebook.com/OrangeHRM/',
+  Disabled: true,
+  imageIcon: require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg'),
+};
+
+DisabledWithIcon.parameters = {
+  docs: {
+    source: {
+      code: '<oxd-input \n' + ': Disabled=true :imageIcon="path to image" />',
+    },
+  },
+};
+
+export const ReadOnlyWithIcon = Template.bind({});
+ReadOnlyWithIcon.args = {
+  modelValue: 'https://www.facebook.com/OrangeHRM/',
+  readonly: true,
+  imageIcon: require('@orangehrm/oxd/assets/images/facebook_logo_icon.svg'),
+};
+
+ReadOnlyWithIcon.parameters = {
+  docs: {
+    source: {
+      code: '<oxd-input \n' + ':readonly=true :imageIcon="path to image"/>',
     },
   },
 };

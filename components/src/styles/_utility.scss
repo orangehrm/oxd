@@ -75,6 +75,18 @@
   }
 }
 
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.text-justify {
+  text-align: justify;
+}
 
 /* START TOOLTIP STYLES */
 [tooltip] {
@@ -257,3 +269,14 @@
 .--positon-bottom {
   margin-top: $oxd-dropdown-dropdown-margin;
 }
+
+// cursor types begins
+.cursor {
+  &-pointer {
+    cursor: pointer;
+  }
+  &-default {
+    cursor: default;
+  }
+}
+// cursor types ends

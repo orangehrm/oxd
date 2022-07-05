@@ -54,6 +54,14 @@
       box-shadow: $oxd-input-box-shadow--focus;
       outline: 0;
     }
+    .oxd-date-input-icon {
+      &.--readonly {
+        cursor: unset;
+        background-color: $oxd-white-color;
+        border: 1px $oxd-interface-gray-lighten-1-color;
+        color: $oxd-interface-gray-lighten-1-color;
+      }
+    }
   }
   ::v-deep(.oxd-input) {
     text-overflow: ellipsis;

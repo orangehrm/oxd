@@ -45,6 +45,7 @@ import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import {DEVICE_LG, DEVICE_XL} from '../../../../composables/useResponsive';
 import {CardHeader, Order} from '../types';
 import translateMixin from '../../../../mixins/translate';
+import {RowItem} from '../Cell/types';
 
 interface State {
   checkIcon: string;
@@ -71,8 +72,24 @@ export default defineComponent({
     const screenState: any = inject('screenState');
     /* eslint-enable @typescript-eslint/no-explicit-any */
 
+    const getCheckIcon = (
+      selectedItems: Array<number>,
+      allItems: Array<RowItem>,
+    ) => {
+      return allItems.filter((item: RowItem) => {
+        return (
+          (!Object.prototype.hasOwnProperty.call(item, 'isSelectable') ||
+            item.isSelectable) &&
+          (!Object.prototype.hasOwnProperty.call(item, 'isDisabled') ||
+            !item.isDisabled)
+        );
+      }).length === selectedItems.length
+        ? 'oxd-check'
+        : 'dash';
+    };
+
     const state: State = reactive({
-      checkIcon: 'check',
+      checkIcon: 'oxd-check',
       checkedItems: [...tableProps.selected],
       selectedAll:
         tableProps.selected.length > 0 &&
@@ -99,11 +116,7 @@ export default defineComponent({
         emitter.emit(`${tableProps.tableId}-datatable:updateSelected`, newVal);
         if (tableProps.items.length > 0 && newVal.length > 0) {
           state.selectedAll = true;
-          if (newVal.length === tableProps.items.length) {
-            state.checkIcon = 'check';
-          } else {
-            state.checkIcon = 'dash';
-          }
+          state.checkIcon = getCheckIcon(newVal, tableProps.items);
         } else {
           state.selectedAll = false;
         }

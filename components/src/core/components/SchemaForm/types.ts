@@ -64,6 +64,7 @@ type FieldSchema = CommonSchemaProperties &
   ComponentSchemaProperties<FieldType> & {
     name: string;
     label: string;
+    hint?: string;
     value?: string | number | object | unknown;
     placeholder?: string;
     visible?: boolean;
@@ -84,6 +85,7 @@ type LayoutSchema = CommonSchemaProperties &
 type FormSchema = CommonSchemaProperties & {
   layout: Array<LayoutSchema>;
   name: string;
+  disabled?: boolean;
 };
 
 export {

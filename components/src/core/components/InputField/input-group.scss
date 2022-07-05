@@ -26,3 +26,26 @@
     margin-right: $oxd-input-group-label-icon-margin-right;
   }
 }
+
+.oxd-text.oxd-input-field-hint {
+  font-size: $oxd-input-field-hint-font-size;
+  font-family: $oxd-input-field-hint-font-family;
+  font-weight: $oxd-input-field-hint-font-weight;
+  color: $oxd-input-field-hint-color;
+  word-break: break-all;
+
+  &.placement-top {
+    margin: $oxd-input-field-hint-margin-positioned-top;
+  }
+  &.placement-bottom {
+    margin: $oxd-input-field-hint-margin-positioned-bottom;
+  }
+}
+
+.oxd-input-group__label-icon {
+  width: $oxd-input-group-label-icon-size;
+  height: $oxd-input-group-label-icon-size;
+}
+.oxd-input-group__label-icon.oxd-svg-icon {
+  align-self: end;
+}

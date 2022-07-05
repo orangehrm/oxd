@@ -238,10 +238,12 @@ export default defineComponent({
         this.loading = false;
         this.dropdownOpen = false;
         this.pointer = -1;
-        if (Array.isArray(this.modelValue) && this.modelValue.length > 0)
+        if (Array.isArray(this.modelValue) && this.modelValue.length > 0) {
           return;
-        if (typeof this.searchTerm === 'string')
+        }
+        if (typeof this.searchTerm === 'string') {
           this.$emit('update:modelValue', null);
+        }
         this.searchTerm = null;
       }
     },

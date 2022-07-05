@@ -2,14 +2,14 @@
 
 exports[`SwitchInput.vue renders OXD Switch Input 1`] = `
 <div class="oxd-switch-wrapper"><label class="">
-    <!--v-if--><input type="checkbox" label="Checkbox"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span>
+    <!--v-if--><input type="checkbox" label="Checkbox" true-value="true" false-value="false"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span>
     <!--v-if-->
   </label></div>
 `;
 
 exports[`SwitchInput.vue renders OXD Switch Input with label on left and full width 1`] = `
 <div class="oxd-switch-wrapper"><label class="">
-    <!--v-if--><input type="checkbox" label="Checkbox" position="left" fullwidth="true"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span> <i class="oxd-svg-icon oxd-svg-icon--small" help-tooltip="This is a help text describing what this switch does" position="bottom-right"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
+    <!--v-if--><input type="checkbox" label="Checkbox" position="left" fullwidth="true" true-value="true" false-value="false"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span> <i class="oxd-svg-icon oxd-svg-icon--small" help-tooltip="This is a help text describing what this switch does" position="bottom-right"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
         <g>
           <path style="fill:currentColor" d="M256,0C115.391,0,0.002,115.389,0.002,255.998c0,45.747,12.378,90.526,35.859,130.004L0.778,492.25
       c-1.802,5.391-0.396,11.338,3.618,15.352c4.043,4.043,10.031,5.425,15.352,3.618l106.248-35.083
@@ -26,14 +26,14 @@ exports[`SwitchInput.vue renders OXD Switch Input with label on left and full wi
 
 exports[`SwitchInput.vue renders OXD Switch Input with label on left and full width with helpText 1`] = `
 <div class="oxd-switch-wrapper"><label class="">
-    <!--v-if--><input type="checkbox" label="Checkbox" position="left" fullwidth="true"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span>
+    <!--v-if--><input type="checkbox" label="Checkbox" position="left" fullwidth="true" true-value="true" false-value="false"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span>
     <!--v-if-->
   </label></div>
 `;
 
 exports[`SwitchInput.vue renders OXD Switch Input with label on left and help popup 1`] = `
 <div class="oxd-switch-wrapper"><label class="">
-    <!--v-if--><input type="checkbox" label="Checkbox" position="left"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span> <i class="oxd-svg-icon oxd-svg-icon--small" help-tooltip="This is a help text describing what this switch does" position="bottom-right"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
+    <!--v-if--><input type="checkbox" label="Checkbox" position="left" true-value="true" false-value="false"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span> <i class="oxd-svg-icon oxd-svg-icon--small" help-tooltip="This is a help text describing what this switch does" position="bottom-right"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
         <g>
           <path style="fill:currentColor" d="M256,0C115.391,0,0.002,115.389,0.002,255.998c0,45.747,12.378,90.526,35.859,130.004L0.778,492.25
       c-1.802,5.391-0.396,11.338,3.618,15.352c4.043,4.043,10.031,5.425,15.352,3.618l106.248-35.083
@@ -50,14 +50,14 @@ exports[`SwitchInput.vue renders OXD Switch Input with label on left and help po
 
 exports[`SwitchInput.vue renders OXD Switch Input with label on right and full width 1`] = `
 <div class="oxd-switch-wrapper"><label class="">
-    <!--v-if--><input type="checkbox" label="Checkbox" position="right" fullwidth="true"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span>
+    <!--v-if--><input type="checkbox" label="Checkbox" position="right" fullwidth="true" true-value="true" false-value="false"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span>
     <!--v-if-->
   </label></div>
 `;
 
 exports[`SwitchInput.vue renders OXD Switch Input with label on right and full width with helpText 1`] = `
 <div class="oxd-switch-wrapper"><label class="">
-    <!--v-if--><input type="checkbox" label="Checkbox" position="right" fullwidth="true"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span> <i class="oxd-svg-icon oxd-svg-icon--small" help-tooltip="This is a help text describing what this switch does" position="bottom-right"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
+    <!--v-if--><input type="checkbox" label="Checkbox" position="right" fullwidth="true" true-value="true" false-value="false"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span> <i class="oxd-svg-icon oxd-svg-icon--small" help-tooltip="This is a help text describing what this switch does" position="bottom-right"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
         <g>
           <path style="fill:currentColor" d="M256,0C115.391,0,0.002,115.389,0.002,255.998c0,45.747,12.378,90.526,35.859,130.004L0.778,492.25
       c-1.802,5.391-0.396,11.338,3.618,15.352c4.043,4.043,10.031,5.425,15.352,3.618l106.248-35.083
@@ -74,7 +74,7 @@ exports[`SwitchInput.vue renders OXD Switch Input with label on right and full w
 
 exports[`SwitchInput.vue renders OXD Switch Input with label on right and help popup 1`] = `
 <div class="oxd-switch-wrapper"><label class="">
-    <!--v-if--><input type="checkbox" label="Checkbox" position="right"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span> <i class="oxd-svg-icon oxd-svg-icon--small" help-tooltip="This is a help text describing what this switch does" position="bottom-right"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
+    <!--v-if--><input type="checkbox" label="Checkbox" position="right" true-value="true" false-value="false"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span> <i class="oxd-svg-icon oxd-svg-icon--small" help-tooltip="This is a help text describing what this switch does" position="bottom-right"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
         <g>
           <path style="fill:currentColor" d="M256,0C115.391,0,0.002,115.389,0.002,255.998c0,45.747,12.378,90.526,35.859,130.004L0.778,492.25
       c-1.802,5.391-0.396,11.338,3.618,15.352c4.043,4.043,10.031,5.425,15.352,3.618l106.248-35.083
@@ -91,7 +91,7 @@ exports[`SwitchInput.vue renders OXD Switch Input with label on right and help p
 
 exports[`SwitchInput.vue should renders OXD Input with error 1`] = `
 <div class="oxd-switch-wrapper"><label class="">
-    <!--v-if--><input type="checkbox" label="Checkbox"><span class="oxd-switch-input oxd-switch-input--active oxd-switch-input--error --label-right"></span>
+    <!--v-if--><input type="checkbox" label="Checkbox" haserror="true" true-value="true" false-value="false"><span class="oxd-switch-input oxd-switch-input--active --label-right"></span>
     <!--v-if-->
   </label></div>
 `;

@@ -25,4 +25,26 @@ describe('Textarea.vue', () => {
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
+
+  it('on input', async () => {
+    const wrapper = mount(Textarea, {});
+    const input = wrapper.find('textarea');
+    await input.trigger('input');
+    expect(wrapper.emitted()).toHaveProperty('update:modelValue');
+    expect(wrapper.emitted()).toHaveProperty('input');
+  });
+
+  it('on blur', async () => {
+    const wrapper = mount(Textarea, {});
+    const input = wrapper.find('textarea');
+    await input.trigger('blur');
+    expect(wrapper.emitted()).toHaveProperty('blur');
+  });
+
+  it('on focus', async () => {
+    const wrapper = mount(Textarea, {});
+    const input = wrapper.find('textarea');
+    await input.trigger('focus');
+    expect(wrapper.emitted()).toHaveProperty('focus');
+  });
 });
