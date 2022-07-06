@@ -12,7 +12,6 @@
         v-bind="$attrs"
         v-model="checked"
         :disabled="disabled"
-        tabindex="0"
       />
       <span :class="classes" :style="style" class="oxd-radio-input"></span>
       <template v-if="labelPosition === 'right'">
