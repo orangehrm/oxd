@@ -38,8 +38,10 @@
     }
   }
   &-banner {
-    height: $oxd-brand-banner-height;
-    width: $oxd-brand-banner-width;
+    & img {
+      height: $oxd-brand-banner-height;
+      width: $oxd-brand-banner-width;
+    }
     &.toggled {
       @include oxd-respond-to('md') {
         display: none;
