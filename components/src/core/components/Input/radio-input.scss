@@ -13,7 +13,8 @@
     width: fit-content;
     padding: 0.25rem 0.5rem;
 
-    &:hover, &.--focus {
+    &:hover,
+    &.--focus {
       background-color: rgb(0 0 0 / 5%);
       border-radius: 1rem;
     }
@@ -77,10 +78,5 @@
   &--focus {
     border: $oxd-radio-checked-active-border;
     outline: 0;
-  }
-
-  &--error {
-    border: $oxd-input-border--error;
-    box-shadow: $oxd-input-box-shadow--error;
   }
 }

@@ -10,14 +10,6 @@ describe('RadioInput.vue', () => {
     expect(wrapper.html()).toMatchSnapshot();
   });
 
-  it('should renders OXD Radio input with error', () => {
-    const value = 'Radio';
-    const wrapper = mount(RadioInput, {
-      props: {label: value, hasError: true},
-    });
-    expect(wrapper.html()).toMatchSnapshot();
-  });
-
   it('should emit checked value on click', async () => {
     const wrapper = mount(RadioInput, {
       props: {
