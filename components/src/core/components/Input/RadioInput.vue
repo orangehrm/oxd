@@ -12,6 +12,7 @@
         v-bind="$attrs"
         v-model="checked"
         :disabled="disabled"
+        tabindex="0"
       />
       <span :class="classes" :style="style" class="oxd-radio-input"></span>
       <template v-if="labelPosition === 'right'">
@@ -38,10 +39,6 @@ export default defineComponent({
     modelValue: {},
     style: {
       type: Object,
-    },
-    hasError: {
-      type: Boolean,
-      default: false,
     },
     optionLabel: {
       type: String,
@@ -75,7 +72,6 @@ export default defineComponent({
         'oxd-radio-input': true,
         'oxd-radio-input--active': !this.focused,
         'oxd-radio-input--focus': this.focused,
-        'oxd-radio-input--error': this.hasError,
         [`--label-${this.labelPosition}`]: true,
       };
     },
