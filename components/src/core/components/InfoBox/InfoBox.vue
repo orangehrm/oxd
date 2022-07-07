@@ -56,6 +56,7 @@
               >{{ $vt(getLabel) }}</label
             >
           </div>
+          <oxd-icon-button :name="'oxd-trash'" size="xxx-small" />
           <div
             v-if="!(isModelValueString || disabled)"
             class="d-flex align-center justify-start"
