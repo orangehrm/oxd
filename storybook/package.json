@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "license": "GPL-3.0",
   "scripts": {
-    "start": "start-storybook -p 6006",
-    "build": "build-storybook -o ./dist"
+    "start": "start-storybook -p 6006 -s public",
+    "build": "build-storybook -o ./dist -s public"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
