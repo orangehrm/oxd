@@ -2,6 +2,9 @@
   <oxd-input-group
     :label="label"
     :labelIcon="labelIcon"
+    :hint="hint"
+    :hintPlacement="hintPlacement"
+    :id="id"
     :message="message"
     class="oxd-input-field-bottom-space"
     :classes="classes"
@@ -9,6 +12,8 @@
     <component
       :is="component"
       v-bind="$attrs"
+      :id="id"
+      :disabled="disabled"
       :hasError="hasError"
       :modelValue="modelValue"
       @update:modelValue="onChange"
@@ -26,18 +31,29 @@ import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import FileInput from '@orangehrm/oxd/core/components/Input/FileInput.vue';
 import Textarea from '@orangehrm/oxd/core/components/Textarea/Textarea.vue';
-import DropdownInput from '@orangehrm/oxd/core/components/Input/DropdownInput.vue';
 import PasswordInput from '@orangehrm/oxd/core/components/Input/PasswordInput.vue';
 import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
 import SwitchInput from '@orangehrm/oxd/core/components/Input/SwitchInput.vue';
 import RadioInput from '@orangehrm/oxd/core/components/Input/RadioInput.vue';
 import DateInput from '@orangehrm/oxd/core/components/Input/DateInput.vue';
 import AutocompleteInput from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteInput.vue';
+import QuickSearchInput from '@orangehrm/oxd/core/components/Input/Autocomplete/QuickSearchInput.vue';
 import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
 import MultiSelectInput from '@orangehrm/oxd/core/components/Input/MultiSelect/MultiSelectInput.vue';
 import TimeInput from '@orangehrm/oxd/core/components/Input/Time/TimeInput.vue';
-import {Types, Components, TYPES, TYPE_INPUT, TYPE_MAP} from './types';
+import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
+import InfoBox from '@orangehrm/oxd/core/components/InfoBox/InfoBox.vue';
+import {
+  Types,
+  Components,
+  TYPES,
+  TYPE_INPUT,
+  TYPE_MAP,
+  HINT_PLACEMENT_TOP,
+} from './types';
 import useField from '../../../composables/useField';
+import translateMixin from '../../../mixins/translate';
+import CheckboxGroup from '@orangehrm/oxd/core/components/Input/CheckboxGroup.vue';
 
 export default defineComponent({
   name: 'oxd-input-field',
@@ -48,7 +64,6 @@ export default defineComponent({
     'oxd-input': Input,
     'oxd-file-input': FileInput,
     'oxd-textarea': Textarea,
-    'oxd-dropdown-input': DropdownInput,
     'oxd-password-input': PasswordInput,
     'oxd-checkbox-input': CheckboxInput,
     'oxd-switch-input': SwitchInput,
@@ -58,8 +73,13 @@ export default defineComponent({
     'oxd-select-input': SelectInput,
     'oxd-multiselect-input': MultiSelectInput,
     'oxd-time-input': TimeInput,
+    'oxd-text': Text,
+    'oxd-checkboxgroup-input': CheckboxGroup,
+    'oxd-infobox': InfoBox,
+    'oxd-quicksearch-input': QuickSearchInput,
   },
 
+  mixins: [translateMixin],
   emits: ['update:modelValue'],
 
   props: {
@@ -71,6 +91,13 @@ export default defineComponent({
       type: String,
     },
     required: {
+      type: Boolean,
+      default: false,
+    },
+    id: {
+      type: String,
+    },
+    disabled: {
       type: Boolean,
       default: false,
     },
@@ -93,11 +120,21 @@ export default defineComponent({
       type: Array as PropType<any>,
       default: () => [],
     },
+    hint: {
+      type: String,
+      default: null,
+    },
+    hintPlacement: {
+      type: String,
+      default: HINT_PLACEMENT_TOP,
+    },
   },
 
   setup(props, context) {
     const modelValue = toRef(props, 'modelValue');
     const rules = toRef(props, 'rules');
+    const isDisabled = toRef(props, 'disabled');
+
     const initialValue = modelValue.value;
 
     const onReset = async () => {
@@ -109,6 +146,7 @@ export default defineComponent({
       fieldLabel: props.label ? props.label : '',
       rules,
       modelValue,
+      isDisabled,
       onReset,
     });
 

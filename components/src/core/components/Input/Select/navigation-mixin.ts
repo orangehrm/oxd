@@ -12,7 +12,7 @@ const cycleIndexes = (currentValue: number, array: number[]) => {
 };
 
 export const navigationMixin = defineComponent({
-  props: ['disabled'],
+  props: ['disabled', 'readonly'],
   data(): State {
     return {
       dropdownOpen: false,
@@ -66,7 +66,7 @@ export const navigationMixin = defineComponent({
     },
 
     openDropdown() {
-      if (this.disabled || this.dropdownOpen) return;
+      if (this.disabled || this.readonly || this.dropdownOpen) return;
       this.dropdownOpen = true;
       this.$emit('dropdown:opened');
     },

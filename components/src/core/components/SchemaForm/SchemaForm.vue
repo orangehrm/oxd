@@ -116,34 +116,68 @@ export default defineComponent({
       }
     };
 
+    const getFormElementId = (
+      fieldType: string,
+      fieldName: string,
+      fieldValue: string | unknown,
+      formName: string,
+    ) => {
+      if (fieldType === 'radio') {
+        return (
+          formName.toString().trim() +
+          '_' +
+          fieldName.toString().trim() +
+          '_' +
+          fieldValue.toString().trim()
+        );
+      } else {
+        return formName.toString().trim() + '_' + fieldName.toString().trim();
+      }
+    };
+
     const createFieldNode = (field: FieldSchema) => {
-      return h(
-        GridItem,
-        {
-          style: field.style,
-          class: field.class,
-        },
-        {
-          default: () =>
-            h(extractFieldComponent(field), {
-              id: field.id,
-              key: field.key,
-              label: $t(field.label),
-              ...(field.props ?? {}),
-              ...(field.listeners ?? {}),
-              rules: Array.from(field.validators?.values() ?? []),
-              modelValue: props.model[field.name],
-              'onUpdate:modelValue': value => {
-                context.emit('update:model', {
-                  ...(props.model as Model),
-                  [field.name]: value,
-                });
-              },
-              required: field.validators?.has('required'),
-              ...(field.type !== 'custom' && {type: field.type}),
-            }),
-        },
-      );
+      if (!props.schema?.name) {
+        throw new Error('Form name is must for schema form');
+      } else {
+        return h(
+          GridItem,
+          {
+            style: field.style,
+            class: field.class,
+          },
+          {
+            default: () =>
+              h(extractFieldComponent(field), {
+                id: getFormElementId(
+                  field.type,
+                  field.name,
+                  field.value,
+                  props.schema.name,
+                ),
+                key: field.key,
+                label: $t(field.label),
+                hint: $t(field.hint),
+                disabled: props.schema?.disabled
+                  ? props.schema.disabled
+                  : false,
+                ...(field.props ?? {}),
+                ...(field.listeners ?? {}),
+                rules: Array.from(field.validators?.values() ?? []),
+                modelValue:
+                  props && props.model ? props.model[field.name] : null,
+                'onUpdate:modelValue': value => {
+                  context.emit('update:model', {
+                    ...(props.model as Model),
+                    [field.name]: value,
+                  });
+                },
+                required:
+                  field.validators?.has('required') && !props.schema?.disabled,
+                ...(field.type !== 'custom' && {type: field.type}),
+              }),
+          },
+        );
+      }
     };
 
     const createActionNode = (field: FieldSchema) => {
@@ -155,6 +189,7 @@ export default defineComponent({
         class: field.class,
         ...(field.props ?? {}),
         ...(field.listeners ?? {}),
+        disabled: props.schema?.disabled ? props.schema.disabled : false,
       });
     };
 
@@ -203,8 +238,9 @@ export default defineComponent({
       h(
         Form,
         {
+          name: props.schema?.name,
           style: props.schema?.style,
-          class: props.schema?.class,
+          class: 'oxd-schema-form-container ' + props.schema?.class,
           loading: isLoading.value,
           onSubmitValid: ($e: SubmitEvent) => {
             context.emit('submitValid', props.model, $e);

@@ -1,8 +1,14 @@
 @import '../../../styles';
 @import 'variables';
 
-.oxd-divider {
+.oxd-divider-horizontal {
   border: 0;
   border-top: $oxd-divider-border $oxd-divider-color;
+  margin: 0;
+}
+.oxd-divider-vertical {
+  border: 0;
+  border-left: $oxd-divider-border $oxd-divider-color;
+  height: 100vh;
   margin: 0;
 }

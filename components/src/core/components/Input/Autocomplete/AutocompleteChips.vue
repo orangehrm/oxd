@@ -4,10 +4,11 @@
       v-for="(option, index) in selected"
       :key="`${index}-selected-${option.id}`"
       :label="option.label"
-      class="oxd-autocomplete-chips-selected align-end"
+      class="oxd-autocomplete-chips-selected align-center"
     >
       <oxd-icon
         name="x"
+        data-test="removeIcon"
         @click="onClick(option)"
         :class="{
           '--clear': true,
@@ -23,7 +24,7 @@
 import {defineComponent} from 'vue';
 import {Option} from '../types';
 import Chip from '@orangehrm/oxd/core/components/Chip/Chip.vue';
-import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
+import Icon from '@orangehrm/oxd/core/components/Button/Icon.vue';
 
 export default defineComponent({
   name: 'oxd-autocomplete-chips',

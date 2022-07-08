@@ -1,3 +1,4 @@
+// flexbox begins
 .d-flex {
   display: flex;
 }
@@ -31,6 +32,18 @@
 .justify-evenly {
   justify-content: space-evenly;
 }
+// flexbox ends
+
+// table begins
+.d {
+  &-table {
+  display: table;
+    &-cell {
+      display: table-cell;
+    }
+  }
+}
+// table ends
 
 .w-100 {
   width: 100% !important;
@@ -62,6 +75,18 @@
   }
 }
 
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.text-justify {
+  text-align: justify;
+}
 
 /* START TOOLTIP STYLES */
 [tooltip] {
@@ -244,3 +269,14 @@
 .--positon-bottom {
   margin-top: $oxd-dropdown-dropdown-margin;
 }
+
+// cursor types begins
+.cursor {
+  &-pointer {
+    cursor: pointer;
+  }
+  &-default {
+    cursor: default;
+  }
+}
+// cursor types ends

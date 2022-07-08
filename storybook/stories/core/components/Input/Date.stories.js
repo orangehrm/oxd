@@ -3,17 +3,130 @@ import {ru} from 'date-fns/locale';
 import DateInput from '@orangehrm/oxd/core/components/Input/DateInput';
 import buildLocale from '@orangehrm/oxd/utils/locale.ts';
 import {convertPHPDateFormat} from '@orangehrm/oxd/utils/date.ts';
+import DateInputEvents from './DateInputEvents.story.vue';
 
 export default {
-  title: 'Example/DateInput',
+  title: 'Inputs/DateInput',
   component: DateInput,
   argTypes: {
-    style: {control: {type: 'object'}},
-    hasError: {control: {type: 'boolean'}},
+    style: {
+      control: {type: 'object'},
+      table: {
+        type: {summary: 'Set custom style to the select'},
+      },
+    },
+    hasError: {
+      control: {type: 'boolean'},
+      table: {
+        type: {summary: 'Set error state to the select'},
+      },
+    },
+    ioformat: {
+      control: {type: 'text'},
+      table: {
+        type: {summary: 'Set date value format to be saved'},
+      },
+    },
+    displayFormat: {
+      control: {type: 'text'},
+      table: {
+        type: {summary: 'Set date display format'},
+      },
+    },
+    locale: {
+      control: {type: 'object'},
+      table: {
+        type: {summary: 'Set localization for date'},
+      },
+    },
+    firstDayOfWeek: {
+      control: {type: 'text'},
+      table: {
+        type: {summary: 'Set first day to show as start date in calendar'},
+      },
+    },
+    dayFormat: {
+      control: {type: 'text'},
+      table: {
+        type: {summary: 'Set first day to show as start date in calendar'},
+      },
+    },
+    monthFormat: {
+      control: {type: 'text'},
+      table: {
+        type: {summary: 'Set first day to show as start date in calendar'},
+      },
+    },
+    dayAttributes: {
+      control: {type: 'array'},
+      table: {
+        type: {summary: 'Set day specific attributes in Calendar'},
+      },
+    },
+    events: {
+      control: {type: 'array'},
+      table: {
+        type: {summary: 'Set events on Calendar'},
+      },
+    },
+    years: {
+      control: {type: 'array'},
+      table: {
+        type: {summary: 'Set years for date calendar option for date'},
+      },
+    },
+    months: {
+      control: {type: 'array'},
+      table: {
+        type: {summary: 'Set months for date calendar option for date'},
+      },
+    },
+    days: {
+      control: {type: 'array'},
+      table: {
+        type: {summary: 'Set days for date calendar option for date'},
+      },
+    },
+    blur: {
+      control: {type: 'array'},
+      table: {
+        type: {summary: 'emit event when dateInput blur'},
+      },
+    },
+    'dateselect:opened': {
+      control: {type: 'array'},
+      table: {
+        type: {summary: 'emit event when dateInput opened'},
+      },
+    },
+    'dateselect:closed': {
+      control: {type: 'array'},
+      table: {
+        type: {summary: 'emit event when dateInput closed'},
+      },
+    },
+    'update:modelValue': {
+      control: {type: 'array'},
+      table: {
+        type: {summary: 'emit event when dateInput value updates'},
+      },
+    },
+    selectMonth: {
+      control: {type: 'array'},
+      table: {
+        type: {summary: 'emit event when select a month'},
+      },
+    },
+    selectYear: {
+      control: {type: 'array'},
+      table: {
+        type: {summary: 'emit event when select a year'},
+      },
+    },
   },
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     const selected = ref('2021-07-01');
     return {args, selected};
@@ -23,7 +136,7 @@ const Template = args => ({
       h(DateInput, {
         ...this.args,
         modelValue: this.selected,
-        'onUpdate:modelValue': value => {
+        'onUpdate:modelValue': (value) => {
           this.selected = value;
         },
       }),
@@ -41,6 +154,40 @@ const Template = args => ({
 export const Default = Template.bind({});
 Default.args = {};
 
+Default.parameters = {
+  docs: {
+    source: {
+      code: '<oxd-date-input/>',
+    },
+  },
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  disabled: true,
+};
+
+Disabled.parameters = {
+  docs: {
+    source: {
+      code: '<oxd-date-input :disabled="true"/>',
+    },
+  },
+};
+
+export const ReadOnly = Template.bind({});
+ReadOnly.args = {
+  readonly: true,
+};
+
+ReadOnly.parameters = {
+  docs: {
+    source: {
+      code: '<oxd-date-input :readonly="true"/>',
+    },
+  },
+};
+
 export const DateFormatting = Template.bind({});
 DateFormatting.args = {
   firstDayOfWeek: 0,
@@ -51,9 +198,17 @@ DateFormatting.args = {
   locale: ru,
 };
 
+DateFormatting.parameters = {
+  docs: {
+    source: {
+      code: '<oxd-date-input :firstDayOfWeek="0" :monthFormat="wide":dayFormat="narrow" :displayFormat="MM/dd/yyyy" :ioformat="yyyy-MM-dd" :locale="ru"/>',
+    },
+  },
+};
+
 export const DateLocalization = Template.bind({});
 DateLocalization.args = {
-  firstDayOfWeek: 1,
+  firstDayOfWeek: 0,
   monthFormat: 'wide',
   dayFormat: 'narrow',
   displayFormat: convertPHPDateFormat('l, d-M-Y'),
@@ -102,4 +257,50 @@ DateLocalization.args = {
       ],
     },
   }),
+};
+
+DateLocalization.parameters = {
+  docs: {
+    source: {
+      code: '<oxd-date-input :firstDayOfWeek="1" :monthFormat="wide":dayFormat="narrow" :displayFormat="convertPHPDateFormat(l, d-M-Y)" :ioformat="yyyy-MM-dd" :locale="buildLocale()"/>',
+    },
+  },
+};
+
+export const Events = () => DateInputEvents;
+
+Events.parameters = {
+  docs: {
+    source: {
+      code:
+        '  <div> \n' +
+        '<oxd-date-input \n' +
+        '@focus="onFocus()"\n' +
+        '@click="onClick()"\n' +
+        ' @dateselect:opened="onDateOpen()"\n' +
+        '@dateselect:closed="onDateClosed()"\n' +
+        '@blur="onDropDownBlur()"\n' +
+        '@dropdown:clear="onDropDownClear()"\n' +
+        'v-model="value""\n' +
+        ' @update:modelValue="updatedValue(event)' +
+        '@selectMonth="onSelectMonth()"\n' +
+        '@selectYear="onSelectYear()"\n' +
+        '/>\n' +
+        '</div>\n' +
+        '<div style="margin-top: 2rem">\n' +
+        '<span v-if="FocusEvent">Focus Event Triggered</span>\n' +
+        '<span v-if="ClickEvent">Click Event Triggered</span>\n' +
+        ' <span v-if="DateOpen">Date opened Event Triggered</span>\n' +
+        '<span v-if="DateClosed">Date close Event Triggered</span>\n' +
+        '<span v-if="DropDownBlur">DropDownBlur Event Triggered</span>\n' +
+        '<span v-if="SelectMonth">Select Month Event Triggered</span>\n' +
+        '<span v-if="SelectYear">Select Year Event Triggered</span>\n' +
+        '</div>\n' +
+        '<div>\n' +
+        '<span v-if="value">Value Selected : {{ value }}</span>\n' +
+        '</div>\n' +
+        '//\n' +
+        'File -> DateInputEvents.story.vue',
+    },
+  },
 };

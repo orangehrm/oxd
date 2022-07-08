@@ -1,7 +1,7 @@
 import Chip from '@orangehrm/oxd/core/components/Chip/Chip';
 
 export default {
-  title: 'Example/Chip',
+  title: 'Information/Chip',
   component: Chip,
   argTypes: {
     backgroundColor: {control: 'color'},

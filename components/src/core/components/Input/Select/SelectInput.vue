@@ -4,6 +4,7 @@
       v-bind="$attrs"
       :value="inputValue"
       :disabled="disabled"
+      :readonly="readonly"
       :dropdownOpened="dropdownOpen"
       @click="onToggleDropdown"
       @blur="onBlur"
@@ -89,6 +90,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    readonly: {
+      type: Boolean,
+      default: false,
+    },
     hideDropdownDefaultLabel: {
       type: Boolean,
       default: false,
@@ -104,7 +109,7 @@ export default defineComponent({
     dropdownPosition: {
       type: String,
       default: BOTTOM,
-      validator: function(value: Position) {
+      validator: function (value: Position) {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },

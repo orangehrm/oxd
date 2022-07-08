@@ -1,20 +1,29 @@
 <template>
   <div
-    v-bind="$attrs"
     :class="classes"
     :style="style"
     :tabindex="tabIndex"
+    v-bind="defaultAttrs"
     @focus="onFocus"
     @blur="onBlur"
   >
     <div class="oxd-select-text-input">
-      {{ value }}
+      <div class="selected-content">{{ value }}</div>
+      <input
+        type="text"
+        readonly="readonly"
+        tabIndex="-1"
+        v-bind="inputAttrs"
+        @blur="onBlur"
+      />
     </div>
+
     <div class="oxd-select-text--after">
       <slot name="afterInput"></slot>
-      <div :class="dropdownIconClasses">
+      <div class="oxd-select-text--arrow" :class="dropdownIconClasses">
         <oxd-icon
           v-if="!disabled"
+          :class="dropdownIconClasses"
           :size="dropdownIconSize"
           :name="dropdownIcon"
         />
@@ -100,26 +109,45 @@ export default defineComponent({
     },
     dropdownIconClasses(): object {
       return {
-        'oxd-select-text--arrow': true,
         '--disabled': this.disabled,
         '--readonly': this.readonly,
       };
     },
     tabIndex(): number {
-      return this.disabled || this.readonly ? -1 : 0;
+      return this.disabled ? -1 : 0;
+    },
+    inputAttrs() {
+      const allowed = ['id'];
+      return Object.keys(this.$attrs)
+        .filter(key => allowed.includes(key))
+        .reduce((obj, key) => {
+          obj[key] = this.$attrs[key];
+          return obj;
+        }, {});
+    },
+    defaultAttrs() {
+      const notAllowed = ['id'];
+      return Object.keys(this.$attrs)
+        .filter(key => !notAllowed.includes(key))
+        .reduce((obj, key) => {
+          obj[key] = this.$attrs[key];
+          return obj;
+        }, {});
     },
   },
 
   methods: {
     onFocus($e: Event) {
-      if (this.disabled || this.readonly) {
+      if (this.disabled) {
         $e.stopImmediatePropagation();
         return;
       }
       this.focused = true;
     },
-    onBlur() {
+    onBlur($e: Event) {
+      $e.stopImmediatePropagation();
       this.focused = false;
+      this.$emit('blur', $e);
     },
   },
 });

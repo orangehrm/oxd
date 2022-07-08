@@ -54,6 +54,27 @@
     overflow: hidden;
     background: transparent;
     padding: $oxd-dropdown-text-padding;
+    align-items: center;
+    display: flex;
+    flex: 1 1;
+    flex-wrap: nowrap;
+    line-height: 18px;
+    max-width: 100%;
+    min-width: 0;
+    .selected-content {
+      min-height: 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    input {
+      border-style: none;
+      background-color: transparent;
+      pointer-events: none;
+      outline: none;
+      max-width: 0;
+    }
   }
 
   &--before,
@@ -77,6 +98,8 @@
   &--after {
     margin-right: auto;
     padding-left: 0;
+    display: flex;
+    align-items: center;
   }
 
   &--arrow {
@@ -188,7 +211,7 @@
   }
   &.--selected {
     border-radius: $oxd-dropdown-option-border-radius;
-    background-color: $oxd-dropdown-option-background--focused;
+    background-color: $oxd-dropdown-option-background--selected;
     cursor: unset;
   }
   @for $i from 1 through 20 {

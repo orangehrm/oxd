@@ -33,14 +33,25 @@
         }
       }
 
-      &:disabled + .oxd-switch-input {
+      &:not(:checked):disabled + .oxd-switch-input {
         background-color: $oxd-switch-off-disabled-background-color;
+        &::after {
+          background-color: $oxd-switch-off-disabled-selector-color;
+        }
       }
     }
 
     &.--disabled {
       color: $oxd-switch-label-color--disabled;
       cursor: unset;
+    }
+
+    i.oxd-svg-icon {
+      left: 0.25rem;
+      bottom: 0.625rem;
+      &.left {
+        margin-right: 0.5rem;
+      }
     }
   }
 }
@@ -49,6 +60,7 @@
   position: relative;
   width: $oxd-switch-width;
   height: $oxd-switch-height;
+  min-width: $oxd-switch-width;
   border-radius: $oxd-switch-radius;
   transition: background-color 0.2s ease;
 
@@ -60,11 +72,6 @@
     border: $oxd-input-border--focus;
     box-shadow: $oxd-input-box-shadow--focus;
     outline: 0;
-  }
-
-  &--error {
-    border: $oxd-input-border--error;
-    box-shadow: $oxd-input-box-shadow--error;
   }
 
   &.--label-left {
@@ -85,5 +92,18 @@
     transition: transform 0.2s ease;
     top: 50%;
     transform: translate(0, -50%);
+  }
+}
+
+// label left: move switch to right
+.oxd-switch-wrapper label.--full-width {
+  width: 100%;
+  column-gap: $oxd-switch-label-margin;
+  .oxd-switch-input.--label-left {
+    margin-left: auto;
+  }
+
+  .oxd-switch-input.--label-right {
+    margin-right: auto;
   }
 }

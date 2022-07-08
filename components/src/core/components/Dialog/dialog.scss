@@ -5,6 +5,9 @@
   position: absolute;
   top: $oxd-dialog-close-button-top;
   right: $oxd-dialog-close-button-right;
+  :deep(.oxd-icon) {
+    transform: translate(0.25px, 0.5px);
+  }
 }
 
 .oxd-dialog-sheet {

@@ -1,95 +1,38 @@
-import {mount} from '@vue/test-utils';
+import {mount, shallowMount} from '@vue/test-utils';
 import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination.vue';
+// import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
 
-describe('Pagination.vue', () => {
+const delayFunction = (time: number) => {
+  return new Promise(reslove =>
+    setTimeout(() => {
+      reslove(true);
+    }, time),
+  );
+};
+
+describe('Pageination.vue', () => {
   it('renders OXD Pagination', () => {
-    const wrapper = mount(Pagination, {
-      props: {length: 6},
+    const wrapper = shallowMount(Pagination, {
+      props: {
+        length: 20,
+      },
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
-
-  it('should renders OXD Pagination with length < max', () => {
+  it('customize pageList and changed the initial selected page', async () => {
     const wrapper = mount(Pagination, {
-      props: {length: 3, max: 5},
+      props: {
+        length: 20,
+        pagesList: [5, 10, 20, 50, 100, 200],
+        perPage: 50,
+      },
     });
-    expect(wrapper.html()).toMatchSnapshot();
-  });
-
-  it('should renders OXD Pagination with length > max', () => {
-    const wrapper = mount(Pagination, {
-      props: {length: 21, max: 6},
-    });
-    expect(wrapper.html()).toMatchSnapshot();
-  });
-
-  it('should renders OXD Pagination with current', () => {
-    const wrapper = mount(Pagination, {
-      props: {length: 21, current: 21},
-    });
-    expect(wrapper.html()).toMatchSnapshot();
-  });
-
-  it('should renders OXD Pagination with |1|, 2, 3, 4, 5', () => {
-    const wrapper = mount(Pagination, {
-      props: {length: 21, current: 1, max: 5},
-    });
-    expect(wrapper.html()).toMatchSnapshot();
-  });
-
-  it('should renders OXD Pagination with 1, |2|, 3, 4, 5', () => {
-    const wrapper = mount(Pagination, {
-      props: {length: 21, current: 2, max: 5},
-    });
-    expect(wrapper.html()).toMatchSnapshot();
-  });
-
-  it('should renders OXD Pagination with 1, 2, |3|, 4, 5', () => {
-    const wrapper = mount(Pagination, {
-      props: {length: 21, current: 3, max: 5},
-    });
-    expect(wrapper.html()).toMatchSnapshot();
-  });
-
-  it('should renders OXD Pagination with 1, 2, 3, |4|, 5, 6', () => {
-    const wrapper = mount(Pagination, {
-      props: {length: 21, current: 4, max: 6},
-    });
-    expect(wrapper.html()).toMatchSnapshot();
-  });
-
-  it('should renders OXD Pagination with |17|, 18, 19, 20, 21', () => {
-    const wrapper = mount(Pagination, {
-      props: {length: 21, current: 17, max: 5},
-    });
-    expect(wrapper.html()).toMatchSnapshot();
-  });
-
-  it('should renders OXD Pagination with 17, |18|, 19, 20, 21', () => {
-    const wrapper = mount(Pagination, {
-      props: {length: 21, current: 18, max: 5},
-    });
-    expect(wrapper.html()).toMatchSnapshot();
-  });
-
-  it('should renders OXD Pagination with 17, 18, |19|, 20, 21', () => {
-    const wrapper = mount(Pagination, {
-      props: {length: 21, current: 19, max: 5},
-    });
-    expect(wrapper.html()).toMatchSnapshot();
-  });
-
-  it('should renders OXD Pagination with 17, 18, 19, |20|, 21', () => {
-    const wrapper = mount(Pagination, {
-      props: {length: 21, current: 20, max: 5},
-    });
-    expect(wrapper.html()).toMatchSnapshot();
-  });
-
-  it('should renders OXD Pagination with 17, 18, 19, 20, |21|', () => {
-    const wrapper = mount(Pagination, {
-      props: {length: 21, current: 21, max: 5},
-    });
-    expect(wrapper.html()).toMatchSnapshot();
+    const selectInputWrapper = wrapper.find('.pagination-dropdown');
+    await selectInputWrapper.trigger('click');
+    expect(
+      wrapper.find('.oxd-select-wrapper > .oxd-select-dropdown > .oxd-select-dropdown-inner > .oxd-select-option:nth-child(4)').html(),
+    ).toEqual(
+      '<div role="option" class="oxd-select-option --selected"><span>50</span></div>',
+    );
   });
 });

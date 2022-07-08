@@ -28,7 +28,7 @@ const oxdIconsNames = Object.keys(oxdIcons)
 const iconNames = [...bootstrapIconsNames, ...oxdIconsNames]
 
 export default {
-  title: 'Example/Button',
+  title: 'Button',
   component: Button,
   argTypes: {
     size: {
