@@ -13,8 +13,9 @@
         maxlength="5"
       />
       <div class="oxd-time-input-am-pm-wrapper">
-        <label :class="amPmLabelClasses">{{ am ? 'AM' : 'PM' }}
-        <input
+        <label :class="amPmLabelClasses"
+          >{{ am ? 'AM' : 'PM' }}
+          <input
             class="oxd-time-input-am-pm-checkbox"
             type="checkbox"
             @update:modelValue="onAmPmChange"
@@ -24,17 +25,17 @@
             v-model="am"
             :readonly="readonly"
             :disabled="disabled"
-        />
+          />
         </label>
       </div>
       <div
-          class="oxd-time-input-icon-wrapper"
-          tabindex="0"
-          :class="timeIconWrapperClasses"
-          v-if="!disabled"
-          @click="toggleDropdown"
-          @keyup.esc.prevent.stop="closeDropdown"
-          @keyup.enter.prevent.stop="toggleDropdown"
+        class="oxd-time-input-icon-wrapper"
+        tabindex="0"
+        :class="timeIconWrapperClasses"
+        v-if="!disabled"
+        @click="toggleDropdown"
+        @keyup.esc.prevent.stop="closeDropdown"
+        @keyup.enter.prevent.stop="toggleDropdown"
       >
         <oxd-icon :class="timeIconClasses" name="clock" />
       </div>
@@ -51,10 +52,10 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, ref, toRefs, watch } from 'vue'
+import {computed, defineComponent, reactive, ref, toRefs, watch} from 'vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
-import clickOutsideDirective from '@orangehrm/oxd/directives/click-outside'
+import clickOutsideDirective from '@orangehrm/oxd/directives/click-outside';
 import TimePicker from '@orangehrm/oxd/core/components/Input/Time/TimePicker.vue';
 import {parseDate, formatDate} from '@orangehrm/oxd/utils/date';
 import dropdownDirectionDirective from '@orangehrm/oxd/directives/dropdown-direction';
@@ -117,16 +118,6 @@ export default defineComponent({
       pickerInput: props.modelValue,
     });
 
-    const toggleDropdown = () => {
-      if (!props.disabled) {
-        if (!datePickerOpen.value) {
-          openDropdown();
-        } else {
-          closeDropdown();
-        }
-      }
-    };
-
     const openDropdown = () => {
       datePickerOpen.value = true;
       context.emit('timeselect:opened');
@@ -137,13 +128,23 @@ export default defineComponent({
       context.emit('timeselect:closed');
     };
 
+    const toggleDropdown = () => {
+      if (!props.disabled) {
+        if (!datePickerOpen.value) {
+          openDropdown();
+        } else {
+          closeDropdown();
+        }
+      }
+    };
+
     const onAmPmChange = (value: boolean) => {
       state.am = value;
     };
 
     const toggleAmPm = () => {
       state.am = !state.am;
-    }
+    };
 
     const onTimeChange = (value: string) => {
       state.time = value.trim();
@@ -154,45 +155,45 @@ export default defineComponent({
     };
 
     watch(
-        () => props.modelValue,
-        () => {
-          if (props.modelValue) {
-            const time = parseDate(props.modelValue, 'HH:mm');
-            if (time) {
-              const formattedTime = formatDate(time, "hh:mm");
-              if (formattedTime) {
-                state.time = formattedTime;
-                state.am = time.getHours() < 12;
-              }
+      () => props.modelValue,
+      () => {
+        if (props.modelValue) {
+          const time = parseDate(props.modelValue, 'HH:mm');
+          if (time) {
+            const formattedTime = formatDate(time, 'hh:mm');
+            if (formattedTime) {
+              state.time = formattedTime;
+              state.am = time.getHours() < 12;
             }
           }
-        },
-        {
-          immediate: true,
         }
+      },
+      {
+        immediate: true,
+      },
     );
 
     watch(
-        () => state,
-        () => {
-          const validTime = /^(0?[1-9]|1[0-2]):[0-5][0-9]$/.test(state.time);
-          let newModelValue: string | null = state.time + " " + (state.am ? "AM" : "PM");
-          if (validTime && newModelValue) {
-            const parsedTime = parseDate(newModelValue, 'hh:mm a');
-            if (parsedTime) {
-              newModelValue = formatDate(parsedTime, 'HH:mm');
-            }
+      () => state,
+      () => {
+        const validTime = /^(0?[1-9]|1[0-2]):[0-5][0-9]$/.test(state.time);
+        let newModelValue: string | null =
+          state.time + ' ' + (state.am ? 'AM' : 'PM');
+        if (validTime && newModelValue) {
+          const parsedTime = parseDate(newModelValue, 'hh:mm a');
+          if (parsedTime) {
+            newModelValue = formatDate(parsedTime, 'HH:mm');
           }
-          if (newModelValue !== props.modelValue) {
-            context.emit('update:modelValue', newModelValue);
-          }
-        },
-        {
-          immediate: true,
-          deep: true,
         }
+        if (newModelValue !== props.modelValue) {
+          context.emit('update:modelValue', newModelValue);
+        }
+      },
+      {
+        immediate: true,
+        deep: true,
+      },
     );
-
 
     const timeIconClasses = computed(() => {
       return {
@@ -220,11 +221,11 @@ export default defineComponent({
 
     const onAmPmLabelFocus = () => {
       amPmLabelFocus.value = true;
-    }
+    };
 
     const onAmPmLabelBlur = () => {
       amPmLabelFocus.value = false;
-    }
+    };
 
     return {
       ...toRefs(state),

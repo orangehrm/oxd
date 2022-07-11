@@ -1,11 +1,11 @@
 <template>
   <div
-      role="alert"
-      class="oxd-time-picker"
-      @keyup.esc="onClose"
-      v-click-outside="onClickOutside"
-      v-focus-trap
-      v-focus-first-element
+    role="alert"
+    class="oxd-time-picker"
+    @keyup.esc="onClose"
+    v-click-outside="onClickOutside"
+    v-focus-trap
+    v-focus-first-element
   >
     <div class="oxd-time-hour-input">
       <oxd-icon-button
@@ -59,11 +59,23 @@
     </div>
     <div class="oxd-time-period-input">
       <div class="oxd-time-period-label">
-        <input name="am" v-model="period" type="radio" value="AM" @keydown.enter.stop.prevent="togglePeriod"/>
+        <input
+          name="am"
+          v-model="period"
+          type="radio"
+          value="AM"
+          @keydown.enter.stop.prevent="togglePeriod"
+        />
         <label for="am">AM</label>
       </div>
       <div class="oxd-time-period-label">
-        <input name="pm" v-model="period" type="radio" value="PM" @keydown.enter.stop.prevent="togglePeriod"/>
+        <input
+          name="pm"
+          v-model="period"
+          type="radio"
+          value="PM"
+          @keydown.enter.stop.prevent="togglePeriod"
+        />
         <label for="pm">PM</label>
       </div>
     </div>
@@ -72,10 +84,10 @@
 
 <script lang="ts">
 import {parseDate, formatDate} from '@orangehrm/oxd/utils/date';
-import { defineComponent, reactive, toRefs, watch } from 'vue'
+import {defineComponent, reactive, toRefs, watch} from 'vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
-import clickOutsideDirective from '@orangehrm/oxd/directives/click-outside'
+import clickOutsideDirective from '@orangehrm/oxd/directives/click-outside';
 import focusTrapDirective from '@orangehrm/oxd/directives/focus-trap';
 import focusFirstElementDirective from '@orangehrm/oxd/directives/focus-first-element';
 
@@ -145,12 +157,24 @@ export default defineComponent({
         if (type === 'hour') {
           valid = input > 0 && input <= 12;
         } else {
-          valid = input >= 0 && input <= 59 && (input % props.step === 0)
+          valid = input >= 0 && input <= 59 && input % props.step === 0;
         }
       }
 
       return valid;
-    }
+    };
+
+    const getMin = (type: string) => {
+      return type === 'hour' ? 1 : 0;
+    };
+
+    const getMax = (type: string) => {
+      if (type === 'hour') {
+        return 12;
+      } else {
+        return (Math.floor(59 / props.step) * props.step) % 60;
+      }
+    };
 
     const increment = (step: number, type: string) => {
       const max = getMax(type);
@@ -167,18 +191,6 @@ export default defineComponent({
       const newValue = input - step < min ? max : input - step;
       setValue(newValue, type);
     };
-
-    const getMin = (type: string) => {
-      return type === 'hour' ? 1 : 0;
-    }
-
-    const getMax = (type: string) => {
-      if (type === 'hour') {
-        return 12;
-      } else {
-        return (Math.floor(59 / props.step) * props.step) % 60;
-      }
-    }
 
     const onInput = (e, type) => {
       let enteredValue = e.target.value.replace(/\D/g, '');
@@ -198,58 +210,58 @@ export default defineComponent({
       if (newValue.length === 2) {
         setValue(parseInt(newValue, 10), type);
       }
-    }
+    };
 
     const onClose = () => {
       context.emit('timepicker:closed');
-    }
+    };
 
     const onClickOutside = (e: Event) => {
       e.stopPropagation();
       onClose();
-    }
+    };
 
     const togglePeriod = () => {
       state.period = state.period === 'AM' ? 'PM' : 'AM';
-    }
+    };
 
     watch(
-        () => props.modelValue,
-        () => {
-          if (props.modelValue) {
-            const time = parseDate(props.modelValue, 'HH:mm');
-            if (time) {
-              // getHours() return 0-23, return 12 if 0
-              setValue(time.getHours() % 12 || 12, 'hour');
-              setValue(time.getMinutes(), 'minute');
-              const period = formatDate(time, 'a');
-              if (period) {
-                state.period = period;
-              }
+      () => props.modelValue,
+      () => {
+        if (props.modelValue) {
+          const time = parseDate(props.modelValue, 'HH:mm');
+          if (time) {
+            // getHours() return 0-23, return 12 if 0
+            setValue(time.getHours() % 12 || 12, 'hour');
+            setValue(time.getMinutes(), 'minute');
+            const period = formatDate(time, 'a');
+            if (period) {
+              state.period = period;
             }
           }
-        },
-        {
-          immediate: true,
         }
+      },
+      {
+        immediate: true,
+      },
     );
 
     watch(
-        () => state,
-        () => {
-          const timeString = `${state.hour}:${state.minute} ${state.period}`;
-          if (timeString) {
-            const parsedTime = parseDate(timeString, 'hh:mm a');
-            if (parsedTime) {
-              const formattedTime = formatDate(parsedTime, 'HH:mm');
-              context.emit('update:modelValue', formattedTime);
-            }
+      () => state,
+      () => {
+        const timeString = `${state.hour}:${state.minute} ${state.period}`;
+        if (timeString) {
+          const parsedTime = parseDate(timeString, 'hh:mm a');
+          if (parsedTime) {
+            const formattedTime = formatDate(parsedTime, 'HH:mm');
+            context.emit('update:modelValue', formattedTime);
           }
-        },
-        {
-          immediate: true,
-          deep: true,
         }
+      },
+      {
+        immediate: true,
+        deep: true,
+      },
     );
 
     return {

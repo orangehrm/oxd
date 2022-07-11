@@ -24,12 +24,16 @@ describe('TimeInput.vue', () => {
   it('AM/PM toggle should be available and should toggle AM/PM value', async () => {
     const wrapper = mount(TimeInput, {
       props: {
-        modelValue: "15:00"
-      }
+        modelValue: '15:00',
+      },
     });
-    expect(wrapper.find('.oxd-time-input-am-pm-wrapper').exists()).toStrictEqual(true);
+    expect(
+      wrapper.find('.oxd-time-input-am-pm-wrapper').exists(),
+    ).toStrictEqual(true);
 
-    await wrapper.find('.oxd-time-input-am-pm-wrapper > label').trigger('click');
+    await wrapper
+      .find('.oxd-time-input-am-pm-wrapper > label')
+      .trigger('click');
     // 15:00 = 3:00 PM -> 3:00 AM
     // expect(wrapper.vm.modelValue).toEqual('03:00');
     expect(wrapper.emitted('update:modelValue')).toEqual([['03:00']]);
@@ -37,11 +41,13 @@ describe('TimeInput.vue', () => {
   it('AM/PM toggle should be available but not clickable when disabled', async () => {
     const wrapper = mount(TimeInput, {
       props: {
-        modelValue: "15:00",
-        disabled: true
-      }
+        modelValue: '15:00',
+        disabled: true,
+      },
     });
-    expect(wrapper.find('.oxd-time-input-am-pm-wrapper').exists()).toStrictEqual(true);
+    expect(
+      wrapper.find('.oxd-time-input-am-pm-wrapper').exists(),
+    ).toStrictEqual(true);
 
     // await wrapper.find('.oxd-time-input-am-pm-wrapper > label').trigger('click');
     // 15:00 = 3:00 PM -> 3:00 AM
@@ -51,7 +57,7 @@ describe('TimeInput.vue', () => {
 
   it('should accept valid input', async () => {
     const wrapper = mount(TimeInput, {});
-        wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
+    wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
     await wrapper.vm.$nextTick();
     const picker = wrapper.findComponent(TimePicker);
     const pickerInputs = picker.findAll('input');
@@ -63,7 +69,7 @@ describe('TimeInput.vue', () => {
   });
   it('should not accept invalid input', async () => {
     const wrapper = mount(TimeInput, {});
-        wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
+    wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
     await wrapper.vm.$nextTick();
     const picker = wrapper.findComponent(TimePicker);
     const pickerInput = picker.find('input');
@@ -73,7 +79,7 @@ describe('TimeInput.vue', () => {
   });
   it('should increment/decrement hour', async () => {
     const wrapper = mount(TimeInput, {});
-        wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
+    wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
     await wrapper.vm.$nextTick();
     const picker = wrapper.findComponent(TimePicker);
     const incrementBtn = picker.find('.oxd-time-hour-input-down');
@@ -86,7 +92,7 @@ describe('TimeInput.vue', () => {
   });
   it('should increment/decrement minute', async () => {
     const wrapper = mount(TimeInput, {});
-        wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
+    wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
     await wrapper.vm.$nextTick();
     const picker = wrapper.findComponent(TimePicker);
     const incrementBtn = picker.find('.oxd-time-minute-input-down');
@@ -99,7 +105,7 @@ describe('TimeInput.vue', () => {
   });
   it('should toggle AM/PM', async () => {
     const wrapper = mount(TimeInput, {});
-        wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
+    wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
     await wrapper.vm.$nextTick();
     const period = wrapper.findAll('input[type="radio"]');
     expect(wrapper.vm.pickerInput).toEqual('01:00');
