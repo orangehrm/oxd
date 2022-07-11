@@ -376,11 +376,11 @@ export default defineComponent({
       if (typeof value === 'string') return;
       if (value) {
         state.selectedQuickSearch = {
-          label: value.searchKey,
+          label: value.label,
         };
         emit('quick-search:onSelect', value);
         state.quickSearchTriggered = true;
-        state.quickSearchTerm = value.searchKey;
+        state.quickSearchTerm = value.label;
       } else {
         quickSearchOnClear();
       }
