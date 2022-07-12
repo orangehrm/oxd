@@ -26,6 +26,7 @@ import GeneralInformation from './GeneralInformation.story.vue';
 import InputGroupedForm from './InputGroupedForm.story.vue';
 import AsyncValidatableForm from './AsyncValidatableForm.story.vue';
 import ResetForm from './ResetForm.story.vue';
+import DisableValidationForm from './DisableValidationForm.story.vue';
 
 export default {
   title: 'Example/Form',
@@ -48,3 +49,5 @@ export const InputGroupForm = () => InputGroupedForm;
 export const FormWithAsyncValidation = () => AsyncValidatableForm;
 
 export const FormValidationReset = () => ResetForm;
+
+export const FormValidationWithDisabledFields = () => DisableValidationForm;

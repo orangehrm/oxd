@@ -30,6 +30,8 @@
     <component
       :is="component"
       v-bind="$attrs"
+      :readonly="readonly"
+      :disabled="disabled"
       :hasError="hasError"
       :modelValue="modelValue"
       @update:modelValue="$emit('update:modelValue', $event)"
@@ -116,9 +118,19 @@ export default defineComponent({
       type: Array as PropType<any>,
       default: () => [],
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    readonly: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   setup(props, context) {
+    const disabled = toRef(props, 'disabled');
+    const readonly = toRef(props, 'readonly');
     const modelValue = toRef(props, 'modelValue');
     const initialValue = modelValue.value;
 
@@ -132,6 +144,8 @@ export default defineComponent({
       rules: props.rules,
       modelValue,
       onReset,
+      disabled,
+      readonly,
     });
 
     return {
