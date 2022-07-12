@@ -148,8 +148,6 @@ const Template = (args) => ({
 export const Default = Template.bind({});
 Default.args = {
   options: options,
-  // showEmptySelector: true,
-  // hideDropdownDefaultLabel: false,
 };
 
 Default.parameters = {
