@@ -29,7 +29,6 @@ export default function useField(fieldContext: {
   modelValue: Ref<any>;
   onReset: () => Promise<void>;
   disabled: Ref<boolean>;
-  readonly: Ref<boolean>;
 }) {
   const form = injectStrict<FormAPI>(formKey);
   const cid = ref<string>(nanoid());
@@ -40,7 +39,7 @@ export default function useField(fieldContext: {
   let watchHandler: WatchStopHandle;
 
   const validate = () => {
-    if (fieldContext.disabled.value || fieldContext.readonly.value) {
+    if (fieldContext.disabled.value) {
       return Promise.resolve({cid: cid.value, errors: []});
     }
 
