@@ -156,9 +156,6 @@ export default defineComponent({
       return this.modelValue?.label ? this.$vt(this.modelValue.label) : null;
     },
     inputValue(): string {
-      console.error(this.computedOptions[this.pointer]?.label);
-      console.error(this.selectedItem);
-
       return this.computedOptions[this.pointer]?.label || this.selectedItem;
     },
   },
