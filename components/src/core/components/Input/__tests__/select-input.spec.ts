@@ -31,7 +31,6 @@ describe('SelectInput.vue', () => {
       props: {
         options,
         showEmptySelector: true,
-        hideDropdownDefaultLabel: false,
       },
     });
     wrapper.findComponent(SelectText).trigger('click');
@@ -44,7 +43,6 @@ describe('SelectInput.vue', () => {
       props: {
         options,
         showEmptySelector: true,
-        hideDropdownDefaultLabel: false,
       },
     });
     wrapper.findComponent(SelectText).trigger('click');
@@ -112,7 +110,6 @@ describe('SelectInput.vue', () => {
       props: {
         options,
         showEmptySelector: true,
-        hideDropdownDefaultLabel: false,
       },
     });
     wrapper.findComponent(SelectText).trigger('click');
@@ -130,7 +127,6 @@ describe('SelectInput.vue', () => {
           label: 'HR Admin',
         },
         showEmptySelector: true,
-        hideDropdownDefaultLabel: false,
       },
     });
     wrapper.findComponent(SelectText).trigger('click');
@@ -167,7 +163,6 @@ describe('SelectInput.vue', () => {
         },
         dropdownPosition: BOTTOM,
         showEmptySelector: true,
-        hideDropdownDefaultLabel: false,
       },
     });
     expect(wrapper.vm.dropdownClasses).toStrictEqual({
@@ -187,7 +182,6 @@ describe('SelectInput.vue', () => {
         },
         dropdownPosition: BOTTOM,
         showEmptySelector: false,
-        hideDropdownDefaultLabel: false,
       },
     });
     expect(wrapper.vm.dropdownClasses).toStrictEqual({
@@ -206,8 +200,6 @@ describe('SelectInput.vue', () => {
           label: 'HR Admin',
         },
         dropdownPosition: BOTTOM,
-        showEmptySelector: true,
-        hideDropdownDefaultLabel: true,
       },
     });
     expect(wrapper.vm.dropdownClasses).toStrictEqual({

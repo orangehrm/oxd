@@ -27,11 +27,8 @@
       :loading="loading"
       :empty="computedOptions.length === 0"
     >
-      <oxd-select-option
-        v-if="showEmptySelector && !hideDropdownDefaultLabel"
-        @select="onClear"
-      >
-        {{ $vt(placeholder) }}
+      <oxd-select-option v-if="showEmptySelector" @select="onClear">
+        {{ $vt('Unselect') }}
       </oxd-select-option>
       <oxd-select-option
         v-for="(option, i) in computedOptions"
@@ -95,10 +92,6 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    hideDropdownDefaultLabel: {
-      type: Boolean,
-      default: true,
-    },
     options: {
       type: Array,
       required: true,
@@ -143,8 +136,7 @@ export default defineComponent({
       return {
         '--positon-bottom': this.dropdownPosition === BOTTOM,
         '--positon-top': this.dropdownPosition === TOP,
-        '--with-empty-selector':
-          this.showEmptySelector && !this.hideDropdownDefaultLabel,
+        '--with-empty-selector': this.showEmptySelector,
       };
     },
     optionClasses(): object[] {
