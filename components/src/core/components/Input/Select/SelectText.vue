@@ -62,9 +62,6 @@ export default defineComponent({
     placeholder: {
       type: String,
     },
-    hideDropdownDefaultLabel: {
-      type: Boolean,
-    },
     style: {
       type: Object,
     },

@@ -4,7 +4,6 @@
       v-bind="$attrs"
       :value="inputValue"
       :placeholder="placeholder"
-      :hideDropdownDefaultLabel="hideDropdownDefaultLabel"
       :disabled="disabled"
       :readonly="readonly"
       :dropdownOpened="dropdownOpen"
