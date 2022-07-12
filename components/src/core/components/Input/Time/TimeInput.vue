@@ -42,7 +42,7 @@
     </div>
     <oxd-time-picker
       v-dropdown-direction
-      v-if="datePickerOpen"
+      v-if="timePickerOpen"
       v-model="pickerInput"
       :step="step"
       @update:modelValue="timePickerUpdate"
@@ -109,7 +109,7 @@ export default defineComponent({
   },
 
   setup(props, context) {
-    const datePickerOpen = ref<boolean>(false);
+    const timePickerOpen = ref<boolean>(false);
     const amPmLabelFocus = ref<boolean>(false);
 
     const state = reactive({
@@ -119,18 +119,18 @@ export default defineComponent({
     });
 
     const openDropdown = () => {
-      datePickerOpen.value = true;
+      timePickerOpen.value = true;
       context.emit('timeselect:opened');
     };
 
     const closeDropdown = () => {
-      datePickerOpen.value = false;
+      timePickerOpen.value = false;
       context.emit('timeselect:closed');
     };
 
     const toggleDropdown = () => {
       if (!props.disabled) {
-        if (!datePickerOpen.value) {
+        if (!timePickerOpen.value) {
           openDropdown();
         } else {
           closeDropdown();
@@ -174,7 +174,7 @@ export default defineComponent({
     );
 
     watch(
-      () => state,
+      () => [state.time, state.am],
       () => {
         const validTime = /^(0?[1-9]|1[0-2]):[0-5][0-9]$/.test(state.time);
         let newModelValue: string | null =
@@ -191,7 +191,6 @@ export default defineComponent({
       },
       {
         immediate: true,
-        deep: true,
       },
     );
 
@@ -229,7 +228,7 @@ export default defineComponent({
 
     return {
       ...toRefs(state),
-      datePickerOpen,
+      timePickerOpen,
       toggleDropdown,
       timeIconClasses,
       timeIconWrapperClasses,

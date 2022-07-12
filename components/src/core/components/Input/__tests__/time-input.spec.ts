@@ -11,7 +11,7 @@ describe('TimeInput.vue', () => {
     const wrapper = mount(TimeInput, {});
     wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
     await wrapper.vm.$nextTick();
-    expect(wrapper.vm.datePickerOpen).toBeTruthy();
+    expect(wrapper.vm.timePickerOpen).toBeTruthy();
     expect(wrapper.emitted('timeselect:opened')).toBeTruthy();
     expect(wrapper.find('.oxd-time-picker').exists()).toBeTruthy();
   });
