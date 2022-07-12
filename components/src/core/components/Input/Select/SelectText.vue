@@ -8,7 +8,8 @@
     @blur="onBlur"
   >
     <div class="oxd-select-text-input">
-      <div class="selected-content">{{ value }}</div>
+      <div v-if="!value" class="select-placeholder">{{ placeholder }}</div>
+      <div v-else class="selected-content">{{ value }}</div>
       <input
         type="text"
         readonly="readonly"
@@ -57,6 +58,12 @@ export default defineComponent({
     },
     value: {
       type: String,
+    },
+    placeholder: {
+      type: String,
+    },
+    hideDropdownDefaultLabel: {
+      type: Boolean,
     },
     style: {
       type: Object,

@@ -28,7 +28,11 @@ describe('SelectInput.vue', () => {
   });
   it('should load options to Select', async () => {
     const wrapper = mount(SelectInput, {
-      props: {options},
+      props: {
+        options,
+        showEmptySelector: true,
+        hideDropdownDefaultLabel: false,
+      },
     });
     wrapper.findComponent(SelectText).trigger('click');
     await wrapper.vm.$nextTick();
@@ -37,7 +41,11 @@ describe('SelectInput.vue', () => {
   });
   it('should select one option', async () => {
     const wrapper = mount(SelectInput, {
-      props: {options},
+      props: {
+        options,
+        showEmptySelector: true,
+        hideDropdownDefaultLabel: false,
+      },
     });
     wrapper.findComponent(SelectText).trigger('click');
     await wrapper.vm.$nextTick();
@@ -101,7 +109,11 @@ describe('SelectInput.vue', () => {
 
   it('should select none if placeholder selected', async () => {
     const wrapper = mount(SelectInput, {
-      props: {options},
+      props: {
+        options,
+        showEmptySelector: true,
+        hideDropdownDefaultLabel: false,
+      },
     });
     wrapper.findComponent(SelectText).trigger('click');
     await wrapper.vm.$nextTick();
@@ -117,6 +129,8 @@ describe('SelectInput.vue', () => {
           id: 1,
           label: 'HR Admin',
         },
+        showEmptySelector: true,
+        hideDropdownDefaultLabel: false,
       },
     });
     wrapper.findComponent(SelectText).trigger('click');

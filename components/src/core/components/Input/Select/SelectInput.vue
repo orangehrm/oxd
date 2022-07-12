@@ -3,6 +3,8 @@
     <oxd-select-text
       v-bind="$attrs"
       :value="inputValue"
+      :placeholder="placeholder"
+      :hideDropdownDefaultLabel="hideDropdownDefaultLabel"
       :disabled="disabled"
       :readonly="readonly"
       :dropdownOpened="dropdownOpen"
@@ -96,7 +98,7 @@ export default defineComponent({
     },
     hideDropdownDefaultLabel: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     options: {
       type: Array,
@@ -104,18 +106,18 @@ export default defineComponent({
     },
     placeholder: {
       type: String,
-      default: '-- Select --',
+      default: 'Select',
     },
     dropdownPosition: {
       type: String,
       default: BOTTOM,
-      validator: function (value: Position) {
+      validator: function(value: Position) {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
     showEmptySelector: {
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
 
@@ -157,11 +159,7 @@ export default defineComponent({
       });
     },
     selectedItem(): string {
-      return this.modelValue?.label
-        ? this.$vt(this.modelValue.label)
-        : this.hideDropdownDefaultLabel
-        ? null
-        : this.$vt(this.placeholder);
+      return this.modelValue?.label ? this.$vt(this.modelValue.label) : null;
     },
     inputValue(): string {
       return this.computedOptions[this.pointer]?.label || this.selectedItem;
