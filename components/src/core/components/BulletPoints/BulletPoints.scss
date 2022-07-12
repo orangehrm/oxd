@@ -1,0 +1,53 @@
+@import '../../../styles';
+@import 'variables';
+ul{
+  position: relative;
+  padding: 0 0 0 1rem;
+  &:before{
+    content: "";
+    width: 0.15rem;
+    height: 100%;
+    background-color: $oxd-bullet-point-line-default-color;
+    position: absolute;
+    top: 0;
+    left: 0.2rem;
+  }
+  li{
+    position: relative;
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+    .oxd-bullet-point {
+      position: absolute;
+      width: 0.8rem;
+      height: 0.8rem;
+      border-radius: 50%;
+      top: calc(50% - 0.38rem);
+      left: -1.125rem;
+      background-color: $oxd-bullet-point-default-color;
+    }
+
+    &:first-child {
+      &:after {
+        content: "";
+        width: 0.25rem;
+        height: 50%;
+        background-color: #fff;
+        position: absolute;
+        top: calc(0% - 0.38rem);
+        left: -0.85rem;
+      }
+    }
+    &:last-child {
+      &:after {
+        content: "";
+        width: 0.8rem;
+        height: 50%;
+        background-color: #fff;
+        position: absolute;
+        bottom: calc(0% - 0.43rem);
+        left: -1rem;
+      }
+    }
+  }
+}
