@@ -30,6 +30,7 @@
     <component
       :is="component"
       v-bind="$attrs"
+      :disabled="disabled"
       :hasError="hasError"
       :modelValue="modelValue"
       @update:modelValue="$emit('update:modelValue', $event)"
@@ -116,9 +117,14 @@ export default defineComponent({
       type: Array as PropType<any>,
       default: () => [],
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   setup(props, context) {
+    const disabled = toRef(props, 'disabled');
     const modelValue = toRef(props, 'modelValue');
     const initialValue = modelValue.value;
 
@@ -132,6 +138,7 @@ export default defineComponent({
       rules: props.rules,
       modelValue,
       onReset,
+      disabled,
     });
 
     return {

@@ -28,6 +28,7 @@ export default function useField(fieldContext: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   modelValue: Ref<any>;
   onReset: () => Promise<void>;
+  disabled: Ref<boolean>;
 }) {
   const form = injectStrict<FormAPI>(formKey);
   const cid = ref<string>(nanoid());
@@ -38,6 +39,10 @@ export default function useField(fieldContext: {
   let watchHandler: WatchStopHandle;
 
   const validate = () => {
+    if (fieldContext.disabled.value) {
+      return Promise.resolve({cid: cid.value, errors: []});
+    }
+
     processing.value = true;
     const allValidations = Promise.all(
       fieldContext.rules.map(func => {
