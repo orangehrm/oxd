@@ -27,7 +27,10 @@
       :loading="loading"
       :empty="computedOptions.length === 0"
     >
-      <oxd-select-option v-if="showEmptySelector" @select="onClear">
+      <oxd-select-option
+        v-if="showEmptySelector && inputValue"
+        @select="onClear"
+      >
         {{ $vt('Unselect') }}
       </oxd-select-option>
       <oxd-select-option
