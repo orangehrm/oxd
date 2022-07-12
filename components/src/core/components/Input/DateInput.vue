@@ -11,7 +11,7 @@
         :readonly="readonly"
         :value="displayDate"
         :placeholder="placeholder"
-        v-bind="$attrs"
+        v-bind="defaultAttrs"
         v-click-outside="onClickTextOutside"
         ref="oxdInput"
         @update:modelValue="onDateTyped"
@@ -266,6 +266,15 @@ export default defineComponent({
   },
 
   computed: {
+    defaultAttrs() {
+      const notAllowed = ['onUpdate:modelValue'];
+      return Object.keys(this.$attrs)
+        .filter(key => !notAllowed.includes(key))
+        .reduce((obj, key) => {
+          obj[key] = this.$attrs[key];
+          return obj;
+        }, {});
+    },
     isLengthyDate() {
       return LENGTHY_DATE_FORMATS.indexOf(this.format) > -1;
     },
