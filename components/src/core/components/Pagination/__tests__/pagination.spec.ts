@@ -30,7 +30,11 @@ describe('Pageination.vue', () => {
     const selectInputWrapper = wrapper.find('.pagination-dropdown');
     await selectInputWrapper.trigger('click');
     expect(
-      wrapper.find('.oxd-select-wrapper > .oxd-select-dropdown > .oxd-select-dropdown-inner > .oxd-select-option:nth-child(4)').html(),
+      wrapper
+        .find(
+          '.oxd-select-wrapper > .oxd-select-dropdown > .oxd-select-dropdown-inner > .oxd-select-option:nth-child(4)',
+        )
+        .html(),
     ).toEqual(
       '<div role="option" class="oxd-select-option --selected"><span>50</span></div>',
     );

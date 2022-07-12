@@ -61,6 +61,9 @@
     line-height: 18px;
     max-width: 100%;
     min-width: 0;
+    .select-placeholder {
+      color: $oxd-input-placeholder-color;
+    }
     .selected-content {
       min-height: 10px;
       overflow: hidden;

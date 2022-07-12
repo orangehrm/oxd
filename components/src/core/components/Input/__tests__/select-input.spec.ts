@@ -28,7 +28,10 @@ describe('SelectInput.vue', () => {
   });
   it('should load options to Select', async () => {
     const wrapper = mount(SelectInput, {
-      props: {options},
+      props: {
+        options,
+        showEmptySelector: true,
+      },
     });
     wrapper.findComponent(SelectText).trigger('click');
     await wrapper.vm.$nextTick();
@@ -37,7 +40,10 @@ describe('SelectInput.vue', () => {
   });
   it('should select one option', async () => {
     const wrapper = mount(SelectInput, {
-      props: {options},
+      props: {
+        options,
+        showEmptySelector: true,
+      },
     });
     wrapper.findComponent(SelectText).trigger('click');
     await wrapper.vm.$nextTick();
@@ -101,7 +107,10 @@ describe('SelectInput.vue', () => {
 
   it('should select none if placeholder selected', async () => {
     const wrapper = mount(SelectInput, {
-      props: {options},
+      props: {
+        options,
+        showEmptySelector: true,
+      },
     });
     wrapper.findComponent(SelectText).trigger('click');
     await wrapper.vm.$nextTick();
@@ -117,6 +126,7 @@ describe('SelectInput.vue', () => {
           id: 1,
           label: 'HR Admin',
         },
+        showEmptySelector: true,
       },
     });
     wrapper.findComponent(SelectText).trigger('click');
@@ -153,7 +163,6 @@ describe('SelectInput.vue', () => {
         },
         dropdownPosition: BOTTOM,
         showEmptySelector: true,
-        hideDropdownDefaultLabel: false,
       },
     });
     expect(wrapper.vm.dropdownClasses).toStrictEqual({
@@ -173,7 +182,6 @@ describe('SelectInput.vue', () => {
         },
         dropdownPosition: BOTTOM,
         showEmptySelector: false,
-        hideDropdownDefaultLabel: false,
       },
     });
     expect(wrapper.vm.dropdownClasses).toStrictEqual({
@@ -192,8 +200,6 @@ describe('SelectInput.vue', () => {
           label: 'HR Admin',
         },
         dropdownPosition: BOTTOM,
-        showEmptySelector: true,
-        hideDropdownDefaultLabel: true,
       },
     });
     expect(wrapper.vm.dropdownClasses).toStrictEqual({
