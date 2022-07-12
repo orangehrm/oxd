@@ -27,7 +27,10 @@
       :loading="loading"
       :empty="computedOptions.length === 0"
     >
-      <oxd-select-option v-if="showEmptySelector" @select="onClear">
+      <oxd-select-option
+        v-if="showEmptySelector && inputValue"
+        @select="onClear"
+      >
         {{ $vt('Unselect') }}
       </oxd-select-option>
       <oxd-select-option
@@ -153,6 +156,9 @@ export default defineComponent({
       return this.modelValue?.label ? this.$vt(this.modelValue.label) : null;
     },
     inputValue(): string {
+      console.error(this.computedOptions[this.pointer]?.label);
+      console.error(this.selectedItem);
+
       return this.computedOptions[this.pointer]?.label || this.selectedItem;
     },
   },

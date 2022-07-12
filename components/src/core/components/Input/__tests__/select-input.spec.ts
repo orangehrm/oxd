@@ -30,25 +30,23 @@ describe('SelectInput.vue', () => {
     const wrapper = mount(SelectInput, {
       props: {
         options,
-        showEmptySelector: true,
       },
     });
     wrapper.findComponent(SelectText).trigger('click');
     await wrapper.vm.$nextTick();
     const nodes = wrapper.findAllComponents(SelectOption);
-    expect(nodes.length).toBe(4);
+    expect(nodes.length).toBe(3);
   });
   it('should select one option', async () => {
     const wrapper = mount(SelectInput, {
       props: {
         options,
-        showEmptySelector: true,
       },
     });
     wrapper.findComponent(SelectText).trigger('click');
     await wrapper.vm.$nextTick();
     const nodes = wrapper.findAllComponents(SelectOption);
-    await nodes[1].trigger('mousedown');
+    await nodes[0].trigger('mousedown');
     expect(wrapper.emitted('update:modelValue')).toEqual([
       [
         {
@@ -105,19 +103,6 @@ describe('SelectInput.vue', () => {
     expect(Input.classes('sampleClass')).not.toBe(true);
   });
 
-  it('should select none if placeholder selected', async () => {
-    const wrapper = mount(SelectInput, {
-      props: {
-        options,
-        showEmptySelector: true,
-      },
-    });
-    wrapper.findComponent(SelectText).trigger('click');
-    await wrapper.vm.$nextTick();
-    const nodes = wrapper.findAllComponents(SelectOption);
-    await nodes[0].trigger('mousedown');
-    expect(wrapper.emitted('update:modelValue')).toEqual([[null]]);
-  });
   it('should not select already selected option', async () => {
     const wrapper = mount(SelectInput, {
       props: {
