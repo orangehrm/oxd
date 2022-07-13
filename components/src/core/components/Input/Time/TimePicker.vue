@@ -254,7 +254,9 @@ export default defineComponent({
           const parsedTime = parseDate(timeString, 'hh:mm a');
           if (parsedTime) {
             const formattedTime = formatDate(parsedTime, 'HH:mm');
-            context.emit('update:modelValue', formattedTime);
+            if (props.modelValue !== formattedTime) {
+              context.emit('update:modelValue', formattedTime);
+            }
           }
         }
       },
