@@ -1,8 +1,10 @@
-import {mount} from '@vue/test-utils';
+import { enableAutoUnmount, mount } from '@vue/test-utils'
 import TimeInput from '@orangehrm/oxd/core/components/Input/Time/TimeInput.vue';
 import TimePicker from '@orangehrm/oxd/core/components/Input/Time/TimePicker.vue';
 
 describe('TimeInput.vue', () => {
+
+  enableAutoUnmount(afterEach);
   it('renders OXD Time Input', () => {
     const wrapper = mount(TimeInput, {});
     expect(wrapper.html()).toMatchSnapshot();
@@ -16,6 +18,28 @@ describe('TimeInput.vue', () => {
     });
     await wrapper.find('.oxd-time-input input').setValue('12:16');
     expect(wrapper.emitted('update:modelValue')).toEqual([['12:16']]);
+  });
+
+  it('changing the input value to invalid value emits it as is', async () => {
+    const wrapper = mount(TimeInput, {
+      props: {
+        modelValue: '15:00',
+      },
+    });
+    await wrapper.find('.oxd-time-input input').setValue('124:16');
+    expect(wrapper.emitted('update:modelValue')).toEqual([['124:16 PM']]);
+  });
+
+  it('passing invalid modelValue sets input to 01:00 AM', async () => {
+    const wrapper = mount(TimeInput, {
+      props: {
+        modelValue: '26:00',
+      },
+    });
+
+    expect((wrapper.find('.oxd-time-input input').element as HTMLInputElement).value).toEqual('01:00');
+    expect(wrapper.find('.oxd-time-input-am-pm-wrapper > label').text()).toEqual('AM');
+    expect((wrapper.find('.oxd-time-input-am-pm-checkbox').element as HTMLInputElement).value).toEqual('on');
   });
 
   it('should open timepicker on click', async () => {
@@ -196,7 +220,7 @@ describe('TimeInput.vue', () => {
 
   it('should toggle AM/PM when clicking enter', async () => {
     const wrapper = mount(TimeInput, {});
-    wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
+    await wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
     await wrapper.vm.$nextTick();
     const period = wrapper.findAll('input[type="radio"]');
     expect(wrapper.vm.pickerInput).toEqual('01:00');
@@ -219,21 +243,21 @@ describe('TimeInput.vue', () => {
     expect(wrapper.emitted('timeselect:closed')).toBeTruthy();
   });
 
-  // it('should close timePicker when clicked outside', async () => {
-  //
-  //   document.body.innerHTML = `
-  // <div>
-  //   <div id="app"></div>
-  // </div>`;
-  //
-  //   const wrapper = mount(TimeInput, {
-  //     attachTo: "#app"
-  //   });
-  //
-  //   await wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
-  //   expect(wrapper.find('.oxd-time-picker').exists()).toBeTruthy();
-  //
-  //   await wrapper.find('.oxd-time-input').trigger('click');
-  //   expect(wrapper.find('.oxd-time-picker').exists()).toBeFalsy();
-  // });
+  it('should close timePicker when clicked outside', async () => {
+
+    document.body.innerHTML = `
+  <div>
+    <div id="app"></div>
+  </div>`;
+
+    const wrapper = mount(TimeInput, {
+      attachTo: "#app"
+    });
+
+    await wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
+    expect(wrapper.find('.oxd-time-picker').exists()).toBeTruthy();
+
+    await wrapper.find('.oxd-time-input').trigger('click');
+    expect(wrapper.find('.oxd-time-picker').exists()).toBeFalsy();
+  });
 });
