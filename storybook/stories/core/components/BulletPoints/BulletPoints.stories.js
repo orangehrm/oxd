@@ -8,7 +8,7 @@ export default {
     list: {
         control: {type: 'array'},
         table: {
-            type: {summary: 'This is an array of ListItem objects. "id" and the "name" is mabdatory,"styles" can be used to  override the styles of bullet points'}
+            type: {summary: 'This is an array of ListItem objects. "id" and the "name" is mandatory,"styles" can be used to  override the styles of bullet points'}
           }
     }
   }
