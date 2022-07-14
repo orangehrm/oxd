@@ -14,7 +14,20 @@
       "listRecordCount": {
         "singleTerm": "Candidate",
         "multiTerm": "Candidates"
-      }
+      },
+      "quickSearch": {
+        "visible": true,
+        "placeholder": "Search",
+        "withImageSearch":false,
+        "clear": false,
+        "button": {
+          "visible": true,
+          "class": "quick-search-btn",
+          "props": {
+            "name": "oxd-search",
+            "displayType": "label-info"
+          }
+        }
     },
     "headers": [
       {
