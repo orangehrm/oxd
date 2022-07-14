@@ -66,7 +66,7 @@
           value="AM"
           @keydown.enter.stop.prevent="togglePeriod"
         />
-        <label for="am">AM</label>
+        <label for="am">{{ $vt('AM') }}</label>
       </div>
       <div class="oxd-time-period-label">
         <input
@@ -76,7 +76,7 @@
           value="PM"
           @keydown.enter.stop.prevent="togglePeriod"
         />
-        <label for="pm">PM</label>
+        <label for="pm">{{ $vt('PM') }}</label>
       </div>
     </div>
   </div>
@@ -90,6 +90,7 @@ import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import clickOutsideDirective from '@orangehrm/oxd/directives/click-outside';
 import focusTrapDirective from '@orangehrm/oxd/directives/focus-trap';
 import focusFirstElementDirective from '@orangehrm/oxd/directives/focus-first-element';
+import translateMixin from '@orangehrm/oxd/mixins/translate';
 
 interface State {
   hour: string;
@@ -114,6 +115,8 @@ export default defineComponent({
     'oxd-input': Input,
     'oxd-icon-button': IconButton,
   },
+
+  mixins: [translateMixin],
 
   emits: ['update:modelValue', 'timepicker:closed'],
 
