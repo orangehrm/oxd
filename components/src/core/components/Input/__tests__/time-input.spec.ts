@@ -260,4 +260,32 @@ describe('TimeInput.vue', () => {
     await wrapper.find('.oxd-time-input').trigger('click');
     expect(wrapper.find('.oxd-time-picker').exists()).toBeFalsy();
   });
+
+  it('AM/PM toggle in input field should reflect in time picker AM/PM', async () => {
+    const wrapper = mount(TimeInput, {
+      props: {
+        modelValue: '05:11',
+      },
+    });
+
+    // Toggle AM/PM to make the time 05:11 PM
+    await wrapper
+      .find('.oxd-time-input-am-pm-wrapper > label')
+      .trigger('click');
+    expect(wrapper.emitted('update:modelValue')).toEqual([['17:11']]);
+
+    // Open time picker and verify time is still 05:11 PM
+    await wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
+    const picker = wrapper.findComponent(TimePicker);
+    const [hourInput, minuteInput] = picker.findAll('input');
+
+    expect((hourInput.element as HTMLInputElement).value).toEqual('05');
+    expect((minuteInput.element as HTMLInputElement).value).toEqual('11');
+
+    const amInput = picker.find('.oxd-time-period-label > input[name="am"]');
+    const pmInput = picker.find('.oxd-time-period-label > input[name="pm"]');
+
+    expect((amInput.element as HTMLInputElement).checked).toBeFalsy();
+    expect((pmInput.element as HTMLInputElement).checked).toBeTruthy();
+  });
 });

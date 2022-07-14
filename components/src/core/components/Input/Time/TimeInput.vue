@@ -189,6 +189,9 @@ export default defineComponent({
           }
         }
         if (newModelValue !== props.modelValue) {
+          if (newModelValue) {
+            state.pickerInput = newModelValue;
+          }
           context.emit('update:modelValue', newModelValue);
         }
       },
