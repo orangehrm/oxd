@@ -14,7 +14,7 @@
       />
       <div class="oxd-time-input-am-pm-wrapper">
         <label :class="amPmLabelClasses"
-          >{{ am ? 'AM' : 'PM' }}
+          >{{ am ? $vt('AM') : $vt('PM') }}
           <input
             class="oxd-time-input-am-pm-checkbox"
             type="checkbox"
@@ -59,6 +59,7 @@ import clickOutsideDirective from '@orangehrm/oxd/directives/click-outside';
 import TimePicker from '@orangehrm/oxd/core/components/Input/Time/TimePicker.vue';
 import {parseDate, formatDate} from '@orangehrm/oxd/utils/date';
 import dropdownDirectionDirective from '@orangehrm/oxd/directives/dropdown-direction';
+import translateMixin from '@orangehrm/oxd/mixins/translate';
 
 export default defineComponent({
   name: 'oxd-time-input',
@@ -73,6 +74,8 @@ export default defineComponent({
     'click-outside': clickOutsideDirective,
     'dropdown-direction': dropdownDirectionDirective,
   },
+
+  mixins: [translateMixin],
 
   emits: [
     'update:modelValue',
