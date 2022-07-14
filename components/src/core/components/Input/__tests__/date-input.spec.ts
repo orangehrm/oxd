@@ -27,8 +27,6 @@ describe('DateInput.vue', () => {
     await input.trigger('blur');
     await wrapper.vm.$nextTick();
     expect(wrapper.emitted('update:modelValue')).toEqual([['2021-07-30']]);
-
-
   });
   it('should return today date onclick today', async () => {
     const wrapper = mount(DateInput, {});
@@ -63,16 +61,12 @@ describe('DateInput.vue', () => {
 
     await wrapper.vm.$nextTick();
 
-    expect(wrapper.find('.oxd-input--focus').exists()).toBe(
-      true
-    );
+    expect(wrapper.find('.oxd-input--focus').exists()).toBe(true);
     wrapper.find('.oxd-input--focus').trigger('blur');
 
     await wrapper.vm.$nextTick();
 
-    expect(wrapper.find('.oxd-input--focus').exists()).toBe(
-      false
-    );
+    expect(wrapper.find('.oxd-input--focus').exists()).toBe(false);
   });
   it('should blur when when triggered onClickTextOutside method', async () => {
     const wrapper = mount(DateInput, {});
@@ -81,14 +75,10 @@ describe('DateInput.vue', () => {
     const date = wrapper.findComponent(DateVue);
     date.trigger('click');
     await wrapper.vm.$nextTick();
-    expect(wrapper.find('.oxd-input--focus').exists()).toBe(
-      true
-    );
+    expect(wrapper.find('.oxd-input--focus').exists()).toBe(true);
     wrapper.vm.onClickTextOutside();
     await wrapper.vm.$nextTick();
-    expect(wrapper.find('.oxd-input--focus').exists()).toBe(
-      false
-    );
+    expect(wrapper.find('.oxd-input--focus').exists()).toBe(false);
   });
   it('should close the date picker when when triggered onClickOutside method', async () => {
     const wrapper = mount(DateInput, {});
@@ -113,6 +103,7 @@ describe('DateInput.vue', () => {
       stopPropagation: jest.fn(),
       key: 'Escape',
     };
+    wrapper.setData({open: true});
     await wrapper.vm.closeDropdown(event);
     expect(event.stopPropagation).toBeCalled();
   });
