@@ -39,10 +39,6 @@ export default defineComponent({
     style: {
       type: Object,
     },
-    hasError: {
-      type: Boolean,
-      default: false,
-    },
     optionLabel: {
       type: String,
       default: '',
@@ -75,7 +71,6 @@ export default defineComponent({
         'oxd-radio-input': true,
         'oxd-radio-input--active': !this.focused,
         'oxd-radio-input--focus': this.focused,
-        'oxd-radio-input--error': this.hasError,
         [`--label-${this.labelPosition}`]: true,
       };
     },
