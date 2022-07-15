@@ -17,6 +17,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
     offset: {
       type: Number,
       default: 0,
@@ -62,6 +66,7 @@ export default defineComponent({
           class: [
             ...this.innerClasses,
             {'oxd-calendar-date': true},
+            {'--disabled': this.disabled},
             {'--selected': this.selected},
             {'--today': this.today},
           ],
