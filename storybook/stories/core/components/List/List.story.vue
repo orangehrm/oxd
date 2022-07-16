@@ -13,6 +13,7 @@
       @table-left-panel:onToggle="toggleLeftPanel"
       @topfilters:onExportBtnClick="exportCSV"
       @sidePanelList:onHeaderBtnClick="showAddCandidatesModal"
+      @sidePanelList:onHeaderSecondaryBtnClick="clickSecondaryButton"
       @sidePanelList:onSelect="selectStage"
       @quick-search:onSelect="candidateQuickSearchSelect"
       @quick-search:onClear="candidateQuickSearchClear"
@@ -750,6 +751,9 @@ export default defineComponent({
     const showAddCandidatesModal = () => {
       console.log('show add candidates modal');
     };
+    const clickSecondaryButton = () => {
+      console.log('Secondary Button clickeded');
+    };
     const selectStage = (stage: StageI) => {
       console.log(stage);
     };
@@ -866,6 +870,7 @@ export default defineComponent({
       actionsRenderer,
       toggleLeftPanel,
       showAddCandidatesModal,
+      clickSecondaryButton,
       candidateQuickSearch,
       closeModal,
       drawerShow,

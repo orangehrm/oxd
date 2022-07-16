@@ -658,3 +658,129 @@ describe('TableSidebar.vue with oxd-chip on left', () => {
     ).toBeTruthy();
   });
 });
+
+describe('TableSidebar.vue', () => {
+  it('renders header action secondary button with default size of extra-large', () => {
+    const wrapper = shallowMount(TableSidebar, {
+      props: {
+        headerVisible: true,
+        headerActionButtonVisible: true,
+        bodyVisible: true,
+        listVisible: true,
+        selectedListItemId: '1',
+        sidePanelIconVisible: true,
+        bubbleVisible: false,
+        sidePanelList: [
+          {
+            id: -1,
+            label: 'All Candidates',
+            iconName: 'oxd-standard-reports',
+          },
+        ],
+        width: '230px',
+        button: {
+          props: {
+            label: 'Add Job Vacancy',
+            displayType: 'secondary',
+            size: 'long',
+            iconName: 'oxd-add',
+            iconSize: 'xx-small',
+          },
+        },
+        secondaryButton: {
+          visible: true,
+          label: 'Import Templates',
+          icon: 'plus-square',
+        },
+      },
+    });
+    expect(
+      wrapper
+        .findComponent('.table-header-action-secondary-btn')
+        .attributes('size'),
+    ).toBe('extra-large');
+  });
+
+  it('renders header action secondary button with specified Size', () => {
+    const wrapper = shallowMount(TableSidebar, {
+      props: {
+        headerVisible: true,
+        headerActionButtonVisible: true,
+        bodyVisible: true,
+        listVisible: true,
+        selectedListItemId: '1',
+        sidePanelIconVisible: true,
+        bubbleVisible: false,
+        sidePanelList: [
+          {
+            id: -1,
+            label: 'All Candidates',
+            iconName: 'oxd-standard-reports',
+          },
+        ],
+        width: '230px',
+        button: {
+          props: {
+            label: 'Add Job Vacancy',
+            displayType: 'secondary',
+            size: 'long',
+            iconName: 'oxd-add',
+            iconSize: 'xx-small',
+          },
+        },
+        secondaryButton: {
+          visible: true,
+          label: 'Import Templates',
+          icon: 'plus-square',
+          size: 'xx-small',
+        },
+      },
+    });
+    expect(
+      wrapper
+        .findComponent('.table-header-action-secondary-btn')
+        .attributes('size'),
+    ).toBe('xx-small');
+  });
+  it('renders header action secondary button with default icon oxd-new-folder', () => {
+    const wrapper = shallowMount(TableSidebar, {
+      props: {
+        headerVisible: true,
+        headerActionButtonVisible: true,
+        bodyVisible: true,
+        listVisible: true,
+        selectedListItemId: '1',
+        sidePanelIconVisible: true,
+        bubbleVisible: false,
+        sidePanelList: [
+          {
+            id: -1,
+            label: 'All Candidates',
+            iconName: 'oxd-standard-reports',
+          },
+        ],
+        width: '230px',
+        button: {
+          props: {
+            label: 'Add Job Vacancy',
+            displayType: 'secondary',
+            size: 'long',
+            iconName: 'oxd-add',
+            iconSize: 'xx-small',
+          },
+        },
+        secondaryButton: {
+          visible: true,
+          label: 'Import Templates',
+          // icon: 'plus-square',
+          size: 'xx-small',
+        },
+      },
+    });
+    expect(
+      wrapper
+        .findComponent('.table-header-action-secondary-btn')
+        .attributes('name'),
+    ).toBe('oxd-new-folder');
+  });
+});

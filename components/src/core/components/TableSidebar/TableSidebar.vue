@@ -46,9 +46,9 @@
               v-if="secondaryButton"
               class="table-header-action-secondary-btn"
               :class="!isLeftPanelOpen ? 'collapsed-btn' : ''"
-              :size="secondaryButton.size || 'extra-large'"
-              :name="secondaryButton.icon || 'oxd-new-folder'"
-              :tooltip="secondaryButton.label || 'New Folder'"
+              :size="secondaryButton.props.size || 'extra-large'"
+              :name="secondaryButton.props.icon || 'oxd-new-folder'"
+              :tooltip="secondaryButton.props.label || 'New Folder'"
               @click="onHeaderSecondaryBtnClick"
             />
           </div>
