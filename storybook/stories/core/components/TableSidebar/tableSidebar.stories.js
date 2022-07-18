@@ -199,7 +199,7 @@ TableSidebar.argTypes = {
   },
   selectedListItemId: {
     control: {type: 'number'},
-    defaultValue: 1,
+    defaultValue: 2,
     table: {
       type: {summary: 'Set selected item of left panel list.'},
       category: 'Props',
