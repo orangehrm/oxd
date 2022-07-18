@@ -229,17 +229,17 @@ TableSidebar.argTypes = {
     defaultValue: {
       props: {
         icon: 'oxd-import-templates',
-        size: 'xx-small',
-        label: 'Info',
+        size: 'extra-large',
+        label: 'Import Templates',
         iconStyles: {
-          color: 'red',
+          color: '#76bc21',
         },
       },
     },
     table: {
       type: {
         summary:
-          'Set an object with icon, size, label inside props as the secondary header button.',
+          'Set an object with icon, size, label and styles inside props as the secondary header button.',
       },
       category: 'Props',
     },
