@@ -8,6 +8,7 @@ const focusableElements = 'input, select, textarea, [tabindex], [href]';
 const excludeElements =
   'button:not(.oxd-dialog-close-button,.modal-reset-button)';
 let firstFocusableElement: Element;
+let updatedFocusFirstElement: Element;
 
 const focusOnFirstElement = (element: Element, matchingString: string) => {
   firstFocusableElement = element.querySelectorAll(matchingString)[0];
@@ -18,8 +19,10 @@ const focusOnFirstElement = (element: Element, matchingString: string) => {
 
 const focusonFirstElementDirective: Directive = {
   updated(el: FocusFirstHTMLElement) {
-    el.activeElement = document.activeElement;
-    if (!firstFocusableElement) {
+    updatedFocusFirstElement = el.querySelectorAll(
+      focusableElements + ', ' + excludeElements,
+    )[0];
+    if (firstFocusableElement !== updatedFocusFirstElement) {
       focusOnFirstElement(el, focusableElements + ', ' + excludeElements);
     }
   },
