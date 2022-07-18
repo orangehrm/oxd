@@ -17,7 +17,8 @@
   align-items: center;
   &-am-pm-wrapper {
     position: absolute;
-    left: 3rem;
+    left: $oxd-time-picker-input-ampm-left-position;
+    right: $oxd-time-picker-input-ampm-right-position;
   }
   &-am-pm-label {
     box-sizing: border-box;
