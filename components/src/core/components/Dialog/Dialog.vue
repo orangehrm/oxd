@@ -9,7 +9,9 @@
         <oxd-sheet
           :class="classes"
           v-bind="$attrs"
+          v-focus-trap
           role="document"
+          @keyup="onEscape"
           @click="onClickSheet"
         >
           <oxd-dialog-close-button
@@ -29,6 +31,7 @@ import {defineComponent} from 'vue';
 import Overlay from '@orangehrm/oxd/core/components/Dialog/Overlay.vue';
 import CloseButton from '@orangehrm/oxd/core/components/Dialog/CloseButton.vue';
 import Sheet from '@orangehrm/oxd/core/components/Sheet/Sheet.vue';
+import focusTrapDirective from '../../../directives/focus-trap';
 
 // Containers
 import DefaultContainer from '@orangehrm/oxd/core/components/Dialog/Container/Default.vue';
@@ -44,6 +47,10 @@ export default defineComponent({
 
     // Containers
     'oxd-dialog-container-default': DefaultContainer,
+  },
+
+  directives: {
+    'focus-trap': focusTrapDirective,
   },
 
   emits: ['update:show'],
@@ -87,6 +94,12 @@ export default defineComponent({
     onClose() {
       this.$emit('update:show', false);
     },
+
+    onEscape(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        this.$emit('update:show', false);
+      }
+    },
     onClickOverlay() {
       if (!this.persistent) {
         this.$emit('update:show', false);
@@ -98,6 +111,7 @@ export default defineComponent({
   },
 
   mounted() {
+    window.addEventListener('keyup', this.onEscape);
     const body = document.getElementsByTagName('body');
     if (body) {
       body[0].classList.add('overflow-hidden');
@@ -105,6 +119,7 @@ export default defineComponent({
   },
 
   unmounted() {
+    window.removeEventListener('keyup', this.onEscape);
     const body = document.getElementsByTagName('body');
     if (body) {
       body[0].classList.remove('overflow-hidden');

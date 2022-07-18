@@ -110,8 +110,19 @@ $oxd-dropdown-arrow-width: 35px !default;
 $oxd-dropdown-arrow-height: 35px !default;
 $oxd-dropdown-arrow-border-radius: 0.65rem !default;
 
+$oxd-time-picker-input-ampm-font-family: $oxd-font-family !default;
+$oxd-time-picker-input-ampm-font-size: 12px !default;
+$oxd-time-picker-input-ampm-font-color: $oxd-interface-gray-darken-1-color !default;
+$oxd-time-picker-input-ampm-font-weight: 400 !default;
+$oxd-time-picker-input-ampm-background-color: $oxd-background-light-gray-color !default;
+$oxd-time-picker-input-ampm-border-radius: 0.4rem !default;
+$oxd-time-picker-input-ampm-padding: 0.25rem 0.5rem !default;
+$oxd-time-picker-input-ampm-left-position: auto !default;
+$oxd-time-picker-input-ampm-right-position: 2.6rem !default;
+
 $oxd-time-picker-period-label-width: 60px !default;
-$oxd-time-picker-period-label-padding: 0.25rem 0rem !default;
+$oxd-time-picker-period-label-padding: 0 !default;
+$oxd-time-picker-period-label-margin-between: 8px !default;
 $oxd-time-picker-period-horizontal-padding: 16px !default;
 $oxd-time-picker-period-vertical-padding: 8px !default;
 $oxd-time-picker-period-font-size: 14px !default;

@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BulletPoints renders the bullet points component 1`] = `
+<ul class="oxd-bullet-point-list">
+  <li class="oxd-bullet-point-item">
+    <div class="oxd-bullet-point-vertical-line" style="height: 50%; top: 50%;"></div>
+    <div class="oxd-bullet-point-content">
+      <div class="oxd-bullet-point"></div>
+      <div> Item 1</div>
+    </div>
+  </li>
+  <li class="oxd-bullet-point-item">
+    <div class="oxd-bullet-point-vertical-line"></div>
+    <div class="oxd-bullet-point-content">
+      <div class="oxd-bullet-point"></div>
+      <div> Item 2</div>
+    </div>
+  </li>
+  <li class="oxd-bullet-point-item">
+    <div class="oxd-bullet-point-vertical-line" style="height: 50%;"></div>
+    <div class="oxd-bullet-point-content">
+      <div class="oxd-bullet-point" style="background-color: green;"></div>
+      <div> Item 3</div>
+    </div>
+  </li>
+</ul>
+`;

@@ -27,7 +27,7 @@
     align-items: center;
   }
 
-  .oxd-time-seperator {
+  .oxd-time-separator {
     display: block;
     &-icon {
       padding: $oxd-time-picker-dropdown-seperator-padding;
@@ -36,7 +36,7 @@
 
   :deep(.oxd-time-hour-input-text),
   :deep(.oxd-time-minute-input-text),
-  .oxd-time-separator {
+  .oxd-time-separator-icon {
     width: inherit;
     text-align: center;
     font-size: $oxd-time-picker-input-font-size;
@@ -52,6 +52,10 @@
     position: relative;
     padding: $oxd-time-picker-period-label-padding;
     min-width: $oxd-time-picker-period-label-width;
+
+    &:first-child {
+      margin-bottom: $oxd-time-picker-period-label-margin-between;
+    }
 
     input[type='radio'] {
       opacity: 0;

@@ -8,7 +8,8 @@
     @blur="onBlur"
   >
     <div class="oxd-select-text-input">
-      <div class="selected-content">{{ value }}</div>
+      <div v-if="!value" class="select-placeholder">{{ $vt(placeholder) }}</div>
+      <div v-else class="selected-content">{{ value }}</div>
       <input
         type="text"
         readonly="readonly"
@@ -37,6 +38,7 @@ import {defineComponent} from 'vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import eventsMixin from './events-mixin';
 import navigationMixin from './navigation-mixin';
+import translateMixin from '../../../../mixins/translate';
 
 export default defineComponent({
   name: 'oxd-select-text',
@@ -46,7 +48,7 @@ export default defineComponent({
     'oxd-icon': Icon,
   },
 
-  mixins: [navigationMixin, eventsMixin],
+  mixins: [navigationMixin, eventsMixin, translateMixin],
 
   emits: ['icon:clicked'],
 
@@ -56,6 +58,9 @@ export default defineComponent({
       default: true,
     },
     value: {
+      type: String,
+    },
+    placeholder: {
       type: String,
     },
     style: {

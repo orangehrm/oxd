@@ -45,7 +45,7 @@
     vertical-align: top;
     .list-table-filter {
       padding: 0 0 0 0;
-      margin: 0 0 0 1rem;
+      margin: 0 0.5rem 0 0.5rem;
       border-radius: 0;
       :deep(.oxd-table-filter-header) {
         min-height: 2.5rem;
@@ -77,8 +77,8 @@
     }
   }
   .oxd-classic-table {
-    padding-right: 0;
-    padding-left: 0.625rem;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
     padding-top: 0;
     flex-wrap: nowrap;
     min-height: calc(75vh - 140px);
