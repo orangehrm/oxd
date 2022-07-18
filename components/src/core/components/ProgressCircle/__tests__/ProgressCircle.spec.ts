@@ -126,7 +126,7 @@ describe('ProgressCircle.vue', () => {
       },
     });
 
-    expect(wrapper.vm.normalizedValue).toEqual("60.15");
+    expect(wrapper.vm.normalizedValue).toEqual('60.15');
   });
 
   it('No round off for floating point numbers which has 2 decimal points', () => {
@@ -158,5 +158,4 @@ describe('ProgressCircle.vue', () => {
 
     expect(wrapper.vm.normalizedValue).toEqual(65);
   });
-
 });

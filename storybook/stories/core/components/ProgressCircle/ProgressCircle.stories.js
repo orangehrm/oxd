@@ -69,7 +69,7 @@ export default {
             'The slot which defines the bottom content of the progress circle',
         },
       },
-    }
+    },
   },
 };
 
@@ -195,12 +195,13 @@ CustomStrokeColorFilledArea.parameters = {
 };
 
 const CustomInnerSlotTemplate = (args) => ({
-    setup() {
-      return {args};
-    },
-    components: {'oxd-progress-circle': ProgressCircle},
-    template: '<oxd-progress-circle v-bind="args"> <template #progressCircleInnerContent><div> Slot </div></template> </oxd-progress-circle>',
-  });
+  setup() {
+    return {args};
+  },
+  components: {'oxd-progress-circle': ProgressCircle},
+  template:
+    '<oxd-progress-circle v-bind="args"> <template #progressCircleInnerContent><div> Slot </div></template> </oxd-progress-circle>',
+});
 
 export const CustomInnerSlot = CustomInnerSlotTemplate.bind({});
 CustomInnerSlot.args = {};
@@ -213,12 +214,13 @@ CustomInnerSlot.parameters = {
 };
 
 const CustomBottomSlotTemplate = (args) => ({
-    setup() {
-      return {args};
-    },
-    components: {'oxd-progress-circle': ProgressCircle},
-    template: '<oxd-progress-circle v-bind="args"> <template #progressCircleBottomContent><div> Bottom Content Comes here! </div></template> </oxd-progress-circle>',
-  });
+  setup() {
+    return {args};
+  },
+  components: {'oxd-progress-circle': ProgressCircle},
+  template:
+    '<oxd-progress-circle v-bind="args"> <template #progressCircleBottomContent><div> Bottom Content Comes here! </div></template> </oxd-progress-circle>',
+});
 
 export const CustomBottomSlot = CustomBottomSlotTemplate.bind({});
 CustomBottomSlot.args = {};
