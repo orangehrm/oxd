@@ -3,6 +3,7 @@
     <oxd-icon
       name="oxd-arrow-left"
       size="extra-small"
+      class="oxd-calendar-header-arrow"
       @click="gotoPreviousMonth"
     ></oxd-icon>
     <ul class="oxd-calendar-selector">
@@ -50,6 +51,7 @@
     <oxd-icon
       name="oxd-arrow-right"
       size="extra-small"
+      class="oxd-calendar-header-arrow"
       @click="gotoNextMonth"
     ></oxd-icon>
   </div>

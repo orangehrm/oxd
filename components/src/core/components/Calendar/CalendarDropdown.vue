@@ -4,7 +4,7 @@
     ref="dropdownSelector"
     v-click-outside="closeSubMenu"
     :class="{'--active': isActive}"
-    @click="openSubmenu"
+    @click="toggleSubmenu"
     @keyup.enter="openSubmenu"
     @keyup.esc="closeSubMenu"
   >
@@ -12,6 +12,7 @@
     <transition name="transition-fade-down">
       <ul
         v-if="isActive"
+        ref="oxdCalendarDropdown"
         class="oxd-calendar-dropdown"
         role="menu"
         tabindex="-1"
@@ -43,9 +44,21 @@ export default defineComponent({
   },
 
   methods: {
+    toggleSubmenu() {
+      this.isActive = !this.isActive;
+      if (this.isActive) {
+        this.openSubmenu();
+      }
+    },
     openSubmenu() {
       this.isActive = true;
       this.$refs.dropdownSelector.focus();
+      this.$nextTick(() => {
+        const selectedItem = this.$refs.oxdCalendarDropdown.querySelector(
+          '.oxd-calendar-selector.--selected',
+        );
+        selectedItem.scrollIntoView({block: 'end'});
+      });
     },
     closeSubMenu($e: KeyboardEvent | null) {
       if (this.isActive) {

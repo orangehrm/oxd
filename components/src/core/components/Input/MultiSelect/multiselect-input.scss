@@ -30,10 +30,20 @@
       background-color: $oxd-dropdown-chip-clear-background-color;
       color: $oxd-dropdown-chip-clear-font-color;
       margin-left: $oxd-dropdown-chip-margin;
+      font-size: 14px;
+      min-width: auto;
+      min-height: auto;
+      padding: 0;
+      :deep(.oxd-icon) {
+        color: $oxd-dropdown-chip-clear-font-color;
+      }
     }
     & .--disabled,
     & .--readonly {
       cursor: unset;
+    }
+    &:focus-within {
+      border: $oxd-input-border--focus;
     }
   }
 }

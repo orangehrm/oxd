@@ -1,14 +1,18 @@
 import ListComponent from '@orangehrm/oxd/core/components/List/List';
 import ListStory from './List.story.vue';
-import configurations from './list-schema';
+import basicList from './basic-list-schema';
+import listWithSidebar from './list-with-sidebar';
 import data from './list-data.json';
 
 export default {
-  title: 'Example/List',
+  title: 'Data Tables/List',
   argTypes: {
     listItems: {
       control: {type: 'object'},
-      defaultValue: data.items,
+      defaultValue: data.candidates,
+      table: {
+        type: {summary: 'Set list items to the list'},
+      },
     },
     listHighlightRows: {
       control: {type: 'object'},
@@ -16,10 +20,16 @@ export default {
         rowIndexes: [0,2],
         type: 'success',
       },
+      table: {
+        type: {summary: 'Set the highlighted rows'},
+      },
     },
     configurations: {
       control: {type: 'object'},
-      defaultValue: configurations,
+      defaultValue: listWithSidebar,
+      table: {
+        type: {summary: 'Set the list configurations'},
+      },
     },
     pagination: {
       control: {type: 'object'},
@@ -31,22 +41,37 @@ export default {
         limit: 20,
         pages: [10, 20, 50, 100]
       },
+      table: {
+        type: {summary: 'Set the options for pagination'},
+      },
     },
     selectedListItem: {
       control: {type: 'array'},
       defaultValue: data.vacancies,
+      table: {
+        type: {summary: 'Set the list list item for the left sidebar'},
+      },
     },
     wholeRecordsCount: {
       control: {type: 'number'},
       defaultValue: 110,
+      table: {
+        type: {summary: 'Set the Total number of Records in the list'},
+      },
     },
     filteredTotalRecordsCount: {
       control: {type: 'number'},
       defaultValue: 100,
+      table: {
+        type: {summary: 'Set the Number of records showing in the current page'},
+      },
     },
     sidePanelList: {
       control: {type: 'array'},
       defaultValue: data.stages,
+      table: {
+        type: {summary: 'Set the options showing in the side panel'},
+      },
     }
   },
 };
@@ -69,11 +94,34 @@ const Template = args => ({
 });
 export const Default = () => ListStory;
 
+export const BasicList = Template.bind({});
+const basicListArgs = {
+  configurations: basicList,
+  listItems: data.historyEvents,
+  listHighlightRows: null,
+  pagination: null,
+  wholeRecordsCount: 4,
+  filteredTotalRecordsCount: 4,
+};
+BasicList.args = basicListArgs;
+BasicList.storyName = 'Basic List';
+
+
+export const EmptyList = Template.bind({});
+EmptyList.args = {
+  configurations: basicList,
+  listItems: [],
+  listHighlightRows: null,
+  pagination: null,
+  wholeRecordsCount: 0,
+  filteredTotalRecordsCount: 0,
+};
+EmptyList.storyName = 'Empty List';
 
 export const Configurable = Template.bind({});
 Configurable.args = {
-  configurations: configurations,
-  listItems: data.items,
+  configurations: listWithSidebar,
+  listItems: data.candidates,
   listHighlightRows: {
     rowIndexes: [0,2],
     type: 'success',

@@ -15,6 +15,14 @@
   &.--empty {
     min-height: $oxd-form-min-height;
   }
+  &.oxd-schema-form-container {
+    :deep(.oxd-grid-1),
+    :deep(.oxd-grid-2),
+    :deep(.oxd-grid-3),
+    :deep(.oxd-grid-4) {
+      grid-gap: 0;
+    }
+  }
 }
 
 .oxd-form-row {

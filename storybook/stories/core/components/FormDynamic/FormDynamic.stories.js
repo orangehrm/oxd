@@ -2,7 +2,7 @@ import DefaultFormDynamic from './DefaultFormDynamic.story.vue';
 import AddCandidateFormDynamic from './AddCandidateFormDynamic.story.vue';
 
 export default {
-  title: 'Example/FormDynamic',
+  title: 'Form/FormDynamic',
 };
 
 export const Default = () => DefaultFormDynamic;

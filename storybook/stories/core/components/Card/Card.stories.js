@@ -1,7 +1,7 @@
 import Card from '@orangehrm/oxd/core/components/Card/Card';
 
 export default {
-  title: 'Example/Card',
+  title: 'Layout/Card',
   component: Card,
   argTypes: {},
 };

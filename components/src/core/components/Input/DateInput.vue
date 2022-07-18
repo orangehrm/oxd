@@ -1,12 +1,18 @@
 <template>
   <div class="oxd-date-wrapper">
-    <div class="oxd-date-input">
+    <div
+      class="oxd-date-input"
+      :tooltip="isLengthyDate ? displayDate : null"
+      flow="bottom"
+    >
       <oxd-input
         :hasError="hasError"
         :disabled="disabled"
         :readonly="readonly"
         :value="displayDate"
         :placeholder="placeholder"
+        v-bind="defaultAttrs"
+        v-click-outside="onClickTextOutside"
         ref="oxdInput"
         @update:modelValue="onDateTyped"
         @blur="onBlur"
@@ -14,6 +20,8 @@
       <div
         class="oxd-date-input-icon-wrapper"
         tabindex="0"
+        :class="dateIconAttributeClasses"
+        v-if="!disabled"
         ref="oxdIcon"
         @click="toggleDropdown"
         @keyup.enter.prevent.stop="toggleDropdown"
@@ -30,11 +38,20 @@
         v-dropdown-direction
       >
         <oxd-calendar
-          v-bind="$attrs"
           @update:modelValue="onDateSelected"
+          @selectMonth="selectMonth"
+          @selectYear="selectYear"
           @mousedown.prevent
           v-model="dateSelected"
           :locale="locale"
+          :firstDayOfWeek="firstDayOfWeek"
+          :years="years"
+          :monthFormat="monthFormat"
+          :months="months"
+          :dayFormat="dayFormat"
+          :days="days"
+          :dayAttributes="dayAttributes"
+          :events="events"
           v-focus-trap
         >
           <div class="oxd-date-input-links">
@@ -44,7 +61,7 @@
               class="oxd-date-input-link --today"
               tabindex="0"
             >
-              Today
+              {{ $vt('Today') }}
             </div>
             <div
               @keyup.enter="onClickClear"
@@ -52,7 +69,7 @@
               class="oxd-date-input-link --clear"
               tabindex="0"
             >
-              Clear
+              {{ $vt('Clear') }}
             </div>
             <div
               @keyup.enter="closeDropdown"
@@ -60,7 +77,7 @@
               class="oxd-date-input-link --close"
               tabindex="0"
             >
-              Close
+              {{ $vt('Close') }}
             </div>
           </div>
         </oxd-calendar>
@@ -72,13 +89,16 @@
 <script lang="ts">
 import {enUS} from 'date-fns/locale';
 import {defineComponent, PropType} from 'vue';
-import {formatDate, parseDate, freshDate} from '../../../utils/date';
+import {formatDate, parseDate, freshDate, getYear} from '../../../utils/date';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import Calendar from '@orangehrm/oxd/core/components/Calendar/Calendar.vue';
 import clickOutsideDirective from '../../../directives/click-outside';
 import dropdownDirectionDirective from '../../../directives/dropdown-direction';
 import focusTrapDirective from '../../../directives/focus-trap';
+import translateMixin from '../../../mixins/translate';
+import {LENGTHY_DATE_FORMATS} from '../Calendar/types';
+import {CalendarDayAttributes, CalendarEvent} from '../Calendar/types';
 
 export default defineComponent({
   name: 'oxd-date-input',
@@ -89,6 +109,8 @@ export default defineComponent({
     'oxd-input': Input,
     'oxd-calendar': Calendar,
   },
+
+  mixins: [translateMixin],
 
   directives: {
     'click-outside': clickOutsideDirective,
@@ -129,6 +151,43 @@ export default defineComponent({
       type: Object as PropType<Locale>,
       default: enUS,
     },
+    firstDayOfWeek: {
+      type: Number,
+      default: 0, // 0 | 1 | 2 | 3 | 4 | 5 | 6 => 0 represents Sunday
+    },
+    years: {
+      type: Array,
+      default: () => {
+        return Array.from(
+          {length: getYear(new Date()) - 1969},
+          (_, i) => 1970 + i,
+        );
+      },
+    },
+    monthFormat: {
+      type: String,
+      default: 'wide',
+    },
+    months: {
+      type: Array,
+      default: () => [],
+    },
+    dayFormat: {
+      type: String,
+      default: 'narrow',
+    },
+    days: {
+      type: Array,
+      default: () => [],
+    },
+    dayAttributes: {
+      type: Array as PropType<CalendarDayAttributes[]>,
+      default: () => [],
+    },
+    events: {
+      type: Array as PropType<CalendarEvent[]>,
+      default: () => [],
+    },
   },
 
   data() {
@@ -152,6 +211,12 @@ export default defineComponent({
       this.dateTyped = value;
     },
     onDateSelected() {
+      const oxdDatePicker = this.$refs.oxdInput;
+      oxdDatePicker.focused = true;
+      this.$nextTick(() => {
+        const oxdDateInputTriggerBtn = this.$refs.oxdIcon;
+        oxdDateInputTriggerBtn.blur();
+      });
       this.closeDropdown();
     },
     toggleDropdown() {
@@ -168,7 +233,7 @@ export default defineComponent({
       this.$emit('dateselect:opened');
     },
     closeDropdown($e: KeyboardEvent | null) {
-      if ($e && $e.key === 'Escape') $e.stopPropagation();
+      if ($e && $e.key === 'Escape' && this.open) $e.stopPropagation();
       this.open = false;
       this.$refs.oxdIcon.focus();
       this.$emit('dateselect:closed');
@@ -176,6 +241,10 @@ export default defineComponent({
     onClickOutside() {
       this.open = false;
       this.$emit('dateselect:closed');
+    },
+    onClickTextOutside() {
+      const oxdDatePicker = this.$refs.oxdInput;
+      oxdDatePicker.focused = false;
     },
     onClickToday() {
       this.dateSelected = freshDate();
@@ -188,9 +257,27 @@ export default defineComponent({
       this.open = false;
       this.$refs.oxdIcon.focus();
     },
+    selectMonth($e: Event) {
+      this.$emit('selectMonth', $e);
+    },
+    selectYear($e: Event) {
+      this.$emit('selectYear', $e);
+    },
   },
 
   computed: {
+    defaultAttrs() {
+      const notAllowed = ['onUpdate:modelValue'];
+      return Object.keys(this.$attrs)
+        .filter(key => !notAllowed.includes(key))
+        .reduce((obj, key) => {
+          obj[key] = this.$attrs[key];
+          return obj;
+        }, {});
+    },
+    isLengthyDate() {
+      return LENGTHY_DATE_FORMATS.indexOf(this.format) > -1;
+    },
     dateSelected: {
       get() {
         return parseDate(this.modelValue, this.ioformat);
@@ -211,7 +298,14 @@ export default defineComponent({
     },
     dateIconClasses(): object {
       return {
+        'justify-center': true,
         'oxd-date-input-icon': true,
+        '--disabled': this.disabled,
+        '--readonly': this.readonly,
+      };
+    },
+    dateIconAttributeClasses(): object {
+      return {
         '--disabled': this.disabled,
         '--readonly': this.readonly,
       };

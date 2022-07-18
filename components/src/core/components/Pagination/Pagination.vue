@@ -7,11 +7,35 @@
         v-if="showPrevious"
       />
       <oxd-pagination-page-item
+        v-if="pageItems.indexOf(1) === -1"
+        :page="1"
+        :selected="1 === currentPage"
+        @click="onClickPage(1, $event)"
+      />
+      <span
+        v-if="pageItems.indexOf(1) === -1"
+        class="d-flex align-end oxd-pagination-separator"
+        last
+        >...</span
+      >
+      <oxd-pagination-page-item
         v-for="page in pageItems"
         :key="page"
         :page="page"
         :selected="page === currentPage"
         @click="onClickPage(page, $event)"
+      />
+      <span
+        v-if="!(pageItems[pageItems.length - 1] === length)"
+        class="d-flex align-end oxd-pagination-separator"
+        last
+        >...</span
+      >
+      <oxd-pagination-page-item
+        v-if="!(pageItems[pageItems.length - 1] === length)"
+        :page="length"
+        :selected="length === currentPage"
+        @click="onClickPage(length, $event)"
       />
       <oxd-pagination-page-item next @click="onClickNext" v-if="showNext" />
       <oxd-select-input
@@ -48,45 +72,39 @@ export default defineComponent({
       pagePointer: this.current,
       perPageData: {
         id: 2,
-        label: '20',
+        label: 20,
       },
     };
   },
 
   props: {
     length: {
-      type: Number,
+      type: Number as PropType<number>,
       required: true,
       validator: (val: number) => Number.isInteger(val),
     },
     max: {
-      type: Number,
+      type: Number as PropType<number>,
       default: 5,
       validator: (val: number) => Number.isInteger(val),
     },
     current: {
-      type: Number,
+      type: Number as PropType<number>,
       default: 1,
       validator: (val: number) => Number.isInteger(val),
     },
     totalRecordsCount: {
-      type: Number,
+      type: Number as PropType<number>,
       default: 0,
       validator: (val: number) => Number.isInteger(val),
     },
     pagesList: {
-      type: Array,
-      default: () => ['10', '20', '50', '100'],
+      type: Array as PropType<number[]>,
+      default: () => [10, 20, 50, 100],
     },
     perPage: {
-      type: Object as PropType<{
-        id: number;
-        label: string;
-      }>,
-      default: () => ({
-        id: 2,
-        label: '20',
-      }),
+      type: Number as PropType<number>,
+      default: () => 20,
     },
   },
 
@@ -205,7 +223,7 @@ export default defineComponent({
       }
       return range;
     },
-    selectPerPage(val) {
+    selectPerPage(val: {id: number; label: number}) {
       this.perPageData = val;
       this.currentPage = 1;
       this.$emit('onPerPageSelect', val);
@@ -213,7 +231,12 @@ export default defineComponent({
   },
 
   mounted() {
-    this.perPageData = this.perPage;
+    const pageIndex: number =
+      this.pagesList.findIndex((page: number) => page === this.perPage) + 1;
+    this.perPageData = {
+      id: pageIndex,
+      label: this.perPage,
+    };
   },
 });
 </script>

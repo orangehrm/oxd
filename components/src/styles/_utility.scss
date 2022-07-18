@@ -1,6 +1,10 @@
+// flexbox begins
 .d-flex {
   display: flex;
 }
+.flex-wrap {
+  flex-wrap: wrap;
+};
 .align-center {
   align-items: center;
 }
@@ -28,6 +32,18 @@
 .justify-evenly {
   justify-content: space-evenly;
 }
+// flexbox ends
+
+// table begins
+.d {
+  &-table {
+  display: table;
+    &-cell {
+      display: table-cell;
+    }
+  }
+}
+// table ends
 
 .w-100 {
   width: 100% !important;
@@ -59,6 +75,18 @@
   }
 }
 
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.text-justify {
+  text-align: justify;
+}
 
 /* START TOOLTIP STYLES */
 [tooltip] {
@@ -222,3 +250,33 @@
 [tooltip][flow^="right"]:focus-visible::after {
   animation: tooltips-horz 300ms ease-out forwards;
 }
+
+.--positon-top {
+  bottom: 100%;
+  margin-bottom: $oxd-dropdown-dropdown-margin;
+}
+
+.--positon-right {
+  left: 100%;
+  margin-left: $oxd-dropdown-dropdown-margin;
+}
+
+.--positon-left {
+  right: 100%;
+  margin-right: $oxd-dropdown-dropdown-margin;
+}
+
+.--positon-bottom {
+  margin-top: $oxd-dropdown-dropdown-margin;
+}
+
+// cursor types begins
+.cursor {
+  &-pointer {
+    cursor: pointer;
+  }
+  &-default {
+    cursor: default;
+  }
+}
+// cursor types ends

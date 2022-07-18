@@ -26,7 +26,7 @@ $oxd-checkbox-check-font-size: 1rem !default;
 $oxd-checkbox-height: 1rem !default;
 $oxd-checkbox-width: 1rem !default;
 $oxd-checkbox-border: 1px solid $oxd-interface-gray-lighten-1-color !default;
-$oxd-checkbox-border-radius: 0.25rem !default;
+$oxd-checkbox-border-radius: 0.375rem !default;
 $oxd-checkbox-label-margin: 0.5em !default;
 $oxd-checkbox-checked-background-color: $oxd-primary-input-color !default;
 $oxd-checkbox-checked-border: 1px solid $oxd-primary-input-color !default;
@@ -36,16 +36,17 @@ $oxd-switch-label-color: $oxd-input-control-font-color !default;
 $oxd-switch-label-color--disabled: $oxd-interface-gray-color !default;
 $oxd-switch-width: 2rem !default;
 $oxd-switch-height: calc(#{$oxd-switch-width} / 2);
-$oxd-switch-radius: calc(#{$oxd-switch-height} / 2);
+$oxd-switch-radius: calc(#{$oxd-switch-width} / 2);
 $oxd-switch-selector-height: calc(#{$oxd-switch-height} - 2px);
 $oxd-switch-selector-width: calc(#{$oxd-switch-height} - 2px);
 $oxd-switch-selector-radius: calc(#{$oxd-switch-selector-height} / 2);
 $oxd-switch-selector-color: $oxd-white-color !default;
-$oxd-switch-label-margin: 0.5em;
+$oxd-switch-label-margin: 15px;
 $oxd-switch-off-background-color: $oxd-interface-gray-lighten-2-color !default;
 $oxd-switch-on-background-color: $oxd-primary-input-color !default;
 $oxd-switch-on-disabled-background-color: hsl(25, 100%, 56%, 0.5) !default;
-$oxd-switch-off-disabled-background-color: $oxd-interface-gray-lighten-2-color !default;
+$oxd-switch-off-disabled-background-color: $oxd-interface-gray-lighten-1-color !default;
+$oxd-switch-off-disabled-selector-color: $oxd-interface-gray-lighten-2-color !default;
 $oxd-switch-disabled-background-color: $oxd-interface-gray-lighten-2-color !default;
 
 $oxd-radio-label-color: $oxd-input-control-font-color !default;
@@ -55,6 +56,10 @@ $oxd-radio-width: 1rem !default;
 $oxd-radio-label-margin: 0.5em !default;
 $oxd-radio-checked-color: $oxd-primary-input-color !default;
 $oxd-radio-checked-disabled-color: #ffd4b6 !default;
+$oxd-radio-active-border: $oxd-border $oxd-interface-gray-lighten-1-color !default;
+$oxd-radio-checked-active-border: $oxd-border $oxd-radio-checked-color !default;
+$oxd-radio-checked-disabled-border: $oxd-border
+  $oxd-radio-checked-disabled-color !default;
 
 $oxd-dropdown-text-padding: 0 0.25rem 0 0.5rem !default;
 $oxd-dropdown-animation-time: 300ms !default;
@@ -62,7 +67,7 @@ $oxd-dropdown-max-height: 11.5rem !default;
 $oxd-dropdown-loader-height: 1rem !default;
 $oxd-dropdown-dropdown-z-index: 300 !default;
 $oxd-dropdown-dropdown-box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.15) !default;
-$oxd-dropdown-dropdown-padding: 0.5rem 0.25rem 0.5rem 0.5rem !default;
+$oxd-dropdown-dropdown-padding: 0.5rem 0.25rem !default;
 $oxd-dropdown-dropdown-inner-padding: 0.125rem 0.5rem 0 0 !default;
 $oxd-dropdown-dropdown-border: 1px solid $oxd-interface-gray-lighten-2-color !default;
 $oxd-dropdown-dropdown-border-radius: 0.65rem !default;
@@ -88,6 +93,7 @@ $oxd-dropdown-option-color--disabled: $oxd-interface-gray-lighten-1-color !defau
 $oxd-dropdown-option-color--selected: $oxd-interface-gray-lighten-1-color !default;
 $oxd-dropdown-option-background: transparent !default;
 $oxd-dropdown-option-background--focused: #f6f7f9 !default;
+$oxd-dropdown-option-background--selected: $oxd-interface-gray-lighten-2-color !default;
 
 $oxd-dropdown-chip-margin: 5px !default;
 $oxd-dropdown-chip-background-color: #f6f7f9 !default;
@@ -104,16 +110,30 @@ $oxd-dropdown-arrow-width: 35px !default;
 $oxd-dropdown-arrow-height: 35px !default;
 $oxd-dropdown-arrow-border-radius: 0.65rem !default;
 
+$oxd-time-picker-input-ampm-font-family: $oxd-font-family !default;
+$oxd-time-picker-input-ampm-font-size: 12px !default;
+$oxd-time-picker-input-ampm-font-color: $oxd-interface-gray-darken-1-color !default;
+$oxd-time-picker-input-ampm-font-weight: 400 !default;
+$oxd-time-picker-input-ampm-background-color: $oxd-background-light-gray-color !default;
+$oxd-time-picker-input-ampm-border-radius: 0.4rem !default;
+$oxd-time-picker-input-ampm-padding: 0.25rem 0.5rem !default;
+
 $oxd-time-picker-period-label-width: 60px !default;
-$oxd-time-picker-period-label-padding: 0.25rem 0rem !default;
+$oxd-time-picker-period-label-padding: 0 !default;
+$oxd-time-picker-period-label-margin-between: 8px !default;
 $oxd-time-picker-period-horizontal-padding: 16px !default;
 $oxd-time-picker-period-vertical-padding: 8px !default;
 $oxd-time-picker-period-font-size: 14px !default;
 $oxd-time-picker-period-font-weight: 600 !default;
 $oxd-time-picker-period-font-family: $oxd-font-family !default;
-$oxd-time-picker-period-font-color: $oxd-white-color !default;
+$oxd-time-picker-period-font-color: $oxd-interface-gray-darken-1-color !default;
+$oxd-time-picker-period-background-color: $oxd-background-light-gray-color !default;
+$oxd-time-picker-period-checked-font-color: $oxd-white-color !default;
+$oxd-time-picker-period-checked-background-color: $oxd-primary-one-color !default;
 $oxd-time-picker-period-border-radius: 0.5rem !default;
-$oxd-time-picker-dropdown-margin: 1.5rem 1rem !default;
+$oxd-time-picker-input-font-size: 1rem !default;
+$oxd-time-picker-input-font-weight: 700 !default;
+$oxd-time-picker-dropdown-padding: 1rem 1rem !default;
 $oxd-time-picker-dropdown-width: 250px !default;
 $oxd-time-picker-dropdown-input-width: 60px !default;
 $oxd-time-picker-dropdown-seperator-padding: 0.5rem !default;
@@ -130,3 +150,5 @@ $oxd-date-input-link-highlight-color: $oxd-primary-input-color !default;
 $oxd-date-input-link-background: $oxd-background-light-gray-color !default;
 
 $oxd-autocomplete-dropdown-option-padding: 0.3rem 0.75rem !default;
+
+$oxd-select-input-button-color--secondary-pressed: #68a61d !default;

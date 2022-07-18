@@ -8,7 +8,6 @@
     background-color: $oxd-calendar-wrapper-background-color;
     border: $oxd-calendar-wrapper-boder;
     border-radius: $oxd-calendar-wrapper-boder-radius;
-    max-width: $oxd-calendar-wrapper-width;
   }
   &-header {
     display: flex;
@@ -102,6 +101,7 @@
       background-color: $oxd-calendar-date-selected-background-color;
       color: $oxd-calendar-date-selected-font-color;
       font-weight: $oxd-calendar-date-selected-font-weight;
+      transform: scale(0.9);
     }
   }
 
@@ -134,9 +134,17 @@
       border-radius: $oxd-calendar-controller-item-radius;
       width: auto;
       &:hover,
-      &:focus-visible,
-      &.--selected {
+      &:focus-visible {
         background-color: $oxd-calendar-controller-item-background-color;
+      }
+      &.--selected {
+        background-color: $oxd-calendar-controller-item-background-color-selected;
+      }
+      :deep(.oxd-text--p) {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 80px;
       }
     }
 
@@ -154,22 +162,44 @@
       &-selected {
         display: flex;
         align-items: center;
+        i.oxd-icon-button__icon {
+          &:hover {
+            color: $oxd-interface-gray-darken-1-color;
+          }
+        }
+      }
+      &:hover {
+        background-color: $oxd-calendar-date-hover-background-color;
       }
     }
     &-month {
-      flex-basis: 70%;
+      flex-basis: 60%;
       padding-right: calc(#{$oxd-calendar-controller-padding}/ 2);
       border-top-left-radius: 2.375rem;
       border-bottom-left-radius: 2.375rem;
-      font-size: $oxd-input-control-font-size;
     }
 
     &-year {
-      flex-basis: 30%;
+      flex-basis: 40%;
       padding-left: calc(#{$oxd-calendar-controller-padding}/ 2);
       border-top-right-radius: 2.375rem;
       border-bottom-right-radius: 2.375rem;
+    }
+    &-month,
+    &-year {
       font-size: $oxd-input-control-font-size;
+      .oxd-calendar-selector-month-selected,
+      .oxd-calendar-selector-year-selected {
+        .oxd-text {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 80px;
+        }
+      }
+      &.--active {
+        background-color: $oxd-interface-gray-lighten-2-color;
+      }
     }
   }
 }

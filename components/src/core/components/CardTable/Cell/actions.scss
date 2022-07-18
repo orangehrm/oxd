@@ -7,4 +7,22 @@
   flex-wrap: wrap;
   gap: $oxd-table-cell-action-gap;
   align-items: center;
+  padding-left: $oxd-table-cell-action-gap;
+}
+
+.oxd-table-cell-actions.oxd-action-render-button-visibility-on-hover {
+  opacity: 0;
+}
+
+.oxd-table-card {
+  &:hover {
+    .oxd-action-render-button-visibility-on-hover {
+      opacity: 1;
+    }
+  }
+  &:focus-within {
+    .oxd-action-render-button-visibility-on-hover {
+      opacity: 1;
+    }
+  }
 }

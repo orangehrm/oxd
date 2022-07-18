@@ -28,7 +28,7 @@
           :name="header.iconName"
           :style="header.iconStyle"
         />
-        <span v-else>{{ $t(header.title) }}</span>
+        <span v-else>{{ $vt(header.title) }}</span>
       </oxd-card-th>
     </oxd-card-tr>
   </oxd-card-thead>
@@ -44,6 +44,8 @@ import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vu
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import {DEVICE_LG, DEVICE_XL} from '../../../../composables/useResponsive';
 import {CardHeader, Order} from '../types';
+import translateMixin from '../../../../mixins/translate';
+import {RowItem} from '../Cell/types';
 
 interface State {
   checkIcon: string;
@@ -62,29 +64,47 @@ export default defineComponent({
     'oxd-checkbox-input': CheckboxInput,
   },
 
+  mixins: [translateMixin],
+
   setup() {
     /* eslint-disable @typescript-eslint/no-explicit-any */
     const tableProps: any = inject('tableProps');
     const screenState: any = inject('screenState');
     /* eslint-enable @typescript-eslint/no-explicit-any */
 
+    const getCheckIcon = (
+      selectedItems: Array<number>,
+      allItems: Array<RowItem>,
+    ) => {
+      return allItems.filter((item: RowItem) => {
+        return (
+          (!Object.prototype.hasOwnProperty.call(item, 'isSelectable') ||
+            item.isSelectable) &&
+          (!Object.prototype.hasOwnProperty.call(item, 'isDisabled') ||
+            !item.isDisabled)
+        );
+      }).length === selectedItems.length
+        ? 'oxd-check'
+        : 'dash';
+    };
+
     const state: State = reactive({
-      checkIcon: 'check',
+      checkIcon: 'oxd-check',
       checkedItems: [...tableProps.selected],
       selectedAll:
         tableProps.selected.length > 0 &&
         tableProps.selected.length === tableProps.items.length,
     });
 
-    emitter.on(`${tableProps.tableId}-datatable:rowSelected`, (value) => {
-      const itemIndex = state.checkedItems.findIndex((item) => item === value);
+    emitter.on(`${tableProps.tableId}-datatable:rowSelected`, value => {
+      const itemIndex = state.checkedItems.findIndex(item => item === value);
       if (itemIndex === -1) {
         state.checkedItems.push(value);
       }
     });
 
-    emitter.on(`${tableProps.tableId}-datatable:rowUnselected`, (value) => {
-      const itemIndex = state.checkedItems.findIndex((item) => item === value);
+    emitter.on(`${tableProps.tableId}-datatable:rowUnselected`, value => {
+      const itemIndex = state.checkedItems.findIndex(item => item === value);
       if (itemIndex > -1) {
         state.checkedItems.splice(itemIndex, 1);
       }
@@ -92,15 +112,11 @@ export default defineComponent({
 
     watch(
       () => state.checkedItems,
-      (newVal) => {
+      newVal => {
         emitter.emit(`${tableProps.tableId}-datatable:updateSelected`, newVal);
         if (tableProps.items.length > 0 && newVal.length > 0) {
           state.selectedAll = true;
-          if (newVal.length === tableProps.items.length) {
-            state.checkIcon = 'check';
-          } else {
-            state.checkIcon = 'dash';
-          }
+          state.checkIcon = getCheckIcon(newVal, tableProps.items);
         } else {
           state.selectedAll = false;
         }

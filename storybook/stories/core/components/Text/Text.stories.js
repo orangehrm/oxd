@@ -7,13 +7,13 @@ import {
 } from '@orangehrm/oxd/core/components/Text/types';
 
 export default {
-  title: 'Example/Text',
+  title: 'Information/Text',
   component: Text,
 };
 
 const DUMMY_TEXT = 'Nunito is a well balanced sans serif typeface';
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     return {args};
   },

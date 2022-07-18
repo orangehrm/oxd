@@ -7,7 +7,7 @@ interface State {
 }
 
 export const eventsMixin = defineComponent({
-  props: ['modelValue', 'disabled'],
+  props: ['modelValue', 'disabled', 'readonly'],
   data(): State {
     return {
       dropdownOpen: false,
@@ -16,13 +16,13 @@ export const eventsMixin = defineComponent({
   },
   methods: {
     onOpenDropdown() {
-      if (this.disabled || this.dropdownOpen) return;
+      if (this.disabled || this.readonly || this.dropdownOpen) return;
       this.dropdownOpen = true;
       this.$emit('dropdown:opened');
     },
     onCloseDropdown($e: KeyboardEvent | null) {
-      if (this.disabled || !this.dropdownOpen) return;
-      if ($e && $e.key === 'Escape') $e.stopPropagation();
+      if (this.disabled || this.readonly || !this.dropdownOpen) return;
+      if ($e && $e.key === 'Escape' && this.dropdownOpen) $e.stopPropagation();
       this.dropdownOpen = false;
       this.$emit('dropdown:closed');
     },

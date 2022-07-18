@@ -3,7 +3,9 @@
     <oxd-select-text
       v-bind="$attrs"
       :value="inputValue"
+      :placeholder="placeholder"
       :disabled="disabled"
+      :readonly="readonly"
       :dropdownOpened="dropdownOpen"
       @click="onToggleDropdown"
       @blur="onBlur"
@@ -26,10 +28,10 @@
       :empty="computedOptions.length === 0"
     >
       <oxd-select-option
-        v-if="showEmptySelector && !hideDropdownDefaultLabel"
+        v-if="showEmptySelector && inputValue"
         @select="onClear"
       >
-        {{ $vt(placeholder) }}
+        {{ $vt('Unselect') }}
       </oxd-select-option>
       <oxd-select-option
         v-for="(option, i) in computedOptions"
@@ -89,7 +91,7 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    hideDropdownDefaultLabel: {
+    readonly: {
       type: Boolean,
       default: false,
     },
@@ -99,7 +101,7 @@ export default defineComponent({
     },
     placeholder: {
       type: String,
-      default: '-- Select --',
+      default: 'Select',
     },
     dropdownPosition: {
       type: String,
@@ -110,7 +112,7 @@ export default defineComponent({
     },
     showEmptySelector: {
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
 
@@ -137,8 +139,7 @@ export default defineComponent({
       return {
         '--positon-bottom': this.dropdownPosition === BOTTOM,
         '--positon-top': this.dropdownPosition === TOP,
-        '--with-empty-selector':
-          this.showEmptySelector && !this.hideDropdownDefaultLabel,
+        '--with-empty-selector': this.showEmptySelector,
       };
     },
     optionClasses(): object[] {
@@ -152,11 +153,7 @@ export default defineComponent({
       });
     },
     selectedItem(): string {
-      return this.modelValue?.label
-        ? this.$vt(this.modelValue.label)
-        : this.hideDropdownDefaultLabel
-        ? null
-        : this.$vt(this.placeholder);
+      return this.modelValue?.label ? this.$vt(this.modelValue.label) : null;
     },
     inputValue(): string {
       return this.computedOptions[this.pointer]?.label || this.selectedItem;

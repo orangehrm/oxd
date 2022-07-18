@@ -1,4 +1,4 @@
-import {mount, shallowMount} from '@vue/test-utils';
+import {flushPromises, mount, shallowMount} from '@vue/test-utils';
 import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
 import SelectText from '@orangehrm/oxd/core/components/Input/Select/SelectText.vue';
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
@@ -28,21 +28,25 @@ describe('SelectInput.vue', () => {
   });
   it('should load options to Select', async () => {
     const wrapper = mount(SelectInput, {
-      props: {options},
+      props: {
+        options,
+      },
     });
     wrapper.findComponent(SelectText).trigger('click');
     await wrapper.vm.$nextTick();
     const nodes = wrapper.findAllComponents(SelectOption);
-    expect(nodes.length).toBe(4);
+    expect(nodes.length).toBe(3);
   });
   it('should select one option', async () => {
     const wrapper = mount(SelectInput, {
-      props: {options},
+      props: {
+        options,
+      },
     });
     wrapper.findComponent(SelectText).trigger('click');
     await wrapper.vm.$nextTick();
     const nodes = wrapper.findAllComponents(SelectOption);
-    await nodes[1].trigger('mousedown');
+    await nodes[0].trigger('mousedown');
     expect(wrapper.emitted('update:modelValue')).toEqual([
       [
         {
@@ -53,16 +57,52 @@ describe('SelectInput.vue', () => {
       ],
     ]);
   });
-  it('should select none if placeholder selected', async () => {
+  it('on Focus it should add class "oxd-select-text--focus"', async () => {
     const wrapper = mount(SelectInput, {
-      props: {options},
+      props: {options, readonly: false, disabled: false},
     });
-    wrapper.findComponent(SelectText).trigger('click');
+    wrapper.findComponent(SelectText).trigger('focus');
     await wrapper.vm.$nextTick();
-    const nodes = wrapper.findAllComponents(SelectOption);
-    await nodes[0].trigger('mousedown');
-    expect(wrapper.emitted('update:modelValue')).toEqual([[null]]);
+    expect(wrapper.find('.oxd-select-text--focus').exists()).toBe(true);
   });
+  it('on Focus it should not add class "oxd-select-text--focus" when Select is disabled', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {options, readonly: false, disabled: true},
+    });
+    wrapper.findComponent(SelectText).trigger('focus');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find('.oxd-select-text--focus').exists()).toBe(false);
+  });
+
+  it('on Blur it should add class "oxd-select-text--active"', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {options, readonly: false, disabled: false},
+    });
+    wrapper.findComponent(SelectText).trigger('blur');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find('.oxd-select-text--active').exists()).toBe(true);
+  });
+
+  it('Id filed append to the input field of Select"', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {id: 'form_select', options},
+    });
+    wrapper.findComponent(SelectText).trigger('blur');
+    await wrapper.vm.$nextTick();
+    const Input = wrapper.find('input');
+    expect(Input.attributes('id')).toBe('form_select');
+  });
+
+  it('Class filed not to append to the input field of Select"', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {class: 'sampleClass', options},
+    });
+    wrapper.findComponent(SelectText).trigger('blur');
+    await wrapper.vm.$nextTick();
+    const Input = wrapper.find('input');
+    expect(Input.classes('sampleClass')).not.toBe(true);
+  });
+
   it('should not select already selected option', async () => {
     const wrapper = mount(SelectInput, {
       props: {
@@ -71,6 +111,7 @@ describe('SelectInput.vue', () => {
           id: 1,
           label: 'HR Admin',
         },
+        showEmptySelector: true,
       },
     });
     wrapper.findComponent(SelectText).trigger('click');
@@ -107,7 +148,6 @@ describe('SelectInput.vue', () => {
         },
         dropdownPosition: BOTTOM,
         showEmptySelector: true,
-        hideDropdownDefaultLabel: false,
       },
     });
     expect(wrapper.vm.dropdownClasses).toStrictEqual({
@@ -127,7 +167,6 @@ describe('SelectInput.vue', () => {
         },
         dropdownPosition: BOTTOM,
         showEmptySelector: false,
-        hideDropdownDefaultLabel: false,
       },
     });
     expect(wrapper.vm.dropdownClasses).toStrictEqual({
@@ -146,8 +185,6 @@ describe('SelectInput.vue', () => {
           label: 'HR Admin',
         },
         dropdownPosition: BOTTOM,
-        showEmptySelector: true,
-        hideDropdownDefaultLabel: true,
       },
     });
     expect(wrapper.vm.dropdownClasses).toStrictEqual({

@@ -25,6 +25,8 @@ $oxd_breakpoints: (
 );
 
 /* Input Control */
+$oxd-input-border-focus-color: $oxd-interface-gray-color !default;
+$oxd-input-border-focus-box-shadow-color: rgba(darken($oxd-input-border-focus-color, 10%), 0.12) !default;
 $oxd-input-control-font-size: 12px !default;
 $oxd-input-control-font-color: $oxd-interface-gray-darken-1-color !default;
 $oxd-input-control-font-weight: 400 !default;
@@ -35,9 +37,9 @@ $oxd-input-control-horizontal-padding: 0.5rem !default;
 $oxd-input-control-vertical-padding: 0.675rem !default;
 $oxd-input-control-border--active: $oxd-border
   $oxd-interface-gray-lighten-2-color !default;
-$oxd-input-control-border--focus: $oxd-border $oxd-interface-gray-color !default;
+$oxd-input-control-border--focus: $oxd-border $oxd-input-border-focus-color !default;
 $oxd-input-control-border--error: $oxd-border $oxd-feedback-danger-color !default;
-$oxd-input-control-box-shadow--focus: 1px 1px 6px rgba(35, 35, 36, 0.12) !default;
+$oxd-input-control-box-shadow--focus: 1px 1px 6px $oxd-input-border-focus-box-shadow-color !default;
 $oxd-input-control-box-shadow--error: 0 0 5px 0.2rem rgba(223, 9, 16, 0.1) !default;
 $oxd-input-control-width: 100% !default;
 $oxd-form-min-height: 400px;
@@ -51,6 +53,8 @@ $oxd-dropdown-padding: 4px !default;
 $oxd-dropdown-ul-padding: 0.5rem 0.25rem !default;
 $oxd-dropdown-li-padding: 0.25rem 0.5rem !default;
 $oxd-dropdown-item-hover-color: #f6f7f9 !default;
+$oxd-dropdown-item-selected-color: $oxd-interface-gray-lighten-2-color !default;
+$oxd-dropdown-dropdown-margin: 5px !default;
 
 // z axis index
 $oxd-brand-z-index: 1 !default;

@@ -1,7 +1,7 @@
 import TableFilterStory from './TableFilter.story.vue';
 
 export default {
-  title: 'Example/TableFilter',
+  title: 'Data Tables/TableFilter',
 };
 
 export const TableFilter = () => TableFilterStory;
