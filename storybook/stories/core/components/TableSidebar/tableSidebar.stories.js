@@ -212,7 +212,7 @@ TableSidebar.argTypes = {
         label: 'Add Candidate',
         displayType: 'secondary',
         size: 'long',
-        iconName: 'plus',
+        iconName: 'oxd-add',
         iconSize: 'small',
       },
     },
@@ -228,9 +228,12 @@ TableSidebar.argTypes = {
     control: {type: 'object'},
     defaultValue: {
       props: {
-        icon: 'oxd-info',
+        icon: 'oxd-import-templates',
         size: 'xx-small',
         label: 'Info',
+        iconStyles: {
+          color: 'red',
+        },
       },
     },
     table: {
