@@ -22,6 +22,7 @@ const leftPanel = {
         icon: 'oxd-info',
         size: 'xx-small',
         label: 'Info',
+        style: {color: 'blue'},
       },
     },
   },
@@ -44,12 +45,6 @@ const leftPanel = {
       style: {
         width: '200px',
       },
-    },
-    buttonSecondary: {
-      visible: true,
-      icon: 'oxd-info',
-      tooltip: 'Vacancy Info',
-      style: 'min-width: unset; min-height: unset;',
     },
   },
   list: {

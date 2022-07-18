@@ -49,7 +49,7 @@
               :size="secondaryButton.props.size || 'extra-large'"
               :name="secondaryButton.props.icon || 'oxd-new-folder'"
               :tooltip="secondaryButton.props.label || 'New Folder'"
-              :icon-styles="secondaryButton.props.iconStyles"
+              :icon-styles="secondaryButton.props.style"
               @click="onHeaderSecondaryBtnClick"
             />
           </div>

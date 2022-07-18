@@ -231,7 +231,7 @@ TableSidebar.argTypes = {
         icon: 'oxd-import-templates',
         size: 'extra-large',
         label: 'Import Templates',
-        iconStyles: {
+        style: {
           color: '#76bc21',
         },
       },
