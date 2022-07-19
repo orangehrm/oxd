@@ -688,9 +688,10 @@ describe('TableSidebar.vue', () => {
           },
         },
         secondaryButton: {
-          visible: true,
-          label: 'Import Templates',
-          icon: 'plus-square',
+          props: {
+            label: 'Import Templates',
+            icon: 'plus-square',
+          },
         },
       },
     });
@@ -729,10 +730,11 @@ describe('TableSidebar.vue', () => {
           },
         },
         secondaryButton: {
-          visible: true,
-          label: 'Import Templates',
-          icon: 'plus-square',
-          size: 'xx-small',
+          props: {
+            label: 'Import Templates',
+            icon: 'plus-square',
+            size: 'xx-small',
+          },
         },
       },
     });
@@ -770,10 +772,10 @@ describe('TableSidebar.vue', () => {
           },
         },
         secondaryButton: {
-          visible: true,
-          label: 'Import Templates',
-          // icon: 'plus-square',
-          size: 'xx-small',
+          props: {
+            label: 'Import Templates',
+            size: 'xx-small',
+          },
         },
       },
     });
