@@ -1,3 +1,5 @@
+2022-07-19 - 0dbfe9656449b2c80b09b09e05ec779c0ea8a301 - components/src/core/components/CardTable/Cell/actions.scss - Remove extra padding and in components/src/core/components/List/list.scss - Remove the extra padding and if there is a left pannel, it will add 1rem extra padding to the left
+
 2022-07-08 - 2d7295d529ac95349ebe163cfb8ffe2aef6ba128 - components/src/core/components/CardTable/Table/table.scss - Change the header padding and in components/src/core/components/List/list.scss - Fix the card padding is not equal in left and right sides issue
 
 2022-06-30 - 0f6416adf5331113ba1741b95a9e00c5a673e2c1 - components/CardTable/Cell/\_variables.scss, actions.scss - Change the action button gap according to oxd-guide and in components/TableFilter/table-filter.scss - Action buttons moved further to the right
