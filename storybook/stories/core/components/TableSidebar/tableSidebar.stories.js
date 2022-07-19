@@ -29,6 +29,7 @@ TableSidebar.argTypes = {
       type: {
         summary: 'Set boolean value true to make header visible.',
       },
+      defaultValue: {summary: true},
       category: 'Props',
     },
   },
@@ -40,6 +41,7 @@ TableSidebar.argTypes = {
         summary:
           'Set boolean value true to make header action buttons visible.',
       },
+      defaultValue: {summary: true},
       category: 'Props',
     },
   },
@@ -50,8 +52,8 @@ TableSidebar.argTypes = {
       type: {
         summary:
           'Set boolean value true to make left panel list bubble visible.',
-        category: 'Props',
       },
+      defaultValue: {summary: true},
       category: 'Props',
     },
   },
@@ -62,6 +64,7 @@ TableSidebar.argTypes = {
       type: {
         summary: 'Set boolean value true to make side panel body visible.',
       },
+      defaultValue: {summary: true},
       category: 'Props',
     },
   },
@@ -72,6 +75,7 @@ TableSidebar.argTypes = {
       type: {
         summary: 'Set boolean value true to make side panel list visible',
       },
+      defaultValue: {summary: true},
       category: 'Props',
     },
   },
