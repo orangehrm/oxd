@@ -62,12 +62,14 @@ $dropdown-button-size: 24px;
     }
   }
   .oxd-select-fill-subtitle-wrapper {
-    width: 100%;
+    box-sizing: border-box;
+    width: calc(100% - 24px);
     padding-right: 5px;
     .oxd-select-fill-subtitle {
       display: -webkit-box;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      overflow-wrap: break-word;
     }
   }
   .oxd-select-fill {
