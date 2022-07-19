@@ -9,6 +9,7 @@
           class="oxd-collapsible-caret-icon"
           size="xxx-small"
           :tooltip="isExpanded ? $vt('Show Less') : $vt('Show More')"
+          v-if="!noCollapse"
         />
       </div>
     </div>
@@ -41,6 +42,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    noCollapse: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -50,7 +55,7 @@ export default defineComponent({
   methods: {
     toggle() {
       this.isExpanded = !this.isExpanded;
-      this.$emit("toggle", {isExpanded: this.isExpanded});
+      this.$emit('toggle', {isExpanded: this.isExpanded});
     },
   },
 });

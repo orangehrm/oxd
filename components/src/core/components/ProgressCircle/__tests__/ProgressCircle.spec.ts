@@ -119,6 +119,16 @@ describe('ProgressCircle.vue', () => {
     expect(wrapper.vm.normalizedValue).toEqual(100);
   });
 
+  it('Normalize the stroke width to radius when it is greater than the radius', () => {
+    const wrapper = mount(ProgressCircle, {
+      props: {
+        radius: 100,
+        strokeWidth: 120,
+      },
+    });
+    expect(wrapper.vm.normalizedStrokeWidth).toEqual(wrapper.vm.radius);
+  });
+
   it('Round off the value for 2 decimal poins for floating point numbers which has more than 2 decimal points', () => {
     const wrapper = mount(ProgressCircle, {
       props: {

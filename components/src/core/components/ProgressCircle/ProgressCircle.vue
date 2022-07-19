@@ -12,7 +12,7 @@
           :cx="radius"
           :cy="radius"
           :r="normalizedRadius"
-          :stroke-width="strokeWidth"
+          :stroke-width="normalizedStrokeWidth"
           fill="transparent"
           :style="emptyStroke"
         />
@@ -22,7 +22,7 @@
           :cy="radius"
           :r="normalizedRadius"
           :stroke-linecap="strokeLineCap"
-          :stroke-width="strokeWidth"
+          :stroke-width="normalizedStrokeWidth"
           fill="transparent"
           :stroke-dasharray="circumference + ' ' + circumference"
           :stroke-dashoffset="strokeDashoffset"
@@ -54,11 +54,7 @@ export default defineComponent({
   name: 'circleProgress',
 
   props: {
-    strokeWidth: {
-      type: Number,
-      default: 12,
-    },
-    rotation: {
+    value: {
       type: Number,
       default: 0,
     },
@@ -66,9 +62,15 @@ export default defineComponent({
       type: Number,
       default: 40,
     },
-    value: {
+    strokeWidth: {
       type: Number,
-      default: 0,
+      default: 12,
+    },
+    emptyStrokeColor: {
+      type: String,
+    },
+    fillStrokeColor: {
+      type: String,
     },
     animation: {
       type: Boolean,
@@ -78,14 +80,15 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
-    emptyStrokeColor: {
-      type: String,
-    },
-    fillStrokeColor: {
-      type: String,
+    rotation: {
+      type: Number,
+      default: 0,
     },
   },
   computed: {
+    normalizedStrokeWidth() {
+      return this.strokeWidth > this.radius ? this.radius : this.strokeWidth;
+    },
     normalizedValue() {
       return this.value < 0
         ? 0
@@ -95,11 +98,11 @@ export default defineComponent({
         ? this.value
         : parseFloat(this.value).toFixed(2);
     },
+    normalizedRadius() {
+      return this.radius - this.normalizedStrokeWidth;
+    },
     strokeLineCap() {
       return this.roundCorners === true ? 'round' : 'butt';
-    },
-    normalizedRadius() {
-      return this.radius - this.strokeWidth;
     },
     circumference() {
       return Math.round(2 * Math.PI * this.normalizedRadius);
@@ -140,7 +143,7 @@ export default defineComponent({
   },
   methods: {
     getTextStyle() {
-      return {'font-size': Math.round(this.normalizedRadius * 0.45) + 'px'};
+      return {'font-size': Math.round(this.normalizedRadius * 0.35) + 'px'};
     },
   },
 });
