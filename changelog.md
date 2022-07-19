@@ -1,3 +1,7 @@
+2022-07-16 - e38bd333495ee2afea19b06676e83a405aa98172 - components/List/List - passes a prop to tableSideBar component to render the secondary header action button.
+
+2022-07-18 - 9cdc47a69c2bb8bafbb8a55eeeded20ffb2ba7fb - components/TableSidebar/TableSidebar - Made secondary header action button color changeable with style prop.
+
 2022-07-11 - 983922db066fe3298f70e5be1b42e8fdf9aff2cd - components/Input/Time - changes to functionality and style of Time Input and Picker
 
 2022-07-08 - 2d7295d529ac95349ebe163cfb8ffe2aef6ba128 - components/src/core/components/CardTable/Table/table.scss - Change the header padding and in components/src/core/components/List/list.scss - Fix the card padding is not equal in left and right sides issue
