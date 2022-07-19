@@ -96,7 +96,7 @@ export default defineComponent({
         ? 100
         : (this.value * 100) % 1 === 0
         ? this.value
-        : parseFloat(this.value).toFixed(2);
+        : Number(this.value?.toFixed(2));
     },
     normalizedRadius() {
       return this.radius - this.normalizedStrokeWidth;
