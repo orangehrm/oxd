@@ -2,7 +2,7 @@ import {mount} from '@vue/test-utils';
 import ProgressCircle from '@orangehrm/oxd/core/components/ProgressCircle/ProgressCircle.vue';
 
 describe('ProgressCircle.vue', () => {
-  it('renders OXD Spinner', () => {
+  it('renders OXD Progress Circle', () => {
     const wrapper = mount(ProgressCircle, {
       props: {},
     });

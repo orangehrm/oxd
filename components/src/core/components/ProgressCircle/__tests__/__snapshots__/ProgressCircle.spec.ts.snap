@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProgressCircle.vue renders OXD Spinner 1`] = `
+exports[`ProgressCircle.vue renders OXD Progress Circle 1`] = `
 <div class="oxd-progress-circle-outer-container" style="--stroke-dashoffset: 176; --circumference: 176; --inner-content-width: 42px;">
   <div class="oxd-progress-circle-container"><svg class="oxd-progress-circle-svg" xmlns="http://www.w3.org/2000/svg" width="80" height="80">
       <circle class="oxd-progress-circle-ring-empty" cx="40" cy="40" r="28" stroke-width="12" fill="transparent"></circle>
