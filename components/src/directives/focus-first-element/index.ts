@@ -1,4 +1,4 @@
-import {Directive} from 'vue';
+import {Directive, VNode} from 'vue';
 
 export interface FocusFirstHTMLElement extends HTMLElement {
   activeElement?: Element | null;
@@ -9,28 +9,43 @@ const excludeElements =
   'button:not(.oxd-dialog-close-button,.modal-reset-button)';
 let firstFocusableElement: Element;
 let updatedFocusFirstElement: Element;
+const firstFocusedElementsOnMounted = new Map();
+const firstFocusedElementsOnUpdated = new Map();
 
-const focusOnFirstElement = (element: Element, matchingString: string) => {
+const focusOnFirstElement = (
+  element: Element,
+  matchingString: string,
+  vnode: VNode,
+) => {
   firstFocusableElement = element.querySelectorAll(matchingString)[0];
+  firstFocusedElementsOnMounted.set(vnode.scopeId, firstFocusableElement);
   if (firstFocusableElement) {
     (firstFocusableElement as HTMLElement).focus();
   }
 };
 
 const focusonFirstElementDirective: Directive = {
-  updated(el: FocusFirstHTMLElement) {
+  updated(el: FocusFirstHTMLElement, binding, vnode: VNode) {
     updatedFocusFirstElement = el.querySelectorAll(
       focusableElements + ', ' + excludeElements,
     )[0];
-    if (firstFocusableElement !== updatedFocusFirstElement) {
-      focusOnFirstElement(el, focusableElements + ', ' + excludeElements);
+    firstFocusedElementsOnUpdated.set(vnode.scopeId, updatedFocusFirstElement);
+    if (
+      firstFocusedElementsOnMounted.get(vnode.scopeId) !==
+      firstFocusedElementsOnUpdated.get(vnode.scopeId)
+    ) {
+      focusOnFirstElement(
+        el,
+        focusableElements + ', ' + excludeElements,
+        vnode,
+      );
     }
   },
-  mounted(el: FocusFirstHTMLElement) {
+  mounted(el: FocusFirstHTMLElement, binding, vnode: VNode) {
     el.activeElement = document.activeElement;
-    focusOnFirstElement(el, focusableElements + ', ' + excludeElements);
+    focusOnFirstElement(el, focusableElements + ', ' + excludeElements, vnode);
   },
-  beforeUnmount(el: FocusFirstHTMLElement, binding) {
+  beforeUnmount(el: FocusFirstHTMLElement, binding, vnode: VNode) {
     const {arg} = binding;
     if (arg === 'return-focus') {
       if (el.activeElement && (el.activeElement as HTMLElement).offsetParent) {
@@ -44,6 +59,7 @@ const focusonFirstElementDirective: Directive = {
           focusOnFirstElement(
             rightPanel,
             focusableElements + ', ' + excludeElements,
+            vnode,
           );
         }
       }
