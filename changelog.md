@@ -1,3 +1,5 @@
+2022-07-11 - 04000460d9ae787faa266819853d160fec0aba93 - components/src/core/components/Icon/icons.ts - add new oxd-add icon which has innder fill colour. The existing icon was hardcoded with white colour
+
 2022-07-11 - 983922db066fe3298f70e5be1b42e8fdf9aff2cd - components/Input/Time - changes to functionality and style of Time Input and Picker
 
 2022-07-08 - 2d7295d529ac95349ebe163cfb8ffe2aef6ba128 - components/src/core/components/CardTable/Table/table.scss - Change the header padding and in components/src/core/components/List/list.scss - Fix the card padding is not equal in left and right sides issue
