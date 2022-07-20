@@ -9,14 +9,14 @@
           class="oxd-collapsible-caret-icon"
           size="xxx-small"
           :tooltip="isExpanded ? $vt('Show Less') : $vt('Show More')"
-          v-if="!noCollapse"
+          v-if="collapsible"
         />
       </div>
     </div>
-    <div class="oxd-collapsed-content" v-show="!isExpanded">
+    <div class="oxd-collapsed-content" v-if="!isExpanded">
       <slot name="collapsedContent"></slot>
     </div>
-    <div class="oxd-expanded-content" v-show="isExpanded">
+    <div class="oxd-expanded-content" v-if="isExpanded">
       <slot name="expandedContent"></slot>
     </div>
   </div>
@@ -42,9 +42,9 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    noCollapse: {
+    collapsible: {
       type: Boolean,
-      default: false,
+      default: true,
     },
   },
   data() {

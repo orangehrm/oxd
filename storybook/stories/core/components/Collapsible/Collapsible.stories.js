@@ -20,7 +20,7 @@ export default {
         },
       },
     },
-    noCollapse: {
+    collapsible: {
       control: {type: 'boolean'},
       table: {
         type: {
@@ -95,7 +95,7 @@ InitialExpandedView.parameters = {
 export const NoButtonToExpandOrCollapse = Template.bind({});
 NoButtonToExpandOrCollapse.args = {
   headerTitle: 'Collapsible Component',
-  noCollapse: true,
+  collapsible: false,
 };
 
 NoButtonToExpandOrCollapse.parameters = {
@@ -103,11 +103,10 @@ NoButtonToExpandOrCollapse.parameters = {
     source: {
       code:
         '<oxd-collapsible \n :headerTitle="Collapsible Component"' +
-        '\n/> \n :noCollapse=true',
+        '\n/> \n :collapsible=false',
     },
   },
 };
-
 
 export const Events = () => CollapsibleEvents;
 

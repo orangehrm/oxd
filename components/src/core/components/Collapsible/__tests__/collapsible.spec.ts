@@ -23,8 +23,8 @@ describe('Collapsible', () => {
         expandedContent: '<div>This is the expanded view</div>',
       },
     });
-    expect(wrapper.find('.oxd-collapsed-content').isVisible()).toBe(true);
-    expect(wrapper.find('.oxd-expanded-content').isVisible()).toBe(false);
+    expect(wrapper.find('.oxd-collapsed-content').exists()).toBeTruthy();
+    expect(wrapper.find('.oxd-expanded-content').exists()).toBeFalsy();
   });
 
   it('when expanded the expanded slot is shown and the collapsed slot is not shown', () => {
@@ -37,8 +37,8 @@ describe('Collapsible', () => {
         expandedContent: '<div>This is the expanded view</div>',
       },
     });
-    expect(wrapper.find('.oxd-expanded-content').isVisible()).toBe(true);
-    expect(wrapper.find('.oxd-collapsed-content').isVisible()).toBe(false);
+    expect(wrapper.find('.oxd-expanded-content').exists()).toBeTruthy();
+    expect(wrapper.find('.oxd-collapsed-content').exists()).toBeFalsy();
   });
 
   it('content is expanded when click on carrot down button', async () => {
@@ -46,7 +46,7 @@ describe('Collapsible', () => {
     const button = wrapper.find('.oxd-collapsible-caret-icon');
     await button.trigger('click');
     expect(wrapper.vm.isExpanded).toBe(true);
-    expect(wrapper.find('.oxd-expanded-content').isVisible()).toBe(true);
+    expect(wrapper.find('.oxd-expanded-content').exists()).toBeTruthy();
   });
 
   it('content is collapsed when click on carrot up button', async () => {
@@ -58,13 +58,13 @@ describe('Collapsible', () => {
     const button = wrapper.find('.oxd-collapsible-caret-icon');
     await button.trigger('click');
     expect(wrapper.vm.isExpanded).toBe(false);
-    expect(wrapper.find('.oxd-collapsed-content').isVisible()).toBe(true);
+    expect(wrapper.find('.oxd-collapsed-content').exists()).toBeTruthy();
   });
 
   it('no collapse/expand button is there', () => {
     const wrapper = shallowMount(Collapsible, {
       props: {
-        noCollapse: true,
+        collapsible: false,
       },
     });
     expect(wrapper.find('.oxd-collapsible-caret-icon').exists()).toBeFalsy();
