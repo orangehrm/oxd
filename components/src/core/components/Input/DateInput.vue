@@ -232,10 +232,11 @@ export default defineComponent({
     },
     onDateSelected() {
       const oxdDatePicker = this.$refs.oxdInput;
-      oxdDatePicker.focused = true;
       this.$nextTick(() => {
         const oxdDateInputTriggerBtn = this.$refs.oxdIcon;
         oxdDateInputTriggerBtn.blur();
+        const inputElement = oxdDatePicker.$el.querySelectorAll('input');
+        inputElement[0]?.focus();
       });
       this.closeDropdown();
     },
