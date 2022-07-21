@@ -7,26 +7,24 @@ export interface FocusFirstHTMLElement extends HTMLElement {
 const focusableElements = 'input, select, textarea, [tabindex], [href]';
 const excludeElements =
   'button:not(.oxd-dialog-close-button,.modal-reset-button)';
-let firstFocusableElement: Element;
-let updatedFocusFirstElement: Element;
-const firstFocusedElementsOnMounted = new Map();
-const firstFocusedElementsOnUpdated = new Map();
+const firstFocusedElementsOnMounted = new Map<string | null, Element>();
+const firstFocusedElementsOnUpdated = new Map<string | null, Element>();
 
 const focusOnFirstElement = (
   element: Element,
   matchingString: string,
   vnode: VNode,
 ) => {
-  firstFocusableElement = element.querySelectorAll(matchingString)[0];
-  firstFocusedElementsOnMounted.set(vnode.scopeId, firstFocusableElement);
-  if (firstFocusableElement) {
-    (firstFocusableElement as HTMLElement).focus();
+  let firstFocusedElement = element.querySelectorAll(matchingString)[0];
+  firstFocusedElementsOnMounted.set(vnode.scopeId, firstFocusedElement);
+  if (firstFocusedElement) {
+    (firstFocusedElement as HTMLElement).focus();
   }
 };
 
 const focusonFirstElementDirective: Directive = {
   updated(el: FocusFirstHTMLElement, binding, vnode: VNode) {
-    updatedFocusFirstElement = el.querySelectorAll(
+    let updatedFocusFirstElement = el.querySelectorAll(
       focusableElements + ', ' + excludeElements,
     )[0];
     firstFocusedElementsOnUpdated.set(vnode.scopeId, updatedFocusFirstElement);
