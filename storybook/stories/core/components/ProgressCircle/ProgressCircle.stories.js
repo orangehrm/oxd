@@ -40,13 +40,13 @@ export default {
         type: {summary: 'Corners of the stroke should be rounded or not'},
       },
     },
-    emptyStrokeColor: {
+    strokeBackgroundColor: {
       control: {type: 'text'},
       table: {
         type: {summary: 'Stroke color of the empty area'},
       },
     },
-    fillStrokeColor: {
+    strokeFillColor: {
       control: {type: 'text'},
       table: {
         type: {summary: 'Stroke color of the filled area'},
@@ -170,26 +170,26 @@ SquareCorners.parameters = {
 
 export const CustomStrokeColorEmptyArea = Template.bind({});
 CustomStrokeColorEmptyArea.args = {
-  emptyStrokeColor: 'blue',
+  strokeBackgroundColor: 'blue',
   value: 60,
 };
 CustomStrokeColorEmptyArea.parameters = {
   docs: {
     source: {
-      code: '<oxd-progress-circle :emptyStrokeColor="blue" :value=60 />',
+      code: '<oxd-progress-circle :strokeBackgroundColor="blue" :value=60 />',
     },
   },
 };
 
 export const CustomStrokeColorFilledArea = Template.bind({});
 CustomStrokeColorFilledArea.args = {
-  fillStrokeColor: 'green',
+  strokeFillColor: 'green',
   value: 60,
 };
 CustomStrokeColorFilledArea.parameters = {
   docs: {
     source: {
-      code: '<oxd-progress-circle :fillStrokeColor="green" :value=60 />',
+      code: '<oxd-progress-circle :strokeFillColor="green" :value=60 />',
     },
   },
 };

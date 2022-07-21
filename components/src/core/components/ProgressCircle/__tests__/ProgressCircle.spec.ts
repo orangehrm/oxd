@@ -41,7 +41,7 @@ describe('ProgressCircle.vue', () => {
   it('Check custom stroke color filled area', () => {
     const wrapper = mount(ProgressCircle, {
       props: {
-        fillStrokeColor: 'blue',
+        strokeFillColor: 'blue',
       },
     });
 
@@ -53,7 +53,7 @@ describe('ProgressCircle.vue', () => {
   it('Check custom stroke color empty area', () => {
     const wrapper = mount(ProgressCircle, {
       props: {
-        emptyStrokeColor: 'black',
+        strokeBackgroundColor: 'black',
       },
     });
 

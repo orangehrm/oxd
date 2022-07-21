@@ -66,10 +66,10 @@ export default defineComponent({
       type: Number,
       default: 12,
     },
-    emptyStrokeColor: {
+    strokeFillColor: {
       type: String,
     },
-    fillStrokeColor: {
+    strokeBackgroundColor: {
       type: String,
     },
     animation: {
@@ -119,16 +119,16 @@ export default defineComponent({
       return this.radius * 2;
     },
     emptyStroke() {
-      if (this.emptyStrokeColor) {
+      if (this.strokeBackgroundColor) {
         return {
-          stroke: this.emptyStrokeColor,
+          stroke: this.strokeBackgroundColor,
         };
       }
       return {};
     },
     fillCustomStyles() {
-      const strokeFill = this.fillStrokeColor
-        ? {stroke: this.fillStrokeColor}
+      const strokeFill = this.strokeFillColor
+        ? {stroke: this.strokeFillColor}
         : {};
       const rotationFill = this.rotation
         ? {transform: `rotate(${this.rotation}deg)`}
