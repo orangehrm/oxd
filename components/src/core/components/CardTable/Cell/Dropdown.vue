@@ -1,6 +1,6 @@
 <template>
   <oxd-dropdown-menu @click="noOp" class="oxd-table-dropdown">
-    <oxd-icon-button name="three-dots-vertical" />
+    <oxd-icon-button :name="iconName" :size="iconSize" />
     <template v-slot:content>
       <li
         v-for="option in options"
@@ -29,6 +29,13 @@ export default defineComponent({
     options: {
       type: Array as PropType<DropdownOption[]>,
       default: () => [],
+    },
+    iconName: {
+      type: String,
+      default: 'three-dots-vertical',
+    },
+    iconSize: {
+      type: String,
     },
   },
   components: {

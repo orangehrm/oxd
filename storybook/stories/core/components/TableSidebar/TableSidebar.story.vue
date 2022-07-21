@@ -77,7 +77,7 @@ export default defineComponent({
     },
     secondaryButton: {
       type: Object,
-      default: {},
+      default: null,
     },
   },
   setup() {
