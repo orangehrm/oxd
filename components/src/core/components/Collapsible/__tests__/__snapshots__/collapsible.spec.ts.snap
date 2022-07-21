@@ -8,6 +8,6 @@ exports[`Collapsible renders the collapsible component 1`] = `
     </div>
   </div>
   <div class="oxd-collapsed-content"></div>
-  <div class="oxd-expanded-content" style="display: none;"></div>
+  <!--v-if-->
 </div>
 `;

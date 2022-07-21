@@ -2,7 +2,7 @@ import {mount} from '@vue/test-utils';
 import ProgressCircle from '@orangehrm/oxd/core/components/ProgressCircle/ProgressCircle.vue';
 
 describe('ProgressCircle.vue', () => {
-  it('renders OXD Spinner', () => {
+  it('renders OXD Progress Circle', () => {
     const wrapper = mount(ProgressCircle, {
       props: {},
     });
@@ -119,14 +119,14 @@ describe('ProgressCircle.vue', () => {
     expect(wrapper.vm.normalizedValue).toEqual(100);
   });
 
-  it('Round off the value for 2 decimal poins for floating point numbers which has more than 2 decimal points', () => {
+  it('Normalize the stroke width to radius when it is greater than the radius', () => {
     const wrapper = mount(ProgressCircle, {
       props: {
-        value: 60.14685114,
+        radius: 100,
+        strokeWidth: 120,
       },
     });
-
-    expect(wrapper.vm.normalizedValue).toEqual('60.15');
+    expect(wrapper.vm.normalizedStrokeWidth).toEqual(wrapper.vm.radius);
   });
 
   it('No round off for floating point numbers which has 2 decimal points', () => {
@@ -158,4 +158,25 @@ describe('ProgressCircle.vue', () => {
 
     expect(wrapper.vm.normalizedValue).toEqual(65);
   });
+
+  it('Round off the value for 2 decimal poins for floating point numbers which has more than 2 decimal points', () => {
+    const wrapper = mount(ProgressCircle, {
+      props: {
+        value: 60.14685114,
+      },
+    });
+
+    expect(wrapper.vm.normalizedValue).toEqual(60.15);
+  });
+
+  it('Round off the value for 2 decimal poins for floating point numbers which has more than 2 decimal points', () => {
+    const wrapper = mount(ProgressCircle, {
+      props: {
+        value: undefined,
+      },
+    });
+
+    expect(wrapper.vm.normalizedValue).toEqual(0);
+  });
+  
 });

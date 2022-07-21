@@ -12,7 +12,7 @@
           :cx="radius"
           :cy="radius"
           :r="normalizedRadius"
-          :stroke-width="strokeWidth"
+          :stroke-width="normalizedStrokeWidth"
           fill="transparent"
           :style="emptyStroke"
         />
@@ -22,7 +22,7 @@
           :cy="radius"
           :r="normalizedRadius"
           :stroke-linecap="strokeLineCap"
-          :stroke-width="strokeWidth"
+          :stroke-width="normalizedStrokeWidth"
           fill="transparent"
           :stroke-dasharray="circumference + ' ' + circumference"
           :stroke-dashoffset="strokeDashoffset"
@@ -48,27 +48,29 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, PropType} from 'vue';
 
 export default defineComponent({
   name: 'circleProgress',
 
   props: {
-    strokeWidth: {
-      type: Number,
-      default: 12,
-    },
-    rotation: {
-      type: Number,
+    value: {
+      type: Number as PropType<number>,
       default: 0,
     },
     radius: {
       type: Number,
       default: 40,
     },
-    value: {
+    strokeWidth: {
       type: Number,
-      default: 0,
+      default: 12,
+    },
+    emptyStrokeColor: {
+      type: String,
+    },
+    fillStrokeColor: {
+      type: String,
     },
     animation: {
       type: Boolean,
@@ -78,28 +80,32 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
-    emptyStrokeColor: {
-      type: String,
-    },
-    fillStrokeColor: {
-      type: String,
+    rotation: {
+      type: Number,
+      default: 0,
     },
   },
   computed: {
+    normalizedStrokeWidth() {
+      return this.strokeWidth > this.radius ? this.radius : this.strokeWidth;
+    },
     normalizedValue() {
-      return this.value < 0
-        ? 0
-        : this.value > 100
-        ? 100
-        : (this.value * 100) % 1 === 0
-        ? this.value
-        : parseFloat(this.value).toFixed(2);
+      let normalizedVal = this.value;
+      if (this.value < 0) {
+        normalizedVal = 0;
+      }
+      if (this.value > 100) {
+        normalizedVal = 100;
+      }
+      normalizedVal = Number(normalizedVal.toFixed(2));
+
+      return normalizedVal;
+    },
+    normalizedRadius() {
+      return this.radius - this.normalizedStrokeWidth;
     },
     strokeLineCap() {
       return this.roundCorners === true ? 'round' : 'butt';
-    },
-    normalizedRadius() {
-      return this.radius - this.strokeWidth;
     },
     circumference() {
       return Math.round(2 * Math.PI * this.normalizedRadius);
@@ -140,7 +146,7 @@ export default defineComponent({
   },
   methods: {
     getTextStyle() {
-      return {'font-size': Math.round(this.normalizedRadius * 0.45) + 'px'};
+      return {'font-size': Math.round(this.normalizedRadius * 0.35) + 'px'};
     },
   },
 });
