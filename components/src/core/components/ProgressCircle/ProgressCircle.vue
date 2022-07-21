@@ -48,14 +48,14 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, PropType} from 'vue';
 
 export default defineComponent({
   name: 'circleProgress',
 
   props: {
     value: {
-      type: Number,
+      type: Number as PropType<number>,
       default: 0,
     },
     radius: {
@@ -90,13 +90,16 @@ export default defineComponent({
       return this.strokeWidth > this.radius ? this.radius : this.strokeWidth;
     },
     normalizedValue() {
-      return this.value < 0
-        ? 0
-        : this.value > 100
-        ? 100
-        : (this.value * 100) % 1 === 0
-        ? this.value
-        : Number(this.value?.toFixed(2));
+      let normalizedVal = this.value;
+      if (this.value < 0) {
+        normalizedVal = 0;
+      }
+      if (this.value > 100) {
+        normalizedVal = 100;
+      }
+      normalizedVal = Number(normalizedVal.toFixed(2));
+
+      return normalizedVal;
     },
     normalizedRadius() {
       return this.radius - this.normalizedStrokeWidth;
