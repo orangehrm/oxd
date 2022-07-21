@@ -1,3 +1,5 @@
+2022-07-20 - b7038ebe7ef9a2ab5c513ad2c7f1a00f6d31c8af - components/Table/ClassicTable - Fixing column widths in oxd-classic-table
+
 2022-07-11 - 983922db066fe3298f70e5be1b42e8fdf9aff2cd - components/Input/Time - changes to functionality and style of Time Input and Picker
 
 2022-07-08 - 2d7295d529ac95349ebe163cfb8ffe2aef6ba128 - components/src/core/components/CardTable/Table/table.scss - Change the header padding and in components/src/core/components/List/list.scss - Fix the card padding is not equal in left and right sides issue

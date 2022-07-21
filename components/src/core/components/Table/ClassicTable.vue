@@ -10,7 +10,7 @@
     </colgroup>
     <oxd-thead>
       <oxd-tr>
-        <oxd-th v-if="selectable" class="oxd-padding-cell oxd-table-th">
+        <oxd-th v-if="selectable" class="oxd-padding-cell oxd-table-th" :style="{width: selector.width}">
           <input
             type="checkbox"
             v-model="selectedAll"
@@ -21,6 +21,7 @@
           class="oxd-padding-cell oxd-table-th"
           v-for="header in headers"
           :key="header"
+          :style="{width: header.width}"
         >
           {{ header.title }}
         </oxd-th>
@@ -34,7 +35,7 @@
         :clickable="clickable"
         @click="onClick(item)($event)"
       >
-        <oxd-td v-if="selectable" class="oxd-padding-cell">
+        <oxd-td v-if="selectable" class="oxd-padding-cell" :style="{width: selector.width}">
           <input
             type="checkbox"
             :value="index"
@@ -46,6 +47,7 @@
           class="oxd-padding-cell"
           v-for="header in headers"
           :key="header"
+          :style="{width: header.width}"
         >
           {{ item[header.name] }}
         </oxd-td>

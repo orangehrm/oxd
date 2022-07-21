@@ -19,8 +19,8 @@ export default {
         width: '3%',
       },
       headers: [
-        {name: 'col1', title: 'Column 1', width: '40%'},
-        {name: 'col2', title: 'Column 2', width: '50%'},
+        {name: 'col1', title: 'Column 1', width: '27%'},
+        {name: 'col2', title: 'Column 2', width: '70%'},
       ],
       items: [
         {col1: 'Data 1', col2: 'Data 2'},
