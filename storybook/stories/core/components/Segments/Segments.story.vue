@@ -10,12 +10,14 @@
 
 <script>
 import Segments from '@orangehrm/oxd/core/components/Segments/Segments';
-import {nanoid} from 'nanoid';
 
 export default {
   data() {
     return {
-      selectedSegment: null,
+      selectedSegment: {
+        id: 1,
+        label: 'Single Assign',
+      },
     };
   },
 
