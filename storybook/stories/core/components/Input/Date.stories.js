@@ -21,6 +21,18 @@ export default {
         type: {summary: 'Set error state to the select'},
       },
     },
+    min: {
+      control: {type: 'text'},
+      table: {
+        type: {summary: 'Set minimum date can be selected'},
+      },
+    },
+    max: {
+      control: {type: 'text'},
+      table: {
+        type: {summary: 'Set maximum date can be selected'},
+      },
+    },
     ioformat: {
       control: {type: 'text'},
       table: {
@@ -128,7 +140,7 @@ export default {
 
 const Template = (args) => ({
   setup() {
-    const selected = ref('2021-07-01');
+    const selected = ref('2022-07-01');
     return {args, selected};
   },
   render() {
@@ -263,6 +275,67 @@ DateLocalization.parameters = {
   docs: {
     source: {
       code: '<oxd-date-input :firstDayOfWeek="1" :monthFormat="wide":dayFormat="narrow" :displayFormat="convertPHPDateFormat(l, d-M-Y)" :ioformat="yyyy-MM-dd" :locale="buildLocale()"/>',
+    },
+  },
+};
+
+export const Min = Template.bind({});
+Min.args = {
+  min: new Date(),
+};
+
+Min.parameters = {
+  docs: {
+    source: {
+      code: '<oxd-date-input :min="new Date()"/>',
+    },
+  },
+};
+
+export const Max = Template.bind({});
+Max.args = {
+  max: new Date('2022-07-10'),
+};
+
+Max.parameters = {
+  docs: {
+    source: {
+      code: `<oxd-date-input :max="new Date('2022-07-30')"/>`,
+    },
+  },
+};
+
+export const Weekends = Template.bind({});
+Weekends.args = {
+  dayAttributes: [
+    {
+      index: 0,
+      class: '--non-working-day',
+      style: {},
+    },
+    {
+      index: 6,
+      class: '--non-working-day',
+      style: {},
+    },
+  ],
+};
+
+Weekends.parameters = {
+  docs: {
+    source: {
+      code: `<oxd-date-input :dayAttributes=" [
+        {
+          index: 0,
+          class: '--non-working-day',
+          style: {},
+        },
+        {
+          index: 6,
+          class: '--non-working-day',
+          style: {},
+        },
+      ]"/>`,
     },
   },
 };
