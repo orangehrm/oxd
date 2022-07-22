@@ -20,7 +20,7 @@
 -->
 
 <template>
-  <div class="oxd-grid-item">
+  <div :class="classes">
     <slot></slot>
   </div>
 </template>
@@ -30,6 +30,20 @@ import {defineComponent} from 'vue';
 
 export default defineComponent({
   name: 'oxd-grid-item',
+  props: {
+    gutters: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  computed: {
+    classes(): object {
+      return {
+        'oxd-grid-item': true,
+        'oxd-grid-item--gutters': this.gutters,
+      };
+    },
+  },
 });
 </script>
 

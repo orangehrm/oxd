@@ -29,6 +29,7 @@
       <component :is="dialogContainer">
         <oxd-sheet
           :class="classes"
+          :gutters="false"
           v-bind="$attrs"
           role="document"
           @click="onClickSheet"
@@ -90,6 +91,10 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
+    gutters: {
+      type: Boolean,
+      default: true,
+    },
   },
 
   computed: {
@@ -97,6 +102,7 @@ export default defineComponent({
       return {
         'oxd-dialog-sheet': true,
         'oxd-dialog-sheet--shadow': this.shadow,
+        'oxd-dialog-sheet--gutters': this.gutters,
       };
     },
     computedTransition(): string {

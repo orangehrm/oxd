@@ -240,4 +240,11 @@ TimeInput.args = {
   type: 'time',
 };
 
+export const ColorInput = Template.bind({});
+ColorInput.argTypes = argTypes;
+ColorInput.args = {
+  label: 'Color Input Field',
+  type: 'color',
+};
+
 export const WithValidation = () => InputFieldValidation;

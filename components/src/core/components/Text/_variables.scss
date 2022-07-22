@@ -17,6 +17,7 @@
 
 $oxd-text-font-family: $oxd-font-family !default;
 $oxd-text-color: $oxd-interface-gray-darken-1-color !default;
+$oxd-text-color-alt: $oxd-interface-gray-color !default;
 
 $oxd-text-h1-font-size: 102px !default;
 $oxd-text-h1-font-weight: 300 !default;
@@ -72,6 +73,11 @@ $oxd-text-toast-message-font-size: 12px !default;
 $oxd-text-toast-message-font-weight: 500 !default;
 $oxd-text-toast-message-letter-spacing: 0.15px !default;
 $oxd-text-toast-message-color: $oxd-text-color !default;
+
+$oxd-text-card-body-font-size: 14px !default;
+$oxd-text-card-body-font-weight: 600 !default;
+$oxd-text-card-body-letter-spacing: 0.15px !default;
+$oxd-text-card-body-color: $oxd-text-color-alt !default;
 
 $oxd-text-p-color: $oxd-text-color !default;
 

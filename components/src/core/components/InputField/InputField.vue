@@ -30,6 +30,7 @@
     <component
       :is="component"
       v-bind="$attrs"
+      :disabled="disabled"
       :hasError="hasError"
       :modelValue="modelValue"
       @update:modelValue="$emit('update:modelValue', $event)"
@@ -57,6 +58,7 @@ import AutocompleteInput from '@ohrm/oxd/core/components/Input/Autocomplete/Auto
 import SelectInput from '@ohrm/oxd/core/components/Input/Select/SelectInput.vue';
 import MultiSelectInput from '@ohrm/oxd/core/components/Input/MultiSelect/MultiSelectInput.vue';
 import TimeInput from '@ohrm/oxd/core/components/Input/Time/TimeInput.vue';
+import ColorInput from '@ohrm/oxd/core/components/Input/Color/ColorInput.vue';
 import {Types, Components, TYPES, TYPE_INPUT, TYPE_MAP} from './types';
 import useField from '../../../composables/useField';
 
@@ -79,6 +81,7 @@ export default defineComponent({
     'oxd-select-input': SelectInput,
     'oxd-multiselect-input': MultiSelectInput,
     'oxd-time-input': TimeInput,
+    'oxd-color-input': ColorInput,
   },
 
   emits: ['update:modelValue'],
@@ -114,9 +117,14 @@ export default defineComponent({
       type: Array as PropType<any>,
       default: () => [],
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   setup(props, context) {
+    const disabled = toRef(props, 'disabled');
     const modelValue = toRef(props, 'modelValue');
     const initialValue = modelValue.value;
 
@@ -130,6 +138,7 @@ export default defineComponent({
       rules: props.rules,
       modelValue,
       onReset,
+      disabled,
     });
 
     return {

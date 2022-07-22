@@ -3,12 +3,19 @@ name: Unit Tests
 on: [push, pull_request]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
       - name: Install npm dependencies
         run: yarn install
+
       - name: Unit tests
-        run: yarn workspace oxd-components test:unit
+        run: yarn workspace oxd-components test:unit --coverage
+
+      - name: Upload jest coverage
+        uses: actions/upload-artifact@v2
+        with:
+          name: jest-coverage
+          path: components/coverage

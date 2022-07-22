@@ -46,6 +46,7 @@
           @update:modelValue="onDateSelected"
           @mousedown.prevent
           v-model="dateSelected"
+          :locale="locale"
         >
           <div class="oxd-date-input-links">
             <div @click="onClickToday" class="oxd-date-input-link --today">
@@ -65,9 +66,10 @@
 </template>
 
 <script lang="ts">
+import {enGB} from 'date-fns/locale';
 import usei18n from '../../../composables/usei18n';
 import {formatDate, parseDate, freshDate} from '../../../utils/date';
-import {defineComponent, reactive, toRefs} from 'vue';
+import {defineComponent, reactive, toRefs, PropType} from 'vue';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@ohrm/oxd/core/components/Input/Input.vue';
 import Calendar from '@ohrm/oxd/core/components/Calendar/Calendar.vue';
@@ -115,13 +117,16 @@ export default defineComponent({
       type: String,
       default: null,
     },
+    locale: {
+      type: Object as PropType<Locale>,
+      default: enGB,
+    },
   },
 
-  setup(props) {
+  setup() {
     const state = reactive({
       open: false,
-      dateProxy: parseDate(props.modelValue, props.ioformat),
-      dateTyped: '',
+      dateTyped: null,
     });
 
     return {
@@ -132,23 +137,20 @@ export default defineComponent({
 
   methods: {
     onBlur(e: Event) {
-      if (this.dateTyped) {
-        const format =
-          this.displayFormat && this.displayFormat.trim() !== ''
-            ? this.displayFormat
-            : this.ioformat;
-        const parsedDate = parseDate(this.dateTyped, format);
-        this.dateTyped = '';
-        this.dateSelected = parsedDate;
-      }
-      this.closeDropdown();
       e.stopImmediatePropagation();
+      if (this.dateTyped !== null) {
+        this.dateSelected = parseDate(this.dateTyped, this.dateFormat, {
+          locale: this.locale,
+        });
+      }
       this.$emit('blur');
+      this.closeDropdown();
     },
     onDateTyped(value: string) {
-      this.dateTyped = value ? value : ' ';
+      this.dateTyped = value;
     },
     onDateSelected() {
+      this.dateTyped = null;
       this.closeDropdown();
     },
     toggleDropdown() {
@@ -170,12 +172,14 @@ export default defineComponent({
       this.$emit('dateselect:closed');
     },
     onClickToday() {
-      this.dateSelected = freshDate();
       this.open = false;
+      this.dateTyped = null;
+      this.dateSelected = freshDate();
     },
     onClickClear() {
-      this.dateSelected = null;
       this.open = false;
+      this.dateTyped = null;
+      this.dateSelected = null;
     },
   },
 
@@ -185,18 +189,27 @@ export default defineComponent({
         return parseDate(this.modelValue, this.ioformat);
       },
       set(value) {
-        this.dateProxy = value;
-        this.$emit('update:modelValue', formatDate(value, this.ioformat));
+        if (!isNaN(value) && value instanceof Date) {
+          this.$emit('update:modelValue', formatDate(value, this.ioformat));
+        } else {
+          this.$emit(
+            'update:modelValue',
+            this.dateTyped ? this.dateTyped : null,
+          );
+        }
       },
     },
     displayDate(): string {
-      if (this.value !== null) {
-        return this.value;
-      } else if (this.displayFormat && this.displayFormat.trim() !== '') {
-        return formatDate(this.dateSelected, this.displayFormat);
-      } else {
-        return formatDate(this.dateSelected, this.ioformat);
-      }
+      if (this.value) return this.value;
+      return (
+        formatDate(this.dateSelected, this.dateFormat, {locale: this.locale}) ||
+        (this.modelValue === null ? this.modelValue : this.dateTyped)
+      );
+    },
+    dateFormat(): string {
+      return this.displayFormat && this.displayFormat.trim()
+        ? this.displayFormat
+        : this.ioformat;
     },
     dateIconClasses(): object {
       return {

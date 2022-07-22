@@ -20,11 +20,13 @@
 
 .oxd-grid-item {
   min-width: 0;
-  @include oxd-respond-to('xs') {
-    padding: $oxd-grid-item-xs-padding;
-  }
+  &--gutters {
+    @include oxd-respond-to('xs') {
+      padding: $oxd-grid-item-xs-padding;
+    }
 
-  @include oxd-respond-to('md') {
-    padding: $oxd-grid-item-md-padding;
+    @include oxd-respond-to('md') {
+      padding: $oxd-grid-item-md-padding;
+    }
   }
 }

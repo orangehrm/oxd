@@ -27,6 +27,7 @@ export const TOP = 'top';
 export const BOTTOM = 'bottom';
 export const LABEL_POSITIONS = [LEFT, RIGHT];
 export const DROPDOWN_POSITIONS = [TOP, BOTTOM];
+export const COLOR_DROPDOWN_POSITIONS = [LEFT, RIGHT];
 export type Position = typeof LEFT | typeof RIGHT | typeof TOP | typeof BOTTOM;
 
 export interface Option {

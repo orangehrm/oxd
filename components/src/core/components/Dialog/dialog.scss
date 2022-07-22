@@ -32,6 +32,9 @@
   &--shadow {
     box-shadow: $oxd-dialog-sheet-box-shadow;
   }
+  &--gutters {
+    padding: $oxd-dialog-sheet-padding;
+  }
 }
 
 .fade-enter-active,

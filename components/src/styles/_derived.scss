@@ -1,0 +1,141 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+$oxd-primary-one-lighten-5-color: lighten($oxd-primary-one-color, 5%) !default;
+$oxd-primary-one-lighten-30-color: lighten(
+  $oxd-primary-one-color,
+  30%
+) !default;
+$oxd-primary-one-darken-5-color: darken($oxd-primary-one-color, 5%) !default;
+$oxd-primary-one-alpha-10-color: rgba($oxd-primary-one-color, 0.1) !default;
+$oxd-primary-one-alpha-15-color: rgba($oxd-primary-one-color, 0.15) !default;
+$oxd-primary-one-alpha-20-color: rgba($oxd-primary-one-color, 0.2) !default;
+$oxd-primary-one-alpha-50-color: rgba($oxd-primary-one-color, 0.5) !default;
+
+$oxd-interface-gray-lighten-5-color: lighten(
+  $oxd-interface-gray-darken-1-color,
+  5%
+) !default;
+$oxd-interface-gray-darken-5-color: darken(
+  $oxd-interface-gray-darken-1-color,
+  5%
+) !default;
+$oxd-interface-gray-alpha-10-color: rgba(
+  $oxd-interface-gray-darken-1-color,
+  0.1
+) !default;
+$oxd-interface-gray-alpha-15-color: rgba(
+  $oxd-interface-gray-darken-1-color,
+  0.15
+) !default;
+$oxd-interface-gray-alpha-20-color: rgba(
+  $oxd-interface-gray-darken-1-color,
+  0.2
+) !default;
+
+$oxd-secondary-four-lighten-5-color: lighten(
+  $oxd-secondary-four-color,
+  5%
+) !default;
+$oxd-secondary-four-darken-5-color: darken(
+  $oxd-secondary-four-color,
+  5%
+) !default;
+$oxd-secondary-four-alpha-10-color: rgba(
+  $oxd-secondary-four-color,
+  0.1
+) !default;
+$oxd-secondary-four-alpha-15-color: rgba(
+  $oxd-secondary-four-color,
+  0.15
+) !default;
+$oxd-secondary-four-alpha-20-color: rgba(
+  $oxd-secondary-four-color,
+  0.2
+) !default;
+
+$oxd-feedback-info-lighten-5-color: lighten(
+  $oxd-feedback-info-color,
+  5%
+) !default;
+$oxd-feedback-info-darken-5-color: darken(
+  $oxd-feedback-info-color,
+  5%
+) !default;
+$oxd-feedback-info-alpha-10-color: rgba($oxd-feedback-info-color, 0.1) !default;
+$oxd-feedback-info-alpha-15-color: rgba(
+  $oxd-feedback-info-color,
+  0.15
+) !default;
+$oxd-feedback-info-alpha-20-color: rgba($oxd-feedback-info-color, 0.2) !default;
+
+$oxd-feedback-danger-lighten-5-color: lighten(
+  $oxd-feedback-danger-color,
+  5%
+) !default;
+$oxd-feedback-danger-darken-5-color: darken(
+  $oxd-feedback-danger-color,
+  5%
+) !default;
+$oxd-feedback-danger-alpha-10-color: rgba(
+  $oxd-feedback-danger-color,
+  0.1
+) !default;
+$oxd-feedback-danger-alpha-15-color: rgba(
+  $oxd-feedback-danger-color,
+  0.15
+) !default;
+$oxd-feedback-danger-alpha-20-color: rgba(
+  $oxd-feedback-danger-color,
+  0.2
+) !default;
+
+$oxd-feedback-warn-lighten-5-color: lighten(
+  $oxd-feedback-warn-color,
+  5%
+) !default;
+$oxd-feedback-warn-darken-5-color: darken(
+  $oxd-feedback-warn-color,
+  5%
+) !default;
+$oxd-feedback-warn-alpha-10-color: rgba($oxd-feedback-warn-color, 0.1) !default;
+$oxd-feedback-warn-alpha-15-color: rgba(
+  $oxd-feedback-warn-color,
+  0.15
+) !default;
+$oxd-feedback-warn-alpha-20-color: rgba($oxd-feedback-warn-color, 0.2) !default;
+
+$oxd-feedback-success-lighten-5-color: lighten(
+  $oxd-feedback-success-color,
+  5%
+) !default;
+$oxd-feedback-success-darken-5-color: darken(
+  $oxd-feedback-success-color,
+  5%
+) !default;
+$oxd-feedback-success-alpha-10-color: rgba(
+  $oxd-feedback-success-color,
+  0.1
+) !default;
+$oxd-feedback-success-alpha-15-color: rgba(
+  $oxd-feedback-success-color,
+  0.15
+) !default;
+$oxd-feedback-success-alpha-20-color: rgba(
+  $oxd-feedback-success-color,
+  0.2
+) !default;

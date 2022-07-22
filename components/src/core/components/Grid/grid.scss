@@ -18,6 +18,74 @@
 @import '../../../styles';
 @import 'variables';
 
+.oxd-grid-8 {
+  display: grid;
+  margin: $oxd-grid-eight-margin;
+  grid-gap: $oxd-grid-eight-gap;
+
+  @include oxd-respond-to('md') {
+    grid-gap: $oxd-grid-eight-md-gap;
+    margin: $oxd-grid-eight-md-margin;
+    grid-template-columns: $oxd-grid-eight-md-template-columns;
+  }
+
+  @include oxd-respond-to('lg') {
+    grid-gap: $oxd-grid-eight-lg-gap;
+    grid-template-columns: $oxd-grid-eight-lg-template-columns;
+  }
+}
+
+.oxd-grid-7 {
+  display: grid;
+  margin: $oxd-grid-seven-margin;
+  grid-gap: $oxd-grid-seven-gap;
+
+  @include oxd-respond-to('md') {
+    grid-gap: $oxd-grid-seven-md-gap;
+    margin: $oxd-grid-seven-md-margin;
+    grid-template-columns: $oxd-grid-seven-md-template-columns;
+  }
+
+  @include oxd-respond-to('lg') {
+    grid-gap: $oxd-grid-seven-lg-gap;
+    grid-template-columns: $oxd-grid-seven-lg-template-columns;
+  }
+}
+
+.oxd-grid-6 {
+  display: grid;
+  margin: $oxd-grid-six-margin;
+  grid-gap: $oxd-grid-six-gap;
+
+  @include oxd-respond-to('md') {
+    grid-gap: $oxd-grid-six-md-gap;
+    margin: $oxd-grid-six-md-margin;
+    grid-template-columns: $oxd-grid-six-md-template-columns;
+  }
+
+  @include oxd-respond-to('lg') {
+    grid-gap: $oxd-grid-six-lg-gap;
+    grid-template-columns: $oxd-grid-six-lg-template-columns;
+  }
+}
+
+.oxd-grid-5 {
+  display: grid;
+  margin: $oxd-grid-five-margin;
+  grid-gap: $oxd-grid-five-gap;
+
+  @include oxd-respond-to('md') {
+    grid-gap: $oxd-grid-five-md-gap;
+    margin: $oxd-grid-five-md-margin;
+    grid-template-columns: $oxd-grid-five-md-template-columns;
+  }
+
+  @include oxd-respond-to('lg') {
+    grid-gap: $oxd-grid-five-lg-gap;
+    grid-template-columns: $oxd-grid-five-lg-template-columns;
+  }
+}
+
 .oxd-grid-4 {
   display: grid;
   margin: $oxd-grid-four-margin;
@@ -25,6 +93,7 @@
 
   @include oxd-respond-to('md') {
     grid-gap: $oxd-grid-four-md-gap;
+    margin: $oxd-grid-four-md-margin;
     grid-template-columns: $oxd-grid-four-md-template-columns;
   }
 
@@ -41,6 +110,7 @@
 
   @include oxd-respond-to('md') {
     grid-gap: $oxd-grid-three-md-gap;
+    margin: $oxd-grid-three-md-margin;
     grid-template-columns: $oxd-grid-three-md-template-columns;
   }
 
@@ -57,11 +127,23 @@
 
   @include oxd-respond-to('md') {
     grid-gap: $oxd-grid-two-md-gap;
+    margin: $oxd-grid-two-md-margin;
     grid-template-columns: $oxd-grid-two-md-template-columns;
   }
 
   @include oxd-respond-to('lg') {
     grid-gap: $oxd-grid-two-lg-gap;
     grid-template-columns: $oxd-grid-two-lg-template-columns;
+  }
+}
+
+.oxd-grid-1 {
+  display: grid;
+  margin: $oxd-grid-one-margin;
+  grid-gap: $oxd-grid-one-gap;
+  grid-template-columns: $oxd-grid-one-template-columns;
+
+  @include oxd-respond-to('md') {
+    margin: $oxd-grid-one-md-margin;
   }
 }

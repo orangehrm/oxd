@@ -242,7 +242,13 @@ export default defineComponent({
       } else {
         this.loading = false;
         this.dropdownOpen = false;
-        this.$emit('update:modelValue', null);
+        if (Array.isArray(this.modelValue) && this.modelValue.length > 0) {
+          return;
+        }
+        if (typeof this.searchTerm === 'string') {
+          this.$emit('update:modelValue', null);
+        }
+        this.searchTerm = null;
       }
     },
     onSelect(option: Option) {

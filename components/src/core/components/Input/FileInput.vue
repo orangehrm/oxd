@@ -42,6 +42,7 @@
         {{ inputValue ? inputValue : placeholderText }}
       </div>
       <oxd-icon
+        v-if="buttonIcon"
         :class="{'oxd-file-input-icon': true, '--disabled': disabled}"
         :name="buttonIcon"
       />

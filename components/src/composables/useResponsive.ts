@@ -69,8 +69,8 @@ export default function useResponsive() {
   });
 
   const setWindowSize = () => {
-    const width = document.documentElement.clientWidth;
-    const height = document.documentElement.clientHeight;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
     state.windowWidth = width;
     state.windowHeight = height;
     for (const screenType in breakpoints) {

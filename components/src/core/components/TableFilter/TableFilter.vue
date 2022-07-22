@@ -23,9 +23,9 @@
   <div class="oxd-table-filter">
     <div class="oxd-table-filter-header">
       <div class="oxd-table-filter-header-title">
-        <oxd-text class="oxd-table-filter-title" tag="h5">{{
-          filterTitle
-        }}</oxd-text>
+        <oxd-text class="oxd-table-filter-title" tag="h5">
+          {{ filterTitle }}
+        </oxd-text>
       </div>
       <div class="oxd-table-filter-header-options">
         <div class="--toggle">

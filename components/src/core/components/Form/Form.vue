@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent} from 'vue';
+import {computed, defineComponent, toRef} from 'vue';
 import useFormValidation from '../../../composables/useFormValidation';
 import Spinner from '@ohrm/oxd/core/components/Loader/Spinner.vue';
 
@@ -53,7 +53,8 @@ export default defineComponent({
   },
 
   setup(props, context) {
-    const {validate, reset, errorbag, fieldset} = useFormValidation();
+    const isLoading = toRef(props, 'loading');
+    const {validate, reset, errorbag, fieldset} = useFormValidation(isLoading);
 
     const isProcessing = computed(() => {
       return fieldset.value.reduce((acc, field) => {

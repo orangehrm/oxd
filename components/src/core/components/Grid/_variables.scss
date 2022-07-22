@@ -15,26 +15,69 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see  http://www.gnu.org/licenses
 
-$oxd-grid-four-margin: 0 auto !default;
-$oxd-grid-four-gap: 0.25rem !default;
-$oxd-grid-four-md-gap: 0.25rem !default;
-$oxd-grid-four-lg-gap: 0.25rem !default;
+$oxd-grid-web-margin: auto -0.625rem !default;
+$oxd-grid-mobile-margin: auto -0.5rem !default;
+
+$oxd-grid-eight-margin: $oxd-grid-mobile-margin !default;
+$oxd-grid-eight-md-margin: $oxd-grid-web-margin !default;
+$oxd-grid-eight-gap: 0 !default;
+$oxd-grid-eight-md-gap: 0 !default;
+$oxd-grid-eight-lg-gap: 0 !default;
+$oxd-grid-eight-md-template-columns: repeat(2, 1fr) !default;
+$oxd-grid-eight-lg-template-columns: repeat(8, 1fr) !default;
+
+$oxd-grid-seven-margin: $oxd-grid-mobile-margin !default;
+$oxd-grid-seven-md-margin: $oxd-grid-web-margin !default;
+$oxd-grid-seven-gap: 0 !default;
+$oxd-grid-seven-md-gap: 0 !default;
+$oxd-grid-seven-lg-gap: 0 !default;
+$oxd-grid-seven-md-template-columns: repeat(2, 1fr) !default;
+$oxd-grid-seven-lg-template-columns: repeat(7, 1fr) !default;
+
+$oxd-grid-six-margin: $oxd-grid-mobile-margin !default;
+$oxd-grid-six-md-margin: $oxd-grid-web-margin !default;
+$oxd-grid-six-gap: 0 !default;
+$oxd-grid-six-md-gap: 0 !default;
+$oxd-grid-six-lg-gap: 0 !default;
+$oxd-grid-six-md-template-columns: repeat(2, 1fr) !default;
+$oxd-grid-six-lg-template-columns: repeat(6, 1fr) !default;
+
+$oxd-grid-five-margin: $oxd-grid-mobile-margin !default;
+$oxd-grid-five-md-margin: $oxd-grid-web-margin !default;
+$oxd-grid-five-gap: 0 !default;
+$oxd-grid-five-md-gap: 0 !default;
+$oxd-grid-five-lg-gap: 0 !default;
+$oxd-grid-five-md-template-columns: repeat(2, 1fr) !default;
+$oxd-grid-five-lg-template-columns: repeat(5, 1fr) !default;
+
+$oxd-grid-four-margin: $oxd-grid-mobile-margin !default;
+$oxd-grid-four-md-margin: $oxd-grid-web-margin !default;
+$oxd-grid-four-gap: 0 !default;
+$oxd-grid-four-md-gap: 0 !default;
+$oxd-grid-four-lg-gap: 0 !default;
 $oxd-grid-four-md-template-columns: repeat(2, 1fr) !default;
 $oxd-grid-four-lg-template-columns: repeat(4, 1fr) !default;
 
-$oxd-grid-three-margin: 0 auto !default;
-$oxd-grid-three-gap: 0.25rem !default;
-$oxd-grid-three-md-gap: 0.25rem !default;
-$oxd-grid-three-lg-gap: 0.25rem !default;
+$oxd-grid-three-margin: $oxd-grid-mobile-margin !default;
+$oxd-grid-three-md-margin: $oxd-grid-web-margin !default;
+$oxd-grid-three-gap: 0 !default;
+$oxd-grid-three-md-gap: 0 !default;
+$oxd-grid-three-lg-gap: 0 !default;
 $oxd-grid-three-md-template-columns: repeat(2, 1fr) !default;
 $oxd-grid-three-lg-template-columns: repeat(3, 1fr) !default;
 
-$oxd-grid-two-margin: 0 auto !default;
-$oxd-grid-two-gap: 0.25rem !default;
-$oxd-grid-two-md-gap: 0.25rem !default;
-$oxd-grid-two-lg-gap: 0.25rem !default;
+$oxd-grid-two-margin: $oxd-grid-mobile-margin !default;
+$oxd-grid-two-md-margin: $oxd-grid-web-margin !default;
+$oxd-grid-two-gap: 0 !default;
+$oxd-grid-two-md-gap: 0 !default;
+$oxd-grid-two-lg-gap: 0 !default;
 $oxd-grid-two-md-template-columns: repeat(2, 1fr) !default;
 $oxd-grid-two-lg-template-columns: repeat(2, 1fr) !default;
 
-$oxd-grid-item-xs-padding: 0.25rem 0.5rem !default;
-$oxd-grid-item-md-padding: 0.5rem 0.75rem !default;
+$oxd-grid-one-margin: $oxd-grid-mobile-margin !default;
+$oxd-grid-one-md-margin: $oxd-grid-web-margin !default;
+$oxd-grid-one-gap: 0 !default;
+$oxd-grid-one-template-columns: 1fr !default;
+
+$oxd-grid-item-xs-padding: 0rem 0.5rem 0rem 0.5rem !default;
+$oxd-grid-item-md-padding: 0rem 0.75rem 0rem 0.75rem !default;

@@ -18,7 +18,7 @@
 $oxd-overlay-background-color: rgba($oxd-black-color, 0.5) !default;
 
 $oxd-dialog-close-button-font-color: $oxd-white-color !default;
-$oxd-dialog-close-button-bg-color: $oxd-interface-gray-lighten-1-color !default;
+$oxd-dialog-close-button-bg-color: #b8bdc7 !default;
 $oxd-dialog-close-button-bg-color-hover: $oxd-interface-gray-darken-1-color !default;
 $oxd-dialog-close-button-border-radius: 2.5rem !default;
 $oxd-dialog-close-button-font-size: 1rem !default;
@@ -28,3 +28,4 @@ $oxd-dialog-close-button-top: -0.5rem !default;
 $oxd-dialog-close-button-right: -0.5rem !default;
 
 $oxd-dialog-sheet-box-shadow: 0 25px 35px 0 rgba($oxd-black-color, 0.18) !default;
+$oxd-dialog-sheet-padding: 1.2rem !default;
