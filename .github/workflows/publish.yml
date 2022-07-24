@@ -27,6 +27,7 @@ jobs:
           echo "current_published_version=$(npm show @ohrm/oxd version)" >> $GITHUB_ENV
 
       - name: Allow only make patch, pre-releases
+        if: ${{ env.fetched_current_version == '' }}
         run: |
           npm i -g semver
           current_published_version=${{ env.current_published_version }}
