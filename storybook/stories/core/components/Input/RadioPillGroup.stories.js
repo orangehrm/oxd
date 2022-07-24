@@ -1,0 +1,280 @@
+import { actions } from '@storybook/addon-actions'
+
+import RadioPillGroup from '@orangehrm/oxd/core/components/Input/RadioPills/RadioPillGroup'
+import { h, ref } from 'vue'
+
+const templateDecorator = () => ({
+  template: `
+<div><story/></div>
+	`,
+})
+
+export default {
+  title: 'Inputs/RadioPillGroup',
+  component: RadioPillGroup,
+  argTypes: {
+    options: {
+      control: { type: 'array' },
+      defaultValue: [],
+      table: {
+        type: {
+          summary:
+            'Set choices for the radio pill group. Currently only id, label, style and disabled properties are supported',
+        },
+      },
+    },
+    modelValue: {
+      control: { type: 'text' },
+      defaultValue: [],
+      table: {
+        type: { summary: 'Set value to the radio pill group' },
+      },
+    },
+    disabled: {
+      control: { type: 'boolean' },
+      defaultValue: false,
+      table: {
+        type: {
+          summary:
+            'Disable the radio pill group (Individual pills can be disabled via the disabled property in options property)',
+        },
+      },
+    },
+    readonly: {
+      control: { type: 'boolean' },
+      defaultValue: false,
+      table: {
+        type: {
+          summary:
+            'Make the radio pill group readonly',
+        },
+      },
+    },
+    style: {
+      control: { type: 'object' },
+      table: {
+        type: { summary: 'Set custom style to the radio pill group (Individual pills can be styled via the style property in options property)' },
+      },
+    },
+    id: {
+      control: { type: 'text' },
+      table: {
+        type: {
+          summary: 'Set individual radio pill id prefix',
+        },
+      },
+      defaultValue: 'radio-pill-group',
+    },
+    'update:modelValue': {
+      control: { type: 'function' },
+      table: {
+        type: { summary: 'Emitted event when selected value updates' },
+      },
+    },
+    change: {
+      control: { type: 'function' },
+      table: {
+        type: { summary: 'Native Inherited Event: Emit change event from input' },
+      },
+    },
+    click: {
+      action: 'click',
+      control: { type: 'function' },
+      table: {
+        type: { summary: 'Native Inherited Event: Emit click event from input' },
+      },
+    },
+    focus: {
+      action: 'focus',
+      control: { type: 'function' },
+      table: {
+        type: { summary: 'Native Inherited Event: Emit focus event from input' },
+      },
+    },
+    blur: {
+      control: { type: 'function' },
+      table: {
+        type: {
+          summary: 'Native Inherited Event: Emit blur event from input',
+        },
+      },
+    },
+  },
+  decorators: [templateDecorator],
+}
+
+const options = [
+  {
+    id: 1,
+    label: 'All Days',
+  },
+  {
+    id: 2,
+    label: 'Start Day Only',
+  },
+  {
+    id: 3,
+    label: 'End Day Only',
+  },
+  {
+    id: 4,
+    label: 'Start and End Day',
+  },
+]
+
+const optionsWithCustomStyle = [
+  {
+    id: 1,
+    label: 'All Days',
+  },
+  {
+    id: 2,
+    label: 'Start Day Only',
+    style: { 'background-color': 'lightblue' }
+  },
+  {
+    id: 3,
+    label: 'End Day Only',
+    style: { 'background-color': 'lightgreen' }
+  },
+  {
+    id: 4,
+    label: 'Start and End Day',
+    style: { 'background-color': 'lightyellow' }
+  },
+]
+
+const Template = (args) => ({
+  setup () {
+    const selected = ref(1)
+    return { args, selected }
+  },
+  render () {
+    return h('div', {}, [
+      h(RadioPillGroup, {
+        ...this.args,
+        modelValue: this.selected,
+        'onUpdate:modelValue': (value) => {
+          this.selected = value
+        },
+      }),
+      h('br'),
+      h('p', {}, `v-model : ${this.selected}`),
+    ])
+  },
+})
+
+export const Default = Template.bind({})
+Default.args = {
+  options: options,
+  name: 'color',
+}
+
+Default.parameters = {
+  docs: {
+    source: {
+      code: `<oxd-radio-pill-group
+    :options=${JSON.stringify(options)} 
+/>`,
+    },
+  },
+}
+
+export const Disabled = Template.bind({})
+Disabled.args = {
+  options: options,
+  disabled: true,
+}
+Disabled.parameters = {
+  docs: {
+    source: {
+      code: `<oxd-radio-pill-group
+    :options=${JSON.stringify(options)} 
+    :disabled='true'
+/>`,
+    },
+  },
+}
+
+export const ReadOnly = Template.bind({})
+ReadOnly.args = {
+  options: options,
+  readonly: true,
+}
+ReadOnly.parameters = {
+  docs: {
+    source: {
+      code: `<oxd-radio-pill-group
+    :options=${JSON.stringify(options)} 
+    :readonly='true'
+/>`,
+    },
+  },
+}
+
+const customStyle = { 'padding': '1rem', 'border': '1px solid', 'border-radius': '0.65rem' }
+export const CustomStyles = Template.bind({})
+CustomStyles.args = {
+  options: optionsWithCustomStyle,
+  style: customStyle,
+}
+
+CustomStyles.parameters = {
+  docs: {
+    source: {
+      code: `<oxd-radio-pill-group
+    :options=${JSON.stringify(optionsWithCustomStyle)}
+    :style=${JSON.stringify(customStyle)}
+/>`,
+    },
+  },
+}
+
+const EventsTemplate = (args) => ({
+  setup () {
+    const groupValue = ref(1)
+    return {
+      args,
+      groupValue
+    }
+  },
+  template: `
+    <oxd-radio-pill-group
+        name="events"
+        v-bind="args"
+        v-model="groupValue"
+        @update:modelValue="updateModelValue"
+        @click="click"
+        @focus="focus"
+        @change="change"
+        @blur="blur"/>`,
+
+  components: { 'oxd-radio-pill-group': RadioPillGroup },
+  methods: actions({
+    focus: 'focus',
+    blur: 'blur',
+    change: 'change',
+    'updateModelValue': 'update:modelValue',
+    click: 'click'
+  }),
+})
+
+export const Events = EventsTemplate.bind({})
+Events.args = {
+  options: options,
+}
+
+Events.parameters = {
+  docs: {
+    source: {
+      code: `<oxd-radio-pill-group
+  :options=${JSON.stringify(options)}
+  @update:modelValue="onUpdateModelValue"
+  @click="onClick"
+  @focus="onFocus"
+  @change="onChange"
+  @blur="onBlur"
+/>`,
+    },
+  },
+}

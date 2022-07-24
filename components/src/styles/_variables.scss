@@ -75,3 +75,10 @@ $oxd-modal-background-color: $oxd-white-color !default;
 
 // Text
 $oxd-noemal-text-14: 0.875rem; //equals to 14px
+
+// Primary color lighter shades. Declared separately here to make it easier to override with
+// theme --var variables from vue-app, since rgba() does not work with --var's.
+$oxd-primary-input-color-alpha-05: rgba($oxd-primary-input-color, 0.05) !default;
+$oxd-primary-input-color-alpha-10: rgba($oxd-primary-input-color, 0.10) !default;
+$oxd-primary-input-color-lighten-10: lighten($oxd-primary-input-color, 10%) !default;
+
