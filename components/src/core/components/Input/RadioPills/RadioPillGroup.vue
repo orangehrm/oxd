@@ -1,7 +1,8 @@
 <template>
-  <div
+  <oxd-input-group
     :id="id"
-    class="radio-pill-group oxd-input-field-bottom-space"
+    :classes="{wrapper: 'radio-pill-group'}"
+    class="oxd-input-field-bottom-space"
     :style="style"
   >
     <oxd-radio-pill
@@ -23,10 +24,11 @@
       @update:modelValue="onUpdateModelValue"
     >
     </oxd-radio-pill>
-  </div>
+  </oxd-input-group>
 </template>
 <script lang="ts">
 import {defineComponent} from 'vue';
+import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue';
 import RadioPill from '@orangehrm/oxd/core/components/Input/RadioPills/RadioPill.vue';
 import translateMixin from '@orangehrm/oxd/mixins/translate';
 
@@ -41,6 +43,7 @@ export default defineComponent({
   name: 'oxd-radio-pill-group',
   components: {
     'oxd-radio-pill': RadioPill,
+    'oxd-input-group': InputGroup,
   },
 
   mixins: [translateMixin],
