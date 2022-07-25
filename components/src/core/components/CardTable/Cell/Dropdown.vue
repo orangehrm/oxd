@@ -1,6 +1,6 @@
 <template>
   <oxd-dropdown-menu @click="noOp" class="oxd-table-dropdown">
-    <oxd-icon-button :name="iconName" :size="iconSize" />
+    <oxd-icon-button :name="iconName" :size="iconSize" :disabled="disabled" />
     <template v-slot:content>
       <li
         v-for="option in options"
@@ -36,6 +36,10 @@ export default defineComponent({
     },
     iconSize: {
       type: String,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
   components: {
