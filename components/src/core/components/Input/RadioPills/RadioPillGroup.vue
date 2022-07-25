@@ -6,12 +6,12 @@
     :style="style"
   >
     <oxd-radio-pill
-      v-for="(option, index) in options"
+      v-for="option in processedOptions"
       :key="option.id"
       :id="id + '_' + option.id"
       :value="option.id"
       :style="option.style"
-      :autofocus="$attrs.autofocus && index === 0"
+      :autofocus="option.autofocus"
       :name="name"
       :label="$vt(option.label)"
       :modelValue="modelValue"
@@ -27,16 +27,18 @@
   </oxd-input-group>
 </template>
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {computed, defineComponent, PropType} from 'vue';
 import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue';
 import RadioPill from '@orangehrm/oxd/core/components/Input/RadioPills/RadioPill.vue';
 import translateMixin from '@orangehrm/oxd/mixins/translate';
 
-export interface Options {
-  id: number;
+export interface RadioPillGroupOption {
+  id: string;
   label: string;
   disabled?: boolean;
+  // eslint-disable-next-line
   style?: Record<string, any>;
+  autofocus?: boolean;
 }
 
 export default defineComponent({
@@ -71,7 +73,7 @@ export default defineComponent({
       default: false,
     },
     options: {
-      type: Array,
+      type: Array as PropType<RadioPillGroupOption[]>,
       default: () => [],
     },
     modelValue: {
@@ -100,7 +102,30 @@ export default defineComponent({
       context.emit('change', e);
     };
 
+    const processedOptions = computed(() => {
+      if (context.attrs.autofocus) {
+        // Find first non-disabled option and set autofocus = true
+        let enabledOptionFound = false;
+        return props.options.map(option => {
+          const processedOption: RadioPillGroupOption = {
+            id: option.id,
+            label: option.label,
+            disabled: option.disabled,
+          };
+          if (!enabledOptionFound && !option.disabled) {
+            enabledOptionFound = true;
+            processedOption.autofocus = true;
+          }
+
+          return processedOption;
+        });
+      } else {
+        return props.options;
+      }
+    });
+
     return {
+      processedOptions,
       onFocus,
       onBlur,
       onClick,

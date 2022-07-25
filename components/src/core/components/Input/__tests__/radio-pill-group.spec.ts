@@ -63,6 +63,35 @@ describe('RadioPillGroup.vue', () => {
     expect(element3Style.getPropertyValue('color')).toEqual('blue');
   });
 
+  it('autofocus attribute set to first non-disabled pill', () => {
+    const optionsWithDisabledFirstItem = options.map((option, index) => ({
+      id: option.id,
+      label: option.label,
+      disabled: index === 0,
+    }));
+
+    const wrapper = mount(RadioPillGroup, {
+      props: {
+        name: 'partialDays',
+        options: optionsWithDisabledFirstItem,
+        modelValue: 'all',
+        autofocus: true,
+      },
+    });
+
+    const pills = wrapper.findAllComponents(RadioPill);
+    expect(pills).toHaveLength(options.length);
+
+    options.forEach((option, index) => {
+      const autofocus = pills[index].find('input').attributes('autofocus');
+      if (index === 1) {
+        expect(autofocus).toEqual('');
+      } else {
+        expect(autofocus).toEqual(undefined);
+      }
+    });
+  });
+
   it('does not emit events by default', async () => {
     const wrapper = mount(RadioPillGroup, {
       props: {
