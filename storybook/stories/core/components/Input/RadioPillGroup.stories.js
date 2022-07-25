@@ -13,6 +13,12 @@ export default {
   title: 'Inputs/RadioPillGroup',
   component: RadioPillGroup,
   argTypes: {
+    name: {
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'name for the radio pill group' },
+      },
+    },
     options: {
       control: { type: 'array' },
       defaultValue: [],
@@ -167,13 +173,14 @@ const Template = (args) => ({
 export const Default = Template.bind({})
 Default.args = {
   options: options,
-  name: 'color',
+  name: 'partialDays',
 }
 
 Default.parameters = {
   docs: {
     source: {
       code: `<oxd-radio-pill-group
+    name="partialDays"
     :options=${JSON.stringify(options)} 
 />`,
     },
@@ -184,11 +191,13 @@ export const Disabled = Template.bind({})
 Disabled.args = {
   options: options,
   disabled: true,
+  name: 'partialDays',
 }
 Disabled.parameters = {
   docs: {
     source: {
       code: `<oxd-radio-pill-group
+    name='partialDays'
     :options=${JSON.stringify(options)} 
     :disabled='true'
 />`,
@@ -200,11 +209,13 @@ export const ReadOnly = Template.bind({})
 ReadOnly.args = {
   options: options,
   readonly: true,
+  name: 'readonlyGroup',
 }
 ReadOnly.parameters = {
   docs: {
     source: {
       code: `<oxd-radio-pill-group
+    name='readonlyGroup'
     :options=${JSON.stringify(options)} 
     :readonly='true'
 />`,
@@ -217,12 +228,14 @@ export const CustomStyles = Template.bind({})
 CustomStyles.args = {
   options: optionsWithCustomStyle,
   style: customStyle,
+  name: 'customStyle',
 }
 
 CustomStyles.parameters = {
   docs: {
     source: {
       code: `<oxd-radio-pill-group
+    name='customStyle'
     :options=${JSON.stringify(optionsWithCustomStyle)}
     :style=${JSON.stringify(customStyle)}
 />`,
@@ -262,12 +275,14 @@ const EventsTemplate = (args) => ({
 export const Events = EventsTemplate.bind({})
 Events.args = {
   options: options,
+  name: 'events',
 }
 
 Events.parameters = {
   docs: {
     source: {
       code: `<oxd-radio-pill-group
+  name='events'
   :options=${JSON.stringify(options)}
   @update:modelValue="onUpdateModelValue"
   @click="onClick"

@@ -13,7 +13,6 @@
         :disabled="disabled"
         :readonly="readonly"
         :class="classes"
-        tabindex="0"
       />
     </label>
   </div>
@@ -33,6 +32,10 @@ export default defineComponent({
   name: 'oxd-radio-pill',
   inheritAttrs: false,
   props: {
+    name: {
+      type: String,
+      required: true,
+    },
     label: {
       type: String,
     },

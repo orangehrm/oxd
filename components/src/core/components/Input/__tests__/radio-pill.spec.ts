@@ -10,6 +10,7 @@ describe('RadioPill.vue', () => {
   it('renders single pill', () => {
     const wrapper = mount(RadioPill, {
       props: {
+        name: 'color',
         label: 'Red Pill Value',
         value: 'red',
       },
@@ -33,6 +34,7 @@ describe('RadioPill.vue', () => {
   it('Does not emits events by default', async () => {
     const wrapper = mount(RadioPill, {
       props: {
+        name: 'color',
         label: 'Red Pill Value',
         value: 'red',
       },
@@ -45,6 +47,7 @@ describe('RadioPill.vue', () => {
   it('disabled pill', async () => {
     const wrapper = mount(RadioPill, {
       props: {
+        name: 'color',
         label: 'Red Pill Value',
         value: 'red',
         disabled: true,
@@ -66,6 +69,7 @@ describe('RadioPill.vue', () => {
   it('readonly pill', async () => {
     const wrapper = mount(RadioPill, {
       props: {
+        name: 'color',
         label: 'Red Pill Value',
         value: 'red',
         readonly: true,
@@ -85,6 +89,7 @@ describe('RadioPill.vue', () => {
   it('Check value changes the radio value', async () => {
     const wrapper = mount(RadioPill, {
       props: {
+        name: 'color',
         label: 'Red Pill Value',
         value: 'red',
       },
@@ -102,6 +107,7 @@ describe('RadioPill.vue', () => {
   it('Emits update:modelValue and change', async () => {
     const wrapper = mount(RadioPill, {
       props: {
+        name: 'color',
         label: 'Red Pill Value',
         value: 'red',
       },
@@ -115,6 +121,7 @@ describe('RadioPill.vue', () => {
   it('Emits focus event', async () => {
     const wrapper = mount(RadioPill, {
       props: {
+        name: 'color',
         label: 'Red Pill Value',
         value: 'red',
       },
@@ -135,6 +142,7 @@ describe('RadioPill.vue', () => {
   it('Emits blur event', async () => {
     const wrapper = mount(RadioPill, {
       props: {
+        name: 'test',
         label: 'Red Pill Value',
         value: 'red',
       },

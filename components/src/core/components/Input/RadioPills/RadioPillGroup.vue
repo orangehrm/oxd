@@ -11,7 +11,7 @@
       :value="option.id"
       :style="option.style"
       :autofocus="$attrs.autofocus && index === 0"
-      :name="$attrs.name"
+      :name="name"
       :label="$vt(option.label)"
       :modelValue="modelValue"
       :disabled="disabled || option.disabled"
@@ -51,6 +51,10 @@ export default defineComponent({
     id: {
       type: String,
       default: 'radio-pill-group-id',
+    },
+    name: {
+      type: String,
+      required: true,
     },
     style: {
       type: Object,

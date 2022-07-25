@@ -34,6 +34,7 @@ describe('RadioPillGroup.vue', () => {
   it('renders pill group', () => {
     const wrapper = mount(RadioPillGroup, {
       props: {
+        name: 'partialDays',
         options: options,
         modelValue: 'all',
       },
@@ -65,6 +66,7 @@ describe('RadioPillGroup.vue', () => {
   it('does not emit events by default', async () => {
     const wrapper = mount(RadioPillGroup, {
       props: {
+        name: 'partialDays',
         options: options,
         modelValue: 'all',
       },
@@ -77,6 +79,7 @@ describe('RadioPillGroup.vue', () => {
   it('change the value by selecting another pill', async () => {
     const wrapper = mount(RadioPillGroup, {
       props: {
+        name: 'partialDays',
         options: options,
         modelValue: 'all',
       },
@@ -95,6 +98,7 @@ describe('RadioPillGroup.vue', () => {
   it('focus on a pill triggers focus event', async () => {
     const wrapper = mount(RadioPillGroup, {
       props: {
+        name: 'partialDays',
         options: options,
         modelValue: 'all',
       },
@@ -111,6 +115,7 @@ describe('RadioPillGroup.vue', () => {
   it('blur on a pill triggers blur event', async () => {
     const wrapper = mount(RadioPillGroup, {
       props: {
+        name: 'partialDays',
         options: options,
         modelValue: 'all',
       },
@@ -127,6 +132,7 @@ describe('RadioPillGroup.vue', () => {
   it('pill group without options', () => {
     const wrapper = mount(RadioPillGroup, {
       props: {
+        name: 'partialDays',
         modelValue: 'all',
       },
     });
