@@ -16,7 +16,7 @@ export default {
     name: {
       control: { type: 'text' },
       table: {
-        type: { summary: 'name for the radio pill group' },
+        type: { summary: 'Name for the radio pill group' },
       },
     },
     options: {
