@@ -1,3 +1,20 @@
+<!-- <template>
+  <oxd-dropdown-menu @click="noOp" class="oxd-table-dropdown">
+    <oxd-icon-button :name='iconName' :size='iconSize' />
+    <template v-slot:content>
+      <li
+        v-for="option in options"
+        :key="option.context"
+        @click.once="onClick($event, option.context)"
+        class="oxd-table-dropdown-item"
+      >
+        <oxd-icon v-if="option.icon" :name="option.icon" size="extra-small" />
+        <oxd-text tag="p">{{ option.label }}</oxd-text>
+      </li>
+    </template>
+  </oxd-dropdown-menu>
+</template> -->
+
 <template>
   <oxd-dropdown-menu @click="noOp" class="oxd-table-dropdown">
     <oxd-icon-button :name="iconName" :size="iconSize" :disabled="disabled" />
@@ -8,8 +25,13 @@
         @click.once="onClick($event, option.context)"
         class="oxd-table-dropdown-item"
       >
-        <oxd-icon v-if="option.icon" :name="option.icon" size="extra-small" />
-        <oxd-text tag="p">{{ option.label }}</oxd-text>
+        <div class="oxd-table-dropdown-item-left">
+          <oxd-icon v-if="option.icon" :name="option.icon" size="extra-small" />
+          <oxd-text tag="p">{{ option.label }}</oxd-text>
+        </div>
+        <div v-if="option.count" class="oxd-table-dropdown-item-right">
+          {{ option.count }}
+        </div>
       </li>
     </template>
   </oxd-dropdown-menu>
