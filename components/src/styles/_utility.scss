@@ -122,9 +122,10 @@
       Let the content set the size of the tooltips 
       but this will also keep them from being obnoxious
       */
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  width: fit-content;
+  max-width: 300px;
   padding: 0.25rem 0.5rem;
   border-radius: 0.5rem;
   box-shadow: 0px 25px 25px 0 rgba(0, 0, 0, 0.18);
