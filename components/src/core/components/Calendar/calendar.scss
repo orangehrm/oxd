@@ -103,6 +103,12 @@
       font-weight: $oxd-calendar-date-selected-font-weight;
       transform: scale(0.9);
     }
+    &.--disabled {
+      cursor: default;
+      color: $oxd-date--disabled;
+      pointer-events: none;
+      transform: none;
+    }
   }
 
   &-dates-grid .oxd-calendar-date-wrapper:nth-child(-n + 7) {
