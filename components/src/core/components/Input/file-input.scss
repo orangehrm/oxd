@@ -77,6 +77,7 @@
   justify-content: center;
   width: $oxd-file-button-width;
   height: $oxd-file-button-height;
+  min-width: $oxd-file-button-width;
   border-radius: $oxd-input-control-border-radius;
   background-color: $oxd-file-button-background-color;
   margin-right: $oxd-file-input-horizontal-margin;
