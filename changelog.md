@@ -1,5 +1,6 @@
-2022-07-25 - 23d88c64daee0475d64f9f1f8d2a3b8184ff7864 - styles/_utility.scss - Show tool tips in multi line if the content is too lengthy
+2022-07-25 - b9271bec74aad8cb48e4ff6bf0e0ba84a80912b6 - components/Table/ClassicTable - Classic Table - Add support for tooltips and rendering styled contents
 
+2022-07-25 - 23d88c64daee0475d64f9f1f8d2a3b8184ff7864 - styles/_utility.scss - Show tool tips in multi line if the content is too lengthy
 
 2022-07-20 - b7038ebe7ef9a2ab5c513ad2c7f1a00f6d31c8af - components/Table/ClassicTable - Fixing column widths in oxd-classic-table
 

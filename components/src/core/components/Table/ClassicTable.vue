@@ -49,7 +49,17 @@
           :key="header"
           :style="{width: header.width}"
         >
+        <div
+          v-if="item[header.name].length > header.maxCharacterLength"
+          :tooltip="item[header.name]"
+          :flow="header.flow || 'bottom'"
+          :style="header.style"
+          >
+          {{ item[header.name].slice(0, parseInt(header.maxCharacterLength)) + '...'}}
+        </div>
+        <div v-else :style="header.style">
           {{ item[header.name] }}
+        </div>
         </oxd-td>
       </oxd-tr>
     </oxd-tbody>
