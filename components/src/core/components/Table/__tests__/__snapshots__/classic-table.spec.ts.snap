@@ -20,54 +20,37 @@ exports[`ClassicTable.vue renders OXD ClassicTable 1`] = `
     <tr class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable">
       <!--v-if-->
       <td class="oxd-padding-cell" style="width: 17%;">
-        <div>
-          <div>Data 1</div>
-        </div>
+        <div>Data 1</div>
       </td>
       <td class="oxd-padding-cell" style="width: 20%;">
-        <div>
-          <div>Hello!!<br>This is html content<div></div>
-          </div>
-        </div>
+        <div>&lt;div&gt;Hello!!&lt;/br&gt;This is html content&lt;div&gt;</div>
       </td>
       <td class="oxd-padding-cell" style="width: 60%;">
-        <div>
-          <div>Data 1</div>
-        </div>
+        <div>Data 1</div>
       </td>
     </tr>
     <tr class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable">
       <!--v-if-->
       <td class="oxd-padding-cell" style="width: 17%;">
-        <div>
-          <div>Data 2</div>
-        </div>
+        <div>Data 2</div>
       </td>
       <td class="oxd-padding-cell" style="width: 20%;">
         <div></div>
       </td>
       <td class="oxd-padding-cell" style="width: 60%;">
-        <div>
-          <div>Data 2</div>
-        </div>
+        <div>Data 2</div>
       </td>
     </tr>
     <tr class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable">
       <!--v-if-->
       <td class="oxd-padding-cell" style="width: 17%;">
-        <div>
-          <div>Data 3</div>
-        </div>
+        <div>Data 3</div>
       </td>
       <td class="oxd-padding-cell" style="width: 20%;">
-        <div>
-          <div style="border: solid 1px #D3D3D3; border-radius: 0.5rem; padding: 5px 10px; width: fit-content; margin-left: 10px;">Action</div>
-        </div>
+        <div>&lt;div style="border: solid 1px #D3D3D3; border-radius: 0.5rem; padding: 5px 10px; width: fit-content; margin-left: 10px;"&gt;Action&lt;/div&gt;</div>
       </td>
       <td class="oxd-padding-cell" style="width: 60%;">
-        <div>
-          <div tooltip="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." flow="bottom">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the ...</div>
-        </div>
+        <div tooltip="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." flow="bottom">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the ...</div>
       </td>
     </tr>
   </tbody>

@@ -49,19 +49,16 @@
           :key="header"
           :style="{width: header.width}"
         >
-
-        <div v-if="header.isHtml" v-html="item[header.name]"></div>
-        <div v-else>
-          <div
-            v-if="item[header.name].length > header.maxCharacterLength"
-            :tooltip="item[header.name]"
-            :flow="header.flow?header.flow:'bottom'"
-            >
-            {{ item[header.name].slice(0, parseInt(header.maxCharacterLength)) + '...'}}
-          </div>
-          <div v-else>
-            {{ item[header.name] }}
-          </div>
+        <div
+          v-if="item[header.name].length > header.maxCharacterLength"
+          :tooltip="item[header.name]"
+          :flow="header.flow || 'bottom'"
+          :style="header.style"
+          >
+          {{ item[header.name].slice(0, parseInt(header.maxCharacterLength)) + '...'}}
+        </div>
+        <div v-else :style="header.style">
+          {{ item[header.name] }}
         </div>
         </oxd-td>
       </oxd-tr>
