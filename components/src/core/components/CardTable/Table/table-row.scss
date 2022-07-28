@@ -26,6 +26,14 @@
   height: 100%;
   padding-left: $oxd-table-row-left-padding;
   padding-right: $oxd-table-row-right-padding;
+  @include oxd-respond-to('md') {
+    ::v-deep(.oxd-table-cell:first-of-type) {
+      margin-left: $oxd-table-cell-left-margin;
+    }
+    ::v-deep(.oxd-table-header-cell:first-of-type) {
+      margin-left: $oxd-table-cell-left-margin;
+    }
+  }
 }
 
 .oxd-table-body > .oxd-table-row {
