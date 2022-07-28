@@ -210,7 +210,7 @@ export default defineComponent({
       } else {
         prevHour = newValue;
       }
-      if (newValue.length === 2) {
+      if (newValue.length > 0) {
         setValue(parseInt(newValue, 10), type);
       }
     };
