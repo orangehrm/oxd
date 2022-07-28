@@ -3,8 +3,12 @@
 
 .oxd-padding-cell {
   padding: $oxd-table-cell-padding;
-}
 
+  &:not(.oxd-table-th) {
+    display: flex;
+    align-items: center;
+  }
+}
 .oxd-table-th {
   text-align: left;
 }
