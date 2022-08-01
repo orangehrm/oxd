@@ -43,6 +43,7 @@ import MultiSelectInput from '@orangehrm/oxd/core/components/Input/MultiSelect/M
 import TimeInput from '@orangehrm/oxd/core/components/Input/Time/TimeInput.vue';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import InfoBox from '@orangehrm/oxd/core/components/InfoBox/InfoBox.vue';
+import Comments from '@orangehrm/oxd/core/components/Comments/Comments.vue';
 import {
   Types,
   Components,
@@ -77,6 +78,7 @@ export default defineComponent({
     'oxd-checkboxgroup-input': CheckboxGroup,
     'oxd-infobox': InfoBox,
     'oxd-quicksearch-input': QuickSearchInput,
+    'oxd-comments': Comments,
   },
 
   mixins: [translateMixin],
@@ -150,7 +152,7 @@ export default defineComponent({
       onReset,
     });
 
-    const onChange = $event => {
+    const onChange = ($event) => {
       if (!dirty.value) {
         dirty.value = true;
         startWatcher();

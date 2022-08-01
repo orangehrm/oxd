@@ -1,0 +1,90 @@
+@import '../../../styles';
+@import 'variables';
+@import './../Input/variables';
+
+@mixin oxd-comment-content-text {
+  color: $oxd-interface-gray-darken-2-color;
+  font-weight: $oxd-comment-content-font-weight;
+  font-family: $oxd-font-family;
+  font-size: $oxd-comment-content-font-size;
+}
+
+.oxd-comment {
+  &-wrapper {
+    @include oxd-input-control-size;
+    position: relative;
+    margin-bottom: $oxd-comment-content-container-padding;
+  }
+  &-avatar-wrapper {
+    padding-right: $oxd-comment-content-container-padding;
+  }
+  &-content-wrapper {
+    width: 100%;
+    .oxd-comment-content {
+      &-container {
+        background-color: $oxd-white-color;
+        border-radius: $oxd-comment-content-container-border-radius;
+        padding: $oxd-comment-content-container-padding;
+        &:hover {
+          .show-on-hover {
+            &-grid {
+              display: grid;
+            }
+          }
+        }
+        .oxd-comment-content {
+          @include oxd-comment-content-text;
+        }
+        .oxd-comment-content-edit-wrapper {
+          .oxd-comment-content-footer-container {
+            padding-left: 0;
+            .oxd-comment-content-footer-action-container {
+              margin-left: 0;
+            }
+          }
+        }
+      }
+      &-header-container {
+        margin-bottom: $oxd-comment-content-container-padding-top;
+        .oxd-comment-content-header {
+          &-label {
+            // &-container {
+            // }
+            &-hint {
+              font-size: 0.75rem;
+              font-family: $oxd-font-family;
+              font-weight: 400;
+              color: $oxd-interface-gray-color;
+              word-break: break-all;
+              display: block;
+              margin-left: $oxd-comment-content-container-padding-top;
+            }
+          }
+          &-actions-container {
+            // display: grid;
+            display: none;
+            grid-auto-flow: column;
+            grid-gap: $oxd-comment-content-container-padding;
+          }
+        }
+      }
+    }
+    .oxd-comment-content-footer-container {
+      @include oxd-comment-content-text;
+      color: $oxd-interface-gray-color;
+      padding: $oxd-comment-content-container-padding-top 0 0
+        $oxd-comment-content-container-padding;
+      .oxd-comment-content-footer-action {
+        &:hover {
+          color: #ac5b00;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+        &.active {
+          color: #ac5b00;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

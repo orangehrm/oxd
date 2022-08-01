@@ -1,0 +1,149 @@
+<template>
+  <div class="oxd-comment-box oxd-input-group">
+    <div class="oxd-input-group__label-wrapper">
+      <oxd-icon
+        v-if="labelIcon"
+        :name="labelIcon"
+        class="oxd-input-group__label-icon"
+      />
+      <oxd-label v-if="label" :id="id" :label="label" :class="labelClasses" />
+      <oxd-text v-if="hint" class="oxd-input-field-hint placement-top" tag="p">
+        {{ '(' + hint + ')' }}
+      </oxd-text>
+    </div>
+    <div class="d-flex">
+      <oxd-textarea
+        v-bind="$attrs"
+        class="oxd-comment-box-textarea"
+        :class="classes"
+        ref="textareaComponent"
+        :value="modelValue"
+        @input="updateModelValue"
+        @keyup.enter="addComment"
+      />
+    </div>
+    <oxd-icon-button
+      v-if="actionButtonIcon"
+      class="oxd-comment-box-add-button"
+      :name="actionButtonIcon"
+      :tooltip="actionButtonTooltip"
+      size="small"
+      @click="addComment"
+    />
+  </div>
+</template>
+
+<script lang="ts">
+import {defineComponent, ref, computed, onMounted, PropType} from 'vue';
+import Label from '@orangehrm/oxd/core/components/Label/Label.vue';
+import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
+import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
+import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
+import Textarea from '@orangehrm/oxd/core/components/Textarea/Textarea.vue';
+import {
+  TextareaResize,
+  RESIZE_NONE,
+  RESIZE_VERTICAL,
+  RESIZE_HORIZONTAL,
+} from './../Textarea/types';
+
+export default defineComponent({
+  name: 'oxd-textarea-wrapper',
+  components: {
+    'oxd-label': Label,
+    'oxd-text': Text,
+    'oxd-icon': Icon,
+    'oxd-icon-button': IconButton,
+    'oxd-textarea': Textarea,
+  },
+  props: {
+    modelValue: {
+      type: String,
+      default: '',
+    },
+    label: {
+      type: String,
+    },
+    labelIcon: {
+      type: String,
+    },
+    actionButtonIcon: {
+      type: String,
+    },
+    actionButtonTooltip: {
+      type: String,
+    },
+    classes: {
+      type: Object as PropType<{
+        label: any;
+        message: any;
+        wrapper: any;
+      }>,
+      default: () => {
+        return {
+          label: {},
+          message: {},
+          wrapper: {},
+        };
+      },
+    },
+    hasError: {
+      type: Boolean,
+      default: false,
+    },
+    resize: {
+      type: String,
+      default: RESIZE_VERTICAL,
+      validator: function (value: TextareaResize) {
+        return (
+          [RESIZE_VERTICAL, RESIZE_HORIZONTAL, RESIZE_NONE].indexOf(value) !==
+          -1
+        );
+      },
+    },
+  },
+  setup(props, {emit}) {
+    const textareaComponent = ref(null);
+    let focused: boolean = false;
+
+    const labelClasses = computed((): object => {
+      return {
+        ...props.classes.label,
+      };
+    });
+
+    const classes = computed(() => {
+      return {
+        'oxd-textarea': true,
+        'oxd-textarea--active': !focused,
+        'oxd-textarea--focus': focused,
+        'oxd-textarea--error': props.hasError,
+        [`oxd-textarea--resize-${props.resize}`]: true,
+      };
+    });
+
+    const updateModelValue = (e: Event) => {
+      emit('update:modelValue', (e.target as HTMLTextAreaElement).value);
+    };
+
+    const addComment = () => {
+      emit('addComment');
+    };
+
+    onMounted(() => {
+      textareaComponent.value.$el.focus();
+    });
+
+    return {
+      classes,
+      labelClasses,
+      textareaComponent,
+      updateModelValue,
+      addComment,
+    };
+  },
+});
+</script>
+
+<style src="./../InputField/input-group.scss" lang="scss" scoped></style>
+<style src="./comment-box.scss" lang="scss" scoped></style>
