@@ -14,13 +14,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import {
-  BulletPointListItem,
-} from "./types";
+import {defineComponent} from 'vue';
+import {BulletPointListItem} from './types';
 
 export default defineComponent({
-  name: "BulletPointsComponent",
+  name: 'BulletPointsComponent',
   props: {
     list: {
       type: Array as () => Array<BulletPointListItem>,
@@ -34,10 +32,12 @@ export default defineComponent({
   },
   methods: {
     getElementStyles(index: number) {
-      if (index === 0) {
-        return { height: "50%", top: "50%" };
+      if (this.isLast === 0) {
+        return {display: 'none'};
+      } else if (index === 0) {
+        return {height: '50%', top: '50%'};
       } else if (index === this.isLast) {
-        return { height: "50%" };
+        return {height: '50%'};
       }
       return {};
     },
@@ -45,4 +45,3 @@ export default defineComponent({
 });
 </script>
 <style src="./BulletPoints.scss" lang="scss" scoped></style>
-

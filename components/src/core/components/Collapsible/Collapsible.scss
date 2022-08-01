@@ -12,6 +12,9 @@
       font-size: 16px;
       font-weight: 700;
       font-family: $oxd-collapsible-header-font-family;
+      max-width: calc(100% - 24px);
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
 
     .oxd-collapsible-caret-icon-wrapper {
@@ -24,5 +27,4 @@
       }
     }
   }
-
 }

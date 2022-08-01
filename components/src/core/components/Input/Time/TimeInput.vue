@@ -9,6 +9,7 @@
         :value="time"
         :placeholder="placeholder"
         @update:modelValue="onTimeChange"
+        @blur="onBlur"
         tabindex="0"
         maxlength="5"
       />
@@ -114,6 +115,7 @@ export default defineComponent({
   setup(props, context) {
     const timePickerOpen = ref<boolean>(false);
     const amPmLabelFocus = ref<boolean>(false);
+    let inputTime = '0';
 
     const state = reactive({
       time: '01:00',
@@ -150,7 +152,15 @@ export default defineComponent({
     };
 
     const onTimeChange = (value: string) => {
-      state.time = value.trim();
+      inputTime = value;
+    };
+
+    const onBlur = (e: Event) => {
+      if (inputTime) {
+        state.time = inputTime;
+      }
+      e.stopImmediatePropagation();
+      context.emit('blur');
     };
 
     const timePickerUpdate = () => {
@@ -240,6 +250,7 @@ export default defineComponent({
       timeIconWrapperClasses,
       amPmLabelClasses,
       onTimeChange,
+      onBlur,
       onAmPmChange,
       toggleAmPm,
       timePickerUpdate,

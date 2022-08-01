@@ -100,10 +100,18 @@
               ></oxd-icon-button>
             </template>
             <template v-slot:option="{data, text}">
-              <oxd-profile-pic size="extra-small" :imageSrc="data.avatar_url" />
-              <div class="margin-left">
+              <oxd-profile-pic
+                v-if="config.table.topBar.quickSearch.withImageSearch"
+                size="extra-small"
+                :imageSrc="data.avatar_url"
+              />
+              <div
+                v-if="config.table.topBar.quickSearch.withImageSearch"
+                class="margin-left"
+              >
                 <div v-html="text"></div>
               </div>
+              <div v-else v-html="text"></div>
             </template>
           </oxd-quick-search>
           <div class="d-flex align-center">
@@ -222,6 +230,10 @@ export default defineComponent({
     quickSearchOptions: {
       type: Function,
     },
+    quickSearchKeyWord: {
+      type: String,
+      default: null,
+    },
     pagination: {
       type: Object,
       default: () => ({
@@ -273,6 +285,23 @@ export default defineComponent({
       () => props.pagination,
       newVal => {
         state.currentPage = newVal.currentPage;
+      },
+      {
+        immediate: true,
+        deep: true,
+      },
+    );
+    
+    watch(
+      () => props.quickSearchKeyWord,
+      newVal => {
+        if (props.quickSearchKeyWord) {
+          state.quickSearchTriggered = true;
+          state.selectedQuickSearch = {
+            label: newVal,
+          };
+          state.quickSearchTerm = newVal;
+        }
       },
       {
         immediate: true,
@@ -355,11 +384,11 @@ export default defineComponent({
       if (typeof value === 'string') return;
       if (value) {
         state.selectedQuickSearch = {
-          label: value.candidateName,
+          label: value.label,
         };
         emit('quick-search:onSelect', value);
         state.quickSearchTriggered = true;
-        state.quickSearchTerm = value.candidateName;
+        state.quickSearchTerm = value.label;
       } else {
         quickSearchOnClear();
       }
