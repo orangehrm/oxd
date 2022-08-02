@@ -18,7 +18,7 @@
       display: inline-flex;
     }
     :deep(.count-container) {
-      width: 95%;
+      width: 100%;
     }
     :deep(.oxd-button) {
       padding-right: 10px;
@@ -31,7 +31,7 @@
       margin: 0rem 0 0rem 0.5rem;
     }
     .oxd-table-left-panel--separator {
-      margin: 0rem 0.9rem 1rem 0.5rem;
+      margin: 0rem 0.3rem 1rem 0.3rem;
     }
     .no-label {
       padding-right: 20px;
