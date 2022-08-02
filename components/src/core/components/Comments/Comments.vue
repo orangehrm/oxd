@@ -20,8 +20,8 @@
             v-for="(comment, index) in commentGroup.comments"
             :comment="comment"
             :key="comment || index"
-            :allowToEdit="allowToEdit"
-            :allowToDelete="allowToDelete"
+            :allowToEdit="allowToEdit || comment.allowToEdit"
+            :allowToDelete="allowToDelete || comment.allowToDelete"
             :enableAvatar="enableAvatar"
             @onUpdateComment="onUpdateComment"
           />
