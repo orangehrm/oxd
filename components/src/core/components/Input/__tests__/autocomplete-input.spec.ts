@@ -88,6 +88,7 @@ describe('AutocompleteInput.vue', () => {
       },
     });
     wrapper.find('input').setValue('');
+    wrapper.find('input').trigger('blur');
     await wrapper.vm.$nextTick();
     expect(wrapper.emitted('update:modelValue')).toEqual([[null]]);
   });
