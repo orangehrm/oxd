@@ -566,6 +566,7 @@ const icons: Icons = {
   'oxd-frequency-sort-asc': oxdFrequencySortAsc,
   'oxd-frequency-sort-desc': oxdFrequencySortDesc,
   'oxd-pass-icon': oxdPassIcon,
+  'oxd-fail-icon': oxdFailIcon,
   'oxd-play-icon': oxdPlayIcon,
 };
 
