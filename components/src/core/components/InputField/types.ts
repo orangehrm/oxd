@@ -87,7 +87,8 @@ export type Types =
   | typeof TYPE_MULTISELECT
   | typeof TYPE_TIME
   | typeof TYPE_CHECKBOXGROUP
-  | typeof TYPE_INFOBOX;
+  | typeof TYPE_INFOBOX
+  | typeof TYPE_RADIO_PILL_GROUP;
 
 export type Components =
   | typeof COMPONENT_INPUT
