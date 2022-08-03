@@ -13,6 +13,7 @@ export const COMPONENT_MULTISELECT_INPUT = 'oxd-multiselect-input';
 export const COMPONENT_TIME_INPUT = 'oxd-time-input';
 export const COMPONENT_CHECKBOXGROUP_INPUT = 'oxd-checkboxgroup-input';
 export const COMPONENT_INFOBOX = 'oxd-infobox';
+export const COMPONENT_RADIO_PILL_GROUP = 'oxd-radio-pill-group';
 
 export const TYPE_INPUT = 'input';
 export const TYPE_FILE_INPUT = 'file';
@@ -29,6 +30,7 @@ export const TYPE_MULTISELECT = 'multiselect';
 export const TYPE_TIME = 'time';
 export const TYPE_CHECKBOXGROUP = 'checkboxgroup';
 export const TYPE_INFOBOX = 'infobox';
+export const TYPE_RADIO_PILL_GROUP = 'radiopillgroup';
 
 export const HINT_PLACEMENT_TOP = 'top';
 export const HINT_PLACEMENT_BOTTOM = 'bottom';
@@ -49,6 +51,7 @@ export const TYPES = [
   TYPE_TIME,
   TYPE_CHECKBOXGROUP,
   TYPE_INFOBOX,
+  TYPE_RADIO_PILL_GROUP,
 ];
 
 export const TYPE_MAP: TypeMap<Components> = {
@@ -67,6 +70,7 @@ export const TYPE_MAP: TypeMap<Components> = {
   [TYPE_TIME]: COMPONENT_TIME_INPUT,
   [TYPE_CHECKBOXGROUP]: COMPONENT_CHECKBOXGROUP_INPUT,
   [TYPE_INFOBOX]: COMPONENT_INFOBOX,
+  [TYPE_RADIO_PILL_GROUP]: COMPONENT_RADIO_PILL_GROUP,
 };
 
 export type Types =
@@ -100,7 +104,8 @@ export type Components =
   | typeof COMPONENT_MULTISELECT_INPUT
   | typeof COMPONENT_TIME_INPUT
   | typeof COMPONENT_CHECKBOXGROUP_INPUT
-  | typeof COMPONENT_INFOBOX;
+  | typeof COMPONENT_INFOBOX
+  | typeof COMPONENT_RADIO_PILL_GROUP;
 
 export interface TypeMap<T> {
   [key: string]: T;

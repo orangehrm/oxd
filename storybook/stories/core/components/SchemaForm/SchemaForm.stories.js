@@ -42,8 +42,29 @@ const sample = {
           {
             name: 'firstName',
             label: 'First Name',
-            type: 'input',
+            type: 'radiopillgroup',
             validators: new Map([['required', required]]),
+            props: {
+              name: "partialDays",
+              options: [
+                {
+                  id: 1,
+                  label: 'All Days',
+                },
+                {
+                  id: 2,
+                  label: 'Start Day Only',
+                },
+                {
+                  id: 3,
+                  label: 'End Day Only',
+                },
+                {
+                  id: 4,
+                  label: 'Start and End Day',
+                },
+              ]
+            },
           },
         ],
       },
