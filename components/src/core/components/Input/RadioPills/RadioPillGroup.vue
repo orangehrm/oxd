@@ -1,10 +1,5 @@
 <template>
-  <oxd-input-group
-    :id="id"
-    :classes="{wrapper: 'radio-pill-group'}"
-    class="oxd-input-field-bottom-space"
-    :style="style"
-  >
+  <div class="radio-pill-group">
     <oxd-radio-pill
       v-for="(option, index) in options"
       :key="option.id"
@@ -24,7 +19,7 @@
       @update:modelValue="onUpdateModelValue"
     >
     </oxd-radio-pill>
-  </oxd-input-group>
+  </div>
 </template>
 <script lang="ts">
 import {defineComponent} from 'vue';
@@ -43,7 +38,6 @@ export default defineComponent({
   name: 'oxd-radio-pill-group',
   components: {
     'oxd-radio-pill': RadioPill,
-    'oxd-input-group': InputGroup,
   },
 
   mixins: [translateMixin],
