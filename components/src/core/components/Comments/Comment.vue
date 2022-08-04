@@ -59,7 +59,7 @@
           <oxd-comment-box
             :actionButtonIcon="'oxd-check'"
             :actionButtonTooltip="'Update'"
-            :modelValue="comment.content"
+            :modelValue="commentContent"
             @update:modelValue="onInputComment"
             @addComment="onUpdateComment"
             @keyup.esc="enableEditMode(false)"
@@ -129,7 +129,8 @@ export default defineComponent({
 
   setup(props, {emit}) {
     const editable = ref(false);
-    let commentContent = JSON.parse(JSON.stringify(props.comment.content));
+    const commentContent = ref(props.comment.content);
+    // let commentContent = JSON.parse(JSON.stringify(props.comment.content));
 
     const fullName = computed(
       () =>
@@ -147,17 +148,18 @@ export default defineComponent({
     };
 
     const onInputComment = (value: string) => {
-      commentContent = JSON.parse(JSON.stringify(value));
+      commentContent.value = value;
     };
 
     const onUpdateComment = () => {
-      emit('onUpdateComment', props.comment, commentContent);
+      emit('onUpdateComment', props.comment, commentContent.value);
       enableEditMode(false);
     };
 
     return {
       fullName,
       editable,
+      commentContent,
       enableEditMode,
       enableDeleteMode,
       onInputComment,
