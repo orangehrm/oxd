@@ -43,6 +43,7 @@
               :size="'extra-small'"
               :tooltip="$vt('Delete')"
               :withContainer="false"
+              @click="enableDeleteMode"
             />
             <oxd-icon-button
               v-if="!editable && allowToEdit"
@@ -141,6 +142,10 @@ export default defineComponent({
       editable.value = editMode;
     };
 
+    const enableDeleteMode = () => {
+      emit('onDeleteComment', props.comment);
+    };
+
     const onInputComment = (value: string) => {
       commentContent = JSON.parse(JSON.stringify(value));
     };
@@ -154,6 +159,7 @@ export default defineComponent({
       fullName,
       editable,
       enableEditMode,
+      enableDeleteMode,
       onInputComment,
       onUpdateComment,
     };

@@ -42,6 +42,7 @@
       :actionButtonIcon="'oxd-add'"
       :actionButtonTooltip="'Add'"
       :placeholder="'Write your note'"
+      :modelValue="comment"
       @update:modelValue="onInputComment"
       @addComment="onAddComment"
     />
@@ -118,6 +119,7 @@ export default defineComponent({
     const onAddComment = () => {
       emit('addComment', comment.value, () => {
         setTimeout(() => {
+          comment.value = '';
           commentGroupsList.value.scrollIntoView({
             behavior: 'smooth',
             block: 'end',
