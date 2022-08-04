@@ -1,0 +1,33 @@
+@import '../../../styles';
+@import 'variables';
+.oxd-bullet-point-list {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 1rem;
+
+  .oxd-bullet-point-item {
+    position: relative;
+    .oxd-bullet-point-vertical-line {
+      position: absolute;
+      left: -0.8rem;
+      border-left: 0.15rem solid $oxd-bullet-point-line-default-color;
+      width: 0px;
+      top: 0;
+      height: 100%;
+    }
+    .oxd-bullet-point-content {
+      padding-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      .oxd-bullet-point {
+        position: absolute;
+        width: 0.8rem;
+        height: 0.8rem;
+        border-radius: 50%;
+        left: -1.125rem;
+        background-color: $oxd-bullet-point-default-color;
+      }
+    }
+  }
+}
