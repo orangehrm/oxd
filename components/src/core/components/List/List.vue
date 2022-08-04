@@ -111,6 +111,7 @@
             </template>
           </oxd-quick-search>
           <div class="d-flex align-center">
+            <slot name="tableFilterAdditionalSingleActions"></slot>
             <component
               v-for="(action, index) in config.table.topBar.singleActions"
               :key="index"
