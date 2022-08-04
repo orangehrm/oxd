@@ -208,8 +208,10 @@ export default defineComponent({
     inputValue(): string {
       if (this.computedOptions[this.pointer]?.label) {
         return this.computedOptions[this.pointer].label;
-      } else if (this.searchTerm) {
+      } else if (this.searchTerm !== null) {
         return this.searchTerm;
+      } else if (typeof this.modelValue === 'string') {
+        return this.modelValue;
       } else if (!this.dropdownOpen) {
         return this.selectedItem;
       }
@@ -234,7 +236,6 @@ export default defineComponent({
   methods: {
     onSearch($event: Event) {
       const searchTerm = ($event.target as HTMLInputElement).value;
-      this.searchTerm = searchTerm;
       if (searchTerm) {
         this.loading = true;
         this.dropdownOpen = true;
@@ -242,19 +243,13 @@ export default defineComponent({
       } else {
         this.loading = false;
         this.dropdownOpen = false;
-        if (Array.isArray(this.modelValue) && this.modelValue.length > 0) {
-          return;
-        }
-        if (typeof this.searchTerm === 'string') {
-          this.$emit('update:modelValue', null);
-        }
-        this.searchTerm = null;
       }
+      this.searchTerm = searchTerm;
     },
     onSelect(option: Option) {
       this.pointer = -1;
-      this.dropdownOpen = false;
       this.searchTerm = null;
+      this.dropdownOpen = false;
       if (this.multiple) {
         const selected = Array.isArray(this.modelValue) ? this.modelValue : [];
         this.$emit('update:modelValue', [...selected, option]);
@@ -286,11 +281,23 @@ export default defineComponent({
         });
     }, 800),
     onBlur() {
-      if (!this.multiple && this.searchTerm) {
-        this.$emit('update:modelValue', null);
-      }
+      this.pointer = -1;
       this.dropdownOpen = false;
       this.$emit('dropdown:blur');
+      if (
+        this.searchTerm !== null &&
+        (this.multiple === false || !Array.isArray(this.modelValue))
+      ) {
+        this.$emit('update:modelValue', this.searchTerm || null);
+      }
+    },
+  },
+
+  watch: {
+    modelValue(value) {
+      if (value === null || (Array.isArray(value) && value.length === 0)) {
+        this.searchTerm = null;
+      }
     },
   },
 });
