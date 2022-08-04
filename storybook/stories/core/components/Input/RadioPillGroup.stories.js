@@ -1,7 +1,9 @@
 import { actions } from '@storybook/addon-actions'
-
 import RadioPillGroup from '@orangehrm/oxd/core/components/Input/RadioPills/RadioPillGroup'
 import { h, ref } from 'vue'
+import SchemaForm from '@orangehrm/oxd/core/components/SchemaForm/SchemaForm';
+import useSchemaForm from 'oxd-components/src/composables/useSchemaForm'
+import { required } from 'oxd-components/src/validation/rules'
 
 const templateDecorator = () => ({
   template: `
@@ -125,6 +127,17 @@ const options = [
   {
     id: 4,
     label: 'Start and End Day',
+  },
+]
+
+const yesNoOptions = [
+  {
+    id: 1,
+    label: 'Yes',
+  },
+  {
+    id: 2,
+    label: 'No',
   },
 ]
 
@@ -293,3 +306,103 @@ Events.parameters = {
     },
   },
 }
+
+const sampleSchema = {
+  name: 'sampleForm',
+  layout: [
+    {
+      type: 'grid',
+      props: {
+        cols: 2,
+      },
+      children: {
+        default: [
+          {
+            name: 'partial_days',
+            label: 'Partial Days',
+            type: 'radiopillgroup',
+            value: 1,
+            props: {
+              options: options,
+            },
+          },
+          {
+            name: 'adjust_carryforward',
+            label: 'Adjust Leave Carryforward?',
+            type: 'radiopillgroup',
+            validators: new Map([['required', required]]),
+            props: {
+              options: yesNoOptions,
+            },
+          },
+        ],
+      },
+    },
+    {
+      type: 'grid',
+      props: {
+        cols: 2,
+      },
+      children: {
+        default: [
+          {
+            name: 'partial_days_disabled',
+            label: 'Disabled',
+            type: 'radiopillgroup',
+            value: 1,
+            props: {
+              options: options,
+              disabled: true,
+            },
+          }
+        ],
+      },
+    },
+    {
+      type: 'divider',
+    },
+    {
+      type: 'action',
+      style: {
+        'margin-top': '0.5rem',
+      },
+      children: {
+        default: [
+          {
+            name: 'submit',
+            label: 'Submit',
+            type: 'button',
+            props: {
+              type: 'submit',
+              displayType: 'secondary',
+            },
+          },
+        ],
+      },
+    },
+  ],
+};
+
+
+
+const TemplateSchema = (args) => ({
+  components: {'oxd-schema-form': SchemaForm},
+  setup() {
+    const {schema, model} = useSchemaForm(args.schema);
+
+    const onSubmit = (...args) => {
+      console.log(args);
+    };
+    return {
+      model,
+      schema,
+      onSubmit,
+    };
+  },
+  template: `<oxd-schema-form :schema="schema" v-model:model="model" v-on:submitValid="onSubmit"></oxd-schema-form>`,
+});
+
+export const InSchemaForm = TemplateSchema.bind({});
+InSchemaForm.args = {
+  schema: {...sampleSchema},
+};
