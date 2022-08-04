@@ -1,3 +1,5 @@
+2022-08-04 - f07e979f20aa3d4779c3eaa57e4f63f81e7c2cad - Icon/Icons.ts - Change fill colour of oxd-add icon
+
 2022-07-28 - 0b9810356ba78246cff49fbced59645a7ba55ee6 - tyles/_utility.scss - Fix tooltip width
 
 2022-07-25 - b9271bec74aad8cb48e4ff6bf0e0ba84a80912b6 - components/Table/ClassicTable - Classic Table - Add support for tooltips and rendering styled contents
