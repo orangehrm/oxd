@@ -5,7 +5,11 @@
       :class="commentGroupsContainerClasses"
       :style="commentGroupsContainerStyles"
     >
-      <ul ref="commentGroupsList" class="oxd-comment-groups-list">
+      <ul
+        ref="commentGroupsList"
+        class="oxd-comment-groups-list"
+        v-if="commentGroups && commentGroups.length > 0"
+      >
         <li
           class="oxd-comment-group"
           v-for="(commentGroup, index) in commentGroups"
@@ -20,10 +24,13 @@
             v-for="(comment, index) in commentGroup.comments"
             :comment="comment"
             :key="comment || index"
-            :allowToEdit="allowToEdit || comment.allowToEdit"
-            :allowToDelete="allowToDelete || comment.allowToDelete"
+            :allowToEdit="readOnly ? false : allowToEdit || comment.allowToEdit"
+            :allowToDelete="
+              readOnly ? false : allowToDelete || comment.allowToDelete
+            "
             :enableAvatar="enableAvatar"
             @onUpdateComment="onUpdateComment"
+            @onDeleteComment="onDeleteComment"
           />
         </li>
       </ul>
@@ -35,7 +42,6 @@
       :actionButtonIcon="'oxd-add'"
       :actionButtonTooltip="'Add'"
       :placeholder="'Write your note'"
-      v-bind="$attrs"
       @update:modelValue="onInputComment"
       @addComment="onAddComment"
     />
@@ -57,7 +63,7 @@ export default defineComponent({
     'oxd-comment-box': CommentBox,
   },
 
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'addComment', 'updateComment', 'deleteComment'],
 
   props: {
     modelValue: {
@@ -110,7 +116,7 @@ export default defineComponent({
     };
 
     const onAddComment = () => {
-      emit('onAddComment', comment.value, () => {
+      emit('addComment', comment.value, () => {
         setTimeout(() => {
           commentGroupsList.value.scrollIntoView({
             behavior: 'smooth',
@@ -121,7 +127,11 @@ export default defineComponent({
     };
 
     const onUpdateComment = (commentObj, newComment) => {
-      emit('onUpdateComment', commentObj, newComment);
+      emit('updateComment', commentObj, newComment);
+    };
+
+    const onDeleteComment = (commentObj) => {
+      emit('deleteComment', commentObj);
     };
 
     return {
@@ -131,6 +141,7 @@ export default defineComponent({
       onInputComment,
       onAddComment,
       onUpdateComment,
+      onDeleteComment,
       commentGroupsList,
     };
   },

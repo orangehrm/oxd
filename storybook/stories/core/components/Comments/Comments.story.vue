@@ -1,6 +1,5 @@
 <template>
   <oxd-comments
-    v-if="commentGroupsList.length"
     :commentGroups="commentGroupsList"
     :allowToEdit="allowToEdit"
     :allowToDelete="allowToDelete"

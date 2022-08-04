@@ -176,6 +176,15 @@ ReadOnly.args = {
   readOnly: true,
 };
 
+export const EmptyComments = Template.bind({});
+
+EmptyComments.args = {
+  allowToEdit: true,
+  allowToDelete: true,
+  enableAvatar: true,
+  scrollMaxHeight: 300,
+};
+
 const TemplateSchema = (args) => ({
   components: {'oxd-schema-form': SchemaForm},
   setup() {
@@ -214,6 +223,11 @@ const sample = {
               allowToDelete: false,
               enableAvatar: true,
               scrollMaxHeight: 250,
+            },
+            listeners: {
+              onAddComment: (note) => {
+                alert('addComment triggered');
+              },
             },
           },
         ],
