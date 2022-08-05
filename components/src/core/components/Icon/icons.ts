@@ -580,6 +580,7 @@ const icons: Icons = {
   'oxd-pass': oxdPass,
   'oxd-fail': oxdFail,
   'oxd-play': oxdPlay,
+  'oxd-file-download': oxdFileDownload,
   'oxd-duration': oxdDuration,
 };
 
