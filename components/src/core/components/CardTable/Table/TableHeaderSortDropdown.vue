@@ -107,7 +107,7 @@ export default defineComponent({
     },
     openDropdown() {
       this.isActive = true;
-      if (this.sortIcon === 'oxd-sort-desc') {
+      if (this.sortIcon === this.sortIconDesc) {
         this.$nextTick(() => {
           this.$refs.bottomDropdownElement.focus();
         });

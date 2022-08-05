@@ -129,7 +129,7 @@ describe('InfoBox.vue', () => {
   });
 
   it('should select one option with color attribute and return converted rgba color', async () => {
-    const wrapper: any = mount(InfoBox, {
+    const wrapper = mount(InfoBox, {
       props: {
         infoLabel,
         numOfTitleRows,
@@ -148,7 +148,7 @@ describe('InfoBox.vue', () => {
   });
 
   it('should select one option with color attribute and return converted rgba color', async () => {
-    const wrapper: any = mount(InfoBox, {
+    const wrapper = mount(InfoBox, {
       props: {
         infoLabel,
         numOfTitleRows,
@@ -165,7 +165,7 @@ describe('InfoBox.vue', () => {
   });
 
   it('should set empty array as default when didnot pass options', async () => {
-    const wrapper: any = shallowMount(InfoBox, {
+    const wrapper = shallowMount(InfoBox, {
       props: {infoLabel, numOfTitleRows, numOfValueRows, dropdownPosition},
     });
     wrapper.findComponent(ButtonIcon).trigger('click');

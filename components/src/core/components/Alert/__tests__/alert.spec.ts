@@ -23,10 +23,10 @@ describe('Alert.vue', () => {
     });
     expect(wrapper.findAll('.oxd-alert.oxd-alert--compact').length).toEqual(1);
     expect(
-      wrapper.findAll('.oxd-alert-content.oxd-alert-content--compact').length
+      wrapper.findAll('.oxd-alert-content.oxd-alert-content--compact').length,
     ).toEqual(1);
     expect(
-      wrapper.findAll('.oxd-alert-action.oxd-alert-action--compact').length
+      wrapper.findAll('.oxd-alert-action.oxd-alert-action--compact').length,
     ).toEqual(1);
   });
   it('Non Compact Alert', () => {
@@ -40,10 +40,10 @@ describe('Alert.vue', () => {
     });
     expect(wrapper.findAll('.oxd-alert.oxd-alert--compact').length).toEqual(0);
     expect(
-      wrapper.findAll('.oxd-alert-content.oxd-alert-content--compact').length
+      wrapper.findAll('.oxd-alert-content.oxd-alert-content--compact').length,
     ).toEqual(0);
     expect(
-      wrapper.findAll('.oxd-alert-action.oxd-alert-action--compact').length
+      wrapper.findAll('.oxd-alert-action.oxd-alert-action--compact').length,
     ).toEqual(0);
   });
 });

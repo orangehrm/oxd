@@ -1,0 +1,8 @@
+@import '../../../../styles';
+@import '../variables';
+
+.radio-pill-group {
+  display: flex;
+  flex-direction: row;
+  gap: $oxd-radio-pill-group-gap;
+}

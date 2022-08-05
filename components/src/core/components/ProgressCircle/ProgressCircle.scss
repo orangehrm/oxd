@@ -1,0 +1,62 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-progress-circle-outer-container {
+  .oxd-progress-circle-container {
+    position: relative;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .oxd-progress-circle-svg {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .oxd-progress-circle-ring-empty {
+        stroke: $oxd-progress-circle-empty-color;
+      }
+      .oxd-progress-circle-ring-fill {
+        stroke: $oxd-progress-circle-fill-color;
+        transform: rotate(-90deg);
+        transform-origin: 50% 50%;
+        animation: anim 2s linear forwards;
+      }
+    }
+
+    .oxd-progress-circle-inner-content {
+      position: absolute;
+      width: var(--inner-content-width);
+      height: var(--inner-content-width);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .oxd-progress-circle-default-inner-text {
+        top: 50%;
+        left: 50%;
+        font-family: $oxd-progress-circle-default-slot-font-family;
+        font-weight: $oxd-progress-circle-default-slot-font-weight;
+        color: $oxd-progress-circle-default-slot-font-color;
+      }
+    }
+  }
+
+  .oxd-progress-circle-bottom-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@keyframes anim {
+  0% {
+    stroke-dashoffset: var(--circumference);
+  }
+  100% {
+    stroke-dashoffset: var(--stroke-dashoffset);
+  }
+}
