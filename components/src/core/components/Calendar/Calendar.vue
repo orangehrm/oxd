@@ -10,7 +10,6 @@ import {
   freshDate,
   rearrangeWeek,
   formatDate,
-  parseDate,
 } from '../../../utils/date';
 import {enGB} from 'date-fns/locale';
 import {CalendarDayAttributes, CalendarEvent} from './types';

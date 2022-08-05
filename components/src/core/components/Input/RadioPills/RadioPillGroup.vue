@@ -23,7 +23,6 @@
 </template>
 <script lang="ts">
 import {defineComponent} from 'vue';
-import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue';
 import RadioPill from '@orangehrm/oxd/core/components/Input/RadioPills/RadioPill.vue';
 import translateMixin from '@orangehrm/oxd/mixins/translate';
 
@@ -31,6 +30,7 @@ export interface Options {
   id: number;
   label: string;
   disabled?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   style?: Record<string, any>;
 }
 

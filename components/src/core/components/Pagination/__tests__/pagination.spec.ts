@@ -1,14 +1,5 @@
 import {mount, shallowMount} from '@vue/test-utils';
 import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination.vue';
-// import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
-
-const delayFunction = (time: number) => {
-  return new Promise(reslove =>
-    setTimeout(() => {
-      reslove(true);
-    }, time),
-  );
-};
 
 describe('Pageination.vue', () => {
   it('renders OXD Pagination', () => {
