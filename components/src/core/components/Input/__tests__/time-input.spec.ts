@@ -195,8 +195,8 @@ describe('TimeInput.vue', () => {
     wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
     await wrapper.vm.$nextTick();
     const picker = wrapper.findComponent(TimePicker);
-    const incrementBtn = picker.find('.oxd-time-hour-input-down');
-    const decrementBtn = picker.find('.oxd-time-hour-input-up');
+    const incrementBtn = picker.find('.oxd-time-hour-input-up');
+    const decrementBtn = picker.find('.oxd-time-hour-input-down');
     expect(wrapper.vm.pickerInput).toEqual('01:00');
     await incrementBtn.trigger('click');
     expect(wrapper.vm.pickerInput).toEqual('02:00');
@@ -208,8 +208,8 @@ describe('TimeInput.vue', () => {
     wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
     await wrapper.vm.$nextTick();
     const picker = wrapper.findComponent(TimePicker);
-    const incrementBtn = picker.find('.oxd-time-minute-input-down');
-    const decrementBtn = picker.find('.oxd-time-minute-input-up');
+    const incrementBtn = picker.find('.oxd-time-minute-input-up');
+    const decrementBtn = picker.find('.oxd-time-minute-input-down');
     expect(wrapper.vm.pickerInput).toEqual('01:00');
     await incrementBtn.trigger('click');
     expect(wrapper.vm.pickerInput).toEqual('01:01');
