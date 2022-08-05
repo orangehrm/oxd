@@ -1,9 +1,8 @@
-import { enableAutoUnmount, mount } from '@vue/test-utils'
+import {enableAutoUnmount, mount} from '@vue/test-utils';
 import TimeInput from '@orangehrm/oxd/core/components/Input/Time/TimeInput.vue';
 import TimePicker from '@orangehrm/oxd/core/components/Input/Time/TimePicker.vue';
 
 describe('TimeInput.vue', () => {
-
   enableAutoUnmount(afterEach);
   it('renders OXD Time Input', () => {
     const wrapper = mount(TimeInput, {});
@@ -37,9 +36,16 @@ describe('TimeInput.vue', () => {
       },
     });
 
-    expect((wrapper.find('.oxd-time-input input').element as HTMLInputElement).value).toEqual('01:00');
-    expect(wrapper.find('.oxd-time-input-am-pm-wrapper > label').text()).toEqual('AM');
-    expect((wrapper.find('.oxd-time-input-am-pm-checkbox').element as HTMLInputElement).value).toEqual('on');
+    expect(
+      (wrapper.find('.oxd-time-input input').element as HTMLInputElement).value,
+    ).toEqual('01:00');
+    expect(
+      wrapper.find('.oxd-time-input-am-pm-wrapper > label').text(),
+    ).toEqual('AM');
+    expect(
+      (wrapper.find('.oxd-time-input-am-pm-checkbox')
+        .element as HTMLInputElement).value,
+    ).toEqual('on');
   });
 
   it('should open timepicker on click', async () => {
@@ -94,15 +100,17 @@ describe('TimeInput.vue', () => {
       },
     });
 
-    expect(wrapper.find('.oxd-time-input-am-pm-wrapper > label').classes()).not.toContain('--focus');
-    await wrapper
-      .find('.oxd-time-input-am-pm-checkbox')
-      .trigger('focus');
-    expect(wrapper.find('.oxd-time-input-am-pm-wrapper > label').classes()).toContain('--focus');
-    await wrapper
-      .find('.oxd-time-input-am-pm-checkbox')
-      .trigger('blur');
-    expect(wrapper.find('.oxd-time-input-am-pm-wrapper > label').classes()).not.toContain('--focus');
+    expect(
+      wrapper.find('.oxd-time-input-am-pm-wrapper > label').classes(),
+    ).not.toContain('--focus');
+    await wrapper.find('.oxd-time-input-am-pm-checkbox').trigger('focus');
+    expect(
+      wrapper.find('.oxd-time-input-am-pm-wrapper > label').classes(),
+    ).toContain('--focus');
+    await wrapper.find('.oxd-time-input-am-pm-checkbox').trigger('blur');
+    expect(
+      wrapper.find('.oxd-time-input-am-pm-wrapper > label').classes(),
+    ).not.toContain('--focus');
   });
 
   it('AM/PM toggle should be available but not clickable when disabled', async () => {
@@ -165,9 +173,9 @@ describe('TimeInput.vue', () => {
     const picker = wrapper.findComponent(TimePicker);
     const [hourInput, minuteInput] = picker.findAll('input');
 
-    await hourInput.setValue("102");
-    await minuteInput.setValue("532");
-    expect(picker.emitted('update:modelValue')).toEqual([['10:31'],['10:53']]);
+    await hourInput.setValue('102');
+    await minuteInput.setValue('532');
+    expect(picker.emitted('update:modelValue')).toEqual([['10:31'], ['10:53']]);
   });
 
   it('should not accept invalid input', async () => {
@@ -185,8 +193,8 @@ describe('TimeInput.vue', () => {
     wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
     await wrapper.vm.$nextTick();
     const picker = wrapper.findComponent(TimePicker);
-    const incrementBtn = picker.find('.oxd-time-hour-input-down');
-    const decrementBtn = picker.find('.oxd-time-hour-input-up');
+    const incrementBtn = picker.find('.oxd-time-hour-input-up');
+    const decrementBtn = picker.find('.oxd-time-hour-input-down');
     expect(wrapper.vm.pickerInput).toEqual('01:00');
     await incrementBtn.trigger('click');
     expect(wrapper.vm.pickerInput).toEqual('02:00');
@@ -198,8 +206,8 @@ describe('TimeInput.vue', () => {
     wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
     await wrapper.vm.$nextTick();
     const picker = wrapper.findComponent(TimePicker);
-    const incrementBtn = picker.find('.oxd-time-minute-input-down');
-    const decrementBtn = picker.find('.oxd-time-minute-input-up');
+    const incrementBtn = picker.find('.oxd-time-minute-input-up');
+    const decrementBtn = picker.find('.oxd-time-minute-input-down');
     expect(wrapper.vm.pickerInput).toEqual('01:00');
     await incrementBtn.trigger('click');
     expect(wrapper.vm.pickerInput).toEqual('01:01');
@@ -244,14 +252,13 @@ describe('TimeInput.vue', () => {
   });
 
   it('should close timePicker when clicked outside', async () => {
-
     document.body.innerHTML = `
   <div>
     <div id="app"></div>
   </div>`;
 
     const wrapper = mount(TimeInput, {
-      attachTo: "#app"
+      attachTo: '#app',
     });
 
     await wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
