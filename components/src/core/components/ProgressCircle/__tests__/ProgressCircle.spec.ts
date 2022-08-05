@@ -178,5 +178,4 @@ describe('ProgressCircle.vue', () => {
 
     expect(wrapper.vm.normalizedValue).toEqual(0);
   });
-  
 });

@@ -20,23 +20,23 @@ describe('Divider.vue', () => {
     const wrapper = mount(Divider, {
       props: {},
     });
-    expect(wrapper.findAll(".oxd-divider-horizontal").length).toBe(1);
-    expect(wrapper.findAll(".oxd-divider-vertical").length).toBe(0);
+    expect(wrapper.findAll('.oxd-divider-horizontal').length).toBe(1);
+    expect(wrapper.findAll('.oxd-divider-vertical').length).toBe(0);
   });
 
   it('render vertical OXD Divider when pass through props', () => {
     const wrapper = mount(Divider, {
-      props: { orientation : 'vertical'},
+      props: {orientation: 'vertical'},
     });
-    expect(wrapper.findAll(".oxd-divider-vertical").length).toBe(1);
-    expect(wrapper.findAll(".oxd-divider-horizontal").length).toBe(0);
+    expect(wrapper.findAll('.oxd-divider-vertical').length).toBe(1);
+    expect(wrapper.findAll('.oxd-divider-horizontal').length).toBe(0);
   });
 
   it('render horizontal OXD Divider when invalid prop value for orientation is passed', () => {
     const wrapper = mount(Divider, {
-      props: { orientation : 'this is invalid'},
+      props: {orientation: 'this is invalid'},
     });
-    expect(wrapper.findAll(".oxd-divider-horizontal").length).toBe(1);
-    expect(wrapper.findAll(".oxd-divider-vertical").length).toBe(0);
+    expect(wrapper.findAll('.oxd-divider-horizontal').length).toBe(1);
+    expect(wrapper.findAll('.oxd-divider-vertical').length).toBe(0);
   });
 });
