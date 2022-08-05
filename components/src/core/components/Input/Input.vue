@@ -1,7 +1,11 @@
 <template>
   <div :class="outerClasses" class="input-outer-wrapper">
     <div v-if="imageIcon" class="input-text-field-icon">
-       <img :src="imageIcon"  :class="{ 'click-disabled' : !isIconClickable }" @click="imageIconClick()"/>
+      <img
+        :src="imageIcon"
+        :class="{'click-disabled': !isIconClickable}"
+        @click="imageIconClick()"
+      />
     </div>
     <oxd-divider
       v-if="imageIcon"
@@ -50,12 +54,12 @@ export default defineComponent({
     },
     isIconClickable: {
       type: Boolean,
-      default: false
+      default: false,
     },
     imageIconClick: {
       type: Function,
-      required: false
-    }
+      required: false,
+    },
   },
 
   data(): State {

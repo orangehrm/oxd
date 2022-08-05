@@ -54,7 +54,7 @@ import {
 import useField from '../../../composables/useField';
 import translateMixin from '../../../mixins/translate';
 import CheckboxGroup from '@orangehrm/oxd/core/components/Input/CheckboxGroup.vue';
-import RadioPillGroup from '@orangehrm/oxd/core/components/Input/RadioPills/RadioPillGroup.vue'
+import RadioPillGroup from '@orangehrm/oxd/core/components/Input/RadioPills/RadioPillGroup.vue';
 
 export default defineComponent({
   name: 'oxd-input-field',

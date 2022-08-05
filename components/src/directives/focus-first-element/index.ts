@@ -15,7 +15,7 @@ const focusOnFirstElement = (
   matchingString: string,
   vnode: VNode,
 ) => {
-  let firstFocusedElement = element.querySelectorAll(matchingString)[0];
+  const firstFocusedElement = element.querySelectorAll(matchingString)[0];
   firstFocusedElementsOnMounted.set(vnode.scopeId, firstFocusedElement);
   if (firstFocusedElement) {
     (firstFocusedElement as HTMLElement).focus();
@@ -24,7 +24,7 @@ const focusOnFirstElement = (
 
 const focusonFirstElementDirective: Directive = {
   updated(el: FocusFirstHTMLElement, binding, vnode: VNode) {
-    let updatedFocusFirstElement = el.querySelectorAll(
+    const updatedFocusFirstElement = el.querySelectorAll(
       focusableElements + ', ' + excludeElements,
     )[0];
     firstFocusedElementsOnUpdated.set(vnode.scopeId, updatedFocusFirstElement);

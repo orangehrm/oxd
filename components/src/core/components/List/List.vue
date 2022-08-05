@@ -56,11 +56,11 @@
               :is="action.type"
               v-if="
                 state.selectedItemIndexes.length > 0 &&
-                (action.conditional
-                  ? action.visible === undefined
-                    ? true
-                    : action.visible
-                  : true)
+                  (action.conditional
+                    ? action.visible === undefined
+                      ? true
+                      : action.visible
+                    : true)
               "
               v-bind="action.props"
               v-on="eventBinder(action.events)"
@@ -74,7 +74,7 @@
             ref="quickSearch"
             v-if="
               config.table.topBar.quickSearch &&
-              config.table.topBar.quickSearch.visible
+                config.table.topBar.quickSearch.visible
             "
             :style="config.table.topBar.quickSearch.style"
             :placeholder="config.table.topBar.quickSearch.placeholder"
@@ -279,7 +279,7 @@ export default defineComponent({
 
     watch(
       () => props.pagination,
-      (newVal) => {
+      newVal => {
         state.currentPage = newVal.currentPage;
       },
       {
@@ -287,7 +287,7 @@ export default defineComponent({
         deep: true,
       },
     );
-    
+
     watch(
       () => props.quickSearchKeyWord,
       newVal => {
@@ -315,7 +315,7 @@ export default defineComponent({
 
     const order = computed(() => {
       const sortableFieldsObj = {};
-      config.value.table.headers.forEach((header) => {
+      config.value.table.headers.forEach(header => {
         if (header.initialSortOrder) {
           sortableFieldsObj[header.sortField] = {
             order: state.currentSortFields[header.sortField]
@@ -330,7 +330,7 @@ export default defineComponent({
       return sortableFieldsObj;
     });
 
-    const isFloat = (n) => {
+    const isFloat = n => {
       return n === +n && n !== (n | 0);
     };
 
@@ -358,7 +358,7 @@ export default defineComponent({
       emit('sidePanelList:onHeaderBtnClick');
     };
 
-    const sidePanelListOnSelect = (item) => {
+    const sidePanelListOnSelect = item => {
       state.currentPage = 1;
       emit('sidePanelList:onSelect', item);
     };
@@ -372,7 +372,7 @@ export default defineComponent({
       }
     };
 
-    const quickSearchSelect = (value) => {
+    const quickSearchSelect = value => {
       if (typeof value === 'string') return;
       if (value) {
         state.selectedQuickSearch = {
@@ -399,12 +399,12 @@ export default defineComponent({
       emit('quick-search:onSearch', state.quickSearchTerm);
     };
 
-    const tableSort = (value) => {
+    const tableSort = value => {
       state.currentSortFields = value;
       emit('update:order', value);
     };
 
-    const tableSelect = (items) => {
+    const tableSelect = items => {
       state.selectedItemIndexes = items;
       emit('update:selected', items);
     };
@@ -454,12 +454,12 @@ export default defineComponent({
       emit('topfilters:onExportBtnClick');
     };
 
-    const eventBinder = (events) => {
+    const eventBinder = events => {
       let mappedEvents, mappedEventsObj;
       if (events) {
-        mappedEvents = events.map((event) => {
+        mappedEvents = events.map(event => {
           return {
-            [event.type]: (vals) => {
+            [event.type]: vals => {
               emit(event.identifier, vals);
             },
           };
