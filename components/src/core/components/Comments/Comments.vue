@@ -52,7 +52,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, computed, onMounted} from 'vue';
+import {defineComponent, ref, computed, onMounted, nextTick} from 'vue';
 import Comment from './Comment.vue';
 import Label from '@orangehrm/oxd/core/components/Label/Label.vue';
 import CommentBox from './CommentBox.vue';
@@ -146,26 +146,24 @@ export default defineComponent({
     };
 
     const onAddComment = () => {
-      emit('addComment', comment.value, () => {
-        setTimeout(() => {
-          commentGroupsList.value.scrollIntoView({
-            behavior: scrollSettingsObj.value.mode,
-            block: scrollSettingsObj.value.scrollTo,
-          });
-        }, 0);
+      emit('addComment', comment.value, async () => {
+        await nextTick();
+        commentGroupsList.value.scrollIntoView({
+          behavior: 'smooth',
+          block: 'end',
+        });
       });
       emit('update:modelValue', '');
       comment.value = '';
     };
 
-    onMounted(() => {
-      setTimeout(() => {
-        comment.value = '';
-        commentGroupsList.value.scrollIntoView({
-          behavior: 'smooth',
-          block: 'end',
-        });
-      }, 0);
+    onMounted(async () => {
+      await nextTick();
+      comment.value = '';
+      commentGroupsList.value.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+      });
     });
 
     const onUpdateComment = (commentObj, newComment) => {
