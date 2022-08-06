@@ -1,92 +1,130 @@
 <template>
-  <div class="oxd-comment-wrapper d-flex align-start">
-    <div v-if="enableAvatar" class="oxd-comment-avatar-wrapper">
-      <oxd-profile-pic
-        size="medium"
-        :imageSrc="comment.user && comment.user.avatarUrl"
-      />
-    </div>
-    <div class="oxd-comment-content-wrapper">
-      <div class="oxd-comment-content-container">
-        <div
-          class="
-            oxd-comment-content-header-container
-            d-flex
-            align-start
-            justify-between
-          "
-        >
+  <div class="oxd-comment-wrapper">
+    <div class="d-flex align-start">
+      <div v-if="enableAvatar" class="oxd-comment-avatar-wrapper">
+        <oxd-profile-pic
+          size="medium"
+          :imageSrc="comment.user && comment.user.avatarUrl"
+        />
+      </div>
+      <div class="oxd-comment-content-wrapper">
+        <div class="oxd-comment-content-container">
           <div
             class="
-              oxd-comment-content-header-label-container
+              oxd-comment-content-header-container
               d-flex
-              align-center
+              align-start
+              justify-between
             "
           >
-            <oxd-label
-              :label="fullName"
-              class="oxd-comment-content-author-name"
-              :class="labelClasses"
-            />
-            <span
-              v-if="comment.labelHint"
-              class="oxd-comment-content-header-label-hint"
-              >{{ $vt(comment.labelHint) }}</span
+            <div
+              class="
+                oxd-comment-content-header-label-container
+                d-flex
+                align-center
+              "
             >
-          </div>
-          <div
-            class="
-              oxd-comment-content-header-actions-container
-              show-on-hover-grid
-            "
-          >
-            <oxd-icon-button
-              v-if="!editable && allowToDelete"
-              :name="'oxd-trash'"
-              :size="'extra-small'"
-              :tooltip="$vt('Delete')"
-              :withContainer="true"
-              @click="enableDeleteMode"
-            />
-            <oxd-icon-button
-              v-if="!editable && allowToEdit"
-              :name="'oxd-edit'"
-              :size="'extra-small'"
-              :withContainer="true"
-              :tooltip="$vt('Edit')"
-              @click="enableEditMode"
-            />
-          </div>
-        </div>
-        <div v-if="editable" class="oxd-comment-content-edit-wrapper">
-          <oxd-comment-box
-            :actionButtonIcon="'oxd-check'"
-            :actionButtonTooltip="'Update'"
-            :modelValue="commentContent"
-            @update:modelValue="onInputComment"
-            @addComment="onUpdateComment"
-            @keyup.esc="enableEditMode(false)"
-          />
-          <div class="oxd-comment-content-footer-container d-flex align-center">
-            <div class="oxd-comment-content-footer-action-container">
-              {{ $vt('Press Esc to') }}
+              <oxd-label
+                :label="fullName"
+                class="oxd-comment-content-author-name"
+                :class="labelClasses"
+              />
               <span
-                v-if="allowToEdit"
-                class="oxd-comment-content-footer-action --cancel active"
-                @click="enableEditMode(false)"
-                >{{ $vt('Cancel') }}</span
+                v-if="comment.labelHint"
+                class="oxd-comment-content-header-label-hint"
+                >{{ $vt(comment.labelHint) }}</span
               >
             </div>
+            <div
+              class="
+                oxd-comment-content-header-actions-container
+                show-on-hover-grid
+              "
+            >
+              <oxd-icon-button
+                v-if="!editable && allowToDelete"
+                :name="'oxd-trash'"
+                :size="'extra-small'"
+                :tooltip="$vt('Delete')"
+                :withContainer="false"
+                @click="enableDeleteMode(true)"
+              />
+              <oxd-icon-button
+                v-if="!editable && allowToEdit"
+                :name="'oxd-edit'"
+                :size="'extra-small'"
+                :withContainer="false"
+                :tooltip="$vt('Edit')"
+                @click="enableEditMode"
+              />
+            </div>
+          </div>
+          <div v-if="editable" class="oxd-comment-content-edit-wrapper">
+            <oxd-comment-box
+              :actionButtonIcon="'oxd-check'"
+              :actionButtonTooltip="'Update'"
+              :modelValue="commentContent"
+              @update:modelValue="onInputComment"
+              @addComment="onUpdateComment"
+              @keyup.esc="enableEditMode(false)"
+            />
+            <div
+              class="oxd-comment-content-footer-container d-flex align-center"
+            >
+              <div class="oxd-comment-content-footer-action-container">
+                {{ $vt('Press Esc to') }}
+                <span
+                  v-if="allowToEdit"
+                  class="oxd-comment-content-footer-action --cancel active"
+                  @click="enableEditMode(false)"
+                  >{{ $vt('Cancel') }}</span
+                >
+              </div>
+            </div>
+          </div>
+          <div v-else class="oxd-comment-content">
+            <span v-text="comment.content"></span>
           </div>
         </div>
-        <div v-else class="oxd-comment-content">
-          <span v-text="comment.content"></span>
+        <div class="oxd-comment-content-footer-container d-flex align-center">
+          <div v-if="comment.time" class="oxd-comment-content-commented-date">
+            Date: {{ comment.time }}
+          </div>
         </div>
       </div>
-      <div class="oxd-comment-content-footer-container d-flex align-center">
-        <div v-if="comment.time" class="oxd-comment-content-commented-date">
-          Date: {{ comment.time }}
-        </div>
+    </div>
+    <div
+      v-if="deleteMode"
+      class="oxd-comment-inline-delete d-flex align-center mt-5 p-5"
+    >
+      <div class="comment-inline-delete-content-wrapper d-flex align-center">
+        <oxd-text type="subtitle-2">
+          {{ $vt(commentDeleteConfirmationMsg) }}
+        </oxd-text>
+      </div>
+      <div class="comment-inline-delete-actions-wrapper d-flex align-center">
+        <oxd-button
+          :label="$vt(cancelDeleteButtonData.label)"
+          :iconName="cancelDeleteButtonData.iconName"
+          :iconSize="cancelDeleteButtonData.size"
+          :displayType="cancelDeleteButtonData.displayType"
+          :style="cancelDeleteButtonData.style"
+          :class="cancelDeleteButtonData.class"
+          data-test="deleteButton"
+          class="orangehrm-button-margin"
+          @click.once="cancelDeleteButtonData.click"
+        />
+        <oxd-button
+          :label="$vt(confirmDeleteButtonData.label)"
+          :iconName="confirmDeleteButtonData.iconName"
+          :iconSize="confirmDeleteButtonData.size"
+          :displayType="confirmDeleteButtonData.displayType"
+          :style="confirmDeleteButtonData.style"
+          :class="confirmDeleteButtonData.class"
+          data-test="cancelButton"
+          class="orangehrm-button-margin"
+          @click="confirmDeleteButtonData.click"
+        />
       </div>
     </div>
   </div>
@@ -96,9 +134,11 @@
 import {defineComponent, ref, computed} from 'vue';
 import translateMixin from '../../../mixins/translate';
 import Label from '@orangehrm/oxd/core/components/Label/Label.vue';
+import oxdText from '@orangehrm/oxd/core/components/Text/Text.vue';
 import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue';
 import CommentBox from '@orangehrm/oxd/core/components/Comments/CommentBox.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
+import oxdButton from '@orangehrm/oxd/core/components/Button/Button.vue';
 
 export default defineComponent({
   name: 'oxd-comment',
@@ -110,6 +150,8 @@ export default defineComponent({
     'oxd-icon-button': IconButton,
     'oxd-profile-pic': ProfilePic,
     'oxd-comment-box': CommentBox,
+    'oxd-text': oxdText,
+    'oxd-button': oxdButton,
   },
 
   props: {
@@ -128,10 +170,22 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    okButton: {
+      type: Object,
+      default: () => null,
+    },
+    cancelButton: {
+      type: Object,
+      default: () => null,
+    },
+    commentDeleteConfirmationMsg: {
+      type: String,
+    },
   },
 
   setup(props, {emit}) {
     const editable = ref(false);
+    const deleteMode = ref(false);
     const commentContent = ref(props.comment.content);
     // let commentContent = JSON.parse(JSON.stringify(props.comment.content));
 
@@ -146,8 +200,8 @@ export default defineComponent({
       editable.value = editMode;
     };
 
-    const enableDeleteMode = () => {
-      emit('onDeleteComment', props.comment);
+    const enableDeleteMode = (state = false) => {
+      deleteMode.value = state;
     };
 
     const onInputComment = (value: string) => {
@@ -159,6 +213,54 @@ export default defineComponent({
       enableEditMode(false);
     };
 
+    const defaultConfirmDeleteAction = () => {
+      enableDeleteMode(false);
+      emit('onDeleteComment', props.comment);
+    };
+
+    const defaultCancelDeleteAction = () => {
+      enableDeleteMode(false);
+      emit('cancelAction');
+    };
+
+    const confirmDeleteButtonData = computed(() => {
+      const initialObject = {
+        label: 'Yes, Delete',
+        iconName: 'oxd-trash',
+        size: 'medium',
+        displayType: 'warn',
+        style: null,
+        class: null,
+        click: defaultConfirmDeleteAction,
+      };
+      for (const key in props.okButton) {
+        const value = props.okButton[key];
+        if (value) {
+          initialObject[key] = value;
+        }
+      }
+      return initialObject;
+    });
+
+    const cancelDeleteButtonData = computed(() => {
+      const initialObject = {
+        label: 'Cancel',
+        iconName: null,
+        size: 'medium',
+        displayType: 'ghost-warn',
+        style: null,
+        class: null,
+        click: defaultCancelDeleteAction,
+      };
+      for (const key in props.cancelButton) {
+        const value = props.cancelButton[key];
+        if (value) {
+          initialObject[key] = value;
+        }
+      }
+      return initialObject;
+    });
+
     return {
       fullName,
       editable,
@@ -167,6 +269,9 @@ export default defineComponent({
       enableDeleteMode,
       onInputComment,
       onUpdateComment,
+      deleteMode,
+      confirmDeleteButtonData,
+      cancelDeleteButtonData,
     };
   },
 });

@@ -29,6 +29,7 @@
               readOnly ? false : allowToDelete || comment.allowToDelete
             "
             :enableAvatar="enableAvatar"
+            :commentDeleteConfirmationMsg="commentDeleteConfirmationMsg"
             @onUpdateComment="onUpdateComment"
             @onDeleteComment="onDeleteComment"
           />
@@ -55,6 +56,7 @@ import {defineComponent, ref, computed, onMounted} from 'vue';
 import Comment from './Comment.vue';
 import Label from '@orangehrm/oxd/core/components/Label/Label.vue';
 import CommentBox from './CommentBox.vue';
+import {END, Scroll, SMOOTH} from './types';
 
 export default defineComponent({
   name: 'oxd-comments',
@@ -98,6 +100,14 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    commentDeleteConfirmationMsg: {
+      type: String,
+      default:
+        'The current comment will be permanently deleted. Are you sure you want to continue?',
+    },
+    scrollSettings: {
+      type: Object,
+    },
   },
   setup(props, {emit}) {
     const commentGroupsList = ref(null);
@@ -116,6 +126,20 @@ export default defineComponent({
       };
     });
 
+    const scrollSettingsObj = computed(() => {
+      const initialObject: Scroll = {
+        mode: SMOOTH,
+        scrollTo: END,
+      };
+      for (const key in props.scrollSettings) {
+        const value = props.scrollSettings[key];
+        if (value) {
+          initialObject[key] = value;
+        }
+      }
+      return initialObject;
+    });
+
     const onInputComment = (value: string) => {
       comment.value = value;
       emit('update:modelValue', comment.value);
@@ -125,8 +149,8 @@ export default defineComponent({
       emit('addComment', comment.value, () => {
         setTimeout(() => {
           commentGroupsList.value.scrollIntoView({
-            behavior: 'smooth',
-            block: 'end',
+            behavior: scrollSettingsObj.value.mode,
+            block: scrollSettingsObj.value.scrollTo,
           });
         }, 0);
       });

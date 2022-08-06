@@ -281,4 +281,42 @@
     cursor: default;
   }
 }
-// cursor types ends
+
+// spacing begins
+$spaces: (
+  0: 0,
+  1: 0.125,
+  2: 0.25,
+  3: 0.5,
+  4: 0.75,
+  5: 1,
+  6: 1.125,
+  7: 1.25,
+  8: 1.5,
+  9: 1.75,
+  10: 2,
+);
+$sides: (
+  '': 'all',
+  't': 'top',
+  'b': 'bottom',
+  'l': 'left',
+  'r': 'right',
+);
+
+// iterate through spaces array of objects
+@each $index, $space in $spaces {
+  // iterate through sides array of objects
+  @each $prefix, $value in $sides {
+    $property: if($prefix == '', '', -#{$value});
+
+    .m#{$prefix}-#{$index} {
+      margin#{$property}: #{$space}rem;
+    }
+
+    .p#{$prefix}-#{$index} {
+      padding#{$property}: #{$space}rem;
+    }
+  }
+}
+// spacing ends
