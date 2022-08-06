@@ -310,11 +310,11 @@ $sides: (
   @each $prefix, $value in $sides {
     $property: if($prefix == '', '', -#{$value});
 
-    .m#{$prefix}-#{$index} {
+    .oxd-m#{$prefix}-#{$index} {
       margin#{$property}: #{$space}rem;
     }
 
-    .p#{$prefix}-#{$index} {
+    .oxd-p#{$prefix}-#{$index} {
       padding#{$property}: #{$space}rem;
     }
   }

@@ -95,7 +95,7 @@
     </div>
     <div
       v-if="deleteMode"
-      class="oxd-comment-inline-delete d-flex align-center mt-5 p-5"
+      class="oxd-comment-inline-delete d-flex align-center oxd-mt-5 oxd-p-5"
     >
       <div class="comment-inline-delete-content-wrapper d-flex align-center">
         <oxd-text type="subtitle-2">
