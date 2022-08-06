@@ -102,7 +102,14 @@
           {{ $vt(commentDeleteConfirmationMsg) }}
         </oxd-text>
       </div>
-      <div class="comment-inline-delete-actions-wrapper d-flex align-center">
+      <div
+        class="
+          comment-inline-delete-actions-wrapper
+          d-flex
+          align-center
+          oxd-ml-3
+        "
+      >
         <oxd-button
           :label="$vt(cancelDeleteButtonData.label)"
           :iconName="cancelDeleteButtonData.iconName"
@@ -111,7 +118,6 @@
           :style="cancelDeleteButtonData.style"
           :class="cancelDeleteButtonData.class"
           data-test="deleteButton"
-          class="orangehrm-button-margin"
           @click.once="cancelDeleteButtonData.click"
         />
         <oxd-button
@@ -122,7 +128,7 @@
           :style="confirmDeleteButtonData.style"
           :class="confirmDeleteButtonData.class"
           data-test="cancelButton"
-          class="orangehrm-button-margin"
+          class="oxd-ml-3"
           @click="confirmDeleteButtonData.click"
         />
       </div>
