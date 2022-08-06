@@ -13,7 +13,9 @@
   &-wrapper {
     @include oxd-input-control-size;
     position: relative;
-    margin-bottom: $oxd-comment-content-container-padding;
+    &:not(:last-child) {
+      margin-bottom: $oxd-comment-content-container-padding;
+    }
   }
   &-avatar-wrapper {
     padding-right: $oxd-comment-content-container-padding;
@@ -48,8 +50,9 @@
         margin-bottom: $oxd-comment-content-container-padding-top;
         .oxd-comment-content-header {
           &-label {
-            // &-container {
-            // }
+            &-container {
+              width: calc(100% - 44px);
+            }
             &-hint {
               font-size: 0.75rem;
               font-family: $oxd-font-family;
@@ -65,6 +68,9 @@
             display: none;
             grid-auto-flow: column;
             grid-gap: $oxd-comment-content-container-padding;
+            i {
+              color: #64728c !important;
+            }
           }
         }
       }

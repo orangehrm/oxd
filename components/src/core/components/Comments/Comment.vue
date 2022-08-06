@@ -1,7 +1,10 @@
 <template>
   <div class="oxd-comment-wrapper d-flex align-start">
     <div v-if="enableAvatar" class="oxd-comment-avatar-wrapper">
-      <oxd-profile-pic size="medium" />
+      <oxd-profile-pic
+        size="medium"
+        :imageSrc="comment.user && comment.user.avatarUrl"
+      />
     </div>
     <div class="oxd-comment-content-wrapper">
       <div class="oxd-comment-content-container">
@@ -9,7 +12,7 @@
           class="
             oxd-comment-content-header-container
             d-flex
-            align-center
+            align-start
             justify-between
           "
         >
@@ -42,14 +45,14 @@
               :name="'oxd-trash'"
               :size="'extra-small'"
               :tooltip="$vt('Delete')"
-              :withContainer="false"
+              :withContainer="true"
               @click="enableDeleteMode"
             />
             <oxd-icon-button
               v-if="!editable && allowToEdit"
               :name="'oxd-edit'"
               :size="'extra-small'"
-              :withContainer="false"
+              :withContainer="true"
               :tooltip="$vt('Edit')"
               @click="enableEditMode"
             />

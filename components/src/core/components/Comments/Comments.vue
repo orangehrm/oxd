@@ -43,6 +43,7 @@
       :actionButtonTooltip="'Add'"
       :placeholder="'Write your note'"
       :modelValue="comment"
+      :hasError="hasError"
       @update:modelValue="onInputComment"
       @addComment="onAddComment"
     />
@@ -50,7 +51,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, computed, nextTick} from 'vue';
+import {defineComponent, ref, computed, onMounted} from 'vue';
 import Comment from './Comment.vue';
 import Label from '@orangehrm/oxd/core/components/Label/Label.vue';
 import CommentBox from './CommentBox.vue';
@@ -93,6 +94,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    hasError: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, {emit}) {
     const commentGroupsList = ref(null);
@@ -119,14 +124,25 @@ export default defineComponent({
     const onAddComment = () => {
       emit('addComment', comment.value, () => {
         setTimeout(() => {
-          comment.value = '';
           commentGroupsList.value.scrollIntoView({
             behavior: 'smooth',
             block: 'end',
           });
         }, 0);
       });
+      emit('update:modelValue', '');
+      comment.value = '';
     };
+
+    onMounted(() => {
+      setTimeout(() => {
+        comment.value = '';
+        commentGroupsList.value.scrollIntoView({
+          behavior: 'smooth',
+          block: 'end',
+        });
+      }, 0);
+    });
 
     const onUpdateComment = (commentObj, newComment) => {
       emit('updateComment', commentObj, newComment);
