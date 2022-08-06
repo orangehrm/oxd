@@ -9,14 +9,14 @@
   }
   &-container {
     margin-bottom: $oxd-comment-content-container-padding;
+    background-color: $oxd-background-pastel-white-color;
+    border-radius: 1.2rem;
     &.scroll-vertical {
       overflow-y: auto;
       @include oxd-scrollbar();
     }
   }
   &-list {
-    background-color: $oxd-background-pastel-white-color;
-    border-radius: 1.2rem;
     padding: 1rem;
     list-style: none;
     margin-bottom: 0;
