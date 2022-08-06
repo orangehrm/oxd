@@ -27,6 +27,7 @@
         background-color: $oxd-white-color;
         border-radius: $oxd-comment-content-container-border-radius;
         padding: $oxd-comment-content-container-padding;
+        display: inline-block;
         &:hover {
           .show-on-hover {
             &-grid {
