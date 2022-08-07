@@ -257,7 +257,7 @@ export default defineComponent({
       commentContent.value = value;
       if (hasContentChanged.value === 0) {
         editHasError.value = false;
-        emit('commentEditHasError', true);
+        emit('commentEditHasError', false);
       } else {
         emit('commentEditHasError', true);
       }
