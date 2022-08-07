@@ -14,6 +14,7 @@
     <div class="d-flex">
       <oxd-textarea
         v-bind="$attrs"
+        data-test="comment-box-textarea"
         class="oxd-comment-box-textarea"
         :class="classes"
         ref="textareaComponent"
@@ -25,6 +26,7 @@
     </div>
     <oxd-icon-button
       v-if="actionButtonIcon"
+      data-test="add-comment-button"
       class="oxd-comment-box-add-button"
       :name="actionButtonIcon"
       :tooltip="actionButtonTooltip"

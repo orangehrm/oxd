@@ -4,6 +4,11 @@ import {nanoid} from 'nanoid';
 import {required} from '../../../../../components/src/validation/rules.ts';
 import useSchemaForm from '../../../../../components/src/composables/useSchemaForm.ts';
 import SchemaForm from '@orangehrm/oxd/core/components/SchemaForm/SchemaForm';
+import CommentsEvents from './CommentsEvents.story.vue';
+import {
+  END,
+  SMOOTH,
+} from '../../../../../components/src/core/components/Comments/types';
 
 export default {
   title: 'Inputs/Comments',
@@ -36,6 +41,40 @@ export default {
         type: {
           summary:
             'Set number to enable scroll and max height. The default value is 0',
+        },
+      },
+    },
+    scrollSettings: {
+      control: {type: 'object'},
+      defaultValue: {
+        mode: SMOOTH,
+        scrollTo: END,
+      },
+      table: {
+        type: {
+          summary:
+            'Set mode to scroll smoother "smooth" or "auto" and scrollTo to "start, center or end". The default values are mode = smooth and scrollTo = end',
+        },
+      },
+    },
+    commentErrorMsg: {
+      control: {type: 'text'},
+      defaultValue: 'Comment should be updated or either removed',
+      table: {
+        type: {
+          summary:
+            'Set comment update message to show when comment edited without saving',
+        },
+      },
+    },
+    commentDeleteConfirmationMsg: {
+      control: {type: 'text'},
+      defaultValue:
+        'The current comment will be permanently deleted. Are you sure you want to continue?',
+      table: {
+        type: {
+          summary:
+            'Set comment delete confirmation message to show before delete the comment',
         },
       },
     },
@@ -163,6 +202,23 @@ Default.args = {
   allowToDelete: true,
   enableAvatar: true,
   scrollMaxHeight: 300,
+  commentErrorMsg: 'Comment should be updated or either removed',
+  commentDeleteConfirmationMsg:
+    'The current comment will be permanently deleted. Are you sure you want to continue?',
+};
+
+export const ScrollSettings = Template.bind({});
+
+ScrollSettings.args = {
+  commentGroups,
+  allowToEdit: true,
+  allowToDelete: true,
+  enableAvatar: true,
+  scrollMaxHeight: 300,
+  scrollSettings: {
+    mode: SMOOTH,
+    scrollTo: END,
+  },
 };
 
 export const ReadOnly = Template.bind({});
@@ -262,3 +318,104 @@ export const CommentsSchemaForm = TemplateSchema.bind({});
 CommentsSchemaForm.args = {
   schema: {...sample},
 };
+
+export const Events = () => CommentsEvents;
+
+// show code begins
+Default.parameters = {
+  docs: {
+    source: {
+      code: `
+      <oxd-comments
+        :enableAvatar="true"
+        :scrollMaxHeight="200"
+        :commentGroups="commentGroups"
+        :commentDeleteConfirmationMsg=""The current comment will be permanently deleted. Are you sure you want to continue?"
+        @onAddComment="addComment"
+        @onUpdateComment="updateComment"
+        @onDeleteComment="deleteComment"
+      />`,
+    },
+  },
+};
+
+ReadOnly.parameters = {
+  docs: {
+    source: {
+      code: `
+      <oxd-comments
+        :readOnly="true"
+        :enableAvatar="true"
+        :scrollMaxHeight="200"
+        :commentGroups="commentGroups"
+        :commentDeleteConfirmationMsg=""The current comment will be permanently deleted. Are you sure you want to continue?"
+        @onAddComment="addComment"
+        @onUpdateComment="updateComment"
+        @onDeleteComment="deleteComment"
+      />`,
+    },
+  },
+};
+
+EmptyComments.parameters = {
+  docs: {
+    source: {
+      code: `
+      <oxd-comments
+        :enableAvatar="true"
+        :scrollMaxHeight="200"
+        :stage="stage"
+        :commentDeleteConfirmationMsg=""The current comment will be permanently deleted. Are you sure you want to continue?"
+        @onAddComment="addComment"
+        @onUpdateComment="updateComment"
+        @onDeleteComment="deleteComment"
+      />`,
+    },
+  },
+};
+
+CommentsSchemaForm.parameters = {
+  docs: {
+    source: {
+      code: `
+      {
+        name: "notes",
+        label: $t("Notes"),
+        type: "comments",
+        class: "mb-0--oxd-input-group",
+        props: {
+          enableAvatar: true,
+          scrollMaxHeight: 250,
+          candidate: candidate,
+          commentGroups: commentGroups,
+          commentDeleteConfirmationMsg: $t(
+            "The current comment will be permanently deleted. Are you sure you want to continue?"
+          ),
+        },
+        validators: new Map([
+          [
+            "shouldBeAddedOrRemoved",
+            (value: string) => {
+              if (!submitted.value) return true;
+              return shouldBeAddedOrRemoved(value);
+            },
+          ],
+          ["shouldNotExceedCharLength", shouldNotExceedCharLength(65535)],
+        ]),
+        listeners: {
+          onAddComment: (note: string, successCallback: any) => {
+            submitted.value = false;
+            this.emit("note:add", note, successCallback);
+          },
+          onUpdateComment: (noteObj: any, note: string) => {
+            this.emit("note:update", noteObj, note);
+          },
+          onDeleteComment: (note: any) => {
+            this.emit("note:delete", note);
+          },
+        },
+      },`,
+    },
+  },
+};
+// show code ends

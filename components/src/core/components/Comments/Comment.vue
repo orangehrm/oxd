@@ -46,6 +46,7 @@
             >
               <oxd-icon-button
                 v-if="!editable && allowToDelete"
+                data-test="deleteIcon"
                 :name="'oxd-trash'"
                 :size="'extra-small'"
                 :tooltip="$vt('Delete')"
@@ -55,6 +56,7 @@
               />
               <oxd-icon-button
                 v-if="!editable && allowToEdit"
+                data-test="editIcon"
                 :name="'oxd-edit'"
                 :size="'extra-small'"
                 :class="'oxd-comment-content-header-action'"
