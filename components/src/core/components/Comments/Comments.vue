@@ -178,7 +178,6 @@ export default defineComponent({
     });
 
     const commentEditHasError = (hasError: boolean) => {
-      debugger;
       emit('commentEditHasError', hasError);
     };
 

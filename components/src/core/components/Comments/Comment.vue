@@ -70,6 +70,7 @@
               :actionButtonTooltip="'Update'"
               :modelValue="commentContent"
               :hasError="editHasError"
+              @blurCommentBox="blurCommentBox"
               @update:modelValue="onInputComment"
               @addComment="onUpdateComment"
               @keyup.esc="enableEditMode(false)"
@@ -89,7 +90,7 @@
                 <span
                   v-if="allowToEdit"
                   class="oxd-comment-content-footer-action --cancel active"
-                  @click="enableEditMode(false)"
+                  @click="cancelEditMode"
                   >{{ $vt('Cancel') }}</span
                 >
               </div>
@@ -229,17 +230,7 @@ export default defineComponent({
     );
 
     const enableEditMode = (editMode = true) => {
-      if (editMode) {
-        editable.value = editMode;
-        enableDeleteMode(false);
-      } else {
-        if (hasContentChanged.value === 0) {
-          editable.value = editMode;
-          editHasError.value = false;
-        } else {
-          editHasError.value = true;
-        }
-      }
+      editable.value = editMode;
     };
 
     const enableDeleteMode = async (state = false) => {
@@ -253,6 +244,13 @@ export default defineComponent({
       }
     };
 
+    const cancelEditMode = () => {
+      commentContent.value = commentOriginalContent.value;
+      editHasError.value = false;
+      emit('commentEditHasError', false);
+      enableEditMode(false);
+    };
+
     const onInputComment = (value: string) => {
       commentContent.value = value;
       if (hasContentChanged.value === 0) {
@@ -263,9 +261,20 @@ export default defineComponent({
       }
     };
 
+    const blurCommentBox = () => {
+      if (hasContentChanged.value === 0) {
+        editHasError.value = false;
+        emit('commentEditHasError', false);
+      } else {
+        editHasError.value = true;
+        emit('commentEditHasError', true);
+      }
+    };
+
     const onUpdateComment = () => {
       emit('onUpdateComment', props.comment, commentContent.value);
-      enableEditMode(false);
+      emit('commentEditHasError', false);
+      editHasError.value = false;
     };
 
     const defaultConfirmDeleteAction = () => {
@@ -322,7 +331,9 @@ export default defineComponent({
       commentContent,
       editHasError,
       enableEditMode,
+      cancelEditMode,
       enableDeleteMode,
+      blurCommentBox,
       onInputComment,
       onUpdateComment,
       commentDeleteWrapper,

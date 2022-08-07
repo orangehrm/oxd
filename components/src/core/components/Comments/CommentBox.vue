@@ -18,6 +18,7 @@
         :class="classes"
         ref="textareaComponent"
         :value="modelValue"
+        @blur="blurCommentBox"
         @input="updateModelValue"
         @keyup.enter="addComment"
       />
@@ -130,6 +131,10 @@ export default defineComponent({
       emit('addComment');
     };
 
+    const blurCommentBox = () => {
+      emit('blurCommentBox');
+    };
+
     onMounted(() => {
       textareaComponent.value.$el.focus();
     });
@@ -140,6 +145,7 @@ export default defineComponent({
       textareaComponent,
       updateModelValue,
       addComment,
+      blurCommentBox,
     };
   },
 });
