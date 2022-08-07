@@ -1,7 +1,8 @@
 <template>
-  <div class="oxd-pop-over" style="margin-left: 90%">
-    <div @click="openSubmenu"
-
+  <div class="oxd-pop-over">
+    <div
+        @click="openPopOver"
+        class="oxd-pop-over-button"
     >
       <slot name="button"></slot>
     </div>
@@ -9,9 +10,10 @@
       <div
           class="oxd-pop-over-content"
           v-if="isActive"
-          v-click-outside="closeSubMenu"
-          v-horizontal-direction
+          v-click-outside="closePopOver"
           role="dialog"
+          v-dropdown-direction
+          v-horizontal-direction
 
       >
         <slot></slot>
@@ -39,7 +41,7 @@ export default defineComponent({
   props: {
     show: {
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
 
@@ -48,13 +50,14 @@ export default defineComponent({
   setup: function (props: any) {
     const isActive = ref<boolean>(false);
     const isRight = ref<boolean>(false);
-    const openSubmenu = () => {
-      isActive.value = true;
+    const openPopOver = () => {
+      isActive.value = !isActive.value;
     };
-    const closeSubMenu = () => {
+    const closePopOver = (e: MouseEvent) => {
       if (isActive.value) {
         isActive.value = false;
       }
+      e.stopImmediatePropagation();
     };
 
     //isActive value set to false, when the props.show value change triggered
@@ -67,9 +70,8 @@ export default defineComponent({
 
     return {
       isActive,
-      openSubmenu,
-      closeSubMenu,
-
+      openPopOver,
+      closePopOver,
       isRight,
     };
   },

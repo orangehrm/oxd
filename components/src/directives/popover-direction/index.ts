@@ -1,12 +1,11 @@
 import {Directive} from 'vue';
 
+const offset = 10;
 function fixPosition(el: HTMLElement) {
-
   el.classList.remove('--positon-pop-over-left', '--positon-pop-over-right');
-  if (el.getBoundingClientRect().left < window.innerWidth/2) {
+  console.log(el.getBoundingClientRect());
+  if (el.getBoundingClientRect().left  < offset) {
     el.classList.add('--positon-pop-over-left');
-  } else {
-    el.classList.add('--positon-pop-over-right');
   }
 }
 
