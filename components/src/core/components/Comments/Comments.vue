@@ -12,8 +12,8 @@
       >
         <li
           class="oxd-comment-group"
-          v-for="(commentGroup, index) in commentGroups"
-          :key="commentGroup.id || index"
+          v-for="(commentGroup, groupIndex) in commentGroups"
+          :key="commentGroup.id || groupIndex"
         >
           <oxd-label
             v-if="commentGroup.label"
@@ -21,15 +21,16 @@
             class="oxd-comment-group-label"
           />
           <oxd-comment
-            v-for="(comment, index) in commentGroup.comments"
+            v-for="(comment, commentIndex) in commentGroup.comments"
             :comment="comment"
-            :key="comment || index"
+            :key="comment || commentIndex"
             :allowToEdit="readOnly ? false : allowToEdit || comment.allowToEdit"
             :allowToDelete="
               readOnly ? false : allowToDelete || comment.allowToDelete
             "
             :enableAvatar="enableAvatar"
             :commentDeleteConfirmationMsg="commentDeleteConfirmationMsg"
+            @commentEditHasError="commentEditHasError"
             @onUpdateComment="onUpdateComment"
             @onDeleteComment="onDeleteComment"
           />
@@ -45,6 +46,7 @@
       :placeholder="'Write your note'"
       :modelValue="comment"
       :hasError="hasError"
+      :commentErrorMsg="commentErrorMsg"
       @update:modelValue="onInputComment"
       @addComment="onAddComment"
     />
@@ -67,7 +69,13 @@ export default defineComponent({
     'oxd-comment-box': CommentBox,
   },
 
-  emits: ['update:modelValue', 'addComment', 'updateComment', 'deleteComment'],
+  emits: [
+    'update:modelValue',
+    'addComment',
+    'updateComment',
+    'deleteComment',
+    'commentEditHasError',
+  ],
 
   props: {
     modelValue: {
@@ -99,6 +107,9 @@ export default defineComponent({
     hasError: {
       type: Boolean,
       default: false,
+    },
+    commentErrorMsg: {
+      type: String,
     },
     commentDeleteConfirmationMsg: {
       type: String,
@@ -145,26 +156,30 @@ export default defineComponent({
       emit('update:modelValue', comment.value);
     };
 
+    const doScroll = async () => {
+      await nextTick();
+      commentGroupsList.value.scrollIntoView({
+        behavior: scrollSettingsObj.value.mode,
+        block: scrollSettingsObj.value.scrollTo,
+      });
+    };
+
     const onAddComment = () => {
-      emit('addComment', comment.value, async () => {
-        await nextTick();
-        commentGroupsList.value.scrollIntoView({
-          behavior: 'smooth',
-          block: 'end',
-        });
+      emit('addComment', comment.value, () => {
+        doScroll();
       });
       emit('update:modelValue', '');
       comment.value = '';
     };
 
-    onMounted(async () => {
-      await nextTick();
+    onMounted(() => {
       comment.value = '';
-      commentGroupsList.value.scrollIntoView({
-        behavior: 'smooth',
-        block: 'end',
-      });
+      doScroll();
     });
+
+    const commentEditHasError = (hasError: boolean) => {
+      emit('commentEditHasError', hasError);
+    };
 
     const onUpdateComment = (commentObj, newComment) => {
       emit('updateComment', commentObj, newComment);
@@ -180,6 +195,7 @@ export default defineComponent({
       commentGroupsContainerStyles,
       onInputComment,
       onAddComment,
+      commentEditHasError,
       onUpdateComment,
       onDeleteComment,
       commentGroupsList,

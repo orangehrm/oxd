@@ -7,8 +7,11 @@
           :imageSrc="comment.user && comment.user.avatarUrl"
         />
       </div>
-      <div class="oxd-comment-content-wrapper">
-        <div class="oxd-comment-content-container">
+      <div ref="commentContentWrapper" class="oxd-comment-content-wrapper">
+        <div
+          class="oxd-comment-content-container"
+          :class="{'editable-mode': editable}"
+        >
           <div
             class="
               oxd-comment-content-header-container
@@ -46,6 +49,7 @@
                 :name="'oxd-trash'"
                 :size="'extra-small'"
                 :tooltip="$vt('Delete')"
+                :class="'oxd-comment-content-header-action'"
                 :withContainer="false"
                 @click="enableDeleteMode(true)"
               />
@@ -53,6 +57,7 @@
                 v-if="!editable && allowToEdit"
                 :name="'oxd-edit'"
                 :size="'extra-small'"
+                :class="'oxd-comment-content-header-action'"
                 :withContainer="false"
                 :tooltip="$vt('Edit')"
                 @click="enableEditMode"
@@ -64,10 +69,18 @@
               :actionButtonIcon="'oxd-check'"
               :actionButtonTooltip="'Update'"
               :modelValue="commentContent"
+              :hasError="editHasError"
               @update:modelValue="onInputComment"
               @addComment="onUpdateComment"
               @keyup.esc="enableEditMode(false)"
             />
+            <oxd-text
+              v-if="editHasError"
+              class="oxd-input-field-error-message oxd-input-group__message"
+              tag="span"
+            >
+              {{ $vt(commentErrorMsg) }}
+            </oxd-text>
             <div
               class="oxd-comment-content-footer-container d-flex align-center"
             >
@@ -95,6 +108,7 @@
     </div>
     <div
       v-if="deleteMode"
+      ref="commentDeleteWrapper"
       class="oxd-comment-inline-delete d-flex align-center oxd-mt-5 oxd-p-5"
     >
       <div class="comment-inline-delete-content-wrapper d-flex align-center">
@@ -137,7 +151,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, computed} from 'vue';
+import {defineComponent, ref, computed, nextTick} from 'vue';
 import translateMixin from '../../../mixins/translate';
 import Label from '@orangehrm/oxd/core/components/Label/Label.vue';
 import oxdText from '@orangehrm/oxd/core/components/Text/Text.vue';
@@ -187,13 +201,21 @@ export default defineComponent({
     commentDeleteConfirmationMsg: {
       type: String,
     },
+    commentErrorMsg: {
+      type: String,
+      default: 'Comment should be updated or either removed',
+    },
   },
 
   setup(props, {emit}) {
     const editable = ref(false);
+    const editHasError = ref(false);
     const deleteMode = ref(false);
+    const commentOriginalContent = ref(
+      JSON.parse(JSON.stringify(props.comment.content)),
+    );
     const commentContent = ref(props.comment.content);
-    // let commentContent = JSON.parse(JSON.stringify(props.comment.content));
+    const commentDeleteWrapper = ref(null);
 
     const fullName = computed(
       () =>
@@ -202,16 +224,43 @@ export default defineComponent({
         } ${props.comment.user?.lastname || ''}`,
     );
 
+    const hasContentChanged = computed(() =>
+      commentOriginalContent.value.localeCompare(commentContent.value),
+    );
+
     const enableEditMode = (editMode = true) => {
-      editable.value = editMode;
+      if (editMode) {
+        editable.value = editMode;
+        enableDeleteMode(false);
+      } else {
+        if (hasContentChanged.value === 0) {
+          editable.value = editMode;
+          editHasError.value = false;
+        } else {
+          editHasError.value = true;
+        }
+      }
     };
 
-    const enableDeleteMode = (state = false) => {
+    const enableDeleteMode = async (state = false) => {
       deleteMode.value = state;
+      await nextTick();
+      if (state) {
+        commentDeleteWrapper.value.scrollIntoView({
+          behavior: 'smooth',
+          block: 'end',
+        });
+      }
     };
 
     const onInputComment = (value: string) => {
       commentContent.value = value;
+      if (hasContentChanged.value === 0) {
+        editHasError.value = false;
+        emit('commentEditHasError', true);
+      } else {
+        emit('commentEditHasError', true);
+      }
     };
 
     const onUpdateComment = () => {
@@ -271,10 +320,12 @@ export default defineComponent({
       fullName,
       editable,
       commentContent,
+      editHasError,
       enableEditMode,
       enableDeleteMode,
       onInputComment,
       onUpdateComment,
+      commentDeleteWrapper,
       deleteMode,
       confirmDeleteButtonData,
       cancelDeleteButtonData,
