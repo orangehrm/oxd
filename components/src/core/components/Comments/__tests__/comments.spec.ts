@@ -1,4 +1,4 @@
-import {mount, shallowMount} from '@vue/test-utils';
+import {mount} from '@vue/test-utils';
 import Comments from '@orangehrm/oxd/core/components/Comments/Comments.vue';
 import Comment from '@orangehrm/oxd/core/components/Comments/Comment.vue';
 import {END, SMOOTH} from '../types';

@@ -16,7 +16,7 @@
         v-bind="$attrs"
         data-test="comment-box-textarea"
         class="oxd-comment-box-textarea"
-        :class="classes"
+        :class="textareaClasses"
         ref="textareaComponent"
         :value="modelValue"
         @blur="blurCommentBox"
@@ -78,8 +78,9 @@ export default defineComponent({
     },
     classes: {
       type: Object as PropType<{
-        label: any;
-        message: any;
+        label: string;
+        message: string;
+        /* eslint-disable @typescript-eslint/no-explicit-any */
         wrapper: any;
       }>,
       default: () => {
@@ -115,7 +116,7 @@ export default defineComponent({
       };
     });
 
-    const classes = computed(() => {
+    const textareaClasses = computed(() => {
       return {
         'oxd-textarea': true,
         'oxd-textarea--active': !focused,
@@ -142,7 +143,7 @@ export default defineComponent({
     });
 
     return {
-      classes,
+      textareaClasses,
       labelClasses,
       textareaComponent,
       updateModelValue,

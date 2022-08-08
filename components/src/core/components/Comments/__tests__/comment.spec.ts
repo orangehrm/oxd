@@ -1,4 +1,4 @@
-import {mount, shallowMount} from '@vue/test-utils';
+import {mount} from '@vue/test-utils';
 import Comment from '@orangehrm/oxd/core/components/Comments/Comment.vue';
 
 const comment = {
@@ -33,7 +33,6 @@ describe('Comment.vue', () => {
           displayType: 'warn',
           style: null,
           class: null,
-          click: () => {},
         },
         cancelButton: {
           label: 'Cancel',
@@ -42,7 +41,6 @@ describe('Comment.vue', () => {
           displayType: 'ghost-warn',
           style: null,
           class: null,
-          click: () => {},
         },
       },
     });
