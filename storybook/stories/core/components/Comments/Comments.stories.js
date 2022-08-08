@@ -59,7 +59,7 @@ export default {
     },
     commentErrorMsg: {
       control: {type: 'text'},
-      defaultValue: 'Comment should be updated or either removed',
+      defaultValue: 'Comment should be either updated or removed',
       table: {
         type: {
           summary:
@@ -202,7 +202,7 @@ Default.args = {
   allowToDelete: true,
   enableAvatar: true,
   scrollMaxHeight: 300,
-  commentErrorMsg: 'Comment should be updated or either removed',
+  commentErrorMsg: 'Comment should be either updated or removed',
   commentDeleteConfirmationMsg:
     'The current comment will be permanently deleted. Are you sure you want to continue?',
 };

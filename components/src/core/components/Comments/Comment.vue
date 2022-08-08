@@ -69,13 +69,14 @@
           <div v-if="editable" class="oxd-comment-content-edit-wrapper">
             <oxd-comment-box
               :actionButtonIcon="'oxd-check'"
-              :actionButtonTooltip="'Update'"
+              :actionButtonTooltip="$vt('Update')"
               :modelValue="commentContent"
               :hasError="editHasError"
+              :preventAddOnKeyPressEnter="true"
               @blurCommentBox="blurCommentBox"
               @update:modelValue="onInputComment"
               @addComment="onUpdateComment"
-              @keyup.esc="enableEditMode(false)"
+              @keyup.esc.stop="enableEditMode(false)"
             />
             <oxd-text
               v-if="editHasError"
@@ -104,7 +105,7 @@
         </div>
         <div class="oxd-comment-content-footer-container d-flex align-center">
           <div v-if="comment.time" class="oxd-comment-content-commented-date">
-            Date: {{ comment.time }}
+            {{ $vt('Date') }}: {{ comment.time }}
           </div>
         </div>
       </div>
@@ -206,7 +207,7 @@ export default defineComponent({
     },
     commentErrorMsg: {
       type: String,
-      default: 'Comment should be updated or either removed',
+      default: 'Comment should be either updated or removed',
     },
   },
 

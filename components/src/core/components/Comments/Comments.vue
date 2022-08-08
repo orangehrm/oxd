@@ -47,6 +47,7 @@
       :modelValue="comment"
       :hasError="hasError"
       :commentErrorMsg="commentErrorMsg"
+      :preventAddOnKeyPressEnter="true"
       @update:modelValue="onInputComment"
       @addComment="onAddComment"
     />
@@ -158,7 +159,7 @@ export default defineComponent({
 
     const doScroll = async () => {
       await nextTick();
-      commentGroupsList.value.scrollIntoView({
+      commentGroupsList.value?.scrollIntoView({
         behavior: scrollSettingsObj.value.mode,
         block: scrollSettingsObj.value.scrollTo,
       });
