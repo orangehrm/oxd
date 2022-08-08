@@ -73,6 +73,9 @@ const commentGroups = [
 ];
 
 describe('Comments.vue', () => {
+  window.HTMLElement.prototype.scrollIntoView = function() {
+    //do nothing
+  };
   it('renders OXD Comments with comments', async () => {
     const wrapper = mount(Comments, {
       props: {
