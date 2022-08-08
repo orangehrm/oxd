@@ -1,0 +1,36 @@
+@import '../../../styles';
+@import 'variables';
+@import './../Input/variables';
+
+.oxd-comment-groups {
+  &-wrapper {
+    @include oxd-input-control-size;
+    position: relative;
+  }
+  &-container {
+    margin-bottom: $oxd-comment-content-container-padding;
+    background-color: $oxd-background-pastel-white-color;
+    border-radius: 1.2rem;
+    &.scroll-vertical {
+      overflow-y: auto;
+      @include oxd-scrollbar();
+    }
+  }
+  &-list {
+    padding: 1rem;
+    list-style: none;
+    margin-bottom: 0;
+    .oxd-comment-group {
+      &:not(:last-child) {
+        padding-bottom: $oxd-comment-content-container-padding;
+      }
+      &-label {
+        display: block;
+        text-transform: uppercase;
+        font-size: 1rem;
+        letter-spacing: 0.15px;
+        margin-bottom: $oxd-comment-content-container-padding-top;
+      }
+    }
+  }
+}
