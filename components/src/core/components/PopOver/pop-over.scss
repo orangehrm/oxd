@@ -1,0 +1,40 @@
+@import '../../../styles';
+
+.oxd-pop-over {
+  outline: 0;
+  width: fit-content;
+  position: relative;
+
+  &-content {
+    position: absolute;
+    margin-top: 10px;
+    z-index: 3;
+    min-width: 600px;
+    right: 0;
+    width: fit-content;
+    height: fit-content;
+    background-color: #fff;
+    border-radius: 1.2rem;
+    box-shadow: 0px 25px 35px 0 rgba(0, 0, 0, 0.18);
+    padding: 1.2rem;
+
+    &.--positon-top {
+      top: inherit !important;
+      @extend .--positon-top;
+    }
+
+    &.--positon-pop-over-right {
+      right: 0;
+    }
+
+    &.--positon-pop-over-left {
+      left: 0;
+    }
+
+    &.--positon-bottom {
+      @extend .--positon-bottom;
+    }
+
+  }
+
+}
