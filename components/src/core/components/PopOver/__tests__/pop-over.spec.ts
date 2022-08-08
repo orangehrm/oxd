@@ -1,4 +1,4 @@
-import {shallowMount} from '@vue/test-utils';
+import {mount, shallowMount} from '@vue/test-utils';
 import PopOver from '@orangehrm/oxd/core/components/PopOver/PopOver.vue';
 
 describe('PopOver', () => {
@@ -13,26 +13,44 @@ describe('PopOver', () => {
         button: '<oxd-icon-button class="popover-icon" name="funnel" />',
         default: '<div>This is PopOver Content</div>',
       },
+      global: {
+        stubs: {
+          'oxd-icon-button': {
+            template: '<i />'
+          }
+        }
+      }
     });
     expect(wrapper.find('.oxd-pop-over-button').exists()).toBeTruthy();
     expect(wrapper.find('.oxd-pop-over-content').exists()).toBeFalsy();
   });
 
   it('after the button click pop over content should appear', async () => {
-    const wrapper = shallowMount(PopOver, {
+    const wrapper = mount(PopOver, {
       slots: {
         button: '<oxd-icon-button class="popover-icon" name="funnel" />',
         default: '<div>This is PopOver Content</div>',
       },
+      global: {
+        stubs: {
+          'oxd-icon-button': {
+            template: '<i />'
+          }
+        }
+      }
     });
-    const button = wrapper.find('oxd-icon-button');
+    const button = wrapper.find('.popover-icon');
+    expect(wrapper.find('.oxd-pop-over-button').exists()).toBeTruthy();
+    expect(wrapper.find('.oxd-pop-over-content').exists()).toBeFalsy();
+
     await button.trigger('click');
+    await wrapper.vm.$nextTick();
     expect(wrapper.find('.oxd-pop-over-button').exists()).toBeTruthy();
     expect(wrapper.find('.oxd-pop-over-content').exists()).toBeTruthy();
   });
 
-  it('click outside to close the content', async () => {
-    const wrapper = shallowMount(PopOver, {
+  it('click outside/click button again to close the content', async () => {
+    const wrapper = mount(PopOver, {
       slots: {
         button: '<oxd-icon-button class="popover-icon" name="funnel" />',
         default: '<div>This is PopOver Content</div>',
@@ -40,11 +58,25 @@ describe('PopOver', () => {
       props: {
         show: false,
       },
+      global: {
+        stubs: {
+          'oxd-icon-button': {
+            template: '<i />'
+          }
+        }
+      }
     });
 
-    const button = wrapper.find('oxd-icon-button');
+    const button = wrapper.find('.popover-icon');
+
+    expect(wrapper.find('.oxd-pop-over-button').exists()).toBeTruthy();
+    expect(wrapper.find('.oxd-pop-over-content').exists()).toBeFalsy();
+
     await button.trigger('click');
     await wrapper.vm.$nextTick();
+    expect(wrapper.find('.oxd-pop-over-button').exists()).toBeTruthy();
+    expect(wrapper.find('.oxd-pop-over-content').exists()).toBeTruthy();
+
     await button.trigger('click');
     await wrapper.vm.$nextTick();
     expect(wrapper.find('.oxd-pop-over-button').exists()).toBeTruthy();
@@ -54,6 +86,10 @@ describe('PopOver', () => {
   it('check is active on watch',async () => {
     const wrapper = shallowMount(PopOver, {});
     await wrapper.setProps({show: true });
+    expect(wrapper.vm.isActive).toEqual(false);
+    wrapper.vm.isActive = true;
+    expect(wrapper.vm.isActive).toEqual(true);
+    await wrapper.setProps({show: false });
     expect(wrapper.vm.isActive).toEqual(false);
   });
 
