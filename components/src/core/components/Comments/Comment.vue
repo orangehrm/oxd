@@ -278,6 +278,7 @@ export default defineComponent({
       emit('onUpdateComment', props.comment, commentContent.value);
       emit('commentEditHasError', false);
       editHasError.value = false;
+      enableEditMode(false);
     };
 
     const defaultConfirmDeleteAction = () => {
