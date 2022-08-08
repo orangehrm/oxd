@@ -48,8 +48,7 @@ export default defineComponent({
   emits: ['update:show'],
 
   setup: function (props: any) {
-    const isActive = ref<boolean>(false);
-    const isRight = ref<boolean>(false);
+    const isActive = ref<boolean>(props.show);
     const openPopOver = () => {
       isActive.value = !isActive.value;
     };
@@ -72,7 +71,6 @@ export default defineComponent({
       isActive,
       openPopOver,
       closePopOver,
-      isRight,
     };
   },
 });

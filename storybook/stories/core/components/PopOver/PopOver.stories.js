@@ -1,20 +1,19 @@
-import PopOverStory from "./PopOver.story.vue"
+import PopOver from '@orangehrm/oxd/core/components/PopOver/PopOver';
+import PopOverStory from "../PopOver/PopOver.story";
+import PopOverStoryRightAligned from "../PopOver/PopOverRightAligned.story";
 
 export default {
     title: 'Popups/PopOver',
-    components: {
-        PopOverStory,
-
-    }
+    component: PopOver,
 };
 
 const Template = (args) => ({
     setup() {
         return {args};
     },
-    components: {PopOverStory},
-    template: `<PopOverStory />`,
-
+    components: {'oxd-input': PopOver},
+    template: '<oxd-input v-bind="args" />',
 });
 
-export const Default = Template.bind({});
+export const Default = () => PopOverStory;
+export const RightAligned = () => PopOverStoryRightAligned;
