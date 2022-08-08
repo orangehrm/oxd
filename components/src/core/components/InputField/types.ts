@@ -31,11 +31,8 @@ export const TYPE_MULTISELECT = 'multiselect';
 export const TYPE_TIME = 'time';
 export const TYPE_CHECKBOXGROUP = 'checkboxgroup';
 export const TYPE_INFOBOX = 'infobox';
-<<<<<<< HEAD
 export const TYPE_COMMENTS = 'comments';
-=======
 export const TYPE_RADIO_PILL_GROUP = 'radiopillgroup';
->>>>>>> a3b94b04f1d95368cb160d5e3759eec70b75b127
 
 export const HINT_PLACEMENT_TOP = 'top';
 export const HINT_PLACEMENT_BOTTOM = 'bottom';
@@ -56,11 +53,8 @@ export const TYPES = [
   TYPE_TIME,
   TYPE_CHECKBOXGROUP,
   TYPE_INFOBOX,
-<<<<<<< HEAD
   TYPE_COMMENTS,
-=======
   TYPE_RADIO_PILL_GROUP,
->>>>>>> a3b94b04f1d95368cb160d5e3759eec70b75b127
 ];
 
 export const TYPE_MAP: TypeMap<Components> = {
@@ -79,11 +73,8 @@ export const TYPE_MAP: TypeMap<Components> = {
   [TYPE_TIME]: COMPONENT_TIME_INPUT,
   [TYPE_CHECKBOXGROUP]: COMPONENT_CHECKBOXGROUP_INPUT,
   [TYPE_INFOBOX]: COMPONENT_INFOBOX,
-<<<<<<< HEAD
   [TYPE_COMMENTS]: COMPONENT_COMMENTS,
-=======
   [TYPE_RADIO_PILL_GROUP]: COMPONENT_RADIO_PILL_GROUP,
->>>>>>> a3b94b04f1d95368cb160d5e3759eec70b75b127
 };
 
 export type Types =
@@ -101,11 +92,8 @@ export type Types =
   | typeof TYPE_TIME
   | typeof TYPE_CHECKBOXGROUP
   | typeof TYPE_INFOBOX
-<<<<<<< HEAD
-  | typeof TYPE_COMMENTS;
-=======
+  | typeof TYPE_COMMENTS
   | typeof TYPE_RADIO_PILL_GROUP;
->>>>>>> a3b94b04f1d95368cb160d5e3759eec70b75b127
 
 export type Components =
   | typeof COMPONENT_INPUT
@@ -123,11 +111,8 @@ export type Components =
   | typeof COMPONENT_TIME_INPUT
   | typeof COMPONENT_CHECKBOXGROUP_INPUT
   | typeof COMPONENT_INFOBOX
-<<<<<<< HEAD
-  | typeof COMPONENT_COMMENTS;
-=======
+  | typeof COMPONENT_COMMENTS
   | typeof COMPONENT_RADIO_PILL_GROUP;
->>>>>>> a3b94b04f1d95368cb160d5e3759eec70b75b127
 
 export interface TypeMap<T> {
   [key: string]: T;
