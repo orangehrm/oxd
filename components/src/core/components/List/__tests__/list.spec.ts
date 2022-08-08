@@ -107,9 +107,7 @@ describe('List > List.vue', () => {
     });
   });
 
-  const options = [
-    {id: 53, label: 'schedule 1'},
-  ];
+  const options = [{id: 53, label: 'schedule 1'}];
 
   const syncFunction = function() {
     return options;

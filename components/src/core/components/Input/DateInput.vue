@@ -290,7 +290,7 @@ export default defineComponent({
     selectYear($e: Event) {
       this.$emit('selectYear', $e);
     },
-    nonDisabledDate(value: Date): Boolean {
+    nonDisabledDate(value: Date): boolean {
       if (
         isAfter(
           formatDate(value, 'yyyy-MM-dd'),

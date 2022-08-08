@@ -12,6 +12,7 @@ export interface Options {
   id: number;
   label: string;
   disabled?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   style?: Record<string, any>;
 }
 
