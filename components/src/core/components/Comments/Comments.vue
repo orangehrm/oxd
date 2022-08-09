@@ -35,7 +35,7 @@
             :enableAvatar="enableAvatar"
             :requiredEditCommentErrorMsg="requiredEditCommentErrorMsg"
             :unsavedEditCommentErrorMsg="unsavedEditCommentErrorMsg"
-            :commentDeleteConfirmationMsg="commentDeleteConfirmationMsg"
+            :commentDeleteConfirmationMsg="$vt(commentDeleteConfirmationMsg)"
             @commentEditHasError="commentEditHasError"
             @onUpdateComment="onUpdateComment"
             @onDeleteComment="onDeleteComment"
@@ -45,11 +45,11 @@
     </div>
     <oxd-comment-box
       v-if="!(readOnly || disabled)"
-      :label="'Add note'"
+      :label="commentBoxLabel"
       :labelIcon="'oxd-note'"
       :actionButtonIcon="'oxd-add'"
       :actionButtonTooltip="'Add'"
-      :placeholder="'Write your note'"
+      :placeholder="commentBoxPlaceholder"
       :modelValue="comment"
       :hasError="hasError"
       :unsavedAddCommentErrorMsg="unsavedAddCommentErrorMsg"
@@ -118,6 +118,14 @@ export default defineComponent({
     hasError: {
       type: Boolean,
       default: false,
+    },
+    commentBoxLabel: {
+      type: String,
+      default: 'Add Comment',
+    },
+    commentBoxPlaceholder: {
+      type: String,
+      default: 'Write your comment...',
     },
     unsavedAddCommentErrorMsg: {
       type: String,

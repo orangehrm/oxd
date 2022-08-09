@@ -75,6 +75,24 @@ export default {
         },
       },
     },
+    commentBoxLabel: {
+      control: {type: 'text'},
+      defaultValue: 'Add Comment',
+      table: {
+        type: {
+          summary: 'Set value to show textarea label',
+        },
+      },
+    },
+    commentBoxPlaceholder: {
+      control: {type: 'text'},
+      defaultValue: 'Write your comment...',
+      table: {
+        type: {
+          summary: 'Set value to show textarea placeholder',
+        },
+      },
+    },
     unsavedAddCommentErrorMsg: {
       control: {type: 'text'},
       defaultValue: 'Comment should be either added or removed',
