@@ -47,7 +47,7 @@
       :placeholder="'Write your note'"
       :modelValue="comment"
       :hasError="hasError"
-      :commentErrorMsg="commentErrorMsg"
+      :unsavedAddCommentErrorMsg="unsavedAddCommentErrorMsg"
       :preventAddOnKeyPressEnter="true"
       @update:modelValue="onInputComment"
       @addComment="onAddComment"
@@ -110,7 +110,7 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    commentErrorMsg: {
+    unsavedAddCommentErrorMsg: {
       type: String,
     },
     unsavedEditCommentErrorMsg: {

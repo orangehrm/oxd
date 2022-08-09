@@ -57,13 +57,23 @@ export default {
         },
       },
     },
-    commentErrorMsg: {
+    unsavedAddCommentErrorMsg: {
       control: {type: 'text'},
-      defaultValue: 'Comment should be either updated or removed',
+      defaultValue: 'Comment should be either added or removed',
       table: {
         type: {
           summary:
-            'Set comment update message to show when comment edited without saving',
+            'Set comment validation message to show when triggered save without adding or removing the comment',
+        },
+      },
+    },
+    unsavedEditCommentErrorMsg: {
+      control: {type: 'text'},
+      defaultValue: 'Note should be either updated or removed',
+      table: {
+        type: {
+          summary:
+            'Set comment validation message to show when triggered save without adding or removing the comment',
         },
       },
     },
@@ -202,7 +212,7 @@ Default.args = {
   allowToDelete: true,
   enableAvatar: true,
   scrollMaxHeight: 300,
-  commentErrorMsg: 'Comment should be either updated or removed',
+  unsavedAddCommentErrorMsg: 'Comment should be either updated or removed',
   commentDeleteConfirmationMsg:
     'The current comment will be permanently deleted. Are you sure you want to continue?',
 };
