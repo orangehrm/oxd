@@ -152,9 +152,9 @@ export default defineComponent({
       return initialObject;
     });
 
-    const onInputComment = (value: string) => {
+    const onInputComment = (e: Event, value: string) => {
       comment.value = value;
-      emit('update:modelValue', comment.value);
+      emit('update:modelValue', e, comment.value);
     };
 
     const doScroll = async () => {
@@ -165,9 +165,12 @@ export default defineComponent({
       });
     };
 
-    const onAddComment = () => {
-      emit('addComment', comment.value, () => {
-        doScroll();
+    const onAddComment = (event) => {
+      emit('addComment', event, {
+        value: comment.value,
+        successCallback: () => {
+          doScroll();
+        },
       });
       emit('update:modelValue', '');
       comment.value = '';
@@ -178,16 +181,22 @@ export default defineComponent({
       doScroll();
     });
 
-    const commentEditHasError = (hasError: boolean) => {
-      emit('commentEditHasError', hasError);
+    const commentEditHasError = (e: Event, hasError: boolean) => {
+      emit('commentEditHasError', e, hasError);
     };
 
-    const onUpdateComment = (commentObj, newComment) => {
-      emit('updateComment', commentObj, newComment);
+    const onUpdateComment = (
+      e: Event,
+      data: {
+        comment: any;
+        value: string;
+      },
+    ) => {
+      emit('updateComment', e, data);
     };
 
-    const onDeleteComment = (commentObj) => {
-      emit('deleteComment', commentObj);
+    const onDeleteComment = (e: Event, commentObj) => {
+      emit('deleteComment', e, commentObj);
     };
 
     return {

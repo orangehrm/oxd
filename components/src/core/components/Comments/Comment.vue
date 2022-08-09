@@ -247,48 +247,53 @@ export default defineComponent({
       }
     };
 
-    const cancelEditMode = () => {
+    const cancelEditMode = (e: Event) => {
       commentContent.value = commentOriginalContent.value;
       editHasError.value = false;
-      emit('commentEditHasError', false);
+      emit('commentEditHasError', e, false);
       enableEditMode(false);
     };
 
-    const onInputComment = (value: string) => {
+    const onInputComment = (e: Event, value: string) => {
       commentContent.value = value;
       if (hasContentChanged.value === 0) {
         editHasError.value = false;
-        emit('commentEditHasError', false);
+        emit('commentEditHasError', e, false);
       } else {
-        emit('commentEditHasError', true);
+        emit('commentEditHasError', e, true);
       }
     };
 
-    const blurCommentBox = () => {
+    const blurCommentBox = (e: Event) => {
       if (hasContentChanged.value === 0) {
         editHasError.value = false;
-        emit('commentEditHasError', false);
+        emit('commentEditHasError', e, false);
       } else {
         editHasError.value = true;
-        emit('commentEditHasError', true);
+        emit('commentEditHasError', e, true);
       }
     };
 
-    const onUpdateComment = () => {
-      emit('onUpdateComment', props.comment, commentContent.value);
-      emit('commentEditHasError', false);
+    const onUpdateComment = (e: Event) => {
+      emit('onUpdateComment', e, {
+        comment: props.comment,
+        value: commentContent.value,
+      });
+      emit('commentEditHasError', e, false);
       editHasError.value = false;
       enableEditMode(false);
     };
 
-    const defaultConfirmDeleteAction = () => {
+    const defaultConfirmDeleteAction = (e: Event) => {
       enableDeleteMode(false);
-      emit('onDeleteComment', props.comment);
+      emit('onDeleteComment', e, {
+        value: props.comment,
+      });
     };
 
-    const defaultCancelDeleteAction = () => {
+    const defaultCancelDeleteAction = (e: Event) => {
       enableDeleteMode(false);
-      emit('cancelAction');
+      emit('cancelAction', e);
     };
 
     const confirmDeleteButtonData = computed(() => {

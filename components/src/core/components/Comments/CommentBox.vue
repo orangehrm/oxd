@@ -134,21 +134,21 @@ export default defineComponent({
     });
 
     const updateModelValue = (e: Event) => {
-      emit('update:modelValue', (e.target as HTMLTextAreaElement).value);
+      emit('update:modelValue', e, (e.target as HTMLTextAreaElement).value);
     };
 
-    const addComment = () => {
-      emit('addComment');
+    const addComment = (e: Event) => {
+      emit('addComment', e);
     };
 
-    const keyupEnter = () => {
+    const keyupEnter = (e: Event) => {
       if (!props.preventAddOnKeyPressEnter) {
-        addComment();
+        addComment(e);
       }
     };
 
-    const clickOutside = () => {
-      emit('blurCommentBox');
+    const clickOutside = (e: Event) => {
+      emit('blurCommentBox', e);
     };
 
     onMounted(() => {
