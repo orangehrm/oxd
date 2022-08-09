@@ -45,7 +45,7 @@
     </div>
     <oxd-comment-box
       v-if="!(readOnly || disabled)"
-      :label="'Add notes'"
+      :label="'Add note'"
       :labelIcon="'oxd-note'"
       :actionButtonIcon="'oxd-add'"
       :actionButtonTooltip="'Add'"
