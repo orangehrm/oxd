@@ -83,7 +83,7 @@
               class="oxd-input-field-error-message oxd-input-group__message"
               tag="span"
             >
-              {{ $vt(unsavedCommentErrorMsg) }}
+              {{ $vt(unsavedEditCommentErrorMsg) }}
             </oxd-text>
             <div
               class="oxd-comment-content-footer-container d-flex align-center"
@@ -205,7 +205,7 @@ export default defineComponent({
     commentDeleteConfirmationMsg: {
       type: String,
     },
-    unsavedCommentErrorMsg: {
+    unsavedEditCommentErrorMsg: {
       type: String,
       default: 'Comment should be either updated or removed',
     },

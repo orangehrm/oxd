@@ -29,7 +29,7 @@
               readOnly ? false : allowToDelete || comment.allowToDelete
             "
             :enableAvatar="enableAvatar"
-            :unsavedCommentErrorMsg="unsavedCommentErrorMsg"
+            :unsavedEditCommentErrorMsg="unsavedEditCommentErrorMsg"
             :commentDeleteConfirmationMsg="commentDeleteConfirmationMsg"
             @commentEditHasError="commentEditHasError"
             @onUpdateComment="onUpdateComment"
@@ -113,7 +113,7 @@ export default defineComponent({
     commentErrorMsg: {
       type: String,
     },
-    unsavedCommentErrorMsg: {
+    unsavedEditCommentErrorMsg: {
       type: String,
     },
     commentDeleteConfirmationMsg: {
