@@ -24,9 +24,13 @@
             v-for="(comment, commentIndex) in commentGroup.comments"
             :comment="comment"
             :key="comment || commentIndex"
-            :allowToEdit="readOnly ? false : allowToEdit || comment.allowToEdit"
+            :allowToEdit="
+              disabled || readOnly ? false : allowToEdit || comment.allowToEdit
+            "
             :allowToDelete="
-              readOnly ? false : allowToDelete || comment.allowToDelete
+              disabled || readOnly
+                ? false
+                : allowToDelete || comment.allowToDelete
             "
             :enableAvatar="enableAvatar"
             :unsavedEditCommentErrorMsg="unsavedEditCommentErrorMsg"
@@ -39,7 +43,7 @@
       </ul>
     </div>
     <oxd-comment-box
-      v-if="!readOnly"
+      v-if="!(readOnly || disabled)"
       :label="'Add notes'"
       :labelIcon="'oxd-note'"
       :actionButtonIcon="'oxd-add'"
@@ -103,6 +107,10 @@ export default defineComponent({
       default: 0,
     },
     readOnly: {
+      type: Boolean,
+      default: false,
+    },
+    disabled: {
       type: Boolean,
       default: false,
     },

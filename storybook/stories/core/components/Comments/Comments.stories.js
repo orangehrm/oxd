@@ -14,6 +14,24 @@ export default {
   title: 'Inputs/Comments',
   component: Comments,
   argTypes: {
+    readOnly: {
+      control: {type: 'boolean'},
+      defaultValue: false,
+      table: {
+        type: {
+          summary: 'Set boolean value true to make read only',
+        },
+      },
+    },
+    disabled: {
+      control: {type: 'boolean'},
+      defaultValue: false,
+      table: {
+        type: {
+          summary: 'Set boolean value true to make disable',
+        },
+      },
+    },
     allowToEdit: {
       control: {type: 'boolean'},
       defaultValue: false,
@@ -242,6 +260,17 @@ ReadOnly.args = {
   readOnly: true,
 };
 
+export const Disabled = Template.bind({});
+
+Disabled.args = {
+  commentGroups,
+  allowToEdit: false,
+  allowToDelete: false,
+  enableAvatar: true,
+  scrollMaxHeight: 350,
+  disabled: true,
+};
+
 export const EmptyComments = Template.bind({});
 
 EmptyComments.args = {
@@ -355,6 +384,24 @@ ReadOnly.parameters = {
       code: `
       <oxd-comments
         :readOnly="true"
+        :enableAvatar="true"
+        :scrollMaxHeight="200"
+        :commentGroups="commentGroups"
+        :commentDeleteConfirmationMsg=""The current comment will be permanently deleted. Are you sure you want to continue?"
+        @onAddComment="addComment"
+        @onUpdateComment="updateComment"
+        @onDeleteComment="deleteComment"
+      />`,
+    },
+  },
+};
+
+Disabled.parameters = {
+  docs: {
+    source: {
+      code: `
+      <oxd-comments
+        :disabled="true"
         :enableAvatar="true"
         :scrollMaxHeight="200"
         :commentGroups="commentGroups"
