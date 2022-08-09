@@ -1,6 +1,12 @@
 <template>
   <div class="oxd-comment-groups-wrapper">
     <div
+      v-if="headerLabel && commentGroups.length > 0"
+      class="oxd-comment-header-label-wrapper"
+    >
+      <oxd-label :label="headerLabel" />
+    </div>
+    <div
       class="oxd-comment-groups-container"
       :class="commentGroupsContainerClasses"
       :style="commentGroupsContainerStyles"
@@ -35,7 +41,7 @@
             :enableAvatar="enableAvatar"
             :requiredEditCommentErrorMsg="requiredEditCommentErrorMsg"
             :unsavedEditCommentErrorMsg="unsavedEditCommentErrorMsg"
-            :commentDeleteConfirmationMsg="$vt(commentDeleteConfirmationMsg)"
+            :commentDeleteConfirmationMsg="commentDeleteConfirmationMsg"
             @commentEditHasError="commentEditHasError"
             @onUpdateComment="onUpdateComment"
             @onDeleteComment="onDeleteComment"
@@ -118,6 +124,9 @@ export default defineComponent({
     hasError: {
       type: Boolean,
       default: false,
+    },
+    headerLabel: {
+      type: String,
     },
     commentBoxLabel: {
       type: String,
