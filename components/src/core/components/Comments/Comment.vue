@@ -83,7 +83,7 @@
               class="oxd-input-field-error-message oxd-input-group__message"
               tag="span"
             >
-              {{ $vt(commentErrorMsg) }}
+              {{ $vt(unsavedCommentErrorMsg) }}
             </oxd-text>
             <div
               class="oxd-comment-content-footer-container d-flex align-center"
@@ -205,7 +205,7 @@ export default defineComponent({
     commentDeleteConfirmationMsg: {
       type: String,
     },
-    commentErrorMsg: {
+    unsavedCommentErrorMsg: {
       type: String,
       default: 'Comment should be either updated or removed',
     },
@@ -301,7 +301,7 @@ export default defineComponent({
         label: 'Yes, Delete',
         iconName: 'oxd-trash',
         size: 'medium',
-        displayType: 'warn',
+        displayType: 'danger',
         style: null,
         class: null,
         click: defaultConfirmDeleteAction,
@@ -320,7 +320,7 @@ export default defineComponent({
         label: 'Cancel',
         iconName: null,
         size: 'medium',
-        displayType: 'ghost-warn',
+        displayType: 'ghost-danger',
         style: null,
         class: null,
         click: defaultCancelDeleteAction,
