@@ -14,6 +14,24 @@ export default {
   title: 'Inputs/Comments',
   component: Comments,
   argTypes: {
+    readOnly: {
+      control: {type: 'boolean'},
+      defaultValue: false,
+      table: {
+        type: {
+          summary: 'Set boolean value true to make read only',
+        },
+      },
+    },
+    disabled: {
+      control: {type: 'boolean'},
+      defaultValue: false,
+      table: {
+        type: {
+          summary: 'Set boolean value true to make disable',
+        },
+      },
+    },
     allowToEdit: {
       control: {type: 'boolean'},
       defaultValue: false,
@@ -57,13 +75,23 @@ export default {
         },
       },
     },
-    commentErrorMsg: {
+    unsavedAddCommentErrorMsg: {
       control: {type: 'text'},
-      defaultValue: 'Comment should be updated or either removed',
+      defaultValue: 'Comment should be either added or removed',
       table: {
         type: {
           summary:
-            'Set comment update message to show when comment edited without saving',
+            'Set comment validation message to show when triggered save without adding or removing the comment',
+        },
+      },
+    },
+    unsavedEditCommentErrorMsg: {
+      control: {type: 'text'},
+      defaultValue: 'Note should be either updated or removed',
+      table: {
+        type: {
+          summary:
+            'Set comment validation message to show when triggered save without adding or removing the comment',
         },
       },
     },
@@ -202,7 +230,7 @@ Default.args = {
   allowToDelete: true,
   enableAvatar: true,
   scrollMaxHeight: 300,
-  commentErrorMsg: 'Comment should be updated or either removed',
+  unsavedAddCommentErrorMsg: 'Comment should be either updated or removed',
   commentDeleteConfirmationMsg:
     'The current comment will be permanently deleted. Are you sure you want to continue?',
 };
@@ -230,6 +258,17 @@ ReadOnly.args = {
   enableAvatar: true,
   scrollMaxHeight: 350,
   readOnly: true,
+};
+
+export const Disabled = Template.bind({});
+
+Disabled.args = {
+  commentGroups,
+  allowToEdit: false,
+  allowToDelete: false,
+  enableAvatar: true,
+  scrollMaxHeight: 350,
+  disabled: true,
 };
 
 export const EmptyComments = Template.bind({});
@@ -345,6 +384,24 @@ ReadOnly.parameters = {
       code: `
       <oxd-comments
         :readOnly="true"
+        :enableAvatar="true"
+        :scrollMaxHeight="200"
+        :commentGroups="commentGroups"
+        :commentDeleteConfirmationMsg=""The current comment will be permanently deleted. Are you sure you want to continue?"
+        @onAddComment="addComment"
+        @onUpdateComment="updateComment"
+        @onDeleteComment="deleteComment"
+      />`,
+    },
+  },
+};
+
+Disabled.parameters = {
+  docs: {
+    source: {
+      code: `
+      <oxd-comments
+        :disabled="true"
         :enableAvatar="true"
         :scrollMaxHeight="200"
         :commentGroups="commentGroups"

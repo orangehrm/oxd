@@ -1,5 +1,5 @@
 <template>
-  <div class="oxd-comment-box oxd-input-group">
+  <div class="oxd-comment-box oxd-input-group" v-click-outside="clickOutside">
     <div class="oxd-input-group__label-wrapper">
       <oxd-icon
         v-if="labelIcon"
@@ -19,9 +19,8 @@
         :class="textareaClasses"
         ref="textareaComponent"
         :value="modelValue"
-        @blur="blurCommentBox"
         @input="updateModelValue"
-        @keyup.enter="addComment"
+        @keyup.enter="keyupEnter"
       />
     </div>
     <oxd-icon-button
@@ -49,6 +48,7 @@ import {
   RESIZE_VERTICAL,
   RESIZE_HORIZONTAL,
 } from './../Textarea/types';
+import clickOutsideDirective from '../../../directives/click-outside';
 
 export default defineComponent({
   name: 'oxd-textarea-wrapper',
@@ -58,6 +58,9 @@ export default defineComponent({
     'oxd-icon': Icon,
     'oxd-icon-button': IconButton,
     'oxd-textarea': Textarea,
+  },
+  directives: {
+    'click-outside': clickOutsideDirective,
   },
   props: {
     modelValue: {
@@ -105,6 +108,10 @@ export default defineComponent({
         );
       },
     },
+    preventAddOnKeyPressEnter: {
+      type: Boolean,
+      defaule: false,
+    },
   },
   setup(props, {emit}) {
     const textareaComponent = ref(null);
@@ -127,15 +134,21 @@ export default defineComponent({
     });
 
     const updateModelValue = (e: Event) => {
-      emit('update:modelValue', (e.target as HTMLTextAreaElement).value);
+      emit('update:modelValue', e, (e.target as HTMLTextAreaElement).value);
     };
 
-    const addComment = () => {
-      emit('addComment');
+    const addComment = (e: Event) => {
+      emit('addComment', e);
     };
 
-    const blurCommentBox = () => {
-      emit('blurCommentBox');
+    const keyupEnter = (e: Event) => {
+      if (!props.preventAddOnKeyPressEnter) {
+        addComment(e);
+      }
+    };
+
+    const clickOutside = (e: Event) => {
+      emit('blurCommentBox', e);
     };
 
     onMounted(() => {
@@ -148,7 +161,8 @@ export default defineComponent({
       textareaComponent,
       updateModelValue,
       addComment,
-      blurCommentBox,
+      keyupEnter,
+      clickOutside,
     };
   },
 });

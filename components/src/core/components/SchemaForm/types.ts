@@ -57,7 +57,7 @@ type ComponentSchemaProperties<T> = {
 type FieldType = Types | typeof TYPE_BUTTON | typeof TYPE_CUSTOM;
 
 type EventListeners = {
-  [key: string]: ($event: Event) => void;
+  [key: string]: ($event: Event, data: any) => void;
 };
 
 type FieldSchema = CommonSchemaProperties &

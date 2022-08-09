@@ -69,20 +69,21 @@
           <div v-if="editable" class="oxd-comment-content-edit-wrapper">
             <oxd-comment-box
               :actionButtonIcon="'oxd-check'"
-              :actionButtonTooltip="'Update'"
+              :actionButtonTooltip="$vt('Update')"
               :modelValue="commentContent"
               :hasError="editHasError"
+              :preventAddOnKeyPressEnter="true"
               @blurCommentBox="blurCommentBox"
               @update:modelValue="onInputComment"
               @addComment="onUpdateComment"
-              @keyup.esc="enableEditMode(false)"
+              @keyup.esc.stop="enableEditMode(false)"
             />
             <oxd-text
               v-if="editHasError"
               class="oxd-input-field-error-message oxd-input-group__message"
               tag="span"
             >
-              {{ $vt(commentErrorMsg) }}
+              {{ $vt(unsavedEditCommentErrorMsg) }}
             </oxd-text>
             <div
               class="oxd-comment-content-footer-container d-flex align-center"
@@ -104,7 +105,7 @@
         </div>
         <div class="oxd-comment-content-footer-container d-flex align-center">
           <div v-if="comment.time" class="oxd-comment-content-commented-date">
-            Date: {{ comment.time }}
+            {{ $vt('Date') }}: {{ comment.time }}
           </div>
         </div>
       </div>
@@ -204,9 +205,9 @@ export default defineComponent({
     commentDeleteConfirmationMsg: {
       type: String,
     },
-    commentErrorMsg: {
+    unsavedEditCommentErrorMsg: {
       type: String,
-      default: 'Comment should be updated or either removed',
+      default: 'Comment should be either updated or removed',
     },
   },
 
@@ -246,47 +247,53 @@ export default defineComponent({
       }
     };
 
-    const cancelEditMode = () => {
+    const cancelEditMode = (e: Event) => {
       commentContent.value = commentOriginalContent.value;
       editHasError.value = false;
-      emit('commentEditHasError', false);
+      emit('commentEditHasError', e, false);
       enableEditMode(false);
     };
 
-    const onInputComment = (value: string) => {
+    const onInputComment = (e: Event, value: string) => {
       commentContent.value = value;
       if (hasContentChanged.value === 0) {
         editHasError.value = false;
-        emit('commentEditHasError', false);
+        emit('commentEditHasError', e, false);
       } else {
-        emit('commentEditHasError', true);
+        emit('commentEditHasError', e, true);
       }
     };
 
-    const blurCommentBox = () => {
+    const blurCommentBox = (e: Event) => {
       if (hasContentChanged.value === 0) {
         editHasError.value = false;
-        emit('commentEditHasError', false);
+        emit('commentEditHasError', e, false);
       } else {
         editHasError.value = true;
-        emit('commentEditHasError', true);
+        emit('commentEditHasError', e, true);
       }
     };
 
-    const onUpdateComment = () => {
-      emit('onUpdateComment', props.comment, commentContent.value);
-      emit('commentEditHasError', false);
+    const onUpdateComment = (e: Event) => {
+      emit('onUpdateComment', e, {
+        comment: props.comment,
+        value: commentContent.value,
+      });
+      emit('commentEditHasError', e, false);
       editHasError.value = false;
+      enableEditMode(false);
     };
 
-    const defaultConfirmDeleteAction = () => {
+    const defaultConfirmDeleteAction = (e: Event) => {
       enableDeleteMode(false);
-      emit('onDeleteComment', props.comment);
+      emit('onDeleteComment', e, {
+        value: props.comment,
+      });
     };
 
-    const defaultCancelDeleteAction = () => {
+    const defaultCancelDeleteAction = (e: Event) => {
       enableDeleteMode(false);
-      emit('cancelAction');
+      emit('cancelAction', e);
     };
 
     const confirmDeleteButtonData = computed(() => {
@@ -294,7 +301,7 @@ export default defineComponent({
         label: 'Yes, Delete',
         iconName: 'oxd-trash',
         size: 'medium',
-        displayType: 'warn',
+        displayType: 'danger',
         style: null,
         class: null,
         click: defaultConfirmDeleteAction,
@@ -313,7 +320,7 @@ export default defineComponent({
         label: 'Cancel',
         iconName: null,
         size: 'medium',
-        displayType: 'ghost-warn',
+        displayType: 'ghost-danger',
         style: null,
         class: null,
         click: defaultCancelDeleteAction,
