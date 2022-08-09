@@ -33,6 +33,7 @@
                 : allowToDelete || comment.allowToDelete
             "
             :enableAvatar="enableAvatar"
+            :requiredEditCommentErrorMsg="requiredEditCommentErrorMsg"
             :unsavedEditCommentErrorMsg="unsavedEditCommentErrorMsg"
             :commentDeleteConfirmationMsg="commentDeleteConfirmationMsg"
             @commentEditHasError="commentEditHasError"
@@ -124,10 +125,11 @@ export default defineComponent({
     unsavedEditCommentErrorMsg: {
       type: String,
     },
+    requiredEditCommentErrorMsg: {
+      type: String,
+    },
     commentDeleteConfirmationMsg: {
       type: String,
-      default:
-        'The current comment will be permanently deleted. Are you sure you want to continue?',
     },
     scrollSettings: {
       type: Object,

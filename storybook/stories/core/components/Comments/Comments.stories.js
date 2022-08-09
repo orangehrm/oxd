@@ -85,9 +85,19 @@ export default {
         },
       },
     },
+    requiredEditCommentErrorMsg: {
+      control: {type: 'text'},
+      defaultValue: 'Required',
+      table: {
+        type: {
+          summary:
+            'Set comment validation message to show when triggered cleared the comment',
+        },
+      },
+    },
     unsavedEditCommentErrorMsg: {
       control: {type: 'text'},
-      defaultValue: 'Note should be either updated or removed',
+      defaultValue: 'Note should be either updated or removed ',
       table: {
         type: {
           summary:
