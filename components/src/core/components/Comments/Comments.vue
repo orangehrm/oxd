@@ -174,9 +174,9 @@ export default defineComponent({
       return initialObject;
     });
 
-    const onInputComment = (e: Event, value: string) => {
+    const onInputComment = (value: string) => {
       comment.value = value;
-      emit('update:modelValue', e, comment.value);
+      emit('update:modelValue', comment.value);
     };
 
     const doScroll = async () => {
@@ -203,8 +203,8 @@ export default defineComponent({
       doScroll();
     });
 
-    const commentEditHasError = (e: Event, hasError: boolean) => {
-      emit('commentEditHasError', e, hasError);
+    const commentEditHasError = (hasError: boolean) => {
+      emit('commentEditHasError', hasError);
     };
 
     const onUpdateComment = (

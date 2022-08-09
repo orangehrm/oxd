@@ -134,7 +134,7 @@ export default defineComponent({
     });
 
     const updateModelValue = (e: Event) => {
-      emit('update:modelValue', e, (e.target as HTMLTextAreaElement).value);
+      emit('update:modelValue', (e.target as HTMLTextAreaElement).value);
     };
 
     const addComment = (e: Event) => {

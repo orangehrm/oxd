@@ -267,33 +267,34 @@ export default defineComponent({
     const cancelEditMode = (e: Event) => {
       commentContent.value = commentOriginalContent.value;
       invalidCommentUpdate.value = false;
-      emit('commentEditHasError', e, false);
+      invalidCommentSave.value = false;
+      emit('commentEditHasError', false);
       enableEditMode(false);
     };
 
-    const onInputComment = (e: Event, value: string) => {
+    const onInputComment = (value: string) => {
       commentContent.value = value;
       invalidCommentSave.value = false;
-      emit('commentEditHasError', e, false);
+      emit('commentEditHasError', false);
       if (commentContent.value === '') {
         invalidCommentSave.value = true;
         invalidCommentUpdate.value = false;
-        emit('commentEditHasError', e, true);
+        emit('commentEditHasError', true);
       } else if (hasContentChanged.value === 0) {
         invalidCommentUpdate.value = false;
-        emit('commentEditHasError', e, false);
+        emit('commentEditHasError', false);
       } else {
-        emit('commentEditHasError', e, true);
+        emit('commentEditHasError', true);
       }
     };
 
     const blurCommentBox = (e: Event) => {
       if (hasContentChanged.value === 0) {
         invalidCommentUpdate.value = false;
-        emit('commentEditHasError', e, false);
+        emit('commentEditHasError', false);
       } else {
         invalidCommentUpdate.value = true;
-        emit('commentEditHasError', e, true);
+        emit('commentEditHasError', true);
       }
     };
 
@@ -303,7 +304,7 @@ export default defineComponent({
           comment: props.comment,
           value: commentContent.value,
         });
-        emit('commentEditHasError', e, false);
+        emit('commentEditHasError', false);
         invalidCommentUpdate.value = false;
         invalidCommentSave.value = false;
         enableEditMode(false);
