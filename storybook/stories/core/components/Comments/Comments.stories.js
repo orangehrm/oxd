@@ -115,7 +115,7 @@ export default {
     },
     unsavedEditCommentErrorMsg: {
       control: {type: 'text'},
-      defaultValue: 'Note should be either updated or removed ',
+      defaultValue: 'Note should be either updated or removed',
       table: {
         type: {
           summary:
