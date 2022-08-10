@@ -101,7 +101,7 @@ export default defineComponent({
     resize: {
       type: String,
       default: RESIZE_VERTICAL,
-      validator: function (value: TextareaResize) {
+      validator: function(value: TextareaResize) {
         return (
           [RESIZE_VERTICAL, RESIZE_HORIZONTAL, RESIZE_NONE].indexOf(value) !==
           -1
@@ -115,7 +115,7 @@ export default defineComponent({
   },
   setup(props, {emit}) {
     const textareaComponent = ref(null);
-    let focused: boolean = false;
+    const focused = false;
 
     const labelClasses = computed((): object => {
       return {

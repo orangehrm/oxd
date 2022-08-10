@@ -246,14 +246,21 @@ export default defineComponent({
 
     const fullName = computed(
       () =>
-        `${props.comment.user?.firstname || ''} ${
-          props.comment.user?.middlename || ''
-        } ${props.comment.user?.lastname || ''}`,
+        `${props.comment.user?.firstname || ''} ${props.comment.user
+          ?.middlename || ''} ${props.comment.user?.lastname || ''}`,
     );
 
     const hasContentChanged = computed(() =>
       commentOriginalContent.value.localeCompare(commentContent.value),
     );
+
+    const shouldNotExceedCharLength = computed(() => {
+      const validation =
+        !commentContent.value ||
+        new String(commentContent.value).length <= props.maxCharLength ||
+        `Should not exceed ${props.maxCharLength} characters`;
+      return validation;
+    });
 
     const commentInlineValidationMsg = computed((): string | boolean => {
       if (invalidCommentSave.value) {
@@ -266,14 +273,6 @@ export default defineComponent({
         return shouldNotExceedCharLength.value;
       }
       return false;
-    });
-
-    const shouldNotExceedCharLength = computed(() => {
-      const validation =
-        !commentContent.value ||
-        new String(commentContent.value).length <= props.maxCharLength ||
-        `Should not exceed ${props.maxCharLength} characters`;
-      return validation;
     });
 
     const enableEditMode = (editMode = true) => {
@@ -291,7 +290,7 @@ export default defineComponent({
       }
     };
 
-    const cancelEditMode = (e: Event) => {
+    const cancelEditMode = () => {
       commentContent.value = commentOriginalContent.value;
       invalidCommentUpdate.value = false;
       invalidCommentSave.value = false;
@@ -320,7 +319,7 @@ export default defineComponent({
       }
     };
 
-    const blurCommentBox = (e: Event) => {
+    const blurCommentBox = () => {
       if (typeof shouldNotExceedCharLength.value === 'string') {
         invalidCommentSave.value = false;
         invalidCommentUpdate.value = false;

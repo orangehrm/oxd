@@ -196,7 +196,7 @@ export default defineComponent({
       });
     };
 
-    const onAddComment = (event) => {
+    const onAddComment = event => {
       emit('addComment', event, {
         value: comment.value,
         successCallback: () => {
@@ -219,6 +219,7 @@ export default defineComponent({
     const onUpdateComment = (
       e: Event,
       data: {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         comment: any;
         value: string;
       },

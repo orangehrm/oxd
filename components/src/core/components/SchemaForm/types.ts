@@ -57,6 +57,7 @@ type ComponentSchemaProperties<T> = {
 type FieldType = Types | typeof TYPE_BUTTON | typeof TYPE_CUSTOM;
 
 type EventListeners = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: ($event: Event, data: any) => void;
 };
 
