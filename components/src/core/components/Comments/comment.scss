@@ -18,14 +18,20 @@
     }
   }
   &-avatar-wrapper {
-    padding-right: $oxd-comment-content-container-padding;
+    padding-right: 0.75rem;
+    :deep(.profile-image--medium) {
+      .img-tag {
+        width: 3rem;
+        height: 3rem;
+      }
+    }
   }
   &-content-wrapper {
     width: 100%;
     .oxd-comment-content {
       &-container {
         background-color: $oxd-white-color;
-        border-radius: $oxd-comment-content-container-border-radius;
+        border-radius: 1rem;
         padding: $oxd-comment-content-container-padding;
         display: inline-block;
         box-sizing: border-box;
@@ -40,6 +46,7 @@
         }
         .oxd-comment-content {
           @include oxd-comment-content-text;
+          color: $oxd-interface-gray-darken-1-color;
         }
         .oxd-comment-content-edit-wrapper {
           .oxd-comment-content-footer-container {
@@ -54,13 +61,14 @@
         }
       }
       &-header-container {
-        margin-bottom: $oxd-comment-content-container-padding-top;
         .oxd-comment-content-header {
           &-label {
             &-container {
               min-width: 100px;
               width: calc(100% - 44px);
               .oxd-comment-content-author-name {
+                font-size: 13px;
+                font-weight: 800;
                 white-space: nowrap;
               }
             }
@@ -92,8 +100,7 @@
     .oxd-comment-content-footer-container {
       @include oxd-comment-content-text;
       color: $oxd-interface-gray-color;
-      padding: $oxd-comment-content-container-padding-top 0 0
-        $oxd-comment-content-container-padding;
+      padding: 0.25rem 0 0 1rem;
       .oxd-comment-content-footer-action {
         &:hover {
           color: #ac5b00;
@@ -103,6 +110,19 @@
         &.active {
           color: #ac5b00;
           cursor: pointer;
+        }
+      }
+      .oxd-comment-content-commented-date {
+        font-weight: 600;
+        font-size: 0.75rem;
+        color: #929baa;
+        .oxd-comment-edited-chip {
+          margin-left: 0.5rem;
+          font-weight: 700;
+          border-radius: 0.4rem;
+          padding: 5px 8px;
+          display: flex;
+          align-items: center;
         }
       }
     }

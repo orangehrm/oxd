@@ -104,8 +104,18 @@
           </div>
         </div>
         <div class="oxd-comment-content-footer-container d-flex align-center">
-          <div v-if="comment.time" class="oxd-comment-content-commented-date">
+          <div
+            v-if="comment.time"
+            class="oxd-comment-content-commented-date d-flex align-center"
+          >
             {{ $vt('Date') }}: {{ comment.time }}
+            <oxd-chip
+              v-if="comment.edited"
+              :label="$vt('Edited')"
+              class="oxd-comment-edited-chip"
+              :background-color="'#e8eaef'"
+              :color="'#929baa'"
+            />
           </div>
         </div>
       </div>
@@ -157,6 +167,7 @@
 <script lang="ts">
 import {defineComponent, ref, computed, nextTick} from 'vue';
 import translateMixin from '../../../mixins/translate';
+import Chip from '@orangehrm/oxd/core/components/Chip/Chip.vue';
 import Label from '@orangehrm/oxd/core/components/Label/Label.vue';
 import oxdText from '@orangehrm/oxd/core/components/Text/Text.vue';
 import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue';
@@ -170,6 +181,7 @@ export default defineComponent({
   mixins: [translateMixin],
 
   components: {
+    'oxd-chip': Chip,
     'oxd-label': Label,
     'oxd-icon-button': IconButton,
     'oxd-profile-pic': ProfilePic,
@@ -215,6 +227,10 @@ export default defineComponent({
       type: String,
       default: 'Comment should be either updated or removed',
     },
+    maxCharLength: {
+      type: Number,
+      default: 10,
+    },
   },
 
   setup(props, {emit}) {
@@ -230,23 +246,33 @@ export default defineComponent({
 
     const fullName = computed(
       () =>
-        `${props.comment.user?.firstname || ''} ${
-          props.comment.user?.middlename || ''
-        } ${props.comment.user?.lastname || ''}`,
+        `${props.comment.user?.firstname || ''} ${props.comment.user
+          ?.middlename || ''} ${props.comment.user?.lastname || ''}`,
     );
 
     const hasContentChanged = computed(() =>
       commentOriginalContent.value.localeCompare(commentContent.value),
     );
 
+    const shouldNotExceedCharLength = computed(() => {
+      const validation =
+        !commentContent.value ||
+        new String(commentContent.value).length <= props.maxCharLength ||
+        `Should not exceed ${props.maxCharLength} characters`;
+      return validation;
+    });
+
     const commentInlineValidationMsg = computed((): string | boolean => {
       if (invalidCommentSave.value) {
         return props.requiredEditCommentErrorMsg;
-      } else if (invalidCommentUpdate.value) {
-        return props.unsavedEditCommentErrorMsg;
-      } else {
-        return false;
       }
+      if (invalidCommentUpdate.value) {
+        return props.unsavedEditCommentErrorMsg;
+      }
+      if (typeof shouldNotExceedCharLength.value === 'string') {
+        return shouldNotExceedCharLength.value;
+      }
+      return false;
     });
 
     const enableEditMode = (editMode = true) => {
@@ -264,7 +290,7 @@ export default defineComponent({
       }
     };
 
-    const cancelEditMode = (e: Event) => {
+    const cancelEditMode = () => {
       commentContent.value = commentOriginalContent.value;
       invalidCommentUpdate.value = false;
       invalidCommentSave.value = false;
@@ -275,6 +301,7 @@ export default defineComponent({
     const onInputComment = (value: string) => {
       commentContent.value = value;
       invalidCommentSave.value = false;
+      shouldNotExceedCharLength.value;
       emit('commentEditHasError', false);
       if (commentContent.value === '') {
         invalidCommentSave.value = true;
@@ -283,13 +310,21 @@ export default defineComponent({
       } else if (hasContentChanged.value === 0) {
         invalidCommentUpdate.value = false;
         emit('commentEditHasError', false);
+      } else if (shouldNotExceedCharLength.value) {
+        invalidCommentSave.value = false;
+        invalidCommentUpdate.value = false;
+        emit('commentEditHasError', false);
       } else {
         emit('commentEditHasError', true);
       }
     };
 
-    const blurCommentBox = (e: Event) => {
-      if (hasContentChanged.value === 0) {
+    const blurCommentBox = () => {
+      if (typeof shouldNotExceedCharLength.value === 'string') {
+        invalidCommentSave.value = false;
+        invalidCommentUpdate.value = false;
+        emit('commentEditHasError', false);
+      } else if (hasContentChanged.value === 0) {
         invalidCommentUpdate.value = false;
         emit('commentEditHasError', false);
       } else {

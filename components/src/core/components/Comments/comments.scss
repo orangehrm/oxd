@@ -7,13 +7,18 @@
     @include oxd-input-control-size;
     position: relative;
     .oxd-comment-header-label-wrapper {
-      margin-bottom: 0.4rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #dee2e6;
+      :deep(.oxd-label) {
+        font-size: 1rem;
+        letter-spacing: 0.15px;
+      }
     }
   }
   &-container {
     margin-bottom: $oxd-comment-content-container-padding;
     background-color: $oxd-background-pastel-white-color;
-    border-radius: 1.2rem;
+    border-radius: 1rem;
     &.scroll-vertical {
       overflow-y: auto;
       @include oxd-scrollbar();

@@ -231,6 +231,7 @@ const commentGroups = [
           lastname: 'Simeon',
         },
         time: '2021/09/04',
+        edited: true,
       },
     ],
   },

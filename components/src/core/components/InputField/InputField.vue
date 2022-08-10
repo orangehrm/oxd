@@ -154,7 +154,7 @@ export default defineComponent({
       onReset,
     });
 
-    const onChange = ($event) => {
+    const onChange = $event => {
       if (!dirty.value) {
         dirty.value = true;
         startWatcher();
