@@ -1,3 +1,5 @@
+2022-08-10 - f92f4a97da8b281f841c643da93ef0a74bc68ce5 - Icon/Icons.ts - Add 3 new icons
+
 2022-08-05 - 544a46d0de236d1eb15fb5ee42dda2c9e338ac8a - Icon/Icons.ts - Add now oxd-duration icon
 
 2022-08-04 - f07e979f20aa3d4779c3eaa57e4f63f81e7c2cad - Icon/Icons.ts - Change fill colour of oxd-add icon
