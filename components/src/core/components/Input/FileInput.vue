@@ -1,31 +1,75 @@
 <template>
-  <input
-    type="file"
-    ref="input"
-    v-bind="$attrs"
-    :class="fileInputClasses"
-    @focus="onFocus"
-    @blur="onBlur"
-    @input="onInput"
-    @keyup.esc.stop
-  />
-  <div :class="classes" :style="style" @click="onClick">
-    <slot></slot>
-    <template v-if="!$slots.default">
-      <div
-        v-if="buttonLabel"
-        :class="{'oxd-file-button': true, '--disabled': disabled}"
-      >
-        {{ buttonLabel }}
+  <div>
+    <div class="oxd-download-box-outer-wrapper">
+      <div class="oxd-download-box-wrapper d-flex" v-if="inputFile">
+        <button class="oxd-download-box" @click="downloadBoxClick()">
+          <div class="oxd-download-box-doc-icon d-flex">
+            <oxd-icon :name="'oxd-file-doc'"> </oxd-icon>
+          </div>
+          <div class="oxd-download-box-download-data d-flex">
+            <div class="oxd-download-box-download-text">
+              {{ inputFile.name }}
+            </div>
+            <div class="oxd-download-box-download-icon">
+              <oxd-icon :name="'oxd-simple-download'" :size="'xxx-small'" />
+            </div>
+          </div>
+        </button>
+        <div
+          class="oxd-download-box-radio-buttons"
+          v-if="disabled === false || readonly === true"
+        >
+          <oxd-radio-input
+            v-model="selectedItem"
+            id="check1"
+            value="keep"
+            optionLabel="Keep Current"
+          />
+          <oxd-radio-input
+            v-model="selectedItem"
+            id="check2"
+            value="delete"
+            optionLabel="Delete Current"
+          />
+          <oxd-radio-input
+            v-model="selectedItem"
+            id="check3"
+            value="replace"
+            optionLabel="Replace Current"
+          />
+        </div>
       </div>
-      <div class="oxd-file-input-div">
-        {{ inputValue ? inputValue : placeholder }}
-      </div>
-      <oxd-icon
-        :class="{'oxd-file-input-icon': true, '--disabled': disabled}"
-        :name="buttonIcon"
+    </div>
+    <div v-if="selectedItem === 'replace' || !inputFile">
+      <input
+        type="file"
+        ref="input"
+        v-bind="$attrs"
+        :class="fileInputClasses"
+        @focus="onFocus"
+        @blur="onBlur"
+        @input="onInput"
+        @keyup.esc.stop
       />
-    </template>
+      <div :class="classes" :style="style" @click="onClick">
+        <slot></slot>
+        <template v-if="!$slots.default">
+          <div
+            v-if="buttonLabel"
+            :class="{'oxd-file-button': true, '--disabled': disabled}"
+          >
+            {{ buttonLabel }}
+          </div>
+          <div class="oxd-file-input-div">
+            {{ inputValue ? inputValue : placeholder }}
+          </div>
+          <oxd-icon
+            :class="{'oxd-file-input-icon': true, '--disabled': disabled}"
+            :name="buttonIcon"
+          />
+        </template>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -33,18 +77,26 @@
 import {defineComponent} from 'vue';
 import {OutputFile} from './types';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
+import Radio from '@orangehrm/oxd/core/components/Input/RadioInput.vue';
 
 export interface State {
   focused: boolean;
   inputValue: string;
+  selectedItem: string;
 }
 
 export default defineComponent({
   name: 'oxd-file-input',
+  components: {
+    'oxd-icon': Icon,
+    'oxd-radio-input': Radio,
+  },
   inheritAttrs: false,
-
   props: {
     modelValue: {},
+    inputFile: {
+      type: Object,
+    },
     style: {
       type: Object,
     },
@@ -71,20 +123,27 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    downloadBoxClick: {
+      type: Function,
+      required: false,
+    },
   },
-
-  components: {
-    'oxd-icon': Icon,
-  },
-
   data(): State {
     return {
       focused: false,
       inputValue: '',
+      selectedItem: 'keep',
     };
   },
 
-  emits: ['click', 'focus', 'blur', 'input', 'update:modelValue'],
+  emits: [
+    'click',
+    'focus',
+    'blur',
+    'input',
+    'update:modelValue',
+    'selectedOption',
+  ],
 
   watch: {
     modelValue(newValue, oldValue) {
@@ -97,6 +156,9 @@ export default defineComponent({
           this.inputValue = '';
         }
       }
+    },
+    selectedItem() {
+      this.$emit('selectedOption', this.selectedItem);
     },
   },
 
