@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="oxd-download-box-outer-wrapper">
-      <div class="oxd-download-box-wrapper d-flex" v-if="inputFile">
+      <div class="oxd-download-box-wrapper d-flex" v-if="inputFile.name">
         <button class="oxd-download-box" @click="downloadBoxClick()">
           <div class="oxd-download-box-doc-icon d-flex">
             <oxd-icon :name="'oxd-file-doc'"> </oxd-icon>
@@ -40,7 +40,7 @@
         </div>
       </div>
     </div>
-    <div v-if="selectedItem === 'replace' || !inputFile">
+    <div v-if="selectedItem === 'replace' || !inputFile.name">
       <input
         type="file"
         ref="input"
