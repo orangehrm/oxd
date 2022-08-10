@@ -25,3 +25,12 @@
     }
   }
 }
+
+:deep(.oxd-label) {
+  align-items: center;
+  line-height: 16px;
+}
+:deep(.oxd-svg-icon) {
+  width: 0.9375rem;
+  height: 0.9375rem;
+}
