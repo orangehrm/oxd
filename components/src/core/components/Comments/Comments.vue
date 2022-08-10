@@ -1,6 +1,12 @@
 <template>
   <div class="oxd-comment-groups-wrapper">
     <div
+      v-if="headerLabel && commentGroups.length > 0"
+      class="oxd-comment-header-label-wrapper"
+    >
+      <oxd-label :label="headerLabel" />
+    </div>
+    <div
       class="oxd-comment-groups-container"
       :class="commentGroupsContainerClasses"
       :style="commentGroupsContainerStyles"
@@ -33,6 +39,7 @@
                 : allowToDelete || comment.allowToDelete
             "
             :enableAvatar="enableAvatar"
+            :requiredEditCommentErrorMsg="requiredEditCommentErrorMsg"
             :unsavedEditCommentErrorMsg="unsavedEditCommentErrorMsg"
             :commentDeleteConfirmationMsg="commentDeleteConfirmationMsg"
             @commentEditHasError="commentEditHasError"
@@ -44,11 +51,11 @@
     </div>
     <oxd-comment-box
       v-if="!(readOnly || disabled)"
-      :label="'Add notes'"
+      :label="commentBoxLabel"
       :labelIcon="'oxd-note'"
       :actionButtonIcon="'oxd-add'"
       :actionButtonTooltip="'Add'"
-      :placeholder="'Write your note'"
+      :placeholder="commentBoxPlaceholder"
       :modelValue="comment"
       :hasError="hasError"
       :unsavedAddCommentErrorMsg="unsavedAddCommentErrorMsg"
@@ -118,16 +125,28 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    headerLabel: {
+      type: String,
+    },
+    commentBoxLabel: {
+      type: String,
+      default: 'Add Comment',
+    },
+    commentBoxPlaceholder: {
+      type: String,
+      default: 'Write your comment...',
+    },
     unsavedAddCommentErrorMsg: {
       type: String,
     },
     unsavedEditCommentErrorMsg: {
       type: String,
     },
+    requiredEditCommentErrorMsg: {
+      type: String,
+    },
     commentDeleteConfirmationMsg: {
       type: String,
-      default:
-        'The current comment will be permanently deleted. Are you sure you want to continue?',
     },
     scrollSettings: {
       type: Object,
@@ -164,9 +183,9 @@ export default defineComponent({
       return initialObject;
     });
 
-    const onInputComment = (e: Event, value: string) => {
+    const onInputComment = (value: string) => {
       comment.value = value;
-      emit('update:modelValue', e, comment.value);
+      emit('update:modelValue', comment.value);
     };
 
     const doScroll = async () => {
@@ -193,8 +212,8 @@ export default defineComponent({
       doScroll();
     });
 
-    const commentEditHasError = (e: Event, hasError: boolean) => {
-      emit('commentEditHasError', e, hasError);
+    const commentEditHasError = (hasError: boolean) => {
+      emit('commentEditHasError', hasError);
     };
 
     const onUpdateComment = (

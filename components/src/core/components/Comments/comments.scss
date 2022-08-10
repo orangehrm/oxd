@@ -6,6 +6,9 @@
   &-wrapper {
     @include oxd-input-control-size;
     position: relative;
+    .oxd-comment-header-label-wrapper {
+      margin-bottom: 0.4rem;
+    }
   }
   &-container {
     margin-bottom: $oxd-comment-content-container-padding;
