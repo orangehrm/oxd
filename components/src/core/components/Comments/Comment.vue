@@ -83,7 +83,7 @@
               class="oxd-input-field-error-message oxd-input-group__message"
               tag="span"
             >
-              {{ $vt(commentInlineValidationMsg) }}
+              {{ commentInlineValidationMsg }}
             </oxd-text>
             <div
               class="oxd-comment-content-footer-container d-flex align-center"
@@ -174,6 +174,8 @@ import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue
 import CommentBox from '@orangehrm/oxd/core/components/Comments/CommentBox.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import oxdButton from '@orangehrm/oxd/core/components/Button/Button.vue';
+import useTranslate from '../../../composables/useTranslate';
+const {$t} = useTranslate();
 
 export default defineComponent({
   name: 'oxd-comment',
@@ -229,7 +231,7 @@ export default defineComponent({
     },
     maxCharLength: {
       type: Number,
-      default: 10,
+      default: 65535,
     },
   },
 
@@ -246,28 +248,33 @@ export default defineComponent({
 
     const fullName = computed(
       () =>
-        `${props.comment.user?.firstname || ''} ${props.comment.user
-          ?.middlename || ''} ${props.comment.user?.lastname || ''}`,
+        `${props.comment.user?.firstname || ''} ${
+          props.comment.user?.middlename || ''
+        } ${props.comment.user?.lastname || ''}`,
     );
 
     const hasContentChanged = computed(() =>
       commentOriginalContent.value.localeCompare(commentContent.value),
     );
 
+    const maxCharLengthMsg = $t('Should not exceed {{amount}} characters', {
+      amount: props.maxCharLength.toString(),
+    });
+
     const shouldNotExceedCharLength = computed(() => {
       const validation =
         !commentContent.value ||
         new String(commentContent.value).length <= props.maxCharLength ||
-        `Should not exceed ${props.maxCharLength} characters`;
+        maxCharLengthMsg;
       return validation;
     });
 
     const commentInlineValidationMsg = computed((): string | boolean => {
       if (invalidCommentSave.value) {
-        return props.requiredEditCommentErrorMsg;
+        return $t(props.requiredEditCommentErrorMsg);
       }
       if (invalidCommentUpdate.value) {
-        return props.unsavedEditCommentErrorMsg;
+        return $t(props.unsavedEditCommentErrorMsg);
       }
       if (typeof shouldNotExceedCharLength.value === 'string') {
         return shouldNotExceedCharLength.value;
