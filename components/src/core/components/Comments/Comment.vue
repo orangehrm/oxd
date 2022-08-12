@@ -69,20 +69,21 @@
           <div v-if="editable" class="oxd-comment-content-edit-wrapper">
             <oxd-comment-box
               :actionButtonIcon="'oxd-check'"
-              :actionButtonTooltip="'Update'"
+              :actionButtonTooltip="$vt('Update')"
               :modelValue="commentContent"
-              :hasError="editHasError"
+              :hasError="commentInlineValidationMsg"
+              :preventAddOnKeyPressEnter="true"
               @blurCommentBox="blurCommentBox"
               @update:modelValue="onInputComment"
               @addComment="onUpdateComment"
-              @keyup.esc="enableEditMode(false)"
+              @keyup.esc.stop="enableEditMode(false)"
             />
             <oxd-text
-              v-if="editHasError"
+              v-if="commentInlineValidationMsg"
               class="oxd-input-field-error-message oxd-input-group__message"
               tag="span"
             >
-              {{ $vt(commentErrorMsg) }}
+              {{ commentInlineValidationMsg }}
             </oxd-text>
             <div
               class="oxd-comment-content-footer-container d-flex align-center"
@@ -103,8 +104,18 @@
           </div>
         </div>
         <div class="oxd-comment-content-footer-container d-flex align-center">
-          <div v-if="comment.time" class="oxd-comment-content-commented-date">
-            Date: {{ comment.time }}
+          <div
+            v-if="comment.time"
+            class="oxd-comment-content-commented-date d-flex align-center"
+          >
+            {{ $vt('Date') }}: {{ comment.time }}
+            <oxd-chip
+              v-if="comment.edited"
+              :label="$vt('Edited')"
+              class="oxd-comment-edited-chip"
+              :background-color="'#e8eaef'"
+              :color="'#929baa'"
+            />
           </div>
         </div>
       </div>
@@ -156,12 +167,15 @@
 <script lang="ts">
 import {defineComponent, ref, computed, nextTick} from 'vue';
 import translateMixin from '../../../mixins/translate';
+import Chip from '@orangehrm/oxd/core/components/Chip/Chip.vue';
 import Label from '@orangehrm/oxd/core/components/Label/Label.vue';
 import oxdText from '@orangehrm/oxd/core/components/Text/Text.vue';
 import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue';
 import CommentBox from '@orangehrm/oxd/core/components/Comments/CommentBox.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import oxdButton from '@orangehrm/oxd/core/components/Button/Button.vue';
+import useTranslate from '../../../composables/useTranslate';
+const {$t} = useTranslate();
 
 export default defineComponent({
   name: 'oxd-comment',
@@ -169,6 +183,7 @@ export default defineComponent({
   mixins: [translateMixin],
 
   components: {
+    'oxd-chip': Chip,
     'oxd-label': Label,
     'oxd-icon-button': IconButton,
     'oxd-profile-pic': ProfilePic,
@@ -203,16 +218,27 @@ export default defineComponent({
     },
     commentDeleteConfirmationMsg: {
       type: String,
+      default:
+        'The current comment will be permanently deleted. Are you sure you want to continue?',
     },
-    commentErrorMsg: {
+    requiredEditCommentErrorMsg: {
       type: String,
-      default: 'Comment should be updated or either removed',
+      default: 'Required',
+    },
+    unsavedEditCommentErrorMsg: {
+      type: String,
+      default: 'Comment should be either updated or removed',
+    },
+    maxCharLength: {
+      type: Number,
+      default: 65535,
     },
   },
 
   setup(props, {emit}) {
     const editable = ref(false);
-    const editHasError = ref(false);
+    const invalidCommentUpdate = ref(false);
+    const invalidCommentSave = ref(false);
     const deleteMode = ref(false);
     const commentOriginalContent = ref(
       JSON.parse(JSON.stringify(props.comment.content)),
@@ -231,6 +257,31 @@ export default defineComponent({
       commentOriginalContent.value.localeCompare(commentContent.value),
     );
 
+    const maxCharLengthMsg = $t('Should not exceed {{amount}} characters', {
+      amount: props.maxCharLength.toString(),
+    });
+
+    const shouldNotExceedCharLength = computed(() => {
+      const validation =
+        !commentContent.value ||
+        new String(commentContent.value).length <= props.maxCharLength ||
+        maxCharLengthMsg;
+      return validation;
+    });
+
+    const commentInlineValidationMsg = computed((): string | boolean => {
+      if (invalidCommentSave.value) {
+        return $t(props.requiredEditCommentErrorMsg);
+      }
+      if (invalidCommentUpdate.value) {
+        return $t(props.unsavedEditCommentErrorMsg);
+      }
+      if (typeof shouldNotExceedCharLength.value === 'string') {
+        return shouldNotExceedCharLength.value;
+      }
+      return false;
+    });
+
     const enableEditMode = (editMode = true) => {
       editable.value = editMode;
     };
@@ -248,15 +299,27 @@ export default defineComponent({
 
     const cancelEditMode = () => {
       commentContent.value = commentOriginalContent.value;
-      editHasError.value = false;
+      invalidCommentUpdate.value = false;
+      invalidCommentSave.value = false;
       emit('commentEditHasError', false);
       enableEditMode(false);
     };
 
     const onInputComment = (value: string) => {
       commentContent.value = value;
-      if (hasContentChanged.value === 0) {
-        editHasError.value = false;
+      invalidCommentSave.value = false;
+      shouldNotExceedCharLength.value;
+      emit('commentEditHasError', false);
+      if (commentContent.value === '') {
+        invalidCommentSave.value = true;
+        invalidCommentUpdate.value = false;
+        emit('commentEditHasError', true);
+      } else if (hasContentChanged.value === 0) {
+        invalidCommentUpdate.value = false;
+        emit('commentEditHasError', false);
+      } else if (shouldNotExceedCharLength.value) {
+        invalidCommentSave.value = false;
+        invalidCommentUpdate.value = false;
         emit('commentEditHasError', false);
       } else {
         emit('commentEditHasError', true);
@@ -264,29 +327,42 @@ export default defineComponent({
     };
 
     const blurCommentBox = () => {
-      if (hasContentChanged.value === 0) {
-        editHasError.value = false;
+      if (typeof shouldNotExceedCharLength.value === 'string') {
+        invalidCommentSave.value = false;
+        invalidCommentUpdate.value = false;
+        emit('commentEditHasError', false);
+      } else if (hasContentChanged.value === 0) {
+        invalidCommentUpdate.value = false;
         emit('commentEditHasError', false);
       } else {
-        editHasError.value = true;
+        invalidCommentUpdate.value = true;
         emit('commentEditHasError', true);
       }
     };
 
-    const onUpdateComment = () => {
-      emit('onUpdateComment', props.comment, commentContent.value);
-      emit('commentEditHasError', false);
-      editHasError.value = false;
+    const onUpdateComment = (e: Event) => {
+      if (!invalidCommentSave.value) {
+        emit('onUpdateComment', e, {
+          comment: props.comment,
+          value: commentContent.value,
+        });
+        emit('commentEditHasError', false);
+        invalidCommentUpdate.value = false;
+        invalidCommentSave.value = false;
+        enableEditMode(false);
+      }
     };
 
-    const defaultConfirmDeleteAction = () => {
+    const defaultConfirmDeleteAction = (e: Event) => {
       enableDeleteMode(false);
-      emit('onDeleteComment', props.comment);
+      emit('onDeleteComment', e, {
+        value: props.comment,
+      });
     };
 
-    const defaultCancelDeleteAction = () => {
+    const defaultCancelDeleteAction = (e: Event) => {
       enableDeleteMode(false);
-      emit('cancelAction');
+      emit('cancelAction', e);
     };
 
     const confirmDeleteButtonData = computed(() => {
@@ -294,7 +370,7 @@ export default defineComponent({
         label: 'Yes, Delete',
         iconName: 'oxd-trash',
         size: 'medium',
-        displayType: 'warn',
+        displayType: 'danger',
         style: null,
         class: null,
         click: defaultConfirmDeleteAction,
@@ -313,7 +389,7 @@ export default defineComponent({
         label: 'Cancel',
         iconName: null,
         size: 'medium',
-        displayType: 'ghost-warn',
+        displayType: 'ghost-danger',
         style: null,
         class: null,
         click: defaultCancelDeleteAction,
@@ -331,7 +407,7 @@ export default defineComponent({
       fullName,
       editable,
       commentContent,
-      editHasError,
+      invalidCommentUpdate,
       enableEditMode,
       cancelEditMode,
       enableDeleteMode,
@@ -342,6 +418,8 @@ export default defineComponent({
       deleteMode,
       confirmDeleteButtonData,
       cancelDeleteButtonData,
+      commentInlineValidationMsg,
+      invalidCommentSave,
     };
   },
 });

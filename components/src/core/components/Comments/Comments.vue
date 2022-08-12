@@ -1,6 +1,12 @@
 <template>
   <div class="oxd-comment-groups-wrapper">
     <div
+      v-if="headerLabel && commentGroups.length > 0"
+      class="oxd-comment-header-label-wrapper"
+    >
+      <oxd-label :label="headerLabel" />
+    </div>
+    <div
       class="oxd-comment-groups-container"
       :class="commentGroupsContainerClasses"
       :style="commentGroupsContainerStyles"
@@ -24,12 +30,19 @@
             v-for="(comment, commentIndex) in commentGroup.comments"
             :comment="comment"
             :key="comment || commentIndex"
-            :allowToEdit="readOnly ? false : allowToEdit || comment.allowToEdit"
+            :allowToEdit="
+              disabled || readOnly ? false : allowToEdit || comment.allowToEdit
+            "
             :allowToDelete="
-              readOnly ? false : allowToDelete || comment.allowToDelete
+              disabled || readOnly
+                ? false
+                : allowToDelete || comment.allowToDelete
             "
             :enableAvatar="enableAvatar"
+            :requiredEditCommentErrorMsg="requiredEditCommentErrorMsg"
+            :unsavedEditCommentErrorMsg="unsavedEditCommentErrorMsg"
             :commentDeleteConfirmationMsg="commentDeleteConfirmationMsg"
+            :maxCharLength="commentEditMaxCharLength"
             @commentEditHasError="commentEditHasError"
             @onUpdateComment="onUpdateComment"
             @onDeleteComment="onDeleteComment"
@@ -38,15 +51,16 @@
       </ul>
     </div>
     <oxd-comment-box
-      v-if="!readOnly"
-      :label="'Add notes'"
+      v-if="!(readOnly || disabled)"
+      :label="commentBoxLabel"
       :labelIcon="'oxd-note'"
       :actionButtonIcon="'oxd-add'"
       :actionButtonTooltip="'Add'"
-      :placeholder="'Write your note'"
+      :placeholder="commentBoxPlaceholder"
       :modelValue="comment"
       :hasError="hasError"
-      :commentErrorMsg="commentErrorMsg"
+      :unsavedAddCommentErrorMsg="unsavedAddCommentErrorMsg"
+      :preventAddOnKeyPressEnter="true"
       @update:modelValue="onInputComment"
       @addComment="onAddComment"
     />
@@ -104,20 +118,42 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
     hasError: {
       type: Boolean,
       default: false,
     },
-    commentErrorMsg: {
+    headerLabel: {
+      type: String,
+    },
+    commentBoxLabel: {
+      type: String,
+      default: 'Add Comment',
+    },
+    commentBoxPlaceholder: {
+      type: String,
+      default: 'Write your comment...',
+    },
+    unsavedAddCommentErrorMsg: {
+      type: String,
+    },
+    unsavedEditCommentErrorMsg: {
+      type: String,
+    },
+    requiredEditCommentErrorMsg: {
       type: String,
     },
     commentDeleteConfirmationMsg: {
       type: String,
-      default:
-        'The current comment will be permanently deleted. Are you sure you want to continue?',
     },
     scrollSettings: {
       type: Object,
+    },
+    commentEditMaxCharLength: {
+      type: Number,
     },
   },
   setup(props, {emit}) {
@@ -158,15 +194,18 @@ export default defineComponent({
 
     const doScroll = async () => {
       await nextTick();
-      commentGroupsList.value.scrollIntoView({
+      commentGroupsList.value?.scrollIntoView({
         behavior: scrollSettingsObj.value.mode,
         block: scrollSettingsObj.value.scrollTo,
       });
     };
 
-    const onAddComment = () => {
-      emit('addComment', comment.value, () => {
-        doScroll();
+    const onAddComment = (event) => {
+      emit('addComment', event, {
+        value: comment.value,
+        successCallback: () => {
+          doScroll();
+        },
       });
       emit('update:modelValue', '');
       comment.value = '';
@@ -181,12 +220,19 @@ export default defineComponent({
       emit('commentEditHasError', hasError);
     };
 
-    const onUpdateComment = (commentObj, newComment) => {
-      emit('updateComment', commentObj, newComment);
+    const onUpdateComment = (
+      e: Event,
+      data: {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        comment: any;
+        value: string;
+      },
+    ) => {
+      emit('updateComment', e, data);
     };
 
-    const onDeleteComment = (commentObj) => {
-      emit('deleteComment', commentObj);
+    const onDeleteComment = (e: Event, commentObj) => {
+      emit('deleteComment', e, commentObj);
     };
 
     return {
