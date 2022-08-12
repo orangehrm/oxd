@@ -23,6 +23,8 @@
   .checkbox-text-group {
     display: inline-flex;
     padding-bottom: 10px;
+    width: calc(5% + 15px);
+    justify-content: space-between;
 
     .all-checkbox-div {
       margin-left: 2.5px;
@@ -296,8 +298,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     padding: $oxd-dropdown-dropdown-inner-padding;
-    // max-height: $oxd-dropdown-dropdown-max-height;
-    max-height: 310px;
+    max-height: $oxd-tree-select-dropdown-dropdown-max-height;
   }
 
   &.--with-empty-selector .oxd-select-dropdown-inner {

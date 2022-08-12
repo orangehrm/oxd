@@ -12,9 +12,9 @@
       :selectedCount="selectedIdsComputed.length"
       :dropdownOpened="dropdownOpen"
       @blur="onBlur"
-      @click="onToggleDropdown"
+      @click="onToggleDropdown()"
       @keyup.esc="onCloseDropdown"
-      @keydown.enter.prevent="onSelectEnter"
+      @keydown.enter.prevent="onToggleDropdown()"
       @keydown.down.exact.prevent="onSelectDown"
       @keydown.up.exact.prevent="onSelectUp"
       @keydown="onKeypress"
@@ -30,7 +30,10 @@
     >
       <template #default>
         <div class="dropdown-container">
-          <div class="dropdown-header-div">
+          <div
+            v-if="!(removeAllSelection || disableUncheckedOptions)"
+            class="dropdown-header-div"
+          >
             <div class="checkbox-text-group">
               <div class="all-checkbox-div">
                 <oxd-checkbox-input
@@ -54,12 +57,13 @@
                     @update:modelValue="
                       selectOptionsOnCheckbox($event, option.id)
                     "
+                    :disabled="option._disabled"
                   ></oxd-checkbox-input>
                 </td>
                 <td
                   :style="
                     'display: flex ; width: 95%; padding-left:' +
-                      option.level * 20 +
+                      (option.level * 20 - 20) +
                       'px'
                   "
                 >
@@ -70,12 +74,12 @@
                       :tabindex="tabIndex()"
                       :size="'xxx-small'"
                       :withContainer="false"
-                      @keydown.enter="iconClicked(option)"
-                      @click="iconClicked(option)"
+                      @keydown.enter="expandIconClicked(option)"
+                      @click="expandIconClicked(option)"
                     ></oxd-icon
                   ></span>
                   <span
-                    @click="selectOptionOnlabelClick(option.id)"
+                    @click="selectOptionOnlabelClick(option)"
                     :class="
                       getIcon(option) == ''
                         ? 'option-label-without-icon'
@@ -93,7 +97,7 @@
           <div class="dropdown-footer-div">
             <div>
               <oxd-button
-                @click="closeDropdown()"
+                @click="onCloseDropdown(null)"
                 :label="$vt('Done')"
                 :displayType="'secondary'"
               ></oxd-button>
@@ -105,7 +109,8 @@
 
     <br />
     selectedIds- {{ selectedIdsComputed }} <br />
-    expandedIds- {{ expandedIds }}
+    expandedIds-
+    {{ Object.keys(expandedIdsObject).filter(k => expandedIdsObject[k]) }}
   </div>
 </template>
 
@@ -144,9 +149,6 @@ export default defineComponent({
   mixins: [navigationMixin, eventsMixin, translateMixin],
 
   props: {
-    modelValue: {
-      type: Array,
-    },
     placeholder: {
       type: String,
     },
@@ -183,12 +185,21 @@ export default defineComponent({
         return uniqueIds.size === idsCount;
       },
     },
-    preSelectedIds: {
+    modelValue: {
+      //Pre Selected Ids
       type: Array as PropType<string[]>,
       required: false,
       default: [],
     },
     selectParentsOnChildSelection: {
+      type: Boolean,
+      default: false,
+    },
+    disableUncheckedOptions: {
+      type: Boolean,
+      default: false,
+    },
+    removeAllSelection: {
       type: Boolean,
       default: false,
     },
@@ -202,8 +213,8 @@ export default defineComponent({
   },
 
   setup: function(props, {emit}) {
-    const expandedIds = ref<string[]>([]);
     const selectedIdsObject = ref<SelectedIdsObject>({});
+    const expandedIdsObject = ref<SelectedIdsObject>({});
     const optionsArr = ref<any[]>([...props.options]);
     const dropdownOpen = ref<Boolean>(false);
     const isAllSelected = ref<Boolean>(false);
@@ -217,7 +228,9 @@ export default defineComponent({
       for (let option of optionsArr) {
         option['level'] = level;
         option['parentOptions'] = parentOptions;
+        setDisabledOptions(option);
         selectedIdsObject.value[option.id] = false; //initially makes all the ids false (unselected)
+        expandedIdsObject.value[option.id] = false; //initially makes all the ids false (un-expanded)
         if (option.children ? option.children.length != 0 : false) {
           levelizeOptions(option.children, level + 1, [
             ...parentOptions,
@@ -226,9 +239,17 @@ export default defineComponent({
         }
       }
     };
+
+    const setDisabledOptions = (option: Option) => {
+      option['_disabled'] =
+        option['_disabled'] !== undefined ? option['_disabled'] : false;
+      if (props.selectParentsOnChildSelection) {
+        // have to implement the logic to disable parents, children
+        //when user sets options to be disabled manually
+      }
+    };
+
     levelizeOptions(optionsArr.value, 1, []);
-    console.log(optionsArr.value, 'aftr lvlzed');
-    console.log(selectedIdsObject.value, 'selectedIdsObject.value');
 
     const selectedIdsComputed = computed(() => {
       let selectedIds = Object.keys(selectedIdsObject.value).filter(
@@ -249,6 +270,9 @@ export default defineComponent({
         addChildrenToSelectedIdsArray(option);
         if (props.selectParentsOnChildSelection) {
           selectParentsIfAllChildrenAreSelected(option);
+          if (props.disableUncheckedOptions) {
+            disableUncheckedOptions(option);
+          }
         }
         if (isIfAllOptionsSelected()) {
           isAllSelected.value = true;
@@ -257,6 +281,9 @@ export default defineComponent({
         removeChildrenFromSelectedIdsArray(option);
         if (props.selectParentsOnChildSelection) {
           removeParentsOfUnselectedOptionsFromSelectedIdsArray(option);
+          if (props.disableUncheckedOptions) {
+            enableUncheckedOptions(option);
+          }
         }
         isAllSelected.value = false;
       }
@@ -264,7 +291,7 @@ export default defineComponent({
     };
 
     const emitSelectedIds = () => {
-      emit('updateSelectedIds', selectedIdsComputed.value);
+      emit('update:modelValue', selectedIdsComputed.value);
     };
 
     const addChildrenToSelectedIdsArray = (option: Option) => {
@@ -320,20 +347,86 @@ export default defineComponent({
       }
     };
 
-    const iconClicked = (option: Option) => {
-      if (expandedIds.value.includes(option.id)) {
+    const getLevelOneOptions = () => {
+      return optionsArr.value.filter(option_ => {
+        return option_.level === 1;
+      });
+    };
+
+    const disableUncheckedOptions = (option: Option) => {
+      let levelOneOptions = getLevelOneOptions();
+
+      if (option.parentOptions.length == 0) {
+        disableChildrenOptions(levelOneOptions, option);
+      } else {
+        disableChildrenOptions(levelOneOptions, option.parentOptions[0]);
+      }
+    };
+
+    const disableChildrenOptions = (
+      options: Option[],
+      optionToSkip: Option,
+    ) => {
+      for (let option of options) {
+        if (option.id != optionToSkip.id && !option._disabled) {
+          option._disabled = true;
+          if (option.children ? option.children.length != 0 : false) {
+            disableChildrenOptions(option.children, optionToSkip);
+          }
+        }
+      }
+    };
+
+    const enableUncheckedOptions = (option: Option) => {
+      let levelOneOptions = getLevelOneOptions();
+
+      if (option.parentOptions.length == 0) {
+        enableChildrenOptions(levelOneOptions, option);
+      } else {
+        if (isAllchildrenUnselect(option.parentOptions[0].children)) {
+          enableChildrenOptions(levelOneOptions, option.parentOptions[0]);
+        }
+      }
+    };
+
+    const isAllchildrenUnselect = (options: Option[]): boolean => {
+      for (let option of options) {
+        if (selectedIdsObject.value[option.id]) {
+          return false;
+        } else if (option.children ? option.children.length != 0 : false) {
+          let returnedVal = isAllchildrenUnselect(option.children);
+          if (!returnedVal) {
+            return false;
+          }
+        }
+      }
+      return true;
+    };
+
+    const enableChildrenOptions = (options: Option[], optionToSkip: Option) => {
+      for (let option of options) {
+        if (option.id != optionToSkip.id) {
+          option._disabled = false;
+          if (option.children ? option.children.length != 0 : false) {
+            enableChildrenOptions(option.children, optionToSkip);
+          }
+        }
+      }
+    };
+
+    const expandIconClicked = (option: Option) => {
+      if (expandedIdsObject.value[option.id]) {
         removeOptionIdFromExpandedIdsArray(option);
         removeExpandedChildrenFromOptionsArray(option);
       } else {
-        expandedIds.value.push(option.id);
+        expandedIdsObject.value[option.id] = true;
         addExpandedChildrenToOptionsArray(option);
       }
     };
 
     const removeOptionIdFromExpandedIdsArray = (option: Option) => {
-      let index = expandedIds.value.findIndex(x => x == option.id);
-      if (index > -1) {
-        expandedIds.value.splice(index, 1);
+      if (expandedIdsObject.value[option.id]) {
+        expandedIdsObject.value[option.id] = false;
       }
       if (option.children ? option.children.length != 0 : false) {
         let children = option.children;
@@ -371,7 +464,7 @@ export default defineComponent({
 
     const getIcon = (option: Option) => {
       if (option.children ? option.children.length != 0 : false) {
-        if (expandedIds.value.includes(option.id)) {
+        if (expandedIdsObject.value[option.id]) {
           return 'oxd-arrow-down';
         } else return 'oxd-arrow-right';
       } else return '';
@@ -384,12 +477,29 @@ export default defineComponent({
       };
     });
 
-    const closeDropdownOnOutsideClick = () => {
-      closeDropdown();
+    const removeExpandedOptionsFromOptionsArrayOnDropdownClose = () => {
+      let levelOneOptions = getLevelOneOptions();
+      for (let option of levelOneOptions) {
+        if (expandedIdsObject.value[option.id]) {
+          expandIconClicked(option);
+        }
+      }
     };
 
-    const closeDropdown = () => {
-      dropdownOpen.value = false;
+    const addSelectedOptionsToOptionsArrayOnDropdownOpen = () => {
+      for (let selectedId in selectedIdsObject.value) {
+        if (selectedIdsObject.value[selectedId]) {
+          let option = findOptionByOptionId(selectedId, optionsArr.value);
+
+          if (typeof option !== 'string' && option.level > 1) {
+            for (let parent of option.parentOptions) {
+              if (!expandedIdsObject.value[parent.id]) {
+                expandIconClicked(parent);
+              }
+            }
+          }
+        }
+      }
     };
 
     const ToggleSelectAll = (checkboxVal: boolean) => {
@@ -400,6 +510,7 @@ export default defineComponent({
         isAllSelected.value = false;
         unselectAllOptions();
       }
+      emitSelectedIds();
     };
 
     const selectAllOptions = () => {
@@ -422,7 +533,7 @@ export default defineComponent({
     };
 
     const selectPreSelectedOptions = () => {
-      for (let selectedId of props.preSelectedIds) {
+      for (let selectedId of props.modelValue) {
         if (selectedIdsObject.value[selectedId] != undefined) {
           let option = findOptionByOptionId(selectedId, optionsArr.value);
           if (typeof option !== 'string') {
@@ -443,7 +554,6 @@ export default defineComponent({
       options: Option[],
     ): Option | string => {
       for (let option of options) {
-        console.log(option.id, 'option in loop ---', optionId);
         if (option.id == optionId) {
           return option;
         } else if (option.children ? option.children.length != 0 : false) {
@@ -457,28 +567,13 @@ export default defineComponent({
     };
     selectPreSelectedOptions();
 
-    const onBlur = () => {
-      emit('dropdown:blur');
-    };
-
-    const tabIndex = () => {
-      return props.disabled ? -1 : 0;
-    };
-
-    const onSelectEnter = () => {
-      if (!dropdownOpen.value && !(props.readonly || props.disabled)) {
-        dropdownOpen.value = true;
-        emit('dropdown:opened');
-      } else {
-        dropdownOpen.value = false;
-      }
-    };
-
-    const selectOptionOnlabelClick = (optionId: string) => {
-      if (selectedIdsObject.value[optionId]) {
-        selectOptionsOnCheckbox(false, optionId);
-      } else {
-        selectOptionsOnCheckbox(true, optionId);
+    const selectOptionOnlabelClick = (option: option) => {
+      if (!option._disabled) {
+        if (selectedIdsObject.value[option.id]) {
+          selectOptionsOnCheckbox(false, option.id);
+        } else {
+          selectOptionsOnCheckbox(true, option.id);
+        }
       }
     };
 
@@ -494,7 +589,6 @@ export default defineComponent({
           : '';
       } else {
         let option = findPlaceholderOption(props.options);
-        console.log(option, 'findPlaceholderOption');
         if (typeof option !== 'string') {
           placeholderOption.value = option;
           placeholderString = placeholderOption.value.label;
@@ -519,23 +613,59 @@ export default defineComponent({
       return 'NOT FOUND';
     };
 
+    const onBlur = () => {
+      emit('dropdown:blur');
+    };
+
+    const tabIndex = () => {
+      return props.disabled ? -1 : 0;
+    };
+
+    const closeDropdownOnOutsideClick = () => {
+      onCloseDropdown(null);
+    };
+
+    const onCloseDropdown = ($e: KeyboardEvent | null) => {
+      if (props.disabled || props.readonly || !dropdownOpen.value) return;
+      if ($e && $e.key === 'Escape' && dropdownOpen.value) $e.stopPropagation();
+      dropdownOpen.value = false;
+      removeExpandedOptionsFromOptionsArrayOnDropdownClose();
+      emit('dropdown:closed');
+    };
+
+    const onOpenDropdown = () => {
+      if (!dropdownOpen.value && !(props.readonly || props.disabled)) {
+        dropdownOpen.value = true;
+        addSelectedOptionsToOptionsArrayOnDropdownOpen();
+        emit('dropdown:opened');
+      }
+    };
+
+    const onToggleDropdown = () => {
+      if (!dropdownOpen.value) {
+        onOpenDropdown();
+      } else {
+        onCloseDropdown(null);
+      }
+    };
+
     return {
-      expandedIds,
       optionsArr,
       selectedIdsComputed,
       dropdownOpen,
       dropdownClasses,
       isAllSelected,
+      expandedIdsObject,
       selectOptionsOnCheckbox,
-      iconClicked,
+      expandIconClicked,
       getIcon,
       closeDropdownOnOutsideClick,
       ToggleSelectAll,
       onBlur,
       tabIndex,
       selectOptionOnlabelClick,
-      closeDropdown,
-      onSelectEnter,
+      onCloseDropdown,
+      onToggleDropdown,
       getPlaceholderValue,
     };
   },

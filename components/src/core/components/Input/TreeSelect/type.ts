@@ -13,6 +13,7 @@ export type OptionProp = {
   id: string;
   label: string;
   children?: Array<OptionProp>;
+  _disabled?: boolean;
 
   [key: string | number]: any;
 };

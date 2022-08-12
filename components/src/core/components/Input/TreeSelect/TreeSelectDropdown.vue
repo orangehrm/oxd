@@ -2,7 +2,7 @@
   <div role="listbox" class="oxd-select-dropdown">
     <div class="oxd-select-dropdown-inner">
       <oxd-select-option v-if="empty">
-        No results found
+        {{ $vt('No results found') }}
       </oxd-select-option>
       <slot v-else></slot>
     </div>

@@ -77,6 +77,7 @@ $oxd-dropdown-dropdown-margin: 5px !default;
 $oxd-dropdown-dropdown-color: $oxd-interface-gray-darken-1-color !default;
 $oxd-dropdown-dropdown-slot-color: $oxd-interface-gray-color !default;
 $oxd-dropdown-dropdown-max-height: 210px !default;
+$oxd-tree-select-dropdown-dropdown-max-height: 310px;
 $oxd-dropdown-dropdown-with-empty-selector-max-height: 248px !default;
 
 $oxd-dropdown-option-font-size: $oxd-input-control-font-size !default;
@@ -162,7 +163,8 @@ $oxd-radio-pill-font-weight: 400 !default;
 $oxd-radio-pill-background-color: $oxd-white-color !default;
 $oxd-radio-pill-border: $oxd-input-border--active !default;
 $oxd-radio-pill-border-radius: $oxd-input-control-border-radius !default;
-$oxd-radio-pill-padding: $oxd-input-control-vertical-padding $oxd-input-control-horizontal-padding !default;
+$oxd-radio-pill-padding: $oxd-input-control-vertical-padding
+  $oxd-input-control-horizontal-padding !default;
 
 $oxd-radio-pill-font-color--checked: $oxd-primary-one-color !default;
 $oxd-radio-pill-background-color--checked: $oxd-primary-input-color-alpha-05 !default;
@@ -171,7 +173,8 @@ $oxd-radio-pill-box-shadow--checked: $oxd-input-box-shadow--focus !default;
 
 $oxd-radio-pill-background-color--checked--hover: $oxd-primary-input-color-alpha-10 !default;
 $oxd-radio-pill-font-color--checked--disabled: $oxd-primary-input-color-lighten-10 !default;
-$oxd-radio-pill-border--checked--disabled: 1px solid $oxd-primary-input-color-lighten-10 !default;
+$oxd-radio-pill-border--checked--disabled: 1px solid
+  $oxd-primary-input-color-lighten-10 !default;
 
 $oxd-radio-pill-font-color--hover: $oxd-interface-gray-darken-1-color !default;
 $oxd-radio-pill-background-color--hover: $oxd-white-color !default;
@@ -189,4 +192,3 @@ $oxd-radio-pill-border--readonly: 1px solid $oxd-interface-gray-lighten-1-color 
 $oxd-radio-pill-box-shadow--readonly: none !default;
 
 $oxd-radio-pill-group-gap: 0.25rem !default;
-

@@ -1,16 +1,20 @@
 <template>
   <div class="container">
     <oxd-tree-select
-      :select-parents-on-child-selection="false"
+      :select-parents-on-child-selection="true"
       :options="options"
+      :disabled="false"
+      :readonly="false"
       :placeholder="'select placeholder'"
-      :pre-selected-ids="['1211', '333', 331, 1213, 'sa', 122, 123, 1212]"
-      @updateSelectedIds="updateSelectedIdsFun"
-      v-model="values"
+      :disable-unchecked-options="true"
+      :remove-all-selection="false"
+      @update:modelValue="updateSelectedIdsFun"
     >
     </oxd-tree-select>
   </div>
 </template>
+
+<!-- :modelValue="['1211', '333', 331, 1213, 'sa', 122, 123, 1212]" -->
 
 <script lang="ts">
 import TreeSelectInput from '@orangehrm/oxd/core/components/Input/TreeSelect/TreeSelect.vue';
@@ -81,8 +85,8 @@ export default defineComponent({
 
     const values = ref<any[]>([]);
 
-    const updateSelectedIdsFun = (idsObj: any) => {
-      console.log(idsObj, 'idsObj');
+    const updateSelectedIdsFun = (idsArray: any) => {
+      console.log(idsArray, 'idsArray');
     };
 
     return {
