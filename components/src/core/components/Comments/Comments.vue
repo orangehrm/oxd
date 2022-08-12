@@ -42,6 +42,7 @@
             :requiredEditCommentErrorMsg="requiredEditCommentErrorMsg"
             :unsavedEditCommentErrorMsg="unsavedEditCommentErrorMsg"
             :commentDeleteConfirmationMsg="commentDeleteConfirmationMsg"
+            :maxCharLength="commentEditMaxCharLength"
             @commentEditHasError="commentEditHasError"
             @onUpdateComment="onUpdateComment"
             @onDeleteComment="onDeleteComment"
@@ -151,6 +152,9 @@ export default defineComponent({
     scrollSettings: {
       type: Object,
     },
+    commentEditMaxCharLength: {
+      type: Number,
+    },
   },
   setup(props, {emit}) {
     const commentGroupsList = ref(null);
@@ -196,7 +200,7 @@ export default defineComponent({
       });
     };
 
-    const onAddComment = event => {
+    const onAddComment = (event) => {
       emit('addComment', event, {
         value: comment.value,
         successCallback: () => {
