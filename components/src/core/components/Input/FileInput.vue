@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="oxd-download-box-outer-wrapper">
-      <div class="oxd-download-box-wrapper d-flex" v-if="inputFile.name">
-        <button class="oxd-download-box" @click="downloadBoxClick()">
+    <div class="oxd-download-box-outer-wrapper" v-if="inputFile.name">
+      <div class="oxd-download-box-wrapper d-flex">
+        <button class="oxd-download-box" @click="downloadBoxClick()" type="button">
           <div class="oxd-download-box-doc-icon d-flex">
             <oxd-icon :name="'oxd-file-doc'"> </oxd-icon>
           </div>
@@ -17,7 +17,7 @@
         </button>
         <div
           class="oxd-download-box-radio-buttons"
-          v-if="disabled === false || readonly === true"
+          v-if="!(disabled  || readonly)"
         >
           <oxd-radio-input
             v-model="selectedItem"
@@ -96,6 +96,7 @@ export default defineComponent({
     modelValue: {},
     inputFile: {
       type: Object,
+      default: {}
     },
     style: {
       type: Object,
