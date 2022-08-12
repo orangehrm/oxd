@@ -20,7 +20,7 @@
         inputmode="number"
         @keydown.up="increment(step, 'hour')"
         @keydown.down="decrement(step, 'hour')"
-        @blur="onHourInputBlur('hour')"
+        @blur="onHourInputBlur()"
         @input="onInput($event, 'hour')"
         class="oxd-time-hour-input-text"
       />
@@ -47,7 +47,7 @@
         :value="minute"
         @keydown.up="increment(step, 'minute')"
         @keydown.down="decrement(step, 'minute')"
-        @blur="onMinuteInputBlur('minute')"
+        @blur="onMinuteInputBlur()"
         @input="onInput($event, 'minute')"
         class="oxd-time-minute-input-text"
       />
@@ -169,29 +169,24 @@ export default defineComponent({
       return valid;
     };
 
-    const onHourInputBlur = type => {
-      const prevValue = type === 'hour' ? prevHour : prevMinute;
-      const newValue = isValid(enteredValue, type) ? enteredValue : prevValue;
-      if (type === 'hour') {
-        prevMinute = newValue;
-      } else {
-        prevHour = newValue;
-      }
+    const onHourInputBlur = () => {
+      const prevValue = prevHour;
+      const newValue = isValid(enteredValue, 'hour') ? enteredValue : prevValue;
+      prevMinute = newValue;
+
       if (newValue.length > 0) {
-        setValue(parseInt(newValue, 10), type);
+        setValue(parseInt(newValue, 10), 'hour');
       }
     };
 
-    const onMinuteInputBlur = type => {
-      const prevValue = type === 'hour' ? prevHour : prevMinute;
-      const newValue = isValid(enteredValue, type) ? enteredValue : prevValue;
-      if (type === 'hour') {
-        prevMinute = newValue;
-      } else {
-        prevHour = newValue;
-      }
+    const onMinuteInputBlur = () => {
+      const prevValue = prevMinute;
+      const newValue = isValid(enteredValue, 'minute')
+        ? enteredValue
+        : prevValue;
+      prevHour = newValue;
       if (newValue.length > 0) {
-        setValue(parseInt(newValue, 10), type);
+        setValue(parseInt(newValue, 10), 'minute');
       }
     };
 
