@@ -159,8 +159,10 @@ describe('TimeInput.vue', () => {
     const pickerInputs = picker.findAll('input');
     (pickerInputs[0].element as HTMLInputElement).value = '05';
     await pickerInputs[0].trigger('input');
+    await pickerInputs[0].trigger('blur');
     (pickerInputs[1].element as HTMLInputElement).value = '10';
     await pickerInputs[1].trigger('input');
+    await pickerInputs[1].trigger('blur');
     expect(wrapper.vm.pickerInput).toEqual('05:10');
   });
 
@@ -174,10 +176,13 @@ describe('TimeInput.vue', () => {
     await wrapper.vm.$nextTick();
     const picker = wrapper.findComponent(TimePicker);
     const [hourInput, minuteInput] = picker.findAll('input');
-
-    await hourInput.setValue('102');
-    await minuteInput.setValue('532');
-    expect(picker.emitted('update:modelValue')).toEqual([['10:31'], ['10:53']]);
+    (hourInput.element as HTMLInputElement).value = '102';
+    (minuteInput.element as HTMLInputElement).value = '532';
+    await hourInput.trigger('input');
+    await hourInput.trigger('blur');
+    await minuteInput.trigger('input');
+    await minuteInput.trigger('blur');
+    expect(wrapper.vm.pickerInput).toEqual('10:53');
   });
 
   it('should not accept invalid input', async () => {
