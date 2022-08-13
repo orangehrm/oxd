@@ -2,6 +2,14 @@ import {enableAutoUnmount, mount} from '@vue/test-utils';
 import TimeInput from '@orangehrm/oxd/core/components/Input/Time/TimeInput.vue';
 import TimePicker from '@orangehrm/oxd/core/components/Input/Time/TimePicker.vue';
 
+const delayFunction = (time: number) => {
+  return new Promise(reslove =>
+    setTimeout(() => {
+      reslove(true);
+    }, time),
+  );
+};
+
 describe('TimeInput.vue', () => {
   enableAutoUnmount(afterEach);
   it('renders OXD Time Input', () => {
@@ -126,6 +134,21 @@ describe('TimeInput.vue', () => {
       wrapper.find('.oxd-time-input-am-pm-wrapper').exists(),
     ).toStrictEqual(true);
     expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+  });
+  it('model value should be available to set empty when allowedempty is enabled', async () => {
+    const wrapper = mount(TimeInput, {
+      props: {
+        allowedEmpty: true,
+      },
+    });
+    const timeInputElm = wrapper.find('.oxd-input');
+    timeInputElm.setValue('');
+    timeInputElm.trigger('blur');
+    await delayFunction(2000);
+    expect(wrapper.emitted('update:modelValue')).toMatchObject([
+      ['01:00'],
+      ['null AM'],
+    ]);
   });
   it('open with click and close timePicker with esc', async () => {
     const wrapper = mount(TimeInput, {});
