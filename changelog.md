@@ -1,3 +1,5 @@
+2022-08-14 - 87ed14348cc352d130fc59f79250129674e0c11a - Input/Time/TimeInput.vue - Added allowEmpty prop to enable placeholder text suppport, set HH-MM AM for default placeholder value and fix movelValue setting issue
+
 2022-08-10 - f92f4a97da8b281f841c643da93ef0a74bc68ce5 - Icon/Icons.ts - Add 3 new icons
 
 2022-08-05 - 544a46d0de236d1eb15fb5ee42dda2c9e338ac8a - Icon/Icons.ts - Add now oxd-duration icon
@@ -6,11 +8,11 @@
 
 2022-08-03 - b3553e6029bed67fc9ff472079d3ea56c5cd31cb - RadioPilLGroup - Changes to support InputField
 
-2022-07-28 - 0b9810356ba78246cff49fbced59645a7ba55ee6 - tyles/_utility.scss - Fix tooltip width
+2022-07-28 - 0b9810356ba78246cff49fbced59645a7ba55ee6 - tyles/\_utility.scss - Fix tooltip width
 
 2022-07-25 - b9271bec74aad8cb48e4ff6bf0e0ba84a80912b6 - components/Table/ClassicTable - Classic Table - Add support for tooltips and rendering styled contents
 
-2022-07-25 - 23d88c64daee0475d64f9f1f8d2a3b8184ff7864 - styles/_utility.scss - Show tool tips in multi line if the content is too lengthy
+2022-07-25 - 23d88c64daee0475d64f9f1f8d2a3b8184ff7864 - styles/\_utility.scss - Show tool tips in multi line if the content is too lengthy
 
 2022-07-20 - b7038ebe7ef9a2ab5c513ad2c7f1a00f6d31c8af - components/Table/ClassicTable - Fixing column widths in oxd-classic-table
 
