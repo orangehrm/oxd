@@ -3,13 +3,14 @@
     v-click-outside="closeDropdownOnOutsideClick"
     class="oxd-multiselect-wrapper"
   >
-    <oxd-tree-select-text
+    <oxd-select-text
       v-bind="$attrs"
       :disabled="disabled"
       :readonly="readonly"
-      :value="getPlaceholderValue()"
+      :value="
+        getPlaceholderValue() + (selectedIdsComputed.length > 1 ? ',' : '')
+      "
       :placeholder="placeholder"
-      :selectedCount="selectedIdsComputed.length"
       :dropdownOpened="dropdownOpen"
       @blur="onBlur"
       @click="onToggleDropdown()"
@@ -19,9 +20,23 @@
       @keydown.up.exact.prevent="onSelectUp"
       @keydown="onKeypress"
     >
-    </oxd-tree-select-text>
+      <template #afterInput>
+        <div v-if="selectedIdsComputed.length > 1" class="selected-count-chip">
+          <oxd-chip
+            v-if="String(selectedIdsComputed.length - 1).length == 1"
+            :label="
+              '&nbsp;' + '+' + (selectedIdsComputed.length - 1) + '&nbsp;'
+            "
+          ></oxd-chip>
+          <oxd-chip
+            v-if="String(selectedIdsComputed.length - 1).length > 1"
+            :label="'+' + (selectedIdsComputed.length - 1)"
+          ></oxd-chip>
+        </div>
+      </template>
+    </oxd-select-text>
 
-    <oxd-tree-select-dropdown
+    <oxd-select-dropdown
       v-dropdown-direction
       v-if="dropdownOpen"
       :class="dropdownClasses"
@@ -105,20 +120,20 @@
           </div>
         </div>
       </template>
-    </oxd-tree-select-dropdown>
-
+    </oxd-select-dropdown>
+    <!-- 
     <br />
     selectedIds- {{ selectedIdsComputed }} <br />
     expandedIds-
-    {{ Object.keys(expandedIdsObject).filter(k => expandedIdsObject[k]) }}
+    {{ Object.keys(expandedIdsObject).filter(k => expandedIdsObject[k]) }} -->
   </div>
 </template>
 
 <script lang="ts">
 import {computed, defineComponent, ref, PropType} from 'vue';
 
-import TreeSelectText from './TreeSelectText.vue';
-import SelectDropdown from './TreeSelectDropdown.vue';
+import SelectText from '../Select/SelectText.vue';
+import SelectDropdown from '../Select/SelectDropdown.vue';
 import IconVue from '../../Button/Icon.vue';
 import CheckboxInputVue from '../CheckboxInput.vue';
 import dropdownDirectionDirective from '@orangehrm/oxd/directives/dropdown-direction';
@@ -128,18 +143,20 @@ import translateMixin from '../../../../mixins/translate';
 import {BOTTOM, DROPDOWN_POSITIONS, Position, TOP} from '../types';
 import clickOutsideDirective from '@orangehrm/oxd/directives/click-outside';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider';
+import Chip from '../../Chip/Chip.vue';
 import Button from '../../Button/Button.vue';
 import {Option, OptionProp, SelectedIdsObject} from './type';
 
 export default defineComponent({
   name: 'oxd-tree-select',
   components: {
-    'oxd-tree-select-text': TreeSelectText,
-    'oxd-tree-select-dropdown': SelectDropdown,
+    'oxd-select-text': SelectText,
+    'oxd-select-dropdown': SelectDropdown,
     'oxd-checkbox-input': CheckboxInputVue,
     'oxd-icon': IconVue,
     'oxd-divider': Divider,
     'oxd-button': Button,
+    'oxd-chip': Chip,
   },
   directives: {
     'dropdown-direction': dropdownDirectionDirective,
@@ -244,7 +261,7 @@ export default defineComponent({
       option['_disabled'] =
         option['_disabled'] !== undefined ? option['_disabled'] : false;
       if (props.selectParentsOnChildSelection) {
-        // have to implement the logic to disable parents, children
+        // have to implement the logic to disable options with parent-child relationship
         //when user sets options to be disabled manually
       }
     };

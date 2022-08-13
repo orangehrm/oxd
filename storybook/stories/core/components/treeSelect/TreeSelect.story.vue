@@ -6,7 +6,7 @@
       :disabled="false"
       :readonly="false"
       :placeholder="'select placeholder'"
-      :disable-unchecked-options="true"
+      :disable-unchecked-options="false"
       :remove-all-selection="false"
       @update:modelValue="updateSelectedIdsFun"
     >
