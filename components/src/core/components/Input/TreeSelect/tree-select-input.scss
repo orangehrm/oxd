@@ -1,0 +1,84 @@
+@import '../../../../styles';
+@import '../variables';
+
+@import '../Select/select-input.scss';
+@import '../MultiSelect/multiselect-input.scss';
+
+.checkbox-td {
+  width: 5%;
+}
+
+.option-label-with-icon {
+  margin-left: 15px;
+}
+
+.option-label-without-icon {
+  margin-left: 27px;
+}
+
+.icon-td {
+  padding-top: 3px;
+}
+
+.dropdown-header-div {
+  width: 100%;
+  position: relative;
+  margin-bottom: 0.25rem !important;
+  min-height: 1.5rem;
+  padding-left: 0.75rem;
+  padding-top: 0.75rem;
+
+  .checkbox-text-group {
+    display: inline-flex;
+    padding-bottom: 10px;
+    width: calc(5% + 15px);
+    justify-content: space-between;
+
+    .all-checkbox-div {
+      margin-left: 2.5px;
+    }
+
+    .all-text {
+      font-size: 12px;
+      font-family: $oxd-input-control-font-family;
+      padding-left: 10px;
+    }
+  }
+}
+
+.dropdown-footer-div {
+  padding-top: 10px;
+  padding-bottom: 3px;
+  margin-left: 12px;
+}
+
+.tree-select-table-container {
+  height: 210px;
+  overflow: auto;
+  font-size: 12px;
+  font-family: $oxd-input-control-font-family;
+  position: relative;
+  @include oxd-scrollbar();
+
+  .tree-select-table {
+    width: 100%;
+  }
+}
+
+.dropdown-container {
+  height: auto;
+  z-index: 300;
+  overflow: hidden;
+}
+
+.selected-count-chip {
+  margin-left: auto;
+  margin-right: 15px !important;
+}
+
+:deep(.oxd-select-dropdown-inner) {
+  max-height: $oxd-tree-select-dropdown-dropdown-max-height !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: $oxd-dropdown-dropdown-inner-padding;
+}
