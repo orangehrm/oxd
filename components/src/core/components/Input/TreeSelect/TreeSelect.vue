@@ -63,7 +63,11 @@
 
           <div class="tree-select-table-container">
             <table class="tree-select-table">
-              <tr v-for="(option, i) in optionsArr" class="oxd-select-option">
+              <tr
+                v-for="(option, i) in optionsArr"
+                :key="i"
+                class="oxd-select-option"
+              >
                 <td class="checkbox-td">
                   <oxd-checkbox-input
                     :modelValue="
@@ -121,11 +125,6 @@
         </div>
       </template>
     </oxd-select-dropdown>
-    <!-- 
-    <br />
-    selectedIds- {{ selectedIdsComputed }} <br />
-    expandedIds-
-    {{ Object.keys(expandedIdsObject).filter(k => expandedIdsObject[k]) }} -->
   </div>
 </template>
 
@@ -145,7 +144,7 @@ import clickOutsideDirective from '@orangehrm/oxd/directives/click-outside';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider';
 import Chip from '../../Chip/Chip.vue';
 import Button from '../../Button/Button.vue';
-import {Option, OptionProp, SelectedIdsObject} from './type';
+import {Option, OptionProp, IdsObject, NOT_FOUND} from './type';
 
 export default defineComponent({
   name: 'oxd-tree-select',
@@ -181,22 +180,25 @@ export default defineComponent({
       type: Array as PropType<OptionProp[]>,
       required: true,
       validator: function(value: OptionProp[]) {
-        let options = value;
+        const options = value;
         let idsCount = 0;
-        let uniqueIds = new Set();
-        getUniqueIds(options);
+        const uniqueIds = new Set();
         function getUniqueIds(options: OptionProp[]) {
-          for (let option of options) {
+          for (const option of options) {
             uniqueIds.add(option.id);
             idsCount++;
             if (option.children ? option.children.length != 0 : false) {
-              getUniqueIds(option.children!);
+              if (option.children) {
+                getUniqueIds(option.children);
+              }
             }
           }
         }
+        getUniqueIds(options);
         if (!(uniqueIds.size === idsCount)) {
-          console.warn(
-            'prop validation warning: options array prop cannot include non-unique ids',
+          // eslint-disable-next-line no-console
+          console.error(
+            'prop validation error: treeSelect- options array prop cannot include duplicate option ids',
           );
         }
         return uniqueIds.size === idsCount;
@@ -204,9 +206,9 @@ export default defineComponent({
     },
     modelValue: {
       //Pre Selected Ids
-      type: Array as PropType<string[]>,
+      type: Array as PropType<Array<string>>,
       required: false,
-      default: [],
+      default: () => [],
     },
     selectParentsOnChildSelection: {
       type: Boolean,
@@ -230,19 +232,28 @@ export default defineComponent({
   },
 
   setup: function(props, {emit}) {
-    const selectedIdsObject = ref<SelectedIdsObject>({});
-    const expandedIdsObject = ref<SelectedIdsObject>({});
-    const optionsArr = ref<any[]>([...props.options]);
-    const dropdownOpen = ref<Boolean>(false);
-    const isAllSelected = ref<Boolean>(false);
+    const selectedIdsObject = ref<IdsObject>({});
+    const expandedIdsObject = ref<IdsObject>({});
+    const optionsArr = ref<Option[]>([...props.options]);
+    const dropdownOpen = ref<boolean>(false);
+    const isAllSelected = ref<boolean>(false);
     const placeholderOption = ref<OptionProp | null>(null);
+
+    const setDisabledOptions = (option: Option) => {
+      option['_disabled'] =
+        option['_disabled'] !== undefined ? option['_disabled'] : false;
+      if (props.selectParentsOnChildSelection) {
+        // have to implement the logic to disable options with parent-child relationship
+        //when user sets options to be disabled manually
+      }
+    };
 
     const levelizeOptions = (
       optionsArr: Option[],
       level: number,
       parentOptions: Option[],
     ) => {
-      for (let option of optionsArr) {
+      for (const option of optionsArr) {
         option['level'] = level;
         option['parentOptions'] = parentOptions;
         setDisabledOptions(option);
@@ -257,29 +268,150 @@ export default defineComponent({
       }
     };
 
-    const setDisabledOptions = (option: Option) => {
-      option['_disabled'] =
-        option['_disabled'] !== undefined ? option['_disabled'] : false;
-      if (props.selectParentsOnChildSelection) {
-        // have to implement the logic to disable options with parent-child relationship
-        //when user sets options to be disabled manually
-      }
-    };
-
     levelizeOptions(optionsArr.value, 1, []);
 
     const selectedIdsComputed = computed(() => {
-      let selectedIds = Object.keys(selectedIdsObject.value).filter(
+      const selectedIds = Object.keys(selectedIdsObject.value).filter(
         k => selectedIdsObject.value[k],
       );
       return selectedIds;
     });
 
+    const addChildrenToSelectedIdsArray = (option: Option) => {
+      if (!selectedIdsObject.value[option.id]) {
+        selectedIdsObject.value[option.id] = true;
+      }
+      if (option.children ? option.children.length != 0 : false) {
+        const children = option.children;
+        for (const child of children) {
+          addChildrenToSelectedIdsArray(child);
+        }
+      }
+    };
+
+    const selectParentsIfAllChildrenAreSelected = (option: Option) => {
+      for (let i = option.parentOptions.length - 1; i >= 0; i--) {
+        const parentOption = option.parentOptions[i];
+        let allChildrenIncluded = true;
+        for (const child of parentOption.children) {
+          if (!selectedIdsObject.value[child.id]) {
+            allChildrenIncluded = false;
+            break;
+          }
+        }
+        if (allChildrenIncluded && !selectedIdsObject.value[parentOption.id]) {
+          selectedIdsObject.value[parentOption.id] = true;
+        }
+      }
+    };
+
+    const removeOptionIdFromSelectedIdsArray = (optionId: string) => {
+      if (selectedIdsObject.value[optionId]) {
+        selectedIdsObject.value[optionId] = false;
+      }
+    };
+
+    const removeChildrenFromSelectedIdsArray = (option: Option) => {
+      removeOptionIdFromSelectedIdsArray(option.id);
+
+      if (option.children ? option.children.length != 0 : false) {
+        const children = option.children;
+        for (const child of children) {
+          removeChildrenFromSelectedIdsArray(child);
+        }
+      }
+    };
+    const removeParentsOfUnselectedOptionsFromSelectedIdsArray = (
+      option: Option,
+    ) => {
+      for (const parentOption of option.parentOptions) {
+        removeOptionIdFromSelectedIdsArray(parentOption.id);
+      }
+    };
+
+    const getLevelOneOptions = () => {
+      return optionsArr.value.filter(option_ => {
+        return option_.level === 1;
+      });
+    };
+
+    const disableChildrenOptions = (
+      options: Option[],
+      optionToSkip: Option,
+    ) => {
+      for (const option of options) {
+        if (option.id != optionToSkip.id && !option._disabled) {
+          option._disabled = true;
+          if (option.children ? option.children.length != 0 : false) {
+            disableChildrenOptions(option.children, optionToSkip);
+          }
+        }
+      }
+    };
+
+    const disableUncheckedOptions = (option: Option) => {
+      const levelOneOptions = getLevelOneOptions();
+
+      if (option.parentOptions.length == 0) {
+        disableChildrenOptions(levelOneOptions, option);
+      } else {
+        disableChildrenOptions(levelOneOptions, option.parentOptions[0]);
+      }
+    };
+
+    const isAllchildrenUnselect = (options: Option[]): boolean => {
+      for (const option of options) {
+        if (selectedIdsObject.value[option.id]) {
+          return false;
+        } else if (option.children ? option.children.length != 0 : false) {
+          const returnedVal = isAllchildrenUnselect(option.children);
+          if (!returnedVal) {
+            return false;
+          }
+        }
+      }
+      return true;
+    };
+
+    const enableChildrenOptions = (options: Option[], optionToSkip: Option) => {
+      for (const option of options) {
+        if (option.id != optionToSkip.id) {
+          option._disabled = false;
+          if (option.children ? option.children.length != 0 : false) {
+            enableChildrenOptions(option.children, optionToSkip);
+          }
+        }
+      }
+    };
+
+    const enableUncheckedOptions = (option: Option) => {
+      const levelOneOptions = getLevelOneOptions();
+
+      if (option.parentOptions.length == 0) {
+        enableChildrenOptions(levelOneOptions, option);
+      } else {
+        if (isAllchildrenUnselect(option.parentOptions[0].children)) {
+          enableChildrenOptions(levelOneOptions, option.parentOptions[0]);
+        }
+      }
+    };
+
+    const emitSelectedIds = () => {
+      emit('update:modelValue', selectedIdsComputed.value);
+    };
+
+    const isIfAllOptionsSelected = () => {
+      for (const key in selectedIdsObject.value) {
+        if (!selectedIdsObject.value[key]) return false;
+      }
+      return true;
+    };
+
     const selectOptionsOnCheckbox = (
-      checkboxVal: Boolean,
+      checkboxVal: boolean,
       optionId: string,
     ) => {
-      let option = optionsArr.value.find((obj: {id: string}) => {
+      const option = optionsArr.value.find((obj: {id: string}) => {
         return obj.id == optionId;
       });
 
@@ -307,125 +439,39 @@ export default defineComponent({
       emitSelectedIds();
     };
 
-    const emitSelectedIds = () => {
-      emit('update:modelValue', selectedIdsComputed.value);
+    const addExpandedChildrenToOptionsArray = (option: Option) => {
+      const optionIndex = optionsArr.value.findIndex(x => x.id == option.id);
+      if (optionIndex > -1) {
+        const children = optionsArr.value[optionIndex].children;
+        optionsArr.value.splice(optionIndex + 1, 0, ...children);
+      }
     };
 
-    const addChildrenToSelectedIdsArray = (option: Option) => {
-      if (!selectedIdsObject.value[option.id]) {
-        selectedIdsObject.value[option.id] = true;
+    const removeOptionIdFromExpandedIdsArray = (option: Option) => {
+      if (expandedIdsObject.value[option.id]) {
+        expandedIdsObject.value[option.id] = false;
       }
       if (option.children ? option.children.length != 0 : false) {
-        let children = option.children;
-        for (let child of children) {
-          addChildrenToSelectedIdsArray(child);
+        const children = option.children;
+        for (const child of children) {
+          removeOptionIdFromExpandedIdsArray(child);
         }
       }
     };
 
-    const selectParentsIfAllChildrenAreSelected = (option: Option) => {
-      for (let i = option.parentOptions.length - 1; i >= 0; i--) {
-        let parentOption = option.parentOptions[i];
-        let allChildrenIncluded = true;
-        for (let child of parentOption.children) {
-          if (!selectedIdsObject.value[child.id]) {
-            allChildrenIncluded = false;
-            break;
-          }
+    const removeExpandedChildrenFromOptionsArray = (option: Option) => {
+      const children = option.children ?? [];
+      for (const child of children) {
+        const index = optionsArr.value.findIndex(
+          option_ => option_.id == child.id,
+        );
+        if (index > -1) {
+          optionsArr.value.splice(index, 1);
         }
-        if (allChildrenIncluded && !selectedIdsObject.value[parentOption.id]) {
-          selectedIdsObject.value[parentOption.id] = true;
-        }
-      }
-    };
-
-    const removeChildrenFromSelectedIdsArray = (option: Option) => {
-      removeOptionIdFromSelectedIdsArray(option.id);
-
-      if (option.children ? option.children.length != 0 : false) {
-        let children = option.children;
-        for (let child of children) {
-          removeChildrenFromSelectedIdsArray(child);
-        }
-      }
-    };
-
-    const removeParentsOfUnselectedOptionsFromSelectedIdsArray = (
-      option: Option,
-    ) => {
-      for (let parentOption of option.parentOptions) {
-        removeOptionIdFromSelectedIdsArray(parentOption.id);
-      }
-    };
-
-    const removeOptionIdFromSelectedIdsArray = (optionId: string) => {
-      if (selectedIdsObject.value[optionId]) {
-        selectedIdsObject.value[optionId] = false;
-      }
-    };
-
-    const getLevelOneOptions = () => {
-      return optionsArr.value.filter(option_ => {
-        return option_.level === 1;
-      });
-    };
-
-    const disableUncheckedOptions = (option: Option) => {
-      let levelOneOptions = getLevelOneOptions();
-
-      if (option.parentOptions.length == 0) {
-        disableChildrenOptions(levelOneOptions, option);
-      } else {
-        disableChildrenOptions(levelOneOptions, option.parentOptions[0]);
-      }
-    };
-
-    const disableChildrenOptions = (
-      options: Option[],
-      optionToSkip: Option,
-    ) => {
-      for (let option of options) {
-        if (option.id != optionToSkip.id && !option._disabled) {
-          option._disabled = true;
-          if (option.children ? option.children.length != 0 : false) {
-            disableChildrenOptions(option.children, optionToSkip);
-          }
-        }
-      }
-    };
-
-    const enableUncheckedOptions = (option: Option) => {
-      let levelOneOptions = getLevelOneOptions();
-
-      if (option.parentOptions.length == 0) {
-        enableChildrenOptions(levelOneOptions, option);
-      } else {
-        if (isAllchildrenUnselect(option.parentOptions[0].children)) {
-          enableChildrenOptions(levelOneOptions, option.parentOptions[0]);
-        }
-      }
-    };
-
-    const isAllchildrenUnselect = (options: Option[]): boolean => {
-      for (let option of options) {
-        if (selectedIdsObject.value[option.id]) {
-          return false;
-        } else if (option.children ? option.children.length != 0 : false) {
-          let returnedVal = isAllchildrenUnselect(option.children);
-          if (!returnedVal) {
-            return false;
-          }
-        }
-      }
-      return true;
-    };
-
-    const enableChildrenOptions = (options: Option[], optionToSkip: Option) => {
-      for (let option of options) {
-        if (option.id != optionToSkip.id) {
-          option._disabled = false;
-          if (option.children ? option.children.length != 0 : false) {
-            enableChildrenOptions(option.children, optionToSkip);
+        if (option.children ? option.children.length != 0 : false) {
+          const childrenOfchild = option.children;
+          for (const childOfChild of childrenOfchild) {
+            removeExpandedChildrenFromOptionsArray(childOfChild);
           }
         }
       }
@@ -438,44 +484,6 @@ export default defineComponent({
       } else {
         expandedIdsObject.value[option.id] = true;
         addExpandedChildrenToOptionsArray(option);
-      }
-    };
-
-    const removeOptionIdFromExpandedIdsArray = (option: Option) => {
-      if (expandedIdsObject.value[option.id]) {
-        expandedIdsObject.value[option.id] = false;
-      }
-      if (option.children ? option.children.length != 0 : false) {
-        let children = option.children;
-        for (let child of children) {
-          removeOptionIdFromExpandedIdsArray(child);
-        }
-      }
-    };
-
-    const addExpandedChildrenToOptionsArray = (option: Option) => {
-      let optionIndex = optionsArr.value.findIndex(x => x.id == option.id);
-      if (optionIndex > -1) {
-        let children = optionsArr.value[optionIndex].children;
-        optionsArr.value.splice(optionIndex + 1, 0, ...children);
-      }
-    };
-
-    const removeExpandedChildrenFromOptionsArray = (option: Option) => {
-      let children = option.children ?? [];
-      for (let child of children) {
-        let index = optionsArr.value.findIndex(
-          option_ => option_.id == child.id,
-        );
-        if (index > -1) {
-          optionsArr.value.splice(index, 1);
-        }
-        if (option.children ? option.children.length != 0 : false) {
-          let childrenOfchild = option.children;
-          for (let childOfChild of childrenOfchild) {
-            removeExpandedChildrenFromOptionsArray(childOfChild);
-          }
-        }
       }
     };
 
@@ -495,27 +503,56 @@ export default defineComponent({
     });
 
     const removeExpandedOptionsFromOptionsArrayOnDropdownClose = () => {
-      let levelOneOptions = getLevelOneOptions();
-      for (let option of levelOneOptions) {
+      const levelOneOptions = getLevelOneOptions();
+      for (const option of levelOneOptions) {
         if (expandedIdsObject.value[option.id]) {
           expandIconClicked(option);
         }
       }
     };
 
+    const findOptionByOptionId = (
+      optionId: string,
+      options: Option[],
+    ): Option | string => {
+      for (const option of options) {
+        if (option.id == optionId) {
+          return option;
+        } else if (option.children ? option.children.length != 0 : false) {
+          const result = findOptionByOptionId(optionId, option.children);
+          if (result !== NOT_FOUND && typeof result !== 'string') {
+            return result;
+          }
+        }
+      }
+      return NOT_FOUND;
+    };
+
     const addSelectedOptionsToOptionsArrayOnDropdownOpen = () => {
-      for (let selectedId in selectedIdsObject.value) {
+      for (const selectedId in selectedIdsObject.value) {
         if (selectedIdsObject.value[selectedId]) {
-          let option = findOptionByOptionId(selectedId, optionsArr.value);
+          const option = findOptionByOptionId(selectedId, optionsArr.value);
 
           if (typeof option !== 'string' && option.level > 1) {
-            for (let parent of option.parentOptions) {
+            for (const parent of option.parentOptions) {
               if (!expandedIdsObject.value[parent.id]) {
                 expandIconClicked(parent);
               }
             }
           }
         }
+      }
+    };
+
+    const selectAllOptions = () => {
+      for (const key in selectedIdsObject.value) {
+        selectedIdsObject.value[key] = true;
+      }
+    };
+
+    const unselectAllOptions = () => {
+      for (const key in selectedIdsObject.value) {
+        selectedIdsObject.value[key] = false;
       }
     };
 
@@ -530,29 +567,10 @@ export default defineComponent({
       emitSelectedIds();
     };
 
-    const selectAllOptions = () => {
-      for (let key in selectedIdsObject.value) {
-        selectedIdsObject.value[key] = true;
-      }
-    };
-
-    const unselectAllOptions = () => {
-      for (let key in selectedIdsObject.value) {
-        selectedIdsObject.value[key] = false;
-      }
-    };
-
-    const isIfAllOptionsSelected = () => {
-      for (let key in selectedIdsObject.value) {
-        if (!selectedIdsObject.value[key]) return false;
-      }
-      return true;
-    };
-
     const selectPreSelectedOptions = () => {
-      for (let selectedId of props.modelValue) {
+      for (const selectedId of props.modelValue) {
         if (selectedIdsObject.value[selectedId] != undefined) {
-          let option = findOptionByOptionId(selectedId, optionsArr.value);
+          const option = findOptionByOptionId(selectedId, optionsArr.value);
           if (typeof option !== 'string') {
             addChildrenToSelectedIdsArray(option);
             if (props.selectParentsOnChildSelection) {
@@ -566,22 +584,6 @@ export default defineComponent({
       }
     };
 
-    const findOptionByOptionId = (
-      optionId: string,
-      options: Option[],
-    ): Option | string => {
-      for (let option of options) {
-        if (option.id == optionId) {
-          return option;
-        } else if (option.children ? option.children.length != 0 : false) {
-          let result = findOptionByOptionId(optionId, option.children);
-          if (result !== 'NOT FOUND' && typeof result !== 'string') {
-            return result;
-          }
-        }
-      }
-      return 'NOT FOUND';
-    };
     selectPreSelectedOptions();
 
     const selectOptionOnlabelClick = (option: option) => {
@@ -592,6 +594,20 @@ export default defineComponent({
           selectOptionsOnCheckbox(true, option.id);
         }
       }
+    };
+
+    const findPlaceholderOption = (options: Option[]): Option | string => {
+      for (const option of options) {
+        if (selectedIdsObject.value[option.id]) {
+          return option;
+        } else if (option.children ? option.children.length !== 0 : false) {
+          const result = findPlaceholderOption(option.children);
+          if (result !== NOT_FOUND && typeof result !== 'string') {
+            return result;
+          }
+        }
+      }
+      return NOT_FOUND;
     };
 
     const getPlaceholderValue = () => {
@@ -605,29 +621,13 @@ export default defineComponent({
           ? placeholderOption.value.label
           : '';
       } else {
-        let option = findPlaceholderOption(props.options);
+        const option = findPlaceholderOption(getLevelOneOptions());
         if (typeof option !== 'string') {
           placeholderOption.value = option;
           placeholderString = placeholderOption.value.label;
         }
       }
       return placeholderString;
-    };
-
-    const findPlaceholderOption = (
-      options: OptionProp[],
-    ): OptionProp | string => {
-      for (let option of options) {
-        if (selectedIdsObject.value[option.id]) {
-          return option;
-        } else if (option.children ? option.children.length !== 0 : false) {
-          let result = findPlaceholderOption(option.children!);
-          if (result !== 'NOT FOUND' && typeof result !== 'string') {
-            return result;
-          }
-        }
-      }
-      return 'NOT FOUND';
     };
 
     const onBlur = () => {
@@ -638,16 +638,16 @@ export default defineComponent({
       return props.disabled ? -1 : 0;
     };
 
-    const closeDropdownOnOutsideClick = () => {
-      onCloseDropdown(null);
-    };
-
     const onCloseDropdown = ($e: KeyboardEvent | null) => {
       if (props.disabled || props.readonly || !dropdownOpen.value) return;
       if ($e && $e.key === 'Escape' && dropdownOpen.value) $e.stopPropagation();
       dropdownOpen.value = false;
       removeExpandedOptionsFromOptionsArrayOnDropdownClose();
       emit('dropdown:closed');
+    };
+
+    const closeDropdownOnOutsideClick = () => {
+      onCloseDropdown(null);
     };
 
     const onOpenDropdown = () => {
