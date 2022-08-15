@@ -104,7 +104,7 @@ export default defineComponent({
     },
     placeholder: {
       type: String,
-      default: 'HH-MM AM',
+      default: 'HH-MM',
     },
     step: {
       type: Number,
