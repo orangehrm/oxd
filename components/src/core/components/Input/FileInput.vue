@@ -2,7 +2,11 @@
   <div>
     <div class="oxd-download-box-outer-wrapper" v-if="inputFile.name">
       <div class="oxd-download-box-wrapper d-flex">
-        <button class="oxd-download-box" @click="downloadBoxClick()" type="button">
+        <button
+          class="oxd-download-box"
+          @click="downloadBoxClick()"
+          type="button"
+        >
           <div class="oxd-download-box-doc-icon d-flex">
             <oxd-icon :name="'oxd-file-doc'"> </oxd-icon>
           </div>
@@ -17,7 +21,7 @@
         </button>
         <div
           class="oxd-download-box-radio-buttons"
-          v-if="!(disabled  || readonly)"
+          v-if="!(disabled || readonly)"
         >
           <oxd-radio-input
             v-model="selectedItem"
@@ -96,7 +100,7 @@ export default defineComponent({
     modelValue: {},
     inputFile: {
       type: Object as PropType<InputFile>,
-      default: {}
+      default: {},
     },
     style: {
       type: Object,
@@ -147,19 +151,28 @@ export default defineComponent({
   ],
 
   watch: {
-    modelValue(newValue, oldValue) {
-      if (newValue !== oldValue) {
-        if (newValue !== undefined && newValue !== null) {
-          this.inputValue = Array.isArray(newValue)
-            ? newValue[0].name
-            : newValue.name;
+    modelValue: {
+      immediate: true,
+      handler(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          if (newValue !== undefined && newValue !== null) {
+            this.inputValue = Array.isArray(newValue)
+              ? newValue[0].name
+              : newValue.name;
+          } else {
+            this.inputValue = '';
+            this.changeFileStatus();
+            debugger;
+          }
         } else {
-          this.inputValue = '';
+          this.changeFileStatus();
+          debugger;
         }
-      }
+      },
     },
     selectedItem() {
       this.$emit('selectedOption', this.selectedItem);
+      this.changeFileStatus();
     },
   },
 
@@ -207,16 +220,8 @@ export default defineComponent({
         this.inputValue = inputValue;
       } else {
         this.inputValue = inputValue;
-        let fileStatus = null;
-        if(this.inputFile.name){
-          if(this.selectedItem === "keep" ||this.selectedItem === "replace" ){
-            fileStatus = "keep";
-          }
-          else{
-            fileStatus = this.selectedItem;
-          }
-        }
-        this.$emit('update:modelValue', [{ fileStatus: fileStatus}]);
+        this.$emit('update:modelValue', null);
+        debugger;
       }
 
       this.$emit('input', e);
@@ -239,7 +244,7 @@ export default defineComponent({
                 name: file.name,
                 type: file.type,
                 size: file.size,
-                base64
+                base64,
               };
 
               outputFile.fileStatus = this.selectedItem;
@@ -255,6 +260,19 @@ export default defineComponent({
     },
     onFilesReadComplete(files: OutputFile[]) {
       this.$emit('update:modelValue', files);
+      debugger;
+    },
+    changeFileStatus() {
+      debugger;
+      let fileStatus = null;
+      if (this.inputFile.name) {
+        if (this.selectedItem === 'keep' || this.selectedItem === 'replace') {
+          fileStatus = 'keep';
+        } else {
+          fileStatus = fileStatus;
+        }
+      }
+      this.$emit('update:modelValue', [{fileStatus: fileStatus}]);
     },
   },
 });
