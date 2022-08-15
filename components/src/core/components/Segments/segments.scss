@@ -1,0 +1,33 @@
+@import "../../../styles";
+@import "../Label/variables";
+
+.oxd-segments-wrapper {
+  display: flex;
+  background-color: $oxd-background-light-gray-color;
+  width: -webkit-fit-content;
+  width: fit-content;
+  border-radius: 3rem;
+  .oxd-segment-wrapper {
+    white-space: nowrap;
+    .oxd-segment-label {
+      border: 1px solid $oxd-background-light-gray-color;
+      border-radius: 3rem;
+      width: calc(50% + 0.5rem);
+      text-align: center;
+      padding: 0.5rem 2rem;
+      cursor: pointer;
+      text-align: center;
+      font-family: $oxd-label-font-family;
+      font-size: $oxd-label-font-size;
+      font-weight: $oxd-label-font-weight;
+      color: $oxd-interface-gray-color;
+      &.active {
+        background-color: $oxd-white-color;
+        box-shadow: 0 4px 12px 0 rgb(0 0 0 / 4%);
+      }
+    }
+    .oxd-segment-input {
+      display: none;
+    }
+  }
+}
