@@ -285,7 +285,12 @@ export default defineComponent({
     const enableEditMode = (editMode = true) => {
       editable.value = editMode;
       deleteMode.value = false;
-      if (!editMode) cancelEditMode();
+      if (!editMode) {
+        commentContent.value = commentOriginalContent.value;
+        invalidCommentUpdate.value = false;
+        invalidCommentSave.value = false;
+        emit('commentEditHasError', false);
+      }
     };
 
     const enableDeleteMode = async (state = false) => {
