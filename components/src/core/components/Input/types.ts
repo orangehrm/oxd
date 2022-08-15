@@ -1,5 +1,6 @@
 export interface OutputFile extends Pick<File, 'name' | 'type' | 'size'> {
   base64?: string;
+  fileStatus?: string;
 }
 
 export const LEFT = 'left';
@@ -18,3 +19,9 @@ export interface Option {
 }
 
 export type DropdownOptions = Array<Option>;
+
+export interface InputFile {
+  name: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
+}

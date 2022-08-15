@@ -74,8 +74,8 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
-import {OutputFile} from './types';
+import {defineComponent, PropType} from 'vue';
+import {InputFile, OutputFile} from './types';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Radio from '@orangehrm/oxd/core/components/Input/RadioInput.vue';
 
@@ -95,7 +95,7 @@ export default defineComponent({
   props: {
     modelValue: {},
     inputFile: {
-      type: Object,
+      type: Object as PropType<InputFile>,
       default: {}
     },
     style: {
@@ -231,6 +231,7 @@ export default defineComponent({
                 type: file.type,
                 size: file.size,
                 base64,
+                fileStatus: this.selectedItem
               };
               outputFileArray.push(outputFile);
               if (outputFileArray.length === files.length)
