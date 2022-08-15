@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PopOver renders the pop-over component 1`] = `
+<div class="oxd-pop-over">
+  <div class="oxd-pop-over-button"></div>
+  <transition-stub>
+    <!--v-if-->
+  </transition-stub>
+</div>
+`;

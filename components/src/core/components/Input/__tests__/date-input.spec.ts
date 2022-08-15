@@ -1,4 +1,4 @@
-import {mount, shallowMount} from '@vue/test-utils';
+import {mount} from '@vue/test-utils';
 import DateInput from '@orangehrm/oxd/core/components/Input/DateInput.vue';
 import DateVue from '@orangehrm/oxd/core/components/Calendar/Date.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';

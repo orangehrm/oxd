@@ -12,14 +12,14 @@
         name="chevron-up"
         class="oxd-time-hour-input-up"
         role="none"
-        @click="decrement(1, 'hour')"
+        @click="increment(1, 'hour')"
         :withContainer="false"
       />
       <oxd-input
         :value="hour"
         inputmode="number"
-        @keydown.up="decrement(step, 'hour')"
-        @keydown.down="increment(step, 'hour')"
+        @keydown.up="increment(step, 'hour')"
+        @keydown.down="decrement(step, 'hour')"
         @input="onInput($event, 'hour')"
         class="oxd-time-hour-input-text"
       />
@@ -27,7 +27,7 @@
         name="chevron-down"
         class="oxd-time-hour-input-down"
         role="none"
-        @click="increment(1, 'hour')"
+        @click="decrement(1, 'hour')"
         :withContainer="false"
       />
     </div>
@@ -39,13 +39,13 @@
         name="chevron-up"
         class="oxd-time-minute-input-up"
         role="none"
-        @click="decrement(step, 'minute')"
+        @click="increment(step, 'minute')"
         :withContainer="false"
       />
       <oxd-input
         :value="minute"
-        @keydown.up="decrement(step, 'minute')"
-        @keydown.down="increment(step, 'minute')"
+        @keydown.up="increment(step, 'minute')"
+        @keydown.down="decrement(step, 'minute')"
         @input="onInput($event, 'minute')"
         class="oxd-time-minute-input-text"
       />
@@ -53,7 +53,7 @@
         name="chevron-down"
         class="oxd-time-minute-input-down"
         role="none"
-        @click="increment(step, 'minute')"
+        @click="decrement(step, 'minute')"
         :withContainer="false"
       />
     </div>

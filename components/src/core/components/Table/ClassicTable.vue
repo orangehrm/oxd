@@ -10,7 +10,11 @@
     </colgroup>
     <oxd-thead>
       <oxd-tr>
-        <oxd-th v-if="selectable" class="oxd-padding-cell oxd-table-th" :style="{width: selector.width}">
+        <oxd-th
+          v-if="selectable"
+          class="oxd-padding-cell oxd-table-th"
+          :style="{width: selector.width}"
+        >
           <input
             type="checkbox"
             v-model="selectedAll"
@@ -35,7 +39,11 @@
         :clickable="clickable"
         @click="onClick(item)($event)"
       >
-        <oxd-td v-if="selectable" class="oxd-padding-cell" :style="{width: selector.width}">
+        <oxd-td
+          v-if="selectable"
+          class="oxd-padding-cell"
+          :style="{width: selector.width}"
+        >
           <input
             type="checkbox"
             :value="index"
@@ -49,17 +57,20 @@
           :key="header"
           :style="{width: header.width}"
         >
-        <div
-          v-if="item[header.name].length > header.maxCharacterLength"
-          :tooltip="item[header.name]"
-          :flow="header.flow || 'bottom'"
-          :style="header.style"
+          <div
+            v-if="item[header.name].length > header.maxCharacterLength"
+            :tooltip="item[header.name]"
+            :flow="header.flow || 'bottom'"
+            :style="header.style"
           >
-          {{ item[header.name].slice(0, parseInt(header.maxCharacterLength)) + '...'}}
-        </div>
-        <div v-else :style="header.style">
-          {{ item[header.name] }}
-        </div>
+            {{
+              item[header.name].slice(0, parseInt(header.maxCharacterLength)) +
+                '...'
+            }}
+          </div>
+          <div v-else :style="header.style">
+            {{ item[header.name] }}
+          </div>
         </oxd-td>
       </oxd-tr>
     </oxd-tbody>
