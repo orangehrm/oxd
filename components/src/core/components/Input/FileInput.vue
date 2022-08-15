@@ -207,7 +207,7 @@ export default defineComponent({
         this.inputValue = inputValue;
       } else {
         this.inputValue = inputValue;
-        const fileStatus = this.inputFile.name? this.selectedItem : "replace";
+        const fileStatus = this.inputFile.name? this.selectedItem : null;
         this.$emit('update:modelValue', [{ fileStatus: fileStatus}]);
       }
 
@@ -234,7 +234,7 @@ export default defineComponent({
                 base64
               };
 
-              outputFile.fileStatus = this.inputFile.name? this.selectedItem : "replace";
+              outputFile.fileStatus = this.selectedItem;
 
               outputFileArray.push(outputFile);
               if (outputFileArray.length === files.length)
