@@ -207,7 +207,15 @@ export default defineComponent({
         this.inputValue = inputValue;
       } else {
         this.inputValue = inputValue;
-        const fileStatus = this.inputFile.name? this.selectedItem : null;
+        let fileStatus = null;
+        if(this.inputFile.name){
+          if(this.selectedItem === "keep" ||this.selectedItem === "replace" ){
+            fileStatus = "keep";
+          }
+          else{
+            fileStatus = this.selectedItem;
+          }
+        }
         this.$emit('update:modelValue', [{ fileStatus: fileStatus}]);
       }
 
