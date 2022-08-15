@@ -284,6 +284,8 @@ export default defineComponent({
 
     const enableEditMode = (editMode = true) => {
       editable.value = editMode;
+      deleteMode.value = false;
+      if (!editMode) cancelEditMode();
     };
 
     const enableDeleteMode = async (state = false) => {
@@ -330,7 +332,7 @@ export default defineComponent({
       if (typeof shouldNotExceedCharLength.value === 'string') {
         invalidCommentSave.value = false;
         invalidCommentUpdate.value = false;
-        emit('commentEditHasError', false);
+        emit('commentEditHasError', true);
       } else if (hasContentChanged.value === 0) {
         invalidCommentUpdate.value = false;
         emit('commentEditHasError', false);
