@@ -2,20 +2,6 @@
 @import '../../Input/variables';
 @import 'variables';
 
-// .oxd-table-dropdown-item-right{
-//   width:auto;
-//   // margin-left: 1rem !important;
-//   // order: 2;
-//   // float: right !important;
-//   padding-left: 2rem !important;
-//   right: 0;
-// }
-
-// .oxd-table-dropdown-item-left{
-//   justify-content: start;
-//   width:fit-content;
-// }
-
 .oxd-table-dropdown {
   list-style: none;
   position: relative;
@@ -60,10 +46,6 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-
-    // .oxd-svg-icon, .oxd-icon {
-    //   margin-right: 0.5rem;
-    // }
 
     &:last-child {
       border-bottom: unset;
