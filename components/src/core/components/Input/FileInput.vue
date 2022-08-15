@@ -230,11 +230,9 @@ export default defineComponent({
                 name: file.name,
                 type: file.type,
                 size: file.size,
-                base64
+                base64, 
+                ...(this.inputFile.name && { fileStatus: this.selectedItem})
               };
-              if(this.inputFile.name){
-                outputFile.fileStatus = this.selectedItem
-              }
               outputFileArray.push(outputFile);
               if (outputFileArray.length === files.length)
                 this.onFilesReadComplete(outputFileArray);
