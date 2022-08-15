@@ -89,7 +89,7 @@
             min-width: 40px;
             i {
               color: #64728c !important;
-              :not(:first-child) {
+              &:not(:first-child) {
                 margin-left: 0.75rem;
               }
             }

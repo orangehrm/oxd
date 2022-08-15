@@ -127,7 +127,7 @@
     >
       <div class="comment-inline-delete-content-wrapper d-flex align-center">
         <oxd-text type="subtitle-2">
-          {{ $vt(commentDeleteConfirmationMsg) }}
+          {{ commentDeleteConfirmationMsg }}
         </oxd-text>
       </div>
       <div
@@ -175,7 +175,6 @@ import CommentBox from '@orangehrm/oxd/core/components/Comments/CommentBox.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import oxdButton from '@orangehrm/oxd/core/components/Button/Button.vue';
 import useTranslate from '../../../composables/useTranslate';
-const {$t} = useTranslate();
 
 export default defineComponent({
   name: 'oxd-comment',
@@ -236,6 +235,7 @@ export default defineComponent({
   },
 
   setup(props, {emit}) {
+    const {$t} = useTranslate();
     const editable = ref(false);
     const invalidCommentUpdate = ref(false);
     const invalidCommentSave = ref(false);
@@ -277,7 +277,7 @@ export default defineComponent({
         return $t(props.unsavedEditCommentErrorMsg);
       }
       if (typeof shouldNotExceedCharLength.value === 'string') {
-        return shouldNotExceedCharLength.value;
+        return $t(shouldNotExceedCharLength.value);
       }
       return false;
     });
