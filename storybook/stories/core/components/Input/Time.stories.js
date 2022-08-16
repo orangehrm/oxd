@@ -7,7 +7,7 @@ export default {
   argTypes: {
     style: {control: {type: 'object'}},
     hasError: {control: {type: 'boolean'}},
-    allowedEmpty: {
+    allowEmpty: {
       control: {type: 'boolean'},
       defaultValue: false,
       table: {
@@ -47,9 +47,9 @@ Disabled.args = {
   disabled: true,
 };
 
-export const AllowedEmpty = Template.bind({});
-AllowedEmpty.args = {
-  allowedEmpty: true,
+export const allowEmpty = Template.bind({});
+allowEmpty.args = {
+  allowEmpty: true,
 };
 
 export const Error = Template.bind({});

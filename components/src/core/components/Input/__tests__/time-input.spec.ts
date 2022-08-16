@@ -135,10 +135,10 @@ describe('TimeInput.vue', () => {
     ).toStrictEqual(true);
     expect(wrapper.emitted('update:modelValue')).toBeFalsy();
   });
-  it('model value should be available to set empty when allowedempty is enabled', async () => {
+  it('model value should be available to set empty when allowEmpty is enabled', async () => {
     const wrapper = mount(TimeInput, {
       props: {
-        allowedEmpty: true,
+        allowEmpty: true,
       },
     });
     const timeInputElm = wrapper.find('.oxd-input');

@@ -110,7 +110,7 @@ export default defineComponent({
       type: Number,
       default: 1,
     },
-    allowedEmpty: {
+    allowEmpty: {
       type: Boolean,
       default: false,
     },
@@ -160,7 +160,7 @@ export default defineComponent({
     };
 
     const onBlur = (e: Event) => {
-      if (props.allowedEmpty) {
+      if (props.allowEmpty) {
         state.time = inputTime && inputTime !== '0' ? inputTime : null;
       } else if (inputTime) {
         state.time = inputTime;
