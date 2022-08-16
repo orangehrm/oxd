@@ -1,5 +1,5 @@
-@import "../../../styles";
-@import "../Label/variables";
+@import '../../../styles';
+@import '../Label/variables';
 
 .oxd-segments-wrapper {
   display: flex;
@@ -12,7 +12,8 @@
     .oxd-segment-label {
       border: 1px solid $oxd-background-light-gray-color;
       border-radius: 3rem;
-      width: calc(50% + 0.5rem);
+      width: 100%;
+      margin-bottom: 0;
       text-align: center;
       padding: 0.5rem 2rem;
       cursor: pointer;
