@@ -92,7 +92,7 @@
                 <td
                   :style="
                     'display: flex ; width: fit-content; margin-left:5%; padding-left:' +
-                      (option.level * 20 - 20) +
+                      (option._level * 20 - 20) +
                       'px'
                   "
                 >
@@ -275,7 +275,7 @@ export default defineComponent({
       parentOptions: Option[],
     ) => {
       for (const option of optionsArr) {
-        option['level'] = level;
+        option['_level'] = level;
         option['parentOptions'] = parentOptions;
         setDisabledOptions(option);
         selectedIdsObject.value[option.id] = false; //initially makes all the ids false (unselected)
@@ -350,7 +350,7 @@ export default defineComponent({
 
     const getLevelOneOptions = () => {
       return optionsArr.value.filter(option_ => {
-        return option_.level === 1;
+        return option_._level === 1;
       });
     };
 
@@ -552,7 +552,7 @@ export default defineComponent({
         if (selectedIdsObject.value[selectedId]) {
           const option = findOptionByOptionId(selectedId, optionsArr.value);
 
-          if (typeof option !== 'string' && option.level > 1) {
+          if (typeof option !== 'string' && option._level > 1) {
             for (const parent of option.parentOptions) {
               if (!expandedIdsObject.value[parent.id]) {
                 expandIconClicked(parent);

@@ -3,7 +3,7 @@ export type Option = {
   label: string;
   children: Array<Option>;
   parentOptions: Array<Option>;
-  level: number;
+  _level: number;
   _disabled: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
