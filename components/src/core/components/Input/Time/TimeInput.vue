@@ -156,7 +156,7 @@ export default defineComponent({
     };
 
     const onBlur = (e: Event) => {
-      if (inputTime) {
+      if (inputTime && inputTime !== '0') {
         state.time = inputTime;
       }
       e.stopImmediatePropagation();
