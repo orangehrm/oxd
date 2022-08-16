@@ -115,7 +115,7 @@ export default defineComponent({
   setup(props, context) {
     const timePickerOpen = ref<boolean>(false);
     const amPmLabelFocus = ref<boolean>(false);
-    let inputTime = props.modelValue;
+    let inputTime = '0';
 
     const state = reactive({
       time: '01:00',
@@ -156,7 +156,7 @@ export default defineComponent({
     };
 
     const onBlur = (e: Event) => {
-      if (inputTime) {
+      if (inputTime && inputTime !== '0') {
         state.time = inputTime;
       }
       e.stopImmediatePropagation();
