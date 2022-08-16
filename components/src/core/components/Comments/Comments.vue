@@ -89,6 +89,7 @@ export default defineComponent({
     'updateComment',
     'deleteComment',
     'commentEditHasError',
+    'commentChanged',
   ],
 
   props: {
@@ -190,6 +191,7 @@ export default defineComponent({
     const onInputComment = (value: string) => {
       comment.value = value;
       emit('update:modelValue', comment.value);
+      emit('commentChanged', comment.value);
     };
 
     const doScroll = async () => {

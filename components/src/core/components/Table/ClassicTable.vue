@@ -37,6 +37,7 @@
         v-for="(item, index) in items"
         :key="item"
         :clickable="clickable"
+        :tabindex="0"
         @click="onClick(item)($event)"
       >
         <oxd-td
