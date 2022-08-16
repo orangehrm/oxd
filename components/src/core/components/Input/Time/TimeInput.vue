@@ -115,7 +115,7 @@ export default defineComponent({
   setup(props, context) {
     const timePickerOpen = ref<boolean>(false);
     const amPmLabelFocus = ref<boolean>(false);
-    let inputTime = '0';
+    let inputTime = props.modelValue;
 
     const state = reactive({
       time: '01:00',
