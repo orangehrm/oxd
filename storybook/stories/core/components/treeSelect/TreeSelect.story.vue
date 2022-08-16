@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <oxd-tree-select
+    <oxd-tree-select-input
       :select-parents-on-child-selection="true"
       :options="options"
       :disabled="false"
@@ -9,8 +9,16 @@
       :disable-unchecked-options="false"
       :remove-all-selection="false"
       @update:modelValue="updateSelectedIdsFun"
+      @input="onInput"
+      @focus="onFocus"
+      @click="onClick"
+      @keyup="onKeyUp"
+      @dropdown:opened="onDropDownOpen"
+      @dropdown:closed="onDropDownClosed"
+      @dropdown:blur="onDropDownBlur"
+      :preSelectedIds="['332']"
     >
-    </oxd-tree-select>
+    </oxd-tree-select-input>
   </div>
 </template>
 
@@ -18,14 +26,16 @@
 
 <script lang="ts">
 import TreeSelectInput from '@orangehrm/oxd/core/components/Input/TreeSelect/TreeSelect.vue';
+import {OptionProp} from 'oxd-components/src/core/components/Input/TreeSelect/type';
 
 import {defineComponent, ref, computed} from 'vue';
 export default defineComponent({
   components: {
-    'oxd-tree-select': TreeSelectInput,
+    'oxd-tree-select-input': TreeSelectInput,
   },
   setup() {
-    let options = [
+    const options = ref<OptionProp[]>([]);
+    options.value = [
       {
         id: '1a',
         label: 'Sri Lanka',
@@ -45,7 +55,15 @@ export default defineComponent({
                     label: 'Pokunuwita',
                     children: [
                       {id: '12121', label: 'pukunuwita_1'},
-                      {id: '12122', label: 'Pokunuwita_2'},
+                      {
+                        id: '12122',
+                        label: 'Pokunuwita_2',
+                        children: [
+                          {id: '121221', label: 'pukunuwita_21'},
+                          {id: '121222', label: 'Pokunuwita_22'},
+                          {id: 121223, label: 'pukunuwita_23'},
+                        ],
+                      },
                       {id: 12123, label: 'pukunuwita_3'},
                     ],
                   },
@@ -81,18 +99,44 @@ export default defineComponent({
       {id: 'nz', label: 'New zeland'},
       {id: 'sa', label: 'South Africa'},
       {id: 'china', label: 'China'},
-    ];
+    ] as Array<OptionProp>;
 
-    const values = ref<any[]>([]);
-
-    const updateSelectedIdsFun = (idsArray: any) => {
+    const updateSelectedIdsFun = (idsArray: string[]) => {
       console.log(idsArray, 'idsArray');
+    };
+
+    const onFocus = (e: Event) => {
+      console.log(e, 'onFocus');
+    };
+    const onClick = (e: Event) => {
+      console.log(e, 'onClick');
+    };
+    const onInput = (e: Event) => {
+      console.log(e, 'onInput');
+    };
+    const onKeyUp = (e: Event) => {
+      console.log(e, 'onKeyUp');
+    };
+    const onDropDownOpen = () => {
+      console.log('onDropDownOpen');
+    };
+    const onDropDownClosed = () => {
+      console.log('onDropDownClosed');
+    };
+    const onDropDownBlur = () => {
+      console.log('onDropDownBlur');
     };
 
     return {
       options,
-      values,
       updateSelectedIdsFun,
+      onFocus,
+      onClick,
+      onInput,
+      onKeyUp,
+      onDropDownOpen,
+      onDropDownClosed,
+      onDropDownBlur,
     };
   },
 });

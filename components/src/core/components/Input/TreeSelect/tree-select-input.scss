@@ -5,11 +5,19 @@
 @import '../MultiSelect/multiselect-input.scss';
 
 .checkbox-td {
-  width: 5%;
+  width: fit-content;
+  padding-left: 0px !important;
+}
+
+td {
+  // schema form overrides these paddings otherwise..
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  padding-right: 0px !important;
 }
 
 .option-label-with-icon {
-  margin-left: 15px;
+  margin-left: 10px;
 }
 
 .option-label-without-icon {
@@ -31,17 +39,18 @@
   .checkbox-text-group {
     display: inline-flex;
     padding-bottom: 10px;
-    width: calc(5% + 15px);
+    width: calc(5% + 40px);
     justify-content: space-between;
 
     .all-checkbox-div {
-      margin-left: 2.5px;
+      margin-left: 0px;
     }
 
     .all-text {
       font-size: 12px;
       font-family: $oxd-input-control-font-family;
       padding-left: 10px;
+      margin-left: 5%;
     }
   }
 }
@@ -53,7 +62,7 @@
 }
 
 .tree-select-table-container {
-  height: 210px;
+  max-height: 210px;
   overflow: auto;
   font-size: 12px;
   font-family: $oxd-input-control-font-family;
@@ -62,6 +71,7 @@
 
   .tree-select-table {
     width: 100%;
+    border-collapse: collapse;
   }
 }
 
