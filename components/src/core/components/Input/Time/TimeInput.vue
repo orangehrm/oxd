@@ -104,18 +104,22 @@ export default defineComponent({
     },
     placeholder: {
       type: String,
-      required: false,
+      default: 'HH-MM',
     },
     step: {
       type: Number,
       default: 1,
+    },
+    allowEmpty: {
+      type: Boolean,
+      default: false,
     },
   },
 
   setup(props, context) {
     const timePickerOpen = ref<boolean>(false);
     const amPmLabelFocus = ref<boolean>(false);
-    let inputTime = '0';
+    let inputTime = props.modelValue || '0';
 
     const state = reactive({
       time: '01:00',
@@ -156,7 +160,9 @@ export default defineComponent({
     };
 
     const onBlur = (e: Event) => {
-      if (inputTime && inputTime !== '0') {
+      if (props.allowEmpty) {
+        state.time = inputTime && inputTime !== '0' ? inputTime : null;
+      } else if (inputTime) {
         state.time = inputTime;
       }
       e.stopImmediatePropagation();
