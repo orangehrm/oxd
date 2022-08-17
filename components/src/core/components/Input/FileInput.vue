@@ -171,8 +171,7 @@ export default defineComponent({
       },
     },
     fileUpdateMode() {
-      this.$emit('fileUpdateMode', this.fileUpdateMode);
-      this.inputValue = '';
+     this.setModelValue(this.inputFile);
     },
   },
 
