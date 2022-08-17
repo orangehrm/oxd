@@ -139,9 +139,7 @@ export default defineComponent({
     },
   },
   mounted() {
-    if (this.inputFile.name) {
       this.setModelValue(this.inputFile);
-    }
   },
   data(): State {
     return {
@@ -273,11 +271,11 @@ export default defineComponent({
     setModelValue(inputFile: OutputFile) {
       const modelArr = [
         {
-          name: inputFile.name,
+          name: '',
           type: inputFile.type,
           size: inputFile.size,
           ...(inputFile.base64 && {base64: inputFile.base64}),
-          ...(inputFile.name && {fileUpdateMode: this.selectedItem}),
+          fileUpdateMode: this.selectedItem,
         },
       ];
       this.$emit('update:modelValue', modelArr);
