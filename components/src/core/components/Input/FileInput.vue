@@ -104,6 +104,7 @@ export default defineComponent({
     modelValue: {},
     inputFile: {
       type: Object as PropType<OutputFile>,
+
       default: {},
     },
     style: {
@@ -160,16 +161,24 @@ export default defineComponent({
   ],
 
   watch: {
-    modelValue(newValue, oldValue) {
-      if (newValue !== oldValue) {
-        if (newValue !== undefined && newValue !== null) {
-          this.inputValue = Array.isArray(newValue)
-            ? newValue[0].name
-            : newValue.name;
+    modelValue: {
+      immediate: true,
+      handler(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          if (newValue !== undefined && newValue !== null) {
+            this.inputValue = Array.isArray(newValue)
+              ? newValue[0].name
+              : newValue.name;
+          } else {
+            this.inputValue = '';
+            this.changeFileStatus();
+            debugger;
+          }
         } else {
-          this.inputValue = '';
+          this.changeFileStatus();
+          debugger;
         }
-      }
+      },
     },
     selectedItem() {
       this.$emit('selectedOption', this.selectedItem);
@@ -228,6 +237,7 @@ export default defineComponent({
       } else {
         this.inputValue = inputValue;
         this.$emit('update:modelValue', null);
+        debugger;
       }
 
       this.$emit('input', e);
@@ -253,6 +263,7 @@ export default defineComponent({
                 base64,
                 ...(this.inputFile.name && {fileUpdateMode: this.selectedItem}),
               };
+
               outputFileArray.push(outputFile);
               if (outputFileArray.length === files.length)
                 this.onFilesReadComplete(outputFileArray);
@@ -264,6 +275,19 @@ export default defineComponent({
     },
     onFilesReadComplete(files: OutputFile[]) {
       this.$emit('update:modelValue', files);
+      debugger;
+    },
+    changeFileStatus() {
+      debugger;
+      let fileStatus = null;
+      if (this.inputFile.name) {
+        if (this.selectedItem === 'keep' || this.selectedItem === 'replace') {
+          fileStatus = 'keep';
+        } else {
+          fileStatus = fileStatus;
+        }
+      }
+      this.$emit('update:modelValue', [{fileStatus: fileStatus}]);
     },
     setModelValue(inputFile: OutputFile) {
       const modelArr = [
