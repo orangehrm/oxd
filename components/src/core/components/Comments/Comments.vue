@@ -1,9 +1,6 @@
 <template>
   <div class="oxd-comment-groups-wrapper">
-    <div
-      v-if="headerLabel && commentGroups.length > 0"
-      class="oxd-comment-header-label-wrapper"
-    >
+    <div v-if="showHeaderLabel" class="oxd-comment-header-label-wrapper">
       <oxd-label :label="headerLabel" />
     </div>
     <div
@@ -68,7 +65,14 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, computed, onMounted, nextTick} from 'vue';
+import {
+  defineComponent,
+  ref,
+  computed,
+  onMounted,
+  nextTick,
+  PropType,
+} from 'vue';
 import Comment from './Comment.vue';
 import Label from '@orangehrm/oxd/core/components/Label/Label.vue';
 import CommentBox from './CommentBox.vue';
@@ -97,7 +101,7 @@ export default defineComponent({
       type: Object,
     },
     commentGroups: {
-      type: Object,
+      type: Array as PropType<any>,
     },
     allowToEdit: {
       type: Boolean,
@@ -160,6 +164,15 @@ export default defineComponent({
   setup(props, {emit}) {
     const commentGroupsList = ref(null);
     const comment = ref<string>('');
+
+    const showHeaderLabel = computed(() => {
+      let totalCommentsLength = 0;
+      props.commentGroups?.forEach((commentGroup) => {
+        totalCommentsLength =
+          totalCommentsLength + commentGroup?.comments?.length;
+      });
+      return props.headerLabel && totalCommentsLength > 0;
+    });
 
     const commentGroupsContainerClasses = computed(() => {
       return {
@@ -247,6 +260,7 @@ export default defineComponent({
       onUpdateComment,
       onDeleteComment,
       commentGroupsList,
+      showHeaderLabel,
     };
   },
 });
