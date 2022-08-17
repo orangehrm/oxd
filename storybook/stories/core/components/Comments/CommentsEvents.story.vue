@@ -9,7 +9,7 @@
     </div>
     <oxd-comments
       :enableAvatar="true"
-      :scrollMaxHeight="200"
+      :scrollHeight="200"
       :commentGroups="commentGroups"
       :commentDeleteConfirmationMsg="'The current comment will be permanently deleted. Are you sure you want to continue?'"
       :modelValue="value"

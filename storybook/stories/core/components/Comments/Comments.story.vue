@@ -4,7 +4,7 @@
     :allowToEdit="allowToEdit"
     :allowToDelete="allowToDelete"
     :enableAvatar="enableAvatar"
-    :scrollMaxHeight="scrollMaxHeight"
+    :scrollHeight="scrollHeight"
     @onAddComment="onAddComment"
     @onUpdateComment="onUpdateComment"
   />
@@ -37,7 +37,7 @@ export default {
       type: Boolean,
       default: true,
     },
-    scrollMaxHeight: {
+    scrollHeight: {
       type: Number,
       default: 0,
     },

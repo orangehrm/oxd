@@ -52,7 +52,7 @@ export default {
         },
       },
     },
-    scrollMaxHeight: {
+    scrollHeight: {
       control: {type: 'number'},
       defaultValue: 0,
       table: {
@@ -258,7 +258,7 @@ Default.args = {
   allowToEdit: true,
   allowToDelete: true,
   enableAvatar: true,
-  scrollMaxHeight: 300,
+  scrollHeight: 300,
   unsavedAddCommentErrorMsg: 'Comment should be either updated or removed',
   commentDeleteConfirmationMsg:
     'The current comment will be permanently deleted. Are you sure you want to continue?',
@@ -271,7 +271,7 @@ ScrollSettings.args = {
   allowToEdit: true,
   allowToDelete: true,
   enableAvatar: true,
-  scrollMaxHeight: 300,
+  scrollHeight: 300,
   scrollSettings: {
     mode: SMOOTH,
     scrollTo: END,
@@ -285,7 +285,7 @@ ReadOnly.args = {
   allowToEdit: false,
   allowToDelete: false,
   enableAvatar: true,
-  scrollMaxHeight: 350,
+  scrollHeight: 350,
   readOnly: true,
 };
 
@@ -296,7 +296,7 @@ HideAddInput.args = {
   allowToEdit: false,
   allowToDelete: false,
   enableAvatar: true,
-  scrollMaxHeight: 350,
+  scrollHeight: 350,
   hideAddInput: true,
 };
 
@@ -307,17 +307,38 @@ Disabled.args = {
   allowToEdit: false,
   allowToDelete: false,
   enableAvatar: true,
-  scrollMaxHeight: 350,
+  scrollHeight: 350,
   disabled: true,
 };
 
-export const EmptyComments = Template.bind({});
+export const EmptyCommentsWithPlaceholder = Template.bind({});
 
-EmptyComments.args = {
+EmptyCommentsWithPlaceholder.args = {
   allowToEdit: true,
   allowToDelete: true,
   enableAvatar: true,
-  scrollMaxHeight: 300,
+  scrollHeight: 300,
+};
+
+export const EmptyCommentsWithoutPlaceholder = Template.bind({});
+
+EmptyCommentsWithoutPlaceholder.args = {
+  allowToEdit: true,
+  allowToDelete: true,
+  enableAvatar: true,
+  scrollHeight: 300,
+  hideEmptyPlaceholder: true,
+};
+
+export const WithHeaderLabel = Template.bind({});
+
+WithHeaderLabel.args = {
+  commentGroups,
+  headerLabel: 'Comments',
+  allowToEdit: true,
+  allowToDelete: true,
+  enableAvatar: true,
+  scrollHeight: 300,
 };
 
 const TemplateSchema = (args) => ({
@@ -357,7 +378,7 @@ const sample = {
               allowToEdit: false,
               allowToDelete: false,
               enableAvatar: true,
-              scrollMaxHeight: 250,
+              scrollHeight: 250,
             },
             listeners: {
               onAddComment: (note) => {
@@ -407,7 +428,7 @@ Default.parameters = {
       code: `
       <oxd-comments
         :enableAvatar="true"
-        :scrollMaxHeight="200"
+        :scrollHeight="200"
         :commentGroups="commentGroups"
         :commentDeleteConfirmationMsg=""The current comment will be permanently deleted. Are you sure you want to continue?"
         @onAddComment="addComment"
@@ -425,7 +446,7 @@ ReadOnly.parameters = {
       <oxd-comments
         :readOnly="true"
         :enableAvatar="true"
-        :scrollMaxHeight="200"
+        :scrollHeight="200"
         :commentGroups="commentGroups"
         :commentDeleteConfirmationMsg=""The current comment will be permanently deleted. Are you sure you want to continue?"
         @onAddComment="addComment"
@@ -443,7 +464,7 @@ Disabled.parameters = {
       <oxd-comments
         :disabled="true"
         :enableAvatar="true"
-        :scrollMaxHeight="200"
+        :scrollHeight="200"
         :commentGroups="commentGroups"
         :commentDeleteConfirmationMsg=""The current comment will be permanently deleted. Are you sure you want to continue?"
         @onAddComment="addComment"
@@ -461,7 +482,7 @@ HideAddInput.parameters = {
       <oxd-comments
         :hideAddInput="true"
         :enableAvatar="true"
-        :scrollMaxHeight="200"
+        :scrollHeight="200"
         :commentGroups="commentGroups"
         :commentDeleteConfirmationMsg=""The current comment will be permanently deleted. Are you sure you want to continue?"
         @onAddComment="addComment"
@@ -472,13 +493,51 @@ HideAddInput.parameters = {
   },
 };
 
-EmptyComments.parameters = {
+EmptyCommentsWithPlaceholder.parameters = {
   docs: {
     source: {
       code: `
       <oxd-comments
+        :emptyPlaceholderMsg="Sorry. No Comments Found!"
         :enableAvatar="true"
-        :scrollMaxHeight="200"
+        :scrollHeight="200"
+        :stage="stage"
+        :commentDeleteConfirmationMsg=""The current comment will be permanently deleted. Are you sure you want to continue?"
+        @onAddComment="addComment"
+        @onUpdateComment="updateComment"
+        @onDeleteComment="deleteComment"
+      />`,
+    },
+  },
+};
+
+EmptyCommentsWithoutPlaceholder.parameters = {
+  docs: {
+    source: {
+      code: `
+      <oxd-comments
+        :hideEmptyPlaceholder="true"
+        :enableAvatar="true"
+        :scrollHeight="200"
+        :stage="stage"
+        :commentDeleteConfirmationMsg=""The current comment will be permanently deleted. Are you sure you want to continue?"
+        @onAddComment="addComment"
+        @onUpdateComment="updateComment"
+        @onDeleteComment="deleteComment"
+      />`,
+    },
+  },
+};
+
+WithHeaderLabel.parameters = {
+  docs: {
+    source: {
+      code: `
+      <oxd-comments
+        :commentGroups="commentGroups"
+        :hideEmptyPlaceholder="false"
+        :enableAvatar="true"
+        :scrollHeight="200"
         :stage="stage"
         :commentDeleteConfirmationMsg=""The current comment will be permanently deleted. Are you sure you want to continue?"
         @onAddComment="addComment"
@@ -500,7 +559,7 @@ CommentsSchemaForm.parameters = {
         class: "mb-0--oxd-input-group",
         props: {
           enableAvatar: true,
-          scrollMaxHeight: 250,
+          scrollHeight: 250,
           candidate: candidate,
           commentGroups: commentGroups,
           commentDeleteConfirmationMsg: $t(

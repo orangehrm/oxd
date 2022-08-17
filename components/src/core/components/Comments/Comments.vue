@@ -1,9 +1,6 @@
 <template>
   <div class="oxd-comment-groups-wrapper">
-    <div
-      v-if="headerLabel && hasCommentsInside"
-      class="oxd-comment-header-label-wrapper"
-    >
+    <div v-if="showHeaderLabel" class="oxd-comment-header-label-wrapper">
       <oxd-label :label="headerLabel" />
     </div>
     <div
@@ -11,6 +8,20 @@
       :class="commentGroupsContainerClasses"
       :style="commentGroupsContainerStyles"
     >
+      <div
+        v-if="!(hideEmptyPlaceholder || hasCommentsInside)"
+        class="oxd-comment-no-notes-found-container d-flex justify-center"
+      >
+        <div class="oxd-comment-no-notes-found-wrapper">
+          <oxd-icon
+            class="oxd-comment-no-notes-found justify-center"
+            name="oxd-no-notes-found"
+          />
+          <div class="oxd-comment-no-notes-found-label">
+            {{ $vt(emptyPlaceholderMsg) }}
+          </div>
+        </div>
+      </div>
       <ul
         ref="commentGroupsList"
         class="oxd-comment-groups-list"
@@ -80,15 +91,20 @@ import Comment from './Comment.vue';
 import Label from '@orangehrm/oxd/core/components/Label/Label.vue';
 import CommentBox from './CommentBox.vue';
 import {END, Scroll, SMOOTH} from './types';
+import translateMixin from '../../../mixins/translate';
+import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
   name: 'oxd-comments',
 
   components: {
+    'oxd-icon': Icon,
     'oxd-label': Label,
     'oxd-comment': Comment,
     'oxd-comment-box': CommentBox,
   },
+
+  mixins: [translateMixin],
 
   emits: [
     'update:modelValue',
@@ -118,7 +134,11 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    scrollMaxHeight: {
+    commentThreadMinHeight: {
+      type: Number,
+      default: 216,
+    },
+    scrollHeight: {
       type: Number,
       default: 0,
     },
@@ -167,6 +187,14 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    hideEmptyPlaceholder: {
+      type: Boolean,
+      default: false,
+    },
+    emptyPlaceholderMsg: {
+      type: String,
+      default: 'Sorry, No Comments Found!',
+    },
   },
   setup(props, {emit}) {
     const commentGroupsList = ref(null);
@@ -181,16 +209,31 @@ export default defineComponent({
       return totalCommentsLength > 0;
     });
 
+    const showHeaderLabel = computed(() => {
+      if (props.hideEmptyPlaceholder) {
+        return props.headerLabel && hasCommentsInside.value;
+      } else {
+        return props.headerLabel;
+      }
+    });
+
     const commentGroupsContainerClasses = computed(() => {
       return {
-        'scroll-vertical': props.scrollMaxHeight,
+        'd-flex justify-center align-center': !hasCommentsInside,
+        'scroll-vertical': props.scrollHeight,
       };
     });
 
     const commentGroupsContainerStyles = computed(() => {
+      debugger;
       return {
-        'max-height':
-          props.scrollMaxHeight > 0 ? `${props.scrollMaxHeight}px` : undefined,
+        'min-height': hasCommentsInside.value
+          ? `${props.commentThreadMinHeight}px`
+          : undefined,
+        height:
+          hasCommentsInside.value && props.scrollHeight > 0
+            ? `${props.scrollHeight}px`
+            : undefined,
       };
     });
 
@@ -268,6 +311,7 @@ export default defineComponent({
       onDeleteComment,
       commentGroupsList,
       hasCommentsInside,
+      showHeaderLabel,
     };
   },
 });
