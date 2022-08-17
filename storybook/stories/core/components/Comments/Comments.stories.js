@@ -264,6 +264,20 @@ Default.args = {
     'The current comment will be permanently deleted. Are you sure you want to continue?',
 };
 
+export const WithLargeAddButton = Template.bind({});
+
+WithLargeAddButton.args = {
+  commentGroups,
+  actionButtonLabel: 'Add',
+  allowToEdit: true,
+  allowToDelete: true,
+  enableAvatar: true,
+  scrollHeight: 300,
+  unsavedAddCommentErrorMsg: 'Comment should be either updated or removed',
+  commentDeleteConfirmationMsg:
+    'The current comment will be permanently deleted. Are you sure you want to continue?',
+};
+
 export const ScrollSettings = Template.bind({});
 
 ScrollSettings.args = {
@@ -427,6 +441,24 @@ Default.parameters = {
     source: {
       code: `
       <oxd-comments
+        :enableAvatar="true"
+        :scrollHeight="200"
+        :commentGroups="commentGroups"
+        :commentDeleteConfirmationMsg=""The current comment will be permanently deleted. Are you sure you want to continue?"
+        @onAddComment="addComment"
+        @onUpdateComment="updateComment"
+        @onDeleteComment="deleteComment"
+      />`,
+    },
+  },
+};
+
+WithLargeAddButton.parameters = {
+  docs: {
+    source: {
+      code: `
+      <oxd-comments
+        :actionButtonLabel="'Add'"
         :enableAvatar="true"
         :scrollHeight="200"
         :commentGroups="commentGroups"
