@@ -225,7 +225,6 @@ export default defineComponent({
     });
 
     const commentGroupsContainerStyles = computed(() => {
-      debugger;
       return {
         'min-height': hasCommentsInside.value
           ? `${props.commentThreadMinHeight}px`

@@ -79,7 +79,8 @@
               color: $oxd-interface-gray-color;
               word-break: break-all;
               display: block;
-              margin-left: $oxd-comment-content-container-padding-top;
+              margin: 0 $oxd-comment-content-container-padding-top;
+              white-space: nowrap;
             }
           }
           &-actions-container {
