@@ -171,12 +171,7 @@ export default defineComponent({
               : newValue.name;
           } else {
             this.inputValue = '';
-            this.changeFileStatus();
-            debugger;
           }
-        } else {
-          this.changeFileStatus();
-          debugger;
         }
       },
     },
@@ -237,7 +232,6 @@ export default defineComponent({
       } else {
         this.inputValue = inputValue;
         this.$emit('update:modelValue', null);
-        debugger;
       }
 
       this.$emit('input', e);
@@ -275,19 +269,6 @@ export default defineComponent({
     },
     onFilesReadComplete(files: OutputFile[]) {
       this.$emit('update:modelValue', files);
-      debugger;
-    },
-    changeFileStatus() {
-      debugger;
-      let fileStatus = null;
-      if (this.inputFile.name) {
-        if (this.selectedItem === 'keep' || this.selectedItem === 'replace') {
-          fileStatus = 'keep';
-        } else {
-          fileStatus = fileStatus;
-        }
-      }
-      this.$emit('update:modelValue', [{fileStatus: fileStatus}]);
     },
     setModelValue(inputFile: OutputFile) {
       const modelArr = [
