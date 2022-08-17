@@ -1,6 +1,9 @@
 <template>
   <div class="oxd-comment-groups-wrapper">
-    <div v-if="showHeaderLabel" class="oxd-comment-header-label-wrapper">
+    <div
+      v-if="headerLabel && hasCommentsInside"
+      class="oxd-comment-header-label-wrapper"
+    >
       <oxd-label :label="headerLabel" />
     </div>
     <div
@@ -11,7 +14,7 @@
       <ul
         ref="commentGroupsList"
         class="oxd-comment-groups-list"
-        v-if="commentGroups && commentGroups.length > 0"
+        v-if="hasCommentsInside"
       >
         <li
           class="oxd-comment-group"
@@ -48,7 +51,7 @@
       </ul>
     </div>
     <oxd-comment-box
-      v-if="!(readOnly || disabled)"
+      v-if="!(readOnly || disabled || hideAddInput)"
       :label="commentBoxLabel"
       :labelIcon="'oxd-note'"
       :actionButtonIcon="'oxd-add'"
@@ -160,18 +163,22 @@ export default defineComponent({
     commentEditMaxCharLength: {
       type: Number,
     },
+    hideAddInput: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, {emit}) {
     const commentGroupsList = ref(null);
     const comment = ref<string>('');
 
-    const showHeaderLabel = computed(() => {
+    const hasCommentsInside = computed(() => {
       let totalCommentsLength = 0;
       props.commentGroups?.forEach((commentGroup) => {
         totalCommentsLength =
           totalCommentsLength + commentGroup?.comments?.length;
       });
-      return props.headerLabel && totalCommentsLength > 0;
+      return totalCommentsLength > 0;
     });
 
     const commentGroupsContainerClasses = computed(() => {
@@ -260,7 +267,7 @@ export default defineComponent({
       onUpdateComment,
       onDeleteComment,
       commentGroupsList,
-      showHeaderLabel,
+      hasCommentsInside,
     };
   },
 });

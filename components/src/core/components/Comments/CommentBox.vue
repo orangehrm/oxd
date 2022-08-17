@@ -101,7 +101,7 @@ export default defineComponent({
     resize: {
       type: String,
       default: RESIZE_VERTICAL,
-      validator: function(value: TextareaResize) {
+      validator: function (value: TextareaResize) {
         return (
           [RESIZE_VERTICAL, RESIZE_HORIZONTAL, RESIZE_NONE].indexOf(value) !==
           -1
@@ -139,6 +139,7 @@ export default defineComponent({
 
     const addComment = (e: Event) => {
       emit('addComment', e);
+      textareaComponent.value.$el.focus();
     };
 
     const keyupEnter = (e: Event) => {
