@@ -24,19 +24,19 @@
           v-if="!(disabled || readonly)"
         >
           <oxd-radio-input
-            v-model="selectedItem"
+            v-model="fileUpdateMode"
             id="check1"
             value="keep"
             optionLabel="Keep Current"
           />
           <oxd-radio-input
-            v-model="selectedItem"
+            v-model="fileUpdateMode"
             id="check2"
             value="delete"
             optionLabel="Delete Current"
           />
           <oxd-radio-input
-            v-model="selectedItem"
+            v-model="fileUpdateMode"
             id="check3"
             value="replace"
             optionLabel="Replace Current"
@@ -44,7 +44,7 @@
         </div>
       </div>
     </div>
-    <div v-if="selectedItem === 'replace' || !inputFile.name">
+    <div v-if="fileUpdateMode === 'replace' || !inputFile.name">
       <input
         type="file"
         ref="input"
@@ -79,18 +79,14 @@
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
-import {
-  ATTACHMENT_UPDATE_MODE_DELETE,
-  ATTACHMENT_UPDATE_MODE_KEEP,
-  OutputFile,
-} from './types';
+import {OutputFile} from './types';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Radio from '@orangehrm/oxd/core/components/Input/RadioInput.vue';
 
 export interface State {
   focused: boolean;
   inputValue: string;
-  selectedItem: string;
+  fileUpdateMode: string;
 }
 
 export default defineComponent({
@@ -104,7 +100,6 @@ export default defineComponent({
     modelValue: {},
     inputFile: {
       type: Object as PropType<OutputFile>,
-
       default: {},
     },
     style: {
@@ -138,14 +133,16 @@ export default defineComponent({
       required: false,
     },
   },
-  mounted() {
+  beforeMount() {
+    if (this.inputFile.name) {
       this.setModelValue(this.inputFile);
+    }
   },
   data(): State {
     return {
       focused: false,
       inputValue: '',
-      selectedItem: 'keep',
+      fileUpdateMode: 'keep',
     };
   },
 
@@ -155,7 +152,7 @@ export default defineComponent({
     'blur',
     'input',
     'update:modelValue',
-    'selectedOption',
+    'fileUpdateMode',
   ],
 
   watch: {
@@ -173,14 +170,9 @@ export default defineComponent({
         }
       },
     },
-    selectedItem() {
-      this.$emit('selectedOption', this.selectedItem);
-      if (
-        this.selectedItem === ATTACHMENT_UPDATE_MODE_KEEP ||
-        ATTACHMENT_UPDATE_MODE_DELETE
-      ) {
-        this.setModelValue(this.inputFile);
-      }
+    fileUpdateMode() {
+      debugger;
+      this.$emit('fileUpdateMode', this.fileUpdateMode);
     },
   },
 
@@ -252,7 +244,9 @@ export default defineComponent({
                 type: file.type,
                 size: file.size,
                 base64,
-                ...(this.inputFile.name && {fileUpdateMode: this.selectedItem}),
+                ...(this.inputFile.name && {
+                  fileUpdateMode: this.fileUpdateMode,
+                }),
               };
 
               outputFileArray.push(outputFile);
@@ -274,10 +268,12 @@ export default defineComponent({
           type: inputFile.type,
           size: inputFile.size,
           ...(inputFile.base64 && {base64: inputFile.base64}),
-          fileUpdateMode: this.selectedItem,
+          fileUpdateMode: this.fileUpdateMode,
         },
       ];
       this.$emit('update:modelValue', modelArr);
+      debugger;
+      this.$emit('fileUpdateMode', this.fileUpdateMode);
       this.inputValue = '';
     },
   },

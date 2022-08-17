@@ -61,7 +61,7 @@ describe('FileInput.vue', () => {
       },
     });
 
-    expect(wrapper.vm.selectedItem).toEqual("keep");
+    expect(wrapper.vm.fileUpdateMode).toEqual("keep");
     expect(wrapper.find('.oxd-file-input').exists()).toBe(false);
     expect(wrapper.find('.oxd-download-box').exists()).toBe(true);
     await wrapper.find('.oxd-download-box').trigger('click');
@@ -111,7 +111,7 @@ describe('FileInput.vue', () => {
        }
       },
     });
-    wrapper.vm.selectedItem = 'delete';
+    wrapper.vm.fileUpdateMode = 'delete';
     await wrapper.vm.$nextTick();
     expect(wrapper.find('.oxd-file-input').exists()).toBe(false);
   });
@@ -127,7 +127,7 @@ describe('FileInput.vue', () => {
        }
       },
     });
-    wrapper.vm.selectedItem = 'replace';
+    wrapper.vm.fileUpdateMode = 'replace';
     await wrapper.vm.$nextTick();
     expect(wrapper.find('.oxd-file-input').exists()).toBe(true);
   });
