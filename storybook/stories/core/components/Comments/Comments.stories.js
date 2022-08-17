@@ -289,6 +289,17 @@ ReadOnly.args = {
   readOnly: true,
 };
 
+export const HideAddInput = Template.bind({});
+
+HideAddInput.args = {
+  commentGroups,
+  allowToEdit: false,
+  allowToDelete: false,
+  enableAvatar: true,
+  scrollMaxHeight: 350,
+  hideAddInput: true,
+};
+
 export const Disabled = Template.bind({});
 
 Disabled.args = {
@@ -431,6 +442,24 @@ Disabled.parameters = {
       code: `
       <oxd-comments
         :disabled="true"
+        :enableAvatar="true"
+        :scrollMaxHeight="200"
+        :commentGroups="commentGroups"
+        :commentDeleteConfirmationMsg=""The current comment will be permanently deleted. Are you sure you want to continue?"
+        @onAddComment="addComment"
+        @onUpdateComment="updateComment"
+        @onDeleteComment="deleteComment"
+      />`,
+    },
+  },
+};
+
+HideAddInput.parameters = {
+  docs: {
+    source: {
+      code: `
+      <oxd-comments
+        :hideAddInput="true"
         :enableAvatar="true"
         :scrollMaxHeight="200"
         :commentGroups="commentGroups"
