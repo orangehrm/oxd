@@ -1,6 +1,6 @@
 export interface OutputFile extends Pick<File, 'name' | 'type' | 'size'> {
   base64?: string;
-  fileStatus?: string;
+  fileUpdateMode?: string;
 }
 
 export const LEFT = 'left';
@@ -11,6 +11,10 @@ export const LABEL_POSITIONS = [LEFT, RIGHT];
 export const DROPDOWN_POSITIONS = [TOP, BOTTOM, LEFT, RIGHT];
 export type Position = typeof LEFT | typeof RIGHT | typeof TOP | typeof BOTTOM;
 
+export const ATTACHMENT_UPDATE_MODE_KEEP = 'keep';
+export const ATTACHMENT_UPDATE_MODE_REPLACE = 'replace';
+export const ATTACHMENT_UPDATE_MODE_DELETE = 'delete';
+
 export interface Option {
   id: number;
   label: string;
@@ -20,8 +24,3 @@ export interface Option {
 
 export type DropdownOptions = Array<Option>;
 
-export interface InputFile {
-  name: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: any;
-}

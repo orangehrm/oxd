@@ -2,7 +2,11 @@
   <div>
     <div class="oxd-download-box-outer-wrapper" v-if="inputFile.name">
       <div class="oxd-download-box-wrapper d-flex">
-        <button class="oxd-download-box" @click="downloadBoxClick()" type="button">
+        <button
+          class="oxd-download-box"
+          @click="downloadBoxClick()"
+          type="button"
+        >
           <div class="oxd-download-box-doc-icon d-flex">
             <oxd-icon :name="'oxd-file-doc'"> </oxd-icon>
           </div>
@@ -17,7 +21,7 @@
         </button>
         <div
           class="oxd-download-box-radio-buttons"
-          v-if="!(disabled  || readonly)"
+          v-if="!(disabled || readonly)"
         >
           <oxd-radio-input
             v-model="selectedItem"
@@ -75,7 +79,11 @@
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
-import {InputFile, OutputFile} from './types';
+import {
+  ATTACHMENT_UPDATE_MODE_DELETE,
+  ATTACHMENT_UPDATE_MODE_KEEP,
+  OutputFile,
+} from './types';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Radio from '@orangehrm/oxd/core/components/Input/RadioInput.vue';
 
@@ -95,8 +103,8 @@ export default defineComponent({
   props: {
     modelValue: {},
     inputFile: {
-      type: Object as PropType<InputFile>,
-      default: {}
+      type: Object as PropType<OutputFile>,
+      default: {},
     },
     style: {
       type: Object,
@@ -129,6 +137,11 @@ export default defineComponent({
       required: false,
     },
   },
+  mounted() {
+    if (this.inputFile.name) {
+      this.setModelValue(this.inputFile);
+    }
+  },
   data(): State {
     return {
       focused: false,
@@ -160,6 +173,13 @@ export default defineComponent({
     },
     selectedItem() {
       this.$emit('selectedOption', this.selectedItem);
+      if (
+        this.selectedItem === ATTACHMENT_UPDATE_MODE_KEEP ||
+        ATTACHMENT_UPDATE_MODE_DELETE
+      ) {
+        this.setModelValue(this.inputFile);
+        this.inputValue = '';
+      }
     },
   },
 
@@ -230,8 +250,8 @@ export default defineComponent({
                 name: file.name,
                 type: file.type,
                 size: file.size,
-                base64, 
-                ...(this.inputFile.name && { fileStatus: this.selectedItem})
+                base64,
+                ...(this.inputFile.name && {fileUpdateMode: this.selectedItem}),
               };
               outputFileArray.push(outputFile);
               if (outputFileArray.length === files.length)
@@ -244,6 +264,18 @@ export default defineComponent({
     },
     onFilesReadComplete(files: OutputFile[]) {
       this.$emit('update:modelValue', files);
+    },
+    setModelValue(inputFile: OutputFile) {
+      const modelArr = [
+        {
+          name: inputFile.name,
+          type: inputFile.type,
+          size: inputFile.size,
+          ...(inputFile.base64 && {base64: inputFile.base64}),
+          ...(inputFile.name && {fileUpdateMode: this.selectedItem}),
+        },
+      ];
+      this.$emit('update:modelValue', modelArr);
     },
   },
 });
