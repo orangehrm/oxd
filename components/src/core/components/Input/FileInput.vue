@@ -171,8 +171,8 @@ export default defineComponent({
       },
     },
     fileUpdateMode() {
-      debugger;
       this.$emit('fileUpdateMode', this.fileUpdateMode);
+      this.inputValue = '';
     },
   },
 
@@ -267,12 +267,10 @@ export default defineComponent({
           name: inputFile.name,
           type: inputFile.type,
           size: inputFile.size,
-          ...(inputFile.base64 && {base64: inputFile.base64}),
           fileUpdateMode: this.fileUpdateMode,
         },
       ];
       this.$emit('update:modelValue', modelArr);
-      debugger;
       this.$emit('fileUpdateMode', this.fileUpdateMode);
       this.inputValue = '';
     },
