@@ -83,7 +83,7 @@ describe('Comments.vue', () => {
         allowToEdit: false,
         allowToDelete: false,
         enableAvatar: false,
-        scrollMaxHeight: 300,
+        scrollHeight: 300,
       },
     });
     await wrapper.vm.$nextTick();
@@ -98,7 +98,7 @@ describe('Comments.vue', () => {
         allowToEdit: false,
         allowToDelete: false,
         enableAvatar: false,
-        scrollMaxHeight: 300,
+        scrollHeight: 300,
       },
     });
     await wrapper.vm.$nextTick();
@@ -113,7 +113,7 @@ describe('Comments.vue', () => {
         allowToEdit: false,
         allowToDelete: false,
         enableAvatar: true,
-        scrollMaxHeight: 300,
+        scrollHeight: 300,
       },
     });
     await wrapper.vm.$nextTick();
@@ -129,7 +129,7 @@ describe('Comments.vue', () => {
         allowToEdit: true,
         allowToDelete: false,
         enableAvatar: true,
-        scrollMaxHeight: 300,
+        scrollHeight: 300,
       },
     });
     await wrapper.vm.$nextTick();
@@ -154,7 +154,7 @@ describe('Comments.vue', () => {
         allowToEdit: false,
         allowToDelete: true,
         enableAvatar: true,
-        scrollMaxHeight: 300,
+        scrollHeight: 300,
       },
     });
     await wrapper.vm.$nextTick();
@@ -171,7 +171,7 @@ describe('Comments.vue', () => {
         allowToEdit: false,
         allowToDelete: true,
         enableAvatar: true,
-        scrollMaxHeight: 300,
+        scrollHeight: 300,
       },
     });
     await wrapper.vm.$nextTick();
@@ -193,7 +193,7 @@ describe('Comments.vue', () => {
         allowToEdit: false,
         allowToDelete: true,
         enableAvatar: true,
-        scrollMaxHeight: 300,
+        scrollHeight: 300,
       },
     });
     await wrapper.vm.$nextTick();
@@ -215,7 +215,7 @@ describe('Comments.vue', () => {
         allowToEdit: false,
         allowToDelete: false,
         enableAvatar: true,
-        scrollMaxHeight: 300,
+        scrollHeight: 300,
       },
     });
     await wrapper.vm.$nextTick();
@@ -236,7 +236,7 @@ describe('Comments.vue', () => {
         allowToEdit: true,
         allowToDelete: true,
         enableAvatar: true,
-        scrollMaxHeight: 300,
+        scrollHeight: 300,
         readOnly: true,
       },
     });
@@ -254,7 +254,7 @@ describe('Comments.vue', () => {
         allowToEdit: false,
         allowToDelete: true,
         enableAvatar: true,
-        scrollMaxHeight: 300,
+        scrollHeight: 300,
         readOnly: true,
       },
     });
@@ -272,7 +272,7 @@ describe('Comments.vue', () => {
         allowToEdit: true,
         allowToDelete: true,
         enableAvatar: false,
-        scrollMaxHeight: 300,
+        scrollHeight: 300,
         readOnly: true,
       },
     });
@@ -288,7 +288,7 @@ describe('Comments.vue', () => {
         allowToEdit: false,
         allowToDelete: false,
         enableAvatar: false,
-        scrollMaxHeight: 150,
+        scrollHeight: 150,
         scrollSettings: {
           mode: SMOOTH,
           scrollTo: END,
