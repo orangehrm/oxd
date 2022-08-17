@@ -498,6 +498,7 @@ EmptyCommentsWithPlaceholder.parameters = {
     source: {
       code: `
       <oxd-comments
+        :emptyPlaceholderMsg="Sorry. No Comments Found!"
         :enableAvatar="true"
         :scrollHeight="200"
         :stage="stage"

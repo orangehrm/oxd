@@ -1,9 +1,6 @@
 <template>
   <div class="oxd-comment-groups-wrapper">
-    <div
-      v-if="!hideEmptyPlaceholder && headerLabel && hasCommentsInside"
-      class="oxd-comment-header-label-wrapper"
-    >
+    <div v-if="showHeaderLabel" class="oxd-comment-header-label-wrapper">
       <oxd-label :label="headerLabel" />
     </div>
     <div
@@ -21,7 +18,7 @@
             name="oxd-no-notes-found"
           />
           <div class="oxd-comment-no-notes-found-label">
-            {{ $vt('Sorry, No Notes Found!') }}
+            {{ $vt(emptyPlaceholderMsg) }}
           </div>
         </div>
       </div>
@@ -194,6 +191,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    emptyPlaceholderMsg: {
+      type: String,
+      default: 'Sorry, No Comments Found!',
+    },
   },
   setup(props, {emit}) {
     const commentGroupsList = ref(null);
@@ -206,6 +207,14 @@ export default defineComponent({
           totalCommentsLength + commentGroup?.comments?.length;
       });
       return totalCommentsLength > 0;
+    });
+
+    const showHeaderLabel = computed(() => {
+      if (props.hideEmptyPlaceholder) {
+        return props.headerLabel && hasCommentsInside.value;
+      } else {
+        return props.headerLabel;
+      }
     });
 
     const commentGroupsContainerClasses = computed(() => {
@@ -302,6 +311,7 @@ export default defineComponent({
       onDeleteComment,
       commentGroupsList,
       hasCommentsInside,
+      showHeaderLabel,
     };
   },
 });
