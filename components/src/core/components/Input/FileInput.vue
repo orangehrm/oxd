@@ -180,7 +180,6 @@ export default defineComponent({
         ATTACHMENT_UPDATE_MODE_DELETE
       ) {
         this.setModelValue(this.inputFile);
-        this.inputValue = '';
       }
     },
   },
@@ -271,7 +270,7 @@ export default defineComponent({
     setModelValue(inputFile: OutputFile) {
       const modelArr = [
         {
-          name: '',
+          name: inputFile.name,
           type: inputFile.type,
           size: inputFile.size,
           ...(inputFile.base64 && {base64: inputFile.base64}),
@@ -279,6 +278,7 @@ export default defineComponent({
         },
       ];
       this.$emit('update:modelValue', modelArr);
+      this.inputValue = '';
     },
   },
 });
