@@ -11,6 +11,12 @@
     color: $oxd-button-color--secondary-pressed;
     background-color: rgba(104, 166, 29, 0.1);
   }
+  &-add-button-large {
+    position: absolute;
+    min-width: 90px;
+    bottom: 0.5rem;
+    right: 0.5rem;
+  }
   .oxd-input-group {
     &__label-icon {
       color: #64728c;
