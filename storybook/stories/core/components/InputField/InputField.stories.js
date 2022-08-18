@@ -78,6 +78,23 @@ File.args = {
   buttonLabel: 'Browse',
 };
 
+export const FileDownloadBox = Template.bind({});
+FileDownloadBox.argTypes = argTypes;
+FileDownloadBox.args = {
+  label: 'File Input Field',
+  type: 'file',
+  buttonLabel: 'Browse',
+  inputFile: 
+      {
+          "name": "sample.pdf",
+          "type": "application/pdf",
+          "size": 101273
+      },
+  downloadBoxClick : ()=>{
+    window.alert("Downloading the document!");
+  }
+};
+
 export const Textarea = Template.bind({});
 Textarea.argTypes = argTypes;
 Textarea.args = {
