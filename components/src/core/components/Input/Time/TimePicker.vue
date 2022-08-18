@@ -20,6 +20,7 @@
         inputmode="number"
         @keydown.up="increment(step, 'hour')"
         @keydown.down="decrement(step, 'hour')"
+        @blur="onHourInputBlur()"
         @input="onInput($event, 'hour')"
         class="oxd-time-hour-input-text"
       />
@@ -46,6 +47,7 @@
         :value="minute"
         @keydown.up="increment(step, 'minute')"
         @keydown.down="decrement(step, 'minute')"
+        @blur="onMinuteInputBlur()"
         @input="onInput($event, 'minute')"
         class="oxd-time-minute-input-text"
       />
@@ -129,7 +131,7 @@ export default defineComponent({
   setup(props, context) {
     let prevHour = '';
     let prevMinute = '';
-
+    let enteredValue = '';
     const state: State = reactive({
       hour: '01',
       minute: '00',
@@ -167,6 +169,27 @@ export default defineComponent({
       return valid;
     };
 
+    const onHourInputBlur = () => {
+      const prevValue = prevHour;
+      const newValue = isValid(enteredValue, 'hour') ? enteredValue : prevValue;
+      prevMinute = newValue;
+
+      if (newValue.length > 0) {
+        setValue(parseInt(newValue, 10), 'hour');
+      }
+    };
+
+    const onMinuteInputBlur = () => {
+      const prevValue = prevMinute;
+      const newValue = isValid(enteredValue, 'minute')
+        ? enteredValue
+        : prevValue;
+      prevHour = newValue;
+      if (newValue.length > 0) {
+        setValue(parseInt(newValue, 10), 'minute');
+      }
+    };
+
     const getMin = (type: string) => {
       return type === 'hour' ? 1 : 0;
     };
@@ -195,23 +218,10 @@ export default defineComponent({
       setValue(newValue, type);
     };
 
-    const onInput = (e, type) => {
-      let enteredValue = e.target.value.replace(/\D/g, '');
+    const onInput = e => {
+      enteredValue = e.target.value.replace(/\D/g, '');
       if (enteredValue.length > 2) {
         enteredValue = enteredValue.substring(0, 2);
-      }
-      const prevValue = type === 'hour' ? prevHour : prevMinute;
-      const newValue = isValid(enteredValue, type) ? enteredValue : prevValue;
-
-      e.target.value = newValue;
-
-      if (type === 'hour') {
-        prevMinute = newValue;
-      } else {
-        prevHour = newValue;
-      }
-      if (newValue.length > 0) {
-        setValue(parseInt(newValue, 10), type);
       }
     };
 
@@ -277,6 +287,8 @@ export default defineComponent({
       onInput,
       onClickOutside,
       togglePeriod,
+      onHourInputBlur,
+      onMinuteInputBlur,
     };
   },
 });

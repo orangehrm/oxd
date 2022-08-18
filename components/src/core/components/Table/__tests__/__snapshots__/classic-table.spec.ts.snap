@@ -17,7 +17,7 @@ exports[`ClassicTable.vue renders OXD ClassicTable 1`] = `
     </tr>
   </thead>
   <tbody class="oxd-table-body">
-    <tr class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable">
+    <tr class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" tabindex="0">
       <!--v-if-->
       <td class="oxd-padding-cell" style="width: 17%;">
         <div>Data 1</div>
@@ -29,7 +29,7 @@ exports[`ClassicTable.vue renders OXD ClassicTable 1`] = `
         <div>Data 1</div>
       </td>
     </tr>
-    <tr class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable">
+    <tr class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" tabindex="0">
       <!--v-if-->
       <td class="oxd-padding-cell" style="width: 17%;">
         <div>Data 2</div>
@@ -41,7 +41,7 @@ exports[`ClassicTable.vue renders OXD ClassicTable 1`] = `
         <div>Data 2</div>
       </td>
     </tr>
-    <tr class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable">
+    <tr class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" tabindex="0">
       <!--v-if-->
       <td class="oxd-padding-cell" style="width: 17%;">
         <div>Data 3</div>
