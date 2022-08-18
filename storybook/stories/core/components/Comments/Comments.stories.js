@@ -317,7 +317,8 @@ EmptyCommentsWithPlaceholder.args = {
   allowToEdit: true,
   allowToDelete: true,
   enableAvatar: true,
-  scrollHeight: 300,
+  scrollHeight: 500,
+  commentThreadMinHeight: 500,
 };
 
 export const EmptyCommentsWithoutPlaceholder = Template.bind({});

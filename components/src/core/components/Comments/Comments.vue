@@ -10,7 +10,13 @@
     >
       <div
         v-if="!(hideEmptyPlaceholder || hasCommentsInside)"
-        class="oxd-comment-no-notes-found-container d-flex justify-center"
+        class="
+          oxd-comment-no-notes-found-container
+          d-flex
+          justify-center
+          align-center
+        "
+        :style="{'min-height': `${commentThreadMinHeight}px`}"
       >
         <div class="oxd-comment-no-notes-found-wrapper">
           <oxd-icon
@@ -226,9 +232,7 @@ export default defineComponent({
 
     const commentGroupsContainerStyles = computed(() => {
       return {
-        'min-height': hasCommentsInside.value
-          ? `${props.commentThreadMinHeight}px`
-          : undefined,
+        'min-height': `${props.commentThreadMinHeight}px`,
         height:
           hasCommentsInside.value && props.scrollHeight > 0
             ? `${props.scrollHeight}px`
