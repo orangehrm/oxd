@@ -6,7 +6,7 @@
       '--empty': !$slots.default,
     }"
     novalidate
-    v-focus-first-element
+    v-focus-first-element:return-focus
     @submit.prevent="onSubmit"
     @reset.prevent="onReset"
   >

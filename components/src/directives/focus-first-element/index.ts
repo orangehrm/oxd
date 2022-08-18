@@ -9,6 +9,7 @@ const excludeElements =
   'button:not(.oxd-dialog-close-button,.modal-reset-button)';
 const firstFocusedElementsOnMounted = new Map<string | null, Element>();
 const firstFocusedElementsOnUpdated = new Map<string | null, Element>();
+let previosFocusedElement: Element | null;
 
 const focusOnFirstElement = (
   element: Element,
@@ -23,6 +24,15 @@ const focusOnFirstElement = (
 };
 
 const focusonFirstElementDirective: Directive = {
+  beforeMount(el, binding, vnode, prevVnode) {
+    const {arg} = binding;
+    if (arg === 'return-focus') {
+      previosFocusedElement = document.activeElement;
+      if (!previosFocusedElement || previosFocusedElement == document.body){
+        previosFocusedElement = null;
+      }
+    }
+  },
   updated(el: FocusFirstHTMLElement, binding, vnode: VNode) {
     const updatedFocusFirstElement = el.querySelectorAll(
       focusableElements + ', ' + excludeElements,
@@ -46,8 +56,10 @@ const focusonFirstElementDirective: Directive = {
   beforeUnmount(el: FocusFirstHTMLElement, binding, vnode: VNode) {
     const {arg} = binding;
     if (arg === 'return-focus') {
-      if (el.activeElement && (el.activeElement as HTMLElement).offsetParent) {
-        (el.activeElement as HTMLElement).focus();
+      if (previosFocusedElement as HTMLElement && 
+        (previosFocusedElement as HTMLElement).offsetParent !== null
+        ) {
+        (previosFocusedElement as HTMLElement).focus();
       } else {
         let rightPanel = binding.instance?.$root?.$el.parentNode;
         if (!rightPanel) {

@@ -122,7 +122,7 @@ export default defineComponent({
     let inputTime = props.modelValue || '0';
 
     const state = reactive({
-      time: '01:00',
+      time: props.allowEmpty ? null : '01:00',
       am: true,
       pickerInput: props.modelValue,
     });

@@ -53,12 +53,12 @@ export default {
       },
     },
     scrollHeight: {
-      control: {type: 'number'},
+      control: {type: 'text'},
       defaultValue: 0,
       table: {
         type: {
           summary:
-            'Set number to enable scroll and max height. The default value is 0',
+            'Set number to enable scroll and max height. The default value is null',
         },
       },
     },
@@ -258,7 +258,7 @@ Default.args = {
   allowToEdit: true,
   allowToDelete: true,
   enableAvatar: true,
-  scrollHeight: 300,
+  scrollHeight: '300px',
   unsavedAddCommentErrorMsg: 'Comment should be either updated or removed',
   commentDeleteConfirmationMsg:
     'The current comment will be permanently deleted. Are you sure you want to continue?',
@@ -271,7 +271,7 @@ ScrollSettings.args = {
   allowToEdit: true,
   allowToDelete: true,
   enableAvatar: true,
-  scrollHeight: 300,
+  scrollHeight: '300px',
   scrollSettings: {
     mode: SMOOTH,
     scrollTo: END,
@@ -285,7 +285,7 @@ ReadOnly.args = {
   allowToEdit: false,
   allowToDelete: false,
   enableAvatar: true,
-  scrollHeight: 350,
+  scrollHeight: '350px',
   readOnly: true,
 };
 
@@ -296,7 +296,7 @@ HideAddInput.args = {
   allowToEdit: false,
   allowToDelete: false,
   enableAvatar: true,
-  scrollHeight: 350,
+  scrollHeight: '350px',
   hideAddInput: true,
 };
 
@@ -307,7 +307,7 @@ Disabled.args = {
   allowToEdit: false,
   allowToDelete: false,
   enableAvatar: true,
-  scrollHeight: 350,
+  scrollHeight: '350px',
   disabled: true,
 };
 
@@ -317,7 +317,8 @@ EmptyCommentsWithPlaceholder.args = {
   allowToEdit: true,
   allowToDelete: true,
   enableAvatar: true,
-  scrollHeight: 300,
+  scrollHeight: '500px',
+  commentThreadMinHeight: '500px',
 };
 
 export const EmptyCommentsWithoutPlaceholder = Template.bind({});
@@ -326,7 +327,7 @@ EmptyCommentsWithoutPlaceholder.args = {
   allowToEdit: true,
   allowToDelete: true,
   enableAvatar: true,
-  scrollHeight: 300,
+  scrollHeight: '300px',
   hideEmptyPlaceholder: true,
 };
 
@@ -338,7 +339,7 @@ WithHeaderLabel.args = {
   allowToEdit: true,
   allowToDelete: true,
   enableAvatar: true,
-  scrollHeight: 300,
+  scrollHeight: '300px',
 };
 
 const TemplateSchema = (args) => ({
@@ -378,7 +379,7 @@ const sample = {
               allowToEdit: false,
               allowToDelete: false,
               enableAvatar: true,
-              scrollHeight: 250,
+              scrollHeight: '250px',
             },
             listeners: {
               onAddComment: (note) => {
