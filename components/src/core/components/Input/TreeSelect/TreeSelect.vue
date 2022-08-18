@@ -54,6 +54,12 @@
                 <oxd-checkbox-input
                   :modelValue="isAllSelected"
                   @update:modelValue="ToggleSelectAll($event)"
+                  @keyup.esc="onCloseDropdown"
+                  @keydown.enter.prevent="
+                    isAllSelected
+                      ? ToggleSelectAll(false)
+                      : ToggleSelectAll(true)
+                  "
                 ></oxd-checkbox-input>
               </div>
               <div class="all-text">{{ $vt('All') }}</div>
@@ -62,7 +68,7 @@
           </div>
 
           <div class="tree-select-table-container">
-            <table class="tree-select-table">
+            <table cellpadding="0" class="tree-select-table">
               <tr
                 v-for="(option, i) in optionsArr"
                 :key="i"
@@ -77,12 +83,16 @@
                       selectOptionsOnCheckbox($event, option.id)
                     "
                     :disabled="option._disabled"
+                    @keyup.esc="onCloseDropdown"
+                    @keydown.enter.prevent="
+                      keyUpEnterOnCheckbox($event, option)
+                    "
                   ></oxd-checkbox-input>
                 </td>
                 <td
                   :style="
-                    'display: flex ; width: 95%; padding-left:' +
-                      (option.level * 20 - 20) +
+                    'display: flex ; width: fit-content; margin-left:5%; padding-left:' +
+                      (option._level * 20 - 20) +
                       'px'
                   "
                 >
@@ -95,6 +105,7 @@
                       :withContainer="false"
                       @keydown.enter="expandIconClicked(option)"
                       @click="expandIconClicked(option)"
+                      @keyup.esc.prevent="onCloseDropdown"
                     ></oxd-icon
                   ></span>
                   <span
@@ -129,7 +140,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, ref, PropType} from 'vue';
+import {computed, defineComponent, ref, PropType, watch} from 'vue';
 
 import SelectText from '../Select/SelectText.vue';
 import SelectDropdown from '../Select/SelectDropdown.vue';
@@ -147,7 +158,7 @@ import Button from '../../Button/Button.vue';
 import {Option, OptionProp, IdsObject, NOT_FOUND} from './type';
 
 export default defineComponent({
-  name: 'oxd-tree-select',
+  name: 'oxd-tree-select-input',
   components: {
     'oxd-select-text': SelectText,
     'oxd-select-dropdown': SelectDropdown,
@@ -206,9 +217,9 @@ export default defineComponent({
     },
     modelValue: {
       //Pre Selected Ids
-      type: Array as PropType<Array<string>>,
+      type: Array as PropType<Array<string>> | null,
       required: false,
-      default: () => [],
+      default: null,
     },
     selectParentsOnChildSelection: {
       type: Boolean,
@@ -234,10 +245,15 @@ export default defineComponent({
   setup: function(props, {emit}) {
     const selectedIdsObject = ref<IdsObject>({});
     const expandedIdsObject = ref<IdsObject>({});
-    const optionsArr = ref<Option[]>([...props.options]);
+    const optionsArr = ref<Option[]>([]);
     const dropdownOpen = ref<boolean>(false);
     const isAllSelected = ref<boolean>(false);
     const placeholderOption = ref<OptionProp | null>(null);
+
+    const spreadOptions = () => {
+      // optionsArr.value = [...props.options];
+      optionsArr.value = [...JSON.parse(JSON.stringify(props.options))];
+    };
 
     const setDisabledOptions = (option: Option) => {
       option['_disabled'] =
@@ -254,7 +270,7 @@ export default defineComponent({
       parentOptions: Option[],
     ) => {
       for (const option of optionsArr) {
-        option['level'] = level;
+        option['_level'] = level;
         option['parentOptions'] = parentOptions;
         setDisabledOptions(option);
         selectedIdsObject.value[option.id] = false; //initially makes all the ids false (unselected)
@@ -267,8 +283,6 @@ export default defineComponent({
         }
       }
     };
-
-    levelizeOptions(optionsArr.value, 1, []);
 
     const selectedIdsComputed = computed(() => {
       const selectedIds = Object.keys(selectedIdsObject.value).filter(
@@ -331,7 +345,7 @@ export default defineComponent({
 
     const getLevelOneOptions = () => {
       return optionsArr.value.filter(option_ => {
-        return option_.level === 1;
+        return option_._level === 1;
       });
     };
 
@@ -415,7 +429,7 @@ export default defineComponent({
         return obj.id == optionId;
       });
 
-      if (checkboxVal) {
+      if (checkboxVal && option) {
         addChildrenToSelectedIdsArray(option);
         if (props.selectParentsOnChildSelection) {
           selectParentsIfAllChildrenAreSelected(option);
@@ -426,7 +440,7 @@ export default defineComponent({
         if (isIfAllOptionsSelected()) {
           isAllSelected.value = true;
         }
-      } else {
+      } else if (!checkboxVal && option) {
         removeChildrenFromSelectedIdsArray(option);
         if (props.selectParentsOnChildSelection) {
           removeParentsOfUnselectedOptionsFromSelectedIdsArray(option);
@@ -533,7 +547,7 @@ export default defineComponent({
         if (selectedIdsObject.value[selectedId]) {
           const option = findOptionByOptionId(selectedId, optionsArr.value);
 
-          if (typeof option !== 'string' && option.level > 1) {
+          if (typeof option !== 'string' && option._level > 1) {
             for (const parent of option.parentOptions) {
               if (!expandedIdsObject.value[parent.id]) {
                 expandIconClicked(parent);
@@ -568,25 +582,28 @@ export default defineComponent({
     };
 
     const selectPreSelectedOptions = () => {
-      for (const selectedId of props.modelValue) {
-        if (selectedIdsObject.value[selectedId] != undefined) {
-          const option = findOptionByOptionId(selectedId, optionsArr.value);
-          if (typeof option !== 'string') {
-            addChildrenToSelectedIdsArray(option);
-            if (props.selectParentsOnChildSelection) {
-              selectParentsIfAllChildrenAreSelected(option);
-            }
-            if (isIfAllOptionsSelected()) {
-              isAllSelected.value = true;
+      if (props.modelValue && Array.isArray(props.modelValue)) {
+        for (const selectedId of props.modelValue) {
+          if (selectedIdsObject.value[selectedId] != undefined) {
+            const option = findOptionByOptionId(selectedId, optionsArr.value);
+            if (typeof option !== 'string') {
+              addChildrenToSelectedIdsArray(option);
+              if (props.selectParentsOnChildSelection) {
+                selectParentsIfAllChildrenAreSelected(option);
+                if (props.disableUncheckedOptions) {
+                  disableUncheckedOptions(option);
+                }
+              }
+              if (isIfAllOptionsSelected()) {
+                isAllSelected.value = true;
+              }
             }
           }
         }
       }
     };
 
-    selectPreSelectedOptions();
-
-    const selectOptionOnlabelClick = (option: option) => {
+    const selectOptionOnlabelClick = (option: Option) => {
       if (!option._disabled) {
         if (selectedIdsObject.value[option.id]) {
           selectOptionsOnCheckbox(false, option.id);
@@ -630,6 +647,11 @@ export default defineComponent({
       return placeholderString;
     };
 
+    const keyUpEnterOnCheckbox = ($e: KeyboardEvent, option: Option) => {
+      $e.stopPropagation();
+      selectOptionOnlabelClick(option);
+    };
+
     const onBlur = () => {
       emit('dropdown:blur');
     };
@@ -666,6 +688,39 @@ export default defineComponent({
       }
     };
 
+    const init = () => {
+      selectedIdsObject.value = {};
+      expandedIdsObject.value = {};
+      optionsArr.value = [];
+      dropdownOpen.value = false;
+      isAllSelected.value = false;
+      placeholderOption.value = null;
+      spreadOptions();
+      levelizeOptions(optionsArr.value, 1, []);
+      selectPreSelectedOptions();
+    };
+    init();
+
+    watch(
+      () => props.options,
+      () => {
+        init();
+      },
+    );
+
+    watch(
+      () => props.modelValue,
+      () => {
+        if (props.modelValue == null) {
+          //when clicked reset in schema form
+          init();
+        }
+      },
+      {
+        immediate: true,
+      },
+    );
+
     return {
       optionsArr,
       selectedIdsComputed,
@@ -684,6 +739,7 @@ export default defineComponent({
       onCloseDropdown,
       onToggleDropdown,
       getPlaceholderValue,
+      keyUpEnterOnCheckbox,
     };
   },
 });
