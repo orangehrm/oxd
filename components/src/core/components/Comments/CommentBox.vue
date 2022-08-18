@@ -115,7 +115,7 @@ export default defineComponent({
   },
   setup(props, {emit}) {
     const textareaComponent = ref(null);
-    let focused: boolean = false;
+    const focused = false;
 
     const labelClasses = computed((): object => {
       return {
@@ -139,6 +139,7 @@ export default defineComponent({
 
     const addComment = (e: Event) => {
       emit('addComment', e);
+      textareaComponent.value.$el.focus();
     };
 
     const keyupEnter = (e: Event) => {

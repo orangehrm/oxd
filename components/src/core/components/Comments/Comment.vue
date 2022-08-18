@@ -83,7 +83,7 @@
               class="oxd-input-field-error-message oxd-input-group__message"
               tag="span"
             >
-              {{ $vt(commentInlineValidationMsg) }}
+              {{ commentInlineValidationMsg }}
             </oxd-text>
             <div
               class="oxd-comment-content-footer-container d-flex align-center"
@@ -104,8 +104,18 @@
           </div>
         </div>
         <div class="oxd-comment-content-footer-container d-flex align-center">
-          <div v-if="comment.time" class="oxd-comment-content-commented-date">
+          <div
+            v-if="comment.time"
+            class="oxd-comment-content-commented-date d-flex align-center"
+          >
             {{ $vt('Date') }}: {{ comment.time }}
+            <oxd-chip
+              v-if="comment.edited"
+              :label="$vt('Edited')"
+              class="oxd-comment-edited-chip"
+              :background-color="'#e8eaef'"
+              :color="'#929baa'"
+            />
           </div>
         </div>
       </div>
@@ -117,7 +127,7 @@
     >
       <div class="comment-inline-delete-content-wrapper d-flex align-center">
         <oxd-text type="subtitle-2">
-          {{ $vt(commentDeleteConfirmationMsg) }}
+          {{ commentDeleteConfirmationMsg }}
         </oxd-text>
       </div>
       <div
@@ -157,12 +167,14 @@
 <script lang="ts">
 import {defineComponent, ref, computed, nextTick} from 'vue';
 import translateMixin from '../../../mixins/translate';
+import Chip from '@orangehrm/oxd/core/components/Chip/Chip.vue';
 import Label from '@orangehrm/oxd/core/components/Label/Label.vue';
 import oxdText from '@orangehrm/oxd/core/components/Text/Text.vue';
 import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue';
 import CommentBox from '@orangehrm/oxd/core/components/Comments/CommentBox.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import oxdButton from '@orangehrm/oxd/core/components/Button/Button.vue';
+import useTranslate from '../../../composables/useTranslate';
 
 export default defineComponent({
   name: 'oxd-comment',
@@ -170,6 +182,7 @@ export default defineComponent({
   mixins: [translateMixin],
 
   components: {
+    'oxd-chip': Chip,
     'oxd-label': Label,
     'oxd-icon-button': IconButton,
     'oxd-profile-pic': ProfilePic,
@@ -215,9 +228,14 @@ export default defineComponent({
       type: String,
       default: 'Comment should be either updated or removed',
     },
+    maxCharLength: {
+      type: Number,
+      default: 65535,
+    },
   },
 
   setup(props, {emit}) {
+    const {$t} = useTranslate();
     const editable = ref(false);
     const invalidCommentUpdate = ref(false);
     const invalidCommentSave = ref(false);
@@ -239,18 +257,40 @@ export default defineComponent({
       commentOriginalContent.value.localeCompare(commentContent.value),
     );
 
+    const maxCharLengthMsg = $t('Should not exceed {{amount}} characters', {
+      amount: props.maxCharLength.toString(),
+    });
+
+    const shouldNotExceedCharLength = computed(() => {
+      const validation =
+        !commentContent.value ||
+        new String(commentContent.value).length <= props.maxCharLength ||
+        maxCharLengthMsg;
+      return validation;
+    });
+
     const commentInlineValidationMsg = computed((): string | boolean => {
       if (invalidCommentSave.value) {
-        return props.requiredEditCommentErrorMsg;
-      } else if (invalidCommentUpdate.value) {
-        return props.unsavedEditCommentErrorMsg;
-      } else {
-        return false;
+        return $t(props.requiredEditCommentErrorMsg);
       }
+      if (invalidCommentUpdate.value) {
+        return $t(props.unsavedEditCommentErrorMsg);
+      }
+      if (typeof shouldNotExceedCharLength.value === 'string') {
+        return $t(shouldNotExceedCharLength.value);
+      }
+      return false;
     });
 
     const enableEditMode = (editMode = true) => {
       editable.value = editMode;
+      deleteMode.value = false;
+      if (!editMode) {
+        commentContent.value = commentOriginalContent.value;
+        invalidCommentUpdate.value = false;
+        invalidCommentSave.value = false;
+        emit('commentEditHasError', false);
+      }
     };
 
     const enableDeleteMode = async (state = false) => {
@@ -264,7 +304,7 @@ export default defineComponent({
       }
     };
 
-    const cancelEditMode = (e: Event) => {
+    const cancelEditMode = () => {
       commentContent.value = commentOriginalContent.value;
       invalidCommentUpdate.value = false;
       invalidCommentSave.value = false;
@@ -275,6 +315,7 @@ export default defineComponent({
     const onInputComment = (value: string) => {
       commentContent.value = value;
       invalidCommentSave.value = false;
+      shouldNotExceedCharLength.value;
       emit('commentEditHasError', false);
       if (commentContent.value === '') {
         invalidCommentSave.value = true;
@@ -283,13 +324,21 @@ export default defineComponent({
       } else if (hasContentChanged.value === 0) {
         invalidCommentUpdate.value = false;
         emit('commentEditHasError', false);
+      } else if (shouldNotExceedCharLength.value) {
+        invalidCommentSave.value = false;
+        invalidCommentUpdate.value = false;
+        emit('commentEditHasError', false);
       } else {
         emit('commentEditHasError', true);
       }
     };
 
-    const blurCommentBox = (e: Event) => {
-      if (hasContentChanged.value === 0) {
+    const blurCommentBox = () => {
+      if (typeof shouldNotExceedCharLength.value === 'string') {
+        invalidCommentSave.value = false;
+        invalidCommentUpdate.value = false;
+        emit('commentEditHasError', true);
+      } else if (hasContentChanged.value === 0) {
         invalidCommentUpdate.value = false;
         emit('commentEditHasError', false);
       } else {

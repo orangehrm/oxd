@@ -56,6 +56,7 @@ import useField from '../../../composables/useField';
 import translateMixin from '../../../mixins/translate';
 import CheckboxGroup from '@orangehrm/oxd/core/components/Input/CheckboxGroup.vue';
 import RadioPillGroup from '@orangehrm/oxd/core/components/Input/RadioPills/RadioPillGroup.vue';
+import RadioGroup from '@orangehrm/oxd/core/components/Input/RadioGroup.vue';
 
 export default defineComponent({
   name: 'oxd-input-field',
@@ -81,6 +82,7 @@ export default defineComponent({
     'oxd-quicksearch-input': QuickSearchInput,
     'oxd-comments': Comments,
     'oxd-radio-pill-group': RadioPillGroup,
+    'oxd-radiogroup-input': RadioGroup,
   },
 
   mixins: [translateMixin],
@@ -154,7 +156,7 @@ export default defineComponent({
       onReset,
     });
 
-    const onChange = ($event) => {
+    const onChange = $event => {
       if (!dirty.value) {
         dirty.value = true;
         startWatcher();

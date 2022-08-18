@@ -1,9 +1,6 @@
 <template>
   <div class="oxd-comment-groups-wrapper">
-    <div
-      v-if="headerLabel && commentGroups.length > 0"
-      class="oxd-comment-header-label-wrapper"
-    >
+    <div v-if="showHeaderLabel" class="oxd-comment-header-label-wrapper">
       <oxd-label :label="headerLabel" />
     </div>
     <div
@@ -11,10 +8,24 @@
       :class="commentGroupsContainerClasses"
       :style="commentGroupsContainerStyles"
     >
+      <div
+        v-if="!(hideEmptyPlaceholder || hasCommentsInside)"
+        class="oxd-comment-no-notes-found-container d-flex justify-center"
+      >
+        <div class="oxd-comment-no-notes-found-wrapper">
+          <oxd-icon
+            class="oxd-comment-no-notes-found justify-center"
+            name="oxd-no-notes-found"
+          />
+          <div class="oxd-comment-no-notes-found-label">
+            {{ $vt(emptyPlaceholderMsg) }}
+          </div>
+        </div>
+      </div>
       <ul
         ref="commentGroupsList"
         class="oxd-comment-groups-list"
-        v-if="commentGroups && commentGroups.length > 0"
+        v-if="hasCommentsInside"
       >
         <li
           class="oxd-comment-group"
@@ -42,6 +53,7 @@
             :requiredEditCommentErrorMsg="requiredEditCommentErrorMsg"
             :unsavedEditCommentErrorMsg="unsavedEditCommentErrorMsg"
             :commentDeleteConfirmationMsg="commentDeleteConfirmationMsg"
+            :maxCharLength="commentEditMaxCharLength"
             @commentEditHasError="commentEditHasError"
             @onUpdateComment="onUpdateComment"
             @onDeleteComment="onDeleteComment"
@@ -50,7 +62,7 @@
       </ul>
     </div>
     <oxd-comment-box
-      v-if="!(readOnly || disabled)"
+      v-if="!(readOnly || disabled || hideAddInput)"
       :label="commentBoxLabel"
       :labelIcon="'oxd-note'"
       :actionButtonIcon="'oxd-add'"
@@ -67,20 +79,32 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, computed, onMounted, nextTick} from 'vue';
+import {
+  defineComponent,
+  ref,
+  computed,
+  onMounted,
+  nextTick,
+  PropType,
+} from 'vue';
 import Comment from './Comment.vue';
 import Label from '@orangehrm/oxd/core/components/Label/Label.vue';
 import CommentBox from './CommentBox.vue';
 import {END, Scroll, SMOOTH} from './types';
+import translateMixin from '../../../mixins/translate';
+import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
   name: 'oxd-comments',
 
   components: {
+    'oxd-icon': Icon,
     'oxd-label': Label,
     'oxd-comment': Comment,
     'oxd-comment-box': CommentBox,
   },
+
+  mixins: [translateMixin],
 
   emits: [
     'update:modelValue',
@@ -88,6 +112,7 @@ export default defineComponent({
     'updateComment',
     'deleteComment',
     'commentEditHasError',
+    'commentChanged',
   ],
 
   props: {
@@ -95,7 +120,7 @@ export default defineComponent({
       type: Object,
     },
     commentGroups: {
-      type: Object,
+      type: Array as PropType<any>,
     },
     allowToEdit: {
       type: Boolean,
@@ -109,7 +134,11 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    scrollMaxHeight: {
+    commentThreadMinHeight: {
+      type: Number,
+      default: 216,
+    },
+    scrollHeight: {
       type: Number,
       default: 0,
     },
@@ -151,21 +180,60 @@ export default defineComponent({
     scrollSettings: {
       type: Object,
     },
+    commentEditMaxCharLength: {
+      type: Number,
+    },
+    hideAddInput: {
+      type: Boolean,
+      default: false,
+    },
+    hideEmptyPlaceholder: {
+      type: Boolean,
+      default: false,
+    },
+    emptyPlaceholderMsg: {
+      type: String,
+      default: 'Sorry, No Comments Found!',
+    },
   },
   setup(props, {emit}) {
     const commentGroupsList = ref(null);
     const comment = ref<string>('');
 
+    const hasCommentsInside = computed(() => {
+      let totalCommentsLength = 0;
+      props.commentGroups?.forEach((commentGroup) => {
+        totalCommentsLength =
+          totalCommentsLength + commentGroup?.comments?.length;
+      });
+      return totalCommentsLength > 0;
+    });
+
+    const showHeaderLabel = computed(() => {
+      if (props.hideEmptyPlaceholder) {
+        return props.headerLabel && hasCommentsInside.value;
+      } else {
+        return props.headerLabel;
+      }
+    });
+
     const commentGroupsContainerClasses = computed(() => {
       return {
-        'scroll-vertical': props.scrollMaxHeight,
+        'd-flex justify-center align-center': !hasCommentsInside,
+        'scroll-vertical': props.scrollHeight,
       };
     });
 
     const commentGroupsContainerStyles = computed(() => {
+      debugger;
       return {
-        'max-height':
-          props.scrollMaxHeight > 0 ? `${props.scrollMaxHeight}px` : undefined,
+        'min-height': hasCommentsInside.value
+          ? `${props.commentThreadMinHeight}px`
+          : undefined,
+        height:
+          hasCommentsInside.value && props.scrollHeight > 0
+            ? `${props.scrollHeight}px`
+            : undefined,
       };
     });
 
@@ -186,6 +254,7 @@ export default defineComponent({
     const onInputComment = (value: string) => {
       comment.value = value;
       emit('update:modelValue', comment.value);
+      emit('commentChanged', comment.value);
     };
 
     const doScroll = async () => {
@@ -219,6 +288,7 @@ export default defineComponent({
     const onUpdateComment = (
       e: Event,
       data: {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         comment: any;
         value: string;
       },
@@ -240,6 +310,8 @@ export default defineComponent({
       onUpdateComment,
       onDeleteComment,
       commentGroupsList,
+      hasCommentsInside,
+      showHeaderLabel,
     };
   },
 });

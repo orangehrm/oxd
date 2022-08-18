@@ -2,7 +2,8 @@
 @import 'variables';
 
 tbody > .oxd-table-row {
-  &:hover {
+  &:hover,
+  &:focus {
     color: $oxd-table-row-hover-font-color;
     background-color: $oxd-table-row-hover-bg-color;
   }
