@@ -1,3 +1,5 @@
+2022-08-16 - 8a27adb9dfff1bbe7324caedbce570b0a6f25687 - Form/Form.vue, focus-first-element/index.ts - focus fist element not return back to correct element
+
 2022-08-14 - 87ed14348cc352d130fc59f79250129674e0c11a - Input/Time/TimeInput.vue - Added allowEmpty prop to enable placeholder text suppport, set HH-MM AM for default placeholder value and fix movelValue setting issue
 
 2022-08-10 - f92f4a97da8b281f841c643da93ef0a74bc68ce5 - Icon/Icons.ts - Add 3 new icons
