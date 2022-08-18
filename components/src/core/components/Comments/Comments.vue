@@ -16,7 +16,7 @@
           justify-center
           align-center
         "
-        :style="{'min-height': `${commentThreadMinHeight}px`}"
+        :style="{'min-height': `${commentThreadMinHeight}`}"
       >
         <div class="oxd-comment-no-notes-found-wrapper">
           <oxd-icon
@@ -142,7 +142,7 @@ export default defineComponent({
     },
     commentThreadMinHeight: {
       type: Number,
-      default: 216,
+      default: '216px',
     },
     scrollHeight: {
       type: Number,
@@ -232,7 +232,7 @@ export default defineComponent({
 
     const commentGroupsContainerStyles = computed(() => {
       return {
-        'min-height': `${props.commentThreadMinHeight}px`,
+        'min-height': `${props.commentThreadMinHeight}`,
         height:
           hasCommentsInside.value && props.scrollHeight > 0
             ? `${props.scrollHeight}px`
