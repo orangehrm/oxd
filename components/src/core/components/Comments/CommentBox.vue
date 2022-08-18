@@ -24,19 +24,12 @@
       />
     </div>
     <oxd-icon-button
-      v-if="actionButtonIcon && !actionButtonLabel"
+      v-if="actionButtonIcon"
       data-test="add-comment-button"
       class="oxd-comment-box-add-button"
       :name="actionButtonIcon"
       :tooltip="actionButtonTooltip"
       size="small"
-      @click="addComment"
-    />
-    <oxd-button
-      v-else
-      class="oxd-comment-box-add-button-large"
-      display-type="secondary"
-      :label="actionButtonLabel"
       @click="addComment"
     />
   </div>
@@ -48,7 +41,6 @@ import Label from '@orangehrm/oxd/core/components/Label/Label.vue';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
-import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import Textarea from '@orangehrm/oxd/core/components/Textarea/Textarea.vue';
 import {
   TextareaResize,
@@ -64,7 +56,6 @@ export default defineComponent({
     'oxd-label': Label,
     'oxd-text': Text,
     'oxd-icon': Icon,
-    'oxd-button': Button,
     'oxd-icon-button': IconButton,
     'oxd-textarea': Textarea,
   },
@@ -83,9 +74,6 @@ export default defineComponent({
       type: String,
     },
     actionButtonIcon: {
-      type: String,
-    },
-    actionButtonLabel: {
       type: String,
     },
     actionButtonTooltip: {

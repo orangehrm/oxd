@@ -72,7 +72,6 @@
       :hasError="hasError"
       :unsavedAddCommentErrorMsg="unsavedAddCommentErrorMsg"
       :preventAddOnKeyPressEnter="true"
-      :actionButtonLabel="actionButtonLabel"
       @update:modelValue="onInputComment"
       @addComment="onAddComment"
     />
@@ -195,9 +194,6 @@ export default defineComponent({
     emptyPlaceholderMsg: {
       type: String,
       default: 'Sorry, No Comments Found!',
-    },
-    actionButtonLabel: {
-      type: String,
     },
   },
   setup(props, {emit}) {
