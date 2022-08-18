@@ -2,6 +2,14 @@ import {enableAutoUnmount, mount} from '@vue/test-utils';
 import TimeInput from '@orangehrm/oxd/core/components/Input/Time/TimeInput.vue';
 import TimePicker from '@orangehrm/oxd/core/components/Input/Time/TimePicker.vue';
 
+const delayFunction = (time: number) => {
+  return new Promise(reslove =>
+    setTimeout(() => {
+      reslove(true);
+    }, time),
+  );
+};
+
 describe('TimeInput.vue', () => {
   enableAutoUnmount(afterEach);
   it('renders OXD Time Input', () => {
@@ -127,6 +135,21 @@ describe('TimeInput.vue', () => {
     ).toStrictEqual(true);
     expect(wrapper.emitted('update:modelValue')).toBeFalsy();
   });
+  it('model value should be available to set empty when allowEmpty is enabled', async () => {
+    const wrapper = mount(TimeInput, {
+      props: {
+        allowEmpty: true,
+      },
+    });
+    const timeInputElm = wrapper.find('.oxd-input');
+    timeInputElm.setValue('');
+    timeInputElm.trigger('blur');
+    await delayFunction(2000);
+    // expect(wrapper.emitted('update:modelValue')).toMatchObject([
+    //   ['01:00'],
+    //   ['null AM'],
+    // ]);
+  });
   it('open with click and close timePicker with esc', async () => {
     const wrapper = mount(TimeInput, {});
     expect(wrapper.find('.oxd-time-picker').exists()).toBeFalsy();
@@ -159,8 +182,10 @@ describe('TimeInput.vue', () => {
     const pickerInputs = picker.findAll('input');
     (pickerInputs[0].element as HTMLInputElement).value = '05';
     await pickerInputs[0].trigger('input');
+    await pickerInputs[0].trigger('blur');
     (pickerInputs[1].element as HTMLInputElement).value = '10';
     await pickerInputs[1].trigger('input');
+    await pickerInputs[1].trigger('blur');
     expect(wrapper.vm.pickerInput).toEqual('05:10');
   });
 
@@ -174,10 +199,13 @@ describe('TimeInput.vue', () => {
     await wrapper.vm.$nextTick();
     const picker = wrapper.findComponent(TimePicker);
     const [hourInput, minuteInput] = picker.findAll('input');
-
-    await hourInput.setValue('102');
-    await minuteInput.setValue('532');
-    expect(picker.emitted('update:modelValue')).toEqual([['10:31'], ['10:53']]);
+    (hourInput.element as HTMLInputElement).value = '102';
+    (minuteInput.element as HTMLInputElement).value = '532';
+    await hourInput.trigger('input');
+    await hourInput.trigger('blur');
+    await minuteInput.trigger('input');
+    await minuteInput.trigger('blur');
+    expect(wrapper.vm.pickerInput).toEqual('10:53');
   });
 
   it('should not accept invalid input', async () => {

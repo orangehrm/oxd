@@ -21,11 +21,11 @@ import {
   ICON_SIZE_MEDIUM,
 } from '@orangehrm/oxd/core/components/Icon/types';
 import icons from 'bootstrap-icons/font/bootstrap-icons.json';
-import oxdIcons from '@orangehrm/oxd/core/components/Icon/icons'
+import oxdIcons from '@orangehrm/oxd/core/components/Icon/icons';
 
-const bootstrapIconsNames = Object.keys(icons)
-const oxdIconsNames = Object.keys(oxdIcons)
-const iconNames = [...bootstrapIconsNames, ...oxdIconsNames]
+const bootstrapIconsNames = Object.keys(icons);
+const oxdIconsNames = Object.keys(oxdIcons);
+const iconNames = [...bootstrapIconsNames, ...oxdIconsNames];
 
 export default {
   title: 'Button',
@@ -58,7 +58,7 @@ export default {
   },
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     return {args};
   },
@@ -132,7 +132,12 @@ LabelFeedback.argTypes = {
   displayType: {
     control: {
       type: 'select',
-      options: ['label-feedback-info', 'label-feedback-danger', 'label-feedback-warn', 'label-feedback-success'],
+      options: [
+        'label-feedback-info',
+        'label-feedback-danger',
+        'label-feedback-warn',
+        'label-feedback-success',
+      ],
     },
   },
 };

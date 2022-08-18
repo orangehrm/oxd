@@ -1,0 +1,87 @@
+<template>
+  <div>
+    <oxd-radio-group
+      @focus="onFocus()"
+      @blur="onBlur()"
+      @change="onChange()"
+      @onClick="onClick()"
+      :options="options"
+      v-model="modelValue"
+      :class="class"
+      @update:modelValue="updatedValue(event)"
+    >
+    </oxd-radio-group>
+    <br />
+    <div>
+      <span v-if="modelValue">Value Selected : {{ modelValue }}</span>
+    </div>
+    <div style="margin-top: 2rem; margin-bottom: 2rem">
+      <span v-if="FocusEvent">Focus Event Triggered</span>
+      <span v-if="BlurEvent">Blur Event Triggered</span>
+      <span v-if="ChangeEvent">Change Event Triggered</span>
+      <span v-if="ClickEvent">Click Event Triggered</span>
+    </div>
+  </div>
+</template>
+
+<script>
+import RadioGroup from '@orangehrm/oxd/core/components/Input/RadioGroup';
+
+export default {
+  data() {
+    return {
+      FocusEvent: false,
+      BlurEvent: false,
+      ChangeEvent: false,
+      ClickEvent: false,
+      modelValue: [],
+      options: [
+        {
+          id: 1,
+          label: 'Job',
+        },
+        {
+          id: 2,
+          label: 'Salary',
+        },
+      ],
+    };
+  },
+
+  components: {
+    'oxd-radio-group': RadioGroup,
+  },
+  methods: {
+    clearFields() {
+      this.FocusEvent = false;
+      this.BlurEvent = false;
+      this.ChangeEvent = false;
+      this.ClickEvent = false;
+    },
+
+    updatedValue(event) {
+      this.clearFields();
+    },
+
+    onFocus() {
+      this.clearFields();
+      this.FocusEvent = true;
+    },
+
+    onBlur() {
+      this.clearFields();
+      this.BlurEvent = true;
+    },
+
+    onChange() {
+      this.clearFields();
+      this.ChangeEvent = true;
+    },
+
+    onClick() {
+      this.clearFields();
+      this.ClickEvent = true;
+    },
+  },
+};
+</script>
