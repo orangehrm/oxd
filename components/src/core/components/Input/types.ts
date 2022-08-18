@@ -19,10 +19,9 @@ export const FILE_UPDATE_MODES = [
   ATTACHMENT_UPDATE_MODE_REPLACE,
   ATTACHMENT_UPDATE_MODE_DELETE,
 ];
-export type FileUpdateMode =
-  | typeof ATTACHMENT_UPDATE_MODE_KEEP
+export type FileUpdateMode = typeof ATTACHMENT_UPDATE_MODE_KEEP
   | typeof ATTACHMENT_UPDATE_MODE_REPLACE
-    typeof ATTACHMENT_UPDATE_MODE_DELETE;
+  | typeof ATTACHMENT_UPDATE_MODE_DELETE;
 
 export interface Option {
   id: number;

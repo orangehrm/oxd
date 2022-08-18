@@ -109,7 +109,7 @@ export default defineComponent({
       default: {},
     },
     initialFileUpdateMode: {
-      type: String,
+      type: String as PropType<string>,
       default: ATTACHMENT_UPDATE_MODE_KEEP,
       validator: function(value: FileUpdateMode) {
         return FILE_UPDATE_MODES.indexOf(value) !== -1;
@@ -159,7 +159,7 @@ export default defineComponent({
     return {
       focused: false,
       inputValue: '',
-      fileUpdateMode: "keep"
+      fileUpdateMode: ""
     };
   },
 
@@ -291,6 +291,9 @@ export default defineComponent({
       this.inputValue = '';
     },
   },
+  mounted(){
+    this.fileUpdateMode = this.initialFileUpdateMode;
+  }
 });
 </script>
 
