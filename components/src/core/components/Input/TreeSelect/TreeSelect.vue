@@ -217,9 +217,9 @@ export default defineComponent({
     },
     modelValue: {
       //Pre Selected Ids
-      type: Array as PropType<Array<string>>,
+      type: Array as PropType<Array<string>> | null,
       required: false,
-      default: () => [],
+      default: null,
     },
     selectParentsOnChildSelection: {
       type: Boolean,
@@ -711,10 +711,8 @@ export default defineComponent({
     watch(
       () => props.modelValue,
       () => {
-        if (
-          props.modelValue == null ||
-          (Array.isArray(props.modelValue) && props.modelValue.length == 0)
-        ) {
+        if (props.modelValue == null) {
+          //when clicked reset in schema form
           init();
         }
       },
