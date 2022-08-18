@@ -14,6 +14,14 @@ export type Position = typeof LEFT | typeof RIGHT | typeof TOP | typeof BOTTOM;
 export const ATTACHMENT_UPDATE_MODE_KEEP = 'keep';
 export const ATTACHMENT_UPDATE_MODE_REPLACE = 'replace';
 export const ATTACHMENT_UPDATE_MODE_DELETE = 'delete';
+export const FILE_UPDATE_MODES = [
+  ATTACHMENT_UPDATE_MODE_KEEP,
+  ATTACHMENT_UPDATE_MODE_REPLACE,
+  ATTACHMENT_UPDATE_MODE_DELETE,
+];
+export type FileUpdateMode = typeof ATTACHMENT_UPDATE_MODE_KEEP
+  | typeof ATTACHMENT_UPDATE_MODE_REPLACE
+  | typeof ATTACHMENT_UPDATE_MODE_DELETE;
 
 export interface Option {
   id: number;
@@ -23,4 +31,3 @@ export interface Option {
 }
 
 export type DropdownOptions = Array<Option>;
-

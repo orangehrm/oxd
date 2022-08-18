@@ -30,6 +30,7 @@
             optionLabel="Keep Current"
           />
           <oxd-radio-input
+            v-if="deletable"
             v-model="fileUpdateMode"
             id="check2"
             value="delete"
@@ -79,7 +80,12 @@
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
-import {OutputFile} from './types';
+import {
+  ATTACHMENT_UPDATE_MODE_KEEP,
+  FileUpdateMode,
+  FILE_UPDATE_MODES,
+  OutputFile,
+} from './types';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Radio from '@orangehrm/oxd/core/components/Input/RadioInput.vue';
 
@@ -101,6 +107,17 @@ export default defineComponent({
     inputFile: {
       type: Object as PropType<OutputFile>,
       default: {},
+    },
+    initialFileUpdateMode: {
+      type: String as PropType<string>,
+      default: ATTACHMENT_UPDATE_MODE_KEEP,
+      validator: function(value: FileUpdateMode) {
+        return FILE_UPDATE_MODES.indexOf(value) !== -1;
+      },
+    },
+    deletable: {
+      type: Boolean,
+      default: true,
     },
     style: {
       type: Object,
@@ -135,14 +152,14 @@ export default defineComponent({
   },
   beforeMount() {
     if (this.inputFile.name) {
-      this.setModelValue(this.inputFile);
+      this.setModelValue();
     }
   },
   data(): State {
     return {
       focused: false,
       inputValue: '',
-      fileUpdateMode: 'keep',
+      fileUpdateMode: ""
     };
   },
 
@@ -171,7 +188,7 @@ export default defineComponent({
       },
     },
     fileUpdateMode() {
-     this.setModelValue(this.inputFile);
+      this.setModelValue();
     },
   },
 
@@ -260,12 +277,12 @@ export default defineComponent({
     onFilesReadComplete(files: OutputFile[]) {
       this.$emit('update:modelValue', files);
     },
-    setModelValue(inputFile: OutputFile) {
+    setModelValue() {
       const modelArr = [
         {
-          name: inputFile.name,
-          type: inputFile.type,
-          size: inputFile.size,
+          name: null,
+          type: null,
+          size: null,
           fileUpdateMode: this.fileUpdateMode,
         },
       ];
@@ -274,6 +291,9 @@ export default defineComponent({
       this.inputValue = '';
     },
   },
+  mounted(){
+    this.fileUpdateMode = this.initialFileUpdateMode;
+  }
 });
 </script>
 

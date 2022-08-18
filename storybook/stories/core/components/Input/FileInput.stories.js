@@ -10,15 +10,35 @@ export default {
     inputFile: {
       control: {type: 'object'},
       table: {
-        type: {summary: 'Contains the file that should can be downloaded by the download box'},
+        type: {
+          summary:
+            'Contains the file that should can be downloaded by the download box',
+        },
       },
     },
     downloadBoxClick: {
       control: {type: 'function'},
       table: {
-        type: {summary: 'function that should be triggered once the download box clickd'},
+        type: {
+          summary:
+            'function that should be triggered once the download box clickd',
+        },
       },
-    }
+    },
+    initialFileUpdateMode: {
+      control: {type: 'text'},
+      table: {
+        type: {summary: 'Initial update mode of the file'},
+      },
+    },
+    deletable: {
+      control: {type: 'boolean'},
+      table: {
+        type: {
+          summary: 'Whether the delete option of the file is avialable or not',
+        },
+      },
+    },
   },
 };
 
@@ -108,37 +128,116 @@ Disabled.args = {
   disabled: true,
 };
 
+const sampleInputFile = {
+  name: 'sample.pdf',
+  type: 'application/pdf',
+  size: 101273,
+};
+
 export const WithDownloadBox = Template.bind({});
 WithDownloadBox.args = {
-  inputFile: {
-    name: 'sample.pdf',
-    type: 'application/pdf',
-    size: 101273,
-    base64:
-      'JVBERi0xLjcKCjEgMCBvYmogICUgZW50cnkgcG9pbnQKPDwKICAvVHlwZSAvQ2F0YWxvZwogIC9QYWdlcyAyIDAgUgo+PgplbmRvYmoKCjIgMCBvYmoKPDwKICAvVHlwZSAvUGFnZXMKICAvTWVkaWFCb3ggWyAwIDAgMjAwIDIwMCBdCiAgL0NvdW50IDEKICAvS2lkcyBbIDMgMCBSIF0KPj4KZW5kb2JqCgozIDAgb2JqCjw8CiAgL1R5cGUgL1BhZ2UKICAvUGFyZW50IDIgMCBSCiAgL1Jlc291cmNlcyA8PAogICAgL0ZvbnQgPDwKICAgICAgL0YxIDQgMCBSIAogICAgPj4KICA+PgogIC9Db250ZW50cyA1IDAgUgo+PgplbmRvYmoKCjQgMCBvYmoKPDwKICAvVHlwZSAvRm9udAogIC9TdWJ0eXBlIC9UeXBlMQogIC9CYXNlRm9udCAvVGltZXMtUm9tYW4KPj4KZW5kb2JqCgo1IDAgb2JqICAlIHBhZ2UgY29udGVudAo8PAogIC9MZW5ndGggNDQKPj4Kc3RyZWFtCkJUCjcwIDUwIFRECi9GMSAxMiBUZgooSGVsbG8sIHdvcmxkISkgVGoKRVQKZW5kc3RyZWFtCmVuZG9iagoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAwMDAwIG4gCjAwMDAwMDAwNzkgMDAwMDAgbiAKMDAwMDAwMDE3MyAwMDAwMCBuIAowMDAwMDAwMzAxIDAwMDAwIG4gCjAwMDAwMDAzODAgMDAwMDAgbiAKdHJhaWxlcgo8PAogIC9TaXplIDYKICAvUm9vdCAxIDAgUgo+PgpzdGFydHhyZWYKNDkyCiUlRU9G',
+  inputFile:sampleInputFile ,
+  downloadBoxClick: () => {
+    window.alert('Downloading the document!');
+  },
+};
+
+WithDownloadBox.parameters = {
+  docs: {
+    source: {
+      code:
+      '<oxd-file-input \n :inputFile=' +
+      JSON.stringify(sampleInputFile) +
+      '\n :downloadBoxClick: ()=>{ window.alert("Downloading the document!" }'+
+      '\n/>',
+    },
+  },
+};
+
+export const DownloadBoxWithoutDeleteOption = Template.bind({});
+DownloadBoxWithoutDeleteOption.args = {
+  inputFile: sampleInputFile,
+  deletable: false,
+  downloadBoxClick: () => {
+    window.alert('Downloading the document!');
+  },
+};
+
+DownloadBoxWithoutDeleteOption.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-file-input \n :inputFile=' +
+        JSON.stringify(sampleInputFile) +
+        '\n :deletable=false'+
+        '\n :downloadBoxClick: ()=>{ window.alert("Downloading the document!" }'+
+        '\n/>',
+    },
+  },
+};
+
+export const DownloadBoxWithInitialUpdateMode = Template.bind({});
+DownloadBoxWithInitialUpdateMode.args = {
+  inputFile: sampleInputFile,
+  initialFileUpdateMode: "delete",
+  downloadBoxClick: () => {
+    window.alert('Downloading the document!');
+  },
+};
+
+DownloadBoxWithInitialUpdateMode.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-file-input \n :inputFile=' +
+        JSON.stringify(sampleInputFile) +
+        '\n :initialFileUpdateMode="delete"'+
+        '\n :downloadBoxClick: ()=>{ window.alert("Downloading the document!" }'+
+        '\n/>',
+    },
   },
 };
 
 export const WithDownloadBoxDisabled = Template.bind({});
 WithDownloadBoxDisabled.args = {
   disabled: true,
-  inputFile: {
-    name: 'sample.pdf',
-    type: 'application/pdf',
-    size: 101273,
-    base64:
-      'JVBERi0xLjcKCjEgMCBvYmogICUgZW50cnkgcG9pbnQKPDwKICAvVHlwZSAvQ2F0YWxvZwogIC9QYWdlcyAyIDAgUgo+PgplbmRvYmoKCjIgMCBvYmoKPDwKICAvVHlwZSAvUGFnZXMKICAvTWVkaWFCb3ggWyAwIDAgMjAwIDIwMCBdCiAgL0NvdW50IDEKICAvS2lkcyBbIDMgMCBSIF0KPj4KZW5kb2JqCgozIDAgb2JqCjw8CiAgL1R5cGUgL1BhZ2UKICAvUGFyZW50IDIgMCBSCiAgL1Jlc291cmNlcyA8PAogICAgL0ZvbnQgPDwKICAgICAgL0YxIDQgMCBSIAogICAgPj4KICA+PgogIC9Db250ZW50cyA1IDAgUgo+PgplbmRvYmoKCjQgMCBvYmoKPDwKICAvVHlwZSAvRm9udAogIC9TdWJ0eXBlIC9UeXBlMQogIC9CYXNlRm9udCAvVGltZXMtUm9tYW4KPj4KZW5kb2JqCgo1IDAgb2JqICAlIHBhZ2UgY29udGVudAo8PAogIC9MZW5ndGggNDQKPj4Kc3RyZWFtCkJUCjcwIDUwIFRECi9GMSAxMiBUZgooSGVsbG8sIHdvcmxkISkgVGoKRVQKZW5kc3RyZWFtCmVuZG9iagoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAwMDAwIG4gCjAwMDAwMDAwNzkgMDAwMDAgbiAKMDAwMDAwMDE3MyAwMDAwMCBuIAowMDAwMDAwMzAxIDAwMDAwIG4gCjAwMDAwMDAzODAgMDAwMDAgbiAKdHJhaWxlcgo8PAogIC9TaXplIDYKICAvUm9vdCAxIDAgUgo+PgpzdGFydHhyZWYKNDkyCiUlRU9G',
+  inputFile: sampleInputFile,
+  downloadBoxClick: () => {
+    window.alert('Downloading the document!');
+  },
+};
+
+WithDownloadBoxDisabled.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-file-input \n :inputFile=' +
+        JSON.stringify(sampleInputFile) +
+        '\n :disabled=true'+
+        '\n :downloadBoxClick: ()=>{ window.alert("Downloading the document!" }'+
+        '\n/>',
+    },
   },
 };
 
 export const WithDownloadBoxReadonly = Template.bind({});
 WithDownloadBoxReadonly.args = {
   readonly: true,
-  inputFile: {
-    name: 'sample.pdf',
-    type: 'application/pdf',
-    size: 101273,
-    base64:
-      'JVBERi0xLjcKCjEgMCBvYmogICUgZW50cnkgcG9pbnQKPDwKICAvVHlwZSAvQ2F0YWxvZwogIC9QYWdlcyAyIDAgUgo+PgplbmRvYmoKCjIgMCBvYmoKPDwKICAvVHlwZSAvUGFnZXMKICAvTWVkaWFCb3ggWyAwIDAgMjAwIDIwMCBdCiAgL0NvdW50IDEKICAvS2lkcyBbIDMgMCBSIF0KPj4KZW5kb2JqCgozIDAgb2JqCjw8CiAgL1R5cGUgL1BhZ2UKICAvUGFyZW50IDIgMCBSCiAgL1Jlc291cmNlcyA8PAogICAgL0ZvbnQgPDwKICAgICAgL0YxIDQgMCBSIAogICAgPj4KICA+PgogIC9Db250ZW50cyA1IDAgUgo+PgplbmRvYmoKCjQgMCBvYmoKPDwKICAvVHlwZSAvRm9udAogIC9TdWJ0eXBlIC9UeXBlMQogIC9CYXNlRm9udCAvVGltZXMtUm9tYW4KPj4KZW5kb2JqCgo1IDAgb2JqICAlIHBhZ2UgY29udGVudAo8PAogIC9MZW5ndGggNDQKPj4Kc3RyZWFtCkJUCjcwIDUwIFRECi9GMSAxMiBUZgooSGVsbG8sIHdvcmxkISkgVGoKRVQKZW5kc3RyZWFtCmVuZG9iagoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAwMDAwIG4gCjAwMDAwMDAwNzkgMDAwMDAgbiAKMDAwMDAwMDE3MyAwMDAwMCBuIAowMDAwMDAwMzAxIDAwMDAwIG4gCjAwMDAwMDAzODAgMDAwMDAgbiAKdHJhaWxlcgo8PAogIC9TaXplIDYKICAvUm9vdCAxIDAgUgo+PgpzdGFydHhyZWYKNDkyCiUlRU9G',
+  inputFile: sampleInputFile,
+  downloadBoxClick: () => {
+    window.alert('Downloading the document!');
+  },
+};
+
+WithDownloadBoxReadonly.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-file-input \n :inputFile=' +
+        JSON.stringify(sampleInputFile) +
+        '\n :readonly=true'+
+        '\n :downloadBoxClick: ()=>{ window.alert("Downloading the document!" }'+
+        '\n/>',
+    },
   },
 };
