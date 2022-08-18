@@ -106,7 +106,7 @@ export default defineComponent({
     modelValue: {},
     inputFile: {
       type: Object as PropType<OutputFile>,
-      default: {},
+      default: () => ({}),
     },
     initialFileUpdateMode: {
       type: String as PropType<string>,
