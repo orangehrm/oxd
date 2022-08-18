@@ -141,12 +141,11 @@ export default defineComponent({
       default: false,
     },
     commentThreadMinHeight: {
-      type: Number,
+      type: String,
       default: '216px',
     },
     scrollHeight: {
-      type: Number,
-      default: 0,
+      type: String,
     },
     readOnly: {
       type: Boolean,
@@ -234,8 +233,8 @@ export default defineComponent({
       return {
         'min-height': `${props.commentThreadMinHeight}`,
         height:
-          hasCommentsInside.value && props.scrollHeight > 0
-            ? `${props.scrollHeight}px`
+          hasCommentsInside.value && props.scrollHeight
+            ? props.scrollHeight
             : undefined,
       };
     });
