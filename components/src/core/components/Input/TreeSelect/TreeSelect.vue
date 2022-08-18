@@ -221,12 +221,6 @@ export default defineComponent({
       required: false,
       default: () => [],
     },
-    preSelectedIds: {
-      //Pre Selected Ids
-      type: Array as PropType<Array<string>>,
-      required: false,
-      default: () => [],
-    },
     selectParentsOnChildSelection: {
       type: Boolean,
       default: false,
@@ -257,7 +251,8 @@ export default defineComponent({
     const placeholderOption = ref<OptionProp | null>(null);
 
     const spreadOptions = () => {
-      optionsArr.value = [...props.options];
+      // optionsArr.value = [...props.options];
+      optionsArr.value = [...JSON.parse(JSON.stringify(props.options))];
     };
 
     const setDisabledOptions = (option: Option) => {
@@ -587,19 +582,21 @@ export default defineComponent({
     };
 
     const selectPreSelectedOptions = () => {
-      for (const selectedId of props.preSelectedIds) {
-        if (selectedIdsObject.value[selectedId] != undefined) {
-          const option = findOptionByOptionId(selectedId, optionsArr.value);
-          if (typeof option !== 'string') {
-            addChildrenToSelectedIdsArray(option);
-            if (props.selectParentsOnChildSelection) {
-              selectParentsIfAllChildrenAreSelected(option);
-              if (props.disableUncheckedOptions) {
-                disableUncheckedOptions(option);
+      if (props.modelValue && Array.isArray(props.modelValue)) {
+        for (const selectedId of props.modelValue) {
+          if (selectedIdsObject.value[selectedId] != undefined) {
+            const option = findOptionByOptionId(selectedId, optionsArr.value);
+            if (typeof option !== 'string') {
+              addChildrenToSelectedIdsArray(option);
+              if (props.selectParentsOnChildSelection) {
+                selectParentsIfAllChildrenAreSelected(option);
+                if (props.disableUncheckedOptions) {
+                  disableUncheckedOptions(option);
+                }
               }
-            }
-            if (isIfAllOptionsSelected()) {
-              isAllSelected.value = true;
+              if (isIfAllOptionsSelected()) {
+                isAllSelected.value = true;
+              }
             }
           }
         }
@@ -708,6 +705,21 @@ export default defineComponent({
       () => props.options,
       () => {
         init();
+      },
+    );
+
+    watch(
+      () => props.modelValue,
+      () => {
+        if (
+          props.modelValue == null ||
+          (Array.isArray(props.modelValue) && props.modelValue.length == 0)
+        ) {
+          init();
+        }
+      },
+      {
+        immediate: true,
       },
     );
 

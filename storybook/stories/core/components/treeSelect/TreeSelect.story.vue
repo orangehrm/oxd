@@ -16,7 +16,7 @@
       @dropdown:opened="onDropDownOpen"
       @dropdown:closed="onDropDownClosed"
       @dropdown:blur="onDropDownBlur"
-      :preSelectedIds="['332']"
+      :modelValue="['1212']"
     >
     </oxd-tree-select-input>
   </div>
