@@ -16,7 +16,7 @@
             class="
               oxd-comment-content-header-container
               d-flex
-              align-start
+              align-center
               justify-between
             "
           >
@@ -123,7 +123,13 @@
     <div
       v-if="deleteMode"
       ref="commentDeleteWrapper"
-      class="oxd-comment-inline-delete d-flex align-center oxd-mt-5 oxd-p-5"
+      class="
+        oxd-comment-inline-delete
+        d-flex
+        align-center
+        justify-between
+        oxd-mt-5 oxd-p-5
+      "
     >
       <div class="comment-inline-delete-content-wrapper d-flex align-center">
         <oxd-text type="subtitle-2">
