@@ -12,6 +12,7 @@
     font-weight: $oxd-input-control-font-weight;
     width: fit-content;
     margin: 0;
+    display: -webkit-box;
 
     &:after {
       content: '';

@@ -190,6 +190,10 @@ export default defineComponent({
     fileUpdateMode() {
       this.setModelValue();
     },
+    inputFile() {
+      this.setModelValue();
+      this.setFileUpdateMode();
+    },
   },
 
   computed: {
@@ -290,9 +294,16 @@ export default defineComponent({
       this.$emit('fileUpdateMode', this.fileUpdateMode);
       this.inputValue = '';
     },
+    setFileUpdateMode(){
+      if (this.inputFile.name) {
+        this.fileUpdateMode = this.initialFileUpdateMode;
+      }else{
+        this.fileUpdateMode = null;
+      }
+    }
   },
   mounted(){
-    this.fileUpdateMode = this.initialFileUpdateMode;
+    this.setFileUpdateMode();
   }
 });
 </script>

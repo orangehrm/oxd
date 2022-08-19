@@ -12,6 +12,7 @@
     font-weight: $oxd-input-control-font-weight;
     width: fit-content;
     padding: 0.25rem 0.5rem;
+    display: -webkit-box;
 
     &:hover,
     &.--focus {
