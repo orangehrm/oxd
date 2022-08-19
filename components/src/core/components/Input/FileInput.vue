@@ -3,9 +3,9 @@
     <div class="oxd-download-box-outer-wrapper" v-if="inputFile.name">
       <div class="oxd-download-box-wrapper d-flex">
         <button
-          class="oxd-download-box"
-          @click="downloadBoxClick()"
-          type="button"
+            class="oxd-download-box"
+            @click="downloadBoxClick()"
+            type="button"
         >
           <div class="oxd-download-box-doc-icon d-flex">
             <oxd-icon :name="'oxd-file-doc'"> </oxd-icon>
@@ -20,48 +20,48 @@
           </div>
         </button>
         <div
-          class="oxd-download-box-radio-buttons"
-          v-if="!(disabled || readonly)"
+            class="oxd-download-box-radio-buttons"
+            v-if="!(disabled || readonly)"
         >
           <oxd-radio-input
-            v-model="fileUpdateMode"
-            id="check1"
-            value="keep"
-            :optionLabel="$vt('Keep Current')"
+              v-model="fileUpdateMode"
+              id="check1"
+              value="keep"
+              :optionLabel="$vt('Keep Current')"
           />
           <oxd-radio-input
-            v-if="deletable"
-            v-model="fileUpdateMode"
-            id="check2"
-            value="delete"
-            :optionLabel="$vt('Delete Current')"
+              v-if="deletable"
+              v-model="fileUpdateMode"
+              id="check2"
+              value="delete"
+              :optionLabel="$vt('Delete Current')"
           />
           <oxd-radio-input
-            v-model="fileUpdateMode"
-            id="check3"
-            value="replace"
-            :optionLabel="$vt('Replace Current')"
+              v-model="fileUpdateMode"
+              id="check3"
+              value="replace"
+              :optionLabel="$vt('Replace Current')"
           />
         </div>
       </div>
     </div>
     <div v-if="fileUpdateMode === 'replace' || !inputFile.name">
       <input
-        type="file"
-        ref="input"
-        v-bind="$attrs"
-        :class="fileInputClasses"
-        @focus="onFocus"
-        @blur="onBlur"
-        @input="onInput"
-        @keyup.esc.stop
+          type="file"
+          ref="input"
+          v-bind="$attrs"
+          :class="fileInputClasses"
+          @focus="onFocus"
+          @blur="onBlur"
+          @input="onInput"
+          @keyup.esc.stop
       />
       <div :class="classes" :style="style" @click="onClick">
         <slot></slot>
         <template v-if="!$slots.default">
           <div
-            v-if="buttonLabel"
-            :class="{'oxd-file-button': true, '--disabled': disabled}"
+              v-if="buttonLabel"
+              :class="{'oxd-file-button': true, '--disabled': disabled}"
           >
             {{ buttonLabel }}
           </div>
@@ -69,8 +69,8 @@
             {{ inputValue ? inputValue : placeholder }}
           </div>
           <oxd-icon
-            :class="{'oxd-file-input-icon': true, '--disabled': disabled}"
-            :name="buttonIcon"
+              :class="{'oxd-file-input-icon': true, '--disabled': disabled}"
+              :name="buttonIcon"
           />
         </template>
       </div>
@@ -112,7 +112,7 @@ export default defineComponent({
     },
     initialFileUpdateMode: {
       type: String as PropType<string>,
-      default: ATTACHMENT_UPDATE_MODE_KEEP,
+      default:ATTACHMENT_UPDATE_MODE_KEEP ,
       validator: function(value: FileUpdateMode) {
         return FILE_UPDATE_MODES.indexOf(value) !== -1;
       },
@@ -156,6 +156,7 @@ export default defineComponent({
     if (this.inputFile.name) {
       this.setModelValue();
     }
+    this.setFileUpdateMode();
   },
   data(): State {
     return {
@@ -181,8 +182,8 @@ export default defineComponent({
         if (newValue !== oldValue) {
           if (newValue !== undefined && newValue !== null) {
             this.inputValue = Array.isArray(newValue)
-              ? newValue[0].name
-              : newValue.name;
+                ? newValue[0].name
+                : newValue.name;
           } else {
             this.inputValue = '';
           }
@@ -190,7 +191,9 @@ export default defineComponent({
       },
     },
     fileUpdateMode() {
-      this.setModelValue();
+      if (this.inputFile.name) {
+        this.setModelValue();
+      }
     },
     inputFile() {
       this.setModelValue();
@@ -256,8 +259,8 @@ export default defineComponent({
         const reader = new FileReader();
         reader.onload = (event: ProgressEvent<FileReader>) => {
           if (
-            typeof event.target?.result === 'string' ||
-            event.target?.result instanceof String
+              typeof event.target?.result === 'string' ||
+              event.target?.result instanceof String
           ) {
             const base64 = event.target?.result.split(',').pop();
             if (base64) {
@@ -293,19 +296,17 @@ export default defineComponent({
         },
       ];
       this.$emit('update:modelValue', modelArr);
-      this.$emit('fileUpdateMode', this.fileUpdateMode);
       this.inputValue = '';
     },
     setFileUpdateMode(){
       if (this.inputFile.name) {
         this.fileUpdateMode = this.initialFileUpdateMode;
+        this.$emit('fileUpdateMode', this.fileUpdateMode);
       }else{
         this.fileUpdateMode = null;
+        this.$emit('fileUpdateMode', this.fileUpdateMode);
       }
     }
-  },
-  mounted(){
-    this.setFileUpdateMode();
   }
 });
 </script>
