@@ -1,33 +1,103 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FileInput.vue renders OXD FileInput 1`] = `
-<input type="file" class="oxd-file-input">
-<div class="oxd-file-div oxd-file-div--active">
+exports[`FileInput.vue download box is rendered 1`] = `
+<div>
+  <div class="oxd-download-box-outer-wrapper">
+    <div class="oxd-download-box-wrapper d-flex"><button class="oxd-download-box" type="button">
+        <div class="oxd-download-box-doc-icon d-flex"><i class="oxd-svg-icon oxd-svg-icon--medium"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 504.52 634.46">
+              <g id="Layer_2" data-name="Layer 2">
+                <g id="Layer_1-2" data-name="Layer 1">
+                  <path d="M504.52,243.79c0-11.41-3.35-20.45-11.23-28.65Q395.81,113.56,298.86,11.4C291.23,3.36,282.8,0,272.19,0c-48.32.21-96.64.13-145,.05a116.81,116.81,0,0,0-25,2.47C41.47,15.74.18,68.74.06,133.74Q-.11,225.38,0,317t0,183.29c.13,75.62,55.58,133.92,127.58,134q124.49.21,249,0c72.12-.1,127.68-58.25,127.8-133.8C504.54,415,504.36,329.38,504.52,243.79ZM302.75,92l114.1,119.62c-17.62-.92-34.93,1.51-52.11-1.61-34.52-6.27-61-38.06-61.93-74.73C302.44,120.88,302.75,106.43,302.75,92ZM453.85,503.3c-.23,43.35-33.46,77.74-75,78.13-42.28.39-84.57.09-126.86.09q-61.07,0-122.13,0c-47.17,0-79.41-34-79.42-83.59q0-180.84,0-361.67C50.5,86.83,82.89,53,130.16,53c38.35,0,76.69.16,115-.18,6-.05,7.27,1.66,7.18,7.69-.36,23.39-.21,46.79-.14,70.18.23,75.5,55.75,133.53,127.94,133.72,22.58.07,45.17.15,67.76-.1,4.62,0,6.2.82,6.19,6.18C453.92,348.07,454.26,425.69,453.85,503.3Z"></path>
+                  <path d="M350,343.68q-48.81,0-97.61,0t-97.6,0c-17.31,0-28.75,10.69-28.64,26.63.11,15.53,11.56,26.2,28.3,26.21q97.61,0,195.21,0c17.24,0,28.77-10.78,28.65-26.65C378.19,354.34,366.74,343.7,350,343.68Z"></path>
+                  <path d="M350.27,449.4q-48.81-.06-97.61,0-49.18,0-98.39,0c-16.73,0-28.08,10.72-28.12,26.35s11.41,26.48,28,26.48q98,.06,196,0c16.67,0,28.11-10.8,28.14-26.36S366.88,449.42,350.27,449.4Z"></path>
+                  <path d="M155.64,282.38c9.48.2,19,0,28.45,0,10.09,0,20.19.17,30.28,0,16.93-.35,29.73-12.1,29.5-26.8-.22-14.3-13-25.75-29.51-26q-29.36-.34-58.73,0c-16.63.2-29.25,11.54-29.47,25.93C125.92,270.27,138.72,282,155.64,282.38Z"></path>
+                </g>
+              </g>
+            </svg></i></div>
+        <div class="oxd-download-box-download-data d-flex">
+          <div class="oxd-download-box-download-text">sample.pdf</div>
+          <div class="oxd-download-box-download-icon"><i class="oxd-svg-icon oxd-svg-icon--xxx-small"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 143.67 178.53">
+                <defs>
+                  <style>
+                    .cls-1 {
+                      fill: #64728c;
+                    }
+                  </style>
+                </defs>
+                <g id="Layer_2" data-name="Layer 2">
+                  <g id="Layer_1-2" data-name="Layer 1">
+                    <g id="Layer_2-2" data-name="Layer 2">
+                      <g id="Layer_1-2-2" data-name="Layer 1-2">
+                        <path class="cls-1" d="M59.79,85V13.48c0-8,4.79-13.4,11.84-13.48s12.1,5.44,12.1,13.61V83.93c1.36.36,1.71-.86,2.31-1.45C90.58,78,95,73.41,99.58,69.07a11.9,11.9,0,0,1,16.85,16.79Q98.37,104.28,80,122.34c-4.8,4.71-11.64,4.62-16.46-.12Q45.23,104.28,27.25,86A11.91,11.91,0,0,1,44,69.15C49.18,74,54.08,79.2,59.79,85Z"></path>
+                        <path class="cls-1" d="M71.46,178.53h-58c-8,0-13.4-4.83-13.46-11.87s5.39-12,13.31-12H130.4c7.87,0,13.33,5,13.27,12.07s-5.51,11.84-13.48,11.84Z"></path>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </svg></i></div>
+        </div>
+      </button>
+      <div class="oxd-download-box-radio-buttons">
+        <div class="oxd-radio-wrapper"><label class="">
+            <!--v-if--><input type="radio" id="check1" value="keep"><span class="oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input"></span>Keep Current
+          </label></div>
+        <div class="oxd-radio-wrapper"><label class="">
+            <!--v-if--><input type="radio" id="check2" value="delete"><span class="oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input"></span>Delete Current
+          </label></div>
+        <div class="oxd-radio-wrapper"><label class="">
+            <!--v-if--><input type="radio" id="check3" value="replace"><span class="oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input"></span>Replace Current
+          </label></div>
+      </div>
+    </div>
+  </div>
   <!--v-if-->
-  <div class="oxd-file-input-div">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon"></i>
+</div>
+`;
+
+exports[`FileInput.vue renders OXD FileInput 1`] = `
+<div>
+  <!--v-if-->
+  <div><input type="file" class="oxd-file-input">
+    <div class="oxd-file-div oxd-file-div--active">
+      <!--v-if-->
+      <div class="oxd-file-input-div">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon"></i>
+    </div>
+  </div>
 </div>
 `;
 
 exports[`FileInput.vue should renders OXD FileInput with browse button 1`] = `
-<input type="file" class="oxd-file-input">
-<div class="oxd-file-div oxd-file-div--active">
-  <div class="oxd-file-button">Browse</div>
-  <div class="oxd-file-input-div">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon"></i>
+<div>
+  <!--v-if-->
+  <div><input type="file" class="oxd-file-input">
+    <div class="oxd-file-div oxd-file-div--active">
+      <div class="oxd-file-button">Browse</div>
+      <div class="oxd-file-input-div">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon"></i>
+    </div>
+  </div>
 </div>
 `;
 
 exports[`FileInput.vue should renders OXD FileInput with custom color 1`] = `
-<input type="file" class="oxd-file-input">
-<div class="oxd-file-div oxd-file-div--active" style="background-color: aliceblue;">
+<div>
   <!--v-if-->
-  <div class="oxd-file-input-div">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon"></i>
+  <div><input type="file" class="oxd-file-input">
+    <div class="oxd-file-div oxd-file-div--active" style="background-color: aliceblue;">
+      <!--v-if-->
+      <div class="oxd-file-input-div">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon"></i>
+    </div>
+  </div>
 </div>
 `;
 
 exports[`FileInput.vue should renders OXD FileInput with error 1`] = `
-<input type="file" class="oxd-file-input">
-<div class="oxd-file-div oxd-file-div--active oxd-file-div--error">
+<div>
   <!--v-if-->
-  <div class="oxd-file-input-div">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon"></i>
+  <div><input type="file" class="oxd-file-input">
+    <div class="oxd-file-div oxd-file-div--active oxd-file-div--error">
+      <!--v-if-->
+      <div class="oxd-file-input-div">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon"></i>
+    </div>
+  </div>
 </div>
 `;
