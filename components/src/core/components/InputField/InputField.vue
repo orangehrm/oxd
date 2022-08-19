@@ -56,6 +56,7 @@ import useField from '../../../composables/useField';
 import translateMixin from '../../../mixins/translate';
 import CheckboxGroup from '@orangehrm/oxd/core/components/Input/CheckboxGroup.vue';
 import RadioPillGroup from '@orangehrm/oxd/core/components/Input/RadioPills/RadioPillGroup.vue';
+import TreeSelectInput from '@orangehrm/oxd/core/components/Input/TreeSelect/TreeSelect.vue';
 import RadioGroup from '@orangehrm/oxd/core/components/Input/RadioGroup.vue';
 
 export default defineComponent({
@@ -82,6 +83,7 @@ export default defineComponent({
     'oxd-quicksearch-input': QuickSearchInput,
     'oxd-comments': Comments,
     'oxd-radio-pill-group': RadioPillGroup,
+    'oxd-tree-select-input': TreeSelectInput,
     'oxd-radiogroup-input': RadioGroup,
   },
 

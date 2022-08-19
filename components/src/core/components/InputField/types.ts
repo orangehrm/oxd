@@ -15,6 +15,7 @@ export const COMPONENT_CHECKBOXGROUP_INPUT = 'oxd-checkboxgroup-input';
 export const COMPONENT_INFOBOX = 'oxd-infobox';
 export const COMPONENT_COMMENTS = 'oxd-comments';
 export const COMPONENT_RADIO_PILL_GROUP = 'oxd-radio-pill-group';
+export const COMPONENT_TREESELECT_INPUT = 'oxd-tree-select-input';
 export const COMPONENT_RADIOGROUP_INPUT = 'oxd-radiogroup-input';
 
 export const TYPE_INPUT = 'input';
@@ -34,6 +35,7 @@ export const TYPE_CHECKBOXGROUP = 'checkboxgroup';
 export const TYPE_INFOBOX = 'infobox';
 export const TYPE_COMMENTS = 'comments';
 export const TYPE_RADIO_PILL_GROUP = 'radiopillgroup';
+export const TYPE_TREE_SELECT = 'treeselect';
 export const TYPE_RADIOGROUP = 'radiogroup';
 
 export const HINT_PLACEMENT_TOP = 'top';
@@ -57,6 +59,7 @@ export const TYPES = [
   TYPE_INFOBOX,
   TYPE_COMMENTS,
   TYPE_RADIO_PILL_GROUP,
+  TYPE_TREE_SELECT,
   TYPE_RADIOGROUP,
 ];
 
@@ -78,6 +81,7 @@ export const TYPE_MAP: TypeMap<Components> = {
   [TYPE_INFOBOX]: COMPONENT_INFOBOX,
   [TYPE_COMMENTS]: COMPONENT_COMMENTS,
   [TYPE_RADIO_PILL_GROUP]: COMPONENT_RADIO_PILL_GROUP,
+  [TYPE_TREE_SELECT]: COMPONENT_TREESELECT_INPUT,
   [TYPE_RADIOGROUP]: COMPONENT_RADIOGROUP_INPUT,
 };
 
@@ -96,6 +100,7 @@ export type Types =
   | typeof TYPE_TIME
   | typeof TYPE_CHECKBOXGROUP
   | typeof TYPE_INFOBOX
+  | typeof TYPE_TREE_SELECT
   | typeof TYPE_COMMENTS
   | typeof TYPE_RADIO_PILL_GROUP
   | typeof TYPE_RADIOGROUP;
@@ -116,6 +121,7 @@ export type Components =
   | typeof COMPONENT_TIME_INPUT
   | typeof COMPONENT_CHECKBOXGROUP_INPUT
   | typeof COMPONENT_INFOBOX
+  | typeof COMPONENT_TREESELECT_INPUT
   | typeof COMPONENT_COMMENTS
   | typeof COMPONENT_RADIO_PILL_GROUP
   | typeof COMPONENT_RADIOGROUP_INPUT;
