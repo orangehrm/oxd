@@ -27,20 +27,20 @@
             v-model="fileUpdateMode"
             id="check1"
             value="keep"
-            optionLabel="Keep Current"
+            :optionLabel="$vt('Keep Current')"
           />
           <oxd-radio-input
             v-if="deletable"
             v-model="fileUpdateMode"
             id="check2"
             value="delete"
-            optionLabel="Delete Current"
+            :optionLabel="$vt('Delete Current')"
           />
           <oxd-radio-input
             v-model="fileUpdateMode"
             id="check3"
             value="replace"
-            optionLabel="Replace Current"
+            :optionLabel="$vt('Replace Current')"
           />
         </div>
       </div>
@@ -88,6 +88,7 @@ import {
 } from './types';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Radio from '@orangehrm/oxd/core/components/Input/RadioInput.vue';
+import translateMixin from '../../../mixins/translate';
 
 export interface State {
   focused: boolean;
@@ -101,6 +102,7 @@ export default defineComponent({
     'oxd-icon': Icon,
     'oxd-radio-input': Radio,
   },
+  mixins: [translateMixin],
   inheritAttrs: false,
   props: {
     modelValue: {},
