@@ -156,12 +156,13 @@ export default defineComponent({
     if (this.inputFile.name) {
       this.setModelValue();
     }
+    this.setFileUpdateMode();
   },
   data(): State {
     return {
       focused: false,
       inputValue: '',
-      fileUpdateMode: ""
+      fileUpdateMode: '',
     };
   },
 
@@ -190,7 +191,9 @@ export default defineComponent({
       },
     },
     fileUpdateMode() {
-      this.setModelValue();
+      if (this.inputFile.name) {
+        this.setModelValue();
+      }
     },
     inputFile() {
       this.setModelValue();
@@ -293,20 +296,18 @@ export default defineComponent({
         },
       ];
       this.$emit('update:modelValue', modelArr);
-      this.$emit('fileUpdateMode', this.fileUpdateMode);
       this.inputValue = '';
     },
-    setFileUpdateMode(){
+    setFileUpdateMode() {
       if (this.inputFile.name) {
         this.fileUpdateMode = this.initialFileUpdateMode;
-      }else{
+        this.$emit('fileUpdateMode', this.fileUpdateMode);
+      } else {
         this.fileUpdateMode = null;
+        this.$emit('fileUpdateMode', this.fileUpdateMode);
       }
-    }
+    },
   },
-  mounted(){
-    this.setFileUpdateMode();
-  }
 });
 </script>
 
