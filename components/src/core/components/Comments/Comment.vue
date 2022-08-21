@@ -362,7 +362,10 @@ export default defineComponent({
         emit('commentEditHasError', false);
         invalidCommentUpdate.value = false;
         invalidCommentSave.value = false;
-        enableEditMode(false);
+        editable.value = false;
+        deleteMode.value = false;
+        invalidCommentUpdate.value = false;
+        invalidCommentSave.value = false;
       }
     };
 
