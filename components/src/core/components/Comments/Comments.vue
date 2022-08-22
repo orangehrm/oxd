@@ -232,9 +232,9 @@ export default defineComponent({
 
     const commentGroupsContainerStyles = computed(() => {
       const height =
-        !props.hideEmptyPlaceholder &&
-        hasCommentsInside.value &&
-        props.scrollHeight
+        hasCommentsInside.value && props.scrollHeight
+          ? props.scrollHeight
+          : !props.hideEmptyPlaceholder
           ? props.scrollHeight
           : undefined;
       return {
