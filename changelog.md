@@ -1,3 +1,5 @@
+2022-08-18 - e872d101314dadb0db5c410bf8a44dc5a1366c7c - Calendar/CalendarDropdown.vue - Affects DateInput.vue behavior. Prevent whole page scrolling up when month/year dropdown opened.
+
 2022-08-18 - f7d3683bc3cb8a6cef404c65a1d2cf4530a1d41e - Input/FileInput.vue - added edit file option
 
 2022-08-16 - 8a27adb9dfff1bbe7324caedbce570b0a6f25687 - Form/Form.vue, focus-first-element/index.ts - focus fist element not return back to correct element
