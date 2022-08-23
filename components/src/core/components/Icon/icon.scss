@@ -5,7 +5,7 @@
 
 .oxd-icon {
   color: $oxd-icon-font-color;
-  &--disabled {
+  &--disabled, &.--disabled {
     color: $oxd-icon-font-color--disabled;
   }
   &--extra-small {
