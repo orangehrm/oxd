@@ -12,17 +12,29 @@ exports[`CardTable > Cell > Dropdown.vue should render OXD CardTable > Cell > Dr
 <li class="--active oxd-table-dropdown"><button type="button" class="oxd-icon-button" flow="top"><i class="oxd-icon oxd-icon--medium bi-three-dots-vertical"></i></button>
   <transition-stub>
     <ul class="oxd-dropdown-menu --positon-bottom" role="menu">
-      <li class="oxd-table-dropdown-item"><i class="oxd-svg-icon oxd-svg-icon--extra-small"></i>
-        <p class="oxd-text oxd-text--p">Add Comment</p>
+      <li class="oxd-table-dropdown-item">
+        <div class="oxd-table-dropdown-item-left"><i class="oxd-svg-icon oxd-svg-icon--extra-small"></i>
+          <p class="oxd-text oxd-text--p">Add Comment</p>
+        </div>
+        <!--v-if-->
       </li>
-      <li class="oxd-table-dropdown-item"><i class="oxd-svg-icon oxd-svg-icon--extra-small"></i>
-        <p class="oxd-text oxd-text--p">View Leave Details</p>
+      <li class="oxd-table-dropdown-item">
+        <div class="oxd-table-dropdown-item-left"><i class="oxd-svg-icon oxd-svg-icon--extra-small"></i>
+          <p class="oxd-text oxd-text--p">View Leave Details</p>
+        </div>
+        <!--v-if-->
       </li>
-      <li class="oxd-table-dropdown-item"><i class="oxd-svg-icon oxd-svg-icon--extra-small"></i>
-        <p class="oxd-text oxd-text--p">View PIM Info</p>
+      <li class="oxd-table-dropdown-item">
+        <div class="oxd-table-dropdown-item-left"><i class="oxd-svg-icon oxd-svg-icon--extra-small"></i>
+          <p class="oxd-text oxd-text--p">View PIM Info</p>
+        </div>
+        <!--v-if-->
       </li>
-      <li class="oxd-table-dropdown-item"><i class="oxd-svg-icon oxd-svg-icon--extra-small"></i>
-        <p class="oxd-text oxd-text--p">Cancel Leave</p>
+      <li class="oxd-table-dropdown-item">
+        <div class="oxd-table-dropdown-item-left"><i class="oxd-svg-icon oxd-svg-icon--extra-small"></i>
+          <p class="oxd-text oxd-text--p">Cancel Leave</p>
+        </div>
+        <!--v-if-->
       </li>
     </ul>
   </transition-stub>
@@ -42,20 +54,32 @@ exports[`CardTable > Cell > Dropdown.vue should render OXD CardTable > Cell > Dr
   <transition-stub>
     <ul class="oxd-dropdown-menu --positon-bottom" role="menu">
       <li class="oxd-table-dropdown-item">
+        <div class="oxd-table-dropdown-item-left">
+          <!--v-if-->
+          <p class="oxd-text oxd-text--p">Add Comment</p>
+        </div>
         <!--v-if-->
-        <p class="oxd-text oxd-text--p">Add Comment</p>
       </li>
       <li class="oxd-table-dropdown-item">
+        <div class="oxd-table-dropdown-item-left">
+          <!--v-if-->
+          <p class="oxd-text oxd-text--p">View Leave Details</p>
+        </div>
         <!--v-if-->
-        <p class="oxd-text oxd-text--p">View Leave Details</p>
       </li>
       <li class="oxd-table-dropdown-item">
+        <div class="oxd-table-dropdown-item-left">
+          <!--v-if-->
+          <p class="oxd-text oxd-text--p">View PIM Info</p>
+        </div>
         <!--v-if-->
-        <p class="oxd-text oxd-text--p">View PIM Info</p>
       </li>
       <li class="oxd-table-dropdown-item">
+        <div class="oxd-table-dropdown-item-left">
+          <!--v-if-->
+          <p class="oxd-text oxd-text--p">Cancel Leave</p>
+        </div>
         <!--v-if-->
-        <p class="oxd-text oxd-text--p">Cancel Leave</p>
       </li>
     </ul>
   </transition-stub>
