@@ -13,7 +13,7 @@
         tabindex="0"
         maxlength="5"
       />
-      <div class="oxd-time-input-am-pm-wrapper">
+      <div class="oxd-time-input-am-pm-wrapper" :class="amPmWrapperClasses">
         <label :class="amPmLabelClasses"
           >{{ am ? $vt('AM') : $vt('PM') }}
           <input
@@ -233,6 +233,12 @@ export default defineComponent({
       };
     });
 
+    const amPmWrapperClasses = computed(() => {
+      return {
+        '--disabled': props.disabled,
+      };
+    });
+
     const amPmLabelClasses = computed(() => {
       return {
         'oxd-time-input-am-pm-label': true,
@@ -263,6 +269,7 @@ export default defineComponent({
       closeDropdown,
       onAmPmLabelFocus,
       onAmPmLabelBlur,
+      amPmWrapperClasses,
     };
   },
 });

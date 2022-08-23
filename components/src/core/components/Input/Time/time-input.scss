@@ -19,6 +19,9 @@
     position: absolute;
     left: $oxd-time-picker-input-ampm-left-position;
     right: $oxd-time-picker-input-ampm-right-position;
+    &.--disabled{
+      right: 0.25rem;
+    }
   }
   &-am-pm-label {
     box-sizing: border-box;
