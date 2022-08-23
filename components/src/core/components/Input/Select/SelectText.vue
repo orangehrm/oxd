@@ -21,9 +21,8 @@
 
     <div class="oxd-select-text--after">
       <slot name="afterInput"></slot>
-      <div class="oxd-select-text--arrow" :class="dropdownIconClasses">
+      <div class="oxd-select-text--arrow" :class="dropdownIconClasses"  v-if="!disabled">
         <oxd-icon
-          v-if="!disabled"
           :class="dropdownIconClasses"
           :size="dropdownIconSize"
           :name="dropdownIcon"

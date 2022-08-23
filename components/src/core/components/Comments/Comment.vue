@@ -16,7 +16,6 @@
             class="
               oxd-comment-content-header-container
               d-flex
-              align-center
               justify-between
             "
           >
@@ -24,7 +23,6 @@
               class="
                 oxd-comment-content-header-label-container
                 d-flex
-                align-center
               "
             >
               <oxd-label
