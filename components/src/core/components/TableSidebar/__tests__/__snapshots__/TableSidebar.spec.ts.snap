@@ -167,7 +167,7 @@ exports[`TableSidebar.vue with oxd-chip on left renders OXD TableSidebar with se
   <div class="oxd-table-left-panel--header">
     <div class="table-header-action-btn-container">
       <div class="table-header-action-btns">
-        <oxd-button-stub label="New Report" iconname="oxd-add" displaytype="secondary" size="long" iconsize="medium" iconrightsize="medium" flow="right" class="table-header-action-btn w-75"></oxd-button-stub>
+        <oxd-button-stub label="New Report" iconname="oxd-add" displaytype="secondary" size="long" iconsize="medium" iconrightsize="medium" tooltip="New Report" flow="right" class="table-header-action-btn w-75"></oxd-button-stub>
         <oxd-icon-button-stub size="extra-large" name="oxd-new-folder" withcontainer="true" disabled="false" tooltip="New Folder" flow="top" iconstyles="[object Object]" showtooltipwhendisabled="false" class="table-header-action-secondary-btn"></oxd-icon-button-stub>
       </div>
       <oxd-divider-stub orientation="horizontal" class="oxd-table-left-panel--separator"></oxd-divider-stub>
