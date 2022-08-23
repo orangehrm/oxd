@@ -1,3 +1,5 @@
+2022-08-23 - 07ef5e0fd2b7f084b9a113d9b74efa0bf8dc0d20 - Button/Icon.vue, Icon/Icon.vue - Icon color for disabled Button/Icon.vue changed to match oxd guide
+
 2022-08-18 - e872d101314dadb0db5c410bf8a44dc5a1366c7c - Calendar/CalendarDropdown.vue - Affects DateInput.vue behavior. Prevent whole page scrolling up when month/year dropdown opened.
 
 2022-08-18 - f7d3683bc3cb8a6cef404c65a1d2cf4530a1d41e - Input/FileInput.vue - added edit file option
