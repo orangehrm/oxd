@@ -16,7 +16,6 @@
             class="
               oxd-comment-content-header-container
               d-flex
-              align-center
               justify-between
             "
           >
@@ -24,11 +23,10 @@
               class="
                 oxd-comment-content-header-label-container
                 d-flex
-                align-center
               "
             >
               <oxd-label
-                :label="fullName"
+                :label="comment.user.username"
                 class="oxd-comment-content-author-name"
                 :class="labelClasses"
               />
@@ -252,13 +250,6 @@ export default defineComponent({
     const commentContent = ref(props.comment.content);
     const commentDeleteWrapper = ref(null);
 
-    const fullName = computed(
-      () =>
-        `${props.comment.user?.firstname || ''} ${
-          props.comment.user?.middlename || ''
-        } ${props.comment.user?.lastname || ''}`,
-    );
-
     const hasContentChanged = computed(() =>
       commentOriginalContent.value.localeCompare(commentContent.value),
     );
@@ -420,7 +411,6 @@ export default defineComponent({
     });
 
     return {
-      fullName,
       editable,
       commentContent,
       invalidCommentUpdate,
