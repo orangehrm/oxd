@@ -54,7 +54,7 @@ export default {
           content: comment,
           time: "2021/09/04 2: 12 PM",
           user: {
-            username: "Gayan Sandamal",
+            commenterName: "Gayan Sandamal",
           }
         };
         this.commentGroupsList[2]?.comments?.push(commentObj);

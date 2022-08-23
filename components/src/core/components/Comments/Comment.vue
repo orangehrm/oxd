@@ -26,7 +26,7 @@
               "
             >
               <oxd-label
-                :label="comment.user.username"
+                :label="comment.user.commenterName"
                 class="oxd-comment-content-author-name"
                 :class="labelClasses"
               />
