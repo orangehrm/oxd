@@ -61,6 +61,7 @@
         }
       }
       &-header-container {
+        align-items: flex-start;
         .oxd-comment-content-header {
           &-label {
             &-container {
@@ -69,7 +70,8 @@
               .oxd-comment-content-author-name {
                 font-size: 13px;
                 font-weight: 800;
-                white-space: nowrap;
+                overflow-wrap: break-word;
+                word-break: break-word;
                 margin-right: $oxd-comment-content-container-padding;
               }
             }
@@ -80,7 +82,7 @@
               color: $oxd-interface-gray-color;
               word-break: break-all;
               display: block;
-              margin: 0 $oxd-comment-content-container-padding-top;
+              margin-right: $oxd-comment-content-container-padding-top;
               white-space: nowrap;
             }
           }
