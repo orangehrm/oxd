@@ -124,10 +124,12 @@
     }
   }
 
+  &-dates-grid .oxd-calendar-date-wrapper:nth-child(-n + 7),
   &-dates-grid .oxd-calendar-date-wrapper:nth-child(-n + 7) .oxd-calendar-date {
     border-top-left-radius: $oxd-calendar-date-border-radius;
     border-top-right-radius: $oxd-calendar-date-border-radius;
   }
+  &-dates-grid .oxd-calendar-date-wrapper:nth-last-child(-n + 7),
   &-dates-grid
     .oxd-calendar-date-wrapper:nth-last-child(-n + 7)
     .oxd-calendar-date {
