@@ -46,16 +46,16 @@ export default defineComponent({
       default: () => ({}),
     },
     classes: {
-      type: Object,
-      default: () => ({}),
+      type: [String, Object, Array],
+      default: null,
     },
     wrapperStyles: {
       type: Object,
       default: () => ({}),
     },
     wrapperClasses: {
-      type: Object,
-      default: () => ({}),
+      type: [String, Object, Array],
+      default: null,
     },
     width: {
       type: [Number, String],
@@ -79,6 +79,10 @@ export default defineComponent({
     },
     responsive: {
       type: Boolean,
+      default: true,
+    },
+    aspectRatio: {
+      type: [Boolean, Number],
       default: true,
     },
     customLegend: {
@@ -117,24 +121,16 @@ export default defineComponent({
       datasets: [
         {
           data: props.data.map(item => item.value),
-          backgroundColor: [
-            '#FB5255',
-            '#FE7D15',
-            '#81C91D',
-            '#BE4BDB',
-            '#228BE6',
-            '#12B886',
-            '#7A50F2',
-            '#FFAA00',
-            '#E64980',
-            '#0FAAC0',
-          ],
+          backgroundColor: props.data.map(item => item.color),
         },
       ],
     }));
 
     const options = computed<ChartOptions<'pie'>>(() => ({
       responsive: props.responsive,
+      maintainAspectRatio: !!props.aspectRatio,
+      aspectRatio:
+        typeof props.aspectRatio === 'number' ? props.aspectRatio : 1,
       cutout: props.custout,
       plugins: {
         legend: {
@@ -155,6 +151,7 @@ export default defineComponent({
       animation: !props.animate
         ? false
         : props.animation ?? {
+            delay: 200,
             duration: 1000,
             easing: 'easeOutSine',
           },
@@ -223,8 +220,6 @@ export default defineComponent({
       return h(
         'div',
         {
-          width: props.width,
-          height: props.height,
           style: props.wrapperStyles,
           class: props.wrapperClasses,
         },
@@ -232,12 +227,7 @@ export default defineComponent({
           h(
             'div',
             {
-              style: {
-                width: '70%',
-                height: '70%',
-                margin: '0 auto',
-                position: 'relative',
-              },
+              class: 'oxd-pie-chart',
             },
             [
               h('canvas', {
@@ -262,3 +252,5 @@ export default defineComponent({
   },
 });
 </script>
+
+<style src="./pie-chart.scss" lang="scss" scoped></style>

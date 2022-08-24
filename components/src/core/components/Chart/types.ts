@@ -47,6 +47,7 @@ export type Animation = {
 export type DataPoint = {
   label: string;
   value: number;
+  color: string;
   legend?: {
     enable?: boolean;
     order?: number;
@@ -57,7 +58,6 @@ export type DataPoint = {
     order?: number;
     label?: string | null;
   };
-  color?: string | null;
 };
 
 export const COLOR_TART_ORANGE = '#FB5255';
@@ -82,3 +82,16 @@ export type ChartColor =
   | typeof COLOR_YELLOW_GREEN
   | typeof COLOR_CHROME_YELLOW
   | typeof COLOR_HEAT_WAVE;
+
+export const CHART_COLORS = {
+  COLOR_TART_ORANGE,
+  COLOR_FANDANGO_PINK,
+  COLOR_MEDIUM_ORCHID,
+  COLOR_MAJORELLE_BLUE,
+  COLOR_BLEU_DE_FRANCE,
+  COLOR_PACIFIC_BLUE,
+  COLOR_MOUNTAIN_MEADOW,
+  COLOR_YELLOW_GREEN,
+  COLOR_CHROME_YELLOW,
+  COLOR_HEAT_WAVE,
+};

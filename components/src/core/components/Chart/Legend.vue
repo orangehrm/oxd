@@ -22,14 +22,17 @@
 <template>
   <ul class="oxd-chart-legend" @click.stop>
     <li v-for="(dataPoint, index) in data" :key="dataPoint">
-      <oxd-text
-        tag="span"
-        v-show="labels[index]"
-        :style="labelStyles[index]"
-        @click="onClickKey(index)"
-      >
-        {{ labels[index] }}
-      </oxd-text>
+      <template v-if="labelStyles[index]">
+        <span class="oxd-chart-legend-key" :style="keyStyles[index]"></span>
+        <oxd-text
+          tag="span"
+          :title="labels[index]"
+          :style="labelStyles[index]"
+          @click="onClickKey(index)"
+        >
+          {{ labels[index] }}
+        </oxd-text>
+      </template>
     </li>
   </ul>
 </template>
@@ -64,6 +67,11 @@ export default defineComponent({
         }
         return label;
       });
+    },
+    keyStyles() {
+      return this.data.map(({color}: DataPoint) => ({
+        backgroundColor: color,
+      }));
     },
     labelStyles() {
       return this.data.map((_, index: number) => {

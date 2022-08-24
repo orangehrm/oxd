@@ -151,3 +151,12 @@ export const sanitizeHex = (hex: string | null) => {
   if (hex.length > 6) hex = hex.substring(0, 6);
   return /^[0-9A-F]{6}$/i.test(hex) ? `#${hex}` : null;
 };
+
+/**
+ * Generates random hex color
+ * https://css-tricks.com/snippets/javascript/random-hex-color
+ * @returns {string} Hex color code
+ */
+export const generateRandomColor = () => {
+  return `#${((Math.random() * 0xffffff) << 0).toString(16)}`;
+};

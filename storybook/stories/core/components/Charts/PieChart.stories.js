@@ -19,6 +19,7 @@
 
 import Dashboard from './Dashboard.story.vue';
 import PieChart from '@ohrm/oxd/core/components/Chart/PieChart';
+import {generateRandomColor} from '../../../../../components/src/utils/color';
 
 export default {
   title: 'Example/PieChart',
@@ -43,11 +44,11 @@ Default.args = {
   responsive: false,
   title: 'Pie Chart',
   data: [
-    {value: 1048, label: 'Engineering'},
-    {value: 735, label: 'Marketing'},
-    {value: 580, label: 'Human Resources'},
-    {value: 484, label: 'Management'},
-    {value: 300, label: 'Accounting'},
+    {value: 55, label: 'Apple', color: generateRandomColor()},
+    {value: 99.99, label: 'Orange', color: generateRandomColor()},
+    {value: 612, label: 'Grapes', color: generateRandomColor()},
+    {value: 150, label: 'Pineapple', color: generateRandomColor()},
+    {value: 300, label: 'Cherry', color: generateRandomColor()},
   ],
 };
 
