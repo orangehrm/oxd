@@ -17,8 +17,8 @@
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
 
+import Dashboard from './Dashboard.story.vue';
 import PieChart from '@ohrm/oxd/core/components/Chart/PieChart';
-import PieChartV2 from '@ohrm/oxd/core/components/Chart/PieChartV2';
 
 export default {
   title: 'Example/PieChart',
@@ -36,32 +36,19 @@ const Template = args => ({
   template: '<oxd-pie-chart v-bind="args" />',
 });
 
-export const ECharts = Template.bind({});
-ECharts.args = {
+export const Default = Template.bind({});
+Default.args = {
+  width: '400px',
+  height: '400px',
+  responsive: false,
+  title: 'Pie Chart',
   data: [
-    {value: 1048, name: 'Engineering'},
-    {value: 735, name: 'Marketing'},
-    {value: 580, name: 'Human Resources'},
-    {value: 484, name: 'Management'},
-    {value: 300, name: 'Accounting'},
+    {value: 1048, label: 'Engineering'},
+    {value: 735, label: 'Marketing'},
+    {value: 580, label: 'Human Resources'},
+    {value: 484, label: 'Management'},
+    {value: 300, label: 'Accounting'},
   ],
 };
 
-const Template2 = args => ({
-  setup() {
-    return {args};
-  },
-  components: {'oxd-pie-chart2': PieChartV2},
-  template: '<oxd-pie-chart2 v-bind="args" />',
-});
-
-export const ChartJs = Template2.bind({});
-ChartJs.args = {
-  data: [
-    {value: 1048, name: 'Engineering'},
-    {value: 735, name: 'Marketing'},
-    {value: 580, name: 'Human Resources'},
-    {value: 484, name: 'Management'},
-    {value: 300, name: 'Accounting'},
-  ],
-};
+export const SampleDashboard = () => Dashboard;

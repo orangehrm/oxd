@@ -21,15 +21,19 @@
 
 <script lang="ts">
 import {
-  GridComponent,
-  TitleComponent,
-  LegendComponent,
-  TooltipComponent,
-} from 'echarts/components';
+  Chart,
+  Title,
+  Legend,
+  Tooltip,
+  ChartData,
+  ArcElement,
+  ChartOptions,
+  PieController,
+  AnimationSpec,
+  LegendOptions,
+  TooltipOptions,
+} from 'chart.js';
 import {DataPoint} from './types';
-import * as echarts from 'echarts/core';
-import {PieChart} from 'echarts/charts';
-import {CanvasRenderer} from 'echarts/renderers';
 import {h, computed, PropType, shallowRef, defineComponent, watch} from 'vue';
 
 export default defineComponent({
@@ -44,108 +48,168 @@ export default defineComponent({
       type: Object,
       default: () => ({}),
     },
+    wrapperStyles: {
+      type: Object,
+      default: () => ({}),
+    },
+    wrapperClasses: {
+      type: Object,
+      default: () => ({}),
+    },
     width: {
       type: [Number, String],
-      default: 500,
+      default: '100%',
     },
     height: {
       type: [Number, String],
-      default: 500,
+      default: '100%',
     },
     radius: {
       type: [Number, String],
       default: '50%',
+    },
+    custout: {
+      type: [Number, String],
+      default: '5%',
+    },
+    animate: {
+      type: Boolean,
+      default: true,
+    },
+    responsive: {
+      type: Boolean,
+      default: true,
     },
     data: {
       type: Array as PropType<DataPoint[]>,
       default: () => [],
     },
     title: {
-      type: [String],
+      type: String,
+      required: false,
+    },
+    legend: {
+      type: Object as PropType<LegendOptions<'pie'>>,
+      required: false,
+    },
+    tooltip: {
+      type: Object as PropType<TooltipOptions<'pie'>>,
+      required: false,
+    },
+    animation: {
+      type: Object as PropType<AnimationSpec<'pie'>>,
       required: false,
     },
   },
 
   setup(props) {
-    const chartElm = shallowRef<HTMLElement>();
+    Chart.register(Title, Legend, Tooltip, ArcElement, PieController);
+    const chartElm = shallowRef<HTMLCanvasElement>();
+    const chartjsInstance = shallowRef<Chart>();
 
-    const series = computed(() => [
-      {
-        name: props.title,
-        type: 'pie',
-        radius: props.radius,
-        data: [...props.data],
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)',
+    const series = computed<ChartData<'pie'>>(() => ({
+      labels: props.data.map(item => item.label),
+      datasets: [
+        {
+          data: props.data.map(item => item.value),
+          backgroundColor: [
+            '#FB5255',
+            '#FE7D15',
+            '#81C91D',
+            '#BE4BDB',
+            '#228BE6',
+            '#12B886',
+            '#7A50F2',
+            '#FFAA00',
+            '#E64980',
+            '#0FAAC0',
+          ],
+        },
+      ],
+    }));
+
+    const options = computed<ChartOptions<'pie'>>(() => ({
+      responsive: props.responsive,
+      cutout: props.custout,
+      plugins: {
+        legend: {
+          ...props.legend,
+          display: props.legend?.display ?? true,
+        },
+        tooltip: {
+          ...props.tooltip,
+          enabled: props.tooltip?.enabled ?? true,
+        },
+        title: {
+          display: !!props.title,
+          text: props.title,
+        },
+      },
+      animation: !props.animate
+        ? false
+        : props.animation ?? {
+            duration: 1000,
+            easing: 'easeOutSine',
+          },
+      // fixes animation issue in responsive mode
+      //https://github.com/chartjs/Chart.js/issues/10342
+      transitions: {
+        resize: {
+          animation: {
+            duration: 400,
           },
         },
       },
-    ]);
+    }));
 
-    echarts.use([
-      PieChart,
-      GridComponent,
-      CanvasRenderer,
-      TitleComponent,
-      LegendComponent,
-      TooltipComponent,
-    ]);
-
-    // onBeforeMount(() => {
-    //   if (chartElm.value) {
-    //     const chart = echarts.init(chartElm.value);
-    //     chart.setOption({
-    //       title: {
-    //         text: 'Referer of a Website',
-    //         subtext: 'Fake Data',
-    //         left: 'center',
-    //       },
-    //       tooltip: {
-    //         trigger: 'item',
-    //       },
-    //       legend: {
-    //         orient: 'vertical',
-    //         left: 'left',
-    //       },
-    //       series: series.value,
-    //     });
-    //   }
-    // });
-
-    watch(chartElm, () => {
-      if (chartElm.value) {
-        const chart = echarts.init(chartElm.value);
-        chart.setOption({
-          //   title: {
-          //     text: 'Referer of a Website',
-          //     subtext: 'Fake Data',
-          //     left: 'center',
-          //   },
-          tooltip: {
-            trigger: 'item',
-          },
-          legend: {
-            orient: 'vertical',
-            left: 'left',
-          },
-          series: series.value,
-        });
+    const renderChart = (destroy: boolean) => {
+      if (destroy && chartjsInstance.value instanceof Chart) {
+        chartjsInstance.value.destroy();
+        chartjsInstance.value = null;
       }
+
+      // draw chart only if chartjs insance is null else update
+      if (!chartjsInstance.value) {
+        chartjsInstance.value = new Chart(chartElm.value, {
+          type: 'pie',
+          data: {
+            ...series.value,
+          },
+          options: {
+            ...options.value,
+          },
+        });
+      } else {
+        chartjsInstance.value.data = {...series.value};
+        chartjsInstance.value.update('active');
+      }
+    };
+
+    watch([chartElm, series], () => {
+      if (chartElm.value) renderChart(true);
+    });
+
+    watch(series, () => {
+      if (chartElm.value) renderChart(false);
     });
 
     return () =>
-      h('div', {style: props.styles, class: props.classes}, [
-        h('div', {
-          ref: chartElm,
-          style: {
-            width: `${props.width}px`,
-            height: `${props.height}px`,
-          },
-        }),
-      ]);
+      h(
+        'div',
+        {
+          width: props.width,
+          height: props.height,
+          style: props.wrapperStyles,
+          class: props.wrapperClasses,
+        },
+        [
+          h('canvas', {
+            ref: chartElm,
+            style: props.styles,
+            class: props.classes,
+          }),
+        ],
+      );
   },
 });
 </script>
