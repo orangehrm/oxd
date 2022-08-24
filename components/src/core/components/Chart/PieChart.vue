@@ -34,6 +34,7 @@ import {
   TooltipOptions,
 } from 'chart.js';
 import {DataPoint} from './types';
+import LegendVue from '@ohrm/oxd/core/components/Chart/Legend.vue';
 import {h, computed, PropType, shallowRef, defineComponent, watch} from 'vue';
 
 export default defineComponent({
@@ -79,6 +80,10 @@ export default defineComponent({
     responsive: {
       type: Boolean,
       default: true,
+    },
+    customLegend: {
+      type: Boolean,
+      default: false,
     },
     data: {
       type: Array as PropType<DataPoint[]>,
@@ -134,7 +139,9 @@ export default defineComponent({
       plugins: {
         legend: {
           ...props.legend,
-          display: props.legend?.display ?? true,
+          align: props.legend?.align ?? 'center',
+          position: props.legend?.position ?? 'bottom',
+          display: props.customLegend ? false : props.legend?.display,
         },
         tooltip: {
           ...props.tooltip,
@@ -193,8 +200,27 @@ export default defineComponent({
       if (chartElm.value) renderChart(false);
     });
 
-    return () =>
-      h(
+    return () => {
+      if (!props.customLegend) {
+        return h(
+          'div',
+          {
+            width: props.width,
+            height: props.height,
+            style: props.wrapperStyles,
+            class: props.wrapperClasses,
+          },
+          [
+            h('canvas', {
+              ref: chartElm,
+              style: props.styles,
+              class: props.classes,
+            }),
+          ],
+        );
+      }
+
+      return h(
         'div',
         {
           width: props.width,
@@ -203,13 +229,36 @@ export default defineComponent({
           class: props.wrapperClasses,
         },
         [
-          h('canvas', {
-            ref: chartElm,
-            style: props.styles,
-            class: props.classes,
+          h(
+            'div',
+            {
+              style: {
+                width: '70%',
+                height: '70%',
+                margin: '0 auto',
+                position: 'relative',
+              },
+            },
+            [
+              h('canvas', {
+                ref: chartElm,
+                style: props.styles,
+                class: props.classes,
+              }),
+            ],
+          ),
+          h(LegendVue, {
+            data: props.data,
+            onClick: (index: number) => {
+              if (chartjsInstance.value) {
+                chartjsInstance.value.toggleDataVisibility(index);
+                chartjsInstance.value.update();
+              }
+            },
           }),
         ],
       );
+    };
   },
 });
 </script>

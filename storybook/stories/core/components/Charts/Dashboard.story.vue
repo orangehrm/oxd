@@ -24,17 +24,25 @@
     <oxd-grid :cols="3">
       <oxd-grid-item>
         <oxd-sheet :gutters="false" class="orangehrm-dashboard-widget">
-          <oxd-text type="card-title">Employee Distribution</oxd-text>
+          <oxd-text type="card-title">
+            Employee Distribution (Custom Legend)
+          </oxd-text>
           <oxd-divider />
           <div class="orangehrm-dashboard-widget-body">
-            <oxd-pie-chart :data="dataset"></oxd-pie-chart>
+            <oxd-pie-chart
+              :data="dataset"
+              :custom-legend="true"
+            ></oxd-pie-chart>
           </div>
         </oxd-sheet>
       </oxd-grid-item>
       <oxd-grid-item>
         <oxd-sheet :gutters="false" class="orangehrm-dashboard-widget">
           <oxd-text type="card-title">Employee Distribution</oxd-text>
-          <oxd-pie-chart :data="dataset"></oxd-pie-chart>
+          <oxd-divider />
+          <div class="orangehrm-dashboard-widget-body">
+            <oxd-pie-chart :data="dataset"></oxd-pie-chart>
+          </div>
         </oxd-sheet>
       </oxd-grid-item>
     </oxd-grid>
@@ -61,7 +69,7 @@ export default {
   data() {
     return {
       dataset: [
-        {value: 1048, label: 'Engineering'},
+        {value: 148, label: 'Engineering'},
         {value: 735, label: 'Marketing'},
         {value: 580, label: 'Human Resources'},
         {value: 484, label: 'Management'},
@@ -82,6 +90,7 @@ export default {
 .orangehrm-dashboard {
   &-widget {
     padding: 0.75rem;
+    margin-bottom: 1rem;
     &-body {
       height: 300px;
       overflow: auto;
