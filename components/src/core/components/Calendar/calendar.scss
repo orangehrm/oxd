@@ -71,6 +71,19 @@
       color: $oxd-calendar-date-today-font-color;
       font-weight: $oxd-calendar-date-today-font-weight;
     }
+
+    &.--working-day-half {
+      background-color: $oxd-calendar-date-half-background-color;
+      color: $oxd-calendar-date-half-font-color;
+      font-weight: $oxd-calendar-date-half-font-weight;
+      border-radius: 0;
+    }
+    &.--non-working-day {
+      background-color: $oxd-calendar-date-weekend-background-color;
+      color: $oxd-calendar-date-weekend-font-color;
+      font-weight: $oxd-calendar-date-weekend-font-weight;
+      border-radius: 0;
+    }
     &.--holiday-half {
       background-color: $oxd-calendar-date-holiday-half-background-color;
       color: $oxd-calendar-date-holiday-half-font-color;
@@ -111,11 +124,15 @@
     }
   }
 
-  &-dates-grid .oxd-calendar-date-wrapper:nth-child(-n + 7) {
+  &-dates-grid .oxd-calendar-date-wrapper:nth-child(-n + 7),
+  &-dates-grid .oxd-calendar-date-wrapper:nth-child(-n + 7) .oxd-calendar-date {
     border-top-left-radius: $oxd-calendar-date-border-radius;
     border-top-right-radius: $oxd-calendar-date-border-radius;
   }
-  &-dates-grid .oxd-calendar-date-wrapper:nth-last-child(-n + 7) {
+  &-dates-grid .oxd-calendar-date-wrapper:nth-last-child(-n + 7),
+  &-dates-grid
+    .oxd-calendar-date-wrapper:nth-last-child(-n + 7)
+    .oxd-calendar-date {
     border-bottom-left-radius: $oxd-calendar-date-border-radius;
     border-bottom-right-radius: $oxd-calendar-date-border-radius;
   }
