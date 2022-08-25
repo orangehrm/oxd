@@ -33,7 +33,9 @@ import {
   LegendOptions,
   TooltipOptions,
 } from 'chart.js';
+import {nanoid} from 'nanoid';
 import {DataPoint} from './types';
+import {OxdPieChartLabels} from './labelPlugin';
 import LegendVue from '@ohrm/oxd/core/components/Chart/Legend.vue';
 import {h, computed, PropType, shallowRef, defineComponent, watch} from 'vue';
 
@@ -93,6 +95,10 @@ export default defineComponent({
       type: Array as PropType<DataPoint[]>,
       default: () => [],
     },
+    chartId: {
+      type: String,
+      default: () => nanoid(8),
+    },
     title: {
       type: String,
       required: false,
@@ -112,7 +118,14 @@ export default defineComponent({
   },
 
   setup(props) {
-    Chart.register(Title, Legend, Tooltip, ArcElement, PieController);
+    Chart.register(
+      Title,
+      Legend,
+      Tooltip,
+      ArcElement,
+      PieController,
+      OxdPieChartLabels,
+    );
     const chartElm = shallowRef<HTMLCanvasElement>();
     const chartjsInstance = shallowRef<Chart>();
 
@@ -232,6 +245,7 @@ export default defineComponent({
             [
               h('canvas', {
                 ref: chartElm,
+                id: props.chartId,
                 style: props.styles,
                 class: props.classes,
               }),
