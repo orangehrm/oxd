@@ -8,7 +8,7 @@
       :disabled="disabled"
       :readonly="readonly"
       :value="
-        getPlaceholderValue() + (selectedIdsComputed.length > 1 ? ',' : '')
+        getPlaceholderValue() + (selectedIdsLengthComputed > 1 ? ',' : '')
       "
       :placeholder="placeholder"
       :dropdownOpened="dropdownOpen"
@@ -21,16 +21,14 @@
       @keydown="onKeypress"
     >
       <template #afterInput>
-        <div v-if="selectedIdsComputed.length > 1" class="selected-count-chip">
+        <div v-if="selectedIdsLengthComputed > 1" class="selected-count-chip">
           <oxd-chip
-            v-if="String(selectedIdsComputed.length - 1).length == 1"
-            :label="
-              '&nbsp;' + '+' + (selectedIdsComputed.length - 1) + '&nbsp;'
-            "
+            v-if="String(selectedIdsLengthComputed - 1).length == 1"
+            :label="'&nbsp;' + '+' + (selectedIdsLengthComputed - 1) + '&nbsp;'"
           ></oxd-chip>
           <oxd-chip
-            v-if="String(selectedIdsComputed.length - 1).length > 1"
-            :label="'+' + (selectedIdsComputed.length - 1)"
+            v-if="String(selectedIdsLengthComputed - 1).length > 1"
+            :label="'+' + (selectedIdsLengthComputed - 1)"
           ></oxd-chip>
         </div>
       </template>
@@ -62,7 +60,14 @@
                   "
                 ></oxd-checkbox-input>
               </div>
-              <div class="all-text">{{ $vt('All') }}</div>
+              <div
+                @click="
+                  isAllSelected ? ToggleSelectAll(false) : ToggleSelectAll(true)
+                "
+                class="all-text"
+              >
+                {{ $vt('All') }}
+              </div>
             </div>
             <oxd-divider></oxd-divider>
           </div>
@@ -91,25 +96,34 @@
                 </td>
                 <td
                   :style="
-                    'display: flex ; width: fit-content; margin-left:5%; padding-left:' +
+                    'display: flex ; width: 90%; margin-left:5%; padding-left:' +
                       (option._level * 20 - 20) +
                       'px'
                   "
                 >
-                  <span class="icon-td">
+                  <span
+                    :class="
+                      getIcon(option) === ''
+                        ? 'icon-td-without-icon'
+                        : 'icon-td'
+                    "
+                    @click="
+                      getIcon(option) === '' ? '' : expandIconClicked(option)
+                    "
+                  >
                     <oxd-icon
                       v-if="getIcon(option) === '' ? false : true"
                       :name="getIcon(option)"
                       :tabindex="tabIndex()"
                       :size="'xxx-small'"
                       :withContainer="false"
-                      @keydown.enter="expandIconClicked(option)"
-                      @click="expandIconClicked(option)"
                       @keyup.esc.prevent="onCloseDropdown"
+                      @keydown.enter="expandIconClicked(option)"
                     ></oxd-icon
                   ></span>
                   <span
                     @click="selectOptionOnlabelClick(option)"
+                    :style="getOptionLabelStyle(option)"
                     :class="
                       getIcon(option) == ''
                         ? 'option-label-without-icon'
@@ -233,6 +247,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    countTopmostParents: {
+      type: Boolean,
+      default: true,
+    },
     dropdownPosition: {
       type: String,
       default: BOTTOM,
@@ -284,12 +302,43 @@ export default defineComponent({
       }
     };
 
+    const getLevelOneOptions = () => {
+      return optionsArr.value.filter(option_ => {
+        return option_._level === 1;
+      });
+    };
+
     const selectedIdsComputed = computed(() => {
       const selectedIds = Object.keys(selectedIdsObject.value).filter(
         k => selectedIdsObject.value[k],
       );
       return selectedIds;
     });
+
+    const selectedIdsLengthComputed = computed(() => {
+      if (props.countTopmostParents) {
+        return selectedIdsComputed.value.length;
+      } else {
+        let selectedLevelOneOptionsCount = 0;
+        const levelOneOptions = getLevelOneOptions();
+        for (const option of levelOneOptions) {
+          if (selectedIdsObject.value[option.id]) {
+            selectedLevelOneOptionsCount++;
+          }
+        }
+        return selectedIdsComputed.value.length - selectedLevelOneOptionsCount;
+      }
+    });
+
+    const getOptionLabelStyle = (option: Option) => {
+      if (selectedIdsObject.value[option.id]) {
+        if (option.children ? option.children.length != 0 : false) {
+          return 'color:#38455D; font-weight:600;';
+        } else {
+          return 'color:#64728c; font-weight:600;';
+        }
+      } else return '';
+    };
 
     const addChildrenToSelectedIdsArray = (option: Option) => {
       if (!selectedIdsObject.value[option.id]) {
@@ -341,12 +390,6 @@ export default defineComponent({
       for (const parentOption of option.parentOptions) {
         removeOptionIdFromSelectedIdsArray(parentOption.id);
       }
-    };
-
-    const getLevelOneOptions = () => {
-      return optionsArr.value.filter(option_ => {
-        return option_._level === 1;
-      });
     };
 
     const disableChildrenOptions = (
@@ -728,6 +771,8 @@ export default defineComponent({
       dropdownClasses,
       isAllSelected,
       expandedIdsObject,
+      selectedIdsLengthComputed,
+      getOptionLabelStyle,
       selectOptionsOnCheckbox,
       expandIconClicked,
       getIcon,

@@ -16,16 +16,34 @@ td {
   padding-right: 0px !important;
 }
 
+.oxd-select-option {
+  cursor: auto;
+}
+
 .option-label-with-icon {
+  width: 80%;
   margin-left: 10px;
+  cursor: pointer;
 }
 
 .option-label-without-icon {
-  margin-left: 20px;
+  width: 80%;
+  margin-left: 10px;
+  cursor: pointer;
 }
 
 .icon-td {
+  text-align: -webkit-center !important;
+  width: 20px;
   padding-top: 3px;
+  cursor: pointer;
+}
+
+.icon-td-without-icon {
+  text-align: -webkit-center !important;
+  width: 20px;
+  padding-top: 3px;
+  cursor: auto;
 }
 
 .dropdown-header-div {
@@ -47,6 +65,7 @@ td {
     }
 
     .all-text {
+      cursor: pointer;
       font-size: 12px;
       font-family: $oxd-input-control-font-family;
       padding-left: 10px;
@@ -59,6 +78,7 @@ td {
   padding-top: 10px;
   padding-bottom: 3px;
   margin-left: 12px;
+  float: right;
 }
 
 .tree-select-table-container {
