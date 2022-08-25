@@ -195,17 +195,17 @@ export default defineComponent({
       () => [state.time, state.am],
       () => {
         const validTime = /^(0?[1-9]|1[0-2]):[0-5][0-9]$/.test(state.time);
-        let newModelValue: string | null = state.time;
+        let newModelValue: string | null =
+          state.time + ' ' + (state.am ? 'AM' : 'PM');
 
         if (validTime) {
-          const parsedTime = parseDate(
-            state.time + ' ' + (state.am ? 'AM' : 'PM'),
-            'hh:mm a',
-          );
+          const parsedTime = parseDate(newModelValue, 'hh:mm a');
           if (parsedTime) {
             newModelValue = formatDate(parsedTime, 'HH:mm');
             state.pickerInput = newModelValue;
           }
+        } else if (state.time === '') {
+          newModelValue = '';
         }
 
         if (newModelValue !== props.modelValue) {
