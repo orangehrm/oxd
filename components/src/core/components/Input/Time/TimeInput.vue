@@ -104,25 +104,27 @@ export default defineComponent({
     },
     placeholder: {
       type: String,
-      default: 'HH-MM',
+      default: 'HH:MM',
     },
     step: {
       type: Number,
       default: 1,
-    },
-    allowEmpty: {
-      type: Boolean,
-      default: false,
     },
   },
 
   setup(props, context) {
     const timePickerOpen = ref<boolean>(false);
     const amPmLabelFocus = ref<boolean>(false);
-    let inputTime = props.modelValue || '0';
+    let inputTime = '';
 
-    const state = reactive({
-      time: props.allowEmpty ? null : '01:00',
+    interface TimeInputState {
+      time: string;
+      am: boolean;
+      pickerInput: string | null;
+    }
+
+    const state = reactive<TimeInputState>({
+      time: '',
       am: true,
       pickerInput: props.modelValue,
     });
@@ -160,11 +162,7 @@ export default defineComponent({
     };
 
     const onBlur = (e: Event) => {
-      if (props.allowEmpty) {
-        state.time = inputTime && inputTime !== '0' ? inputTime : null;
-      } else if (inputTime) {
-        state.time = inputTime;
-      }
+      state.time = inputTime;
       e.stopImmediatePropagation();
       context.emit('blur');
     };
@@ -182,6 +180,7 @@ export default defineComponent({
             const formattedTime = formatDate(time, 'hh:mm');
             if (formattedTime) {
               state.time = formattedTime;
+              inputTime = formattedTime;
               state.am = time.getHours() < 12;
             }
           }
@@ -198,16 +197,18 @@ export default defineComponent({
         const validTime = /^(0?[1-9]|1[0-2]):[0-5][0-9]$/.test(state.time);
         let newModelValue: string | null =
           state.time + ' ' + (state.am ? 'AM' : 'PM');
-        if (validTime && newModelValue) {
+
+        if (validTime) {
           const parsedTime = parseDate(newModelValue, 'hh:mm a');
           if (parsedTime) {
             newModelValue = formatDate(parsedTime, 'HH:mm');
-          }
-        }
-        if (newModelValue !== props.modelValue) {
-          if (newModelValue) {
             state.pickerInput = newModelValue;
           }
+        } else if (state.time === '') {
+          newModelValue = '';
+        }
+
+        if (newModelValue !== props.modelValue) {
           context.emit('update:modelValue', newModelValue);
         }
       },
