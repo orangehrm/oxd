@@ -1,6 +1,6 @@
 <template>
   <oxd-dropdown-menu @click="noOp" class="oxd-table-dropdown">
-    <oxd-icon-button name="three-dots-vertical" />
+    <oxd-icon-button :name="iconName" :size="iconSize" :disabled="disabled" />
     <template v-slot:content>
       <li
         v-for="option in options"
@@ -8,8 +8,13 @@
         @click.once="onClick($event, option.context)"
         class="oxd-table-dropdown-item"
       >
-        <oxd-icon v-if="option.icon" :name="option.icon" size="extra-small" />
-        <oxd-text tag="p">{{ option.label }}</oxd-text>
+        <div class="oxd-table-dropdown-item-left">
+          <oxd-icon v-if="option.icon" :name="option.icon" size="extra-small" />
+          <oxd-text tag="p">{{ option.label }}</oxd-text>
+        </div>
+        <div v-if="option.count" class="oxd-table-dropdown-item-right">
+          {{ option.count }}
+        </div>
       </li>
     </template>
   </oxd-dropdown-menu>
@@ -29,6 +34,17 @@ export default defineComponent({
     options: {
       type: Array as PropType<DropdownOption[]>,
       default: () => [],
+    },
+    iconName: {
+      type: String,
+      default: 'three-dots-vertical',
+    },
+    iconSize: {
+      type: String,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
   components: {

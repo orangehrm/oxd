@@ -7,6 +7,23 @@
   position: relative;
 
   &-item {
+    &-right {
+      width: auto;
+      padding-left: 2.5rem !important;
+    }
+    &-left {
+      justify-content: start;
+      width: auto;
+      display: inline-flex;
+
+      .oxd-svg-icon,
+      .oxd-icon {
+        margin-right: 0.5rem;
+      }
+    }
+
+    max-width: 300px;
+    justify-content: space-between;
     cursor: pointer;
     border: 0;
     display: flex;
@@ -28,10 +45,6 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
-
-    .oxd-svg-icon, .oxd-icon {
-      margin-right: 0.5rem;
     }
 
     &:last-child {
