@@ -314,8 +314,8 @@ export default defineComponent({
         return selectedIdsComputed.value.length;
       } else {
         let selectedLevelOneOptionsCount = 0;
-        let levelOneOptions = getLevelOneOptions();
-        for (let option of levelOneOptions) {
+        const levelOneOptions = getLevelOneOptions();
+        for (const option of levelOneOptions) {
           if (selectedIdsObject.value[option.id]) {
             selectedLevelOneOptionsCount++;
           }
