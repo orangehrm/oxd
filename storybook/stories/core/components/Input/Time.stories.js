@@ -22,7 +22,8 @@ export default {
 
 const Template = (args) => ({
   setup() {
-    const selected = ref('05:00');
+    const initialValue = args.initialValue ?? '05:00';
+    const selected = ref(initialValue);
     return {args, selected};
   },
   render() {
@@ -40,16 +41,23 @@ const Template = (args) => ({
 });
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  initialValue: '05:00',
+};
+
+export const InitialValuePM = Template.bind({});
+InitialValuePM.args = {
+  initialValue: '17:00',
+};
 
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
 };
 
-export const allowEmpty = Template.bind({});
-allowEmpty.args = {
-  allowEmpty: true,
+export const EmptyInitialValue = Template.bind({});
+EmptyInitialValue.args = {
+  initialValue: '',
 };
 
 export const Error = Template.bind({});

@@ -5,7 +5,7 @@ exports[`TimeInput.vue renders OXD Time Input 1`] = `
   <div class="oxd-time-input">
     <div class="input-outer-wrapper">
       <!--v-if-->
-      <!--v-if--><input class="oxd-input oxd-input--active" placeholder="HH-MM" tabindex="0" maxlength="5">
+      <!--v-if--><input class="oxd-input oxd-input--active" placeholder="HH:MM" tabindex="0" maxlength="5">
     </div>
     <div class="oxd-time-input-am-pm-wrapper"><label class="oxd-time-input-am-pm-label">AM <input class="oxd-time-input-am-pm-checkbox" type="checkbox"></label></div>
     <div class="oxd-time-input-icon-wrapper" tabindex="0"><i class="oxd-icon oxd-icon--medium bi-clock justify-center oxd-time-input-icon oxd-time-input--clock"></i></div>

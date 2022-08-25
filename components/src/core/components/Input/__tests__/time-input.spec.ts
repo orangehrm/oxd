@@ -36,10 +36,10 @@ describe('TimeInput.vue', () => {
     });
     await wrapper.find('.oxd-time-input input').setValue('124:16');
     await wrapper.find('.oxd-time-input input').trigger('blur');
-    expect(wrapper.emitted('update:modelValue')).toEqual([['124:16 PM']]);
+    expect(wrapper.emitted('update:modelValue')).toEqual([['124:16']]);
   });
 
-  it('passing invalid modelValue sets input to 01:00 AM', async () => {
+  it('passing invalid modelValue sets input to blank AM', async () => {
     const wrapper = mount(TimeInput, {
       props: {
         modelValue: '26:00',
@@ -48,7 +48,7 @@ describe('TimeInput.vue', () => {
 
     expect(
       (wrapper.find('.oxd-time-input input').element as HTMLInputElement).value,
-    ).toEqual('01:00');
+    ).toEqual('');
     expect(
       wrapper.find('.oxd-time-input-am-pm-wrapper > label').text(),
     ).toEqual('AM');
