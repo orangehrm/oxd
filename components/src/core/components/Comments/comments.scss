@@ -29,6 +29,9 @@
     list-style: none;
     margin-bottom: 0;
     .oxd-comment-group {
+      :deep(.oxd-label) {
+        margin-bottom: $oxd-comment-content-container-margin;
+      }
       &:not(:last-child) {
         padding-bottom: $oxd-comment-content-container-padding;
       }
