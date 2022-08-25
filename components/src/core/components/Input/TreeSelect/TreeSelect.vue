@@ -302,6 +302,12 @@ export default defineComponent({
       }
     };
 
+    const getLevelOneOptions = () => {
+      return optionsArr.value.filter(option_ => {
+        return option_._level === 1;
+      });
+    };
+
     const selectedIdsComputed = computed(() => {
       const selectedIds = Object.keys(selectedIdsObject.value).filter(
         k => selectedIdsObject.value[k],
@@ -384,12 +390,6 @@ export default defineComponent({
       for (const parentOption of option.parentOptions) {
         removeOptionIdFromSelectedIdsArray(parentOption.id);
       }
-    };
-
-    const getLevelOneOptions = () => {
-      return optionsArr.value.filter(option_ => {
-        return option_._level === 1;
-      });
     };
 
     const disableChildrenOptions = (
