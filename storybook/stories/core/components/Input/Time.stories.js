@@ -7,10 +7,20 @@ export default {
   argTypes: {
     style: {control: {type: 'object'}},
     hasError: {control: {type: 'boolean'}},
+    allowEmpty: {
+      control: {type: 'boolean'},
+      defaultValue: false,
+      table: {
+        type: {
+          summary:
+            'Set boolean value to allow empty values. The default value is false',
+        },
+      },
+    },
   },
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     const selected = ref('05:00');
     return {args, selected};
@@ -20,7 +30,7 @@ const Template = args => ({
       h(TimeInput, {
         ...this.args,
         modelValue: this.selected,
-        'onUpdate:modelValue': value => {
+        'onUpdate:modelValue': (value) => {
           this.selected = value;
         },
       }),
@@ -35,6 +45,11 @@ Default.args = {};
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
+};
+
+export const allowEmpty = Template.bind({});
+allowEmpty.args = {
+  allowEmpty: true,
 };
 
 export const Error = Template.bind({});
