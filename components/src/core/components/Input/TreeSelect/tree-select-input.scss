@@ -18,17 +18,31 @@ td {
 
 .oxd-select-option {
   cursor: auto;
+
+  span {
+    //here, overring inherited css attributes
+    white-space: nowrap;
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: visible;
+    text-overflow: ellipsis;
+    display: block;
+  }
 }
 
 .option-label-with-icon {
   width: 80%;
   margin-left: 10px;
+  margin-right: 10px;
   cursor: pointer;
 }
 
 .option-label-without-icon {
   width: 80%;
   margin-left: 10px;
+  margin-right: 10px;
   cursor: pointer;
 }
 
@@ -90,7 +104,8 @@ td {
   @include oxd-scrollbar();
 
   .tree-select-table {
-    width: 100%;
+    width: max-content;
+    min-width: 100%;
     border-collapse: collapse;
   }
 }
@@ -109,6 +124,6 @@ td {
 :deep(.oxd-select-dropdown-inner) {
   max-height: $oxd-tree-select-dropdown-dropdown-max-height !important;
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: auto;
   padding: $oxd-dropdown-dropdown-inner-padding;
 }
