@@ -18,7 +18,7 @@
     font-weight: $oxd-input-control-font-weight;
     width: fit-content;
     padding: 0.25rem 0.5rem;
-    display: -webkit-box;
+    display: flex;
 
     &:hover,
     &.--focus {
@@ -69,6 +69,9 @@
   border-radius: 100%;
   width: $oxd-radio-width;
   height: $oxd-radio-height;
+  flex-basis: 1rem;
+  flex-shrink: 0;
+  flex-grow: 0;
 
   &.--label-left {
     margin-left: $oxd-radio-label-margin;
