@@ -206,7 +206,7 @@ export default defineComponent({
     },
   },
 
-  data() {
+  data(): {open: boolean; dateTyped: string | null} {
     return {
       open: false,
       dateTyped: null,
@@ -230,13 +230,19 @@ export default defineComponent({
     onDateTyped(value: string) {
       this.dateTyped = value;
     },
-    onDateSelected() {
+    onDateSelected(value: Date) {
       const oxdDatePicker = this.$refs.oxdInput;
       this.$nextTick(() => {
         const oxdDateInputTriggerBtn = this.$refs.oxdIcon;
         oxdDateInputTriggerBtn.blur();
         const inputElement = oxdDatePicker.$el.querySelectorAll('input');
         inputElement[0]?.focus();
+        const formattedDate = formatDate(value, this.format, {
+          locale: this.locale,
+        });
+        if (formattedDate) {
+          this.dateTyped = formattedDate;
+        }
       });
       this.closeDropdown();
     },
