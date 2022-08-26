@@ -153,8 +153,29 @@ export default defineComponent({
           display: props.customLegend ? false : props.legend?.display,
         },
         tooltip: {
-          ...props.tooltip,
+          caretSize: 0,
+          backgroundColor: 'rgba(255, 255, 255, 1)',
           enabled: props.tooltip?.enabled ?? true,
+          callbacks: {
+            label: ctx => {
+              const {dataset, dataIndex} = ctx;
+              const value = dataset.data[dataIndex];
+              const total = dataset.data.reduce((acc, value) => acc + value, 0);
+              const percentage = (value / total) * 100;
+              return `${ctx.label} ${value} (${percentage.toFixed(1)}%)`;
+            },
+            labelColor: ctx => {
+              const {dataset, dataIndex} = ctx;
+              return {
+                borderColor: null,
+                borderWidth: 0,
+                borderRadius: 5,
+                backgroundColor: dataset.backgroundColor[dataIndex],
+              };
+            },
+            labelTextColor: () => 'rgba(100, 114, 140, 1)',
+          },
+          ...props.tooltip,
         },
         title: {
           display: !!props.title,

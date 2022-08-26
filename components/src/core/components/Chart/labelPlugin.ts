@@ -30,22 +30,7 @@ class Label {
   }
 
   render() {
-    // const centreAngle =
-    //   this._element.startAngle +
-    //   (this._element.endAngle - this._element.startAngle) / 2;
-    // const innerRadius = this._element.outerRadius / 2;
-    // const rangeFromCentre =
-    //   (this._element.outerRadius - innerRadius) / 2 + innerRadius;
-
-    // const x = this._element.x + Math.cos(centreAngle) * rangeFromCentre;
-    // const y = this._element.y + Math.sin(centreAngle) * rangeFromCentre;
-
     const {x, y} = this._element.tooltipPosition();
-    // if (this.options.position === 'outside') {
-    //   const offset =
-    //     this.options.textMargin + this.measureLabel(label).width / 2;
-    //   renderInfo.x += renderInfo.x < view.x ? -offset : offset;
-    // }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const circumference = (this._element as any).circumference;
@@ -80,17 +65,10 @@ export const OxdPieChartLabels: Plugin = {
           ),
       ),
     );
-
-    // for (let i = 0; i < dataset.length; ++i) {
-    //   dataLabels
-    //     .get(chart.canvas.id)
-    //     ?.push();
-    // }
   },
   afterDatasetsDraw(chart: Chart<'pie'>) {
     if (dataLabels.has(chart.canvas.id)) {
       dataLabels.get(chart.canvas.id)?.map(label => {
-        // if (index < 2) label.render();
         label.render();
       });
     }
