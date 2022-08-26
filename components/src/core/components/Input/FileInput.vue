@@ -156,7 +156,7 @@ export default defineComponent({
     if (this.inputFile.name) {
       this.setModelValue();
     }
-    this.setFileUpdateMode();
+    this.setInitialFileUpdateMode();
   },
   data(): State {
     return {
@@ -194,10 +194,11 @@ export default defineComponent({
       if (this.inputFile.name) {
         this.setModelValue();
       }
+      this.setFileUpdateMode();
     },
     inputFile() {
       this.setModelValue();
-      this.setFileUpdateMode();
+      this.setInitialFileUpdateMode();
     },
   },
 
@@ -218,7 +219,6 @@ export default defineComponent({
       };
     },
   },
-
   methods: {
     onClick(e: Event) {
       if (this.disabled || this.readonly) return;
@@ -250,7 +250,6 @@ export default defineComponent({
 
       this.$emit('input', e);
     },
-
     readFiles(files: Array<File>) {
       const count = files.length;
       const outputFileArray: OutputFile[] = [];
@@ -298,9 +297,17 @@ export default defineComponent({
       this.$emit('update:modelValue', modelArr);
       this.inputValue = '';
     },
-    setFileUpdateMode() {
+    setInitialFileUpdateMode() {
       if (this.inputFile.name) {
         this.fileUpdateMode = this.initialFileUpdateMode;
+        this.$emit('fileUpdateMode', this.fileUpdateMode);
+      } else {
+        this.fileUpdateMode = null;
+        this.$emit('fileUpdateMode', this.fileUpdateMode);
+      }
+    },
+    setFileUpdateMode() {
+      if (this.inputFile.name) {
         this.$emit('fileUpdateMode', this.fileUpdateMode);
       } else {
         this.fileUpdateMode = null;
