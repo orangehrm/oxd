@@ -7,6 +7,7 @@
         @focus="onFocus"
         @blur="onBlur"
         @change="onChange"
+        :name="name"
         v-bind="$attrs"
         v-model="checked"
         :value="value"
