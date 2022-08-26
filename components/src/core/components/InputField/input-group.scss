@@ -17,6 +17,10 @@
     flex-direction: row;
     align-items: baseline;
     margin-bottom: $oxd-input-group-label-margin-bottom;
+    :deep(.oxd-label) {
+      overflow-wrap: break-word;
+      word-break: break-all;
+    }
     &:empty {
       display: none;
     }

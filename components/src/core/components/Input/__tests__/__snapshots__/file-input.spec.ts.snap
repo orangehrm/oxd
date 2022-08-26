@@ -39,13 +39,16 @@ exports[`FileInput.vue download box is rendered 1`] = `
       </button>
       <div class="oxd-download-box-radio-buttons">
         <div class="oxd-radio-wrapper"><label class="">
-            <!--v-if--><input type="radio" id="check1" value="keep"><span class="oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input"></span>Keep Current
+            <!--v-if--><input type="radio" id="check1" value="keep"><span class="oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input"></span>
+            <div class="oxd-radio-option-label">Keep Current</div>
           </label></div>
         <div class="oxd-radio-wrapper"><label class="">
-            <!--v-if--><input type="radio" id="check2" value="delete"><span class="oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input"></span>Delete Current
+            <!--v-if--><input type="radio" id="check2" value="delete"><span class="oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input"></span>
+            <div class="oxd-radio-option-label">Delete Current</div>
           </label></div>
         <div class="oxd-radio-wrapper"><label class="">
-            <!--v-if--><input type="radio" id="check3" value="replace"><span class="oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input"></span>Replace Current
+            <!--v-if--><input type="radio" id="check3" value="replace"><span class="oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input"></span>
+            <div class="oxd-radio-option-label">Replace Current</div>
           </label></div>
       </div>
     </div>
