@@ -1,3 +1,5 @@
+2022-08-26 - 86766da043150f15aa7f1868fc655f788c22ed3d - Input/RadioPilLGroup - set tab focus colour and setting name prop for the pills
+
 2022-08-24 - 65ddb076d1e499787dd8d4dc7a96237ea06e7ca1 - Input/Time/TimeInput.vue - Now supports clearing value by default. allEmpty prop removed. Time field hint changed to HH:MM (was HH-MM)
 
 2022-08-23 - 07ef5e0fd2b7f084b9a113d9b74efa0bf8dc0d20 - Button/Icon.vue, Icon/Icon.vue - Icon color for disabled Button/Icon.vue changed to match oxd guide
