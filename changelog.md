@@ -1,3 +1,5 @@
+2022-08-26 - e03f4d96f4eb79b922e0c59d6399137a0aa46d41 - Input/DateInput.vue - Fixed issue where date picked from calendar is lost when input is blurred.
+
 2022-08-26 - 86766da043150f15aa7f1868fc655f788c22ed3d - Input/RadioPilLGroup - set tab focus colour and setting name prop for the pills
 
 2022-08-24 - 65ddb076d1e499787dd8d4dc7a96237ea06e7ca1 - Input/Time/TimeInput.vue - Now supports clearing value by default. allEmpty prop removed. Time field hint changed to HH:MM (was HH-MM)
