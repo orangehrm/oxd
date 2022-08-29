@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="oxd-common-content">
-      <slot name="ccommonContent"></slot>
+      <slot name="commonContent"></slot>
     </div>
     <div class="oxd-collapsed-content" v-if="!isExpanded">
       <slot name="collapsedContent"></slot>
