@@ -1,6 +1,6 @@
 {
   "name": "oxd-components",
-  "version": "1.0.7-alpha.1",
+  "version": "1.0.7-alpha.2",
   "license": "GPL-3.0",
   "scripts": {
     "test:unit": "vue-cli-service test:unit",
@@ -10,6 +10,7 @@
   "dependencies": {
     "@revolist/vue3-datagrid": "^3.0.96",
     "bootstrap-icons": "^1.3.0",
+    "chart.js": "^3.9.1",
     "core-js": "^3.6.5",
     "date-fns": "^2.22.1",
     "mitt": "^2.1.0",

@@ -7,7 +7,7 @@ const orangehrmTheme = create({
   brandTitle: `OXD Storybook - ${version}`,
   brandUrl: 'https://www.orangehrm.com',
   brandImage:
-    'https://www.orangehrm.com/themes/orangehrm-modern/static/images/logo.png',
+    'https://www.orangehrm.com/_resources/themes/orangehrm/dist/images/OrangeHRM_Logo.svg',
 });
 
 addons.setConfig({

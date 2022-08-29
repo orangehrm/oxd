@@ -26,6 +26,7 @@ import {
   rgb2Hex,
   rgb2Hsv,
   sanitizeHex,
+  generateRandomColor,
 } from '../color';
 
 describe('components/src/utils/color::sanitizeHex', () => {
@@ -122,5 +123,12 @@ describe('components/src/utils/color::clamp', () => {
     expect(clamp(0.5, 0, 1)).toStrictEqual(0.5);
     expect(clamp(1, 0, 1)).toStrictEqual(1);
     expect(clamp(50, 0, 1)).toStrictEqual(1);
+  });
+});
+
+describe('components/src/utils/color::generateRandomColor', () => {
+  it('should generate valid hex', () => {
+    const result = generateRandomColor();
+    expect(/^#[0-9A-F]{6}$/i.test(result)).toBeTruthy();
   });
 });
