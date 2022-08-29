@@ -71,7 +71,7 @@ export default defineComponent({
       type: [Number, String],
       default: '50%',
     },
-    custout: {
+    cutout: {
       type: [Number, String],
       default: '5%',
     },
@@ -144,7 +144,7 @@ export default defineComponent({
       maintainAspectRatio: !!props.aspectRatio,
       aspectRatio:
         typeof props.aspectRatio === 'number' ? props.aspectRatio : 1,
-      cutout: props.custout,
+      cutout: props.cutout,
       plugins: {
         legend: {
           ...props.legend,
