@@ -346,6 +346,7 @@ export default defineComponent({
 
     const onUpdateComment = (e: Event) => {
       if (!invalidCommentSave.value) {
+        commentOriginalContent.value = commentContent.value;
         emit('onUpdateComment', e, {
           comment: props.comment,
           value: commentContent.value,
