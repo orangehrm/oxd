@@ -24,6 +24,9 @@ export default defineComponent({
       type: Array as () => Array<BulletPointListItem>,
       required: true,
     },
+    lineColor: {
+      type: String,
+    },
   },
   data() {
     return {
@@ -32,14 +35,17 @@ export default defineComponent({
   },
   methods: {
     getElementStyles(index: number) {
+      let customLineColor = {};
+      if (this.$props.lineColor)
+        customLineColor = {borderColor: this.$props.lineColor};
       if (this.isLast === 0) {
         return {display: 'none'};
       } else if (index === 0) {
-        return {height: '50%', top: '50%'};
+        return {height: '50%', top: '50%', ...customLineColor};
       } else if (index === this.isLast) {
-        return {height: '50%'};
+        return {height: '50%', ...customLineColor};
       }
-      return {};
+      return {...customLineColor};
     },
   },
 });

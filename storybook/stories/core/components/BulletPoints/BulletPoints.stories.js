@@ -13,6 +13,15 @@ export default {
         },
       },
     },
+    lineColor: {
+      control: {type: 'text'},
+      table: {
+        type: {
+          summary:
+            'Custom color that can be defined for the vertical line',
+        },
+      }
+    }
   },
 };
 
@@ -47,9 +56,7 @@ Default.parameters = {
   },
 };
 
-const singleBulletPoint = [
-  {id: '1', name: 'item_1'}
-];
+const singleBulletPoint = [{id: '1', name: 'item_1'}];
 export const SingleBulletPoint = Template.bind({});
 SingleBulletPoint.args = {
   list: singleBulletPoint,
@@ -82,6 +89,29 @@ ColouredBulletPoints.parameters = {
       code:
         '<oxd-bullet-points \n :list=' +
         JSON.stringify(bulletPointsColoured) +
+        '\n/>',
+    },
+  },
+};
+
+const bulletPointsSameColoured = [
+  {id: '1', name: 'item_1', styles: {backgroundColor: 'red'}},
+  {id: '2', name: 'item_2', styles: {backgroundColor: 'red'}},
+  {id: '3', name: 'item_3', styles: {backgroundColor: 'red'}},
+];
+export const ColouredVerticalLine = Template.bind({});
+ColouredVerticalLine.args = {
+  list: bulletPointsSameColoured,
+  lineColor: 'red',
+};
+
+ColouredVerticalLine.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-bullet-points \n :list=' +
+        JSON.stringify(bulletPointsSameColoured) +
+        '\n :lineColor: "red"/>' +
         '\n/>',
     },
   },
