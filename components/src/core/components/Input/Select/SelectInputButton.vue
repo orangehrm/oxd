@@ -74,6 +74,8 @@
               size="xxx-small"
               class="oxd-select-dropdown-trigger"
               @click="onToggleDropdown"
+              :iconStyles="dropdownTriggerIconStyles"
+              :style="dropdownTriggerButtonStyles"
             />
           </div>
         </div>
@@ -89,6 +91,8 @@
           :class="{'dropdown-minimized': hideDropdownLabel && doubleLineLabel}"
           @click="onToggleDropdown"
           :disabled="disabled"
+          :iconStyles="dropdownTriggerIconStyles"
+          :style="dropdownTriggerButtonStyles"
         />
       </template>
     </oxd-button>
@@ -185,6 +189,14 @@ export default defineComponent({
       validator: function(value: TooltipPosition) {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
+    },
+    dropdownTriggerIconStyles: {
+      type: Object,
+      default: () => {},
+    },
+    dropdownTriggerButtonStyles: {
+      type: Object,
+      default: () => {},
     },
     dropdownStyles: {
       type: Object,
