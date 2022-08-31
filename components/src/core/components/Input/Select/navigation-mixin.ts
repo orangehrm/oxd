@@ -22,19 +22,25 @@ export const navigationMixin = defineComponent({
   methods: {
     onSelectDown() {
       if (this.dropdownOpen) {
-        if (this.computedOptions.length - 1 > this.pointer) {
+        const originalPointer = this.pointer;
+        do {
           this.pointer++;
-        } else {
-          this.pointer = this.computedOptions.length - 1;
+        } while (this.pointer < this.computedOptions.length && this.computedOptions[this.pointer]._disabled);
+
+        if (this.pointer >= this.computedOptions.length) {
+          this.pointer = originalPointer;
         }
       }
     },
     onSelectUp() {
       if (this.dropdownOpen) {
-        if (this.pointer > 0) {
+        const originalPointer = this.pointer;
+        do {
           this.pointer--;
-        } else {
-          this.pointer = 0;
+        } while (this.pointer > 0 && this.computedOptions[this.pointer]._disabled)
+
+        if (this.pointer < 0) {
+          this.pointer = originalPointer;
         }
       }
     },
