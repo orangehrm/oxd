@@ -25,7 +25,10 @@ export const navigationMixin = defineComponent({
         const originalPointer = this.pointer;
         do {
           this.pointer++;
-        } while (this.pointer < this.computedOptions.length && this.computedOptions[this.pointer]._disabled);
+        } while (
+          this.pointer < this.computedOptions.length &&
+          this.computedOptions[this.pointer]._disabled
+        );
 
         if (this.pointer >= this.computedOptions.length) {
           this.pointer = originalPointer;
@@ -37,7 +40,10 @@ export const navigationMixin = defineComponent({
         const originalPointer = this.pointer;
         do {
           this.pointer--;
-        } while (this.pointer > 0 && this.computedOptions[this.pointer]._disabled)
+        } while (
+          this.pointer >= 0 &&
+          this.computedOptions[this.pointer]._disabled
+        );
 
         if (this.pointer < 0) {
           this.pointer = originalPointer;
