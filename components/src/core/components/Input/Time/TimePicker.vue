@@ -85,14 +85,14 @@
 </template>
 
 <script lang="ts">
-import {parseDate, formatDate} from '@orangehrm/oxd/utils/date';
-import {defineComponent, reactive, toRefs, watch} from 'vue';
-import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
-import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
-import clickOutsideDirective from '@orangehrm/oxd/directives/click-outside';
-import focusTrapDirective from '@orangehrm/oxd/directives/focus-trap';
-import focusFirstElementDirective from '@orangehrm/oxd/directives/focus-first-element';
-import translateMixin from '@orangehrm/oxd/mixins/translate';
+import { formatDate, parseDate } from '@orangehrm/oxd/utils/date'
+import { defineComponent, reactive, toRefs, watch } from 'vue'
+import Input from '@orangehrm/oxd/core/components/Input/Input.vue'
+import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue'
+import clickOutsideDirective from '@orangehrm/oxd/directives/click-outside'
+import focusTrapDirective from '@orangehrm/oxd/directives/focus-trap'
+import focusFirstElementDirective from '@orangehrm/oxd/directives/focus-first-element'
+import translateMixin from '@orangehrm/oxd/mixins/translate'
 
 interface State {
   hour: string;
@@ -129,9 +129,8 @@ export default defineComponent({
   },
 
   setup(props, context) {
-    let prevHour = '';
-    let prevMinute = '';
-    let enteredValue = '';
+    let enteredHour = '';
+    let enteredMinute = '';
     const state: State = reactive({
       hour: '01',
       minute: '00',
@@ -170,23 +169,14 @@ export default defineComponent({
     };
 
     const onHourInputBlur = () => {
-      const prevValue = prevHour;
-      const newValue = isValid(enteredValue, 'hour') ? enteredValue : prevValue;
-      prevMinute = newValue;
-
-      if (newValue.length > 0) {
-        setValue(parseInt(newValue, 10), 'hour');
+      if (isValid(enteredHour, 'hour')) {
+        setValue(parseInt(enteredHour, 10), 'hour');
       }
     };
 
     const onMinuteInputBlur = () => {
-      const prevValue = prevMinute;
-      const newValue = isValid(enteredValue, 'minute')
-        ? enteredValue
-        : prevValue;
-      prevHour = newValue;
-      if (newValue.length > 0) {
-        setValue(parseInt(newValue, 10), 'minute');
+      if (isValid(enteredMinute, 'minute')) {
+        setValue(parseInt(enteredMinute, 10), 'minute');
       }
     };
 
@@ -218,10 +208,15 @@ export default defineComponent({
       setValue(newValue, type);
     };
 
-    const onInput = e => {
-      enteredValue = e.target.value.replace(/\D/g, '');
-      if (enteredValue.length > 2) {
-        enteredValue = enteredValue.substring(0, 2);
+    const onInput = (e: Event, type: string) => {
+      let inputValue = e.target.value.replace(/\D/g, '');
+      if (inputValue.length > 2) {
+        inputValue = inputValue.substring(0, 2);
+      }
+      if (type === 'hour') {
+        enteredHour = inputValue;
+      } else {
+        enteredMinute = inputValue;
       }
     };
 

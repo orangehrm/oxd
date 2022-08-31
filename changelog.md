@@ -1,3 +1,5 @@
+2022-08-30 - 21f27018fd82c3b60ff350b4fb350a268a582479 - Input/Time/TimePicker.vue - Fixed issue where hour input picking value from minute (LMR-435)
+
 2022-08-26 - e03f4d96f4eb79b922e0c59d6399137a0aa46d41 - Input/DateInput.vue - Fixed issue where date picked from calendar is lost when input is blurred.
 
 2022-08-26 - 86766da043150f15aa7f1868fc655f788c22ed3d - Input/RadioPilLGroup - set tab focus colour and setting name prop for the pills
