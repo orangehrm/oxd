@@ -1,20 +1,18 @@
 <template>
   <div class="oxd-pop-over">
-    <div
-        @click="openPopOver"
-        class="oxd-pop-over-button"
-    >
+    <div @click="openPopOver" class="oxd-pop-over-button">
       <slot name="button"></slot>
     </div>
     <transition name="transition-fade-down">
       <div
-          class="oxd-pop-over-content"
-          v-if="isActive"
-          v-click-outside="closePopOver"
-          role="dialog"
-          v-dropdown-direction
-          v-horizontal-direction
-
+        class="oxd-pop-over-content"
+        v-if="isActive"
+        v-click-outside="closePopOver"
+        role="dialog"
+        @keyup.esc="closePopOver"
+        v-focus-trap
+        v-dropdown-direction
+        v-horizontal-direction
       >
         <slot></slot>
       </div>
@@ -27,7 +25,7 @@ import {defineComponent, ref, watch} from 'vue';
 import clickOutsideDirective from '../../../directives/click-outside';
 import dropdownDirectionDirective from '../../../directives/dropdown-direction';
 import popoverHorizontalDirectionDirectiveDirectionDirective from '../../../directives/popover-direction';
-
+import focusTrapDirective from '../../../directives/focus-trap';
 
 export default defineComponent({
   name: 'oxd-pop-over',
@@ -36,6 +34,7 @@ export default defineComponent({
     'click-outside': clickOutsideDirective,
     'dropdown-direction': dropdownDirectionDirective,
     'horizontal-direction': popoverHorizontalDirectionDirectiveDirectionDirective,
+    'focus-trap': focusTrapDirective,
   },
 
   props: {
@@ -47,12 +46,12 @@ export default defineComponent({
 
   emits: ['update:show'],
 
-  setup: function (props: any) {
+  setup: function(props: any) {
     const isActive = ref<boolean>(props.show);
     const openPopOver = () => {
       isActive.value = !isActive.value;
     };
-    const closePopOver = (e: MouseEvent) => {
+    const closePopOver = (e: Event) => {
       if (isActive.value) {
         isActive.value = false;
       }
@@ -61,10 +60,10 @@ export default defineComponent({
 
     //isActive value set to false, when the props.show value change triggered
     watch(
-        () => props.show,
-        (val) => {
-          isActive.value = false;
-        }
+      () => props.show,
+      val => {
+        isActive.value = false;
+      },
     );
 
     return {
