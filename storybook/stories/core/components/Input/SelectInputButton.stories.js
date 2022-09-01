@@ -162,6 +162,6 @@ CustomDropdownTriggerStyles.args = {
   button: buttonObject,
   moreIconName: 'oxd-info',
   doubleLineLabel: true,
-  dropdownTriggerIconStyles: {color: 'red'},
-  dropdownTriggerButtonStyles: {backgroundColor: 'yellow'},
+  dropdownTriggerIconStyles: {color: '#ff0000'},
+  dropdownTriggerButtonBackgroundColor: '#ff0000',
 };

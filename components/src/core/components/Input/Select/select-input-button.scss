@@ -270,6 +270,19 @@ $dropdown-button-size: 24px;
   &.dropdown-minimized {
     margin-left: 0.5rem;
   }
+  &.custom-background-color {
+    background-color: var(--custom-dropdown-trigger-button-color);
+
+    &:focus,
+    &:hover {
+      outline: 0;
+      background-color: var(--custom-dropdown-trigger-button-color-hover);
+    }
+    
+    &:active {
+      background-color: var(--custom-dropdown-trigger-button-color-active)
+    }
+  }
 }
 .label-double-line-wrapper {
   vertical-align: middle;

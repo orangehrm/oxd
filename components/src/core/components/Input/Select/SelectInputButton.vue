@@ -3,6 +3,7 @@
     class="oxd-select-wrapper"
     :class="{'d-flex justify-center': hideDropdownLabel}"
     v-click-outside="clickOutside"
+    :style="getCustomColor"
   >
     <oxd-button
       class="dropdown-btn"
@@ -76,6 +77,11 @@
               @click="onToggleDropdown"
               :iconStyles="dropdownTriggerIconStyles"
               :style="dropdownTriggerButtonStyles"
+              :class="{
+                'custom-background-color': dropdownTriggerButtonBackgroundColor
+                  ? true
+                  : false,
+              }"
             />
           </div>
         </div>
@@ -88,7 +94,12 @@
           :name="dropdownOpen ? 'oxd-chevron-up' : 'oxd-chevron-down'"
           size="xxx-small"
           class="oxd-select-dropdown-trigger"
-          :class="{'dropdown-minimized': hideDropdownLabel && doubleLineLabel}"
+          :class="{
+            'dropdown-minimized': hideDropdownLabel && doubleLineLabel,
+            'custom-background-color': dropdownTriggerButtonBackgroundColor
+              ? true
+              : false,
+          }"
           @click="onToggleDropdown"
           :disabled="disabled"
           :iconStyles="dropdownTriggerIconStyles"
@@ -194,9 +205,8 @@ export default defineComponent({
       type: Object,
       default: () => {},
     },
-    dropdownTriggerButtonStyles: {
-      type: Object,
-      default: () => {},
+    dropdownTriggerButtonBackgroundColor: {
+      type: String,
     },
     dropdownStyles: {
       type: Object,
@@ -331,11 +341,26 @@ export default defineComponent({
         this.hideDropdownLabel ? 'no-label' : 'w-100'
       }`;
     },
+    getCustomColor() {
+      if (this.dropdownTriggerButtonBackgroundColor) {
+        return {
+          '--custom-dropdown-trigger-button-color':
+            this.dropdownTriggerButtonBackgroundColor + this.rgbToHex(0.1),
+          '--custom-dropdown-trigger-button-color-active':
+            this.dropdownTriggerButtonBackgroundColor + this.rgbToHex(0.2),
+          '--custom-dropdown-trigger-button-color-hover':
+            this.dropdownTriggerButtonBackgroundColor + this.rgbToHex(0.15),
+        };
+      }
+    },
   },
 
   methods: {
     clickOutside() {
       this.dropdownOpen = false;
+    },
+    rgbToHex(percent: number) {
+      return `0${Math.round(255 * percent).toString(16)}`.slice(-2);
     },
   },
 
