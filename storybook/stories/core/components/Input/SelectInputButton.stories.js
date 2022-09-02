@@ -20,6 +20,24 @@ export default {
       defaultValue: [],
     },
     button: {control: {type: 'object'}},
+    dropdownTriggerIconStyles: {
+      control: {type: 'object'},
+      table: {
+        type: {
+          summary:
+            'This is to define the custom styles for drop down trigger button icon',
+        },
+      },
+    },
+    dropdownTriggerButtonBackgroundColor: {
+      control: {type: 'text'},
+      table: {
+        type: {
+          summary:
+            'This is to define the custom color for drop down trigger button background. Color should be given as a hexadecimal value. eg:"#f1f1f1"',
+        },
+      },
+    },
   },
 };
 
