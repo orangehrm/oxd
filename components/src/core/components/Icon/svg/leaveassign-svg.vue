@@ -1,0 +1,27 @@
+<!--
+/*
+ * This file is part of OrangeHRM Inc
+ *
+ * Copyright (C) 2020 onwards OrangeHRM Inc
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see  http://www.gnu.org/licenses
+ */
+-->
+
+<template>
+  <path
+    class="cls-1"
+    d="M 188.985 218.979 C 159.632 254.855 143.608 300.074 143.716 346.716 C 143.644 365.219 146.195 383.687 151.261 401.46 L 145.871 401.46 C 54.973 401.46 2.158 370.803 0.003 308.395 L 0.003 273.723 C -0.285 245.293 20.985 221.46 48.865 218.979 L 188.985 218.979 Z M 143.716 0.001 C 212.878 0.001 256.063 76.023 221.5 136.862 C 186.937 197.701 100.494 197.701 65.931 136.862 C 58.063 122.993 53.895 107.263 53.895 91.242 C 53.895 40.84 94.099 0.001 143.716 0.001 Z M 323.357 36.497 C 363.058 36.497 395.213 69.161 395.213 109.49 C 395.249 124.052 391.01 138.285 382.998 150.366 C 369.309 147.446 355.333 145.95 341.321 145.986 C 316.782 145.913 292.423 150.366 269.465 159.125 C 231.848 117.92 252.219 50.804 306.147 38.322 C 311.788 37.008 317.572 36.388 323.357 36.497 Z M 343.117 182.482 C 463.441 182.19 538.926 314.307 478.998 420.292 C 419.106 526.278 268.71 526.643 208.315 420.949 C 194.482 396.716 187.189 369.234 187.189 341.241 C 187.189 253.687 256.961 182.701 343.117 182.482 Z M 398.447 291.971 L 323.357 368.614 L 287.429 332.117 C 280.387 324.964 268.351 328.249 265.764 338.03 C 264.542 342.555 265.836 347.409 269.105 350.73 L 314.734 397.081 C 319.8 402.227 327.992 402.227 333.058 397.081 L 416.77 311.679 C 423.812 304.526 420.615 292.3 410.95 289.672 C 406.495 288.431 401.716 289.745 398.447 293.066 L 398.447 291.971 Z"
+  />
+</template>

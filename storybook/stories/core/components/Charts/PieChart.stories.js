@@ -52,4 +52,17 @@ Default.args = {
   ],
 };
 
+export const HideBorderWidth = Template.bind({});
+HideBorderWidth.args = {
+  width: '400px',
+  height: '400px',
+  responsive: false,
+  title: 'Pie Chart',
+  data: [
+    {value: 0, label: 'Orange', color: generateRandomColor()},
+    {value: 45, label: 'Apple', color: generateRandomColor()},
+    {value: 0, label: 'Pineapple', color: generateRandomColor()},
+  ],
+};
+
 export const SampleDashboard = () => Dashboard;

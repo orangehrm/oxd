@@ -145,6 +145,7 @@ export default defineComponent({
       aspectRatio:
         typeof props.aspectRatio === 'number' ? props.aspectRatio : 1,
       cutout: props.cutout,
+      borderWidth: props.data.filter(item => item.value).length > 1,
       plugins: {
         legend: {
           ...props.legend,
