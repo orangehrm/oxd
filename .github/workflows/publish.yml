@@ -19,9 +19,11 @@ jobs:
 
       - name: Check version already published
         run: |
+          set -x
+          npm -v
           cd scripts
           current_version=$(node ./current-version.js)
-          fetched_current_version=$(npm show @ohrm/oxd@$current_version version)
+          fetched_current_version=$(npm show @ohrm/oxd@$current_version version) || fetched_current_version=''
           echo "current_version=$current_version" >> $GITHUB_ENV
           echo "fetched_current_version=$fetched_current_version" >> $GITHUB_ENV
           echo "current_published_version=$(npm show @ohrm/oxd version)" >> $GITHUB_ENV
