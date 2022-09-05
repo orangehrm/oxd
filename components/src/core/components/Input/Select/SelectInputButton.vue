@@ -3,6 +3,7 @@
     class="oxd-select-wrapper"
     :class="{'d-flex justify-center': hideDropdownLabel}"
     v-click-outside="clickOutside"
+    :style="getCustomColor"
   >
     <oxd-button
       class="dropdown-btn"
@@ -74,6 +75,13 @@
               size="xxx-small"
               class="oxd-select-dropdown-trigger"
               @click="onToggleDropdown"
+              :iconStyles="dropdownTriggerIconStyles"
+              :style="dropdownTriggerButtonStyles"
+              :class="{
+                'custom-background-color': dropdownTriggerButtonBackgroundColor
+                  ? true
+                  : false,
+              }"
             />
           </div>
         </div>
@@ -86,9 +94,16 @@
           :name="dropdownOpen ? 'oxd-chevron-up' : 'oxd-chevron-down'"
           size="xxx-small"
           class="oxd-select-dropdown-trigger"
-          :class="{'dropdown-minimized': hideDropdownLabel && doubleLineLabel}"
+          :class="{
+            'dropdown-minimized': hideDropdownLabel && doubleLineLabel,
+            'custom-background-color': dropdownTriggerButtonBackgroundColor
+              ? true
+              : false,
+          }"
           @click="onToggleDropdown"
           :disabled="disabled"
+          :iconStyles="dropdownTriggerIconStyles"
+          :style="dropdownTriggerButtonStyles"
         />
       </template>
     </oxd-button>
@@ -185,6 +200,12 @@ export default defineComponent({
       validator: function(value: TooltipPosition) {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
+    },
+    dropdownTriggerIconStyles: {
+      type: Object,
+    },
+    dropdownTriggerButtonBackgroundColor: {
+      type: String,
     },
     dropdownStyles: {
       type: Object,
@@ -319,11 +340,27 @@ export default defineComponent({
         this.hideDropdownLabel ? 'no-label' : 'w-100'
       }`;
     },
+    getCustomColor() {
+      if (this.dropdownTriggerButtonBackgroundColor) {
+        return {
+          '--custom-dropdown-trigger-button-color':
+            this.dropdownTriggerButtonBackgroundColor + this.percentageToHex(0.1),
+          '--custom-dropdown-trigger-button-color-active':
+            this.dropdownTriggerButtonBackgroundColor + this.percentageToHex(0.2),
+          '--custom-dropdown-trigger-button-color-hover':
+            this.dropdownTriggerButtonBackgroundColor + this.percentageToHex(0.15),
+        };
+      }
+      return {};
+    },
   },
 
   methods: {
     clickOutside() {
       this.dropdownOpen = false;
+    },
+    percentageToHex(percent: number) {
+      return `0${Math.round(255 * percent).toString(16)}`.slice(-2);
     },
   },
 

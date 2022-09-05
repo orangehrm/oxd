@@ -20,6 +20,24 @@ export default {
       defaultValue: [],
     },
     button: {control: {type: 'object'}},
+    dropdownTriggerIconStyles: {
+      control: {type: 'object'},
+      table: {
+        type: {
+          summary:
+            'This is to define the custom styles for drop down trigger button icon',
+        },
+      },
+    },
+    dropdownTriggerButtonBackgroundColor: {
+      control: {type: 'text'},
+      table: {
+        type: {
+          summary:
+            'This is to define the custom color for drop down trigger button background. Color should be given as a hexadecimal value. eg:"#f1f1f1"',
+        },
+      },
+    },
   },
 };
 
@@ -75,7 +93,7 @@ const buttonObject = {
   labelMini: null,
   iconName: 'eye',
   iconSize: 'small',
-  iconStyle: "height: 20px; display: flex; align-items: center; color: #68a61d",
+  iconStyle: 'height: 20px; display: flex; align-items: center; color: #68a61d',
   iconImageSrc: null,
   size: 'long',
   displayType: 'label',
@@ -83,22 +101,21 @@ const buttonObject = {
   showLabel: true,
   labelMini: 'Vacancy',
   style: {
-    "background-color": "#ebfcd6",
-    "justify-content": "space-between",
+    'background-color': '#ebfcd6',
+    'justify-content': 'space-between',
   },
-}
+};
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     const selected = ref(null);
     return {args, selected};
   },
   render() {
-    return h(
-      SelectInputButton, {
+    return h(SelectInputButton, {
       ...this.args,
       modelValue: this.selected,
-      'onUpdate:modelValue': value => {
+      'onUpdate:modelValue': (value) => {
         if (value.id > -1) {
           this.selected = value;
         } else {
@@ -155,4 +172,14 @@ LongLabels.args = {
   ],
   moreIconName: 'oxd-info',
   doubleLineLabel: true,
+};
+
+export const CustomDropdownTriggerStyles = Template.bind({});
+CustomDropdownTriggerStyles.args = {
+  options: options,
+  button: buttonObject,
+  moreIconName: 'oxd-info',
+  doubleLineLabel: true,
+  dropdownTriggerIconStyles: {color: '#ff0000'},
+  dropdownTriggerButtonBackgroundColor: '#ff0000',
 };

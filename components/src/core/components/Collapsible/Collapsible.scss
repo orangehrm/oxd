@@ -2,6 +2,9 @@
 @import 'variables';
 
 .oxd-collapsible-container {
+  .oxd-common-content{
+    margin-bottom: 0.4rem;
+  }
   .oxd-collapsible-header-container {
     width: 100%;
     display: flex;
