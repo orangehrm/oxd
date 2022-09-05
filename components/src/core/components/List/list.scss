@@ -1,7 +1,6 @@
 @import '../../../styles';
 
 .oxd-list-container {
-  min-width: 65rem;
   margin-top: 1.5rem;
   background-color: $oxd-white-color;
   border-radius: 1.2rem;
@@ -115,6 +114,12 @@
         margin-right: 0;
       }
     }
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  .oxd-list-container {
+    min-width: 65rem;
   }
 }
 .margin-left {
