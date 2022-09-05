@@ -203,7 +203,6 @@ export default defineComponent({
     },
     dropdownTriggerIconStyles: {
       type: Object,
-      default: () => {},
     },
     dropdownTriggerButtonBackgroundColor: {
       type: String,
@@ -345,13 +344,14 @@ export default defineComponent({
       if (this.dropdownTriggerButtonBackgroundColor) {
         return {
           '--custom-dropdown-trigger-button-color':
-            this.dropdownTriggerButtonBackgroundColor + this.rgbToHex(0.1),
+            this.dropdownTriggerButtonBackgroundColor + this.percentageToHex(0.1),
           '--custom-dropdown-trigger-button-color-active':
-            this.dropdownTriggerButtonBackgroundColor + this.rgbToHex(0.2),
+            this.dropdownTriggerButtonBackgroundColor + this.percentageToHex(0.2),
           '--custom-dropdown-trigger-button-color-hover':
-            this.dropdownTriggerButtonBackgroundColor + this.rgbToHex(0.15),
+            this.dropdownTriggerButtonBackgroundColor + this.percentageToHex(0.15),
         };
       }
+      return {};
     },
   },
 
@@ -359,7 +359,7 @@ export default defineComponent({
     clickOutside() {
       this.dropdownOpen = false;
     },
-    rgbToHex(percent: number) {
+    percentageToHex(percent: number) {
       return `0${Math.round(255 * percent).toString(16)}`.slice(-2);
     },
   },
