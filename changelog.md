@@ -1,3 +1,5 @@
+2022-09-06 - 62a5486f6f33ff2ec3011ea26517c30c4ed0ba7d - Input/Select/SelectInputButton.vue - Updated the style of select option without the bottom border
+
 2022-08-30 - 21f27018fd82c3b60ff350b4fb350a268a582479 - Input/Time/TimePicker.vue - Fixed issue where hour input picking value from minute (LMR-435)
 
 2022-08-26 - e03f4d96f4eb79b922e0c59d6399137a0aa46d41 - Input/DateInput.vue - Fixed issue where date picked from calendar is lost when input is blurred.
