@@ -161,7 +161,6 @@
   font-weight: $oxd-dropdown-option-font-weight;
   padding: $oxd-dropdown-option-padding;
   margin: $oxd-dropdown-option-margin;
-  border-bottom: $oxd-dropdown-option-border-bottom;
   background-color: $oxd-dropdown-option-background;
   min-height: $oxd-dropdown-option-min-height;
 
@@ -278,9 +277,9 @@ $dropdown-button-size: 24px;
       outline: 0;
       background-color: var(--custom-dropdown-trigger-button-color-hover);
     }
-    
+
     &:active {
-      background-color: var(--custom-dropdown-trigger-button-color-active)
+      background-color: var(--custom-dropdown-trigger-button-color-active);
     }
   }
 }
