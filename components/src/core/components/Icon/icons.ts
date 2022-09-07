@@ -642,6 +642,9 @@ const icons: Icons = {
   'oxd-replace-resume': oxdReplaceResume,
   'oxd-file-upload': oxdFileUpload,
   'oxd-no-notes-found': oxdNoNotesFound,
+  'oxd-file-doc': oxdFileDoc,
+  'oxd-simple-download': oxdSimpleDownload,
+  'oxd-snapshot': oxdSnapshot,
   'oxd-multi-user': oxdMultiUser,
   'oxd-import-templates': oxdImportTemplates,
 };
