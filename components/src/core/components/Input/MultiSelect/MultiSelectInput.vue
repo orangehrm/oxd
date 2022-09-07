@@ -48,7 +48,17 @@
       :readonly="readonly"
       :selected="modelValue"
       @chipRemoved="onRemoveSelected"
-    ></oxd-mutliselect-chips>
+    >
+    <!-- <slot name="chips" :data="modelValue"></slot> -->
+    
+
+    <template v-slot:chips="{data}">
+        <slot
+          name="chips"
+          :data="data"
+        ></slot>
+      </template>
+  </oxd-mutliselect-chips>
   </div>
 </template>
 
