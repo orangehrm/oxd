@@ -51,6 +51,15 @@ export default {
         type: {summary: 'The slot which defines the expanded content'},
       },
     },
+    commonContent: {
+      control: {type: 'object'},
+      table: {
+        type: {
+          summary:
+            'The slot which defines the common content which should be shown in both expanded and collapsed views',
+        },
+      },
+    },
   },
 };
 
@@ -60,7 +69,7 @@ const Template = (args) => ({
   },
   components: {'oxd-collapsible': Collapsible},
   template:
-    '<oxd-collapsible v-bind="args"> <template #collapsedContent> <div> This is the collapsed view </div> </template> <template #expandedContent> <div> This is the expanded view </div> </template>  </oxd-collapsible>',
+    '<oxd-collapsible v-bind="args"> <template #commonContent> <div> This is the common content </div> </template> <template #collapsedContent> <div> This is the collapsed view </div> </template> <template #expandedContent> <div> This is the expanded view </div> </template>  </oxd-collapsible>',
 });
 
 export const Default = Template.bind({});
@@ -119,6 +128,9 @@ Events.parameters = {
         ':headerTitle="Collapsible Component"\n' +
         '@toggle="onToggle""\n' +
         '>\n' +
+        '<template #commonContent>\n' +
+        '<div>This the Common Content</div>\n' +
+        '</template>\n' +
         '<template #collapsedContent>\n' +
         '<div>This the Collapsed View</div>\n' +
         '</template>\n' +

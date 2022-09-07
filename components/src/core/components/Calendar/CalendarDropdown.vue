@@ -57,7 +57,7 @@ export default defineComponent({
         const selectedItem = this.$refs.oxdCalendarDropdown.querySelector(
           '.oxd-calendar-selector.--selected',
         );
-        selectedItem.scrollIntoView({block: 'end'});
+        selectedItem.scrollIntoView({block: 'nearest', inline: 'nearest'});
       });
     },
     closeSubMenu($e: KeyboardEvent | null) {

@@ -1,3 +1,19 @@
+2022-09-06 - 62a5486f6f33ff2ec3011ea26517c30c4ed0ba7d - Input/Select/SelectInputButton.vue - Updated the style of select option without the bottom border
+
+2022-08-30 - 21f27018fd82c3b60ff350b4fb350a268a582479 - Input/Time/TimePicker.vue - Fixed issue where hour input picking value from minute (LMR-435)
+
+2022-08-26 - e03f4d96f4eb79b922e0c59d6399137a0aa46d41 - Input/DateInput.vue - Fixed issue where date picked from calendar is lost when input is blurred.
+
+2022-08-26 - 86766da043150f15aa7f1868fc655f788c22ed3d - Input/RadioPilLGroup - set tab focus colour and setting name prop for the pills
+
+2022-08-24 - 65ddb076d1e499787dd8d4dc7a96237ea06e7ca1 - Input/Time/TimeInput.vue - Now supports clearing value by default. allEmpty prop removed. Time field hint changed to HH:MM (was HH-MM)
+
+2022-08-23 - 07ef5e0fd2b7f084b9a113d9b74efa0bf8dc0d20 - Button/Icon.vue, Icon/Icon.vue - Icon color for disabled Button/Icon.vue changed to match oxd guide
+
+2022-08-18 - e872d101314dadb0db5c410bf8a44dc5a1366c7c - Calendar/CalendarDropdown.vue - Affects DateInput.vue behavior. Prevent whole page scrolling up when month/year dropdown opened.
+
+2022-08-18 - f7d3683bc3cb8a6cef404c65a1d2cf4530a1d41e - Input/FileInput.vue - added edit file option
+
 2022-08-16 - 8a27adb9dfff1bbe7324caedbce570b0a6f25687 - Form/Form.vue, focus-first-element/index.ts - focus fist element not return back to correct element
 
 2022-08-14 - 87ed14348cc352d130fc59f79250129674e0c11a - Input/Time/TimeInput.vue - Added allowEmpty prop to enable placeholder text suppport, set HH-MM AM for default placeholder value and fix movelValue setting issue

@@ -4,6 +4,9 @@
       :headerTitle="'Collapsible Component'"
       @toggle="onToggle"
     >
+    <template #commonContent>
+      <div>This the Common Content</div>
+    </template>
     <template #collapsedContent>
       <div>This the Collapsed View</div>
     </template>

@@ -40,6 +40,7 @@
         <slot name="footer"></slot>
       </template>
     </oxd-table-sidebar>
+    <div class="oxd-table-left-panel-spacer" style="margin-left: 10px;"></div>
     <div
       class="table-card-list-wrapper d-table-cell"
       :class="{'w-100': !state.isLeftPanelOpen}"

@@ -231,6 +231,7 @@ export default defineComponent({
       this.dateTyped = value;
     },
     onDateSelected() {
+      this.dateTyped = null;
       const oxdDatePicker = this.$refs.oxdInput;
       this.$nextTick(() => {
         const oxdDateInputTriggerBtn = this.$refs.oxdIcon;

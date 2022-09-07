@@ -7,6 +7,7 @@ exports[`Collapsible renders the collapsible component 1`] = `
       <oxd-icon-button-stub name="oxd-caret-down" size="xxx-small" withcontainer="true" disabled="false" tooltip="Show More" flow="top" iconstyles="[object Object]" showtooltipwhendisabled="false" class="oxd-collapsible-caret-icon"></oxd-icon-button-stub>
     </div>
   </div>
+  <div class="oxd-common-content"></div>
   <div class="oxd-collapsed-content"></div>
   <!--v-if-->
 </div>

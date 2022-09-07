@@ -2,6 +2,10 @@
 @import 'variables';
 
 .oxd-checkbox-wrapper {
+  .oxd-checkbox-option-label {
+    overflow-wrap: break-word;
+    word-break: break-all;
+  }
   & label {
     cursor: pointer;
     display: flex;
@@ -12,6 +16,7 @@
     font-weight: $oxd-input-control-font-weight;
     width: fit-content;
     margin: 0;
+    display: -webkit-box;
 
     &:after {
       content: '';

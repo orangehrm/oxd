@@ -6,7 +6,7 @@ export interface FocusFirstHTMLElement extends HTMLElement {
 
 const focusableElements = 'input, select, textarea, [tabindex], [href]';
 const excludeElements =
-  'button:not(.oxd-dialog-close-button,.modal-reset-button)';
+  'button:not(.oxd-dialog-close-button,.modal-reset-button,[disabled])';
 const firstFocusedElementsOnMounted = new Map<string | null, Element>();
 const firstFocusedElementsOnUpdated = new Map<string | null, Element>();
 let previosFocusedElement: Element | null;
@@ -28,7 +28,7 @@ const focusonFirstElementDirective: Directive = {
     const {arg} = binding;
     if (arg === 'return-focus') {
       previosFocusedElement = document.activeElement;
-      if (!previosFocusedElement || previosFocusedElement == document.body){
+      if (!previosFocusedElement || previosFocusedElement == document.body) {
         previosFocusedElement = null;
       }
     }
@@ -56,9 +56,10 @@ const focusonFirstElementDirective: Directive = {
   beforeUnmount(el: FocusFirstHTMLElement, binding, vnode: VNode) {
     const {arg} = binding;
     if (arg === 'return-focus') {
-      if (previosFocusedElement as HTMLElement && 
+      if (
+        (previosFocusedElement as HTMLElement) &&
         (previosFocusedElement as HTMLElement).offsetParent !== null
-        ) {
+      ) {
         (previosFocusedElement as HTMLElement).focus();
       } else {
         let rightPanel = binding.instance?.$root?.$el.parentNode;

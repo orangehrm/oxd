@@ -16,7 +16,6 @@
             class="
               oxd-comment-content-header-container
               d-flex
-              align-center
               justify-between
             "
           >
@@ -24,11 +23,10 @@
               class="
                 oxd-comment-content-header-label-container
                 d-flex
-                align-center
               "
             >
               <oxd-label
-                :label="fullName"
+                :label="comment.user.commenterName"
                 class="oxd-comment-content-author-name"
                 :class="labelClasses"
               />
@@ -252,13 +250,6 @@ export default defineComponent({
     const commentContent = ref(props.comment.content);
     const commentDeleteWrapper = ref(null);
 
-    const fullName = computed(
-      () =>
-        `${props.comment.user?.firstname || ''} ${
-          props.comment.user?.middlename || ''
-        } ${props.comment.user?.lastname || ''}`,
-    );
-
     const hasContentChanged = computed(() =>
       commentOriginalContent.value.localeCompare(commentContent.value),
     );
@@ -355,6 +346,7 @@ export default defineComponent({
 
     const onUpdateComment = (e: Event) => {
       if (!invalidCommentSave.value) {
+        commentOriginalContent.value = commentContent.value;
         emit('onUpdateComment', e, {
           comment: props.comment,
           value: commentContent.value,
@@ -362,7 +354,10 @@ export default defineComponent({
         emit('commentEditHasError', false);
         invalidCommentUpdate.value = false;
         invalidCommentSave.value = false;
-        enableEditMode(false);
+        editable.value = false;
+        deleteMode.value = false;
+        invalidCommentUpdate.value = false;
+        invalidCommentSave.value = false;
       }
     };
 
@@ -417,7 +412,6 @@ export default defineComponent({
     });
 
     return {
-      fullName,
       editable,
       commentContent,
       invalidCommentUpdate,

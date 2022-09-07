@@ -55,13 +55,13 @@
     background-color: $oxd-radio-pill-background-color--readonly;
     border: $oxd-radio-pill-border--readonly;
     box-shadow: $oxd-radio-pill-box-shadow--readonly;
+  }
 
-    &.--focus {
-      color: $oxd-radio-pill-font-color--hover;
-      background-color: $oxd-radio-pill-background-color--hover;
-      border: $oxd-radio-pill-border--hover;
-      box-shadow: $oxd-radio-pill-box-shadow--hover;
-    }
+  &.--focus {
+    color: $oxd-radio-pill-font-color--hover;
+    background-color: $oxd-radio-pill-background-color--hover;
+    border: $oxd-radio-pill-border--hover;
+    box-shadow: $oxd-radio-pill-box-shadow--hover;
   }
 
   &.--checked {

@@ -3,5 +3,6 @@
 exports[`RadioInput.vue renders OXD Radio Input 1`] = `
 <div class="oxd-radio-wrapper"><label class="">
     <!--v-if--><input type="radio" label="Radio"><span class="oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input"></span>
+    <div class="oxd-radio-option-label"></div>
   </label></div>
 `;

@@ -5,6 +5,7 @@
     </div>
     <div
       class="oxd-comment-groups-container"
+      v-if="hasCommentsInside || !(hideEmptyPlaceholder || hasCommentsInside)"
       :class="commentGroupsContainerClasses"
       :style="commentGroupsContainerStyles"
     >
@@ -230,12 +231,16 @@ export default defineComponent({
     });
 
     const commentGroupsContainerStyles = computed(() => {
+      const height =
+        hasCommentsInside.value && props.scrollHeight
+          ? props.scrollHeight
+          : !props.hideEmptyPlaceholder
+          ? props.scrollHeight
+          : undefined;
       return {
-        'min-height': `${props.commentThreadMinHeight}`,
-        height:
-          hasCommentsInside.value && props.scrollHeight
-            ? props.scrollHeight
-            : undefined,
+        'min-height':
+          !props.hideEmptyPlaceholder && `${props.commentThreadMinHeight}`,
+        height,
       };
     });
 

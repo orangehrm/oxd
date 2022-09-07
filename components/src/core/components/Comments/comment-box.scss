@@ -8,7 +8,7 @@
     position: absolute;
     bottom: 0.5rem;
     right: 0.5rem;
-    color: $oxd-button-color--secondary-pressed;
+    color: $oxd-secondary-four-color;
     background-color: rgba(104, 166, 29, 0.1);
   }
   &-add-button-large {
@@ -24,11 +24,6 @@
   }
   &-textarea {
     padding: 0.675rem 2.5rem 0.675rem 0.5rem;
-  }
-  &-add-button {
-    :deep(path) {
-      fill: #68a61d;
-    }
   }
 }
 
