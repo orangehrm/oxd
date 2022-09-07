@@ -17,7 +17,7 @@
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
 
-import {Chart, Plugin} from 'chart.js';
+import {Chart, ChartConfiguration, Plugin} from 'chart.js';
 
 const hideTooltip = () => {
   document.getElementById('oxd-pie-chart-tooltip')?.remove();
@@ -26,6 +26,7 @@ const hideTooltip = () => {
 export const OxdPieChartTooltip: Plugin = {
   id: 'oxdPieChartTooltip',
   afterDatasetsDraw(chart: Chart<'pie'>) {
+    if ((chart.config as ChartConfiguration).type !== 'pie') return;
     const activeElements = chart.getActiveElements();
 
     if (activeElements.length === 0) {

@@ -20,21 +20,14 @@
 -->
 
 <script lang="ts">
-import {
-  ChartData,
-  ChartOptions,
-  AnimationSpec,
-  LegendOptions,
-  TooltipOptions,
-} from 'chart.js';
 import {Chart} from './chart';
 import {nanoid} from 'nanoid';
 import {DataPoint} from './types';
-import LegendVue from '@ohrm/oxd/core/components/Chart/Legend.vue';
+import {ChartData, ChartOptions, AnimationSpec} from 'chart.js';
 import {h, computed, PropType, shallowRef, defineComponent, watch} from 'vue';
 
 export default defineComponent({
-  name: 'oxd-pie-chart',
+  name: 'oxd-bar-chart',
 
   props: {
     styles: {
@@ -61,15 +54,19 @@ export default defineComponent({
       type: [Number, String],
       default: '100%',
     },
-    radius: {
-      type: [Number, String],
-      default: '50%',
-    },
-    cutout: {
-      type: [Number, String],
-      default: '5%',
-    },
     animate: {
+      type: Boolean,
+      default: true,
+    },
+    grid: {
+      type: Boolean,
+      default: true,
+    },
+    xAxsis: {
+      type: Boolean,
+      default: true,
+    },
+    yAxsis: {
       type: Boolean,
       default: true,
     },
@@ -80,14 +77,6 @@ export default defineComponent({
     aspectRatio: {
       type: [Boolean, Number],
       default: true,
-    },
-    customLegend: {
-      type: Boolean,
-      default: false,
-    },
-    customTooltip: {
-      type: Boolean,
-      default: false,
     },
     data: {
       type: Array as PropType<DataPoint[]>,
@@ -101,16 +90,8 @@ export default defineComponent({
       type: String,
       required: false,
     },
-    legend: {
-      type: Object as PropType<LegendOptions<'pie'>>,
-      required: false,
-    },
-    tooltip: {
-      type: Object as PropType<TooltipOptions<'pie'>>,
-      required: false,
-    },
     animation: {
-      type: Object as PropType<AnimationSpec<'pie'>>,
+      type: Object as PropType<AnimationSpec<'bar'>>,
       required: false,
     },
   },
@@ -119,60 +100,36 @@ export default defineComponent({
     const chartElm = shallowRef<HTMLCanvasElement>();
     const chartjsInstance = shallowRef<Chart>();
 
-    const series = computed<ChartData<'pie'>>(() => ({
+    const series = computed<ChartData<'bar'>>(() => ({
       labels: props.data.map(item => item.label),
       datasets: [
         {
           data: props.data.map(item => item.value),
           backgroundColor: props.data.map(item => item.color),
+          borderWidth: 4,
+          borderSkipped: false,
+          borderRadius: Number.MAX_VALUE,
+          borderColor: 'rgba(0, 0, 0, 0)',
         },
       ],
     }));
 
-    const options = computed<ChartOptions<'pie'>>(() => ({
+    const options = computed<ChartOptions<'bar'>>(() => ({
       responsive: props.responsive,
       maintainAspectRatio: !!props.aspectRatio,
       aspectRatio:
         typeof props.aspectRatio === 'number' ? props.aspectRatio : 1,
-      cutout: props.cutout,
-      borderWidth: props.data.filter(item => item.value).length > 1,
       plugins: {
-        legend: {
-          ...props.legend,
-          align: props.legend?.align ?? 'center',
-          position: props.legend?.position ?? 'bottom',
-          display: props.customLegend ? false : props.legend?.display,
-        },
-        tooltip: {
-          caretSize: 0,
-          backgroundColor: 'rgba(255, 255, 255, 1)',
-          enabled: props.customTooltip ? false : props.tooltip?.enabled,
-          callbacks: {
-            label: ctx => {
-              const {dataset, dataIndex} = ctx;
-              const value = dataset.data[dataIndex];
-              const total = dataset.data.reduce((acc, value) => acc + value, 0);
-              const percentage = (value / total) * 100;
-              return `${ctx.label} ${value} (${percentage.toFixed(2)}%)`;
-            },
-            labelColor: ctx => {
-              const {dataset, dataIndex} = ctx;
-              return {
-                borderColor: null,
-                borderWidth: 0,
-                borderRadius: 5,
-                backgroundColor: dataset.backgroundColor[dataIndex],
-              };
-            },
-            labelTextColor: () => 'rgba(100, 114, 140, 1)',
-          },
-          ...props.tooltip,
-        },
         title: {
           display: !!props.title,
           text: props.title,
         },
-        oxdPieChartTooltip: props.customTooltip,
+        legend: {
+          display: false,
+        },
+        tooltip: {
+          enabled: false,
+        },
       },
       animation: !props.animate
         ? false
@@ -190,6 +147,22 @@ export default defineComponent({
           },
         },
       },
+      scales: {
+        x: {
+          display: props.xAxsis,
+          grid: {
+            display: props.grid,
+            drawBorder: false,
+          },
+        },
+        y: {
+          display: props.yAxsis,
+          grid: {
+            display: props.grid,
+            drawBorder: false,
+          },
+        },
+      },
     }));
 
     const renderChart = (destroy: boolean) => {
@@ -201,7 +174,7 @@ export default defineComponent({
       // draw chart only if chartjs insance is null else update
       if (!chartjsInstance.value) {
         chartjsInstance.value = new Chart(chartElm.value, {
-          type: 'pie',
+          type: 'bar',
           data: {
             ...series.value,
           },
@@ -223,61 +196,23 @@ export default defineComponent({
       if (chartElm.value) renderChart(false);
     });
 
-    return () => {
-      if (!props.customLegend) {
-        return h(
-          'div',
-          {
-            width: props.width,
-            height: props.height,
-            style: props.wrapperStyles,
-            class: props.wrapperClasses,
-          },
-          [
-            h('canvas', {
-              ref: chartElm,
-              style: props.styles,
-              class: props.classes,
-            }),
-          ],
-        );
-      }
-
-      return h(
+    return () =>
+      h(
         'div',
         {
+          width: props.width,
+          height: props.height,
           style: props.wrapperStyles,
           class: props.wrapperClasses,
         },
         [
-          h(
-            'div',
-            {
-              class: 'oxd-pie-chart',
-            },
-            [
-              h('canvas', {
-                ref: chartElm,
-                id: props.chartId,
-                style: props.styles,
-                class: props.classes,
-              }),
-            ],
-          ),
-          h(LegendVue, {
-            data: props.data,
-            onClick: (index: number) => {
-              if (chartjsInstance.value) {
-                chartjsInstance.value.toggleDataVisibility(index);
-                chartjsInstance.value.update();
-              }
-            },
+          h('canvas', {
+            ref: chartElm,
+            style: props.styles,
+            class: props.classes,
           }),
         ],
       );
-    };
   },
 });
 </script>
-
-<style src="./pie-chart.scss" lang="scss"></style>
