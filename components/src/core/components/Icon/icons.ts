@@ -644,9 +644,7 @@ const icons: Icons = {
   'oxd-no-notes-found': oxdNoNotesFound,
   'oxd-file-doc': oxdFileDoc,
   'oxd-simple-download': oxdSimpleDownload,
-  'oxd-snapshot': oxdSnapshot,
-  'oxd-multi-user': oxdMultiUser,
-  'oxd-import-templates': oxdImportTemplates,
+  'oxd-snapshot': oxdSnapshot
 };
 
 export default icons;
