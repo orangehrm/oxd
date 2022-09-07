@@ -34,7 +34,7 @@
       <oxd-grid-item>
         <oxd-sheet :gutters="false" class="orangehrm-dashboard-widget">
           <oxd-text type="card-title">
-            Employee Distribution (Custom Legend)
+            Employee Distribution (Custom)
           </oxd-text>
           <oxd-divider />
           <div class="orangehrm-dashboard-widget-body">
@@ -42,6 +42,7 @@
               :data="dataset"
               :aspect-ratio="false"
               :custom-legend="true"
+              :custom-tooltip="true"
               wrapper-classes="emp-distrib-chart"
             ></oxd-pie-chart>
           </div>
@@ -135,7 +136,7 @@ export default {
     padding: 0.75rem;
     margin-bottom: 1rem;
     &-body {
-      height: 300px;
+      height: 330px;
       overflow: auto;
       &::-webkit-scrollbar {
         width: 0.5rem;
@@ -149,7 +150,7 @@ export default {
         border-radius: 1.2rem;
       }
       .emp-distrib-chart {
-        height: 300px;
+        height: 320px;
         width: auto;
       }
     }

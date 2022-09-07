@@ -49,7 +49,7 @@ class Label {
 const dataLabels = new Map<string, Array<Label>>();
 
 export const OxdPieChartLabels: Plugin = {
-  id: 'oxd-pie-chart-labels',
+  id: 'oxdPieChartLabels',
   afterDatasetUpdate(chart: Chart<'pie'>, {meta}: {meta: ChartMeta}) {
     const dataset = chart.data.datasets[0].data || [];
     const totalValue = dataset.reduce((acc, value) => acc + value, 0);

@@ -36,6 +36,7 @@ import {
 import {nanoid} from 'nanoid';
 import {DataPoint} from './types';
 import {OxdPieChartLabels} from './labelPlugin';
+import {OxdPieChartTooltip} from './tooltipPlugin';
 import LegendVue from '@ohrm/oxd/core/components/Chart/Legend.vue';
 import {h, computed, PropType, shallowRef, defineComponent, watch} from 'vue';
 
@@ -91,6 +92,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    customTooltip: {
+      type: Boolean,
+      default: false,
+    },
     data: {
       type: Array as PropType<DataPoint[]>,
       default: () => [],
@@ -125,7 +130,9 @@ export default defineComponent({
       ArcElement,
       PieController,
       OxdPieChartLabels,
+      OxdPieChartTooltip,
     );
+
     const chartElm = shallowRef<HTMLCanvasElement>();
     const chartjsInstance = shallowRef<Chart>();
 
@@ -156,14 +163,14 @@ export default defineComponent({
         tooltip: {
           caretSize: 0,
           backgroundColor: 'rgba(255, 255, 255, 1)',
-          enabled: props.tooltip?.enabled ?? true,
+          enabled: props.customTooltip ? false : props.tooltip?.enabled,
           callbacks: {
             label: ctx => {
               const {dataset, dataIndex} = ctx;
               const value = dataset.data[dataIndex];
               const total = dataset.data.reduce((acc, value) => acc + value, 0);
               const percentage = (value / total) * 100;
-              return `${ctx.label} ${value} (${percentage.toFixed(1)}%)`;
+              return `${ctx.label} ${value} (${percentage.toFixed(2)}%)`;
             },
             labelColor: ctx => {
               const {dataset, dataIndex} = ctx;
@@ -182,6 +189,7 @@ export default defineComponent({
           display: !!props.title,
           text: props.title,
         },
+        oxdPieChartTooltip: props.customTooltip,
       },
       animation: !props.animate
         ? false
@@ -289,4 +297,4 @@ export default defineComponent({
 });
 </script>
 
-<style src="./pie-chart.scss" lang="scss" scoped></style>
+<style src="./pie-chart.scss" lang="scss"></style>
