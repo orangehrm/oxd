@@ -23,10 +23,14 @@
       :list-visible="config.table.leftPanel.list.visible"
       :bubble-visible="config.table.leftPanel.list.bubble.visible"
       :button="config.table.leftPanel.header.button"
+      :secondary-button="config.table.leftPanel.header.secondaryButton"
       :selected-list-item-id="selectedListItemId"
       @sidePanelList:onSelect="sidePanelListOnSelect"
       @side-panel:onToggle="toggleSidePanel"
       @sidePanelList:onHeaderBtnClick="sidePanelListOnHeaderBtnClick"
+      @sidePanelList:onHeaderSecondaryBtnClick="
+        sidePanelListOnHeaderSecondaryBtnClick
+      "
       :is-side-panel-open="state.isLeftPanelOpen"
     >
       <template v-slot:sidePanelBody>
@@ -360,6 +364,10 @@ export default defineComponent({
       emit('sidePanelList:onHeaderBtnClick');
     };
 
+    const sidePanelListOnHeaderSecondaryBtnClick = () => {
+      emit('sidePanelList:onHeaderSecondaryBtnClick');
+    };
+
     const sidePanelListOnSelect = item => {
       state.currentPage = 1;
       emit('sidePanelList:onSelect', item);
@@ -478,6 +486,7 @@ export default defineComponent({
       oxdCardTableStyleClasses,
       order,
       sidePanelListOnHeaderBtnClick,
+      sidePanelListOnHeaderSecondaryBtnClick,
       sidePanelListOnSelect,
       quickSearchSelect,
       quickSearchOnClear,
