@@ -17,84 +17,20 @@
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
 
-import {Chart, ChartMeta, Plugin, Element, ChartEvent} from 'chart.js';
-
-// const tooltips = new Map<string, HTMLElement>();
-
-// const getRelativePosition = (canvas: HTMLCanvasElement) => {
-//   const position = canvas.getBoundingClientRect();
-//   return {
-//     x: position.left + window.pageXOffset,
-//     y: position.top + window.pageYOffset,
-//   };
-// };
+import {Chart, Plugin} from 'chart.js';
 
 const hideTooltip = () => {
   document.getElementById('oxd-pie-chart-tooltip')?.remove();
 };
 
-// const createTool
-
 export const OxdPieChartTooltip: Plugin = {
   id: 'oxdPieChartTooltip',
-  //   afterDatasetUpdate(chart: Chart<'pie'>) {
-  //     const dataset = chart.data.datasets[0].data || [];
-  //     const totalValue = dataset.reduce((acc, value) => acc + value, 0);
-
-  //     dataset.map((value, i) => {
-  //       const tooltipEl = document.createElement('span');
-  //       tooltipEl.id = `${chart.canvas.id}-tooltip-${i}`;
-  //       tooltipEl.style.display = 'none';
-  //       tooltipEl.style.position = 'absolute';
-  //       tooltipEl.style.pointerEvents = 'none';
-  //       tooltipEl.innerText = `${((value / totalValue) * 100).toFixed(1)}%`;
-  //       tooltips.set(tooltipEl.id, tooltipEl);
-  //       document.body.appendChild(tooltipEl);
-  //     });
-
-  //     console.log('ssss uo ', tooltips);
-  //   },
-  //   afterEvent: (
-  //     chart: Chart<'pie'>,
-  //     options: {inChartArea: boolean; event: ChartEvent},
-  //   ) => {
-  //     if (options.inChartArea && options.event.native) {
-  //       const triggeredEl = chart.getElementsAtEventForMode(
-  //         options.event.native,
-  //         'nearest',
-  //         {intersect: true},
-  //         true,
-  //       );
-  //       if (triggeredEl.length === 0) return;
-  //       const elmIndex = triggeredEl[triggeredEl.length - 1].index;
-  //       const tooltipId = `${chart.canvas.id}-tooltip-${elmIndex}`;
-  //       const tooltip = document.getElementById(
-  //         `${chart.canvas.id}-tooltip-${elmIndex}`,
-  //       );
-  //       const {backgroundColor} = triggeredEl[0].element.options;
-  //       const {x, y} = triggeredEl[
-  //         triggeredEl.length - 1
-  //       ].element.tooltipPosition();
-  //       if (tooltip) {
-  //         tooltip.style.display = 'block';
-  //       }
-  //     }
-  //   },
   afterDatasetsDraw(chart: Chart<'pie'>) {
-    //   if (chart.getActiveElements().length === 0) {
-    //     document
-    //       .querySelectorAll('.oxd-pie-chart-tooltip')
-    //       .forEach($elm => $elm.remove());
-    //   }
     const activeElements = chart.getActiveElements();
 
     if (activeElements.length === 0) {
       hideTooltip();
     } else {
-      //   const active = activeElements[activeElements.length - 1];
-
-      //   if (document.getElementById('oxd-pie-chart-tooltip')) return;
-      //   tooltip.style.display = 'block';
       const tooltipEl =
         document.getElementById('oxd-pie-chart-tooltip') ||
         document.createElement('span');
