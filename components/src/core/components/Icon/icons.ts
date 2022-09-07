@@ -663,6 +663,8 @@ const icons: Icons = {
   'oxd-file-doc': oxdFileDoc,
   'oxd-simple-download': oxdSimpleDownload,
   'oxd-snapshot': oxdSnapshot,
+  'oxd-multi-user': oxdMultiUser,
+  'oxd-import-templates': oxdImportTemplates,
 };
 
 export default icons;
