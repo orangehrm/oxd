@@ -62,12 +62,6 @@ export const OxdBarChartFill: Plugin = {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     datasetMeta.data.map((segment: any) => {
       ctx.fillStyle = 'rgb(246, 245, 251)';
-      //   ctx.fillRect(
-      //     segment.x - segment.width / 2,
-      //     segment.base,
-      //     segment.width,
-      //     scales.y.maxHeight * -1,
-      //   );
       roundRect(
         ctx,
         segment.x - segment.width / 2,

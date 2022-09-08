@@ -29,8 +29,8 @@ import {
   BarController,
   PieController,
 } from 'chart.js';
+import {OxdChartLabels} from './plugins/labelPlugin';
 import {OxdBarChartFill} from './plugins/barfillPlugin';
-import {OxdPieChartLabels} from './plugins/labelPlugin';
 import {OxdPieChartTooltip} from './plugins/tooltipPlugin';
 
 Chart.register(
@@ -39,7 +39,7 @@ Chart.register(
   Tooltip,
   ArcElement,
   PieController,
-  OxdPieChartLabels,
+  OxdChartLabels,
   OxdPieChartTooltip,
 );
 

@@ -73,7 +73,11 @@ export const OxdPieChartTooltip: Plugin = {
       value.textContent = `(${percentage.toFixed(2)}%)`;
       wrapper.appendChild(value);
 
-      tooltipEl.replaceChildren(key, label, wrapper);
+      tooltipEl.innerHTML = '';
+      tooltipEl.appendChild(key);
+      tooltipEl.appendChild(label);
+      tooltipEl.appendChild(wrapper);
+
       document.body.appendChild(tooltipEl);
     }
   },

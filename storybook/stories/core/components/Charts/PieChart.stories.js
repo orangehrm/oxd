@@ -17,7 +17,6 @@
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
 
-import Dashboard from './Dashboard.story.vue';
 import PieChart from '@ohrm/oxd/core/components/Chart/PieChart';
 import {generateRandomColor} from '../../../../../components/src/utils/color';
 
@@ -61,5 +60,3 @@ HideBorderWidth.args = {
     {value: 0, label: 'Pineapple', color: generateRandomColor()},
   ],
 };
-
-export const SampleDashboard = () => Dashboard;
