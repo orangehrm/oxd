@@ -350,6 +350,10 @@ export default defineComponent({
     };
 
     const onUpdateComment = (e: Event) => {
+      if (invalidCommentUpdate.value) {
+        invalidCommentUpdate.value = false;
+        hasError.value = false;
+      }
       if (!hasError.value) {
         commentOriginalContent.value = commentContent.value;
         emit('onUpdateComment', e, {
