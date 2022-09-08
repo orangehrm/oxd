@@ -56,7 +56,14 @@
       :readonly="readonly"
       :selected="showChips ? modelValue : []"
       @chipRemoved="onRemoveSelected"
-    ></oxd-autocomplete-chips>
+    >
+      <template v-slot:chips="{data}">
+        <slot
+            name="chips"
+            :data="data"
+        ></slot>
+      </template>
+    </oxd-autocomplete-chips>
   </div>
 </template>
 

@@ -1,3 +1,5 @@
+2022-09-08 - 38609f74219c515ec2f7038841ceaf9ed414f772 - Input/Autocomplete/AutocompleteChips.vue - Add a custom template to autocomplete-chips
+
 2022-09-07 - afb9a62c5058432539c670d504e6e4f33e7cfdb6 - Input/MultiSelect/MultiSelectInput.vue - Add a custom template to multiselect-chips
 
 2022-09-06 - 62a5486f6f33ff2ec3011ea26517c30c4ed0ba7d - Input/Select/SelectInputButton.vue - Updated the style of select option without the bottom border
