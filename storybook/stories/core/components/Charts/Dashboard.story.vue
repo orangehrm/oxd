@@ -34,7 +34,7 @@
       <oxd-grid-item>
         <oxd-sheet :gutters="false" class="orangehrm-dashboard-widget">
           <oxd-text type="card-title">
-            Employee Distribution (Custom Legend)
+            Employee Distribution (Custom)
           </oxd-text>
           <oxd-divider />
           <div class="orangehrm-dashboard-widget-body">
@@ -42,8 +42,25 @@
               :data="dataset"
               :aspect-ratio="false"
               :custom-legend="true"
+              :custom-tooltip="true"
               wrapper-classes="emp-distrib-chart"
             ></oxd-pie-chart>
+          </div>
+        </oxd-sheet>
+      </oxd-grid-item>
+      <oxd-grid-item>
+        <oxd-sheet :gutters="false" class="orangehrm-dashboard-widget">
+          <oxd-text type="card-title">
+            Time at work
+          </oxd-text>
+          <oxd-divider />
+          <div class="orangehrm-dashboard-widget-body">
+            <oxd-bar-chart
+              :data="timeData"
+              :grid="false"
+              :yAxsis="false"
+              :aspect-ratio="false"
+            ></oxd-bar-chart>
           </div>
         </oxd-sheet>
       </oxd-grid-item>
@@ -58,6 +75,7 @@ import Sheet from '@ohrm/oxd/core/components/Sheet/Sheet';
 import GridItem from '@ohrm/oxd/core/components/Grid/GridItem';
 import Divider from '@ohrm/oxd/core/components/Divider/Divider';
 import PieChart from '@ohrm/oxd/core/components/Chart/PieChart';
+import BarChart from '@ohrm/oxd/core/components/Chart/BarChart';
 import {CHART_COLORS} from '@ohrm/oxd/core/components/Chart/types';
 
 export default {
@@ -68,6 +86,7 @@ export default {
     'oxd-divider': Divider,
     'oxd-grid-item': GridItem,
     'oxd-pie-chart': PieChart,
+    'oxd-bar-chart': BarChart,
   },
   data() {
     return {
@@ -124,6 +143,43 @@ export default {
           color: CHART_COLORS.COLOR_TART_ORANGE,
         },
       ],
+      timeData: [
+        {
+          value: 4,
+          label: 'Sun',
+          color: CHART_COLORS.COLOR_HEAT_WAVE,
+        },
+        {
+          value: 3.5,
+          label: 'Mon',
+          color: CHART_COLORS.COLOR_HEAT_WAVE,
+        },
+        {
+          value: 0,
+          label: 'Tue',
+          color: CHART_COLORS.COLOR_HEAT_WAVE,
+        },
+        {
+          value: 6.25,
+          label: 'Wed',
+          color: CHART_COLORS.COLOR_HEAT_WAVE,
+        },
+        {
+          value: 24,
+          label: 'Thu',
+          color: CHART_COLORS.COLOR_HEAT_WAVE,
+        },
+        {
+          value: 0,
+          label: 'Fri',
+          color: CHART_COLORS.COLOR_HEAT_WAVE,
+        },
+        {
+          value: 5.5,
+          label: 'Sat',
+          color: CHART_COLORS.COLOR_HEAT_WAVE,
+        },
+      ],
     };
   },
 };
@@ -135,7 +191,7 @@ export default {
     padding: 0.75rem;
     margin-bottom: 1rem;
     &-body {
-      height: 300px;
+      height: 340px;
       overflow: auto;
       &::-webkit-scrollbar {
         width: 0.5rem;
@@ -149,7 +205,7 @@ export default {
         border-radius: 1.2rem;
       }
       .emp-distrib-chart {
-        height: 300px;
+        height: 330px;
         width: auto;
       }
     }

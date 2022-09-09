@@ -17,20 +17,20 @@
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
 
-import PieChart from '@ohrm/oxd/core/components/Chart/PieChart';
+import BarChart from '@ohrm/oxd/core/components/Chart/BarChart';
 import {generateRandomColor} from '../../../../../components/src/utils/color';
 
 export default {
-  title: 'Example/Charts/Pie',
-  component: PieChart,
+  title: 'Example/Charts/Bar',
+  component: BarChart,
 };
 
 const Template = args => ({
   setup() {
     return {args};
   },
-  components: {'oxd-pie-chart': PieChart},
-  template: '<oxd-pie-chart v-bind="args" />',
+  components: {'oxd-bar-chart': BarChart},
+  template: '<oxd-bar-chart v-bind="args" />',
 });
 
 export const Default = Template.bind({});
@@ -38,25 +38,12 @@ Default.args = {
   width: '400px',
   height: '400px',
   responsive: false,
-  title: 'Pie Chart',
+  title: 'Bar Chart',
   data: [
-    {value: 55, label: 'Apple', color: generateRandomColor()},
-    {value: 99.99, label: 'Orange', color: generateRandomColor()},
-    {value: 612, label: 'Grapes', color: generateRandomColor()},
-    {value: 150, label: 'Pineapple', color: generateRandomColor()},
-    {value: 300, label: 'Cherry', color: generateRandomColor()},
-  ],
-};
-
-export const HideBorderWidth = Template.bind({});
-HideBorderWidth.args = {
-  width: '400px',
-  height: '400px',
-  responsive: false,
-  title: 'Pie Chart',
-  data: [
-    {value: 0, label: 'Orange', color: generateRandomColor()},
-    {value: 45, label: 'Apple', color: generateRandomColor()},
-    {value: 0, label: 'Pineapple', color: generateRandomColor()},
+    {value: 55, label: 'Cheese', color: generateRandomColor()},
+    {value: 20, label: 'Ham', color: generateRandomColor()},
+    {value: 80, label: 'Bacon', color: generateRandomColor()},
+    {value: 10, label: 'Taco', color: generateRandomColor()},
+    {value: 300, label: 'Butter', color: generateRandomColor()},
   ],
 };
