@@ -273,15 +273,15 @@ export default defineComponent({
     };
 
     const onAddComment = event => {
-      if (!props.hasError && comment.value?.trim() !== '') {
+      if (comment.value?.trim() !== '') {
         emit('addComment', event, {
           value: comment.value,
           successCallback: () => {
+            emit('update:modelValue', '');
+            comment.value = '';
             doScroll();
           },
         });
-        emit('update:modelValue', '');
-        comment.value = '';
       }
     };
 
