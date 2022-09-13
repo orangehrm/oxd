@@ -9,8 +9,10 @@
             </div>
             <div class="progress-modal-body">
               <div class="progress linear-progress">
-                <div class="indeterminate"></div>
+                <div class="indeterminate" v-if="!isValuedProgress"></div>
+                <div class="loader" :style="{'--value': progressPercentage}" v-if="isValuedProgress"></div>
               </div>
+              <span class="loader-value" v-if="isValuedProgress"> {{progressPercentage}} </span>
             </div>
           </div>
         </div>
@@ -20,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, ref} from 'vue';
 
 export default defineComponent({
   name: 'oxd-progress-bar',
@@ -34,8 +36,37 @@ export default defineComponent({
       type: String,
       default: '',
     },
+    progressValue: {
+      type: Number,
+      default: undefined,
+    },
   },
+
+  setup: function (props) {
+    const isValuedProgress = ref<boolean>(false);
+    const progressPercentage = ref<string>('');
+    const init = () => {
+      isValuedProgress.value = props.progressValue != undefined ? true : false;
+
+      if (props.progressValue || props.progressValue === 0){
+        if(props.progressValue < 0 || props.progressValue === 0) {
+          progressPercentage.value = '0%';
+        }else if (props.progressValue > 100) {
+          progressPercentage.value = '100%';
+        }else{
+          progressPercentage.value = props.progressValue.toString() + '%';
+        }
+      }
+    };
+    init();
+    return {
+      isValuedProgress,
+      progressPercentage,
+    };
+  }
+
 });
+
 </script>
 
 <style src="./brogressBar.scss" lang="scss" scoped></style>

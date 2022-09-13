@@ -20,7 +20,46 @@ describe('ProgressBar > ProgressBar.vue', () => {
       },
     });
     expect(wrapper.html()).toContain(
-      '<h5 class="progress-modal-title">List to CSV</h5>',
+        '<h5 class="progress-modal-title">List to CSV</h5>',
+    );
+  });
+
+  it('valuedProgress', () => {
+    const wrapper = shallowMount(ProgressBar, {
+      props: {
+        title: 'List to CSV',
+        show: true,
+        progressValue: 90,
+      },
+    });
+    expect(wrapper.html()).toContain(
+        '<span class="loader-value">90%</span>',
+    );
+  });
+
+  it('valuedProgress', () => {
+    const wrapper = shallowMount(ProgressBar, {
+      props: {
+        title: 'List to CSV',
+        show: true,
+        progressValue: -2,
+      },
+    });
+    expect(wrapper.html()).toContain(
+        '<span class="loader-value">0%</span>',
+    );
+  });
+
+  it('valuedProgress', () => {
+    const wrapper = shallowMount(ProgressBar, {
+      props: {
+        title: 'List to CSV',
+        show: true,
+        progressValue: 106,
+      },
+    });
+    expect(wrapper.html()).toContain(
+        '<span class="loader-value">100%</span>',
     );
   });
 });

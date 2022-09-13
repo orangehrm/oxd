@@ -35,7 +35,7 @@ h5 {
 
   font-size: $oxd-progress-modal-title-font-size;
   font-weight: $oxd-progress-modal-title-font-weight;
-  line-height: 1; 
+  line-height: 1;
 }
 
 
@@ -72,31 +72,31 @@ h5 {
   display: block;
   width: 100%;
   margin: 0.5rem 0 1rem 0;
-  overflow: hidden; 
+  overflow: hidden;
 }
 .progress .indeterminate {
-    background-color: $oxd-secondary-four-color; 
+  background-color: $oxd-secondary-four-color;
 }
 .progress .indeterminate:before {
-      content: '';
-      position: absolute;
-      background-color: inherit;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      will-change: left, right;
-      animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite; 
+  content: '';
+  position: absolute;
+  background-color: inherit;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  will-change: left, right;
+  animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
 }
 .progress .indeterminate:after {
-      content: '';
-      position: absolute;
-      background-color: inherit;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      will-change: left, right;
-      animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
-      animation-delay: 1.15s; 
+  content: '';
+  position: absolute;
+  background-color: inherit;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  will-change: left, right;
+  animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+  animation-delay: 1.15s;
 }
 
 .oxd-overlay {
@@ -120,7 +120,7 @@ h5 {
     right: -90%; }
   100% {
     left: 100%;
-    right: -90%; } 
+    right: -90%; }
 }
 
 @keyframes indeterminate-short {
@@ -133,4 +133,21 @@ h5 {
   100% {
     left: 107%;
     right: -8%; }
+}
+.progress .loader {
+  background-color: $oxd-secondary-four-color;
+}
+.progress .loader:before {
+  content: '';
+  position: absolute;
+  background-color: inherit;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width:  var(--value);
+}
+
+.loader-value {
+  margin-left: 45%;
+  color: $oxd-secondary-four-color;
 }

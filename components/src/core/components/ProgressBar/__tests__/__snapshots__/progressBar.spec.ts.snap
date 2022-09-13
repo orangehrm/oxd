@@ -12,7 +12,9 @@ exports[`ProgressBar > ProgressBar.vue renders OXD linear Progress Bar 1`] = `
           <div class="progress-modal-body">
             <div class="progress linear-progress">
               <div class="indeterminate"></div>
+              <!--v-if-->
             </div>
+            <!--v-if-->
           </div>
         </div>
       </div>
