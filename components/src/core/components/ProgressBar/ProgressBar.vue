@@ -10,9 +10,15 @@
             <div class="progress-modal-body">
               <div class="progress linear-progress">
                 <div class="indeterminate" v-if="!isValuedProgress"></div>
-                <div class="loader" :style="{'--value': progressPercentage}" v-if="isValuedProgress"></div>
+                <div
+                  class="loader"
+                  :style="{'--value': progressPercentage}"
+                  v-if="isValuedProgress"
+                ></div>
               </div>
-              <span class="loader-value" v-if="isValuedProgress"> {{progressPercentage}} </span>
+              <span class="loader-value" v-if="isValuedProgress">
+                {{ progressPercentage }}
+              </span>
             </div>
           </div>
         </div>
@@ -42,18 +48,18 @@ export default defineComponent({
     },
   },
 
-  setup: function (props) {
+  setup: function(props) {
     const isValuedProgress = ref<boolean>(false);
     const progressPercentage = ref<string>('');
     const init = () => {
       isValuedProgress.value = props.progressValue != undefined ? true : false;
 
-      if (props.progressValue || props.progressValue === 0){
-        if(props.progressValue < 0 || props.progressValue === 0) {
+      if (props.progressValue || props.progressValue === 0) {
+        if (props.progressValue < 0 || props.progressValue === 0) {
           progressPercentage.value = '0%';
-        }else if (props.progressValue > 100) {
+        } else if (props.progressValue > 100) {
           progressPercentage.value = '100%';
-        }else{
+        } else {
           progressPercentage.value = props.progressValue.toString() + '%';
         }
       }
@@ -63,10 +69,8 @@ export default defineComponent({
       isValuedProgress,
       progressPercentage,
     };
-  }
-
+  },
 });
-
 </script>
 
 <style src="./brogressBar.scss" lang="scss" scoped></style>

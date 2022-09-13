@@ -20,7 +20,7 @@ describe('ProgressBar > ProgressBar.vue', () => {
       },
     });
     expect(wrapper.html()).toContain(
-        '<h5 class="progress-modal-title">List to CSV</h5>',
+      '<h5 class="progress-modal-title">List to CSV</h5>',
     );
   });
 
@@ -32,9 +32,7 @@ describe('ProgressBar > ProgressBar.vue', () => {
         progressValue: 90,
       },
     });
-    expect(wrapper.html()).toContain(
-        '<span class="loader-value">90%</span>',
-    );
+    expect(wrapper.html()).toContain('<span class="loader-value">90%</span>');
   });
 
   it('valuedProgress', () => {
@@ -45,9 +43,7 @@ describe('ProgressBar > ProgressBar.vue', () => {
         progressValue: -2,
       },
     });
-    expect(wrapper.html()).toContain(
-        '<span class="loader-value">0%</span>',
-    );
+    expect(wrapper.html()).toContain('<span class="loader-value">0%</span>');
   });
 
   it('valuedProgress', () => {
@@ -58,8 +54,6 @@ describe('ProgressBar > ProgressBar.vue', () => {
         progressValue: 106,
       },
     });
-    expect(wrapper.html()).toContain(
-        '<span class="loader-value">100%</span>',
-    );
+    expect(wrapper.html()).toContain('<span class="loader-value">100%</span>');
   });
 });
