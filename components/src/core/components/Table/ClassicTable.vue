@@ -63,6 +63,7 @@
             :tooltip="item[header.name]"
             :flow="header.flow || 'bottom'"
             :style="header.style"
+            :class="header.class"
           >
             {{
               item[header.name].slice(0, parseInt(header.maxCharacterLength)) +
