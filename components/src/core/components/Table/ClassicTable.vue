@@ -70,7 +70,7 @@
                 '...'
             }}
           </div>
-          <div v-else :style="header.style">
+          <div v-else :style="header.style" :class="header.class">
             {{ item[header.name] }}
           </div>
         </oxd-td>
