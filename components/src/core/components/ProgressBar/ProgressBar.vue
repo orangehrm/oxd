@@ -67,13 +67,13 @@ export default defineComponent({
     init();
 
     watch(
-        () => props.progressValue,
-        () => {
-          init();
-        },
-        {
-          immediate: true,
-        }
+      () => props.progressValue,
+      () => {
+        init();
+      },
+      {
+        immediate: true,
+      },
     );
 
     return {

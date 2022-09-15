@@ -33,6 +33,7 @@ h5 {
 
 .oxd .progress-modal-title {
 
+  color: #64728c;
   font-size: $oxd-progress-modal-title-font-size;
   font-weight: $oxd-progress-modal-title-font-weight;
   line-height: 1;
@@ -145,6 +146,7 @@ h5 {
   left: 0;
   bottom: 0;
   width:  var(--value);
+  border-radius: 0 4px 4px 0;
 }
 
 .loader-value {
