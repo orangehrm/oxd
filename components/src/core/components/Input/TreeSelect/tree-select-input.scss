@@ -18,6 +18,7 @@ td {
 
 .oxd-select-option {
   cursor: auto;
+  border-radius: 0 !important;
 
   span {
     //here, overring inherited css attributes
@@ -119,6 +120,13 @@ td {
 .selected-count-chip {
   margin-left: auto;
   margin-right: 15px !important;
+  :deep(.oxd-chip) {
+    border-radius: 0.75rem;
+    line-height: 1;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 1px 8px 1px 6px;
+  }
 }
 
 :deep(.oxd-select-dropdown-inner) {
