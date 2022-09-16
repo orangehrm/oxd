@@ -266,10 +266,8 @@ export default defineComponent({
     const optionsArr = ref<Option[]>([]);
     const dropdownOpen = ref<boolean>(false);
     const isAllSelected = ref<boolean>(false);
-    const placeholderOption = ref<OptionProp | null>(null);
 
     const spreadOptions = () => {
-      // optionsArr.value = [...props.options];
       optionsArr.value = [...JSON.parse(JSON.stringify(props.options))];
     };
 
@@ -658,7 +656,10 @@ export default defineComponent({
 
     const findPlaceholderOption = (options: Option[]): Option | string => {
       for (const option of options) {
-        if (selectedIdsObject.value[option.id]) {
+        if (
+          selectedIdsObject.value[option.id] &&
+          (props.countTopmostParents ? true : option._level > 1)
+        ) {
           return option;
         } else if (option.children ? option.children.length !== 0 : false) {
           const result = findPlaceholderOption(option.children);
@@ -672,21 +673,11 @@ export default defineComponent({
 
     const getPlaceholderValue = () => {
       let placeholderString = '';
-      if (
-        placeholderOption.value
-          ? selectedIdsObject.value[placeholderOption.value.id]
-          : false
-      ) {
-        placeholderString = placeholderOption.value
-          ? placeholderOption.value.label
-          : '';
-      } else {
-        const option = findPlaceholderOption(getLevelOneOptions());
-        if (typeof option !== 'string') {
-          placeholderOption.value = option;
-          placeholderString = placeholderOption.value.label;
-        }
+      const option = findPlaceholderOption(getLevelOneOptions());
+      if (typeof option !== 'string') {
+        placeholderString = option.label;
       }
+
       return placeholderString;
     };
 
@@ -737,7 +728,6 @@ export default defineComponent({
       optionsArr.value = [];
       dropdownOpen.value = false;
       isAllSelected.value = false;
-      placeholderOption.value = null;
       spreadOptions();
       levelizeOptions(optionsArr.value, 1, []);
       selectPreSelectedOptions();
