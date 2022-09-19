@@ -1,6 +1,9 @@
 import SchemaForm from '@orangehrm/oxd/core/components/SchemaForm/SchemaForm';
 import useSchemaForm from '../../../../../components/src/composables/useSchemaForm.ts';
-import {required, validFileTypes} from '../../../../../components/src/validation/rules.ts';
+import {
+  required,
+  validFileTypes,
+} from '../../../../../components/src/validation/rules.ts';
 import {h} from 'vue';
 
 export default {
@@ -165,6 +168,89 @@ const crossValidationSample = {
 export const CrossValidation = CrossValidationTemplate.bind({});
 CrossValidation.args = {
   schema: {...crossValidationSample},
+};
+
+const crossValidationWithDefaultSample = {
+  name: 'crossValidationForm',
+  layout: [
+    {
+      type: 'grid',
+      props: {
+        cols: 2,
+      },
+      children: {
+        default: [
+          {
+            name: 'vacancyType',
+            label: 'Vacancy Type',
+            type: 'select',
+            props: {
+              options: [
+                {id: 1, label: 'Vaccancy Type One'},
+                {id: 2, label: 'Vaccancy Type Two'},
+              ],
+            },
+            validators: new Map([['required', required]]),
+          },
+          {
+            name: 'vacancy',
+            label: 'Vacancy',
+            type: 'select',
+            props: {
+              options: [
+                {id: 1, label: 'Vaccancy One'},
+                {id: 2, label: 'Vaccancy Two'},
+              ],
+            },
+            value: {id: 2, label: 'Vaccancy Two'},
+            // eslint-disable-next-line @typescript-eslint/ban-types
+            hook: (field, modelvalue) => {
+              const model = modelvalue;
+              const defaultValidtors = new Map();
+              if (model.vacancyType?.id === 1) {
+                defaultValidtors.set('required', () => {
+                  return 'Vacancy One should be selected';
+                });
+              }
+              field.validators = defaultValidtors;
+              return {
+                ...field,
+              };
+            },
+          },
+        ],
+      },
+    },
+    {
+      type: 'divider',
+    },
+    {
+      type: 'action',
+      style: {
+        'margin-top': '0.5rem',
+      },
+      children: {
+        default: [
+          {
+            name: 'submit',
+            label: 'Submit',
+            type: 'button',
+            props: {
+              type: 'submit',
+              displayType: 'secondary',
+            },
+          },
+        ],
+      },
+    },
+  ],
+};
+
+export const crossValidationWithDefaultValues = CrossValidationTemplate.bind(
+  {},
+);
+crossValidationWithDefaultValues.args = {
+  schema: {...crossValidationWithDefaultSample},
 };
 
 export const PromiseBased = Template.bind({});
@@ -379,7 +465,7 @@ Advance.args = {
                 onSelectedOption: (option) => {
                   console.log(option);
                 },
-              }
+              },
             },
           ],
         },
@@ -573,8 +659,8 @@ Disabled.args = {
                 onSelectedOption: (option) => {
                   console.log(option);
                 },
-              }
-            }
+              },
+            },
           ],
         },
       },
