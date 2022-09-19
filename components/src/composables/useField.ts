@@ -104,7 +104,7 @@ export default function useField(fieldContext: {
     fieldContext.onReset();
   };
 
-  const makeFieldsWithDefaultValuesDirty = (modelValue: ModelValue) => {
+  const makeFieldsWithDefaultValueDirty = (modelValue: ModelValue) => {
     if (typeof modelValue.value === 'string' && modelValue.value) {
       dirty.value = true;
       startWatcher();
@@ -114,7 +114,7 @@ export default function useField(fieldContext: {
     } else if (
       typeof modelValue.value === 'object' &&
       modelValue.value &&
-      Object.keys(fieldContext.modelValue.value).length > 0
+      Object.keys(modelValue.value).length > 0
     ) {
       dirty.value = true;
       startWatcher();
@@ -124,7 +124,7 @@ export default function useField(fieldContext: {
     }
   };
 
-  makeFieldsWithDefaultValuesDirty(fieldContext.modelValue);
+  makeFieldsWithDefaultValueDirty(fieldContext.modelValue);
 
   form.registerField({
     cid,
