@@ -51,6 +51,15 @@ const roundRect = (
 
 export const OxdBarChartFill: Plugin = {
   id: 'OxdBarChartFill',
+
+  afterDataLimits: (_, {scale}) => {
+    if (scale.id === 'y') {
+      const ticks = scale.buildTicks();
+      // increase y scale by 1 tick (half a point in y axsis)
+      scale.max = scale.max + scale.max / ticks.length;
+    }
+  },
+
   beforeDraw: (chart: Chart<'bar'>) => {
     if ((chart.config as ChartConfiguration).type !== 'bar') return;
     const {ctx, scales} = chart;
