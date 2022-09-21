@@ -166,13 +166,18 @@ export default defineComponent({
       context.emit('update:modelValue', $event);
     };
 
+    const MakeDateFieldDirtyWithDefaultValue = () => {
+      if (props.type === 'date' && modelValue.value) {
+        dirty.value = true;
+        startWatcher();
+      }
+    };
+    MakeDateFieldDirtyWithDefaultValue();
+
     watch(
       () => modelValue.value,
       () => {
-        if (props.type === 'date' && modelValue.value) {
-          dirty.value = true;
-          startWatcher();
-        }
+        MakeDateFieldDirtyWithDefaultValue();
       },
     );
 
