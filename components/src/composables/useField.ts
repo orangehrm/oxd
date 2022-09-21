@@ -104,28 +104,6 @@ export default function useField(fieldContext: {
     fieldContext.onReset();
   };
 
-  const makeFieldsWithDefaultValueDirty = (modelValue: ModelValue) => {
-    if (typeof modelValue.value === 'string' && modelValue.value) {
-      dirty.value = true;
-      startWatcher();
-    } else if (Array.isArray(modelValue.value) && modelValue.value.length > 0) {
-      dirty.value = true;
-      startWatcher();
-    } else if (
-      typeof modelValue.value === 'object' &&
-      modelValue.value &&
-      Object.keys(modelValue.value).length > 0
-    ) {
-      dirty.value = true;
-      startWatcher();
-    } else if (modelValue.value) {
-      dirty.value = true;
-      startWatcher();
-    }
-  };
-
-  makeFieldsWithDefaultValueDirty(fieldContext.modelValue);
-
   form.registerField({
     cid,
     label,
