@@ -17,6 +17,14 @@ const leftPanel = {
         },
       ],
     },
+    secondaryButton: {
+      props: {
+        icon: 'oxd-info',
+        size: 'xx-small',
+        label: 'Info',
+        style: {color: 'blue'},
+      },
+    },
   },
   body: {
     visible: true,
