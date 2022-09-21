@@ -466,3 +466,12 @@ $oxd-icon-button-padding: 6px;
 $oxd-list-button-font-color: $oxd-interface-gray-darken-1-color !default;
 $oxd-list-button--pressed: $oxd-primary-one-color !default;
 $oxd-list-button--hover: $oxd-list-button--pressed !default;
+
+$oxd-glass-button-flex-gap: 10px !default;
+$oxd-glass-button-padding: 8px 32px !default;
+$oxd-glass-button-border-radius: 3rem !default;
+$oxd-glass-button-background-color: $oxd-background-white-color !default;
+$oxd-glass-button-font-color: $oxd-interface-gray-darken-2-color !default;
+$oxd-glass-button-font-color--disabled: $oxd-interface-gray-lighten-2-color !default;
+$oxd-glass-button-background-color--focus: $oxd-interface-gray-lighten-2-color !default;
+$oxd-glass-button-background-color--active: $oxd-interface-gray-lighten-2-color !default;

@@ -53,6 +53,10 @@ export const TYPE_LABEL_SUCCESS = 'label-success';
 export const TYPE_TEXT = 'text';
 export const TYPE_TOOL = 'tool';
 
+export const TYPE_GLASS_VIDEO = 'videoglass';
+export const TYPE_GLASS_CAMERA = 'cameraglass';
+export const TYPE_GLASS_THUMBSUP = 'thumbsupglass';
+
 export const TYPES = [
   TYPE_MAIN,
   TYPE_SECONDARY,
@@ -139,3 +143,14 @@ export type IconType =
   | typeof TYPE_GHOST_DANGER
   | typeof TYPE_GHOST_WARN
   | typeof TYPE_GHOST_SUCCESS;
+
+export const GLASS_ICON_TYPES = [
+  TYPE_GLASS_VIDEO,
+  TYPE_GLASS_CAMERA,
+  TYPE_GLASS_THUMBSUP,
+];
+
+export type GlassIconType =
+  | typeof TYPE_GLASS_VIDEO
+  | typeof TYPE_GLASS_CAMERA
+  | typeof TYPE_GLASS_THUMBSUP;
