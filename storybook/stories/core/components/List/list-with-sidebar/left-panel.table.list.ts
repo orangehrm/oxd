@@ -7,8 +7,8 @@ const leftPanel = {
         label: "Add Candidate",
         displayType: "secondary",
         size: "long",
-        iconName: "plus",
-        iconSize: "small",
+        iconName: "oxd-add",
+        iconSize: "xx-small",
       },
       events: [
         {
