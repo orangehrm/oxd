@@ -315,7 +315,7 @@ export default defineComponent({
       invalidCommentSaveRequired.value = false;
       shouldNotExceedCharLength.value;
       hasError.value = false;
-      if (commentContent.value === '' || commentContent.value?.trim() === '') {
+      if (commentContent.value?.trim() === '') {
         invalidCommentSaveRequired.value = true;
         invalidCommentUpdate.value = false;
         hasError.value = true;
