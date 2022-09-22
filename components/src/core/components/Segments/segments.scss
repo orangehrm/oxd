@@ -1,5 +1,6 @@
 @import '../../../styles';
 @import '../Label/variables';
+@import './../Input/variables';
 
 .oxd-segments-wrapper {
   display: flex;
@@ -7,6 +8,11 @@
   width: -webkit-fit-content;
   width: fit-content;
   border-radius: 3rem;
+  &:focus {
+    border: $oxd-input-border--focus;
+    box-shadow: $oxd-input-box-shadow--focus;
+    outline: 0;
+  }
   .oxd-segment-wrapper {
     white-space: nowrap;
     .oxd-segment-label {
