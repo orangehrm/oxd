@@ -1,3 +1,5 @@
+2022-09-22 - d4942a3f331a768b5b1e20981962cd9e7eeff201 - Segments/Segments.vue Add Key Board Accessibility and in Segments/segments.scss Add focus styles
+
 2022-09-12 - d9bd1040e5e228ccf874090c64f67822cd1a32a9 - Icon/icons.ts - Add 2 new icons: oxd-mail and oxd-mail-multiple
 
 2022-09-08 - 38609f74219c515ec2f7038841ceaf9ed414f772 - Input/Autocomplete/AutocompleteChips.vue - Add a custom template to autocomplete-chips
