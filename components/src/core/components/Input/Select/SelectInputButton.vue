@@ -25,6 +25,7 @@
       @keydown.down.exact.prevent="onSelectDown"
       @keydown.up.exact.prevent="onSelectUp"
       @keydown="onKeypress"
+      @click="doubleLineLabel && moreIconName ? {} : onToggleDropdown()"
     >
       <template v-if="buttonData.iconImageSrc" v-slot:icon>
         <img :src="buttonData.iconImageSrc" />
@@ -74,7 +75,7 @@
               :name="dropdownOpen ? 'oxd-chevron-up' : 'oxd-chevron-down'"
               size="xxx-small"
               class="oxd-select-dropdown-trigger"
-              @click="onToggleDropdown"
+              @click="doubleLineLabel && moreIconName ? onToggleDropdown() : {}"
               :iconStyles="dropdownTriggerIconStyles"
               :style="dropdownTriggerButtonStyles"
               :class="{
@@ -100,7 +101,7 @@
               ? true
               : false,
           }"
-          @click="onToggleDropdown"
+          @click="doubleLineLabel && moreIconName ? onToggleDropdown() : {}"
           :disabled="disabled"
           :iconStyles="dropdownTriggerIconStyles"
           :style="dropdownTriggerButtonStyles"
