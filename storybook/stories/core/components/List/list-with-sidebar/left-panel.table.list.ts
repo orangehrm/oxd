@@ -7,8 +7,8 @@ const leftPanel = {
         label: "Add Candidate",
         displayType: "secondary",
         size: "long",
-        iconName: "plus",
-        iconSize: "small",
+        iconName: "oxd-add",
+        iconSize: "xx-small",
       },
       events: [
         {
@@ -16,6 +16,14 @@ const leftPanel = {
           identifier: "get-add-candidates-modal",
         },
       ],
+    },
+    secondaryButton: {
+      props: {
+        icon: 'oxd-info',
+        size: 'xx-small',
+        label: 'Info',
+        style: {color: 'blue'},
+      },
     },
   },
   body: {
