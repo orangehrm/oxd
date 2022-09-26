@@ -4,6 +4,7 @@
     :labelIcon="labelIcon"
     :hint="hint"
     :hintPlacement="hintPlacement"
+    :hintStyle="hintStyle"
     :id="id"
     :message="message"
     class="oxd-input-field-bottom-space"
@@ -135,6 +136,10 @@ export default defineComponent({
     hintPlacement: {
       type: String,
       default: HINT_PLACEMENT_TOP,
+    },
+    hintStyle: {
+      type: Object,
+      default: () => ({}),
     },
   },
 
