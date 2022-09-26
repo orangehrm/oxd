@@ -22,6 +22,8 @@
 <template>
   <div :class="classes">
     <textarea
+      rows="1"
+      ref="textArea"
       class="oxd-buzz-post-input"
       :disabled="disabled"
       :value="modelValue"
@@ -40,10 +42,22 @@
 </template>
 
 <script lang="ts">
+import {
+  ref,
+  toRef,
+  nextTick,
+  PropType,
+  computed,
+  onMounted,
+  defineComponent,
+} from 'vue';
 import {Rule} from '../../../composables/types';
 import useField from '../../../composables/useField';
 import Text from '@ohrm/oxd/core/components/Text/Text.vue';
-import {defineComponent, toRef, nextTick, PropType, computed, ref} from 'vue';
+
+interface TextAreaInputEvent extends InputEvent {
+  target: HTMLTextAreaElement;
+}
 
 export default defineComponent({
   name: 'oxd-buzz-post-input',
@@ -68,6 +82,7 @@ export default defineComponent({
   emits: ['update:modelValue'],
   setup(props, context) {
     const focused = ref(false);
+    const textArea = ref<HTMLTextAreaElement>();
     const disabled = toRef(props, 'disabled');
     const modelValue = toRef(props, 'modelValue');
 
@@ -103,12 +118,34 @@ export default defineComponent({
       focused.value = false;
     };
 
-    const onInput = ($e: Event) => {
-      context.emit(
-        'update:modelValue',
-        ($e.target as HTMLTextAreaElement).value,
-      );
+    const calculateTextAreaHeight = () => {
+      if (!textArea.value) return;
+
+      // Refactored styles to directly apply since
+      // scrollHeight is not calculated properly with
+      // explicit heights. first set element height to auto
+      // then calculate scrollheight and set element height
+      textArea.value.style.height = 'auto';
+      if (!textArea.value.value) {
+        textArea.value.style.height = '30px';
+      } else if (textArea.value.scrollHeight < 400) {
+        textArea.value.style.height = textArea.value.scrollHeight + 'px';
+        textArea.value.style.overflowY = 'hidden';
+      } else {
+        textArea.value.style.height = '400px';
+        textArea.value.style.overflowY = 'scroll';
+      }
     };
+
+    const onInput = ($e: TextAreaInputEvent) => {
+      calculateTextAreaHeight();
+      context.emit('update:modelValue', $e.target.value);
+    };
+
+    onMounted(async () => {
+      await nextTick();
+      calculateTextAreaHeight();
+    });
 
     return {
       onBlur,
@@ -117,6 +154,7 @@ export default defineComponent({
       onFocus,
       onInput,
       hasError,
+      textArea,
     };
   },
 });

@@ -30,14 +30,11 @@
     all: unset;
     width: 98%;
     resize: none;
-    overflow: auto;
     text-align: justify;
     word-break: break-word;
     box-sizing: border-box;
     padding: $oxd-buzz-post-input-margin;
     margin: $oxd-buzz-post-input-margin;
-    height: $oxd-buzz-post-input-height;
-
     font-family: $oxd-input-control-font-family;
     color: $oxd-input-control-font-color;
     font-size: $oxd-input-control-font-size;
