@@ -20,11 +20,11 @@
 import {ref, Ref, watch, computed, onBeforeUnmount, WatchStopHandle} from 'vue';
 import {nanoid} from 'nanoid';
 import {injectStrict} from '../utils/injectable';
-import {ErrorField, FormAPI, formKey, rule} from './types';
+import {ErrorField, FormAPI, formKey, Rule} from './types';
 
 export default function useField(fieldContext: {
   fieldLabel: string;
-  rules: rule[];
+  rules: Rule[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   modelValue: Ref<any>;
   onReset: () => Promise<void>;
