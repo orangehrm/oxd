@@ -1,5 +1,6 @@
 <template>
   <form
+    v-if="enableFirstElementFocus"
     :name="name"
     :class="{
       'oxd-form': true,
@@ -7,6 +8,22 @@
     }"
     novalidate
     v-focus-first-element:return-focus
+    @submit.prevent="onSubmit"
+    @reset.prevent="onReset"
+  >
+    <div v-if="loading" class="oxd-form-loader">
+      <oxd-loading-spinner />
+    </div>
+    <slot></slot>
+  </form>
+  <form
+    v-else
+    :name="name"
+    :class="{
+      'oxd-form': true,
+      '--empty': !$slots.default,
+    }"
+    novalidate
     @submit.prevent="onSubmit"
     @reset.prevent="onReset"
   >
@@ -39,6 +56,10 @@ export default defineComponent({
     loading: {
       type: Boolean,
       default: false,
+    },
+    enableFirstElementFocus: {
+      type: Boolean,
+      default: true,
     },
   },
 
