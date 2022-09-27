@@ -8,7 +8,7 @@
               <h5 class="progress-modal-title">{{ title }}</h5>
             </div>
             <div class="progress-modal-body">
-              <div class="progress linear-progress">
+              <div class="progress linear-progress-vue">
                 <div class="indeterminate" v-if="!isValuedProgress"></div>
                 <div
                   class="loader"
