@@ -62,8 +62,8 @@ h5 {
   display: block;
 }
 
-.linear-progress {
-  background-color: $oxd-progress-modal-progressBar-background-color;
+.linear-progress-vue {
+  background-color: $oxd-progress-bar-background-color;
   height: 8px;
   border-radius: 4px;
 }
