@@ -1,6 +1,6 @@
 <template>
   <form
-    v-if="enablefirstelementfocus"
+    v-if="enableFirstElementFocus"
     :name="name"
     :class="{
       'oxd-form': true,
@@ -57,7 +57,7 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    enablefirstelementfocus: {
+    enableFirstElementFocus: {
       type: Boolean,
       default: true,
     },
