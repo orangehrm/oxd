@@ -39,6 +39,12 @@
   &--disabled,
   &--readonly {
     background: $oxd-input-background--disabled;
+    .oxd-file-input-icon,
+    .oxd-file-button {
+      cursor: unset;
+      background-color: $oxd-dropdown-arrow-background-color--readonly;
+      color: $oxd-dropdown-arrow-color--readonly;
+    }
   }
 }
 
@@ -55,11 +61,6 @@
   height: $oxd-file-button-height;
   padding: 0 $oxd-file-button-padding-horizontal;
   margin-left: $oxd-file-input-horizontal-margin;
-  &.--disabled {
-    cursor: unset;
-    color: $oxd-file-button-color--disabled;
-    background-color: $oxd-file-button-background-color--disabled;
-  }
 }
 
 .oxd-file-input-div {
@@ -67,6 +68,9 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  &.--placeholder {
+    color: $oxd-input-placeholder-color;
+  }
 }
 
 .oxd-file-input-icon {
@@ -81,15 +85,10 @@
   border-radius: $oxd-input-control-border-radius;
   background-color: $oxd-file-button-background-color;
   margin-right: $oxd-file-input-horizontal-margin;
-  &.--disabled {
-    cursor: unset;
-    color: $oxd-file-button-color--disabled;
-    background-color: $oxd-file-button-background-color--disabled;
-  }
 }
 
 .oxd-download-box-wrapper {
-  margin-bottom:10px;
+  margin-bottom: 10px;
   .oxd-download-box {
     cursor: pointer;
     border-style: solid;
@@ -132,7 +131,7 @@
       }
     }
   }
-  .oxd-download-box-radio-buttons{
+  .oxd-download-box-radio-buttons {
     margin-left: 10px;
   }
 }
