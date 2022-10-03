@@ -154,6 +154,14 @@ export default defineComponent({
             display: props.grid,
             drawBorder: false,
           },
+          ticks: {
+            font: {
+              size: 10,
+              style: 'normal',
+              family: 'Nunito Sans',
+            },
+            color: 'rgba(100, 114, 140, 1)',
+          },
         },
         y: {
           display: props.yAxsis,
