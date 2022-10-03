@@ -20,7 +20,7 @@
 -->
 
 <script lang="ts">
-import {defineComponent, h, KeepAlive, onBeforeMount, Transition} from 'vue';
+import {defineComponent, h, KeepAlive, onMounted, Transition} from 'vue';
 
 export default defineComponent({
   name: 'oxd-tab-container',
@@ -48,19 +48,9 @@ export default defineComponent({
   },
   emits: ['update:modelValue', 'clickTab'],
   setup(props, context) {
-    const content = context.slots.default?.() || [];
+    let content = [];
 
-    const generatePanels = (isKeepAlive: boolean) => {
-      const activeTab = content.find((tab, index) => {
-        if (!props.modelValue && index === 0) return true;
-        return tab.props.name === props.modelValue;
-      });
-      return isKeepAlive
-        ? h(KeepAlive, {age: props.cacheAge}, activeTab)
-        : activeTab;
-    };
-
-    onBeforeMount(() => {
+    onMounted(() => {
       if (location.hash) {
         const hash = location.hash.replace(/^#/, '');
         const selectedTab = content.find(
@@ -72,8 +62,20 @@ export default defineComponent({
       }
     });
 
-    return () =>
-      h('div', {class: 'oxd-tab'}, [
+    return () => {
+      content = context.slots.default?.();
+
+      const generatePanels = (isKeepAlive: boolean) => {
+        const activeTab = content.find((tab, index) => {
+          if (!props.modelValue && index === 0) return true;
+          return tab.props.name === props.modelValue;
+        });
+        return isKeepAlive
+          ? h(KeepAlive, {age: props.cacheAge}, activeTab)
+          : activeTab;
+      };
+
+      return h('div', {class: 'oxd-tab'}, [
         ...(props.showTabs
           ? [
               h(
@@ -122,6 +124,7 @@ export default defineComponent({
             ]
           : [generatePanels(props.keepAlive)]),
       ]);
+    };
   },
 });
 </script>
