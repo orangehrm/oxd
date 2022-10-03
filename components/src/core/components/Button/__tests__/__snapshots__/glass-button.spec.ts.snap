@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button > GlassButton.vue should disable OXD glass button 1`] = `<button type="button" class="oxd-glass-button oxd-glass-button--disabled" disabled="" name="Post Photo"> </button>`;
+
+exports[`Button > GlassButton.vue should renders OXD glass button 1`] = `<button type="button" class="oxd-glass-button" disabled="" name="Post Video"> </button>`;

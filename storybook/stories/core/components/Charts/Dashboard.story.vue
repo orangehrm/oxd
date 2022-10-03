@@ -165,17 +165,17 @@ export default {
           color: CHART_COLORS.COLOR_HEAT_WAVE,
         },
         {
-          value: 24,
+          value: 8,
           label: 'Thu',
           color: CHART_COLORS.COLOR_HEAT_WAVE,
         },
         {
-          value: 0,
+          value: 1.33,
           label: 'Fri',
           color: CHART_COLORS.COLOR_HEAT_WAVE,
         },
         {
-          value: 5.5,
+          value: 5,
           label: 'Sat',
           color: CHART_COLORS.COLOR_HEAT_WAVE,
         },

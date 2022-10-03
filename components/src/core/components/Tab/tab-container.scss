@@ -1,0 +1,61 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+@import '../../../styles';
+@import 'variables';
+
+.oxd-tab {
+  &-bar {
+    padding: $oxd-tab-bar-padding;
+  }
+  &-segment {
+    cursor: pointer;
+    text-decoration: none;
+    margin: $oxd-tab-bar-segment-margin;
+    color: $oxd-tab-bar-segment-font-color;
+    font-size: $oxd-tab-bar-segment-font-size;
+    font-weight: $oxd-tab-bar-segment-font-weight;
+    font-family: $oxd-tab-bar-segment-font-family;
+    &--active {
+      color: $oxd-tab-bar-segment-font-color-active;
+    }
+    &--disabled {
+      cursor: unset;
+      color: $oxd-tab-bar-segment-font-color-disabled;
+    }
+  }
+}
+
+.transition-slide-right-enter-active,
+.transition-slide-right-leave-active {
+  transition: opacity $oxd-tab-animation-time ease-in-out,
+    transform $oxd-tab-animation-time ease-in-out;
+}
+
+.transition-slide-right-leave-active {
+  position: absolute;
+}
+
+.transition-slide-right-enter-from {
+  opacity: 0;
+  transform: translateX($oxd-tab-animation-x-offset * -1);
+}
+
+.transition-slide-right-leave-to {
+  opacity: 0;
+  transform: translateX($oxd-tab-animation-x-offset);
+}

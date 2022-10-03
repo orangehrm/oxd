@@ -1,0 +1,33 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+$oxd-buzz-post-input-height: 30px !default;
+$oxd-buzz-post-input-margin: 0.35rem !default;
+$oxd-buzz-post-input-min-height: 5rem !default;
+$oxd-buzz-post-input-border--active: $oxd-input-control-border--active !default;
+$oxd-buzz-post-input-border--focus: $oxd-input-control-border--focus !default;
+$oxd-buzz-post-input-border--error: $oxd-input-control-border--error !default;
+$oxd-buzz-post-input-box-shadow--focus: $oxd-input-control-box-shadow--focus !default;
+$oxd-buzz-post-input-box-shadow--error: $oxd-input-control-box-shadow--error !default;
+$oxd-buzz-post-input-scrollbar-thumb-color: $oxd-scrollbar-thumb-color !default;
+$oxd-buzz-post-input-scrollbar-track-color: $oxd-scrollbar-track-color !default;
+$oxd-buzz-post-input-background-color--disabled: #f0f0fc !default;
+
+$oxd-buzz-post-message-margin-top: 5px !default;
+$oxd-buzz-post-message-font-size: 12px !default;
+$oxd-buzz-post-message-font-weight: 600 !default;
+$oxd-buzz-post-message-error-color: $oxd-feedback-danger-color !default;
