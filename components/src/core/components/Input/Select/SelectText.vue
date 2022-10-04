@@ -20,7 +20,7 @@
 -->
 
 <template>
-  <div @click="onToggle" :class="classes" :style="style">
+  <div :class="classes" :style="style" @mousedown.prevent="onToggle">
     <div
       class="oxd-select-text-input"
       :tabindex="tabIndex"
@@ -35,9 +35,8 @@
       <slot name="afterInput"></slot>
       <oxd-icon
         v-if="!disabled"
-        :class="dropdownIconClasses"
         :name="dropdownIcon"
-        @click="onToggle"
+        :class="dropdownIconClasses"
       />
     </div>
   </div>
@@ -120,7 +119,11 @@ export default defineComponent({
       this.focused = false;
     },
     onToggle() {
-      this.$refs.oxdInput.focus();
+      if (!this.focused) {
+        this.$refs.oxdInput.focus();
+      } else {
+        this.$refs.oxdInput.blur();
+      }
     },
   },
 });
