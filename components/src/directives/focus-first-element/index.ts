@@ -6,7 +6,7 @@ export interface FocusFirstHTMLElement extends HTMLElement {
 
 const focusableElements = 'input, select, textarea, [tabindex], [href]';
 const excludeElements =
-  'button:not(.oxd-dialog-close-button,.modal-reset-button,[disabled])';
+  'button:not(.oxd-dialog-close-button,.modal-reset-button,[disabled], body)';
 const firstFocusedElementsOnMounted = new Map<string | null, Element>();
 const firstFocusedElementsOnUpdated = new Map<string | null, Element>();
 let previosFocusedElement: Element | null;
