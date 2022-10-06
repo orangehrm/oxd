@@ -3,7 +3,7 @@
     <oxd-autocomplete-text-input
       v-bind="$attrs"
       :clear="showClear"
-      :placeholder="$vt(placeholder)"
+      :placeholder="!disabled ? $vt(placeholder) : null"
       :value="inputValue"
       :disabled="disabled"
       :readonly="readonly"
@@ -58,10 +58,7 @@
       @chipRemoved="onRemoveSelected"
     >
       <template v-slot:chips="{data}">
-        <slot
-            name="chips"
-            :data="data"
-        ></slot>
+        <slot name="chips" :data="data"></slot>
       </template>
     </oxd-autocomplete-chips>
   </div>
