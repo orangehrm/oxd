@@ -43,11 +43,6 @@
     }
   }
 
-  &--disabled,
-  &--readonly {
-    background: $oxd-dropdown-dropdown-background--disabled;
-  }
-
   input {
     @include oxd-input-control;
     width: 100%;
@@ -60,6 +55,14 @@
 
     &::placeholder {
       color: $oxd-input-placeholder-color;
+    }
+  }
+
+  &--disabled,
+  &--readonly {
+    background: $oxd-dropdown-dropdown-background--disabled;
+    input {
+      background-color: transparent;
     }
   }
 
