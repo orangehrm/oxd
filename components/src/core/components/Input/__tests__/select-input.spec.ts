@@ -18,9 +18,11 @@
  */
 
 import {mount} from '@vue/test-utils';
+import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 import SelectInput from '@ohrm/oxd/core/components/Input/Select/SelectInput.vue';
 import SelectText from '@ohrm/oxd/core/components/Input/Select/SelectText.vue';
 import SelectOption from '@ohrm/oxd/core/components/Input/Select/SelectOption.vue';
+import SelectDropdown from '@ohrm/oxd/core/components/Input/Select/SelectDropdown.vue';
 
 const options = [
   {
@@ -48,7 +50,7 @@ describe('SelectInput.vue', () => {
     const wrapper = mount(SelectInput, {
       props: {options},
     });
-    wrapper.findComponent(SelectText).trigger('click');
+    wrapper.findComponent(SelectText).trigger('mousedown');
     await wrapper.vm.$nextTick();
     const nodes = wrapper.findAllComponents(SelectOption);
     expect(nodes.length).toBe(4);
@@ -57,7 +59,7 @@ describe('SelectInput.vue', () => {
     const wrapper = mount(SelectInput, {
       props: {options},
     });
-    wrapper.findComponent(SelectText).trigger('click');
+    wrapper.findComponent(SelectText).trigger('mousedown');
     await wrapper.vm.$nextTick();
     const nodes = wrapper.findAllComponents(SelectOption);
     await nodes[1].trigger('mousedown');
@@ -75,7 +77,7 @@ describe('SelectInput.vue', () => {
     const wrapper = mount(SelectInput, {
       props: {options},
     });
-    wrapper.findComponent(SelectText).trigger('click');
+    wrapper.findComponent(SelectText).trigger('mousedown');
     await wrapper.vm.$nextTick();
     const nodes = wrapper.findAllComponents(SelectOption);
     await nodes[0].trigger('mousedown');
@@ -91,10 +93,21 @@ describe('SelectInput.vue', () => {
         },
       },
     });
-    wrapper.findComponent(SelectText).trigger('click');
+    wrapper.findComponent(SelectText).trigger('mousedown');
     await wrapper.vm.$nextTick();
     const nodes = wrapper.findAllComponents(SelectOption);
     await nodes[1].trigger('mousedown');
     expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+  });
+  it('should toggle dropdown on click icon', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {options},
+    });
+    wrapper.findComponent(Icon).trigger('mousedown');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.findComponent(SelectDropdown).exists()).toBeTruthy();
+    wrapper.findComponent(Icon).trigger('mousedown');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.findComponent(SelectDropdown).exists()).toBeFalsy();
   });
 });

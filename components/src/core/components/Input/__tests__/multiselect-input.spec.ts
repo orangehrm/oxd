@@ -48,7 +48,7 @@ describe('MultiSelectInput.vue', () => {
     const wrapper = mount(MultiSelectInput, {
       props: {options, modelValue: []},
     });
-    wrapper.findComponent(SelectText).trigger('click');
+    wrapper.findComponent(SelectText).trigger('mousedown');
     await wrapper.vm.$nextTick();
     const nodes = wrapper.findAllComponents(SelectOption);
     expect(nodes.length).toBe(3);
@@ -57,7 +57,7 @@ describe('MultiSelectInput.vue', () => {
     const wrapper = mount(MultiSelectInput, {
       props: {options, modelValue: []},
     });
-    wrapper.findComponent(SelectText).trigger('click');
+    wrapper.findComponent(SelectText).trigger('mousedown');
     await wrapper.vm.$nextTick();
     const nodes = wrapper.findAllComponents(SelectOption);
     await nodes[0].trigger('mousedown');
@@ -85,7 +85,7 @@ describe('MultiSelectInput.vue', () => {
         ],
       },
     });
-    wrapper.findComponent(SelectText).trigger('click');
+    wrapper.findComponent(SelectText).trigger('mousedown');
     await wrapper.vm.$nextTick();
     const nodes = wrapper.findAllComponents(SelectOption);
     await nodes[0].trigger('mousedown');
@@ -103,7 +103,7 @@ describe('MultiSelectInput.vue', () => {
         ],
       },
     });
-    wrapper.findComponent(SelectText).trigger('click');
+    wrapper.findComponent(SelectText).trigger('mousedown');
     await wrapper.vm.$nextTick();
     const nodes = wrapper.findAllComponents(SelectOption);
     await nodes[1].trigger('mousedown');
