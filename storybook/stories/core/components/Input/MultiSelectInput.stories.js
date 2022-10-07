@@ -1,6 +1,7 @@
 import MultiSelectInput from '@orangehrm/oxd/core/components/Input/MultiSelect/MultiSelectInput';
 import MultiSelectInputEvents from './MultiSelectInputEvents.story.vue';
 import MultiSelectInputAfterSelect from './MultiSelectInputAfterSelect.story.vue';
+import MultiSelectInputCustomChips from './MultiSelectInputCustomChips.story.vue';
 import {h, ref} from 'vue';
 
 export default {
@@ -283,6 +284,20 @@ AfterSelect.parameters = {
         '</oxd-multiselect-input>"\n' +
         '//\n' +
         'File -> MultiSelectInputAfterSelect.story.vue',
+    },
+  },
+};
+
+export const CustomChips = () => MultiSelectInputCustomChips;
+
+CustomChips.parameters = {
+  docs: {
+    source: {
+      code:
+        ' <oxd-multiselect-input :options="options" v-model="value">\n' +
+        '</oxd-multiselect-input>"\n' +
+        '//\n' +
+        'File -> MultiSelectInputCustomChips.story.vue',
     },
   },
 };

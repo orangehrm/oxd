@@ -52,6 +52,7 @@
 
       &:checked:disabled + .oxd-checkbox-input {
         background-color: $oxd-checkbox-disabled-background-color;
+        border: $oxd-checkbox-label-color;
         .oxd-checkbox-input-icon {
           opacity: 1;
         }

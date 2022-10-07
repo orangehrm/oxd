@@ -208,7 +208,7 @@ export default defineComponent({
 
     const hasCommentsInside = computed(() => {
       let totalCommentsLength = 0;
-      props.commentGroups?.forEach((commentGroup) => {
+      props.commentGroups?.forEach(commentGroup => {
         totalCommentsLength =
           totalCommentsLength + commentGroup?.comments?.length;
       });
@@ -272,15 +272,17 @@ export default defineComponent({
       });
     };
 
-    const onAddComment = (event) => {
-      emit('addComment', event, {
-        value: comment.value,
-        successCallback: () => {
-          doScroll();
-        },
-      });
-      emit('update:modelValue', '');
-      comment.value = '';
+    const onAddComment = event => {
+      if (comment.value?.trim() !== '') {
+        emit('addComment', event, {
+          value: comment.value,
+          successCallback: () => {
+            emit('update:modelValue', '');
+            comment.value = '';
+            doScroll();
+          },
+        });
+      }
     };
 
     onMounted(() => {

@@ -4,6 +4,7 @@
     :labelIcon="labelIcon"
     :hint="hint"
     :hintPlacement="hintPlacement"
+    :hintStyle="hintStyle"
     :id="id"
     :message="message"
     class="oxd-input-field-bottom-space"
@@ -26,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import {toRef, PropType, nextTick, defineComponent} from 'vue';
+import {toRef, PropType, nextTick, defineComponent, watch} from 'vue';
 import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import FileInput from '@orangehrm/oxd/core/components/Input/FileInput.vue';
@@ -136,6 +137,10 @@ export default defineComponent({
       type: String,
       default: HINT_PLACEMENT_TOP,
     },
+    hintStyle: {
+      type: Object,
+      default: () => ({}),
+    },
   },
 
   setup(props, context) {
@@ -165,6 +170,21 @@ export default defineComponent({
       }
       context.emit('update:modelValue', $event);
     };
+
+    const MakeDateFieldDirtyWithDefaultValue = () => {
+      if (props.type === 'date' && modelValue.value) {
+        dirty.value = true;
+        startWatcher();
+      }
+    };
+    MakeDateFieldDirtyWithDefaultValue();
+
+    watch(
+      () => modelValue.value,
+      () => {
+        MakeDateFieldDirtyWithDefaultValue();
+      },
+    );
 
     return {
       message,

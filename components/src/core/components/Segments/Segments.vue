@@ -42,6 +42,12 @@ export default defineComponent({
     },
   },
 
+  methods: {
+    cycleIndexes(currentValue: Options, array: Options[]) {
+      const currentIndex = array.indexOf(currentValue);
+      return array[(currentIndex + 1) % array.length];
+    },
+  },
   render() {
     const {$t} = useTranslate();
     const inputId = this.id == '' ? 'segment-id' : this.id;
@@ -50,6 +56,15 @@ export default defineComponent({
       {
         id: inputId,
         class: 'oxd-segments-wrapper',
+        tabIndex: '0',
+        onKeyup: ($event: KeyboardEvent) => {
+          if ($event.key === 'Enter') {
+            this.$emit(
+              'update:modelValue',
+              this.cycleIndexes(this.modelValue, this.options),
+            );
+          }
+        },
         style: this.style,
       },
       this.options.map((option: any, i: number) => {

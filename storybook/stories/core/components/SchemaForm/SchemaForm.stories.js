@@ -1,6 +1,9 @@
 import SchemaForm from '@orangehrm/oxd/core/components/SchemaForm/SchemaForm';
 import useSchemaForm from '../../../../../components/src/composables/useSchemaForm.ts';
-import {required, validFileTypes} from '../../../../../components/src/validation/rules.ts';
+import {
+  required,
+  validFileTypes,
+} from '../../../../../components/src/validation/rules.ts';
 import {h} from 'vue';
 
 export default {
@@ -379,7 +382,7 @@ Advance.args = {
                 onSelectedOption: (option) => {
                   console.log(option);
                 },
-              }
+              },
             },
           ],
         },
@@ -573,8 +576,8 @@ Disabled.args = {
                 onSelectedOption: (option) => {
                   console.log(option);
                 },
-              }
-            }
+              },
+            },
           ],
         },
       },
