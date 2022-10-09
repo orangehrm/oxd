@@ -60,7 +60,7 @@
         </span>
         <span
           class="comments-group-wrapper"
-          v-if="groupBy == GROUP_BY_TYPE_SECTION"
+          v-if="groupBy == GROUP_BY_TYPE_GROUP"
         >
           <li
             class="oxd-comment-group"
@@ -134,7 +134,7 @@ import {
   SMOOTH,
   GroupBy,
   GROUP_BY_TYPE_NONE,
-  GROUP_BY_TYPE_SECTION,
+  GROUP_BY_TYPE_GROUP,
 } from './types';
 import translateMixin from '../../../mixins/translate';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
@@ -241,7 +241,7 @@ export default defineComponent({
     },
     groupBy: {
       type: String as PropType<GroupBy>,
-      default: GROUP_BY_TYPE_SECTION,
+      default: GROUP_BY_TYPE_GROUP,
     },
   },
   setup(props, {emit}) {
@@ -379,7 +379,7 @@ export default defineComponent({
       showHeaderLabel,
       getSortedComments,
       GROUP_BY_TYPE_NONE,
-      GROUP_BY_TYPE_SECTION,
+      GROUP_BY_TYPE_GROUP,
     };
   },
 });

@@ -136,8 +136,8 @@ export default {
     },
 
     groupBy: {
-      control: {type: 'select', options: ['none', 'section']},
-      defaultValue: 'section',
+      control: {type: 'select', options: ['none', 'group']},
+      defaultValue: 'group',
       table: {
         type: {
           summary:
