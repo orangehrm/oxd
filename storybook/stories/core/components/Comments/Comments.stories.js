@@ -134,6 +134,17 @@ export default {
         },
       },
     },
+
+    groupBy: {
+      control: {type: 'select', options: ['none', 'section']},
+      defaultValue: 'section',
+      table: {
+        type: {
+          summary:
+            'Set comment delete confirmation message to show before delete the comment',
+        },
+      },
+    },
   },
 };
 
@@ -152,6 +163,7 @@ const commentGroups = [
           commenterName: 'Peter Sidius Weiss',
         },
         time: '2021/08/24',
+        formattedTime: '2021/08/24',
       },
       {
         groupId: 'group-1',
@@ -164,6 +176,7 @@ const commentGroups = [
           commenterName: 'Adrew Peters',
         },
         time: '2021/09/04',
+        formattedTime: '2021/09/04',
       },
     ],
   },
@@ -181,6 +194,7 @@ const commentGroups = [
           commenterName: 'Andrew Simeon',
         },
         time: '2021/08/24',
+        formattedTime: '2021/08/24',
       },
       {
         groupId: 'group-2',
@@ -191,6 +205,7 @@ const commentGroups = [
           commenterName: 'Deby Alexbery (Past Employee)',
         },
         time: '2021/09/04',
+        formattedTime: '2021/09/04',
       },
     ],
   },
@@ -208,6 +223,7 @@ const commentGroups = [
           commenterName: 'Deby Alexbery',
         },
         time: '2021/08/24',
+        formattedTime: '2021/08/24',
       },
       {
         groupId: 'group-3',
@@ -219,6 +235,7 @@ const commentGroups = [
           commenterName: 'Andrew Simeon',
         },
         time: '2021/09/04',
+        formattedTime: '2021/09/04',
         edited: true,
       },
     ],

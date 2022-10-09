@@ -34,18 +34,9 @@
         class="oxd-comment-groups-list"
         v-if="hasCommentsInside"
       >
-        <li
-          class="oxd-comment-group"
-          v-for="(commentGroup, groupIndex) in commentGroups"
-          :key="commentGroup.id || groupIndex"
-        >
-          <oxd-label
-            v-if="commentGroup.label"
-            :label="commentGroup.label"
-            class="oxd-comment-group-label"
-          />
+        <span class="comments-wrapper" v-if="groupBy == GROUP_BY_TYPE_NONE">
           <oxd-comment
-            v-for="(comment, commentIndex) in commentGroup.comments"
+            v-for="(comment, commentIndex) in getSortedComments()"
             :comment="comment"
             :key="comment || commentIndex"
             :allowToEdit="
@@ -61,11 +52,51 @@
             :unsavedEditCommentErrorMsg="unsavedEditCommentErrorMsg"
             :commentDeleteConfirmationMsg="commentDeleteConfirmationMsg"
             :maxCharLength="commentEditMaxCharLength"
+            :showGroupNamePill="true"
             @commentEditHasError="commentEditHasError"
             @onUpdateComment="onUpdateComment"
             @onDeleteComment="onDeleteComment"
           />
-        </li>
+        </span>
+        <span
+          class="comments-group-wrapper"
+          v-if="groupBy == GROUP_BY_TYPE_SECTION"
+        >
+          <li
+            class="oxd-comment-group"
+            v-for="(commentGroup, groupIndex) in commentGroups"
+            :key="commentGroup.id || groupIndex"
+          >
+            <oxd-label
+              v-if="commentGroup.label"
+              :label="commentGroup.label"
+              class="oxd-comment-group-label"
+            />
+            <oxd-comment
+              v-for="(comment, commentIndex) in commentGroup.comments"
+              :comment="comment"
+              :key="comment || commentIndex"
+              :allowToEdit="
+                disabled || readOnly
+                  ? false
+                  : allowToEdit || comment.allowToEdit
+              "
+              :allowToDelete="
+                disabled || readOnly
+                  ? false
+                  : allowToDelete || comment.allowToDelete
+              "
+              :enableAvatar="enableAvatar"
+              :requiredEditCommentErrorMsg="requiredEditCommentErrorMsg"
+              :unsavedEditCommentErrorMsg="unsavedEditCommentErrorMsg"
+              :commentDeleteConfirmationMsg="commentDeleteConfirmationMsg"
+              :maxCharLength="commentEditMaxCharLength"
+              @commentEditHasError="commentEditHasError"
+              @onUpdateComment="onUpdateComment"
+              @onDeleteComment="onDeleteComment"
+            />
+          </li>
+        </span>
       </ul>
     </div>
     <oxd-comment-box
@@ -97,7 +128,14 @@ import {
 import Comment from './Comment.vue';
 import Label from '@orangehrm/oxd/core/components/Label/Label.vue';
 import CommentBox from './CommentBox.vue';
-import {END, Scroll, SMOOTH} from './types';
+import {
+  END,
+  Scroll,
+  SMOOTH,
+  GroupBy,
+  GROUP_BY_TYPE_NONE,
+  GROUP_BY_TYPE_SECTION,
+} from './types';
 import translateMixin from '../../../mixins/translate';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
@@ -200,6 +238,10 @@ export default defineComponent({
     emptyPlaceholderMsg: {
       type: String,
       default: 'Sorry, No Comments Found!',
+    },
+    groupBy: {
+      type: String as PropType<GroupBy>,
+      default: GROUP_BY_TYPE_SECTION,
     },
   },
   setup(props, {emit}) {
@@ -309,6 +351,20 @@ export default defineComponent({
       emit('deleteComment', e, commentObj);
     };
 
+    const getSortedComments = () => {
+      const commments = [];
+      props.commentGroups?.forEach(commentGroup => {
+        commentGroup?.comments.forEach(comment => {
+          if (commentGroup.label) {
+            comment.groupName = commentGroup.label;
+          }
+          commments.push(comment);
+        });
+      });
+      commments.sort((a, b) => (a.time > b.time ? 1 : -1));
+      return commments;
+    };
+
     return {
       comment,
       commentGroupsContainerClasses,
@@ -321,6 +377,9 @@ export default defineComponent({
       commentGroupsList,
       hasCommentsInside,
       showHeaderLabel,
+      getSortedComments,
+      GROUP_BY_TYPE_NONE,
+      GROUP_BY_TYPE_SECTION,
     };
   },
 });

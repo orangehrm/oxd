@@ -122,11 +122,12 @@
         font-weight: 600;
         font-size: 0.75rem;
         color: #929baa;
-        .oxd-comment-edited-chip {
+        .oxd-comment-edited-chip,
+        .oxd-comment-group-name-chip {
           margin-left: 0.5rem;
           font-weight: 700;
           border-radius: 0.4rem;
-          padding: 5px 8px;
+          padding: 4px 8px;
           display: flex;
           align-items: center;
         }
