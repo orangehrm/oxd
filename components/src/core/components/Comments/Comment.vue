@@ -102,11 +102,18 @@
           </div>
         </div>
         <div class="oxd-comment-content-footer-container d-flex align-center">
-          <div
-            v-if="comment.time"
-            class="oxd-comment-content-commented-date d-flex align-center"
-          >
-            {{ $vt('Date') }}: {{ comment.time }}
+          <div class="oxd-comment-content-commented-date d-flex align-center">
+            <span v-if="comment.formattedTime">
+              {{ $vt('Date') }}: {{ comment.formattedTime }}
+            </span>
+
+            <oxd-chip
+              v-if="showGroupNamePill && comment.groupName"
+              :label="$vt(comment.groupName)"
+              class="oxd-comment-group-name-chip"
+              :background-color="'#929baa'"
+              :color="'#fafafc'"
+            />
             <oxd-chip
               v-if="comment.edited"
               :label="$vt('Edited')"
@@ -235,6 +242,10 @@ export default defineComponent({
     maxCharLength: {
       type: Number,
       default: 65535,
+    },
+    showGroupNamePill: {
+      type: Boolean,
+      default: false,
     },
   },
 
