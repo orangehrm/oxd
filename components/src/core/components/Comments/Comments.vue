@@ -332,7 +332,6 @@ export default defineComponent({
     };
 
     onMounted(() => {
-      debugger;
       comment.value = '';
       if (props.scrollOnLoad) doScroll();
     });
