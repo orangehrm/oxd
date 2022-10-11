@@ -7,9 +7,9 @@
   >
     <oxd-icon-button
       v-if="isIconButton"
-      class="profile-image-edit-btn"
-      :name="'oxd-edit'"
-      :size="'small'"
+      class="dropdown-icon-btn"
+      :name="buttonIconName"
+      :size="buttonData.size"
       @click="onToggleDropdown()"
     />
     <oxd-button
