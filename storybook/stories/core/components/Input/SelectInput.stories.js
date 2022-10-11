@@ -83,6 +83,13 @@ export default {
         type: {summary: 'Attend a specific text to the end of the select'},
       },
     },
+    isIconButton: {
+      control: {type: 'boolean'},
+      defaultValue: false,
+      table: {
+        type: {summary: 'Use button icon instead'},
+      },
+    },
   },
 };
 
