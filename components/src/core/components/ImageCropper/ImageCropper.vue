@@ -21,6 +21,7 @@ export default defineComponent({
   name: 'ImageCropper',
   components: {
     Cropper,
+    /* eslint-disable vue/no-unused-components */
     CircleStencil,
   },
   props: {
