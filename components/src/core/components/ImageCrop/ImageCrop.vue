@@ -2,14 +2,14 @@
   <cropper
     class="cropper"
     :src="image"
-    :stencil-props="{
-      resizable: resizable,
-    }"
-    :stencil-size="stencilSize"
     :stencil-component="$options.components.CircleStencil"
+    :default-size="{
+      width: stencilHeight,
+      height: stencilHeight,
+    }"
     :default-position="defaultPosition"
-    :min-height="10"
-    :min-width="10"
+    :min-height="stencilHeight"
+    :min-width="stencilHeight"
     @change="change"
   />
 </template>
@@ -44,10 +44,6 @@ export default defineComponent({
       type: String,
       default: '50',
     },
-    resizable: {
-      type: Boolean,
-      default: false,
-    },
   },
   emits: ['change'],
 
@@ -64,13 +60,6 @@ export default defineComponent({
       emit('change', croppedImage.value);
     };
 
-    const stencilSize = () => {
-      return {
-        width: props.stencilWidth,
-        height: props.stencilHeight,
-      };
-    };
-
     const defaultPosition = () => {
       return {
         left: props.defaultPositionLeft,
@@ -81,7 +70,6 @@ export default defineComponent({
       croppedImage,
       change,
       defaultPosition,
-      stencilSize,
     };
   },
 });
