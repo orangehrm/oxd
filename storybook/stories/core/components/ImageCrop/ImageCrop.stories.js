@@ -1,15 +1,53 @@
-import ImageCrop from '@orangehrm/oxd/core/components/ImageCrop/ImageCrop';
+import ImageCropper from '@orangehrm/oxd/core/components/ImageCropper/ImageCropper';
 
 export default {
-  title: 'Information/ImageCrop',
-  component: ImageCrop,
+  title: 'Information/ImageCropper',
+  component: ImageCropper,
+  argTypes: {
+    image: {
+      control: {type: 'text'},
+      table: {
+        type: {summary: 'Image passed to Component'},
+      },
+    },
+    defaultPositionLeft: {
+      control: {type: 'text'},
+      table: {
+        type: {summary: 'px left position of stencil'},
+      },
+    },
+    defaultPositionTop: {
+      control: {type: 'text'},
+      table: {
+        type: {summary: 'px top position of stencil'},
+      },
+    },
+    stencilWidth: {
+      control: {type: 'text'},
+      table: {
+        type: {summary: 'px width of stencil'},
+      },
+    },
+    stencilHeight: {
+      control: {type: 'boolean'},
+      table: {
+        type: {summary: 'px height of stencil'},
+      },
+    },
+    change: {
+      control: {type: 'function'},
+      table: {
+        type: {summary: 'Emit  change event with cropped image data'},
+      },
+    },
+  },
 };
 
 const Template = (args) => ({
   setup() {
     return {args};
   },
-  components: {'oxd-image-crop': ImageCrop},
+  components: {'oxd-image-crop': ImageCropper},
   template: '<oxd-image-crop v-bind="args" />',
 });
 

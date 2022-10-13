@@ -17,7 +17,6 @@
 <script lang="ts">
 import {defineComponent, ref} from 'vue';
 import {Cropper, CircleStencil} from 'vue-advanced-cropper';
-import 'vue-advanced-cropper/dist/style.css';
 export default defineComponent({
   name: 'ImageCropper',
   components: {
@@ -30,9 +29,9 @@ export default defineComponent({
     },
     defaultPositionLeft: {
       type: String,
-      default: '700',
+      default: '500',
     },
-    defaultPositionRight: {
+    defaultPositionTop: {
       type: String,
       default: '500',
     },
@@ -63,7 +62,7 @@ export default defineComponent({
     const defaultPosition = () => {
       return {
         left: props.defaultPositionLeft,
-        top: props.defaultPositionRight,
+        top: props.defaultPositionTop,
       };
     };
     return {
@@ -74,4 +73,4 @@ export default defineComponent({
   },
 });
 </script>
-<style src="./image-crop.scss" lang="scss" scoped></style>
+<style src="./image-cropper.scss" lang="scss" scoped></style>
