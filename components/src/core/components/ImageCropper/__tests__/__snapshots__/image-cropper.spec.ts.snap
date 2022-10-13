@@ -2,9 +2,6 @@
 
 exports[`ImageCropper.vue renders ImageCropper 1`] = `
 <cropper-stub defaultsize="[object Object]" defaultposition="function () {
-      /* istanbul ignore next */
-      cov_65ctl99w9.f[2]++;
-      cov_65ctl99w9.s[13]++;
       return {
         left: props.defaultPositionLeft,
         top: props.defaultPositionTop
