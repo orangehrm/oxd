@@ -54,9 +54,22 @@
   }
 
   &-icon {
-    width: 2.5rem;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: $oxd-glass-button-icon-width;
+    height: $oxd-glass-button-icon-height;
     &--disabled {
       opacity: 0.5;
+    }
+    &--videoglass {
+      background-image: url(~assets/images/videoglass.png);
+    }
+    &--cameraglass {
+      background-image: url(~assets/images/cameraglass.png);
+    }
+    &--thumbsupglass {
+      background-image: url(~assets/images/thumbsupglass.png);
     }
   }
 }
