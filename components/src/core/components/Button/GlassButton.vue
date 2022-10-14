@@ -21,8 +21,8 @@
 
 <template>
   <button type="button" :class="btnClasses" disabled>
-    <slot v-if="!iconSrc" name="icon"></slot>
-    <img v-else :src="iconSrc" :class="iconClasses" />
+    <span v-if="icon" :class="iconClasses"></span>
+    <slot v-else name="icon"></slot>
     {{ label }}
   </button>
 </template>
@@ -53,11 +53,6 @@ export default defineComponent({
   },
 
   computed: {
-    iconSrc(): string | null {
-      return this.icon
-        ? require(`../../../assets/images/${this.icon}.png`)
-        : null;
-    },
     btnClasses(): object {
       return {
         'oxd-glass-button': true,
@@ -67,7 +62,8 @@ export default defineComponent({
     iconClasses(): object {
       return {
         'oxd-glass-button-icon': true,
-        [`oxd-glass-button-icon--disabled`]: this.disabled,
+        'oxd-glass-button-icon--disabled': this.disabled,
+        [`oxd-glass-button-icon--${this.icon}`]: this.icon,
       };
     },
   },
