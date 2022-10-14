@@ -3,13 +3,19 @@
     class="cropper"
     :src="image"
     :stencil-component="$options.components.CircleStencil"
-    :default-size="{
-      width: stencilHeight,
+    :stencil-props="{
+      handlers: {},
+      movable: false,
+      scalable: false,
+      aspectRatio: 1,
+    }"
+    :stencil-size="{
+      width: stencilWidth,
       height: stencilHeight,
     }"
-    :default-position="defaultPosition"
-    :min-height="stencilHeight"
-    :min-width="stencilHeight"
+    :resize-image="{
+      adjustStencil: false,
+    }"
     @change="change"
   />
 </template>
@@ -28,21 +34,13 @@ export default defineComponent({
     image: {
       type: String,
     },
-    defaultPositionLeft: {
-      type: String,
-      default: '500',
-    },
-    defaultPositionTop: {
-      type: String,
-      default: '500',
-    },
     stencilWidth: {
       type: String,
-      default: '50',
+      default: '280',
     },
     stencilHeight: {
       type: String,
-      default: '50',
+      default: '280',
     },
   },
   emits: ['change'],
@@ -59,17 +57,9 @@ export default defineComponent({
       croppedImage.value = canvas.toDataURL();
       emit('change', croppedImage.value);
     };
-
-    const defaultPosition = () => {
-      return {
-        left: props.defaultPositionLeft,
-        top: props.defaultPositionTop,
-      };
-    };
     return {
       croppedImage,
       change,
-      defaultPosition,
     };
   },
 });
