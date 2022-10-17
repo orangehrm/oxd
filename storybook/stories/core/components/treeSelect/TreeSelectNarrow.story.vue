@@ -1,25 +1,28 @@
 <template>
   <div class="container">
-    <oxd-tree-select-input
-      :select-parents-on-child-selection="true"
-      :count-topmost-parents="true"
-      :options="options"
-      :disabled="false"
-      :readonly="false"
-      :placeholder="'select placeholder'"
-      :disable-unchecked-options="false"
-      :remove-all-selection="false"
-      @update:modelValue="updateSelectedIdsFun"
-      @input="onInput"
-      @focus="onFocus"
-      @click="onClick"
-      @keyup="onKeyUp"
-      @dropdown:opened="onDropDownOpen"
-      @dropdown:closed="onDropDownClosed"
-      @dropdown:blur="onDropDownBlur"
-      :modelValue="['1212']"
-    >
-    </oxd-tree-select-input>
+    <div class="oxd-tree-view-select-story-wrapper">
+      <oxd-tree-select-input
+        :select-parents-on-child-selection="true"
+        :count-topmost-parents="true"
+        :options="options"
+        :disabled="false"
+        :readonly="false"
+        :placeholder="'select placeholder'"
+        :disable-unchecked-options="false"
+        :remove-all-selection="false"
+        @update:modelValue="updateSelectedIdsFun"
+        @input="onInput"
+        @focus="onFocus"
+        @click="onClick"
+        @keyup="onKeyUp"
+        @dropdown:opened="onDropDownOpen"
+        @dropdown:closed="onDropDownClosed"
+        @dropdown:blur="onDropDownBlur"
+        :modelValue="['1212']"
+        :labelMaxWidth="labelMaxWidth"
+      >
+      </oxd-tree-select-input>
+    </div>
   </div>
 </template>
 
@@ -31,6 +34,11 @@ import {defineComponent, ref} from 'vue';
 export default defineComponent({
   components: {
     'oxd-tree-select-input': TreeSelectInput,
+  },
+  props: {
+    labelMaxWidth: {
+      type: String,
+    },
   },
   setup() {
     const options = ref<OptionProp[]>([]);
@@ -98,6 +106,31 @@ export default defineComponent({
       {id: 'nz', label: 'New zeland'},
       {id: 'sa', label: 'South Africa'},
       {id: 'china', label: 'China'},
+      {
+        id: 'usa',
+        label: 'United States of America',
+        children: [
+          {
+            id: 'west-coast',
+            label:
+              'Sales and Marketing Department United States of America (USA) - West Coast',
+            children: [
+              {
+                id: 'seatle',
+                label: 'Seatle',
+              },
+              {
+                id: 'san-francisco',
+                label: 'San Ffrancisco',
+              },
+              {
+                id: 'los-angeles',
+                label: 'Los Angeles',
+              },
+            ],
+          },
+        ],
+      },
     ] as Array<OptionProp>;
 
     const updateSelectedIdsFun = (idsArray: string[]) => {
@@ -141,4 +174,9 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.oxd-tree-view-select-story-wrapper {
+  width: 100%;
+  max-width: 270px;
+}
+</style>
