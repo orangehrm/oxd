@@ -1,3 +1,5 @@
+2022-10-18 - f3300d071949b1de7fc77c2fc4773b52c4d7ba70 - Icon/icons.ts - Add one new icon: oxd-leave-dashboard
+ 
 2022-09-22 - d4942a3f331a768b5b1e20981962cd9e7eeff201 - Segments/Segments.vue Add Key Board Accessibility and in Segments/segments.scss Add focus styles
 
 2022-09-12 - d9bd1040e5e228ccf874090c64f67822cd1a32a9 - Icon/icons.ts - Add 2 new icons: oxd-mail and oxd-mail-multiple
