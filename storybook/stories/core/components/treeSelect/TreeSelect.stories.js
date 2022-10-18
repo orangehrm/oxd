@@ -23,7 +23,7 @@ const NarrowTemplate = (args) => ({
     return {args};
   },
   components: {TreeSelectNarrow},
-  template: `<TreeSelectNarrow labelMaxWidth="135px"/>`,
+  template: `<TreeSelectNarrow/>`,
 });
 
 export const Narrow = NarrowTemplate.bind({});

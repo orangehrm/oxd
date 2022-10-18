@@ -18,7 +18,6 @@
         @dropdown:opened="onDropDownOpen"
         @dropdown:closed="onDropDownClosed"
         @dropdown:blur="onDropDownBlur"
-        :modelValue="['1212']"
         :labelMaxWidth="labelMaxWidth"
       >
       </oxd-tree-select-input>

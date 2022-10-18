@@ -123,10 +123,7 @@
                   ></span>
                   <span
                     @click="selectOptionOnlabelClick(option)"
-                    :style="[
-                      getOptionLabelStyle(option),
-                      {'max-width': labelMaxWidth},
-                    ]"
+                    :style="getOptionLabelStyle(option)"
                     :class="
                       getIcon(option) == ''
                         ? 'option-label-without-icon'
@@ -260,9 +257,6 @@ export default defineComponent({
       validator: function(value: Position) {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
-    },
-    labelMaxWidth: {
-      type: String,
     },
   },
 
