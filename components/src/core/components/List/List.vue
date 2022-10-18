@@ -165,7 +165,7 @@
         </div>
         <oxd-pagination
           class="list-pagination d-flex align-center justify-end"
-          v-if="pagination"
+          v-if="pagination && isPaginated"
           :length="paginationLength"
           v-model:current="state.currentPage"
           :max="maxPages"
@@ -251,6 +251,10 @@ export default defineComponent({
         pages: [10, 20, 50, 100] as number[],
         currentPage: 1 as number,
       }),
+    },
+    isPaginated: {
+      type: Boolean,
+      default: true,
     },
     selectedListItemId: {
       type: Number,
