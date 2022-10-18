@@ -56,6 +56,10 @@ export default defineComponent({
       type: Array as PropType<CardHeaders>,
       default: () => [],
     },
+    hideHeaders: {
+      type: Boolean,
+      default: false,
+    },
     items: {
       type: Array,
       default: () => [],

@@ -141,6 +141,7 @@
         <oxd-card-table
           :selector="state.selector"
           :headers="config.table.headers"
+          :hideHeaders="config.table.hideHeaders"
           :items="listItems"
           :highlight-rows="listHighlightRows"
           :selectable="config.table.selectable"

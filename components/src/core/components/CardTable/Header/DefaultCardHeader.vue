@@ -1,5 +1,5 @@
 <template>
-  <oxd-card-thead v-if="showHeader">
+  <oxd-card-thead v-if="showHeader && !tableProps.hideHeaders">
     <oxd-card-tr :clickable="false">
       <oxd-card-th
         v-if="tableProps.selectable"
