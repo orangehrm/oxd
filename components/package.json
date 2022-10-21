@@ -15,8 +15,9 @@
     "lodash.debounce": "^4.0.8",
     "mitt": "^2.1.0",
     "nanoid": "^3.1.21",
+    "sanitize-html": "^2.5.2",
     "vue": "^3.2.2",
-    "sanitize-html": "^2.5.2"
+    "vue-advanced-cropper": "^2.8.6"
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",
