@@ -22,7 +22,6 @@ td {
 
   span {
     //here, overring inherited css attributes
-    white-space: nowrap;
     word-break: break-all;
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -30,6 +29,7 @@ td {
     overflow: visible;
     text-overflow: ellipsis;
     display: block;
+    max-width: 155px;
   }
 }
 

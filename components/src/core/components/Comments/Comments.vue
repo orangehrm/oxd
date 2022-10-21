@@ -243,6 +243,10 @@ export default defineComponent({
       type: String as PropType<GroupBy>,
       default: GROUP_BY_TYPE_GROUP,
     },
+    scrollOnLoad: {
+      type: Boolean,
+      default: true,
+    },
   },
   setup(props, {emit}) {
     const commentGroupsList = ref(null);
@@ -329,7 +333,7 @@ export default defineComponent({
 
     onMounted(() => {
       comment.value = '';
-      doScroll();
+      if (props.scrollOnLoad) doScroll();
     });
 
     const commentEditHasError = (hasError: boolean) => {

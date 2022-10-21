@@ -75,6 +75,16 @@ export default {
         },
       },
     },
+    scrollOnLoad: {
+      control: {type: 'boolean'},
+      defaultValue: true,
+      table: {
+        type: {
+          summary:
+            'Set boolean value to change initial scrolling enable or disable. The default value is true',
+        },
+      },
+    },
     commentBoxLabel: {
       control: {type: 'text'},
       defaultValue: 'Add Comment',
