@@ -2,4 +2,4 @@
 
 exports[`Button > GlassButton.vue should disable OXD glass button 1`] = `<button type="button" class="oxd-glass-button oxd-glass-button--disabled" disabled="" name="Post Photo"><span class="oxd-glass-button-icon oxd-glass-button-icon--disabled oxd-glass-button-icon--cameraglass"></span> </button>`;
 
-exports[`Button > GlassButton.vue should renders OXD glass button 1`] = `<button type="button" class="oxd-glass-button" disabled="" name="Post Video"><span class="oxd-glass-button-icon oxd-glass-button-icon--videoglass"></span> </button>`;
+exports[`Button > GlassButton.vue should renders OXD glass button 1`] = `<button type="button" class="oxd-glass-button" name="Post Video"><span class="oxd-glass-button-icon oxd-glass-button-icon--videoglass"></span> </button>`;
