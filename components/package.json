@@ -1,6 +1,6 @@
 {
   "name": "oxd-components",
-  "version": "1.0.7",
+  "version": "1.0.8-alpha.1",
   "license": "GPL-3.0",
   "scripts": {
     "test:unit": "vue-cli-service test:unit",
