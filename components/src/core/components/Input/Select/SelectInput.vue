@@ -24,7 +24,7 @@
       v-dropdown-direction
       v-if="dropdownOpen"
       :class="dropdownClasses"
-      :loading="loading"
+      :loading="isLoading"
       :empty="computedOptions.length === 0"
     >
       <oxd-select-option
@@ -111,6 +111,10 @@ export default defineComponent({
       },
     },
     showEmptySelector: {
+      type: Boolean,
+      default: false,
+    },
+    isLoading: {
       type: Boolean,
       default: false,
     },

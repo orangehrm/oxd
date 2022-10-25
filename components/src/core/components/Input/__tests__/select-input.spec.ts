@@ -219,4 +219,20 @@ describe('SelectInput.vue', () => {
     await wrapper.vm.$nextTick();
     expect(wrapper.emitted('click'));
   });
+
+  it('when click on input to opens the dropdown and display spinner', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {
+        options,
+        isLoading: true,
+      },
+    });
+    wrapper.findComponent(SelectText).trigger('click');
+    await wrapper.vm.$nextTick();
+    const nodes = wrapper.findAllComponents(SelectOption);
+    expect(nodes.length).toBe(1);
+    expect(
+      wrapper.find('.oxd-select-input-spinner-wrapper').exists(),
+    ).toBeTruthy();
+  });
 });

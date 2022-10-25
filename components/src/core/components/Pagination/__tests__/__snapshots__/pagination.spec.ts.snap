@@ -13,7 +13,7 @@ exports[`Pageination.vue renders OXD Pagination 1`] = `
     <oxd-pagination-page-item-stub previous="false" next="false" selected="false" page="5"></oxd-pagination-page-item-stub><span class="d-flex align-end oxd-pagination-separator" last="">...</span>
     <oxd-pagination-page-item-stub previous="false" next="false" selected="false" page="20"></oxd-pagination-page-item-stub>
     <oxd-pagination-page-item-stub previous="false" next="true" selected="false"></oxd-pagination-page-item-stub>
-    <oxd-select-input-stub options="[object Object],[object Object],[object Object],[object Object]" modelvalue="[object Object]" disabled="false" placeholder="Select" dropdownposition="bottom" showemptyselector="false" class="pagination-dropdown" hide-dropdown-default-label="true"></oxd-select-input-stub>
+    <oxd-select-input-stub options="[object Object],[object Object],[object Object],[object Object]" modelvalue="[object Object]" disabled="false" placeholder="Select" dropdownposition="bottom" showemptyselector="false" isloading="false" class="pagination-dropdown" hide-dropdown-default-label="true"></oxd-select-input-stub>
   </ul>
 </nav>
 `;

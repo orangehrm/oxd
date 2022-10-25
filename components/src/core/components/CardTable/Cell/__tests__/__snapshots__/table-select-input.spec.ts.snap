@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TableSelectInput.vue should render TableSelectInput 1`] = `<oxd-select-input-stub options="[object Object],[object Object]" disabled="false" placeholder="Select" dropdownposition="bottom" showemptyselector="false" up-icon="oxd-chevron-up" down-icon="oxd-chevron-down" dropdown-icon-size="xxx-small"></oxd-select-input-stub>`;
+exports[`TableSelectInput.vue should render TableSelectInput 1`] = `<oxd-select-input-stub options="[object Object],[object Object]" disabled="false" placeholder="Select" dropdownposition="bottom" showemptyselector="false" isloading="false" up-icon="oxd-chevron-up" down-icon="oxd-chevron-down" dropdown-icon-size="xxx-small"></oxd-select-input-stub>`;
