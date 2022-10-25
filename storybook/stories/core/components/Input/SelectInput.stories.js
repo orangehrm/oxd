@@ -83,6 +83,12 @@ export default {
         type: {summary: 'Attend a specific text to the end of the select'},
       },
     },
+    isLoading: {
+      control: {type: 'boolean'},
+      table: {
+        type: {summary: 'Set loading state to the select'},
+      },
+    },
   },
 };
 
@@ -303,6 +309,23 @@ AfterSelect.parameters = {
         '</oxd-select>"\n' +
         '//\n' +
         'File -> SelectInputAfterSelect.story.vue',
+    },
+  },
+};
+
+export const Loading = Template.bind({});
+Loading.args = {
+  options: options,
+  isLoading: true,
+};
+
+Loading.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-select \n :isLoading="true"\n :options=' +
+        JSON.stringify(options) +
+        '\n/>',
     },
   },
 };

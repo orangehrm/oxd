@@ -10,6 +10,8 @@ exports[`SelectDropdown.vue renders OXD Select Dropdown empty 1`] = `
 
 exports[`SelectDropdown.vue renders OXD Select Dropdown not empty 1`] = `
 <div role="listbox" class="oxd-select-dropdown">
-  <div class="oxd-select-dropdown-inner"></div>
+  <div class="oxd-select-dropdown-inner">
+    <!--v-if-->
+  </div>
 </div>
 `;
