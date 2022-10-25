@@ -315,7 +315,7 @@ AfterSelect.parameters = {
 
 export const Loading = Template.bind({});
 Loading.args = {
-  options: options,
+  options,
   isLoading: true,
 };
 
