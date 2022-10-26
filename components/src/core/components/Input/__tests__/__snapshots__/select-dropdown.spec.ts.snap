@@ -3,7 +3,7 @@
 exports[`SelectDropdown.vue renders OXD Select Dropdown empty 1`] = `
 <div role="listbox" class="oxd-select-dropdown">
   <div class="oxd-select-dropdown-inner">
-    <div role="option" class="oxd-select-option"> No results found </div>
+    <div role="option" class="oxd-select-option">No results found</div>
   </div>
 </div>
 `;
