@@ -2,7 +2,7 @@
   <div role="listbox" class="oxd-select-dropdown">
     <div class="oxd-select-dropdown-inner">
       <oxd-select-option v-if="empty && !loading">
-        No results found
+        {{ $vt('No results found') }}
       </oxd-select-option>
       <oxd-select-option
         v-if="loading"
@@ -19,9 +19,12 @@
 import {defineComponent} from 'vue';
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
 import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
+import translateMixin from '../../../../mixins/translate';
 
 export default defineComponent({
   name: 'oxd-select-dropdown',
+
+  mixins: [translateMixin],
 
   components: {
     'oxd-select-option': SelectOption,
