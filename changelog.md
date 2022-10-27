@@ -1,3 +1,5 @@
+2022-10-25 - 2285ef2561933df2d0f156d95a490ea7e3ff2c02 - Icon/icons.ts - Add 5 new icons: oxd-timezone, oxd-leaving, oxd-clock, oxd-date-and-time and oxd-employee-time
+
 2022-09-22 - d4942a3f331a768b5b1e20981962cd9e7eeff201 - Segments/Segments.vue Add Key Board Accessibility and in Segments/segments.scss Add focus styles
 
 2022-09-12 - d9bd1040e5e228ccf874090c64f67822cd1a32a9 - Icon/icons.ts - Add 2 new icons: oxd-mail and oxd-mail-multiple
