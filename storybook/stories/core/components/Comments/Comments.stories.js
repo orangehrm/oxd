@@ -162,6 +162,7 @@ const commentGroups = [
   {
     id: 'group-1',
     label: 'Offer notes',
+
     comments: [
       {
         groupId: 'group-1',
@@ -222,6 +223,10 @@ const commentGroups = [
   {
     id: 'group-3',
     label: 'Interview',
+    customGroupName: {
+      labelPrimary: 'Accompanist Vacancy',
+      labelSecondary: ': Interview',
+    },
     comments: [
       {
         groupId: 'group-3',

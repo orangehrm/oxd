@@ -361,6 +361,7 @@ export default defineComponent({
         commentGroup?.comments.forEach(comment => {
           if (commentGroup.label) {
             comment.groupName = commentGroup.label;
+            comment.customGroupName = commentGroup.customGroupName;
           }
           commments.push(comment);
         });
