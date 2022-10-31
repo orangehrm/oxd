@@ -106,14 +106,34 @@
             <span v-if="comment.formattedTime">
               {{ $vt('Date') }}: {{ comment.formattedTime }}
             </span>
-
             <oxd-chip
-              v-if="showGroupNamePill && comment.groupName"
+              v-if="
+                showGroupNamePill &&
+                  comment.groupName &&
+                  !comment.customGroupName
+              "
               :label="$vt(comment.groupName)"
               class="oxd-comment-group-name-chip"
               :background-color="'#929baa'"
               :color="'#fafafc'"
             />
+            <oxd-chip
+              v-if="
+                showGroupNamePill &&
+                  comment.groupName &&
+                  comment.customGroupName
+              "
+              class="oxd-comment-group-name-chip"
+              :background-color="'#929baa'"
+              :color="'#fafafc'"
+            >
+              <span class="oxd-comment-group-name-primary">{{
+                $vt(comment.customGroupName.labelPrimary)
+              }}</span>
+              <span class="oxd-comment-group-name-secondary">{{
+                $vt(comment.customGroupName.labelSecondary)
+              }}</span>
+            </oxd-chip>
             <oxd-chip
               v-if="comment.edited"
               :label="$vt('Edited')"
