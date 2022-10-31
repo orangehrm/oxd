@@ -223,13 +223,13 @@ const commentGroups = [
   {
     id: 'group-3',
     label: 'Interview',
+    customGroupName: {
+      labelPrimary: 'Accompanist Vacancy',
+      labelSecondary: ': Interview',
+    },
     comments: [
       {
         groupId: 'group-3',
-        customGroupName: {
-          labelPrimary: 'Accompanist Vacancy',
-          labelSecondary: ': Interview',
-        },
         id: nanoid(6),
         content:
           'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
