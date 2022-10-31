@@ -217,6 +217,13 @@
     &:focus-within {
       border: $oxd-input-border--focus;
     }
+    :deep(.oxd-icon-button ) {
+      [class^='bi-']::before,
+      [class*=' bi-']::before {
+        line-height: inherit;
+        display: flex;
+      }
+    }
   }
   &:empty {
     display: none;
