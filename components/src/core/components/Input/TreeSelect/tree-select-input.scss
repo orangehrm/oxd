@@ -50,8 +50,11 @@ td {
 .icon-td {
   text-align: -webkit-center !important;
   width: 20px;
-  padding-top: 3px;
+  // padding-top: 3px;
   cursor: pointer;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center;
 }
 
 .icon-td-without-icon {
