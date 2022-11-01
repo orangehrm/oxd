@@ -42,7 +42,8 @@ export default defineComponent({
           {id: 11, label: 'Colombo'},
           {
             id: 12,
-            label: 'Kalutara',
+            label:
+              'Kalutaraaaaaaaaaaaaaaaaaaaaaaaaaaa_lengthy_text_aaaaaaaaaaaaaaaaaaaaa',
             children: [
               {
                 id: '121ccc',
