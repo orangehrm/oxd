@@ -16,6 +16,7 @@
     :resize-image="{
       adjustStencil: false,
     }"
+    image-restriction="stencil"
     @change="change"
   />
 </template>

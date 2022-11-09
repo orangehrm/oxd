@@ -1,7 +1,7 @@
 import ImageCropper from '@orangehrm/oxd/core/components/ImageCropper/ImageCropper';
 
 export default {
-  title: 'Information/ImageCropper',
+  title: 'Inputs/ImageCropper',
   component: ImageCropper,
   argTypes: {
     image: {
