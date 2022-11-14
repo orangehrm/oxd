@@ -61,20 +61,15 @@
         <template v-if="!$slots.default">
           <div
             v-if="buttonLabel"
-            class="oxd-file-button"
-            :class="{'--disabled': disabled}"
+            :class="{'oxd-file-button': true, '--disabled': disabled}"
           >
             {{ buttonLabel }}
           </div>
-          <div
-            class="oxd-file-input-div"
-            :class="{'--placeholder': !inputValue}"
-          >
+          <div :class="{'oxd-file-input-div': true,'--placeholder': !inputValue}">
             {{ inputValue ? inputValue : placeholder }}
           </div>
           <oxd-icon
-            class="oxd-file-input-icon"
-            :class="{'--disabled': disabled}"
+            :class="{'oxd-file-input-icon': true, '--disabled': disabled}"
             :name="buttonIcon"
           />
         </template>

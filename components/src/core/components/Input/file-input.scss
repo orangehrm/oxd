@@ -135,3 +135,52 @@
     margin-left: 10px;
   }
 }
+
+.oxd-download-box-wrapper {
+  margin-bottom:10px;
+  .oxd-download-box {
+    cursor: pointer;
+    border-style: solid;
+    border-color: $oxd-file-upload-box-border;
+    border-width: 1px;
+    border-radius: 0.5rem;
+    background-color: $oxd-file-upload-box-background;
+    padding: 10px;
+    width: 150px;
+    height: 90px;
+    color: $oxd-file-upload-box-color;
+
+    .oxd-download-box-doc-icon {
+      justify-content: center;
+
+      :deep(.oxd-svg-icon--medium) {
+        height: 30px;
+        width: 30px;
+      }
+    }
+
+    .oxd-download-box-download-data {
+      justify-content: center;
+      align-items: center;
+      padding-top: 5px;
+
+      .oxd-download-box-download-text {
+        font-size: 14px;
+        max-width: 75%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block;
+      }
+
+      .oxd-download-box-download-icon {
+        justify-content: center;
+        vertical-align: middle;
+        margin-left: 0.25rem;
+      }
+    }
+  }
+  .oxd-download-box-radio-buttons{
+    margin-left: 10px;
+  }
+}
