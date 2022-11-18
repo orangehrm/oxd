@@ -1,0 +1,28 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-pie-chart {
+  margin: 0 auto;
+  position: relative;
+  height: $oxd-pie-chart-height;
+  &-tooltip {
+    display: flex;
+    position: absolute;
+    pointer-events: none;
+    padding: $oxd-pie-chart-tooltip-padding;
+    border: $oxd-pie-chart-tooltip-border;
+    border-radius: $oxd-pie-chart-tooltip-border-radius;
+    background-color: $oxd-pie-chart-tooltip-background;
+    font-family: $oxd-input-control-font-family;
+    font-size: $oxd-input-control-font-size;
+    color: $oxd-input-control-font-color;
+    & span {
+      display: flex;
+      margin-left: 0.25rem;
+    }
+    & p {
+      margin: 0;
+      margin-left: 0.1rem;
+    }
+  }
+}
