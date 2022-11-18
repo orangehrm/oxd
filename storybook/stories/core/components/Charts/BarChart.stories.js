@@ -1,3 +1,5 @@
+import BarChart from '@orangehrm/oxd/core/components/Chart/BarChart';
+
 export default {
   title: 'Example/Charts/Bar',
   component: BarChart,
