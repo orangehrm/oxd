@@ -10,10 +10,7 @@
       scalable: false,
       aspectRatio: 1,
     }"
-    :stencil-size="{
-      width: stencilWidth,
-      height: stencilHeight,
-    }"
+    :default-size="defaultSize"
     :resize-image="{
       adjustStencil: false,
     }"
@@ -35,14 +32,6 @@ export default defineComponent({
   props: {
     image: {
       type: String,
-    },
-    stencilWidth: {
-      type: String,
-      default: '280',
-    },
-    stencilHeight: {
-      type: String,
-      default: '280',
     },
     resizeResult: {
       type: Boolean,
@@ -82,9 +71,23 @@ export default defineComponent({
         : true;
     });
 
+    const defaultSize = ({
+      imageSize,
+      visibleArea,
+    }: {
+      imageSize: any;
+      visibleArea: any;
+    }) => {
+      return {
+        width: (visibleArea || imageSize).width,
+        height: (visibleArea || imageSize).height,
+      };
+    };
+
     return {
       croppedImage,
       change,
+      defaultSize,
       canvasProperties,
     };
   },
