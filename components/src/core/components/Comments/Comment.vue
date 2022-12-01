@@ -102,11 +102,38 @@
           </div>
         </div>
         <div class="oxd-comment-content-footer-container d-flex align-center">
-          <div
-            v-if="comment.time"
-            class="oxd-comment-content-commented-date d-flex align-center"
-          >
-            {{ $vt('Date') }}: {{ comment.time }}
+          <div class="oxd-comment-content-commented-date d-flex align-center">
+            <span v-if="comment.formattedTime">
+              {{ $vt('Date') }}: {{ comment.formattedTime }}
+            </span>
+            <oxd-chip
+              v-if="
+                showGroupNamePill &&
+                  comment.groupName &&
+                  !comment.customGroupName
+              "
+              :label="$vt(comment.groupName)"
+              class="oxd-comment-group-name-chip"
+              :background-color="'#929baa'"
+              :color="'#fafafc'"
+            />
+            <oxd-chip
+              v-if="
+                showGroupNamePill &&
+                  comment.groupName &&
+                  comment.customGroupName
+              "
+              class="oxd-comment-group-name-chip"
+              :background-color="'#929baa'"
+              :color="'#fafafc'"
+            >
+              <span class="oxd-comment-group-name-primary">{{
+                $vt(comment.customGroupName.labelPrimary)
+              }}</span>
+              <span class="oxd-comment-group-name-secondary">{{
+                $vt(comment.customGroupName.labelSecondary)
+              }}</span>
+            </oxd-chip>
             <oxd-chip
               v-if="comment.edited"
               :label="$vt('Edited')"
@@ -169,7 +196,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, computed, nextTick} from 'vue';
+import {defineComponent, ref, computed, nextTick, watch} from 'vue';
 import translateMixin from '../../../mixins/translate';
 import Chip from '@orangehrm/oxd/core/components/Chip/Chip.vue';
 import Label from '@orangehrm/oxd/core/components/Label/Label.vue';
@@ -236,13 +263,18 @@ export default defineComponent({
       type: Number,
       default: 65535,
     },
+    showGroupNamePill: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   setup(props, {emit}) {
     const {$t} = useTranslate();
     const editable = ref(false);
     const invalidCommentUpdate = ref(false);
-    const invalidCommentSave = ref(false);
+    const invalidCommentSaveRequired = ref(false);
+    const hasError = ref<boolean>(false);
     const deleteMode = ref(false);
     const commentOriginalContent = ref(
       JSON.parse(JSON.stringify(props.comment.content)),
@@ -267,7 +299,7 @@ export default defineComponent({
     });
 
     const commentInlineValidationMsg = computed((): string | boolean => {
-      if (invalidCommentSave.value) {
+      if (invalidCommentSaveRequired.value) {
         return $t(props.requiredEditCommentErrorMsg);
       }
       if (invalidCommentUpdate.value) {
@@ -285,8 +317,8 @@ export default defineComponent({
       if (!editMode) {
         commentContent.value = commentOriginalContent.value;
         invalidCommentUpdate.value = false;
-        invalidCommentSave.value = false;
-        emit('commentEditHasError', false);
+        invalidCommentSaveRequired.value = false;
+        hasError.value = false;
       }
     };
 
@@ -304,60 +336,68 @@ export default defineComponent({
     const cancelEditMode = () => {
       commentContent.value = commentOriginalContent.value;
       invalidCommentUpdate.value = false;
-      invalidCommentSave.value = false;
-      emit('commentEditHasError', false);
+      invalidCommentSaveRequired.value = false;
+      hasError.value = false;
       enableEditMode(false);
     };
 
     const onInputComment = (value: string) => {
       commentContent.value = value;
-      invalidCommentSave.value = false;
+      invalidCommentSaveRequired.value = false;
       shouldNotExceedCharLength.value;
-      emit('commentEditHasError', false);
-      if (commentContent.value === '') {
-        invalidCommentSave.value = true;
+      hasError.value = false;
+      if (commentContent.value?.trim() === '') {
+        invalidCommentSaveRequired.value = true;
         invalidCommentUpdate.value = false;
-        emit('commentEditHasError', true);
+        hasError.value = true;
       } else if (hasContentChanged.value === 0) {
         invalidCommentUpdate.value = false;
-        emit('commentEditHasError', false);
-      } else if (shouldNotExceedCharLength.value) {
-        invalidCommentSave.value = false;
+        hasError.value = false;
+      } else if (typeof shouldNotExceedCharLength.value === 'string') {
+        invalidCommentSaveRequired.value = false;
         invalidCommentUpdate.value = false;
-        emit('commentEditHasError', false);
+        hasError.value = true;
+      } else if (shouldNotExceedCharLength.value) {
+        invalidCommentSaveRequired.value = false;
+        invalidCommentUpdate.value = false;
+        hasError.value = false;
       } else {
-        emit('commentEditHasError', true);
+        hasError.value = true;
       }
     };
 
     const blurCommentBox = () => {
       if (typeof shouldNotExceedCharLength.value === 'string') {
-        invalidCommentSave.value = false;
+        invalidCommentSaveRequired.value = false;
         invalidCommentUpdate.value = false;
-        emit('commentEditHasError', true);
+        hasError.value = true;
       } else if (hasContentChanged.value === 0) {
         invalidCommentUpdate.value = false;
-        emit('commentEditHasError', false);
+        hasError.value = false;
       } else {
         invalidCommentUpdate.value = true;
-        emit('commentEditHasError', true);
+        hasError.value = true;
       }
     };
 
     const onUpdateComment = (e: Event) => {
-      if (!invalidCommentSave.value) {
+      if (invalidCommentUpdate.value) {
+        invalidCommentUpdate.value = false;
+        hasError.value = false;
+      }
+      if (!hasError.value) {
         commentOriginalContent.value = commentContent.value;
         emit('onUpdateComment', e, {
           comment: props.comment,
           value: commentContent.value,
         });
-        emit('commentEditHasError', false);
+        hasError.value = false;
         invalidCommentUpdate.value = false;
-        invalidCommentSave.value = false;
+        invalidCommentSaveRequired.value = false;
         editable.value = false;
         deleteMode.value = false;
         invalidCommentUpdate.value = false;
-        invalidCommentSave.value = false;
+        invalidCommentSaveRequired.value = false;
       }
     };
 
@@ -411,6 +451,13 @@ export default defineComponent({
       return initialObject;
     });
 
+    watch(
+      () => hasError.value,
+      (value: boolean) => {
+        emit('commentEditHasError', value);
+      },
+    );
+
     return {
       editable,
       commentContent,
@@ -426,7 +473,7 @@ export default defineComponent({
       confirmDeleteButtonData,
       cancelDeleteButtonData,
       commentInlineValidationMsg,
-      invalidCommentSave,
+      invalidCommentSaveRequired,
     };
   },
 });

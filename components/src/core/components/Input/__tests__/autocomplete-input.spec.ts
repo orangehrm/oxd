@@ -101,6 +101,32 @@ describe('AutocompleteInput.vue', () => {
     expect(wrapper.emitted('update:modelValue')).toEqual([[null]]);
   });
 
+  it('on pagedown', async () => {
+    const wrapper = mount(AutocompleteInput, {
+      props: {
+        createOptions: syncFunction,
+      },
+    });
+    const input = wrapper.find('input');
+    input.setValue('test');
+    expect(input.element.selectionEnd).toBe(0);
+    await input.trigger('keyup', {key: 'PageDown'});
+    expect(input.element.selectionEnd).toBe(4);
+  });
+
+  it('on pageup', async () => {
+    const wrapper = mount(AutocompleteInput, {
+      props: {
+        createOptions: syncFunction,
+      },
+    });
+    const input = wrapper.find('input');
+    input.setValue('test');
+    expect(input.element.selectionEnd).toBe(0);
+    await input.trigger('keyup', {key: 'PageUp'});
+    expect(input.element.selectionEnd).toBe(0);
+  });
+
   it('should load the options when input is changed', async () => {
     const wrapper = mount(AutocompleteInput, {
       props: {

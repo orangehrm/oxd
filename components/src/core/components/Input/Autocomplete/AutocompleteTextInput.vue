@@ -11,6 +11,8 @@
       :disabled="disabled"
       :readonly="readonly"
       :placeholder="placeholder"
+      @keyup.page-down="onPageDown"
+      @keyup.page-up="onPageUp"
       :style="style"
     />
     <div class="oxd-autocomplete-text-input--after">
@@ -99,6 +101,16 @@ export default defineComponent({
     onClear() {
       this.$emit('clear');
       this.focused = true;
+    },
+    onPageDown(e: KeyboardEvent) {
+      (e.target as HTMLInputElement).setSelectionRange(
+        (e.target as HTMLInputElement).value.length - 1,
+        (e.target as HTMLInputElement).value.length,
+      );
+    },
+
+    onPageUp(e: KeyboardEvent) {
+      (e.target as HTMLInputElement).setSelectionRange(0, 0);
     },
   },
 });

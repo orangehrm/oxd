@@ -23,13 +23,11 @@
   </div>
 </template>
 
-<!-- :modelValue="['1211', '333', 331, 1213, 'sa', 122, 123, 1212]" -->
-
 <script lang="ts">
 import TreeSelectInput from '@orangehrm/oxd/core/components/Input/TreeSelect/TreeSelect.vue';
 import {OptionProp} from 'oxd-components/src/core/components/Input/TreeSelect/type';
 
-import {defineComponent, ref, computed} from 'vue';
+import {defineComponent, ref} from 'vue';
 export default defineComponent({
   components: {
     'oxd-tree-select-input': TreeSelectInput,
@@ -44,7 +42,8 @@ export default defineComponent({
           {id: 11, label: 'Colombo'},
           {
             id: 12,
-            label: 'Kalutara',
+            label:
+              'Kalutaraaaaaaaaaaaaaaaaaaaaaaaaaaa_lengthy_text_aaaaaaaaaaaaaaaaaaaaa',
             children: [
               {
                 id: '121ccc',

@@ -50,6 +50,10 @@ export default defineComponent({
       type: Object as PropType<Model>,
       required: false,
     },
+    enableFirstElementFocus: {
+      type: Boolean,
+      default: true,
+    },
     loading: {
       type: Boolean,
       default: false,
@@ -242,6 +246,7 @@ export default defineComponent({
           style: props.schema?.style,
           class: 'oxd-schema-form-container ' + props.schema?.class,
           loading: isLoading.value,
+          enableFirstElementFocus: props.enableFirstElementFocus,
           onSubmitValid: ($e: SubmitEvent) => {
             context.emit('submitValid', props.model, $e);
           },

@@ -1,19 +1,24 @@
-import {mount, shallowMount} from '@vue/test-utils';
+import {mount} from '@vue/test-utils';
 import Tabs from '@orangehrm/oxd/core/components/Tabs/Tabs.vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
+import {h} from 'vue';
 
 describe('Tabs.vue', () => {
   it('Renders two tabs along with icons', async () => {
     const wrapper = mount(Tabs, {
-      props: {
-        tabs: [
-          {id: 'tab1', title: 'Details', icon: 'oxd-posts'},
-          {id: 'tab2', title: 'Resume', icon: 'oxd-profile'},
-        ],
-      },
       slots: {
-        tab1: '<div> This is the content of tab 1</div>',
-        tab2: '<div> This is the content of tab 2</div>',
+        default: [
+          h(
+            'Tab',
+            {tab: {id: '1', title: 'Posts', icon: 'oxd-posts'}},
+            ' This is the content of tab 1',
+          ),
+          h(
+            'Tab',
+            {tab: {id: '2', title: 'Posts', icon: 'oxd-profile'}},
+            ' This is the content of tab2',
+          ),
+        ],
       },
     });
     await wrapper.vm.$nextTick();
@@ -23,45 +28,62 @@ describe('Tabs.vue', () => {
     expect(icon.find('.tab-icon')).toBeTruthy();
   });
 
-  it('Renders two tabs without icons', () => {
-    const wrapper = shallowMount(Tabs, {
-      props: {
-        tabs: [
-          {id: 'tab1', title: 'Details'},
-          {id: 'tab2', title: 'Resume'},
+  it('Renders two tabs without icons', async () => {
+    const wrapper = mount(Tabs, {
+      slots: {
+        default: [
+          h(
+            'Tab',
+            {tab: {id: '1', title: 'Posts'}},
+            ' This is the content of tab 1',
+          ),
+          h(
+            'Tab',
+            {tab: {id: '2', title: 'Posts'}},
+            ' This is the content of tab2',
+          ),
         ],
       },
-      slots: {
-        tab1: '<div> This is the content of tab 1</div>',
-        tab2: '<div>This is the content of tab 2</div>',
-      },
     });
+    await wrapper.vm.$nextTick();
     expect(wrapper.find('.tab-icon').exists()).toBeFalsy();
   });
 
   it('In initial rendering first tab Id is set to the currentTabId', () => {
-    const wrapper = shallowMount(Tabs, {
-      props: {
-        tabs: [
-          {id: 'tab1', title: 'Details', icon: 'oxd-posts'},
-          {id: 'tab2', title: 'Resume', icon: 'oxd-profile'},
+    const wrapper = mount(Tabs, {
+      slots: {
+        default: [
+          h(
+            'Tab',
+            {tab: {id: '1', title: 'Posts'}},
+            ' This is the content of tab 1',
+          ),
+          h(
+            'Tab',
+            {tab: {id: '2', title: 'Posts'}},
+            ' This is the content of tab2',
+          ),
         ],
       },
     });
-    expect(wrapper.vm.currentTabId).toBe('tab1');
+    expect(wrapper.vm.selectedTabId).toBe('1');
   });
 
   it('Click on the second tab', () => {
-    const wrapper = shallowMount(Tabs, {
-      props: {
-        tabs: [
-          {id: 'tab1', title: 'Details'},
-          {id: 'tab2', title: 'Resume'},
-        ],
-      },
+    const wrapper = mount(Tabs, {
       slots: {
-        tab1: '<div> This is the content of tab 1</div>',
-        tab2: '<div>This is the content of tab 2</div>',
+        default: [
+          h(
+            'Tab',
+            {tab: {id: '1', title: 'Posts'}},
+            ' This is the content of tab 1',
+          ),
+          h(
+            'Tab',
+            {tab: {id: 'tab2', title: 'Resume'}},
+            ' This is the content of tab2',
+          ),
+        ],
       },
     });
 
@@ -77,11 +99,19 @@ describe('Tabs.vue', () => {
   });
 
   it('Hit Enter when focusing on the 2nd tab', () => {
-    const wrapper = shallowMount(Tabs, {
-      props: {
-        tabs: [
-          {id: 'tab1', title: 'Details'},
-          {id: 'tab2', title: 'Resume'},
+    const wrapper = mount(Tabs, {
+      slots: {
+        default: [
+          h(
+            'Tab',
+            {tab: {id: 'tab1', title: 'Posts'}},
+            ' This is the content of tab 1',
+          ),
+          h(
+            'Tab',
+            {tab: {id: 'tab2', title: 'Resume'}},
+            ' This is the content of tab2',
+          ),
         ],
       },
     });
@@ -97,12 +127,31 @@ describe('Tabs.vue', () => {
   });
 
   it('Focusing on the third tab', () => {
-    const wrapper = shallowMount(Tabs, {
+    const wrapper = mount(Tabs, {
       props: {
         tabs: [
           {id: 'tab1', title: 'Details'},
           {id: 'tab2', title: 'Resume'},
           {id: 'tab3', title: 'Notes'},
+        ],
+      },
+      slots: {
+        default: [
+          h(
+            'Tab',
+            {tab: {id: 'tab1', title: 'Details'}},
+            ' This is the content of tab 1',
+          ),
+          h(
+            'Tab',
+            {tab: {id: 'tab2', title: 'Resume'}},
+            ' This is the content of tab2',
+          ),
+          h(
+            'Tab',
+            {tab: {id: 'tab3', title: 'Notes'}},
+            ' This is the content of tab2',
+          ),
         ],
       },
     });
@@ -117,11 +166,19 @@ describe('Tabs.vue', () => {
   });
 
   it('Bluring on the first tab', () => {
-    const wrapper = shallowMount(Tabs, {
-      props: {
-        tabs: [
-          {id: 'tab1', title: 'Details'},
-          {id: 'tab2', title: 'Resume'},
+    const wrapper = mount(Tabs, {
+      slots: {
+        default: [
+          h(
+            'Tab',
+            {tab: {id: 'tab1', title: 'Details'}},
+            ' This is the content of tab 1',
+          ),
+          h(
+            'Tab',
+            {tab: {id: 'tab2', title: 'Resume'}},
+            ' This is the content of tab2',
+          ),
         ],
       },
     });

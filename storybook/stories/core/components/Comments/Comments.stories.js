@@ -75,6 +75,16 @@ export default {
         },
       },
     },
+    scrollOnLoad: {
+      control: {type: 'boolean'},
+      defaultValue: true,
+      table: {
+        type: {
+          summary:
+            'Set boolean value to change initial scrolling enable or disable. The default value is true',
+        },
+      },
+    },
     commentBoxLabel: {
       control: {type: 'text'},
       defaultValue: 'Add Comment',
@@ -134,6 +144,17 @@ export default {
         },
       },
     },
+
+    groupBy: {
+      control: {type: 'select', options: ['none', 'group']},
+      defaultValue: 'group',
+      table: {
+        type: {
+          summary:
+            'Set comment delete confirmation message to show before delete the comment',
+        },
+      },
+    },
   },
 };
 
@@ -141,6 +162,7 @@ const commentGroups = [
   {
     id: 'group-1',
     label: 'Offer notes',
+
     comments: [
       {
         groupId: 'group-1',
@@ -152,6 +174,7 @@ const commentGroups = [
           commenterName: 'Peter Sidius Weiss',
         },
         time: '2021/08/24',
+        formattedTime: '2021/08/24',
       },
       {
         groupId: 'group-1',
@@ -164,6 +187,7 @@ const commentGroups = [
           commenterName: 'Adrew Peters',
         },
         time: '2021/09/04',
+        formattedTime: '2021/09/04',
       },
     ],
   },
@@ -181,6 +205,7 @@ const commentGroups = [
           commenterName: 'Andrew Simeon',
         },
         time: '2021/08/24',
+        formattedTime: '2021/08/24',
       },
       {
         groupId: 'group-2',
@@ -191,12 +216,17 @@ const commentGroups = [
           commenterName: 'Deby Alexbery (Past Employee)',
         },
         time: '2021/09/04',
+        formattedTime: '2021/09/04',
       },
     ],
   },
   {
     id: 'group-3',
     label: 'Interview',
+    customGroupName: {
+      labelPrimary: 'Accompanist Vacancy',
+      labelSecondary: ': Interview',
+    },
     comments: [
       {
         groupId: 'group-3',
@@ -208,6 +238,7 @@ const commentGroups = [
           commenterName: 'Deby Alexbery',
         },
         time: '2021/08/24',
+        formattedTime: '2021/08/24',
       },
       {
         groupId: 'group-3',
@@ -219,6 +250,7 @@ const commentGroups = [
           commenterName: 'Andrew Simeon',
         },
         time: '2021/09/04',
+        formattedTime: '2021/09/04',
         edited: true,
       },
     ],

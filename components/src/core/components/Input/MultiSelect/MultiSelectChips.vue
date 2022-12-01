@@ -6,7 +6,9 @@
       :label="option.label"
       class="oxd-multiselect-chips-selected"
     >
-      <oxd-icon
+      <template v-slot>
+        <slot name="chips" :data="option"></slot>
+        <oxd-icon
         name="x"
         @click="onClick(option)"
         data-test="removeIcon"
@@ -16,6 +18,7 @@
           '--readonly': readonly,
         }"
       />
+      </template>
     </oxd-chip>
   </div>
 </template>

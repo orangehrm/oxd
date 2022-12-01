@@ -65,7 +65,7 @@
           >
             {{ buttonLabel }}
           </div>
-          <div class="oxd-file-input-div">
+          <div :class="{'oxd-file-input-div': true,'--placeholder': !inputValue}">
             {{ inputValue ? inputValue : placeholder }}
           </div>
           <oxd-icon

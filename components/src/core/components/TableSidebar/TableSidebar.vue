@@ -26,7 +26,7 @@
                   ? 'w-100'
                   : 'w-100'
               "
-              :tooltip="!isLeftPanelOpen ? buttonData.label : null"
+              :tooltip="buttonData.label ? buttonData.label : null"
               flow="right"
               :label="buttonData.label"
               :iconName="buttonData.iconName"

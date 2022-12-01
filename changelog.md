@@ -1,5 +1,17 @@
 2022-12-01 - 032cbeb91ed7a7841c391d1aec9842c04f66895a - Icon/icons.ts, CardTable/Cell/Dropdown.vue - Add oxd-add-employee icon and made colour supporting for the CardTable Dropdown Cell
 
+2022-11-04 - 7e6426e25e1eddaeffa989f89a1c7ac3fc6b00a7 - Icon/icons.ts - Add oxd-about-employee icon
+
+2022-10-25 - 2285ef2561933df2d0f156d95a490ea7e3ff2c02 - Icon/icons.ts - Add 5 new icons: oxd-timezone, oxd-leaving, oxd-clock, oxd-date-and-time and oxd-employee-time
+
+2022-09-22 - d4942a3f331a768b5b1e20981962cd9e7eeff201 - Segments/Segments.vue Add Key Board Accessibility and in Segments/segments.scss Add focus styles
+
+2022-09-12 - d9bd1040e5e228ccf874090c64f67822cd1a32a9 - Icon/icons.ts - Add 2 new icons: oxd-mail and oxd-mail-multiple
+
+2022-09-08 - 38609f74219c515ec2f7038841ceaf9ed414f772 - Input/Autocomplete/AutocompleteChips.vue - Add a custom template to autocomplete-chips
+
+2022-09-07 - afb9a62c5058432539c670d504e6e4f33e7cfdb6 - Input/MultiSelect/MultiSelectInput.vue - Add a custom template to multiselect-chips
+
 2022-09-06 - 62a5486f6f33ff2ec3011ea26517c30c4ed0ba7d - Input/Select/SelectInputButton.vue - Updated the style of select option without the bottom border
 
 2022-08-30 - 21f27018fd82c3b60ff350b4fb350a268a582479 - Input/Time/TimePicker.vue - Fixed issue where hour input picking value from minute (LMR-435)
