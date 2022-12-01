@@ -1,3 +1,5 @@
+2022-12-01 - 032cbeb91ed7a7841c391d1aec9842c04f66895a - Icon/icons.ts, CardTable/Cell/Dropdown.vue - Add oxd-add-employee icon and made colour supporting for the CardTable Dropdown Cell
+
 2022-09-06 - 62a5486f6f33ff2ec3011ea26517c30c4ed0ba7d - Input/Select/SelectInputButton.vue - Updated the style of select option without the bottom border
 
 2022-08-30 - 21f27018fd82c3b60ff350b4fb350a268a582479 - Input/Time/TimePicker.vue - Fixed issue where hour input picking value from minute (LMR-435)
