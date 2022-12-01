@@ -203,4 +203,45 @@ describe('InputField.vue', () => {
       'placement-bottom',
     );
   });
+
+  it('renders OXD InputField type `input` positioned to bottom with custom styled hint', () => {
+    const wrapper = mount(InputField, {
+      props: {
+        type: 'input',
+        hint: 'This is the input field hint',
+        hintPlacement: 'bottom',
+        hintStyle: {'font-style': 'italic'},
+      },
+      global: {
+        provide: {
+          [formKey as symbol]: mockFormAPI,
+        },
+      },
+    });
+    expect(wrapper.find('.oxd-input-field-hint').attributes().style).toBe(
+      'font-style: italic;',
+    );
+  });
+
+  it('renders OXD InputField type `input` positioned to top with custom styled hint', () => {
+    const wrapper = mount(InputField, {
+      props: {
+        type: 'input',
+        hint: 'This is the input field hint',
+        hintPlacement: 'top',
+        hintStyle: {'font-style': 'bold'},
+      },
+      global: {
+        provide: {
+          [formKey as symbol]: mockFormAPI,
+        },
+      },
+    });
+    expect(wrapper.find('.oxd-input-field-hint').classes()).toContain(
+      'placement-top',
+    );
+    expect(wrapper.find('.oxd-input-field-hint').attributes().style).toBe(
+      'font-style: bold;',
+    );
+  });
 });

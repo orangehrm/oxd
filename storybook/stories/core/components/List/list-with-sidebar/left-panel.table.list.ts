@@ -4,16 +4,16 @@ const leftPanel = {
     visible: true,
     button: {
       props: {
-        label: "Add Candidate",
-        displayType: "secondary",
-        size: "long",
-        iconName: "oxd-add",
-        iconSize: "xx-small",
+        label: 'Add Candidate',
+        displayType: 'secondary',
+        size: 'long',
+        iconName: 'oxd-add',
+        iconSize: 'xx-small',
       },
       events: [
         {
-          type: "click",
-          identifier: "get-add-candidates-modal",
+          type: 'click',
+          identifier: 'get-add-candidates-modal',
         },
       ],
     },
@@ -29,28 +29,28 @@ const leftPanel = {
   body: {
     visible: true,
     button: {
-      label: "All Vacancies",
-      labelMini: "Vacancy",
-      iconName: "eye",
-      iconSize: "large",
-      iconStyle: "height: 20px; display: flex; align-items: center;",
-      displayType: "label",
+      label: 'All Vacancies',
+      labelMini: 'Vacancy',
+      iconName: 'eye',
+      iconSize: 'large',
+      iconStyle: 'height: 20px; display: flex; align-items: center;',
+      displayType: 'label',
       doubleLineLabel: true,
       style: {
-        "background-color": "#ebfcd6",
-        "justify-content": "space-between",
+        'background-color': '#ebfcd6',
+        'justify-content': 'space-between',
       },
     },
     dropdown: {
       style: {
-        width: "200px",
+        width: '200px',
       },
     },
     buttonSecondary: {
       visible: true,
-      icon: "oxd-info",
-      tooltip: "Vacancy Info",
-      style: "min-width: unset; min-height: unset;",
+      icon: 'oxd-info',
+      tooltip: 'Vacancy Info',
+      style: 'min-width: unset; min-height: unset;',
     },
   },
   list: {

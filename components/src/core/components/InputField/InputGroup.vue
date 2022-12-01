@@ -11,6 +11,7 @@
         <oxd-text
           v-if="hint && hintPlacement === HINT_PLACEMENT_TOP"
           class="oxd-input-field-hint placement-top"
+          :style="hintStyle"
           tag="p"
         >
           {{ '(' + hint + ')' }}
@@ -28,6 +29,7 @@
     <oxd-text
       v-if="hint && hintPlacement === HINT_PLACEMENT_BOTTOM"
       class="oxd-input-field-hint placement-bottom"
+      :style="hintStyle"
       tag="p"
     >
       {{ hint }}
@@ -72,6 +74,10 @@ export default defineComponent({
     hintPlacement: {
       type: String,
       default: HINT_PLACEMENT_TOP,
+    },
+    hintStyle: {
+      type: Object,
+      default: () => ({}),
     },
     message: {
       type: String,

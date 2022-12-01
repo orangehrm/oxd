@@ -93,7 +93,6 @@ export default defineComponent({
   background-color: $oxd-background-pastel-white-color;
   &:deep(.oxd-icon-button) {
     background-color: $oxd-white-color;
-    color: $oxd-interface-gray-darken-2-color;
     position: absolute;
     right: 3px;
     &:focus {

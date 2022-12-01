@@ -19,6 +19,8 @@
       @focus="onFocus"
       @blur="onBlur"
       @input="onInput"
+      @keyup.page-down="onPageDown"
+      @keyup.page-up="onPageUp"
       v-bind="$attrs"
     />
   </div>
@@ -101,6 +103,16 @@ export default defineComponent({
       e.preventDefault();
       this.$emit('update:modelValue', (e.target as HTMLInputElement).value);
       this.$emit('input', e);
+    },
+    onPageDown(e: KeyboardEvent) {
+      (e.target as HTMLInputElement).setSelectionRange(
+        (e.target as HTMLInputElement).value.length - 1,
+        (e.target as HTMLInputElement).value.length,
+      );
+    },
+
+    onPageUp(e: KeyboardEvent) {
+      (e.target as HTMLInputElement).setSelectionRange(0, 0);
     },
   },
 });

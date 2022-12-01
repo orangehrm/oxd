@@ -1,5 +1,8 @@
-<template> 
-  <div :style=" isLeftPanelOpen? 'width: 500px': 'width: 120px' " class="container" >
+<template>
+  <div
+    :style="isLeftPanelOpen ? 'width: 500px' : 'width: 120px'"
+    class="container"
+  >
     <oxd-table-sidebar
       v-if="leftPanel.visible"
       class="oxd-table-left-panel"
