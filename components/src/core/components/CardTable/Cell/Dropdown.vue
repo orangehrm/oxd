@@ -69,7 +69,7 @@ export default defineComponent({
       return this.options.map((option: any, index) => {
         return {
           'oxd-table-dropdown-item': true,
-          [option[index]?.class]: option[index]?.class,
+          [option.class]: option.class,
         };
       });
     },
