@@ -3,10 +3,10 @@
     <oxd-icon-button :name="iconName" :size="iconSize" :disabled="disabled" />
     <template v-slot:content>
       <li
-        v-for="option in options"
+        v-for="(option, i) in options"
         :key="option.context"
         @click.once="onClick($event, option.context)"
-        class="oxd-table-dropdown-item"
+        :class="optionClasses[i]"
       >
         <div class="oxd-table-dropdown-item-left">
           <oxd-icon v-if="option.icon" :name="option.icon" size="extra-small" />
@@ -62,6 +62,16 @@ export default defineComponent({
       const event: ActionCellEvent = e;
       event.context = context;
       this.$emit('click', event);
+    },
+  },
+  computed: {
+    optionClasses(): object[] {
+      return this.options.map((option: any, index) => {
+        return {
+          'oxd-table-dropdown-item': true,
+          [option[index]?.class]: option[index]?.class,
+        };
+      });
     },
   },
 });
