@@ -132,6 +132,14 @@ export default {
         type: {summary: 'Set a line height and default will be 19'},
       },
     },
+    clickableText: {
+      control: {type: 'text'},
+      table: {
+        type: {
+          summary: 'Set clickable text to show the clickable text element.',
+        },
+      },
+    },
   },
 };
 
@@ -287,6 +295,18 @@ const sample = {
               numOfTitleRows: 1,
             },
             value: '2022-05-03',
+          },
+          {
+            name: 'clickableText',
+            label: 'Clckable Text',
+            type: 'infobox',
+            props: {
+              infoLabel: 'Clickable',
+              options,
+              numOfTitleRows: 1,
+              clickableText: 'Add As an Employee',
+            },
+            value: options[4],
           },
         ],
       },
