@@ -304,6 +304,7 @@ const sample = {
               infoLabel: 'Clickable',
               options,
               numOfTitleRows: 1,
+              numOfValueRows: 2,
               clickableText: 'Add As an Employee',
             },
             value: options[4],
