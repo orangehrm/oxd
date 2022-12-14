@@ -15,8 +15,8 @@
     "tsc": "yarn workspace oxd-components tsc"
   },
   "engines": {
-    "node": ">=10.19.0",
-    "yarn": ">=1.22.4"
+    "node": ">=16.17.0",
+    "yarn": ">=3.3.0"
   },
   "dependencies": {
     "babel-plugin-module-resolver": "^4.1.0"
