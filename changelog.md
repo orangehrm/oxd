@@ -1,5 +1,7 @@
 2022-12-12 - a0709231e479b3da3c50ab23ae082e1b45a98dd9 - InfBox/InfoBox.vue - Added a clickable text to infobox component
 
+2022-12-01 - 032cbeb91ed7a7841c391d1aec9842c04f66895a - Icon/icons.ts, CardTable/Cell/Dropdown.vue - Add oxd-add-employee icon and made colour supporting for the CardTable Dropdown Cell
+
 2022-11-04 - 7e6426e25e1eddaeffa989f89a1c7ac3fc6b00a7 - Icon/icons.ts - Add oxd-about-employee icon
 
 2022-10-25 - 2285ef2561933df2d0f156d95a490ea7e3ff2c02 - Icon/icons.ts - Add 5 new icons: oxd-timezone, oxd-leaving, oxd-clock, oxd-date-and-time and oxd-employee-time
