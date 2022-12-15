@@ -1,3 +1,5 @@
+2022-12-15 - dcc8bc807292f0793be9bf422513ede6a39e6ee0 - Tabs/Tabs.vue - Added a slot support to Tabs component for Action buttons
+
 2022-12-12 - a0709231e479b3da3c50ab23ae082e1b45a98dd9 - InfBox/InfoBox.vue - Added a clickable text to infobox component
 
 2022-12-01 - 032cbeb91ed7a7841c391d1aec9842c04f66895a - Icon/icons.ts, CardTable/Cell/Dropdown.vue - Add oxd-add-employee icon and made colour supporting for the CardTable Dropdown Cell
