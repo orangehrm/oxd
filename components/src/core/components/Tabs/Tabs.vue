@@ -20,9 +20,12 @@
         :class="{active: selectedTabId == tab.id}"
       ></div>
     </li>
+    <li class="tab-actions">
+      <slot name="tab-actions"></slot>
+    </li>
   </ul>
   <div class="tab-content">
-    <slot></slot>
+    <slot name="default"></slot>
   </div>
 </template>
 
