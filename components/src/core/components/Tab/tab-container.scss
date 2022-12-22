@@ -19,6 +19,7 @@
 @import 'variables';
 
 .oxd-tab {
+  touch-action: pan-y !important;
   &-bar {
     padding: $oxd-tab-bar-padding;
   }
