@@ -125,9 +125,14 @@ export default defineComponent({
       // scrollHeight is not calculated properly with
       // explicit heights. first set element height to auto
       // then calculate scrollheight and set element height
+      textArea.value.removeAttribute('style');
       textArea.value.style.height = 'auto';
+
       if (!textArea.value.value) {
         textArea.value.style.height = '30px';
+        textArea.value.style.overflow = 'hidden';
+        textArea.value.style.whiteSpace = 'nowrap';
+        textArea.value.style.textOverflow = 'ellipsis';
       } else if (textArea.value.scrollHeight < 400) {
         textArea.value.style.height = textArea.value.scrollHeight + 'px';
         textArea.value.style.overflowY = 'hidden';
