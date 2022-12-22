@@ -145,7 +145,7 @@ export const sanitizeHex = (hex: string | null) => {
   if (hex.length === 3) {
     hex = hex
       .split('')
-      .map(_hex => _hex + _hex)
+      .map((_hex) => _hex + _hex)
       .join('');
   }
   if (hex.length > 6) hex = hex.substring(0, 6);

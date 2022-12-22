@@ -22,7 +22,7 @@ import {defineComponent} from 'vue';
 import eventsMixin from '@ohrm/oxd/core/components/Input/Select/events-mixin';
 
 const MockComponent = defineComponent({
-  name: 'mock-component',
+  name: 'MockComponent',
   mixins: [eventsMixin],
   // eslint-disable-next-line
   render() {},

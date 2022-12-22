@@ -22,7 +22,7 @@
 <template>
   <oxd-input-group
     :label="label"
-    :labelIcon="labelIcon"
+    :label-icon="labelIcon"
     :message="message"
     class="oxd-input-field-bottom-space"
     :classes="classes"
@@ -31,11 +31,11 @@
       :is="component"
       v-bind="$attrs"
       :disabled="disabled"
-      :hasError="hasError"
-      :modelValue="modelValue"
+      :has-error="hasError"
+      :model-value="modelValue"
       @update:modelValue="$emit('update:modelValue', $event)"
     >
-      <template v-for="(_, name) in $slots" v-slot:[name]="slotData">
+      <template v-for="(_, name) in $slots" #[name]="slotData">
         <slot :name="name" v-bind="slotData" />
       </template>
     </component>
@@ -63,8 +63,7 @@ import {Types, Components, TYPES, TYPE_INPUT, TYPE_MAP} from './types';
 import useField from '../../../composables/useField';
 
 export default defineComponent({
-  name: 'oxd-input-field',
-  inheritAttrs: false,
+  name: 'OxdInputField',
 
   components: {
     'oxd-input-group': InputGroup,
@@ -83,6 +82,7 @@ export default defineComponent({
     'oxd-time-input': TimeInput,
     'oxd-color-input': ColorInput,
   },
+  inheritAttrs: false,
 
   emits: ['update:modelValue'],
 

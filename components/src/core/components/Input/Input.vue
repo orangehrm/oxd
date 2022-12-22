@@ -38,7 +38,7 @@ export interface State {
 }
 
 export default defineComponent({
-  name: 'oxd-input',
+  name: 'OxdInput',
 
   props: {
     // https://v3.vuejs.org/guide/migration/v-model.html#overview

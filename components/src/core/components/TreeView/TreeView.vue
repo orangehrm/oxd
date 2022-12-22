@@ -22,7 +22,7 @@
 <template>
   <ul class="oxd-tree-view">
     <oxd-tree-node v-bind="$attrs">
-      <template v-for="(_, name) in $slots" v-slot:[name]="slotData">
+      <template v-for="(_, name) in $slots" #[name]="slotData">
         <slot :name="name" v-bind="slotData" />
       </template>
     </oxd-tree-node>
@@ -34,11 +34,11 @@ import {defineComponent} from 'vue';
 import TreeNode from '@ohrm/oxd/core/components/TreeView/TreeNode.vue';
 
 export default defineComponent({
-  name: 'oxd-tree-view',
-  inheritAttrs: false,
+  name: 'OxdTreeView',
   components: {
     'oxd-tree-node': TreeNode,
   },
+  inheritAttrs: false,
 });
 </script>
 

@@ -20,7 +20,7 @@
 -->
 
 <template>
-  <div @mousedown="onClick" role="option" class="oxd-select-option">
+  <div role="option" class="oxd-select-option" @mousedown="onClick">
     <slot></slot>
   </div>
 </template>
@@ -29,7 +29,7 @@
 import {defineComponent} from 'vue';
 
 export default defineComponent({
-  name: 'oxd-select-option',
+  name: 'OxdSelectOption',
 
   props: {
     disabled: {

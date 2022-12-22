@@ -28,7 +28,7 @@
 
 <script lang="ts">
 export default {
-  name: 'oxd-chip',
+  name: 'OxdChip',
 
   props: {
     label: {

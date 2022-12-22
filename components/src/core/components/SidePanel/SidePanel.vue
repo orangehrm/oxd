@@ -37,9 +37,9 @@
       </div>
       <div class="oxd-sidepanel-body">
         <oxd-main-menu
-          @collapse="$emit('collapse')"
           :toggle="toggle"
           :menu-items="menuItems"
+          @collapse="$emit('collapse')"
         />
       </div>
     </nav>
@@ -54,7 +54,7 @@ import MenuItem from './types';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
-  name: 'oxd-side-panel',
+  name: 'OxdSidePanel',
 
   emits: ['collapse'],
 

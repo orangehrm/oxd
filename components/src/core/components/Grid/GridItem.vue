@@ -29,7 +29,7 @@
 import {defineComponent} from 'vue';
 
 export default defineComponent({
-  name: 'oxd-grid-item',
+  name: 'OxdGridItem',
   props: {
     gutters: {
       type: Boolean,

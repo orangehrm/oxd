@@ -20,26 +20,26 @@
 -->
 
 <template>
-  <div @fullscreenchange="onFullScreenChange" ref="tableRef" :class="classes">
+  <div ref="tableRef" :class="classes" @fullscreenchange="onFullScreenChange">
     <div class="oxd-report-table-header">
       <div class="oxd-report-table-header--toggable">
         <oxd-icon-button
           class="--toggable-icon"
           :name="fullScreenIcon"
-          :withContainer="false"
+          :with-container="false"
           @click="toggleFullScreen"
         />
         <template v-if="hasScrolling">
           <oxd-icon-button
             class="--toggable-icon"
             name="chevron-left"
-            :withContainer="false"
+            :with-container="false"
             @click="scrollLeft"
           />
           <oxd-icon-button
             class="--toggable-icon"
             name="chevron-right"
-            :withContainer="false"
+            :with-container="false"
             @click="scrollRight"
           />
         </template>
@@ -55,14 +55,14 @@
     <v-grid
       v-else
       ref="vgridRef"
-      theme="compact"
       :key="key"
+      theme="compact"
       :source="items"
       :columns="headers"
       :readonly="true"
       :resize="true"
-      :canFocus="false"
-      :colSize="colSize"
+      :can-focus="false"
+      :col-size="colSize"
       :row-definitions="rowDefinitions"
       v-bind="$attrs"
     ></v-grid>
@@ -87,13 +87,13 @@ import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
 import Spinner from '@ohrm/oxd/core/components/Loader/Spinner.vue';
 
 export default defineComponent({
-  name: 'oxd-report-table',
-  inheritAttrs: false,
+  name: 'OxdReportTable',
   components: {
     'v-grid': VGrid,
     'oxd-icon-button': IconButton,
     'oxd-loading-spinner': Spinner,
   },
+  inheritAttrs: false,
   props: {
     height: {
       type: Number,

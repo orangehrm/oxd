@@ -33,7 +33,7 @@ import {defineComponent} from 'vue';
 import {AREA_ORIENTATION_HORIZONTAL, AreaOrientation} from './types';
 
 export default defineComponent({
-  name: 'oxd-divider',
+  name: 'OxdDivider',
 
   props: {
     style: {

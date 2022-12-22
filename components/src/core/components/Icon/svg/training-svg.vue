@@ -23,7 +23,14 @@
   <g transform="matrix(2.207717, 0, 0, 2.207717, -184.898178, -250.331589)">
     <circle cx="127.712" cy="143.494" r="27.711" />
     <line
-      style="fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-miterlimit: 10; stroke-width: 19px;"
+      style="
+        fill: none;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+        stroke-width: 19px;
+      "
       x1="210.846"
       x2="146.186"
       y1="198.917"
@@ -34,24 +41,51 @@
     />
     <polyline
       points="173.897 254.34 293.98 254.34 293.98 143.494 173.897 143.494"
-      style="fill: none; stroke: currentColor; stroke-linejoin: round; stroke-miterlimit: 10; stroke-width: 19px;"
+      style="
+        fill: none;
+        stroke: currentColor;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+        stroke-width: 19px;
+      "
     />
     <line
-      style="fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-miterlimit: 10; stroke-width: 19px;"
+      style="
+        fill: none;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+        stroke-width: 19px;
+      "
       x1="220.083"
       x2="220.083"
       y1="143.494"
       y2="134.257"
     />
     <line
-      style="fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-miterlimit: 10; stroke-width: 19px;"
+      style="
+        fill: none;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+        stroke-width: 19px;
+      "
       x1="183.135"
       x2="201.609"
       y1="328.237"
       y2="254.34"
     />
     <line
-      style="fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-miterlimit: 10; stroke-width: 19px;"
+      style="
+        fill: none;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+        stroke-width: 19px;
+      "
       x1="257.032"
       x2="238.558"
       y1="328.237"

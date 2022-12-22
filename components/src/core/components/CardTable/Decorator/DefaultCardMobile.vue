@@ -22,9 +22,9 @@
 <template>
   <oxd-card-tbody class="oxd-card-table-body">
     <div
-      :class="classes"
       v-for="(item, index) in tableProps.items"
       :key="item"
+      :class="classes"
       @click="onClick(item)($event)"
     >
       <oxd-card-tr :clickable="tableProps.clickable">
@@ -92,15 +92,15 @@ import DefaultCellContainer from '@ohrm/oxd/core/components/CardTable/Cell/Defau
 import emitter from '../../../../utils/emitter';
 
 export default defineComponent({
-  name: 'oxd-table-default-card-mobile',
-
-  mixins: [decoratorMixin],
+  name: 'OxdTableDefaultCardMobile',
 
   components: {
     'oxd-card-tbody': TableBody,
     'oxd-card-tr': TableRow,
     'oxd-card-cell': DefaultCellContainer,
   },
+
+  mixins: [decoratorMixin],
 
   computed: {
     classes(): object {
@@ -110,32 +110,32 @@ export default defineComponent({
       };
     },
     defaultSlot(): Array<CardHeaders> {
-      return this.tableProps.headers.filter(header => {
+      return this.tableProps.headers.filter((header) => {
         return header?.slot === undefined || header?.slot === 'default';
       });
     },
     titleSlot(): Array<CardHeaders> {
-      return this.tableProps.headers.filter(header => {
+      return this.tableProps.headers.filter((header) => {
         return header?.slot === 'title';
       });
     },
     actionSlot(): Array<CardHeaders> {
-      return this.tableProps.headers.filter(header => {
+      return this.tableProps.headers.filter((header) => {
         return header?.slot === 'action';
       });
     },
     footerSlot(): Array<CardHeaders> {
-      return this.tableProps.headers.filter(header => {
+      return this.tableProps.headers.filter((header) => {
         return header?.slot === 'footer';
       });
     },
     leftSlot(): Array<CardHeaders> {
-      return this.tableProps.headers.filter(header => {
+      return this.tableProps.headers.filter((header) => {
         return header?.slot === 'left';
       });
     },
     rightSlot(): Array<CardHeaders> {
-      return this.tableProps.headers.filter(header => {
+      return this.tableProps.headers.filter((header) => {
         return header?.slot === 'right';
       });
     },

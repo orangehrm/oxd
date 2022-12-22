@@ -37,12 +37,12 @@ const dropdownOptions = [
   },
 ];
 
-const syncFunction = function() {
+const syncFunction = function () {
   return dropdownOptions;
 };
 
-const asyncFunction = async function() {
-  return new Promise(resolve => {
+const asyncFunction = async function () {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve(dropdownOptions);
     }, 500);

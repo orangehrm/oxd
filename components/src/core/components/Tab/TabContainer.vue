@@ -23,7 +23,7 @@
 import {defineComponent, h, KeepAlive, onMounted, Transition} from 'vue';
 
 export default defineComponent({
-  name: 'oxd-tab-container',
+  name: 'OxdTabContainer',
   props: {
     modelValue: {
       type: String,
@@ -54,7 +54,7 @@ export default defineComponent({
       if (location.hash) {
         const hash = location.hash.replace(/^#/, '');
         const selectedTab = content.find(
-          tab => hash === tab.props.name.replace(/\s+/g, '-').toLowerCase(),
+          (tab) => hash === tab.props.name.replace(/\s+/g, '-').toLowerCase(),
         );
         if (selectedTab) {
           context.emit('update:modelValue', selectedTab.props.name);

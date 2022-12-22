@@ -44,14 +44,14 @@ export interface State {
 }
 
 export default defineComponent({
-  name: 'oxd-textarea',
+  name: 'OxdTextarea',
 
   props: {
     modelValue: {},
     resize: {
       type: String,
       default: RESIZE_VERTICAL,
-      validator: function(value: TextareaResize) {
+      validator: function (value: TextareaResize) {
         return (
           [RESIZE_VERTICAL, RESIZE_HORIZONTAL, RESIZE_NONE].indexOf(value) !==
           -1

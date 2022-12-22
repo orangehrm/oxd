@@ -59,7 +59,7 @@ import DefaultCardContainer from '@ohrm/oxd/core/components/CardTable/Decorator/
 import DefaultCardHeader from '@ohrm/oxd/core/components/CardTable/Header/DefaultCardHeader.vue';
 
 export default defineComponent({
-  name: 'oxd-card-card-table',
+  name: 'OxdCardCardTable',
 
   props: {
     selector: {
@@ -108,28 +108,36 @@ export default defineComponent({
     },
   },
 
+  emits: [
+    'click',
+    'clickCheckbox',
+    'update:selected',
+    'update:selectAll',
+    'update:order',
+  ],
+
   setup(props, context) {
     const responsiveState = useResponsive();
 
     provide('tableProps', readonly(props));
     provide('screenState', readonly(responsiveState));
 
-    emitter.on(`${props.tableId}-datatable:selectAll`, value => {
+    emitter.on(`${props.tableId}-datatable:selectAll`, (value) => {
       context.emit('update:selectAll', value);
     });
     emitter.on(`${props.tableId}-datatable:unselectAll`, () => {
       context.emit('update:selectAll', []);
     });
-    emitter.on(`${props.tableId}-datatable:updateOrder`, value => {
+    emitter.on(`${props.tableId}-datatable:updateOrder`, (value) => {
       context.emit('update:order', value);
     });
-    emitter.on(`${props.tableId}-datatable:updateSelected`, value => {
+    emitter.on(`${props.tableId}-datatable:updateSelected`, (value) => {
       context.emit('update:selected', value);
     });
-    emitter.on(`${props.tableId}-datatable:clickCheckboxCell`, value => {
+    emitter.on(`${props.tableId}-datatable:clickCheckboxCell`, (value) => {
       context.emit('clickCheckbox', value);
     });
-    emitter.on(`${props.tableId}-datatable:clickRow`, value => {
+    emitter.on(`${props.tableId}-datatable:clickRow`, (value) => {
       context.emit('click', value);
     });
 
@@ -148,14 +156,6 @@ export default defineComponent({
       });
     });
   },
-
-  emits: [
-    'click',
-    'clickCheckbox',
-    'update:selected',
-    'update:selectAll',
-    'update:order',
-  ],
 
   components: {
     'oxd-card-table-container': Table,

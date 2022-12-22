@@ -26,8 +26,8 @@
       <oxd-calendar-dropdown
         :options="months"
         :selected="currentMonth"
-        @select="onSelectMonth"
         class="oxd-calendar-selector-month"
+        @select="onSelectMonth"
       >
         <div class="oxd-calendar-selector-month-selected">
           <oxd-text tag="p">{{ months[modelValue.month] }}</oxd-text>
@@ -37,8 +37,8 @@
       <oxd-calendar-dropdown
         :options="years"
         :selected="currentYear"
-        @select="onSelectYear"
         class="oxd-calendar-selector-year"
+        @select="onSelectYear"
       >
         <div class="oxd-calendar-selector-year-selected">
           <oxd-text tag="p">{{ modelValue.year }}</oxd-text>
@@ -56,7 +56,12 @@ import Icon from '@ohrm/oxd/core/components/Button/Icon.vue';
 import CalendarDropdown from '@ohrm/oxd/core/components/Calendar/CalendarDropdown.vue';
 
 export default defineComponent({
-  name: 'oxd-calendar-controller',
+  name: 'OxdCalendarController',
+  components: {
+    'oxd-text': Text,
+    'oxd-icon': Icon,
+    'oxd-calendar-dropdown': CalendarDropdown,
+  },
   props: {
     modelValue: {
       type: Object,
@@ -72,10 +77,15 @@ export default defineComponent({
     },
   },
   emits: ['update:modelValue'],
-  components: {
-    'oxd-text': Text,
-    'oxd-icon': Icon,
-    'oxd-calendar-dropdown': CalendarDropdown,
+  computed: {
+    currentMonth(): number {
+      const {month} = this.modelValue;
+      return month;
+    },
+    currentYear(): number {
+      const {year} = this.modelValue;
+      return this.years.findIndex((v) => v === year);
+    },
   },
   methods: {
     calculateMonth(value: number) {
@@ -117,16 +127,6 @@ export default defineComponent({
         month,
         year: this.modelValue.year,
       });
-    },
-  },
-  computed: {
-    currentMonth(): number {
-      const {month} = this.modelValue;
-      return month;
-    },
-    currentYear(): number {
-      const {year} = this.modelValue;
-      return this.years.findIndex(v => v === year);
     },
   },
 });

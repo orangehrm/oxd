@@ -22,15 +22,15 @@
 <template>
   <div :class="classes">
     <textarea
-      rows="1"
       ref="textArea"
+      rows="1"
       class="oxd-buzz-post-input"
       :disabled="disabled"
       :value="modelValue"
+      v-bind="$attrs"
       @blur="onBlur"
       @focus="onFocus"
       @input="onInput"
-      v-bind="$attrs"
     />
     <div class="oxd-buzz-post-slot">
       <slot></slot>
@@ -60,11 +60,11 @@ interface TextAreaInputEvent extends InputEvent {
 }
 
 export default defineComponent({
-  name: 'oxd-buzz-post-input',
-  inheritAttrs: false,
+  name: 'OxdBuzzPostInput',
   components: {
     'oxd-text': Text,
   },
+  inheritAttrs: false,
   props: {
     modelValue: {
       type: String,

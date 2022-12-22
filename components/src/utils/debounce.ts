@@ -38,11 +38,11 @@ export default function debounce<F extends Procedure>(
 ): F {
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
-  return function(this: unknown, ...args: any[]) {
+  return function (this: unknown, ...args: any[]) {
     // eslint-disable-next-line  @typescript-eslint/no-this-alias
     const self = this;
 
-    const doLater = function() {
+    const doLater = function () {
       timeoutId = undefined;
       if (!options.isImmediate) {
         func.apply(self, args);

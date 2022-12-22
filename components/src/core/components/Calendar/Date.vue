@@ -24,7 +24,7 @@ import {CalendarDayAttributes, CalendarEvent} from './types';
 import {computed, defineComponent, h, PropType} from 'vue';
 
 export default defineComponent({
-  name: 'oxd-calendar-date',
+  name: 'OxdCalendarDate',
   props: {
     date: {
       type: Date as PropType<Date>,

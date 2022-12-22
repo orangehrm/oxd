@@ -24,7 +24,7 @@
     <div class="oxd-time-input">
       <oxd-input
         ref="oxdInput"
-        :hasError="hasError"
+        :has-error="hasError"
         :disabled="disabled"
         :readonly="readonly"
         :value="timeDisplay"
@@ -37,7 +37,7 @@
     <oxd-time-picker
       v-if="open"
       :step="step"
-      :modelValue="modelValue"
+      :model-value="modelValue"
       @update:modelValue="$emit('update:modelValue', $event)"
     ></oxd-time-picker>
   </div>
@@ -52,7 +52,7 @@ import TimePicker from '@ohrm/oxd/core/components/Input/Time/TimePicker.vue';
 import {parseDate, formatDate} from '../../../../utils/date';
 
 export default defineComponent({
-  name: 'oxd-time-input',
+  name: 'OxdTimeInput',
 
   components: {
     'oxd-icon': Icon,
@@ -60,12 +60,9 @@ export default defineComponent({
     'oxd-time-picker': TimePicker,
   },
 
-  emits: [
-    'update:modelValue',
-    'timeselect:opened',
-    'timeselect:closed',
-    'blur',
-  ],
+  directives: {
+    'click-outside': clickOutsideDirective,
+  },
 
   props: {
     modelValue: {
@@ -94,14 +91,30 @@ export default defineComponent({
     },
   },
 
-  directives: {
-    'click-outside': clickOutsideDirective,
-  },
+  emits: [
+    'update:modelValue',
+    'timeselect:opened',
+    'timeselect:closed',
+    'blur',
+  ],
 
   data() {
     return {
       open: false,
     };
+  },
+
+  computed: {
+    timeIconClasses(): object {
+      return {
+        'oxd-time-input--clock': true,
+        '--disabled': this.disabled,
+        '--readonly': this.readonly,
+      };
+    },
+    timeDisplay(): string {
+      return formatDate(parseDate(this.modelValue, 'HH:mm'), 'hh:mm a');
+    },
   },
 
   methods: {
@@ -130,19 +143,6 @@ export default defineComponent({
     closeDropdown() {
       this.open = false;
       this.$emit('timeselect:closed');
-    },
-  },
-
-  computed: {
-    timeIconClasses(): object {
-      return {
-        'oxd-time-input--clock': true,
-        '--disabled': this.disabled,
-        '--readonly': this.readonly,
-      };
-    },
-    timeDisplay(): string {
-      return formatDate(parseDate(this.modelValue, 'HH:mm'), 'hh:mm a');
     },
   },
 });

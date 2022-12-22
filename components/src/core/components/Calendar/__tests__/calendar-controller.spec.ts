@@ -23,7 +23,7 @@ import Icon from '@ohrm/oxd/core/components/Button/Icon.vue';
 
 describe('CalendarController.vue', () => {
   // https://github.com/jsdom/jsdom/issues/1695
-  window.HTMLElement.prototype.scrollIntoView = function() {
+  window.HTMLElement.prototype.scrollIntoView = function () {
     //do nothing
   };
 

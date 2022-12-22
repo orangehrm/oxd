@@ -45,7 +45,7 @@ import {TYPE_BOOTSTRAP, TYPES} from '../Icon/types';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
-  name: 'oxd-icon-button',
+  name: 'OxdIconButton',
 
   components: {
     'oxd-icon': Icon,
@@ -67,7 +67,7 @@ export default defineComponent({
     displayType: {
       type: String,
       default: null,
-      validator: function(value: ButtonType) {
+      validator: function (value: ButtonType) {
         return !value || ICON_TYPES.indexOf(value) !== -1;
       },
     },

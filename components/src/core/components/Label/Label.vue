@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  name: 'oxd-label',
+  name: 'OxdLabel',
 
   props: {
     label: {

@@ -22,13 +22,11 @@ import {defineComponent} from 'vue';
 import navigationMixin from '@ohrm/oxd/core/components/Input/Select/navigation-mixin';
 
 const MockComponent = defineComponent({
-  name: 'mock-component',
+  name: 'MockComponent',
   mixins: [navigationMixin],
   data() {
     return {dropdownOpen: true};
   },
-  // eslint-disable-next-line
-  render() {},
   computed: {
     computedOptions() {
       return [
@@ -39,6 +37,8 @@ const MockComponent = defineComponent({
       ];
     },
   },
+  // eslint-disable-next-line
+  render() {},
 });
 
 describe('navigationMixin.ts', () => {

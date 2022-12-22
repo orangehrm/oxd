@@ -20,17 +20,16 @@
 import {defineComponent} from 'vue';
 
 export const validatableMixin = defineComponent({
-  data() {
-    return {
-      errorBucket: [] as string[],
-    };
-  },
-
   props: {
     rules: {
       type: Array,
       default: () => [],
     },
+  },
+  data() {
+    return {
+      errorBucket: [] as string[],
+    };
   },
 
   methods: {

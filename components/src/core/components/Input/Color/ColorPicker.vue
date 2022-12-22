@@ -39,10 +39,10 @@
     ></canvas>
     <input
       :value="hue"
-      @change="onHueChange"
       class="oxd-color-picker-range"
       type="range"
       max="359"
+      @change="onHueChange"
     />
     <oxd-label
       :label="t('general.hex', 'HEX')"
@@ -69,18 +69,18 @@ import Label from '@ohrm/oxd/core/components/Label/Label.vue';
 import {clamp, hex2Hsv, hsv2Hex, sanitizeHex} from '../../../../utils/color';
 
 export default defineComponent({
-  name: 'oxd-color-picker',
+  name: 'OxdColorPicker',
+
+  components: {
+    'oxd-input': Input,
+    'oxd-label': Label,
+  },
 
   props: {
     modelValue: {
       type: String,
       required: false,
     },
-  },
-
-  components: {
-    'oxd-input': Input,
-    'oxd-label': Label,
   },
 
   emits: ['update:modelValue'],

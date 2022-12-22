@@ -29,13 +29,13 @@
   >
     <div class="oxd-dropdown-input">
       <oxd-input
-        :hasError="hasError"
+        ref="oxdInput"
+        :has-error="hasError"
         :placeholder="placeholder"
         :disabled="disabled"
         @update:modelValue="onSearchUpdate"
         @click="toggleDropdown"
         @blur="onBlur"
-        ref="oxdInput"
       />
       <div
         v-if="!isLoading"
@@ -54,18 +54,18 @@
         />
       </div>
       <oxd-loading-spinner
-        class="oxd-dropdown-input-loader"
         v-else
+        class="oxd-dropdown-input-loader"
         :with-container="false"
       />
     </div>
     <transition name="transition-fade-down">
-      <ul role="listbox" v-if="open" class="oxd-dropdown-options">
+      <ul v-if="open" role="listbox" class="oxd-dropdown-options">
         <li
           v-for="(option, index) in filteredOptions"
           :ref="`optElm-${index}`"
-          role="option"
           :key="`${index}-options-${option.id}`"
+          role="option"
           :class="{
             'oxd-dropdown-options-item': true,
             '--disabled': option.disabled,
@@ -85,7 +85,7 @@
         </li>
       </ul>
     </transition>
-    <div class="oxd-dropdown-selected" v-if="multiple">
+    <div v-if="multiple" class="oxd-dropdown-selected">
       <oxd-chip
         v-for="(option, index) in selectedOptions"
         :key="`${index}-selected-${option.id}`"
@@ -120,7 +120,7 @@ interface Option {
 }
 
 export default defineComponent({
-  name: 'oxd-dropdown-input',
+  name: 'OxdDropdownInput',
 
   props: {
     modelValue: {
@@ -193,15 +193,17 @@ export default defineComponent({
     // Load options to dropdown via function
     const loadOptions = async () => {
       state.isLoading = true;
-      new Promise(resolve => resolve(props.createOptions(state.searchTerm)))
-        .then(resolved => {
+      new Promise((resolve) => resolve(props.createOptions(state.searchTerm)))
+        .then((resolved) => {
           if (resolved && Array.isArray(resolved)) {
             if (resolved.length > 0) {
               state.localOptions = state.localOptions
                 // eslint-disable-next-line
                 .concat(resolved as Array<any>)
                 .filter((item, index, arr) => {
-                  return arr.findIndex(_item => _item.id === item.id) === index;
+                  return (
+                    arr.findIndex((_item) => _item.id === item.id) === index
+                  );
                 });
             }
           }
@@ -228,7 +230,7 @@ export default defineComponent({
     },
     filteredOptions(): Option[] {
       const filter = new RegExp(this.searchTerm, 'i');
-      const _options = this.localOptions.filter(option =>
+      const _options = this.localOptions.filter((option) =>
         option.label.match(filter),
       );
 
@@ -241,14 +243,14 @@ export default defineComponent({
         this.loadOptions();
       }
 
-      return _options.map(option => {
+      return _options.map((option) => {
         return {
           id: option.id,
           label: option.label,
           disabled:
-            this.disabledOptions.findIndex(item => item == option.id) > -1,
+            this.disabledOptions.findIndex((item) => item == option.id) > -1,
           selected:
-            this.selectedOptions.findIndex(item => item.id == option.id) > -1,
+            this.selectedOptions.findIndex((item) => item.id == option.id) > -1,
           indent: option?.indent ? option.indent : 1,
         };
       });
@@ -309,7 +311,7 @@ export default defineComponent({
         return;
       }
       const _selOpts = JSON.parse(JSON.stringify(this.selectedOptions));
-      const itemIndex = _selOpts.findIndex(elem => elem.id === item.id);
+      const itemIndex = _selOpts.findIndex((elem) => elem.id === item.id);
       if (itemIndex > -1) {
         _selOpts.splice(itemIndex, 1);
       }

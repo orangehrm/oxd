@@ -21,27 +21,27 @@
 
 <template>
   <li
-    @click="openSubmenu"
     v-click-outside="closeSubMenu"
     :class="{'--active': isActive}"
+    @click="openSubmenu"
   >
     <slot></slot>
 
     <transition name="transition-fade-down">
       <ul
-        @click.stop="closeSubMenu"
         v-if="isActive"
         class="oxd-calendar-dropdown"
         role="menu"
+        @click.stop="closeSubMenu"
       >
         <li
           v-for="(option, index) in options"
           :ref="`oxd-cal-ref-${index}`"
+          :key="`oxd-cal-option-${index}`"
           :class="{
             'oxd-calendar-dropdown--option': true,
             '--selected': index === selected,
           }"
-          :key="`oxd-cal-option-${index}`"
           @click="onSelectOption(index)"
         >
           {{ option }}
@@ -56,8 +56,11 @@ import {defineComponent} from 'vue';
 import clickOutsideDirective from '../../../directives/click-outside';
 
 export default defineComponent({
-  name: 'oxd-calendar-dropdown',
-  emits: ['select'],
+  name: 'OxdCalendarDropdown',
+
+  directives: {
+    'click-outside': clickOutsideDirective,
+  },
 
   props: {
     options: {
@@ -69,15 +72,12 @@ export default defineComponent({
       required: false,
     },
   },
+  emits: ['select'],
 
   data() {
     return {
       isActive: false,
     };
-  },
-
-  directives: {
-    'click-outside': clickOutsideDirective,
   },
 
   methods: {

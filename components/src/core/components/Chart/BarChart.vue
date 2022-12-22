@@ -27,7 +27,7 @@ import {ChartData, ChartOptions, AnimationSpec} from 'chart.js';
 import {h, computed, PropType, shallowRef, defineComponent, watch} from 'vue';
 
 export default defineComponent({
-  name: 'oxd-bar-chart',
+  name: 'OxdBarChart',
 
   props: {
     styles: {
@@ -101,11 +101,11 @@ export default defineComponent({
     const chartjsInstance = shallowRef<Chart>();
 
     const series = computed<ChartData<'bar'>>(() => ({
-      labels: props.data.map(item => item.label),
+      labels: props.data.map((item) => item.label),
       datasets: [
         {
-          data: props.data.map(item => item.value),
-          backgroundColor: props.data.map(item => item.color),
+          data: props.data.map((item) => item.value),
+          backgroundColor: props.data.map((item) => item.color),
           borderWidth: 4,
           borderSkipped: false,
           borderRadius: Number.MAX_VALUE,

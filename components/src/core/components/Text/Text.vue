@@ -20,7 +20,7 @@
 -->
 
 <template>
-  <component :class="classes" :style="style" :is="tag"><slot></slot></component>
+  <component :is="tag" :class="classes" :style="style"><slot></slot></component>
 </template>
 
 <script lang="ts">
@@ -28,13 +28,13 @@ import {defineComponent} from 'vue';
 import {TAGS, Tags, TAG_P, TYPES, TextTypes} from './types';
 
 export default defineComponent({
-  name: 'oxd-text',
+  name: 'OxdText',
 
   props: {
     tag: {
       type: String,
       default: TAG_P,
-      validator: function(value: Tags) {
+      validator: function (value: Tags) {
         return TAGS.indexOf(value) !== -1;
       },
     },
@@ -43,7 +43,7 @@ export default defineComponent({
     },
     type: {
       type: String,
-      validator: function(value?: TextTypes) {
+      validator: function (value?: TextTypes) {
         if (value === undefined || value === null) {
           return true;
         }

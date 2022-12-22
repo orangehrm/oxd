@@ -36,10 +36,10 @@
         :class="{toggled: toggle}"
       />
       <oxd-icon-button
-        @click="onClickCollapse"
         :name="toggle ? 'chevron-right' : 'chevron-left'"
         class="oxd-main-menu-button"
         role="none"
+        @click="onClickCollapse"
       />
     </div>
     <hr class="oxd-main-menu-divider" />
@@ -70,7 +70,7 @@ import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
 import usei18n from '../../../composables/usei18n';
 
 export default defineComponent({
-  name: 'oxd-main-menu',
+  name: 'OxdMainMenu',
 
   emits: ['collapse'],
 
@@ -107,17 +107,6 @@ export default defineComponent({
     'oxd-main-menu-item': MainMenuItem,
   },
 
-  methods: {
-    onClickCollapse() {
-      this.$emit('collapse');
-      // trigger resize event for body resize event listners
-      // timeout delay is added for sidebar animation 0.3s
-      setTimeout(() => {
-        window.dispatchEvent(new Event('resize'));
-      }, 350);
-    },
-  },
-
   computed: {
     classes(): object {
       return {
@@ -126,7 +115,18 @@ export default defineComponent({
     },
     filteredMenuItems(): MenuItem[] {
       const filter = new RegExp(this.searchTerm, 'i');
-      return this.menuItems.filter(item => item.name.match(filter));
+      return this.menuItems.filter((item) => item.name.match(filter));
+    },
+  },
+
+  methods: {
+    onClickCollapse() {
+      this.$emit('collapse');
+      // trigger resize event for body resize event listners
+      // timeout delay is added for sidebar animation 0.3s
+      setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+      }, 350);
     },
   },
 });

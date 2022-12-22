@@ -25,23 +25,23 @@
       <col v-if="selectable" :style="{width: selector.width}" />
       <col
         v-for="header in headers"
-        :style="{width: header.width}"
         :key="header"
+        :style="{width: header.width}"
       />
     </colgroup>
     <oxd-thead>
       <oxd-tr>
         <oxd-th v-if="selectable" class="oxd-padding-cell oxd-table-th">
           <input
-            type="checkbox"
             v-model="selectedAll"
+            type="checkbox"
             @change="onChangeSelectAll"
           />
         </oxd-th>
         <oxd-th
-          class="oxd-padding-cell oxd-table-th"
           v-for="header in headers"
           :key="header"
+          class="oxd-padding-cell oxd-table-th"
         >
           {{ header.title }}
         </oxd-th>
@@ -57,16 +57,16 @@
       >
         <oxd-td v-if="selectable" class="oxd-padding-cell">
           <input
+            v-model="checkedItems"
             type="checkbox"
             :value="index"
-            v-model="checkedItems"
             @click="onClickCheckbox(item, $event)"
           />
         </oxd-td>
         <oxd-td
-          class="oxd-padding-cell"
           v-for="header in headers"
           :key="header"
+          class="oxd-padding-cell"
         >
           {{ item[header.name] }}
         </oxd-td>
@@ -88,20 +88,16 @@ import TableHeaderCell from '@ohrm/oxd/core/components/Table/TableHeaderCell.vue
 import TableDataCell from '@ohrm/oxd/core/components/Table/TableDataCell.vue';
 
 export default defineComponent({
-  name: 'oxd-clasic-table',
+  name: 'OxdClasicTable',
 
-  data() {
-    return {
-      checkedItems: this.selected as number[],
-      selectedAll: (this.selected.length === this.items.length) as boolean,
-    };
-  },
-
-  watch: {
-    checkedItems(state) {
-      this.selectedAll = state.length === this.items.length;
-      this.$emit('update:selected', state);
-    },
+  components: {
+    'oxd-table': Table,
+    'oxd-thead': TableHeader,
+    'oxd-tbody': TableBody,
+    'oxd-tfoot': TableFooter,
+    'oxd-tr': TableRow,
+    'oxd-th': TableHeaderCell,
+    'oxd-td': TableDataCell,
   },
 
   props: {
@@ -145,14 +141,18 @@ export default defineComponent({
 
   emits: ['click', 'clickCheckbox', 'update:selected', 'update:selectAll'],
 
-  components: {
-    'oxd-table': Table,
-    'oxd-thead': TableHeader,
-    'oxd-tbody': TableBody,
-    'oxd-tfoot': TableFooter,
-    'oxd-tr': TableRow,
-    'oxd-th': TableHeaderCell,
-    'oxd-td': TableDataCell,
+  data() {
+    return {
+      checkedItems: this.selected as number[],
+      selectedAll: (this.selected.length === this.items.length) as boolean,
+    };
+  },
+
+  watch: {
+    checkedItems(state) {
+      this.selectedAll = state.length === this.items.length;
+      this.$emit('update:selected', state);
+    },
   },
 
   methods: {

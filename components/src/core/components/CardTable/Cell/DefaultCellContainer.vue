@@ -37,14 +37,14 @@ import {RowItem} from './types';
 import {DEVICE_LG, DEVICE_XL} from '../../../../composables/useResponsive';
 
 export default defineComponent({
-  name: 'oxd-table-cell-container',
-  inject: ['screenState'],
+  name: 'OxdTableCellContainer',
 
   components: {
     'oxd-table-cell-default': DefaultCell,
     'oxd-table-cell-actions': ActionsCell,
     'oxd-table-cell-checkbox': CheckboxCell,
   },
+  inject: ['screenState'],
 
   props: {
     index: {
@@ -74,7 +74,7 @@ export default defineComponent({
     const rowData = this.items;
     const defaultCell = resolveComponent('oxd-table-cell-default');
 
-    return this.headers.map(header => {
+    return this.headers.map((header) => {
       let cellType,
         cellProps,
         cellDirectives,

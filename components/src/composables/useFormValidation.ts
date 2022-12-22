@@ -40,13 +40,13 @@ export default function useFormValidation(isLoading: Ref<boolean>) {
 
   const searchErrors = (id: string) => {
     if (isLoading.value === true) return [];
-    return formState.errorbag.filter(item => {
+    return formState.errorbag.filter((item) => {
       return item.cid === id;
     });
   };
 
   const purgeErrors = (id: string) => {
-    formState.errorbag = formState.errorbag.filter(item => item.cid !== id);
+    formState.errorbag = formState.errorbag.filter((item) => item.cid !== id);
   };
 
   const addError = (errorField: ErrorField) => {
@@ -55,7 +55,7 @@ export default function useFormValidation(isLoading: Ref<boolean>) {
   };
 
   const registerField = (field: FormField) => {
-    const i = formState.fieldset.findIndex(item => {
+    const i = formState.fieldset.findIndex((item) => {
       return unref(item.cid) === unref(field.cid);
     });
     if (i === -1) {
@@ -66,7 +66,7 @@ export default function useFormValidation(isLoading: Ref<boolean>) {
   const unregisterField = (field: FormField) => {
     purgeErrors(unref(field.cid));
 
-    const i = formState.fieldset.findIndex(item => {
+    const i = formState.fieldset.findIndex((item) => {
       return unref(item.cid) === unref(field.cid);
     });
     if (i > -1) {
@@ -75,20 +75,20 @@ export default function useFormValidation(isLoading: Ref<boolean>) {
   };
 
   const validate = () => {
-    return Promise.all(formState.fieldset.map(field => field.validate()))
-      .then(results => {
-        results.map(errorField => {
+    return Promise.all(formState.fieldset.map((field) => field.validate()))
+      .then((results) => {
+        results.map((errorField) => {
           addError(errorField);
         });
       })
-      .catch(reject => {
+      .catch((reject) => {
         // eslint-disable-next-line no-console
         console.error(reject);
       });
   };
 
   const reset = () => {
-    formState.fieldset.map(field => field.reset());
+    formState.fieldset.map((field) => field.reset());
     formState.errorbag = [];
   };
 

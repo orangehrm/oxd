@@ -45,9 +45,9 @@ export default function useField(fieldContext: {
 
     processing.value = true;
     const allValidations = Promise.all(
-      fieldContext.rules.map(func => {
+      fieldContext.rules.map((func) => {
         return new Promise<boolean>((resolve, reject) => {
-          Promise.resolve(func(fieldContext.modelValue.value)).then(valid => {
+          Promise.resolve(func(fieldContext.modelValue.value)).then((valid) => {
             if (valid === true) {
               resolve(valid);
             } else if (typeof valid === 'string') {
@@ -72,7 +72,7 @@ export default function useField(fieldContext: {
             errors: [],
           });
         })
-        .catch(error => {
+        .catch((error) => {
           if (typeof error === 'string') {
             resolve({
               cid: cid.value,
@@ -90,7 +90,7 @@ export default function useField(fieldContext: {
 
   const startWatcher = () => {
     watchHandler = watch(fieldContext.modelValue, () => {
-      validate().then(result => {
+      validate().then((result) => {
         form.addError(result);
       });
     });

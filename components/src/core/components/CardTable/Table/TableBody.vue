@@ -29,7 +29,7 @@
 import {defineComponent} from 'vue';
 
 export default defineComponent({
-  name: 'oxd-card-tbody',
+  name: 'OxdCardTbody',
 
   computed: {
     classes(): object {

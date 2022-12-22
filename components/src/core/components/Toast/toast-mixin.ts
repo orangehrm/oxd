@@ -25,7 +25,7 @@ export const toastMixin = defineComponent({
     type: {
       type: String,
       default: TYPE_DEFAULT,
-      validator: function(value: ToastType) {
+      validator: function (value: ToastType) {
         return TYPES.indexOf(value) !== -1;
       },
     },

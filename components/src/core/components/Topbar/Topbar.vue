@@ -66,7 +66,7 @@ import Navigation from '@ohrm/oxd/core/components/Topbar/Navigation.vue';
 import UserDropdown from '@ohrm/oxd/core/components/Topbar/UserDropdown.vue';
 
 export default defineComponent({
-  name: 'oxd-top-bar',
+  name: 'OxdTopBar',
 
   emits: ['collapse'],
 

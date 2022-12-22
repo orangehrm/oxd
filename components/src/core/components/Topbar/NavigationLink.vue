@@ -33,7 +33,7 @@
       {{ menuItem.name }}
       <oxd-icon name="chevron-down" :with-container="false" />
     </span>
-    <template v-slot:content>
+    <template #content>
       <li
         v-for="(subMenuItem, index) in menuItem.children"
         :key="`nav-level2-${index}`"
@@ -54,7 +54,7 @@ import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 import DropdownMenu from '@ohrm/oxd/core/components/DropdownMenu/DropdownMenu.vue';
 
 export default defineComponent({
-  name: 'oxd-navigation-link',
+  name: 'OxdNavigationLink',
   props: {
     menuItem: {
       type: Object as PropType<TopMenuItem>,

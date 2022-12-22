@@ -56,8 +56,7 @@ import Sheet from '@ohrm/oxd/core/components/Sheet/Sheet.vue';
 import DefaultContainer from '@ohrm/oxd/core/components/Dialog/Container/Default.vue';
 
 export default defineComponent({
-  name: 'oxd-dialog',
-  inheritAttrs: false,
+  name: 'OxdDialog',
 
   components: {
     'oxd-overlay': Overlay,
@@ -67,8 +66,7 @@ export default defineComponent({
     // Containers
     'oxd-dialog-container-default': DefaultContainer,
   },
-
-  emits: ['update:show'],
+  inheritAttrs: false,
 
   props: {
     shadow: {
@@ -96,6 +94,8 @@ export default defineComponent({
       default: true,
     },
   },
+
+  emits: ['update:show'],
 
   computed: {
     classes(): object {

@@ -30,12 +30,12 @@ import DefaultCardWeb from '@ohrm/oxd/core/components/CardTable/Decorator/Defaul
 import {DEVICE_LG, DEVICE_XL} from '../../../../composables/useResponsive';
 
 export default defineComponent({
-  name: 'oxd-table-default-card-container',
-  inject: ['screenState'],
+  name: 'OxdTableDefaultCardContainer',
   components: {
     'oxd-table-default-card-web': DefaultCardWeb,
     'oxd-table-default-card-mobile': DefaultCardMobile,
   },
+  inject: ['screenState'],
   computed: {
     card(): string {
       if (

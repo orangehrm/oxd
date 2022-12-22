@@ -21,8 +21,8 @@
 
 <template>
   <input
-    type="file"
     ref="input"
+    type="file"
     v-bind="$attrs"
     :class="fileInputClasses"
     @focus="onFocus"
@@ -62,7 +62,11 @@ export interface State {
 }
 
 export default defineComponent({
-  name: 'oxd-file-input',
+  name: 'OxdFileInput',
+
+  components: {
+    'oxd-icon': Icon,
+  },
   inheritAttrs: false,
 
   props: {
@@ -95,9 +99,7 @@ export default defineComponent({
     },
   },
 
-  components: {
-    'oxd-icon': Icon,
-  },
+  emits: ['click', 'focus', 'blur', 'input', 'update:modelValue'],
 
   setup() {
     return {
@@ -110,20 +112,6 @@ export default defineComponent({
       focused: false,
       inputValue: '',
     };
-  },
-
-  emits: ['click', 'focus', 'blur', 'input', 'update:modelValue'],
-
-  watch: {
-    modelValue(newValue, oldValue) {
-      if (newValue !== oldValue) {
-        if (newValue !== undefined && newValue !== null) {
-          this.inputValue = newValue.name;
-        } else {
-          this.inputValue = '';
-        }
-      }
-    },
   },
 
   computed: {
@@ -146,6 +134,18 @@ export default defineComponent({
       return (
         this.placeholder ?? this.t('general.no_file_chosen', 'No file chosen')
       );
+    },
+  },
+
+  watch: {
+    modelValue(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        if (newValue !== undefined && newValue !== null) {
+          this.inputValue = newValue.name;
+        } else {
+          this.inputValue = '';
+        }
+      }
     },
   },
 

@@ -29,7 +29,7 @@
 import {defineComponent} from 'vue';
 
 export default defineComponent({
-  name: 'oxd-table',
+  name: 'OxdTable',
 
   computed: {
     classes(): object {

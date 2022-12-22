@@ -34,7 +34,7 @@ import LegendVue from '@ohrm/oxd/core/components/Chart/Legend.vue';
 import {h, computed, PropType, shallowRef, defineComponent, watch} from 'vue';
 
 export default defineComponent({
-  name: 'oxd-pie-chart',
+  name: 'OxdPieChart',
 
   props: {
     styles: {
@@ -120,11 +120,11 @@ export default defineComponent({
     const chartjsInstance = shallowRef<Chart>();
 
     const series = computed<ChartData<'pie'>>(() => ({
-      labels: props.data.map(item => item.label),
+      labels: props.data.map((item) => item.label),
       datasets: [
         {
-          data: props.data.map(item => item.value),
-          backgroundColor: props.data.map(item => item.color),
+          data: props.data.map((item) => item.value),
+          backgroundColor: props.data.map((item) => item.color),
         },
       ],
     }));
@@ -135,7 +135,7 @@ export default defineComponent({
       aspectRatio:
         typeof props.aspectRatio === 'number' ? props.aspectRatio : 1,
       cutout: props.cutout,
-      borderWidth: props.data.filter(item => item.value).length > 1,
+      borderWidth: props.data.filter((item) => item.value).length > 1,
       plugins: {
         legend: {
           ...props.legend,
@@ -148,14 +148,14 @@ export default defineComponent({
           backgroundColor: 'rgba(255, 255, 255, 1)',
           enabled: props.customTooltip ? false : props.tooltip?.enabled,
           callbacks: {
-            label: ctx => {
+            label: (ctx) => {
               const {dataset, dataIndex} = ctx;
               const value = dataset.data[dataIndex];
               const total = dataset.data.reduce((acc, value) => acc + value, 0);
               const percentage = (value / total) * 100;
               return `${ctx.label} ${value} (${percentage.toFixed(2)}%)`;
             },
-            labelColor: ctx => {
+            labelColor: (ctx) => {
               const {dataset, dataIndex} = ctx;
               return {
                 borderColor: null,

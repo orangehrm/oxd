@@ -26,7 +26,7 @@ import * as SVGs from './map';
 import SVGLoader from '@ohrm/oxd/core/components/Icon/SVGLoader.vue';
 
 export default defineComponent({
-  name: 'oxd-icon',
+  name: 'OxdIcon',
 
   props: {
     name: {

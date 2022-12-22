@@ -39,7 +39,7 @@ import useFormValidation from '../../../composables/useFormValidation';
 import Spinner from '@ohrm/oxd/core/components/Loader/Spinner.vue';
 
 export default defineComponent({
-  name: 'oxd-form',
+  name: 'OxdForm',
 
   components: {
     'oxd-loading-spinner': Spinner,

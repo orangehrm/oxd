@@ -60,7 +60,7 @@ import useResponsive, {
 } from '../../../composables/useResponsive';
 
 export default defineComponent({
-  name: 'oxd-table-filter',
+  name: 'OxdTableFilter',
 
   components: {
     'oxd-text': Text,

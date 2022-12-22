@@ -39,7 +39,7 @@ import {DEVICE_LG, DEVICE_XL} from '../../../../composables/useResponsive';
 import {cellMixin} from './cell-mixin';
 
 export default defineComponent({
-  name: 'oxd-table-cell-default',
+  name: 'OxdTableCellDefault',
 
   mixins: [cellMixin],
 

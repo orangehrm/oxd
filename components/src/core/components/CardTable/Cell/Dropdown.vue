@@ -20,14 +20,14 @@
 -->
 
 <template>
-  <oxd-dropdown-menu @click="noOp" class="oxd-table-dropdown">
+  <oxd-dropdown-menu class="oxd-table-dropdown" @click="noOp">
     <oxd-icon-button name="three-dots-vertical" />
-    <template v-slot:content>
+    <template #content>
       <li
         v-for="option in options"
         :key="option.context"
-        @click="onClick($event, option.context)"
         class="oxd-table-dropdown-item"
+        @click="onClick($event, option.context)"
       >
         <oxd-text tag="p">{{ option.label }}</oxd-text>
       </li>
@@ -43,7 +43,7 @@ import Text from '@ohrm/oxd/core/components/Text/Text.vue';
 import {ActionCellEvent, DropdownOption} from './types';
 
 export default defineComponent({
-  name: 'oxd-table-dropdown',
+  name: 'OxdTableDropdown',
   props: {
     options: {
       type: Array as PropType<DropdownOption[]>,

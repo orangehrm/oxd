@@ -42,7 +42,12 @@ import Text from '@ohrm/oxd/core/components/Text/Text.vue';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
-  name: 'oxd-main-menu-item',
+  name: 'OxdMainMenuItem',
+
+  components: {
+    'oxd-text': Text,
+    'oxd-icon': Icon,
+  },
 
   props: {
     url: {
@@ -65,11 +70,6 @@ export default defineComponent({
       type: String,
       default: 'home',
     },
-  },
-
-  components: {
-    'oxd-text': Text,
-    'oxd-icon': Icon,
   },
 
   computed: {

@@ -49,7 +49,7 @@ import Text from '@ohrm/oxd/core/components/Text/Text.vue';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
-  name: 'oxd-input-group',
+  name: 'OxdInputGroup',
 
   components: {
     'oxd-label': Label,

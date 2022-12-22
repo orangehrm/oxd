@@ -20,12 +20,12 @@
 -->
 
 <template>
-  <oxd-dropdown-menu @dropdown:closed="onClose" class="oxd-topbar-body-nav-tab">
+  <oxd-dropdown-menu class="oxd-topbar-body-nav-tab" @dropdown:closed="onClose">
     <span class="oxd-topbar-body-nav-tab-item">
       {{ t('general.more', 'More') }}
       <oxd-icon name="three-dots-vertical" :with-container="false" />
     </span>
-    <template v-slot:content>
+    <template #content>
       <div v-for="(menuItem, index) in menuItems" :key="`nav-level2-${index}`">
         <li @click="onClickMenu($event, menuItem, index)">
           <a href="#" class="oxd-topbar-body-nav-tab-link --more">
@@ -64,7 +64,7 @@ import DropdownMenu from '@ohrm/oxd/core/components/DropdownMenu/DropdownMenu.vu
 import usei18n from '../../../composables/usei18n';
 
 export default defineComponent({
-  name: 'oxd-navigation-more',
+  name: 'OxdNavigationMore',
   props: {
     menuItems: {
       type: Object as PropType<TopMenuItem[]>,

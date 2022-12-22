@@ -27,7 +27,7 @@
 import {defineComponent} from 'vue';
 
 export default defineComponent({
-  name: 'oxd-dialog-close-button',
+  name: 'OxdDialogCloseButton',
 });
 </script>
 

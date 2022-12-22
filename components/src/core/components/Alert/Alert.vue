@@ -39,7 +39,7 @@ import {AlertType, TYPE_DEFAULT, TYPES, ICON_MAP} from './types';
 import Text from '@ohrm/oxd/core/components/Text/Text.vue';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 export default defineComponent({
-  name: 'oxd-alert',
+  name: 'OxdAlert',
 
   components: {
     'oxd-text': Text,
@@ -50,7 +50,7 @@ export default defineComponent({
     type: {
       type: String,
       default: TYPE_DEFAULT,
-      validator: function(value: AlertType) {
+      validator: function (value: AlertType) {
         return TYPES.indexOf(value) !== -1;
       },
     },

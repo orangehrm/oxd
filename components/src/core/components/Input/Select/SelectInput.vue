@@ -33,7 +33,7 @@
       @keydown.up.exact.prevent="onSelectUp"
       @keydown="onKeypress"
     >
-      <template v-slot:afterInput>
+      <template #afterInput>
         <slot v-if="modelValue" name="afterSelected" :data="modelValue"></slot>
       </template>
     </oxd-select-text>
@@ -51,9 +51,9 @@
       <oxd-select-option
         v-for="(option, i) in computedOptions"
         :key="option.id"
+        :ref="`option-${i}`"
         :class="optionClasses[i]"
         :disabled="option._disabled || option._selected"
-        :ref="`option-${i}`"
         @select="onSelect(option)"
       >
         <slot name="option" :data="option"></slot>
@@ -74,8 +74,7 @@ import SelectOption from '@ohrm/oxd/core/components/Input/Select/SelectOption.vu
 import usei18n from '../../../../composables/usei18n';
 
 export default defineComponent({
-  name: 'oxd-select-input',
-  inheritAttrs: false,
+  name: 'OxdSelectInput',
 
   components: {
     'oxd-select-text': SelectText,
@@ -84,14 +83,7 @@ export default defineComponent({
   },
 
   mixins: [navigationMixin, eventsMixin],
-
-  emits: [
-    'update:modelValue',
-    'dropdown:opened',
-    'dropdown:closed',
-    'dropdown:blur',
-    'dropdown:clear',
-  ],
+  inheritAttrs: false,
 
   props: {
     modelValue: {
@@ -120,11 +112,19 @@ export default defineComponent({
     dropdownPosition: {
       type: String,
       default: BOTTOM,
-      validator: function(value: Position) {
+      validator: function (value: Position) {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
   },
+
+  emits: [
+    'update:modelValue',
+    'dropdown:opened',
+    'dropdown:closed',
+    'dropdown:blur',
+    'dropdown:clear',
+  ],
 
   setup() {
     return {

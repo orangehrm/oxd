@@ -26,9 +26,9 @@
         v-for="(toast, index) in toasts"
         :key="toast"
         v-bind="toast"
-        @update:show="onUpdateShow($event, index, toast)"
         :class="toastClass"
         :style="{zIndex: toasts.length - index}"
+        @update:show="onUpdateShow($event, index, toast)"
       />
     </transition-group>
   </div>
@@ -40,13 +40,11 @@ import {POSITION_BOTTOM, POSITIONS, ToastContainerPositions} from './types';
 import Toast from '@ohrm/oxd/core/components/Toast/Toast.vue';
 
 export default defineComponent({
-  name: 'oxd-toast-container',
+  name: 'OxdToastContainer',
 
   components: {
     'oxd-toast': Toast,
   },
-
-  emits: ['update:toasts'],
 
   props: {
     toasts: {
@@ -64,11 +62,13 @@ export default defineComponent({
     position: {
       type: String,
       default: POSITION_BOTTOM,
-      validator: function(value: ToastContainerPositions) {
+      validator: function (value: ToastContainerPositions) {
         return POSITIONS.indexOf(value) !== -1;
       },
     },
   },
+
+  emits: ['update:toasts'],
 
   computed: {
     classes(): object {

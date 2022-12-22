@@ -30,13 +30,13 @@ import {defineComponent} from 'vue';
 import {SheetType, TYPES, TYPE_WHITE} from './types';
 
 export default defineComponent({
-  name: 'oxd-sheet',
+  name: 'OxdSheet',
 
   props: {
     type: {
       type: String,
       default: TYPE_WHITE,
-      validator: function(value: SheetType) {
+      validator: function (value: SheetType) {
         return TYPES.indexOf(value) !== -1;
       },
     },

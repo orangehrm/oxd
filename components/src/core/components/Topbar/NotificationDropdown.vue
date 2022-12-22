@@ -30,11 +30,9 @@
       />
       <span class="oxd-notifdropdown-count">30</span>
     </span>
-    <template v-slot:content>
+    <template #content>
       <!-- Notification items -->
-      <span class="oxd-notifdropdown-head">
-        Alerts Center
-      </span>
+      <span class="oxd-notifdropdown-head"> Alerts Center </span>
       <hr class="oxd-notifdropdown-divider" />
       <slot></slot>
       <hr class="oxd-notifdropdown-divider" />
@@ -54,7 +52,7 @@ import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 import DropdownMenu from '@ohrm/oxd/core/components/DropdownMenu/DropdownMenu.vue';
 
 export default defineComponent({
-  name: 'oxd-notification-dropdown',
+  name: 'OxdNotificationDropdown',
   components: {
     'oxd-icon': Icon,
     'oxd-dropdown-menu': DropdownMenu,

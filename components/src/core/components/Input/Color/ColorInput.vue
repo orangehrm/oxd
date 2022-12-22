@@ -21,6 +21,7 @@
 
 <template>
   <div
+    v-click-outside="onClose"
     :class="classes"
     :tabindex="tabIndex"
     @click="onClick"
@@ -28,13 +29,12 @@
     @blur="onBlur"
     @keydown.esc.prevent="onClose"
     @keydown.enter.prevent="onEnter"
-    v-click-outside="onClose"
   >
     <div class="oxd-color-input-preview" :style="previewStyles"></div>
     <transition name="transition-fade-down">
       <oxd-color-picker
         v-if="open"
-        :modelValue="modelValue"
+        :model-value="modelValue"
         :class="dropdownClasses"
         @click.stop
         @update:modelValue="$emit('update:modelValue', $event)"
@@ -50,7 +50,15 @@ import clickOutsideDirective from '../../../../directives/click-outside';
 import ColorPicker from '@ohrm/oxd/core/components/Input/Color/ColorPicker.vue';
 
 export default defineComponent({
-  name: 'oxd-color-input',
+  name: 'OxdColorInput',
+
+  directives: {
+    'click-outside': clickOutsideDirective,
+  },
+
+  components: {
+    'oxd-color-picker': ColorPicker,
+  },
   props: {
     modelValue: {
       type: String,
@@ -77,14 +85,6 @@ export default defineComponent({
   },
 
   emits: ['update:modelValue'],
-
-  directives: {
-    'click-outside': clickOutsideDirective,
-  },
-
-  components: {
-    'oxd-color-picker': ColorPicker,
-  },
 
   setup(props) {
     const state = reactive({

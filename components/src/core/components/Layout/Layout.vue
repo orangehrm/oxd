@@ -23,29 +23,29 @@
   <div class="oxd-layout">
     <div class="oxd-layout-navigation">
       <oxd-side-panel
-        @collapse="onCollapse"
         :toggle="collapse"
         :menu-items="sidepanelMenuItems"
         :brand-logo-src="brandLogoSrc"
         :brand-banner-src="brandBannerSrc"
         :home-url="homeUrl"
+        @collapse="onCollapse"
       >
       </oxd-side-panel>
       <oxd-top-bar
-        @collapse="onCollapse"
         :toggle="collapse"
         :menu-items="topbarMenuItems"
         :user="user"
         :breadcrumb="breadcrumb"
+        @collapse="onCollapse"
       >
         <slot name="user-actions"></slot>
       </oxd-top-bar>
     </div>
     <div :class="containerClasses">
       <oxd-overlay
-        @click="onCollapse"
         class="oxd-layout-overlay"
         :show="collapse"
+        @click="onCollapse"
       ></oxd-overlay>
       <div class="oxd-layout-context">
         <slot></slot>
@@ -66,7 +66,7 @@ import MenuItem from '../SidePanel/types';
 import {TopMenuItem, User, Breadcrumb} from '../Topbar/types';
 
 export default defineComponent({
-  name: 'oxd-layout',
+  name: 'OxdLayout',
 
   props: {
     user: {
@@ -110,18 +110,18 @@ export default defineComponent({
     };
   },
 
-  methods: {
-    onCollapse() {
-      this.collapse = !this.collapse;
-    },
-  },
-
   computed: {
     containerClasses(): object {
       return {
         'oxd-layout-container': true,
         '--collapse': this.collapse,
       };
+    },
+  },
+
+  methods: {
+    onCollapse() {
+      this.collapse = !this.collapse;
     },
   },
 });

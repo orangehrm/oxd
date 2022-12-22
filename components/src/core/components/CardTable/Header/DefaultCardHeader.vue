@@ -29,16 +29,16 @@
         :style="tableProps.selector.style"
       >
         <oxd-checkbox-input
-          :checkIcon="checkIcon"
           v-model="selectedAll"
+          :check-icon="checkIcon"
           @change="onChangeSelectAll"
         />
       </oxd-card-th>
 
       <oxd-card-th
-        class="oxd-padding-cell oxd-table-th"
         v-for="header in tableProps.headers"
         :key="header"
+        class="oxd-padding-cell oxd-table-th"
         :style="header.style"
         :class="header.class"
         :order="tableProps.order[header.sortField]"
@@ -67,7 +67,7 @@ interface State {
 }
 
 export default defineComponent({
-  name: 'oxd-table-header-default',
+  name: 'OxdTableHeaderDefault',
 
   components: {
     'oxd-card-thead': TableHeader,
@@ -90,15 +90,15 @@ export default defineComponent({
         tableProps.selected.length === tableProps.items.length,
     });
 
-    emitter.on(`${tableProps.tableId}-datatable:rowSelected`, value => {
-      const itemIndex = state.checkedItems.findIndex(item => item === value);
+    emitter.on(`${tableProps.tableId}-datatable:rowSelected`, (value) => {
+      const itemIndex = state.checkedItems.findIndex((item) => item === value);
       if (itemIndex === -1) {
         state.checkedItems.push(value);
       }
     });
 
-    emitter.on(`${tableProps.tableId}-datatable:rowUnselected`, value => {
-      const itemIndex = state.checkedItems.findIndex(item => item === value);
+    emitter.on(`${tableProps.tableId}-datatable:rowUnselected`, (value) => {
+      const itemIndex = state.checkedItems.findIndex((item) => item === value);
       if (itemIndex > -1) {
         state.checkedItems.splice(itemIndex, 1);
       }
@@ -106,7 +106,7 @@ export default defineComponent({
 
     watch(
       () => state.checkedItems,
-      newVal => {
+      (newVal) => {
         emitter.emit(`${tableProps.tableId}-datatable:updateSelected`, newVal);
         if (tableProps.items.length > 0 && newVal.length > 0) {
           state.selectedAll = true;

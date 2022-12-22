@@ -29,7 +29,7 @@
 import {defineComponent} from 'vue';
 
 export default defineComponent({
-  name: 'oxd-form-actions',
+  name: 'OxdFormActions',
 
   computed: {
     classes() {

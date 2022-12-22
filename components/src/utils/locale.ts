@@ -88,7 +88,7 @@ function buildLocale(langstrings: LangStrings): Locale {
     for (const key in langPack) {
       const values = langPack[key as keyof LangPack] || fallback[key];
       parsePatterns[key] = values.map(
-        value => new RegExp(value.toLowerCase(), 'i'),
+        (value) => new RegExp(value.toLowerCase(), 'i'),
       );
     }
     return buildMatchFn({

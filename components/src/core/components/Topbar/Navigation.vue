@@ -30,9 +30,9 @@
       <oxd-navigation-link
         v-for="(menuItem, index) in visibleMenuItems"
         :ref="setMenuItem"
+        :key="`nav-level1-${index + width}`"
         :menu-item="menuItem"
         :class="menuClasses[index]"
-        :key="`nav-level1-${index + width}`"
       >
       </oxd-navigation-link>
 
@@ -63,7 +63,7 @@ import NavigationLink from '@ohrm/oxd/core/components/Topbar/NavigationLink.vue'
 import NavigationMore from '@ohrm/oxd/core/components/Topbar/NavigationMore.vue';
 
 export default defineComponent({
-  name: 'oxd-navigation',
+  name: 'OxdNavigation',
 
   props: {
     menuItems: {
@@ -91,7 +91,7 @@ export default defineComponent({
     };
 
     const menuClasses = computed(() => {
-      return props.menuItems.map(item => {
+      return props.menuItems.map((item) => {
         return {
           'oxd-topbar-body-nav-tab': true,
           '--parent': item.children.length > 0,

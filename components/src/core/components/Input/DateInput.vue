@@ -23,15 +23,15 @@
   <div class="oxd-date-wrapper">
     <div class="oxd-date-input">
       <oxd-input
-        :hasError="hasError"
+        ref="oxdInput"
+        :has-error="hasError"
         :disabled="disabled"
         :readonly="readonly"
+        :value="displayDate"
+        :placeholder="placeholder"
         @blur="onBlur"
         @update:modelValue="onDateTyped"
         @click="toggleDropdown"
-        :value="displayDate"
-        :placeholder="placeholder"
-        ref="oxdInput"
       />
       <oxd-icon
         :class="dateIconClasses"
@@ -43,19 +43,19 @@
       <div v-if="open" class="oxd-date-input-calendar">
         <oxd-calendar
           v-bind="$attrs"
-          @update:modelValue="onDateSelected"
-          @mousedown.prevent
           v-model="dateSelected"
           :locale="locale"
+          @update:modelValue="onDateSelected"
+          @mousedown.prevent
         >
           <div class="oxd-date-input-links">
-            <div @click="onClickToday" class="oxd-date-input-link --today">
+            <div class="oxd-date-input-link --today" @click="onClickToday">
               {{ t('general.today', 'Today') }}
             </div>
-            <div @click="onClickClear" class="oxd-date-input-link --clear">
+            <div class="oxd-date-input-link --clear" @click="onClickClear">
               {{ t('general.clear', 'Clear') }}
             </div>
-            <div @click="closeDropdown" class="oxd-date-input-link --close">
+            <div class="oxd-date-input-link --close" @click="closeDropdown">
               {{ t('general.close', 'Close') }}
             </div>
           </div>
@@ -75,14 +75,14 @@ import Input from '@ohrm/oxd/core/components/Input/Input.vue';
 import Calendar from '@ohrm/oxd/core/components/Calendar/Calendar.vue';
 
 export default defineComponent({
-  name: 'oxd-date-input',
-  inheritAttrs: false,
+  name: 'OxdDateInput',
 
   components: {
     'oxd-icon': Icon,
     'oxd-input': Input,
     'oxd-calendar': Calendar,
   },
+  inheritAttrs: false,
 
   props: {
     modelValue: {
@@ -135,6 +135,43 @@ export default defineComponent({
     };
   },
 
+  computed: {
+    dateSelected: {
+      get() {
+        return parseDate(this.modelValue, this.ioformat);
+      },
+      set(value) {
+        if (!isNaN(value) && value instanceof Date) {
+          this.$emit('update:modelValue', formatDate(value, this.ioformat));
+        } else {
+          this.$emit(
+            'update:modelValue',
+            this.dateTyped ? this.dateTyped : null,
+          );
+        }
+      },
+    },
+    displayDate(): string {
+      if (this.value) return this.value;
+      return (
+        formatDate(this.dateSelected, this.dateFormat, {locale: this.locale}) ||
+        (this.modelValue === null ? this.modelValue : this.dateTyped)
+      );
+    },
+    dateFormat(): string {
+      return this.displayFormat && this.displayFormat.trim()
+        ? this.displayFormat
+        : this.ioformat;
+    },
+    dateIconClasses(): object {
+      return {
+        'oxd-date-input-icon': true,
+        '--disabled': this.disabled,
+        '--readonly': this.readonly,
+      };
+    },
+  },
+
   methods: {
     onBlur(e: Event) {
       e.stopImmediatePropagation();
@@ -180,43 +217,6 @@ export default defineComponent({
       this.open = false;
       this.dateTyped = null;
       this.dateSelected = null;
-    },
-  },
-
-  computed: {
-    dateSelected: {
-      get() {
-        return parseDate(this.modelValue, this.ioformat);
-      },
-      set(value) {
-        if (!isNaN(value) && value instanceof Date) {
-          this.$emit('update:modelValue', formatDate(value, this.ioformat));
-        } else {
-          this.$emit(
-            'update:modelValue',
-            this.dateTyped ? this.dateTyped : null,
-          );
-        }
-      },
-    },
-    displayDate(): string {
-      if (this.value) return this.value;
-      return (
-        formatDate(this.dateSelected, this.dateFormat, {locale: this.locale}) ||
-        (this.modelValue === null ? this.modelValue : this.dateTyped)
-      );
-    },
-    dateFormat(): string {
-      return this.displayFormat && this.displayFormat.trim()
-        ? this.displayFormat
-        : this.ioformat;
-    },
-    dateIconClasses(): object {
-      return {
-        'oxd-date-input-icon': true,
-        '--disabled': this.disabled,
-        '--readonly': this.readonly,
-      };
     },
   },
 });

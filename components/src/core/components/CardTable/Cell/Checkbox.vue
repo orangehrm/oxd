@@ -20,13 +20,13 @@
 -->
 
 <template>
-  <div @click.stop class="oxd-table-card-cell-checkbox">
+  <div class="oxd-table-card-cell-checkbox" @click.stop>
     <oxd-checkbox-input
       v-if="isSelectable"
       v-model="checkState"
       :value="item"
-      @click="onClickCheckbox(item, $event)"
       :disabled="isDisabled"
+      @click="onClickCheckbox(item, $event)"
     />
     <div v-else class="oxd-table-card-cell-hidden">
       <oxd-checkbox-input />
@@ -41,7 +41,7 @@ import CheckboxInput from '@ohrm/oxd/core/components/Input/CheckboxInput.vue';
 import {cellMixin} from './cell-mixin';
 
 export default defineComponent({
-  name: 'oxd-table-cell-checkbox',
+  name: 'OxdTableCellCheckbox',
   components: {'oxd-checkbox-input': CheckboxInput},
   mixins: [cellMixin],
   props: {
@@ -56,11 +56,11 @@ export default defineComponent({
     const checkState = computed({
       get: () => {
         const itemIndex = tableProps.selected.findIndex(
-          item => item === props.item,
+          (item) => item === props.item,
         );
         return itemIndex > -1;
       },
-      set: newVal => {
+      set: (newVal) => {
         newVal
           ? emitter.emit(
               `${tableProps.tableId}-datatable:rowSelected`,

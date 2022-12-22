@@ -37,6 +37,11 @@ export const navigationMixin = defineComponent({
       pointer: -1,
     };
   },
+  computed: {
+    computedOptions(): Option[] {
+      return [];
+    },
+  },
   methods: {
     onSelectDown() {
       if (this.dropdownOpen) {
@@ -86,11 +91,6 @@ export const navigationMixin = defineComponent({
     openDropdown() {},
     onSelect(option: Option) {},
     /* eslint-enable */
-  },
-  computed: {
-    computedOptions(): Option[] {
-      return [];
-    },
   },
 });
 

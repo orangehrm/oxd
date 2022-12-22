@@ -29,12 +29,12 @@
     >
       <oxd-icon
         name="x"
-        @click="onClick(option)"
         :class="{
           '--clear': true,
           '--disabled': disabled,
           '--readonly': readonly,
         }"
+        @click="onClick(option)"
       />
     </oxd-chip>
   </div>
@@ -47,7 +47,12 @@ import Chip from '@ohrm/oxd/core/components/Chip/Chip.vue';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
-  name: 'oxd-autocomplete-chips',
+  name: 'OxdAutocompleteChips',
+
+  components: {
+    'oxd-chip': Chip,
+    'oxd-icon': Icon,
+  },
 
   props: {
     disabled: {
@@ -62,11 +67,6 @@ export default defineComponent({
       type: Array,
       default: () => [],
     },
-  },
-
-  components: {
-    'oxd-chip': Chip,
-    'oxd-icon': Icon,
   },
 
   emits: ['chipRemoved'],

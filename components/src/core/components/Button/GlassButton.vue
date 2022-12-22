@@ -32,7 +32,7 @@ import {defineComponent} from 'vue';
 import {GlassIconType, GLASS_ICON_TYPES} from './types';
 
 export default defineComponent({
-  name: 'oxd-glass-button',
+  name: 'OxdGlassButton',
 
   props: {
     label: {
@@ -46,7 +46,7 @@ export default defineComponent({
     icon: {
       type: String,
       required: false,
-      validator: function(value: GlassIconType) {
+      validator: function (value: GlassIconType) {
         return GLASS_ICON_TYPES.indexOf(value) !== -1;
       },
     },

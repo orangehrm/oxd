@@ -22,9 +22,9 @@
 <template>
   <div class="oxd-table-cell-actions">
     <component
+      :is="getComponent(action, key)"
       v-for="(action, key) in actions"
       :key="key"
-      :is="getComponent(action, key)"
       v-bind="getProps(action, key)"
       class="oxd-table-cell-action-space"
       :disabled="isDisabled"
@@ -42,15 +42,15 @@ import Button from '@ohrm/oxd/core/components/Button/Button.vue';
 import Dropdown from '@ohrm/oxd/core/components/CardTable/Cell/Dropdown.vue';
 
 export default defineComponent({
-  name: 'oxd-table-cell-actions',
-
-  mixins: [cellMixin],
+  name: 'OxdTableCellActions',
 
   components: {
     'oxd-icon-button': IconButton,
     'oxd-button': Button,
     'oxd-table-dropdown': Dropdown,
   },
+
+  mixins: [cellMixin],
 
   props: {
     item: {

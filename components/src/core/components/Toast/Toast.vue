@@ -50,9 +50,7 @@ import ToastCloseButton from '@ohrm/oxd/core/components/Toast/CloseButton.vue';
 import ToastIcon from '@ohrm/oxd/core/components/Toast/Icon.vue';
 
 export default defineComponent({
-  name: 'oxd-toast',
-
-  mixins: [toastMixin],
+  name: 'OxdToast',
 
   components: {
     'oxd-text': Text,
@@ -60,7 +58,7 @@ export default defineComponent({
     'oxd-toast-icon': ToastIcon,
   },
 
-  emits: ['update:show'],
+  mixins: [toastMixin],
 
   props: {
     show: {
@@ -79,6 +77,8 @@ export default defineComponent({
       default: false,
     },
   },
+
+  emits: ['update:show'],
 
   computed: {
     classes(): object {

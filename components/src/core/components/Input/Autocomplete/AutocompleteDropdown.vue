@@ -37,7 +37,7 @@ import AutocompleteOption from '@ohrm/oxd/core/components/Input/Autocomplete/Aut
 import usei18n from '../../../../composables/usei18n';
 
 export default defineComponent({
-  name: 'oxd-autocomplete-dropdown',
+  name: 'OxdAutocompleteDropdown',
 
   components: {
     'oxd-autocomplete-option': AutocompleteOption,

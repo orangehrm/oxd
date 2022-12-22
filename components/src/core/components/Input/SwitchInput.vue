@@ -26,13 +26,13 @@
         {{ optionLabel }}
       </template>
       <input
+        v-bind="$attrs"
+        v-model="checked"
         type="checkbox"
+        :disabled="disabled"
         @focus="onFocus"
         @blur="onBlur"
         @change="onChange"
-        v-bind="$attrs"
-        v-model="checked"
-        :disabled="disabled"
       />
       <span :class="classes" :style="style"> </span>
       <template v-if="labelPosition === 'right'">
@@ -53,7 +53,7 @@ export interface State {
 }
 
 export default defineComponent({
-  name: 'oxd-switch-input',
+  name: 'OxdSwitchInput',
   inheritAttrs: false,
   props: {
     modelValue: {},
@@ -75,7 +75,7 @@ export default defineComponent({
     labelPosition: {
       type: String,
       default: RIGHT,
-      validator: function(value: Position) {
+      validator: function (value: Position) {
         return LABEL_POSITIONS.indexOf(value) !== -1;
       },
     },

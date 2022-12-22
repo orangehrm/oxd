@@ -35,7 +35,7 @@ import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 import {pageableMixin} from '../../../mixins/pageable';
 
 export default defineComponent({
-  name: 'oxd-pagination-page-item',
+  name: 'OxdPaginationPageItem',
 
   components: {
     'oxd-icon': Icon,

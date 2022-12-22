@@ -30,7 +30,7 @@ import {
 } from 'vue';
 
 export default defineComponent({
-  name: 'oxd-tab-panel',
+  name: 'OxdTabPanel',
   props: {
     name: {
       type: String,

@@ -43,7 +43,7 @@ import {defineComponent, PropType} from 'vue';
 import Text from '@ohrm/oxd/core/components/Text/Text.vue';
 
 export default defineComponent({
-  name: 'oxd-chart-legend',
+  name: 'OxdChartLegend',
   components: {
     'oxd-text': Text,
   },
