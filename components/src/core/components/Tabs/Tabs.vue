@@ -1,6 +1,11 @@
 <template>
   <ul class="tab-list">
-    <li class="tab-items" v-for="(tab, i) in tabs" :key="i">
+    <li
+      class="tab-items"
+      v-for="(tab, i) in tabs"
+      :key="i"
+      :class="[tab.class]"
+    >
       <span
         tabindex="0"
         class="tab-item"
@@ -52,6 +57,7 @@ export default defineComponent({
                 id: value.props?.tab.id,
                 title: value.props?.tab.title,
                 icon: value.props?.tab.icon,
+                class: value.props?.tab.class,
               };
             })
         : [],
