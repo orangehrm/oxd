@@ -2,14 +2,14 @@
 
 exports[`Segments > Segments.vue renders OXD Segments 1`] = `
 <div id="segment-id" class="oxd-segments-wrapper" tabindex="0">
-  <div id="segment-id_0" class="oxd-segment-wrapper d-flex align-center"><label for="1" class="oxd-segment-label">Item one</label><input name="segment-group-id" id="1" type="radio" class="oxd-segment-input" modelvalue="[object Object]"></div>
-  <div id="segment-id_1" class="oxd-segment-wrapper d-flex align-center"><label for="2" class="oxd-segment-label">Item two</label><input name="segment-group-id" id="2" type="radio" class="oxd-segment-input" modelvalue="[object Object]"></div>
+  <div id="segment-id_0" class="oxd-segment-wrapper d-flex align-center"><label for="1" class="oxd-segment-label d-flex align-center">Item one</label><input name="segment-group-id" id="1" type="radio" class="oxd-segment-input" modelvalue="[object Object]"></div>
+  <div id="segment-id_1" class="oxd-segment-wrapper d-flex align-center"><label for="2" class="oxd-segment-label d-flex align-center">Item two</label><input name="segment-group-id" id="2" type="radio" class="oxd-segment-input" modelvalue="[object Object]"></div>
 </div>
 `;
 
 exports[`Segments > Segments.vue should accept valid input 1`] = `
 <div id="segment-id" class="oxd-segments-wrapper" tabindex="0">
-  <div id="segment-id_0" class="oxd-segment-wrapper d-flex align-center"><label for="1" class="oxd-segment-label active">Item one</label><input name="segment-group-id" id="1" type="radio" class="oxd-segment-input" modelvalue="[object Object]"></div>
-  <div id="segment-id_1" class="oxd-segment-wrapper d-flex align-center"><label for="2" class="oxd-segment-label">Item two</label><input name="segment-group-id" id="2" type="radio" class="oxd-segment-input" modelvalue="[object Object]"></div>
+  <div id="segment-id_0" class="oxd-segment-wrapper d-flex align-center"><label for="1" class="oxd-segment-label d-flex align-center active">Item one</label><input name="segment-group-id" id="1" type="radio" class="oxd-segment-input" modelvalue="[object Object]"></div>
+  <div id="segment-id_1" class="oxd-segment-wrapper d-flex align-center"><label for="2" class="oxd-segment-label d-flex align-center">Item two</label><input name="segment-group-id" id="2" type="radio" class="oxd-segment-input" modelvalue="[object Object]"></div>
 </div>
 `;

@@ -70,6 +70,22 @@ $dropdown-button-size: 24px;
       -webkit-box-orient: vertical;
       overflow: hidden;
       overflow-wrap: break-word;
+      margin-bottom: 0;
+    }
+    .oxd-info-box-clickable-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: #64728c;
+      text-decoration: underline;
+      font-style: italic;
+      cursor: pointer;
+      text-align: left;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      overflow-wrap: break-word;
+      -webkit-line-clamp: 1;
+      width: 100%;
     }
   }
   .oxd-select-fill {
