@@ -1,3 +1,5 @@
+2022-12-28 - bf8a6638fca996b227da9f45547d021704bf58e9 - Tabs/Tabs.vue and Segments/Segments.vue - Added icon support and additional class support for Segments component and Tabs component
+
 2022-12-15 - dcc8bc807292f0793be9bf422513ede6a39e6ee0 - Tabs/Tabs.vue - Added a slot support to Tabs component for Action buttons
 
 2022-12-12 - a0709231e479b3da3c50ab23ae082e1b45a98dd9 - InfBox/InfoBox.vue - Added a clickable text to infobox component
