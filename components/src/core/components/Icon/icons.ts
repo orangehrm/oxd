@@ -1262,6 +1262,18 @@ export const oxdAddEmployee: icon = {
   value: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 186.96 165.44"><defs></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path style="fill:currentColor" d="M54,158.94h-31c-13.24,0-23-9.79-23-23,0-5.66-.18-11.29,2-16.72,3.31-8.28,9.14-14.39,16.32-19.32,11.19-7.69,23.81-11.7,37.05-13.84,11.94-1.93,24-2.89,36.07-1.57a96.45,96.45,0,0,1,22.57,5c2.89,1,4.26,3.3,4.63,6.25.34,2.77-1,4.84-3,6.46s-4.49,1.4-6.93,1c-5.09-.82-9.86-3.1-15-3.49-20.9-1.59-41.43-.38-60.7,8.92-6.42,3.11-12.14,7.23-15.83,13.63-2.93,5.09-2.54,10.62-1.77,16,.54,3.76,3.7,5.65,8,5.65H79.61c2.41,0,4.83,0,7.24,0a7.49,7.49,0,1,1-.09,15C75.85,159,64.94,158.94,54,158.94Z"/><path style="fill:currentColor" d="M57,38.23C57,16,74.44-.84,96,0c16.13.66,30.18,13.26,33.79,30.3,4,18.75-7.1,38.19-25.05,44C84.43,80.77,62.73,68.08,58,47A34.2,34.2,0,0,1,57,38.23ZM115.48,38c0-9.5-5.6-18.2-14-21.43-8.14-3.14-15.63-1.68-22,4.17-6.88,6.36-9,14.43-6.66,23.43,2.26,8.67,7.86,14.42,16.7,16.32C103,63.37,115.48,52.43,115.48,38Z"/><path style="fill:currentColor" d="M167.56,132.45c-3.83,0-7.67.11-11.5,0-1.82-.07-2.15.53-2.13,2.22.1,7.5,0,15,0,22.49,0,5-3.12,8.39-7.6,8.33S139,162,139,157.15c0-7.49-.09-15,.05-22.49,0-1.95-.56-2.28-2.35-2.25-7.33.1-14.66.05-22,0-4.84,0-8.2-3.1-8.2-7.48s3.35-7.5,8.16-7.51c7.41,0,14.82-.08,22.24,0,1.81,0,2.15-.53,2.13-2.22-.1-7.33-.05-14.66,0-22,0-5,3.12-8.39,7.6-8.33S154,88.38,154,93.25c0,7.33.09,14.66-.05,22,0,2,.57,2.28,2.35,2.25,7.5-.1,15,0,22.49,0,4.84,0,8.2,3.09,8.2,7.47s-3.35,7.5-8.16,7.52C175.05,132.46,171.31,132.45,167.56,132.45Z"/></g></g></svg>`,
 };
 
+export const oxdQuickAccessCandidateProfile: icon = {
+  name: 'oxd-quick-access-candidate-profile',
+  value:
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 355.97 355.97"><defs></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path style="fill:currentColor" d="M13.17,291.65l25.17-25.16a34.77,34.77,0,0,1,40.82-6l8.58-8.59a150.72,150.72,0,1,1,16.35,16.36l-8.35,8.58a34.77,34.77,0,0,1-6,40.82L64.32,342.79a34.78,34.78,0,0,1-49.17,0l-2-2A34.8,34.8,0,0,1,13.17,291.65Zm188.92-10.2A127.57,127.57,0,1,0,74.52,153.88,127.57,127.57,0,0,0,202.09,281.45Zm-172.56,43,2,2a11.59,11.59,0,0,0,16.4.07l.07-.07,25.16-25.16a11.59,11.59,0,0,0,.07-16.4l-.07-.07-2-2a11.59,11.59,0,0,0-16.4-.07l-.07.07L29.53,308a11.59,11.59,0,0,0-.07,16.4Z"/><path style="fill:currentColor" d="M204.24,157.67a42.85,42.85,0,1,0-.23,0Zm0-74.82a31.51,31.51,0,1,1-.24,0ZM129.65,225H279.3a5.74,5.74,0,0,0,5.67-5.67,54.29,54.29,0,0,0-54.06-54.05H178a54.28,54.28,0,0,0-54,54.05A5.74,5.74,0,0,0,129.65,225ZM178,176.56h52.87a42.49,42.49,0,0,1,42.26,37.06H135.79A42.47,42.47,0,0,1,178,176.56Z"/></g></g></svg>',
+};
+
+export const oxdQuickAccessEmployeeProfile: icon = {
+  name: 'oxd-quick-access-employee-profile',
+  value:
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520.8 588.58"><defs><style>.oxd-quick-access-profile-cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:40px;}.oxd-quick-access-profile-cls-1,.oxd-quick-access-profile-cls-2{stroke:currentColor;}.oxd-quick-access-profile-cls-2{stroke-miterlimit:10;stroke-width:6px;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="oxd-quick-access-profile-cls-1" d="M131.65,20h289c44.26,0,80.14,39.94,80.14,89.21V479.37c0,49.27-35.88,89.21-80.14,89.21h-289c-44.26,0-80.14-39.94-80.14-89.21V109.21C51.51,59.94,87.39,20,131.65,20Z"/><path style="fill:currentColor" d="M12.46,175.66H87.23a12.46,12.46,0,0,1,12.46,12.46h0a12.46,12.46,0,0,1-12.46,12.47H12.46A12.46,12.46,0,0,1,0,188.12H0A12.46,12.46,0,0,1,12.46,175.66Z"/><rect y="281.91" width="99.69" height="24.92" rx="12.46"/><rect y="380.18" width="99.69" height="24.92" rx="12.46"/><path style="fill:currentColor" class="oxd-quick-access-profile-cls-2" d="M278.51,299a79.8,79.8,0,1,0-79.26-80.29V219A79.77,79.77,0,0,0,278.51,299Zm0-138.5a58.17,58.17,0,1,1-.49,0ZM140.6,423.44H417.38A10.43,10.43,0,0,0,427.8,413h0A100.61,100.61,0,0,0,328,312.83H231A100.61,100.61,0,0,0,130.91,413,10.43,10.43,0,0,0,140.6,423.44Zm89.68-89.51h96.94a78.55,78.55,0,0,1,78,68.64H152A78.55,78.55,0,0,1,230.28,333.93Z"/></g></g></svg>',
+};
+
 const icons: Icons = {
   'oxd-likes': oxdLikes,
   'oxd-birthday': oxdBirthday,
@@ -1395,6 +1407,8 @@ const icons: Icons = {
   'oxd-quick-access-appraisal': oxdQuickAccessAppraisal,
   'oxd-quick-access-tracker': oxdQuickAccessTrackers,
   'oxd-add-employee': oxdAddEmployee,
+  'oxd-quick-access-candidate-profile': oxdQuickAccessCandidateProfile,
+  'oxd-quick-access-employee-profile': oxdQuickAccessEmployeeProfile,
 };
 
 export default icons;
