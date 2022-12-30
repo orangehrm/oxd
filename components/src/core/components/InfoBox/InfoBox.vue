@@ -48,12 +48,20 @@
               justify-start
               oxd-select-fill-subtitle-wrapper
             "
+            :class="{'flex-wrap': clickableText}"
             :style="subtitleWrapperStyles"
           >
             <label
               class="oxd-select-fill-subtitle text-left"
               :style="selectedItemLabelStyles"
-              >{{ $vt(getLabel) }}</label
+            >
+              {{ $vt(getLabel) }}
+            </label>
+            <span
+              class="oxd-info-box-clickable-text"
+              v-if="clickableText"
+              @click="clickText"
+              >{{ clickableText }}</span
             >
           </div>
           <div
@@ -189,6 +197,10 @@ export default defineComponent({
       type: Number,
       default: () => 19,
     },
+    clickableText: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -234,6 +246,13 @@ export default defineComponent({
         '-webkit-line-clamp': this.numOfTitleRows,
       };
     },
+    lineClamp() {
+      return this.clickableText
+        ? this.numOfValueRows > 1
+          ? this.numOfValueRows - 1
+          : 1
+        : this.numOfValueRows;
+    },
     selectedItemLabelStyles(): {
       color: string | null;
       'font-weight'?: number;
@@ -241,7 +260,7 @@ export default defineComponent({
     } {
       return {
         color: hexToRgb(this.modelValue?.color),
-        '-webkit-line-clamp': this.numOfValueRows,
+        '-webkit-line-clamp': this.lineClamp,
         'font-weight': this.modelValue?.color ? 700 : 600,
       };
     },
@@ -276,8 +295,11 @@ export default defineComponent({
     subtitleWrapperStyles(): {
       height: string;
     } {
-      const subtitleWrapperHeight =
-        this.numOfValueRows * this.subtitleLineHeight;
+      const noOfRows =
+        this.clickableText && this.numOfValueRows <= 1
+          ? 2
+          : this.numOfValueRows;
+      const subtitleWrapperHeight = noOfRows * this.subtitleLineHeight;
       return {
         height: `${subtitleWrapperHeight}px`,
       };
@@ -313,6 +335,9 @@ export default defineComponent({
     },
     clickOutside() {
       this.dropdownOpen = false;
+    },
+    clickText() {
+      this.$emit('click-label', this.modelValue);
     },
   },
 });

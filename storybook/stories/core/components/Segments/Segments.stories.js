@@ -41,12 +41,11 @@ export default {
       defaultValue: false,
       table: {
         type: {
-          summary:
-            'Disable the segment',
+          summary: 'Disable the segment',
         },
       },
     },
-    
+
     id: {
       control: {type: 'text'},
       table: {
@@ -106,7 +105,7 @@ const options = [
 
 export const Default = Template.bind({});
 Default.args = {
-  options: options
+  options: options,
 };
 
 Default.parameters = {
@@ -150,6 +149,40 @@ Disabled.parameters = {
   },
 };
 
+const optionsWithIcons = [
+  {
+    id: 1,
+    label: 'Preview',
+    icon: 'oxd-show',
+  },
+  {
+    id: 2,
+    label: 'Edit',
+    icon: 'oxd-edit',
+  },
+];
+
+export const WithIcons = Template.bind({});
+WithIcons.args = {
+  options: optionsWithIcons,
+};
+
+WithIcons.parameters = {
+  docs: {
+    source: {
+      code:
+        '  <div> \n' +
+        '<oxd-segments \n' +
+        ':options="options"\n' +
+        'v-model="value""\n' +
+        '/>\n' +
+        '<div>\n' +
+        '<span v-if="value">Value Selected : {{ value }}</span>\n' +
+        '</div>\n',
+    },
+  },
+};
+
 export const Events = () => SegmentEvents;
 
 Events.parameters = {
@@ -175,4 +208,3 @@ Events.parameters = {
     },
   },
 };
-
