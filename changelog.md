@@ -1,3 +1,5 @@
+2022-12-30 - 2b89327bcf23d6106fdedeec0f4e6528eee3a1a9 - Icon/icons.ts - Add 6 new icons (oxd-goals, oxd-okrs, oxd-individual, oxd-organizational-structure, oxd-dashboard-performance, oxd-goals-development)
+
 2022-12-28 - bf8a6638fca996b227da9f45547d021704bf58e9 - Tabs/Tabs.vue and Segments/Segments.vue - Added icon support and additional class support for Segments component and Tabs component
 
 2022-12-15 - dcc8bc807292f0793be9bf422513ede6a39e6ee0 - Tabs/Tabs.vue - Added a slot support to Tabs component for Action buttons
