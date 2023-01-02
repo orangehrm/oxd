@@ -48,7 +48,7 @@
       :label="t('general.hex', 'HEX')"
       class="oxd-color-picker-label"
     />
-    <oxd-input :value="modelValue" @update:modelValue="onHexInput" />
+    <oxd-input :value="modelValue" @update:model-value="onHexInput" />
   </div>
 </template>
 
@@ -80,6 +80,7 @@ export default defineComponent({
     modelValue: {
       type: String,
       required: false,
+      default: null,
     },
   },
 
@@ -137,7 +138,7 @@ export default defineComponent({
       }
     };
 
-    const captureOn = ($e: MouseEvent) => {
+    const captureOn = ($e: MouseEvent | TouchEvent) => {
       state.pickEnabled = true;
       pickColor($e);
     };
@@ -156,7 +157,7 @@ export default defineComponent({
       context.emit('update:modelValue', value);
     };
 
-    const onHueChange = ($e: InputEvent) => {
+    const onHueChange = ($e: Event) => {
       state.hue = parseInt(($e.target as HTMLInputElement).value);
       context.emit(
         'update:modelValue',

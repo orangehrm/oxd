@@ -20,55 +20,63 @@
 -->
 
 <script lang="ts">
-import {defineComponent, h, KeepAlive, onMounted, Transition} from 'vue';
+import {h, VNode, KeepAlive, onMounted, Transition, defineComponent} from 'vue';
 
 export default defineComponent({
   name: 'OxdTabContainer',
+
   props: {
     modelValue: {
       type: String,
+      required: false,
       default: null,
     },
     showTabs: {
       type: Boolean,
+      required: false,
       default: true,
     },
     animation: {
       type: Boolean,
+      required: false,
       default: true,
     },
     keepAlive: {
       type: Boolean,
+      required: false,
       default: false,
     },
     cacheAge: {
       type: Number,
+      required: false,
       default: 10,
     },
   },
+
   emits: ['update:modelValue', 'clickTab'],
+
   setup(props, context) {
-    let content = [];
+    let content: VNode[] = [];
 
     onMounted(() => {
       if (location.hash) {
         const hash = location.hash.replace(/^#/, '');
         const selectedTab = content.find(
-          (tab) => hash === tab.props.name.replace(/\s+/g, '-').toLowerCase(),
+          (tab) => hash === tab.props?.name.replace(/\s+/g, '-').toLowerCase(),
         );
         if (selectedTab) {
-          context.emit('update:modelValue', selectedTab.props.name);
+          context.emit('update:modelValue', selectedTab.props?.name);
         }
       }
     });
 
     return () => {
-      content = context.slots.default?.();
+      content = context.slots.default?.() || [];
 
       const generatePanels = (isKeepAlive: boolean) => {
         const activeTab = content.find((tab, index) => {
           if (!props.modelValue && index === 0) return true;
-          return tab.props.name === props.modelValue;
+          return tab.props?.name === props.modelValue;
         });
         return isKeepAlive
           ? h(KeepAlive, {age: props.cacheAge}, activeTab)
@@ -88,23 +96,23 @@ export default defineComponent({
                       class: {
                         'oxd-tab-segment': true,
                         'oxd-tab-segment--active':
-                          props.modelValue === tab.props.name ||
+                          props.modelValue === tab.props?.name ||
                           (props.modelValue === null && index === 0),
                         'oxd-tab-segment--disabled': tab.props?.disabled,
                       },
-                      href: `#${tab.props.name
+                      href: `#${tab.props?.name
                         .replace(/\s+/g, '-')
                         .toLowerCase()}`,
                       onClick: ($e: MouseEvent) => {
                         if (tab.props?.disabled) {
                           $e.preventDefault();
                         } else {
-                          context.emit('clickTab', $e, tab.props.name);
-                          context.emit('update:modelValue', tab.props.name);
+                          context.emit('clickTab', $e, tab.props?.name);
+                          context.emit('update:modelValue', tab.props?.name);
                         }
                       },
                     },
-                    tab.props.name || index,
+                    tab.props?.name || index,
                   ),
                 ),
               ),

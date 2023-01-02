@@ -35,8 +35,8 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {DEVICE_LG, DEVICE_XL} from '../../../../composables/useResponsive';
 import {cellMixin} from './cell-mixin';
+import {DEVICE_LG, DEVICE_XL} from '../../../../composables/useResponsive';
 
 export default defineComponent({
   name: 'OxdTableCellDefault',
@@ -46,6 +46,7 @@ export default defineComponent({
   props: {
     item: {
       required: true,
+      type: Object,
     },
   },
 

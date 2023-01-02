@@ -20,7 +20,7 @@
 -->
 
 <template>
-  <div :class="classes" :style="style" @mousedown.prevent="onToggle">
+  <div :class="classes" @mousedown.prevent="onToggle">
     <div
       v-bind="$attrs"
       ref="oxdInput"
@@ -52,25 +52,28 @@ export default defineComponent({
   components: {
     'oxd-icon': Icon,
   },
+
   inheritAttrs: false,
 
   props: {
     value: {
       type: String,
-    },
-    style: {
-      type: Object,
+      required: false,
+      default: undefined,
     },
     hasError: {
       type: Boolean,
+      required: false,
       default: false,
     },
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
     readonly: {
       type: Boolean,
+      required: false,
       default: false,
     },
   },
@@ -120,9 +123,9 @@ export default defineComponent({
     },
     onToggle() {
       if (!this.focused) {
-        this.$refs.oxdInput.focus();
+        (this.$refs.oxdInput as HTMLInputElement).focus();
       } else {
-        this.$refs.oxdInput.blur();
+        (this.$refs.oxdInput as HTMLInputElement).blur();
       }
     },
   },

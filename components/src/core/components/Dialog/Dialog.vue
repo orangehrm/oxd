@@ -59,9 +59,9 @@ export default defineComponent({
   name: 'OxdDialog',
 
   components: {
+    'oxd-sheet': Sheet,
     'oxd-overlay': Overlay,
     'oxd-dialog-close-button': CloseButton,
-    'oxd-sheet': Sheet,
 
     // Containers
     'oxd-dialog-container-default': DefaultContainer,
@@ -71,26 +71,32 @@ export default defineComponent({
   props: {
     shadow: {
       type: Boolean,
+      required: false,
       default: true,
     },
     withClose: {
       type: Boolean,
+      required: false,
       default: true,
     },
     persistent: {
       type: Boolean,
+      required: false,
       default: false,
     },
     dialogContainer: {
       type: String,
+      required: false,
       default: 'oxd-dialog-container-default',
     },
     withTransition: {
       type: Boolean,
+      required: false,
       default: true,
     },
     gutters: {
       type: Boolean,
+      required: false,
       default: true,
     },
   },

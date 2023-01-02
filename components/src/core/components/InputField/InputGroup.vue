@@ -52,20 +52,26 @@ export default defineComponent({
   name: 'OxdInputGroup',
 
   components: {
-    'oxd-label': Label,
     'oxd-text': Text,
     'oxd-icon': Icon,
+    'oxd-label': Label,
   },
 
   props: {
     label: {
       type: String,
+      required: false,
+      default: null,
     },
     labelIcon: {
       type: String,
+      required: false,
+      default: null,
     },
     message: {
       type: String,
+      required: false,
+      default: null,
     },
     classes: {
       type: Object,

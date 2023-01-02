@@ -65,15 +65,17 @@ import NavigationMore from '@ohrm/oxd/core/components/Topbar/NavigationMore.vue'
 export default defineComponent({
   name: 'OxdNavigation',
 
-  props: {
-    menuItems: {
-      type: Object as PropType<TopMenuItem[]>,
-    },
-  },
-
   components: {
     'oxd-navigation-link': NavigationLink,
     'oxd-navigation-more': NavigationMore,
+  },
+
+  props: {
+    menuItems: {
+      type: Array as PropType<TopMenuItem[]>,
+      required: false,
+      default: () => [],
+    },
   },
 
   setup(props) {
@@ -118,7 +120,8 @@ export default defineComponent({
         lastMenuItemWidth.value = getHTMLElementWidth(
           menuItems[menuItems.length - 1].$el,
         );
-        hiddenMenuItems.value.unshift(visibleMenuItems.value.pop());
+        const lastMenuItem = visibleMenuItems.value.pop();
+        if (lastMenuItem) hiddenMenuItems.value.unshift(lastMenuItem);
       }
 
       if (
@@ -126,7 +129,9 @@ export default defineComponent({
         width.value > menuItemsWidth + lastMenuItemWidth.value
       ) {
         nextTick().then(() => {
-          visibleMenuItems.value.push(hiddenMenuItems.value.shift());
+          const lastHiddenMenuItem = hiddenMenuItems.value.shift();
+          if (lastHiddenMenuItem)
+            visibleMenuItems.value.push(lastHiddenMenuItem);
         });
       }
     };

@@ -53,6 +53,7 @@ import DropdownMenu from '@ohrm/oxd/core/components/DropdownMenu/DropdownMenu.vu
 
 export default defineComponent({
   name: 'OxdNotificationDropdown',
+
   components: {
     'oxd-icon': Icon,
     'oxd-dropdown-menu': DropdownMenu,

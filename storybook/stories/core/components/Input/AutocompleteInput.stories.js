@@ -69,29 +69,29 @@ const options = [
   },
 ];
 
-const syncFunction = function(serachParam) {
+const syncFunction = function (serachParam) {
   const filter = new RegExp(serachParam, 'i');
-  return options.filter(item => item.label.match(filter));
+  return options.filter((item) => item.label.match(filter));
 };
 
-const asyncFunction = async function(serachParam) {
+const asyncFunction = async function (serachParam) {
   const filter = new RegExp(serachParam, 'i');
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(options.filter(item => item.label.match(filter)));
+      resolve(options.filter((item) => item.label.match(filter)));
     }, 2500);
   });
 };
 
-const callAPI = async function(serachParam) {
-  return new Promise(resolve => {
+const callAPI = async function (serachParam) {
+  return new Promise((resolve) => {
     if (serachParam.trim()) {
       fetch(`https://api.github.com/search/users?q=${serachParam}`)
-        .then(response => response.json())
-        .then(json => {
+        .then((response) => response.json())
+        .then((json) => {
           const {items} = json;
           resolve(
-            items.map(item => {
+            items.map((item) => {
               return {
                 id: item.id,
                 label: item.login,
@@ -105,7 +105,7 @@ const callAPI = async function(serachParam) {
   });
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     const selected = ref();
     return {args, selected};
@@ -114,7 +114,7 @@ const Template = args => ({
     return h(AutocompleteInput, {
       ...this.args,
       modelValue: this.selected,
-      'onUpdate:modelValue': value => {
+      'onUpdate:modelValue': (value) => {
         this.selected = value;
       },
     });

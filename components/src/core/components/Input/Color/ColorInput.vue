@@ -37,7 +37,7 @@
         :model-value="modelValue"
         :class="dropdownClasses"
         @click.stop
-        @update:modelValue="$emit('update:modelValue', $event)"
+        @update:model-value="$emit('update:modelValue', $event)"
       ></oxd-color-picker>
     </transition>
   </div>
@@ -59,25 +59,31 @@ export default defineComponent({
   components: {
     'oxd-color-picker': ColorPicker,
   },
+
   props: {
     modelValue: {
       type: String,
+      required: false,
       default: null,
     },
     hasError: {
       type: Boolean,
+      required: false,
       default: false,
     },
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
     readonly: {
       type: Boolean,
+      required: false,
       default: false,
     },
     dropdownPosition: {
       type: String,
+      required: false,
       default: RIGHT,
       validator: (value: Position) =>
         COLOR_DROPDOWN_POSITIONS.indexOf(value) !== -1,

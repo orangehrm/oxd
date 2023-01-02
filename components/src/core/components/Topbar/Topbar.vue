@@ -68,30 +68,37 @@ import UserDropdown from '@ohrm/oxd/core/components/Topbar/UserDropdown.vue';
 export default defineComponent({
   name: 'OxdTopBar',
 
-  emits: ['collapse'],
-
-  props: {
-    toggle: {
-      type: Boolean,
-      default: false,
-    },
-    menuItems: {
-      type: Object as PropType<TopMenuItem[]>,
-    },
-    user: {
-      type: Object as PropType<User>,
-    },
-    breadcrumb: {
-      type: Object as PropType<Breadcrumb>,
-    },
-  },
-
   components: {
     'oxd-text': Text,
     'oxd-icon': Icon,
     'oxd-navigation': Navigation,
     'oxd-user-dropdown': UserDropdown,
   },
+
+  props: {
+    toggle: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    menuItems: {
+      type: Array as PropType<TopMenuItem[]>,
+      required: false,
+      default: () => [],
+    },
+    user: {
+      type: Object as PropType<User>,
+      required: false,
+      default: () => ({}),
+    },
+    breadcrumb: {
+      type: Object as PropType<Breadcrumb>,
+      required: false,
+      default: () => ({}),
+    },
+  },
+
+  emits: ['collapse'],
 
   computed: {
     headerClasses(): object {

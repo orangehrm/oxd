@@ -86,13 +86,13 @@ export default {
       middlename: '',
       rules: {
         firstname: [
-          v => (!!v && v.trim() !== '') || 'Required',
-          v => (v && v.length <= 50) || 'Should be less than 50 characters',
+          (v) => (!!v && v.trim() !== '') || 'Required',
+          (v) => (v && v.length <= 50) || 'Should be less than 50 characters',
         ],
         middlename: [],
         lastname: [
-          v => (!!v && v.trim() !== '') || 'Required',
-          v => (v && v.length <= 50) || 'Should be less than 50 characters',
+          (v) => (!!v && v.trim() !== '') || 'Required',
+          (v) => (v && v.length <= 50) || 'Should be less than 50 characters',
         ],
       },
     };

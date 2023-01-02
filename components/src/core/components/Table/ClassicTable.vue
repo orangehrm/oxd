@@ -25,7 +25,7 @@
       <col v-if="selectable" :style="{width: selector.width}" />
       <col
         v-for="header in headers"
-        :key="header"
+        :key="JSON.stringify(header)"
         :style="{width: header.width}"
       />
     </colgroup>
@@ -40,7 +40,7 @@
         </oxd-th>
         <oxd-th
           v-for="header in headers"
-          :key="header"
+          :key="JSON.stringify(header)"
           class="oxd-padding-cell oxd-table-th"
         >
           {{ header.title }}
@@ -51,7 +51,7 @@
     <oxd-tbody :with-strip="withStrip">
       <oxd-tr
         v-for="(item, index) in items"
-        :key="item"
+        :key="JSON.stringify(item)"
         :clickable="clickable"
         @click="onClick(item)($event)"
       >
@@ -65,7 +65,7 @@
         </oxd-td>
         <oxd-td
           v-for="header in headers"
-          :key="header"
+          :key="JSON.stringify(header)"
           class="oxd-padding-cell"
         >
           {{ item[header.name] }}
@@ -78,64 +78,64 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {Header, Selector, Item} from './types';
+import {defineComponent, PropType} from 'vue';
 import Table from '@ohrm/oxd/core/components/Table/Table.vue';
-import TableHeader from '@ohrm/oxd/core/components/Table/TableHeader.vue';
-import TableBody from '@ohrm/oxd/core/components/Table/TableBody.vue';
-import TableFooter from '@ohrm/oxd/core/components/Table/TableFooter.vue';
 import TableRow from '@ohrm/oxd/core/components/Table/TableRow.vue';
-import TableHeaderCell from '@ohrm/oxd/core/components/Table/TableHeaderCell.vue';
+import TableBody from '@ohrm/oxd/core/components/Table/TableBody.vue';
+import TableHeader from '@ohrm/oxd/core/components/Table/TableHeader.vue';
+import TableFooter from '@ohrm/oxd/core/components/Table/TableFooter.vue';
 import TableDataCell from '@ohrm/oxd/core/components/Table/TableDataCell.vue';
+import TableHeaderCell from '@ohrm/oxd/core/components/Table/TableHeaderCell.vue';
 
 export default defineComponent({
   name: 'OxdClasicTable',
 
   components: {
     'oxd-table': Table,
-    'oxd-thead': TableHeader,
-    'oxd-tbody': TableBody,
-    'oxd-tfoot': TableFooter,
     'oxd-tr': TableRow,
-    'oxd-th': TableHeaderCell,
+    'oxd-tbody': TableBody,
     'oxd-td': TableDataCell,
+    'oxd-tfoot': TableFooter,
+    'oxd-thead': TableHeader,
+    'oxd-th': TableHeaderCell,
   },
 
   props: {
     selector: {
-      type: Object,
-      default() {
-        return {width: '30px'};
-      },
+      type: Object as PropType<Selector>,
+      required: false,
+      default: () => ({width: '30px'}),
     },
     headers: {
-      type: Array,
-      default() {
-        return [];
-      },
+      type: Array as PropType<Header[]>,
+      required: false,
+      default: () => [],
     },
     items: {
-      type: Array,
-      default() {
-        return [];
-      },
+      type: Array as PropType<Item[]>,
+      required: false,
+      default: () => [],
     },
     withStrip: {
       type: Boolean,
+      required: false,
       default: false,
     },
     clickable: {
       type: Boolean,
+      required: false,
       default: true,
     },
     selectable: {
       type: Boolean,
+      required: false,
       default: false,
     },
     selected: {
       type: Array,
-      default() {
-        return [];
-      },
+      required: false,
+      default: () => [],
     },
   },
 

@@ -58,14 +58,17 @@ export default defineComponent({
     },
     withContainer: {
       type: Boolean,
+      required: false,
       default: true,
     },
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
     displayType: {
       type: String,
+      required: false,
       default: null,
       validator: function (value: ButtonType) {
         return !value || ICON_TYPES.indexOf(value) !== -1;
@@ -73,6 +76,7 @@ export default defineComponent({
     },
     iconType: {
       type: String,
+      required: false,
       default: TYPE_BOOTSTRAP,
       validator: (value: string) => {
         return TYPES.indexOf(value) !== -1;

@@ -39,79 +39,98 @@ export default defineComponent({
   props: {
     styles: {
       type: Object,
+      required: false,
       default: () => ({}),
     },
     classes: {
       type: [String, Object, Array],
+      required: false,
       default: null,
     },
     wrapperStyles: {
       type: Object,
+      required: false,
       default: () => ({}),
     },
     wrapperClasses: {
       type: [String, Object, Array],
+      required: false,
       default: null,
     },
     width: {
       type: [Number, String],
+      required: false,
       default: '100%',
     },
     height: {
       type: [Number, String],
+      required: false,
       default: '100%',
     },
     radius: {
       type: [Number, String],
+      required: false,
       default: '50%',
     },
     cutout: {
       type: [Number, String],
+      required: false,
       default: '5%',
     },
     animate: {
       type: Boolean,
+      required: false,
       default: true,
     },
     responsive: {
       type: Boolean,
+      required: false,
       default: true,
     },
     aspectRatio: {
       type: [Boolean, Number],
+      required: false,
       default: true,
     },
     customLegend: {
       type: Boolean,
+      required: false,
       default: false,
     },
     customTooltip: {
       type: Boolean,
+      required: false,
       default: false,
     },
     data: {
       type: Array as PropType<DataPoint[]>,
+      required: false,
       default: () => [],
     },
     chartId: {
       type: String,
+      required: false,
       default: () => nanoid(8),
     },
     title: {
       type: String,
       required: false,
+      default: null,
     },
     legend: {
       type: Object as PropType<LegendOptions<'pie'>>,
       required: false,
+      default: () => null,
     },
     tooltip: {
       type: Object as PropType<TooltipOptions<'pie'>>,
       required: false,
+      default: () => null,
     },
     animation: {
       type: Object as PropType<AnimationSpec<'pie'>>,
       required: false,
+      default: () => null,
     },
   },
 
@@ -138,12 +157,13 @@ export default defineComponent({
       borderWidth: props.data.filter((item) => item.value).length > 1,
       plugins: {
         legend: {
-          ...props.legend,
+          ...(props.legend && props.legend),
           align: props.legend?.align ?? 'center',
           position: props.legend?.position ?? 'bottom',
           display: props.customLegend ? false : props.legend?.display,
         },
         tooltip: {
+          ...(props.tooltip && props.tooltip),
           caretSize: 0,
           backgroundColor: 'rgba(255, 255, 255, 1)',
           enabled: props.customTooltip ? false : props.tooltip?.enabled,
@@ -158,15 +178,16 @@ export default defineComponent({
             labelColor: (ctx) => {
               const {dataset, dataIndex} = ctx;
               return {
-                borderColor: null,
                 borderWidth: 0,
                 borderRadius: 5,
-                backgroundColor: dataset.backgroundColor[dataIndex],
+                borderColor: '',
+                backgroundColor: Array.isArray(dataset.backgroundColor)
+                  ? dataset.backgroundColor[dataIndex]
+                  : '',
               };
             },
             labelTextColor: () => 'rgba(100, 114, 140, 1)',
           },
-          ...props.tooltip,
         },
         title: {
           display: !!props.title,

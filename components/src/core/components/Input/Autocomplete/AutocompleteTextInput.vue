@@ -53,26 +53,33 @@ export default defineComponent({
   components: {
     'oxd-icon': Icon,
   },
+
   inheritAttrs: false,
 
   props: {
     style: {
       type: Object,
+      required: false,
+      default: () => ({}),
     },
     hasError: {
       type: Boolean,
+      required: false,
       default: false,
     },
     clear: {
       type: Boolean,
+      required: false,
       default: true,
     },
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
     readonly: {
       type: Boolean,
+      required: false,
       default: false,
     },
   },

@@ -61,6 +61,7 @@ export default defineComponent({
     },
     displayType: {
       type: String,
+      required: false,
       default: TYPE_MAIN,
       validator: function (value: ButtonType) {
         return TYPES.indexOf(value) !== -1;
@@ -68,6 +69,7 @@ export default defineComponent({
     },
     size: {
       type: String,
+      required: false,
       default: SIZE_MEDIUM,
       validator: function (value: ButtonSize) {
         return SIZES.indexOf(value) !== -1;
@@ -75,12 +77,18 @@ export default defineComponent({
     },
     style: {
       type: Object,
+      required: false,
+      default: () => ({}),
     },
     iconName: {
       type: String,
+      required: false,
+      default: null,
     },
     iconRightName: {
       type: String,
+      required: false,
+      default: null,
     },
   },
 

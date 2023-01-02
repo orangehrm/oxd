@@ -24,18 +24,18 @@
     <div class="oxd-layout-navigation">
       <oxd-side-panel
         :toggle="collapse"
-        :menu-items="sidepanelMenuItems"
-        :brand-logo-src="brandLogoSrc"
-        :brand-banner-src="brandBannerSrc"
         :home-url="homeUrl"
+        :brand-logo-src="brandLogoSrc"
+        :menu-items="sidepanelMenuItems"
+        :brand-banner-src="brandBannerSrc"
         @collapse="onCollapse"
       >
       </oxd-side-panel>
       <oxd-top-bar
-        :toggle="collapse"
-        :menu-items="topbarMenuItems"
         :user="user"
+        :toggle="collapse"
         :breadcrumb="breadcrumb"
+        :menu-items="topbarMenuItems"
         @collapse="onCollapse"
       >
         <slot name="user-actions"></slot>
@@ -58,19 +58,26 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from 'vue';
-import Topbar from '@ohrm/oxd/core/components/Topbar/Topbar.vue';
-import SidePanel from '@ohrm/oxd/core/components/SidePanel/SidePanel.vue';
-import overlay from '@ohrm/oxd/core/components/Dialog/Overlay.vue';
 import MenuItem from '../SidePanel/types';
+import {defineComponent, PropType} from 'vue';
 import {TopMenuItem, User, Breadcrumb} from '../Topbar/types';
+import Topbar from '@ohrm/oxd/core/components/Topbar/Topbar.vue';
+import overlay from '@ohrm/oxd/core/components/Dialog/Overlay.vue';
+import SidePanel from '@ohrm/oxd/core/components/SidePanel/SidePanel.vue';
 
 export default defineComponent({
   name: 'OxdLayout',
 
+  components: {
+    'oxd-top-bar': Topbar,
+    'oxd-overlay': overlay,
+    'oxd-side-panel': SidePanel,
+  },
+
   props: {
     user: {
       type: Object as PropType<User>,
+      required: true,
     },
     sidepanelMenuItems: {
       type: Object as PropType<MenuItem[]>,
@@ -78,6 +85,10 @@ export default defineComponent({
     },
     topbarMenuItems: {
       type: Object as PropType<TopMenuItem[]>,
+      required: true,
+    },
+    breadcrumb: {
+      type: Object as PropType<Breadcrumb>,
       required: true,
     },
     brandLogoSrc: {
@@ -90,18 +101,9 @@ export default defineComponent({
     },
     homeUrl: {
       type: String,
+      required: false,
       default: '/',
     },
-    breadcrumb: {
-      type: Object as PropType<Breadcrumb>,
-      required: true,
-    },
-  },
-
-  components: {
-    'oxd-side-panel': SidePanel,
-    'oxd-top-bar': Topbar,
-    'oxd-overlay': overlay,
   },
 
   data() {

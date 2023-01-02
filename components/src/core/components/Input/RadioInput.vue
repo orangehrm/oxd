@@ -54,22 +54,32 @@ export interface State {
 
 export default defineComponent({
   name: 'OxdRadioInput',
+
   inheritAttrs: false,
+
   props: {
-    modelValue: {},
+    modelValue: {
+      type: null,
+      required: true,
+    },
     style: {
       type: Object,
+      required: false,
+      default: () => ({}),
     },
     hasError: {
       type: Boolean,
+      required: false,
       default: false,
     },
     optionLabel: {
       type: String,
+      required: false,
       default: '',
     },
     labelPosition: {
       type: String,
+      required: false,
       default: RIGHT,
       validator: function (value: Position) {
         return LABEL_POSITIONS.indexOf(value) !== -1;
@@ -77,11 +87,12 @@ export default defineComponent({
     },
     disabled: {
       type: Boolean,
+      equired: false,
       default: false,
     },
   },
 
-  emits: ['update:modelValue', 'blur', 'focus', 'change'],
+  emits: ['blur', 'focus', 'change', 'update:modelValue'],
 
   data(): State {
     return {
@@ -104,7 +115,7 @@ export default defineComponent({
       get() {
         return this.modelValue;
       },
-      set(value) {
+      set(value: unknown) {
         this.checkedProxy = value;
       },
     },

@@ -41,8 +41,8 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import PageItem from '@ohrm/oxd/core/components/Pagination/PageItem.vue';
 import {pageableMixin} from '../../../mixins/pageable';
+import PageItem from '@ohrm/oxd/core/components/Pagination/PageItem.vue';
 
 export default defineComponent({
   name: 'OxdPagination',
@@ -61,11 +61,13 @@ export default defineComponent({
     },
     max: {
       type: Number,
+      required: false,
       default: 5,
       validator: (val: number) => Number.isInteger(val),
     },
     current: {
       type: Number,
+      required: false,
       default: 1,
       validator: (val: number) => Number.isInteger(val),
     },

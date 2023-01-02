@@ -34,6 +34,8 @@ export default defineComponent({
   props: {
     cols: {
       type: Number,
+      required: false,
+      default: 1,
     },
   },
 

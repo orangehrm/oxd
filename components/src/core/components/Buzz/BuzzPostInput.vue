@@ -61,25 +61,33 @@ interface TextAreaInputEvent extends InputEvent {
 
 export default defineComponent({
   name: 'OxdBuzzPostInput',
+
   components: {
     'oxd-text': Text,
   },
+
   inheritAttrs: false,
+
   props: {
     modelValue: {
       type: String,
+      required: false,
       default: null,
     },
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
     rules: {
       type: Array as PropType<Rule[]>,
+      required: false,
       default: () => [],
     },
   },
+
   emits: ['update:modelValue'],
+
   setup(props, context) {
     const focused = ref(false);
     const textArea = ref<HTMLTextAreaElement>();

@@ -38,16 +38,19 @@ export default defineComponent({
     label: {
       type: String,
       required: false,
+      default: null,
     },
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
     icon: {
       type: String,
       required: false,
+      default: null,
       validator: function (value: GlassIconType) {
-        return GLASS_ICON_TYPES.indexOf(value) !== -1;
+        return GLASS_ICON_TYPES.indexOf(value) !== -1 || value === null;
       },
     },
   },

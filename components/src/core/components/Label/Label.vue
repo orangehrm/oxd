@@ -20,12 +20,12 @@
 -->
 
 <template>
-  <label :class="classes" :style="style">
+  <label :class="classes">
     {{ label }}
   </label>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: 'OxdLabel',
 
@@ -33,9 +33,6 @@ export default {
     label: {
       type: String,
       required: true,
-    },
-    style: {
-      type: Object,
     },
   },
 

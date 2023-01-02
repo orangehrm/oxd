@@ -63,14 +63,14 @@ export default {
 
   methods: {
     callAPI(serachParam) {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         if (serachParam.trim()) {
           fetch(`https://api.github.com/search/users?q=${serachParam}`)
-            .then(response => response.json())
-            .then(json => {
+            .then((response) => response.json())
+            .then((json) => {
               const {items} = json;
               resolve(
-                items.map(item => {
+                items.map((item) => {
                   return {
                     id: item.id,
                     label: item.login,

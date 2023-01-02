@@ -44,21 +44,27 @@ import Text from '@ohrm/oxd/core/components/Text/Text.vue';
 
 export default defineComponent({
   name: 'OxdChartLegend',
+
   components: {
     'oxd-text': Text,
   },
-  emits: ['click'],
+
   props: {
     data: {
       type: Array as PropType<DataPoint[]>,
+      required: false,
       default: () => [],
     },
   },
+
+  emits: ['click'],
+
   data() {
     return {
-      toggledIndices: [],
+      toggledIndices: [] as number[],
     };
   },
+
   computed: {
     labels() {
       return this.data.map(({label, legend}: DataPoint) => {
@@ -82,6 +88,7 @@ export default defineComponent({
       });
     },
   },
+
   methods: {
     onClickKey(index: number) {
       const _index = this.toggledIndices.indexOf(index);

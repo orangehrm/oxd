@@ -31,6 +31,7 @@ import {
 
 export default defineComponent({
   name: 'OxdTabPanel',
+
   props: {
     name: {
       type: String,
@@ -38,10 +39,13 @@ export default defineComponent({
     },
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
   },
+
   emits: ['activate', 'deactivate'],
+
   setup(props, context) {
     onActivated(() => context.emit('activate'));
     onBeforeMount(() => context.emit('activate'));

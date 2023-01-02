@@ -49,18 +49,22 @@ export default defineComponent({
   props: {
     toasts: {
       type: Array,
+      required: false,
       default: () => [],
     },
     transition: {
       type: String,
+      required: false,
       default: 'oxd-toast-fade',
     },
     toastClass: {
       type: String,
+      required: false,
       default: 'oxd-toast-container--toast',
     },
     position: {
       type: String,
+      required: false,
       default: POSITION_BOTTOM,
       validator: function (value: ToastContainerPositions) {
         return POSITIONS.indexOf(value) !== -1;

@@ -38,18 +38,18 @@
       v-if="open"
       :step="step"
       :model-value="modelValue"
-      @update:modelValue="$emit('update:modelValue', $event)"
+      @update:model-value="$emit('update:modelValue', $event)"
     ></oxd-time-picker>
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {ComponentPublicInstance, defineComponent} from 'vue';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@ohrm/oxd/core/components/Input/Input.vue';
+import {parseDate, formatDate} from '../../../../utils/date';
 import clickOutsideDirective from '../../../../directives/click-outside';
 import TimePicker from '@ohrm/oxd/core/components/Input/Time/TimePicker.vue';
-import {parseDate, formatDate} from '../../../../utils/date';
 
 export default defineComponent({
   name: 'OxdTimeInput',
@@ -67,35 +67,41 @@ export default defineComponent({
   props: {
     modelValue: {
       type: String,
+      required: false,
       default: '',
     },
     hasError: {
       type: Boolean,
+      required: false,
       default: false,
     },
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
     readonly: {
       type: Boolean,
+      required: false,
       default: false,
     },
     placeholder: {
       type: String,
       required: false,
+      default: null,
     },
     step: {
       type: Number,
+      required: false,
       default: 1,
     },
   },
 
   emits: [
+    'blur',
     'update:modelValue',
     'timeselect:opened',
     'timeselect:closed',
-    'blur',
   ],
 
   data() {
@@ -112,8 +118,9 @@ export default defineComponent({
         '--readonly': this.readonly,
       };
     },
-    timeDisplay(): string {
-      return formatDate(parseDate(this.modelValue, 'HH:mm'), 'hh:mm a');
+    timeDisplay(): string | null {
+      const parsedDate = parseDate(this.modelValue, 'HH:mm');
+      return parsedDate ? formatDate(parsedDate, 'hh:mm a') : null;
     },
   },
 
@@ -123,13 +130,16 @@ export default defineComponent({
     },
     onTimeInput($event: Event) {
       const input = ($event.target as HTMLInputElement).value;
-      const value = formatDate(parseDate(input, 'hh:mm a'), 'HH:mm');
-      this.$emit('update:modelValue', value);
+      const parsedDate = parseDate(input, 'hh:mm a');
+      this.$emit(
+        'update:modelValue',
+        parsedDate ? formatDate(parsedDate, 'HH:mm') : null,
+      );
     },
     toggleDropdown() {
       if (!this.disabled) {
         if (!this.open) {
-          this.$refs.oxdInput.$el.focus();
+          (this.$refs.oxdInput as ComponentPublicInstance).$el.focus();
           this.openDropdown();
         } else {
           this.closeDropdown();

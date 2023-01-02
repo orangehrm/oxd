@@ -35,20 +35,27 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, inject, computed, onBeforeUnmount} from 'vue';
-import emitter from '../../../../utils/emitter';
-import CheckboxInput from '@ohrm/oxd/core/components/Input/CheckboxInput.vue';
 import {cellMixin} from './cell-mixin';
+import emitter from '../../../../utils/emitter';
+import {defineComponent, inject, computed, onBeforeUnmount} from 'vue';
+import CheckboxInput from '@ohrm/oxd/core/components/Input/CheckboxInput.vue';
 
 export default defineComponent({
   name: 'OxdTableCellCheckbox',
-  components: {'oxd-checkbox-input': CheckboxInput},
+
+  components: {
+    'oxd-checkbox-input': CheckboxInput,
+  },
+
   mixins: [cellMixin],
+
   props: {
     item: {
       required: true,
+      type: Object,
     },
   },
+
   setup(props) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const tableProps: any = inject('tableProps');
@@ -56,7 +63,8 @@ export default defineComponent({
     const checkState = computed({
       get: () => {
         const itemIndex = tableProps.selected.findIndex(
-          (item) => item === props.item,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (item: any) => item === props.item,
         );
         return itemIndex > -1;
       },
@@ -117,6 +125,7 @@ export default defineComponent({
       isSelectable,
     };
   },
+
   methods: {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onClickCheckbox(item: any, e: Event) {

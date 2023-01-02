@@ -34,10 +34,12 @@ export default defineComponent({
   props: {
     withBorder: {
       type: Boolean,
+      required: false,
       default: true,
     },
     clickable: {
       type: Boolean,
+      required: false,
       default: true,
     },
   },

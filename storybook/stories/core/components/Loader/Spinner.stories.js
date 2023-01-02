@@ -24,7 +24,7 @@ export default {
   component: Spinner,
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     return {args};
   },

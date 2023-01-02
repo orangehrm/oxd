@@ -35,6 +35,7 @@ export default defineComponent({
   props: {
     type: {
       type: String,
+      required: false,
       default: TYPE_WHITE,
       validator: function (value: SheetType) {
         return TYPES.indexOf(value) !== -1;
@@ -42,10 +43,12 @@ export default defineComponent({
     },
     rounded: {
       type: Boolean,
+      required: false,
       default: true,
     },
     gutters: {
       type: Boolean,
+      required: false,
       default: true,
     },
   },

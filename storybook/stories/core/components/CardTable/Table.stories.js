@@ -31,7 +31,7 @@ export default {
   title: 'Example/CardTable',
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     return {args};
   },
@@ -53,7 +53,7 @@ export const LeaveListExample = () => CardTableLeavelist;
 export const LeaveListExample2 = () => CardTableLeavelistAlt;
 export const LanguagPackageEdit = () => CardTableLangStringList;
 
-const RowOptionsTemplate = args => ({
+const RowOptionsTemplate = (args) => ({
   setup() {
     return {args};
   },

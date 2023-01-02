@@ -61,49 +61,71 @@ import DefaultCardHeader from '@ohrm/oxd/core/components/CardTable/Header/Defaul
 export default defineComponent({
   name: 'OxdCardCardTable',
 
+  components: {
+    'oxd-card-table-container': Table,
+    'oxd-loading-spinner': Spinner,
+
+    // Body Decorators
+    'oxd-table-decorator-card': DefaultCardContainer,
+
+    // Header Decorators
+    'oxd-table-header-default': DefaultCardHeader,
+  },
+
   props: {
     selector: {
       type: Object as PropType<CardSelector>,
+      required: false,
       default: () => ({}),
     },
     headers: {
       type: Array as PropType<CardHeaders>,
+      required: false,
       default: () => [],
     },
     items: {
       type: Array,
+      required: false,
       default: () => [],
     },
     clickable: {
       type: Boolean,
+      required: false,
       default: true,
     },
     selectable: {
       type: Boolean,
+      required: false,
       default: false,
     },
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
     selected: {
       type: Array as PropType<number[]>,
+      required: false,
       default: () => [],
     },
     decorator: {
       type: String,
+      required: false,
       default: 'oxd-table-decorator-card',
     },
     order: {
       type: Object as PropType<SortDefinition>,
+      required: false,
       default: () => ({}),
     },
     loading: {
       type: Boolean,
+      required: false,
       default: false,
     },
     tableId: {
       type: String,
+      required: false,
       default: () => nanoid(8),
     },
   },
@@ -111,9 +133,9 @@ export default defineComponent({
   emits: [
     'click',
     'clickCheckbox',
+    'update:order',
     'update:selected',
     'update:selectAll',
-    'update:order',
   ],
 
   setup(props, context) {
@@ -155,17 +177,6 @@ export default defineComponent({
         }
       });
     });
-  },
-
-  components: {
-    'oxd-card-table-container': Table,
-    'oxd-loading-spinner': Spinner,
-
-    // Body Decorators
-    'oxd-table-decorator-card': DefaultCardContainer,
-
-    // Header Decorators
-    'oxd-table-header-default': DefaultCardHeader,
   },
 
   computed: {

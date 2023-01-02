@@ -61,30 +61,42 @@ export default defineComponent({
   components: {
     'oxd-icon': Icon,
   },
+
   inheritAttrs: false,
+
   props: {
-    modelValue: {},
+    modelValue: {
+      type: null,
+      required: true,
+    },
     style: {
       type: Object,
+      required: false,
+      default: () => ({}),
     },
     hasError: {
       type: Boolean,
+      required: false,
       default: false,
     },
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
     checkIcon: {
       type: String,
+      required: false,
       default: 'check',
     },
     optionLabel: {
       type: String,
+      required: false,
       default: '',
     },
     labelPosition: {
       type: String,
+      required: false,
       default: RIGHT,
       validator: function (value: Position) {
         return LABEL_POSITIONS.indexOf(value) !== -1;
@@ -115,7 +127,7 @@ export default defineComponent({
       get() {
         return this.modelValue;
       },
-      set(value) {
+      set(value: unknown) {
         this.checkedProxy = value;
       },
     },

@@ -25,17 +25,20 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import DefaultCardMobile from '@ohrm/oxd/core/components/CardTable/Decorator/DefaultCardMobile.vue';
-import DefaultCardWeb from '@ohrm/oxd/core/components/CardTable/Decorator/DefaultCardWeb.vue';
 import {DEVICE_LG, DEVICE_XL} from '../../../../composables/useResponsive';
+import DefaultCardWeb from '@ohrm/oxd/core/components/CardTable/Decorator/DefaultCardWeb.vue';
+import DefaultCardMobile from '@ohrm/oxd/core/components/CardTable/Decorator/DefaultCardMobile.vue';
 
 export default defineComponent({
   name: 'OxdTableDefaultCardContainer',
+
   components: {
     'oxd-table-default-card-web': DefaultCardWeb,
     'oxd-table-default-card-mobile': DefaultCardMobile,
   },
+
   inject: ['screenState'],
+
   computed: {
     card(): string {
       if (

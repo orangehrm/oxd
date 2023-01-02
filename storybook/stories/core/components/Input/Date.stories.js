@@ -32,7 +32,7 @@ export default {
   },
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     const selected = ref('2021-07-01');
     return {args, selected};
@@ -42,7 +42,7 @@ const Template = args => ({
       h(DateInput, {
         ...this.args,
         modelValue: this.selected,
-        'onUpdate:modelValue': value => {
+        'onUpdate:modelValue': (value) => {
           this.selected = value;
         },
       }),

@@ -34,10 +34,12 @@ export default defineComponent({
   props: {
     show: {
       type: Boolean,
+      required: false,
       default: false,
     },
     centered: {
       type: Boolean,
+      required: false,
       default: true,
     },
   },

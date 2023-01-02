@@ -49,15 +49,16 @@ import DropdownMenu from '@ohrm/oxd/core/components/DropdownMenu/DropdownMenu.vu
 export default defineComponent({
   name: 'OxdUserDropdown',
 
-  props: {
-    user: {
-      type: Object as PropType<User>,
-    },
-  },
-
   components: {
     'oxd-icon': Icon,
     'oxd-dropdown-menu': DropdownMenu,
+  },
+
+  props: {
+    user: {
+      type: Object as PropType<User>,
+      required: true,
+    },
   },
 
   computed: {

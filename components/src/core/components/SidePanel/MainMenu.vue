@@ -61,16 +61,41 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from 'vue';
 import MenuItem from './types';
+import {defineComponent, PropType} from 'vue';
 import MainMenuItem from './MainMenuItem.vue';
+import usei18n from '../../../composables/usei18n';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@ohrm/oxd/core/components/Input/Input.vue';
 import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
-import usei18n from '../../../composables/usei18n';
 
 export default defineComponent({
   name: 'OxdMainMenu',
+
+  components: {
+    'oxd-icon': Icon,
+    'oxd-input': Input,
+    'oxd-icon-button': IconButton,
+    'oxd-main-menu-item': MainMenuItem,
+  },
+
+  props: {
+    url: {
+      type: String,
+      required: false,
+      default: '/',
+    },
+    toggle: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    menuItems: {
+      type: Array as PropType<MenuItem[]>,
+      required: false,
+      default: () => [],
+    },
+  },
 
   emits: ['collapse'],
 
@@ -86,27 +111,6 @@ export default defineComponent({
     };
   },
 
-  props: {
-    url: {
-      type: String,
-      default: '/',
-    },
-    toggle: {
-      type: Boolean,
-      default: false,
-    },
-    menuItems: {
-      type: Object as PropType<MenuItem[]>,
-    },
-  },
-
-  components: {
-    'oxd-icon': Icon,
-    'oxd-input': Input,
-    'oxd-icon-button': IconButton,
-    'oxd-main-menu-item': MainMenuItem,
-  },
-
   computed: {
     classes(): object {
       return {
@@ -114,7 +118,11 @@ export default defineComponent({
       };
     },
     filteredMenuItems(): MenuItem[] {
-      const filter = new RegExp(this.searchTerm, 'i');
+      const escapedSearchTerm = this.searchTerm.replace(
+        /[/\-\\^$*+?.()|[\]{}]/g,
+        '\\$&',
+      );
+      const filter = new RegExp(escapedSearchTerm, 'i');
       return this.menuItems.filter((item) => item.name.match(filter));
     },
   },

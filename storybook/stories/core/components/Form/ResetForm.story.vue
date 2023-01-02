@@ -100,14 +100,14 @@ export default {
       role: {id: 2, label: 'Admin'},
       rules: {
         name: [
-          v => (!!v && v.trim() !== '') || 'Required',
-          v => (v && v.length <= 50) || 'Should be less than 50 characters',
+          (v) => (!!v && v.trim() !== '') || 'Required',
+          (v) => (v && v.length <= 50) || 'Should be less than 50 characters',
         ],
         id: [
-          v => (!!v && v.trim() !== '') || 'Required',
-          v => (v && v.length >= 10) || 'Should more than 10 characters',
+          (v) => (!!v && v.trim() !== '') || 'Required',
+          (v) => (v && v.length >= 10) || 'Should more than 10 characters',
         ],
-        role: [v => (v && v !== null) || 'Required'],
+        role: [(v) => (v && v !== null) || 'Required'],
       },
     };
   },

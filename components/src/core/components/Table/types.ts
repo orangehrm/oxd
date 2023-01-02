@@ -1,4 +1,3 @@
-<!--
 /*
  * This file is part of OrangeHRM Inc
  *
@@ -17,48 +16,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
--->
 
-<template>
-  <div>{{ title }}</div>
-  <div
-    class="oxd-card"
-    v-bind="$attrs"
-    :class="[
-      clickable && 'oxd-card--clickable',
-      hasShadow && 'oxd-card--hasShadow',
-    ]"
-    @click="cardClick"
-  >
-    <slot />
-  </div>
-</template>
+export interface Header {
+  name: string;
+  title: string;
+  width: string;
+}
 
-<script lang="ts">
-import {defineComponent} from 'vue';
+export interface Selector {
+  width: string;
+}
 
-export default defineComponent({
-  name: 'OxdCard',
-  inheritAttrs: false,
-  props: {
-    title: {
-      type: String,
-    },
-    clickable: {
-      type: Boolean,
-    },
-    hasShadow: {
-      type: Boolean,
-    },
-  },
-
-  methods: {
-    cardClick() {
-      if (!this.clickable) return;
-      this.$emit('click');
-    },
-  },
-});
-</script>
-
-<style src="./card.scss" lang="scss" scoped></style>
+export interface Item {
+  [key: string]: string;
+}

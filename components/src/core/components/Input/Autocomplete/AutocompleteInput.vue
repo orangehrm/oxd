@@ -66,6 +66,7 @@
         @select="onSelect(option)"
       >
         <slot name="option" :data="option" :text="highlightedOptions[i]"></slot>
+        <!-- eslint-disable-next-line vue/no-v-html -->
         <span v-if="!$slots['option']" v-html="highlightedOptions[i]"></span>
       </oxd-autocomplete-option>
     </oxd-autocomplete-dropdown>
@@ -75,38 +76,42 @@
       :disabled="disabled"
       :readonly="readonly"
       :selected="modelValue"
-      @chipRemoved="onRemoveSelected"
+      @chip-removed="onRemoveSelected"
     ></oxd-autocomplete-chips>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import debounce from '../../../../utils/debounce';
 import eventsMixin from '../Select/events-mixin';
+import debounce from '../../../../utils/debounce';
+import usei18n from '../../../../composables/usei18n';
 import navigationMixin from '../Select/navigation-mixin';
 import {TOP, BOTTOM, Option, Position, DROPDOWN_POSITIONS} from '../types';
-import AutocompleteTextInput from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteTextInput.vue';
-import AutocompleteDropdown from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteDropdown.vue';
-import AutocompleteOption from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteOption.vue';
 import AutocompleteChips from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteChips.vue';
-import usei18n from '../../../../composables/usei18n';
+import AutocompleteOption from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteOption.vue';
+import AutocompleteDropdown from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteDropdown.vue';
+import AutocompleteTextInput from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteTextInput.vue';
 
 export default defineComponent({
   name: 'OxdAutocompleteInput',
 
   components: {
-    'oxd-autocomplete-text-input': AutocompleteTextInput,
-    'oxd-autocomplete-dropdown': AutocompleteDropdown,
-    'oxd-autocomplete-option': AutocompleteOption,
     'oxd-autocomplete-chips': AutocompleteChips,
+    'oxd-autocomplete-option': AutocompleteOption,
+    'oxd-autocomplete-dropdown': AutocompleteDropdown,
+    'oxd-autocomplete-text-input': AutocompleteTextInput,
   },
 
   mixins: [navigationMixin, eventsMixin],
+
   inheritAttrs: false,
 
   props: {
-    modelValue: {},
+    modelValue: {
+      type: [Object, Array],
+      required: true,
+    },
     disabled: {
       type: Boolean,
       default: false,
@@ -156,11 +161,11 @@ export default defineComponent({
 
   data() {
     return {
+      options: [],
       focused: false,
       loading: false,
       dropdownOpen: false,
-      searchTerm: null,
-      options: [],
+      searchTerm: null as string | null,
     };
   },
 
@@ -192,20 +197,20 @@ export default defineComponent({
       });
     },
     highlightedOptions(): string[] {
-      const filter = new RegExp(this.searchTerm, 'i');
+      const filter = new RegExp(this.searchTerm || '', 'i');
       return this.computedOptions.map((option: Option) => {
         return option.label.replace(filter, (match) => {
           return `<b>${match}</b>`;
         });
       });
     },
-    selectedItem(): string {
+    selectedItem(): string | null {
       if (!this.multiple && this.modelValue?.label) {
         return this.modelValue.label;
       }
       return null;
     },
-    inputValue(): string {
+    inputValue(): string | null {
       if (this.computedOptions[this.pointer]?.label) {
         return this.computedOptions[this.pointer].label;
       } else if (this.searchTerm !== null) {
@@ -230,6 +235,14 @@ export default defineComponent({
         this.placeholder ??
         this.t('general.type_for_hints', 'Type for hints...')
       );
+    },
+  },
+
+  watch: {
+    modelValue(value) {
+      if (value === null || (Array.isArray(value) && value.length === 0)) {
+        this.searchTerm = null;
+      }
     },
   },
 
@@ -289,14 +302,6 @@ export default defineComponent({
         (this.multiple === false || !Array.isArray(this.modelValue))
       ) {
         this.$emit('update:modelValue', this.searchTerm || null);
-      }
-    },
-  },
-
-  watch: {
-    modelValue(value) {
-      if (value === null || (Array.isArray(value) && value.length === 0)) {
-        this.searchTerm = null;
       }
     },
   },

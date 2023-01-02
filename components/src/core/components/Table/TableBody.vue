@@ -34,6 +34,7 @@ export default defineComponent({
   props: {
     withStrip: {
       type: Boolean,
+      required: false,
       default: false,
     },
   },

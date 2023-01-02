@@ -102,9 +102,13 @@ export default defineComponent({
   props: {
     modelValue: {
       type: String,
+      required: false,
+      default: null,
     },
     step: {
       type: Number,
+      required: false,
+      default: 1,
     },
   },
 
@@ -138,12 +142,12 @@ export default defineComponent({
       setValue(input, type);
     };
 
-    const increment = (step: number, type: string) => {
+    const increment = (step: number, type: keyof State) => {
       const input = parseInt(state[type]);
       setValue(input + step, type);
     };
 
-    const decrement = (step: number, type: string) => {
+    const decrement = (step: number, type: keyof State) => {
       const input = parseInt(state[type]);
       setValue(input - step, type);
     };
@@ -154,23 +158,28 @@ export default defineComponent({
         // getHours() return 0-23, return 12 if 0
         setValue(time.getHours() % 12 || 12, 'hour');
         setValue(time.getMinutes(), 'minute');
-        state.period = formatDate(time, 'a');
+        const period = formatDate(time, 'a');
+        if (period) state.period = period;
       }
     });
 
     watchEffect(() => {
-      const time = formatDate(
-        parseDate(`${state.hour}:${state.minute} ${state.period}`, 'hh:mm a'),
-        'HH:mm',
+      const parsedDate = parseDate(
+        `${state.hour}:${state.minute} ${state.period}`,
+        'hh:mm a',
       );
-      context.emit('update:modelValue', time);
+
+      context.emit(
+        'update:modelValue',
+        parsedDate ? formatDate(parsedDate, 'HH:mm') : null,
+      );
     });
 
     return {
-      ...toRefs(state),
       onChange,
       increment,
       decrement,
+      ...toRefs(state),
     };
   },
 });

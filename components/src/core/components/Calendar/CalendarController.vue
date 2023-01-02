@@ -57,11 +57,13 @@ import CalendarDropdown from '@ohrm/oxd/core/components/Calendar/CalendarDropdow
 
 export default defineComponent({
   name: 'OxdCalendarController',
+
   components: {
     'oxd-text': Text,
     'oxd-icon': Icon,
     'oxd-calendar-dropdown': CalendarDropdown,
   },
+
   props: {
     modelValue: {
       type: Object,
@@ -76,7 +78,9 @@ export default defineComponent({
       required: true,
     },
   },
+
   emits: ['update:modelValue'],
+
   computed: {
     currentMonth(): number {
       const {month} = this.modelValue;
@@ -87,6 +91,7 @@ export default defineComponent({
       return this.years.findIndex((v) => v === year);
     },
   },
+
   methods: {
     calculateMonth(value: number) {
       const {month, year} = this.modelValue;

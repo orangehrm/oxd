@@ -43,8 +43,8 @@
       </div>
       <oxd-icon
         v-if="buttonIcon"
-        :class="{'oxd-file-input-icon': true, '--disabled': disabled}"
         :name="buttonIcon"
+        :class="{'oxd-file-input-icon': true, '--disabled': disabled}"
       />
     </template>
   </div>
@@ -53,8 +53,8 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {OutputFile} from './types';
-import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 import usei18n from '../../../composables/usei18n';
+import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
 export interface State {
   focused: boolean;
@@ -67,34 +67,47 @@ export default defineComponent({
   components: {
     'oxd-icon': Icon,
   },
+
   inheritAttrs: false,
 
   props: {
-    modelValue: {},
+    modelValue: {
+      type: Object,
+      required: true,
+    },
     style: {
       type: Object,
+      required: false,
+      default: () => ({}),
     },
     hasError: {
       type: Boolean,
+      required: false,
       default: false,
     },
     buttonLabel: {
       type: String,
+      required: false,
+      default: null,
     },
     buttonIcon: {
       type: String,
+      required: false,
       default: 'upload',
     },
     placeholder: {
       type: String,
+      required: false,
       default: null,
     },
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
     readonly: {
       type: Boolean,
+      required: false,
       default: false,
     },
   },

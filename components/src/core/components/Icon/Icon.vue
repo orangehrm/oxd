@@ -20,9 +20,9 @@
 -->
 
 <script lang="ts">
-import {computed, defineComponent, h, unref} from 'vue';
-import {TYPES, TYPE_BOOTSTRAP} from './types';
 import * as SVGs from './map';
+import {TYPES, TYPE_BOOTSTRAP} from './types';
+import {computed, defineComponent, h, unref} from 'vue';
 import SVGLoader from '@ohrm/oxd/core/components/Icon/SVGLoader.vue';
 
 export default defineComponent({
@@ -35,6 +35,7 @@ export default defineComponent({
     },
     type: {
       type: String,
+      required: false,
       default: TYPE_BOOTSTRAP,
       validator: (value: string) => {
         return TYPES.indexOf(value) !== -1;
@@ -56,7 +57,7 @@ export default defineComponent({
         : h(
             SVGLoader,
             {class: unref(classes)},
-            {default: () => h(SVGs[props.name])},
+            {default: () => h(SVGs[props.name as never])},
           );
   },
 });

@@ -29,20 +29,14 @@
     :brand-banner-src="brandBannerSrc"
     :breadcrumb="breadcrumb"
   >
-    <p class="context-default">
-      slot for context
-    </p>
+    <p class="context-default">slot for context</p>
     <template v-slot:user-actions>
       <li role="none">
-        <a href="#" role="menuitem" class="oxd-userdropdown-link">
-          Logout
-        </a>
+        <a href="#" role="menuitem" class="oxd-userdropdown-link"> Logout </a>
       </li>
     </template>
     <template v-slot:footer>
-      <p class="context-footer">
-        slot for footer
-      </p>
+      <p class="context-footer">slot for footer</p>
       <br />
     </template>
   </oxd-layout>

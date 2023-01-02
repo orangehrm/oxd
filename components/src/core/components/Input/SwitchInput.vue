@@ -34,7 +34,7 @@
         @blur="onBlur"
         @change="onChange"
       />
-      <span :class="classes" :style="style"> </span>
+      <span :class="classes" :style="style"></span>
       <template v-if="labelPosition === 'right'">
         {{ optionLabel }}
       </template>
@@ -54,26 +54,37 @@ export interface State {
 
 export default defineComponent({
   name: 'OxdSwitchInput',
+
   inheritAttrs: false,
+
   props: {
-    modelValue: {},
+    modelValue: {
+      type: null,
+      required: true,
+    },
     style: {
       type: Object,
+      required: false,
+      default: () => ({}),
     },
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
     hasError: {
       type: Boolean,
+      required: false,
       default: false,
     },
     optionLabel: {
       type: String,
+      required: false,
       default: '',
     },
     labelPosition: {
       type: String,
+      required: false,
       default: RIGHT,
       validator: function (value: Position) {
         return LABEL_POSITIONS.indexOf(value) !== -1;
@@ -104,7 +115,7 @@ export default defineComponent({
       get() {
         return this.modelValue;
       },
-      set(value) {
+      set(value: unknown) {
         this.checkedProxy = value;
       },
     },

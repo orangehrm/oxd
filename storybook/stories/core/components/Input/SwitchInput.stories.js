@@ -33,7 +33,7 @@ export default {
   },
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     return {args};
   },
@@ -41,7 +41,7 @@ const Template = args => ({
   template: '<oxd-switch-input v-bind="args" />',
 });
 
-const VmodelSample = args => ({
+const VmodelSample = (args) => ({
   data() {
     return {
       selected: ['3'],

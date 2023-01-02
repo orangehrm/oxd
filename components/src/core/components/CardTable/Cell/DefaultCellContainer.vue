@@ -28,13 +28,13 @@ import {
   defineComponent,
   resolveComponent,
 } from 'vue';
-import TableDataCell from '@ohrm/oxd/core/components/CardTable/Table/TableDataCell.vue';
+import {RowItem} from './types';
+import {CardHeaders} from '../types';
 import DefaultCell from './Default.vue';
 import ActionsCell from './Actions.vue';
 import CheckboxCell from './Checkbox.vue';
-import {CardHeaders} from '../types';
-import {RowItem} from './types';
 import {DEVICE_LG, DEVICE_XL} from '../../../../composables/useResponsive';
+import TableDataCell from '@ohrm/oxd/core/components/CardTable/Table/TableDataCell.vue';
 
 export default defineComponent({
   name: 'OxdTableCellContainer',
@@ -44,19 +44,23 @@ export default defineComponent({
     'oxd-table-cell-actions': ActionsCell,
     'oxd-table-cell-checkbox': CheckboxCell,
   },
+
   inject: ['screenState'],
 
   props: {
     index: {
       type: Number,
+      required: false,
       default: 0,
     },
     headers: {
       type: Array as PropType<CardHeaders>,
+      required: false,
       default: () => [],
     },
     items: {
       type: Object as PropType<RowItem>,
+      required: false,
       default: () => ({}),
     },
   },

@@ -47,7 +47,7 @@ const argTypes = {
   days: {control: {type: 'object'}},
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     const selected = ref(new Date());
     return {args, selected};
@@ -85,7 +85,7 @@ Default.args = {
       style: {},
     },
   ],
-  events: datesOfMonth().map(date => {
+  events: datesOfMonth().map((date) => {
     if (date.getDate() % 2 === 0) {
       return {
         date,

@@ -92,7 +92,7 @@ export default {
       isValid: 'valid',
       name: '',
       rules: {
-        name: [v => (!!v && v.trim() !== '') || 'Required'],
+        name: [(v) => (!!v && v.trim() !== '') || 'Required'],
       },
     };
   },

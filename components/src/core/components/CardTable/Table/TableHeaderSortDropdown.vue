@@ -60,11 +60,11 @@
 <script lang="ts">
 import {Order} from '../types';
 import {defineComponent} from 'vue';
+import usei18n from '../../../../composables/usei18n';
 import Text from '@ohrm/oxd/core/components/Text/Text.vue';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
 import clickOutsideDirective from '../../../../directives/click-outside';
-import usei18n from '../../../../composables/usei18n';
 
 export default defineComponent({
   name: 'OxdCardThSort',
@@ -85,6 +85,7 @@ export default defineComponent({
     order: {
       type: String,
       required: false,
+      default: null,
     },
   },
 

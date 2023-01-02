@@ -52,22 +52,27 @@ export default defineComponent({
   props: {
     url: {
       type: String,
+      required: false,
       default: '#',
     },
     active: {
       type: Boolean,
+      required: false,
       default: false,
     },
     collapsed: {
       type: Boolean,
+      required: false,
       default: false,
     },
     name: {
       type: String,
+      required: false,
       default: '',
     },
     icon: {
       type: String,
+      required: false,
       default: 'home',
     },
   },

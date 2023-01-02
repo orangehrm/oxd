@@ -31,8 +31,8 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 import {pageableMixin} from '../../../mixins/pageable';
+import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
   name: 'OxdPaginationPageItem',
@@ -46,12 +46,18 @@ export default defineComponent({
   props: {
     previous: {
       type: Boolean,
+      required: false,
+      default: false,
     },
     next: {
       type: Boolean,
+      required: false,
+      default: false,
     },
     selected: {
       type: Boolean,
+      required: false,
+      default: false,
     },
   },
 

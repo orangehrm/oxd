@@ -23,10 +23,12 @@
   <div v-if="show" :class="classes" role="alert">
     <div :class="contentClasses">
       <oxd-icon :name="iconName" class="oxd-alert-content-icon" />
+
       <oxd-text tag="p" class="oxd-alert-content-text">
         {{ message }}
       </oxd-text>
     </div>
+
     <div class="oxd-alert-action">
       <slot></slot>
     </div>
@@ -35,9 +37,10 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {AlertType, TYPE_DEFAULT, TYPES, ICON_MAP} from './types';
 import Text from '@ohrm/oxd/core/components/Text/Text.vue';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
+import {AlertType, TYPE_DEFAULT, TYPES, ICON_MAP} from './types';
+
 export default defineComponent({
   name: 'OxdAlert',
 
@@ -49,6 +52,7 @@ export default defineComponent({
   props: {
     type: {
       type: String,
+      required: false,
       default: TYPE_DEFAULT,
       validator: function (value: AlertType) {
         return TYPES.indexOf(value) !== -1;
@@ -61,9 +65,11 @@ export default defineComponent({
     icon: {
       type: String,
       required: false,
+      default: null,
     },
     show: {
       type: Boolean,
+      required: false,
       default: false,
     },
   },

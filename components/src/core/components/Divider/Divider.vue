@@ -20,12 +20,7 @@
 -->
 
 <template>
-  <hr
-    :class="classes"
-    :style="style"
-    role="separator"
-    :aria-orientation="areaOrientation"
-  />
+  <hr :class="classes" role="separator" :aria-orientation="areaOrientation" />
 </template>
 
 <script lang="ts">
@@ -34,12 +29,6 @@ import {AREA_ORIENTATION_HORIZONTAL, AreaOrientation} from './types';
 
 export default defineComponent({
   name: 'OxdDivider',
-
-  props: {
-    style: {
-      type: Object,
-    },
-  },
 
   computed: {
     classes(): object {

@@ -30,12 +30,12 @@
         :value="displayDate"
         :placeholder="placeholder"
         @blur="onBlur"
-        @update:modelValue="onDateTyped"
         @click="toggleDropdown"
+        @update:model-value="onDateTyped"
       />
       <oxd-icon
-        :class="dateIconClasses"
         name="calendar"
+        :class="dateIconClasses"
         @click="toggleDropdown"
       />
     </div>
@@ -45,8 +45,8 @@
           v-bind="$attrs"
           v-model="dateSelected"
           :locale="locale"
-          @update:modelValue="onDateSelected"
           @mousedown.prevent
+          @update:model-value="onDateSelected"
         >
           <div class="oxd-date-input-links">
             <div class="oxd-date-input-link --today" @click="onClickToday">
@@ -66,12 +66,19 @@
 </template>
 
 <script lang="ts">
+import {
+  toRefs,
+  PropType,
+  reactive,
+  defineComponent,
+  ComponentPublicInstance,
+} from 'vue';
+import type {Locale} from 'date-fns';
 import {enGB} from 'date-fns/locale';
 import usei18n from '../../../composables/usei18n';
-import {formatDate, parseDate, freshDate} from '../../../utils/date';
-import {defineComponent, reactive, toRefs, PropType} from 'vue';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@ohrm/oxd/core/components/Input/Input.vue';
+import {formatDate, parseDate, freshDate} from '../../../utils/date';
 import Calendar from '@ohrm/oxd/core/components/Calendar/Calendar.vue';
 
 export default defineComponent({
@@ -82,49 +89,66 @@ export default defineComponent({
     'oxd-input': Input,
     'oxd-calendar': Calendar,
   },
+
   inheritAttrs: false,
 
   props: {
     modelValue: {
       type: String,
-      default: '',
+      required: false,
+      default: null,
     },
     hasError: {
       type: Boolean,
+      required: false,
       default: false,
     },
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
     readonly: {
       type: Boolean,
+      required: false,
       default: false,
     },
     placeholder: {
       type: String,
       required: false,
+      default: null,
     },
     ioformat: {
       type: String,
+      required: false,
       default: 'yyyy-MM-dd',
     },
     displayFormat: {
       type: String,
+      required: false,
       default: null,
     },
     value: {
       type: String,
+      required: false,
       default: null,
     },
     locale: {
       type: Object as PropType<Locale>,
-      default: enGB,
+      required: false,
+      default: () => enGB,
     },
   },
 
+  emits: [
+    'blur',
+    'update:modelValue',
+    'dateselect:opened',
+    'dateselect:closed',
+  ],
+
   setup() {
-    const state = reactive({
+    const state = reactive<{open: boolean; dateTyped: string | null}>({
       open: false,
       dateTyped: null,
     });
@@ -138,10 +162,10 @@ export default defineComponent({
   computed: {
     dateSelected: {
       get() {
-        return parseDate(this.modelValue, this.ioformat);
+        return parseDate(this.modelValue, this.ioformat) || undefined;
       },
-      set(value) {
-        if (!isNaN(value) && value instanceof Date) {
+      set(value: Date) {
+        if (!isNaN(value.valueOf()) && value instanceof Date) {
           this.$emit('update:modelValue', formatDate(value, this.ioformat));
         } else {
           this.$emit(
@@ -151,12 +175,18 @@ export default defineComponent({
         }
       },
     },
-    displayDate(): string {
-      if (this.value) return this.value;
-      return (
-        formatDate(this.dateSelected, this.dateFormat, {locale: this.locale}) ||
-        (this.modelValue === null ? this.modelValue : this.dateTyped)
-      );
+    displayDate(): string | null {
+      if (this.value) {
+        return this.value;
+      } else if (this.dateSelected) {
+        return formatDate(this.dateSelected, this.dateFormat, {
+          locale: this.locale,
+        });
+      } else if (this.modelValue === null) {
+        return this.modelValue;
+      } else {
+        return this.dateTyped;
+      }
     },
     dateFormat(): string {
       return this.displayFormat && this.displayFormat.trim()
@@ -176,9 +206,10 @@ export default defineComponent({
     onBlur(e: Event) {
       e.stopImmediatePropagation();
       if (this.dateTyped !== null) {
-        this.dateSelected = parseDate(this.dateTyped, this.dateFormat, {
-          locale: this.locale,
-        });
+        this.dateSelected =
+          parseDate(this.dateTyped, this.dateFormat, {
+            locale: this.locale,
+          }) || undefined;
       }
       this.$emit('blur');
       this.closeDropdown();
@@ -193,8 +224,8 @@ export default defineComponent({
     toggleDropdown() {
       if (!this.disabled && !this.readonly) {
         if (!this.open) {
-          this.$refs.oxdInput.$el.focus();
           this.openDropdown();
+          (this.$refs.oxdInput as ComponentPublicInstance).$el.focus();
         } else {
           this.closeDropdown();
         }
@@ -216,7 +247,7 @@ export default defineComponent({
     onClickClear() {
       this.open = false;
       this.dateTyped = null;
-      this.dateSelected = null;
+      this.dateSelected = undefined;
     },
   },
 });

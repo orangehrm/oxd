@@ -70,8 +70,10 @@ export default defineComponent({
     selected: {
       type: Number,
       required: false,
+      default: -1,
     },
   },
+
   emits: ['select'],
 
   data() {
@@ -84,7 +86,7 @@ export default defineComponent({
     openSubmenu() {
       this.isActive = true;
       this.$nextTick(() => {
-        const elm = this.$refs[`oxd-cal-ref-${this.selected}`];
+        const elm = this.$refs[`oxd-cal-ref-${this.selected}`] as HTMLElement;
         elm && this.scrollToView(elm);
       });
     },
@@ -93,7 +95,7 @@ export default defineComponent({
         this.isActive = false;
       }
     },
-    onSelectOption(option) {
+    onSelectOption(option: number) {
       this.$emit('select', option);
     },
     scrollToView(elm: HTMLElement) {

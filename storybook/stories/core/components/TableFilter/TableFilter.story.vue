@@ -165,7 +165,7 @@ export default {
       console.log(this.filters);
     },
     async loadEmployees() {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         setTimeout(() => {
           resolve([
             {

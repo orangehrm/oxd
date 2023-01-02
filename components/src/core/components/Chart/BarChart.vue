@@ -32,67 +32,83 @@ export default defineComponent({
   props: {
     styles: {
       type: Object,
+      required: false,
       default: () => ({}),
     },
     classes: {
       type: [String, Object, Array],
+      required: false,
       default: null,
     },
     wrapperStyles: {
       type: Object,
+      required: false,
       default: () => ({}),
     },
     wrapperClasses: {
       type: [String, Object, Array],
+      required: false,
       default: null,
     },
     width: {
       type: [Number, String],
+      required: false,
       default: '100%',
     },
     height: {
       type: [Number, String],
+      required: false,
       default: '100%',
     },
     animate: {
       type: Boolean,
+      required: false,
       default: true,
     },
     grid: {
       type: Boolean,
+      required: false,
       default: true,
     },
     xAxsis: {
       type: Boolean,
+      required: false,
       default: true,
     },
     yAxsis: {
       type: Boolean,
+      required: false,
       default: true,
     },
     responsive: {
       type: Boolean,
+      required: false,
       default: true,
     },
     aspectRatio: {
       type: [Boolean, Number],
+      required: false,
       default: true,
     },
     data: {
       type: Array as PropType<DataPoint[]>,
+      required: false,
       default: () => [],
     },
     chartId: {
       type: String,
+      required: false,
       default: () => nanoid(8),
     },
     title: {
       type: String,
       required: false,
+      default: null,
     },
     animation: {
       type: Object as PropType<AnimationSpec<'bar'>>,
       required: false,
+      default: () => null,
     },
   },
 

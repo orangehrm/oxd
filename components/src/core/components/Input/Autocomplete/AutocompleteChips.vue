@@ -41,8 +41,8 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
 import {Option} from '../types';
+import {defineComponent, PropType} from 'vue';
 import Chip from '@ohrm/oxd/core/components/Chip/Chip.vue';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
@@ -57,14 +57,17 @@ export default defineComponent({
   props: {
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
     readonly: {
       type: Boolean,
+      required: false,
       default: false,
     },
     selected: {
-      type: Array,
+      type: Array as PropType<Option[]>,
+      required: false,
       default: () => [],
     },
   },

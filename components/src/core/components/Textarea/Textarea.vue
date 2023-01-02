@@ -22,12 +22,11 @@
 <template>
   <textarea
     :class="classes"
-    :style="style"
     :value="modelValue"
     @focus="onFocus"
     @blur="onBlur"
     @input="onInput"
-  />
+  ></textarea>
 </template>
 
 <script lang="ts">
@@ -47,9 +46,19 @@ export default defineComponent({
   name: 'OxdTextarea',
 
   props: {
-    modelValue: {},
+    modelValue: {
+      type: [String, Number],
+      required: false,
+      default: null,
+    },
+    hasError: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
     resize: {
       type: String,
+      required: false,
       default: RESIZE_VERTICAL,
       validator: function (value: TextareaResize) {
         return (
@@ -58,14 +67,9 @@ export default defineComponent({
         );
       },
     },
-    style: {
-      type: Object,
-    },
-    hasError: {
-      type: Boolean,
-      default: false,
-    },
   },
+
+  emits: ['focus', 'blur', 'input', 'update:modelValue'],
 
   data: (): State => {
     return {

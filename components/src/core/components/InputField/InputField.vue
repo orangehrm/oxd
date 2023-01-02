@@ -22,10 +22,10 @@
 <template>
   <oxd-input-group
     :label="label"
-    :label-icon="labelIcon"
-    :message="message"
-    class="oxd-input-field-bottom-space"
     :classes="classes"
+    :label-icon="labelIcon"
+    :message="message || ''"
+    class="oxd-input-field-bottom-space"
   >
     <component
       :is="component"
@@ -33,7 +33,7 @@
       :disabled="disabled"
       :has-error="hasError"
       :model-value="modelValue"
-      @update:modelValue="$emit('update:modelValue', $event)"
+      @update:model-value="$emit('update:modelValue', $event)"
     >
       <template v-for="(_, name) in $slots" #[name]="slotData">
         <slot :name="name" v-bind="slotData" />
@@ -43,63 +43,69 @@
 </template>
 
 <script lang="ts">
+import useField from '../../../composables/useField';
 import {toRef, PropType, nextTick, defineComponent} from 'vue';
-import InputGroup from '@ohrm/oxd/core/components/InputField/InputGroup.vue';
 import Input from '@ohrm/oxd/core/components/Input/Input.vue';
+import {Types, Components, TYPES, TYPE_INPUT, TYPE_MAP} from './types';
 import FileInput from '@ohrm/oxd/core/components/Input/FileInput.vue';
+import DateInput from '@ohrm/oxd/core/components/Input/DateInput.vue';
 import Textarea from '@ohrm/oxd/core/components/Textarea/Textarea.vue';
-import DropdownInput from '@ohrm/oxd/core/components/Input/DropdownInput.vue';
+import RadioInput from '@ohrm/oxd/core/components/Input/RadioInput.vue';
+import SwitchInput from '@ohrm/oxd/core/components/Input/SwitchInput.vue';
+import TimeInput from '@ohrm/oxd/core/components/Input/Time/TimeInput.vue';
+import InputGroup from '@ohrm/oxd/core/components/InputField/InputGroup.vue';
 import PasswordInput from '@ohrm/oxd/core/components/Input/PasswordInput.vue';
 import CheckboxInput from '@ohrm/oxd/core/components/Input/CheckboxInput.vue';
-import SwitchInput from '@ohrm/oxd/core/components/Input/SwitchInput.vue';
-import RadioInput from '@ohrm/oxd/core/components/Input/RadioInput.vue';
-import DateInput from '@ohrm/oxd/core/components/Input/DateInput.vue';
-import AutocompleteInput from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteInput.vue';
+import ColorInput from '@ohrm/oxd/core/components/Input/Color/ColorInput.vue';
 import SelectInput from '@ohrm/oxd/core/components/Input/Select/SelectInput.vue';
 import MultiSelectInput from '@ohrm/oxd/core/components/Input/MultiSelect/MultiSelectInput.vue';
-import TimeInput from '@ohrm/oxd/core/components/Input/Time/TimeInput.vue';
-import ColorInput from '@ohrm/oxd/core/components/Input/Color/ColorInput.vue';
-import {Types, Components, TYPES, TYPE_INPUT, TYPE_MAP} from './types';
-import useField from '../../../composables/useField';
+import AutocompleteInput from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteInput.vue';
 
 export default defineComponent({
   name: 'OxdInputField',
 
   components: {
-    'oxd-input-group': InputGroup,
     'oxd-input': Input,
-    'oxd-file-input': FileInput,
     'oxd-textarea': Textarea,
-    'oxd-dropdown-input': DropdownInput,
+    'oxd-file-input': FileInput,
+    'oxd-date-input': DateInput,
+    'oxd-time-input': TimeInput,
+    'oxd-input-group': InputGroup,
+    'oxd-color-input': ColorInput,
+    'oxd-radio-input': RadioInput,
+    'oxd-select-input': SelectInput,
+    'oxd-switch-input': SwitchInput,
     'oxd-password-input': PasswordInput,
     'oxd-checkbox-input': CheckboxInput,
-    'oxd-switch-input': SwitchInput,
-    'oxd-radio-input': RadioInput,
-    'oxd-date-input': DateInput,
-    'oxd-autocomplete-input': AutocompleteInput,
-    'oxd-select-input': SelectInput,
     'oxd-multiselect-input': MultiSelectInput,
-    'oxd-time-input': TimeInput,
-    'oxd-color-input': ColorInput,
+    'oxd-autocomplete-input': AutocompleteInput,
   },
+
   inheritAttrs: false,
 
-  emits: ['update:modelValue'],
-
   props: {
-    modelValue: {},
+    modelValue: {
+      type: null,
+      required: true,
+    },
     label: {
       type: String,
+      required: false,
+      default: null,
     },
     labelIcon: {
       type: String,
+      required: false,
+      default: null,
     },
     required: {
       type: Boolean,
+      required: false,
       default: false,
     },
     type: {
       type: String,
+      required: false,
       default: TYPE_INPUT,
       validator: (value: Types) => {
         return TYPES.indexOf(value) !== -1;
@@ -107,6 +113,7 @@ export default defineComponent({
     },
     errors: {
       type: String,
+      required: false,
       default: TYPE_INPUT,
       validator: (value: Types) => {
         return TYPES.indexOf(value) !== -1;
@@ -115,13 +122,17 @@ export default defineComponent({
     rules: {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       type: Array as PropType<any>,
+      required: false,
       default: () => [],
     },
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
   },
+
+  emits: ['update:modelValue'],
 
   setup(props, context) {
     const disabled = toRef(props, 'disabled');

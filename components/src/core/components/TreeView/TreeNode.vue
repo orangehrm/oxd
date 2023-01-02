@@ -65,13 +65,18 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType, ref} from 'vue';
-import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
 import {TNode} from './types';
 import {nanoid} from 'nanoid';
+import {defineComponent, PropType, ref} from 'vue';
+import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
 
 export default defineComponent({
   name: 'OxdTreeNode',
+
+  components: {
+    'oxd-icon-button': IconButton,
+  },
+
   props: {
     data: {
       type: Object as PropType<TNode>,
@@ -94,9 +99,7 @@ export default defineComponent({
       default: true,
     },
   },
-  components: {
-    'oxd-icon-button': IconButton,
-  },
+
   setup(props) {
     const isOpen = ref(props.open);
     const isCollapsed = ref(!props.open);
@@ -107,8 +110,9 @@ export default defineComponent({
       height,
     };
   },
+
   computed: {
-    hasChildren(): boolean {
+    hasChildren() {
       return this.data.children && this.data.children.length;
     },
     nodeClasses(): object {
@@ -128,15 +132,17 @@ export default defineComponent({
     nodes(): TNode {
       return {...this.data, cuid: this.cuid};
     },
-    lineStyles(): object {
+    lineStyles() {
       return {
         height: this.isLast ? this.height / 2 + 'px' : '100%',
       };
     },
   },
+
   mounted() {
     this.calculateNodeHeight();
   },
+
   methods: {
     onClickNode() {
       if (this.hasChildren) {

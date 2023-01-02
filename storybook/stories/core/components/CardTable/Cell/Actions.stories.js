@@ -24,7 +24,7 @@ export default {
   argTypes: {onClick: {action: 'clicked'}},
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     return {args};
   },

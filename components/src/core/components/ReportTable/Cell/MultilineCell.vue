@@ -34,15 +34,22 @@ import {defineComponent, unref} from 'vue';
 
 export default defineComponent({
   name: 'OxdReportTableMultilineCell',
+
   props: {
-    rowIndex: {
-      type: Number,
-    },
     prop: {
       type: String,
+      required: true,
     },
-    model: {},
+    model: {
+      type: Object,
+      required: true,
+    },
+    rowIndex: {
+      type: Number,
+      required: true,
+    },
   },
+
   setup(props) {
     const data = unref(props.model[props.prop]);
     const items = Array.isArray(data)

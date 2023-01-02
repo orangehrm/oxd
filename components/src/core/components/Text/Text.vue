@@ -20,7 +20,7 @@
 -->
 
 <template>
-  <component :is="tag" :class="classes" :style="style"><slot></slot></component>
+  <component :is="tag" :class="classes"><slot></slot></component>
 </template>
 
 <script lang="ts">
@@ -33,16 +33,16 @@ export default defineComponent({
   props: {
     tag: {
       type: String,
+      required: false,
       default: TAG_P,
       validator: function (value: Tags) {
         return TAGS.indexOf(value) !== -1;
       },
     },
-    style: {
-      type: Object,
-    },
     type: {
       type: String,
+      required: false,
+      default: null,
       validator: function (value?: TextTypes) {
         if (value === undefined || value === null) {
           return true;
@@ -57,7 +57,7 @@ export default defineComponent({
       return {
         'oxd-text': true,
         [`oxd-text--${this.tag}`]: true,
-        [`oxd-text--${this.type}`]: this.type,
+        [`oxd-text--${this.type}`]: !!this.type,
       };
     },
   },

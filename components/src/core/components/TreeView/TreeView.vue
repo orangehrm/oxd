@@ -35,9 +35,11 @@ import TreeNode from '@ohrm/oxd/core/components/TreeView/TreeNode.vue';
 
 export default defineComponent({
   name: 'OxdTreeView',
+
   components: {
     'oxd-tree-node': TreeNode,
   },
+
   inheritAttrs: false,
 });
 </script>

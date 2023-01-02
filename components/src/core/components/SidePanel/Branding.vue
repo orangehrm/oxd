@@ -39,18 +39,22 @@ export default defineComponent({
   props: {
     url: {
       type: String,
+      required: false,
       default: '/',
     },
     logoSrc: {
       type: String,
+      required: false,
       default: '',
     },
     bannerSrc: {
       type: String,
+      required: false,
       default: '',
     },
     toggle: {
       type: Boolean,
+      required: false,
       default: false,
     },
   },
