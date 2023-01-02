@@ -3,7 +3,7 @@
 exports[`TabContainer.vue renders OXD Tab Container 1`] = `
 <div class="oxd-tab">
   <div class="oxd-tab-bar"><a class="oxd-tab-segment oxd-tab-segment--active" href="#tab1">tab1</a><a class="oxd-tab-segment" href="#tab2">tab2</a><a class="oxd-tab-segment" href="#tab3">tab3</a></div>
-  <transition-stub>
+  <transition-stub name="transition-slide-right" appear="false" persisted="false" css="true">
     <div id="tab1" class="oxd-tab-panel">
       <div>Tab 1</div>
     </div>
