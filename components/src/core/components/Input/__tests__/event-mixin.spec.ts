@@ -51,13 +51,13 @@ describe('eventsMixin.ts', () => {
     const wrapper = mount(MockComponent, {});
     wrapper.vm.onClear();
     expect(wrapper.emitted()).toHaveProperty('dropdown:clear');
-    expect(wrapper.emitted('update:modelValue')[0]).toEqual([null]);
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([null]);
   });
   it('should emits update:modelvalue on Select', () => {
     const option = {id: 1, label: 'test'};
     const wrapper = mount(MockComponent, {});
     wrapper.vm.onSelect(option);
-    expect(wrapper.emitted('update:modelValue')[0]).toEqual([option]);
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([option]);
   });
   it('should emits update:modelvalue as array on Select Multiple', () => {
     const option = {id: 1, label: 'test'};
@@ -67,7 +67,7 @@ describe('eventsMixin.ts', () => {
       },
     });
     wrapper.vm.onSelect(option);
-    expect(wrapper.emitted('update:modelValue')[0]).toEqual([[option]]);
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([[option]]);
   });
   it('should emits update:modelvalue on Remove Selected', () => {
     const option = {id: 1, label: 'test'};
@@ -77,7 +77,7 @@ describe('eventsMixin.ts', () => {
       },
     });
     wrapper.vm.onRemoveSelected(option);
-    expect(wrapper.emitted('update:modelValue')[0]).toEqual([[]]);
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([[]]);
   });
 
   it('should not emit dropdown:opened if disabled', () => {

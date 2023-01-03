@@ -67,7 +67,8 @@ export default defineComponent({
     },
     message: {
       type: String,
-      required: true,
+      required: false,
+      default: null,
     },
     show: {
       type: Boolean,

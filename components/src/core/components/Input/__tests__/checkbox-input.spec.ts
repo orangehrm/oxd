@@ -43,8 +43,8 @@ describe('CheckboxInput.vue', () => {
         modelValue: false,
       },
     });
-    wrapper.find("input[type='checkbox']").trigger('click');
-    await wrapper.vm.$nextTick();
+    await wrapper.find("input[type='checkbox']").trigger('click');
+    await wrapper.find("input[type='checkbox']").trigger('change');
     expect(wrapper.emitted('update:modelValue')).toContainEqual([true]);
   });
 
@@ -54,8 +54,8 @@ describe('CheckboxInput.vue', () => {
         modelValue: true,
       },
     });
-    wrapper.find("input[type='checkbox']").trigger('click');
-    await wrapper.vm.$nextTick();
+    await wrapper.find("input[type='checkbox']").trigger('click');
+    await wrapper.find("input[type='checkbox']").trigger('change');
     expect(wrapper.emitted('update:modelValue')).toContainEqual([false]);
   });
 
@@ -65,8 +65,8 @@ describe('CheckboxInput.vue', () => {
         disabled: true,
       },
     });
-    wrapper.find("input[type='checkbox']").trigger('click');
-    await wrapper.vm.$nextTick();
+    await wrapper.find("input[type='checkbox']").trigger('click');
+    await wrapper.find("input[type='checkbox']").trigger('change');
     expect(wrapper.emitted('update:modelValue')).toBeFalsy();
   });
 });

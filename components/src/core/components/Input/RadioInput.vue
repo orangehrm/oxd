@@ -60,7 +60,8 @@ export default defineComponent({
   props: {
     modelValue: {
       type: null,
-      required: true,
+      required: false,
+      default: undefined,
     },
     style: {
       type: Object,

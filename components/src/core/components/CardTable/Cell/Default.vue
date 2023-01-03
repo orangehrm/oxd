@@ -45,8 +45,8 @@ export default defineComponent({
 
   props: {
     item: {
+      type: null,
       required: true,
-      type: Object,
     },
   },
 

@@ -165,7 +165,7 @@ export default defineComponent({
         return parseDate(this.modelValue, this.ioformat) || undefined;
       },
       set(value: Date) {
-        if (!isNaN(value.valueOf()) && value instanceof Date) {
+        if (!isNaN(value?.valueOf()) && value instanceof Date) {
           this.$emit('update:modelValue', formatDate(value, this.ioformat));
         } else {
           this.$emit(

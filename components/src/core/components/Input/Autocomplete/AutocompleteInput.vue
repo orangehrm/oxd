@@ -110,7 +110,8 @@ export default defineComponent({
   props: {
     modelValue: {
       type: [Object, Array],
-      required: true,
+      required: false,
+      default: () => null,
     },
     disabled: {
       type: Boolean,

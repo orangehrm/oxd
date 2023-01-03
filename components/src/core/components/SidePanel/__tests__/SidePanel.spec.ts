@@ -17,44 +17,36 @@
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
 
-import {mount, shallowMount} from '@vue/test-utils';
+import {mount} from '@vue/test-utils';
 import SidePanel from '@ohrm/oxd/core/components/SidePanel/SidePanel.vue';
 import MainMenu from '@ohrm/oxd/core/components/SidePanel/MainMenu.vue';
-import MainMenuItem from '@ohrm/oxd/core/components/SidePanel/MainMenuItem.vue';
 
 describe('SidePanel.vue', () => {
-  it('renders OXD Side Panel', () => {
-    const wrapper = shallowMount(SidePanel);
-    expect(wrapper.html()).toMatchSnapshot();
-  });
-
   it('should render OXD Side Panel with menu items', async () => {
     const menuItems = [
       {
         name: 'Dashboard',
         url: '#',
-        icon: 'dashboard',
+        icon: 'bolt',
         active: false,
       },
       {
         name: 'PIM',
         url: '#',
-        icon: 'pim',
+        icon: 'bolt',
         active: true,
       },
       {
         name: 'Time',
         url: '#',
-        icon: 'time',
+        icon: 'bolt',
         active: false,
       },
     ];
     const wrapper = mount(SidePanel, {
       props: {menuItems},
     });
-    const menuElems = wrapper.findAllComponents(MainMenuItem);
-    expect(menuElems.length).toBe(3);
-    expect(menuElems[0].findAll('a')[1].classes()).toContain('active');
+    expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('should emit OXD Side Panel collapse event', () => {
@@ -62,7 +54,7 @@ describe('SidePanel.vue', () => {
       {
         name: 'Dashboard',
         url: '#',
-        icon: 'dashboard',
+        icon: 'bolt',
         active: false,
       },
     ];
