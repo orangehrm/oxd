@@ -86,8 +86,12 @@ export default defineComponent({
     openSubmenu() {
       this.isActive = true;
       this.$nextTick(() => {
-        const elm = this.$refs[`oxd-cal-ref-${this.selected}`] as HTMLElement;
-        elm && this.scrollToView(elm);
+        const elements = this.$refs[
+          `oxd-cal-ref-${this.selected}`
+        ] as HTMLElement[];
+        if (Array.isArray(elements) && elements.length === 1) {
+          elements[0].scrollIntoView();
+        }
       });
     },
     closeSubMenu() {
@@ -97,9 +101,6 @@ export default defineComponent({
     },
     onSelectOption(option: number) {
       this.$emit('select', option);
-    },
-    scrollToView(elm: HTMLElement) {
-      elm.scrollIntoView();
     },
   },
 });
