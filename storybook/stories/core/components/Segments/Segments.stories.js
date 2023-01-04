@@ -154,11 +154,13 @@ const optionsWithIcons = [
     id: 1,
     label: 'Preview',
     icon: 'oxd-show',
+    iconSize: 'small',
   },
   {
     id: 2,
     label: 'Edit',
     icon: 'oxd-edit',
+    iconSize: 'xx-small',
   },
 ];
 

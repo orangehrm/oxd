@@ -5,10 +5,14 @@ const optionsList = [
   {
     id: 1,
     label: 'Item one',
+    icon: 'oxd-show',
+    iconSize: 'small',
   },
   {
     id: 2,
     label: 'Item two',
+    icon: 'oxd-edit',
+    iconSize: 'xx-small',
   },
 ];
 

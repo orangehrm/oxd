@@ -77,6 +77,7 @@ export default defineComponent({
         if (option.icon) {
           const iconElement = h(Icon, {
             name: option.icon,
+            size: option.iconSize,
           });
           optionLabel.unshift(iconElement);
         }
