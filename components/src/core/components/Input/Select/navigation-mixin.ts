@@ -17,12 +17,12 @@
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
 
-import {defineComponent} from 'vue';
 import {Option} from '../types';
+import {defineComponent} from 'vue';
 
 interface State {
-  dropdownOpen: boolean;
   pointer: number;
+  dropdownOpen: boolean;
 }
 
 const cycleIndexes = (currentValue: number, array: number[]) => {
@@ -36,6 +36,11 @@ export const navigationMixin = defineComponent({
       dropdownOpen: false,
       pointer: -1,
     };
+  },
+  computed: {
+    computedOptions(): Option[] {
+      return [];
+    },
   },
   methods: {
     onSelectDown() {
@@ -86,11 +91,6 @@ export const navigationMixin = defineComponent({
     openDropdown() {},
     onSelect(option: Option) {},
     /* eslint-enable */
-  },
-  computed: {
-    computedOptions(): Option[] {
-      return [];
-    },
   },
 });
 

@@ -22,7 +22,6 @@
 <template>
   <input
     :class="classes"
-    :style="style"
     :value="modelValue"
     @focus="onFocus"
     @blur="onBlur"
@@ -38,19 +37,22 @@ export interface State {
 }
 
 export default defineComponent({
-  name: 'oxd-input',
+  name: 'OxdInput',
 
   props: {
-    // https://v3.vuejs.org/guide/migration/v-model.html#overview
-    modelValue: {},
-    style: {
-      type: Object,
+    modelValue: {
+      type: String,
+      required: false,
+      default: null,
     },
     hasError: {
       type: Boolean,
+      required: false,
       default: false,
     },
   },
+
+  emits: ['update:modelValue', 'input'],
 
   data(): State {
     return {

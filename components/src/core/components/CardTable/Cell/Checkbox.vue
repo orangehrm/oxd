@@ -20,13 +20,13 @@
 -->
 
 <template>
-  <div @click.stop class="oxd-table-card-cell-checkbox">
+  <div class="oxd-table-card-cell-checkbox" @click.stop>
     <oxd-checkbox-input
       v-if="isSelectable"
       v-model="checkState"
       :value="item"
-      @click="onClickCheckbox(item, $event)"
       :disabled="isDisabled"
+      @click="onClickCheckbox(item, $event)"
     />
     <div v-else class="oxd-table-card-cell-hidden">
       <oxd-checkbox-input />
@@ -35,20 +35,27 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, inject, computed, onBeforeUnmount} from 'vue';
-import emitter from '../../../../utils/emitter';
-import CheckboxInput from '@ohrm/oxd/core/components/Input/CheckboxInput.vue';
 import {cellMixin} from './cell-mixin';
+import emitter from '../../../../utils/emitter';
+import {defineComponent, inject, computed, onBeforeUnmount} from 'vue';
+import CheckboxInput from '@ohrm/oxd/core/components/Input/CheckboxInput.vue';
 
 export default defineComponent({
-  name: 'oxd-table-cell-checkbox',
-  components: {'oxd-checkbox-input': CheckboxInput},
+  name: 'OxdTableCellCheckbox',
+
+  components: {
+    'oxd-checkbox-input': CheckboxInput,
+  },
+
   mixins: [cellMixin],
+
   props: {
     item: {
+      type: [String, Number, Boolean],
       required: true,
     },
   },
+
   setup(props) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const tableProps: any = inject('tableProps');
@@ -56,11 +63,12 @@ export default defineComponent({
     const checkState = computed({
       get: () => {
         const itemIndex = tableProps.selected.findIndex(
-          item => item === props.item,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (item: any) => item === props.item,
         );
         return itemIndex > -1;
       },
-      set: newVal => {
+      set: (newVal) => {
         newVal
           ? emitter.emit(
               `${tableProps.tableId}-datatable:rowSelected`,
@@ -117,6 +125,7 @@ export default defineComponent({
       isSelectable,
     };
   },
+
   methods: {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onClickCheckbox(item: any, e: Event) {

@@ -48,7 +48,7 @@ class EventBus {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   $emit(name: string, data: any) {
     if (this.queue[name]) {
-      this.queue[name].forEach(function(callback) {
+      this.queue[name].forEach(function (callback) {
         callback(data);
       });
     }

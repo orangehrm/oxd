@@ -40,9 +40,7 @@
       </p>
     </oxd-tab-panel>
     <oxd-tab-panel key="disabled" disabled="true" name="Disabled Tab">
-      <p>
-        This tab is disabled
-      </p>
+      <p>This tab is disabled</p>
     </oxd-tab-panel>
     <oxd-tab-panel
       key="second"

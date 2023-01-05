@@ -20,14 +20,14 @@
 -->
 
 <template>
-  <oxd-dropdown-menu @click="noOp" class="oxd-table-dropdown">
+  <oxd-dropdown-menu class="oxd-table-dropdown" @click="noOp">
     <oxd-icon-button name="three-dots-vertical" />
-    <template v-slot:content>
+    <template #content>
       <li
         v-for="option in options"
         :key="option.context"
-        @click="onClick($event, option.context)"
         class="oxd-table-dropdown-item"
+        @click="onClick($event, option.context)"
       >
         <oxd-text tag="p">{{ option.label }}</oxd-text>
       </li>
@@ -37,24 +37,30 @@
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
+import {ActionCellEvent, DropdownOption} from './types';
+import Text from '@ohrm/oxd/core/components/Text/Text.vue';
 import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
 import DropdownMenu from '@ohrm/oxd/core/components/DropdownMenu/DropdownMenu.vue';
-import Text from '@ohrm/oxd/core/components/Text/Text.vue';
-import {ActionCellEvent, DropdownOption} from './types';
 
 export default defineComponent({
-  name: 'oxd-table-dropdown',
+  name: 'OxdTableDropdown',
+
+  components: {
+    'oxd-text': Text,
+    'oxd-icon-button': IconButton,
+    'oxd-dropdown-menu': DropdownMenu,
+  },
+
   props: {
     options: {
       type: Array as PropType<DropdownOption[]>,
+      required: false,
       default: () => [],
     },
   },
-  components: {
-    'oxd-icon-button': IconButton,
-    'oxd-dropdown-menu': DropdownMenu,
-    'oxd-text': Text,
-  },
+
+  emits: ['click'],
+
   methods: {
     noOp(e: MouseEvent) {
       // stop event bubbling and prevent emiting event until selected

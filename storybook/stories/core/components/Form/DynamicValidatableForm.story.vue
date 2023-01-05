@@ -41,7 +41,7 @@
           @click="addField"
           name="plus"
           v-if="index == customFields.length - 1"
-          style="height: 30px;margin-left: 15px;"
+          style="height: 30px; margin-left: 15px"
         />
       </div>
     </oxd-form-row>
@@ -92,8 +92,8 @@ export default {
       customFields: [{name: ''}, {name: ''}],
       rules: {
         name: [
-          v => (!!v && v.trim() !== '') || 'Required',
-          v => (v && v.length <= 50) || 'Should be less than 50 characters',
+          (v) => (!!v && v.trim() !== '') || 'Required',
+          (v) => (v && v.length <= 50) || 'Should be less than 50 characters',
         ],
       },
       isValid: true,

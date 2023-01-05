@@ -39,11 +39,11 @@ export default function promiseDebounce(
     clearTimeout(handle);
     handle = setTimeout(() => {
       const result = exec(...args);
-      resolves.forEach(resolve => resolve(result));
+      resolves.forEach((resolve) => resolve(result));
       resolves = [];
     }, interval);
 
-    return new Promise(resolve => resolves.push(resolve));
+    return new Promise((resolve) => resolves.push(resolve));
   };
 }
 /* eslint-enable @typescript-eslint/no-explicit-any */

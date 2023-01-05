@@ -29,15 +29,17 @@
 import {defineComponent} from 'vue';
 
 export default defineComponent({
-  name: 'oxd-card-tr',
+  name: 'OxdCardTr',
 
   props: {
     withBorder: {
       type: Boolean,
+      required: false,
       default: true,
     },
     clickable: {
       type: Boolean,
+      required: false,
       default: true,
     },
   },

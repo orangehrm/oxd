@@ -24,15 +24,17 @@ export interface State {
   height: number;
 }
 
-export default function useResize(domElem: Ref<HTMLElement>) {
+export default function useResize(
+  domElem: Ref<HTMLElement | null | undefined>,
+) {
   const state: State = reactive({
     width: 0,
     height: 0,
   });
 
   const setElementSize = () => {
-    state.width = domElem.value.clientWidth;
-    state.height = domElem.value.clientHeight;
+    state.width = domElem.value?.clientWidth || 0;
+    state.height = domElem.value?.clientHeight || 0;
   };
 
   onMounted(async () => {

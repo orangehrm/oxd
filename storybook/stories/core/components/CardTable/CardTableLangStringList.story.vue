@@ -165,14 +165,14 @@ export default {
           onClick: () => {
             this.items[index].isEditable = true;
           },
-          onChange: $event => {
+          onChange: ($event) => {
             this.items[index].translatedText = $event.target.value;
           },
         },
       };
     },
     onClickEditall() {
-      this.items = this.items.map(item => ({
+      this.items = this.items.map((item) => ({
         ...item,
         isEditable: true,
       }));

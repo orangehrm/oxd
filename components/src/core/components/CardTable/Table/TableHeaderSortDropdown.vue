@@ -22,18 +22,18 @@
 <template>
   <div class="oxd-table-header-sort">
     <oxd-icon-button
-      :withContainer="false"
+      :with-container="false"
       :name="sortIcon"
       class="oxd-table-header-sort-icon"
       @click="openDropdown"
     />
     <div
-      v-click-outside="closeDropdown"
       v-show="isActive"
+      v-click-outside="closeDropdown"
       :class="classes"
       role="dropdown"
     >
-      <ul @click.stop="closeDropdown" role="menu">
+      <ul role="menu" @click.stop="closeDropdown">
         <li
           class="oxd-table-header-sort-dropdown-item"
           @click="$emit('order', 'ASC')"
@@ -60,31 +60,14 @@
 <script lang="ts">
 import {Order} from '../types';
 import {defineComponent} from 'vue';
+import usei18n from '../../../../composables/usei18n';
 import Text from '@ohrm/oxd/core/components/Text/Text.vue';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
 import clickOutsideDirective from '../../../../directives/click-outside';
-import usei18n from '../../../../composables/usei18n';
 
 export default defineComponent({
-  name: 'oxd-card-th-sort',
-
-  inheritAttrs: false,
-
-  props: {
-    order: {
-      type: String,
-      required: false,
-    },
-  },
-
-  setup() {
-    return {
-      ...usei18n(),
-    };
-  },
-
-  emits: ['order'],
+  name: 'OxdCardThSort',
 
   components: {
     'oxd-text': Text,
@@ -96,21 +79,28 @@ export default defineComponent({
     'click-outside': clickOutsideDirective,
   },
 
+  inheritAttrs: false,
+
+  props: {
+    order: {
+      type: String,
+      required: false,
+      default: null,
+    },
+  },
+
+  emits: ['order'],
+
+  setup() {
+    return {
+      ...usei18n(),
+    };
+  },
+
   data() {
     return {
       isActive: false,
     };
-  },
-
-  methods: {
-    openDropdown() {
-      this.isActive = true;
-    },
-    closeDropdown() {
-      if (this.isActive) {
-        this.isActive = false;
-      }
-    },
   },
 
   computed: {
@@ -136,6 +126,17 @@ export default defineComponent({
         '--active': this.isActive,
         'oxd-table-header-sort-dropdown': true,
       };
+    },
+  },
+
+  methods: {
+    openDropdown() {
+      this.isActive = true;
+    },
+    closeDropdown() {
+      if (this.isActive) {
+        this.isActive = false;
+      }
     },
   },
 });

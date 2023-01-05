@@ -37,9 +37,9 @@
       </div>
       <div class="oxd-sidepanel-body">
         <oxd-main-menu
-          @collapse="$emit('collapse')"
           :toggle="toggle"
           :menu-items="menuItems"
+          @collapse="$emit('collapse')"
         />
       </div>
     </nav>
@@ -47,45 +47,50 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from 'vue';
+import MenuItem from './types';
 import Branding from './Branding.vue';
 import MainMenu from './MainMenu.vue';
-import MenuItem from './types';
+import {defineComponent, PropType} from 'vue';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
-  name: 'oxd-side-panel',
+  name: 'OxdSidePanel',
 
-  emits: ['collapse'],
+  components: {
+    'oxd-icon': Icon,
+    'oxd-branding': Branding,
+    'oxd-main-menu': MainMenu,
+  },
 
   props: {
     toggle: {
       type: Boolean,
+      required: false,
       default: false,
     },
     brandLogoSrc: {
       type: String,
+      required: false,
       default: '',
     },
     brandBannerSrc: {
       type: String,
+      required: false,
       default: '',
     },
     homeUrl: {
       type: String,
+      required: false,
       default: '/',
     },
     menuItems: {
-      type: Object as PropType<MenuItem[]>,
-      default: [],
+      type: Array as PropType<MenuItem[]>,
+      required: false,
+      default: () => [],
     },
   },
 
-  components: {
-    'oxd-branding': Branding,
-    'oxd-main-menu': MainMenu,
-    'oxd-icon': Icon,
-  },
+  emits: ['collapse'],
 
   computed: {
     classes(): object {

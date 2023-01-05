@@ -29,7 +29,7 @@ export default {
   },
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     const selected = ref('05:00');
     return {args, selected};
@@ -39,7 +39,7 @@ const Template = args => ({
       h(TimeInput, {
         ...this.args,
         modelValue: this.selected,
-        'onUpdate:modelValue': value => {
+        'onUpdate:modelValue': (value) => {
           this.selected = value;
         },
       }),

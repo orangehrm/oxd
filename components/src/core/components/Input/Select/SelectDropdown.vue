@@ -34,7 +34,7 @@ import SelectOption from '@ohrm/oxd/core/components/Input/Select/SelectOption.vu
 import usei18n from '../../../../composables/usei18n';
 
 export default defineComponent({
-  name: 'oxd-select-dropdown',
+  name: 'OxdSelectDropdown',
 
   components: {
     'oxd-select-option': SelectOption,

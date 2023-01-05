@@ -29,11 +29,12 @@
 import {defineComponent} from 'vue';
 
 export default defineComponent({
-  name: 'oxd-tbody',
+  name: 'OxdTbody',
 
   props: {
     withStrip: {
       type: Boolean,
+      required: false,
       default: false,
     },
   },

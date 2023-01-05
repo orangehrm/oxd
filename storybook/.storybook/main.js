@@ -1,6 +1,9 @@
 const path = require('path');
 
 module.exports = {
+  core: {
+    builder: 'webpack5',
+  },
   stories: [
     '../stories/**/*.stories.mdx',
     '../stories/**/*.stories.@(js|jsx|ts|tsx)',
@@ -13,7 +16,7 @@ module.exports = {
     '@storybook/addon-a11y',
   ],
   // https://storybook.js.org/docs/react/configure/webpack#extending-storybooks-webpack-config
-  webpackFinal: async config => {
+  webpackFinal: async (config) => {
     config.module.rules.push({
       test: /\.scss$/,
       use: ['style-loader', 'css-loader', 'sass-loader'],

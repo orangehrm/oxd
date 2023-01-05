@@ -8,7 +8,7 @@ exports[`Calendar.vue renders OXD Calendar 1`] = `
         <div class="oxd-calendar-selector-month-selected">
           <p class="oxd-text oxd-text--p">July</p><i class="oxd-icon bi-caret-down-fill oxd-icon-button__icon"></i>
         </div>
-        <transition-stub>
+        <transition-stub name="transition-fade-down" appear="false" persisted="false" css="true">
           <!--v-if-->
         </transition-stub>
       </li>
@@ -16,7 +16,7 @@ exports[`Calendar.vue renders OXD Calendar 1`] = `
         <div class="oxd-calendar-selector-year-selected">
           <p class="oxd-text oxd-text--p">1990</p><i class="oxd-icon bi-caret-down-fill oxd-icon-button__icon"></i>
         </div>
-        <transition-stub>
+        <transition-stub name="transition-fade-down" appear="false" persisted="false" css="true">
           <!--v-if-->
         </transition-stub>
       </li>

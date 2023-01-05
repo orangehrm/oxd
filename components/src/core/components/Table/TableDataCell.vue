@@ -29,6 +29,6 @@
 import {defineComponent} from 'vue';
 
 export default defineComponent({
-  name: 'oxd-td',
+  name: 'OxdTd',
 });
 </script>

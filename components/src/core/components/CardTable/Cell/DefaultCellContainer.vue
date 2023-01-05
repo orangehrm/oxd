@@ -28,17 +28,16 @@ import {
   defineComponent,
   resolveComponent,
 } from 'vue';
-import TableDataCell from '@ohrm/oxd/core/components/CardTable/Table/TableDataCell.vue';
+import {RowItem} from './types';
+import {CardHeaders} from '../types';
 import DefaultCell from './Default.vue';
 import ActionsCell from './Actions.vue';
 import CheckboxCell from './Checkbox.vue';
-import {CardHeaders} from '../types';
-import {RowItem} from './types';
 import {DEVICE_LG, DEVICE_XL} from '../../../../composables/useResponsive';
+import TableDataCell from '@ohrm/oxd/core/components/CardTable/Table/TableDataCell.vue';
 
 export default defineComponent({
-  name: 'oxd-table-cell-container',
-  inject: ['screenState'],
+  name: 'OxdTableCellContainer',
 
   components: {
     'oxd-table-cell-default': DefaultCell,
@@ -46,17 +45,22 @@ export default defineComponent({
     'oxd-table-cell-checkbox': CheckboxCell,
   },
 
+  inject: ['screenState'],
+
   props: {
     index: {
       type: Number,
+      required: false,
       default: 0,
     },
     headers: {
       type: Array as PropType<CardHeaders>,
+      required: false,
       default: () => [],
     },
     items: {
       type: Object as PropType<RowItem>,
+      required: false,
       default: () => ({}),
     },
   },
@@ -74,7 +78,7 @@ export default defineComponent({
     const rowData = this.items;
     const defaultCell = resolveComponent('oxd-table-cell-default');
 
-    return this.headers.map(header => {
+    return this.headers.map((header) => {
       let cellType,
         cellProps,
         cellDirectives,

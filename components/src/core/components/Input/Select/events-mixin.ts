@@ -17,22 +17,33 @@
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
 
-import {defineComponent} from 'vue';
 import {Option} from '../types';
+import {defineComponent} from 'vue';
 
 interface State {
-  dropdownOpen: boolean;
   pointer: number;
+  dropdownOpen: boolean;
 }
 
 export const eventsMixin = defineComponent({
+  // eslint-disable-next-line vue/require-prop-types
   props: ['modelValue', 'disabled'],
+
+  emits: [
+    'dropdown:blur',
+    'dropdown:clear',
+    'dropdown:opened',
+    'dropdown:closed',
+    'update:modelValue',
+  ],
+
   data(): State {
     return {
       dropdownOpen: false,
       pointer: -1,
     };
   },
+
   methods: {
     onOpenDropdown() {
       if (this.disabled || this.dropdownOpen) return;

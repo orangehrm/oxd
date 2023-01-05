@@ -33,11 +33,11 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import AutocompleteOption from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteOption.vue';
 import usei18n from '../../../../composables/usei18n';
+import AutocompleteOption from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteOption.vue';
 
 export default defineComponent({
-  name: 'oxd-autocomplete-dropdown',
+  name: 'OxdAutocompleteDropdown',
 
   components: {
     'oxd-autocomplete-option': AutocompleteOption,
@@ -46,10 +46,12 @@ export default defineComponent({
   props: {
     loading: {
       type: Boolean,
+      required: false,
       default: false,
     },
     empty: {
       type: Boolean,
+      required: false,
       default: false,
     },
   },

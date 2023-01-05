@@ -42,34 +42,39 @@ import Text from '@ohrm/oxd/core/components/Text/Text.vue';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
-  name: 'oxd-main-menu-item',
-
-  props: {
-    url: {
-      type: String,
-      default: '#',
-    },
-    active: {
-      type: Boolean,
-      default: false,
-    },
-    collapsed: {
-      type: Boolean,
-      default: false,
-    },
-    name: {
-      type: String,
-      default: '',
-    },
-    icon: {
-      type: String,
-      default: 'home',
-    },
-  },
+  name: 'OxdMainMenuItem',
 
   components: {
     'oxd-text': Text,
     'oxd-icon': Icon,
+  },
+
+  props: {
+    url: {
+      type: String,
+      required: false,
+      default: '#',
+    },
+    active: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    collapsed: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    name: {
+      type: String,
+      required: false,
+      default: '',
+    },
+    icon: {
+      type: String,
+      required: false,
+      default: 'home',
+    },
   },
 
   computed: {

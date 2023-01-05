@@ -23,8 +23,8 @@
 <template>
   <oxd-table>
     <colgroup>
-      <col style="width:20%" />
-      <col style="width:50%" />
+      <col style="width: 20%" />
+      <col style="width: 50%" />
     </colgroup>
     <oxd-thead>
       <oxd-tr>
@@ -82,7 +82,7 @@ export default {
   methods: {
     onClick(item) {
       console.log(item);
-      return e => {
+      return (e) => {
         console.log(e);
       };
     },

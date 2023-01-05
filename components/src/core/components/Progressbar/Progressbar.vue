@@ -36,45 +36,53 @@ import {ProgressbarType, TYPE_DEFAULT, TYPES} from './types';
 import Text from '@ohrm/oxd/core/components/Text/Text.vue';
 
 export default defineComponent({
-  name: 'oxd-progressbar',
+  name: 'OxdProgressbar',
+
+  components: {
+    'oxd-text': Text,
+  },
+
   props: {
     showLabel: {
       type: Boolean,
+      required: false,
       default: true,
     },
     stripe: {
       type: Boolean,
+      required: false,
       default: false,
     },
     animation: {
       type: Boolean,
+      required: false,
       default: false,
     },
     progress: {
       type: Number,
+      required: false,
       default: 0,
-      validator: function(value: number) {
+      validator: function (value: number) {
         return value >= 0 && value <= 100;
       },
     },
     type: {
       type: String,
+      required: false,
       default: TYPE_DEFAULT,
-      validator: function(value: ProgressbarType) {
+      validator: function (value: ProgressbarType) {
         return TYPES.indexOf(value) !== -1;
       },
     },
   },
-  components: {
-    'oxd-text': Text,
-  },
+
   computed: {
-    styles(): object {
+    styles() {
       return {
         width: `${this.progress}%`,
       };
     },
-    classes(): object {
+    classes() {
       return {
         'oxd-progressbar-ticker': true,
         [`oxd-progressbar-ticker--${this.type}`]: true,

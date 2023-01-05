@@ -1,16 +1,17 @@
 ## Orange eXperience Design
-orange experience design is a component library that based OrangeHRM 5.x version 
 
- Copyright (C) 2020 OrangeHRM Inc., http://www.orangehrm.com/
+orange experience design is a component library that based OrangeHRM 5.x version
+
+Copyright (C) 2020 OrangeHRM Inc., http://www.orangehrm.com/
 
 OXD is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-### Technology Stack 
-* Vue3 
-* Sass - Component styling  
-* Jest - componnet unit tests 
-* Story Book 
+### Technology Stack
 
+- Vue3
+- Sass - Component styling
+- Jest - componnet unit tests
+- Story Book
 
 ### Prerequisites
 
@@ -50,4 +51,5 @@ yarn lint
 ```
 
 ### License
+
 GNU General Public License

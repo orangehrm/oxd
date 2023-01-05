@@ -20,22 +20,19 @@
 -->
 
 <template>
-  <label :class="classes" :style="style">
+  <label :class="classes">
     {{ label }}
   </label>
 </template>
 
-<script>
+<script lang="ts">
 export default {
-  name: 'oxd-label',
+  name: 'OxdLabel',
 
   props: {
     label: {
       type: String,
       required: true,
-    },
-    style: {
-      type: Object,
     },
   },
 

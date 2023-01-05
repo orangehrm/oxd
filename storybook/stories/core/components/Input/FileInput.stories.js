@@ -29,7 +29,7 @@ export default {
   },
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     return {args};
   },
@@ -39,7 +39,7 @@ const Template = args => ({
 
 const defaultPic = require('@ohrm/oxd/assets/images/user-default-400.png');
 
-const SlotTemplate = args => ({
+const SlotTemplate = (args) => ({
   setup() {
     const file = ref('');
     const imgSrc = computed({
@@ -57,7 +57,7 @@ const SlotTemplate = args => ({
     return h(
       FileInput,
       {
-        'onUpdate:modelValue': value => {
+        'onUpdate:modelValue': (value) => {
           if (value?.base64) {
             this.file = value.base64;
           }

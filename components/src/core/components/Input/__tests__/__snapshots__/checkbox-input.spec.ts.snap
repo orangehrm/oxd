@@ -2,12 +2,12 @@
 
 exports[`CheckboxInput.vue renders OXD Checkbox Input 1`] = `
 <div class="oxd-checkbox-wrapper"><label class="">
-    <!--v-if--><input type="checkbox" label="Checkbox"><span class="oxd-checkbox-input oxd-checkbox-input--active --label-right oxd-checkbox-input"><i class="oxd-icon bi-check oxd-checkbox-input-icon"></i></span>
+    <!--v-if--><input label="Checkbox" type="checkbox"><span class="oxd-checkbox-input oxd-checkbox-input--active --label-right oxd-checkbox-input"><i class="oxd-icon bi-check oxd-checkbox-input-icon"></i></span>
   </label></div>
 `;
 
 exports[`CheckboxInput.vue should renders OXD Input with error 1`] = `
 <div class="oxd-checkbox-wrapper"><label class="">
-    <!--v-if--><input type="checkbox" label="Checkbox"><span class="oxd-checkbox-input oxd-checkbox-input--active oxd-checkbox-input--error --label-right oxd-checkbox-input"><i class="oxd-icon bi-check oxd-checkbox-input-icon"></i></span>
+    <!--v-if--><input label="Checkbox" type="checkbox"><span class="oxd-checkbox-input oxd-checkbox-input--active oxd-checkbox-input--error --label-right oxd-checkbox-input"><i class="oxd-icon bi-check oxd-checkbox-input-icon"></i></span>
   </label></div>
 `;

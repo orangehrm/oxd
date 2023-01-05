@@ -24,7 +24,7 @@ export default {
   component: Pagination,
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     return {args};
   },

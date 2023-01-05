@@ -115,7 +115,7 @@ export default {
               label: 'HR Admin',
             },
           ],
-          'onUpdate:modelValue': function(params) {
+          'onUpdate:modelValue': function (params) {
             console.log(params);
           },
         },
@@ -133,7 +133,7 @@ export default {
           onBlur: () => {
             this.items[index].isTextArea = false;
           },
-          onChange: $event => {
+          onChange: ($event) => {
             this.items[index].comment = $event.target.value;
           },
         },

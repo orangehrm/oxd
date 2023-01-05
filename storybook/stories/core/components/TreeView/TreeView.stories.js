@@ -25,7 +25,7 @@ export default {
   component: TreeView,
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     return {args};
   },

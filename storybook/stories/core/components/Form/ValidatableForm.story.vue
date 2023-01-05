@@ -39,7 +39,7 @@
           :rules="rules.id"
         />
         <oxd-input-field
-          type="dropdown"
+          type="select"
           label="Job Role"
           v-model="role"
           :rules="rules.role"
@@ -120,19 +120,19 @@ export default {
       notify: '',
       rules: {
         name: [
-          v => (!!v && v.trim() !== '') || 'Required',
-          v => (v && v.length <= 50) || 'Should be less than 50 characters',
+          (v) => (!!v && v.trim() !== '') || 'Required',
+          (v) => (v && v.length <= 50) || 'Should be less than 50 characters',
         ],
         id: [
-          v => (!!v && v.trim() !== '') || 'Required',
-          v => (v && v.length >= 10) || 'Should more than 10 characters',
+          (v) => (!!v && v.trim() !== '') || 'Required',
+          (v) => (v && v.length >= 10) || 'Should more than 10 characters',
         ],
-        role: [v => (v && v.length > 0) || 'Required'],
+        role: [(v) => (v && v.length > 0) || 'Required'],
         consent: [
-          v => (v && v.length > 0) || 'Required',
-          v => v === 'yes' || 'You should agree',
+          (v) => (v && v.length > 0) || 'Required',
+          (v) => v === 'yes' || 'You should agree',
         ],
-        notify: [v => v || 'Please turn notify on'],
+        notify: [(v) => v || 'Please turn notify on'],
       },
       isValid: true,
     };

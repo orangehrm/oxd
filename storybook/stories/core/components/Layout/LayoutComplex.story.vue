@@ -39,7 +39,7 @@
               </oxd-grid-item>
               <oxd-grid-item>
                 <oxd-input-field
-                  type="dropdown"
+                  type="select"
                   label="User Role"
                   v-model="filters.role"
                   :options="[]"

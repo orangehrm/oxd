@@ -28,7 +28,7 @@
 
 <script lang="ts">
 export default {
-  name: 'oxd-chip',
+  name: 'OxdChip',
 
   props: {
     label: {
@@ -37,10 +37,13 @@ export default {
     },
     transparent: {
       type: Boolean,
+      required: false,
       default: false,
     },
     backgroundColor: {
       type: String,
+      required: false,
+      default: null,
     },
   },
 

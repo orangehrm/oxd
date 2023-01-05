@@ -23,9 +23,9 @@
   <nav role="navigation" aria-label="Pagination Navigation">
     <ul class="oxd-pagination__ul">
       <oxd-pagination-page-item
+        v-if="showPrevious"
         previous
         @click="onClickPrevious"
-        v-if="showPrevious"
       />
       <oxd-pagination-page-item
         v-for="page in pageItems"
@@ -34,32 +34,24 @@
         :selected="page === currentPage"
         @click="onClickPage(page, $event)"
       />
-      <oxd-pagination-page-item next @click="onClickNext" v-if="showNext" />
+      <oxd-pagination-page-item v-if="showNext" next @click="onClickNext" />
     </ul>
   </nav>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import PageItem from '@ohrm/oxd/core/components/Pagination/PageItem.vue';
 import {pageableMixin} from '../../../mixins/pageable';
+import PageItem from '@ohrm/oxd/core/components/Pagination/PageItem.vue';
 
 export default defineComponent({
-  name: 'oxd-pagination',
+  name: 'OxdPagination',
 
   components: {
     'oxd-pagination-page-item': PageItem,
   },
 
   mixins: [pageableMixin],
-
-  emits: ['previous', 'next', 'update:current', 'clickPage'],
-
-  data() {
-    return {
-      pagePointer: this.current,
-    };
-  },
 
   props: {
     length: {
@@ -69,14 +61,24 @@ export default defineComponent({
     },
     max: {
       type: Number,
+      required: false,
       default: 5,
       validator: (val: number) => Number.isInteger(val),
     },
     current: {
       type: Number,
+      required: false,
       default: 1,
       validator: (val: number) => Number.isInteger(val),
     },
+  },
+
+  emits: ['previous', 'next', 'update:current', 'clickPage'],
+
+  data() {
+    return {
+      pagePointer: this.current,
+    };
   },
 
   computed: {

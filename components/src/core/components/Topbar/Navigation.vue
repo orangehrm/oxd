@@ -30,9 +30,9 @@
       <oxd-navigation-link
         v-for="(menuItem, index) in visibleMenuItems"
         :ref="setMenuItem"
+        :key="`nav-level1-${index + width}`"
         :menu-item="menuItem"
         :class="menuClasses[index]"
-        :key="`nav-level1-${index + width}`"
       >
       </oxd-navigation-link>
 
@@ -63,17 +63,19 @@ import NavigationLink from '@ohrm/oxd/core/components/Topbar/NavigationLink.vue'
 import NavigationMore from '@ohrm/oxd/core/components/Topbar/NavigationMore.vue';
 
 export default defineComponent({
-  name: 'oxd-navigation',
-
-  props: {
-    menuItems: {
-      type: Object as PropType<TopMenuItem[]>,
-    },
-  },
+  name: 'OxdNavigation',
 
   components: {
     'oxd-navigation-link': NavigationLink,
     'oxd-navigation-more': NavigationMore,
+  },
+
+  props: {
+    menuItems: {
+      type: Array as PropType<TopMenuItem[]>,
+      required: false,
+      default: () => [],
+    },
   },
 
   setup(props) {
@@ -91,7 +93,7 @@ export default defineComponent({
     };
 
     const menuClasses = computed(() => {
-      return props.menuItems.map(item => {
+      return props.menuItems.map((item) => {
         return {
           'oxd-topbar-body-nav-tab': true,
           '--parent': item.children.length > 0,
@@ -118,7 +120,8 @@ export default defineComponent({
         lastMenuItemWidth.value = getHTMLElementWidth(
           menuItems[menuItems.length - 1].$el,
         );
-        hiddenMenuItems.value.unshift(visibleMenuItems.value.pop());
+        const lastMenuItem = visibleMenuItems.value.pop();
+        if (lastMenuItem) hiddenMenuItems.value.unshift(lastMenuItem);
       }
 
       if (
@@ -126,7 +129,9 @@ export default defineComponent({
         width.value > menuItemsWidth + lastMenuItemWidth.value
       ) {
         nextTick().then(() => {
-          visibleMenuItems.value.push(hiddenMenuItems.value.shift());
+          const lastHiddenMenuItem = hiddenMenuItems.value.shift();
+          if (lastHiddenMenuItem)
+            visibleMenuItems.value.push(lastHiddenMenuItem);
         });
       }
     };

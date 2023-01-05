@@ -21,17 +21,17 @@
 
 <template>
   <li
-    @click="openSubmenu"
     v-click-outside="closeSubMenu"
     :class="{'--active': isActive}"
+    @click="openSubmenu"
   >
     <slot></slot>
     <transition name="transition-fade-down">
       <ul
-        @click.stop="closeSubMenu"
         v-if="isActive"
         class="oxd-dropdown-menu"
         role="menu"
+        @click.stop="closeSubMenu"
       >
         <slot name="content"></slot>
       </ul>
@@ -44,18 +44,18 @@ import {defineComponent} from 'vue';
 import clickOutsideDirective from '../../../directives/click-outside';
 
 export default defineComponent({
-  name: 'oxd-dropdown-menu',
+  name: 'OxdDropdownMenu',
+
+  directives: {
+    'click-outside': clickOutsideDirective,
+  },
+
+  emits: ['dropdown:opened', 'dropdown:closed'],
 
   data() {
     return {
       isActive: false,
     };
-  },
-
-  emits: ['dropdown:opened', 'dropdown:closed'],
-
-  directives: {
-    'click-outside': clickOutsideDirective,
   },
 
   methods: {

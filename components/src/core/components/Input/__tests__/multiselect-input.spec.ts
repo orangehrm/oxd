@@ -38,6 +38,10 @@ const options = [
 ];
 
 describe('MultiSelectInput.vue', () => {
+  const div = document.createElement('div');
+  div.id = 'root';
+  document.body.appendChild(div);
+
   it('renders OXD MultiSelect Input', () => {
     const wrapper = mount(MultiSelectInput, {
       props: {options, modelValue: []},
@@ -47,18 +51,18 @@ describe('MultiSelectInput.vue', () => {
   it('should load options to Select', async () => {
     const wrapper = mount(MultiSelectInput, {
       props: {options, modelValue: []},
+      attachTo: '#root',
     });
-    wrapper.findComponent(SelectText).trigger('mousedown');
-    await wrapper.vm.$nextTick();
+    await wrapper.findComponent(SelectText).trigger('mousedown');
     const nodes = wrapper.findAllComponents(SelectOption);
     expect(nodes.length).toBe(3);
   });
   it('should select one option', async () => {
     const wrapper = mount(MultiSelectInput, {
       props: {options, modelValue: []},
+      attachTo: '#root',
     });
-    wrapper.findComponent(SelectText).trigger('mousedown');
-    await wrapper.vm.$nextTick();
+    await wrapper.findComponent(SelectText).trigger('mousedown');
     const nodes = wrapper.findAllComponents(SelectOption);
     await nodes[0].trigger('mousedown');
     expect(wrapper.emitted('update:modelValue')).toEqual([
@@ -84,9 +88,9 @@ describe('MultiSelectInput.vue', () => {
           },
         ],
       },
+      attachTo: '#root',
     });
-    wrapper.findComponent(SelectText).trigger('mousedown');
-    await wrapper.vm.$nextTick();
+    await wrapper.findComponent(SelectText).trigger('mousedown');
     const nodes = wrapper.findAllComponents(SelectOption);
     await nodes[0].trigger('mousedown');
     expect(wrapper.emitted('update:modelValue')).toBeFalsy();
@@ -102,9 +106,9 @@ describe('MultiSelectInput.vue', () => {
           },
         ],
       },
+      attachTo: '#root',
     });
-    wrapper.findComponent(SelectText).trigger('mousedown');
-    await wrapper.vm.$nextTick();
+    await wrapper.findComponent(SelectText).trigger('mousedown');
     const nodes = wrapper.findAllComponents(SelectOption);
     await nodes[1].trigger('mousedown');
     expect(wrapper.emitted('update:modelValue')).toEqual([

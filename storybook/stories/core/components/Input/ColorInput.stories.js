@@ -29,7 +29,7 @@ export default {
   },
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     const selected = ref(args.value ?? null);
     return {args, selected};
@@ -38,7 +38,7 @@ const Template = args => ({
     return h(ColorInput, {
       ...this.args,
       modelValue: this.selected,
-      'onUpdate:modelValue': value => {
+      'onUpdate:modelValue': (value) => {
         this.selected = value;
       },
     });

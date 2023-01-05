@@ -22,9 +22,9 @@
 <template>
   <div class="oxd-table-cell-actions">
     <component
+      :is="getComponent(action, key)"
       v-for="(action, key) in actions"
       :key="key"
-      :is="getComponent(action, key)"
       v-bind="getProps(action, key)"
       class="oxd-table-cell-action-space"
       :disabled="isDisabled"
@@ -34,29 +34,30 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, mergeProps} from 'vue';
 import {cellMixin} from './cell-mixin';
-import {ActionsCellConfig, Action, RowItem, ActionCellEvent} from './types';
-import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
+import {defineComponent, mergeProps} from 'vue';
 import Button from '@ohrm/oxd/core/components/Button/Button.vue';
+import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
+import {ActionsCellConfig, Action, RowItem, ActionCellEvent} from './types';
 import Dropdown from '@ohrm/oxd/core/components/CardTable/Cell/Dropdown.vue';
 
 export default defineComponent({
-  name: 'oxd-table-cell-actions',
-
-  mixins: [cellMixin],
+  name: 'OxdTableCellActions',
 
   components: {
-    'oxd-icon-button': IconButton,
     'oxd-button': Button,
+    'oxd-icon-button': IconButton,
     'oxd-table-dropdown': Dropdown,
   },
+
+  mixins: [cellMixin],
 
   props: {
     item: {
       type: Object,
       // not required, since actions evaluate from `this.header.cellConfig`
       required: false,
+      default: () => ({}),
     },
   },
 

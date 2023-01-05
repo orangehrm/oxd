@@ -81,17 +81,17 @@ export default {
       textarea: '',
       rules: {
         input: [
-          v => (!!v && v.trim() !== '') || 'Required',
-          v => (v && v.length <= 5) || 'Should be less than 5 characters',
+          (v) => (!!v && v.trim() !== '') || 'Required',
+          (v) => (v && v.length <= 5) || 'Should be less than 5 characters',
         ],
         file: [
-          v =>
+          (v) =>
             v === null ||
             (v && v.size && v.size <= 1024 * 1024) ||
             'Attachment size exceeded',
         ],
         textarea: [
-          v => {
+          (v) => {
             const complexValidation = v && v.length <= 5;
             return (
               complexValidation ||

@@ -86,12 +86,12 @@ import Button from '@ohrm/oxd/core/components/Button/Button';
 import Text from '@ohrm/oxd/core/components/Text/Text';
 import promiseDebounce from '@ohrm/oxd/utils/promiseDebounce';
 
-const checkGithub = function(value) {
-  return new Promise(resolve => {
+const checkGithub = function (value) {
+  return new Promise((resolve) => {
     if (value.trim()) {
       fetch(`https://api.github.com/search/users?q=${value}`)
-        .then(response => response.json())
-        .then(json => {
+        .then((response) => response.json())
+        .then((json) => {
           const {total_count} = json;
           return total_count === 0
             ? resolve(true)
@@ -103,8 +103,8 @@ const checkGithub = function(value) {
   });
 };
 
-const delayedFunc = function(value) {
-  return new Promise(resolve => {
+const delayedFunc = function (value) {
+  return new Promise((resolve) => {
     if (value === 'test@test.com') {
       setTimeout(() => {
         resolve(true);
@@ -136,18 +136,18 @@ export default {
       number: '',
       rules: {
         name: [
-          v => (!!v && v.trim() !== '') || 'Required',
-          v => (v && v.length <= 6) || 'Should be less than 6 characters',
+          (v) => (!!v && v.trim() !== '') || 'Required',
+          (v) => (v && v.length <= 6) || 'Should be less than 6 characters',
           promiseDebounce(checkGithub, 500),
         ],
         email: [
-          v => (!!v && v.trim() !== '') || 'Required',
-          v => (v && v.length <= 15) || 'Should be less than 15 characters',
+          (v) => (!!v && v.trim() !== '') || 'Required',
+          (v) => (v && v.length <= 15) || 'Should be less than 15 characters',
           promiseDebounce(delayedFunc, 500),
         ],
         number: [
-          v => (!!v && v.trim() !== '') || 'Required',
-          v => (v && v.length <= 10) || 'Should be less than 10 characters',
+          (v) => (!!v && v.trim() !== '') || 'Required',
+          (v) => (v && v.length <= 10) || 'Should be less than 10 characters',
         ],
       },
     };

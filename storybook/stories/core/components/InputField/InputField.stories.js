@@ -34,7 +34,7 @@ const argTypes = {
   },
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     return {args};
   },
@@ -42,7 +42,7 @@ const Template = args => ({
   template: '<oxd-form><oxd-input-field v-bind="args" /></oxd-form>',
 });
 
-const DropdownTemplate = args => ({
+const DropdownTemplate = (args) => ({
   setup() {
     const selected = ref([]);
     return {args, selected};
@@ -56,7 +56,7 @@ const DropdownTemplate = args => ({
           return h(InputField, {
             ...this.args,
             modelValue: this.selected,
-            'onUpdate:modelValue': value => {
+            'onUpdate:modelValue': (value) => {
               this.selected = [...value];
             },
           });
@@ -86,33 +86,6 @@ Textarea.argTypes = argTypes;
 Textarea.args = {
   label: 'Textarea Input Field',
   type: 'textarea',
-};
-
-export const Dropdown = DropdownTemplate.bind({});
-Dropdown.argTypes = argTypes;
-Dropdown.args = {
-  label: 'Dropdown Input Field',
-  type: 'dropdown',
-  createOptions: async function() {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve([
-          {
-            id: 1,
-            label: 'All',
-          },
-          {
-            id: 2,
-            label: 'HR Admin',
-          },
-          {
-            id: 3,
-            label: 'ESS',
-          },
-        ]);
-      }, 5000);
-    });
-  },
 };
 
 export const PasswordInput = Template.bind({});
@@ -167,8 +140,8 @@ AutocompleteInput.args = {
   label: 'Autocomplete Input Field',
   type: 'autocomplete',
   modelValue: null,
-  createOptions: async function() {
-    return new Promise(resolve => {
+  createOptions: async function () {
+    return new Promise((resolve) => {
       setTimeout(() => {
         resolve([
           {

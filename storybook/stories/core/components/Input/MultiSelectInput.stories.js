@@ -84,7 +84,7 @@ const options = [
   },
 ];
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     const selected = ref([]);
     return {args, selected};
@@ -93,7 +93,7 @@ const Template = args => ({
     return h(MultiSelectInput, {
       ...this.args,
       modelValue: this.selected,
-      'onUpdate:modelValue': value => {
+      'onUpdate:modelValue': (value) => {
         this.selected = value;
       },
     });

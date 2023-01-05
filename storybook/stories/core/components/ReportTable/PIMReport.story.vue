@@ -57,7 +57,7 @@ export default {
   },
 
   beforeMount() {
-    const setupColumn = column => {
+    const setupColumn = (column) => {
       delete column['size'];
       const {type} = column.cellProperties ?? {};
       return {
@@ -66,15 +66,15 @@ export default {
         cellTemplate: type === 'list' ? CellAdapter(MultilineCell) : undefined,
       };
     };
-    this.headers = headers.map(header => {
+    this.headers = headers.map((header) => {
       if (header?.children && Array.isArray(header.children)) {
-        header.children = header.children.map(child => setupColumn(child));
+        header.children = header.children.map((child) => setupColumn(child));
         return header;
       } else {
         return setupColumn(header);
       }
     });
-    this.items = data.map(item => {
+    this.items = data.map((item) => {
       let _rows = 0;
       for (const key in item) {
         const value = item[key];

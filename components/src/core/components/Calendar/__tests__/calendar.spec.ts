@@ -38,7 +38,7 @@ describe('Calendar.vue', () => {
     const date = wrapper.findComponent(DateVue);
     await date.trigger('click');
     expect(wrapper.emitted('update:modelValue')).toBeTruthy();
-    expect(date.find('.oxd-calendar-date.--selected').exists()).toBeTruthy();
+    expect(wrapper.find('.oxd-calendar-date.--selected').exists()).toBeTruthy();
   });
   it('should show today date', async () => {
     const wrapper = mount(Calendar, {});
@@ -49,7 +49,7 @@ describe('Calendar.vue', () => {
   it('should show attributes in calendar', async () => {
     const wrapper = mount(Calendar, {
       props: {
-        modelValue: dateExpected,
+        modelValue: new Date(1990, 5, 1, 0, 0, 0),
         dayAttributes: [
           {
             index: 0, // sunday
@@ -64,23 +64,17 @@ describe('Calendar.vue', () => {
         ],
       },
     });
-    const date = wrapper.findAllComponents(DateVue);
-    const nonWorkingDay = nextSunday(dateExpected);
-    const halfWorkingDay = nextSaturday(dateExpected);
+
     expect(
-      date[nonWorkingDay.getDate()]
-        .find('.oxd-calendar-date-wrapper.--non-working-day')
-        .exists(),
-    ).toBeTruthy();
+      wrapper.find('.oxd-calendar-date-wrapper.--non-working-day').text(),
+    ).toEqual(nextSunday(new Date(1990, 5, 1, 0, 0, 0)).getDate().toString());
     expect(
-      date[halfWorkingDay.getDate()]
-        .find('.oxd-calendar-date-wrapper.--working-day-half')
-        .exists(),
-    ).toBeTruthy();
+      wrapper.find('.oxd-calendar-date-wrapper.--working-day-half').text(),
+    ).toEqual(nextSaturday(new Date(1990, 5, 1, 0, 0, 0)).getDate().toString());
   });
   it('should show events in calendar', async () => {
     const event1 = {
-      date: nextSunday(dateExpected),
+      date: nextSaturday(dateExpected),
       type: 'holiday',
       class: '--holiday-full',
     };
@@ -95,17 +89,13 @@ describe('Calendar.vue', () => {
         events: [event1, event2],
       },
     });
-    const date = wrapper.findAllComponents(DateVue);
-    expect(
-      date[event1.date.getDate()]
-        .find('.oxd-calendar-date.--holiday-full')
-        .exists(),
-    ).toBeTruthy();
-    expect(
-      date[event2.date.getDate()]
-        .find('.oxd-calendar-date.--holiday-half')
-        .exists(),
-    ).toBeTruthy();
+
+    expect(wrapper.find('.oxd-calendar-date.--holiday-full').text()).toEqual(
+      event1.date.getDate().toString(),
+    );
+    expect(wrapper.find('.oxd-calendar-date.--holiday-half').text()).toEqual(
+      event2.date.getDate().toString().toString(),
+    );
   });
   it('should emit selectMonth on month change', async () => {
     const wrapper = mount(Calendar, {});

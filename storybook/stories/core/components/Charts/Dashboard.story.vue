@@ -50,9 +50,7 @@
       </oxd-grid-item>
       <oxd-grid-item>
         <oxd-sheet :gutters="false" class="orangehrm-dashboard-widget">
-          <oxd-text type="card-title">
-            Time at work
-          </oxd-text>
+          <oxd-text type="card-title"> Time at work </oxd-text>
           <oxd-divider />
           <div class="orangehrm-dashboard-widget-body">
             <oxd-bar-chart

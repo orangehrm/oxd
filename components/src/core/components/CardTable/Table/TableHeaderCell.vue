@@ -36,20 +36,21 @@ import {Order} from '../types';
 import TableHeaderSortDropdown from './TableHeaderSortDropdown.vue';
 
 export default defineComponent({
-  name: 'oxd-card-th',
+  name: 'OxdCardTh',
+
+  components: {
+    'oxd-card-th-sort': TableHeaderSortDropdown,
+  },
 
   props: {
     order: {
       type: String,
       required: false,
+      default: null,
     },
   },
 
   emits: ['order'],
-
-  components: {
-    'oxd-card-th-sort': TableHeaderSortDropdown,
-  },
 
   methods: {
     onOrder(order: Order) {

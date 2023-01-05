@@ -29,44 +29,47 @@
     >
       <oxd-icon
         name="x"
-        @click="onClick(option)"
         :class="{
           '--clear': true,
           '--disabled': disabled,
           '--readonly': readonly,
         }"
+        @click="onClick(option)"
       />
     </oxd-chip>
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
 import {Option} from '../types';
+import {defineComponent, PropType} from 'vue';
 import Chip from '@ohrm/oxd/core/components/Chip/Chip.vue';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
-  name: 'oxd-mutliselect-chips',
-
-  props: {
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    readonly: {
-      type: Boolean,
-      default: false,
-    },
-    selected: {
-      type: Array,
-      default: () => [],
-    },
-  },
+  name: 'OxdMutliselectChips',
 
   components: {
     'oxd-chip': Chip,
     'oxd-icon': Icon,
+  },
+
+  props: {
+    disabled: {
+      type: Boolean,
+      require: false,
+      default: false,
+    },
+    readonly: {
+      type: Boolean,
+      require: false,
+      default: false,
+    },
+    selected: {
+      type: Array as PropType<Option[]>,
+      require: false,
+      default: () => [],
+    },
   },
 
   emits: ['chipRemoved'],

@@ -26,20 +26,20 @@
         name="chevron-up"
         class="oxd-time-hour-input-up"
         role="none"
+        :with-container="false"
         @click="increment(1, 'hour')"
-        :withContainer="false"
       />
       <oxd-input
         :value="hour"
-        @change="onChange($event, 'hour')"
         class="oxd-time-hour-input-text"
+        @change="onChange($event, 'hour')"
       />
       <oxd-icon-button
         name="chevron-down"
         class="oxd-time-hour-input-down"
         role="none"
+        :with-container="false"
         @click="decrement(1, 'hour')"
-        :withContainer="false"
       />
     </div>
     <div class="oxd-time-seperator">
@@ -50,29 +50,29 @@
         name="chevron-up"
         class="oxd-time-minute-input-up"
         role="none"
+        :with-container="false"
         @click="increment(step, 'minute')"
-        :withContainer="false"
       />
       <oxd-input
         :value="minute"
-        @change="onChange($event, 'minute')"
         class="oxd-time-minute-input-text"
+        @change="onChange($event, 'minute')"
       />
       <oxd-icon-button
         name="chevron-down"
         class="oxd-time-minute-input-down"
         role="none"
+        :with-container="false"
         @click="decrement(step, 'minute')"
-        :withContainer="false"
       />
     </div>
     <div class="oxd-time-period-input">
       <div class="oxd-time-period-label">
-        <input name="am" v-model="period" type="radio" value="AM" />
+        <input v-model="period" name="am" type="radio" value="AM" />
         <label for="am">AM</label>
       </div>
       <div class="oxd-time-period-label">
-        <input name="pm" v-model="period" type="radio" value="PM" />
+        <input v-model="period" name="pm" type="radio" value="PM" />
         <label for="pm">PM</label>
       </div>
     </div>
@@ -92,20 +92,24 @@ interface State {
 }
 
 export default defineComponent({
-  name: 'oxd-time-picker',
-
-  props: {
-    modelValue: {
-      type: String,
-    },
-    step: {
-      type: Number,
-    },
-  },
+  name: 'OxdTimePicker',
 
   components: {
     'oxd-input': Input,
     'oxd-icon-button': IconButton,
+  },
+
+  props: {
+    modelValue: {
+      type: String,
+      required: false,
+      default: null,
+    },
+    step: {
+      type: Number,
+      required: false,
+      default: 1,
+    },
   },
 
   emits: ['update:modelValue'],
@@ -138,12 +142,12 @@ export default defineComponent({
       setValue(input, type);
     };
 
-    const increment = (step: number, type: string) => {
+    const increment = (step: number, type: keyof State) => {
       const input = parseInt(state[type]);
       setValue(input + step, type);
     };
 
-    const decrement = (step: number, type: string) => {
+    const decrement = (step: number, type: keyof State) => {
       const input = parseInt(state[type]);
       setValue(input - step, type);
     };
@@ -154,23 +158,28 @@ export default defineComponent({
         // getHours() return 0-23, return 12 if 0
         setValue(time.getHours() % 12 || 12, 'hour');
         setValue(time.getMinutes(), 'minute');
-        state.period = formatDate(time, 'a');
+        const period = formatDate(time, 'a');
+        if (period) state.period = period;
       }
     });
 
     watchEffect(() => {
-      const time = formatDate(
-        parseDate(`${state.hour}:${state.minute} ${state.period}`, 'hh:mm a'),
-        'HH:mm',
+      const parsedDate = parseDate(
+        `${state.hour}:${state.minute} ${state.period}`,
+        'hh:mm a',
       );
-      context.emit('update:modelValue', time);
+
+      context.emit(
+        'update:modelValue',
+        parsedDate ? formatDate(parsedDate, 'HH:mm') : null,
+      );
     });
 
     return {
-      ...toRefs(state),
       onChange,
       increment,
       decrement,
+      ...toRefs(state),
     };
   },
 });

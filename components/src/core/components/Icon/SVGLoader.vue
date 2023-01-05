@@ -37,7 +37,7 @@
 import {defineComponent} from 'vue';
 
 export default defineComponent({
-  name: 'svg-loader',
+  name: 'SvgLoader',
   props: {
     width: {
       type: [Number, String],

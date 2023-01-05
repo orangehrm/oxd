@@ -22,16 +22,16 @@
 <template>
   <li class="oxd-tree-node" :class="nodeClasses">
     <div
-      :ref="cuid"
       v-if="showRoot"
+      :ref="cuid"
       :class="nodeClasses"
       class="oxd-tree-node-wrapper"
     >
       <span v-if="hasChildren" class="oxd-tree-node-toggle">
         <oxd-icon-button
-          @click="onClickNode"
           :name="isOpen ? 'chevron-up' : 'chevron-down'"
           role="none"
+          @click="onClickNode"
         />
       </span>
       <div class="oxd-tree-node-content">
@@ -43,19 +43,19 @@
     </div>
     <div class="oxd-tree-node-liner" :style="lineStyles"></div>
     <transition
-      :name="animation"
       v-if="hasChildren"
+      :name="animation"
       @after-leave="onAnimationComplete"
     >
-      <ul class="oxd-tree-node-child" v-if="isOpen">
+      <ul v-if="isOpen" class="oxd-tree-node-child">
         <oxd-tree-node
           v-for="(child, index) in data.children"
           :key="child.cuid"
           :data="child"
           :animation="animation"
-          :isLast="index + 1 === data.children.length"
+          :is-last="index + 1 === data.children.length"
         >
-          <template v-for="(_, name) in $slots" v-slot:[name]="slotData">
+          <template v-for="(_, name) in $slots" #[name]="slotData">
             <slot :name="name" v-bind="slotData" />
           </template>
         </oxd-tree-node>
@@ -65,13 +65,18 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType, ref} from 'vue';
-import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
 import {TNode} from './types';
 import {nanoid} from 'nanoid';
+import {defineComponent, PropType, ref} from 'vue';
+import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
 
 export default defineComponent({
-  name: 'oxd-tree-node',
+  name: 'OxdTreeNode',
+
+  components: {
+    'oxd-icon-button': IconButton,
+  },
+
   props: {
     data: {
       type: Object as PropType<TNode>,
@@ -94,9 +99,7 @@ export default defineComponent({
       default: true,
     },
   },
-  components: {
-    'oxd-icon-button': IconButton,
-  },
+
   setup(props) {
     const isOpen = ref(props.open);
     const isCollapsed = ref(!props.open);
@@ -107,8 +110,9 @@ export default defineComponent({
       height,
     };
   },
+
   computed: {
-    hasChildren(): boolean {
+    hasChildren() {
       return this.data.children && this.data.children.length;
     },
     nodeClasses(): object {
@@ -128,12 +132,17 @@ export default defineComponent({
     nodes(): TNode {
       return {...this.data, cuid: this.cuid};
     },
-    lineStyles(): object {
+    lineStyles() {
       return {
         height: this.isLast ? this.height / 2 + 'px' : '100%',
       };
     },
   },
+
+  mounted() {
+    this.calculateNodeHeight();
+  },
+
   methods: {
     onClickNode() {
       if (this.hasChildren) {
@@ -148,9 +157,6 @@ export default defineComponent({
       const node = this.$refs[this.cuid] as HTMLInputElement;
       this.height = node ? node.clientHeight : 0;
     },
-  },
-  mounted() {
-    this.calculateNodeHeight();
   },
 });
 </script>

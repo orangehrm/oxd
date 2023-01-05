@@ -30,22 +30,25 @@ import {defineComponent} from 'vue';
 import {SheetType, TYPES, TYPE_WHITE} from './types';
 
 export default defineComponent({
-  name: 'oxd-sheet',
+  name: 'OxdSheet',
 
   props: {
     type: {
       type: String,
+      required: false,
       default: TYPE_WHITE,
-      validator: function(value: SheetType) {
+      validator: function (value: SheetType) {
         return TYPES.indexOf(value) !== -1;
       },
     },
     rounded: {
       type: Boolean,
+      required: false,
       default: true,
     },
     gutters: {
       type: Boolean,
+      required: false,
       default: true,
     },
   },

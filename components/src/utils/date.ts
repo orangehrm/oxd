@@ -74,7 +74,7 @@ const rearrangeWeek = (weekStartsOn: number) => {
 };
 
 const getDayOffset = (date: Date, weekStartsOn: number) => {
-  return rearrangeWeek(weekStartsOn).findIndex(i => i === getDay(date)) + 1;
+  return rearrangeWeek(weekStartsOn).findIndex((i) => i === getDay(date)) + 1;
 };
 
 /**

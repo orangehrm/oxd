@@ -31,7 +31,7 @@
 import {defineComponent} from 'vue';
 
 export default defineComponent({
-  name: 'oxd-dialog-container-default',
+  name: 'OxdDialogContainerDefault',
 });
 </script>
 

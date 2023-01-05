@@ -36,7 +36,7 @@ const options = [
   },
 ];
 
-const syncFunction = function() {
+const syncFunction = function () {
   return options;
 };
 

@@ -25,7 +25,7 @@ export default {
   component: BarChart,
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     return {args};
   },

@@ -39,16 +39,16 @@
     ></canvas>
     <input
       :value="hue"
-      @change="onHueChange"
       class="oxd-color-picker-range"
       type="range"
       max="359"
+      @change="onHueChange"
     />
     <oxd-label
       :label="t('general.hex', 'HEX')"
       class="oxd-color-picker-label"
     />
-    <oxd-input :value="modelValue" @update:modelValue="onHexInput" />
+    <oxd-input :value="modelValue" @update:model-value="onHexInput" />
   </div>
 </template>
 
@@ -69,18 +69,19 @@ import Label from '@ohrm/oxd/core/components/Label/Label.vue';
 import {clamp, hex2Hsv, hsv2Hex, sanitizeHex} from '../../../../utils/color';
 
 export default defineComponent({
-  name: 'oxd-color-picker',
+  name: 'OxdColorPicker',
+
+  components: {
+    'oxd-input': Input,
+    'oxd-label': Label,
+  },
 
   props: {
     modelValue: {
       type: String,
       required: false,
+      default: null,
     },
-  },
-
-  components: {
-    'oxd-input': Input,
-    'oxd-label': Label,
   },
 
   emits: ['update:modelValue'],
@@ -137,7 +138,7 @@ export default defineComponent({
       }
     };
 
-    const captureOn = ($e: MouseEvent) => {
+    const captureOn = ($e: MouseEvent | TouchEvent) => {
       state.pickEnabled = true;
       pickColor($e);
     };
@@ -156,7 +157,7 @@ export default defineComponent({
       context.emit('update:modelValue', value);
     };
 
-    const onHueChange = ($e: InputEvent) => {
+    const onHueChange = ($e: Event) => {
       state.hue = parseInt(($e.target as HTMLInputElement).value);
       context.emit(
         'update:modelValue',

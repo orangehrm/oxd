@@ -29,15 +29,17 @@
 import {defineComponent} from 'vue';
 
 export default defineComponent({
-  name: 'oxd-overlay',
+  name: 'OxdOverlay',
 
   props: {
     show: {
       type: Boolean,
+      required: false,
       default: false,
     },
     centered: {
       type: Boolean,
+      required: false,
       default: true,
     },
   },

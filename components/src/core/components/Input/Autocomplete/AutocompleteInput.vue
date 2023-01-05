@@ -36,14 +36,14 @@
       @keydown.down.exact.prevent="onSelectDown"
       @keydown.up.exact.prevent="onSelectUp"
     >
-      <template v-slot:beforeInput>
+      <template #beforeInput>
         <slot
           v-if="!multiple && modelValue"
           name="beforeSelected"
           :data="modelValue"
         ></slot>
       </template>
-      <template v-slot:afterInput>
+      <template #afterInput>
         <slot
           v-if="!multiple && modelValue"
           name="afterSelected"
@@ -66,6 +66,7 @@
         @select="onSelect(option)"
       >
         <slot name="option" :data="option" :text="highlightedOptions[i]"></slot>
+        <!-- eslint-disable-next-line vue/no-v-html -->
         <span v-if="!$slots['option']" v-html="highlightedOptions[i]"></span>
       </oxd-autocomplete-option>
     </oxd-autocomplete-dropdown>
@@ -75,46 +76,43 @@
       :disabled="disabled"
       :readonly="readonly"
       :selected="modelValue"
-      @chipRemoved="onRemoveSelected"
+      @chip-removed="onRemoveSelected"
     ></oxd-autocomplete-chips>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import debounce from '../../../../utils/debounce';
 import eventsMixin from '../Select/events-mixin';
+import debounce from '../../../../utils/debounce';
+import usei18n from '../../../../composables/usei18n';
 import navigationMixin from '../Select/navigation-mixin';
 import {TOP, BOTTOM, Option, Position, DROPDOWN_POSITIONS} from '../types';
-import AutocompleteTextInput from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteTextInput.vue';
-import AutocompleteDropdown from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteDropdown.vue';
-import AutocompleteOption from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteOption.vue';
 import AutocompleteChips from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteChips.vue';
-import usei18n from '../../../../composables/usei18n';
+import AutocompleteOption from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteOption.vue';
+import AutocompleteDropdown from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteDropdown.vue';
+import AutocompleteTextInput from '@ohrm/oxd/core/components/Input/Autocomplete/AutocompleteTextInput.vue';
 
 export default defineComponent({
-  name: 'oxd-autocomplete-input',
-  inheritAttrs: false,
+  name: 'OxdAutocompleteInput',
 
   components: {
-    'oxd-autocomplete-text-input': AutocompleteTextInput,
-    'oxd-autocomplete-dropdown': AutocompleteDropdown,
-    'oxd-autocomplete-option': AutocompleteOption,
     'oxd-autocomplete-chips': AutocompleteChips,
+    'oxd-autocomplete-option': AutocompleteOption,
+    'oxd-autocomplete-dropdown': AutocompleteDropdown,
+    'oxd-autocomplete-text-input': AutocompleteTextInput,
   },
 
   mixins: [navigationMixin, eventsMixin],
 
-  emits: [
-    'update:modelValue',
-    'dropdown:clear',
-    'dropdown:opened',
-    'dropdown:closed',
-    'dropdown:blur',
-  ],
+  inheritAttrs: false,
 
   props: {
-    modelValue: {},
+    modelValue: {
+      type: [Object, Array],
+      required: false,
+      default: () => null,
+    },
     disabled: {
       type: Boolean,
       default: false,
@@ -142,11 +140,19 @@ export default defineComponent({
     dropdownPosition: {
       type: String,
       default: BOTTOM,
-      validator: function(value: Position) {
+      validator: function (value: Position) {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
   },
+
+  emits: [
+    'update:modelValue',
+    'dropdown:clear',
+    'dropdown:opened',
+    'dropdown:closed',
+    'dropdown:blur',
+  ],
 
   setup() {
     return {
@@ -156,11 +162,11 @@ export default defineComponent({
 
   data() {
     return {
+      options: [],
       focused: false,
       loading: false,
       dropdownOpen: false,
-      searchTerm: null,
-      options: [],
+      searchTerm: null as string | null,
     };
   },
 
@@ -169,7 +175,7 @@ export default defineComponent({
       return this.options.map((option: Option) => {
         let _selected = false;
         if (Array.isArray(this.modelValue)) {
-          _selected = this.modelValue.findIndex(o => o.id === option.id) > -1;
+          _selected = this.modelValue.findIndex((o) => o.id === option.id) > -1;
         } else if (this.modelValue?.id === option.id) {
           _selected = true;
         }
@@ -192,20 +198,20 @@ export default defineComponent({
       });
     },
     highlightedOptions(): string[] {
-      const filter = new RegExp(this.searchTerm, 'i');
+      const filter = new RegExp(this.searchTerm || '', 'i');
       return this.computedOptions.map((option: Option) => {
-        return option.label.replace(filter, match => {
+        return option.label.replace(filter, (match) => {
           return `<b>${match}</b>`;
         });
       });
     },
-    selectedItem(): string {
+    selectedItem(): string | null {
       if (!this.multiple && this.modelValue?.label) {
         return this.modelValue.label;
       }
       return null;
     },
-    inputValue(): string {
+    inputValue(): string | null {
       if (this.computedOptions[this.pointer]?.label) {
         return this.computedOptions[this.pointer].label;
       } else if (this.searchTerm !== null) {
@@ -230,6 +236,14 @@ export default defineComponent({
         this.placeholder ??
         this.t('general.type_for_hints', 'Type for hints...')
       );
+    },
+  },
+
+  watch: {
+    modelValue(value) {
+      if (value === null || (Array.isArray(value) && value.length === 0)) {
+        this.searchTerm = null;
+      }
     },
   },
 
@@ -258,14 +272,14 @@ export default defineComponent({
       }
     },
     search: debounce((vm, searchTerm: string) => {
-      new Promise(resolve => {
+      new Promise((resolve) => {
         if (vm.createOptions) {
           resolve(vm.createOptions(searchTerm));
         } else {
           throw new Error('createOptions not defined');
         }
       })
-        .then(resolved => {
+        .then((resolved) => {
           if (resolved && Array.isArray(resolved)) {
             if (resolved.length > 0) {
               vm.options = resolved.slice(0, 5);
@@ -289,14 +303,6 @@ export default defineComponent({
         (this.multiple === false || !Array.isArray(this.modelValue))
       ) {
         this.$emit('update:modelValue', this.searchTerm || null);
-      }
-    },
-  },
-
-  watch: {
-    modelValue(value) {
-      if (value === null || (Array.isArray(value) && value.length === 0)) {
-        this.searchTerm = null;
       }
     },
   },

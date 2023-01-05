@@ -26,13 +26,13 @@
         {{ optionLabel }}
       </template>
       <input
+        v-bind="$attrs"
+        v-model="checked"
         type="radio"
+        :disabled="disabled"
         @focus="onFocus"
         @blur="onBlur"
         @change="onChange"
-        v-bind="$attrs"
-        v-model="checked"
-        :disabled="disabled"
       />
       <span :class="classes" :style="style" class="oxd-radio-input"></span>
       <template v-if="labelPosition === 'right'">
@@ -53,35 +53,47 @@ export interface State {
 }
 
 export default defineComponent({
-  name: 'oxd-radio-input',
+  name: 'OxdRadioInput',
+
   inheritAttrs: false,
+
   props: {
-    modelValue: {},
+    modelValue: {
+      type: null,
+      required: false,
+      default: undefined,
+    },
     style: {
       type: Object,
+      required: false,
+      default: () => ({}),
     },
     hasError: {
       type: Boolean,
+      required: false,
       default: false,
     },
     optionLabel: {
       type: String,
+      required: false,
       default: '',
     },
     labelPosition: {
       type: String,
+      required: false,
       default: RIGHT,
-      validator: function(value: Position) {
+      validator: function (value: Position) {
         return LABEL_POSITIONS.indexOf(value) !== -1;
       },
     },
     disabled: {
       type: Boolean,
+      equired: false,
       default: false,
     },
   },
 
-  emits: ['update:modelValue', 'blur', 'focus', 'change'],
+  emits: ['blur', 'focus', 'change', 'update:modelValue'],
 
   data(): State {
     return {
@@ -104,7 +116,7 @@ export default defineComponent({
       get() {
         return this.modelValue;
       },
-      set(value) {
+      set(value: unknown) {
         this.checkedProxy = value;
       },
     },

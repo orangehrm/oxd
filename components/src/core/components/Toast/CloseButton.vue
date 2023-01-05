@@ -21,9 +21,7 @@
 
 <template>
   <div class="oxd-toast-close-container">
-    <div :class="classes" role="button">
-      ×
-    </div>
+    <div :class="classes" role="button">×</div>
   </div>
 </template>
 
@@ -32,7 +30,7 @@ import {defineComponent} from 'vue';
 import {toastMixin} from './toast-mixin';
 
 export default defineComponent({
-  name: 'oxd-toast-close-button',
+  name: 'OxdToastCloseButton',
 
   mixins: [toastMixin],
 

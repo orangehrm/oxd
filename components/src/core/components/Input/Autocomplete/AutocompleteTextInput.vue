@@ -25,11 +25,11 @@
       <slot name="beforeInput"></slot>
     </div>
     <input
-      @focus="onFocus"
-      @blur="onBlur"
       v-bind="$attrs"
       :disabled="disabled"
       :readonly="readonly"
+      @focus="onFocus"
+      @blur="onBlur"
     />
     <div class="oxd-autocomplete-text-input--after">
       <slot name="afterInput"></slot>
@@ -48,36 +48,43 @@ import {defineComponent} from 'vue';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
-  name: 'oxd-autocomplete-text-input',
-  inheritAttrs: false,
-
-  emits: ['clear'],
+  name: 'OxdAutocompleteTextInput',
 
   components: {
     'oxd-icon': Icon,
   },
 
+  inheritAttrs: false,
+
   props: {
     style: {
       type: Object,
+      required: false,
+      default: () => ({}),
     },
     hasError: {
       type: Boolean,
+      required: false,
       default: false,
     },
     clear: {
       type: Boolean,
+      required: false,
       default: true,
     },
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
     readonly: {
       type: Boolean,
+      required: false,
       default: false,
     },
   },
+
+  emits: ['clear'],
 
   data() {
     return {

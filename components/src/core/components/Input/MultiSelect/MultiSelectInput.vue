@@ -33,7 +33,7 @@
       @keydown.up.exact.prevent="onSelectUp"
       @keydown="onKeypress"
     >
-      <template v-slot:afterInput>
+      <template #afterInput>
         <slot
           v-if="modelValue.length > 0"
           name="afterSelected"
@@ -52,9 +52,9 @@
       <oxd-select-option
         v-for="(option, i) in computedOptions"
         :key="option.id"
+        :ref="`option-${i}`"
         :class="optionClasses[i]"
         :disabled="option._disabled || option._selected"
-        :ref="`option-${i}`"
         @select="onSelect(option)"
       >
         <slot name="option" :data="option"></slot>
@@ -66,15 +66,15 @@
       :disabled="disabled"
       :readonly="readonly"
       :selected="modelValue"
-      @chipRemoved="onRemoveSelected"
+      @chip-removed="onRemoveSelected"
     ></oxd-mutliselect-chips>
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
 import eventsMixin from '../Select/events-mixin';
 import navigationMixin from '../Select/navigation-mixin';
+import {ComponentPublicInstance, defineComponent, PropType} from 'vue';
 import {TOP, BOTTOM, Option, Position, DROPDOWN_POSITIONS} from '../types';
 import SelectText from '@ohrm/oxd/core/components/Input/Select/SelectText.vue';
 import SelectDropdown from '@ohrm/oxd/core/components/Input/Select/SelectDropdown.vue';
@@ -82,8 +82,7 @@ import SelectOption from '@ohrm/oxd/core/components/Input/Select/SelectOption.vu
 import MultiSelectChips from '@ohrm/oxd/core/components/Input/MultiSelect/MultiSelectChips.vue';
 
 export default defineComponent({
-  name: 'oxd-multiselect-input',
-  inheritAttrs: false,
+  name: 'OxdMultiselectInput',
 
   components: {
     'oxd-select-text': SelectText,
@@ -94,49 +93,57 @@ export default defineComponent({
 
   mixins: [navigationMixin, eventsMixin],
 
-  emits: [
-    'update:modelValue',
-    'dropdown:opened',
-    'dropdown:closed',
-    'dropdown:blur',
-    'dropdown:clear',
-  ],
+  inheritAttrs: false,
 
   props: {
     modelValue: {
       type: Array,
+      required: false,
+      default: () => [],
     },
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
     readonly: {
       type: Boolean,
+      required: false,
       default: false,
     },
     options: {
-      type: Array,
+      type: Array as PropType<Option[]>,
       required: true,
     },
     emptyText: {
       type: String,
       required: false,
+      default: null,
     },
     dropdownPosition: {
       type: String,
+      required: false,
       default: BOTTOM,
-      validator: function(value: Position) {
+      validator: function (value: Position) {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
   },
 
+  emits: [
+    'dropdown:blur',
+    'dropdown:clear',
+    'dropdown:closed',
+    'dropdown:opened',
+    'update:modelValue',
+  ],
+
   data() {
     return {
       focused: false,
       loading: false,
-      dropdownOpen: false,
       searchTerm: null,
+      dropdownOpen: false,
     };
   },
 
@@ -145,7 +152,7 @@ export default defineComponent({
       return this.options.map((option: Option) => {
         let _selected = false;
         if (Array.isArray(this.modelValue)) {
-          _selected = this.modelValue.findIndex(o => o.id === option.id) > -1;
+          _selected = this.modelValue.findIndex((o) => o.id === option.id) > -1;
         }
         return {...option, _selected};
       });
@@ -170,7 +177,9 @@ export default defineComponent({
 
   watch: {
     pointer(newIndex: number) {
-      const option = this.$refs[`option-${newIndex}`];
+      const option = this.$refs[
+        `option-${newIndex}`
+      ] as ComponentPublicInstance;
       if (option?.$el) this.scrollToView(option.$el);
     },
   },

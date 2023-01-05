@@ -40,6 +40,10 @@ const options = [
 ];
 
 describe('SelectInput.vue', () => {
+  const div = document.createElement('div');
+  div.id = 'root';
+  document.body.appendChild(div);
+
   it('renders OXD Select Input', () => {
     const wrapper = mount(SelectInput, {
       props: {options},
@@ -49,18 +53,18 @@ describe('SelectInput.vue', () => {
   it('should load options to Select', async () => {
     const wrapper = mount(SelectInput, {
       props: {options},
+      attachTo: '#root',
     });
-    wrapper.findComponent(SelectText).trigger('mousedown');
-    await wrapper.vm.$nextTick();
+    await wrapper.findComponent(SelectText).trigger('mousedown');
     const nodes = wrapper.findAllComponents(SelectOption);
     expect(nodes.length).toBe(4);
   });
   it('should select one option', async () => {
     const wrapper = mount(SelectInput, {
       props: {options},
+      attachTo: '#root',
     });
-    wrapper.findComponent(SelectText).trigger('mousedown');
-    await wrapper.vm.$nextTick();
+    await wrapper.findComponent(SelectText).trigger('mousedown');
     const nodes = wrapper.findAllComponents(SelectOption);
     await nodes[1].trigger('mousedown');
     expect(wrapper.emitted('update:modelValue')).toEqual([
@@ -76,11 +80,10 @@ describe('SelectInput.vue', () => {
   it('should select none if placeholder selected', async () => {
     const wrapper = mount(SelectInput, {
       props: {options},
+      attachTo: '#root',
     });
-    wrapper.findComponent(SelectText).trigger('mousedown');
-    await wrapper.vm.$nextTick();
-    const nodes = wrapper.findAllComponents(SelectOption);
-    await nodes[0].trigger('mousedown');
+    await wrapper.findComponent(SelectText).trigger('mousedown');
+    await wrapper.findComponent(SelectOption).trigger('mousedown');
     expect(wrapper.emitted('update:modelValue')).toEqual([[null]]);
   });
   it('should not select already selected option', async () => {
@@ -92,9 +95,9 @@ describe('SelectInput.vue', () => {
           label: 'HR Admin',
         },
       },
+      attachTo: '#root',
     });
-    wrapper.findComponent(SelectText).trigger('mousedown');
-    await wrapper.vm.$nextTick();
+    await wrapper.findComponent(SelectText).trigger('mousedown');
     const nodes = wrapper.findAllComponents(SelectOption);
     await nodes[1].trigger('mousedown');
     expect(wrapper.emitted('update:modelValue')).toBeFalsy();
@@ -102,12 +105,11 @@ describe('SelectInput.vue', () => {
   it('should toggle dropdown on click icon', async () => {
     const wrapper = mount(SelectInput, {
       props: {options},
+      attachTo: '#root',
     });
-    wrapper.findComponent(Icon).trigger('mousedown');
-    await wrapper.vm.$nextTick();
+    await wrapper.findComponent(Icon).trigger('mousedown');
     expect(wrapper.findComponent(SelectDropdown).exists()).toBeTruthy();
-    wrapper.findComponent(Icon).trigger('mousedown');
-    await wrapper.vm.$nextTick();
+    await wrapper.findComponent(Icon).trigger('mousedown');
     expect(wrapper.findComponent(SelectDropdown).exists()).toBeFalsy();
   });
 });

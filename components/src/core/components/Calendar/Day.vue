@@ -23,13 +23,15 @@
 import {defineComponent, h} from 'vue';
 
 export default defineComponent({
-  name: 'oxd-calendar-day',
+  name: 'OxdCalendarDay',
+
   props: {
     name: {
       type: String,
       required: true,
     },
   },
+
   render() {
     return h('div', {class: 'oxd-calendar-day'}, this.name);
   },

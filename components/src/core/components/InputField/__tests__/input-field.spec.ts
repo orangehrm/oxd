@@ -31,7 +31,9 @@ describe('InputField.vue', () => {
   };
   it('renders OXD InputField', () => {
     const wrapper = mount(InputField, {
-      props: {},
+      props: {
+        modelValue: null,
+      },
       global: {
         provide: {
           [formKey as symbol]: mockFormAPI,
@@ -43,7 +45,10 @@ describe('InputField.vue', () => {
 
   it('renders OXD InputField type `input`', () => {
     const wrapper = mount(InputField, {
-      props: {type: 'input'},
+      props: {
+        type: 'input',
+        modelValue: null,
+      },
       global: {
         provide: {
           [formKey as symbol]: mockFormAPI,
@@ -55,7 +60,10 @@ describe('InputField.vue', () => {
 
   it('renders OXD InputField type `file`', () => {
     const wrapper = mount(InputField, {
-      props: {type: 'file'},
+      props: {
+        type: 'file',
+        modelValue: null,
+      },
       global: {
         provide: {
           [formKey as symbol]: mockFormAPI,
@@ -67,7 +75,11 @@ describe('InputField.vue', () => {
 
   it('renders OXD InputField type `file` with button', () => {
     const wrapper = mount(InputField, {
-      props: {type: 'file', buttonLabel: 'Browse'},
+      props: {
+        type: 'file',
+        buttonLabel: 'Browse',
+        modelValue: null,
+      },
       global: {
         provide: {
           [formKey as symbol]: mockFormAPI,
@@ -79,7 +91,10 @@ describe('InputField.vue', () => {
 
   it('renders OXD InputField type `textarea`', () => {
     const wrapper = mount(InputField, {
-      props: {type: 'textarea'},
+      props: {
+        type: 'textarea',
+        modelValue: null,
+      },
       global: {
         provide: {
           [formKey as symbol]: mockFormAPI,

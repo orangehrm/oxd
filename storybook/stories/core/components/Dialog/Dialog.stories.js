@@ -32,7 +32,7 @@ export default {
   },
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     return {args};
   },
@@ -71,7 +71,7 @@ Close.args = {};
 export const WithoutTransition = () => DialogWithoutTransition;
 WithoutTransition.args = {};
 
-export const DialogWithoutClose = args => ({
+export const DialogWithoutClose = (args) => ({
   setup() {
     return {
       args: {
@@ -86,7 +86,7 @@ DialogWithoutClose.args = {
   withClose: false,
 };
 
-export const Persistent = args => ({
+export const Persistent = (args) => ({
   setup() {
     delete args.show;
     return {args};

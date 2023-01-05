@@ -20,14 +20,14 @@
 -->
 
 <template>
-  <div :class="classes" :style="style" @mousedown.prevent="onToggle">
+  <div :class="classes" @mousedown.prevent="onToggle">
     <div
+      v-bind="$attrs"
+      ref="oxdInput"
       class="oxd-select-text-input"
       :tabindex="tabIndex"
       @focus="onFocus"
       @blur="onBlur"
-      v-bind="$attrs"
-      ref="oxdInput"
     >
       {{ value }}
     </div>
@@ -47,30 +47,33 @@ import {defineComponent} from 'vue';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
-  name: 'oxd-select-text',
-  inheritAttrs: false,
+  name: 'OxdSelectText',
 
   components: {
     'oxd-icon': Icon,
   },
 
+  inheritAttrs: false,
+
   props: {
     value: {
       type: String,
-    },
-    style: {
-      type: Object,
+      required: false,
+      default: undefined,
     },
     hasError: {
       type: Boolean,
+      required: false,
       default: false,
     },
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
     readonly: {
       type: Boolean,
+      required: false,
       default: false,
     },
   },
@@ -120,9 +123,9 @@ export default defineComponent({
     },
     onToggle() {
       if (!this.focused) {
-        this.$refs.oxdInput.focus();
+        (this.$refs.oxdInput as HTMLInputElement).focus();
       } else {
-        this.$refs.oxdInput.blur();
+        (this.$refs.oxdInput as HTMLInputElement).blur();
       }
     },
   },

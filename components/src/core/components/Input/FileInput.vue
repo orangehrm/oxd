@@ -21,8 +21,8 @@
 
 <template>
   <input
-    type="file"
     ref="input"
+    type="file"
     v-bind="$attrs"
     :class="fileInputClasses"
     @focus="onFocus"
@@ -43,8 +43,8 @@
       </div>
       <oxd-icon
         v-if="buttonIcon"
-        :class="{'oxd-file-input-icon': true, '--disabled': disabled}"
         :name="buttonIcon"
+        :class="{'oxd-file-input-icon': true, '--disabled': disabled}"
       />
     </template>
   </div>
@@ -53,8 +53,8 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {OutputFile} from './types';
-import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 import usei18n from '../../../composables/usei18n';
+import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
 export interface State {
   focused: boolean;
@@ -62,42 +62,58 @@ export interface State {
 }
 
 export default defineComponent({
-  name: 'oxd-file-input',
-  inheritAttrs: false,
-
-  props: {
-    modelValue: {},
-    style: {
-      type: Object,
-    },
-    hasError: {
-      type: Boolean,
-      default: false,
-    },
-    buttonLabel: {
-      type: String,
-    },
-    buttonIcon: {
-      type: String,
-      default: 'upload',
-    },
-    placeholder: {
-      type: String,
-      default: null,
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    readonly: {
-      type: Boolean,
-      default: false,
-    },
-  },
+  name: 'OxdFileInput',
 
   components: {
     'oxd-icon': Icon,
   },
+
+  inheritAttrs: false,
+
+  props: {
+    modelValue: {
+      type: Object,
+      required: false,
+      default: () => null,
+    },
+    style: {
+      type: Object,
+      required: false,
+      default: () => ({}),
+    },
+    hasError: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    buttonLabel: {
+      type: String,
+      required: false,
+      default: null,
+    },
+    buttonIcon: {
+      type: String,
+      required: false,
+      default: 'upload',
+    },
+    placeholder: {
+      type: String,
+      required: false,
+      default: null,
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    readonly: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+  },
+
+  emits: ['click', 'focus', 'blur', 'input', 'update:modelValue'],
 
   setup() {
     return {
@@ -110,20 +126,6 @@ export default defineComponent({
       focused: false,
       inputValue: '',
     };
-  },
-
-  emits: ['click', 'focus', 'blur', 'input', 'update:modelValue'],
-
-  watch: {
-    modelValue(newValue, oldValue) {
-      if (newValue !== oldValue) {
-        if (newValue !== undefined && newValue !== null) {
-          this.inputValue = newValue.name;
-        } else {
-          this.inputValue = '';
-        }
-      }
-    },
   },
 
   computed: {
@@ -146,6 +148,18 @@ export default defineComponent({
       return (
         this.placeholder ?? this.t('general.no_file_chosen', 'No file chosen')
       );
+    },
+  },
+
+  watch: {
+    modelValue(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        if (newValue !== undefined && newValue !== null) {
+          this.inputValue = newValue.name;
+        } else {
+          this.inputValue = '';
+        }
+      }
     },
   },
 

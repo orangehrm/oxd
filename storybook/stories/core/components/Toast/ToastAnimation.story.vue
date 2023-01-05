@@ -22,9 +22,7 @@
 
 <template>
   <div>
-    <button @click="show = !show">
-      Toggle
-    </button>
+    <button @click="show = !show">Toggle</button>
 
     <transition name="oxd-toast-fade">
       <oxd-toast v-model:show="show" title="Success" />

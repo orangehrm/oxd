@@ -22,9 +22,9 @@
 <template>
   <oxd-card-tbody>
     <div
-      :class="classes"
       v-for="(item, index) in items"
       :key="item"
+      :class="classes"
       @click="onClick(item)($event)"
     >
       <oxd-card-tr :clickable="tableProps.clickable">
@@ -49,15 +49,15 @@ import {CardHeaders} from '../types';
 import emitter from '../../../../utils/emitter';
 
 export default defineComponent({
-  name: 'oxd-table-default-card-web',
-
-  mixins: [decoratorMixin],
+  name: 'OxdTableDefaultCardWeb',
 
   components: {
     'oxd-card-tbody': TableBody,
     'oxd-card-tr': TableRow,
     'oxd-card-cell': DefaultCellContainer,
   },
+
+  mixins: [decoratorMixin],
 
   computed: {
     classes(): object {

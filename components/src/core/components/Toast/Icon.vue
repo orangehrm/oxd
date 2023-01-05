@@ -34,13 +34,13 @@ import {ToastType, ICON_MAP} from './types';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
-  name: 'oxd-toast-icon',
-
-  mixins: [toastMixin],
+  name: 'OxdToastIcon',
 
   components: {
     'oxd-icon': Icon,
   },
+
+  mixins: [toastMixin],
 
   computed: {
     iconWrapClasses(): object {

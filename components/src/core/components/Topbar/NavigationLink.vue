@@ -33,7 +33,7 @@
       {{ menuItem.name }}
       <oxd-icon name="chevron-down" :with-container="false" />
     </span>
-    <template v-slot:content>
+    <template #content>
       <li
         v-for="(subMenuItem, index) in menuItem.children"
         :key="`nav-level2-${index}`"
@@ -48,25 +48,35 @@
 </template>
 
 <script lang="ts">
+import {SubMenuItem, TopMenuItem} from './types';
 import {defineComponent, PropType} from 'vue';
-import {TopMenuItem} from './types';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 import DropdownMenu from '@ohrm/oxd/core/components/DropdownMenu/DropdownMenu.vue';
 
 export default defineComponent({
-  name: 'oxd-navigation-link',
-  props: {
-    menuItem: {
-      type: Object as PropType<TopMenuItem>,
-    },
-  },
+  name: 'OxdNavigationLink',
+
   components: {
     'oxd-icon': Icon,
     'oxd-dropdown-menu': DropdownMenu,
   },
+
+  props: {
+    menuItem: {
+      type: Object as PropType<TopMenuItem>,
+      required: true,
+    },
+  },
+
   setup() {
-    const onClickMenu = ($event: MouseEvent, item: TopMenuItem) => {
-      if (!item.children || item.children.length === 0) {
+    const onClickMenu = (
+      $event: MouseEvent,
+      item: TopMenuItem | SubMenuItem,
+    ) => {
+      if (
+        !(item as TopMenuItem).children ||
+        (item as TopMenuItem).children.length === 0
+      ) {
         window.location.replace(item.url);
       } else {
         $event.preventDefault();

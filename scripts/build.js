@@ -34,7 +34,7 @@ const rootDirFiles = [
   'tsconfig.json',
   'postcss.config.js',
 ];
-rootDirFiles.forEach(function(file) {
+rootDirFiles.forEach(function (file) {
   fs.copyFileSync(
     path.join(projectRootDir, file),
     path.join(pathToBuildDir, file),
@@ -43,7 +43,7 @@ rootDirFiles.forEach(function(file) {
 
 const pathToComponentsDir = path.join(projectRootDir, 'components');
 const componentsDirFiles = ['babel.config.js', '.browserslistrc'];
-componentsDirFiles.forEach(function(file) {
+componentsDirFiles.forEach(function (file) {
   fs.copyFileSync(
     path.join(pathToComponentsDir, file),
     path.join(pathToBuildDir, file),
@@ -57,7 +57,7 @@ fs.writeFileSync(
   JSON.stringify(packageJson, null, 2) + '\n',
 );
 
-const copyRecursiveSync = function(src, dest) {
+const copyRecursiveSync = function (src, dest) {
   const exists = fs.existsSync(src);
   const stats = exists && fs.statSync(src);
   const isDirectory = exists && stats.isDirectory();
@@ -65,7 +65,7 @@ const copyRecursiveSync = function(src, dest) {
     if (!fs.existsSync(dest)) {
       fs.mkdirSync(dest, {recursive: true});
     }
-    fs.readdirSync(src).forEach(function(childItemName) {
+    fs.readdirSync(src).forEach(function (childItemName) {
       copyRecursiveSync(
         path.join(src, childItemName),
         path.join(dest, childItemName),

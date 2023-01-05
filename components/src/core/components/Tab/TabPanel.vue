@@ -30,7 +30,8 @@ import {
 } from 'vue';
 
 export default defineComponent({
-  name: 'oxd-tab-panel',
+  name: 'OxdTabPanel',
+
   props: {
     name: {
       type: String,
@@ -38,10 +39,13 @@ export default defineComponent({
     },
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
   },
+
   emits: ['activate', 'deactivate'],
+
   setup(props, context) {
     onActivated(() => context.emit('activate'));
     onBeforeMount(() => context.emit('activate'));

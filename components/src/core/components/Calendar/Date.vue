@@ -24,7 +24,8 @@ import {CalendarDayAttributes, CalendarEvent} from './types';
 import {computed, defineComponent, h, PropType} from 'vue';
 
 export default defineComponent({
-  name: 'oxd-calendar-date',
+  name: 'OxdCalendarDate',
+
   props: {
     date: {
       type: Date as PropType<Date>,
@@ -32,25 +33,31 @@ export default defineComponent({
     },
     selected: {
       type: Boolean,
+      required: false,
       default: false,
     },
     today: {
       type: Boolean,
+      required: false,
       default: false,
     },
     offset: {
       type: Number,
+      required: false,
       default: 0,
     },
     attributes: {
       type: Object as PropType<CalendarDayAttributes>,
+      required: false,
       default: () => ({}),
     },
     event: {
       type: Object as PropType<CalendarEvent>,
+      required: false,
       default: () => ({}),
     },
   },
+
   setup(props) {
     const innerClasses = computed(() => {
       return props?.event?.class ? props.event.class.split(' ') : [];
@@ -65,6 +72,7 @@ export default defineComponent({
       wrapperClasses,
     };
   },
+
   render() {
     return h(
       'div',

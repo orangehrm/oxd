@@ -59,54 +59,84 @@ import DefaultCardContainer from '@ohrm/oxd/core/components/CardTable/Decorator/
 import DefaultCardHeader from '@ohrm/oxd/core/components/CardTable/Header/DefaultCardHeader.vue';
 
 export default defineComponent({
-  name: 'oxd-card-card-table',
+  name: 'OxdCardCardTable',
+
+  components: {
+    'oxd-card-table-container': Table,
+    'oxd-loading-spinner': Spinner,
+
+    // Body Decorators
+    'oxd-table-decorator-card': DefaultCardContainer,
+
+    // Header Decorators
+    'oxd-table-header-default': DefaultCardHeader,
+  },
 
   props: {
     selector: {
       type: Object as PropType<CardSelector>,
+      required: false,
       default: () => ({}),
     },
     headers: {
       type: Array as PropType<CardHeaders>,
+      required: false,
       default: () => [],
     },
     items: {
       type: Array,
+      required: false,
       default: () => [],
     },
     clickable: {
       type: Boolean,
+      required: false,
       default: true,
     },
     selectable: {
       type: Boolean,
+      required: false,
       default: false,
     },
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
     selected: {
       type: Array as PropType<number[]>,
+      required: false,
       default: () => [],
     },
     decorator: {
       type: String,
+      required: false,
       default: 'oxd-table-decorator-card',
     },
     order: {
       type: Object as PropType<SortDefinition>,
+      required: false,
       default: () => ({}),
     },
     loading: {
       type: Boolean,
+      required: false,
       default: false,
     },
     tableId: {
       type: String,
+      required: false,
       default: () => nanoid(8),
     },
   },
+
+  emits: [
+    'click',
+    'clickCheckbox',
+    'update:order',
+    'update:selected',
+    'update:selectAll',
+  ],
 
   setup(props, context) {
     const responsiveState = useResponsive();
@@ -114,22 +144,22 @@ export default defineComponent({
     provide('tableProps', readonly(props));
     provide('screenState', readonly(responsiveState));
 
-    emitter.on(`${props.tableId}-datatable:selectAll`, value => {
+    emitter.on(`${props.tableId}-datatable:selectAll`, (value) => {
       context.emit('update:selectAll', value);
     });
     emitter.on(`${props.tableId}-datatable:unselectAll`, () => {
       context.emit('update:selectAll', []);
     });
-    emitter.on(`${props.tableId}-datatable:updateOrder`, value => {
+    emitter.on(`${props.tableId}-datatable:updateOrder`, (value) => {
       context.emit('update:order', value);
     });
-    emitter.on(`${props.tableId}-datatable:updateSelected`, value => {
+    emitter.on(`${props.tableId}-datatable:updateSelected`, (value) => {
       context.emit('update:selected', value);
     });
-    emitter.on(`${props.tableId}-datatable:clickCheckboxCell`, value => {
+    emitter.on(`${props.tableId}-datatable:clickCheckboxCell`, (value) => {
       context.emit('clickCheckbox', value);
     });
-    emitter.on(`${props.tableId}-datatable:clickRow`, value => {
+    emitter.on(`${props.tableId}-datatable:clickRow`, (value) => {
       context.emit('click', value);
     });
 
@@ -147,25 +177,6 @@ export default defineComponent({
         }
       });
     });
-  },
-
-  emits: [
-    'click',
-    'clickCheckbox',
-    'update:selected',
-    'update:selectAll',
-    'update:order',
-  ],
-
-  components: {
-    'oxd-card-table-container': Table,
-    'oxd-loading-spinner': Spinner,
-
-    // Body Decorators
-    'oxd-table-decorator-card': DefaultCardContainer,
-
-    // Header Decorators
-    'oxd-table-header-default': DefaultCardHeader,
   },
 
   computed: {

@@ -27,72 +27,88 @@ import {ChartData, ChartOptions, AnimationSpec} from 'chart.js';
 import {h, computed, PropType, shallowRef, defineComponent, watch} from 'vue';
 
 export default defineComponent({
-  name: 'oxd-bar-chart',
+  name: 'OxdBarChart',
 
   props: {
     styles: {
       type: Object,
+      required: false,
       default: () => ({}),
     },
     classes: {
       type: [String, Object, Array],
+      required: false,
       default: null,
     },
     wrapperStyles: {
       type: Object,
+      required: false,
       default: () => ({}),
     },
     wrapperClasses: {
       type: [String, Object, Array],
+      required: false,
       default: null,
     },
     width: {
       type: [Number, String],
+      required: false,
       default: '100%',
     },
     height: {
       type: [Number, String],
+      required: false,
       default: '100%',
     },
     animate: {
       type: Boolean,
+      required: false,
       default: true,
     },
     grid: {
       type: Boolean,
+      required: false,
       default: true,
     },
     xAxsis: {
       type: Boolean,
+      required: false,
       default: true,
     },
     yAxsis: {
       type: Boolean,
+      required: false,
       default: true,
     },
     responsive: {
       type: Boolean,
+      required: false,
       default: true,
     },
     aspectRatio: {
       type: [Boolean, Number],
+      required: false,
       default: true,
     },
     data: {
       type: Array as PropType<DataPoint[]>,
+      required: false,
       default: () => [],
     },
     chartId: {
       type: String,
+      required: false,
       default: () => nanoid(8),
     },
     title: {
       type: String,
       required: false,
+      default: null,
     },
     animation: {
       type: Object as PropType<AnimationSpec<'bar'>>,
       required: false,
+      default: () => null,
     },
   },
 
@@ -101,11 +117,11 @@ export default defineComponent({
     const chartjsInstance = shallowRef<Chart>();
 
     const series = computed<ChartData<'bar'>>(() => ({
-      labels: props.data.map(item => item.label),
+      labels: props.data.map((item) => item.label),
       datasets: [
         {
-          data: props.data.map(item => item.value),
-          backgroundColor: props.data.map(item => item.color),
+          data: props.data.map((item) => item.value),
+          backgroundColor: props.data.map((item) => item.color),
           borderWidth: 4,
           borderSkipped: false,
           borderRadius: Number.MAX_VALUE,

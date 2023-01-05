@@ -21,27 +21,27 @@
 
 <template>
   <li
-    @click="openSubmenu"
     v-click-outside="closeSubMenu"
     :class="{'--active': isActive}"
+    @click="openSubmenu"
   >
     <slot></slot>
 
     <transition name="transition-fade-down">
       <ul
-        @click.stop="closeSubMenu"
         v-if="isActive"
         class="oxd-calendar-dropdown"
         role="menu"
+        @click.stop="closeSubMenu"
       >
         <li
           v-for="(option, index) in options"
           :ref="`oxd-cal-ref-${index}`"
+          :key="`oxd-cal-option-${index}`"
           :class="{
             'oxd-calendar-dropdown--option': true,
             '--selected': index === selected,
           }"
-          :key="`oxd-cal-option-${index}`"
           @click="onSelectOption(index)"
         >
           {{ option }}
@@ -56,8 +56,11 @@ import {defineComponent} from 'vue';
 import clickOutsideDirective from '../../../directives/click-outside';
 
 export default defineComponent({
-  name: 'oxd-calendar-dropdown',
-  emits: ['select'],
+  name: 'OxdCalendarDropdown',
+
+  directives: {
+    'click-outside': clickOutsideDirective,
+  },
 
   props: {
     options: {
@@ -67,8 +70,11 @@ export default defineComponent({
     selected: {
       type: Number,
       required: false,
+      default: -1,
     },
   },
+
+  emits: ['select'],
 
   data() {
     return {
@@ -76,16 +82,16 @@ export default defineComponent({
     };
   },
 
-  directives: {
-    'click-outside': clickOutsideDirective,
-  },
-
   methods: {
     openSubmenu() {
       this.isActive = true;
       this.$nextTick(() => {
-        const elm = this.$refs[`oxd-cal-ref-${this.selected}`];
-        elm && this.scrollToView(elm);
+        const elements = this.$refs[
+          `oxd-cal-ref-${this.selected}`
+        ] as HTMLElement[];
+        if (Array.isArray(elements) && elements.length === 1) {
+          elements[0].scrollIntoView();
+        }
       });
     },
     closeSubMenu() {
@@ -93,11 +99,8 @@ export default defineComponent({
         this.isActive = false;
       }
     },
-    onSelectOption(option) {
+    onSelectOption(option: number) {
       this.$emit('select', option);
-    },
-    scrollToView(elm: HTMLElement) {
-      elm.scrollIntoView();
     },
   },
 });

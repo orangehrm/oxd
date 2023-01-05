@@ -30,6 +30,7 @@ import {
   rearrangeWeek,
 } from '../../../utils/date';
 import {enGB} from 'date-fns/locale';
+import type {Locale} from 'date-fns';
 import {CalendarDayAttributes, CalendarEvent} from './types';
 import {
   computed,
@@ -45,20 +46,24 @@ import DateVue from '@ohrm/oxd/core/components/Calendar/Date.vue';
 import CalendarController from '@ohrm/oxd/core/components/Calendar/CalendarController.vue';
 
 export default defineComponent({
-  name: 'oxd-calendar',
+  name: 'OxdCalendar',
+
   props: {
     modelValue: {
       type: Object as PropType<Date>,
+      required: false,
       default: () => {
         return freshDate();
       },
     },
     firstDayOfWeek: {
       type: Number,
+      required: false,
       default: 0, // 0 | 1 | 2 | 3 | 4 | 5 | 6 => 0 represents Sunday
     },
     years: {
       type: Array,
+      required: false,
       default: () => {
         return Array.from(
           {length: getYear(new Date()) - 1969},
@@ -68,33 +73,43 @@ export default defineComponent({
     },
     locale: {
       type: Object as PropType<Locale>,
-      default: enGB,
+      required: false,
+      default: () => enGB,
     },
     monthFormat: {
       type: String,
+      required: false,
       default: 'wide',
     },
     months: {
       type: Array,
+      required: false,
       default: () => [],
     },
     dayFormat: {
       type: String,
+      required: false,
       default: 'narrow',
     },
     days: {
       type: Array,
+      required: false,
       default: () => [],
     },
     dayAttributes: {
       type: Array as PropType<CalendarDayAttributes[]>,
+      required: false,
       default: () => [],
     },
     events: {
       type: Array as PropType<CalendarEvent[]>,
+      required: false,
       default: () => [],
     },
   },
+
+  emits: ['update:modelValue', 'selectMonth', 'selectYear'],
+
   setup(props, context) {
     const selectedDate = computed(() => {
       return props.modelValue
@@ -113,13 +128,13 @@ export default defineComponent({
 
       if (days.length === 0) {
         days = new Array(7).fill('').map((...[, index]) => {
-          return (props.locale as Locale).localize.day(index, {
+          return (props.locale as Locale).localize?.day(index, {
             width: props.dayFormat,
           });
         });
       }
 
-      return week.map(index => {
+      return week.map((index) => {
         return days[index];
       });
     });
@@ -129,7 +144,7 @@ export default defineComponent({
         return props.months;
       } else {
         return new Array(12).fill('').map((...[, index]) => {
-          return (props.locale as Locale).localize.month(index, {
+          return (props.locale as Locale).localize?.month(index, {
             width: props.monthFormat,
           });
         });
@@ -145,17 +160,17 @@ export default defineComponent({
     });
 
     const attributes = computed(() => {
-      return datesOfMonth.value.map(date => {
+      return datesOfMonth.value.map((date) => {
         const attrs = props.dayAttributes.find(
-          attr => date.getDay() === attr.index,
+          (attr) => date.getDay() === attr.index,
         );
         return attrs;
       });
     });
 
     const parsedEvents = computed(() => {
-      return datesOfMonth.value.map(date => {
-        const event = props.events.find(e => isEqual(date, e.date));
+      return datesOfMonth.value.map((date) => {
+        const event = props.events.find((e) => isEqual(date, e.date));
         return event;
       });
     });
@@ -184,8 +199,6 @@ export default defineComponent({
       parsedEvents,
     };
   },
-
-  emits: ['update:modelValue', 'selectMonth', 'selectYear'],
 
   render() {
     /**

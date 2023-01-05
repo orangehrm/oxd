@@ -32,7 +32,7 @@ export default {
 
 const DUMMY_TEXT = 'Nunito is a well balanced sans serif typeface';
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     return {args};
   },

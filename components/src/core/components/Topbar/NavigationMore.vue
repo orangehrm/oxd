@@ -20,12 +20,12 @@
 -->
 
 <template>
-  <oxd-dropdown-menu @dropdown:closed="onClose" class="oxd-topbar-body-nav-tab">
+  <oxd-dropdown-menu class="oxd-topbar-body-nav-tab" @dropdown:closed="onClose">
     <span class="oxd-topbar-body-nav-tab-item">
       {{ t('general.more', 'More') }}
       <oxd-icon name="three-dots-vertical" :with-container="false" />
     </span>
-    <template v-slot:content>
+    <template #content>
       <div v-for="(menuItem, index) in menuItems" :key="`nav-level2-${index}`">
         <li @click="onClickMenu($event, menuItem, index)">
           <a href="#" class="oxd-topbar-body-nav-tab-link --more">
@@ -42,8 +42,8 @@
           class="oxd-topbar-body-nav-tab-accordian"
         >
           <li
-            v-for="(subMenuItem, index) in menuItem.children"
-            :key="`nav-level3-${index}`"
+            v-for="(subMenuItem, _index) in menuItem.children"
+            :key="`nav-level3-${_index}`"
             @click="onClickMenu($event, subMenuItem, -1)"
           >
             <a href="#">
@@ -57,31 +57,39 @@
 </template>
 
 <script lang="ts">
+import {SubMenuItem, TopMenuItem} from './types';
 import {defineComponent, PropType, ref} from 'vue';
-import {TopMenuItem} from './types';
+import usei18n from '../../../composables/usei18n';
 import Icon from '@ohrm/oxd/core/components/Icon/Icon.vue';
 import DropdownMenu from '@ohrm/oxd/core/components/DropdownMenu/DropdownMenu.vue';
-import usei18n from '../../../composables/usei18n';
 
 export default defineComponent({
-  name: 'oxd-navigation-more',
-  props: {
-    menuItems: {
-      type: Object as PropType<TopMenuItem[]>,
-    },
-  },
+  name: 'OxdNavigationMore',
+
   components: {
     'oxd-icon': Icon,
     'oxd-dropdown-menu': DropdownMenu,
   },
+
+  props: {
+    menuItems: {
+      type: Array as PropType<TopMenuItem[]>,
+      required: false,
+      default: () => [],
+    },
+  },
+
   setup() {
     const expandedIndex = ref(-1);
     const onClickMenu = (
       $event: MouseEvent,
-      item: TopMenuItem,
+      item: TopMenuItem | SubMenuItem,
       index: number,
     ) => {
-      if (!item.children || item.children.length === 0) {
+      if (
+        !(item as TopMenuItem).children ||
+        (item as TopMenuItem).children.length === 0
+      ) {
         window.location.replace(item.url);
       } else {
         $event.preventDefault();

@@ -27,7 +27,7 @@ export default {
   component: BuzzPostInput,
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     const {value, ...rest} = args;
     const post = ref(value ?? null);
@@ -44,7 +44,7 @@ const Template = args => ({
             {
               ...this.args,
               modelValue: this.post,
-              'onUpdate:modelValue': value => {
+              'onUpdate:modelValue': (value) => {
                 this.post = value;
               },
             },
@@ -71,7 +71,7 @@ RequiredPost.args = {
   value: `Lorem ipsum dolor sit amet consectetur adipisicing elit. At obcaecati aspernatur laboriosam nihil voluptate dolorum, iure quibusdam ipsam ipsa molestias sunt quaerat totam voluptatem excepturi incidunt, distinctio deserunt nemo quis?
   `,
   rules: [
-    v => (!!v && v.trim() !== '') || 'Required',
-    v => (v && v.length <= 500) || 'Should be less than 500 characters',
+    (v) => (!!v && v.trim() !== '') || 'Required',
+    (v) => (v && v.length <= 500) || 'Should be less than 500 characters',
   ],
 };

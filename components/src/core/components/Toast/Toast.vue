@@ -46,39 +46,43 @@
 import {defineComponent} from 'vue';
 import {toastMixin} from './toast-mixin';
 import Text from '@ohrm/oxd/core/components/Text/Text.vue';
-import ToastCloseButton from '@ohrm/oxd/core/components/Toast/CloseButton.vue';
 import ToastIcon from '@ohrm/oxd/core/components/Toast/Icon.vue';
+import ToastCloseButton from '@ohrm/oxd/core/components/Toast/CloseButton.vue';
 
 export default defineComponent({
-  name: 'oxd-toast',
-
-  mixins: [toastMixin],
+  name: 'OxdToast',
 
   components: {
     'oxd-text': Text,
-    'oxd-toast-close-button': ToastCloseButton,
     'oxd-toast-icon': ToastIcon,
+    'oxd-toast-close-button': ToastCloseButton,
   },
 
-  emits: ['update:show'],
+  mixins: [toastMixin],
 
   props: {
-    show: {
-      type: Boolean,
-      default: false,
-    },
     title: {
       type: String,
       required: true,
     },
     message: {
       type: String,
+      required: false,
+      default: null,
+    },
+    show: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
     persistent: {
       type: Boolean,
+      required: false,
       default: false,
     },
   },
+
+  emits: ['update:show'],
 
   computed: {
     classes(): object {

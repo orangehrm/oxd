@@ -44,8 +44,8 @@ describe('RadioInput.vue', () => {
         value: 'test',
       },
     });
-    wrapper.find("input[type='radio']").trigger('click');
-    await wrapper.vm.$nextTick();
+    await wrapper.find("input[type='radio']").trigger('click');
+    await wrapper.find("input[type='radio']").trigger('change');
     expect(wrapper.emitted('update:modelValue')).toContainEqual(['test']);
   });
 
@@ -55,8 +55,8 @@ describe('RadioInput.vue', () => {
         disabled: true,
       },
     });
-    wrapper.find("input[type='radio']").trigger('click');
-    await wrapper.vm.$nextTick();
+    await wrapper.find("input[type='radio']").trigger('click');
+    await wrapper.find("input[type='radio']").trigger('change');
     expect(wrapper.emitted('update:modelValue')).toBeFalsy();
   });
 });

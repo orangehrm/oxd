@@ -39,7 +39,7 @@ import useFormValidation from '../../../composables/useFormValidation';
 import Spinner from '@ohrm/oxd/core/components/Loader/Spinner.vue';
 
 export default defineComponent({
-  name: 'oxd-form',
+  name: 'OxdForm',
 
   components: {
     'oxd-loading-spinner': Spinner,
@@ -48,9 +48,12 @@ export default defineComponent({
   props: {
     loading: {
       type: Boolean,
+      required: false,
       default: false,
     },
   },
+
+  emits: ['submitValid', 'submitInvalid'],
 
   setup(props, context) {
     const isLoading = toRef(props, 'loading');
@@ -58,7 +61,7 @@ export default defineComponent({
 
     const isProcessing = computed(() => {
       return fieldset.value.reduce((acc, field) => {
-        return acc || field.processing;
+        return acc || field.processing.value;
       }, false);
     });
 

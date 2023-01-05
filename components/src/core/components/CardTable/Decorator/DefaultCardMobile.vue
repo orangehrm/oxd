@@ -22,26 +22,26 @@
 <template>
   <oxd-card-tbody class="oxd-card-table-body">
     <div
-      :class="classes"
       v-for="(item, index) in tableProps.items"
       :key="item"
+      :class="classes"
       @click="onClick(item)($event)"
     >
       <oxd-card-tr :clickable="tableProps.clickable">
         <div v-if="leftSlot.length != 0" class="card-item card-left">
           <oxd-card-cell
+            :items="item"
             :index="index"
             :headers="leftSlot"
-            :items="item"
           ></oxd-card-cell>
         </div>
         <div class="card-center">
           <div v-if="titleSlot.length != 0" class="card-header-slot">
             <div class="card-item card-header-slot-content --left">
               <oxd-card-cell
+                :items="item"
                 :index="index"
                 :headers="titleSlot"
-                :items="item"
               ></oxd-card-cell>
             </div>
             <div
@@ -49,32 +49,32 @@
               class="card-item card-header-slot-content --right"
             >
               <oxd-card-cell
+                :items="item"
                 :index="index"
                 :headers="actionSlot"
-                :items="item"
               ></oxd-card-cell>
             </div>
           </div>
           <div v-if="defaultSlot.length != 0" class="card-item card-body-slot">
             <oxd-card-cell
+              :items="item"
               :index="index"
               :headers="defaultSlot"
-              :items="item"
             ></oxd-card-cell>
           </div>
           <div v-if="footerSlot.length != 0" class="card-item card-footer-slot">
             <oxd-card-cell
+              :items="item"
               :index="index"
               :headers="footerSlot"
-              :items="item"
             ></oxd-card-cell>
           </div>
         </div>
         <div v-if="rightSlot.length != 0" class="card-item card-right">
           <oxd-card-cell
+            :items="item"
             :index="index"
             :headers="rightSlot"
-            :items="item"
           ></oxd-card-cell>
         </div>
       </oxd-card-tr>
@@ -85,22 +85,22 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {CardHeaders} from '../types';
-import {decoratorMixin} from './decorator-mixin';
-import TableBody from '@ohrm/oxd/core/components/CardTable/Table/TableBody.vue';
-import TableRow from '@ohrm/oxd/core/components/CardTable/Table/TableRow.vue';
-import DefaultCellContainer from '@ohrm/oxd/core/components/CardTable/Cell/DefaultCellContainer.vue';
 import emitter from '../../../../utils/emitter';
+import {decoratorMixin} from './decorator-mixin';
+import TableRow from '@ohrm/oxd/core/components/CardTable/Table/TableRow.vue';
+import TableBody from '@ohrm/oxd/core/components/CardTable/Table/TableBody.vue';
+import DefaultCellContainer from '@ohrm/oxd/core/components/CardTable/Cell/DefaultCellContainer.vue';
 
 export default defineComponent({
-  name: 'oxd-table-default-card-mobile',
-
-  mixins: [decoratorMixin],
+  name: 'OxdTableDefaultCardMobile',
 
   components: {
-    'oxd-card-tbody': TableBody,
     'oxd-card-tr': TableRow,
+    'oxd-card-tbody': TableBody,
     'oxd-card-cell': DefaultCellContainer,
   },
+
+  mixins: [decoratorMixin],
 
   computed: {
     classes(): object {
@@ -109,33 +109,33 @@ export default defineComponent({
         '--mobile': true,
       };
     },
-    defaultSlot(): Array<CardHeaders> {
-      return this.tableProps.headers.filter(header => {
+    defaultSlot(): CardHeaders {
+      return this.tableProps.headers.filter((header) => {
         return header?.slot === undefined || header?.slot === 'default';
       });
     },
-    titleSlot(): Array<CardHeaders> {
-      return this.tableProps.headers.filter(header => {
+    titleSlot(): CardHeaders {
+      return this.tableProps.headers.filter((header) => {
         return header?.slot === 'title';
       });
     },
-    actionSlot(): Array<CardHeaders> {
-      return this.tableProps.headers.filter(header => {
+    actionSlot(): CardHeaders {
+      return this.tableProps.headers.filter((header) => {
         return header?.slot === 'action';
       });
     },
-    footerSlot(): Array<CardHeaders> {
-      return this.tableProps.headers.filter(header => {
+    footerSlot(): CardHeaders {
+      return this.tableProps.headers.filter((header) => {
         return header?.slot === 'footer';
       });
     },
-    leftSlot(): Array<CardHeaders> {
-      return this.tableProps.headers.filter(header => {
+    leftSlot(): CardHeaders {
+      return this.tableProps.headers.filter((header) => {
         return header?.slot === 'left';
       });
     },
-    rightSlot(): Array<CardHeaders> {
-      return this.tableProps.headers.filter(header => {
+    rightSlot(): CardHeaders {
+      return this.tableProps.headers.filter((header) => {
         return header?.slot === 'right';
       });
     },

@@ -29,11 +29,13 @@
 import {defineComponent} from 'vue';
 
 export default defineComponent({
-  name: 'oxd-grid',
+  name: 'OxdGrid',
 
   props: {
     cols: {
       type: Number,
+      required: false,
+      default: 1,
     },
   },
 

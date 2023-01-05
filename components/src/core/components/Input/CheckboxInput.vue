@@ -26,13 +26,13 @@
         {{ optionLabel }}
       </template>
       <input
+        v-bind="$attrs"
+        v-model="checked"
         type="checkbox"
+        :disabled="disabled"
         @focus="onFocus"
         @blur="onBlur"
         @change="onChange"
-        :disabled="disabled"
-        v-bind="$attrs"
-        v-model="checked"
       />
       <span :class="classes" :style="style" class="oxd-checkbox-input">
         <oxd-icon class="oxd-checkbox-input-icon" :name="checkIcon" />
@@ -56,43 +56,56 @@ export interface State {
 }
 
 export default defineComponent({
-  name: 'oxd-checkbox-input',
+  name: 'OxdCheckboxInput',
+
+  components: {
+    'oxd-icon': Icon,
+  },
+
   inheritAttrs: false,
+
   props: {
-    modelValue: {},
+    modelValue: {
+      type: null,
+      required: false,
+      default: undefined,
+    },
     style: {
       type: Object,
+      required: false,
+      default: () => ({}),
     },
     hasError: {
       type: Boolean,
+      required: false,
       default: false,
     },
     disabled: {
       type: Boolean,
+      required: false,
       default: false,
     },
     checkIcon: {
       type: String,
+      required: false,
       default: 'check',
     },
     optionLabel: {
       type: String,
+      required: false,
       default: '',
     },
     labelPosition: {
       type: String,
+      required: false,
       default: RIGHT,
-      validator: function(value: Position) {
+      validator: function (value: Position) {
         return LABEL_POSITIONS.indexOf(value) !== -1;
       },
     },
   },
 
   emits: ['update:modelValue', 'blur', 'focus', 'change'],
-
-  components: {
-    'oxd-icon': Icon,
-  },
 
   data(): State {
     return {
@@ -115,7 +128,7 @@ export default defineComponent({
       get() {
         return this.modelValue;
       },
-      set(value) {
+      set(value: unknown) {
         this.checkedProxy = value;
       },
     },
