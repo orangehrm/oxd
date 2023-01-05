@@ -2,13 +2,6 @@
 
 exports[`CardTable > TableHeaderCell.vue renders OXD CardTable > TableHeaderCell 1`] = `
 <div class="oxd-table-header-cell" role="columnheader">
-  <div class="oxd-table-header-sort"><i class="oxd-icon bi-arrow-down-up oxd-icon-button__icon oxd-table-header-sort-icon"></i>
-    <div class="oxd-table-header-sort-dropdown" role="dropdown" style="display: none;">
-      <ul role="menu">
-        <li class="oxd-table-header-sort-dropdown-item"><i class="oxd-icon bi-sort-alpha-down"></i><span class="oxd-text oxd-text--span">Ascending</span></li>
-        <li class="oxd-table-header-sort-dropdown-item"><i class="oxd-icon bi-sort-alpha-up"></i><span class="oxd-text oxd-text--span">Decending</span></li>
-      </ul>
-    </div>
-  </div>
+  <!--v-if-->
 </div>
 `;
