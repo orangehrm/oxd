@@ -54,10 +54,10 @@ export default defineComponent({
 
   props: {
     item: {
-      type: Object,
+      type: null,
       // not required, since actions evaluate from `this.header.cellConfig`
       required: false,
-      default: () => ({}),
+      default: () => undefined,
     },
   },
 

@@ -66,7 +66,7 @@ export default defineComponent({
       return {
         'oxd-glass-button-icon': true,
         'oxd-glass-button-icon--disabled': this.disabled,
-        [`oxd-glass-button-icon--${this.icon}`]: this.icon,
+        [`oxd-glass-button-icon--${this.icon}`]: !!this.icon,
       };
     },
   },

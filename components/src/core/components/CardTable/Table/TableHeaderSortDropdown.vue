@@ -85,7 +85,7 @@ export default defineComponent({
     order: {
       type: String,
       required: false,
-      default: null,
+      default: undefined,
     },
   },
 
