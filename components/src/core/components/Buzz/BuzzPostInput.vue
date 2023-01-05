@@ -55,10 +55,6 @@ import {Rule} from '../../../composables/types';
 import useField from '../../../composables/useField';
 import Text from '@ohrm/oxd/core/components/Text/Text.vue';
 
-interface TextAreaInputEvent extends InputEvent {
-  target: HTMLTextAreaElement;
-}
-
 export default defineComponent({
   name: 'OxdBuzzPostInput',
 
@@ -150,9 +146,12 @@ export default defineComponent({
       }
     };
 
-    const onInput = ($e: TextAreaInputEvent) => {
+    const onInput = ($e: Event) => {
       calculateTextAreaHeight();
-      context.emit('update:modelValue', $e.target.value);
+      context.emit(
+        'update:modelValue',
+        ($e.target as HTMLTextAreaElement).value,
+      );
     };
 
     onMounted(async () => {
