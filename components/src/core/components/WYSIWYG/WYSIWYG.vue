@@ -21,7 +21,6 @@ import {defineComponent, ref, PropType, computed} from 'vue';
 // TinyMCE
 import 'tinymce/tinymce';
 import 'tinymce/themes/modern';
-import './skins/lightgray/skin.css';
 // import contentUiCss from '@orangehrm/oxd/core/components/WYSIWYG/skins/lightgray/content.css';
 
 // TinyMCE plugins
@@ -116,7 +115,10 @@ export default defineComponent({
       autoresize_max_height: 500,
       contextmenu_never_use_native: true,
       content_css: false,
-      // content_style: contentUiCss.toString(),
+      skin_url:
+        '@orangehrm/oxd/core/components/WYSIWYG/skins/lightgray/skin.css',
+      // content_style:
+      // '@orangehrm/oxd/core/components/WYSIWYG/skins/lightgray/content.css',
       setup(editor: any) {
         editor.image_type_error = () => {
           emit('wysiwyg:errror-image-type');
