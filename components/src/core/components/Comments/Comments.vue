@@ -165,6 +165,7 @@ export default defineComponent({
       type: Object,
     },
     commentGroups: {
+      // eslint-disable-next-line
       type: Array as PropType<any>,
     },
     allowToEdit: {
@@ -271,7 +272,7 @@ export default defineComponent({
 
     const commentGroupsContainerClasses = computed(() => {
       return {
-        'd-flex justify-center align-center': !hasCommentsInside,
+        'd-flex justify-center align-center': !hasCommentsInside.value,
         'scroll-vertical': props.scrollHeight,
       };
     });

@@ -45,7 +45,7 @@ export default defineComponent({
   },
 
   emits: ['update:show'],
-
+  // eslint-disable-next-line
   setup: function(props: any) {
     const isActive = ref<boolean>(props.show);
     const openPopOver = () => {
@@ -61,7 +61,7 @@ export default defineComponent({
     //isActive value set to false, when the props.show value change triggered
     watch(
       () => props.show,
-      val => {
+      () => {
         isActive.value = false;
       },
     );

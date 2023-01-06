@@ -16,10 +16,10 @@ describe('PopOver', () => {
       global: {
         stubs: {
           'oxd-icon-button': {
-            template: '<i />'
-          }
-        }
-      }
+            template: '<i />',
+          },
+        },
+      },
     });
     expect(wrapper.find('.oxd-pop-over-button').exists()).toBeTruthy();
     expect(wrapper.find('.oxd-pop-over-content').exists()).toBeFalsy();
@@ -34,10 +34,10 @@ describe('PopOver', () => {
       global: {
         stubs: {
           'oxd-icon-button': {
-            template: '<i />'
-          }
-        }
-      }
+            template: '<i />',
+          },
+        },
+      },
     });
     const button = wrapper.find('.popover-icon');
     expect(wrapper.find('.oxd-pop-over-button').exists()).toBeTruthy();
@@ -61,10 +61,10 @@ describe('PopOver', () => {
       global: {
         stubs: {
           'oxd-icon-button': {
-            template: '<i />'
-          }
-        }
-      }
+            template: '<i />',
+          },
+        },
+      },
     });
 
     const button = wrapper.find('.popover-icon');
@@ -83,20 +83,20 @@ describe('PopOver', () => {
     expect(wrapper.find('.oxd-pop-over-content').exists()).toBeFalsy();
   });
 
-  it('check is active on watch',async () => {
+  it('check is active on watch', async () => {
     const wrapper = shallowMount(PopOver, {});
-    await wrapper.setProps({show: true });
+    await wrapper.setProps({show: true});
     expect(wrapper.vm.isActive).toEqual(false);
     wrapper.vm.isActive = true;
     expect(wrapper.vm.isActive).toEqual(true);
-    await wrapper.setProps({show: false });
+    await wrapper.setProps({show: false});
     expect(wrapper.vm.isActive).toEqual(false);
   });
 
-  it('check closePopOver function', async() => {
+  it('check closePopOver function', async () => {
     const wrapper = shallowMount(PopOver, {});
     const clickEvent = new MouseEvent('click');
-    wrapper.vm.isActive=true;
+    wrapper.vm.isActive = true;
     wrapper.vm.closePopOver(clickEvent);
     await wrapper.vm.$nextTick();
     expect(wrapper.vm.isActive).toEqual(false);

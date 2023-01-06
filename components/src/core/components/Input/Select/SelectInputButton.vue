@@ -349,11 +349,14 @@ export default defineComponent({
       if (this.dropdownTriggerButtonBackgroundColor) {
         return {
           '--custom-dropdown-trigger-button-color':
-            this.dropdownTriggerButtonBackgroundColor + this.percentageToHex(0.1),
+            this.dropdownTriggerButtonBackgroundColor +
+            this.percentageToHex(0.1),
           '--custom-dropdown-trigger-button-color-active':
-            this.dropdownTriggerButtonBackgroundColor + this.percentageToHex(0.2),
+            this.dropdownTriggerButtonBackgroundColor +
+            this.percentageToHex(0.2),
           '--custom-dropdown-trigger-button-color-hover':
-            this.dropdownTriggerButtonBackgroundColor + this.percentageToHex(0.15),
+            this.dropdownTriggerButtonBackgroundColor +
+            this.percentageToHex(0.15),
         };
       }
       return {};

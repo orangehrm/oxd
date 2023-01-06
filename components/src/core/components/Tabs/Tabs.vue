@@ -62,6 +62,7 @@ export default defineComponent({
             })
         : [],
     );
+    // eslint-disable-next-line
     const selectedTabId = ref(((tabs as unknown) as any)?.value[0].id);
     provide('selectedTabId', selectedTabId);
 
