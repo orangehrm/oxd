@@ -22,7 +22,7 @@ import {defineComponent, ref, PropType, computed} from 'vue';
 import 'tinymce/tinymce';
 import 'tinymce/themes/modern';
 import './skins/lightgray/skin.css';
-import contentUiCss from './skins/lightgray/content.css';
+// import contentUiCss from '@orangehrm/oxd/core/components/WYSIWYG/skins/lightgray/content.css';
 
 // TinyMCE plugins
 import 'tinymce/plugins/advlist/plugin';
@@ -116,7 +116,7 @@ export default defineComponent({
       autoresize_max_height: 500,
       contextmenu_never_use_native: true,
       content_css: false,
-      content_style: contentUiCss.toString(),
+      // content_style: contentUiCss.toString(),
       setup(editor: any) {
         editor.image_type_error = () => {
           emit('wysiwyg:errror-image-type');
