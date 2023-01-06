@@ -34,4 +34,7 @@ module.exports = {
       },
     },
   ],
+  // globals: {
+  //   tinymce: true,
+  // },
 };

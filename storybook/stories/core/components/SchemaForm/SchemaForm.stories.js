@@ -388,6 +388,23 @@ Advance.args = {
         },
       },
       {
+        type: 'grid',
+        props: {
+          cols: 1,
+        },
+        children: {
+          default: [
+            {
+              name: 'wysiwyg',
+              label: 'HTML Editor',
+              type: 'wysiwyg',
+              class: ['--span-column-2'],
+              validators: new Map([['required', required]]),
+            },
+          ],
+        },
+      },
+      {
         type: 'divider',
       },
       {
@@ -577,6 +594,23 @@ Disabled.args = {
                   console.log(option);
                 },
               },
+            },
+          ],
+        },
+      },
+      {
+        type: 'grid',
+        props: {
+          cols: 1,
+        },
+        children: {
+          default: [
+            {
+              name: 'wysiwyg',
+              label: 'HTML Editor',
+              type: 'wysiwyg',
+              class: ['--span-column-2'],
+              validators: new Map([['required', required]]),
             },
           ],
         },
