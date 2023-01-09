@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Input.vue renders OXD Input 1`] = `<input class="oxd-input oxd-input--active" label="Input">`;
-
-exports[`Input.vue should renders OXD Input with custom color 1`] = `<input class="oxd-input oxd-input--active" label="Input" style="background-color: aliceblue;">`;
-
-exports[`Input.vue should renders OXD Input with error 1`] = `<input class="oxd-input oxd-input--active oxd-input--error" label="Input">`;

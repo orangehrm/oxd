@@ -1,25 +1,57 @@
 {
   "name": "oxd",
   "license": "GPL-3.0",
-  "version": "1.0.9-alpha.4",
+  "version": "2.0.0",
   "private": true,
-  "workspaces": [
-    "components",
-    "storybook"
-  ],
   "scripts": {
-    "dev": "yarn workspace oxd-storybook start",
-    "test:unit": "yarn workspace oxd-components test:unit",
-    "test:cov": "yarn workspace oxd-components test:unit --coverageDirectory coverage --coverage",
-    "lint": "yarn workspace oxd-components lint",
-    "tsc": "yarn workspace oxd-components tsc"
+    "dev": "storybook dev -p 6006",
+    "build": "run-p type-check build-only",
+    "build-storybook": "storybook build",
+    "test:unit": "vitest --run --environment jsdom --root src/",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+  },
+  "dependencies": {
+    "bootstrap-icons": "^1.10.3",
+    "date-fns": "^2.29.3",
+    "mitt": "^3.0.0",
+    "nanoid": "^4.0.0",
+    "vue": "^3.2.45"
+  },
+  "devDependencies": {
+    "@rushstack/eslint-patch": "^1.1.4",
+    "@storybook/addon-essentials": "^7.0.0-beta.21",
+    "@storybook/addon-interactions": "^7.0.0-beta.21",
+    "@storybook/addon-links": "^7.0.0-beta.21",
+    "@storybook/blocks": "^7.0.0-beta.21",
+    "@storybook/testing-library": "^0.0.13",
+    "@storybook/vue3": "^7.0.0-beta.21",
+    "@storybook/vue3-vite": "^7.0.0-beta.21",
+    "@types/jsdom": "^20.0.1",
+    "@types/node": "^18.11.12",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "@vue/eslint-config-typescript": "^11.0.0",
+    "@vue/test-utils": "^2.2.6",
+    "@vue/tsconfig": "^0.1.3",
+    "eslint": "^8.22.0",
+    "eslint-plugin-vue": "^9.3.0",
+    "jsdom": "^20.0.3",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "^1.57.1",
+    "storybook": "^7.0.0-beta.21",
+    "typescript": "~4.7.4",
+    "vite": "^4.0.0",
+    "vitest": "^0.25.6",
+    "vue-tsc": "^1.0.12"
   },
   "engines": {
     "node": ">=16.17.0",
     "yarn": ">=3.3.0"
   },
-  "dependencies": {
-    "babel-plugin-module-resolver": "^4.1.0"
-  },
-  "packageManager": "yarn@3.3.0"
+  "packageManager": "yarn@3.3.1"
 }

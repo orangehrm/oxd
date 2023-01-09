@@ -1,0 +1,11 @@
+// Vitest Snapshot v1
+
+exports[`Alert.vue > renders OXD Alert 1`] = `
+"<div class=\\"oxd-alert oxd-alert--success\\" role=\\"alert\\" data-v-b8e06843=\\"\\">
+  <div class=\\"oxd-alert-content oxd-alert-content--success\\" data-v-b8e06843=\\"\\">
+    <oxd-icon-stub name=\\"check2\\" type=\\"bootstrap\\" class=\\"oxd-alert-content-icon\\" data-v-b8e06843=\\"\\"></oxd-icon-stub>
+    <oxd-text-stub tag=\\"p\\" class=\\"oxd-alert-content-text\\" data-v-b8e06843=\\"\\"></oxd-text-stub>
+  </div>
+  <div class=\\"oxd-alert-action\\" data-v-b8e06843=\\"\\"></div>
+</div>"
+`;

@@ -1,0 +1,117 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+@import '../../styles';
+@import 'variables';
+
+.oxd-text {
+  font-family: $oxd-text-font-family;
+  margin-top: 0;
+  margin-bottom: 0;
+
+  &--p {
+    color: $oxd-text-p-color;
+  }
+
+  &--span {
+    color: $oxd-text-span-color;
+  }
+
+  &--h1 {
+    font-size: $oxd-text-h1-font-size;
+    font-weight: $oxd-text-h1-font-weight;
+    letter-spacing: $oxd-text-h1-letter-spacing;
+    color: $oxd-text-h1-color;
+  }
+
+  &--h2 {
+    font-size: $oxd-text-h2-font-size;
+    font-weight: $oxd-text-h2-font-weight;
+    letter-spacing: $oxd-text-h2-letter-spacing;
+    color: $oxd-text-h2-color;
+  }
+
+  &--h3 {
+    font-size: $oxd-text-h3-font-size;
+    font-weight: $oxd-text-h3-font-weight;
+    letter-spacing: $oxd-text-h3-letter-spacing;
+    color: $oxd-text-h3-color;
+  }
+
+  &--h4 {
+    font-size: $oxd-text-h4-font-size;
+    font-weight: $oxd-text-h4-font-weight;
+    letter-spacing: $oxd-text-h4-letter-spacing;
+    color: $oxd-text-h4-color;
+  }
+
+  &--h5 {
+    font-size: $oxd-text-h5-font-size;
+    font-weight: $oxd-text-h5-font-weight;
+    letter-spacing: $oxd-text-h5-letter-spacing;
+    color: $oxd-text-h5-color;
+  }
+
+  &--h6 {
+    font-size: $oxd-text-h6-font-size;
+    font-weight: $oxd-text-h6-font-weight;
+    letter-spacing: $oxd-text-h6-letter-spacing;
+    color: $oxd-text-h6-color;
+  }
+
+  &--subtitle-1 {
+    font-size: $oxd-text-subtitle-1-font-size;
+    font-weight: $oxd-text-subtitle-1-font-weight;
+    letter-spacing: $oxd-text-subtitle-1-letter-spacing;
+    color: $oxd-text-subtitle-1-color;
+  }
+
+  &--subtitle-2 {
+    font-size: $oxd-text-subtitle-2-font-size;
+    font-weight: $oxd-text-subtitle-2-font-weight;
+    letter-spacing: $oxd-text-subtitle-2-letter-spacing;
+    color: $oxd-text-subtitle-2-color;
+  }
+
+  &--card-title {
+    font-size: $oxd-text-card-title-font-size;
+    font-weight: $oxd-text-card-title-font-weight;
+    letter-spacing: $oxd-text-card-title-letter-spacing;
+    color: $oxd-text-card-title-color;
+  }
+
+  &--toast-title {
+    font-size: $oxd-text-toast-title-font-size;
+    font-weight: $oxd-text-toast-title-font-weight;
+    letter-spacing: $oxd-text-toast-title-letter-spacing;
+    color: $oxd-text-toast-title-color;
+  }
+
+  &--toast-message {
+    font-size: $oxd-text-toast-message-font-size;
+    font-weight: $oxd-text-toast-message-font-weight;
+    letter-spacing: $oxd-text-toast-message-letter-spacing;
+    color: $oxd-text-toast-message-color;
+  }
+
+  &--card-body {
+    font-size: $oxd-text-card-body-font-size;
+    font-weight: $oxd-text-card-body-font-weight;
+    letter-spacing: $oxd-text-card-body-letter-spacing;
+    color: $oxd-text-card-body-color;
+  }
+}
