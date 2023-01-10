@@ -2,7 +2,7 @@ import SchemaForm from '@orangehrm/oxd/core/components/SchemaForm/SchemaForm';
 import useSchemaForm from '../../../../../components/src/composables/useSchemaForm.ts';
 import {
   required,
-  validFileTypes,
+  shouldNotExceedCharLength,
 } from '../../../../../components/src/validation/rules.ts';
 import {h} from 'vue';
 
@@ -388,6 +388,30 @@ Advance.args = {
         },
       },
       {
+        type: 'grid',
+        props: {
+          cols: 1,
+        },
+        children: {
+          default: [
+            {
+              name: 'tinymce',
+              label: 'HTML Editor',
+              type: 'tinymce',
+              class: ['--span-column-2'],
+              validators: new Map([
+                ['required', required],
+                ['shouldNotExceedCharLength', shouldNotExceedCharLength(100)],
+              ]),
+              props: {
+                hint: 'File Size Should Be Less Than 5MB',
+                hintPlacement: 'bottom',
+              },
+            },
+          ],
+        },
+      },
+      {
         type: 'divider',
       },
       {
@@ -576,6 +600,26 @@ Disabled.args = {
                 onSelectedOption: (option) => {
                   console.log(option);
                 },
+              },
+            },
+          ],
+        },
+      },
+      {
+        type: 'grid',
+        props: {
+          cols: 1,
+        },
+        children: {
+          default: [
+            {
+              name: 'tinymce',
+              label: 'HTML Editor',
+              type: 'tinymce',
+              class: ['--span-column-2'],
+              validators: new Map([['required', required]]),
+              props: {
+                hint: 'File Size Should Be Less Than 5MB',
               },
             },
           ],

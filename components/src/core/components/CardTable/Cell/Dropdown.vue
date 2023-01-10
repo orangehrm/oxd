@@ -66,7 +66,8 @@ export default defineComponent({
   },
   computed: {
     optionClasses(): object[] {
-      return this.options.map((option: any, index) => {
+      // eslint-disable-next-line
+      return this.options.map((option: any) => {
         return {
           'oxd-table-dropdown-item': true,
           [option.class]: option.class,

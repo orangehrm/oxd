@@ -42,6 +42,9 @@
       display: table-cell;
     }
   }
+  &-none {
+    display: none !important;
+  }
 }
 // table ends
 

@@ -85,14 +85,14 @@
 </template>
 
 <script lang="ts">
-import { formatDate, parseDate } from '@orangehrm/oxd/utils/date'
-import { defineComponent, reactive, toRefs, watch } from 'vue'
-import Input from '@orangehrm/oxd/core/components/Input/Input.vue'
-import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue'
-import clickOutsideDirective from '@orangehrm/oxd/directives/click-outside'
-import focusTrapDirective from '@orangehrm/oxd/directives/focus-trap'
-import focusFirstElementDirective from '@orangehrm/oxd/directives/focus-first-element'
-import translateMixin from '@orangehrm/oxd/mixins/translate'
+import {formatDate, parseDate} from '@orangehrm/oxd/utils/date';
+import {defineComponent, reactive, toRefs, watch} from 'vue';
+import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
+import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
+import clickOutsideDirective from '@orangehrm/oxd/directives/click-outside';
+import focusTrapDirective from '@orangehrm/oxd/directives/focus-trap';
+import focusFirstElementDirective from '@orangehrm/oxd/directives/focus-first-element';
+import translateMixin from '@orangehrm/oxd/mixins/translate';
 
 interface State {
   hour: string;

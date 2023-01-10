@@ -1,7 +1,6 @@
 import {mount, shallowMount} from '@vue/test-utils';
 import FileInput from '@orangehrm/oxd/core/components/Input/FileInput.vue';
 
-
 const callFunction = jest.fn();
 
 describe('FileInput.vue', () => {
@@ -41,8 +40,8 @@ describe('FileInput.vue', () => {
         inputFile: {
           name: 'sample.pdf',
           type: 'application/pdf',
-          size: 101273
-       },
+          size: 101273,
+        },
       },
     });
     expect(wrapper.html()).toMatchSnapshot();
@@ -55,17 +54,17 @@ describe('FileInput.vue', () => {
         inputFile: {
           name: 'sample.pdf',
           type: 'application/pdf',
-          size: 101273
-       },
-       downloadBoxClick: callFunction
+          size: 101273,
+        },
+        downloadBoxClick: callFunction,
       },
     });
 
-    expect(wrapper.vm.fileUpdateMode).toEqual("keep");
+    expect(wrapper.vm.fileUpdateMode).toEqual('keep');
     expect(wrapper.find('.oxd-file-input').exists()).toBe(false);
     expect(wrapper.find('.oxd-download-box').exists()).toBe(true);
     await wrapper.find('.oxd-download-box').trigger('click');
-    expect(callFunction).toHaveBeenCalled();  
+    expect(callFunction).toHaveBeenCalled();
   });
 
   it('radio buttons should not appear when it is readonly mode', async () => {
@@ -75,13 +74,15 @@ describe('FileInput.vue', () => {
         inputFile: {
           name: 'sample.pdf',
           type: 'application/pdf',
-          size: 101273
-       },
-       readonly: true
+          size: 101273,
+        },
+        readonly: true,
       },
     });
     expect(wrapper.find('.oxd-download-box').exists()).toBe(true);
-    expect(wrapper.find('.oxd-download-box-radio-buttons').exists()).toBe(false);
+    expect(wrapper.find('.oxd-download-box-radio-buttons').exists()).toBe(
+      false,
+    );
   });
 
   it('radio buttons should not appear when it is disable mode', async () => {
@@ -91,13 +92,15 @@ describe('FileInput.vue', () => {
         inputFile: {
           name: 'sample.pdf',
           type: 'application/pdf',
-          size: 101273
-       },
-       disabled: true
+          size: 101273,
+        },
+        disabled: true,
       },
     });
     expect(wrapper.find('.oxd-download-box').exists()).toBe(true);
-    expect(wrapper.find('.oxd-download-box-radio-buttons').exists()).toBe(false);
+    expect(wrapper.find('.oxd-download-box-radio-buttons').exists()).toBe(
+      false,
+    );
   });
 
   it('when delete is selected from the radio button, file input is not shown', async () => {
@@ -107,8 +110,8 @@ describe('FileInput.vue', () => {
         inputFile: {
           name: 'sample.pdf',
           type: 'application/pdf',
-          size: 101273
-       }
+          size: 101273,
+        },
       },
     });
     wrapper.vm.fileUpdateMode = 'delete';
@@ -123,13 +126,12 @@ describe('FileInput.vue', () => {
         inputFile: {
           name: 'sample.pdf',
           type: 'application/pdf',
-          size: 101273
-       }
+          size: 101273,
+        },
       },
     });
     wrapper.vm.fileUpdateMode = 'replace';
     await wrapper.vm.$nextTick();
     expect(wrapper.find('.oxd-file-input').exists()).toBe(true);
   });
-
 });

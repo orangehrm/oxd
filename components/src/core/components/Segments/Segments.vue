@@ -28,6 +28,7 @@ export default defineComponent({
     },
 
     options: {
+      // eslint-disable-next-line
       type: Array as PropType<any>,
     },
     groupId: {
@@ -35,6 +36,7 @@ export default defineComponent({
       default: 'segment-group-id',
     },
     modelValue: {
+      // eslint-disable-next-line
       type: Object as PropType<any>,
       default: () => SEGMENT_DEFAULT,
     },
@@ -72,7 +74,9 @@ export default defineComponent({
         },
         style: this.style,
       },
+      // eslint-disable-next-line
       this.options.map((option: any, i: number) => {
+        // eslint-disable-next-line
         const optionLabel: any = [$t(option.label)];
         if (option.icon) {
           const iconElement = h(Icon, {

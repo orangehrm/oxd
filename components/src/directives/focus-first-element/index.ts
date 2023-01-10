@@ -24,6 +24,7 @@ const focusOnFirstElement = (
 };
 
 const focusonFirstElementDirective: Directive = {
+  // eslint-disable-next-line
   beforeMount(el, binding, vnode, prevVnode) {
     const {arg} = binding;
     if (arg === 'return-focus') {

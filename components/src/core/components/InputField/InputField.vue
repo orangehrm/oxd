@@ -45,6 +45,7 @@ import TimeInput from '@orangehrm/oxd/core/components/Input/Time/TimeInput.vue';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import InfoBox from '@orangehrm/oxd/core/components/InfoBox/InfoBox.vue';
 import Comments from '@orangehrm/oxd/core/components/Comments/Comments.vue';
+import TinyMce from '@orangehrm/oxd/core/components/TinyMce/TinyMce.vue';
 import {
   Types,
   Components,
@@ -86,6 +87,7 @@ export default defineComponent({
     'oxd-radio-pill-group': RadioPillGroup,
     'oxd-tree-select-input': TreeSelectInput,
     'oxd-radiogroup-input': RadioGroup,
+    'oxd-tinymce': TinyMce,
   },
 
   mixins: [translateMixin],

@@ -52,6 +52,7 @@ export default defineComponent({
   setup(props, {emit}) {
     const croppedImage = ref('');
     const change = ({
+      // eslint-disable-next-line
       coordinates,
       canvas,
     }: {
@@ -75,7 +76,9 @@ export default defineComponent({
       imageSize,
       visibleArea,
     }: {
+      // eslint-disable-next-line
       imageSize: any;
+      // eslint-disable-next-line
       visibleArea: any;
     }) => {
       return {
