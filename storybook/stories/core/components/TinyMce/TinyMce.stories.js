@@ -1,8 +1,8 @@
-import WYSIWYG from '@orangehrm/oxd/core/components/WYSIWYG/WYSIWYG';
+import TinyMce from '@orangehrm/oxd/core/components/TinyMce/TinyMce';
 
 export default {
-  title: 'Inputs/WYSIWYG',
-  component: WYSIWYG,
+  title: 'Inputs/TinyMce',
+  component: TinyMce,
   argTypes: {
     'update:modelValue': {
       control: {type: 'function'},
@@ -48,7 +48,7 @@ export default {
     configurations: {
       control: {type: 'object'},
       table: {
-        type: {summary: 'Configure the WYSIWYG editor'},
+        type: {summary: 'Configure the TinyMce editor'},
       },
       defaultValue: {
         height: 500,
@@ -78,8 +78,8 @@ const Template = (args) => ({
   setup() {
     return {args};
   },
-  components: {'oxd-wysiwyg': WYSIWYG},
-  template: '<oxd-wysiwyg v-bind="args" />',
+  components: {'oxd-tinymce': TinyMce},
+  template: '<oxd-tinymce v-bind="args" />',
 });
 
 export const Default = Template.bind({});
@@ -93,7 +93,7 @@ Default.args = {
 Default.parameters = {
   docs: {
     source: {
-      code: '<oxd-wysiwyg :v-model="modelValue" />',
+      code: '<oxd-tinymce :v-model="modelValue" />',
     },
   },
 };
@@ -108,7 +108,7 @@ Disabled.args = {
 Disabled.parameters = {
   docs: {
     source: {
-      code: '<oxd-wysiwyg :v-model="modelValue" :disabled="true" />',
+      code: '<oxd-tinymce :v-model="modelValue" :disabled="true" />',
     },
   },
 };
@@ -122,7 +122,7 @@ Error.args = {
 Disabled.parameters = {
   docs: {
     source: {
-      code: '<oxd-wysiwyg :v-model="modelValue" :hasError="true" />',
+      code: '<oxd-tinymce :v-model="modelValue" :hasError="true" />',
     },
   },
 };

@@ -8,7 +8,7 @@
     />
     <input
       v-show="false"
-      :id="`wysiwyg-input-${wysiwygId}`"
+      :id="`tinymce-input-${tinymceId}`"
       type="file"
       @change="onChangeFile"
     />
@@ -21,7 +21,7 @@ import {defineComponent, ref, PropType, computed} from 'vue';
 // TinyMCE
 import 'tinymce/tinymce';
 import 'tinymce/themes/modern';
-// import contentUiCss from '@orangehrm/oxd/core/components/WYSIWYG/skins/lightgray/content.css';
+import contentUiCss from '@orangehrm/oxd/core/components/TinyMce/skins/lightgray/content.css';
 
 // TinyMCE plugins
 import 'tinymce/plugins/advlist/plugin';
@@ -86,14 +86,14 @@ export default defineComponent({
       type: Object,
     },
   },
-  setup(props, {emit}) {
+  setup(props: any, {emit}: any) {
     const vModel = ref(props.modelValue);
     const seonderyTooltbar = ref();
     const fileInput = ref();
     const setTinymceImage = ref();
     const tinymceImageTypeValidator = ref();
     const tinymceImageSizeValidator = ref();
-    const wysiwygId = ref<string>(`oxd-html-editor-${nanoid(6)}`);
+    const tinymceId = ref<string>(`oxd-html-editor-${nanoid(6)}`);
     const attachmentSize = props.attachmentSize || 0;
     const attachmentSizeInMb = attachmentSize / (1024 * 1024);
 
@@ -116,14 +116,13 @@ export default defineComponent({
       autoresize_max_height: 500,
       contextmenu_never_use_native: true,
       content_css: false,
-      content_style:
-        '@orangehrm/oxd/core/components/WYSIWYG/skins/lightgray/content.css',
+      // content_style: contentUiCss.toString(),
       setup(editor: any) {
         editor.image_type_error = () => {
-          emit('wysiwyg:errror-image-type');
+          emit('tinymce:errror-image-type');
         };
         editor.image_size_error = () => {
-          emit('wysiwyg:errror-image-size', attachmentSizeInMb);
+          emit('tinymce:errror-image-size', attachmentSizeInMb);
         };
         editor.allowed_file_types = () => {
           return props.allowedFileTypes;
@@ -194,7 +193,7 @@ export default defineComponent({
         );
         seonderyTooltbar.value.classList.add('d-none');
         fileInput.value = document.querySelector(
-          `#wysiwyg-input-${wysiwygId.value}`,
+          `#tinymce-input-${tinymceId.value}`,
         );
       },
     };
@@ -211,8 +210,8 @@ export default defineComponent({
 
     const classes = computed(() => {
       return {
-        'oxd-wysiwyg-input--error': props.hasError,
-        'oxd-wysiwyg-input--disabled': props.disabled,
+        'oxd-tinymce-input--error': props.hasError,
+        'oxd-tinymce-input--disabled': props.disabled,
       };
     });
 
@@ -232,7 +231,7 @@ export default defineComponent({
 
     return {
       vModel,
-      wysiwygId,
+      tinymceId,
       onChangeFile,
       onInput,
       classes,
@@ -243,5 +242,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import './wysiwyg.scss';
+@import './tinymce.scss';
 </style>

@@ -395,9 +395,9 @@ Advance.args = {
         children: {
           default: [
             {
-              name: 'wysiwyg',
+              name: 'tinymce',
               label: 'HTML Editor',
-              type: 'wysiwyg',
+              type: 'tinymce',
               class: ['--span-column-2'],
               validators: new Map([
                 ['required', required],
@@ -613,9 +613,9 @@ Disabled.args = {
         children: {
           default: [
             {
-              name: 'wysiwyg',
+              name: 'tinymce',
               label: 'HTML Editor',
-              type: 'wysiwyg',
+              type: 'tinymce',
               class: ['--span-column-2'],
               validators: new Map([['required', required]]),
               props: {
