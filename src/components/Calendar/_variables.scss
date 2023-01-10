@@ -1,0 +1,81 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+$oxd-calendar-wrapper-padding: 1rem !default;
+$oxd-calendar-wrapper-boder: $oxd-border $oxd-interface-gray-lighten-2-color !default;
+$oxd-calendar-wrapper-boder-radius: $oxd-border-radius !default;
+$oxd-calendar-wrapper-width: 300px !default;
+$oxd-calendar-wrapper-background-color: $oxd-white-color !default;
+
+$oxd-calendar-day-font-color: $oxd-interface-gray-color !default;
+$oxd-calendar-day-font-family: $oxd-input-control-font-family !default;
+$oxd-calendar-day-font-size: 14px !default;
+$oxd-calendar-day-font-weight: 500 !default;
+
+$oxd-calendar-date-font-color: $oxd-interface-gray-darken-1-color !default;
+$oxd-calendar-date-font-family: $oxd-input-control-font-family !default;
+$oxd-calendar-date-font-size: $oxd-input-control-font-size !default;
+$oxd-calendar-date-font-weight: 500 !default;
+$oxd-calendar-date-border-radius: 0.75rem !default;
+
+$oxd-calendar-date-half-font-color: $oxd-interface-gray-darken-1-color !default;
+$oxd-calendar-date-half-background-color: $oxd-background-pastel-white-color !default;
+$oxd-calendar-date-half-font-weight: 600 !default;
+
+$oxd-calendar-date-hover-background-color: $oxd-interface-gray-lighten-2-color !default;
+$oxd-calendar-date-hover-font-color: $oxd-interface-gray-darken-1-color !default;
+$oxd-calendar-date-hover-font-weight: 600 !default;
+
+$oxd-calendar-date-today-background-color: $oxd-interface-gray-lighten-2-color !default;
+$oxd-calendar-date-today-font-color: $oxd-interface-gray-darken-1-color !default;
+$oxd-calendar-date-today-font-weight: 600 !default;
+
+$oxd-calendar-date-selected-background-color: $oxd-primary-one-color !default;
+$oxd-calendar-date-selected-font-color: $oxd-primary-font-color !default;
+$oxd-calendar-date-selected-font-weight: 600 !default;
+
+$oxd-calendar-date-holiday-full-background-color: $oxd-secondary-two-color !default;
+$oxd-calendar-date-holiday-full-font-color: $oxd-primary-one-color !default;
+$oxd-calendar-date-holiday-full-font-weight: 600 !default;
+
+$oxd-calendar-date-holiday-half-background-color: #cfe5cf !default;
+$oxd-calendar-date-holiday-half-font-color: #0c6375 !default;
+$oxd-calendar-date-holiday-half-font-weight: 600 !default;
+
+$oxd-calendar-date-highlight-full-background-color: #3bda98 !default;
+$oxd-calendar-date-highlight-full-font-color: $oxd-white-color !default;
+$oxd-calendar-date-highlight-full-font-weight: 500 !default;
+
+$oxd-calendar-date-highlight-half-background-color: #c9ffeb !default;
+$oxd-calendar-date-highlight-half-font-color: #23b478 !default;
+$oxd-calendar-date-highlight-half-font-weight: 500 !default;
+
+$oxd-calendar-date-weekend-background-color: $oxd-background-light-gray-color !default;
+$oxd-calendar-date-weekend-font-color: $oxd-interface-gray-color !default;
+$oxd-calendar-date-weekend-font-weight: 500 !default;
+
+$oxd-calendar-selector-padding: 0.125rem !default;
+$oxd-calendar-selector-top-margin: 2.5rem !default;
+$oxd-calendar-selector-height: 11.5rem !default;
+
+$oxd-calendar-controller-font-size: 14px !default;
+$oxd-calendar-controller-background-color: #f1f2f5 !default;
+$oxd-calendar-controller-padding: 0.6rem !default;
+$oxd-calendar-controller-icon-size: 8px !default;
+$oxd-calendar-controller-item-background-color: #f6f7f9 !default;
+$oxd-calendar-controller-item-padding: 0.5rem !default;
+$oxd-calendar-controller-item-radius: 0.65rem !default;

@@ -1,0 +1,5 @@
+// Vitest Snapshot v1
+
+exports[`Divider.vue > renders OXD Divider 1`] = `"<hr class=\\"oxd-divider\\" role=\\"separator\\" aria-orientation=\\"horizontal\\" data-v-b1bbb755=\\"\\">"`;
+
+exports[`Divider.vue > should renders OXD Divider with style 1`] = `"<hr class=\\"oxd-divider\\" role=\\"separator\\" aria-orientation=\\"horizontal\\" style=\\"border-color: red;\\" data-v-b1bbb755=\\"\\">"`;

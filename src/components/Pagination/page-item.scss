@@ -1,0 +1,64 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+@import '../../styles';
+@import 'variables';
+
+.oxd-pagination-page-item {
+  font-size: $oxd-pagination-page-item-font-size;
+  font-family: $oxd-pagination-page-item-font-family;
+  font-weight: $oxd-pagination-page-item-font-weight;
+  background-color: $oxd-pagination-page-item-bg-color;
+  color: $oxd-pagination-page-item-font-color;
+  border-radius: 50%;
+  cursor: pointer;
+  height: $oxd-pagination-page-item-size;
+  width: $oxd-pagination-page-item-size;
+  margin: $oxd-pagination-page-item-margin;
+
+  /* Remove the focus indicator on mouse-focus
+     https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible */
+  &:focus:not(:focus-visible) {
+    outline: 0;
+  }
+
+  &:focus-visible {
+    outline: auto;
+  }
+
+  &--previous-next {
+    border: $oxd-pagination-page-item-border
+      $oxd-pagination-page-item-border-color;
+
+    &:hover {
+      background-color: $oxd-pagination-page-item--previous-next-hover-bg-color;
+    }
+  }
+
+  &--page {
+    border: 0;
+
+    &-selected {
+      background-color: $oxd-pagination-page-item--page-selected-bg-color;
+    }
+
+    &:hover {
+      color: $oxd-pagination-page-item--page-hover-font-color;
+      background-color: $oxd-pagination-page-item--page-hover-bg-color;
+    }
+  }
+}

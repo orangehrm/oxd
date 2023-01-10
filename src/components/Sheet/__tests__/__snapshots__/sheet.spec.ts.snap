@@ -1,0 +1,25 @@
+// Vitest Snapshot v1
+
+exports[`Sheet.vue > should renders OXD Sheet 1`] = `"<div class=\\"oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white\\" data-v-c53e196d=\\"\\"></div>"`;
+
+exports[`Sheet.vue > should renders OXD Sheet, not rounded 1`] = `"<div class=\\"oxd-sheet oxd-sheet--gutters oxd-sheet--white\\" data-v-c53e196d=\\"\\"></div>"`;
+
+exports[`Sheet.vue > should renders OXD Sheet, type gray 1`] = `"<div class=\\"oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--gray\\" data-v-c53e196d=\\"\\"></div>"`;
+
+exports[`Sheet.vue > should renders OXD Sheet, type gray-darken-1 1`] = `"<div class=\\"oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--gray-darken-1\\" data-v-c53e196d=\\"\\"></div>"`;
+
+exports[`Sheet.vue > should renders OXD Sheet, type gray-darken-2 1`] = `"<div class=\\"oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--gray-darken-2\\" data-v-c53e196d=\\"\\"></div>"`;
+
+exports[`Sheet.vue > should renders OXD Sheet, type gray-lighten-1 1`] = `"<div class=\\"oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--gray-lighten-1\\" data-v-c53e196d=\\"\\"></div>"`;
+
+exports[`Sheet.vue > should renders OXD Sheet, type gray-lighten-2 1`] = `"<div class=\\"oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--gray-lighten-2\\" data-v-c53e196d=\\"\\"></div>"`;
+
+exports[`Sheet.vue > should renders OXD Sheet, type light-gray 1`] = `"<div class=\\"oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--light-gray\\" data-v-c53e196d=\\"\\"></div>"`;
+
+exports[`Sheet.vue > should renders OXD Sheet, type pastel-white 1`] = `"<div class=\\"oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--pastel-white\\" data-v-c53e196d=\\"\\"></div>"`;
+
+exports[`Sheet.vue > should renders OXD Sheet, type white 1`] = `"<div class=\\"oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white\\" data-v-c53e196d=\\"\\"></div>"`;
+
+exports[`Sheet.vue > should renders OXD Sheet, type white-shadow 1`] = `"<div class=\\"oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white-shadow\\" data-v-c53e196d=\\"\\"></div>"`;
+
+exports[`Sheet.vue > should renders OXD Sheet, without gutters 1`] = `"<div class=\\"oxd-sheet oxd-sheet--rounded oxd-sheet--white\\" data-v-c53e196d=\\"\\"></div>"`;

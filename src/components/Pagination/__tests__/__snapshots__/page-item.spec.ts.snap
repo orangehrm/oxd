@@ -1,0 +1,9 @@
+// Vitest Snapshot v1
+
+exports[`PageItem.vue > renders OXD PageItem 1`] = `"<li data-v-c3c32be7=\\"\\"><button type=\\"button\\" class=\\"oxd-pagination-page-item oxd-pagination-page-item--page\\" data-v-c3c32be7=\\"\\">1</button></li>"`;
+
+exports[`PageItem.vue > renders OXD PageItem next 1`] = `"<li data-v-c3c32be7=\\"\\"><button type=\\"button\\" class=\\"oxd-pagination-page-item oxd-pagination-page-item--previous-next\\" data-v-c3c32be7=\\"\\"><i class=\\"oxd-icon bi-chevron-right\\" data-v-85cde8ca=\\"\\" data-v-c3c32be7=\\"\\"></i></button></li>"`;
+
+exports[`PageItem.vue > renders OXD PageItem previous 1`] = `"<li data-v-c3c32be7=\\"\\"><button type=\\"button\\" class=\\"oxd-pagination-page-item oxd-pagination-page-item--previous-next\\" data-v-c3c32be7=\\"\\"><i class=\\"oxd-icon bi-chevron-left\\" data-v-85cde8ca=\\"\\" data-v-c3c32be7=\\"\\"></i></button></li>"`;
+
+exports[`PageItem.vue > renders OXD PageItem selected 1`] = `"<li data-v-c3c32be7=\\"\\"><button type=\\"button\\" class=\\"oxd-pagination-page-item oxd-pagination-page-item--page oxd-pagination-page-item--page-selected\\" data-v-c3c32be7=\\"\\">2</button></li>"`;

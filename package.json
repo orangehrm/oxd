@@ -13,7 +13,9 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@revolist/vue3-datagrid": "^3.2.17",
     "bootstrap-icons": "^1.10.3",
+    "chart.js": "^4.1.2",
     "date-fns": "^2.29.3",
     "mitt": "^3.0.0",
     "nanoid": "^4.0.0",

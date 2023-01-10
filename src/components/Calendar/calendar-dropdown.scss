@@ -1,0 +1,67 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+@import '../../styles';
+@import 'variables';
+
+.oxd-calendar-dropdown {
+  display: block;
+  position: absolute;
+  list-style: none;
+  left: 0;
+  right: 0;
+  top: $oxd-calendar-selector-top-margin;
+  padding: $oxd-calendar-selector-padding;
+  background-color: $oxd-white-color;
+  max-height: $oxd-calendar-selector-height;
+  overflow: hidden auto;
+  margin: 0;
+  z-index: $oxd-dropdown-z-index;
+  border-radius: 6px;
+  min-width: max-content;
+  border: 1px solid #e9eaec;
+  box-shadow: 0px 12px 20px 0px rgb(0 0 0 / 8%);
+  @include oxd-scrollbar();
+
+  &--option {
+    cursor: pointer;
+    font-family: $oxd-input-control-font-family;
+    color: $oxd-input-control-font-color;
+    font-size: $oxd-input-control-font-size;
+    font-weight: $oxd-input-control-font-weight;
+    line-height: $oxd-input-control-line-height;
+    padding: $oxd-calendar-controller-item-padding;
+    border-radius: $oxd-calendar-controller-item-radius;
+    width: auto;
+    &:hover,
+    &.--selected {
+      background-color: $oxd-calendar-controller-item-background-color;
+    }
+  }
+}
+
+.transition-fade-down-enter-from,
+.transition-fade-down-leave-to {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+.transition-fade-down-enter-active,
+.transition-fade-down-leave-active {
+  transition: transform 300ms cubic-bezier(0.53, 2, 0.36, 0.85),
+    opacity 300ms cubic-bezier(0.53, 2, 0.36, 0.85);
+}

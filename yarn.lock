@@ -1744,6 +1744,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@kurkle/color@npm:^0.3.0":
+  version: 0.3.1
+  resolution: "@kurkle/color@npm:0.3.1"
+  checksum: e6be5c081bf5acfd4a1803dcd5a0733caf450e73148d5f02dc536b1ff0c60c959c23472a26c9c3c6c78ada04fb6a53c9202db9b2de8ea56f6eeec381f9cc3a1a
+  languageName: node
+  linkType: hard
+
 "@mdx-js/react@npm:^2.1.5":
   version: 2.2.1
   resolution: "@mdx-js/react@npm:2.2.1"
@@ -1803,6 +1810,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@revolist/revogrid@npm:^3.2.16":
+  version: 3.3.0
+  resolution: "@revolist/revogrid@npm:3.3.0"
+  dependencies:
+    lodash: ^4.17.20
+  checksum: 0bce54d722a7d79b9791ea7db9fd1d769dd7572c17cca71688d1169da81bc54cd7ed6a93f66a930ef29c8eeccbd9de2d6a98fa96cbb3b2ada677206c12440312
+  languageName: node
+  linkType: hard
+
+"@revolist/vue3-datagrid@npm:^3.2.17":
+  version: 3.2.17
+  resolution: "@revolist/vue3-datagrid@npm:3.2.17"
+  dependencies:
+    "@revolist/revogrid": ^3.2.16
+    "@stencil/core": ^2.17.3
+  checksum: 16768c2751d82571c268bf941cb4086e322ff4c96afe5bd51d80325fbacee504108fff2496504e761e143679ef41d0d9d099d4e9aae2e6b503a7e01d79b9e733
+  languageName: node
+  linkType: hard
+
 "@rollup/pluginutils@npm:^5.0.2":
   version: 5.0.2
   resolution: "@rollup/pluginutils@npm:5.0.2"
@@ -1830,6 +1856,15 @@ __metadata:
   version: 0.24.51
   resolution: "@sinclair/typebox@npm:0.24.51"
   checksum: fd0d855e748ef767eb19da1a60ed0ab928e91e0f358c1dd198d600762c0015440b15755e96d1176e2a0db7e09c6a64ed487828ee10dd0c3e22f61eb09c478cd0
+  languageName: node
+  linkType: hard
+
+"@stencil/core@npm:^2.17.3":
+  version: 2.21.0
+  resolution: "@stencil/core@npm:2.21.0"
+  bin:
+    stencil: bin/stencil
+  checksum: 9cfde2fb59a1d1f4a141ec6411cff1d00c1d743c01aa2473a36460796f44780d3f440ec11648ebbe38132c56641593be63e7a7e6410bfd187664e1bff2478abd
   languageName: node
   linkType: hard
 
@@ -4488,6 +4523,15 @@ __metadata:
   dependencies:
     is-regex: ^1.0.3
   checksum: 71826fae509d4dc3ef07c2e824da9c8853f910ba0d8fe699edaab263051fd3b8db77bb96e46ed896bb36ed1d86108e6d6ceedff436bec7786ba7f0b585a0bc93
+  languageName: node
+  linkType: hard
+
+"chart.js@npm:^4.1.2":
+  version: 4.1.2
+  resolution: "chart.js@npm:4.1.2"
+  dependencies:
+    "@kurkle/color": ^0.3.0
+  checksum: 938ac88baf04eb8d784a8d89064696375bc12545421186f5ec9b69ba9b6f7b7da960754f351b59b1df2b1c314dfa848aab44267076888e664d5253bc6a4059dd
   languageName: node
   linkType: hard
 
@@ -7727,7 +7771,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.15, lodash@npm:^4.17.21":
+"lodash@npm:^4.17.15, lodash@npm:^4.17.20, lodash@npm:^4.17.21":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
@@ -8626,6 +8670,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "oxd@workspace:."
   dependencies:
+    "@revolist/vue3-datagrid": ^3.2.17
     "@rushstack/eslint-patch": ^1.1.4
     "@storybook/addon-essentials": ^7.0.0-beta.21
     "@storybook/addon-interactions": ^7.0.0-beta.21
@@ -8642,6 +8687,7 @@ __metadata:
     "@vue/test-utils": ^2.2.6
     "@vue/tsconfig": ^0.1.3
     bootstrap-icons: ^1.10.3
+    chart.js: ^4.1.2
     date-fns: ^2.29.3
     eslint: ^8.22.0
     eslint-plugin-vue: ^9.3.0

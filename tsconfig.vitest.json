@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.app.json",
-  "exclude": [],
+  "exclude": ["src/**/stories/*"],
   "compilerOptions": {
     "composite": true,
     "lib": [],

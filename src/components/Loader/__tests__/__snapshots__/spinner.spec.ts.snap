@@ -1,0 +1,13 @@
+// Vitest Snapshot v1
+
+exports[`Loader > Spinner.vue > renders OXD Spinner 1`] = `
+"<div class=\\"oxd-loading-spinner-container\\" data-v-a498e0da=\\"\\">
+  <div class=\\"oxd-loading-spinner\\" data-v-a498e0da=\\"\\"></div>
+</div>"
+`;
+
+exports[`Loader > Spinner.vue > should renders OXD Spinner with container 1`] = `
+"<div class=\\"oxd-loading-spinner-container--block\\" data-v-a498e0da=\\"\\">
+  <div class=\\"oxd-loading-spinner\\" data-v-a498e0da=\\"\\"></div>
+</div>"
+`;

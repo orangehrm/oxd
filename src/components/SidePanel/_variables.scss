@@ -1,0 +1,43 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+$oxd-sidepanel-bg-color: $oxd-white-color !default;
+$oxd-sidepanel-border-radius: 35px !default;
+$oxd-sidepanel-expand-width: 16rem !default;
+$oxd-sidepanel-collapse-width: 5.2rem !default;
+$oxd-sidepanel-min-height: 100vh !default;
+$oxd-sidepanel-box-shadow: 0px 25px 35px 0 rgba(0, 0, 0, 0.18) !default;
+
+$oxd-brand-logo-height: 50px !default;
+$oxd-brand-logo-width: 50px !default;
+$oxd-brand-banner-height: 50px !default;
+$oxd-brand-banner-width: 182px !default;
+
+$oxd-menu-padding-right: 10px !default;
+$oxd-menu-item-font-size: 0.85rem !default;
+$oxd-menu-item-font-weight: 600 !default;
+$oxd-menu-item-padding: 8px 16px 8px 24px !default;
+$oxd-menu-item-color: $oxd-interface-gray-darken-1-color !default;
+$oxd-menu-item-color--active: $oxd-primary-font-color !default;
+$oxd-menu-item-color--hover: $oxd-primary-font-color !default;
+$oxd-menu-item-hover-color: $oxd-primary-one-alpha-10-color !default;
+$oxd-menu-item-active-color: $oxd-primary-one-color !default;
+$oxd-menu-item-active-gradient: $oxd-secondary-gradient !default;
+$oxd-menu-slide-button-color: $oxd-primary-one-color !default;
+$oxd-menu-item-text-padding-left: 15px !default;
+
+$oxd-main-menu-hr: 1px solid rgba(143, 143, 143, 0.15) !default;

@@ -1,0 +1,31 @@
+// Vitest Snapshot v1
+
+exports[`Toast > Icon.vue > should renders OXD ToastIcon 1`] = `
+"<div class=\\"oxd-toast-icon-container\\" data-v-e0c4fc83=\\"\\">
+  <div class=\\"oxd-toast-icon-wrap oxd-toast-icon-wrap--default\\" data-v-e0c4fc83=\\"\\"><i class=\\"oxd-icon bi-star oxd-toast-icon\\" data-v-85cde8ca=\\"\\" data-v-e0c4fc83=\\"\\"></i></div>
+</div>"
+`;
+
+exports[`Toast > Icon.vue > should renders OXD ToastIcon error 1`] = `
+"<div class=\\"oxd-toast-icon-container\\" data-v-e0c4fc83=\\"\\">
+  <div class=\\"oxd-toast-icon-wrap oxd-toast-icon-wrap--error\\" data-v-e0c4fc83=\\"\\"><i class=\\"oxd-icon bi-exclamation-circle oxd-toast-icon\\" data-v-85cde8ca=\\"\\" data-v-e0c4fc83=\\"\\"></i></div>
+</div>"
+`;
+
+exports[`Toast > Icon.vue > should renders OXD ToastIcon info 1`] = `
+"<div class=\\"oxd-toast-icon-container\\" data-v-e0c4fc83=\\"\\">
+  <div class=\\"oxd-toast-icon-wrap oxd-toast-icon-wrap--info\\" data-v-e0c4fc83=\\"\\"><i class=\\"oxd-icon bi-info-circle oxd-toast-icon\\" data-v-85cde8ca=\\"\\" data-v-e0c4fc83=\\"\\"></i></div>
+</div>"
+`;
+
+exports[`Toast > Icon.vue > should renders OXD ToastIcon success 1`] = `
+"<div class=\\"oxd-toast-icon-container\\" data-v-e0c4fc83=\\"\\">
+  <div class=\\"oxd-toast-icon-wrap oxd-toast-icon-wrap--success\\" data-v-e0c4fc83=\\"\\"><i class=\\"oxd-icon bi-check2 oxd-toast-icon\\" data-v-85cde8ca=\\"\\" data-v-e0c4fc83=\\"\\"></i></div>
+</div>"
+`;
+
+exports[`Toast > Icon.vue > should renders OXD ToastIcon warn 1`] = `
+"<div class=\\"oxd-toast-icon-container\\" data-v-e0c4fc83=\\"\\">
+  <div class=\\"oxd-toast-icon-wrap oxd-toast-icon-wrap--warn\\" data-v-e0c4fc83=\\"\\"><i class=\\"oxd-icon bi-exclamation-triangle oxd-toast-icon\\" data-v-85cde8ca=\\"\\" data-v-e0c4fc83=\\"\\"></i></div>
+</div>"
+`;

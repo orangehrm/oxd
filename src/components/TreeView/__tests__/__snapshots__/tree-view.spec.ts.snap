@@ -1,0 +1,14 @@
+// Vitest Snapshot v1
+
+exports[`TreeView.vue > renders OXD Tree View 1`] = `
+"<ul class=\\"oxd-tree-view\\" data-v-57788187=\\"\\">
+  <li class=\\"oxd-tree-node --last\\" data-v-463f5554=\\"\\" data-v-57788187=\\"\\">
+    <div class=\\"--last oxd-tree-node-wrapper\\" data-v-463f5554=\\"\\">
+      <!--v-if-->
+      <div class=\\"oxd-tree-node-content\\" data-v-463f5554=\\"\\">test</div>
+    </div>
+    <div class=\\"oxd-tree-node-liner\\" style=\\"height: 0px;\\" data-v-463f5554=\\"\\"></div>
+    <!--v-if-->
+  </li>
+</ul>"
+`;

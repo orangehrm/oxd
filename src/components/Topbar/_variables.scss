@@ -1,0 +1,53 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+$oxd-topbar-bg-color: $oxd-primary-gradient-start-color !default;
+$oxd-topbar-bg-gradient: $oxd-primary-gradient !default;
+$oxd-topbar-patch-color: $oxd-primary-gradient-start-color !default;
+
+$oxd-topbar-title-font-size: 14px !default;
+$oxd-topbar-title-font-weight: 400 !default;
+$oxd-topbar-title-font-color: $oxd-primary-font-color !default;
+$oxd-topbar-tab-font-color: $oxd-interface-gray-color !default;
+$oxd-topbar-tab-font-size: 12px !default;
+$oxd-topbar-tab-font-weight: 600 !default;
+$oxd-topbar-tab-hover-color: $oxd-primary-one-alpha-10-color !default;
+$oxd-topbar-tab-hover-font-color: $oxd-primary-one-color !default;
+$oxd-topbar-tab-background-color: #f8f9fa !default;
+$oxd-topbar-visited-border: 3px solid $oxd-primary-one-color !default;
+$oxd-topbar-visited-border-radius: 4px !default;
+$oxd-topbar-visited-border-width: 1.875rem !default;
+
+$oxd-userdropdown-hr: 1px solid rgba(143, 143, 143, 0.15) !default;
+$oxd-userdropdown-img-border: 4px solid rgba(225, 225, 255, 0.37) !default;
+$oxd-userdropdown-gap-border: 1px solid #da630b !default;
+$oxd-userdropdown-font-color: $oxd-primary-font-color !default;
+$oxd-userdropdown-font-size: 12px !default;
+
+$oxd-notifdropdown-counter-bg: #ffd3c0 !default;
+$oxd-topbar-header-web-padding-left: 48px !default;
+$oxd-topbar-header-mobile-padding-left: 20px !default;
+$oxd-topbar-header-web-padding-right: 48px !default;
+$oxd-topbar-header-mobile-padding-right: 20px !default;
+$oxd-topbar-header-padding-top: 8px !default;
+$oxd-topbar-header-padding-bottom: 8px !default;
+
+$oxd-topbar-body-web-padding: 8px 48px !default;
+$oxd-topbar-body-mobile-padding: 8px 20px !default;
+$oxd-topbar-body-min-height: 52px !default;
+$oxd-topbar-body-background: $oxd-white-color !default;
+$oxd-topbar-border: 1px solid #f1f2f3 !default;
