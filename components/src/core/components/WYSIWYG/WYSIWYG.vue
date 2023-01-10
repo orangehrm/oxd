@@ -226,11 +226,8 @@ export default defineComponent({
         setTinymceImage.value(files[0]);
       }
     };
-    const onInput = (e: any) => {
-      const contentEditableElm: HTMLTextAreaElement = e.target.querySelector(
-        '.mce-content-body',
-      );
-      emit('update:modelValue', contentEditableElm.innerHTML);
+    const onInput = () => {
+      emit('update:modelValue', vModel.value);
     };
 
     return {
