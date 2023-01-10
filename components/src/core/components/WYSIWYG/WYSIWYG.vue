@@ -97,74 +97,56 @@ export default defineComponent({
     const attachmentSize = props.attachmentSize || 0;
     const attachmentSizeInMb = attachmentSize / (1024 * 1024);
 
-    // eslint-disable-next-line
+    /*eslint-disable */
     const initialObject: any = {
       height: 500,
       selector: '.tinymce',
       theme: 'modern',
       plugins:
         'advlist,anchor,autolink,autoresize,colorpicker,emoticons,hr,image,link,nonbreaking,pagebreak,paste,preview,print,searchreplace,table,textcolor,wordcount,contextmenu,lists',
-      // eslint-disable-next-line
       fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
       toolbar1:
         'toggleToolbar | fontselect fontsizeselect | bold italic | bullist numlist outdent indent ',
       toolbar2:
         'undo redo | link image image-upload | alignleft aligncenter alignright alignjustify | forecolor backcolor ',
-      // eslint-disable-next-line
       image_advtab: true,
-      // eslint-disable-next-line
       browser_spellcheck: true,
-      // eslint-disable-next-line
       paste_as_text: true,
-      // eslint-disable-next-line
       paste_data_images: true,
-      // eslint-disable-next-line
       autoresize_max_height: 500,
-      // eslint-disable-next-line
       contextmenu_never_use_native: true,
-      // eslint-disable-next-line
       content_css: false,
-      // eslint-disable-next-line
-      skin_url:
-        '@orangehrm/oxd/core/components/WYSIWYG/skins/lightgray/skin.css',
-      // content_style:
-      // '@orangehrm/oxd/core/components/WYSIWYG/skins/lightgray/content.css',
-      // eslint-disable-next-line
+      content_style:
+        '@orangehrm/oxd/core/components/WYSIWYG/skins/lightgray/content.css',
       setup(editor: any) {
-        // eslint-disable-next-line
         editor.image_type_error = () => {
           emit('wysiwyg:errror-image-type');
         };
-        // eslint-disable-next-line
         editor.image_size_error = () => {
           emit('wysiwyg:errror-image-size', attachmentSizeInMb);
         };
-        // eslint-disable-next-line
-        editor.allowed_file_types = function() {
+        editor.allowed_file_types = () => {
           return props.allowedFileTypes;
         };
 
         setTinymceImage.value = (file: File) => {
           const reader = new FileReader();
           reader.readAsDataURL(file);
-          reader.onload = function() {
+          reader.onload = () => {
             editor.execCommand(
               'mceInsertContent',
               false,
               '<img src="' + reader.result + '"/>',
             );
           };
-          // eslint-disable-next-line
-          reader.onerror = function(error: any) {};
+          reader.onerror = (error: any) => {};
         };
         tinymceImageSizeValidator.value = (file: File) => {
           if (!file || !file.size) {
             return true;
           } else {
             if (file.size > attachmentSize) {
-              // eslint-disable-next-line
               if (typeof editor.image_size_error === 'function') {
-                // eslint-disable-next-line
                 editor.image_size_error();
               }
               return false;
@@ -183,7 +165,6 @@ export default defineComponent({
               (file && !file.type)
             ) {
               if (typeof editor.image_type_error === 'function') {
-                // eslint-disable-next-line
                 editor.image_type_error();
               }
               return false;
@@ -195,19 +176,18 @@ export default defineComponent({
         editor.addButton('image-upload', {
           tooltip: 'Upload image',
           icon: 'browse',
-          onclick: function() {
+          onclick() {
             fileInput.value.click();
           },
         });
         editor.addButton('toggleToolbar', {
           icon: 'mce-ico mce-i-settings',
           tooltip: 'Toggle Toolbar',
-          onclick: function() {
+          onclick() {
             seonderyTooltbar.value.classList.toggle('d-none');
           },
         });
       },
-      // eslint-disable-next-line
       init_instance_callback() {
         seonderyTooltbar.value = document.querySelector(
           `.mce-toolbar.mce-stack-layout-item.mce-last`,
@@ -223,7 +203,6 @@ export default defineComponent({
       for (const key in props.configurations) {
         const value = props.configurations[key];
         if (value) {
-          // eslint-disable-next-line
           initialObject[key] = value;
         }
       }
@@ -237,7 +216,6 @@ export default defineComponent({
       };
     });
 
-    // eslint-disable-next-line
     const onChangeFile = (e: any) => {
       const files = e.target?.files;
       if (
@@ -248,9 +226,13 @@ export default defineComponent({
         setTinymceImage.value(files[0]);
       }
     };
-    const onInput = () => {
-      emit('update:modelValue', vModel.value);
+    const onInput = (e: any) => {
+      const contentEditableElm: HTMLTextAreaElement = e.target.querySelector(
+        '.mce-content-body',
+      );
+      emit('update:modelValue', contentEditableElm.innerHTML);
     };
+
     return {
       vModel,
       wysiwygId,
@@ -263,6 +245,6 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import './wysiwyg.scss';
 </style>
