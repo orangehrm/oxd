@@ -14,20 +14,10 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
-    "types": [
-      "webpack-env",
-      "jest"
-    ],
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ],
+    "types": ["webpack-env", "jest"],
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
     "paths": {
-      "@orangehrm/oxd/*": [
-        "components/src/*"
-      ]
+      "@orangehrm/oxd/*": ["components/src/*"]
     }
   },
   "include": [
@@ -37,7 +27,5 @@
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

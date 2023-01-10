@@ -47,7 +47,7 @@ import 'tinymce/plugins/wordcount/plugin';
 import Editor from '@tinymce/tinymce-vue';
 import {nanoid} from 'nanoid';
 
-const contentUiCssURL = require('!!raw-loader!./skins/lightgray/content.module.css');
+import * as contentUiCssURL from '!!raw-loader!./skins/lightgray/content.module.css';
 
 export default defineComponent({
   name: 'App',

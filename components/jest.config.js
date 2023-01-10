@@ -4,4 +4,7 @@ module.exports = {
     '^.+\\.vue$': 'vue-jest',
   },
   testEnvironmentOptions: {resources: 'usable'},
+  moduleNameMapper: {
+    '^!!raw-loader!(.*)$': '$1',
+  },
 };
