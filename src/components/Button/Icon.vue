@@ -20,82 +20,89 @@
 -->
 
 <template>
-  <button type="button" :class="classes" :style="style">
-    <slot name="icon">
-      <oxd-icon v-if="iconName" :name="iconName" class="oxd-button-icon" />
-    </slot>
-    {{ label }}
-    <slot name="iconRight">
-      <oxd-icon
-        v-if="iconRightName"
-        :name="iconRightName"
-        class="oxd-button-icon"
-      />
-    </slot>
+  <button
+    v-if="withContainer"
+    :disabled="disabled"
+    :class="classes"
+    type="button"
+    @click="onClick"
+  >
+    <oxd-icon :class="{'--disabled': disabled}" :name="name" :type="iconType" />
   </button>
+  <oxd-icon
+    v-else
+    :name="name"
+    :type="iconType"
+    :class="{'oxd-icon-button__icon': true, '--disabled': disabled}"
+    @click="onClick"
+  />
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 import Icon from '@/components/Icon/Icon.vue';
-import type {ButtonSize, ButtonType} from './types';
-import {SIZES, SIZE_MEDIUM, TYPES, TYPE_MAIN} from './types';
+import {ICON_TYPES} from './types';
+import type {ButtonType} from './types';
+import {TYPE_BOOTSTRAP, TYPES} from '../Icon/types';
 
 export default defineComponent({
-  name: 'OxdButton',
+  name: 'OxdIconButton',
 
   components: {
     'oxd-icon': Icon,
   },
 
   props: {
-    label: {
+    name: {
       type: String,
       required: true,
+    },
+    withContainer: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
     displayType: {
       type: String,
       required: false,
-      default: TYPE_MAIN,
+      default: null,
       validator: function (value: ButtonType) {
+        return !value || ICON_TYPES.indexOf(value) !== -1;
+      },
+    },
+    iconType: {
+      type: String,
+      required: false,
+      default: TYPE_BOOTSTRAP,
+      validator: (value: string) => {
         return TYPES.indexOf(value) !== -1;
       },
     },
-    size: {
-      type: String,
-      required: false,
-      default: SIZE_MEDIUM,
-      validator: function (value: ButtonSize) {
-        return SIZES.indexOf(value) !== -1;
-      },
-    },
-    style: {
-      type: Object,
-      required: false,
-      default: () => ({}),
-    },
-    iconName: {
-      type: String,
-      required: false,
-      default: null,
-    },
-    iconRightName: {
-      type: String,
-      required: false,
-      default: null,
-    },
   },
+
+  emits: ['click'],
 
   computed: {
     classes(): object {
       return {
-        'oxd-button': true,
-        [`oxd-button--${this.size}`]: true,
-        [`oxd-button--${this.displayType}`]: true,
+        'oxd-icon-button': true,
+        [`oxd-icon-button--${this.displayType}`]: Boolean(this.displayType),
       };
+    },
+  },
+
+  methods: {
+    onClick(e: Event) {
+      e.preventDefault();
+      this.$emit('click', e);
     },
   },
 });
 </script>
 
-<style src="./button.scss" lang="scss" scoped></style>
+<style src="./icon.scss" lang="scss" scoped></style>

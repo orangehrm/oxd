@@ -1,0 +1,188 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+@mixin oxd-button-solid($type: 'main') {
+  @include oxd-button-base;
+  $oxd-button: map-get($oxd-solid-buttons, $type);
+  color: map-get($oxd-button, 'font');
+  background-color: map-get($oxd-button, 'active');
+
+  &:focus {
+    color: map-get($oxd-button, 'font');
+    background-color: map-get($oxd-button, 'focus');
+  }
+
+  &:hover {
+    color: map-get($oxd-button, 'font');
+    background-color: map-get($oxd-button, 'hover');
+  }
+
+  &:active {
+    color: map-get($oxd-button, 'font');
+    background-color: map-get($oxd-button, 'pressed');
+  }
+
+  &:disabled {
+    color: map-get($oxd-button, 'font');
+    background-color: map-get($oxd-button, 'inactive');
+  }
+}
+
+@mixin oxd-button-label($type: 'default') {
+  @include oxd-button-base;
+  $oxd-button: map-get($oxd-label-buttons, $type);
+
+  color: map-get($oxd-button, 'font');
+  background-color: map-get($oxd-button, 'active');
+
+  @if ($type == 'default' or $type == 'text') {
+    &:focus {
+      background-color: map-get($oxd-button, 'focus');
+    }
+    &:hover {
+      background-color: map-get($oxd-button, 'hover');
+    }
+  } @else {
+    &:focus {
+      color: $oxd-button-font-color;
+      background-color: map-get($oxd-button, 'focus');
+    }
+    &:hover {
+      color: $oxd-button-font-color;
+      background-color: map-get($oxd-button, 'hover');
+    }
+  }
+
+  &:active {
+    background-color: map-get($oxd-button, 'pressed');
+  }
+
+  &:disabled {
+    @if ($type== 'text') {
+      color: map-get($oxd-button, 'font-inactive');
+    } @else {
+      color: $oxd-button-font-color;
+    }
+
+    background-color: map-get($oxd-button, 'inactive');
+  }
+}
+
+@mixin oxd-button-color-ghost($color, $hover: false) {
+  border: $oxd-button-border--ghost;
+
+  @if ($hover) {
+    color: $oxd-button-font-color;
+    background-color: $color;
+  } @else {
+    color: $color;
+    background-color: transparent;
+  }
+}
+
+@mixin oxd-button-ghost($type: 'default') {
+  @include oxd-button-base;
+  $oxd-button: map-get($oxd-ghost-buttons, $type);
+
+  @include oxd-button-color-ghost(map-get($oxd-button, 'active'));
+
+  @if ($type == 'default' or $type == 'tool') {
+    &:focus {
+      @include oxd-button-color-ghost(map-get($oxd-button, 'focus'));
+    }
+    &:hover {
+      @include oxd-button-color-ghost(map-get($oxd-button, 'hover'));
+    }
+  } @else {
+    &:focus {
+      @include oxd-button-color-ghost(map-get($oxd-button, 'focus'), true);
+    }
+    &:hover {
+      @include oxd-button-color-ghost(map-get($oxd-button, 'hover'), true);
+    }
+  }
+
+  &:active {
+    @include oxd-button-color-ghost(map-get($oxd-button, 'pressed'));
+  }
+
+  &:disabled {
+    @include oxd-button-color-ghost(map-get($oxd-button, 'inactive'));
+  }
+}
+
+@mixin oxd-button-base {
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+@mixin oxd-icon-button($type: 'default') {
+  $oxd-icon-button-color: map-get($oxd-list-button-pallete, $type);
+
+  color: $oxd-icon-button-color;
+  background-color: map-get($oxd-list-button-pallete, '#{$type}-alpha-10');
+
+  &:focus,
+  &:hover {
+    outline: 0;
+    background-color: map-get($oxd-list-button-pallete, '#{$type}-alpha-15');
+  }
+
+  &:active {
+    background-color: map-get($oxd-list-button-pallete, '#{$type}-alpha-20');
+  }
+}
+
+@mixin oxd-icon-button-solid($type: 'default') {
+  color: $oxd-white-color;
+  background-color: map-get($oxd-list-button-pallete, $type);
+
+  &:focus,
+  &:hover {
+    outline: 0;
+    background-color: map-get($oxd-list-button-pallete, '#{$type}-lighten-5');
+  }
+
+  &:active {
+    background-color: map-get($oxd-list-button-pallete, '#{$type}-darken-5');
+  }
+}
+
+@mixin oxd-icon-button-ghost($type: 'default') {
+  $oxd-icon-color: map-get($oxd-list-button-pallete, $type);
+
+  color: $oxd-icon-color;
+  border: $oxd-border $oxd-icon-color;
+  background-color: transparent !important;
+
+  &:focus,
+  &:hover {
+    outline: 0;
+    color: map-get($oxd-list-button-pallete, '#{$type}-lighten-5');
+    border: $oxd-border map-get($oxd-list-button-pallete, '#{$type}-lighten-5');
+  }
+
+  &:active {
+    color: map-get($oxd-list-button-pallete, '#{$type}-lighten-5');
+    border: $oxd-border map-get($oxd-list-button-pallete, '#{$type}-lighten-5');
+  }
+
+  &:disabled {
+    color: $oxd-icon-button-font-color--disabled !important;
+    border: $oxd-border $oxd-icon-button--disabled !important;
+  }
+}
