@@ -1,6 +1,7 @@
 <template>
   <div class="oxd-html-editor" :class="classes">
     <editor
+      :id="'oxd-tinymce-editor'"
       v-model="vModel"
       :init="processedSettings"
       :disabled="disabled"
@@ -21,8 +22,6 @@ import {defineComponent, ref, PropType, computed} from 'vue';
 // TinyMCE
 import 'tinymce/tinymce';
 import 'tinymce/themes/modern';
-import contentUiCss from '@orangehrm/oxd/core/components/TinyMce/skins/lightgray/content.css';
-
 // TinyMCE plugins
 import 'tinymce/plugins/advlist/plugin';
 import 'tinymce/plugins/anchor/plugin';
@@ -45,9 +44,10 @@ import 'tinymce/plugins/textcolor/plugin';
 import 'tinymce/plugins/wordcount/plugin';
 import 'tinymce/plugins/contextmenu/plugin';
 import 'tinymce/plugins/wordcount/plugin';
-
 import Editor from '@tinymce/tinymce-vue';
 import {nanoid} from 'nanoid';
+
+const contentUiCssURL = require('!!raw-loader!./skins/lightgray/content.module.css');
 
 export default defineComponent({
   name: 'App',
@@ -115,8 +115,8 @@ export default defineComponent({
       paste_data_images: true,
       autoresize_max_height: 500,
       contextmenu_never_use_native: true,
-      content_css: false,
-      // content_style: contentUiCss.toString(),
+      // content_css: false,
+      content_style: contentUiCssURL.default,
       setup(editor: any) {
         editor.image_type_error = () => {
           emit('tinymce:errror-image-type');

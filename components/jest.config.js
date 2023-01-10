@@ -3,4 +3,5 @@ module.exports = {
   transform: {
     '^.+\\.vue$': 'vue-jest',
   },
+  testEnvironmentOptions: {resources: 'usable'},
 };
