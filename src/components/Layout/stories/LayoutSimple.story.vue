@@ -35,7 +35,10 @@
         <a href="#" role="menuitem" class="oxd-userdropdown-link"> Logout </a>
       </li>
     </template>
-    <template v-slot:footer>
+    <template #nav-actions>
+      <oxd-icon-button name="question-lg" />
+    </template>
+    <template #footer>
       <p class="context-footer">slot for footer</p>
       <br />
     </template>
@@ -45,16 +48,22 @@
 <script>
 import {topMenuItems, sidePanelItems, breadcrumb} from './mockdata';
 import Layout from '@/components/Layout/Layout.vue';
+import IconButton from '@/components//Button/Icon.vue';
+import brandLogoSrc from '@/assets/images/orange.png';
+import brandBannerSrc from '@/assets/images/orangehrm-logo.png';
 
 export default {
   name: 'Layout',
+
   components: {
     'oxd-layout': Layout,
+    'oxd-icon-button': IconButton,
   },
+
   data() {
     return {
-      brandLogoSrc: require('@ohrm/oxd/assets/images/orange.png'),
-      brandBannerSrc: require('@ohrm/oxd/assets/images/orangehrm-logo.png'),
+      brandLogoSrc: brandLogoSrc,
+      brandBannerSrc: brandBannerSrc,
       user: {
         firstName: 'Jeff',
         lastName: 'Winger',

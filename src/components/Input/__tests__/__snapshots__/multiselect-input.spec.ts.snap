@@ -1,0 +1,12 @@
+// Vitest Snapshot v1
+
+exports[`MultiSelectInput.vue > renders OXD MultiSelect Input 1`] = `
+"<div class=\\"oxd-multiselect-wrapper\\" data-v-fb5fb39e=\\"\\">
+  <div class=\\"oxd-select-text oxd-select-text--active\\" data-v-6d056bbf=\\"\\" data-v-fb5fb39e=\\"\\">
+    <div class=\\"oxd-select-text-input\\" tabindex=\\"0\\" data-v-6d056bbf=\\"\\"></div>
+    <div class=\\"oxd-select-text--after\\" data-v-6d056bbf=\\"\\"><i class=\\"oxd-icon bi-caret-down-fill oxd-select-text--arrow\\" data-v-85cde8ca=\\"\\" data-v-6d056bbf=\\"\\"></i></div>
+  </div>
+  <!--v-if-->
+  <div class=\\"oxd-multiselect-chips-area\\" data-v-4d51e862=\\"\\" data-v-fb5fb39e=\\"\\"></div>
+</div>"
+`;

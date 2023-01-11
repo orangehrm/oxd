@@ -32,7 +32,7 @@ interface Breakpoint {
   };
 }
 
-export interface State {
+export interface ResponsiveState {
   windowWidth: number;
   windowHeight: number;
   screenType: string;
@@ -62,7 +62,7 @@ export const breakpoints: Breakpoint = {
 };
 
 export default function useResponsive() {
-  const state: State = reactive({
+  const state: ResponsiveState = reactive({
     windowWidth: 0,
     windowHeight: 0,
     screenType: DEVICE_XS,

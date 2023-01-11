@@ -1,0 +1,11 @@
+// Vitest Snapshot v1
+
+exports[`SelectInput.vue > renders OXD Select Input 1`] = `
+"<div class=\\"oxd-select-wrapper\\" data-v-5aaec31a=\\"\\">
+  <div class=\\"oxd-select-text oxd-select-text--active\\" data-v-6d056bbf=\\"\\" data-v-5aaec31a=\\"\\">
+    <div class=\\"oxd-select-text-input\\" tabindex=\\"0\\" data-v-6d056bbf=\\"\\">-- Select --</div>
+    <div class=\\"oxd-select-text--after\\" data-v-6d056bbf=\\"\\"><i class=\\"oxd-icon bi-caret-down-fill oxd-select-text--arrow\\" data-v-85cde8ca=\\"\\" data-v-6d056bbf=\\"\\"></i></div>
+  </div>
+  <!--v-if-->
+</div>"
+`;

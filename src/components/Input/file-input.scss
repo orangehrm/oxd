@@ -1,0 +1,105 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+@import '../../styles';
+@import 'variables';
+
+.oxd-file-input {
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  max-width: 0;
+  width: 0;
+}
+
+.oxd-file-div {
+  @include oxd-input-control;
+  @include oxd-input-control-size;
+  padding: 0;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  word-wrap: break-word;
+  min-height: $oxd-input-min-height;
+  background-color: $oxd-file-input-background-color;
+
+  &--active {
+    border: $oxd-input-border--active;
+  }
+
+  &--focus {
+    border: $oxd-input-border--focus;
+    box-shadow: $oxd-input-box-shadow--focus;
+    outline: 0;
+  }
+
+  &--error {
+    border: $oxd-input-border--error;
+    box-shadow: $oxd-input-box-shadow--error;
+  }
+
+  &--disabled,
+  &--readonly {
+    background: $oxd-input-background--disabled;
+  }
+}
+
+.oxd-file-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $oxd-file-button-color;
+  border-radius: $oxd-input-control-border-radius;
+  background-color: $oxd-file-button-background-color;
+  font-size: $oxd-file-button-font-size;
+  font-weight: $oxd-file-button-font-weight;
+  height: $oxd-file-button-height;
+  padding: 0 $oxd-file-button-padding-horizontal;
+  margin-left: $oxd-file-input-horizontal-margin;
+  &.--disabled {
+    cursor: unset;
+    color: $oxd-file-button-color--disabled;
+    background-color: $oxd-file-button-background-color--disabled;
+  }
+}
+
+.oxd-file-input-div {
+  @include oxd-input-control;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.oxd-file-input-icon {
+  margin-left: auto;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  width: $oxd-file-button-width;
+  height: $oxd-file-button-height;
+  border-radius: $oxd-input-control-border-radius;
+  background-color: $oxd-file-button-background-color;
+  margin-right: $oxd-file-input-horizontal-margin;
+  &.--disabled {
+    cursor: unset;
+    color: $oxd-file-button-color--disabled;
+    background-color: $oxd-file-button-background-color--disabled;
+  }
+}

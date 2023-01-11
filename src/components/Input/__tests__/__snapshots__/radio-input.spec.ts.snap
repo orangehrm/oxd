@@ -1,0 +1,13 @@
+// Vitest Snapshot v1
+
+exports[`RadioInput.vue > renders OXD Radio Input 1`] = `
+"<div class=\\"oxd-radio-wrapper\\" data-v-d883c23b=\\"\\"><label class=\\"\\" data-v-d883c23b=\\"\\">
+    <!--v-if--><input label=\\"Radio\\" type=\\"radio\\" data-v-d883c23b=\\"\\"><span class=\\"oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input\\" data-v-d883c23b=\\"\\"></span>
+  </label></div>"
+`;
+
+exports[`RadioInput.vue > should renders OXD Radio input with error 1`] = `
+"<div class=\\"oxd-radio-wrapper\\" data-v-d883c23b=\\"\\"><label class=\\"\\" data-v-d883c23b=\\"\\">
+    <!--v-if--><input label=\\"Radio\\" type=\\"radio\\" data-v-d883c23b=\\"\\"><span class=\\"oxd-radio-input oxd-radio-input--active oxd-radio-input--error --label-right oxd-radio-input\\" data-v-d883c23b=\\"\\"></span>
+  </label></div>"
+`;

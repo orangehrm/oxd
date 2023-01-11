@@ -1,0 +1,45 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+@import '../../styles';
+@import 'variables';
+
+.oxd-table-filter {
+  background-color: $oxd-table-filter-background-color;
+  border-radius: $oxd-table-filter-border-radius;
+  padding-top: $oxd-table-filter-padding-top;
+  padding-bottom: $oxd-table-filter-padding-bottom;
+  padding-left: $oxd-table-filter-padding-left;
+  padding-right: $oxd-table-filter-padding-right;
+  &-title {
+    font-size: $oxd-table-filter-title-font-size;
+    font-weight: $oxd-table-filter-title-font-weight;
+  }
+  &-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    &-options {
+      display: flex;
+      & .--toggle,
+      .--export {
+        display: flex;
+      }
+    }
+  }
+}

@@ -93,44 +93,45 @@ import Button from '@/components/Button/Button.vue';
 import Layout from '@/components/Layout/Layout.vue';
 import FormRow from '@/components/Form/FormRow.vue';
 import GridItem from '@/components/Grid/GridItem.vue';
-import IconButton from '@/components/Button/Icon.vue';
 import Divider from '@/components/Divider/Divider.vue';
 import FormActions from '@/components/Form/FormActions.vue';
 import Pagination from '@/components/Pagination/Pagination.vue';
 import InputField from '@/components/InputField/InputField.vue';
-import InputGroup from '@/components/InputField/InputGroup.vue';
 import TableFilter from '@/components/TableFilter/TableFilter.vue';
 import ReportTable from '@/components/ReportTable/ReportTable.vue';
 import {topMenuItems, sidePanelItems, headers, breadcrumb} from './mockdata';
 
+import profImgSrc from '@/assets/images/orange.png';
+import brandLogoSrc from '@/assets/images/orange.png';
+import brandBannerSrc from '@/assets/images/orangehrm-logo.png';
+
 export default {
   name: 'Layout',
+
   components: {
     'oxd-text': Text,
-    'oxd-layout': Layout,
-    'oxd-table-filter': TableFilter,
     'oxd-grid': Grid,
-    'oxd-grid-item': GridItem,
     'oxd-form': Form,
-    'oxd-form-row': FormRow,
-    'oxd-form-actions': FormActions,
-    'oxd-input-group': InputGroup,
-    'oxd-input-field': InputField,
-    'oxd-button': Button,
-    'oxd-icon-button': IconButton,
-    'oxd-divider': Divider,
-    'oxd-report-table': ReportTable,
-    'oxd-pagination': Pagination,
     'oxd-icon': Icon,
+    'oxd-layout': Layout,
+    'oxd-button': Button,
+    'oxd-divider': Divider,
+    'oxd-form-row': FormRow,
+    'oxd-grid-item': GridItem,
+    'oxd-pagination': Pagination,
+    'oxd-input-field': InputField,
+    'oxd-form-actions': FormActions,
+    'oxd-report-table': ReportTable,
+    'oxd-table-filter': TableFilter,
   },
   data() {
     return {
-      brandLogoSrc: require('@ohrm/oxd/assets/images/orange.png'),
-      brandBannerSrc: require('@ohrm/oxd/assets/images/orangehrm-logo.png'),
+      brandLogoSrc: brandLogoSrc,
+      brandBannerSrc: brandBannerSrc,
       user: {
         firstName: 'Jeff',
         lastName: 'Winger',
-        profImgSrc: require('@ohrm/oxd/assets/images/orange.png'),
+        profImgSrc: profImgSrc,
       },
       filters: {
         username: '',
@@ -154,7 +155,7 @@ export default {
       'LKA - Casual',
       'LKA - Maternity',
     ];
-    this.items = new Array(10).fill('').map((_, index) => {
+    this.items = new Array(10).fill('').map(() => {
       const rand = Math.random();
       return {
         type: types[Math.floor(rand * types.length)],

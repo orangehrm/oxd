@@ -1,0 +1,3 @@
+// Vitest Snapshot v1
+
+exports[`CardTable > Table.vue > renders OXD CardTable > Table 1`] = `"<div class=\\"oxd-table\\" role=\\"table\\"></div>"`;

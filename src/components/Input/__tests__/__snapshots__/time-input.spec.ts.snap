@@ -1,0 +1,8 @@
+// Vitest Snapshot v1
+
+exports[`TimeInput.vue > renders OXD Time Input 1`] = `
+"<div class=\\"oxd-time-wrapper\\" data-v-feb8bad1=\\"\\">
+  <div class=\\"oxd-time-input\\" data-v-feb8bad1=\\"\\"><input class=\\"oxd-input oxd-input--active\\" data-v-d06e05c9=\\"\\" data-v-feb8bad1=\\"\\"><i class=\\"oxd-icon bi-clock oxd-time-input--clock\\" data-v-85cde8ca=\\"\\" data-v-feb8bad1=\\"\\"></i></div>
+  <!--v-if-->
+</div>"
+`;

@@ -18,11 +18,11 @@
  */
 
 import {defineComponent} from 'vue';
-import type {State} from '../../composables/useResponsive';
+import type {ResponsiveState} from '../../composables/useResponsive';
 import {breakpoints, DEVICE_XS} from '../../composables/useResponsive';
 
 export const responsiveMixin = defineComponent({
-  data(): State {
+  data(): ResponsiveState {
     return {
       windowWidth: 0,
       windowHeight: 0,

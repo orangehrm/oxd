@@ -1,6 +1,5 @@
 import {enUS} from 'date-fns/locale';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const buildMatchFn = require('date-fns/locale/_lib/buildMatchFn');
+import * as buildMatchFn from 'date-fns/locale/_lib/buildMatchFn';
 
 export type LangPack = {
   narrow?: string[];

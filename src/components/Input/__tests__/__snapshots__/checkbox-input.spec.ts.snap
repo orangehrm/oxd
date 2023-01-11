@@ -1,0 +1,13 @@
+// Vitest Snapshot v1
+
+exports[`CheckboxInput.vue > renders OXD Checkbox Input 1`] = `
+"<div class=\\"oxd-checkbox-wrapper\\" data-v-52a07bbe=\\"\\"><label class=\\"\\" data-v-52a07bbe=\\"\\">
+    <!--v-if--><input label=\\"Checkbox\\" type=\\"checkbox\\" data-v-52a07bbe=\\"\\"><span class=\\"oxd-checkbox-input oxd-checkbox-input--active --label-right oxd-checkbox-input\\" data-v-52a07bbe=\\"\\"><i class=\\"oxd-icon bi-check oxd-checkbox-input-icon\\" data-v-85cde8ca=\\"\\" data-v-52a07bbe=\\"\\"></i></span>
+  </label></div>"
+`;
+
+exports[`CheckboxInput.vue > should renders OXD Input with error 1`] = `
+"<div class=\\"oxd-checkbox-wrapper\\" data-v-52a07bbe=\\"\\"><label class=\\"\\" data-v-52a07bbe=\\"\\">
+    <!--v-if--><input label=\\"Checkbox\\" type=\\"checkbox\\" data-v-52a07bbe=\\"\\"><span class=\\"oxd-checkbox-input oxd-checkbox-input--active oxd-checkbox-input--error --label-right oxd-checkbox-input\\" data-v-52a07bbe=\\"\\"><i class=\\"oxd-icon bi-check oxd-checkbox-input-icon\\" data-v-85cde8ca=\\"\\" data-v-52a07bbe=\\"\\"></i></span>
+  </label></div>"
+`;

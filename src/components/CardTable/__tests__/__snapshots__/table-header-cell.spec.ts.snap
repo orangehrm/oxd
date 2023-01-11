@@ -1,0 +1,7 @@
+// Vitest Snapshot v1
+
+exports[`CardTable > TableHeaderCell.vue > renders OXD CardTable > TableHeaderCell 1`] = `
+"<div class=\\"oxd-table-header-cell\\" role=\\"columnheader\\" data-v-67172c73=\\"\\">
+  <!--v-if-->
+</div>"
+`;

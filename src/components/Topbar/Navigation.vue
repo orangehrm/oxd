@@ -41,6 +41,10 @@
         :menu-items="hiddenMenuItems"
       >
       </oxd-navigation-more>
+
+      <div class="oxd-topbar-body-nav-slot">
+        <slot></slot>
+      </div>
     </ul>
   </nav>
 </template>
@@ -77,7 +81,7 @@ export default defineComponent({
     },
   },
 
-  setup(props) {
+  setup(props, context) {
     const lastMenuItemWidth = ref(0);
     const navbar = ref<HTMLElement>();
     const visibleMenuItems = ref(props.menuItems);
@@ -109,7 +113,8 @@ export default defineComponent({
 
     const arrangeMenuItems = (menuItems: ComponentPublicInstance[]) => {
       // offset the width of "more" element
-      const widthOffset = hiddenMenuItems.value.length > 0 ? 80 : 0;
+      let widthOffset = hiddenMenuItems.value.length > 0 ? 80 : 0;
+      if (context.slots.default?.()) widthOffset += 35;
       const menuItemsWidth = menuItems.reduce((acc, menuItem) => {
         return acc + getHTMLElementWidth(menuItem.$el);
       }, widthOffset);

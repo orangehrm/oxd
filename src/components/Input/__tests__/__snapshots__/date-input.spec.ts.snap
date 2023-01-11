@@ -1,0 +1,10 @@
+// Vitest Snapshot v1
+
+exports[`DateInput.vue > renders OXD Date Input 1`] = `
+"<div class=\\"oxd-date-wrapper\\" data-v-f5ceac8b=\\"\\">
+  <div class=\\"oxd-date-input\\" data-v-f5ceac8b=\\"\\"><input class=\\"oxd-input oxd-input--active\\" data-v-d06e05c9=\\"\\" data-v-f5ceac8b=\\"\\"><i class=\\"oxd-icon bi-calendar oxd-date-input-icon\\" data-v-85cde8ca=\\"\\" data-v-f5ceac8b=\\"\\"></i></div>
+  <transition-stub name=\\"transition-fade-down\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\" data-v-f5ceac8b=\\"\\">
+    <!--v-if-->
+  </transition-stub>
+</div>"
+`;

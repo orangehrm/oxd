@@ -1,0 +1,7 @@
+// Vitest Snapshot v1
+
+exports[`Input.vue > renders OXD Input 1`] = `"<input class=\\"oxd-input oxd-input--active\\" label=\\"Input\\" data-v-d06e05c9=\\"\\">"`;
+
+exports[`Input.vue > should renders OXD Input with custom color 1`] = `"<input class=\\"oxd-input oxd-input--active\\" label=\\"Input\\" style=\\"background-color: aliceblue;\\" data-v-d06e05c9=\\"\\">"`;
+
+exports[`Input.vue > should renders OXD Input with error 1`] = `"<input class=\\"oxd-input oxd-input--active oxd-input--error\\" label=\\"Input\\" data-v-d06e05c9=\\"\\">"`;
