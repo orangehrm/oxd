@@ -31,9 +31,9 @@
     Lorem Ipsum passages, and more recently with desktop publishing software
     like Aldus PageMaker including versions of Lorem Ipsum.
   </p>
-  <oxd-icon-button name="trash" @click="onClick" withContainer />
+  <oxd-icon-button name="trash" with-container @click="onClick" />
 
-  <oxd-dialog v-if="show" @update:show="onClose" :style="{maxWidth: '800px'}">
+  <oxd-dialog v-if="show" :style="{maxWidth: '800px'}" @update:show="onClose">
     <p>
       <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting
       industry. Lorem Ipsum has been the industry's standard dummy text ever

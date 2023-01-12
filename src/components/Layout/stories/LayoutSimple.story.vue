@@ -30,7 +30,7 @@
     :breadcrumb="breadcrumb"
   >
     <p class="context-default">slot for context</p>
-    <template v-slot:user-actions>
+    <template #user-actions>
       <li role="none">
         <a href="#" role="menuitem" class="oxd-userdropdown-link"> Logout </a>
       </li>
@@ -48,7 +48,7 @@
 <script>
 import {topMenuItems, sidePanelItems, breadcrumb} from './mockdata';
 import Layout from '@/components/Layout/Layout.vue';
-import IconButton from '@/components//Button/Icon.vue';
+import IconButton from '@/components/Button/Icon.vue';
 import brandLogoSrc from '@/assets/images/orange.png';
 import brandBannerSrc from '@/assets/images/orangehrm-logo.png';
 

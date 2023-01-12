@@ -27,7 +27,7 @@
         <oxd-select-input
           v-model="cols"
           :options="options"
-          :showEmptySelector="false"
+          :show-empty-selector="false"
         />
       </div>
     </div>
@@ -83,11 +83,11 @@
 
       <oxd-divider />
       <oxd-form-actions>
-        <oxd-button label="Cancel" displayType="ghost" />
+        <oxd-button label="Cancel" display-type="ghost" />
         <oxd-button
           label="Save"
           type="submit"
-          displayType="secondary"
+          display-type="secondary"
           class="orangehrm-left-space"
         />
       </oxd-form-actions>

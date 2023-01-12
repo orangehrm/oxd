@@ -41,7 +41,7 @@ const Template = (args) => ({
   template: '<oxd-switch-input v-bind="args" />',
 });
 
-const VmodelSample = (args) => ({
+const VmodelSample = () => ({
   data() {
     return {
       selected: ['3'],

@@ -27,43 +27,43 @@
 
   <oxd-form>
     <oxd-form-row>
-      <oxd-input-field label="Job Title" v-model="jobTitle.title" />
+      <oxd-input-field v-model="jobTitle.title" label="Job Title" />
     </oxd-form-row>
 
     <oxd-form-row>
       <oxd-input-field
+        v-model="jobTitle.description"
         type="textarea"
         label="Job Description"
         placeholder="Type description here"
-        v-model="jobTitle.description"
       />
     </oxd-form-row>
 
     <oxd-form-row>
       <oxd-input-field
+        v-model="jobTitle.specification"
         type="file"
         label="Job Specification"
-        buttonLabel="Browse"
-        v-model="jobTitle.specification"
+        button-label="Browse"
       />
     </oxd-form-row>
 
     <oxd-form-row>
       <oxd-input-field
+        v-model="jobTitle.note"
         type="textarea"
         label="Note"
         placeholder="Add note"
-        v-model="jobTitle.note"
       />
     </oxd-form-row>
 
     <oxd-form-row>
       <oxd-input-field
+        v-model="jobTitle.consent"
         type="checkbox"
         value="1"
         label="Check this"
         option-label="I agree"
-        v-model="jobTitle.consent"
         true-value="yes"
         false-value="no"
       />
@@ -73,10 +73,10 @@
   <oxd-divider />
 
   <oxd-form-actions>
-    <oxd-button displayType="ghost" label="Cancel" />
+    <oxd-button display-type="ghost" label="Cancel" />
     <oxd-button
       class="orangehrm-left-space"
-      displayType="secondary"
+      display-type="secondary"
       label="Add"
       @click="onSave"
     />
@@ -103,12 +103,6 @@ const initialJobTitle = {
 export default {
   name: 'DefaultForm',
 
-  data() {
-    return {
-      jobTitle: {...initialJobTitle},
-    };
-  },
-
   components: {
     'oxd-form': Form,
     'oxd-form-row': FormRow,
@@ -117,6 +111,12 @@ export default {
     'oxd-divider': Divider,
     'oxd-button': Button,
     'oxd-text': Text,
+  },
+
+  data() {
+    return {
+      jobTitle: {...initialJobTitle},
+    };
   },
 
   methods: {

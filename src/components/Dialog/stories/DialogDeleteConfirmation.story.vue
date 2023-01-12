@@ -21,9 +21,9 @@
 -->
 
 <template>
-  <oxd-icon-button name="trash" @click="onClick" withContainer />
+  <oxd-icon-button name="trash" with-container @click="onClick" />
 
-  <oxd-dialog v-if="show" @update:show="onCancel" :style="{maxWidth: '450px'}">
+  <oxd-dialog v-if="show" :style="{maxWidth: '450px'}" @update:show="onCancel">
     <div class="orangehrm-modal-header">
       <oxd-text type="card-title">Are you sure?</oxd-text>
     </div>
@@ -36,14 +36,14 @@
     <div class="orangehrm-modal-footer">
       <oxd-button
         label="No, Cancel"
-        displayType="text"
+        display-type="text"
         class="orangehrm-button-margin"
         @click="onCancel"
       />
       <oxd-button
         label="Yes, Delete"
-        iconName="trash"
-        displayType="label-danger"
+        icon-name="trash"
+        display-type="label-danger"
         class="orangehrm-button-margin"
         @click="onDelete"
       />

@@ -34,7 +34,7 @@
       :items="items"
       :selectable="false"
       :clickable="false"
-      rowDecorator="oxd-table-decorator-card"
+      row-decorator="oxd-table-decorator-card"
     />
   </div>
   <div class="orangehrm-table-footer"></div>
@@ -46,6 +46,10 @@ import Button from '@/components/Button/Button.vue';
 import CardTable from '@/components/CardTable/CardTable.vue';
 
 export default {
+  components: {
+    'oxd-button': Button,
+    'oxd-card-table': CardTable,
+  },
   data() {
     return {
       headers: [
@@ -111,11 +115,6 @@ export default {
         },
       ],
     };
-  },
-
-  components: {
-    'oxd-button': Button,
-    'oxd-card-table': CardTable,
   },
 
   methods: {

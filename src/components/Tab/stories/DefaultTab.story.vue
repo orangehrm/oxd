@@ -20,7 +20,7 @@
 -->
 
 <template>
-  <oxd-tab-container v-model="selector" @clickTab="onClickTab">
+  <oxd-tab-container v-model="selector" @click-tab="onClickTab">
     <oxd-tab-panel
       key="first"
       name="First Tab"

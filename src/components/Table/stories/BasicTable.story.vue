@@ -33,7 +33,7 @@
     </oxd-thead>
 
     <oxd-tbody>
-      <oxd-tr v-for="item in items" @click="onClick(item)($event)">
+      <oxd-tr v-for="item in items" :key="item" @click="onClick(item)($event)">
         <oxd-td>{{ item.col1 }}</oxd-td>
         <oxd-td>{{ item.col2 }}</oxd-td>
         <oxd-td>
@@ -57,16 +57,6 @@ import TableDataCell from '@/components/Table/TableDataCell.vue';
 import TableHeaderCell from '@/components/Table/TableHeaderCell.vue';
 
 export default {
-  data() {
-    return {
-      items: [
-        {col1: 'Data 1', col2: 'Data 2'},
-        {col1: 'Data 2', col2: 'Data 2'},
-        {col1: 'Data 3', col2: 'Data 2'},
-      ],
-    };
-  },
-
   components: {
     'oxd-table': Table,
     'oxd-thead': TableHeader,
@@ -77,6 +67,15 @@ export default {
     'oxd-td': TableDataCell,
     'oxd-icon-button': IconButton,
   },
+  data() {
+    return {
+      items: [
+        {col1: 'Data 1', col2: 'Data 2'},
+        {col1: 'Data 2', col2: 'Data 2'},
+        {col1: 'Data 3', col2: 'Data 2'},
+      ],
+    };
+  },
 
   methods: {
     onClick(item) {
@@ -85,7 +84,9 @@ export default {
         console.log(e);
       };
     },
-    onBtnClick(e) {},
+    onBtnClick() {
+      // do nothing
+    },
   },
 };
 </script>

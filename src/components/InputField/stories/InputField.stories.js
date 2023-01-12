@@ -17,7 +17,6 @@
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
 
-import {h, ref} from 'vue';
 import Form from '@/components/Form/Form.vue';
 import {TYPES} from '@/components/InputField/types';
 import InputField from '@/components/InputField/InputField.vue';

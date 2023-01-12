@@ -18,20 +18,19 @@
  * along with this program.  If not, see  http://www.gnu.org/licenses
  */
 -->
--->
 
 <template>
   <div class="orangehrm-container">
     <oxd-card-table
+      v-model:selected="checkedItems"
       :headers="headers"
       :items="items"
-      @click="onClick"
       :selectable="selectable"
       :disabled="disabled"
       :clickable="clickable"
       :loading="loading"
-      v-model:selected="checkedItems"
-      rowDecorator="oxd-table-decorator-card"
+      row-decorator="oxd-table-decorator-card"
+      @click="onClick"
     />
   </div>
 </template>
@@ -40,6 +39,28 @@
 import CardTable from '@/components/CardTable/CardTable.vue';
 
 export default {
+  components: {
+    'oxd-card-table': CardTable,
+  },
+
+  props: {
+    selectable: {
+      type: Boolean,
+    },
+    disabled: {
+      type: Boolean,
+    },
+    loading: {
+      type: Boolean,
+    },
+    clickable: {
+      type: Boolean,
+    },
+    items: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data() {
     return {
       headers: [
@@ -65,28 +86,6 @@ export default {
       ],
       checkedItems: [],
     };
-  },
-
-  props: {
-    selectable: {
-      type: Boolean,
-    },
-    disabled: {
-      type: Boolean,
-    },
-    loading: {
-      type: Boolean,
-    },
-    clickable: {
-      type: Boolean,
-    },
-    items: {
-      type: Array,
-    },
-  },
-
-  components: {
-    'oxd-card-table': CardTable,
   },
 
   methods: {

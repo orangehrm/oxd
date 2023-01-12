@@ -27,7 +27,7 @@
       :headers="headers"
       :items="items"
     >
-      <template v-slot:pagination>
+      <template #pagination>
         <oxd-pagination :length="3" :max="10" />
       </template>
     </oxd-report-table>
@@ -42,6 +42,10 @@ import ReportTable from '@/components/ReportTable/ReportTable.vue';
 import MultilineCell from '@/components/ReportTable/Cell/MultilineCell.vue';
 
 export default {
+  components: {
+    'oxd-report-table': ReportTable,
+    'oxd-pagination': Pagination,
+  },
   data() {
     return {
       height: 500,
@@ -49,11 +53,6 @@ export default {
       headers: [],
       items: [],
     };
-  },
-
-  components: {
-    'oxd-report-table': ReportTable,
-    'oxd-pagination': Pagination,
   },
 
   beforeMount() {

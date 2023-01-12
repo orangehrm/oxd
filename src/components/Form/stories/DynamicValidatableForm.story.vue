@@ -25,23 +25,23 @@
 
   <oxd-divider />
 
-  <oxd-form @submitValid="getFormValues" ref="form">
+  <oxd-form ref="form" @submit-valid="getFormValues">
     <oxd-form-row>
       <div
-        class="orangehrm-row-item"
         v-for="(customField, index) in customFields"
         :key="index"
+        class="orangehrm-row-item"
       >
         <oxd-input-field
-          :label="`Custom Field [${index + 1}]`"
           v-model="customFields[index].name"
+          :label="`Custom Field [${index + 1}]`"
           :rules="rules.name"
         />
         <oxd-icon-button
-          @click="addField"
-          name="plus"
           v-if="index == customFields.length - 1"
+          name="plus"
           style="height: 30px; margin-left: 15px"
+          @click="addField"
         />
       </div>
     </oxd-form-row>
@@ -49,10 +49,10 @@
     <oxd-divider />
 
     <oxd-form-actions>
-      <oxd-button type="button" displayType="ghost" label="Cancel" />
+      <oxd-button type="button" display-type="ghost" label="Cancel" />
       <oxd-button
         class="orangehrm-left-space"
-        displayType="secondary"
+        display-type="secondary"
         label="Save"
         type="submit"
       />
@@ -78,6 +78,17 @@ import Text from '@/components/Text/Text.vue';
 export default {
   name: 'DynamicValidatableFrom',
 
+  components: {
+    'oxd-form': Form,
+    'oxd-form-row': FormRow,
+    'oxd-form-actions': FormActions,
+    'oxd-input-field': InputField,
+    'oxd-divider': Divider,
+    'oxd-button': Button,
+    'oxd-icon-button': IconButton,
+    'oxd-text': Text,
+  },
+
   setup() {
     const form = ref(null);
 
@@ -97,17 +108,6 @@ export default {
       },
       isValid: true,
     };
-  },
-
-  components: {
-    'oxd-form': Form,
-    'oxd-form-row': FormRow,
-    'oxd-form-actions': FormActions,
-    'oxd-input-field': InputField,
-    'oxd-divider': Divider,
-    'oxd-button': Button,
-    'oxd-icon-button': IconButton,
-    'oxd-text': Text,
   },
 
   methods: {

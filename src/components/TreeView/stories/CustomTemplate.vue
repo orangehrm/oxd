@@ -26,7 +26,7 @@
     :show-root="false"
     class="org-structure"
   >
-    <template v-slot:content="{nodeData}">
+    <template #content="{nodeData}">
       <oxd-sheet type="pastel-white" class="org-structure-card">
         <div class="org-name">
           {{ nodeData.name }}
@@ -34,15 +34,15 @@
         <div class="org-action">
           <oxd-icon-button
             class="org-action-icon"
-            @click="onDelete"
             name="trash-fill"
             role="none"
+            @click="onDelete"
           />
           <oxd-icon-button
             class="org-action-icon"
-            @click="onDelete"
             name="plus"
             role="none"
+            @click="onDelete"
           />
         </div>
       </oxd-sheet>

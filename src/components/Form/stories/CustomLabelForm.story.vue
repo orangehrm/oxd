@@ -32,12 +32,12 @@
 
     <oxd-form-row class="orangehrm-bottom-space">
       <oxd-input-group label="Label">
-        <template v-slot:label>
+        <template #label>
           <div>
             <b>Cu<em>stom</em></b> Label
           </div>
         </template>
-        <template v-slot:default>
+        <template #default>
           <oxd-input value="Initial Value" />
         </template>
       </oxd-input-group>
@@ -47,10 +47,10 @@
 
     <oxd-form-row class="orangehrm-bottom-space">
       <oxd-input-group label="Label">
-        <template v-slot:default>
+        <template #default>
           <oxd-input value="Initial Value" />
         </template>
-        <template v-slot:message>
+        <template #message>
           <div>Custom <b>Message</b></div>
         </template>
       </oxd-input-group>

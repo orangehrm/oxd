@@ -24,7 +24,7 @@
   <oxd-text tag="h5">Grouped Input Example</oxd-text>
 
   <oxd-divider />
-  <oxd-form @submitValid="getFormValues" ref="form">
+  <oxd-form ref="form" @submit-valid="getFormValues">
     <oxd-form-row>
       <oxd-input-group
         label="Full Name"
@@ -32,20 +32,20 @@
         :classes="{wrapper: '--grouped-field'}"
       >
         <oxd-input-field
-          class="orangehrm-firstname"
           v-model="firstname"
+          class="orangehrm-firstname"
           placeholder="First name"
           :rules="rules.firstname"
         />
         <oxd-input-field
-          class="orangehrm-middlename"
           v-model="middlename"
+          class="orangehrm-middlename"
           placeholder="Middle name"
           :rules="rules.middlename"
         />
         <oxd-input-field
-          class="orangehrm-lastname"
           v-model="lastname"
+          class="orangehrm-lastname"
           placeholder="Last name"
           :rules="rules.lastname"
         />
@@ -55,10 +55,10 @@
     <oxd-divider />
 
     <oxd-form-actions>
-      <oxd-button displayType="ghost" label="Cancel" />
+      <oxd-button display-type="ghost" label="Cancel" />
       <oxd-button
         class="orangehrm-left-space"
-        displayType="secondary"
+        display-type="secondary"
         label="Add"
         type="submit"
       />
@@ -79,6 +79,17 @@ import Text from '@/components/Text/Text.vue';
 export default {
   name: 'InputGroupForm',
 
+  components: {
+    'oxd-form': Form,
+    'oxd-form-row': FormRow,
+    'oxd-input-group': InputGroup,
+    'oxd-form-actions': FormActions,
+    'oxd-input-field': InputField,
+    'oxd-divider': Divider,
+    'oxd-button': Button,
+    'oxd-text': Text,
+  },
+
   data() {
     return {
       firstname: '',
@@ -96,17 +107,6 @@ export default {
         ],
       },
     };
-  },
-
-  components: {
-    'oxd-form': Form,
-    'oxd-form-row': FormRow,
-    'oxd-input-group': InputGroup,
-    'oxd-form-actions': FormActions,
-    'oxd-input-field': InputField,
-    'oxd-divider': Divider,
-    'oxd-button': Button,
-    'oxd-text': Text,
   },
 
   methods: {

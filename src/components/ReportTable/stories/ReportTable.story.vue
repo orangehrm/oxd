@@ -28,7 +28,7 @@
       :items="items"
       :column-count="6"
     >
-      <template v-slot:pagination>
+      <template #pagination>
         <oxd-pagination :length="3" :max="10" />
       </template>
     </oxd-report-table>
@@ -40,6 +40,10 @@ import Pagination from '@/components/Pagination/Pagination.vue';
 import ReportTable from '@/components/ReportTable/ReportTable.vue';
 
 export default {
+  components: {
+    'oxd-report-table': ReportTable,
+    'oxd-pagination': Pagination,
+  },
   data() {
     return {
       height: 500,
@@ -95,11 +99,6 @@ export default {
     };
   },
 
-  components: {
-    'oxd-report-table': ReportTable,
-    'oxd-pagination': Pagination,
-  },
-
   beforeMount() {
     const types = [
       'AUS - Annual',
@@ -109,7 +108,7 @@ export default {
       'LKA - Casual',
       'LKA - Maternity',
     ];
-    this.items = new Array(50).fill('').map((_, index) => {
+    this.items = new Array(50).fill('').map(() => {
       const rand = Math.random();
       return {
         type: types[Math.floor(rand * types.length)],

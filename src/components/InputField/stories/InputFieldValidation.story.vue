@@ -23,24 +23,24 @@
   <oxd-form>
     <oxd-form-row>
       <oxd-input-field
+        v-model="input"
         required
         label="Label"
         :rules="rules.input"
-        v-model="input"
       />
       <oxd-input-field
-        label="Label without validation"
         v-model="input"
+        label="Label without validation"
         placeholder="Placeholder"
       />
     </oxd-form-row>
 
     <oxd-form-row>
       <oxd-input-field
+        v-model="file"
         type="file"
         label="File Label"
         :rules="rules.file"
-        v-model="file"
       />
     </oxd-form-row>
 
@@ -48,18 +48,18 @@
       <oxd-input-field
         type="file"
         label="File Label with button"
-        buttonLabel="Browse"
+        button-label="Browse"
         :rules="rules.file"
       />
     </oxd-form-row>
 
     <oxd-form-row>
       <oxd-input-field
+        v-model="textarea"
         type="textarea"
         label="Textarea Label"
         :placeholder="placeholder"
         :rules="rules.textarea"
-        v-model="textarea"
       />
     </oxd-form-row>
   </oxd-form>
@@ -67,12 +67,15 @@
 
 <script>
 import Form from '@/components/Form/Form.vue';
-import Input from '@/components/Input/Input.vue';
-import Label from '@/components/Label/Label.vue';
 import FormRow from '@/components/Form/FormRow.vue';
 import InputField from '@/components/InputField/InputField.vue';
 
 export default {
+  components: {
+    'oxd-form': Form,
+    'oxd-form-row': FormRow,
+    'oxd-input-field': InputField,
+  },
   data() {
     return {
       input: '',
@@ -102,14 +105,6 @@ export default {
       },
       placeholder: 'Placeholder',
     };
-  },
-
-  components: {
-    'oxd-form': Form,
-    'oxd-form-row': FormRow,
-    'oxd-input': Input,
-    'oxd-label': Label,
-    'oxd-input-field': InputField,
   },
 };
 </script>

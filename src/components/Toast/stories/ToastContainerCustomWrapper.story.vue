@@ -23,7 +23,7 @@
 <template>
   <oxd-toast-container
     v-model:toasts="toasts"
-    toastClass="oxd-toast-container--toast-custom"
+    toast-class="oxd-toast-container--toast-custom"
   />
 </template>
 

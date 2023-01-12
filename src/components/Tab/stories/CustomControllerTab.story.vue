@@ -23,7 +23,7 @@
   <oxd-tab-container
     v-model="selector"
     :show-tabs="false"
-    @clickTab="onClickTab"
+    @click-tab="onClickTab"
   >
     <oxd-tab-panel
       key="first"
@@ -82,13 +82,13 @@
   </oxd-tab-container>
   <br />
   <div class="orangehrm-custom-tabs">
-    <input type="radio" name="contact" value="First Tab" v-model="selector" />
+    <input v-model="selector" type="radio" name="contact" value="First Tab" />
     <label>First Tab</label>
 
-    <input type="radio" name="contact" value="Second Tab" v-model="selector" />
+    <input v-model="selector" type="radio" name="contact" value="Second Tab" />
     <label>Second Tab</label>
 
-    <input type="radio" name="contact" value="Third Tab" v-model="selector" />
+    <input v-model="selector" type="radio" name="contact" value="Third Tab" />
     <label>Third Tab</label>
   </div>
 </template>

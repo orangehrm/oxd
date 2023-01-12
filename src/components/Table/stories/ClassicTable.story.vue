@@ -21,12 +21,12 @@
 
 <template>
   <oxd-clasic-table
+    v-model:selected="checkedItems"
     :selector="selector"
     :headers="headers"
     :items="items"
-    @click="onClick"
     selectable
-    v-model:selected="checkedItems"
+    @click="onClick"
   />
 </template>
 
@@ -34,6 +34,9 @@
 import ClassicTable from '@/components/Table/ClassicTable.vue';
 
 export default {
+  components: {
+    'oxd-clasic-table': ClassicTable,
+  },
   data() {
     return {
       selector: {
@@ -53,10 +56,6 @@ export default {
       ],
       checkedItems: [2, 0],
     };
-  },
-
-  components: {
-    'oxd-clasic-table': ClassicTable,
   },
 
   methods: {

@@ -25,12 +25,12 @@
 
   <oxd-divider />
 
-  <oxd-form ref="form" @submitValid="onSubmit" @submitInvalid="onInvalid">
+  <oxd-form ref="form" @submit-valid="onSubmit" @submit-invalid="onInvalid">
     <oxd-form-row>
       <oxd-input-group class="orangehrm-bottom-space">
         <oxd-input-field
-          label="Github Username (real async validation)"
           v-model="name"
+          label="Github Username (real async validation)"
           :rules="rules.name"
         />
       </oxd-input-group>
@@ -39,8 +39,8 @@
     <oxd-form-row>
       <oxd-input-group class="orangehrm-bottom-space">
         <oxd-input-field
-          label="Email (simulated slow async validation)"
           v-model="email"
+          label="Email (simulated slow async validation)"
           :rules="rules.email"
         />
       </oxd-input-group>
@@ -49,8 +49,8 @@
     <oxd-form-row>
       <oxd-input-group class="orangehrm-bottom-space">
         <oxd-input-field
-          label="Number (sync validation)"
           v-model="number"
+          label="Number (sync validation)"
           :rules="rules.number"
         />
       </oxd-input-group>
@@ -59,10 +59,10 @@
     <oxd-divider />
 
     <oxd-form-actions>
-      <oxd-button displayType="ghost" label="Cancel" />
+      <oxd-button display-type="ghost" label="Cancel" />
       <oxd-button
         class="orangehrm-left-space"
-        displayType="secondary"
+        display-type="secondary"
         label="Add"
         type="submit"
       />
@@ -120,6 +120,17 @@ const delayedFunc = function (value) {
 export default {
   name: 'ValidatableFrom',
 
+  components: {
+    'oxd-form': Form,
+    'oxd-form-row': FormRow,
+    'oxd-input-group': InputGroup,
+    'oxd-form-actions': FormActions,
+    'oxd-input-field': InputField,
+    'oxd-divider': Divider,
+    'oxd-button': Button,
+    'oxd-text': Text,
+  },
+
   setup() {
     const form = ref(null);
 
@@ -151,17 +162,6 @@ export default {
         ],
       },
     };
-  },
-
-  components: {
-    'oxd-form': Form,
-    'oxd-form-row': FormRow,
-    'oxd-input-group': InputGroup,
-    'oxd-form-actions': FormActions,
-    'oxd-input-field': InputField,
-    'oxd-divider': Divider,
-    'oxd-button': Button,
-    'oxd-text': Text,
   },
 
   methods: {

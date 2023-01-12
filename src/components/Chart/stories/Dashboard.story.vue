@@ -56,7 +56,7 @@
             <oxd-bar-chart
               :data="timeData"
               :grid="false"
-              :yAxsis="false"
+              :y-axsis="false"
               :aspect-ratio="false"
             ></oxd-bar-chart>
           </div>

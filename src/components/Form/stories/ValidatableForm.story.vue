@@ -25,23 +25,23 @@
 
   <oxd-divider />
 
-  <oxd-form @submitValid="getFormValues" ref="form">
+  <oxd-form ref="form" @submit-valid="getFormValues">
     <oxd-form-row>
       <oxd-input-group class="orangehrm-bottom-space">
         <oxd-input-field
-          label="Job Category Name"
           v-model="name"
+          label="Job Category Name"
           :rules="rules.name"
         />
         <oxd-input-field
-          label="Job Category Id"
           v-model="id"
+          label="Job Category Id"
           :rules="rules.id"
         />
         <oxd-input-field
+          v-model="role"
           type="select"
           label="Job Role"
-          v-model="role"
           :rules="rules.role"
           :options="[
             {id: 1, label: 'All'},
@@ -54,19 +54,19 @@
 
     <oxd-form-row>
       <oxd-input-field
+        v-model="consent"
         type="checkbox"
         label="Check this"
         option-label="I agree"
-        v-model="consent"
         :rules="rules.consent"
         true-value="yes"
         false-value="no"
       />
       <oxd-input-field
+        v-model="notify"
         type="switch"
         label="Switch this"
         option-label="Notify me"
-        v-model="notify"
         :rules="rules.notify"
       />
     </oxd-form-row>
@@ -74,10 +74,10 @@
     <oxd-divider />
 
     <oxd-form-actions>
-      <oxd-button displayType="ghost" label="Cancel" />
+      <oxd-button display-type="ghost" label="Cancel" />
       <oxd-button
         class="orangehrm-left-space"
-        displayType="secondary"
+        display-type="secondary"
         label="Add"
         type="submit"
       />
@@ -102,6 +102,17 @@ import Text from '@/components/Text/Text.vue';
 
 export default {
   name: 'ValidatableFrom',
+
+  components: {
+    'oxd-form': Form,
+    'oxd-form-row': FormRow,
+    'oxd-input-group': InputGroup,
+    'oxd-form-actions': FormActions,
+    'oxd-input-field': InputField,
+    'oxd-divider': Divider,
+    'oxd-button': Button,
+    'oxd-text': Text,
+  },
 
   setup() {
     const form = ref(null);
@@ -136,17 +147,6 @@ export default {
       },
       isValid: true,
     };
-  },
-
-  components: {
-    'oxd-form': Form,
-    'oxd-form-row': FormRow,
-    'oxd-input-group': InputGroup,
-    'oxd-form-actions': FormActions,
-    'oxd-input-field': InputField,
-    'oxd-divider': Divider,
-    'oxd-button': Button,
-    'oxd-text': Text,
   },
 
   methods: {

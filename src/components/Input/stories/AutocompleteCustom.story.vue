@@ -22,8 +22,8 @@
 
 <template>
   <div>
-    <oxd-autocomplete-input v-model="selected" :createOptions="callAPI">
-      <template v-slot:beforeSelected="{data}">
+    <oxd-autocomplete-input v-model="selected" :create-options="callAPI">
+      <template #beforeSelected="{data}">
         <img
           width="25"
           height="25"
@@ -31,11 +31,10 @@
           :src="data.avatar_url"
         />
       </template>
-      <template v-slot:afterSelected="{data}">
-        (Github ID : {{ data.id }})
-      </template>
-      <template v-slot:option="{data, text}">
+      <template #afterSelected="{data}"> (Github ID : {{ data.id }}) </template>
+      <template #option="{data, text}">
         <oxd-checkbox-input />
+        <!-- eslint-disable-next-line vue/no-v-html -->
         <span v-html="text"></span>
         <div class="github-id">{{ data.id }}</div>
       </template>
@@ -50,15 +49,14 @@ import CheckboxInput from '@/components/Input/CheckboxInput.vue';
 import AutocompleteInput from '@/components/Input/Autocomplete/AutocompleteInput.vue';
 
 export default {
+  components: {
+    'oxd-autocomplete-input': AutocompleteInput,
+    'oxd-checkbox-input': CheckboxInput,
+  },
   data() {
     return {
       selected: null,
     };
-  },
-
-  components: {
-    'oxd-autocomplete-input': AutocompleteInput,
-    'oxd-checkbox-input': CheckboxInput,
   },
 
   methods: {

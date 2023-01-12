@@ -23,12 +23,12 @@
 <template>
   <div class="container">
     <oxd-table-filter filter-title="System Users">
-      <template v-slot:toggleOptions>
+      <template #toggleOptions>
         <oxd-icon-button name="funnel" />
         <oxd-icon-button name="pie-chart-fill" />
         <oxd-icon-button name="pencil-fill" />
       </template>
-      <template v-slot:exportOptions>
+      <template #exportOptions>
         <oxd-button
           size="small"
           display-type="tool"
@@ -42,17 +42,17 @@
           icon-name="file-earmark-spreadsheet"
         />
       </template>
-      <oxd-form @submitValid="filterItems">
+      <oxd-form @submit-valid="filterItems">
         <oxd-form-row>
           <oxd-grid :cols="4">
             <oxd-grid-item>
-              <oxd-input-field label="Username" v-model="filters.username" />
+              <oxd-input-field v-model="filters.username" label="Username" />
             </oxd-grid-item>
             <oxd-grid-item>
               <oxd-input-field
+                v-model="filters.role"
                 type="select"
                 label="User Role"
-                v-model="filters.role"
                 :clear="false"
                 :options="[
                   {id: 1, label: 'All'},
@@ -63,17 +63,17 @@
             </oxd-grid-item>
             <oxd-grid-item>
               <oxd-input-field
+                v-model="filters.empName"
                 type="autocomplete"
                 label="Employee Name"
-                v-model="filters.empName"
-                :createOptions="loadEmployees"
+                :create-options="loadEmployees"
               />
             </oxd-grid-item>
             <oxd-grid-item>
               <oxd-input-field
+                v-model="filters.status"
                 type="select"
                 label="Status"
-                v-model="filters.status"
                 :options="[
                   {id: 1, label: 'All'},
                   {id: 2, label: 'Enabled'},
@@ -87,10 +87,10 @@
         <oxd-divider />
 
         <oxd-form-actions>
-          <oxd-button displayType="secondary" label="Search" type="submit" />
+          <oxd-button display-type="secondary" label="Search" type="submit" />
           <oxd-button
             class="orangehrm-left-space"
-            displayType="ghost"
+            display-type="ghost"
             label="Reset"
           />
         </oxd-form-actions>
@@ -98,11 +98,11 @@
     </oxd-table-filter>
     <div class="orangehrm-table-container">
       <oxd-card-table
+        v-model:selected="checkedItems"
         :headers="headers"
         :items="items"
         :selectable="true"
-        v-model:selected="checkedItems"
-        rowDecorator="oxd-table-decorator-card"
+        row-decorator="oxd-table-decorator-card"
       />
     </div>
   </div>
@@ -119,10 +119,22 @@ import Divider from '@/components/Divider/Divider.vue';
 import FormActions from '@/components/Form/FormActions.vue';
 import CardTable from '@/components/CardTable/CardTable.vue';
 import InputField from '@/components/InputField/InputField.vue';
-import InputGroup from '@/components/InputField/InputGroup.vue';
 import TableFilter from '@/components/TableFilter/TableFilter.vue';
 
 export default {
+  components: {
+    'oxd-grid': Grid,
+    'oxd-form': Form,
+    'oxd-button': Button,
+    'oxd-divider': Divider,
+    'oxd-form-row': FormRow,
+    'oxd-grid-item': GridItem,
+    'oxd-card-table': CardTable,
+    'oxd-icon-button': IconButton,
+    'oxd-input-field': InputField,
+    'oxd-form-actions': FormActions,
+    'oxd-table-filter': TableFilter,
+  },
   data() {
     return {
       filters: {
@@ -143,21 +155,6 @@ export default {
         {col1: 'vader', col2: 'Admin', col3: 'Darth Vader', col4: 'Enabled'},
       ],
     };
-  },
-
-  components: {
-    'oxd-table-filter': TableFilter,
-    'oxd-grid': Grid,
-    'oxd-grid-item': GridItem,
-    'oxd-form': Form,
-    'oxd-form-row': FormRow,
-    'oxd-form-actions': FormActions,
-    'oxd-input-group': InputGroup,
-    'oxd-input-field': InputField,
-    'oxd-button': Button,
-    'oxd-icon-button': IconButton,
-    'oxd-divider': Divider,
-    'oxd-card-table': CardTable,
   },
 
   methods: {
@@ -184,7 +181,9 @@ export default {
         }, 5000);
       });
     },
-    onBtnClick(e) {},
+    onBtnClick() {
+      // do nothing
+    },
   },
 };
 </script>

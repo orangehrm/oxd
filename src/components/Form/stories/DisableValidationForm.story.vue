@@ -24,18 +24,18 @@
 
   <oxd-divider />
 
-  <oxd-form ref="form" @submitValid="onSubmit">
+  <oxd-form ref="form" @submit-valid="onSubmit">
     <oxd-form-row>
       <oxd-input-group class="orangehrm-bottom-space">
-        <oxd-input-field label="Regular" v-model="name" :rules="rules.name" />
+        <oxd-input-field v-model="name" label="Regular" :rules="rules.name" />
       </oxd-input-group>
     </oxd-form-row>
 
     <oxd-form-row>
       <oxd-input-group class="orangehrm-bottom-space">
         <oxd-input-field
-          label="Disabled"
           v-model="name"
+          label="Disabled"
           :rules="rules.name"
           disabled
         />
@@ -45,8 +45,8 @@
     <oxd-form-row>
       <oxd-input-group class="orangehrm-bottom-space">
         <oxd-input-field
-          label="Readonly"
           v-model="name"
+          label="Readonly"
           :rules="rules.name"
           readonly
         />
@@ -56,7 +56,7 @@
     <oxd-divider />
 
     <oxd-form-actions>
-      <oxd-button displayType="secondary" label="Save" type="submit" />
+      <oxd-button display-type="secondary" label="Save" type="submit" />
     </oxd-form-actions>
   </oxd-form>
 
@@ -79,6 +79,17 @@ import Text from '@/components/Text/Text.vue';
 export default {
   name: 'ValidatableFrom',
 
+  components: {
+    'oxd-form': Form,
+    'oxd-form-row': FormRow,
+    'oxd-input-group': InputGroup,
+    'oxd-form-actions': FormActions,
+    'oxd-input-field': InputField,
+    'oxd-divider': Divider,
+    'oxd-button': Button,
+    'oxd-text': Text,
+  },
+
   setup() {
     const form = ref(null);
 
@@ -95,17 +106,6 @@ export default {
         name: [(v) => (!!v && v.trim() !== '') || 'Required'],
       },
     };
-  },
-
-  components: {
-    'oxd-form': Form,
-    'oxd-form-row': FormRow,
-    'oxd-input-group': InputGroup,
-    'oxd-form-actions': FormActions,
-    'oxd-input-field': InputField,
-    'oxd-divider': Divider,
-    'oxd-button': Button,
-    'oxd-text': Text,
   },
 
   methods: {

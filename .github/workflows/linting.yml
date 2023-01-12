@@ -15,4 +15,4 @@ jobs:
       - name: Install npm dependencies
         run: yarn install
       - name: Lint
-        run: yarn workspace oxd-components lint
+        run: yarn lint

@@ -20,31 +20,31 @@
 -->
 
 <template>
-  <oxd-tab-container v-model="selector" @clickTab="onClickTab">
+  <oxd-tab-container v-model="selector" @click-tab="onClickTab">
     <oxd-tab-panel key="login" name="Login">
       <oxd-form class="orangehrm-form">
         <oxd-text tag="h5">Login</oxd-text>
         <oxd-divider />
         <oxd-form-row>
           <oxd-input-field
-            label="Username"
             v-model="username"
+            label="Username"
             placeholder="Type your username"
           />
         </oxd-form-row>
         <oxd-form-row>
           <oxd-input-field
+            v-model="password"
             label="Password"
             type="password"
-            v-model="password"
             placeholder="Type your password"
           />
         </oxd-form-row>
 
         <div class="orangehrm-form-footer">
-          <oxd-button displayType="secondary" label="Login" />
+          <oxd-button display-type="secondary" label="Login" />
           <oxd-button
-            displayType="ghost"
+            display-type="ghost"
             label="Register"
             @click="onClickRegister"
           />
@@ -57,38 +57,42 @@
         <oxd-divider />
         <oxd-form-row>
           <oxd-input-field
-            label="E-mail"
             v-model="email"
+            label="E-mail"
             placeholder="Type your E-mail"
           />
         </oxd-form-row>
         <oxd-form-row>
           <oxd-input-field
-            label="Username"
             v-model="username"
+            label="Username"
             placeholder="Type your username"
           />
         </oxd-form-row>
         <oxd-form-row>
           <oxd-input-field
+            v-model="password"
             label="Password"
             type="password"
-            v-model="password"
             placeholder="Type your password"
           />
         </oxd-form-row>
         <oxd-form-row>
           <oxd-input-field
+            v-model="confirm"
             label="Confirm Password"
             type="password"
-            v-model="confirm"
             placeholder="Type your password again"
           />
         </oxd-form-row>
 
         <div class="orangehrm-form-footer">
-          <oxd-button displayType="secondary" label="Register" />
-          <oxd-button displayType="ghost" label="Login" @click="onClickLogin" />
+          <oxd-button display-type="secondary" label="Register" />
+          <oxd-button
+            display-type="ghost"
+            label="Login"
+            @click="onClickLogin"
+          />
         </div>
       </oxd-form>
     </oxd-tab-panel>

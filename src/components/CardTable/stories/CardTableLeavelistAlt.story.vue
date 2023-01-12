@@ -22,13 +22,13 @@
 <template>
   <div class="orangehrm-container">
     <oxd-card-table
+      v-model:selected="checkedItems"
       :selector="selector"
       :headers="headers"
       :items="items"
       :selectable="true"
       :clickable="false"
-      v-model:selected="checkedItems"
-      rowDecorator="oxd-table-decorator-card"
+      row-decorator="oxd-table-decorator-card"
     />
   </div>
 </template>
@@ -39,6 +39,9 @@ import Textarea from '@/components/Input/Textarea/Textarea.vue';
 import SelectInput from '@/components/Input/Select/SelectInput.vue';
 
 export default {
+  components: {
+    'oxd-card-table': CardTable,
+  },
   data() {
     return {
       headers: [
@@ -97,10 +100,6 @@ export default {
       ],
       checkedItems: [],
     };
-  },
-
-  components: {
-    'oxd-card-table': CardTable,
   },
 
   methods: {

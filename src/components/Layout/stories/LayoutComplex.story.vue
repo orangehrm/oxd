@@ -35,13 +35,13 @@
           <oxd-form-row>
             <oxd-grid :cols="4" class="orangehrm-filter-grid">
               <oxd-grid-item>
-                <oxd-input-field label="Username" v-model="filters.username" />
+                <oxd-input-field v-model="filters.username" label="Username" />
               </oxd-grid-item>
               <oxd-grid-item>
                 <oxd-input-field
+                  v-model="filters.role"
                   type="select"
                   label="User Role"
-                  v-model="filters.role"
                   :options="[]"
                 />
               </oxd-grid-item>
@@ -49,7 +49,7 @@
           </oxd-form-row>
           <oxd-divider />
           <oxd-form-actions>
-            <oxd-button displayType="secondary" label="Search" type="submit" />
+            <oxd-button display-type="secondary" label="Search" type="submit" />
           </oxd-form-actions>
         </oxd-form>
       </oxd-table-filter>
@@ -60,19 +60,19 @@
         :items="items"
         :column-count="6"
       >
-        <template v-slot:pagination>
+        <template #pagination>
           <oxd-pagination :length="3" :max="10" />
         </template>
       </oxd-report-table>
     </div>
-    <template v-slot:user-actions>
+    <template #user-actions>
       <li role="none">
         <a href="#" role="menuitem" class="oxd-userdropdown-link">
           <oxd-icon name="box-arrow-right" :with-container="false" />Logout
         </a>
       </li>
     </template>
-    <template v-slot:footer>
+    <template #footer>
       <oxd-text tag="p" class="orangehrm-copyright">OrangeHRM 5.0</oxd-text>
       <oxd-text tag="p" class="orangehrm-copyright">
         &copy; 2005 - 2021

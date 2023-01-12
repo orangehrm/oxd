@@ -23,7 +23,7 @@
   <oxd-tab-container
     v-model="selector"
     :animation="false"
-    @clickTab="onClickTab"
+    @click-tab="onClickTab"
   >
     <oxd-tab-panel key="first" name="First Tab">
       <p>

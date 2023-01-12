@@ -23,14 +23,14 @@
 <template>
   <div class="orangehrm-container">
     <oxd-card-table
+      v-model:selected="checkedItems"
       :selector="selector"
       :headers="headers"
       :items="items"
-      @click="onClick"
       :selectable="true"
       :clickable="false"
-      v-model:selected="checkedItems"
-      rowDecorator="oxd-table-decorator-card"
+      row-decorator="oxd-table-decorator-card"
+      @click="onClick"
     />
   </div>
   <br />
@@ -41,6 +41,9 @@
 import CardTable from '@/components/CardTable/CardTable.vue';
 
 export default {
+  components: {
+    'oxd-card-table': CardTable,
+  },
   data() {
     return {
       selector: {
@@ -82,10 +85,6 @@ export default {
       ],
       checkedItems: [2, 0],
     };
-  },
-
-  components: {
-    'oxd-card-table': CardTable,
   },
 
   methods: {
