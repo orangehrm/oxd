@@ -61,6 +61,10 @@ export interface State {
   inputValue: string;
 }
 
+interface FileInputElement extends Omit<HTMLInputElement, 'files'> {
+  files: File[];
+}
+
 export default defineComponent({
   name: 'OxdFileInput',
 
@@ -181,7 +185,7 @@ export default defineComponent({
     },
     onInput(e: Event) {
       e.preventDefault();
-      const files = [...((e.target as HTMLInputElement).files || [])];
+      let files = (e.target as FileInputElement).files;
       const inputValue = files.map((file: File) => file.name).join(', ');
 
       if (files.length > 0) {
@@ -194,7 +198,7 @@ export default defineComponent({
             event.target?.result instanceof String
           ) {
             const base64 = event.target?.result.split(',').pop();
-            if (base64) {
+            if (base64 && files) {
               const outputFile: OutputFile = {
                 name: files[0].name,
                 type: files[0].type,

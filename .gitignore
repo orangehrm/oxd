@@ -29,3 +29,7 @@ pnpm-debug.log*
 
 # Coverage report
 src/coverage/*
+
+# Build
+dist/
+tsconfig.build.tsbuildinfo

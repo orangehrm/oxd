@@ -32,7 +32,7 @@ export default function promiseDebounce(
   exec: (...args: any[]) => Promise<any>,
   interval: number,
 ): () => ReturnType<typeof exec> {
-  let handle: NodeJS.Timeout | undefined;
+  let handle: any;
   let resolves: Array<(value?: unknown) => void> = [];
 
   return async (...args: unknown[]) => {

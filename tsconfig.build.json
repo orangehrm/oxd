@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.app.json",
+  "exclude": ["node_modules", "src/**/__tests__/*", "src/**/stories/*"],
+  "compilerOptions": {
+    "outDir": "dist",
+    "outFile": "dist/index.d.ts",
+    "module": "esnext",
+    "target": "esnext",
+    "declaration": true,
+    "skipLibCheck": true,
+    "isolatedModules": false,
+    "types": ["vite/client"],
+    "lib": ["esnext", "dom"],
+    "moduleResolution": "node",
+    "emitDeclarationOnly": true
+  }
+}
