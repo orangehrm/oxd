@@ -12,8 +12,15 @@
       @dropdown:blur="onBlur()"
       @select:enter="onSelectEnter"
     >
-      <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
-        <slot :name="slot" v-bind="scope" />
+      <template v-slot:option="{data, text}">
+        <span v-html="text"></span>
+        <div style="margin-left: 0.5rem">{{ data.labelSecondary }}</div>
+      </template>
+
+      <template v-slot:chips="{data}">
+        <span class="autocomplete-email-mode-custom-chip">{{
+          data.labelSecondary
+        }}</span>
       </template>
     </oxd-autocomplete-input>
     <slot v-if="!disabled" name="iconSlot"></slot>
@@ -48,7 +55,7 @@ export default defineComponent({
     'dropdown:clear',
     'dropdown:closed',
     'dropdown:blur',
-    'select:enter',
+    'selectenter',
   ],
   computed: {
     classes(): object {
@@ -78,7 +85,11 @@ export default defineComponent({
       this.$emit('dropdown:blur');
     },
     onSelectEnter() {
-      this.$emit('select:enter');
+      this.$emit('selectenter');
+      const autocompleteEmailInput: any = this.$refs.autocompleteEmailInput;
+      if (autocompleteEmailInput) {
+        autocompleteEmailInput.searchTerm = null;
+      }
     },
   },
 });
@@ -89,5 +100,8 @@ export default defineComponent({
 @import '../variables';
 :deep(.oxd-chip-label) {
   font-weight: 700;
+}
+.autocomplete-email-mode-custom-chip {
+  margin-left: 10px;
 }
 </style>

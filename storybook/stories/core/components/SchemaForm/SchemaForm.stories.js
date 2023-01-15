@@ -316,6 +316,7 @@ Advance.args = {
               validators: new Map([['required', required]]),
               props: {
                 placeholder: 'Reciepients',
+                multiple: true,
                 createOptions: dummyAPI,
               },
             },

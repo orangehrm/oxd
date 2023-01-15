@@ -5,7 +5,7 @@
       :createOptions="callAPI"
       :multiple="true"
       @update:searchTerm="onUpdateSearchTerm"
-      @select:enter="onEnter"
+      @selectenter="onEnter"
     >
       <template v-slot:beforeSelected="{data}">
         <img
@@ -14,16 +14,6 @@
           alt="orangehrm logo"
           :src="data.avatar_url"
         />
-      </template>
-      <template v-slot:option="{data, text}">
-        <span v-html="text"></span>
-        <div style="margin-left: 0.5rem">({{ data.html_url }})</div>
-      </template>
-
-      <template v-slot:chips="{data}">
-        <span class="autocomplete-email-mode-custom-chip">{{
-          data.html_url
-        }}</span>
       </template>
     </oxd-autocomplete-email-input>
     <br />
@@ -42,7 +32,7 @@ export default {
           id: 33354992,
           label: 'gayanSandamal',
           avatar_url: 'https://avatars.githubusercontent.com/u/33354992?v=4',
-          html_url: `(${'https://github.com/gayanSandamal'})`,
+          labelSecondary: `(${'https://github.com/gayanSandamal'})`,
           preSelected: true,
         },
       ],
@@ -67,7 +57,7 @@ export default {
                     id: item.id,
                     label: item.login,
                     avatar_url: item.avatar_url,
-                    html_url: `(${item.html_url})`,
+                    labelSecondary: `(${item.labelSecondary})`,
                   };
                 }),
               );
@@ -84,19 +74,10 @@ export default {
       this.selected = [
         ...this.selected,
         {
-          html_url: this.searchTerm,
+          labelSecondary: this.searchTerm,
         },
       ];
     },
   },
 };
 </script>
-
-<style scoped>
-.github-id {
-  margin-left: auto;
-}
-.autocomplete-email-mode-custom-chip {
-  margin-left: 10px;
-}
-</style>
