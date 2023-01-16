@@ -20,10 +20,6 @@
     "nanoid": "^4.0.0",
     "vue": "^3.2.45"
   },
-  "peerDependencies": {
-    "vue": ">=3.0.0",
-    "date-fns": ">=2.0.0"
-  },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
     "@storybook/addon-essentials": "^7.0.0-beta.21",
