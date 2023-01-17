@@ -85,11 +85,12 @@ export default defineComponent({
       this.$emit('dropdown:blur');
     },
     onSelectEnter() {
-      this.$emit('selectenter');
-      const autocompleteEmailInput: any = this.$refs.autocompleteEmailInput;
-      if (autocompleteEmailInput) {
-        autocompleteEmailInput.searchTerm = null;
-      }
+      this.$emit('selectenter', () => {
+        const autocompleteEmailInput: any = this.$refs.autocompleteEmailInput;
+        if (autocompleteEmailInput) {
+          autocompleteEmailInput.searchTerm = null;
+        }
+      });
     },
   },
 });
