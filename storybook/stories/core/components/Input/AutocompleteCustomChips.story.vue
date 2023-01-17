@@ -1,8 +1,13 @@
 <template>
   <div>
-    <oxd-autocomplete-input v-model="selected" :createOptions="callAPI" :multiple="true">
-      <template v-slot:chips="{ data }"><span style="margin-left: 10px;">({{data.id}})</span> </template>
-
+    <oxd-autocomplete-input
+      v-model="selected"
+      :createOptions="callAPI"
+      :multiple="true"
+    >
+      <template v-slot:chips="{data}"
+        ><span style="margin-left: 10px">({{ data.id }})</span>
+      </template>
     </oxd-autocomplete-input>
     <br />
     <p>{{ selected }}</p>
@@ -16,7 +21,7 @@ import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput';
 export default {
   data() {
     return {
-      selected: null,
+      selected: [],
     };
   },
 
@@ -27,14 +32,14 @@ export default {
 
   methods: {
     callAPI(serachParam) {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         if (serachParam.trim()) {
           fetch(`https://api.github.com/search/users?q=${serachParam}`)
-            .then(response => response.json())
-            .then(json => {
+            .then((response) => response.json())
+            .then((json) => {
               const {items} = json;
               resolve(
-                items.map(item => {
+                items.map((item) => {
                   return {
                     id: item.id,
                     label: item.login,

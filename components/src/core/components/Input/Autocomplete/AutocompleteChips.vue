@@ -5,6 +5,7 @@
       :key="`${index}-selected-${option.id}`"
       :label="option.label"
       class="oxd-autocomplete-chips-selected align-center"
+      :class="{'pre-selected': option.preSelected}"
     >
       <template v-slot>
         <slot name="chips" :data="option"></slot>
@@ -13,6 +14,7 @@
           @click="onClick(option)"
           data-test="removeIcon"
           :class="{
+            'oxd-autocomplete-chip-remover': true,
             '--clear': true,
             '--disabled': disabled,
             '--readonly': readonly,
@@ -44,6 +46,10 @@ export default defineComponent({
     selected: {
       type: Array,
       default: () => [],
+    },
+    preSelected: {
+      type: Boolean,
+      default: false,
     },
   },
 

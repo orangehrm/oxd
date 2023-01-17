@@ -7,6 +7,7 @@ import {h, ref} from 'vue';
 import AutocompleteCustom from './AutocompleteCustom.story.vue';
 import AutoCompleteEvents from './AutoCompleteEvents.story.vue';
 import AutocompleteCustomChips from './AutocompleteCustomChips.story.vue';
+import AutoCompleteEmailMode from './AutocompleteEmailMode.story.vue';
 
 export default {
   title: 'Inputs/AutocompleteInput',
@@ -335,6 +336,39 @@ MultiSelect.parameters = {
   },
 };
 
+export const EmailMode = () => AutoCompleteEmailMode;
+
+EmailMode.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-autocomplete-input v-model="selected" :createOptions="callAPI">\n' +
+        '<template v-slot:beforeSelected="{data}">\n' +
+        '<img\n' +
+        '  width="25"\n' +
+        ' height="25"\n' +
+        ' alt="orangehrm logo"\n' +
+        ' :src="data.avatar_url"\n' +
+        ' />\n' +
+        ' </template>\n' +
+        ' <template v-slot:afterSelected="{data}">\n' +
+        ' (Github ID : {{ data.id }})\n' +
+        ' </template>\n' +
+        ' <template v-slot:option="{data, text}">\n' +
+        ' <oxd-checkbox-input />\n' +
+        ' <span v-html="text"></span>\n' +
+        ' <div class="github-id">{{ data.id }}</div>\n' +
+        '</template>\n' +
+        '</oxd-autocomplete-input>\n' +
+        ' <br />\n' +
+        '<p>{{ selected }}</p>\n' +
+        '<p>{{ selected }}</p>\n' +
+        '//\n' +
+        'File -> AutoCompleteCustomChips.story.vue',
+    },
+  },
+};
+
 export const CustomTemplate = () => AutocompleteCustom;
 
 CustomTemplate.parameters = {
@@ -400,7 +434,6 @@ CustomChipsTemplate.parameters = {
     },
   },
 };
-
 
 export const Events = () => AutoCompleteEvents;
 

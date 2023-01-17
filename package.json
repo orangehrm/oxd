@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "dev": "yarn workspace oxd-storybook start",
+    "build": "yarn workspace oxd-storybook build",
     "test:unit": "yarn workspace oxd-components test:unit",
     "test:cov": "yarn workspace oxd-components test:unit --coverageDirectory coverage --coverage",
     "lint": "yarn workspace oxd-components lint",

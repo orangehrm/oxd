@@ -1,6 +1,6 @@
 <template>
   <span :class="classes" :style="style">
-    {{ label }}
+    <div class="oxd-chip-label">{{ label }}</div>
     <slot></slot>
   </span>
 </template>
