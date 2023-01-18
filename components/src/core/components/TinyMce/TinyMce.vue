@@ -1,7 +1,7 @@
 <template>
   <div class="oxd-html-editor" :class="classes">
     <editor
-      :id="'oxd-tinymce-editor'"
+      :id="id"
       v-model="vModel"
       :init="processedSettings"
       :disabled="disabled"
@@ -55,6 +55,10 @@ export default defineComponent({
     editor: Editor,
   },
   props: {
+    id: {
+      type: String as PropType<string>,
+      default: 'oxd-tinymce-editor',
+    },
     modelValue: {
       type: String as PropType<string>,
       default: '',
