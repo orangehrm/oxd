@@ -47,7 +47,7 @@ import type {User} from './types';
 import Icon from '@/components/Icon/Icon.vue';
 import DropdownMenu from '@/components/DropdownMenu/DropdownMenu.vue';
 
-import userDefaultImg from '@/assets/images/user-default-400.png';
+import userDefaultImg from '/images/user-default-400.png';
 
 export default defineComponent({
   name: 'OxdUserDropdown',

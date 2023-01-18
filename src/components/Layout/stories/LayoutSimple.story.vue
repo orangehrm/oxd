@@ -49,8 +49,9 @@
 import {topMenuItems, sidePanelItems, breadcrumb} from './mockdata';
 import Layout from '@/components/Layout/Layout.vue';
 import IconButton from '@/components/Button/Icon.vue';
-import brandLogoSrc from '@/assets/images/orange.png';
-import brandBannerSrc from '@/assets/images/orangehrm-logo.png';
+
+import brandLogoSrc from '/images/orange.png';
+import brandBannerSrc from '/images/orangehrm-logo.png';
 
 export default {
   name: 'Layout',

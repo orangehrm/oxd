@@ -18,6 +18,7 @@
  */
 
 import {computed, h, ref} from 'vue';
+import defaultPic from '/images/user-default-400.png';
 import FileInput from '@/components/Input/FileInput.vue';
 
 export default {
@@ -36,8 +37,6 @@ const Template = (args) => ({
   components: {'oxd-file-input': FileInput},
   template: '<oxd-file-input v-bind="args" />',
 });
-
-import defaultPic from '@/assets/images/user-default-400.png';
 
 const SlotTemplate = (args) => ({
   setup() {

@@ -101,9 +101,9 @@ import TableFilter from '@/components/TableFilter/TableFilter.vue';
 import ReportTable from '@/components/ReportTable/ReportTable.vue';
 import {topMenuItems, sidePanelItems, headers, breadcrumb} from './mockdata';
 
-import profImgSrc from '@/assets/images/orange.png';
-import brandLogoSrc from '@/assets/images/orange.png';
-import brandBannerSrc from '@/assets/images/orangehrm-logo.png';
+import profImgSrc from '/images/orange.png';
+import brandLogoSrc from '/images/orange.png';
+import brandBannerSrc from '/images/orangehrm-logo.png';
 
 export default {
   name: 'Layout',

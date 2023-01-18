@@ -63,13 +63,13 @@
       opacity: 0.5;
     }
     &--videoglass {
-      background-image: url(@/assets/images/videoglass.png);
+      background-image: url('/images/videoglass.png');
     }
     &--cameraglass {
-      background-image: url(@/assets/images/cameraglass.png);
+      background-image: url('/images/cameraglass.png');
     }
     &--thumbsupglass {
-      background-image: url(@/assets/images/thumbsupglass.png);
+      background-image: url('/images/thumbsupglass.png');
     }
   }
 }
