@@ -72,11 +72,9 @@ $oxd-list-button-pallete: (
   success-alpha-20: $oxd-feedback-success-alpha-20-color,
 );
 
-/**
- * Solid Buttons
-**/
+// Solid Buttons
 
-/* Main */
+// Main
 $oxd-button-color--main: $oxd-primary-one-color !default;
 $oxd-button-color--main-pressed: map-get(
   $oxd-list-button-pallete,
@@ -89,7 +87,7 @@ $oxd-button-color--main-hover: map-get(
 $oxd-button-color--main-focus: $oxd-button-color--main-hover !default;
 $oxd-button-color--main-inactive: $oxd-interface-gray-lighten-2-color !default;
 
-/* Secondary */
+// Secondary
 $oxd-button-color--secondary: $oxd-secondary-four-color !default;
 $oxd-button-color--secondary-pressed: map-get(
   $oxd-list-button-pallete,
@@ -102,7 +100,7 @@ $oxd-button-color--secondary-hover: map-get(
 $oxd-button-color--secondary-focus: $oxd-button-color--secondary-hover !default;
 $oxd-button-color--secondary-inactive: $oxd-interface-gray-lighten-2-color !default;
 
-/* Info */
+// Info
 $oxd-button-color--info: $oxd-feedback-info-color !default;
 $oxd-button-color--info-pressed: map-get(
   $oxd-list-button-pallete,
@@ -115,7 +113,7 @@ $oxd-button-color--info-hover: map-get(
 $oxd-button-color--info-focus: $oxd-button-color--info-hover !default;
 $oxd-button-color--info-inactive: $oxd-interface-gray-lighten-2-color !default;
 
-/* Danger */
+// Danger
 $oxd-button-color--danger: $oxd-feedback-danger-color !default;
 $oxd-button-color--danger-pressed: map-get(
   $oxd-list-button-pallete,
@@ -128,7 +126,7 @@ $oxd-button-color--danger-hover: map-get(
 $oxd-button-color--danger-focus: $oxd-button-color--danger-hover !default;
 $oxd-button-color--danger-inactive: $oxd-interface-gray-lighten-2-color !default;
 
-/* Warning */
+// Warning
 $oxd-button-color--warn: $oxd-feedback-warn-color !default;
 $oxd-button-color--warn-pressed: map-get(
   $oxd-list-button-pallete,
@@ -141,7 +139,7 @@ $oxd-button-color--warn-hover: map-get(
 $oxd-button-color--warn-focus: $oxd-button-color--warn-hover !default;
 $oxd-button-color--warn-inactive: $oxd-interface-gray-lighten-2-color !default;
 
-/* Success */
+// Success
 $oxd-button-color--success: $oxd-feedback-success-color !default;
 $oxd-button-color--success-pressed: map-get(
   $oxd-list-button-pallete,
@@ -205,9 +203,7 @@ $oxd-solid-buttons: (
   ),
 );
 
-/**
- * Ghost Button
-**/
+// Ghost Button
 $oxd-button-color--ghost: $oxd-secondary-four-color !default;
 $oxd-button-border--ghost: $oxd-border !default;
 $oxd-button-color--ghost-pressed: map-get(
@@ -221,7 +217,7 @@ $oxd-button-color--ghost-hover: map-get(
 $oxd-button-color--ghost-focus: $oxd-button-color--ghost-hover !default;
 $oxd-button-color--ghost-inactive: $oxd-interface-gray-lighten-1-color !default;
 
-/* Info */
+// Info
 $oxd-button-color--ghost-info: $oxd-feedback-info-color !default;
 $oxd-button-color--ghost-info-pressed: map-get(
   $oxd-list-button-pallete,
@@ -231,7 +227,7 @@ $oxd-button-color--ghost-info-hover: $oxd-button-color--ghost-info !default;
 $oxd-button-color--ghost-info-focus: $oxd-button-color--ghost-info-hover !default;
 $oxd-button-color--ghost-info-inactive: $oxd-interface-gray-lighten-1-color !default;
 
-/* Danger */
+// Danger
 $oxd-button-color--ghost-danger: $oxd-feedback-danger-color !default;
 $oxd-button-color--ghost-danger-pressed: map-get(
   $oxd-list-button-pallete,
@@ -241,7 +237,7 @@ $oxd-button-color--ghost-danger-hover: $oxd-button-color--ghost-danger !default;
 $oxd-button-color--ghost-danger-focus: $oxd-button-color--ghost-danger-hover !default;
 $oxd-button-color--ghost-danger-inactive: $oxd-interface-gray-lighten-1-color !default;
 
-/* Warning */
+// Warning
 $oxd-button-color--ghost-warn: $oxd-feedback-warn-color !default;
 $oxd-button-color--ghost-warn-pressed: map-get(
   $oxd-list-button-pallete,
@@ -251,7 +247,7 @@ $oxd-button-color--ghost-warn-hover: $oxd-button-color--ghost-warn !default;
 $oxd-button-color--ghost-warn-focus: $oxd-button-color--ghost-warn-hover !default;
 $oxd-button-color--ghost-warn-inactive: $oxd-interface-gray-lighten-1-color !default;
 
-/* Success */
+// Success
 $oxd-button-color--ghost-success: $oxd-feedback-success-color !default;
 $oxd-button-color--ghost-success-pressed: map-get(
   $oxd-list-button-pallete,
@@ -261,7 +257,7 @@ $oxd-button-color--ghost-success-hover: $oxd-button-color--ghost-success !defaul
 $oxd-button-color--ghost-success-focus: $oxd-button-color--ghost-success-hover !default;
 $oxd-button-color--ghost-success-inactive: $oxd-interface-gray-lighten-1-color !default;
 
-/* Tool */
+// Tool
 $oxd-button-color--ghost-tool: $oxd-interface-gray-color !default;
 $oxd-button-color--ghost-tool-pressed: $oxd-interface-gray-darken-1-color !default;
 $oxd-button-color--ghost-tool-hover: $oxd-interface-gray-darken-1-color !default;
@@ -313,9 +309,7 @@ $oxd-ghost-buttons: (
   ),
 );
 
-/**
- * Label Button
-**/
+// Label Button
 $oxd-button-font-color--label: #68a61d !default;
 $oxd-button-color--label: rgba($oxd-button-font-color--label, 0.1) !default;
 $oxd-button-color--label-pressed: rgba(
@@ -329,7 +323,7 @@ $oxd-button-color--label-hover: rgba(
 $oxd-button-color--label-focus: $oxd-button-color--label-hover !default;
 $oxd-button-color--label-inactive: $oxd-interface-gray-lighten-1-color !default;
 
-/* Info */
+// Info
 $oxd-button-font-color--label-info: $oxd-feedback-info-color !default;
 $oxd-button-color--label-info: rgba($oxd-feedback-info-color, 0.1) !default;
 $oxd-button-color--label-info-pressed: rgba(
@@ -340,7 +334,7 @@ $oxd-button-color--label-info-hover: $oxd-button-font-color--label-info !default
 $oxd-button-color--label-info-focus: $oxd-button-color--label-info-hover !default;
 $oxd-button-color--label-info-inactive: $oxd-interface-gray-lighten-1-color !default;
 
-/* Danger */
+// Danger
 $oxd-button-font-color--label-danger: $oxd-feedback-danger-color !default;
 $oxd-button-color--label-danger: rgba($oxd-feedback-danger-color, 0.1) !default;
 $oxd-button-color--label-danger-pressed: rgba(
@@ -351,7 +345,7 @@ $oxd-button-color--label-danger-hover: $oxd-button-font-color--label-danger !def
 $oxd-button-color--label-danger-focus: $oxd-button-color--label-danger-hover !default;
 $oxd-button-color--label-danger-inactive: $oxd-interface-gray-lighten-1-color !default;
 
-/* Warning */
+// Warning
 $oxd-button-font-color--label-warn: $oxd-feedback-warn-color !default;
 $oxd-button-color--label-warn: rgba($oxd-feedback-warn-color, 0.1) !default;
 $oxd-button-color--label-warn-pressed: rgba(
@@ -362,7 +356,7 @@ $oxd-button-color--label-warn-hover: $oxd-button-font-color--label-warn !default
 $oxd-button-color--label-warn-focus: $oxd-button-color--label-warn-hover !default;
 $oxd-button-color--label-warn-inactive: $oxd-interface-gray-lighten-1-color !default;
 
-/* Success */
+// Success
 $oxd-button-font-color--label-success: $oxd-feedback-success-color !default;
 $oxd-button-color--label-success: rgba(
   $oxd-feedback-success-color,
@@ -376,7 +370,7 @@ $oxd-button-color--label-success-hover: $oxd-button-font-color--label-success !d
 $oxd-button-color--label-success-focus: $oxd-button-color--label-success-hover !default;
 $oxd-button-color--label-success-inactive: $oxd-interface-gray-lighten-1-color !default;
 
-/* Text button */
+// Text button
 $oxd-button-font-color--label-text: $oxd-interface-gray-darken-1-color !default;
 $oxd-button-color--label-text: rgba(
   $oxd-button-font-color--label-text,
@@ -446,9 +440,7 @@ $oxd-label-buttons: (
   ),
 );
 
-/**
- * Icon Button
-**/
+// Icon Button
 $oxd-icon-button-font-size: 18px !default;
 $oxd-icon-button-font-weight: 400 !default;
 $oxd-icon-button-font-color: $oxd-interface-gray-darken-1-color !default;
@@ -460,9 +452,7 @@ $oxd-icon-button-font-color--disabled: $oxd-interface-gray-lighten-2-color !defa
 $oxd-icon-button-size: 36px;
 $oxd-icon-button-padding: 6px;
 
-/**
- * List Button
-**/
+// List Button
 $oxd-list-button-font-color: $oxd-interface-gray-darken-1-color !default;
 $oxd-list-button--pressed: $oxd-primary-one-color !default;
 $oxd-list-button--hover: $oxd-list-button--pressed !default;

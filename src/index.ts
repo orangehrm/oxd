@@ -27,7 +27,7 @@ import OxdSpinner from '@/components/Loader/Spinner.vue';
 import OxdPageItem from '@/components/Pagination/PageItem.vue';
 import OxdPagination from '@/components/Pagination/Pagination.vue';
 import OxdProgressbar from '@/components/Progressbar/Progressbar.vue';
-import OxdReportTable from '@/components/ReportTable/ReportTable.vue';
+// import OxdReportTable from '@/components/ReportTable/ReportTable.vue';
 import OxdMultilineCell from '@/components/ReportTable/Cell/MultilineCell.vue';
 import OxdSheet from '@/components/Sheet/Sheet.vue';
 import OxdSidePanel from '@/components/SidePanel/SidePanel.vue';
@@ -106,7 +106,7 @@ export {
   OxdIconButton,
   OxdGlassButton,
   OxdProgressbar,
-  OxdReportTable,
+  // OxdReportTable,
   OxdTableFilter,
   OxdDropdownMenu,
   OxdTabContainer,

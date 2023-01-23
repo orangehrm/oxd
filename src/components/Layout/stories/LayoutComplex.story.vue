@@ -101,10 +101,6 @@ import TableFilter from '@/components/TableFilter/TableFilter.vue';
 import ReportTable from '@/components/ReportTable/ReportTable.vue';
 import {topMenuItems, sidePanelItems, headers, breadcrumb} from './mockdata';
 
-import profImgSrc from '/images/orange.png';
-import brandLogoSrc from '/images/orange.png';
-import brandBannerSrc from '/images/orangehrm-logo.png';
-
 export default {
   name: 'Layout',
 
@@ -126,12 +122,12 @@ export default {
   },
   data() {
     return {
-      brandLogoSrc: brandLogoSrc,
-      brandBannerSrc: brandBannerSrc,
+      brandLogoSrc: '/images/orange.png',
+      brandBannerSrc: '/images/orangehrm-logo.png',
       user: {
         firstName: 'Jeff',
         lastName: 'Winger',
-        profImgSrc: profImgSrc,
+        profImgSrc: '/images/orange.png',
       },
       filters: {
         username: '',

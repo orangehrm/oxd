@@ -93,7 +93,8 @@
 }
 
 // source: https://codepen.io/jakob-e/pen/WvrJwN
-@mixin aspect-ratio($arglist... /*$ratio or $width, $height*/) {
+// $ratio or $width, $height
+@mixin aspect-ratio($arglist...) {
   $map: keywords($arglist);
   $height: map-get($map, height) or nth-value($arglist, 2);
   $width: map-get($map, width) or nth-value($arglist, 1);

@@ -15,8 +15,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see  http://www.gnu.org/licenses
 
-@import '../../styles';
-@import '../../styles/icons';
 @import 'variables';
 
 .oxd-main-menu {
@@ -78,7 +76,7 @@
     text-align: left;
     overflow: visible;
     padding: $oxd-menu-item-padding;
-    /* Unset default oxd input styles */
+    // Unset default oxd input styles
     & .oxd-input {
       border-radius: unset;
       border: unset;

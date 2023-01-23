@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see  http://www.gnu.org/licenses
 
-/* Global */
+// Global
 $oxd-border: 1px solid !default;
 $oxd-border-radius: 1.2rem !default;
 $oxd-scrollbar-thumb-border-radius: 20px !default;
@@ -23,6 +23,7 @@ $oxd-scrollbar-thumb-color: $oxd-interface-gray-lighten-1-color !default;
 $oxd-scrollbar-track-color: $oxd-background-pastel-white-color !default;
 $oxd-scrollbar-arrow-color: $oxd-interface-gray-color !default;
 $oxd-scrollbar-size: 0.5rem !default;
+$oxd-font-family: 'Nunito Sans', sans-serif !default;
 
 $oxd_breakpoints: (
   'xs': (
@@ -42,7 +43,7 @@ $oxd_breakpoints: (
   ),
 );
 
-/* Input Control */
+// Input Control
 $oxd-input-control-font-size: 12px !default;
 $oxd-input-control-font-color: $oxd-interface-gray-darken-1-color !default;
 $oxd-input-control-font-weight: 400 !default;

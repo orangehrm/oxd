@@ -50,9 +50,6 @@ import {topMenuItems, sidePanelItems, breadcrumb} from './mockdata';
 import Layout from '@/components/Layout/Layout.vue';
 import IconButton from '@/components/Button/Icon.vue';
 
-import brandLogoSrc from '/images/orange.png';
-import brandBannerSrc from '/images/orangehrm-logo.png';
-
 export default {
   name: 'Layout',
 
@@ -63,12 +60,12 @@ export default {
 
   data() {
     return {
-      brandLogoSrc: brandLogoSrc,
-      brandBannerSrc: brandBannerSrc,
+      brandLogoSrc: '/images/orange.png',
+      brandBannerSrc: '/images/orangehrm-logo.png',
       user: {
         firstName: 'Jeff',
         lastName: 'Winger',
-        profImgSrc: '',
+        profImgSrc: '/images/user-default-400.png',
       },
       sidepanelMenuItems: sidePanelItems,
       topbarMenuItems: topMenuItems,

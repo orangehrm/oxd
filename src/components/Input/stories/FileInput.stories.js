@@ -18,7 +18,6 @@
  */
 
 import {computed, h, ref} from 'vue';
-import defaultPic from '/images/user-default-400.png';
 import FileInput from '@/components/Input/FileInput.vue';
 
 export default {
@@ -46,7 +45,7 @@ const SlotTemplate = (args) => ({
         if (file.value) {
           return `data:image/jpeg;base64,${file.value}`;
         } else {
-          return defaultPic;
+          return '/images/user-default-400.png';
         }
       },
     });

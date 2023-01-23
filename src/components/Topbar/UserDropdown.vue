@@ -26,7 +26,7 @@
       <img
         alt="profile picture"
         class="oxd-userdropdown-img"
-        :src="profilePicUrl"
+        :src="user.profImgSrc"
       />
       <p class="oxd-userdropdown-name">
         {{ user.firstName }} {{ user.lastName }}
@@ -41,13 +41,11 @@
 </template>
 
 <script lang="ts">
+import type {User} from './types';
 import type {PropType} from 'vue';
 import {defineComponent} from 'vue';
-import type {User} from './types';
 import Icon from '@/components/Icon/Icon.vue';
 import DropdownMenu from '@/components/DropdownMenu/DropdownMenu.vue';
-
-import userDefaultImg from '/images/user-default-400.png';
 
 export default defineComponent({
   name: 'OxdUserDropdown',
@@ -61,12 +59,6 @@ export default defineComponent({
     user: {
       type: Object as PropType<User>,
       required: true,
-    },
-  },
-
-  computed: {
-    profilePicUrl() {
-      return this.user.profImgSrc != '' ? this.user.profImgSrc : userDefaultImg;
     },
   },
 });

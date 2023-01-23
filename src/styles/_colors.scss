@@ -15,30 +15,30 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see  http://www.gnu.org/licenses
 
-/* OXD - Primary Colors */
+// OXD - Primary Colors
 $oxd-primary-one-color: #ff7b1d !default;
 $oxd-primary-two-color: #17a954 !default;
 
-/* OXD - Secondary Colors */
+// OXD - Secondary Colors
 $oxd-secondary-one-color: #ffaa00 !default;
 $oxd-secondary-two-color: #f4eec7 !default;
 $oxd-secondary-three-color: #ccda46 !default;
 $oxd-secondary-four-color: #76bc21 !default;
 
-/* OXD - Interface Colors */
+// OXD - Interface Colors
 $oxd-interface-gray-darken-2-color: #38455d !default;
 $oxd-interface-gray-darken-1-color: #64728c !default;
 $oxd-interface-gray-color: #929baa !default;
 $oxd-interface-gray-lighten-1-color: #cfd3de !default;
 $oxd-interface-gray-lighten-2-color: #e8eaef !default;
 
-/* OXD - Background & Overly Colors */
+// OXD - Background & Overly Colors
 $oxd-background-light-gray-color: #f1f2f5 !default;
 $oxd-background-pastel-white-color: #f6f5fb !default;
 $oxd-background-white-shadow-color: #fafafc !default;
 $oxd-background-white-color: #fafafa !default;
 
-/* OXD - Feedback Colors */
+// OXD - Feedback Colors
 $oxd-feedback-info-color: #1e6ceb !default;
 $oxd-feedback-danger-color: #eb0910 !default;
 $oxd-feedback-warn-color: #ffa62f !default;
@@ -47,7 +47,7 @@ $oxd-feedback-success-color: #34bc40 !default;
 $oxd-white-color: #ffffff !default;
 $oxd-black-color: #000000 !default;
 
-/* OXD - Gradient Colors */
+// OXD - Gradient Colors
 $oxd-primary-gradient-start-color: #ff8226 !default;
 $oxd-primary-gradient-end-color: #f35c17 !default;
 $oxd-primary-gradient: linear-gradient(
@@ -63,6 +63,6 @@ $oxd-secondary-gradient: linear-gradient(
   $oxd-primary-secondary-end-color 90%
 ) !default;
 
-/* OXD Font Color */
+// OXD Font Color
 $oxd-primary-font-color: $oxd-white-color !default;
 $oxd-secondary-font-color: $oxd-white-color !default;

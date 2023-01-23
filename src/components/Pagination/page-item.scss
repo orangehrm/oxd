@@ -15,7 +15,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see  http://www.gnu.org/licenses
 
-@import '../../styles';
 @import 'variables';
 
 .oxd-pagination-page-item {
@@ -30,8 +29,8 @@
   width: $oxd-pagination-page-item-size;
   margin: $oxd-pagination-page-item-margin;
 
-  /* Remove the focus indicator on mouse-focus
-     https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible */
+  // Remove the focus indicator on mouse-focus
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible
   &:focus:not(:focus-visible) {
     outline: 0;
   }
