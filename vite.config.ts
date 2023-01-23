@@ -37,15 +37,10 @@ export default defineConfig(({mode}) => {
           },
         },
       },
+      emptyOutDir: false,
     };
 
-    baseConfig['plugins']?.push([
-      // dts({
-      //   tsConfigFilePath: resolve(__dirname, 'tsconfig.build.json'),
-      //   outputDir: 'dist/types',
-      // }),
-      collectSass(),
-    ]);
+    baseConfig['plugins']?.push([collectSass()]);
   }
   return baseConfig;
 });

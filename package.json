@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "build:oxd": "vite build --mode library",
+    "build:oxd": "vue-tsc -p tsconfig.build.json && vite build --mode library",
     "build:storybook": "storybook build -o ./dist",
     "test:unit": "vitest --run --environment jsdom --root src/",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
@@ -48,7 +48,6 @@
     "storybook": "^7.0.0-beta.21",
     "typescript": "~4.7.4",
     "vite": "^4.0.0",
-    "vite-plugin-dts": "^1.7.1",
     "vitest": "^0.25.6",
     "vue-tsc": "^1.0.12"
   },
