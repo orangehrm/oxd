@@ -136,6 +136,10 @@ export default defineComponent({
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
+    hasSelectEnter: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -304,7 +308,7 @@ export default defineComponent({
         if (!option?._disabled) this.onSelect(option);
       } else {
         this.$emit('select:enter');
-        if (this.multiple && this.modelValue.length === 0) {
+        if (this.multiple && this.modelValue?.length === 0) {
           this.$emit('update:modelValue', this.searchTerm);
         } else if (!this.multiple) {
           this.$emit('update:modelValue', this.searchTerm);
@@ -317,7 +321,11 @@ export default defineComponent({
   watch: {
     modelValue: {
       handler() {
-        if (Array.isArray(this.modelValue) && this.modelValue.length === 0) {
+        if (
+          Array.isArray(this.modelValue) &&
+          this.modelValue.length === 0 &&
+          !this.hasSelectEnter
+        ) {
           this.searchTerm = null;
         }
       },
