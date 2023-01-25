@@ -1,7 +1,7 @@
 name: Publish
 
 on:
-  push:
+  pull_request:
     branches:
       - develop
 
@@ -21,42 +21,50 @@ jobs:
         run: |
           set -x
           npm -v
-          cd scripts
-          current_version=$(node ./current-version.js)
+          current_version=$(npm pkg get version | sed 's/"//g')
           fetched_current_version=$(npm show @ohrm/oxd@$current_version version) || fetched_current_version=''
           echo "current_version=$current_version" >> $GITHUB_ENV
           echo "fetched_current_version=$fetched_current_version" >> $GITHUB_ENV
           echo "current_published_version=$(npm show @ohrm/oxd version)" >> $GITHUB_ENV
 
-      - name: Allow only make patch, pre-releases
-        if: ${{ env.fetched_current_version == '' }}
-        run: |
-          npm i -g semver
-          current_published_version=${{ env.current_published_version }}
-          current_version=${{ env.current_version }}
-          fetched_current_version=${{ env.fetched_current_version }}
-          allowed_max_version=$(semver $current_published_version -i minor)
-          echo  "-----"
-          echo "Latest published: $current_published_version"
-          echo "Allowed upper bound: $allowed_max_version"
-          echo "Current version: $current_version"
-          echo  "-----"
-          version=$(semver -r ">$current_published_version <$allowed_max_version" $current_version -p)
-          if [[ $version != $current_version ]];
-          then
-            exit 1
-          fi
+      # - name: Allow only make patch, pre-releases
+      #   if: ${{ env.fetched_current_version == '' }}
+      #   run: |
+      #     npm i -g semver
+      #     current_published_version=${{ env.current_published_version }}
+      #     current_version=${{ env.current_version }}
+      #     fetched_current_version=${{ env.fetched_current_version }}
+      #     allowed_max_version=$(semver $current_published_version -i minor)
+      #     echo  "-----"
+      #     echo "Latest published: $current_published_version"
+      #     echo "Allowed upper bound: $allowed_max_version"
+      #     echo "Current version: $current_version"
+      #     echo  "-----"
+      #     version=$(semver -r ">$current_published_version <$allowed_max_version" $current_version -p)
+      #     if [[ $version != $current_version ]];
+      #     then
+      #       exit 1
+      #     fi
 
       - name: Build
         if: ${{ env.fetched_current_version == '' }}
         run: |
-          cd scripts
-          node ./build.js
+          yarn install
+          yarn build:oxd
+          cp LICENSE dist/LICENSE
+          cp README.md dist/README.md
+          (cat package.json | jq '.peerDependencies += {"vue": "3.x"}' | jq 'del(.private, .scripts, .dependencies.vue, .devDependencies)') > dist/package.json
+
+      - name: Upload build files
+        uses: actions/upload-artifact@v3
+        with:
+          name: npm-build
+          path: dist
 
       - name: Publish
         if: ${{ env.fetched_current_version == '' }}
         run: |
-          cd build
+          cd dist
           npm publish --tag dev
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

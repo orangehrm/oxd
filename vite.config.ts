@@ -1,4 +1,5 @@
 import {resolve} from 'path';
+import pkg from './package.json';
 import vue from '@vitejs/plugin-vue';
 import {fileURLToPath, URL} from 'node:url';
 import {defineConfig, type UserConfig} from 'vite';
@@ -30,12 +31,7 @@ export default defineConfig(({mode}) => {
         fileName: (format) => `index.${format}.js`,
       },
       rollupOptions: {
-        external: ['vue'],
-        output: {
-          globals: {
-            vue: 'Vue',
-          },
-        },
+        external: [...Object.keys(pkg.dependencies)],
       },
       emptyOutDir: false,
     };
