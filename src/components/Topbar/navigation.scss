@@ -37,14 +37,12 @@
     font-family: $oxd-font-family;
     font-size: $oxd-topbar-tab-font-size;
     font-weight: $oxd-topbar-tab-font-weight;
+    @include oxd-respond-to('md') {
+      position: relative;
+    }
   }
   @include oxd-respond-to('xs') {
     position: relative;
-  }
-  @include oxd-respond-to('md') {
-    &-tab {
-      position: relative;
-    }
   }
   &-slot {
     margin-left: auto;

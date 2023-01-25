@@ -18,16 +18,10 @@
  */
 
 import Icon from '@/components/Icon/Icon.vue';
-import icons from 'bootstrap-icons/font/bootstrap-icons.json';
 
 export default {
   title: 'Example/Icon',
   component: Icon,
-  argTypes: {
-    name: {
-      control: {type: 'select', options: Object.keys(icons)},
-    },
-  },
 };
 
 const Template = (args) => ({

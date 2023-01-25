@@ -16,7 +16,6 @@
 // along with this program.  If not, see  http://www.gnu.org/licenses
 
 @import 'variables';
-@import '../SidePanel/variables';
 
 $oxd-topbar-header-padding-left-calc: calc(
   #{$oxd-sidepanel-expand-width} + #{$oxd-topbar-header-web-padding-left}
@@ -69,16 +68,16 @@ $oxd-topbar-body-web-margin-collapse: $oxd-sidepanel-collapse-width;
       }
       &-level {
         font-size: 0.75rem;
-      }
-      @include oxd-respond-to('md') {
-        display: flex;
-        &-level {
+        @include oxd-respond-to('md') {
           margin-left: 0.25rem;
           font-size: inherit;
           &::before {
             content: '/ ';
           }
         }
+      }
+      @include oxd-respond-to('md') {
+        display: flex;
       }
     }
     &-hamburger {
