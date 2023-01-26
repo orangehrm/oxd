@@ -1,3 +1,5 @@
+2023-01-26 - 3e627e7fbd8a8a40c929a1df6256893dbc17bcb8 - Input/Autocomplet/AutocompleteInput.vue - handled search term resetting issue in autcompleteinput when on keypress enter
+
 2022-12-30 - 2b89327bcf23d6106fdedeec0f4e6528eee3a1a9 - Icon/icons.ts - Add 6 new icons (oxd-goals, oxd-okrs, oxd-individual, oxd-organizational-structure, oxd-dashboard-performance, oxd-goals-development)
 
 2022-12-28 - bf8a6638fca996b227da9f45547d021704bf58e9 - Tabs/Tabs.vue and Segments/Segments.vue - Added icon support and additional class support for Segments component and Tabs component
