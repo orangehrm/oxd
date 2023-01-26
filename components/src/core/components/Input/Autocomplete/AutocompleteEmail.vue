@@ -78,6 +78,7 @@ export default defineComponent({
       this.$emit('dropdown:closed');
     },
     onBlur() {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const autocompleteEmailInput: any = this.$refs.autocompleteEmailInput;
       if (autocompleteEmailInput) {
         autocompleteEmailInput.dropdownOpen = false;
@@ -86,6 +87,7 @@ export default defineComponent({
     },
     onSelectEnter() {
       this.$emit('selectenter', () => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const autocompleteEmailInput: any = this.$refs.autocompleteEmailInput;
         if (autocompleteEmailInput) {
           autocompleteEmailInput.searchTerm = null;
