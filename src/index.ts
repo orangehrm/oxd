@@ -5,6 +5,7 @@ import OxdGlassButton from '@/components/Button/GlassButton.vue';
 import OxdBuzzPostInput from '@/components/Buzz/BuzzPostInput.vue';
 import OxdCalendar from '@/components/Calendar/Calendar.vue';
 import OxdCardTable from '@/components/CardTable/CardTable.vue';
+import OxdTableDropdown from '@/components/CardTable/Cell/Dropdown.vue';
 import OxdBarChart from '@/components/Chart/BarChart.vue';
 import OxdLegend from '@/components/Chart/Legend.vue';
 import OxdPieChart from '@/components/Chart/PieChart.vue';
@@ -53,9 +54,16 @@ import OxdPasswordInput from '@/components/Input/PasswordInput.vue';
 import OxdCheckboxInput from '@/components/Input/CheckboxInput.vue';
 import OxdColorInput from '@/components/Input/Color/ColorInput.vue';
 import OxdSelectInput from '@/components/Input/Select/SelectInput.vue';
-import MultiSelectInput from '@/components/Input/MultiSelect/MultiSelectInput.vue';
-import AutocompleteInput from '@/components/Input/Autocomplete/AutocompleteInput.vue';
+import OxdMultiSelectInput from '@/components/Input/MultiSelect/MultiSelectInput.vue';
+import OxdMultiSelectChips from '@/components/Input/MultiSelect/MultiSelectChips.vue';
+import OxdAutocompleteInput from '@/components/Input/Autocomplete/AutocompleteInput.vue';
 
+import {
+  tablePropsKey,
+  tableScreenStateKey,
+  useInjectTableProps,
+  useProvideTableProps,
+} from '@/composables/useCardtable';
 import debounce from '@/utils/debounce';
 import buildLocale from '@/utils/locale';
 import useField from '@/composables/useField';
@@ -68,7 +76,10 @@ import CellAdapter from '@/components/ReportTable/CellAdapter';
 import clickOutsideDirective from '@/directives/click-outside';
 import useFormValidation from '@/composables/useFormValidation';
 
+import {formKey} from '@/composables/types';
 import {CHART_COLORS} from '@/components/Chart/types';
+import {TOAST_TYPES} from '@/components/Toast/types';
+import {DEVICE_TYPES} from '@/composables/useResponsive';
 
 export {
   // Vue Components
@@ -115,6 +126,7 @@ export {
   OxdMultilineCell,
   OxdBuzzPostInput,
   OxdToastContainer,
+  OxdTableDropdown,
   OxdNotificationDropdown,
   OxdInput,
   OxdTextarea,
@@ -127,8 +139,9 @@ export {
   OxdSelectInput,
   OxdPasswordInput,
   OxdCheckboxInput,
-  MultiSelectInput,
-  AutocompleteInput,
+  OxdMultiSelectChips,
+  OxdMultiSelectInput,
+  OxdAutocompleteInput,
 
   // Helpers
   useField,
@@ -142,7 +155,14 @@ export {
   useFormValidation,
   convertPHPDateFormat,
   clickOutsideDirective,
+  useProvideTableProps,
+  useInjectTableProps,
 
   // Constants
   CHART_COLORS,
+  TOAST_TYPES,
+  DEVICE_TYPES,
+  formKey,
+  tablePropsKey,
+  tableScreenStateKey,
 };

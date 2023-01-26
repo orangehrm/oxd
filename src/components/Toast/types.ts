@@ -23,6 +23,14 @@ export const TYPE_WARN = 'warn';
 export const TYPE_ERROR = 'error';
 export const TYPE_INFO = 'info';
 
+export const TOAST_TYPES = {
+  TYPE_DEFAULT,
+  TYPE_SUCCESS,
+  TYPE_WARN,
+  TYPE_ERROR,
+  TYPE_INFO,
+};
+
 export const TYPES = [
   TYPE_DEFAULT,
   TYPE_SUCCESS,

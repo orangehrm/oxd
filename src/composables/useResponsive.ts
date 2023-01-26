@@ -38,6 +38,14 @@ export interface ResponsiveState {
   screenType: string;
 }
 
+export const DEVICE_TYPES = {
+  DEVICE_XS,
+  DEVICE_SM,
+  DEVICE_MD,
+  DEVICE_LG,
+  DEVICE_XL,
+};
+
 export const breakpoints: Breakpoint = {
   [DEVICE_XS]: {
     min: 0,
