@@ -6,6 +6,7 @@
       :init="processedSettings"
       :disabled="disabled"
       @selectionChange="onInput"
+      @blur="onBlur"
     />
     <input
       v-show="false"
@@ -55,7 +56,7 @@ export default defineComponent({
   components: {
     editor: Editor,
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', "onBlur"],
   props: {
     id: {
       type: String as PropType<string>,
@@ -233,6 +234,10 @@ export default defineComponent({
       }
     };
 
+    const onBlur = () => {
+      emit('onBlur');
+    }
+
     const onInput = () => {
       const content = tinymce.get(props.id).getContent();
       if (content.trim() === '') {
@@ -253,6 +258,7 @@ export default defineComponent({
       tinymceId,
       onChangeFile,
       onInput,
+      onBlur,
       classes,
       processedSettings,
     };
