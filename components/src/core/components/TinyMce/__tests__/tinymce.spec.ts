@@ -44,6 +44,6 @@ describe('TinyMce > TinyMce.vue', () => {
     });
     await wrapper.vm.$nextTick();
     await wrapper.setValue('');
-    expect(wrapper.vm.vModel).toEqual('');
+    expect(wrapper.vm.editorValue).toEqual('');
   });
 });

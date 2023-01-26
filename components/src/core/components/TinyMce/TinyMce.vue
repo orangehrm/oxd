@@ -2,7 +2,7 @@
   <div class="oxd-html-editor" :class="classes">
     <editor
       :id="id"
-      v-model="vModel"
+      v-model="editorValue"
       :init="processedSettings"
       :disabled="disabled"
       @selectionChange="onInput"
@@ -17,10 +17,11 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, PropType, computed} from 'vue';
+import {defineComponent, ref, toRefs, PropType, computed, watch} from 'vue';
 
 // TinyMCE
 import 'tinymce/tinymce';
+import * as tinymce from 'tinymce/tinymce';
 import 'tinymce/themes/modern';
 // TinyMCE plugins
 import 'tinymce/plugins/advlist/plugin';
@@ -54,6 +55,7 @@ export default defineComponent({
   components: {
     editor: Editor,
   },
+  emits: ['update:modelValue'],
   props: {
     id: {
       type: String as PropType<string>,
@@ -91,7 +93,8 @@ export default defineComponent({
     },
   },
   setup(props: any, {emit}: any) {
-    const vModel = ref(props.modelValue);
+    const {modelValue} = toRefs(props);
+    const editorValue = ref(modelValue.value);
     const seonderyTooltbar = ref();
     const fileInput = ref();
     const setTinymceImage = ref();
@@ -219,22 +222,35 @@ export default defineComponent({
       };
     });
 
-    const onChangeFile = (e: any) => {
-      const files = e.target?.files;
+    const onChangeFile = (e: Event) => {
+      const files: FileList | null = (<HTMLInputElement>e.target).files;
       if (
+        files &&
         files[0] &&
         tinymceImageTypeValidator.value(files[0]) &&
         tinymceImageSizeValidator.value(files[0])
       ) {
-        setTinymceImage.value(files[0]);
+        setTinymceImage.value(files && files[0]);
       }
     };
+
     const onInput = () => {
-      emit('update:modelValue', vModel.value);
+      const content = tinymce.get(props.id).getContent();
+      if (content.trim() === '') {
+        emit('update:modelValue', content);
+      }
     };
 
+    watch(modelValue, (newValue: string) => {
+      editorValue.value = newValue;
+    });
+
+    watch(editorValue, (newValue: string) => {
+      emit('update:modelValue', newValue);
+    });
+
     return {
-      vModel,
+      editorValue,
       tinymceId,
       onChangeFile,
       onInput,
