@@ -222,15 +222,14 @@ export default defineComponent({
       };
     });
 
-    const onChangeFile = (e: Event) => {
-      const files: FileList | null = (<HTMLInputElement>e.target).files;
+    const onChangeFile = (e: any) => {
+      const files = e.target?.files;
       if (
-        files &&
         files[0] &&
         tinymceImageTypeValidator.value(files[0]) &&
         tinymceImageSizeValidator.value(files[0])
       ) {
-        setTinymceImage.value(files && files[0]);
+        setTinymceImage.value(files[0]);
       }
     };
 
