@@ -20,15 +20,13 @@
 import {
   parse,
   format,
-  isDate,
   isEqual,
-  isWeekend,
-  getDaysInMonth,
+  getDay,
   getYear,
   getMonth,
-  getDay,
-  nextSaturday,
   nextSunday,
+  nextSaturday,
+  getDaysInMonth,
 } from 'date-fns';
 
 const freshDate = () => {
@@ -170,18 +168,16 @@ function convertPHPDateFormat(format: string) {
 }
 
 export {
-  isDate,
   isEqual,
-  isWeekend,
-  getDaysInMonth,
   getYear,
   getMonth,
-  getDayOffset,
   freshDate,
   parseDate,
   formatDate,
-  rearrangeWeek,
-  nextSaturday,
   nextSunday,
+  nextSaturday,
+  getDayOffset,
+  rearrangeWeek,
+  getDaysInMonth,
   convertPHPDateFormat,
 };

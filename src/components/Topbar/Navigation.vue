@@ -90,10 +90,7 @@ export default defineComponent({
     const {width} = useResize(navbar);
 
     const setMenuItem = ($el: ComponentPublicInstance | null) => {
-      if ($el) {
-        menuItemsRefs.value.push($el);
-      }
-      return JSON.stringify($el);
+      if ($el) menuItemsRefs.value.push($el);
     };
 
     const menuClasses = computed(() => {
