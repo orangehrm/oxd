@@ -43,44 +43,24 @@ export default function useField(fieldContext: {
       return Promise.resolve({cid: cid.value, errors: []});
     }
 
-    processing.value = true;
-    const allValidations = Promise.all(
-      fieldContext.rules.map((func) => {
-        return new Promise<boolean>((resolve, reject) => {
-          Promise.resolve(func(fieldContext.modelValue.value)).then((valid) => {
-            if (valid === true) {
-              resolve(valid);
-            } else if (typeof valid === 'string') {
-              reject(valid);
-            } else {
-              reject(
-                new Error(
-                  `Rules should return a string or true, received '${typeof valid}'`,
-                ),
-              );
-            }
-          });
-        });
-      }),
-    );
+    async function allValidations() {
+      for (const rule of fieldContext.rules) {
+        const validationOutput = await rule(fieldContext.modelValue.value);
+        if (validationOutput === true) continue;
+        return typeof validationOutput === 'string'
+          ? validationOutput
+          : `Rules should return a string or true, received '${typeof validationOutput}'`;
+      }
+    }
 
-    return new Promise<ErrorField>((resolve, reject) => {
-      allValidations
-        .then(() => {
+    return new Promise<ErrorField>((resolve) => {
+      processing.value = true;
+      allValidations()
+        .then((resolved) => {
           resolve({
             cid: cid.value,
-            errors: [],
+            errors: typeof resolved === 'string' ? [resolved] : [],
           });
-        })
-        .catch((error) => {
-          if (typeof error === 'string') {
-            resolve({
-              cid: cid.value,
-              errors: [error],
-            });
-          } else {
-            reject(error);
-          }
         })
         .finally(() => {
           processing.value = false;
