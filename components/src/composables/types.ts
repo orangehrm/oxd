@@ -25,7 +25,9 @@ export type ErrorField = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type Rule = (value?: any) => string | boolean;
+export type Rule = (
+  value?: any,
+) => string | boolean | Promise<string | boolean>;
 
 export type ErrorBag = Array<ErrorField>;
 export type Fieldset = Array<FormField>;
