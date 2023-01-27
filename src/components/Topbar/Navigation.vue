@@ -91,6 +91,7 @@ export default defineComponent({
 
     const setMenuItem = ($el: ComponentPublicInstance | null) => {
       if ($el) menuItemsRefs.value.push($el);
+      return undefined;
     };
 
     const menuClasses = computed(() => {
