@@ -1,7 +1,7 @@
 name: Publish
 
 on:
-  pull_request:
+  push:
     branches:
       - develop
 
@@ -27,24 +27,24 @@ jobs:
           echo "fetched_current_version=$fetched_current_version" >> $GITHUB_ENV
           echo "current_published_version=$(npm show @ohrm/oxd version)" >> $GITHUB_ENV
 
-      # - name: Allow only make patch, pre-releases
-      #   if: ${{ env.fetched_current_version == '' }}
-      #   run: |
-      #     npm i -g semver
-      #     current_published_version=${{ env.current_published_version }}
-      #     current_version=${{ env.current_version }}
-      #     fetched_current_version=${{ env.fetched_current_version }}
-      #     allowed_max_version=$(semver $current_published_version -i minor)
-      #     echo  "-----"
-      #     echo "Latest published: $current_published_version"
-      #     echo "Allowed upper bound: $allowed_max_version"
-      #     echo "Current version: $current_version"
-      #     echo  "-----"
-      #     version=$(semver -r ">$current_published_version <$allowed_max_version" $current_version -p)
-      #     if [[ $version != $current_version ]];
-      #     then
-      #       exit 1
-      #     fi
+      - name: Allow only make patch, pre-releases
+        if: ${{ env.fetched_current_version == '' }}
+        run: |
+          npm i -g semver
+          current_published_version=${{ env.current_published_version }}
+          current_version=${{ env.current_version }}
+          fetched_current_version=${{ env.fetched_current_version }}
+          allowed_max_version=$(semver $current_published_version -i minor)
+          echo  "-----"
+          echo "Latest published: $current_published_version"
+          echo "Allowed upper bound: $allowed_max_version"
+          echo "Current version: $current_version"
+          echo  "-----"
+          version=$(semver -r ">$current_published_version <$allowed_max_version" $current_version -p)
+          if [[ $version != $current_version ]];
+          then
+            exit 1
+          fi
 
       - name: Build
         if: ${{ env.fetched_current_version == '' }}
