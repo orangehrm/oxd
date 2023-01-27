@@ -185,7 +185,7 @@ export default defineComponent({
     },
     onInput(e: Event) {
       e.preventDefault();
-      let files = (e.target as FileInputElement).files;
+      const files = [...(e.target as FileInputElement).files];
       const inputValue = files.map((file: File) => file.name).join(', ');
 
       if (files.length > 0) {
