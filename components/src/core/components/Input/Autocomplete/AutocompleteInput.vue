@@ -313,6 +313,9 @@ export default defineComponent({
         } else if (!this.multiple) {
           this.$emit('update:modelValue', this.searchTerm);
         }
+        if (this.multiple && !!this.searchTerm && this.hasSelectEnter) {
+          this.$emit('update:modelValue', this.searchTerm);
+        }
       }
       this.dropdownOpen = false;
     },
