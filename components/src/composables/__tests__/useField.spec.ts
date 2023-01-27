@@ -21,21 +21,20 @@ import {formKey} from '../types';
 import useField from '../useField';
 import {defineComponent, toRef} from 'vue';
 import {flushPromises, shallowMount} from '@vue/test-utils';
-import {describe, it, expect, vi, beforeEach} from 'vitest';
 
-const mockRestFunction = vi.fn();
-const purgeErrors = vi.fn();
-const registerField = vi.fn();
-const unregisterField = vi.fn();
-const addError = vi.fn();
-const searchErrors = vi.fn().mockImplementation(() => []);
+const mockRestFunction = jest.fn();
+const purgeErrors = jest.fn();
+const registerField = jest.fn();
+const unregisterField = jest.fn();
+const addError = jest.fn();
+const searchErrors = jest.fn().mockImplementation(() => []);
 
-vi.mock('nanoid', () => ({
-  nanoid: vi.fn().mockReturnValue('RQo9uIESilqxkE9scKup7'),
+jest.mock('nanoid', () => ({
+  nanoid: jest.fn().mockReturnValue('RQo9uIESilqxkE9scKup7'),
 }));
 
 const TestField = defineComponent({
-  name: 'Field',
+  name: 'OxdField',
   // eslint-disable-next-line vue/require-prop-types
   props: ['disabled', 'modelValue'],
   setup(props) {
@@ -89,12 +88,12 @@ describe('components/src/composables/useField', () => {
 
   it('useField should register the field', async () => {
     shallowMount(TestField, {...mountConfigs});
-    expect(registerField).toHaveBeenCalledOnce();
+    expect(registerField).toBeCalledTimes(1);
   });
 
   it('useField should unregister the field', async () => {
     shallowMount(TestField, {...mountConfigs}).unmount();
-    expect(unregisterField).toHaveBeenCalledOnce();
+    expect(unregisterField).toBeCalledTimes(1);
   });
 
   it('useField should validate field', async () => {

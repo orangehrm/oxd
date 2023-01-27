@@ -19,7 +19,6 @@
 
 import {inject, ref, h} from 'vue';
 import {mount} from '@vue/test-utils';
-import {describe, it, expect, vi} from 'vitest';
 import {formKey, type FormAPI} from '../types';
 import useFormValidation from '../useFormValidation';
 
@@ -71,8 +70,8 @@ describe('components/src/composables/useFormValidation', () => {
                 label: ref('Test'),
                 processing: ref(false),
                 touched: ref(false),
-                validate: vi.fn(),
-                reset: vi.fn(),
+                validate: jest.fn(),
+                reset: jest.fn(),
               });
             },
             template: `<input />`,
@@ -96,8 +95,8 @@ describe('components/src/composables/useFormValidation', () => {
                 label: ref('Test'),
                 processing: ref(false),
                 touched: ref(false),
-                validate: vi.fn(),
-                reset: vi.fn(),
+                validate: jest.fn(),
+                reset: jest.fn(),
               });
               formHandler?.unregisterField({
                 cid: ref('001'),
@@ -105,8 +104,8 @@ describe('components/src/composables/useFormValidation', () => {
                 label: ref('Test'),
                 processing: ref(false),
                 touched: ref(false),
-                validate: vi.fn(),
-                reset: vi.fn(),
+                validate: jest.fn(),
+                reset: jest.fn(),
               });
             },
             template: `<input />`,
@@ -130,8 +129,8 @@ describe('components/src/composables/useFormValidation', () => {
                 label: ref('Test'),
                 processing: ref(false),
                 touched: ref(false),
-                reset: vi.fn(),
-                validate: vi.fn(),
+                reset: jest.fn(),
+                validate: jest.fn(),
               });
               formHandler?.addError({
                 cid: '001',
@@ -159,7 +158,7 @@ describe('components/src/composables/useFormValidation', () => {
                 label: ref('Test'),
                 processing: ref(false),
                 touched: ref(true),
-                reset: vi.fn(),
+                reset: jest.fn(),
                 validate: () =>
                   Promise.resolve({
                     cid: '001',
@@ -172,7 +171,7 @@ describe('components/src/composables/useFormValidation', () => {
                 label: ref('Test 2'),
                 processing: ref(false),
                 touched: ref(true),
-                reset: vi.fn(),
+                reset: jest.fn(),
                 validate: () =>
                   Promise.resolve({
                     cid: '002',
@@ -202,8 +201,8 @@ describe('components/src/composables/useFormValidation', () => {
                 label: ref('Test'),
                 processing: ref(false),
                 touched: ref(false),
-                reset: vi.fn(),
-                validate: vi.fn(),
+                reset: jest.fn(),
+                validate: jest.fn(),
               });
               formHandler?.addError({
                 cid: '001',
@@ -219,13 +218,13 @@ describe('components/src/composables/useFormValidation', () => {
   });
 
   it('useFormValidation should reset all fields', async () => {
-    const mockValidateFunction = vi.fn().mockImplementation(() =>
+    const mockValidateFunction = jest.fn().mockImplementation(() =>
       Promise.resolve({
         cid: '001',
         errors: ['Required'],
       }),
     );
-    const mockRestFunction = vi.fn();
+    const mockRestFunction = jest.fn();
     const wrapper = mount(TestForm, {
       slots: {
         default: () =>
@@ -277,8 +276,8 @@ describe('components/src/composables/useFormValidation', () => {
                 label: ref('Test'),
                 processing: ref(false),
                 touched: ref(false),
-                reset: vi.fn(),
-                validate: vi.fn(),
+                reset: jest.fn(),
+                validate: jest.fn(),
               });
             },
             template: `<input />`,
