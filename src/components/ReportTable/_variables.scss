@@ -36,8 +36,7 @@ $oxd-report-table-cell-border: 1px solid $oxd-interface-gray-lighten-2-color !de
 
 $oxd-report-table-group-header-background-color: $oxd-interface-gray-lighten-2-color !default;
 $oxd-report-table-header-background-color: #f7f8f9 !default;
-$oxd-report-table-header-border: 1px solid
-  rgba($oxd-interface-gray-darken-1-color, 0.2) !default;
+$oxd-report-table-header-border: 1px solid $oxd-interface-gray-darken-1-alpha-20-color !default;
 $oxd-report-table-header-font-color: $oxd-interface-gray-darken-2-color !default;
 $oxd-report-table-header-font-size: 14px !default;
 $oxd-report-table-header-font-weight: 800 !default;

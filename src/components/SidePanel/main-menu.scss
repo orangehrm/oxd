@@ -52,7 +52,7 @@
       background-color: $oxd-menu-item-active-color;
       border-top-right-radius: 50px;
       border-bottom-right-radius: 50px;
-      background-image: $oxd-menu-item-active-gradient;
+      background-image: $oxd-secondary-gradient;
     }
     &.toggle {
       @include oxd-respond-to('md') {

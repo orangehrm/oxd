@@ -27,7 +27,7 @@
 }
 
 .oxd-toast-icon-wrap {
-  background-color: rgba($oxd-toast-icon-color, 0.1);
+  background-color: $oxd-toast-icon-color-alpha-10;
   padding: $oxd-toast-icon-wrap-padding;
   border-radius: 100%;
   box-sizing: border-box;
@@ -36,6 +36,6 @@
   @include oxd-flex-center;
 
   &--default {
-    background-color: rgba($oxd-toast-icon-color-default, 0.1);
+    background-color: $oxd-toast-icon-color-default-alpha-10;
   }
 }

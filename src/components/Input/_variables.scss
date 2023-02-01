@@ -31,10 +31,7 @@ $oxd-file-button-font-size: 0.875rem;
 $oxd-file-button-font-weight: 600;
 $oxd-file-button-padding-horizontal: 1.5rem;
 $oxd-file-button-color--disabled: $oxd-interface-gray-lighten-1-color !default;
-$oxd-file-button-background-color--disabled: darken(
-  $oxd-white-color,
-  1%
-) !default;
+$oxd-file-button-background-color--disabled: $oxd-white-darken-1-color !default;
 $oxd-file-button-height: 35px !default;
 $oxd-file-button-width: 35px !default;
 
@@ -83,10 +80,7 @@ $oxd-dropdown-dropdown-padding: 4px !default;
 $oxd-dropdown-dropdown-border: 1px solid $oxd-interface-gray-lighten-2-color !default;
 $oxd-dropdown-dropdown-border-radius: 0.65rem !default;
 $oxd-dropdown-dropdown-background: $oxd-white-color !default;
-$oxd-dropdown-dropdown-background--disabled: darken(
-  $oxd-background-white-shadow-color,
-  3%
-) !default;
+$oxd-dropdown-dropdown-background--disabled: #f0f0f6 !default;
 $oxd-dropdown-dropdown-margin: 5px !default;
 $oxd-dropdown-dropdown-color: $oxd-interface-gray-darken-1-color !default;
 $oxd-dropdown-dropdown-slot-color: $oxd-interface-gray-color !default;
@@ -115,10 +109,7 @@ $oxd-dropdown-chip-area-padding: 0.5rem 0 !default;
 
 $oxd-dropdown-arrow-background-color: $oxd-background-light-gray-color !default;
 $oxd-dropdown-arrow-background-color--disabled: $oxd-background-light-gray-color !default;
-$oxd-dropdown-arrow-background-color--readonly: darken(
-  $oxd-white-color,
-  1%
-) !default;
+$oxd-dropdown-arrow-background-color--readonly: $oxd-white-darken-1-color !default;
 $oxd-dropdown-arrow-color--readonly: $oxd-interface-gray-lighten-1-color !default;
 $oxd-dropdown-arrow-width: 35px !default;
 $oxd-dropdown-arrow-height: 35px !default;

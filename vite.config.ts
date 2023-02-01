@@ -6,7 +6,9 @@ import {defineConfig, type UserConfig} from 'vite';
 import collectSass from './vite-plugin-collect-scss';
 
 // https://vitejs.dev/config/
-export default defineConfig(({mode}) => {
+export default defineConfig((conf) => {
+  const mode = conf.mode.substring(0, 3);
+
   const baseConfig: UserConfig = {
     plugins: [vue()],
     resolve: {
@@ -17,12 +19,12 @@ export default defineConfig(({mode}) => {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `@import 'src/styles';`,
+          additionalData: `@import 'src/styles/index.${mode}.scss';`,
         },
       },
     },
   };
-  if (mode === 'library') {
+  if (mode === 'lib') {
     baseConfig['build'] = {
       lib: {
         entry: resolve(__dirname, 'src/index.ts'),
@@ -36,7 +38,7 @@ export default defineConfig(({mode}) => {
       emptyOutDir: false,
     };
 
-    baseConfig['plugins']?.push([collectSass()]);
+    baseConfig['plugins']?.push(collectSass());
   }
   return baseConfig;
 });
