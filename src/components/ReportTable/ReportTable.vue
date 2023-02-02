@@ -73,7 +73,7 @@
 </template>
 
 <script lang="ts">
-import VGrid from '@revolist/vue3-datagrid';
+import {VGrid} from '@revolist/vue3-datagrid';
 import useResize from '@/composables/useResize';
 import type {ComponentPublicInstance} from 'vue';
 import IconButton from '@/components/Button/Icon.vue';

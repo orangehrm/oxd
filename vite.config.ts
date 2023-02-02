@@ -7,7 +7,7 @@ import collectSass from './vite-plugin-collect-scss';
 
 // https://vitejs.dev/config/
 export default defineConfig((conf) => {
-  const mode = conf.mode.substring(0, 3);
+  const mode = conf.mode === 'library' ? 'lib' : 'dev';
 
   const baseConfig: UserConfig = {
     plugins: [vue()],

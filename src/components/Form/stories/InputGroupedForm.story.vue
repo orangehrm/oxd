@@ -118,8 +118,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/index.scss';
-
 .orangehrm-left-space {
   margin-left: 10px;
 }
