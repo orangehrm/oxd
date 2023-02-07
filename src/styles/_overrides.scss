@@ -44,7 +44,7 @@ $oxd-feedback-success-color: var(--oxd-feedback-success-color, #34bc40);
 $oxd-primary-gradient-start-color: var(--oxd-primary-gradient-start-color, #ff8226);
 $oxd-primary-gradient-end-color: var(--oxd-primary-gradient-end-color, #f35c17);
 $oxd-secondary-gradient-start-color: var(--oxd-secondary-gradient-start-color, #ff5e00);
-$oxd-secondary-gradient-end-color: var(--oxd-secondary-gradient-start-color, #ffa46b);
+$oxd-secondary-gradient-end-color: var(--oxd-secondary-gradient-end-color, #ffa46b);
 
 $oxd-primary-gradient: linear-gradient(
   90deg,
@@ -55,7 +55,7 @@ $oxd-primary-gradient: linear-gradient(
 $oxd-secondary-gradient: linear-gradient(
   90deg,
   var(--oxd-secondary-gradient-start-color) 0%,
-  var(--oxd-secondary-gradient-start-color) 90%
+  var(--oxd-secondary-gradient-end-color) 90%
 );
 
 $oxd-primary-font-color: var(--oxd-primary-font-color, #ffffff);

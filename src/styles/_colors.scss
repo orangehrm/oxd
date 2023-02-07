@@ -55,12 +55,12 @@ $oxd-primary-gradient: linear-gradient(
   $oxd-primary-gradient-start-color 0%,
   $oxd-primary-gradient-end-color 90%
 ) !default;
-$oxd-primary-secondary-start-color: #ff5e00 !default;
-$oxd-primary-secondary-end-color: #ffa46b !default;
+$oxd-secondary-gradient-start-color: #ff5e00 !default;
+$oxd-secondary-gradient-end-color: #ffa46b !default;
 $oxd-secondary-gradient: linear-gradient(
   90deg,
-  $oxd-primary-secondary-start-color 0%,
-  $oxd-primary-secondary-end-color 90%
+  $oxd-secondary-gradient-start-color 0%,
+  $oxd-secondary-gradient-end-color 90%
 ) !default;
 
 // OXD Font Color
