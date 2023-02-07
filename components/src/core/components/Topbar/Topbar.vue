@@ -46,13 +46,15 @@
       <div class="oxd-topbar-header-userarea">
         <ul>
           <oxd-user-dropdown :user="user">
-            <slot></slot>
+            <slot name="user-context"></slot>
           </oxd-user-dropdown>
         </ul>
       </div>
     </div>
     <div :class="bodyClasses">
-      <oxd-navigation :menu-items="menuItems"></oxd-navigation>
+      <oxd-navigation :menu-items="menuItems">
+        <slot name="nav-context"></slot>
+      </oxd-navigation>
     </div>
   </header>
 </template>

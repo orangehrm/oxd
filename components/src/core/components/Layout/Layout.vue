@@ -38,7 +38,12 @@
         :menu-items="topbarMenuItems"
         @collapse="onCollapse"
       >
-        <slot name="user-actions"></slot>
+        <template #user-context>
+          <slot name="user-actions"></slot>
+        </template>
+        <template #nav-context>
+          <slot name="nav-actions"></slot>
+        </template>
       </oxd-top-bar>
     </div>
     <div :class="containerClasses">
