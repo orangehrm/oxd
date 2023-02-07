@@ -35,7 +35,10 @@
         <a href="#" role="menuitem" class="oxd-userdropdown-link"> Logout </a>
       </li>
     </template>
-    <template v-slot:footer>
+    <template #nav-actions>
+      <oxd-icon-button name="question-lg" />
+    </template>
+    <template #footer>
       <p class="context-footer">slot for footer</p>
       <br />
     </template>
@@ -45,11 +48,13 @@
 <script>
 import {topMenuItems, sidePanelItems, breadcrumb} from './mockdata';
 import Layout from '@ohrm/oxd/core/components/Layout/Layout';
+import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
 
 export default {
   name: 'Layout',
   components: {
     'oxd-layout': Layout,
+    'oxd-icon-button': IconButton,
   },
   data() {
     return {
