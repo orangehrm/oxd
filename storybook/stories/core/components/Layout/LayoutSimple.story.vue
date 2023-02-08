@@ -30,7 +30,7 @@
     :breadcrumb="breadcrumb"
   >
     <p class="context-default">slot for context</p>
-    <template v-slot:user-actions>
+    <template #user-actions>
       <li role="none">
         <a href="#" role="menuitem" class="oxd-userdropdown-link"> Logout </a>
       </li>
@@ -47,8 +47,8 @@
 
 <script>
 import {topMenuItems, sidePanelItems, breadcrumb} from './mockdata';
-import Layout from '@ohrm/oxd/core/components/Layout/Layout';
-import IconButton from '@ohrm/oxd/core/components/Button/Icon.vue';
+import Layout from '@/components/Layout/Layout.vue';
+import IconButton from '@/components/Button/Icon.vue';
 
 export default {
   name: 'Layout',
@@ -58,12 +58,12 @@ export default {
   },
   data() {
     return {
-      brandLogoSrc: require('@ohrm/oxd/assets/images/orange.png'),
-      brandBannerSrc: require('@ohrm/oxd/assets/images/orangehrm-logo.png'),
+      brandLogoSrc: '/images/orange.png',
+      brandBannerSrc: '/images/orangehrm-logo.png',
       user: {
         firstName: 'Jeff',
         lastName: 'Winger',
-        profImgSrc: '',
+        profImgSrc: '/images/user-default-400.png',
       },
       sidepanelMenuItems: sidePanelItems,
       topbarMenuItems: topMenuItems,
