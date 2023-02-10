@@ -53,6 +53,7 @@ jobs:
           yarn build:oxd
           cp LICENSE dist/LICENSE
           cp README.md dist/README.md
+          cp THIRD-PARTY-LICENSE dist/THIRD-PARTY-LICENSE
           (cat package.json | jq '.peerDependencies += {"vue": "3.x"}' | jq 'del(.private, .scripts, .dependencies.vue, .devDependencies)') > dist/package.json
 
       - name: Upload build files
