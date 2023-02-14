@@ -26,3 +26,10 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Coverage report
+src/coverage/*
+
+# Build
+dist/
+tsconfig.build.tsbuildinfo

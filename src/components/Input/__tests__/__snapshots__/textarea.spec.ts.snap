@@ -1,0 +1,7 @@
+// Vitest Snapshot v1
+
+exports[`Textarea.vue > renders OXD Textarea 1`] = `"<textarea class=\\"oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical\\" label=\\"Textarea\\" data-v-ec75bf0c=\\"\\"></textarea>"`;
+
+exports[`Textarea.vue > should renders OXD Textarea with custom color 1`] = `"<textarea class=\\"oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical\\" label=\\"Textarea\\" style=\\"background-color: aliceblue;\\" data-v-ec75bf0c=\\"\\"></textarea>"`;
+
+exports[`Textarea.vue > should renders OXD Textarea with error 1`] = `"<textarea class=\\"oxd-textarea oxd-textarea--active oxd-textarea--error oxd-textarea--resize-vertical\\" label=\\"Textarea\\" data-v-ec75bf0c=\\"\\"></textarea>"`;

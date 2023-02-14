@@ -1,0 +1,113 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+@import 'variables';
+
+.oxd-checkbox-wrapper {
+  & label {
+    cursor: pointer;
+    display: flex;
+    align-content: center;
+    font-family: $oxd-input-control-font-family;
+    color: $oxd-checkbox-label-color;
+    font-size: $oxd-input-control-font-size;
+    font-weight: $oxd-input-control-font-weight;
+    width: fit-content;
+
+    &:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+
+    & input[type='checkbox'] {
+      opacity: 0;
+      position: absolute;
+      + .oxd-checkbox-input {
+        background-color: $oxd-white-color;
+        .oxd-checkbox-input-icon {
+          opacity: 0;
+        }
+      }
+
+      &:checked + .oxd-checkbox-input {
+        background-color: $oxd-checkbox-checked-background-color;
+        .oxd-checkbox-input-icon {
+          opacity: 1;
+        }
+      }
+
+      &:checked:disabled + .oxd-checkbox-input {
+        background-color: $oxd-checkbox-disabled-background-color;
+        .oxd-checkbox-input-icon {
+          opacity: 1;
+        }
+      }
+
+      &:disabled + .oxd-checkbox-input {
+        background-color: $oxd-checkbox-disabled-background-color;
+        .oxd-checkbox-input-icon {
+          opacity: 0;
+        }
+      }
+    }
+
+    &.--disabled {
+      color: $oxd-checkbox-label-color--disabled;
+      cursor: unset;
+    }
+  }
+}
+
+.oxd-checkbox-input {
+  position: relative;
+  display: flex;
+  border-radius: $oxd-checkbox-border-radius;
+  width: $oxd-checkbox-width;
+  height: $oxd-checkbox-height;
+
+  &.--label-left {
+    margin-left: $oxd-checkbox-label-margin;
+  }
+
+  &.--label-right {
+    margin-right: $oxd-checkbox-label-margin;
+  }
+
+  &--active {
+    border: $oxd-checkbox-border;
+  }
+
+  &--focus {
+    border: $oxd-input-border--focus;
+    box-shadow: $oxd-input-box-shadow--focus;
+    outline: 0;
+  }
+
+  &--error {
+    border: $oxd-input-border--error;
+    box-shadow: $oxd-input-box-shadow--error;
+  }
+
+  &-icon {
+    color: $oxd-primary-font-color;
+    font-size: $oxd-checkbox-check-font-size;
+    position: absolute;
+    line-height: 1.5;
+    align-self: center;
+  }
+}

@@ -1,0 +1,5 @@
+// Vitest Snapshot v1
+
+exports[`Button > GlassButton.vue > should disable OXD glass button 1`] = `"<button type=\\"button\\" class=\\"oxd-glass-button oxd-glass-button--disabled\\" disabled=\\"\\" name=\\"Post Photo\\" data-v-f9d6620a=\\"\\"><span class=\\"oxd-glass-button-icon oxd-glass-button-icon--disabled oxd-glass-button-icon--cameraglass\\" data-v-f9d6620a=\\"\\"></span> </button>"`;
+
+exports[`Button > GlassButton.vue > should renders OXD glass button 1`] = `"<button type=\\"button\\" class=\\"oxd-glass-button\\" name=\\"Post Video\\" data-v-f9d6620a=\\"\\"><span class=\\"oxd-glass-button-icon oxd-glass-button-icon--videoglass\\" data-v-f9d6620a=\\"\\"></span> </button>"`;

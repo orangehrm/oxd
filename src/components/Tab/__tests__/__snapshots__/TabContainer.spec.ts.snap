@@ -1,0 +1,12 @@
+// Vitest Snapshot v1
+
+exports[`TabContainer.vue > renders OXD Tab Container 1`] = `
+"<div class=\\"oxd-tab\\" data-v-0a74cfa0=\\"\\">
+  <div class=\\"oxd-tab-bar\\" data-v-0a74cfa0=\\"\\"><a class=\\"oxd-tab-segment oxd-tab-segment--active\\" href=\\"#tab1\\" data-v-0a74cfa0=\\"\\">tab1</a><a class=\\"oxd-tab-segment\\" href=\\"#tab2\\" data-v-0a74cfa0=\\"\\">tab2</a><a class=\\"oxd-tab-segment\\" href=\\"#tab3\\" data-v-0a74cfa0=\\"\\">tab3</a></div>
+  <transition-stub name=\\"transition-slide-right\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\" data-v-0a74cfa0=\\"\\">
+    <div id=\\"tab1\\" class=\\"oxd-tab-panel\\">
+      <div>Tab 1</div>
+    </div>
+  </transition-stub>
+</div>"
+`;

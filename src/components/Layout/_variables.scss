@@ -1,0 +1,33 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+$oxd-layout-background-color: $oxd-background-pastel-white-color !default;
+$oxd-layout-container-mobile-width: calc(100% + 1px);
+$oxd-layout-container-web-width: calc(100% - #{$oxd-sidepanel-expand-width});
+$oxd-layout-container-web-collapse-width: calc(
+  100% - #{$oxd-sidepanel-collapse-width}
+);
+$oxd-layout-container-margin-top: 100px;
+$oxd-layout-container-margin-left: $oxd-sidepanel-expand-width;
+$oxd-layout-container-margin-left--collapse: $oxd-sidepanel-collapse-width;
+$oxd-layout-context-height: 75vmin !default;
+$oxd-layout-context-padding-top: 2rem !default;
+$oxd-layout-context-web-padding-left: 48px !default;
+$oxd-layout-context-mobile-padding-left: 20px !default;
+$oxd-layout-context-web-padding-right: 48px !default;
+$oxd-layout-context-mobile-padding-right: 20px !default;
+$oxd-layout-footer-margin-top: 2rem !default;

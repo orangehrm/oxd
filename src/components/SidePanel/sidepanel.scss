@@ -1,0 +1,83 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+@import 'variables';
+
+.oxd-navbar-nav {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: inherit;
+  overflow: hidden;
+}
+
+.oxd-sidepanel {
+  top: 0;
+  height: 100%;
+  position: fixed;
+  background-color: $oxd-sidepanel-bg-color;
+  border-bottom-right-radius: $oxd-sidepanel-border-radius;
+  border-top-right-radius: $oxd-sidepanel-border-radius;
+  box-shadow: $oxd-sidepanel-box-shadow;
+  z-index: $oxd-sidepanel-z-index;
+  transition: width 0.3s ease-in-out;
+
+  // hide sidepanel by default in mobile
+  @include oxd-respond-to('xs') {
+    width: 0;
+  }
+  @include oxd-respond-to('md') {
+    width: $oxd-sidepanel-expand-width;
+  }
+
+  // toggle sidepanel expland/collpase width
+  &.toggled {
+    @include oxd-respond-to('xs') {
+      width: $oxd-sidepanel-expand-width;
+    }
+    @include oxd-respond-to('md') {
+      width: $oxd-sidepanel-collapse-width;
+    }
+  }
+
+  &-header {
+    flex: none;
+    &-close {
+      font-size: 1.5rem;
+      right: 20px;
+      top: 38px;
+      position: absolute;
+      cursor: pointer;
+      @include oxd-respond-to('xs') {
+        display: block;
+      }
+      @include oxd-respond-to('md') {
+        display: none;
+      }
+    }
+  }
+
+  &-body {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 30px;
+  }
+}

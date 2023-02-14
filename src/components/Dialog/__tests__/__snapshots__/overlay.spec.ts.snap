@@ -1,0 +1,7 @@
+// Vitest Snapshot v1
+
+exports[`Dialog > Overlay.vue > should renders OXD Dialog > Overlay 1`] = `"<div role=\\"dialog\\" class=\\"oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered oxd-overlay--hide\\" data-v-1799388b=\\"\\"></div>"`;
+
+exports[`Dialog > Overlay.vue > should renders OXD Dialog > Overlay centered 1`] = `"<div role=\\"dialog\\" class=\\"oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered\\" data-v-1799388b=\\"\\"></div>"`;
+
+exports[`Dialog > Overlay.vue > should renders OXD Dialog > Overlay show 1`] = `"<div role=\\"dialog\\" class=\\"oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered\\" data-v-1799388b=\\"\\"></div>"`;

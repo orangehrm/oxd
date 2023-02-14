@@ -1,8 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`BuzzPostInput.vue renders OXD BuzzPostInput 1`] = `
-<div class="oxd-buzz-post oxd-buzz-post--active"><textarea rows="1" class="oxd-buzz-post-input"></textarea>
-  <div class="oxd-buzz-post-slot"></div>
-</div>
-<!--v-if-->
-`;

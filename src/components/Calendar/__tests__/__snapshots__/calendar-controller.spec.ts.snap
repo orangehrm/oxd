@@ -1,0 +1,24 @@
+// Vitest Snapshot v1
+
+exports[`CalendarController.vue > renders OXD CalendarController 1`] = `
+"<div class=\\"oxd-calendar-header\\"><button class=\\"oxd-icon-button\\" type=\\"button\\" data-v-3b1778bd=\\"\\"><i class=\\"oxd-icon bi-chevron-left\\" data-v-85cde8ca=\\"\\" data-v-3b1778bd=\\"\\"></i></button>
+  <ul class=\\"oxd-calendar-selector\\">
+    <li class=\\"oxd-calendar-selector-month\\" data-v-75916442=\\"\\">
+      <div class=\\"oxd-calendar-selector-month-selected\\">
+        <p class=\\"oxd-text oxd-text--p\\" data-v-0334bd57=\\"\\">March</p><i class=\\"oxd-icon bi-caret-down-fill oxd-icon-button__icon\\" data-v-85cde8ca=\\"\\" data-v-3b1778bd=\\"\\"></i>
+      </div>
+      <transition-stub name=\\"transition-fade-down\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\" data-v-75916442=\\"\\">
+        <!--v-if-->
+      </transition-stub>
+    </li>
+    <li class=\\"oxd-calendar-selector-year\\" data-v-75916442=\\"\\">
+      <div class=\\"oxd-calendar-selector-year-selected\\">
+        <p class=\\"oxd-text oxd-text--p\\" data-v-0334bd57=\\"\\">2020</p><i class=\\"oxd-icon bi-caret-down-fill oxd-icon-button__icon\\" data-v-85cde8ca=\\"\\" data-v-3b1778bd=\\"\\"></i>
+      </div>
+      <transition-stub name=\\"transition-fade-down\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\" data-v-75916442=\\"\\">
+        <!--v-if-->
+      </transition-stub>
+    </li>
+  </ul><button class=\\"oxd-icon-button\\" type=\\"button\\" data-v-3b1778bd=\\"\\"><i class=\\"oxd-icon bi-chevron-right\\" data-v-85cde8ca=\\"\\" data-v-3b1778bd=\\"\\"></i></button>
+</div>"
+`;

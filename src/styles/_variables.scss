@@ -1,0 +1,82 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+// Global
+$oxd-border: 1px solid !default;
+$oxd-border-radius: 1.2rem !default;
+$oxd-scrollbar-thumb-border-radius: 20px !default;
+$oxd-scrollbar-thumb-color: $oxd-interface-gray-lighten-1-color !default;
+$oxd-scrollbar-track-color: $oxd-background-pastel-white-color !default;
+$oxd-scrollbar-arrow-color: $oxd-interface-gray-color !default;
+$oxd-scrollbar-size: 0.5rem !default;
+$oxd-font-family: 'Nunito Sans', sans-serif !default;
+
+$oxd_breakpoints: (
+  'xs': (
+    min-width: 0px,
+  ),
+  'sm': (
+    min-width: 600px,
+  ),
+  'md': (
+    min-width: 800px,
+  ),
+  'lg': (
+    min-width: 1000px,
+  ),
+  'xl': (
+    min-width: 1200px,
+  ),
+);
+
+// Input Control
+$oxd-input-control-font-size: 12px !default;
+$oxd-input-control-font-color: $oxd-interface-gray-darken-1-color !default;
+$oxd-input-control-font-weight: 400 !default;
+$oxd-input-control-border-radius: 0.65rem !default;
+$oxd-input-control-line-height: 1.5 !default;
+$oxd-input-control-font-family: $oxd-font-family !default;
+$oxd-input-control-horizontal-padding: 0.5rem !default;
+$oxd-input-control-vertical-padding: 0.675rem !default;
+$oxd-input-control-border--active: $oxd-border
+  $oxd-interface-gray-lighten-2-color !default;
+$oxd-input-control-border--focus: $oxd-border $oxd-interface-gray-color !default;
+$oxd-input-control-border--error: $oxd-border $oxd-feedback-danger-color !default;
+$oxd-input-control-box-shadow--focus: 1px 1px 6px rgba(35, 35, 36, 0.12) !default;
+$oxd-input-control-box-shadow--error: 0 0 5px 0.2rem rgba(223, 9, 16, 0.1) !default;
+$oxd-input-control-width: 100% !default;
+
+// Dropdown
+$oxd-dropdown-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.15) !default;
+$oxd-dropdown-border: 1px solid $oxd-interface-gray-lighten-2-color !default;
+$oxd-dropdown-border-radius: 0.65rem !default;
+$oxd-dropdown-background-color: $oxd-white-color !default;
+$oxd-dropdown-padding: 4px !default;
+$oxd-dropdown-item-hover-color: #f6f7f9 !default;
+
+// Global z-index order
+$oxd-toggle-button-z-index: 100 !default;
+$oxd-loader-z-index: 200 !default;
+$oxd-topbar-z-index: 210 !default;
+$oxd-sidepanel-overlay-z-index: 220 !default;
+$oxd-sidepanel-z-index: 230 !default;
+$oxd-dropdown-z-index: 240 !default;
+$oxd-overlay-z-index: 300 !default;
+$oxd-dialog-z-index: 400 !default;
+
+$oxd-sidepanel-expand-width: 16rem !default;
+$oxd-sidepanel-collapse-width: 5.2rem !default;

@@ -1,0 +1,3 @@
+// Vitest Snapshot v1
+
+exports[`CardTable > TableBody.vue > renders OXD CardTable > TableBody 1`] = `"<div class=\\"oxd-table-body\\" role=\\"rowgroup\\" data-v-074682e6=\\"\\"></div>"`;

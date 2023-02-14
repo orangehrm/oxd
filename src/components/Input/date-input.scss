@@ -1,0 +1,106 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+@import 'variables';
+
+.oxd-date-wrapper {
+  @include oxd-input-control-size;
+  position: relative;
+  &:focus {
+    outline: none;
+  }
+  & > *:focus {
+    outline: none;
+  }
+}
+
+.oxd-date-input {
+  display: flex;
+  align-items: center;
+  &-icon {
+    right: 0.25rem;
+    display: flex;
+    cursor: pointer;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: $oxd-dropdown-arrow-width;
+    height: $oxd-dropdown-arrow-height;
+    border-radius: $oxd-dropdown-arrow-border-radius;
+    background-color: $oxd-dropdown-arrow-background-color;
+    &.--disabled,
+    &.--readonly {
+      cursor: unset;
+      background-color: $oxd-dropdown-arrow-background-color--readonly;
+      color: $oxd-dropdown-arrow-color--readonly;
+    }
+  }
+  ::v-deep(.oxd-input) {
+    text-overflow: ellipsis;
+    padding-right: 4rem;
+  }
+  &-calendar {
+    top: 50px;
+    right: 0;
+    position: absolute;
+    z-index: $oxd-dropdown-z-index;
+    width: 250px;
+    @include oxd-respond-to('sm') {
+      width: 300px;
+    }
+  }
+  &-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: $oxd-date-input-links-margin;
+  }
+  &-link {
+    cursor: pointer;
+    padding: $oxd-date-input-link-padding;
+    border-radius: $oxd-date-input-link-border-radius;
+    font-family: $oxd-input-control-font-family;
+    color: $oxd-input-control-font-color;
+    font-weight: $oxd-date-input-link-font-weight;
+    font-size: $oxd-date-input-link-font-size;
+    &.--today,
+    &.--close {
+      color: $oxd-date-input-link-highlight-color;
+    }
+    &:hover {
+      background-color: $oxd-date-input-link-background;
+    }
+  }
+}
+
+.transition-fade-down-enter-from,
+.transition-fade-down-leave-to {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+.transition-fade-down-enter-active,
+.transition-fade-down-leave-active {
+  transition: transform $oxd-dropdown-animation-time
+      cubic-bezier(0.53, 2, 0.36, 0.85),
+    opacity $oxd-dropdown-animation-time cubic-bezier(0.53, 2, 0.36, 0.85);
+}
+
+::v-deep(.oxd-loading-spinner) {
+  width: $oxd-dropdown-loader-height;
+  height: $oxd-dropdown-loader-height;
+}

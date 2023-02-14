@@ -1,0 +1,10 @@
+// Vitest Snapshot v1
+
+exports[`Progressbar.vue > renders OXD Progressbar 1`] = `
+"<div class=\\"oxd-progressbar\\" data-v-668268dd=\\"\\">
+  <div class=\\"oxd-progressbar-wrapper\\" data-v-668268dd=\\"\\">
+    <div style=\\"width: 0%;\\" class=\\"oxd-progressbar-ticker oxd-progressbar-ticker--default\\" data-v-668268dd=\\"\\"></div>
+  </div>
+  <p class=\\"oxd-text oxd-text--p oxd-progressbar-text\\" data-v-0334bd57=\\"\\" data-v-668268dd=\\"\\">0%</p>
+</div>"
+`;

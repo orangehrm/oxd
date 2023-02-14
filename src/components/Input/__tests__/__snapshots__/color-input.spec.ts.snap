@@ -1,0 +1,41 @@
+// Vitest Snapshot v1
+
+exports[`ColorInput.vue > renders OXD Color Input 1`] = `
+"<div class=\\"oxd-color-input oxd-color-input--active\\" tabindex=\\"0\\" data-v-71eb055d=\\"\\">
+  <div class=\\"oxd-color-input-preview\\" style=\\"background-color: rgb(0, 0, 0); opacity: 1; cursor: pointer;\\" data-v-71eb055d=\\"\\"></div>
+  <transition-stub name=\\"transition-fade-down\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\" data-v-71eb055d=\\"\\">
+    <!--v-if-->
+  </transition-stub>
+</div>"
+`;
+
+exports[`ColorInput.vue > renders OXD Color Input with color 1`] = `
+"<div class=\\"oxd-color-input oxd-color-input--active\\" tabindex=\\"0\\" data-v-71eb055d=\\"\\">
+  <div class=\\"oxd-color-input-preview\\" style=\\"background-color: rgb(255, 0, 0); opacity: 1; cursor: pointer;\\" data-v-71eb055d=\\"\\"></div>
+  <transition-stub name=\\"transition-fade-down\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\" data-v-71eb055d=\\"\\">
+    <!--v-if-->
+  </transition-stub>
+</div>"
+`;
+
+exports[`ColorInput.vue > should accept 6 digit hex input 1`] = `
+"<div class=\\"oxd-color-input oxd-color-input--active oxd-color-input--focus\\" tabindex=\\"0\\" data-v-71eb055d=\\"\\">
+  <div class=\\"oxd-color-input-preview\\" style=\\"background-color: rgb(0, 0, 0); opacity: 1; cursor: pointer;\\" data-v-71eb055d=\\"\\"></div>
+  <transition-stub name=\\"transition-fade-down\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\" data-v-71eb055d=\\"\\">
+    <div role=\\"alert\\" class=\\"oxd-color-picker --positon-right\\" data-v-b319f057=\\"\\" data-v-71eb055d=\\"\\">
+      <div class=\\"oxd-color-picker-indicator\\" data-v-b319f057=\\"\\" style=\\"top: 0px; left: 228px;\\"></div><canvas width=\\"228\\" height=\\"228\\" class=\\"oxd-color-picker-palette\\" data-v-b319f057=\\"\\"></canvas><input class=\\"oxd-color-picker-range\\" type=\\"range\\" max=\\"359\\" data-v-b319f057=\\"\\"><label class=\\"oxd-label oxd-color-picker-label\\" data-v-f77d8cda=\\"\\" data-v-b319f057=\\"\\">HEX</label><input class=\\"oxd-input oxd-input--active\\" data-v-d06e05c9=\\"\\" data-v-b319f057=\\"\\">
+    </div>
+  </transition-stub>
+</div>"
+`;
+
+exports[`ColorInput.vue > should not accept 3 digit hex input 1`] = `
+"<div class=\\"oxd-color-input oxd-color-input--active oxd-color-input--focus\\" tabindex=\\"0\\" data-v-71eb055d=\\"\\">
+  <div class=\\"oxd-color-input-preview\\" style=\\"background-color: rgb(0, 0, 0); opacity: 1; cursor: pointer;\\" data-v-71eb055d=\\"\\"></div>
+  <transition-stub name=\\"transition-fade-down\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\" data-v-71eb055d=\\"\\">
+    <div role=\\"alert\\" class=\\"oxd-color-picker --positon-right\\" data-v-b319f057=\\"\\" data-v-71eb055d=\\"\\">
+      <div class=\\"oxd-color-picker-indicator\\" data-v-b319f057=\\"\\" style=\\"top: 0px; left: 228px;\\"></div><canvas width=\\"228\\" height=\\"228\\" class=\\"oxd-color-picker-palette\\" data-v-b319f057=\\"\\"></canvas><input class=\\"oxd-color-picker-range\\" type=\\"range\\" max=\\"359\\" data-v-b319f057=\\"\\"><label class=\\"oxd-label oxd-color-picker-label\\" data-v-f77d8cda=\\"\\" data-v-b319f057=\\"\\">HEX</label><input class=\\"oxd-input oxd-input--active\\" data-v-d06e05c9=\\"\\" data-v-b319f057=\\"\\">
+    </div>
+  </transition-stub>
+</div>"
+`;

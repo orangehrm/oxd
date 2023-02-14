@@ -1,0 +1,160 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+@import 'variables';
+
+$oxd-report-table-frame-offset: $oxd-report-table-frame-header-height * 2;
+
+.oxd-report-table {
+  &.--frame {
+    overflow: hidden;
+    border-radius: $oxd-report-table-frame-border-radius;
+  }
+  &-header,
+  &-footer {
+    display: flex;
+    flex-wrap: nowrap;
+    height: $oxd-report-table-frame-header-height;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $oxd-report-table-frame-background-color;
+    box-sizing: border-box;
+  }
+  &-footer {
+    border-top: $oxd-report-table-header-border;
+  }
+  &-header {
+    &--toggable {
+      display: flex;
+      align-items: center;
+      padding-left: $oxd-report-table-frame-padding-left;
+      & .--toggable-icon {
+        margin-right: $oxd-report-table-frame-margin-right;
+      }
+    }
+    &--pagination {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-right: $oxd-report-table-frame-padding-right;
+    }
+  }
+  &-loader {
+    min-height: $oxd-report-table-loader-height;
+    width: 100%;
+    height: 100%;
+    z-index: $oxd-loader-z-index;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & .oxd-loading-spinner-container {
+      background-color: $oxd-report-table-loader-background-color;
+    }
+    background-color: $oxd-report-table-body-background-color;
+  }
+  revo-grid {
+    background-color: $oxd-report-table-body-background-color;
+    font-family: $oxd-report-table-body-font-family !important;
+    height: calc(100% - #{$oxd-report-table-frame-offset}) !important;
+    width: calc(100% + 1px);
+
+    [data-rgcol] {
+      color: $oxd-report-table-cell-font-color !important;
+      font-size: $oxd-report-table-cell-font-size;
+      font-weight: $oxd-report-table-cell-font-weight;
+      border-left: $oxd-report-table-cell-border;
+    }
+
+    .main-viewport {
+      height: unset !important;
+      overflow-y: auto;
+    }
+
+    .rgRow {
+      border-top: $oxd-report-table-cell-border;
+    }
+
+    .col-alt {
+      background-color: $oxd-report-table-cell-background-color-alt !important;
+    }
+
+    .colPinStart {
+      border-right: $oxd-report-table-header-border;
+    }
+
+    .colPinEnd {
+      border-left: $oxd-report-table-header-border;
+    }
+
+    .cell-action:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .rgCell {
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      hr {
+        left: 0;
+        right: 0;
+        margin: 0;
+        border: none;
+        position: absolute;
+        border-bottom: $oxd-report-table-cell-border;
+      }
+    }
+
+    revogr-header {
+      .group-rgRow,
+      .group {
+        text-align: center;
+        background-color: $oxd-report-table-group-header-background-color !important;
+        border-bottom: $oxd-report-table-header-border;
+      }
+
+      .header-rgRow {
+        background-color: $oxd-report-table-header-background-color;
+        border-bottom: $oxd-report-table-header-border;
+        box-shadow: unset !important;
+      }
+
+      .group-rgRow .rgHeaderCell {
+        border-left: $oxd-report-table-header-border;
+        border-right: $oxd-report-table-header-border;
+      }
+
+      .rgHeaderCell {
+        color: $oxd-report-table-header-font-color !important;
+        font-size: $oxd-report-table-header-font-size;
+        font-weight: $oxd-report-table-header-font-weight;
+        background-color: unset !important;
+      }
+
+      .rgHeaderCell .header-content {
+        line-height: normal;
+        align-self: center;
+        word-break: break-word;
+        overflow: unset !important;
+        text-overflow: unset !important;
+        white-space: normal !important;
+      }
+    }
+  }
+}

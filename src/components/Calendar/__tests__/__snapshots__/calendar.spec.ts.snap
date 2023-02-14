@@ -1,0 +1,130 @@
+// Vitest Snapshot v1
+
+exports[`Calendar.vue > renders OXD Calendar 1`] = `
+"<div class=\\"oxd-calendar-wrapper\\">
+  <div class=\\"oxd-calendar-header\\"><button class=\\"oxd-icon-button\\" type=\\"button\\" data-v-3b1778bd=\\"\\"><i class=\\"oxd-icon bi-chevron-left\\" data-v-85cde8ca=\\"\\" data-v-3b1778bd=\\"\\"></i></button>
+    <ul class=\\"oxd-calendar-selector\\">
+      <li class=\\"oxd-calendar-selector-month\\" data-v-75916442=\\"\\">
+        <div class=\\"oxd-calendar-selector-month-selected\\">
+          <p class=\\"oxd-text oxd-text--p\\" data-v-0334bd57=\\"\\">July</p><i class=\\"oxd-icon bi-caret-down-fill oxd-icon-button__icon\\" data-v-85cde8ca=\\"\\" data-v-3b1778bd=\\"\\"></i>
+        </div>
+        <transition-stub name=\\"transition-fade-down\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\" data-v-75916442=\\"\\">
+          <!--v-if-->
+        </transition-stub>
+      </li>
+      <li class=\\"oxd-calendar-selector-year\\" data-v-75916442=\\"\\">
+        <div class=\\"oxd-calendar-selector-year-selected\\">
+          <p class=\\"oxd-text oxd-text--p\\" data-v-0334bd57=\\"\\">1990</p><i class=\\"oxd-icon bi-caret-down-fill oxd-icon-button__icon\\" data-v-85cde8ca=\\"\\" data-v-3b1778bd=\\"\\"></i>
+        </div>
+        <transition-stub name=\\"transition-fade-down\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\" data-v-75916442=\\"\\">
+          <!--v-if-->
+        </transition-stub>
+      </li>
+    </ul><button class=\\"oxd-icon-button\\" type=\\"button\\" data-v-3b1778bd=\\"\\"><i class=\\"oxd-icon bi-chevron-right\\" data-v-85cde8ca=\\"\\" data-v-3b1778bd=\\"\\"></i></button>
+  </div>
+  <div class=\\"oxd-calendar-week-grid\\">
+    <div class=\\"oxd-calendar-day\\">S</div>
+    <div class=\\"oxd-calendar-day\\">M</div>
+    <div class=\\"oxd-calendar-day\\">T</div>
+    <div class=\\"oxd-calendar-day\\">W</div>
+    <div class=\\"oxd-calendar-day\\">T</div>
+    <div class=\\"oxd-calendar-day\\">F</div>
+    <div class=\\"oxd-calendar-day\\">S</div>
+  </div>
+  <div class=\\"oxd-calendar-dates-grid\\">
+    <div class=\\"oxd-calendar-date-wrapper --offset-1\\">
+      <div class=\\"oxd-calendar-date\\">1</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">2</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">3</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">4</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">5</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">6</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">7</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">8</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">9</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">10</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">11</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">12</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">13</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">14</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">15</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">16</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">17</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">18</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">19</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">20</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">21</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">22</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">23</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">24</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">25</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">26</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date --selected\\">27</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">28</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">29</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">30</div>
+    </div>
+    <div class=\\"oxd-calendar-date-wrapper\\">
+      <div class=\\"oxd-calendar-date\\">31</div>
+    </div>
+  </div>
+</div>"
+`;

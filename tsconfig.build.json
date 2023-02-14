@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.app.json",
+  "exclude": ["node_modules", "src/**/__tests__/*", "src/**/stories/*"],
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ESNext",
+    "composite": false,
+    "declaration": true,
+    "skipLibCheck": true,
+    "outDir": "dist/types",
+    "types": ["vite/client"],
+    "isolatedModules": true,
+    "esModuleInterop": false,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "emitDeclarationOnly": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"]
+  }
+}

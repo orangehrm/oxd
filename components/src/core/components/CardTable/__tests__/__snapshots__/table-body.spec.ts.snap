@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`CardTable > TableBody.vue renders OXD CardTable > TableBody 1`] = `<div class="oxd-table-body" role="rowgroup"></div>`;

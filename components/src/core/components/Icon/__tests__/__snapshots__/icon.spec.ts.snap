@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Icon.vue renders OXD Icon 1`] = `<i class="oxd-icon bi-trash"></i>`;

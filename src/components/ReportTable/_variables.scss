@@ -1,0 +1,42 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+$oxd-report-table-frame-border-radius: 1.2rem !default;
+$oxd-report-table-frame-padding-left: 20px !default;
+$oxd-report-table-frame-margin-right: 10px !default;
+$oxd-report-table-frame-padding-right: 20px !default;
+$oxd-report-table-frame-header-height: 55px !default;
+$oxd-report-table-frame-background-color: $oxd-white-color !default;
+$oxd-report-table-loader-height: 400px !default;
+$oxd-report-table-loader-background-color: $oxd-white-color !default;
+
+$oxd-report-table-body-background-color: $oxd-white-color !default;
+$oxd-report-table-body-font-family: $oxd-font-family !default;
+
+$oxd-report-table-cell-background-color: $oxd-white-color !default;
+$oxd-report-table-cell-background-color-alt: #f6f7fd !default;
+$oxd-report-table-cell-font-color: $oxd-interface-gray-darken-1-color !default;
+$oxd-report-table-cell-font-size: 12px !default;
+$oxd-report-table-cell-font-weight: 600 !default;
+$oxd-report-table-cell-border: 1px solid $oxd-interface-gray-lighten-2-color !default;
+
+$oxd-report-table-group-header-background-color: $oxd-interface-gray-lighten-2-color !default;
+$oxd-report-table-header-background-color: #f7f8f9 !default;
+$oxd-report-table-header-border: 1px solid $oxd-interface-gray-darken-1-alpha-20-color !default;
+$oxd-report-table-header-font-color: $oxd-interface-gray-darken-2-color !default;
+$oxd-report-table-header-font-size: 14px !default;
+$oxd-report-table-header-font-weight: 800 !default;

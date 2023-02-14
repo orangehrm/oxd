@@ -1,0 +1,13 @@
+// Vitest Snapshot v1
+
+exports[`SwitchInput.vue > renders OXD Switch Input 1`] = `
+"<div class=\\"oxd-switch-wrapper\\" data-v-7272f18a=\\"\\"><label class=\\"\\" data-v-7272f18a=\\"\\">
+    <!--v-if--><input label=\\"Checkbox\\" type=\\"checkbox\\" data-v-7272f18a=\\"\\"><span class=\\"oxd-switch-input oxd-switch-input--active --label-right\\" data-v-7272f18a=\\"\\"></span>
+  </label></div>"
+`;
+
+exports[`SwitchInput.vue > should renders OXD Input with error 1`] = `
+"<div class=\\"oxd-switch-wrapper\\" data-v-7272f18a=\\"\\"><label class=\\"\\" data-v-7272f18a=\\"\\">
+    <!--v-if--><input label=\\"Checkbox\\" type=\\"checkbox\\" data-v-7272f18a=\\"\\"><span class=\\"oxd-switch-input oxd-switch-input--active oxd-switch-input--error --label-right\\" data-v-7272f18a=\\"\\"></span>
+  </label></div>"
+`;

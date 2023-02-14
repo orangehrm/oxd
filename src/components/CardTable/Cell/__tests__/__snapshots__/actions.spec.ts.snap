@@ -1,0 +1,3 @@
+// Vitest Snapshot v1
+
+exports[`CardTable > Cell > Actions.vue > should renders OXD CardTable > Cell > Actions 1`] = `"<div class=\\"oxd-table-cell-actions\\" data-v-2ca36abc=\\"\\"><button class=\\"oxd-icon-button oxd-table-cell-action-space\\" type=\\"button\\" data-v-3b1778bd=\\"\\" data-v-2ca36abc=\\"\\"><i class=\\"oxd-icon bi-trash\\" data-v-85cde8ca=\\"\\" data-v-3b1778bd=\\"\\"></i></button><button class=\\"oxd-icon-button oxd-table-cell-action-space\\" type=\\"button\\" data-v-3b1778bd=\\"\\" data-v-2ca36abc=\\"\\"><i class=\\"oxd-icon bi-pencil-fill\\" data-v-85cde8ca=\\"\\" data-v-3b1778bd=\\"\\"></i></button></div>"`;

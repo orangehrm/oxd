@@ -1,0 +1,10 @@
+// Vitest Snapshot v1
+
+exports[`Chart > Legend.vue > should renders OXD chart legend 1`] = `
+"<ul class=\\"oxd-chart-legend\\" data-v-cc28d892=\\"\\">
+  <li data-v-cc28d892=\\"\\"><span class=\\"oxd-chart-legend-key\\" style=\\"background-color: red;\\" data-v-cc28d892=\\"\\"></span><span class=\\"oxd-text oxd-text--span\\" title=\\"STEM\\" data-v-0334bd57=\\"\\" data-v-cc28d892=\\"\\">STEM</span></li>
+  <li data-v-cc28d892=\\"\\"><span class=\\"oxd-chart-legend-key\\" style=\\"background-color: green;\\" data-v-cc28d892=\\"\\"></span><span class=\\"oxd-text oxd-text--span\\" title=\\"Arts\\" data-v-0334bd57=\\"\\" data-v-cc28d892=\\"\\">Arts</span></li>
+  <li data-v-cc28d892=\\"\\"><span class=\\"oxd-chart-legend-key\\" style=\\"background-color: blue;\\" data-v-cc28d892=\\"\\"></span><span class=\\"oxd-text oxd-text--span\\" title=\\"Law\\" data-v-0334bd57=\\"\\" data-v-cc28d892=\\"\\">Law</span></li>
+  <li data-v-cc28d892=\\"\\"><span class=\\"oxd-chart-legend-key\\" style=\\"background-color: yellow;\\" data-v-cc28d892=\\"\\"></span><span class=\\"oxd-text oxd-text--span\\" title=\\"Management\\" data-v-0334bd57=\\"\\" data-v-cc28d892=\\"\\">Management</span></li>
+</ul>"
+`;

@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`CardTable > Table.vue renders OXD CardTable > Table 1`] = `<div class="oxd-table" role="table"></div>`;

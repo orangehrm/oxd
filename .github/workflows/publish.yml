@@ -7,7 +7,8 @@ on:
 
 jobs:
   publish:
-    if: github.repository == 'orangehrm/oxd'
+    if: false
+    #if: github.repository == 'orangehrm/oxd'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -21,8 +22,7 @@ jobs:
         run: |
           set -x
           npm -v
-          cd scripts
-          current_version=$(node ./current-version.js)
+          current_version=$(npm pkg get version | sed 's/"//g')
           fetched_current_version=$(npm show @ohrm/oxd@$current_version version) || fetched_current_version=''
           echo "current_version=$current_version" >> $GITHUB_ENV
           echo "fetched_current_version=$fetched_current_version" >> $GITHUB_ENV
@@ -50,13 +50,23 @@ jobs:
       - name: Build
         if: ${{ env.fetched_current_version == '' }}
         run: |
-          cd scripts
-          node ./build.js
+          yarn install
+          yarn build:oxd
+          cp LICENSE dist/LICENSE
+          cp README.md dist/README.md
+          cp THIRD-PARTY-LICENSE dist/THIRD-PARTY-LICENSE
+          (cat package.json | jq '.peerDependencies += {"vue": "3.x"}' | jq 'del(.private, .scripts, .dependencies.vue, .devDependencies)') > dist/package.json
+
+      - name: Upload build files
+        uses: actions/upload-artifact@v3
+        with:
+          name: oxd-build
+          path: dist
 
       - name: Publish
         if: ${{ env.fetched_current_version == '' }}
         run: |
-          cd build
+          cd dist
           npm publish --tag dev
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

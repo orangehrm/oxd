@@ -1,0 +1,50 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+@import 'variables';
+
+.oxd-brand {
+  display: flex;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 1.5rem 1rem;
+  z-index: 1;
+  align-items: center;
+  &-logo {
+    display: none;
+    border-style: none;
+    & img {
+      height: $oxd-brand-logo-height;
+      width: $oxd-brand-logo-width;
+    }
+    @include oxd-respond-to('md') {
+      display: block;
+    }
+  }
+  &-banner {
+    & img {
+      height: $oxd-brand-banner-height;
+      width: $oxd-brand-banner-width;
+    }
+    &.toggled {
+      @include oxd-respond-to('md') {
+        display: none;
+      }
+    }
+  }
+}

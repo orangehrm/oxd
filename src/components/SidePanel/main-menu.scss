@@ -1,0 +1,133 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+@import 'variables';
+
+.oxd-main-menu {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: column;
+  overflow: hidden auto;
+  padding-right: $oxd-menu-padding-right;
+  @include oxd-scrollbar();
+  &-item {
+    display: flex;
+    text-align: left;
+    align-items: center;
+    text-decoration: none;
+    color: $oxd-menu-item-color;
+    padding: $oxd-menu-item-padding;
+    &--icon,
+    &--name {
+      color: inherit;
+    }
+    &--name {
+      padding-left: $oxd-menu-item-text-padding-left;
+      font-size: $oxd-menu-item-font-size;
+      font-weight: $oxd-menu-item-font-weight;
+    }
+    &:hover {
+      background-color: $oxd-menu-item-hover-color;
+      transition-timing-function: ease-out;
+      border-top-right-radius: 50px;
+      border-bottom-right-radius: 50px;
+    }
+    &.active {
+      color: $oxd-menu-item-color--active;
+      background-color: $oxd-menu-item-active-color;
+      border-top-right-radius: 50px;
+      border-bottom-right-radius: 50px;
+      background-image: $oxd-secondary-gradient;
+    }
+    &.toggle {
+      @include oxd-respond-to('md') {
+        justify-content: center;
+        & .oxd-main-menu-item--name {
+          display: none;
+        }
+      }
+    }
+  }
+  & hr {
+    border: 0;
+  }
+  &-divider {
+    border-top: $oxd-main-menu-hr !important;
+    margin: 5px 1rem;
+  }
+  &-search {
+    width: 100%;
+    display: block;
+    text-align: left;
+    overflow: visible;
+    padding: $oxd-menu-item-padding;
+    // Unset default oxd input styles
+    & .oxd-input {
+      border-radius: unset;
+      border: unset;
+      min-height: unset;
+      height: auto;
+      width: auto;
+      padding: unset;
+      display: inline;
+      font-size: 0.85rem;
+      padding-left: 15px;
+      &--active {
+        border: unset;
+      }
+      &--focus {
+        border: unset;
+        box-shadow: unset;
+        outline: 0;
+      }
+      &--error {
+        border: unset;
+        box-shadow: unset;
+      }
+    }
+    & .toggled {
+      @include oxd-respond-to('xs') {
+        display: inline;
+      }
+      @include oxd-respond-to('md') {
+        display: none;
+      }
+    }
+  }
+  &-button {
+    top: 110px;
+    right: -12px;
+    width: 25px;
+    height: 25px;
+    display: none;
+    min-width: 25px;
+    min-height: 25px;
+    position: absolute;
+    background-color: $oxd-menu-slide-button-color !important;
+    @include oxd-respond-to('md') {
+      display: inline-flex;
+    }
+    ::v-deep(.oxd-icon) {
+      font-size: 10px;
+      color: $oxd-primary-font-color;
+    }
+  }
+  &.--fixed {
+    flex: none;
+  }
+}

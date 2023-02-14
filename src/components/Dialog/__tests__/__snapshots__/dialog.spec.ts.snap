@@ -1,0 +1,95 @@
+// Vitest Snapshot v1
+
+exports[`Dialog > Dialog.vue > should renders OXD Dialog > Dialog 1`] = `
+"<transition-stub name=\\"fade\\" appear=\\"true\\" persisted=\\"false\\" css=\\"true\\" data-v-83d025ba=\\"\\">
+  <div role=\\"dialog\\" class=\\"oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered\\" data-v-1799388b=\\"\\" data-v-83d025ba=\\"\\">
+    <!--
+    :aria-labelledby=\\"'dialogTitle_' + id\\"
+    :aria-describedby=\\"'dialogDesc_' + id\\"
+    -->
+    <div class=\\"oxd-dialog-container-default\\" data-v-e5203e6f=\\"\\" data-v-83d025ba=\\"\\">
+      <div class=\\"oxd-dialog-container-default--inner\\" data-v-e5203e6f=\\"\\">
+        <div class=\\"oxd-sheet oxd-sheet--rounded oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow oxd-dialog-sheet--gutters\\" role=\\"document\\" data-v-c53e196d=\\"\\" data-v-83d025ba=\\"\\"><button class=\\"oxd-dialog-close-button oxd-dialog-close-button-position\\" data-v-d9ef0969=\\"\\" data-v-83d025ba=\\"\\">×</button></div>
+      </div>
+    </div>
+  </div>
+</transition-stub>"
+`;
+
+exports[`Dialog > Dialog.vue > should renders OXD Dialog > Dialog dialogContainer-div 1`] = `
+"<transition-stub name=\\"fade\\" appear=\\"true\\" persisted=\\"false\\" css=\\"true\\" data-v-83d025ba=\\"\\">
+  <div role=\\"dialog\\" class=\\"oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered\\" data-v-1799388b=\\"\\" data-v-83d025ba=\\"\\">
+    <!--
+    :aria-labelledby=\\"'dialogTitle_' + id\\"
+    :aria-describedby=\\"'dialogDesc_' + id\\"
+    -->
+    <div data-v-83d025ba=\\"\\">
+      <div class=\\"oxd-sheet oxd-sheet--rounded oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow oxd-dialog-sheet--gutters\\" show=\\"true\\" role=\\"document\\" data-v-c53e196d=\\"\\" data-v-83d025ba=\\"\\"><button class=\\"oxd-dialog-close-button oxd-dialog-close-button-position\\" data-v-d9ef0969=\\"\\" data-v-83d025ba=\\"\\">×</button></div>
+    </div>
+  </div>
+</transition-stub>"
+`;
+
+exports[`Dialog > Dialog.vue > should renders OXD Dialog > Dialog no shadow 1`] = `
+"<transition-stub name=\\"fade\\" appear=\\"true\\" persisted=\\"false\\" css=\\"true\\" data-v-83d025ba=\\"\\">
+  <div role=\\"dialog\\" class=\\"oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered\\" data-v-1799388b=\\"\\" data-v-83d025ba=\\"\\">
+    <!--
+    :aria-labelledby=\\"'dialogTitle_' + id\\"
+    :aria-describedby=\\"'dialogDesc_' + id\\"
+    -->
+    <div class=\\"oxd-dialog-container-default\\" data-v-e5203e6f=\\"\\" data-v-83d025ba=\\"\\">
+      <div class=\\"oxd-dialog-container-default--inner\\" data-v-e5203e6f=\\"\\">
+        <div class=\\"oxd-sheet oxd-sheet--rounded oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--gutters\\" show=\\"true\\" role=\\"document\\" data-v-c53e196d=\\"\\" data-v-83d025ba=\\"\\"><button class=\\"oxd-dialog-close-button oxd-dialog-close-button-position\\" data-v-d9ef0969=\\"\\" data-v-83d025ba=\\"\\">×</button></div>
+      </div>
+    </div>
+  </div>
+</transition-stub>"
+`;
+
+exports[`Dialog > Dialog.vue > should renders OXD Dialog > Dialog persistent 1`] = `
+"<transition-stub name=\\"fade\\" appear=\\"true\\" persisted=\\"false\\" css=\\"true\\" data-v-83d025ba=\\"\\">
+  <div role=\\"dialog\\" class=\\"oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered\\" data-v-1799388b=\\"\\" data-v-83d025ba=\\"\\">
+    <!--
+    :aria-labelledby=\\"'dialogTitle_' + id\\"
+    :aria-describedby=\\"'dialogDesc_' + id\\"
+    -->
+    <div class=\\"oxd-dialog-container-default\\" data-v-e5203e6f=\\"\\" data-v-83d025ba=\\"\\">
+      <div class=\\"oxd-dialog-container-default--inner\\" data-v-e5203e6f=\\"\\">
+        <div class=\\"oxd-sheet oxd-sheet--rounded oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow oxd-dialog-sheet--gutters\\" show=\\"true\\" role=\\"document\\" data-v-c53e196d=\\"\\" data-v-83d025ba=\\"\\"><button class=\\"oxd-dialog-close-button oxd-dialog-close-button-position\\" data-v-d9ef0969=\\"\\" data-v-83d025ba=\\"\\">×</button></div>
+      </div>
+    </div>
+  </div>
+</transition-stub>"
+`;
+
+exports[`Dialog > Dialog.vue > should renders OXD Dialog > Dialog show 1`] = `
+"<transition-stub name=\\"fade\\" appear=\\"true\\" persisted=\\"false\\" css=\\"true\\" data-v-83d025ba=\\"\\">
+  <div role=\\"dialog\\" class=\\"oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered\\" data-v-1799388b=\\"\\" data-v-83d025ba=\\"\\">
+    <!--
+    :aria-labelledby=\\"'dialogTitle_' + id\\"
+    :aria-describedby=\\"'dialogDesc_' + id\\"
+    -->
+    <div class=\\"oxd-dialog-container-default\\" data-v-e5203e6f=\\"\\" data-v-83d025ba=\\"\\">
+      <div class=\\"oxd-dialog-container-default--inner\\" data-v-e5203e6f=\\"\\">
+        <div class=\\"oxd-sheet oxd-sheet--rounded oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow oxd-dialog-sheet--gutters\\" show=\\"true\\" role=\\"document\\" data-v-c53e196d=\\"\\" data-v-83d025ba=\\"\\"><button class=\\"oxd-dialog-close-button oxd-dialog-close-button-position\\" data-v-d9ef0969=\\"\\" data-v-83d025ba=\\"\\">×</button></div>
+      </div>
+    </div>
+  </div>
+</transition-stub>"
+`;
+
+exports[`Dialog > Dialog.vue > should renders OXD Dialog > Dialog witout close 1`] = `
+"<transition-stub name=\\"fade\\" appear=\\"true\\" persisted=\\"false\\" css=\\"true\\" data-v-83d025ba=\\"\\">
+  <div role=\\"dialog\\" class=\\"oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered\\" data-v-1799388b=\\"\\" data-v-83d025ba=\\"\\">
+    <!--
+    :aria-labelledby=\\"'dialogTitle_' + id\\"
+    :aria-describedby=\\"'dialogDesc_' + id\\"
+    -->
+    <div class=\\"oxd-dialog-container-default\\" data-v-e5203e6f=\\"\\" data-v-83d025ba=\\"\\">
+      <div class=\\"oxd-dialog-container-default--inner\\" data-v-e5203e6f=\\"\\">
+        <div class=\\"oxd-sheet oxd-sheet--rounded oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow oxd-dialog-sheet--gutters\\" show=\\"true\\" role=\\"document\\" data-v-c53e196d=\\"\\" data-v-83d025ba=\\"\\"></div>
+      </div>
+    </div>
+  </div>
+</transition-stub>"
+`;

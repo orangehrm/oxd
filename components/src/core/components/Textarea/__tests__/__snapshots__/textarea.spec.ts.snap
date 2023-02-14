@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Textarea.vue renders OXD Textarea 1`] = `<textarea class="oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical" label="Textarea"></textarea>`;
-
-exports[`Textarea.vue should renders OXD Textarea with custom color 1`] = `<textarea class="oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical" label="Textarea" style="background-color: aliceblue;"></textarea>`;
-
-exports[`Textarea.vue should renders OXD Textarea with error 1`] = `<textarea class="oxd-textarea oxd-textarea--active oxd-textarea--error oxd-textarea--resize-vertical" label="Textarea"></textarea>`;

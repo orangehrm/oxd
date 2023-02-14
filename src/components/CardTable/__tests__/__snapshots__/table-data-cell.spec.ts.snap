@@ -1,0 +1,3 @@
+// Vitest Snapshot v1
+
+exports[`CardTable > TableDataCell.vue > renders OXD CardTable > TableDataCell 1`] = `"<div class=\\"oxd-table-cell\\" role=\\"cell\\"></div>"`;

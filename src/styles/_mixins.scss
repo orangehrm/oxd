@@ -1,0 +1,122 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+@mixin oxd-input-control {
+  box-sizing: border-box;
+  font-family: $oxd-input-control-font-family;
+  color: $oxd-input-control-font-color;
+  font-size: $oxd-input-control-font-size;
+  font-weight: $oxd-input-control-font-weight;
+  line-height: $oxd-input-control-line-height;
+  border-radius: $oxd-input-control-border-radius;
+  padding: $oxd-input-control-vertical-padding
+    $oxd-input-control-horizontal-padding;
+}
+
+@mixin oxd-input-control-size {
+  width: $oxd-input-control-width;
+}
+
+@mixin oxd-scrollbar(
+  $thumb-color: $oxd-scrollbar-thumb-color,
+  $track-color: $oxd-scrollbar-track-color,
+  $size: $oxd-scrollbar-size,
+  $arrow-color: $oxd-scrollbar-arrow-color
+) {
+  // Firefox
+  scrollbar-color: $thumb-color $track-color;
+  scrollbar-width: thin;
+
+  // Chrome/Edge/Safari
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: $oxd-scrollbar-thumb-border-radius;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+  }
+
+  // IE
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    & {
+      scrollbar-face-color: $thumb-color;
+      scrollbar-track-color: $track-color;
+      scrollbar-arrow-color: $arrow-color;
+    }
+  }
+}
+
+@mixin oxd-flex-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin oxd-respond-to($breakpoint) {
+  $raw-query: map-get($oxd_breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: if(
+      type-of($raw-query) == 'string',
+      unquote($raw-query),
+      inspect($raw-query)
+    );
+
+    @media #{$query} {
+      @content;
+    }
+  } @else {
+    @error 'No value found for `#{$breakpoint}`. '
+         + 'Please make sure it is defined in `$oxd_breakpoints` map.';
+  }
+}
+
+// source: https://codepen.io/jakob-e/pen/WvrJwN
+// $ratio or $width, $height
+@mixin aspect-ratio($arglist...) {
+  $map: keywords($arglist);
+  $height: map-get($map, height) or nth-value($arglist, 2);
+  $width: map-get($map, width) or nth-value($arglist, 1);
+  $ratio: map-get($map, ratio) or
+    if($width and $height, $width/$height, nth-value($arglist, 1)) or 1;
+  $padding: calc((1 / #{$ratio}) * 100%);
+  &::before,
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+    width: 1px;
+    margin-left: -1px;
+  }
+  &::before {
+    float: left;
+    padding-bottom: $padding;
+  }
+}
+
+// Helper function
+// Return null rather than throwing an error if index is outside list range.
+@function nth-value($list, $index) {
+  @return if(length($list) >= $index, nth($list, $index), null);
+}

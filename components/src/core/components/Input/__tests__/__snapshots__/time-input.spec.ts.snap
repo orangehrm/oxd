@@ -1,8 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`TimeInput.vue renders OXD Time Input 1`] = `
-<div class="oxd-time-wrapper">
-  <div class="oxd-time-input"><input class="oxd-input oxd-input--active"><i class="oxd-icon bi-clock oxd-time-input--clock"></i></div>
-  <!--v-if-->
-</div>
-`;

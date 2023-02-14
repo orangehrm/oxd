@@ -1,0 +1,165 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+@import 'variables';
+
+.oxd-calendar {
+  &-wrapper {
+    position: relative;
+    padding: $oxd-calendar-wrapper-padding;
+    background-color: $oxd-calendar-wrapper-background-color;
+    border: $oxd-calendar-wrapper-boder;
+    border-radius: $oxd-calendar-wrapper-boder-radius;
+    max-width: $oxd-calendar-wrapper-width;
+  }
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  &-week-grid,
+  &-dates-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+  &-day {
+    position: relative;
+    color: $oxd-calendar-day-font-color;
+    font-family: $oxd-calendar-day-font-family;
+    font-size: $oxd-calendar-day-font-size;
+    font-weight: $oxd-calendar-day-font-weight;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &-date-wrapper {
+    color: $oxd-calendar-date-font-color;
+    font-weight: $oxd-calendar-date-font-weight;
+    &.--working-day-half {
+      background-color: $oxd-calendar-date-half-background-color;
+      color: $oxd-calendar-date-half-font-color;
+      font-weight: $oxd-calendar-date-half-font-weight;
+    }
+    &.--non-working-day {
+      background-color: $oxd-calendar-date-weekend-background-color;
+      color: $oxd-calendar-date-weekend-font-color;
+      font-weight: $oxd-calendar-date-weekend-font-weight;
+    }
+    @for $i from 1 through 7 {
+      &.--offset-#{$i} {
+        grid-column: #{$i};
+      }
+    }
+  }
+  &-date {
+    position: relative;
+    color: inherit;
+    font-weight: inherit;
+    font-family: $oxd-calendar-date-font-family;
+    font-size: $oxd-calendar-date-font-size;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $oxd-calendar-date-border-radius;
+    cursor: pointer;
+    @include aspect-ratio();
+    &.--today {
+      background-color: $oxd-calendar-date-today-background-color;
+      color: $oxd-calendar-date-today-font-color;
+      font-weight: $oxd-calendar-date-today-font-weight;
+    }
+    &.--holiday-half {
+      background-color: $oxd-calendar-date-holiday-half-background-color;
+      color: $oxd-calendar-date-holiday-half-font-color;
+      font-weight: $oxd-calendar-date-holiday-half-font-weight;
+    }
+    &.--holiday-full {
+      background-color: $oxd-calendar-date-holiday-full-background-color;
+      color: $oxd-calendar-date-holiday-full-font-color;
+      font-weight: $oxd-calendar-date-holiday-full-font-weight;
+    }
+    &.--highlight-half {
+      background-color: $oxd-calendar-date-highlight-half-background-color;
+      color: $oxd-calendar-date-highlight-half-font-color;
+      font-weight: $oxd-calendar-date-highlight-half-font-weight;
+    }
+    &.--highlight-full {
+      background-color: $oxd-calendar-date-highlight-full-background-color;
+      color: $oxd-calendar-date-highlight-full-font-color;
+      font-weight: $oxd-calendar-date-highlight-full-font-weight;
+    }
+    &:hover {
+      background-color: $oxd-calendar-date-hover-background-color;
+      color: $oxd-calendar-date-hover-font-color;
+      font-weight: $oxd-calendar-date-hover-font-weight;
+    }
+    &.--selected {
+      background-color: $oxd-calendar-date-selected-background-color;
+      color: $oxd-calendar-date-selected-font-color;
+      font-weight: $oxd-calendar-date-selected-font-weight;
+    }
+  }
+
+  &-dates-grid .oxd-calendar-date-wrapper:nth-child(-n + 7) {
+    border-top-left-radius: $oxd-calendar-date-border-radius;
+    border-top-right-radius: $oxd-calendar-date-border-radius;
+  }
+  &-dates-grid .oxd-calendar-date-wrapper:nth-last-child(-n + 7) {
+    border-bottom-left-radius: $oxd-calendar-date-border-radius;
+    border-bottom-right-radius: $oxd-calendar-date-border-radius;
+  }
+
+  &-selector {
+    position: relative;
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 65%;
+
+    &-month,
+    &-year {
+      cursor: pointer;
+      width: 100%;
+      font-size: $oxd-calendar-controller-font-size;
+      background-color: $oxd-calendar-controller-background-color;
+      padding: $oxd-calendar-controller-padding;
+      & .oxd-icon {
+        font-size: $oxd-calendar-controller-icon-size;
+        margin-left: auto;
+      }
+      &-selected {
+        display: flex;
+        align-items: center;
+      }
+    }
+    &-month {
+      flex-basis: 70%;
+      padding-right: calc(#{$oxd-calendar-controller-padding}/ 2);
+      border-top-left-radius: 2.375rem;
+      border-bottom-left-radius: 2.375rem;
+    }
+
+    &-year {
+      flex-basis: 30%;
+      padding-left: calc(#{$oxd-calendar-controller-padding}/ 2);
+      border-top-right-radius: 2.375rem;
+      border-bottom-right-radius: 2.375rem;
+    }
+  }
+}

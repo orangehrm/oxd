@@ -1,0 +1,31 @@
+// Vitest Snapshot v1
+
+exports[`Toast > CloseButton.vue > should renders OXD ToastCloseButton 1`] = `
+"<div class=\\"oxd-toast-close-container\\" data-v-d86c7eba=\\"\\">
+  <div class=\\"oxd-toast-close oxd-toast-close--default\\" role=\\"button\\" data-v-d86c7eba=\\"\\">×</div>
+</div>"
+`;
+
+exports[`Toast > CloseButton.vue > should renders OXD ToastCloseButton error 1`] = `
+"<div class=\\"oxd-toast-close-container\\" data-v-d86c7eba=\\"\\">
+  <div class=\\"oxd-toast-close oxd-toast-close--error\\" role=\\"button\\" data-v-d86c7eba=\\"\\">×</div>
+</div>"
+`;
+
+exports[`Toast > CloseButton.vue > should renders OXD ToastCloseButton info 1`] = `
+"<div class=\\"oxd-toast-close-container\\" data-v-d86c7eba=\\"\\">
+  <div class=\\"oxd-toast-close oxd-toast-close--info\\" role=\\"button\\" data-v-d86c7eba=\\"\\">×</div>
+</div>"
+`;
+
+exports[`Toast > CloseButton.vue > should renders OXD ToastCloseButton success 1`] = `
+"<div class=\\"oxd-toast-close-container\\" data-v-d86c7eba=\\"\\">
+  <div class=\\"oxd-toast-close oxd-toast-close--success\\" role=\\"button\\" data-v-d86c7eba=\\"\\">×</div>
+</div>"
+`;
+
+exports[`Toast > CloseButton.vue > should renders OXD ToastCloseButton warn 1`] = `
+"<div class=\\"oxd-toast-close-container\\" data-v-d86c7eba=\\"\\">
+  <div class=\\"oxd-toast-close oxd-toast-close--warn\\" role=\\"button\\" data-v-d86c7eba=\\"\\">×</div>
+</div>"
+`;

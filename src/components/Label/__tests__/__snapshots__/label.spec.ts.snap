@@ -1,0 +1,5 @@
+// Vitest Snapshot v1
+
+exports[`Label.vue > renders OXD Label 1`] = `"<label class=\\"oxd-label\\" data-v-f77d8cda=\\"\\">Label</label>"`;
+
+exports[`Label.vue > should renders OXD Label with custom color 1`] = `"<label class=\\"oxd-label\\" style=\\"color: red;\\" data-v-f77d8cda=\\"\\">Label</label>"`;

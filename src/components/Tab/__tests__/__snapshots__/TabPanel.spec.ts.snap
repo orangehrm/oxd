@@ -1,0 +1,9 @@
+// Vitest Snapshot v1
+
+exports[`TabPanel.vue > renders OXD Tab Panel 1`] = `"<div id=\\"test\\" class=\\"oxd-tab-panel\\"></div>"`;
+
+exports[`TabPanel.vue > should render OXD Tab Panel with content 1`] = `
+"<div id=\\"test\\" class=\\"oxd-tab-panel\\">
+  <div>Main Content</div>
+</div>"
+`;

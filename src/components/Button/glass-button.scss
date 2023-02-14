@@ -1,0 +1,74 @@
+// This file is part of OrangeHRM Inc
+//
+// Copyright (C) 2020 onwards OrangeHRM Inc
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see  http://www.gnu.org/licenses
+
+@import 'variables';
+
+.oxd-glass-button {
+  border: 0;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  word-break: break-word;
+  gap: $oxd-glass-button-flex-gap;
+  color: $oxd-glass-button-font-color;
+  padding: $oxd-glass-button-padding;
+  font-family: $oxd-button-font-family;
+  font-weight: $oxd-button-font-weight;
+  font-size: $oxd-button-font-size--large;
+  border-radius: $oxd-glass-button-border-radius;
+  background-color: $oxd-glass-button-background-color;
+
+  &:focus,
+  &:hover {
+    outline: 0;
+    background-color: $oxd-glass-button-background-color--focus;
+  }
+
+  &:active {
+    background-color: $oxd-glass-button-background-color--active;
+  }
+
+  &--disabled {
+    cursor: unset;
+    color: $oxd-glass-button-font-color--disabled;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $oxd-glass-button-background-color;
+    }
+  }
+
+  &-icon {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: $oxd-glass-button-icon-width;
+    height: $oxd-glass-button-icon-height;
+    &--disabled {
+      opacity: 0.5;
+    }
+    &--videoglass {
+      background-image: url('./images/videoglass.png');
+    }
+    &--cameraglass {
+      background-image: url('./images/cameraglass.png');
+    }
+    &--thumbsupglass {
+      background-image: url('./images/thumbsupglass.png');
+    }
+  }
+}
