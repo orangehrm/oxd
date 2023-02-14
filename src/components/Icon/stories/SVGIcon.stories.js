@@ -25,7 +25,13 @@ export default {
   component: Icon,
   argTypes: {
     name: {
-      control: {type: 'select', options: Object.keys(SVGs)},
+      options: Object.keys(SVGs),
+      control: {type: 'select'},
+    },
+    type: {
+      table: {
+        disable: true,
+      },
     },
   },
 };
