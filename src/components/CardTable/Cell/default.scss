@@ -31,4 +31,9 @@
   &-checkbox {
     width: fit-content;
   }
+  &-show-more {
+    cursor: pointer;
+    margin-left: 2px;
+    color: $oxd-primary-one-color;
+  }
 }

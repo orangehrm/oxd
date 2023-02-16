@@ -30,6 +30,7 @@ import {
 import DefaultCell from './Default.vue';
 import ActionsCell from './Actions.vue';
 import CheckboxCell from './Checkbox.vue';
+import TruncateCell from './Truncate.vue';
 import type {RowItem, CardHeader} from '../types';
 import {useInjectTableProps} from '@/composables/useCardtable';
 import {DEVICE_LG, DEVICE_XL} from '@/composables/useResponsive';
@@ -43,6 +44,7 @@ export default defineComponent({
     'oxd-table-cell-default': DefaultCell,
     'oxd-table-cell-actions': ActionsCell,
     'oxd-table-cell-checkbox': CheckboxCell,
+    'oxd-table-cell-truncate': TruncateCell,
   },
 
   props: {

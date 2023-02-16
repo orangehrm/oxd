@@ -49,7 +49,12 @@ export default {
       headers: [
         {name: 'title', slot: 'title', title: 'Job Title', style: {flex: 1}},
         {name: 'code', title: 'Job Code', style: {flex: 1}},
-        {name: 'description', title: 'Description', style: {flex: 1}},
+        {
+          name: 'description',
+          title: 'Description',
+          cellType: 'oxd-table-cell-truncate',
+          style: {flex: 1},
+        },
         {
           name: 'action',
           slot: 'action',
