@@ -41,7 +41,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import {cellMixin} from '@/mixins/tablecell';
 import Text from '@/components/Text/Text.vue';
 import usei18n from '@/composables/usei18n';
