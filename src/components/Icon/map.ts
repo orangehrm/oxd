@@ -61,3 +61,4 @@ export {default as performanceAlt} from './svg/performance-alt-svg.vue';
 export {default as bolt} from './svg/bolt-svg.vue';
 export {default as timeAlt} from './svg/time-alt-svg.vue';
 export {default as edit} from './svg/edit-svg.vue';
+export {default as claim} from './svg/claim-svg.vue';

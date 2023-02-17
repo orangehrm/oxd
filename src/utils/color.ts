@@ -158,5 +158,10 @@ export const sanitizeHex = (hex: string | null) => {
  * @returns {string} Hex color code
  */
 export const generateRandomColor = () => {
-  return `#${((Math.random() * 0xffffff) << 0).toString(16)}`;
+  let color = '#';
+  const hexCharacters = '0123456789ABCDEF';
+  for (let i = 0; i < 6; i++) {
+    color += hexCharacters[Math.round(Math.random() * 15)];
+  }
+  return color;
 };
