@@ -20,10 +20,6 @@
 $oxd-report-table-frame-offset: $oxd-report-table-frame-header-height * 2;
 
 .oxd-report-table {
-  &.--frame {
-    overflow: hidden;
-    border-radius: $oxd-report-table-frame-border-radius;
-  }
   &-header,
   &-footer {
     display: flex;
@@ -155,6 +151,14 @@ $oxd-report-table-frame-offset: $oxd-report-table-frame-header-height * 2;
         text-overflow: unset !important;
         white-space: normal !important;
       }
+    }
+  }
+  &.--frame {
+    overflow: hidden;
+    border-radius: $oxd-report-table-frame-border-radius;
+
+    & revo-grid {
+      max-height: 400px !important;
     }
   }
 }
