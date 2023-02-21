@@ -16,6 +16,10 @@ th {
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
 }
+p {
+  margin: 0;
+  padding: 0;
+}
 .word-wrap {
   word-wrap: break-word;
   -ms-word-break: break-all;
