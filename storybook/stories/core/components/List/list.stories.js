@@ -17,7 +17,7 @@ export default {
     listHighlightRows: {
       control: {type: 'object'},
       defaultValue: {
-        rowIndexes: [0,2],
+        rowIndexes: [0, 2],
         type: 'success',
       },
       table: {
@@ -39,7 +39,7 @@ export default {
           label: '20',
         },
         limit: 20,
-        pages: [10, 20, 50, 100]
+        pages: [10, 20, 50, 100],
       },
       table: {
         type: {summary: 'Set the options for pagination'},
@@ -63,7 +63,9 @@ export default {
       control: {type: 'number'},
       defaultValue: 100,
       table: {
-        type: {summary: 'Set the Number of records showing in the current page'},
+        type: {
+          summary: 'Set the Number of records showing in the current page',
+        },
       },
     },
     sidePanelList: {
@@ -72,11 +74,17 @@ export default {
       table: {
         type: {summary: 'Set the options showing in the side panel'},
       },
-    }
+    },
+    emptyMsg: {
+      control: {type: 'object'},
+      table: {
+        type: {summary: 'Set no data found icon and message'},
+      },
+    },
   },
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     return {args};
   },
@@ -106,7 +114,6 @@ const basicListArgs = {
 BasicList.args = basicListArgs;
 BasicList.storyName = 'Basic List';
 
-
 export const EmptyList = Template.bind({});
 EmptyList.args = {
   configurations: basicList,
@@ -123,7 +130,7 @@ Configurable.args = {
   configurations: listWithSidebar,
   listItems: data.candidates,
   listHighlightRows: {
-    rowIndexes: [0,2],
+    rowIndexes: [0, 2],
     type: 'success',
   },
   sidePanelList: data.stages,
@@ -133,9 +140,13 @@ Configurable.args = {
       label: '20',
     },
     limit: 20,
-    pages: [10, 20, 50, 100]
+    pages: [10, 20, 50, 100],
   },
   selectedListItem: data.vacancies,
   wholeRecordsCount: 120,
   filteredTotalRecordsCount: 100,
+  emptyMsg: {
+    message: 'Sorry, No Data Found!',
+    icon: 'oxd-no-data',
+  },
 };
