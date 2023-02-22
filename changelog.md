@@ -1,3 +1,5 @@
+2023-02-22 - 38a57d11c250022d6116fbcb1f71e78125abe5b3 - List/List.vue - Added prop support for No data found message and icon
+
 2023-01-26 - 3e627e7fbd8a8a40c929a1df6256893dbc17bcb8 - Input/Autocomplet/AutocompleteInput.vue - handled search term resetting issue in autcompleteinput when on keypress enter
 
 2022-12-30 - 2b89327bcf23d6106fdedeec0f4e6528eee3a1a9 - Icon/icons.ts - Add 6 new icons (oxd-goals, oxd-okrs, oxd-individual, oxd-organizational-structure, oxd-dashboard-performance, oxd-goals-development)

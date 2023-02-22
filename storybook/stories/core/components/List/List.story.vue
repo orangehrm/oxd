@@ -10,6 +10,10 @@
       :quick-search-options="candidateQuickSearch"
       :pagination="state.pagination"
       :selected-list-item="state.vacancies"
+      :emptyMsg="{
+        message: 'Sorry, No Emails Found!',
+        icon: 'oxd-no-emails',
+      }"
       @table-left-panel:onToggle="toggleLeftPanel"
       @topfilters:onExportBtnClick="exportCSV"
       @sidePanelList:onHeaderBtnClick="showAddCandidatesModal"
@@ -115,6 +119,9 @@ export default defineComponent({
 
   props: {
     listHighlightRows: {
+      type: Object,
+    },
+    emptyMsg: {
       type: Object,
     },
   },

@@ -162,9 +162,12 @@
           v-if="filteredTotalRecordsCount === 0 && !isListLoading"
           class="empty-msg-container"
         >
-          <div class="empty-msg">
-            <oxd-icon class="empty-msg-pic" name="oxd-no-data" />
-            <div class="caption">{{ $vt('Sorry, No Data Found!') }}</div>
+          <div class="empty-msg d-flex flex-wrap justify-center">
+            <oxd-icon
+              class="empty-msg-pic justify-center w-100"
+              :name="emptyMsgValidated.icon"
+            />
+            <div class="caption">{{ $vt(emptyMsgValidated.message) }}</div>
           </div>
         </div>
         <oxd-pagination
@@ -198,8 +201,9 @@ import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination.vue
 import images from '../ProfilePic/images';
 import useTranslate from './../../../composables/useTranslate';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
-import {defineComponent, reactive, computed, ref, watch} from 'vue';
+import {defineComponent, reactive, computed, ref, watch, PropType} from 'vue';
 import translateMixin from '../../../mixins/translate';
+import {EmptyMsg, EmptyMsgEnum} from './types';
 
 export default defineComponent({
   components: {
@@ -273,6 +277,10 @@ export default defineComponent({
     },
     listHighlightRows: {
       type: Object,
+    },
+    emptyMsg: {
+      type: Object as PropType<EmptyMsg>,
+      default: () => EmptyMsgEnum,
     },
   },
   setup(props, {emit}) {
@@ -368,6 +376,22 @@ export default defineComponent({
         ${state.selectedItemIndexes.length > 0 ? $t('Selected') : $t('Found')}
       `;
     });
+
+    const emptyMsgValidated = computed(
+      (): EmptyMsg => {
+        const initialObject: any = EmptyMsgEnum;
+        for (const key in props.emptyMsg) {
+          let value = props.emptyMsg['message'];
+          if (key === 'icon') {
+            value = props.emptyMsg['icon'];
+          }
+          if (value) {
+            initialObject[key] = value;
+          }
+        }
+        return initialObject;
+      },
+    );
 
     const sidePanelListOnHeaderBtnClick = () => {
       emit('sidePanelList:onHeaderBtnClick');
@@ -517,6 +541,7 @@ export default defineComponent({
       eventBinder,
       config,
       quickSearch,
+      emptyMsgValidated,
     };
   },
 });
