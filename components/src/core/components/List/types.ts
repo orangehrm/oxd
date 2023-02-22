@@ -129,3 +129,13 @@ export interface ListTable {
   selectable?: boolean;
   addable?: boolean;
 }
+
+export type EmptyMsg = {
+  message: string;
+  icon: string;
+};
+
+export enum EmptyMsgEnum {
+  message = 'Sorry, No Data Found!',
+  icon = 'oxd-no-data',
+}
