@@ -237,3 +237,10 @@ input.mce-textbox:focus {
     border-color: transparent !important;
   }
 }
+.tinymce-helper-text {
+  margin-top: 1rem;
+  font-family: $oxd-input-control-font-family;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: $oxd-interface-gray-darken-1-color;
+}
