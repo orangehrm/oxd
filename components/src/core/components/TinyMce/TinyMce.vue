@@ -14,6 +14,9 @@
       type="file"
       @change="onChangeFile"
     />
+    <div class="tinymce-helper-text">
+      {{ $vt('Press Shift + Enter for a new line') }}
+    </div>
   </div>
 </template>
 
@@ -48,6 +51,7 @@ import 'tinymce/plugins/contextmenu/plugin';
 import 'tinymce/plugins/wordcount/plugin';
 import Editor from '@tinymce/tinymce-vue';
 import {nanoid} from 'nanoid';
+import translateMixin from '../../../mixins/translate';
 
 import * as contentUiCssURL from '!!raw-loader!./skins/lightgray/content.module.css';
 
@@ -56,7 +60,8 @@ export default defineComponent({
   components: {
     editor: Editor,
   },
-  emits: ['update:modelValue', "onBlur"],
+  mixins: [translateMixin],
+  emits: ['update:modelValue', 'onBlur'],
   props: {
     id: {
       type: String as PropType<string>,
@@ -236,7 +241,7 @@ export default defineComponent({
 
     const onBlur = () => {
       emit('onBlur');
-    }
+    };
 
     const onInput = () => {
       const content = tinymce.get(props.id).getContent();
