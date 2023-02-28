@@ -46,7 +46,6 @@ import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import InfoBox from '@orangehrm/oxd/core/components/InfoBox/InfoBox.vue';
 import Comments from '@orangehrm/oxd/core/components/Comments/Comments.vue';
 import TinyMce from '@orangehrm/oxd/core/components/TinyMce/TinyMce.vue';
-import AutocompleteEmail from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteEmail.vue';
 import {
   Types,
   Components,
@@ -77,7 +76,6 @@ export default defineComponent({
     'oxd-radio-input': RadioInput,
     'oxd-date-input': DateInput,
     'oxd-autocomplete-input': AutocompleteInput,
-    'oxd-autocomplete-email-input': AutocompleteEmail,
     'oxd-select-input': SelectInput,
     'oxd-multiselect-input': MultiSelectInput,
     'oxd-time-input': TimeInput,
