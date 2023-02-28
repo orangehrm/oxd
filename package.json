@@ -1,7 +1,7 @@
 {
   "name": "@ohrm/oxd",
   "license": "GPL-3.0",
-  "version": "2.0.0-alpha.10",
+  "version": "2.0.0-alpha.12",
   "private": true,
   "scripts": {
     "dev": "storybook dev -p 6006",
