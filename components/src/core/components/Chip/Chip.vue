@@ -1,8 +1,8 @@
 <template>
-  <span :class="classes" :style="style">
-    <div class="oxd-chip-label">{{ label }}</div>
+  <div :class="classes" :style="style">
+    <span class="oxd-chip-label">{{ label }}</span>
     <slot></slot>
-  </span>
+  </div>
 </template>
 
 <script lang="ts">
