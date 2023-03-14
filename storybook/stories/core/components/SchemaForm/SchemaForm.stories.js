@@ -235,30 +235,6 @@ FunctionBased.args = {
   schema: getSchemaWithUser('yyx990803'),
 };
 
-const dummyAPI = (serachParam) => {
-  return new Promise((resolve) => {
-    if (serachParam.trim()) {
-      fetch(`https://api.github.com/search/users?q=${serachParam}`)
-        .then((response) => response.json())
-        .then((json) => {
-          const {items} = json;
-          resolve(
-            items.map((item) => {
-              return {
-                id: item.id,
-                label: item.login,
-                avatar_url: item.avatar_url,
-                html_url: `(${item.html_url})`,
-              };
-            }),
-          );
-        });
-    } else {
-      resolve([]);
-    }
-  });
-};
-
 export const Advance = Template.bind({});
 Advance.args = {
   schema: {
@@ -308,17 +284,12 @@ Advance.args = {
             {
               name: 'email',
               label: 'Email',
-              type: 'autocompleteemail',
+              type: 'input',
               visible: true,
               style: {
                 color: 'red',
               },
               validators: new Map([['required', required]]),
-              props: {
-                placeholder: 'Reciepients',
-                multiple: true,
-                createOptions: dummyAPI,
-              },
             },
             {
               name: 'facebook',
