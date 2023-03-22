@@ -1,18 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CalendarController.vue renders OXD CalendarController 1`] = `
-<div class="oxd-calendar-header"><button type="button" class="oxd-icon-button oxd-calendar-header-arrow" flow="top"><i class="oxd-svg-icon oxd-svg-icon--extra-small"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 257.57 451.85">
-        <defs>
-          <style>
-            .cls-1 {
-              fill: currentColor;
-            }
-          </style>
-        </defs>
-        <g id="Layer_2" data-name="Layer 2">
-          <g id="Capa_1" data-name="Capa 1">
-            <path class="cls-1" d="M0,225.92a31.56,31.56,0,0,1,9.26-22.37L203.55,9.27A31.64,31.64,0,0,1,248.3,54L76.39,225.92l171.9,171.91a31.64,31.64,0,0,1-44.75,44.74L9.26,248.29A31.56,31.56,0,0,1,0,225.92Z"></path>
-          </g>
+<div class="oxd-calendar-header"><button type="button" class="oxd-icon-button oxd-calendar-header-arrow" flow="top"><i class="oxd-svg-icon oxd-svg-icon--extra-small"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 451.847 451.847" style="transform:rotate(90deg);" xml:space="preserve">
+        <style>
+          .cls-1 {
+            fill: currentColor;
+          }
+        </style>
+        <g>
+          <defs></defs>
+          <path class="cls-1" d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"></path>
         </g>
       </svg></i></button>
   <ul class="oxd-calendar-selector">
@@ -32,18 +29,15 @@ exports[`CalendarController.vue renders OXD CalendarController 1`] = `
         <!--v-if-->
       </transition-stub>
     </li>
-  </ul><button type="button" class="oxd-icon-button oxd-calendar-header-arrow" flow="top"><i class="oxd-svg-icon oxd-svg-icon--extra-small"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 257.57 451.85">
-        <defs>
-          <style>
-            .cls-1 {
-              fill: currentColor;
-            }
-          </style>
-        </defs>
-        <g id="Layer_2" data-name="Layer 2">
-          <g id="Capa_1" data-name="Capa 1">
-            <path class="cls-1" d="M257.57,225.92a31.55,31.55,0,0,1-9.27,22.37L54,442.58A31.64,31.64,0,0,1,9.27,397.83L181.18,225.92,9.27,54A31.64,31.64,0,0,1,54,9.27L248.31,203.55A31.58,31.58,0,0,1,257.57,225.92Z"></path>
-          </g>
+  </ul><button type="button" class="oxd-icon-button oxd-calendar-header-arrow" flow="top"><i class="oxd-svg-icon oxd-svg-icon--extra-small"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 451.847 451.847" style="transform:rotate(-90deg);" xml:space="preserve">
+        <style>
+          .cls-1 {
+            fill: currentColor;
+          }
+        </style>
+        <g>
+          <defs></defs>
+          <path class="cls-1" d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"></path>
         </g>
       </svg></i></button>
 </div>
