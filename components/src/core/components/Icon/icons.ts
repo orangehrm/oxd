@@ -106,13 +106,13 @@ export const oxdArrowDown: icon = {
 export const oxdArrowRight: icon = {
   name: 'oxd-arrow-right',
   value:
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 257.57 451.85"><g id="Layer_2" data-name="Layer 2"><g id="Capa_1" data-name="Capa 1"><path d="M257.57,225.92a31.55,31.55,0,0,1-9.27,22.37L54,442.58A31.64,31.64,0,0,1,9.27,397.83L181.18,225.92,9.27,54A31.64,31.64,0,0,1,54,9.27L248.31,203.55A31.58,31.58,0,0,1,257.57,225.92Z"/></g></g></svg>',
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 257.57 451.85"><defs><style>.cls-1{fill:currentColor;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Capa_1" data-name="Capa 1"><path class="cls-1" d="M257.57,225.92a31.55,31.55,0,0,1-9.27,22.37L54,442.58A31.64,31.64,0,0,1,9.27,397.83L181.18,225.92,9.27,54A31.64,31.64,0,0,1,54,9.27L248.31,203.55A31.58,31.58,0,0,1,257.57,225.92Z"/></g></g></svg>',
 };
 
 export const oxdArrowLeft: icon = {
   name: 'oxd-arrow-left',
   value:
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 257.57 451.85"><g id="Layer_2" data-name="Layer 2"><g id="Capa_1" data-name="Capa 1"><path d="M0,225.92a31.56,31.56,0,0,1,9.26-22.37L203.55,9.27A31.64,31.64,0,0,1,248.3,54L76.39,225.92l171.9,171.91a31.64,31.64,0,0,1-44.75,44.74L9.26,248.29A31.56,31.56,0,0,1,0,225.92Z"/></g></g></svg>',
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 257.57 451.85"><defs><style>.cls-1{fill:currentColor;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Capa_1" data-name="Capa 1"><path class="cls-1" d="M0,225.92a31.56,31.56,0,0,1,9.26-22.37L203.55,9.27A31.64,31.64,0,0,1,248.3,54L76.39,225.92l171.9,171.91a31.64,31.64,0,0,1-44.75,44.74L9.26,248.29A31.56,31.56,0,0,1,0,225.92Z"/></g></g></svg>',
 };
 
 export const oxdUsers: icon = {
