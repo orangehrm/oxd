@@ -137,21 +137,20 @@
     }
   }
 }
+
 .table-header-action-btn {
   margin: 0.5rem 0;
 
   &.no-label {
     min-width: initial;
-    ::v-deep(.oxd-button-label-wrapper) {
+    :deep(.oxd-button-label-wrapper) {
+      /* Safari shows extra 2x15px width for the parent button with `-webkit-box`. */
       visibility: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 1;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
       width: 0;
     }
   }
 }
+
 .table-header-action-secondary-btn {
   display: inline-flex;
   background-color: #f0fae4;
