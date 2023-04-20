@@ -1,11 +1,7 @@
 <template>
   <oxd-table-cell-default>
     <template #body="{cell, row}">
-      <a
-        :href="link ? row[link] : '#'"
-        :target="target"
-        :class="linkClasses"
-      >
+      <a :href="link ? row[link] : '#'" :target="target" :class="linkClasses">
         {{ cell }}
       </a>
       <div v-if="pillProperty" :class="pillClasses">
