@@ -4,11 +4,11 @@
       <a
         :href="link ? row[link] : '#'"
         :target="target"
-        class="oxd-table-cell-link "
+        :class="linkClasses"
       >
         {{ cell }}
       </a>
-      <div v-if="pillProperty" class="oxd-table-cell-pill">
+      <div v-if="pillProperty" :class="pillClasses">
         {{ getPillValue(row) }}
       </div>
     </template>
@@ -57,6 +57,24 @@ export default defineComponent({
     pillProperty: {
       type: [String, Array],
       default: null,
+    },
+    pillInline: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    linkClasses(): object {
+      return {
+        'oxd-table-cell-link': true,
+        ['oxd-table-cell-link--inline-pill']: this.pillInline,
+      };
+    },
+    pillClasses(): object {
+      return {
+        'oxd-table-cell-pill': true,
+        ['oxd-table-cell-pill--inline']: this.pillInline,
+      };
     },
   },
 });

@@ -37,6 +37,11 @@ const headers = [
     sortField: "email",
     initialSortOrder: "DEFAULT",
     title: "Email",
+    cellType: "oxd-table-cell-link-with-pill",
+    cellProps: {
+      pillProperty: ["emailType"],
+      pillInline: true,
+    },
     style: {
       flex: "5%",
       "min-width": "90px",
