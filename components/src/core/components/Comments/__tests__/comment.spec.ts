@@ -118,4 +118,23 @@ describe('Comment.vue', () => {
     await wrapper.vm.$nextTick();
     expect(wrapper.find('.oxd-comment-group-name-chip').exists()).toBeTruthy();
   });
+
+  it('Delete confimation message and action buttons are stacked', async () => {
+    const wrapper = mount(Comment, {
+      props: {
+        comment: comment,
+        allowToEdit: false,
+        allowToDelete: true,
+        enableAvatar: false,
+        stackConfirmationElements: true,
+      },
+    });
+    await wrapper.vm.$nextTick();
+    const deleteButton = wrapper.find('[data-test="deleteIcon"]');
+    deleteButton.trigger('click');
+    await wrapper.vm.$nextTick();
+    const inlineDeleteBar = wrapper.find('.oxd-comment-inline-delete');
+    expect(inlineDeleteBar.exists()).toBeTruthy();
+    expect(inlineDeleteBar.classes()).toContain('stacked');
+  });
 });

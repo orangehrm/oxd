@@ -1,3 +1,5 @@
+2023-05-09 - c9fa0fab8d949c4e03218f97b9b9e79f99e2c068 - Comments/Comment.vue - Added a prop to stack comment delete confirmation message and the actions
+
 2023-02-22 - 38a57d11c250022d6116fbcb1f71e78125abe5b3 - List/List.vue - Added prop support for No data found message and icon
 
 2023-01-26 - 3e627e7fbd8a8a40c929a1df6256893dbc17bcb8 - Input/Autocomplet/AutocompleteInput.vue - handled search term resetting issue in autcompleteinput when on keypress enter
