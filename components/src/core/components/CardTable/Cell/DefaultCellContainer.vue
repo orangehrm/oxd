@@ -22,12 +22,12 @@ export default defineComponent({
   name: 'oxd-table-cell-container',
 
   components: {
+    'oxd-table-cell-link': LinkCell,
+    'oxd-table-cell-date': DateCell,
     'oxd-table-cell-default': DefaultCell,
     'oxd-table-cell-actions': ActionsCell,
     'oxd-table-cell-checkbox': CheckboxCell,
     'oxd-table-cell-profile-pic': ProfilePicCell,
-    'oxd-table-cell-link': LinkCell,
-    'oxd-table-cell-date': DateCell,
     'oxd-table-cell-link-with-pill': LinkWithPillCell,
   },
 

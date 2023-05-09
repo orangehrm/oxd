@@ -1,7 +1,7 @@
 import {defineComponent} from 'vue';
 
 export const decoratorMixin = defineComponent({
-  inject: ['tableProps', 'screenState'],
+  inject: ['tableProps'],
 });
 
 export default decoratorMixin;

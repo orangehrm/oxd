@@ -2422,7 +2422,7 @@
     vue-loader "^16.0.0"
     webpack "4"
 
-"@tinymce/tinymce-vue@^5.0.0":
+"@tinymce/tinymce-vue@5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@tinymce/tinymce-vue/-/tinymce-vue-5.0.0.tgz#0cba42697f36fa425f231e181857149a0538bde9"
   integrity sha512-1HRCNa2eGdztOKShYAiHIry50LTU6YJG//qSP9AJElrXhb3BIBN0Bef6E56nZObVgwCgSmI4cnX35VU9D49aow==
