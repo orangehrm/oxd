@@ -126,7 +126,7 @@ describe('Comment.vue', () => {
         allowToEdit: false,
         allowToDelete: true,
         enableAvatar: false,
-        stackedMessages: true,
+        stackConfirmationElements: true,
       },
     });
     await wrapper.vm.$nextTick();

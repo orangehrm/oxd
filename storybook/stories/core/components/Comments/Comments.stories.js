@@ -53,7 +53,7 @@ export default {
       },
     },
 
-    stackedMessages: {
+    stackConfirmationElements: {
       control: {type: 'boolean'},
       defaultValue: false,
       table: {
@@ -294,7 +294,7 @@ Default.args = {
   unsavedAddCommentErrorMsg: 'Comment should be either updated or removed',
   commentDeleteConfirmationMsg:
     'The current comment will be permanently deleted. Are you sure you want to continue?',
-  stackedMessages: false,
+  stackConfirmationElements: false,
 };
 
 export const ScrollSettings = Template.bind({});
@@ -309,7 +309,7 @@ ScrollSettings.args = {
     mode: SMOOTH,
     scrollTo: END,
   },
-  stackedMessages: false,
+  stackConfirmationElements: false,
 };
 
 export const ReadOnly = Template.bind({});
@@ -321,7 +321,7 @@ ReadOnly.args = {
   enableAvatar: true,
   scrollHeight: '350px',
   readOnly: true,
-  stackedMessages: false,
+  stackConfirmationElements: false,
 };
 
 export const HideAddInput = Template.bind({});
@@ -333,7 +333,7 @@ HideAddInput.args = {
   enableAvatar: true,
   scrollHeight: '350px',
   hideAddInput: true,
-  stackedMessages: false,
+  stackConfirmationElements: false,
 };
 
 export const Disabled = Template.bind({});
@@ -345,7 +345,7 @@ Disabled.args = {
   enableAvatar: true,
   scrollHeight: '350px',
   disabled: true,
-  stackedMessages: false,
+  stackConfirmationElements: false,
 };
 
 export const EmptyCommentsWithPlaceholder = Template.bind({});
@@ -356,7 +356,7 @@ EmptyCommentsWithPlaceholder.args = {
   enableAvatar: true,
   scrollHeight: '500px',
   commentThreadMinHeight: '500px',
-  stackedMessages: false,
+  stackConfirmationElements: false,
 };
 
 export const EmptyCommentsWithoutPlaceholder = Template.bind({});
@@ -367,7 +367,7 @@ EmptyCommentsWithoutPlaceholder.args = {
   enableAvatar: true,
   scrollHeight: '300px',
   hideEmptyPlaceholder: true,
-  stackedMessages: false,
+  stackConfirmationElements: false,
 };
 
 export const WithHeaderLabel = Template.bind({});
@@ -379,7 +379,7 @@ WithHeaderLabel.args = {
   allowToDelete: true,
   enableAvatar: true,
   scrollHeight: '300px',
-  stackedMessages: false,
+  stackConfirmationElements: false,
 };
 
 const TemplateSchema = (args) => ({
@@ -419,7 +419,7 @@ const sample = {
               allowToEdit: false,
               allowToDelete: false,
               enableAvatar: true,
-              stackedMessages: false,
+              stackConfirmationElements: false,
               scrollHeight: '250px',
             },
             listeners: {
@@ -471,7 +471,7 @@ Default.parameters = {
       <oxd-comments
         :enableAvatar="true"
         :scrollHeight="200"
-        :stackedMessages="false"
+        :stackConfirmationElements="false"
         :commentGroups="commentGroups"
         :commentDeleteConfirmationMsg=""The current comment will be permanently deleted. Are you sure you want to continue?"
         @onAddComment="addComment"

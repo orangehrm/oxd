@@ -3,118 +3,59 @@
     <div v-if="showHeaderLabel" class="oxd-comment-header-label-wrapper">
       <oxd-label :label="headerLabel" />
     </div>
-    <div
-      class="oxd-comment-groups-container"
-      v-if="hasCommentsInside || !(hideEmptyPlaceholder || hasCommentsInside)"
-      :class="commentGroupsContainerClasses"
-      :style="commentGroupsContainerStyles"
-    >
-      <div
-        v-if="!(hideEmptyPlaceholder || hasCommentsInside)"
-        class="
+    <div class="oxd-comment-groups-container" v-if="hasCommentsInside || !(hideEmptyPlaceholder || hasCommentsInside)"
+      :class="commentGroupsContainerClasses" :style="commentGroupsContainerStyles">
+      <div v-if="!(hideEmptyPlaceholder || hasCommentsInside)" class="
           oxd-comment-no-notes-found-container
           d-flex
           justify-center
           align-center
-        "
-        :style="{'min-height': `${commentThreadMinHeight}`}"
-      >
+        " :style="{ 'min-height': `${commentThreadMinHeight}` }">
         <div class="oxd-comment-no-notes-found-wrapper">
-          <oxd-icon
-            class="oxd-comment-no-notes-found justify-center"
-            name="oxd-no-notes-found"
-          />
+          <oxd-icon class="oxd-comment-no-notes-found justify-center" name="oxd-no-notes-found" />
           <div class="oxd-comment-no-notes-found-label">
             {{ $vt(emptyPlaceholderMsg) }}
           </div>
         </div>
       </div>
-      <ul
-        ref="commentGroupsList"
-        class="oxd-comment-groups-list"
-        v-if="hasCommentsInside"
-      >
+      <ul ref="commentGroupsList" class="oxd-comment-groups-list" v-if="hasCommentsInside">
         <span class="comments-wrapper" v-if="groupBy == GROUP_BY_TYPE_NONE">
-          <oxd-comment
-            v-for="(comment, commentIndex) in getSortedComments()"
-            :comment="comment"
-            :key="comment || commentIndex"
-            :allowToEdit="
-              disabled || readOnly ? false : allowToEdit || comment.allowToEdit
-            "
-            :allowToDelete="
-              disabled || readOnly
-                ? false
-                : allowToDelete || comment.allowToDelete
-            "
-            :enableAvatar="enableAvatar"
-            :requiredEditCommentErrorMsg="requiredEditCommentErrorMsg"
+          <oxd-comment v-for="(comment, commentIndex) in getSortedComments()" :comment="comment"
+            :key="comment || commentIndex" :allowToEdit="disabled || readOnly ? false : allowToEdit || comment.allowToEdit
+              " :allowToDelete="disabled || readOnly
+      ? false
+      : allowToDelete || comment.allowToDelete
+    " :enableAvatar="enableAvatar" :requiredEditCommentErrorMsg="requiredEditCommentErrorMsg"
             :unsavedEditCommentErrorMsg="unsavedEditCommentErrorMsg"
-            :commentDeleteConfirmationMsg="commentDeleteConfirmationMsg"
-            :maxCharLength="commentEditMaxCharLength"
-            :showGroupNamePill="true"
-            :stackedMessages="stackedMessages"
-            @commentEditHasError="commentEditHasError"
-            @onUpdateComment="onUpdateComment"
-            @onDeleteComment="onDeleteComment"
-          />
+            :commentDeleteConfirmationMsg="commentDeleteConfirmationMsg" :maxCharLength="commentEditMaxCharLength"
+            :showGroupNamePill="true" :stackConfirmationElements="stackConfirmationElements"
+            @commentEditHasError="commentEditHasError" @onUpdateComment="onUpdateComment"
+            @onDeleteComment="onDeleteComment" />
         </span>
-        <span
-          class="comments-group-wrapper"
-          v-if="groupBy == GROUP_BY_TYPE_GROUP"
-        >
-          <li
-            class="oxd-comment-group"
-            v-for="(commentGroup, groupIndex) in commentGroups"
-            :key="commentGroup.id || groupIndex"
-          >
-            <oxd-label
-              v-if="commentGroup.label"
-              :label="commentGroup.label"
-              class="oxd-comment-group-label"
-            />
-            <oxd-comment
-              v-for="(comment, commentIndex) in commentGroup.comments"
-              :comment="comment"
-              :key="comment || commentIndex"
-              :allowToEdit="
-                disabled || readOnly
+        <span class="comments-group-wrapper" v-if="groupBy == GROUP_BY_TYPE_GROUP">
+          <li class="oxd-comment-group" v-for="(commentGroup, groupIndex) in commentGroups"
+            :key="commentGroup.id || groupIndex">
+            <oxd-label v-if="commentGroup.label" :label="commentGroup.label" class="oxd-comment-group-label" />
+            <oxd-comment v-for="(comment, commentIndex) in commentGroup.comments" :comment="comment"
+              :key="comment || commentIndex" :allowToEdit="disabled || readOnly
                   ? false
                   : allowToEdit || comment.allowToEdit
-              "
-              :allowToDelete="
-                disabled || readOnly
-                  ? false
-                  : allowToDelete || comment.allowToDelete
-              "
-              :enableAvatar="enableAvatar"
-              :requiredEditCommentErrorMsg="requiredEditCommentErrorMsg"
+                " :allowToDelete="disabled || readOnly
+      ? false
+      : allowToDelete || comment.allowToDelete
+    " :enableAvatar="enableAvatar" :requiredEditCommentErrorMsg="requiredEditCommentErrorMsg"
               :unsavedEditCommentErrorMsg="unsavedEditCommentErrorMsg"
-              :commentDeleteConfirmationMsg="commentDeleteConfirmationMsg"
-              :maxCharLength="commentEditMaxCharLength"
-              :stackedMessages="stackedMessages"
-              @commentEditHasError="commentEditHasError"
-              @onUpdateComment="onUpdateComment"
-              @onDeleteComment="onDeleteComment"
-            />
+              :commentDeleteConfirmationMsg="commentDeleteConfirmationMsg" :maxCharLength="commentEditMaxCharLength"
+              :stackConfirmationElements="stackConfirmationElements" @commentEditHasError="commentEditHasError"
+              @onUpdateComment="onUpdateComment" @onDeleteComment="onDeleteComment" />
           </li>
         </span>
       </ul>
     </div>
-    <oxd-comment-box
-      v-if="!(readOnly || disabled || hideAddInput)"
-      :label="commentBoxLabel"
-      :labelIcon="'oxd-note'"
-      :actionButtonIcon="'oxd-add'"
-      :actionButtonTooltip="'Add'"
-      :placeholder="commentBoxPlaceholder"
-      :modelValue="comment"
-      :hasError="hasError"
-      :unsavedAddCommentErrorMsg="unsavedAddCommentErrorMsg"
-      :preventAddOnKeyPressEnter="true"
-      @update:modelValue="onInputComment"
-      @addComment="onAddComment"
-    />
+    <oxd-comment-box v-if="!(readOnly || disabled || hideAddInput)" :label="commentBoxLabel" :labelIcon="'oxd-note'"
+      :actionButtonIcon="'oxd-add'" :actionButtonTooltip="'Add'" :placeholder="commentBoxPlaceholder"
+      :modelValue="comment" :hasError="hasError" :unsavedAddCommentErrorMsg="unsavedAddCommentErrorMsg"
+      :preventAddOnKeyPressEnter="true" @update:modelValue="onInputComment" @addComment="onAddComment" />
   </div>
 </template>
 
@@ -250,12 +191,12 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
-    stackedMessages: {
+    stackConfirmationElements: {
       type: Boolean as PropType<boolean>,
       default: false,
     },
   },
-  setup(props, {emit}) {
+  setup(props, { emit }) {
     const commentGroupsList = ref(null);
     const comment = ref<string>('');
 
@@ -288,8 +229,8 @@ export default defineComponent({
         hasCommentsInside.value && props.scrollHeight
           ? props.scrollHeight
           : !props.hideEmptyPlaceholder
-          ? props.scrollHeight
-          : undefined;
+            ? props.scrollHeight
+            : undefined;
       return {
         'min-height':
           !props.hideEmptyPlaceholder && `${props.commentThreadMinHeight}`,
