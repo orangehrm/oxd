@@ -18,23 +18,16 @@ export default function useFlashing(
   watch(
     () => props.items,
     newValue => {
-      flashIndexes.value = [];
-      const length = Math.max(newValue.length, oldValue.length);
-      flashIndexes.value = Array(length).fill(false);
-      for (let i = 0; i < length; i++) {
-        // All records are new, skip flashing
+      flashIndexes.value = Array(newValue.length).fill(false);
+      for (let i = 0; i < flashIndexes.value.length; i++) {
         if (oldValue.length === 0) break;
-
-        // Missing new record or old record, flash
-        if (!newValue[i] || !oldValue[i]) {
-          flashIndexes.value[i] = true;
-          continue;
-        }
-
-        // Deep check new record with old record, if not match flash
-        const oldVal = JSON.stringify(Object.entries(oldValue[i]).sort());
-        const newVal = JSON.stringify(Object.entries(newValue[i]).sort());
-        if (oldVal !== newVal) flashIndexes.value[i] = true;
+        const isNew =
+          oldValue.findIndex(item => {
+            const oldVal = JSON.stringify(Object.entries(item).sort());
+            const newVal = JSON.stringify(Object.entries(newValue[i]).sort());
+            return oldVal === newVal;
+          }) === -1;
+        if (isNew) flashIndexes.value[i] = true;
       }
       oldValue = JSON.parse(JSON.stringify(newValue));
     },
