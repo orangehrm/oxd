@@ -44,7 +44,7 @@
         :key="item"
         :class="{
           'oxd-table-card': true,
-          '--high': flashIndexes[index] === true,
+          'oxd-row-highlight--success': flashIndexes[index] === true,
         }"
         @click="onClickRow(item)($event)"
       >
@@ -76,10 +76,10 @@ import {
   CardHeaders,
   CardSelector,
   SortDefinition,
-} from './types';
+} from '../CardTable/types';
 import {nanoid} from 'nanoid';
-import {RowItem} from './Cell/types';
 import emitter from '../../../utils/emitter';
+import {RowItem} from '../CardTable/Cell/types';
 import translateMixin from '../../../mixins/translate';
 import useFlashing from '../../../composables/useFlashing';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
@@ -88,9 +88,9 @@ import Table from '@orangehrm/oxd/core/components/CardTable/Table/Table.vue';
 import TableRow from '@orangehrm/oxd/core/components/CardTable/Table/TableRow.vue';
 import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
 import TableBody from '@orangehrm/oxd/core/components/CardTable/Table/TableBody.vue';
+import CellContainer from '@orangehrm/oxd/core/components/ListTable/CellContainer.vue';
 import TableHeader from '@orangehrm/oxd/core/components/CardTable/Table/TableHeader.vue';
 import TableHeaderCell from '@orangehrm/oxd/core/components/CardTable/Table/TableHeaderCell.vue';
-import DefaultCellContainer from '@orangehrm/oxd/core/components/CardTable/Cell/DefaultCellContainer.vue';
 
 export default defineComponent({
   name: 'oxd-list-table',
@@ -266,65 +266,13 @@ export default defineComponent({
     'oxd-card-thead': TableHeader,
     'oxd-card-th': TableHeaderCell,
     'oxd-loading-spinner': Spinner,
+    'oxd-card-cell': CellContainer,
     'oxd-card-table-container': Table,
     'oxd-checkbox-input': CheckboxInput,
-    'oxd-card-cell': DefaultCellContainer,
   },
 
   mixins: [translateMixin],
 });
 </script>
 
-<style lang="scss" scoped>
-@import './Decorator/card.scss';
-@import './Header/default-header.scss';
-
-.empty-msg-container {
-  vertical-align: top;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: calc(100vh - 230px);
-  .empty-msg {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    .caption {
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem;
-      text-align: center;
-      color: #929baa;
-    }
-    .icon {
-      width: 100% !important;
-      height: unset !important;
-    }
-  }
-}
-.--high {
-  background-color: #c1f5be;
-}
-::v-deep(.oxd-table-body) {
-  grid-gap: unset !important;
-}
-::v-deep(.oxd-table-header) {
-  padding: 10px 0;
-  border-bottom: 2px solid #dee2e6;
-}
-::v-deep(.oxd-table-card) {
-  border-radius: 0 !important;
-  &:not(:first-child) {
-    border-top: 1px solid #e8eaef;
-  }
-}
-::v-deep(.oxd-table-cell-actions) {
-  flex-wrap: nowrap;
-}
-::v-deep(.oxd-table-cell-actions .oxd-select-text) {
-  max-width: 195px;
-  width: fit-content;
-}
-</style>
+<style lang="scss" src="./list-table.scss" scoped></style>

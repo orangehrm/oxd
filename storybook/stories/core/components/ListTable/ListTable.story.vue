@@ -14,7 +14,7 @@
 
 <script>
 import Button from '@orangehrm/oxd/core/components/Button/Button';
-import ListTable from '@orangehrm/oxd/core/components/CardTable/ListTable';
+import ListTable from '@orangehrm/oxd/core/components/ListTable/ListTable';
 import TableSelectInput from '@orangehrm/oxd/core/components/CardTable/Cell/TableSelectInput';
 
 export default {

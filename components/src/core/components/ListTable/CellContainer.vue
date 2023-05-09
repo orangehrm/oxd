@@ -7,27 +7,27 @@ import {
   defineComponent,
   resolveComponent,
 } from 'vue';
-import TableDataCell from '@orangehrm/oxd/core/components/CardTable/Table/TableDataCell.vue';
 import DefaultCell from './Default.vue';
-import ActionsCell from './Actions.vue';
-import CheckboxCell from './Checkbox.vue';
-import ProfilePicCell from './ProfilePicture.vue';
-import LinkCell from './Link.vue';
-import LinkWithPillCell from './LinkWithPill.vue';
-import DateCell from './Date.vue';
-import {CardHeaders} from '../types';
-import {RowItem} from './../Cell/types';
+import {CardHeaders} from '../CardTable/types';
+import {RowItem} from '../CardTable/Cell/types';
+import LinkCell from '@orangehrm/oxd/core/components/CardTable/Cell/Link.vue';
+import DateCell from '@orangehrm/oxd/core/components/CardTable/Cell/Date.vue';
+import ActionsCell from '@orangehrm/oxd/core/components/CardTable/Cell/Actions.vue';
+import CheckboxCell from '@orangehrm/oxd/core/components/CardTable/Cell/Checkbox.vue';
+import ProfilePicCell from '@orangehrm/oxd/core/components/CardTable/Cell/ProfilePicture.vue';
+import LinkWithPillCell from '@orangehrm/oxd/core/components/CardTable/Cell/LinkWithPill.vue';
+import TableDataCell from '@orangehrm/oxd/core/components/CardTable/Table/TableDataCell.vue';
 
 export default defineComponent({
   name: 'oxd-table-cell-container',
 
   components: {
+    'oxd-table-cell-link': LinkCell,
+    'oxd-table-cell-date': DateCell,
     'oxd-table-cell-default': DefaultCell,
     'oxd-table-cell-actions': ActionsCell,
     'oxd-table-cell-checkbox': CheckboxCell,
     'oxd-table-cell-profile-pic': ProfilePicCell,
-    'oxd-table-cell-link': LinkCell,
-    'oxd-table-cell-date': DateCell,
     'oxd-table-cell-link-with-pill': LinkWithPillCell,
   },
 
