@@ -1,64 +1,63 @@
 <template>
   <oxd-card-table-container>
+    <oxd-card-thead>
+      <oxd-card-tr :clickable="false">
+        <oxd-card-th v-if="selectable" class="oxd-padding-cell oxd-table-th">
+          <oxd-checkbox-input v-model="selectAll" :checkIcon="checkIcon" />
+        </oxd-card-th>
+
+        <oxd-card-th
+          v-for="header in headers"
+          :key="header"
+          :style="header.style"
+          :class="header.class"
+          :order="sortFields[header.sortField]"
+          class="oxd-padding-cell oxd-table-th"
+          @order="onOrderChange($event, header)"
+        >
+          <oxd-icon
+            v-if="header.iconName"
+            :name="header.iconName"
+            :style="header.iconStyle"
+          />
+          <span v-else>{{ $vt(header.title) }}</span>
+        </oxd-card-th>
+      </oxd-card-tr>
+    </oxd-card-thead>
+
     <div v-if="loading" class="oxd-table-loader">
       <oxd-loading-spinner :withContainer="false" />
     </div>
-    <template v-else>
-      <oxd-card-thead>
-        <oxd-card-tr :clickable="false">
-          <oxd-card-th v-if="selectable" class="oxd-padding-cell oxd-table-th">
-            <oxd-checkbox-input v-model="selectAll" :checkIcon="checkIcon" />
-          </oxd-card-th>
 
-          <oxd-card-th
-            v-for="header in headers"
-            :key="header"
-            :style="header.style"
-            :class="header.class"
-            :order="order[header.sortField]"
-            class="oxd-padding-cell oxd-table-th"
-            @order="onOrderChange($event, header)"
-          >
-            <oxd-icon
-              v-if="header.iconName"
-              :name="header.iconName"
-              :style="header.iconStyle"
-            />
-            <span v-else>{{ $vt(header.title) }}</span>
-          </oxd-card-th>
-        </oxd-card-tr>
-      </oxd-card-thead>
-
-      <oxd-card-tbody>
-        <div
-          v-for="(item, index) in items"
-          :key="item"
-          :class="{
-            'oxd-table-card': true,
-            '--high': !diff[index],
-          }"
-          @click="onClickRow(item)($event)"
-        >
-          <oxd-card-tr :clickable="clickable">
-            <oxd-card-cell
-              class="oxd-padding-cell"
-              :index="index"
-              :headers="cardHeaders"
-              :items="{selector: index, ...item}"
-            ></oxd-card-cell>
-          </oxd-card-tr>
-        </div>
-      </oxd-card-tbody>
-
-      <div v-if="items.length === 0" class="empty-msg-container">
-        <div class="empty-msg">
-          <oxd-icon name="oxd-no-data" class="icon"></oxd-icon>
-          <div class="caption">
-            {{ $vt('Sorry, No Data Found!') }}
-          </div>
+    <div v-else-if="items.length === 0" class="empty-msg-container">
+      <div class="empty-msg">
+        <oxd-icon name="oxd-no-data" class="icon"></oxd-icon>
+        <div class="caption">
+          {{ $vt('Sorry, No Data Found!') }}
         </div>
       </div>
-    </template>
+    </div>
+
+    <oxd-card-tbody v-else>
+      <div
+        v-for="(item, index) in items"
+        :key="item"
+        :class="{
+          'oxd-table-card': true,
+          '--high': flashIndexes[index] === true,
+        }"
+        @click="onClickRow(item)($event)"
+      >
+        <oxd-card-tr :clickable="clickable">
+          <oxd-card-cell
+            class="oxd-padding-cell"
+            :index="index"
+            :headers="cardHeaders"
+            :items="{selector: index, ...item}"
+          ></oxd-card-cell>
+        </oxd-card-tr>
+      </div>
+    </oxd-card-tbody>
   </oxd-card-table-container>
 </template>
 
@@ -70,8 +69,6 @@ import {
   computed,
   onBeforeUnmount,
   defineComponent,
-  watch,
-  ref,
 } from 'vue';
 import {
   Order,
@@ -84,6 +81,7 @@ import {nanoid} from 'nanoid';
 import {RowItem} from './Cell/types';
 import emitter from '../../../utils/emitter';
 import translateMixin from '../../../mixins/translate';
+import useFlashing from '../../../composables/useFlashing';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
 import Table from '@orangehrm/oxd/core/components/CardTable/Table/Table.vue';
@@ -144,24 +142,11 @@ export default defineComponent({
     },
   },
 
-  // directives: {
-  //   mojo: {
-  //     mounted(el) {
-  //       el.dataset.flashable = 'true';
-  //     },
-  //     updated(el, binding, vnode, prevVnode) {
-  //       console.log(el.dataset.flashable);
-  //       if (el.dataset.flashable === 'true') {
-  //         el.style.backgroundColor = '#c1f5be';
-  //       }
-  //     },
-  //   },
-  // },
-
   setup(props, context) {
     provide('tableProps', readonly(props));
     let selected = [...props.selected];
-    const diff = ref(Array(props.items.length).fill(true));
+
+    const flashIndexes = props.flashing ? useFlashing(props) : [];
 
     emitter.on(`${props.tableId}-datatable:rowSelected`, value => {
       selected = [...selected, value];
@@ -197,12 +182,6 @@ export default defineComponent({
       },
     });
 
-    // const cardItems = computed(() => {
-    //   return props.items.map((item, index) => {
-    //     return props.selectable ? {selector: index, ...item} : {...item};
-    //   });
-    // });
-
     const cardHeaders = computed(() => {
       if (props.selectable) {
         return [
@@ -217,6 +196,27 @@ export default defineComponent({
     });
 
     const checkIcon = computed(() => getCheckIcon(props.selected, props.items));
+
+    const sortFields = computed(() => {
+      const sort = {};
+      for (let key in props.order) {
+        const orderObj = props.order[key];
+        if (typeof orderObj === 'object') {
+          sort[key] = {
+            order: orderObj.order,
+            iconAsc: orderObj?.iconAsc,
+            iconDesc: orderObj?.iconDesc,
+          };
+        } else {
+          sort[key] = {
+            order: props.order[key],
+            iconAsc: '',
+            iconDesc: '',
+          };
+        }
+      }
+      return sort;
+    });
 
     const onOrderChange = (order: Order, column: CardHeader) => {
       const orderFields = {};
@@ -246,28 +246,13 @@ export default defineComponent({
       });
     });
 
-    watch(
-      () => [...props.items],
-      (newValue, oldValue) => {
-        diff.value = [];
-        const length = Math.max(newValue.length, oldValue.length);
-        diff.value.length = length;
-        for (let i = 0; i < length; i++) {
-          if (oldValue.includes(newValue[i])) {
-            diff.value[i] = true;
-          }
-        }
-      },
-      {deep: true},
-    );
-
     return {
-      diff,
-      // cardItems,
       checkIcon,
       selectAll,
+      sortFields,
       onClickRow,
       cardHeaders,
+      flashIndexes,
       onOrderChange,
     };
   },
