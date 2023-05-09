@@ -28,7 +28,6 @@
               <oxd-label
                 :label="comment.user.commenterName"
                 class="oxd-comment-content-author-name"
-                :class="labelClasses"
               />
               <span
                 v-if="comment.labelHint"
@@ -155,6 +154,7 @@
         justify-between
         oxd-mt-5 oxd-p-5
       "
+      :class="{stacked: stackedMessages}"
     >
       <div class="comment-inline-delete-content-wrapper d-flex align-center">
         <oxd-text type="subtitle-2">
@@ -196,7 +196,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, computed, nextTick, watch} from 'vue';
+import {defineComponent, ref, computed, nextTick, watch, PropType} from 'vue';
 import translateMixin from '../../../mixins/translate';
 import Chip from '@orangehrm/oxd/core/components/Chip/Chip.vue';
 import Label from '@orangehrm/oxd/core/components/Label/Label.vue';
@@ -265,6 +265,10 @@ export default defineComponent({
     },
     showGroupNamePill: {
       type: Boolean,
+      default: false,
+    },
+    stackedMessages: {
+      type: Boolean as PropType<boolean>,
       default: false,
     },
   },

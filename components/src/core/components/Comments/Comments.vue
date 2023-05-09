@@ -53,6 +53,7 @@
             :commentDeleteConfirmationMsg="commentDeleteConfirmationMsg"
             :maxCharLength="commentEditMaxCharLength"
             :showGroupNamePill="true"
+            :stackedMessages="stackedMessages"
             @commentEditHasError="commentEditHasError"
             @onUpdateComment="onUpdateComment"
             @onDeleteComment="onDeleteComment"
@@ -91,6 +92,7 @@
               :unsavedEditCommentErrorMsg="unsavedEditCommentErrorMsg"
               :commentDeleteConfirmationMsg="commentDeleteConfirmationMsg"
               :maxCharLength="commentEditMaxCharLength"
+              :stackedMessages="stackedMessages"
               @commentEditHasError="commentEditHasError"
               @onUpdateComment="onUpdateComment"
               @onDeleteComment="onDeleteComment"
@@ -247,6 +249,10 @@ export default defineComponent({
     scrollOnLoad: {
       type: Boolean,
       default: true,
+    },
+    stackedMessages: {
+      type: Boolean as PropType<boolean>,
+      default: false,
     },
   },
   setup(props, {emit}) {
