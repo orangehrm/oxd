@@ -145,7 +145,6 @@ export default defineComponent({
   setup(props, context) {
     provide('tableProps', readonly(props));
     let selected = [...props.selected];
-
     const flashIndexes = props.flashing ? useFlashing(props) : [];
 
     emitter.on(`${props.tableId}-datatable:rowSelected`, value => {
