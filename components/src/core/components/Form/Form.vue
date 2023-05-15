@@ -11,7 +11,7 @@
     @submit.prevent="onSubmit"
     @reset.prevent="onReset"
   >
-    <div v-if="isLoading" class="oxd-form-loader">
+    <div v-if="loading" class="oxd-form-loader">
       <oxd-loading-spinner />
     </div>
     <slot></slot>
@@ -27,7 +27,7 @@
     @submit.prevent="onSubmit"
     @reset.prevent="onReset"
   >
-    <div v-if="isLoading" class="oxd-form-loader">
+    <div v-if="loading" class="oxd-form-loader">
       <oxd-loading-spinner />
     </div>
     <slot></slot>
@@ -72,8 +72,6 @@ export default defineComponent({
       }, false);
     });
 
-    const isLoading = computed(() => unref(props.loading));
-
     const isFromInvalid = computed(() => {
       return errorbag.value.length > 0;
     });
@@ -99,7 +97,6 @@ export default defineComponent({
       fieldset,
       errorbag,
       validate,
-      isLoading,
       isProcessing,
       isFromInvalid,
       isFormBusy,
