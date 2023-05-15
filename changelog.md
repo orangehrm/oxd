@@ -97,3 +97,5 @@
 2022-04-19 - 64859152abe759529d145b96af6bcdf232501517 - AutocompleteInput.vue - Added translation to placeholder, imported translationMixin and updated unit tests [autocomplete-input.spec.ts, quicksearch-input.spec.ts]
 
 2023-05-12 - 1d2e031a722c7603ca8eb4bc8f7e789589b6b0b5 - Form.vue, SchemaForm.vue - Fix schema form not triggering loading state when computed prop is passed.
+
+2023-05-15 - 9f3abad41e71b773876fa24377fbf7e62791c258 - switch-input.scss - Fixed switch button disable and read-only color is inconsistent issue.
