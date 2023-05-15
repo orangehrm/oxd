@@ -95,3 +95,5 @@
 2022-04-27 - 142465669cff13509290ca84ea9914cdfad613b8 - AutocompleteInput.vue - cleared options each on every search initiation to refrain from showing old list items untill the API request resolves.
 
 2022-04-19 - 64859152abe759529d145b96af6bcdf232501517 - AutocompleteInput.vue - Added translation to placeholder, imported translationMixin and updated unit tests [autocomplete-input.spec.ts, quicksearch-input.spec.ts]
+
+2023-05-12 - 1d2e031a722c7603ca8eb4bc8f7e789589b6b0b5 - Form.vue, SchemaForm.vue - Fix schema form not triggering loading state when computed prop is passed.

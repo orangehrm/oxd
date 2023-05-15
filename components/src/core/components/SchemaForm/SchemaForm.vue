@@ -92,9 +92,13 @@ export default defineComponent({
       });
     });
 
-    const isLoading = computed(() =>
-      !props.schema || props.loading ? true : false,
-    );
+    const isLoading = computed(() => {
+      let schemaEmpty = props.schema === null || props.schema === undefined;
+      if (typeof props.schema === 'object') {
+        schemaEmpty = Object.keys(props.schema).length === 0;
+      }
+      return schemaEmpty || props.loading;
+    });
 
     const extractLayoutComponent = (
       schema: ComponentSchemaProperties<LayoutType>,
@@ -242,10 +246,10 @@ export default defineComponent({
       h(
         Form,
         {
+          loading: isLoading,
           name: props.schema?.name,
           style: props.schema?.style,
           class: 'oxd-schema-form-container ' + props.schema?.class,
-          loading: isLoading.value,
           enableFirstElementFocus: props.enableFirstElementFocus,
           onSubmitValid: ($e: SubmitEvent) => {
             context.emit('submitValid', props.model, $e);
