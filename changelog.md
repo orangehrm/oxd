@@ -1,3 +1,7 @@
+2023-05-15 - 9f3abad41e71b773876fa24377fbf7e62791c258 - switch-input.scss - Fixed switch button disable and read-only color is inconsistent issue.
+
+2023-05-12 - 1d2e031a722c7603ca8eb4bc8f7e789589b6b0b5 - Form.vue, SchemaForm.vue - Fix schema form not triggering loading state when computed prop is passed.
+
 2023-05-09 - c9fa0fab8d949c4e03218f97b9b9e79f99e2c068 - Comments/Comment.vue - Added a prop to stack comment delete confirmation message and the actions
 
 2023-02-22 - 38a57d11c250022d6116fbcb1f71e78125abe5b3 - List/List.vue - Added prop support for No data found message and icon
@@ -95,5 +99,3 @@
 2022-04-27 - 142465669cff13509290ca84ea9914cdfad613b8 - AutocompleteInput.vue - cleared options each on every search initiation to refrain from showing old list items untill the API request resolves.
 
 2022-04-19 - 64859152abe759529d145b96af6bcdf232501517 - AutocompleteInput.vue - Added translation to placeholder, imported translationMixin and updated unit tests [autocomplete-input.spec.ts, quicksearch-input.spec.ts]
-
-2023-05-12 - 1d2e031a722c7603ca8eb4bc8f7e789589b6b0b5 - Form.vue, SchemaForm.vue - Fix schema form not triggering loading state when computed prop is passed.
