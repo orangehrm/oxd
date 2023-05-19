@@ -63,10 +63,12 @@
 
 <script lang="ts">
 import {
+  watch,
   provide,
   readonly,
   PropType,
   computed,
+  SetupContext,
   onBeforeUnmount,
   defineComponent,
 } from 'vue';
@@ -145,7 +147,7 @@ export default defineComponent({
   setup(props, context) {
     provide('tableProps', readonly(props));
     let selected = [...props.selected];
-    const flashIndexes = props.flashing ? useFlashing(props) : [];
+    const flashIndexes = useFlashing(props, context as SetupContext);
 
     emitter.on(`${props.tableId}-datatable:rowSelected`, value => {
       selected = [...selected, value];
@@ -155,6 +157,15 @@ export default defineComponent({
       selected = selected.filter(item => item !== value);
       context.emit('update:selected', selected);
     });
+
+    watch(
+      () => props.selected,
+      newValue => {
+        if (Array.isArray(newValue) && newValue.length === 0) {
+          selected = [];
+        }
+      },
+    );
 
     const getCheckIcon = (
       selectedItems: Array<number>,
