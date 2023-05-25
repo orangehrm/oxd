@@ -49,7 +49,7 @@
         >
           <oxd-icon name="sort-alpha-up" />
           <oxd-text tag="span">
-            {{ t('general.decending', 'Decending') }}
+            {{ t('general.descending', 'Descending') }}
           </oxd-text>
         </li>
       </ul>
