@@ -7,8 +7,7 @@ on:
 
 jobs:
   publish:
-    if: false
-    #if: github.repository == 'orangehrm/oxd'
+    if: github.repository == 'orangehrm/oxd'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
