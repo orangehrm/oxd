@@ -204,6 +204,48 @@ describe('Comments.vue', () => {
     cancelDeleteConfirmationButton.trigger('click');
   });
 
+  it('add button should be hidden when the text field is empty', async () => {
+    const wrapper = mount(Comments, {
+      props: {
+        commentGroups,
+        allowToEdit: false,
+        allowToDelete: false,
+        enableAvatar: true,
+        scrollHeight: 300,
+      },
+    });
+    await wrapper.vm.$nextTick();
+    const commentBoxTextarea = wrapper.find(
+      '[data-test="comment-box-textarea"]',
+    );
+
+    // await commentBoxTextarea.setValue('new comment');
+
+    const addCommentbutton = wrapper.find('[data-test="add-comment-button"]');
+    expect(addCommentbutton.exists()).toBeFalsy();
+  });
+
+  it('add button should be visible when the text field is filled', async () => {
+    const wrapper = mount(Comments, {
+      props: {
+        commentGroups,
+        allowToEdit: false,
+        allowToDelete: false,
+        enableAvatar: true,
+        scrollHeight: 300,
+      },
+    });
+    await wrapper.vm.$nextTick();
+    const commentBoxTextarea = wrapper.find(
+      '[data-test="comment-box-textarea"]',
+    );
+
+    await commentBoxTextarea.setValue('new comment');
+
+    const addCommentbutton = wrapper.find('[data-test="add-comment-button"]');
+    expect(addCommentbutton.exists()).toBeTruthy();
+  });
+
   it('add new comment', async () => {
     const wrapper = mount(Comments, {
       props: {

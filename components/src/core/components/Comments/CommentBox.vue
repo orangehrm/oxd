@@ -20,11 +20,11 @@
         ref="textareaComponent"
         :value="modelValue"
         @input="updateModelValue"
-        @keyup.enter="keyupEnter"
+        v-on:keydown.enter.prevent="keyupEnter($event)"
       />
     </div>
     <oxd-icon-button
-      v-if="actionButtonIcon"
+      v-if="modelValue.trim() !== ''"
       data-test="add-comment-button"
       class="oxd-comment-box-add-button"
       :name="actionButtonIcon"
@@ -114,7 +114,8 @@ export default defineComponent({
     },
   },
   setup(props, {emit}) {
-    const textareaComponent = ref(null);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const textareaComponent: any = ref(null);
     const focused = false;
 
     const labelClasses = computed((): object => {
@@ -137,14 +138,25 @@ export default defineComponent({
       emit('update:modelValue', (e.target as HTMLTextAreaElement).value);
     };
 
-    const addComment = (e: Event) => {
-      emit('addComment', e);
-      textareaComponent.value.$el.focus();
+    const addComment = (str: string) => {
+      emit('addComment', str);
+      textareaComponent.value?.$el.focus();
     };
 
-    const keyupEnter = (e: Event) => {
+    const keyupEnter = (e: any) => {
       if (!props.preventAddOnKeyPressEnter) {
-        addComment(e);
+        let commentBody: string = (e.target as HTMLTextAreaElement).value ?? '';
+        if (e.keyCode == 13 && !e.shiftKey) {
+          e.preventDefault();
+          let commentBody: string =
+            (e.target as HTMLTextAreaElement).value ?? '';
+          commentBody = commentBody.trim();
+          addComment(commentBody);
+          return false;
+        } else if (e.keyCode == 13 && e.shiftKey) {
+          commentBody = `${commentBody}\n`;
+          emit('update:modelValue', commentBody);
+        }
       }
     };
 
