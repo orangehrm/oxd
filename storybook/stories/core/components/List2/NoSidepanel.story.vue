@@ -1,13 +1,6 @@
 <template>
   <div class="bg-wrapper">
     <oxd-list>
-      <template #sidepanel="{collapsed}">
-        <div class="placeholder sidepanel">
-          <oxd-text tag="p" class="placeholder-text">
-            Slot for sidepanel
-          </oxd-text>
-        </div>
-      </template>
       <template #contentHeaderLeft>
         <div class="placeholder slotheaderleft">
           <oxd-text tag="p" class="placeholder-text">
@@ -25,13 +18,6 @@
       <template #contentBody>
         <div class="placeholder slotbody">
           <oxd-text tag="p" class="placeholder-text"> Slot for body </oxd-text>
-        </div>
-      </template>
-      <template #contentFooter>
-        <div class="placeholder slotfooter">
-          <oxd-text tag="p" class="placeholder-text">
-            Slot for footer
-          </oxd-text>
         </div>
       </template>
     </oxd-list>
@@ -63,17 +49,10 @@ export default {
   border-radius: 10px;
   word-break: break-all;
 }
-.placeholder.sidepanel {
-  background: #d7f2ff;
-}
 .placeholder.slotbody {
   height: 380px;
   margin-top: 10px;
   background: #c8ffcb;
-}
-.placeholder.slotfooter {
-  height: 70px;
-  background: #ffe0b3;
 }
 .placeholder.slotheaderleft,
 .placeholder.slotheaderright {
