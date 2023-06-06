@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List2 > ListTitle.vue renders List Title 1`] = `
+<div class="oxd-list-title">
+  <div class="oxd-list-title-content">
+    <p class="oxd-text oxd-text--p oxd-text--card-title">Test Title</p><button type="button" class="oxd-button oxd-button--long oxd-button--secondary with-icon" flow="top"><i class="oxd-svg-icon oxd-svg-icon--xx-small oxd-button-icon"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 459.3 459.3" style="enable-background:new 0 0 459.3 459.3;" xml:space="preserve">
+          <style type="text/css">
+            .st0 {
+              fill: currentColor;
+            }
+          </style>
+          <g>
+            <path class="st0" d="M459.3,229.7c0,22.2-18,40.2-40.2,40.2H269.9v149.3c0,22.2-18,40.2-40.2,40.2c-11.1,0-21.1-4.5-28.4-11.8 c-7.3-7.3-11.8-17.3-11.8-28.4l0-149.3H40.2c-11.1,0-21.1-4.5-28.4-11.8C4.5,250.8,0,240.8,0,229.7c0-22.2,18-40.2,40.2-40.2h149.3 V40.2c0-22.2,18-40.2,40.2-40.2c22.2,0,40.2,18,40.2,40.2v149.3h149.3C441.3,189.5,459.3,207.5,459.3,229.7z"></path>
+          </g>
+        </svg></i>
+      <div class="oxd-button-label-wrapper">Add User</div>
+      <!--v-if-->
+    </button>
+  </div>
+  <div class="oxd-list-title-divider">
+    <hr class="oxd-divider-horizontal" role="separator" aria-orientation="horizontal">
+    <!--v-if-->
+  </div>
+</div>
+`;

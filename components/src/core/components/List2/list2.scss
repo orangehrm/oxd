@@ -1,0 +1,64 @@
+@import './variables';
+@import '../../../styles';
+
+.oxd-list {
+  &-card {
+    width: 100%;
+    display: flex;
+    padding: $oxd-list-padding;
+    &.--flat-top {
+      padding-top: 0;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+  &-sidepanel {
+    width: 20%;
+    display: block;
+    max-width: 200px;
+    &.--collapsed {
+      width: 8%;
+      min-width: 70px;
+    }
+  }
+  &-divider {
+    margin: 0 10px;
+    position: relative;
+  }
+  &-content {
+    display: block;
+    width: inherit;
+    &-header {
+      gap: 5px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      height: $oxd-list-header-height;
+    }
+    &-footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+  &-collapsebtn {
+    min-width: unset;
+    min-height: unset;
+    position: absolute;
+    border: 1px solid #e8eaef !important;
+    background: $oxd-white-color !important;
+    width: $oxd-list-collapse-button-width;
+    height: $oxd-list-collapse-button-height;
+    left: calc(#{$oxd-list-collapse-button-width} * -0.5);
+    top: calc(
+      #{$oxd-list-header-height} - #{$oxd-list-collapse-button-height} * 0.5
+    );
+  }
+}
+::v-deep(.oxd-divider-vertical) {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}

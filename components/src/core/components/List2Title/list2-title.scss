@@ -1,0 +1,21 @@
+@import './variables';
+@import '../../../styles';
+
+.oxd-list-title {
+  padding-left: $oxd-list-padding;
+  padding-right: $oxd-list-padding;
+  background-color: $oxd-white-color;
+  border-top-left-radius: $oxd-border-radius;
+  border-top-right-radius: $oxd-border-radius;
+
+  &-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: calc(#{$oxd-list-padding}* 0.5) 0;
+  }
+
+  &-divider {
+    padding-bottom: 10px;
+  }
+}

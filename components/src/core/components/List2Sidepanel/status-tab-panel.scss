@@ -1,0 +1,66 @@
+@import './variables';
+@import '../../../styles';
+
+.oxd-status-tab-panel {
+  &-header {
+    height: $oxd-list-header-height;
+  }
+  &-body {
+    height: 100%;
+    padding-top: 0.5rem;
+  }
+  &-filters {
+    list-style: none;
+    &.--padtop {
+      margin-top: 0.5rem;
+    }
+  }
+  &-mainbutton {
+    width: 100%;
+    &.--collapsed {
+      height: 35px;
+      min-width: unset;
+      ::v-deep(.oxd-button-icon) {
+        margin-right: unset;
+      }
+    }
+  }
+  &-filter {
+    cursor: pointer;
+    display: flex;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    align-items: center;
+    border-radius: 1.5rem;
+    justify-content: space-between;
+    &-name {
+      font-weight: 700;
+      font-size: 0.75rem;
+      line-height: normal;
+      margin: 0.25rem 0.5rem;
+      @include truncate(2, 1);
+    }
+    &-count {
+      display: flex;
+      flex-shrink: 0;
+      line-height: 1;
+      font-weight: 600;
+      padding: 6px 8px;
+      font-size: 0.75rem;
+      border-radius: 1rem;
+      align-items: center;
+      justify-content: center;
+      color: rgb(105, 118, 145);
+      background-color: rgba(105, 118, 145, 0.1);
+    }
+    &.--collapsed {
+      margin-left: auto;
+      margin-right: auto;
+      width: min-content;
+    }
+    &:hover,
+    &.--selected {
+      background-color: #f1f2f5;
+    }
+  }
+}
