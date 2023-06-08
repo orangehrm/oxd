@@ -7,7 +7,7 @@
     "components",
     "storybook"
   ],
-  "files": ["src"],
+  "files": ["components/src"],
   "scripts": {
     "dev": "yarn workspace oxd-storybook start",
     "build": "yarn workspace oxd-storybook build",
