@@ -1,7 +1,7 @@
 <template>
   <oxd-table-cell-default>
     <template #body="{cell, row}">
-      <oxd-skeleton v-if="tableProps.loading" animate></oxd-skeleton>
+      <oxd-skeleton v-if="loading" animate></oxd-skeleton>
       <a
         v-else
         :href="link ? row[link] : '#'"
@@ -25,7 +25,6 @@ export default defineComponent({
     'oxd-skeleton': Skeleton,
     'oxd-table-cell-default': DefaultCell,
   },
-  inject: ['tableProps'],
   props: {
     link: {
       type: String,
@@ -37,6 +36,10 @@ export default defineComponent({
       validator: (value: TargetTypes) => {
         return TARGETS.indexOf(value) !== -1;
       },
+    },
+    loading: {
+      type: Boolean,
+      default: false,
     },
   },
 });

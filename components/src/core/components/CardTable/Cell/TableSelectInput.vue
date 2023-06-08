@@ -1,5 +1,5 @@
 <template>
-  <oxd-skeleton v-if="tableProps.loading" animate></oxd-skeleton>
+  <oxd-skeleton v-if="loading" animate></oxd-skeleton>
   <oxd-select-input
     v-else
     up-icon="oxd-chevron-up"
@@ -17,10 +17,15 @@ import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput
 export default defineComponent({
   name: 'oxd-table-select-input',
   inheritAttrs: false,
-  inject: ['tableProps'],
   components: {
     'oxd-skeleton': Skeleton,
     'oxd-select-input': SelectInput,
+  },
+  props: {
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
 });
 </script>

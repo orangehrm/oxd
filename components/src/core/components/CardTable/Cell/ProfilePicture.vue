@@ -1,6 +1,6 @@
 <template>
   <oxd-skeleton
-    v-if="tableProps.loading"
+    v-if="loading"
     circle
     animate
     width="2.8rem"
@@ -47,6 +47,10 @@ export default defineComponent({
       validator: (value: TargetTypes) => {
         return TARGETS.indexOf(value) !== -1;
       },
+    },
+    loading: {
+      type: Boolean,
+      default: false,
     },
   },
   setup(props) {

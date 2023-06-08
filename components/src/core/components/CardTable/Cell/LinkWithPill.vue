@@ -1,7 +1,7 @@
 <template>
   <oxd-table-cell-default>
     <template #body="{cell, row}">
-      <template v-if="tableProps.loading">
+      <template v-if="loading">
         <oxd-skeleton animate></oxd-skeleton>
         <oxd-skeleton width="50%" animate></oxd-skeleton>
       </template>
@@ -66,8 +66,11 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
-  inject: ['tableProps'],
   computed: {
     linkClasses(): object {
       return {

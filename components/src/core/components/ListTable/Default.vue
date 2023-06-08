@@ -1,6 +1,6 @@
 <template>
   <div class="oxd-table-card-cell">
-    <oxd-skeleton v-if="tableProps.loading" animate></oxd-skeleton>
+    <oxd-skeleton v-if="loading" animate></oxd-skeleton>
     <template v-else>{{ item }}</template>
   </div>
 </template>
@@ -16,8 +16,6 @@ export default defineComponent({
     'oxd-skeleton': Skeleton,
   },
 
-  inject: ['tableProps'],
-
   props: {
     header: {
       type: Object,
@@ -30,6 +28,10 @@ export default defineComponent({
     item: {
       type: [Number, String, Object],
       default: () => null,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
     },
   },
 });
