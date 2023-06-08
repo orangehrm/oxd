@@ -1,18 +1,25 @@
 <template>
+  <oxd-skeleton v-if="tableProps.loading" animate></oxd-skeleton>
   <oxd-select-input
+    v-else
     up-icon="oxd-chevron-up"
     down-icon="oxd-chevron-down"
     dropdown-icon-size="xxx-small"
+    v-bind="$attrs"
   ></oxd-select-input>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import Skeleton from '@orangehrm/oxd/core/components/Skeleton/Skeleton.vue';
 import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
 
 export default defineComponent({
   name: 'oxd-table-select-input',
+  inheritAttrs: false,
+  inject: ['tableProps'],
   components: {
+    'oxd-skeleton': Skeleton,
     'oxd-select-input': SelectInput,
   },
 });
