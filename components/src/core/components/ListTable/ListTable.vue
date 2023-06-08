@@ -29,10 +29,7 @@
       <oxd-loading-spinner :withContainer="false" />
     </div>
 
-    <div
-      v-else-if="items.length === 0 && !(skeleton || loading)"
-      class="empty-msg-container"
-    >
+    <div v-else-if="!loading && items.length === 0" class="empty-msg-container">
       <div class="empty-msg">
         <oxd-icon name="oxd-no-data" class="icon"></oxd-icon>
         <div class="caption">
