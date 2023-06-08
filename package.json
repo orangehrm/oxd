@@ -15,7 +15,7 @@
     "test:cov": "yarn workspace oxd-components test:unit --coverageDirectory coverage --coverage",
     "lint": "yarn workspace oxd-components lint",
     "tsc": "yarn workspace oxd-components tsc",
-    "postinstall": ""
+    "postinstall": "rm -rf .gitignore .prettierrc.js LICENSE README.md changelog.md package.json postcss.config.js tsconfig.json vetur.config.js vue.config.js yarn.lock storybook .vscode .github && mv ./components/* ./ && rmdir ./components"
   },
   "engines": {
     "node": ">=10.19.0",
