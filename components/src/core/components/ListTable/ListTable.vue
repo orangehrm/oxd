@@ -25,11 +25,11 @@
       </oxd-card-tr>
     </oxd-card-thead>
 
-    <div v-if="loading" class="oxd-table-loader">
+    <div v-if="loading && !skeleton" class="oxd-table-loader">
       <oxd-loading-spinner :withContainer="false" />
     </div>
 
-    <div v-else-if="items.length === 0" class="empty-msg-container">
+    <div v-else-if="!loading && items.length === 0" class="empty-msg-container">
       <div class="empty-msg">
         <oxd-icon name="oxd-no-data" class="icon"></oxd-icon>
         <div class="caption">
@@ -40,7 +40,7 @@
 
     <oxd-card-tbody v-else>
       <div
-        v-for="(item, index) in items"
+        v-for="(item, index) in computedItems"
         :key="item"
         :class="{
           'oxd-table-card': true,
@@ -52,6 +52,7 @@
           <oxd-card-cell
             class="oxd-padding-cell"
             :index="index"
+            :loading="loading"
             :headers="cardHeaders"
             :items="{selector: index, ...item}"
           ></oxd-card-cell>
@@ -84,6 +85,7 @@ import emitter from '../../../utils/emitter';
 import {RowItem} from '../CardTable/Cell/types';
 import translateMixin from '../../../mixins/translate';
 import useFlashing from '../../../composables/useFlashing';
+import {DEVICE_LG} from '../../../composables/useResponsive';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
 import Table from '@orangehrm/oxd/core/components/CardTable/Table/Table.vue';
@@ -118,6 +120,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    skeleton: {
+      type: Boolean,
+      default: false,
+    },
     tableId: {
       type: String,
       default: () => nanoid(8),
@@ -145,7 +151,11 @@ export default defineComponent({
   },
 
   setup(props, context) {
+    provide('screenState', {
+      screenType: DEVICE_LG,
+    });
     provide('tableProps', readonly(props));
+
     let selected = [...props.selected];
     const flashIndexes = useFlashing(props, context as SetupContext);
 
@@ -209,7 +219,7 @@ export default defineComponent({
 
     const sortFields = computed(() => {
       const sort = {};
-      for (let key in props.order) {
+      for (const key in props.order) {
         const orderObj = props.order[key];
         if (typeof orderObj === 'object') {
           sort[key] = {
@@ -226,6 +236,18 @@ export default defineComponent({
         }
       }
       return sort;
+    });
+
+    const computedItems = computed(() => {
+      if (props.loading) {
+        const defaultValue = {};
+        props.headers.forEach(header => {
+          defaultValue[header.name] = null;
+        });
+        return Array(10).fill(defaultValue);
+      }
+
+      return props.items;
     });
 
     const onOrderChange = (order: Order, column: CardHeader) => {
@@ -264,6 +286,7 @@ export default defineComponent({
       cardHeaders,
       flashIndexes,
       onOrderChange,
+      computedItems,
     };
   },
 
