@@ -1,7 +1,8 @@
 <template>
   <oxd-table-cell-default>
     <template #body="{cell}">
-      <span>
+      <oxd-skeleton v-if="tableProps.loading" animate></oxd-skeleton>
+      <span v-else>
         {{ convertDate(cell) }}
       </span>
     </template>
@@ -17,9 +18,11 @@ import {
 import {enUS} from 'date-fns/locale';
 import DefaultCell from './Default.vue';
 import {defineComponent, PropType} from 'vue';
+import Skeleton from '@orangehrm/oxd/core/components/Skeleton/Skeleton.vue';
 
 export default defineComponent({
   components: {
+    'oxd-skeleton': Skeleton,
     'oxd-table-cell-default': DefaultCell,
   },
   props: {
@@ -36,6 +39,7 @@ export default defineComponent({
       default: enUS,
     },
   },
+  inject: ['tableProps'],
   methods: {
     convertDate(date) {
       const parseFormat = convertPHPDateFormat(this.ioFormat);

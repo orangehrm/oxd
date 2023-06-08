@@ -25,11 +25,14 @@
       </oxd-card-tr>
     </oxd-card-thead>
 
-    <div v-if="loading" class="oxd-table-loader">
+    <div v-if="loading && !skeleton" class="oxd-table-loader">
       <oxd-loading-spinner :withContainer="false" />
     </div>
 
-    <div v-else-if="items.length === 0" class="empty-msg-container">
+    <div
+      v-else-if="items.length === 0 && !(skeleton || loading)"
+      class="empty-msg-container"
+    >
       <div class="empty-msg">
         <oxd-icon name="oxd-no-data" class="icon"></oxd-icon>
         <div class="caption">
@@ -40,7 +43,7 @@
 
     <oxd-card-tbody v-else>
       <div
-        v-for="(item, index) in items"
+        v-for="(item, index) in computedItems"
         :key="item"
         :class="{
           'oxd-table-card': true,
@@ -118,6 +121,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    skeleton: {
+      type: Boolean,
+      default: false,
+    },
     tableId: {
       type: String,
       default: () => nanoid(8),
@@ -145,6 +152,9 @@ export default defineComponent({
   },
 
   setup(props, context) {
+    provide('screenState', {
+      screenType: 'lg',
+    });
     provide('tableProps', readonly(props));
     let selected = [...props.selected];
     const flashIndexes = useFlashing(props, context as SetupContext);
@@ -228,6 +238,18 @@ export default defineComponent({
       return sort;
     });
 
+    const computedItems = computed(() => {
+      if (props.loading) {
+        const defaultValue = {};
+        props.headers.forEach(header => {
+          defaultValue[header.name] = null;
+        });
+        return Array(10).fill(defaultValue);
+      }
+
+      return props.items;
+    });
+
     const onOrderChange = (order: Order, column: CardHeader) => {
       const orderFields = {};
       for (const key in props.order) {
@@ -264,6 +286,7 @@ export default defineComponent({
       cardHeaders,
       flashIndexes,
       onOrderChange,
+      computedItems,
     };
   },
 

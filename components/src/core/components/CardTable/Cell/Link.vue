@@ -1,7 +1,9 @@
 <template>
   <oxd-table-cell-default>
     <template #body="{cell, row}">
+      <oxd-skeleton v-if="tableProps.loading" animate></oxd-skeleton>
       <a
+        v-else
         :href="link ? row[link] : '#'"
         :target="target"
         class="oxd-table-cell-link "
@@ -16,11 +18,14 @@
 import {defineComponent} from 'vue';
 import DefaultCell from './Default.vue';
 import {TargetTypes, TARGET_SELF, TARGETS} from './types';
+import Skeleton from '@orangehrm/oxd/core/components/Skeleton/Skeleton.vue';
 
 export default defineComponent({
   components: {
+    'oxd-skeleton': Skeleton,
     'oxd-table-cell-default': DefaultCell,
   },
+  inject: ['tableProps'],
   props: {
     link: {
       type: String,

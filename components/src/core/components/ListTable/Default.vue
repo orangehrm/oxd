@@ -1,14 +1,22 @@
 <template>
   <div class="oxd-table-card-cell">
-    {{ item }}
+    <oxd-skeleton v-if="tableProps.loading" animate></oxd-skeleton>
+    <template v-else>{{ item }}</template>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import Skeleton from '@orangehrm/oxd/core/components/Skeleton/Skeleton.vue';
 
 export default defineComponent({
   name: 'oxd-table-cell',
+
+  components: {
+    'oxd-skeleton': Skeleton,
+  },
+
+  inject: ['tableProps'],
 
   props: {
     header: {
