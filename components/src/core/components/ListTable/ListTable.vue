@@ -55,6 +55,7 @@
           <oxd-card-cell
             class="oxd-padding-cell"
             :index="index"
+            :loading="loading"
             :headers="cardHeaders"
             :items="{selector: index, ...item}"
           ></oxd-card-cell>
@@ -87,6 +88,7 @@ import emitter from '../../../utils/emitter';
 import {RowItem} from '../CardTable/Cell/types';
 import translateMixin from '../../../mixins/translate';
 import useFlashing from '../../../composables/useFlashing';
+import {DEVICE_LG} from '../../../composables/useResponsive';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
 import Table from '@orangehrm/oxd/core/components/CardTable/Table/Table.vue';
@@ -153,9 +155,10 @@ export default defineComponent({
 
   setup(props, context) {
     provide('screenState', {
-      screenType: 'lg',
+      screenType: DEVICE_LG,
     });
     provide('tableProps', readonly(props));
+
     let selected = [...props.selected];
     const flashIndexes = useFlashing(props, context as SetupContext);
 

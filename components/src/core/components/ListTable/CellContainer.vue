@@ -44,6 +44,10 @@ export default defineComponent({
       type: Object as PropType<RowItem>,
       default: () => ({}),
     },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   render() {
@@ -80,6 +84,7 @@ export default defineComponent({
           item: cellData,
           header: header,
           rowItem: rowData,
+          loading: this.loading,
         },
         header.cellProps ?? {},
         cellRenderResponse?.props ?? {},

@@ -46,6 +46,7 @@ export default defineComponent({
     });
 
     const isDisabled = computed(() => {
+      if (props.loading) return true;
       const isRowDisabled =
         props.rowItem?.isDisabled === undefined
           ? false

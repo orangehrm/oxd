@@ -1,7 +1,7 @@
 <template>
   <oxd-table-cell-default>
     <template #body="{cell}">
-      <oxd-skeleton v-if="tableProps.loading" animate></oxd-skeleton>
+      <oxd-skeleton v-if="loading" animate></oxd-skeleton>
       <span v-else>
         {{ convertDate(cell) }}
       </span>
@@ -38,8 +38,11 @@ export default defineComponent({
       type: Object as PropType<Locale>,
       default: enUS,
     },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
-  inject: ['tableProps'],
   methods: {
     convertDate(date) {
       const parseFormat = convertPHPDateFormat(this.ioFormat);
