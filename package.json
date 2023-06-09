@@ -13,7 +13,8 @@
     "test:unit": "yarn workspace oxd-components test:unit",
     "test:cov": "yarn workspace oxd-components test:unit --coverageDirectory coverage --coverage",
     "lint": "yarn workspace oxd-components lint",
-    "tsc": "yarn workspace oxd-components tsc"
+    "tsc": "yarn workspace oxd-components tsc",
+    "postinstall": "node scripts/post-install.js"
   },
   "engines": {
     "node": ">=10.19.0",
