@@ -7,7 +7,6 @@
     "components",
     "storybook"
   ],
-  "files": ["components"],
   "scripts": {
     "dev": "yarn workspace oxd-storybook start",
     "build": "yarn workspace oxd-storybook build",
@@ -15,7 +14,7 @@
     "test:cov": "yarn workspace oxd-components test:unit --coverageDirectory coverage --coverage",
     "lint": "yarn workspace oxd-components lint",
     "tsc": "yarn workspace oxd-components tsc",
-    "postinstall": "rm -rf .gitignore .prettierrc.js LICENSE README.md changelog.md package.json postcss.config.js tsconfig.json vetur.config.js vue.config.js yarn.lock storybook .vscode .github && mv ./components/* ./ && rm -rf ./components"
+    "postinstall": "node scripts/post-install.js"
   },
   "engines": {
     "node": ">=10.19.0",
