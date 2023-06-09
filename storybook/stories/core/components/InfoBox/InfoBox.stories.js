@@ -1,16 +1,17 @@
 import InfoBox from '@orangehrm/oxd/core/components/InfoBox/InfoBox';
 import SchemaForm from '@orangehrm/oxd/core/components/SchemaForm/SchemaForm';
 import useSchemaForm from '../../../../../components/src/composables/useSchemaForm.ts';
-import {required} from '../../../../../components/src/validation/rules.ts';
+import { required } from '../../../../../components/src/validation/rules.ts';
 import InfoBoxEvents from './InfoBoxEvents.story.vue';
-import {h, ref} from 'vue';
+import InfoBoxDetails from './InfoBoxDetails.story.vue';
+import { h, ref } from 'vue';
 
 export default {
   title: 'Inputs/InfoBox',
   component: InfoBox,
   argTypes: {
     modelValue: {
-      control: {type: 'object'},
+      control: { type: 'object' },
       table: {
         type: {
           summary:
@@ -19,19 +20,19 @@ export default {
       },
     },
     infoLabel: {
-      control: {type: 'text'},
+      control: { type: 'text' },
       table: {
-        type: {summary: 'Set value to the label'},
+        type: { summary: 'Set value to the label' },
       },
     },
     style: {
-      control: {type: 'object'},
+      control: { type: 'object' },
       table: {
-        type: {summary: 'Set object as styles'},
+        type: { summary: 'Set object as styles' },
       },
     },
     options: {
-      control: {type: 'array'},
+      control: { type: 'array' },
       defaultValue: [],
       table: {
         type: {
@@ -41,21 +42,21 @@ export default {
       },
     },
     numOfTitleRows: {
-      control: {type: 'number'},
+      control: { type: 'number' },
       defaultValue: 1,
       table: {
-        type: {summary: 'Set row counts defined row and max lines to truncate'},
+        type: { summary: 'Set row counts defined row and max lines to truncate' },
       },
     },
     numOfValueRows: {
-      control: {type: 'number'},
+      control: { type: 'number' },
       defaultValue: 2,
       table: {
-        type: {summary: 'Set row counts defined row and max lines to truncate'},
+        type: { summary: 'Set row counts defined row and max lines to truncate' },
       },
     },
     disabled: {
-      control: {type: 'boolean'},
+      control: { type: 'boolean' },
       defaultValue: false,
       table: {
         type: {
@@ -64,76 +65,76 @@ export default {
       },
     },
     dropdownPosition: {
-      control: {type: 'select', options: ['TOP', 'BOTTOM']},
+      control: { type: 'select', options: ['TOP', 'BOTTOM'] },
       defaultValue: 'BOTTOM',
       table: {
-        type: {summary: 'Set value to the label'},
+        type: { summary: 'Set value to the label' },
       },
     },
     dropdownStyles: {
-      control: {type: 'object'},
+      control: { type: 'object' },
       table: {
-        type: {summary: 'Set object as styles'},
+        type: { summary: 'Set object as styles' },
       },
     },
     'dropdown:opened': {
-      control: {type: 'array'},
+      control: { type: 'array' },
       defaultValue: [],
       table: {
-        type: {summary: 'emit event when dropdown opened'},
+        type: { summary: 'emit event when dropdown opened' },
       },
     },
     'dropdown:closed': {
-      control: {type: 'array'},
+      control: { type: 'array' },
       defaultValue: [],
       table: {
-        type: {summary: 'emit event when dropdown closed'},
+        type: { summary: 'emit event when dropdown closed' },
       },
     },
     'dropdown:blur': {
-      control: {type: 'array'},
+      control: { type: 'array' },
       defaultValue: [],
       table: {
-        type: {summary: 'emit event when dropdown blur'},
+        type: { summary: 'emit event when dropdown blur' },
       },
     },
     'dropdown:clear': {
-      control: {type: 'array'},
+      control: { type: 'array' },
       defaultValue: [],
       table: {
-        type: {summary: 'emit event when dropdown clear'},
+        type: { summary: 'emit event when dropdown clear' },
       },
     },
     'update:modelValue': {
-      control: {type: 'array'},
+      control: { type: 'array' },
       defaultValue: [],
       table: {
-        type: {summary: 'emit event when select value updates'},
+        type: { summary: 'emit event when select value updates' },
       },
     },
     option: {
-      control: {type: 'object'},
+      control: { type: 'object' },
       defaultValue: [],
       table: {
-        type: {summary: 'Should be passed as an array object'},
+        type: { summary: 'Should be passed as an array object' },
       },
     },
     titleLineHeight: {
-      control: {type: 'number'},
+      control: { type: 'number' },
       defaultValue: 44,
       table: {
-        type: {summary: 'Set a line height and default will be 22'},
+        type: { summary: 'Set a line height and default will be 22' },
       },
     },
     subtitleLineHeight: {
-      control: {type: 'number'},
+      control: { type: 'number' },
       defaultValue: 38,
       table: {
-        type: {summary: 'Set a line height and default will be 19'},
+        type: { summary: 'Set a line height and default will be 19' },
       },
     },
     clickableText: {
-      control: {type: 'text'},
+      control: { type: 'text' },
       table: {
         type: {
           summary: 'Set clickable text to show the clickable text element.',
@@ -185,7 +186,7 @@ const options = [
 const Template = (args) => ({
   setup() {
     const selected = ref(null);
-    return {args, selected};
+    return { args, selected };
   },
   render() {
     return h(InfoBox, {
@@ -205,7 +206,7 @@ const Template = (args) => ({
 const TemplateString = (args) => ({
   setup() {
     const selected = ref(null);
-    return {args, selected};
+    return { args, selected };
   },
   render() {
     return h(InfoBox, {
@@ -216,9 +217,9 @@ const TemplateString = (args) => ({
 });
 
 const TemplateSchema = (args) => ({
-  components: {'oxd-schema-form': SchemaForm},
+  components: { 'oxd-schema-form': SchemaForm },
   setup() {
-    const {schema, model} = useSchemaForm(args.schema);
+    const { schema, model } = useSchemaForm(args.schema);
     const onSubmit = (...args) => {
       console.log(args);
     };
@@ -228,7 +229,7 @@ const TemplateSchema = (args) => ({
       onSubmit,
     };
   },
-  components: {'oxd-schema-form': SchemaForm},
+  components: { 'oxd-schema-form': SchemaForm },
   template: `<oxd-schema-form :schema="schema" v-model:model="model" v-on:submitValid="onSubmit"></oxd-schema-form>`,
 });
 
@@ -339,7 +340,7 @@ const sample = {
 
 export const InfoboxInSchemaForm = TemplateSchema.bind({});
 InfoboxInSchemaForm.args = {
-  schema: {...sample},
+  schema: { ...sample },
 };
 
 export const Default = Template.bind({});
@@ -394,7 +395,7 @@ Error.args = {
 const TemplateWithoutInitialValue = (args) => ({
   setup() {
     const selected = ref(null);
-    return {args, selected};
+    return { args, selected };
   },
   render() {
     return h(InfoBox, {
@@ -411,6 +412,34 @@ WithoutInitialValue.args = {
 };
 
 export const Events = () => InfoBoxEvents;
+
+const detailedOptions = [
+  {
+    id: 1,
+    label: "Entitlements",
+    subHeader: "4 Days (2 available)",
+    description: "Valid from 2020-10-10 to 2021-10-10",
+  },
+  {
+    id: 2,
+    label: "Entitlements",
+    subHeader: "14 Days (12 available)",
+    description: "Valid from 2021-07-10 to 2021-10-10",
+  },
+  {
+    id: 3,
+    label: "Entitlements",
+    subHeader: "15 Days (21 available)",
+    description: "Valid from 2023-07-10 to 2023-10-10",
+  }
+];
+
+export const Detailed = () => InfoBoxDetails;
+
+Detailed.args = {
+  options: detailedOptions
+};
+
 
 Default.parameters = {
   docs: {
@@ -443,6 +472,49 @@ Default.parameters = {
         :titleLineHeight="44"
         :subtitleLineHeight="38"
       />`,
+    },
+  },
+};
+
+Detailed.parameters = {
+  docs: {
+    source: {
+      code: `
+      <oxd-infobox
+    :options="entitlementsOptions"
+    @update:modelValue="updateInfoBoxModelValue"
+    :modelValue="infoBoxModelValue"
+  >
+    <template #default>
+      <div class="label-tile-content">
+        <div class="oxd-info-drop-down-content">
+          <span class="oxd-info-drop-down-main-label">
+            {{ infoBoxModelValue.label }}
+          </span>
+          {{ infoBoxModelValue.subHeader }}
+        </div>
+        <div class="oxd-info-drop-down-description">
+          {{ infoBoxModelValue.description }}
+        </div>
+      </div>
+    </template>
+    <template #option="slotProps">
+      <div class="label-tile-content">
+        <div
+          class="oxd-info-drop-down-content oxd-info-drop-down-content-option-item"
+        >
+          <span class="oxd-info-drop-down-main-label">{{
+            slotProps.data.label
+          }}</span
+          >{{ slotProps.data.subHeader }}
+        </div>
+        <div class="oxd-info-drop-down-description">
+          {{ slotProps.data.description }}
+        </div>
+      </div>
+    </template>
+  </oxd-infobox>
+      `,
     },
   },
 };

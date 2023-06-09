@@ -51,9 +51,11 @@
             :class="{'flex-wrap': clickableText}"
             :style="subtitleWrapperStyles"
           >
+            <slot></slot>
             <label
               class="oxd-select-fill-subtitle text-left"
               :style="selectedItemLabelStyles"
+              v-if="!$slots"
             >
               {{ $vt(getLabel) }}
             </label>
