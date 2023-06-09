@@ -1,6 +1,8 @@
 <template>
   <div class="oxd-table-cell-actions">
+    <oxd-skeleton v-if="loading" animate></oxd-skeleton>
     <component
+      v-else
       v-for="(action, key) in actions"
       :key="key"
       :is="getComponent(action, key)"
@@ -20,6 +22,7 @@ import {ActionsCellConfig, Action, RowItem, ActionCellEvent} from './types';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import Dropdown from '@orangehrm/oxd/core/components/CardTable/Cell/Dropdown.vue';
+import Skeleton from '@orangehrm/oxd/core/components/Skeleton/Skeleton.vue';
 
 export default defineComponent({
   name: 'oxd-table-cell-actions',
@@ -27,8 +30,9 @@ export default defineComponent({
   mixins: [cellMixin],
 
   components: {
-    'oxd-icon-button': IconButton,
     'oxd-button': Button,
+    'oxd-skeleton': Skeleton,
+    'oxd-icon-button': IconButton,
     'oxd-table-dropdown': Dropdown,
   },
 
