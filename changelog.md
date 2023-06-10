@@ -1,3 +1,5 @@
+2023-05-15 - fc27d63ee4f8ba1aa0cc3a74c28a4f466756ff10 - InfoBox.vue - Updated the info-box component supoprting with slots.
+
 2023-05-15 - 9f3abad41e71b773876fa24377fbf7e62791c258 - switch-input.scss - Fixed switch button disable and read-only color is inconsistent issue.
 
 2023-05-09 - c9fa0fab8d949c4e03218f97b9b9e79f99e2c068 - Comments/Comment.vue - Added a prop to stack comment delete confirmation message and the actions
