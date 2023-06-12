@@ -128,7 +128,75 @@ const crossValidationSample = {
             hook: (field, modelvalue) => {
               const model = modelvalue;
               const defaultValidtors = new Map();
-              if (model.vacancy?.id === 1) {
+              if (model?.vacancy?.id === 1) {
+                defaultValidtors.set('required', required);
+              }
+              field.validators = defaultValidtors;
+              return {
+                ...field,
+              };
+            },
+          },
+        ],
+      },
+    },
+    {
+      type: 'divider',
+    },
+    {
+      type: 'action',
+      style: {
+        'margin-top': '0.5rem',
+      },
+      children: {
+        default: [
+          {
+            name: 'submit',
+            label: 'Submit',
+            type: 'button',
+            props: {
+              type: 'submit',
+              displayType: 'secondary',
+            },
+          },
+        ],
+      },
+    },
+  ],
+};
+
+const crossValidationInitialCheckSample = {
+  name: 'crossValidationForm',
+  layout: [
+    {
+      type: 'grid',
+      props: {
+        cols: 2,
+      },
+      children: {
+        default: [
+          {
+            name: 'vacancy',
+            label: 'Vacancy',
+            type: 'select',
+            props: {
+              options: [
+                {id: 1, label: 'Vaccancy One'},
+                {id: 2, label: 'Vaccancy Two'},
+              ],
+            },
+            validators: new Map([['required', required]]),
+          },
+          {
+            name: 'firstName',
+            label: 'First Name',
+            type: 'input',
+            setDirty: true,
+            // eslint-disable-next-line @typescript-eslint/ban-types
+            hook: (field, modelvalue) => {
+              const model = modelvalue;
+              const defaultValidtors = new Map();
+              if (model?.vacancy?.id === 1) {
                 defaultValidtors.set('required', required);
               }
               field.validators = defaultValidtors;
@@ -168,6 +236,13 @@ const crossValidationSample = {
 export const CrossValidation = CrossValidationTemplate.bind({});
 CrossValidation.args = {
   schema: {...crossValidationSample},
+  modelValue: [],
+};
+
+export const CrossInitialCheckValidation = CrossValidationTemplate.bind({});
+CrossInitialCheckValidation.args = {
+  schema: {...crossValidationInitialCheckSample},
+  modelValue: [],
 };
 
 export const PromiseBased = Template.bind({});
@@ -398,6 +473,7 @@ Advance.args = {
               name: 'tinymce',
               label: 'HTML Editor',
               type: 'tinymce',
+              id: 'schema-form-tinymce',
               class: ['--span-column-2'],
               validators: new Map([
                 ['required', required],

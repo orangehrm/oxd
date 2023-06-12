@@ -27,7 +27,14 @@
 </template>
 
 <script lang="ts">
-import {toRef, PropType, nextTick, defineComponent, watch} from 'vue';
+import {
+  toRef,
+  PropType,
+  nextTick,
+  defineComponent,
+  watch,
+  onMounted,
+} from 'vue';
 import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import FileInput from '@orangehrm/oxd/core/components/Input/FileInput.vue';
@@ -143,6 +150,10 @@ export default defineComponent({
       type: Object,
       default: () => ({}),
     },
+    setDirty: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   setup(props, context) {
@@ -187,6 +198,13 @@ export default defineComponent({
         MakeDateFieldDirtyWithDefaultValue();
       },
     );
+
+    onMounted(() => {
+      if (props.setDirty) {
+        dirty.value = true;
+        startWatcher();
+      }
+    });
 
     return {
       message,
