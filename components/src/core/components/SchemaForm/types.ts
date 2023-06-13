@@ -72,7 +72,7 @@ type FieldSchema = CommonSchemaProperties &
     hook?: (schema: FieldSchema, model: object) => FieldSchema;
     validators?: Map<string, Validator>;
     listeners?: EventListeners;
-    setDirty?: boolean;
+    dirty?: boolean;
   };
 
 type LayoutChild = {

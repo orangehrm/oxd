@@ -36,3 +36,12 @@ export interface FormAPI {
 }
 
 export const formKey: InjectionKey<FormAPI> = Symbol('form');
+
+export interface FieldContext {
+  fieldLabel: string;
+  rules: Rules;
+  modelValue: ModelValue;
+  isDisabled: Disabled;
+  isDirty?: boolean;
+  onReset: () => Promise<void>;
+}

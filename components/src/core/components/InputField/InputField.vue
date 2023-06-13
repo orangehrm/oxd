@@ -27,14 +27,7 @@
 </template>
 
 <script lang="ts">
-import {
-  toRef,
-  PropType,
-  nextTick,
-  defineComponent,
-  watch,
-  onMounted,
-} from 'vue';
+import {toRef, PropType, nextTick, defineComponent} from 'vue';
 import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import FileInput from '@orangehrm/oxd/core/components/Input/FileInput.vue';
@@ -160,6 +153,7 @@ export default defineComponent({
     const modelValue = toRef(props, 'modelValue');
     const rules = toRef(props, 'rules');
     const isDisabled = toRef(props, 'disabled');
+    const isDirty = toRef<any, string>(props, 'setDirty');
 
     const initialValue = modelValue.value;
 
@@ -173,38 +167,24 @@ export default defineComponent({
       rules,
       modelValue,
       isDisabled,
+      isDirty: isDirty.value,
       onReset,
     });
 
-    const onChange = $event => {
+    const MakeFieldDirtyWithDefaultValue = () => {
+      if (isDirty.value || (props.type === 'date' && modelValue.value)) {
+        startWatcher();
+      }
+    };
+    MakeFieldDirtyWithDefaultValue();
+
+    const onChange = ($event: any) => {
       if (!dirty.value) {
         dirty.value = true;
         startWatcher();
       }
       context.emit('update:modelValue', $event);
     };
-
-    const MakeDateFieldDirtyWithDefaultValue = () => {
-      if (props.type === 'date' && modelValue.value) {
-        dirty.value = true;
-        startWatcher();
-      }
-    };
-    MakeDateFieldDirtyWithDefaultValue();
-
-    watch(
-      () => modelValue.value,
-      () => {
-        MakeDateFieldDirtyWithDefaultValue();
-      },
-    );
-
-    onMounted(() => {
-      if (props.setDirty) {
-        dirty.value = true;
-        startWatcher();
-      }
-    });
 
     return {
       message,
