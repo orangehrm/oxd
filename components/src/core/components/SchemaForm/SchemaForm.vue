@@ -178,7 +178,6 @@ export default defineComponent({
                 required:
                   field.validators?.has('required') && !props.schema?.disabled,
                 ...(field.type !== 'custom' && {type: field.type}),
-                setDirty: field.setDirty,
               });
             },
           },

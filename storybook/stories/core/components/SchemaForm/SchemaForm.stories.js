@@ -191,7 +191,9 @@ const crossValidationInitialCheckSample = {
             name: 'firstName',
             label: 'First Name',
             type: 'input',
-            setDirty: true,
+            props: {
+              dirty: true,
+            },
             // eslint-disable-next-line @typescript-eslint/ban-types
             hook: (field, modelvalue) => {
               const model = modelvalue;

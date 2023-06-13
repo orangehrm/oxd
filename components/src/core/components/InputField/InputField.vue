@@ -143,7 +143,7 @@ export default defineComponent({
       type: Object,
       default: () => ({}),
     },
-    setDirty: {
+    dirty: {
       type: Boolean,
       default: false,
     },
@@ -153,7 +153,8 @@ export default defineComponent({
     const modelValue = toRef(props, 'modelValue');
     const rules = toRef(props, 'rules');
     const isDisabled = toRef(props, 'disabled');
-    const isDirty = toRef<any, string>(props, 'setDirty');
+    const isDirty: boolean =
+      props.dirty ?? (props.type === 'date' && modelValue.value);
 
     const initialValue = modelValue.value;
 
@@ -167,16 +168,9 @@ export default defineComponent({
       rules,
       modelValue,
       isDisabled,
-      isDirty: isDirty.value,
+      isDirty,
       onReset,
     });
-
-    const MakeFieldDirtyWithDefaultValue = () => {
-      if (isDirty.value || (props.type === 'date' && modelValue.value)) {
-        startWatcher();
-      }
-    };
-    MakeFieldDirtyWithDefaultValue();
 
     const onChange = ($event: any) => {
       if (!dirty.value) {
@@ -185,6 +179,8 @@ export default defineComponent({
       }
       context.emit('update:modelValue', $event);
     };
+
+    if (isDirty) startWatcher();
 
     return {
       message,
