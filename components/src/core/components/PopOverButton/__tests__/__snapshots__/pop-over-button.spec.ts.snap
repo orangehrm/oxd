@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PopOverButton renders the pop-over component 1`] = `
+<div class="oxd-button-pop-over"><button type="button" class="oxd-button oxd-button--medium oxd-button--main" flow="top">
+    <!--v-if-->
+    <div class="oxd-button-label-wrapper"></div>
+    <!--v-if-->
+  </button>
+  <!--v-if-->
+</div>
+`;
