@@ -42,6 +42,6 @@ export interface FieldContext {
   rules: Rules;
   modelValue: ModelValue;
   isDisabled: Disabled;
-  isDirty?: boolean;
+  isDirty: boolean;
   onReset: () => Promise<void>;
 }

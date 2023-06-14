@@ -154,7 +154,7 @@ export default defineComponent({
     const rules = toRef(props, 'rules');
     const isDisabled = toRef(props, 'disabled');
     const isDirty: boolean =
-      props.dirty ?? (props.type === 'date' && modelValue.value);
+      props.dirty || Boolean(props.type === 'date' && modelValue.value);
 
     const initialValue = modelValue.value;
 

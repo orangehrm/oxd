@@ -21,7 +21,7 @@ export default function useField(fieldContext: FieldContext) {
   const form = injectStrict<FormAPI>(formKey);
   const cid = ref<string>(nanoid());
   const label = ref<string>(fieldContext.fieldLabel);
-  const dirty = ref<boolean>(fieldContext.isDirty ?? false);
+  const dirty = ref<boolean>(fieldContext.isDirty);
   const touched = ref<boolean>(false);
   const processing = ref<boolean>(false);
   let watchHandler: WatchStopHandle | undefined;
