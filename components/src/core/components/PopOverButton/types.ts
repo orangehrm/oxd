@@ -1,5 +1,5 @@
-export const TOP = "top";
-export const BOTTOM = "bottom";
+export const TOP = 'top';
+export const BOTTOM = 'bottom';
 export const DROPDOWN_POSITIONS = [TOP, BOTTOM];
 export type Position = typeof TOP | typeof BOTTOM;
 
