@@ -15,11 +15,10 @@
       :class="dropdownClasses"
       :style="dropDownStyle"
       v-dropdown-direction
-      v-focus-first-element:return
     >
       <oxd-pop-over-button-drop-down-option
         v-for="(option, i) in options"
-        :key="`option-${i}`"
+        :key="i"
         :disabled="option.disabled"
         @select="onSelect(option)"
         @blur="onBlur"
@@ -36,7 +35,6 @@
 import {defineComponent, PropType} from 'vue';
 import OxdButton from '@orangehrm/oxd/core/components/Button/Button.vue';
 import clickOutsideDirective from '../../../directives/click-outside';
-import focusFirstElementDirective from '../../../directives/focus-first-element';
 import dropdownDirectionDirective from '../../../directives/dropdown-direction';
 import translateMixin from '../../../mixins/translate';
 import PopOverButtonDropDownOption from './PopOverButtonDropDownOption.vue';
@@ -46,7 +44,6 @@ export default defineComponent({
   name: 'oxd-pop-over-button',
   directives: {
     'click-outside': clickOutsideDirective,
-    'focus-first-element': focusFirstElementDirective,
     'dropdown-direction': dropdownDirectionDirective,
   },
   mixins: [translateMixin],
@@ -54,7 +51,7 @@ export default defineComponent({
     'oxd-button': OxdButton,
     'oxd-pop-over-button-drop-down-option': PopOverButtonDropDownOption,
   },
-  emits: ['click'],
+  emits: ['click', 'select'],
   props: {
     options: {
       type: Array as PropType<Option[]>,

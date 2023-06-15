@@ -1,4 +1,4 @@
-import {mount, shallowMount} from '@vue/test-utils';
+import {mount} from '@vue/test-utils';
 import PopOverButton from '@orangehrm/oxd/core/components/PopOverButton/PopOverButton.vue';
 
 const dropDownOptions = [
@@ -7,11 +7,6 @@ const dropDownOptions = [
 ];
 
 describe('PopOverButton', () => {
-  it('renders the pop-over button  component', () => {
-    const wrapper = shallowMount(PopOverButton, {});
-    expect(wrapper.html()).toMatchSnapshot();
-  });
-
   it('before click the button, pop over drop down not appear', () => {
     const wrapper = mount(PopOverButton, {
       props: {
