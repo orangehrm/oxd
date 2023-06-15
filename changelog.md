@@ -1,4 +1,6 @@
-2023-05-15 - fc27d63ee4f8ba1aa0cc3a74c28a4f466756ff10 - InfoBox.vue - Updated the info-box component supoprting with slots.
+2023-06-15 - fc27d63ee4f8ba1aa0cc3a74c28a4f466756ff10 - InfoBox.vue - Added a new icon to the library.
+
+2023-06-10 - fc27d63ee4f8ba1aa0cc3a74c28a4f466756ff10 - InfoBox.vue - Updated the info-box component supoprting with slots.
 
 2023-05-15 - 9f3abad41e71b773876fa24377fbf7e62791c258 - switch-input.scss - Fixed switch button disable and read-only color is inconsistent issue.
 
