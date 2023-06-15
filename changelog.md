@@ -1,4 +1,4 @@
-2023-06-15 - fc27d63ee4f8ba1aa0cc3a74c28a4f466756ff10 - InfoBox.vue - Added a new icon to the library.
+2023-06-15 - 00f9bf213d3e1d9c7f45514b427f2e4df0220850 - InfoBox.vue - Added a new icon to the library.
 
 2023-06-10 - fc27d63ee4f8ba1aa0cc3a74c28a4f466756ff10 - InfoBox.vue - Updated the info-box component supoprting with slots.
 
