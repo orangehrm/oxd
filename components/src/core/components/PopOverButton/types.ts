@@ -4,7 +4,7 @@ export const DROPDOWN_POSITIONS = [TOP, BOTTOM];
 export type Position = typeof TOP | typeof BOTTOM;
 
 export interface Option {
-  context: number;
+  context: string;
   label: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
