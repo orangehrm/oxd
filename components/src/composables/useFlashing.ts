@@ -1,4 +1,4 @@
-import {SetupContext, ShallowReactive, computed, shallowRef, watch} from 'vue';
+import {SetupContext, ShallowReactive, shallowRef, watch} from 'vue';
 
 type RowItem = {
   [name: string]: string | number | object | null;
@@ -14,6 +14,7 @@ export default function useFlashing(
   context: SetupContext,
 ) {
   const flashIndexes = shallowRef<number[]>([]);
+  let cachedItems: RowItem[] = JSON.parse(JSON.stringify(props.items));
 
   // Reset cached values if loading or sorting
   watch(
@@ -21,6 +22,7 @@ export default function useFlashing(
     () => {
       context.emit('update:selected', []);
       flashIndexes.value = [];
+      cachedItems = [];
     },
     {
       flush: 'pre',
@@ -42,24 +44,21 @@ export default function useFlashing(
   };
 
   if (props.flashing) {
-    const items = computed(() => JSON.stringify(props.items));
-
     watch(
-      items,
-      (newVal, oldVal) => {
-        const newValue = JSON.parse(newVal) as RowItem[];
-        const oldValue = JSON.parse(oldVal) as RowItem[];
+      () => props.items,
+      newValue => {
         if (
-          newValue.length === oldValue.length ||
-          newValue.length - oldValue.length === 1
+          newValue.length === cachedItems.length ||
+          newValue.length - cachedItems.length === 1
         ) {
           flashIndexes.value = [
             ...flashIndexes.value,
-            ...getDiff(newValue, oldValue),
+            ...getDiff(newValue, cachedItems),
           ];
         }
+        cachedItems = JSON.parse(JSON.stringify(newValue));
       },
-      {flush: 'post'},
+      {flush: 'post', deep: true},
     );
   }
 

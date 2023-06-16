@@ -139,7 +139,7 @@ export default defineComponent({
       type: Object as PropType<SortDefinition>,
       default: () => ({}),
     },
-    flashIndexes: {
+    flashRows: {
       type: Array as PropType<number[]>,
       default: () => [],
     },
@@ -210,7 +210,7 @@ export default defineComponent({
 
     const sortFields = computed(() => {
       const sort = {};
-      for (let key in props.order) {
+      for (const key in props.order) {
         const orderObj = props.order[key];
         if (typeof orderObj === 'object') {
           sort[key] = {
@@ -233,9 +233,8 @@ export default defineComponent({
       props.items.map((_, index: number) => ({
         'oxd-table-card': true,
         'oxd-row-highlight--success':
-          [...flashIndexes.value, ...props.flashIndexes].find(
-            i => i === index,
-          ) !== undefined,
+          [...flashIndexes.value, ...props.flashRows].find(i => i === index) !==
+          undefined,
       })),
     );
 
