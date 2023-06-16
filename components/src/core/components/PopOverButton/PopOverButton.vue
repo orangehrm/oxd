@@ -60,7 +60,7 @@ export default defineComponent({
     dropdownPosition: {
       type: String,
       default: BOTTOM,
-      validator: function(value: Position) {
+      validator: (value: Position) => {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
