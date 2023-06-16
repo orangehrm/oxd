@@ -4,6 +4,7 @@
       <oxd-text
         v-for="tab in computedTabs"
         :key="tab.id"
+        :id="tab.id"
         :class="{
           'oxd-list-tab-item': true,
           '--selected': modelValue === tab.id,

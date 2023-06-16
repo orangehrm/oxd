@@ -10,8 +10,8 @@
       :displayType="mainButtonType"
       :iconName="mainButtonIconName"
       :disabled="mainButtonDisabled"
-      :label="!collapsed ? mainButtonLabel : ''"
-      :tooltip="collapsed ? mainButtonLabel : ''"
+      :tooltip="$vt(mainButtonLabel)"
+      :label="!collapsed ? $vt(mainButtonLabel) : ''"
       @click="onClickMainButton"
     />
   </div>
@@ -32,13 +32,14 @@
           '--selected': filter.selected,
           '--collapsed': collapsed,
         }"
-        @click="onClickFilter(filter)"
+        @click.stop="onClickFilter(filter)"
       >
         <oxd-text v-if="!collapsed" class="oxd-status-tab-panel-filter-name">
-          {{ $t(filter.name) }}
+          {{ $vt(filter.name) }}
         </oxd-text>
         <oxd-text
           class="oxd-status-tab-panel-filter-count"
+          :tooltip="collapsed ? $vt(filter.name) : ''"
           :style="{color: filter.color, background: filter.backgroundColor}"
         >
           {{ filter.count }}
@@ -49,7 +50,9 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent} from 'vue';
+import {Filter} from './types';
+import translateMixin from '../../../mixins/translate';
+import {computed, defineComponent, PropType} from 'vue';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';
 import OxdButton from '@orangehrm/oxd/core/components/Button/Button.vue';
@@ -58,6 +61,8 @@ export default defineComponent({
   inheritAttrs: false,
 
   name: 'oxd-status-tab-panel',
+
+  mixins: [translateMixin],
 
   props: {
     collapsed: {
@@ -81,7 +86,7 @@ export default defineComponent({
       default: false,
     },
     filters: {
-      type: Array,
+      type: Array as PropType<Filter[]>,
       default: () => [],
     },
   },
@@ -96,11 +101,7 @@ export default defineComponent({
 
   setup(props, context) {
     const filterTabs = computed(() => {
-      return (props.filters as Array<{
-        count: string;
-        color: string;
-        backgroundColor: string;
-      }>).map(filter => {
+      return props.filters.map(filter => {
         return {
           ...filter,
           color: filter.color,
@@ -115,7 +116,8 @@ export default defineComponent({
       '--collapsed': props.collapsed,
     }));
 
-    const onClickFilter = (filter: object) => {
+    const onClickFilter = (filter: Filter) => {
+      if (filter.selected) return;
       context.emit('filter', filter);
     };
 
