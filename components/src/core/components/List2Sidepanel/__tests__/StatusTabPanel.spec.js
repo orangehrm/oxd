@@ -30,7 +30,17 @@ describe('List2 > Sidepanel > StatusTabPanel.vue', () => {
         filters: [...filterStub],
       },
     });
-    expect(wrapper.html()).toMatchSnapshot();
+    expect(
+      wrapper.findAll('.oxd-status-tab-panel-filter').length,
+    ).toStrictEqual(2);
+    expect(
+      wrapper.findAll('.oxd-status-tab-panel-filter-name').map(el => el.text()),
+    ).toStrictEqual(['In Progress', 'Shortlisted']);
+    expect(
+      wrapper
+        .findAll('.oxd-status-tab-panel-filter-count')
+        .map(el => el.text()),
+    ).toStrictEqual(['10', '7']);
   });
   it('emits click event on click main button', async () => {
     const wrapper = mount(StatusTabPanel, {
@@ -53,15 +63,5 @@ describe('List2 > Sidepanel > StatusTabPanel.vue', () => {
     expect(wrapper.emitted('filter')).toStrictEqual([
       filterStub.filter((_, i) => i === 0),
     ]);
-  });
-  it('should not emit filter event on selected filter element', async () => {
-    const wrapper = mount(StatusTabPanel, {
-      props: {
-        filters: [...filterStub],
-      },
-    });
-    wrapper.findAll('li')[1].trigger('click');
-    await wrapper.vm.$nextTick();
-    expect(wrapper.emitted('filter')).toBeFalsy();
   });
 });

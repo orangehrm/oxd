@@ -38,6 +38,7 @@
           {{ $vt(filter.name) }}
         </oxd-text>
         <oxd-text
+          flow="right"
           class="oxd-status-tab-panel-filter-count"
           :tooltip="collapsed ? $vt(filter.name) : ''"
           :style="{color: filter.color, background: filter.backgroundColor}"
@@ -117,7 +118,6 @@ export default defineComponent({
     }));
 
     const onClickFilter = (filter: Filter) => {
-      if (filter.selected) return;
       context.emit('filter', filter);
     };
 

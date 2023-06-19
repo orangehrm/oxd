@@ -72,7 +72,6 @@ export default {
 }
 .placeholder.slotbody {
   height: 380px;
-  margin-top: 10px;
   background: #c8ffcb;
 }
 </style>

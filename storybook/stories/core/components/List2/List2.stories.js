@@ -5,9 +5,134 @@ import NoSidepanelStory from './NoSidepanel.story.vue';
 
 export default {
   title: 'Data Tables/List v2',
+  argTypes: {
+    showCollapse: {
+      control: {type: 'boolean'},
+      table: {
+        type: {
+          summary:
+            'Whether or not to show sidepanel collapse button. false if sidepanel slot empty',
+        },
+      },
+    },
+    flatTop: {
+      control: {type: 'boolean'},
+      table: {
+        type: {
+          summary:
+            'Removes top padding from list, allows to connect other component on top like tabs',
+        },
+      },
+    },
+  },
 };
 
 export const Default = () => DefaultStory;
+Default.parameters = {
+  docs: {
+    source: {
+      code: `
+<oxd-list>
+  <template #sidepanel="{collapsed}">
+    <div class="placeholder sidepanel">
+      <oxd-text tag="p" class="placeholder-text">
+        Slot for sidepanel
+      </oxd-text>
+    </div>
+  </template>
+  <template #contentHeaderLeft>
+    <div class="placeholder slotheaderleft">
+      <oxd-text tag="p" class="placeholder-text">
+        Slot for header left
+      </oxd-text>
+    </div>
+  </template>
+  <template #contentHeaderRight>
+    <div class="placeholder slotheaderright">
+      <oxd-text tag="p" class="placeholder-text">
+        Slot for header right
+      </oxd-text>
+    </div>
+  </template>
+  <template #contentBody>
+    <div class="placeholder slotbody">
+      <oxd-text tag="p" class="placeholder-text"> Slot for body </oxd-text>
+    </div>
+  </template>
+  <template #contentFooter>
+    <div class="placeholder slotfooter">
+      <oxd-text tag="p" class="placeholder-text">
+        Slot for footer
+      </oxd-text>
+    </div>
+  </template>
+</oxd-list>
+    `,
+    },
+  },
+};
+
 export const ListTopTabs = () => ListTopTabsStory;
+ListTopTabs.parameters = {
+  docs: {
+    source: {
+      code: `
+<div class="bg-wrapper">
+  <oxd-list-tabs :tabs="tabs" v-model="tab" />
+  <oxd-list :flatTop="true" v-if="tab === 'goal'">
+  </oxd-list>
+  <oxd-list :flatTop="true" v-if="tab === 'okrs'">
+  </oxd-list>
+</div>
+    `,
+    },
+  },
+};
+
 export const ListTopTitle = () => ListTopTitleStory;
+ListTopTitle.parameters = {
+  docs: {
+    source: {
+      code: `
+<div class="bg-wrapper">
+  <oxd-list-title
+    title="Work Schedules"
+    mainButtonLabel="Add Work Schedule"
+  ></oxd-list-title>
+  <oxd-list :flatTop="true"></oxd-list>
+</div>
+    `,
+    },
+  },
+};
+
 export const NoSidepanel = () => NoSidepanelStory;
+NoSidepanel.parameters = {
+  docs: {
+    source: {
+      code: `
+<oxd-list>
+  <template #contentHeaderLeft>
+    <div class="placeholder slotheaderleft">
+      <oxd-text tag="p" class="placeholder-text">
+        Slot for header left
+      </oxd-text>
+    </div>
+  </template>
+  <template #contentHeaderRight>
+    <div class="placeholder slotheaderright">
+      <oxd-text tag="p" class="placeholder-text">
+        Slot for header right
+      </oxd-text>
+    </div>
+  </template>
+  <template #contentBody>
+    <div class="placeholder slotbody">
+      <oxd-text tag="p" class="placeholder-text"> Slot for body </oxd-text>
+    </div>
+  </template>
+</oxd-list>
+    `,
+    },
+  },
+};

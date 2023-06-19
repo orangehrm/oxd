@@ -15,7 +15,7 @@
   &-sidepanel {
     width: 20%;
     display: block;
-    max-width: 200px;
+    max-width: 190px; // 200px - 10px for divider
     &.--collapsed {
       width: 8%;
       min-width: 70px;
@@ -29,11 +29,14 @@
     display: block;
     width: inherit;
     &-header {
-      gap: 5px;
+      gap: 0.5rem;
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      height: $oxd-list-header-height;
+      &.--left,
+      &.--right {
+        margin-bottom: 1rem;
+      }
     }
     &-footer {
       display: flex;
@@ -45,14 +48,13 @@
     min-width: unset;
     min-height: unset;
     position: absolute;
+    margin-top: 1rem;
     border: 1px solid #e8eaef !important;
     background: $oxd-white-color !important;
     width: $oxd-list-collapse-button-width;
     height: $oxd-list-collapse-button-height;
     left: calc(#{$oxd-list-collapse-button-width} * -0.5);
-    top: calc(
-      #{$oxd-list-header-height} - #{$oxd-list-collapse-button-height} * 0.5
-    );
+    top: calc(#{$oxd-list-header-height} - #{$oxd-list-collapse-button-height});
   }
 }
 ::v-deep(.oxd-divider-vertical) {

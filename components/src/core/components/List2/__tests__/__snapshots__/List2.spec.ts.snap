@@ -5,14 +5,7 @@ exports[`List > List2.vue renders List 1`] = `
   <!--v-if-->
   <!--v-if-->
   <div class="oxd-list-content">
-    <div class="oxd-list-content-header">
-      <div class="oxd-list-content-header --left"></div>
-      <div class="oxd-list-content-header --right"></div>
-    </div>
-    <div>
-      <hr class="oxd-divider-horizontal" role="separator" aria-orientation="horizontal">
-      <!--v-if-->
-    </div>
+    <!--v-if-->
     <div class="oxd-list-content-body"></div>
     <!--v-if-->
     <div class="oxd-list-content-footer"></div>
@@ -25,14 +18,7 @@ exports[`List > List2.vue renders List with flat top 1`] = `
   <!--v-if-->
   <!--v-if-->
   <div class="oxd-list-content">
-    <div class="oxd-list-content-header">
-      <div class="oxd-list-content-header --left"></div>
-      <div class="oxd-list-content-header --right"></div>
-    </div>
-    <div>
-      <hr class="oxd-divider-horizontal" role="separator" aria-orientation="horizontal">
-      <!--v-if-->
-    </div>
+    <!--v-if-->
     <div class="oxd-list-content-body"></div>
     <!--v-if-->
     <div class="oxd-list-content-footer"></div>

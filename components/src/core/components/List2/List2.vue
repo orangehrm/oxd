@@ -14,15 +14,19 @@
       />
     </div>
     <div class="oxd-list-content">
-      <div class="oxd-list-content-header">
-        <div class="oxd-list-content-header --left">
-          <slot name="contentHeaderLeft"></slot>
+      <template
+        v-if="$slots['contentHeaderLeft'] || $slots['contentHeaderRight']"
+      >
+        <div class="oxd-list-content-header">
+          <div class="oxd-list-content-header --left">
+            <slot name="contentHeaderLeft"></slot>
+          </div>
+          <div class="oxd-list-content-header --right">
+            <slot name="contentHeaderRight"></slot>
+          </div>
         </div>
-        <div class="oxd-list-content-header --right">
-          <slot name="contentHeaderRight"></slot>
-        </div>
-      </div>
-      <oxd-divider></oxd-divider>
+        <oxd-divider></oxd-divider>
+      </template>
       <div class="oxd-list-content-body">
         <slot name="contentBody"></slot>
       </div>
