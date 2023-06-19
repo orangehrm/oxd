@@ -89,6 +89,7 @@
       :style="dropdownStyles"
       :loading="loading"
       :empty="computedOptions.length === 0"
+      @blur="onBlur"
     >
       <oxd-select-option
         v-for="(option, i) in computedOptions"
@@ -97,6 +98,7 @@
         :disabled="option._disabled || option._selected"
         :ref="`option-${i}`"
         @select="onSelect(option)"
+        @blur="onBlur"
       >
         <slot name="option" :data="option"></slot>
         <span v-if="!$slots['option']">{{ $vt(option.label) }}</span>
@@ -124,6 +126,7 @@ import SelectDropdown from '@orangehrm/oxd/core/components/Input/Select/SelectDr
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
 import ButtonIcon from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import {hexToRgb} from './../../../utils/colorConverter';
+import {isArray} from "lodash-es";
 
 export default defineComponent({
   name: 'oxd-infobox',
@@ -211,6 +214,17 @@ export default defineComponent({
       loading: false,
       dropdownOpen: false,
     };
+  },
+
+  watch: {
+    pointer(newIndex: number) {
+      const option = this.$refs[`option-${newIndex}`];
+      if(Array.isArray(option) && option.length > 0) {
+        if (option[0]?.$el) this.scrollToView(option[0].$el);
+      }else{
+        if (option?.$el) this.scrollToView(option.$el);
+      }
+    },
   },
 
   computed: {
@@ -332,8 +346,11 @@ export default defineComponent({
         this.focused = true;
       }
     },
-    onBlur() {
+    onBlur($e: Event) {
+      $e.stopImmediatePropagation();
       this.focused = false;
+      this.dropdownOpen = false;
+      this.$emit('blur', $e);
     },
     clickOutside() {
       this.dropdownOpen = false;
