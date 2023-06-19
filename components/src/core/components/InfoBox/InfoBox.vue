@@ -126,7 +126,6 @@ import SelectDropdown from '@orangehrm/oxd/core/components/Input/Select/SelectDr
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
 import ButtonIcon from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import {hexToRgb} from './../../../utils/colorConverter';
-import {isArray} from "lodash-es";
 
 export default defineComponent({
   name: 'oxd-infobox',
@@ -219,9 +218,9 @@ export default defineComponent({
   watch: {
     pointer(newIndex: number) {
       const option = this.$refs[`option-${newIndex}`];
-      if(Array.isArray(option) && option.length > 0) {
+      if (Array.isArray(option) && option.length > 0) {
         if (option[0]?.$el) this.scrollToView(option[0].$el);
-      }else{
+      } else {
         if (option?.$el) this.scrollToView(option.$el);
       }
     },
@@ -347,7 +346,6 @@ export default defineComponent({
       }
     },
     onBlur($e: Event) {
-      $e.stopImmediatePropagation();
       this.focused = false;
       this.dropdownOpen = false;
       this.$emit('blur', $e);
