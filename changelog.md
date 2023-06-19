@@ -1,3 +1,5 @@
+2023-06-22 - 4265556336e3c25626751cd4bf5d991dfe027fa5 - InfoBox.vue - Fixed Keyboard Accessibility issue.
+
 2023-06-15 - 00f9bf213d3e1d9c7f45514b427f2e4df0220850 - InfoBox.vue - Added a new icon to the library.
 
 2023-06-10 - fc27d63ee4f8ba1aa0cc3a74c28a4f466756ff10 - InfoBox.vue - Updated the info-box component supoprting with slots.
