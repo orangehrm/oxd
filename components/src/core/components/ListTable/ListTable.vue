@@ -42,10 +42,7 @@
       <div
         v-for="(item, index) in items"
         :key="item"
-        :class="{
-          'oxd-table-card': true,
-          'oxd-row-highlight--success': flashIndexes[index] === true,
-        }"
+        :class="tableRowClasses[index]"
         @click="onClickRow(item)($event)"
       >
         <oxd-card-tr :clickable="clickable">
@@ -142,6 +139,10 @@ export default defineComponent({
       type: Object as PropType<SortDefinition>,
       default: () => ({}),
     },
+    flashRows: {
+      type: Array as PropType<number[]>,
+      default: () => [],
+    },
   },
 
   setup(props, context) {
@@ -209,7 +210,7 @@ export default defineComponent({
 
     const sortFields = computed(() => {
       const sort = {};
-      for (let key in props.order) {
+      for (const key in props.order) {
         const orderObj = props.order[key];
         if (typeof orderObj === 'object') {
           sort[key] = {
@@ -227,6 +228,15 @@ export default defineComponent({
       }
       return sort;
     });
+
+    const tableRowClasses = computed(() =>
+      props.items.map((_, index: number) => ({
+        'oxd-table-card': true,
+        'oxd-row-highlight--success':
+          [...flashIndexes.value, ...props.flashRows].find(i => i === index) !==
+          undefined,
+      })),
+    );
 
     const onOrderChange = (order: Order, column: CardHeader) => {
       const orderFields = {};
@@ -264,6 +274,7 @@ export default defineComponent({
       cardHeaders,
       flashIndexes,
       onOrderChange,
+      tableRowClasses,
     };
   },
 

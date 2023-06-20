@@ -97,7 +97,8 @@ export default {
       const sort = this.order['col1.name'];
       return this.items.sort(function (a, b) {
         if (sort === 'DESC') [b, a] = [a, b];
-        if (a.col1.toLowerCase() < b.col1.toLowerCase()) return -1;
+        if (parseInt(a.col1.split(' ')[1]) < parseInt(b.col1.split(' ')[1]))
+          return -1;
         return 0;
       });
     },

@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List > List2.vue renders List 1`] = `
+<div class="oxd-sheet oxd-sheet--rounded oxd-sheet--white oxd-list-card">
+  <!--v-if-->
+  <!--v-if-->
+  <div class="oxd-list-content">
+    <!--v-if-->
+    <div class="oxd-list-content-body"></div>
+    <!--v-if-->
+    <div class="oxd-list-content-footer"></div>
+  </div>
+</div>
+`;
+
+exports[`List > List2.vue renders List with flat top 1`] = `
+<div class="oxd-sheet oxd-sheet--rounded oxd-sheet--white oxd-list-card --flat-top">
+  <!--v-if-->
+  <!--v-if-->
+  <div class="oxd-list-content">
+    <!--v-if-->
+    <div class="oxd-list-content-body"></div>
+    <!--v-if-->
+    <div class="oxd-list-content-footer"></div>
+  </div>
+</div>
+`;
