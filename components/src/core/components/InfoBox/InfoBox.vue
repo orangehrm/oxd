@@ -98,7 +98,6 @@
         :disabled="option._disabled || option._selected"
         :ref="`option-${i}`"
         @select="onSelect(option)"
-        @blur="onBlur"
       >
         <slot name="option" :data="option"></slot>
         <span v-if="!$slots['option']">{{ $vt(option.label) }}</span>
