@@ -67,7 +67,13 @@
             >
           </div>
           <div
-            v-if="!(isModelValueString || disabled)"
+            v-if="
+              !(
+                isModelValueString ||
+                disabled ||
+                (this.hideDropDownForSingleItem && computedOptions.length === 1)
+              )
+            "
             class="d-flex align-center justify-start"
           >
             <oxd-icon-button
@@ -201,6 +207,10 @@ export default defineComponent({
       default: () => 19,
     },
     clickableText: {
+      type: Boolean,
+      default: false,
+    },
+    hideDropDownForSingleItem: {
       type: Boolean,
       default: false,
     },
