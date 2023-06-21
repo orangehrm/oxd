@@ -1,4 +1,6 @@
-2023-06-22 - 4265556336e3c25626751cd4bf5d991dfe027fa5 - InfoBox.vue - Fixed Keyboard Accessibility issue.
+2023-06-21 - 779eac2903a4f1bbbd4f405c7c4907956df3329f - InfoBox.vue - Removed the dropdown arrow when there is only one item for the drop-down
+
+2023-06-20 - 4265556336e3c25626751cd4bf5d991dfe027fa5 - InfoBox.vue - Fixed Keyboard Accessibility issue.
 
 2023-06-15 - 00f9bf213d3e1d9c7f45514b427f2e4df0220850 - InfoBox.vue - Added a new icon to the library.
 
