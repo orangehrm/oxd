@@ -28,6 +28,7 @@
           :name="header.iconName"
           :style="header.iconStyle"
         />
+        <span v-else-if="header.html" v-html="header.html"></span>
         <span v-else>{{ $vt(header.title) }}</span>
       </oxd-card-th>
     </oxd-card-tr>
