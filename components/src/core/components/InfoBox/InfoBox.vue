@@ -78,6 +78,7 @@
               :style="infoBoxTriggerButtonStyles"
               :disabled="readonly"
               @click="onToggleDropdown"
+              @blur="onBlur"
             />
           </div>
         </div>
