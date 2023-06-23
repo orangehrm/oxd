@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List2 > ListTabs.vue renders List tabs 1`] = `
+<div class="oxd-list-tab">
+  <div class="oxd-list-tab-content"><span class="oxd-text oxd-text--span oxd-list-tab-item" id="goal"><i class="oxd-svg-icon oxd-svg-icon--large"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" style="enable-background:new 0 0 60 60" xml:space="preserve"><path style="fill:currentColor" d="M30 1.5c-16.542 0-30 12.112-30 27 0 5.204 1.646 10.245 4.768 14.604-.591 6.537-2.175 11.39-4.475 13.689a1 1 0 0 0 .846 1.697c.405-.057 9.813-1.411 16.618-5.339C21.621 54.71 25.737 55.5 30 55.5c16.542 0 30-12.112 30-27s-13.458-27-30-27zm-14 31c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4zm14 0c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4zm14 0c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4z"></path></svg></i> Goal</span><span class="oxd-text oxd-text--span oxd-list-tab-item --selected" id="okrs"><i class="oxd-svg-icon oxd-svg-icon--large"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path style="fill:currentColor" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg></i> OKRs</span>
+    <div class="oxd-list-tab-buttons"></div>
+  </div>
+  <div class="oxd-list-tab-divider">
+    <hr class="oxd-divider-horizontal" role="separator" aria-orientation="horizontal">
+    <!--v-if-->
+  </div>
+</div>
+`;
+
+exports[`List2 > ListTabs.vue renders List tabs no tabs 1`] = `
+<div class="oxd-list-tab">
+  <div class="oxd-list-tab-content">
+    <div class="oxd-list-tab-buttons"></div>
+  </div>
+  <div class="oxd-list-tab-divider">
+    <hr class="oxd-divider-horizontal" role="separator" aria-orientation="horizontal">
+    <!--v-if-->
+  </div>
+</div>
+`;

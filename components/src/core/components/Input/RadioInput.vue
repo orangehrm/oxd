@@ -2,7 +2,9 @@
   <div class="oxd-radio-wrapper">
     <label :class="labelClasses">
       <template v-if="labelPosition === 'left'">
-        {{ optionLabel }}
+        <div class="oxd-radio-option-label">
+          {{ optionLabel }}
+        </div>
       </template>
       <input
         type="radio"
@@ -15,7 +17,9 @@
       />
       <span :class="classes" :style="style" class="oxd-radio-input"></span>
       <template v-if="labelPosition === 'right'">
-        {{ optionLabel }}
+        <div class="oxd-radio-option-label">
+          {{ optionLabel }}
+        </div>
       </template>
     </label>
   </div>

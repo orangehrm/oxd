@@ -1,0 +1,31 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-chart-legend {
+  display: flex;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+  padding: $oxd-chart-legend-padding;
+  li {
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: $oxd-input-control-font-color;
+    padding: $oxd-chart-legend-key-padding;
+    font-size: $oxd-input-control-font-size;
+    max-width: $oxd-chart-legend-label-width;
+    line-height: $oxd-input-control-line-height;
+  }
+  &-key {
+    border-radius: 100%;
+    display: inline-block;
+    vertical-align: baseline;
+    width: $oxd-chart-legend-key-width;
+    height: $oxd-chart-legend-key-height;
+    margin-right: $oxd-chart-legend-key-margin-right;
+  }
+}

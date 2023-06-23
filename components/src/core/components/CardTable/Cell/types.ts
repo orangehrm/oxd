@@ -30,6 +30,7 @@ export interface ActionCellEvent extends MouseEvent {
 export type DropdownOption = {
   label: string;
   context: string;
+  count?: string;
   icon?: string;
 };
 

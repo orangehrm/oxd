@@ -4,6 +4,7 @@
     :labelIcon="labelIcon"
     :hint="hint"
     :hintPlacement="hintPlacement"
+    :hintStyle="hintStyle"
     :id="id"
     :message="message"
     class="oxd-input-field-bottom-space"
@@ -43,6 +44,8 @@ import MultiSelectInput from '@orangehrm/oxd/core/components/Input/MultiSelect/M
 import TimeInput from '@orangehrm/oxd/core/components/Input/Time/TimeInput.vue';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import InfoBox from '@orangehrm/oxd/core/components/InfoBox/InfoBox.vue';
+import Comments from '@orangehrm/oxd/core/components/Comments/Comments.vue';
+import TinyMce from '@orangehrm/oxd/core/components/TinyMce/TinyMce.vue';
 import {
   Types,
   Components,
@@ -54,6 +57,9 @@ import {
 import useField from '../../../composables/useField';
 import translateMixin from '../../../mixins/translate';
 import CheckboxGroup from '@orangehrm/oxd/core/components/Input/CheckboxGroup.vue';
+import RadioPillGroup from '@orangehrm/oxd/core/components/Input/RadioPills/RadioPillGroup.vue';
+import TreeSelectInput from '@orangehrm/oxd/core/components/Input/TreeSelect/TreeSelect.vue';
+import RadioGroup from '@orangehrm/oxd/core/components/Input/RadioGroup.vue';
 
 export default defineComponent({
   name: 'oxd-input-field',
@@ -77,6 +83,11 @@ export default defineComponent({
     'oxd-checkboxgroup-input': CheckboxGroup,
     'oxd-infobox': InfoBox,
     'oxd-quicksearch-input': QuickSearchInput,
+    'oxd-comments': Comments,
+    'oxd-radio-pill-group': RadioPillGroup,
+    'oxd-tree-select-input': TreeSelectInput,
+    'oxd-radiogroup-input': RadioGroup,
+    'oxd-tinymce': TinyMce,
   },
 
   mixins: [translateMixin],
@@ -128,12 +139,22 @@ export default defineComponent({
       type: String,
       default: HINT_PLACEMENT_TOP,
     },
+    hintStyle: {
+      type: Object,
+      default: () => ({}),
+    },
+    dirty: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   setup(props, context) {
     const modelValue = toRef(props, 'modelValue');
     const rules = toRef(props, 'rules');
     const isDisabled = toRef(props, 'disabled');
+    const isDirty: boolean =
+      props.dirty || Boolean(props.type === 'date' && modelValue.value);
 
     const initialValue = modelValue.value;
 
@@ -147,16 +168,19 @@ export default defineComponent({
       rules,
       modelValue,
       isDisabled,
+      isDirty,
       onReset,
     });
 
-    const onChange = $event => {
+    const onChange = ($event: any) => {
       if (!dirty.value) {
         dirty.value = true;
         startWatcher();
       }
       context.emit('update:modelValue', $event);
     };
+
+    if (isDirty) startWatcher();
 
     return {
       message,

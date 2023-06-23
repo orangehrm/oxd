@@ -26,7 +26,10 @@ $oxd_breakpoints: (
 
 /* Input Control */
 $oxd-input-border-focus-color: $oxd-interface-gray-color !default;
-$oxd-input-border-focus-box-shadow-color: rgba(darken($oxd-input-border-focus-color, 10%), 0.12) !default;
+$oxd-input-border-focus-box-shadow-color: rgba(
+  darken($oxd-input-border-focus-color, 10%),
+  0.12
+) !default;
 $oxd-input-control-font-size: 12px !default;
 $oxd-input-control-font-color: $oxd-interface-gray-darken-1-color !default;
 $oxd-input-control-font-weight: 400 !default;
@@ -39,10 +42,12 @@ $oxd-input-control-border--active: $oxd-border
   $oxd-interface-gray-lighten-2-color !default;
 $oxd-input-control-border--focus: $oxd-border $oxd-input-border-focus-color !default;
 $oxd-input-control-border--error: $oxd-border $oxd-feedback-danger-color !default;
-$oxd-input-control-box-shadow--focus: 1px 1px 6px $oxd-input-border-focus-box-shadow-color !default;
+$oxd-input-control-box-shadow--focus: 1px 1px 6px
+  $oxd-input-border-focus-box-shadow-color !default;
 $oxd-input-control-box-shadow--error: 0 0 5px 0.2rem rgba(223, 9, 16, 0.1) !default;
 $oxd-input-control-width: 100% !default;
 $oxd-form-min-height: 400px;
+$oxd-input-control-background--disabled: #f0f0f6 !default;
 
 // Dropdown
 $oxd-dropdown-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.15) !default;
@@ -75,3 +80,15 @@ $oxd-modal-background-color: $oxd-white-color !default;
 
 // Text
 $oxd-noemal-text-14: 0.875rem; //equals to 14px
+
+// Primary color lighter shades. Declared separately here to make it easier to override with
+// theme --var variables from vue-app, since rgba() does not work with --var's.
+$oxd-primary-input-color-alpha-05: rgba(
+  $oxd-primary-input-color,
+  0.05
+) !default;
+$oxd-primary-input-color-alpha-10: rgba($oxd-primary-input-color, 0.1) !default;
+$oxd-primary-input-color-lighten-10: lighten(
+  $oxd-primary-input-color,
+  10%
+) !default;

@@ -1,0 +1,11 @@
+$oxd-wysiwyg-input-border--error: $oxd-input-control-border--error !default;
+$oxd-wysiwyg-input-box-shadow--error: $oxd-input-control-box-shadow--error !default;
+$oxd-wysiwyg-input-background--disabled: $oxd-input-control-background--disabled !default; // #f0f0f6
+$oxd-wysiwyg-input-text-color: #64728c;
+$oxd-dropdown-option-background--selected: $oxd-interface-gray-lighten-2-color !default; //#e8eaef
+$oxd-wysiwyg-input-active-color: rgba(
+  $oxd-interface-gray-darken-1-color,
+  0.1
+) !default;
+$oxd-wysiwyg-input-color-1: #758194;
+$oxd-wysiwyg-input-focus: rgba($oxd-wysiwyg-input-color-1, 0.1) !default;

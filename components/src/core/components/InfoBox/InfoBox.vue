@@ -48,12 +48,22 @@
               justify-start
               oxd-select-fill-subtitle-wrapper
             "
+            :class="{'flex-wrap': clickableText}"
             :style="subtitleWrapperStyles"
           >
+            <slot></slot>
             <label
               class="oxd-select-fill-subtitle text-left"
               :style="selectedItemLabelStyles"
-              >{{ $vt(getLabel) }}</label
+              v-if="!$slots['default']"
+            >
+              {{ $vt(getLabel) }}
+            </label>
+            <span
+              class="oxd-info-box-clickable-text"
+              v-if="clickableText"
+              @click="clickText"
+              >{{ clickableText }}</span
             >
           </div>
           <div
@@ -79,6 +89,7 @@
       :style="dropdownStyles"
       :loading="loading"
       :empty="computedOptions.length === 0"
+      @blur="onBlur"
     >
       <oxd-select-option
         v-for="(option, i) in computedOptions"
@@ -162,7 +173,7 @@ export default defineComponent({
     dropdownPosition: {
       type: String,
       default: BOTTOM,
-      validator: function (value: TooltipPosition) {
+      validator: function(value: TooltipPosition) {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
@@ -189,6 +200,10 @@ export default defineComponent({
       type: Number,
       default: () => 19,
     },
+    clickableText: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -197,6 +212,17 @@ export default defineComponent({
       loading: false,
       dropdownOpen: false,
     };
+  },
+
+  watch: {
+    pointer(newIndex: number) {
+      const option = this.$refs[`option-${newIndex}`];
+      if (Array.isArray(option) && option.length > 0) {
+        if (option[0]?.$el) this.scrollToView(option[0].$el);
+      } else {
+        if (option?.$el) this.scrollToView(option.$el);
+      }
+    },
   },
 
   computed: {
@@ -234,6 +260,13 @@ export default defineComponent({
         '-webkit-line-clamp': this.numOfTitleRows,
       };
     },
+    lineClamp() {
+      return this.clickableText
+        ? this.numOfValueRows > 1
+          ? this.numOfValueRows - 1
+          : 1
+        : this.numOfValueRows;
+    },
     selectedItemLabelStyles(): {
       color: string | null;
       'font-weight'?: number;
@@ -241,7 +274,7 @@ export default defineComponent({
     } {
       return {
         color: hexToRgb(this.modelValue?.color),
-        '-webkit-line-clamp': this.numOfValueRows,
+        '-webkit-line-clamp': this.lineClamp,
         'font-weight': this.modelValue?.color ? 700 : 600,
       };
     },
@@ -276,8 +309,11 @@ export default defineComponent({
     subtitleWrapperStyles(): {
       height: string;
     } {
-      const subtitleWrapperHeight =
-        this.numOfValueRows * this.subtitleLineHeight;
+      const noOfRows =
+        this.clickableText && this.numOfValueRows <= 1
+          ? 2
+          : this.numOfValueRows;
+      const subtitleWrapperHeight = noOfRows * this.subtitleLineHeight;
       return {
         height: `${subtitleWrapperHeight}px`,
       };
@@ -308,11 +344,16 @@ export default defineComponent({
         this.focused = true;
       }
     },
-    onBlur() {
+    onBlur($e: Event) {
       this.focused = false;
+      this.dropdownOpen = false;
+      this.$emit('blur', $e);
     },
     clickOutside() {
       this.dropdownOpen = false;
+    },
+    clickText() {
+      this.$emit('click-label', this.modelValue);
     },
   },
 });

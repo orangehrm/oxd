@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RadioGroup > RadioGroup.vue renders OXD RadioGroup 1`] = `
+<div class="oxd-input-group">
+  <div class="oxd-input-group__label-wrapper">
+    <!--v-if-->
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+  <div class="radio-column">
+    <div class="oxd-radio-wrapper"><label class="">
+        <!--v-if--><input type="radio" id="radio-group-id_1" value="1"><span class="oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input"></span>
+        <div class="oxd-radio-option-label">Item one</div>
+      </label></div>
+    <div class="oxd-radio-wrapper"><label class="">
+        <!--v-if--><input type="radio" id="radio-group-id_2" value="2"><span class="oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input"></span>
+        <div class="oxd-radio-option-label">Item two</div>
+      </label></div>
+  </div>
+  <!--v-if-->
+  <!--v-if-->
+</div>
+`;

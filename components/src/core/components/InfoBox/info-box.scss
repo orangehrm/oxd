@@ -62,12 +62,30 @@ $dropdown-button-size: 24px;
     }
   }
   .oxd-select-fill-subtitle-wrapper {
-    width: 100%;
+    box-sizing: border-box;
+    width: calc(100% - 24px);
     padding-right: 5px;
     .oxd-select-fill-subtitle {
       display: -webkit-box;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      overflow-wrap: break-word;
+      margin-bottom: 0;
+    }
+    .oxd-info-box-clickable-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: #64728c;
+      text-decoration: underline;
+      font-style: italic;
+      cursor: pointer;
+      text-align: left;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      overflow-wrap: break-word;
+      -webkit-line-clamp: 1;
+      width: 100%;
     }
   }
   .oxd-select-fill {
@@ -144,7 +162,6 @@ $dropdown-button-size: 24px;
   font-weight: $oxd-dropdown-option-font-weight;
   padding: $oxd-dropdown-option-padding;
   margin: $oxd-dropdown-option-margin;
-  border-bottom: $oxd-dropdown-option-border-bottom;
   background-color: $oxd-dropdown-option-background;
   min-height: $oxd-dropdown-option-min-height;
 

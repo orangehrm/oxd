@@ -7,47 +7,55 @@
   height: 100%;
   &--separator {
     width: auto;
-    margin: 1rem 0.5rem;
+    margin: 0rem 0.5rem;
   }
   &--body {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem !important;
   }
+
+  .oxd-table-left-panel--header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .table-header-action-btn-container {
+      margin-bottom: 1rem;
+    }
+    .table-header-action-btn {
+      margin: 0 0 1rem 0;
+    }
+    .table-header-action-secondary-btn {
+      margin: 0rem 0 1rem 0.5rem;
+    }
+  }
+
   &.with-secondary {
     :deep(.oxd-button) {
       display: inline-flex;
     }
     :deep(.count-container) {
-      width: 95%;
+      width: 100%;
     }
     :deep(.oxd-button) {
       padding-right: 10px;
       padding-left: 10px;
     }
     .oxd-table-left-panel--toggle-btn {
-      top: 40px;
-    }
-    .table-header-action-secondary-btn{
-      margin-left: 0.5rem;
-      margin-top: -0.5rem;
+      top: 42px;
     }
     .oxd-table-left-panel--separator {
-      margin: 0.5rem 0.9rem 1rem 0.5rem;
+      margin: 0rem 0.5rem;
     }
-    .no-label{
+    .no-label {
       padding-right: 20px;
       padding-left: 20px;
     }
-    .table-header-action-btns{
+    .table-header-action-btns {
       display: flex;
       align-items: center;
     }
-    padding-right: 0px;
-    &.with-secondary-collapsed{
+    &.with-secondary-collapsed {
       padding-right: 10px;
-      .oxd-table-left-panel--separator {
-        margin: 0.5rem 0.3rem 1rem 0.5rem;
-      }
     }
   }
   &--toggle-btn {
@@ -129,22 +137,21 @@
     }
   }
 }
+
 .table-header-action-btn {
   margin: 0.5rem 0;
 
   &.no-label {
     min-width: initial;
-    ::v-deep(.oxd-button-label-wrapper) {
+    :deep(.oxd-button-label-wrapper) {
+      /* Safari shows extra 2x15px width for the parent button with `-webkit-box`. */
       visibility: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 1;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
       width: 0;
     }
   }
 }
-.table-header-action-secondary-btn{
+
+.table-header-action-secondary-btn {
   display: inline-flex;
   background-color: #f0fae4;
   :deep(.cls-1) {
@@ -152,5 +159,5 @@
   }
   &.collapsed-btn {
     margin-right: 0.5rem;
-    }
+  }
 }

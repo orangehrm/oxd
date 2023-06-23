@@ -15,11 +15,39 @@
 .oxd-time-input {
   display: flex;
   align-items: center;
-  ::v-deep(.oxd-input) {
-    text-overflow: ellipsis;
-    padding-right: 3rem;
+  &-am-pm-wrapper {
+    position: absolute;
+    left: $oxd-time-picker-input-ampm-left-position;
+    right: $oxd-time-picker-input-ampm-right-position;
+    &.--disabled{
+      right: 0.25rem;
+    }
   }
-  &--clock {
+  &-am-pm-label {
+    box-sizing: border-box;
+    margin: 0;
+    cursor: pointer;
+    font-family: $oxd-time-picker-input-ampm-font-family;
+    font-size: $oxd-time-picker-input-ampm-font-size;
+    color: $oxd-time-picker-input-ampm-font-color;
+    font-weight: $oxd-time-picker-input-ampm-font-weight;
+    background-color: $oxd-time-picker-input-ampm-background-color;
+    border-radius: $oxd-time-picker-input-ampm-border-radius;
+    padding: $oxd-time-picker-input-ampm-padding;
+    &.--focus {
+      background-color: $oxd-interface-gray-lighten-2-color;
+      border: $oxd-input-border--focus;
+      box-shadow: $oxd-input-box-shadow--focus;
+      outline: 0;
+    }
+  }
+  &-am-pm-checkbox {
+    margin: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  &-icon-wrapper {
     right: 0.25rem;
     display: flex;
     cursor: pointer;
@@ -30,12 +58,31 @@
     height: $oxd-dropdown-arrow-height;
     border-radius: $oxd-dropdown-arrow-border-radius;
     background-color: $oxd-dropdown-arrow-background-color;
+    color: $oxd-file-button-color;
     &.--disabled,
     &.--readonly {
       cursor: unset;
       background-color: $oxd-dropdown-arrow-background-color--readonly;
       color: $oxd-dropdown-arrow-color--readonly;
     }
+    &:focus {
+      background-color: $oxd-interface-gray-lighten-2-color;
+      border: $oxd-input-border--focus;
+      box-shadow: $oxd-input-box-shadow--focus;
+      outline: 0;
+    }
+    .oxd-time-input-icon {
+      &.--readonly {
+        cursor: unset;
+        background-color: $oxd-white-color;
+        border: 1px $oxd-interface-gray-lighten-1-color;
+        color: $oxd-interface-gray-lighten-1-color;
+      }
+    }
+  }
+
+  ::v-deep(.oxd-input) {
+    text-overflow: ellipsis;
+    padding-right: 3rem;
   }
 }
-

@@ -36,6 +36,24 @@ describe('Input.vue', () => {
     expect(wrapper.emitted()).toHaveProperty('input');
   });
 
+  it('on pagedown', async () => {
+    const wrapper = mount(Input, {});
+    const input = wrapper.find('input');
+    input.setValue('test');
+    expect(input.element.selectionEnd).toBe(0);
+    await input.trigger('keyup', {key: 'PageDown'});
+    expect(input.element.selectionEnd).toBe(4);
+  });
+
+  it('on pageup', async () => {
+    const wrapper = mount(Input, {});
+    const input = wrapper.find('input');
+    input.setValue('test');
+    expect(input.element.selectionEnd).toBe(0);
+    await input.trigger('keyup', {key: 'PageUp'});
+    expect(input.element.selectionEnd).toBe(0);
+  });
+
   it('input field with icon', () => {
     const wrapper = mount(Input, {
       props: {
@@ -44,15 +62,14 @@ describe('Input.vue', () => {
     });
     expect(wrapper.find('.input-text-field-icon').exists()).toBe(true);
     expect(wrapper.html()).toMatchSnapshot();
-
   });
 
   it('input field with icon - in default mode, the icon is not clickable', () => {
     const wrapper = mount(Input, {
       props: {
-        imageIcon : '@orangehrm/oxd/assets/images/facebook_logo_icon.svg'
-      }
-  });
+        imageIcon: '@orangehrm/oxd/assets/images/facebook_logo_icon.svg',
+      },
+    });
     expect(wrapper.find('.click-disabled').exists()).toBe(true);
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -60,26 +77,24 @@ describe('Input.vue', () => {
   it('input field with clickable icon', () => {
     const wrapper = mount(Input, {
       props: {
-        imageIcon : '@orangehrm/oxd/assets/images/facebook_logo_icon.svg',
-        isIconClickable: true
-      }
-  });
+        imageIcon: '@orangehrm/oxd/assets/images/facebook_logo_icon.svg',
+        isIconClickable: true,
+      },
+    });
     expect(wrapper.find('.click-disabled').exists()).toBe(false);
-
   });
-  callFunction
+  callFunction;
   it('input field trigeer function in icon click', async () => {
     const wrapper = mount(Input, {
       props: {
-        imageIcon : '@orangehrm/oxd/assets/images/facebook_logo_icon.svg',
+        imageIcon: '@orangehrm/oxd/assets/images/facebook_logo_icon.svg',
         isIconClickable: true,
-        imageIconClick:callFunction
-      }
-  });
+        imageIconClick: callFunction,
+      },
+    });
     expect(wrapper.find('.click-disabled').exists()).toBe(false);
     await wrapper.find('img').trigger('click');
     expect(callFunction).toHaveBeenCalled();
-
   });
 
   it('input field without icon', () => {

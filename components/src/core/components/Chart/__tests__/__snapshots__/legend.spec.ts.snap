@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chart > Legend.vue should renders OXD chart legend 1`] = `
+<ul class="oxd-chart-legend">
+  <li><span class="oxd-chart-legend-key" style="background-color: red;"></span><span class="oxd-text oxd-text--span" title="STEM">STEM</span></li>
+  <li><span class="oxd-chart-legend-key" style="background-color: green;"></span><span class="oxd-text oxd-text--span" title="Arts">Arts</span></li>
+  <li><span class="oxd-chart-legend-key" style="background-color: blue;"></span><span class="oxd-text oxd-text--span" title="Law">Law</span></li>
+  <li><span class="oxd-chart-legend-key" style="background-color: yellow;"></span><span class="oxd-text oxd-text--span" title="Management">Management</span></li>
+</ul>
+`;

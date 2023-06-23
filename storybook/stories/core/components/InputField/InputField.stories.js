@@ -22,6 +22,12 @@ export default {
         type: {summary: 'Set the hint placement'},
       },
     },
+    hintStyle: {
+      control: {type: 'object'},
+      table: {
+        type: {summary: 'Define custom styles for input field hint'},
+      },
+    }
   },
 };
 
@@ -76,6 +82,23 @@ File.args = {
   label: 'File Input Field',
   type: 'file',
   buttonLabel: 'Browse',
+};
+
+export const FileDownloadBox = Template.bind({});
+FileDownloadBox.argTypes = argTypes;
+FileDownloadBox.args = {
+  label: 'File Input Field',
+  type: 'file',
+  buttonLabel: 'Browse',
+  inputFile: 
+      {
+          "name": "sample.pdf",
+          "type": "application/pdf",
+          "size": 101273
+      },
+  downloadBoxClick : ()=>{
+    window.alert("Downloading the document!");
+  }
 };
 
 export const Textarea = Template.bind({});
@@ -245,5 +268,16 @@ WithHint.args = {
   hint: 'Only needed if different from the name in your driving license',
   hintPlacement: 'bottom',
 };
+
+export const WithCustomStyledHint = Template.bind({});
+WithCustomStyledHint.argTypes = argTypes;
+WithCustomStyledHint.args = {
+  label: 'Name as in Passport',
+  type: 'input',
+  hint: 'Only needed if different from the name in your driving license',
+  hintPlacement: 'bottom',
+  hintStyle: {color: 'brown', 'font-style': 'italic'}
+};
+
 
 export const WithValidation = () => InputFieldValidation;

@@ -1,0 +1,33 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-collapsible-container {
+  .oxd-common-content{
+    margin-bottom: 0.4rem;
+  }
+  .oxd-collapsible-header-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .oxd-collapsible-title {
+      color: $oxd-collapsible-header-font-color;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: $oxd-collapsible-header-font-family;
+      max-width: calc(100% - 24px);
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+
+    .oxd-collapsible-caret-icon-wrapper {
+      margin-right: 0;
+
+      .oxd-collapsible-caret-icon {
+        font-size: 5px;
+        min-height: 24px;
+        min-width: 24px;
+      }
+    }
+  }
+}

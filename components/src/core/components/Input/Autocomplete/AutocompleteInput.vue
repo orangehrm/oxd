@@ -3,7 +3,7 @@
     <oxd-autocomplete-text-input
       v-bind="$attrs"
       :clear="showClear"
-      :placeholder="$vt(placeholder)"
+      :placeholder="!disabled ? $vt(placeholder) : null"
       :value="inputValue"
       :disabled="disabled"
       :readonly="readonly"
@@ -56,7 +56,11 @@
       :readonly="readonly"
       :selected="showChips ? modelValue : []"
       @chipRemoved="onRemoveSelected"
-    ></oxd-autocomplete-chips>
+    >
+      <template v-slot:chips="{data}">
+        <slot name="chips" :data="data"></slot>
+      </template>
+    </oxd-autocomplete-chips>
   </div>
 </template>
 
@@ -131,6 +135,10 @@ export default defineComponent({
       validator: function(value: Position) {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
+    },
+    hasSelectEnter: {
+      type: Boolean,
+      default: false,
     },
   },
 
@@ -300,9 +308,12 @@ export default defineComponent({
         if (!option?._disabled) this.onSelect(option);
       } else {
         this.$emit('select:enter');
-        if (this.multiple && this.modelValue.length === 0) {
+        if (this.multiple && this.modelValue?.length === 0) {
           this.$emit('update:modelValue', this.searchTerm);
         } else if (!this.multiple) {
+          this.$emit('update:modelValue', this.searchTerm);
+        }
+        if (this.multiple && !!this.searchTerm && this.hasSelectEnter) {
           this.$emit('update:modelValue', this.searchTerm);
         }
       }
@@ -313,7 +324,11 @@ export default defineComponent({
   watch: {
     modelValue: {
       handler() {
-        if (Array.isArray(this.modelValue) && this.modelValue.length === 0) {
+        if (
+          Array.isArray(this.modelValue) &&
+          this.modelValue.length === 0 &&
+          !this.hasSelectEnter
+        ) {
           this.searchTerm = null;
         }
       },

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListTable > Default.vue should renders OXD ListTable > Default cell 1`] = `<div class="oxd-table-card-cell">Test</div>`;
+
+exports[`ListTable > Default.vue should renders OXD ListTable > Default cell with array 1`] = `
+<div class="oxd-table-card-cell">[
+  "Test",
+  "Array"
+  ]</div>
+`;
+
+exports[`ListTable > Default.vue should renders OXD ListTable > Default cell with number 1`] = `<div class="oxd-table-card-cell">2</div>`;
+
+exports[`ListTable > Default.vue should renders OXD ListTable > Default cell with object 1`] = `
+<div class="oxd-table-card-cell">{
+  "test": "Object"
+  }</div>
+`;

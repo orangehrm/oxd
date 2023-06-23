@@ -3,6 +3,7 @@ import SchemaForm from '@orangehrm/oxd/core/components/SchemaForm/SchemaForm';
 import useSchemaForm from '../../../../../components/src/composables/useSchemaForm.ts';
 import {required} from '../../../../../components/src/validation/rules.ts';
 import InfoBoxEvents from './InfoBoxEvents.story.vue';
+import InfoBoxDetails from './InfoBoxDetails.story.vue';
 import {h, ref} from 'vue';
 
 export default {
@@ -12,7 +13,10 @@ export default {
     modelValue: {
       control: {type: 'object'},
       table: {
-        type: {summary: 'Set value to the input. It can be a string or an object with id, label'},
+        type: {
+          summary:
+            'Set value to the input. It can be a string or an object with id, label',
+        },
       },
     },
     infoLabel: {
@@ -31,7 +35,10 @@ export default {
       control: {type: 'array'},
       defaultValue: [],
       table: {
-        type: {summary: 'Set an array of objects which has id, label mandatory and color as optional'},
+        type: {
+          summary:
+            'Set an array of objects which has id, label mandatory and color as optional',
+        },
       },
     },
     numOfTitleRows: {
@@ -52,7 +59,9 @@ export default {
       control: {type: 'boolean'},
       defaultValue: false,
       table: {
-        type: {summary: 'Set boolean value to disable. The default value is false'},
+        type: {
+          summary: 'Set boolean value to disable. The default value is false',
+        },
       },
     },
     dropdownPosition: {
@@ -123,7 +132,15 @@ export default {
       table: {
         type: {summary: 'Set a line height and default will be 19'},
       },
-    }
+    },
+    clickableText: {
+      control: {type: 'text'},
+      table: {
+        type: {
+          summary: 'Set clickable text to show the clickable text element.',
+        },
+      },
+    },
   },
 };
 
@@ -156,21 +173,26 @@ const options = [
   },
   {
     id: 7,
-    label: 'orem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.'
-  }
+    label:
+      'orem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.',
+  },
+  {
+    id: 8,
+    label:
+      'maximumcharacterstestingtestingtestingtestingtestingtestinghiuiyiuyiuyiuyiuyiuyiyyiuyiuyiuyiuyiyiuyy.',
+  },
 ];
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     const selected = ref(null);
     return {args, selected};
   },
   render() {
-    return h(
-      InfoBox, {
+    return h(InfoBox, {
       ...this.args,
       modelValue: this.selected,
-      'onUpdate:modelValue': value => {
+      'onUpdate:modelValue': (value) => {
         if (value.id > -1) {
           this.selected = value;
         } else {
@@ -181,14 +203,13 @@ const Template = args => ({
   },
 });
 
-const TemplateString = args => ({
+const TemplateString = (args) => ({
   setup() {
     const selected = ref(null);
     return {args, selected};
   },
   render() {
-    return h(
-      InfoBox, {
+    return h(InfoBox, {
       ...this.args,
       modelValue: '2022/02/03',
     });
@@ -231,7 +252,7 @@ const sample = {
               infoLabel: 'Current Stage of Recruitment',
               options,
               numOfTitleRows: 1,
-            }
+            },
           },
           {
             name: 'currentstagedisabled',
@@ -242,7 +263,7 @@ const sample = {
               infoLabel: 'Current Stage of Recruitment',
               options,
               numOfTitleRows: 1,
-            }
+            },
           },
           {
             name: 'currentstagereadonly',
@@ -253,7 +274,7 @@ const sample = {
               infoLabel: 'Current Stage of Recruitment',
               options,
               numOfTitleRows: 1,
-            }
+            },
           },
           {
             name: 'currentstagepreselectedwithlongcaption',
@@ -264,7 +285,7 @@ const sample = {
               options,
               numOfTitleRows: 1,
             },
-            value: options[6]
+            value: options[6],
           },
           {
             name: 'dateOfApplication',
@@ -274,7 +295,20 @@ const sample = {
               infoLabel: 'Date of Application',
               numOfTitleRows: 1,
             },
-            value: '2022-05-03'
+            value: '2022-05-03',
+          },
+          {
+            name: 'clickableText',
+            label: 'Clckable Text',
+            type: 'infobox',
+            props: {
+              infoLabel: 'Clickable',
+              options,
+              numOfTitleRows: 1,
+              numOfValueRows: 2,
+              clickableText: 'Add As an Employee',
+            },
+            value: options[4],
           },
         ],
       },
@@ -358,14 +392,13 @@ Error.args = {
   hasError: true,
 };
 
-const TemplateWithoutInitialValue = args => ({
+const TemplateWithoutInitialValue = (args) => ({
   setup() {
     const selected = ref(null);
     return {args, selected};
   },
   render() {
-    return h(
-      InfoBox, {
+    return h(InfoBox, {
       ...this.args,
     });
   },
@@ -379,6 +412,33 @@ WithoutInitialValue.args = {
 };
 
 export const Events = () => InfoBoxEvents;
+
+const detailedOptions = [
+  {
+    id: 1,
+    label: 'Entitlements',
+    subHeader: '4 Days (2 available)',
+    description: 'Valid from 2020-10-10 to 2021-10-10',
+  },
+  {
+    id: 2,
+    label: 'Entitlements',
+    subHeader: '14 Days (12 available)',
+    description: 'Valid from 2021-07-10 to 2021-10-10',
+  },
+  {
+    id: 3,
+    label: 'Entitlements',
+    subHeader: '15 Days (21 available)',
+    description: 'Valid from 2023-07-10 to 2023-10-10',
+  },
+];
+
+export const Detailed = () => InfoBoxDetails;
+
+Detailed.args = {
+  options: detailedOptions,
+};
 
 Default.parameters = {
   docs: {
@@ -411,6 +471,49 @@ Default.parameters = {
         :titleLineHeight="44"
         :subtitleLineHeight="38"
       />`,
+    },
+  },
+};
+
+Detailed.parameters = {
+  docs: {
+    source: {
+      code: `
+      <oxd-infobox
+    :options="entitlementsOptions"
+    @update:modelValue="updateInfoBoxModelValue"
+    :modelValue="infoBoxModelValue"
+  >
+    <template #default>
+      <div class="label-tile-content">
+        <div class="oxd-info-drop-down-content">
+          <span class="oxd-info-drop-down-main-label">
+            {{ infoBoxModelValue.label }}
+          </span>
+          {{ infoBoxModelValue.subHeader }}
+        </div>
+        <div class="oxd-info-drop-down-description">
+          {{ infoBoxModelValue.description }}
+        </div>
+      </div>
+    </template>
+    <template #option="slotProps">
+      <div class="label-tile-content">
+        <div
+          class="oxd-info-drop-down-content oxd-info-drop-down-content-option-item"
+        >
+          <span class="oxd-info-drop-down-main-label">{{
+            slotProps.data.label
+          }}</span
+          >{{ slotProps.data.subHeader }}
+        </div>
+        <div class="oxd-info-drop-down-description">
+          {{ slotProps.data.description }}
+        </div>
+      </div>
+    </template>
+  </oxd-infobox>
+      `,
     },
   },
 };

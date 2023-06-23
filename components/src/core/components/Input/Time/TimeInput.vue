@@ -1,35 +1,66 @@
 <template>
-  <div v-click-outside="onFocusOut" class="oxd-time-wrapper">
+  <div class="oxd-time-wrapper">
     <div class="oxd-time-input">
       <oxd-input
         ref="oxdInput"
         :hasError="hasError"
         :disabled="disabled"
         :readonly="readonly"
-        :value="timeDisplay"
+        :value="time"
         :placeholder="placeholder"
-        @change="onTimeInput"
-        @click="toggleDropdown"
+        @update:modelValue="onTimeChange"
+        @blur="onBlur"
+        tabindex="0"
+        maxlength="5"
       />
-      <oxd-icon :class="timeIconClasses" name="clock" @click="toggleDropdown" />
+      <div class="oxd-time-input-am-pm-wrapper" :class="amPmWrapperClasses">
+        <label :class="amPmLabelClasses"
+          >{{ am ? $vt('AM') : $vt('PM') }}
+          <input
+            class="oxd-time-input-am-pm-checkbox"
+            type="checkbox"
+            @update:modelValue="onAmPmChange"
+            @focus="onAmPmLabelFocus"
+            @blur="onAmPmLabelBlur"
+            @keydown.enter.stop.prevent="toggleAmPm"
+            v-model="am"
+            :readonly="readonly"
+            :disabled="disabled"
+          />
+        </label>
+      </div>
+      <div
+        class="oxd-time-input-icon-wrapper"
+        tabindex="0"
+        :class="timeIconWrapperClasses"
+        v-if="!disabled"
+        @click="toggleDropdown"
+        @keyup.esc.prevent.stop="closeDropdown"
+        @keyup.enter.prevent.stop="toggleDropdown"
+      >
+        <oxd-icon :class="timeIconClasses" name="clock" />
+      </div>
     </div>
     <oxd-time-picker
       v-dropdown-direction
-      v-if="open"
-      v-model="timeInput"
+      v-if="timePickerOpen"
+      v-model="pickerInput"
       :step="step"
+      @update:modelValue="timePickerUpdate"
+      @timepicker:closed="closeDropdown"
     ></oxd-time-picker>
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent, reactive, toRefs} from 'vue';
+import {computed, defineComponent, reactive, ref, toRefs, watch} from 'vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
-import clickOutsideDirective from '../../../../directives/click-outside';
+import clickOutsideDirective from '@orangehrm/oxd/directives/click-outside';
 import TimePicker from '@orangehrm/oxd/core/components/Input/Time/TimePicker.vue';
-import {parseDate, formatDate} from '../../../../utils/date';
-import dropdownDirectionDirective from '../../../../directives/dropdown-direction';
+import {parseDate, formatDate} from '@orangehrm/oxd/utils/date';
+import dropdownDirectionDirective from '@orangehrm/oxd/directives/dropdown-direction';
+import translateMixin from '@orangehrm/oxd/mixins/translate';
 
 export default defineComponent({
   name: 'oxd-time-input',
@@ -44,6 +75,8 @@ export default defineComponent({
     'click-outside': clickOutsideDirective,
     'dropdown-direction': dropdownDirectionDirective,
   },
+
+  mixins: [translateMixin],
 
   emits: [
     'update:modelValue',
@@ -71,7 +104,7 @@ export default defineComponent({
     },
     placeholder: {
       type: String,
-      required: false,
+      default: 'HH:MM',
     },
     step: {
       type: Number,
@@ -79,59 +112,166 @@ export default defineComponent({
     },
   },
 
-  setup(props) {
-    const state = reactive({
-      open: false,
-      timeInput: props.modelValue,
+  setup(props, context) {
+    const timePickerOpen = ref<boolean>(false);
+    const amPmLabelFocus = ref<boolean>(false);
+    let inputTime = '';
+
+    interface TimeInputState {
+      time: string;
+      am: boolean;
+      pickerInput: string | null;
+    }
+
+    const state = reactive<TimeInputState>({
+      time: '',
+      am: true,
+      pickerInput: props.modelValue,
     });
+
+    const openDropdown = () => {
+      timePickerOpen.value = true;
+      context.emit('timeselect:opened');
+    };
+
+    const closeDropdown = () => {
+      timePickerOpen.value = false;
+      context.emit('timeselect:closed');
+    };
+
+    const toggleDropdown = () => {
+      if (!props.disabled) {
+        if (!timePickerOpen.value) {
+          openDropdown();
+        } else {
+          closeDropdown();
+        }
+      }
+    };
+
+    const onAmPmChange = (value: boolean) => {
+      state.am = value;
+    };
+
+    const toggleAmPm = () => {
+      state.am = !state.am;
+    };
+
+    const onTimeChange = (value: string) => {
+      inputTime = value;
+    };
+
+    const onBlur = (e: Event) => {
+      state.time = inputTime;
+      e.stopImmediatePropagation();
+      context.emit('blur');
+    };
+
+    const timePickerUpdate = () => {
+      context.emit('update:modelValue', state.pickerInput);
+    };
+
+    watch(
+      () => props.modelValue,
+      () => {
+        if (props.modelValue) {
+          const time = parseDate(props.modelValue, 'HH:mm');
+          if (time) {
+            const formattedTime = formatDate(time, 'hh:mm');
+            if (formattedTime) {
+              state.time = formattedTime;
+              inputTime = formattedTime;
+              state.am = time.getHours() < 12;
+            }
+          }
+        }
+      },
+      {
+        immediate: true,
+      },
+    );
+
+    watch(
+      () => [state.time, state.am],
+      () => {
+        const validTime = /^(0?[1-9]|1[0-2]):[0-5][0-9]$/.test(state.time);
+        let newModelValue: string | null =
+          state.time + ' ' + (state.am ? 'AM' : 'PM');
+
+        if (validTime) {
+          const parsedTime = parseDate(newModelValue, 'hh:mm a');
+          if (parsedTime) {
+            newModelValue = formatDate(parsedTime, 'HH:mm');
+            state.pickerInput = newModelValue;
+          }
+        } else if (state.time === '') {
+          newModelValue = '';
+        }
+
+        if (newModelValue !== props.modelValue) {
+          context.emit('update:modelValue', newModelValue);
+        }
+      },
+      {
+        immediate: true,
+      },
+    );
+
+    const timeIconClasses = computed(() => {
+      return {
+        'justify-center': true,
+        'oxd-time-input-icon': true,
+        'oxd-time-input--clock': true,
+        '--disabled': props.disabled,
+        '--readonly': props.readonly,
+      };
+    });
+
+    const timeIconWrapperClasses = computed(() => {
+      return {
+        '--disabled': props.disabled,
+        '--readonly': props.readonly,
+      };
+    });
+
+    const amPmWrapperClasses = computed(() => {
+      return {
+        '--disabled': props.disabled,
+      };
+    });
+
+    const amPmLabelClasses = computed(() => {
+      return {
+        'oxd-time-input-am-pm-label': true,
+        '--focus': amPmLabelFocus.value,
+      };
+    });
+
+    const onAmPmLabelFocus = () => {
+      amPmLabelFocus.value = true;
+    };
+
+    const onAmPmLabelBlur = () => {
+      amPmLabelFocus.value = false;
+    };
 
     return {
       ...toRefs(state),
+      timePickerOpen,
+      toggleDropdown,
+      timeIconClasses,
+      timeIconWrapperClasses,
+      amPmLabelClasses,
+      onTimeChange,
+      onBlur,
+      onAmPmChange,
+      toggleAmPm,
+      timePickerUpdate,
+      closeDropdown,
+      onAmPmLabelFocus,
+      onAmPmLabelBlur,
+      amPmWrapperClasses,
     };
-  },
-
-  methods: {
-    onFocusOut() {
-      if (this.open) {
-        this.$emit('update:modelValue', this.timeInput);
-        this.closeDropdown();
-      }
-    },
-    onTimeInput($event: Event) {
-      const input = ($event.target as HTMLInputElement).value;
-      this.timeInput = formatDate(parseDate(input, 'hh:mm a'), 'HH:mm');
-    },
-    toggleDropdown() {
-      if (!this.disabled) {
-        if (!this.open) {
-          this.$refs.oxdInput.$el.focus();
-          this.openDropdown();
-        } else {
-          this.closeDropdown();
-        }
-      }
-    },
-    openDropdown() {
-      this.open = true;
-      this.$emit('timeselect:opened');
-    },
-    closeDropdown() {
-      this.open = false;
-      this.$emit('timeselect:closed');
-    },
-  },
-
-  computed: {
-    timeIconClasses(): object {
-      return {
-        'oxd-time-input--clock': true,
-        '--disabled': this.disabled,
-        '--readonly': this.readonly,
-      };
-    },
-    timeDisplay(): string {
-      return formatDate(parseDate(this.modelValue, 'HH:mm'), 'hh:mm a');
-    },
   },
 });
 </script>

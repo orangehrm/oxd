@@ -1,4 +1,4 @@
-import { hexToRgb } from "../colorConverter";
+import {hexToRgb} from '../colorConverter';
 
 describe('core/util/colorConverter::hexToRgb', () => {
   test('Hex value without alpha channel::valid format', () => {

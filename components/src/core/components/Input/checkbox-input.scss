@@ -2,6 +2,10 @@
 @import 'variables';
 
 .oxd-checkbox-wrapper {
+  .oxd-checkbox-option-label {
+    overflow-wrap: break-word;
+    word-break: break-all;
+  }
   & label {
     cursor: pointer;
     display: flex;
@@ -12,6 +16,7 @@
     font-weight: $oxd-input-control-font-weight;
     width: fit-content;
     margin: 0;
+    display: -webkit-box;
 
     &:after {
       content: '';
@@ -47,6 +52,7 @@
 
       &:checked:disabled + .oxd-checkbox-input {
         background-color: $oxd-checkbox-disabled-background-color;
+        border: $oxd-checkbox-label-color;
         .oxd-checkbox-input-icon {
           opacity: 1;
         }

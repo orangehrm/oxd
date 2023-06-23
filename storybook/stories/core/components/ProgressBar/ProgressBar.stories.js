@@ -18,4 +18,9 @@ Default.args = {
   title: 'Exporting Candidate List to CSV',
   show: true,
 };
-
+export const CustomValue = Template.bind({});
+CustomValue.args = {
+  title: 'Exporting Candidate List to CSV',
+  show: true,
+  progressValue: 90,
+};

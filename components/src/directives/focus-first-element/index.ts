@@ -1,4 +1,4 @@
-import {Directive} from 'vue';
+import {Directive, VNode} from 'vue';
 
 export interface FocusFirstHTMLElement extends HTMLElement {
   activeElement?: Element | null;
@@ -6,32 +6,62 @@ export interface FocusFirstHTMLElement extends HTMLElement {
 
 const focusableElements = 'input, select, textarea, [tabindex], [href]';
 const excludeElements =
-  'button:not(.oxd-dialog-close-button,.modal-reset-button)';
-let firstFocusableElement: Element;
+  'button:not(.oxd-dialog-close-button,.modal-reset-button,[disabled])';
+const firstFocusedElementsOnMounted = new Map<string | null, Element>();
+const firstFocusedElementsOnUpdated = new Map<string | null, Element>();
+let previosFocusedElement: Element | null;
 
-const focusOnFirstElement = (element: Element, matchingString: string) => {
-  firstFocusableElement = element.querySelectorAll(matchingString)[0];
-  if (firstFocusableElement) {
-    (firstFocusableElement as HTMLElement).focus();
+const focusOnFirstElement = (
+  element: Element,
+  matchingString: string,
+  vnode: VNode,
+) => {
+  const firstFocusedElement = element.querySelectorAll(matchingString)[0];
+  firstFocusedElementsOnMounted.set(vnode.scopeId, firstFocusedElement);
+  if (firstFocusedElement) {
+    (firstFocusedElement as HTMLElement).focus();
   }
 };
 
 const focusonFirstElementDirective: Directive = {
-  updated(el: FocusFirstHTMLElement) {
-    el.activeElement = document.activeElement;
-    if (!firstFocusableElement) {
-      focusOnFirstElement(el, focusableElements + ', ' + excludeElements);
-    }
-  },
-  mounted(el: FocusFirstHTMLElement) {
-    el.activeElement = document.activeElement;
-    focusOnFirstElement(el, focusableElements + ', ' + excludeElements);
-  },
-  beforeUnmount(el: FocusFirstHTMLElement, binding) {
+  // eslint-disable-next-line
+  beforeMount(el, binding, vnode, prevVnode) {
     const {arg} = binding;
     if (arg === 'return-focus') {
-      if (el.activeElement && (el.activeElement as HTMLElement).offsetParent) {
-        (el.activeElement as HTMLElement).focus();
+      previosFocusedElement = document.activeElement;
+      if (!previosFocusedElement || previosFocusedElement == document.body) {
+        previosFocusedElement = null;
+      }
+    }
+  },
+  updated(el: FocusFirstHTMLElement, binding, vnode: VNode) {
+    const updatedFocusFirstElement = el.querySelectorAll(
+      focusableElements + ', ' + excludeElements,
+    )[0];
+    firstFocusedElementsOnUpdated.set(vnode.scopeId, updatedFocusFirstElement);
+    if (
+      firstFocusedElementsOnMounted.get(vnode.scopeId) !==
+      firstFocusedElementsOnUpdated.get(vnode.scopeId)
+    ) {
+      focusOnFirstElement(
+        el,
+        focusableElements + ', ' + excludeElements,
+        vnode,
+      );
+    }
+  },
+  mounted(el: FocusFirstHTMLElement, binding, vnode: VNode) {
+    el.activeElement = document.activeElement;
+    focusOnFirstElement(el, focusableElements + ', ' + excludeElements, vnode);
+  },
+  beforeUnmount(el: FocusFirstHTMLElement, binding, vnode: VNode) {
+    const {arg} = binding;
+    if (arg === 'return-focus') {
+      if (
+        (previosFocusedElement as HTMLElement) &&
+        (previosFocusedElement as HTMLElement).offsetParent !== null
+      ) {
+        (previosFocusedElement as HTMLElement).focus();
       } else {
         let rightPanel = binding.instance?.$root?.$el.parentNode;
         if (!rightPanel) {
@@ -41,6 +71,7 @@ const focusonFirstElementDirective: Directive = {
           focusOnFirstElement(
             rightPanel,
             focusableElements + ', ' + excludeElements,
+            vnode,
           );
         }
       }

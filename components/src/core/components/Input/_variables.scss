@@ -19,6 +19,9 @@ $oxd-file-button-color--disabled: $oxd-interface-gray-lighten-1-color !default;
 $oxd-file-button-background-color--disabled: #d9d9d9 !default;
 $oxd-file-button-height: 35px !default;
 $oxd-file-button-width: 35px !default;
+$oxd-file-upload-box-border: #cfd3de !default;
+$oxd-file-upload-box-background: #f1f2f5 !default;
+$oxd-file-upload-box-color: #64728c !default;
 
 $oxd-checkbox-label-color: $oxd-input-control-font-color !default;
 $oxd-checkbox-label-color--disabled: $oxd-interface-gray-color !default;
@@ -77,6 +80,7 @@ $oxd-dropdown-dropdown-margin: 5px !default;
 $oxd-dropdown-dropdown-color: $oxd-interface-gray-darken-1-color !default;
 $oxd-dropdown-dropdown-slot-color: $oxd-interface-gray-color !default;
 $oxd-dropdown-dropdown-max-height: 210px !default;
+$oxd-tree-select-dropdown-dropdown-max-height: 310px;
 $oxd-dropdown-dropdown-with-empty-selector-max-height: 248px !default;
 
 $oxd-dropdown-option-font-size: $oxd-input-control-font-size !default;
@@ -110,8 +114,19 @@ $oxd-dropdown-arrow-width: 35px !default;
 $oxd-dropdown-arrow-height: 35px !default;
 $oxd-dropdown-arrow-border-radius: 0.65rem !default;
 
+$oxd-time-picker-input-ampm-font-family: $oxd-font-family !default;
+$oxd-time-picker-input-ampm-font-size: 12px !default;
+$oxd-time-picker-input-ampm-font-color: $oxd-interface-gray-darken-1-color !default;
+$oxd-time-picker-input-ampm-font-weight: 400 !default;
+$oxd-time-picker-input-ampm-background-color: $oxd-background-light-gray-color !default;
+$oxd-time-picker-input-ampm-border-radius: 0.4rem !default;
+$oxd-time-picker-input-ampm-padding: 0.25rem 0.5rem !default;
+$oxd-time-picker-input-ampm-left-position: auto !default;
+$oxd-time-picker-input-ampm-right-position: 2.6rem !default;
+
 $oxd-time-picker-period-label-width: 60px !default;
-$oxd-time-picker-period-label-padding: 0.25rem 0rem !default;
+$oxd-time-picker-period-label-padding: 0 !default;
+$oxd-time-picker-period-label-margin-between: 8px !default;
 $oxd-time-picker-period-horizontal-padding: 16px !default;
 $oxd-time-picker-period-vertical-padding: 8px !default;
 $oxd-time-picker-period-font-size: 14px !default;
@@ -134,7 +149,7 @@ $oxd-date-input-link-padding: 5px 10px !default;
 $oxd-date-input-link-border-radius: 0.75rem !default;
 $oxd-date-input-link-font-family: $oxd-input-control-font-family !default;
 $oxd-date-input-link-font-color: $oxd-input-control-font-color !default;
-$oxd-date-input-link-font-weight: 500 !default;
+$oxd-date-input-link-font-weight: 600 !default;
 $oxd-date-input-link-font-weight-hover: 600 !default;
 $oxd-date-input-link-font-size: 14px !default;
 $oxd-date-input-link-highlight-color: $oxd-primary-input-color !default;
@@ -143,3 +158,40 @@ $oxd-date-input-link-background: $oxd-background-light-gray-color !default;
 $oxd-autocomplete-dropdown-option-padding: 0.3rem 0.75rem !default;
 
 $oxd-select-input-button-color--secondary-pressed: #68a61d !default;
+
+$oxd-radio-pill-font-family: $oxd-font-family !default;
+$oxd-radio-pill-font-size: 12px !default;
+$oxd-radio-pill-font-color: $oxd-interface-gray-color !default;
+$oxd-radio-pill-font-weight: 400 !default;
+$oxd-radio-pill-background-color: $oxd-white-color !default;
+$oxd-radio-pill-border: $oxd-input-border--active !default;
+$oxd-radio-pill-border-radius: $oxd-input-control-border-radius !default;
+$oxd-radio-pill-padding: $oxd-input-control-vertical-padding
+  $oxd-input-control-horizontal-padding !default;
+
+$oxd-radio-pill-font-color--checked: $oxd-primary-one-color !default;
+$oxd-radio-pill-background-color--checked: $oxd-primary-input-color-alpha-05 !default;
+$oxd-radio-pill-border--checked: 1px solid $oxd-primary-input-color !default;
+$oxd-radio-pill-box-shadow--checked: $oxd-input-box-shadow--focus !default;
+
+$oxd-radio-pill-background-color--checked--hover: $oxd-primary-input-color-alpha-10 !default;
+$oxd-radio-pill-font-color--checked--disabled: $oxd-primary-input-color-lighten-10 !default;
+$oxd-radio-pill-border--checked--disabled: 1px solid
+  $oxd-primary-input-color-lighten-10 !default;
+
+$oxd-radio-pill-font-color--hover: $oxd-interface-gray-darken-1-color !default;
+$oxd-radio-pill-background-color--hover: $oxd-white-color !default;
+$oxd-radio-pill-border--hover: 1px solid $oxd-interface-gray-darken-1-color !default;
+$oxd-radio-pill-box-shadow--hover: none !default;
+
+$oxd-radio-pill-font-color--disabled: $oxd-interface-gray-lighten-1-color !default;
+$oxd-radio-pill-background-color--disabled: $oxd-white-color !default;
+$oxd-radio-pill-border--disabled: 1px solid $oxd-interface-gray-lighten-1-color !default;
+$oxd-radio-pill-box-shadow--disabled: none !default;
+
+$oxd-radio-pill-font-color--readonly: $oxd-interface-gray-lighten-1-color !default;
+$oxd-radio-pill-background-color--readonly: $oxd-white-color !default;
+$oxd-radio-pill-border--readonly: 1px solid $oxd-interface-gray-lighten-1-color !default;
+$oxd-radio-pill-box-shadow--readonly: none !default;
+
+$oxd-radio-pill-group-gap: 0.25rem !default;

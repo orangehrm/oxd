@@ -5,17 +5,22 @@
       :key="`${index}-selected-${option.id}`"
       :label="option.label"
       class="oxd-autocomplete-chips-selected align-center"
+      :class="{'pre-selected': option.preSelected}"
     >
-      <oxd-icon
-        name="x"
-        data-test="removeIcon"
-        @click="onClick(option)"
-        :class="{
-          '--clear': true,
-          '--disabled': disabled,
-          '--readonly': readonly,
-        }"
-      />
+      <template v-slot>
+        <slot name="chips" :data="option"></slot>
+        <oxd-icon
+          name="x"
+          @click="onClick(option)"
+          data-test="removeIcon"
+          :class="{
+            'oxd-autocomplete-chip-remover': true,
+            '--clear': true,
+            '--disabled': disabled,
+            '--readonly': readonly,
+          }"
+        />
+      </template>
     </oxd-chip>
   </div>
 </template>
@@ -41,6 +46,10 @@ export default defineComponent({
     selected: {
       type: Array,
       default: () => [],
+    },
+    preSelected: {
+      type: Boolean,
+      default: false,
     },
   },
 

@@ -1,7 +1,11 @@
 <template>
   <div :class="outerClasses" class="input-outer-wrapper">
     <div v-if="imageIcon" class="input-text-field-icon">
-       <img :src="imageIcon"  :class="{ 'click-disabled' : !isIconClickable }" @click="imageIconClick()"/>
+      <img
+        :src="imageIcon"
+        :class="{'click-disabled': !isIconClickable}"
+        @click="imageIconClick()"
+      />
     </div>
     <oxd-divider
       v-if="imageIcon"
@@ -15,6 +19,8 @@
       @focus="onFocus"
       @blur="onBlur"
       @input="onInput"
+      @keyup.page-down="onPageDown"
+      @keyup.page-up="onPageUp"
       v-bind="$attrs"
     />
   </div>
@@ -50,12 +56,12 @@ export default defineComponent({
     },
     isIconClickable: {
       type: Boolean,
-      default: false
+      default: false,
     },
     imageIconClick: {
       type: Function,
-      required: false
-    }
+      required: false,
+    },
   },
 
   data(): State {
@@ -97,6 +103,16 @@ export default defineComponent({
       e.preventDefault();
       this.$emit('update:modelValue', (e.target as HTMLInputElement).value);
       this.$emit('input', e);
+    },
+    onPageDown(e: KeyboardEvent) {
+      (e.target as HTMLInputElement).setSelectionRange(
+        (e.target as HTMLInputElement).value.length - 1,
+        (e.target as HTMLInputElement).value.length,
+      );
+    },
+
+    onPageUp(e: KeyboardEvent) {
+      (e.target as HTMLInputElement).setSelectionRange(0, 0);
     },
   },
 });

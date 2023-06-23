@@ -5,7 +5,7 @@
       class="oxd-table-left-panel"
       :class="{'with-filters': true}"
       width="230px"
-      :side-panel-list="stages"
+      :side-panel-list="sidePanelList"
       :header-visible="headerVisible"
       :body-visible="bodyVisible"
       :list-visible="listVisible"
@@ -34,44 +34,44 @@ import TableSidebar from '@orangehrm/oxd/core/components/TableSidebar/TableSideb
 import {defineComponent, ref, computed} from 'vue';
 export default defineComponent({
   components: {
-    'oxd-table-sidebar': TableSidebar
+    'oxd-table-sidebar': TableSidebar,
   },
   props: {
     headerVisible: {
       type: Boolean,
-      default: true
+      default: true,
     },
     bodyVisible: {
       type: Boolean,
-      default: true
+      default: true,
     },
     listVisible: {
       type: Boolean,
-      default: true
+      default: true,
     },
-    stages: {
+    sidePanelList: {
       type: Array,
-      default:  []
+      default: [],
     },
     buttonInfo: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
   setup() {
-    const isLeftPanelOpen = ref<boolean>(false)
+    const isLeftPanelOpen = ref<boolean>(false);
 
-    const sidePanelListOnSelect = item => {
-      alert(`stage selected ${item}`)
+    const sidePanelListOnSelect = (item) => {
+      alert(`stage selected ${item}`);
     };
 
     const toggleSidePanel = () => {
-      isLeftPanelOpen.value = !isLeftPanelOpen.value
-      alert('toggled')
-    }
+      isLeftPanelOpen.value = !isLeftPanelOpen.value;
+      alert('toggled');
+    };
 
     const sidePanelListOnHeaderBtnClick = () => {
-      alert('header button clicked')
+      alert('header button clicked');
     };
 
     return {
@@ -79,10 +79,9 @@ export default defineComponent({
       sidePanelListOnSelect,
       toggleSidePanel,
       sidePanelListOnHeaderBtnClick,
-    }
-  }
-})
+    };
+  },
+});
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

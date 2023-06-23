@@ -1,0 +1,37 @@
+@import '../../../styles';
+@import 'variables';
+@import './../Button/variables';
+
+.oxd-comment-box {
+  position: relative;
+  &-add-button {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    color: $oxd-secondary-four-color;
+    background-color: rgba(104, 166, 29, 0.1);
+  }
+  &-add-button-large {
+    position: absolute;
+    min-width: 90px;
+    bottom: 0.5rem;
+    right: 0.5rem;
+  }
+  .oxd-input-group {
+    &__label-icon {
+      color: #64728c;
+    }
+  }
+  &-textarea {
+    padding: 0.675rem 2.5rem 0.675rem 0.5rem;
+  }
+}
+
+:deep(.oxd-label) {
+  align-items: center;
+  line-height: 16px;
+}
+:deep(.oxd-svg-icon) {
+  width: 1rem;
+  height: 1rem;
+}

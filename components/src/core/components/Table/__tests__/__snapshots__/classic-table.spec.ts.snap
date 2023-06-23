@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ClassicTable.vue renders OXD ClassicTable 1`] = `
+<table class="oxd-table">
+  <colgroup>
+    <!--v-if-->
+    <col style="width: 17%;">
+    <col style="width: 20%;">
+    <col style="width: 60%;">
+  </colgroup>
+  <thead class="oxd-table-header">
+    <tr class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable">
+      <!--v-if-->
+      <th class="oxd-padding-cell oxd-table-th" style="width: 17%;">Column 1</th>
+      <th class="oxd-padding-cell oxd-table-th" style="width: 20%;">Column 2</th>
+      <th class="oxd-padding-cell oxd-table-th" style="width: 60%;">Column 3</th>
+    </tr>
+  </thead>
+  <tbody class="oxd-table-body">
+    <tr class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" tabindex="0">
+      <!--v-if-->
+      <td class="oxd-padding-cell" style="width: 17%;">
+        <div class="">Data 1</div>
+      </td>
+      <td class="oxd-padding-cell" style="width: 20%;">
+        <div style="border: 1px solid #d3d3d3; border-radius: 0.5rem; padding: 5px 10px;" class="">Hello!!</div>
+      </td>
+      <td class="oxd-padding-cell" style="width: 60%;">
+        <div class="">Data 1</div>
+      </td>
+    </tr>
+    <tr class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" tabindex="0">
+      <!--v-if-->
+      <td class="oxd-padding-cell" style="width: 17%;">
+        <div class="">Data 2</div>
+      </td>
+      <td class="oxd-padding-cell" style="width: 20%;">
+        <div style="border: 1px solid #d3d3d3; border-radius: 0.5rem; padding: 5px 10px;" class=""></div>
+      </td>
+      <td class="oxd-padding-cell" style="width: 60%;">
+        <div class="">Data 2</div>
+      </td>
+    </tr>
+    <tr class="oxd-table-row oxd-table-row--with-border oxd-table-row--clickable" tabindex="0">
+      <!--v-if-->
+      <td class="oxd-padding-cell" style="width: 17%;">
+        <div class="">Data 3</div>
+      </td>
+      <td class="oxd-padding-cell" style="width: 20%;">
+        <div style="border: 1px solid #d3d3d3; border-radius: 0.5rem; padding: 5px 10px;" class="">Bonjour!!</div>
+      </td>
+      <td class="oxd-padding-cell" style="width: 60%;">
+        <div tooltip="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." flow="bottom" class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the ...</div>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot class="oxd-table-footer"></tfoot>
+</table>
+`;

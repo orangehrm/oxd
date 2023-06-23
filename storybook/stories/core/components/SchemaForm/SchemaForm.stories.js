@@ -1,6 +1,9 @@
 import SchemaForm from '@orangehrm/oxd/core/components/SchemaForm/SchemaForm';
 import useSchemaForm from '../../../../../components/src/composables/useSchemaForm.ts';
-import {required} from '../../../../../components/src/validation/rules.ts';
+import {
+  required,
+  shouldNotExceedCharLength,
+} from '../../../../../components/src/validation/rules.ts';
 import {h} from 'vue';
 
 export default {
@@ -125,7 +128,77 @@ const crossValidationSample = {
             hook: (field, modelvalue) => {
               const model = modelvalue;
               const defaultValidtors = new Map();
-              if (model.vacancy?.id === 1) {
+              if (model?.vacancy?.id === 1) {
+                defaultValidtors.set('required', required);
+              }
+              field.validators = defaultValidtors;
+              return {
+                ...field,
+              };
+            },
+          },
+        ],
+      },
+    },
+    {
+      type: 'divider',
+    },
+    {
+      type: 'action',
+      style: {
+        'margin-top': '0.5rem',
+      },
+      children: {
+        default: [
+          {
+            name: 'submit',
+            label: 'Submit',
+            type: 'button',
+            props: {
+              type: 'submit',
+              displayType: 'secondary',
+            },
+          },
+        ],
+      },
+    },
+  ],
+};
+
+const crossValidationInitialCheckSample = {
+  name: 'crossValidationForm',
+  layout: [
+    {
+      type: 'grid',
+      props: {
+        cols: 2,
+      },
+      children: {
+        default: [
+          {
+            name: 'vacancy',
+            label: 'Vacancy',
+            type: 'select',
+            props: {
+              options: [
+                {id: 1, label: 'Vaccancy One'},
+                {id: 2, label: 'Vaccancy Two'},
+              ],
+            },
+            validators: new Map([['required', required]]),
+          },
+          {
+            name: 'firstName',
+            label: 'First Name',
+            type: 'input',
+            props: {
+              dirty: true,
+            },
+            // eslint-disable-next-line @typescript-eslint/ban-types
+            hook: (field, modelvalue) => {
+              const model = modelvalue;
+              const defaultValidtors = new Map();
+              if (model?.vacancy?.id === 1) {
                 defaultValidtors.set('required', required);
               }
               field.validators = defaultValidtors;
@@ -165,6 +238,13 @@ const crossValidationSample = {
 export const CrossValidation = CrossValidationTemplate.bind({});
 CrossValidation.args = {
   schema: {...crossValidationSample},
+  modelValue: [],
+};
+
+export const CrossInitialCheckValidation = CrossValidationTemplate.bind({});
+CrossInitialCheckValidation.args = {
+  schema: {...crossValidationInitialCheckSample},
+  modelValue: [],
 };
 
 export const PromiseBased = Template.bind({});
@@ -354,6 +434,58 @@ Advance.args = {
               label: 'Date of Application',
               type: 'date',
             },
+            {
+              name: 'certificate',
+              label: 'Certificates',
+              type: 'file',
+              props: {
+                buttonLabel: 'Browse',
+                downloadBoxClick: () => {
+                  const downloadLink = document.createElement('a');
+                  downloadLink.href =
+                    'data:application/pdf;base64,JVBERi0xLjcKCjEgMCBvYmogICUgZW50cnkgcG9pbnQKPDwKICAvVHlwZSAvQ2F0YWxvZwogIC9QYWdlcyAyIDAgUgo+PgplbmRvYmoKCjIgMCBvYmoKPDwKICAvVHlwZSAvUGFnZXMKICAvTWVkaWFCb3ggWyAwIDAgMjAwIDIwMCBdCiAgL0NvdW50IDEKICAvS2lkcyBbIDMgMCBSIF0KPj4KZW5kb2JqCgozIDAgb2JqCjw8CiAgL1R5cGUgL1BhZ2UKICAvUGFyZW50IDIgMCBSCiAgL1Jlc291cmNlcyA8PAogICAgL0ZvbnQgPDwKICAgICAgL0YxIDQgMCBSIAogICAgPj4KICA+PgogIC9Db250ZW50cyA1IDAgUgo+PgplbmRvYmoKCjQgMCBvYmoKPDwKICAvVHlwZSAvRm9udAogIC9TdWJ0eXBlIC9UeXBlMQogIC9CYXNlRm9udCAvVGltZXMtUm9tYW4KPj4KZW5kb2JqCgo1IDAgb2JqICAlIHBhZ2UgY29udGVudAo8PAogIC9MZW5ndGggNDQKPj4Kc3RyZWFtCkJUCjcwIDUwIFRECi9GMSAxMiBUZgooSGVsbG8sIHdvcmxkISkgVGoKRVQKZW5kc3RyZWFtCmVuZG9iagoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAwMDAwIG4gCjAwMDAwMDAwNzkgMDAwMDAgbiAKMDAwMDAwMDE3MyAwMDAwMCBuIAowMDAwMDAwMzAxIDAwMDAwIG4gCjAwMDAwMDAzODAgMDAwMDAgbiAKdHJhaWxlcgo8PAogIC9TaXplIDYKICAvUm9vdCAxIDAgUgo+PgpzdGFydHhyZWYKNDkyCiUlRU9G';
+                  downloadLink.download = 'sample.pdf';
+                  downloadLink.click();
+                },
+                inputFile: {
+                  name: 'sample.pdf',
+                  type: 'application/pdf',
+                  size: 101273,
+                  base64:
+                    'JVBERi0xLjcKCjEgMCBvYmogICUgZW50cnkgcG9pbnQKPDwKICAvVHlwZSAvQ2F0YWxvZwogIC9QYWdlcyAyIDAgUgo+PgplbmRvYmoKCjIgMCBvYmoKPDwKICAvVHlwZSAvUGFnZXMKICAvTWVkaWFCb3ggWyAwIDAgMjAwIDIwMCBdCiAgL0NvdW50IDEKICAvS2lkcyBbIDMgMCBSIF0KPj4KZW5kb2JqCgozIDAgb2JqCjw8CiAgL1R5cGUgL1BhZ2UKICAvUGFyZW50IDIgMCBSCiAgL1Jlc291cmNlcyA8PAogICAgL0ZvbnQgPDwKICAgICAgL0YxIDQgMCBSIAogICAgPj4KICA+PgogIC9Db250ZW50cyA1IDAgUgo+PgplbmRvYmoKCjQgMCBvYmoKPDwKICAvVHlwZSAvRm9udAogIC9TdWJ0eXBlIC9UeXBlMQogIC9CYXNlRm9udCAvVGltZXMtUm9tYW4KPj4KZW5kb2JqCgo1IDAgb2JqICAlIHBhZ2UgY29udGVudAo8PAogIC9MZW5ndGggNDQKPj4Kc3RyZWFtCkJUCjcwIDUwIFRECi9GMSAxMiBUZgooSGVsbG8sIHdvcmxkISkgVGoKRVQKZW5kc3RyZWFtCmVuZG9iagoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAwMDAwIG4gCjAwMDAwMDAwNzkgMDAwMDAgbiAKMDAwMDAwMDE3MyAwMDAwMCBuIAowMDAwMDAwMzAxIDAwMDAwIG4gCjAwMDAwMDAzODAgMDAwMDAgbiAKdHJhaWxlcgo8PAogIC9TaXplIDYKICAvUm9vdCAxIDAgUgo+PgpzdGFydHhyZWYKNDkyCiUlRU9G',
+                },
+              },
+              listeners: {
+                onSelectedOption: (option) => {
+                  console.log(option);
+                },
+              },
+            },
+          ],
+        },
+      },
+      {
+        type: 'grid',
+        props: {
+          cols: 1,
+        },
+        children: {
+          default: [
+            {
+              name: 'tinymce',
+              label: 'HTML Editor',
+              type: 'tinymce',
+              id: 'schema-form-tinymce',
+              class: ['--span-column-2'],
+              validators: new Map([
+                ['required', required],
+                ['shouldNotExceedCharLength', shouldNotExceedCharLength(100)],
+              ]),
+              props: {
+                hint: 'File Size Should Be Less Than 5MB',
+                hintPlacement: 'bottom',
+              },
+            },
           ],
         },
       },
@@ -520,6 +652,53 @@ Disabled.args = {
               name: 'comment',
               label: 'Comment',
               type: 'textarea',
+            },
+            {
+              name: 'certificate',
+              label: 'Certificates',
+              type: 'file',
+              props: {
+                buttonLabel: 'Browse',
+                downloadBoxClick: () => {
+                  const downloadLink = document.createElement('a');
+                  downloadLink.href =
+                    'data:application/pdf;base64,JVBERi0xLjcKCjEgMCBvYmogICUgZW50cnkgcG9pbnQKPDwKICAvVHlwZSAvQ2F0YWxvZwogIC9QYWdlcyAyIDAgUgo+PgplbmRvYmoKCjIgMCBvYmoKPDwKICAvVHlwZSAvUGFnZXMKICAvTWVkaWFCb3ggWyAwIDAgMjAwIDIwMCBdCiAgL0NvdW50IDEKICAvS2lkcyBbIDMgMCBSIF0KPj4KZW5kb2JqCgozIDAgb2JqCjw8CiAgL1R5cGUgL1BhZ2UKICAvUGFyZW50IDIgMCBSCiAgL1Jlc291cmNlcyA8PAogICAgL0ZvbnQgPDwKICAgICAgL0YxIDQgMCBSIAogICAgPj4KICA+PgogIC9Db250ZW50cyA1IDAgUgo+PgplbmRvYmoKCjQgMCBvYmoKPDwKICAvVHlwZSAvRm9udAogIC9TdWJ0eXBlIC9UeXBlMQogIC9CYXNlRm9udCAvVGltZXMtUm9tYW4KPj4KZW5kb2JqCgo1IDAgb2JqICAlIHBhZ2UgY29udGVudAo8PAogIC9MZW5ndGggNDQKPj4Kc3RyZWFtCkJUCjcwIDUwIFRECi9GMSAxMiBUZgooSGVsbG8sIHdvcmxkISkgVGoKRVQKZW5kc3RyZWFtCmVuZG9iagoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAwMDAwIG4gCjAwMDAwMDAwNzkgMDAwMDAgbiAKMDAwMDAwMDE3MyAwMDAwMCBuIAowMDAwMDAwMzAxIDAwMDAwIG4gCjAwMDAwMDAzODAgMDAwMDAgbiAKdHJhaWxlcgo8PAogIC9TaXplIDYKICAvUm9vdCAxIDAgUgo+PgpzdGFydHhyZWYKNDkyCiUlRU9G';
+                  downloadLink.download = 'sample.pdf';
+                  downloadLink.click();
+                },
+                inputFile: {
+                  name: 'sample.pdf',
+                  type: 'application/pdf',
+                  size: 101273,
+                  base64:
+                    'JVBERi0xLjcKCjEgMCBvYmogICUgZW50cnkgcG9pbnQKPDwKICAvVHlwZSAvQ2F0YWxvZwogIC9QYWdlcyAyIDAgUgo+PgplbmRvYmoKCjIgMCBvYmoKPDwKICAvVHlwZSAvUGFnZXMKICAvTWVkaWFCb3ggWyAwIDAgMjAwIDIwMCBdCiAgL0NvdW50IDEKICAvS2lkcyBbIDMgMCBSIF0KPj4KZW5kb2JqCgozIDAgb2JqCjw8CiAgL1R5cGUgL1BhZ2UKICAvUGFyZW50IDIgMCBSCiAgL1Jlc291cmNlcyA8PAogICAgL0ZvbnQgPDwKICAgICAgL0YxIDQgMCBSIAogICAgPj4KICA+PgogIC9Db250ZW50cyA1IDAgUgo+PgplbmRvYmoKCjQgMCBvYmoKPDwKICAvVHlwZSAvRm9udAogIC9TdWJ0eXBlIC9UeXBlMQogIC9CYXNlRm9udCAvVGltZXMtUm9tYW4KPj4KZW5kb2JqCgo1IDAgb2JqICAlIHBhZ2UgY29udGVudAo8PAogIC9MZW5ndGggNDQKPj4Kc3RyZWFtCkJUCjcwIDUwIFRECi9GMSAxMiBUZgooSGVsbG8sIHdvcmxkISkgVGoKRVQKZW5kc3RyZWFtCmVuZG9iagoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAwMDAwIG4gCjAwMDAwMDAwNzkgMDAwMDAgbiAKMDAwMDAwMDE3MyAwMDAwMCBuIAowMDAwMDAwMzAxIDAwMDAwIG4gCjAwMDAwMDAzODAgMDAwMDAgbiAKdHJhaWxlcgo8PAogIC9TaXplIDYKICAvUm9vdCAxIDAgUgo+PgpzdGFydHhyZWYKNDkyCiUlRU9G',
+                },
+              },
+              listeners: {
+                onSelectedOption: (option) => {
+                  console.log(option);
+                },
+              },
+            },
+          ],
+        },
+      },
+      {
+        type: 'grid',
+        props: {
+          cols: 1,
+        },
+        children: {
+          default: [
+            {
+              name: 'tinymce',
+              label: 'HTML Editor',
+              type: 'tinymce',
+              class: ['--span-column-2'],
+              validators: new Map([['required', required]]),
+              props: {
+                hint: 'File Size Should Be Less Than 5MB',
+              },
             },
           ],
         },

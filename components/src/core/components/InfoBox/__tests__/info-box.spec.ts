@@ -1,8 +1,8 @@
-import { mount, shallowMount } from '@vue/test-utils';
+import {mount, shallowMount} from '@vue/test-utils';
 import InfoBox from '@orangehrm/oxd/core/components/InfoBox/InfoBox.vue';
 import ButtonIcon from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
-import { BOTTOM } from '../../Input/types';
+import {BOTTOM} from '../../Input/types';
 
 const options = [
   {
@@ -33,8 +33,9 @@ const options = [
   },
   {
     id: 7,
-    label: 'orem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.'
-  }
+    label:
+      'orem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.',
+  },
 ];
 const infoLabel = 'Current Stage of Recruitment';
 const numOfTitleRows = 2;
@@ -42,17 +43,28 @@ const numOfValueRows = 3;
 const dropdownPosition = BOTTOM;
 
 describe('InfoBox.vue', () => {
-
   it('renders OXD Select Input', () => {
     const wrapper = mount(InfoBox, {
-      props: { infoLabel, numOfTitleRows, numOfValueRows, options, dropdownPosition },
+      props: {
+        infoLabel,
+        numOfTitleRows,
+        numOfValueRows,
+        options,
+        dropdownPosition,
+      },
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('should load options to Select', async () => {
     const wrapper = mount(InfoBox, {
-      props: { infoLabel, numOfTitleRows, numOfValueRows, options, dropdownPosition },
+      props: {
+        infoLabel,
+        numOfTitleRows,
+        numOfValueRows,
+        options,
+        dropdownPosition,
+      },
     });
     wrapper.findComponent(ButtonIcon).trigger('click');
     await wrapper.vm.$nextTick();
@@ -62,7 +74,13 @@ describe('InfoBox.vue', () => {
 
   it('should select one option', async () => {
     const wrapper = mount(InfoBox, {
-      props: { infoLabel, numOfTitleRows, numOfValueRows, options, dropdownPosition },
+      props: {
+        infoLabel,
+        numOfTitleRows,
+        numOfValueRows,
+        options,
+        dropdownPosition,
+      },
     });
     wrapper.findComponent(ButtonIcon).trigger('click');
     await wrapper.vm.$nextTick();
@@ -111,30 +129,44 @@ describe('InfoBox.vue', () => {
   });
 
   it('should select one option with color attribute and return converted rgba color', async () => {
-    const wrapper: any = mount(InfoBox, {
-      props: { infoLabel, numOfTitleRows, numOfValueRows, options, dropdownPosition },
+    const wrapper = mount(InfoBox, {
+      props: {
+        infoLabel,
+        numOfTitleRows,
+        numOfValueRows,
+        options,
+        dropdownPosition,
+      },
     });
     wrapper.setProps({
-      modelValue: options[4]
-    })
+      modelValue: options[4],
+    });
     await wrapper.vm.$nextTick();
-    expect(wrapper.vm.infoBoxContainerStyles).toStrictEqual({ 'background-color': 'rgba(104, 166, 29, 7%)' });
+    expect(wrapper.vm.infoBoxContainerStyles).toStrictEqual({
+      'background-color': 'rgba(104, 166, 29, 7%)',
+    });
   });
 
   it('should select one option with color attribute and return converted rgba color', async () => {
-    const wrapper: any = mount(InfoBox, {
-      props: { infoLabel, numOfTitleRows, numOfValueRows, options, dropdownPosition },
+    const wrapper = mount(InfoBox, {
+      props: {
+        infoLabel,
+        numOfTitleRows,
+        numOfValueRows,
+        options,
+        dropdownPosition,
+      },
     });
     wrapper.setProps({
-      modelValue: '2022-05-03'
-    })
+      modelValue: '2022-05-03',
+    });
     await wrapper.vm.$nextTick();
     expect(wrapper.vm.getLabel).toStrictEqual('2022-05-03');
   });
 
   it('should set empty array as default when didnot pass options', async () => {
-    const wrapper: any = shallowMount(InfoBox, {
-      props: { infoLabel, numOfTitleRows, numOfValueRows, dropdownPosition },
+    const wrapper = shallowMount(InfoBox, {
+      props: {infoLabel, numOfTitleRows, numOfValueRows, dropdownPosition},
     });
     wrapper.findComponent(ButtonIcon).trigger('click');
     await wrapper.vm.$nextTick();
@@ -162,10 +194,16 @@ describe('InfoBox.vue', () => {
 
   it('Selected option should marked as selected true', async () => {
     const wrapper = mount(InfoBox, {
-      props: { infoLabel, numOfTitleRows, numOfValueRows, options, dropdownPosition },
+      props: {
+        infoLabel,
+        numOfTitleRows,
+        numOfValueRows,
+        options,
+        dropdownPosition,
+      },
     });
     wrapper.setProps({
-      modelValue: options[1]
+      modelValue: options[1],
     });
     wrapper.findComponent(ButtonIcon).trigger('click');
     await wrapper.vm.$nextTick();
@@ -174,49 +212,74 @@ describe('InfoBox.vue', () => {
 
   it('on Focus it should NOT add a class "--focus" to the .oxd-select-fill-container when disabled', async () => {
     const wrapper = mount(InfoBox, {
-      props: { infoLabel, numOfTitleRows, numOfValueRows, options, dropdownPosition, disabled: true },
+      props: {
+        infoLabel,
+        numOfTitleRows,
+        numOfValueRows,
+        options,
+        dropdownPosition,
+        disabled: true,
+      },
     });
     const fillContainer = wrapper.find('.oxd-select-fill-container');
     fillContainer.trigger('focus');
     await wrapper.vm.$nextTick();
-    expect(fillContainer.find('.oxd-select-fill-container--focus').exists()).toBe(
-      false
-    );
+    expect(
+      fillContainer.find('.oxd-select-fill-container--focus').exists(),
+    ).toBe(false);
   });
 
   it('on Focus it should add a class "--readonly" to the .oxd-select-fill-container when readonly', async () => {
     const wrapper = mount(InfoBox, {
-      props: { infoLabel, numOfTitleRows, numOfValueRows, options, dropdownPosition, readonly: true },
+      props: {
+        infoLabel,
+        numOfTitleRows,
+        numOfValueRows,
+        options,
+        dropdownPosition,
+        readonly: true,
+      },
     });
     const fillContainer = wrapper.find('.oxd-select-fill-container');
     fillContainer.trigger('focus');
     await wrapper.vm.$nextTick();
-    expect(fillContainer.find('.oxd-select-fill-container--readonly').exists()).toBe(
-      true
-    );
+    expect(
+      fillContainer.find('.oxd-select-fill-container--readonly').exists(),
+    ).toBe(true);
   });
 
   it('on Focus it should add a class "--focus" to the .oxd-select-fill-container', async () => {
     const wrapper = mount(InfoBox, {
-      props: { infoLabel, numOfTitleRows, numOfValueRows, options, dropdownPosition },
+      props: {
+        infoLabel,
+        numOfTitleRows,
+        numOfValueRows,
+        options,
+        dropdownPosition,
+      },
     });
     const fillContainer = wrapper.find('.oxd-select-fill-container');
     fillContainer.trigger('focus');
     await wrapper.vm.$nextTick();
-    expect(fillContainer.find('.oxd-select-fill-container--focus').exists()).toBe(
-      true
-    );
+    expect(
+      fillContainer.find('.oxd-select-fill-container--focus').exists(),
+    ).toBe(true);
   });
 
   it('on Blur it should remove the class "--focus" from .oxd-select-fill-container', async () => {
     const wrapper = mount(InfoBox, {
-      props: { infoLabel, numOfTitleRows, numOfValueRows, options, dropdownPosition },
+      props: {
+        infoLabel,
+        numOfTitleRows,
+        numOfValueRows,
+        options,
+        dropdownPosition,
+      },
     });
     wrapper.vm.onBlur();
     await wrapper.vm.$nextTick();
     expect(wrapper.find('.oxd-select-fill-container--focus').exists()).toBe(
-      false
+      false,
     );
   });
-
 });

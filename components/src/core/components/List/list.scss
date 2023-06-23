@@ -1,11 +1,10 @@
 @import '../../../styles';
 
 .oxd-list-container {
-  min-width: 65rem;
   margin-top: 1.5rem;
   background-color: $oxd-white-color;
   border-radius: 1.2rem;
-  padding: 1rem;
+  padding: 1.5rem;
   box-sizing: border-box;
   .oxd-table-left-panel {
     border-right: 1px solid $oxd-interface-gray-lighten-4-color;
@@ -23,6 +22,9 @@
       }
       .table-header-action-btn {
         margin: 0 0 1rem 0;
+      }
+      .table-header-action-secondary-btn {
+        margin: 0rem 0 1rem 0.5rem;
       }
     }
     :deep(.oxd-table-left-panel--separator) {
@@ -42,7 +44,6 @@
     vertical-align: top;
     .list-table-filter {
       padding: 0 0 0 0;
-      margin: 0 0 0 1rem;
       border-radius: 0;
       :deep(.oxd-table-filter-header) {
         min-height: 2.5rem;
@@ -74,8 +75,8 @@
     }
   }
   .oxd-classic-table {
-    padding-right: 0;
-    padding-left: 0.625rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
     padding-top: 0;
     flex-wrap: nowrap;
     min-height: calc(75vh - 140px);
@@ -118,13 +119,19 @@
     }
   }
 }
+
+@media only screen and (max-width: 1280px) {
+  .oxd-list-container {
+    min-width: 65rem;
+  }
+}
 .margin-left {
   margin-left: 0.5rem;
 }
 .list-pagination {
   height: initial;
   line-height: initial;
-  padding: 25px 0 0 25px;
+  padding: 0.5rem 0 0 25px;
   box-shadow: none;
 }
 .oxd-button {
@@ -184,4 +191,8 @@
 .empty-msg {
   margin-top: 5rem;
   margin-bottom: 5rem;
+
+  .caption {
+    color: #818181;
+  }
 }

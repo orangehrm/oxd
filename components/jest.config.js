@@ -3,4 +3,8 @@ module.exports = {
   transform: {
     '^.+\\.vue$': 'vue-jest',
   },
+  testEnvironmentOptions: {resources: 'usable'},
+  moduleNameMapper: {
+    '^!!raw-loader!(.*)$': '$1',
+  },
 };

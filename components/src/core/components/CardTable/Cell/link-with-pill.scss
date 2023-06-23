@@ -8,6 +8,10 @@
     color: $oxd-interface-gray-darken-2-color;
     text-decoration: none;
   }
+
+  &--inline-pill {
+    margin-right: $oxd-table-cell-link-margin-right-with-inline-pill;
+  }
 }
 
 .oxd-table-cell-pill {
@@ -20,4 +24,8 @@
   padding-left: $oxd-table-cell-pill-padding-left;
   padding-right: $oxd-table-cell-pill-padding-right;
   border-radius: $oxd-table-cell-pill-border-radius;
+
+  &--inline {
+    display: inline-block;
+  }
 }

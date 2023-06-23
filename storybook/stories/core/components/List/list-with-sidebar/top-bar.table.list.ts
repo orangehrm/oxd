@@ -67,6 +67,7 @@ const topBar = {
   quickSearch: {
     visible: true,
     placeholder: "Search",
+    withImageSearch: true,
     clear: false,
     style: {
       width: "261px",

@@ -1,15 +1,20 @@
 <template>
   <oxd-dropdown-menu @click="noOp" class="oxd-table-dropdown">
-    <oxd-icon-button name="three-dots-vertical" />
+    <oxd-icon-button :name="iconName" :size="iconSize" :disabled="disabled" />
     <template v-slot:content>
       <li
-        v-for="option in options"
+        v-for="(option, i) in options"
         :key="option.context"
         @click.once="onClick($event, option.context)"
-        class="oxd-table-dropdown-item"
+        :class="optionClasses[i]"
       >
-        <oxd-icon v-if="option.icon" :name="option.icon" size="extra-small" />
-        <oxd-text tag="p">{{ option.label }}</oxd-text>
+        <div class="oxd-table-dropdown-item-left">
+          <oxd-icon v-if="option.icon" :name="option.icon" size="extra-small" />
+          <oxd-text tag="p">{{ option.label }}</oxd-text>
+        </div>
+        <div v-if="option.count" class="oxd-table-dropdown-item-right">
+          {{ option.count }}
+        </div>
       </li>
     </template>
   </oxd-dropdown-menu>
@@ -30,6 +35,17 @@ export default defineComponent({
       type: Array as PropType<DropdownOption[]>,
       default: () => [],
     },
+    iconName: {
+      type: String,
+      default: 'three-dots-vertical',
+    },
+    iconSize: {
+      type: String,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   components: {
     'oxd-icon-button': IconButton,
@@ -46,6 +62,17 @@ export default defineComponent({
       const event: ActionCellEvent = e;
       event.context = context;
       this.$emit('click', event);
+    },
+  },
+  computed: {
+    optionClasses(): object[] {
+      // eslint-disable-next-line
+      return this.options.map((option: any) => {
+        return {
+          'oxd-table-dropdown-item': true,
+          [option.class]: option.class,
+        };
+      });
     },
   },
 });

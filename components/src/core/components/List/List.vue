@@ -23,10 +23,14 @@
       :list-visible="config.table.leftPanel.list.visible"
       :bubble-visible="config.table.leftPanel.list.bubble.visible"
       :button="config.table.leftPanel.header.button"
+      :secondary-button="config.table.leftPanel.header.secondaryButton"
       :selected-list-item-id="selectedListItemId"
       @sidePanelList:onSelect="sidePanelListOnSelect"
       @side-panel:onToggle="toggleSidePanel"
       @sidePanelList:onHeaderBtnClick="sidePanelListOnHeaderBtnClick"
+      @sidePanelList:onHeaderSecondaryBtnClick="
+        sidePanelListOnHeaderSecondaryBtnClick
+      "
       :is-side-panel-open="state.isLeftPanelOpen"
     >
       <template v-slot:sidePanelBody>
@@ -36,6 +40,11 @@
         <slot name="footer"></slot>
       </template>
     </oxd-table-sidebar>
+    <div
+      v-if="config.table.leftPanel && config.table.leftPanel.visible"
+      class="oxd-table-left-panel-spacer"
+      style="margin-left: 10px;"
+    ></div>
     <div
       class="table-card-list-wrapper d-table-cell"
       :class="{'w-100': !state.isLeftPanelOpen}"
@@ -56,11 +65,11 @@
               :is="action.type"
               v-if="
                 state.selectedItemIndexes.length > 0 &&
-                (action.conditional
-                  ? action.visible === undefined
-                    ? true
-                    : action.visible
-                  : true)
+                  (action.conditional
+                    ? action.visible === undefined
+                      ? true
+                      : action.visible
+                    : true)
               "
               v-bind="action.props"
               v-on="eventBinder(action.events)"
@@ -74,7 +83,7 @@
             ref="quickSearch"
             v-if="
               config.table.topBar.quickSearch &&
-              config.table.topBar.quickSearch.visible
+                config.table.topBar.quickSearch.visible
             "
             :style="config.table.topBar.quickSearch.style"
             :placeholder="config.table.topBar.quickSearch.placeholder"
@@ -96,13 +105,22 @@
               ></oxd-icon-button>
             </template>
             <template v-slot:option="{data, text}">
-              <oxd-profile-pic size="extra-small" :imageSrc="data.avatar_url" />
-              <div class="margin-left">
+              <oxd-profile-pic
+                v-if="config.table.topBar.quickSearch.withImageSearch"
+                size="extra-small"
+                :imageSrc="data.avatar_url"
+              />
+              <div
+                v-if="config.table.topBar.quickSearch.withImageSearch"
+                class="margin-left"
+              >
                 <div v-html="text"></div>
               </div>
+              <div v-else v-html="text"></div>
             </template>
           </oxd-quick-search>
           <div class="d-flex align-center">
+            <slot name="tableFilterAdditionalSingleActions"></slot>
             <component
               v-for="(action, index) in config.table.topBar.singleActions"
               :key="index"
@@ -127,6 +145,7 @@
         <oxd-card-table
           :selector="state.selector"
           :headers="config.table.headers"
+          :hideHeaders="config.table.hideHeaders"
           :items="listItems"
           :highlight-rows="listHighlightRows"
           :selectable="config.table.selectable"
@@ -143,14 +162,17 @@
           v-if="filteredTotalRecordsCount === 0 && !isListLoading"
           class="empty-msg-container"
         >
-          <div class="empty-msg">
-            <oxd-icon class="empty-msg-pic" name="oxd-no-data" />
-            <div class="caption">{{ $vt('Sorry, No Data Found!') }}</div>
+          <div class="empty-msg d-flex flex-wrap justify-center">
+            <oxd-icon
+              class="empty-msg-pic justify-center w-100"
+              :name="emptyMsgValidated.icon"
+            />
+            <div class="caption">{{ $vt(emptyMsgValidated.message) }}</div>
           </div>
         </div>
         <oxd-pagination
           class="list-pagination d-flex align-center justify-end"
-          v-if="pagination"
+          v-if="pagination && isPaginated"
           :length="paginationLength"
           v-model:current="state.currentPage"
           :max="maxPages"
@@ -179,8 +201,9 @@ import Pagination from '@orangehrm/oxd/core/components/Pagination/Pagination.vue
 import images from '../ProfilePic/images';
 import useTranslate from './../../../composables/useTranslate';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
-import {defineComponent, reactive, computed, ref, watch} from 'vue';
+import {defineComponent, reactive, computed, ref, watch, PropType} from 'vue';
 import translateMixin from '../../../mixins/translate';
+import {EmptyMsg, EmptyMsgEnum} from './types';
 
 export default defineComponent({
   components: {
@@ -218,6 +241,10 @@ export default defineComponent({
     quickSearchOptions: {
       type: Function,
     },
+    quickSearchKeyWord: {
+      type: String,
+      default: null,
+    },
     pagination: {
       type: Object,
       default: () => ({
@@ -233,6 +260,10 @@ export default defineComponent({
         currentPage: 1 as number,
       }),
     },
+    isPaginated: {
+      type: Boolean,
+      default: true,
+    },
     selectedListItemId: {
       type: Number,
     },
@@ -246,6 +277,10 @@ export default defineComponent({
     },
     listHighlightRows: {
       type: Object,
+    },
+    emptyMsg: {
+      type: Object as PropType<EmptyMsg>,
+      default: () => EmptyMsgEnum,
     },
   },
   setup(props, {emit}) {
@@ -267,8 +302,25 @@ export default defineComponent({
 
     watch(
       () => props.pagination,
-      (newVal) => {
+      newVal => {
         state.currentPage = newVal.currentPage;
+      },
+      {
+        immediate: true,
+        deep: true,
+      },
+    );
+
+    watch(
+      () => props.quickSearchKeyWord,
+      newVal => {
+        if (props.quickSearchKeyWord) {
+          state.quickSearchTriggered = true;
+          state.selectedQuickSearch = {
+            label: newVal,
+          };
+          state.quickSearchTerm = newVal;
+        }
       },
       {
         immediate: true,
@@ -286,7 +338,7 @@ export default defineComponent({
 
     const order = computed(() => {
       const sortableFieldsObj = {};
-      config.value.table.headers.forEach((header) => {
+      config.value.table.headers.forEach(header => {
         if (header.initialSortOrder) {
           sortableFieldsObj[header.sortField] = {
             order: state.currentSortFields[header.sortField]
@@ -301,7 +353,7 @@ export default defineComponent({
       return sortableFieldsObj;
     });
 
-    const isFloat = (n) => {
+    const isFloat = n => {
       return n === +n && n !== (n | 0);
     };
 
@@ -325,11 +377,31 @@ export default defineComponent({
       `;
     });
 
+    const emptyMsgValidated = computed(
+      (): EmptyMsg => {
+        const initialObject: any = EmptyMsgEnum;
+        for (const key in props.emptyMsg) {
+          let value = props.emptyMsg['message'];
+          if (key === 'icon') {
+            value = props.emptyMsg['icon'];
+          }
+          if (value) {
+            initialObject[key] = value;
+          }
+        }
+        return initialObject;
+      },
+    );
+
     const sidePanelListOnHeaderBtnClick = () => {
       emit('sidePanelList:onHeaderBtnClick');
     };
 
-    const sidePanelListOnSelect = (item) => {
+    const sidePanelListOnHeaderSecondaryBtnClick = () => {
+      emit('sidePanelList:onHeaderSecondaryBtnClick');
+    };
+
+    const sidePanelListOnSelect = item => {
       state.currentPage = 1;
       emit('sidePanelList:onSelect', item);
     };
@@ -343,15 +415,15 @@ export default defineComponent({
       }
     };
 
-    const quickSearchSelect = (value) => {
+    const quickSearchSelect = value => {
       if (typeof value === 'string') return;
       if (value) {
         state.selectedQuickSearch = {
-          label: value.candidateName,
+          label: value.label,
         };
         emit('quick-search:onSelect', value);
         state.quickSearchTriggered = true;
-        state.quickSearchTerm = value.candidateName;
+        state.quickSearchTerm = value.label;
       } else {
         quickSearchOnClear();
       }
@@ -370,12 +442,12 @@ export default defineComponent({
       emit('quick-search:onSearch', state.quickSearchTerm);
     };
 
-    const tableSort = (value) => {
+    const tableSort = value => {
       state.currentSortFields = value;
       emit('update:order', value);
     };
 
-    const tableSelect = (items) => {
+    const tableSelect = items => {
       state.selectedItemIndexes = items;
       emit('update:selected', items);
     };
@@ -425,12 +497,12 @@ export default defineComponent({
       emit('topfilters:onExportBtnClick');
     };
 
-    const eventBinder = (events) => {
+    const eventBinder = events => {
       let mappedEvents, mappedEventsObj;
       if (events) {
-        mappedEvents = events.map((event) => {
+        mappedEvents = events.map(event => {
           return {
-            [event.type]: (vals) => {
+            [event.type]: vals => {
               emit(event.identifier, vals);
             },
           };
@@ -447,6 +519,7 @@ export default defineComponent({
       oxdCardTableStyleClasses,
       order,
       sidePanelListOnHeaderBtnClick,
+      sidePanelListOnHeaderSecondaryBtnClick,
       sidePanelListOnSelect,
       quickSearchSelect,
       quickSearchOnClear,
@@ -468,6 +541,7 @@ export default defineComponent({
       eventBinder,
       config,
       quickSearch,
+      emptyMsgValidated,
     };
   },
 });

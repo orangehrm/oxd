@@ -1,0 +1,161 @@
+@import '../../../styles';
+@import 'variables';
+@import './../Input/variables';
+
+@mixin oxd-comment-content-text {
+  color: $oxd-interface-gray-darken-2-color;
+  font-weight: $oxd-comment-content-font-weight;
+  font-family: $oxd-font-family;
+  font-size: $oxd-comment-content-font-size;
+  white-space: pre-wrap;
+}
+
+.oxd-comment {
+  &-wrapper {
+    @include oxd-input-control-size;
+    position: relative;
+    &:not(:last-child) {
+      margin-bottom: $oxd-comment-content-container-padding;
+    }
+  }
+  &-avatar-wrapper {
+    padding-right: 0.75rem;
+    :deep(.profile-image--medium) {
+      .img-tag {
+        width: 3rem;
+        height: 3rem;
+      }
+    }
+  }
+  &-content-wrapper {
+    width: 100%;
+    .oxd-comment-content {
+      &-container {
+        background-color: $oxd-white-color;
+        border-radius: 1rem;
+        padding: $oxd-comment-content-container-padding;
+        display: inline-block;
+        box-sizing: border-box;
+        &:hover {
+          .show-on-hover {
+            &-grid {
+              .oxd-comment-content-header-action {
+                display: flex;
+              }
+            }
+          }
+        }
+        .oxd-comment-content {
+          @include oxd-comment-content-text;
+          color: $oxd-interface-gray-darken-1-color;
+        }
+        .oxd-comment-content-edit-wrapper {
+          .oxd-comment-content-footer-container {
+            padding-left: 0;
+            .oxd-comment-content-footer-action-container {
+              margin-left: 0;
+            }
+          }
+        }
+        &.editable-mode {
+          width: 100%;
+        }
+      }
+      &-header-container {
+        align-items: flex-start;
+        .oxd-comment-content-header {
+          &-label {
+            &-container {
+              min-width: 175px;
+              .oxd-comment-content-author-name {
+                font-size: 13px;
+                font-weight: 800;
+                overflow-wrap: break-word;
+                word-break: break-word;
+                margin-right: $oxd-comment-content-container-padding;
+              }
+            }
+            &-hint {
+              font-size: 0.75rem;
+              font-family: $oxd-font-family;
+              font-weight: 400;
+              color: $oxd-interface-gray-color;
+              word-break: break-word;
+              display: block;
+              margin-right: $oxd-comment-content-container-padding-top;
+            }
+          }
+          &-actions-container {
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            min-width: 40px;
+            i {
+              color: #64728c !important;
+              &:not(:first-child) {
+                margin-left: 0.75rem;
+              }
+            }
+          }
+          &-action {
+            display: none;
+          }
+        }
+      }
+    }
+    .oxd-comment-content-footer-container {
+      @include oxd-comment-content-text;
+      color: $oxd-interface-gray-color;
+      padding: 0.25rem 0 0 1rem;
+      .oxd-comment-content-footer-action {
+        &:hover {
+          color: #ac5b00;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+        &.active {
+          color: #ac5b00;
+          cursor: pointer;
+        }
+      }
+      .oxd-comment-content-commented-date {
+        font-weight: 600;
+        font-size: 0.75rem;
+        color: #929baa;
+        .oxd-comment-edited-chip,
+        .oxd-comment-group-name-chip {
+          margin-left: 0.5rem;
+          font-weight: 700;
+          border-radius: 0.4rem;
+          padding: 4px 8px;
+          display: flex;
+          align-items: center;
+        }
+        .oxd-comment-group-name {
+          &-secondary {
+            font-weight: 400;
+          }
+        }
+      }
+    }
+  }
+  &-inline-delete {
+    border-radius: 1.2rem;
+    background-color: rgba(235, 9, 16, 0.1);
+    &.stacked {
+      flex-wrap: wrap;
+      .comment-inline-delete-actions-wrapper {
+        margin: 0.5rem 0 0 0;
+        width: 100%;
+        justify-content: flex-end;
+      }
+    }
+  }
+}
+
+.oxd-input-field-error-message {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}

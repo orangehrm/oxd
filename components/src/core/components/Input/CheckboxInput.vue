@@ -2,7 +2,9 @@
   <div class="oxd-checkbox-wrapper">
     <label :class="{'--disabled': disabled}">
       <template v-if="labelPosition === 'left'">
-        {{ optionLabel }}
+        <div class="oxd-checkbox-option-label">
+          {{ optionLabel }}
+        </div>
       </template>
       <input
         type="checkbox"
@@ -23,7 +25,9 @@
         />
       </span>
       <template v-if="labelPosition === 'right'">
-        {{ optionLabel }}
+        <div class="oxd-checkbox-option-label">
+          {{ optionLabel }}
+        </div>
       </template>
     </label>
   </div>

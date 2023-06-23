@@ -1,0 +1,85 @@
+@import '../../../../styles';
+@import '../variables';
+
+.oxd-radio-pill-wrapper {
+  width: auto;
+  &:focus {
+    outline: none;
+  }
+  & > *:focus {
+    outline: none;
+  }
+}
+
+.oxd-radio-pill-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border-width: 0;
+  position: absolute;
+}
+
+.oxd-radio-pill-input-label {
+  margin: 0;
+  cursor: pointer;
+  display: inline-block;
+  font-family: $oxd-radio-pill-font-family;
+  font-size: $oxd-radio-pill-font-size;
+  color: $oxd-radio-pill-font-color;
+  font-weight: $oxd-radio-pill-font-weight;
+  background-color: $oxd-radio-pill-background-color;
+  border: $oxd-radio-pill-border;
+  border-radius: $oxd-radio-pill-border-radius;
+  padding: $oxd-radio-pill-padding;
+
+  &:hover {
+    color: $oxd-radio-pill-font-color--hover;
+    background-color: $oxd-radio-pill-background-color--hover;
+    border: $oxd-radio-pill-border--hover;
+    box-shadow: $oxd-radio-pill-box-shadow--hover;
+  }
+
+  &.--disabled {
+    cursor: default;
+    color: $oxd-radio-pill-font-color--disabled;
+    background-color: $oxd-radio-pill-background-color--disabled;
+    border: $oxd-radio-pill-border--disabled;
+    box-shadow: $oxd-radio-pill-box-shadow--disabled;
+  }
+
+  &.--readonly {
+    cursor: default;
+    color: $oxd-radio-pill-font-color--readonly;
+    background-color: $oxd-radio-pill-background-color--readonly;
+    border: $oxd-radio-pill-border--readonly;
+    box-shadow: $oxd-radio-pill-box-shadow--readonly;
+  }
+
+  &.--focus {
+    color: $oxd-radio-pill-font-color--hover;
+    background-color: $oxd-radio-pill-background-color--hover;
+    border: $oxd-radio-pill-border--hover;
+    box-shadow: $oxd-radio-pill-box-shadow--hover;
+  }
+
+  &.--checked {
+    color: $oxd-radio-pill-font-color--checked;
+    background-color: $oxd-radio-pill-background-color--checked;
+    border: $oxd-radio-pill-border--checked;
+    box-shadow: $oxd-radio-pill-box-shadow--checked;
+    outline: 0;
+
+    &.--readonly, &.--disabled {
+      color: $oxd-radio-pill-font-color--checked--disabled;
+      border: $oxd-radio-pill-border--checked--disabled;
+    }
+
+    &:not(.--disabled) {
+      &:hover, &.--focus {
+        background-color: $oxd-radio-pill-background-color--checked--hover;
+      }
+    }
+  }
+}

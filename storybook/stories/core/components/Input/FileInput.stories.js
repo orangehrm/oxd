@@ -7,10 +7,42 @@ export default {
   argTypes: {
     style: {control: {type: 'object'}},
     hasError: {control: {type: 'boolean'}},
+    inputFile: {
+      control: {type: 'object'},
+      table: {
+        type: {
+          summary:
+            'Contains the file that should can be downloaded by the download box',
+        },
+      },
+    },
+    downloadBoxClick: {
+      control: {type: 'function'},
+      table: {
+        type: {
+          summary:
+            'function that should be triggered once the download box clickd',
+        },
+      },
+    },
+    initialFileUpdateMode: {
+      control: {type: 'text'},
+      table: {
+        type: {summary: 'Initial update mode of the file'},
+      },
+    },
+    deletable: {
+      control: {type: 'boolean'},
+      table: {
+        type: {
+          summary: 'Whether the delete option of the file is avialable or not',
+        },
+      },
+    },
   },
 };
 
-const Template = args => ({
+const Template = (args) => ({
   setup() {
     return {args};
   },
@@ -20,7 +52,7 @@ const Template = args => ({
 
 const defaultPic = require('@orangehrm/oxd/assets/images/user-default-400.png');
 
-const SlotTemplate = args => ({
+const SlotTemplate = (args) => ({
   setup() {
     const file = ref('');
     const imgSrc = computed({
@@ -38,7 +70,7 @@ const SlotTemplate = args => ({
     return h(
       FileInput,
       {
-        'onUpdate:modelValue': value => {
+        'onUpdate:modelValue': (value) => {
           if (value?.base64) {
             this.file = value.base64;
           }
@@ -94,4 +126,118 @@ SlotDemo.args = {
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
+};
+
+const sampleInputFile = {
+  name: 'sample.pdf',
+  type: 'application/pdf',
+  size: 101273,
+};
+
+export const WithDownloadBox = Template.bind({});
+WithDownloadBox.args = {
+  inputFile:sampleInputFile ,
+  downloadBoxClick: () => {
+    window.alert('Downloading the document!');
+  },
+};
+
+WithDownloadBox.parameters = {
+  docs: {
+    source: {
+      code:
+      '<oxd-file-input \n :inputFile=' +
+      JSON.stringify(sampleInputFile) +
+      '\n :downloadBoxClick: ()=>{ window.alert("Downloading the document!" }'+
+      '\n/>',
+    },
+  },
+};
+
+export const DownloadBoxWithoutDeleteOption = Template.bind({});
+DownloadBoxWithoutDeleteOption.args = {
+  inputFile: sampleInputFile,
+  deletable: false,
+  downloadBoxClick: () => {
+    window.alert('Downloading the document!');
+  },
+};
+
+DownloadBoxWithoutDeleteOption.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-file-input \n :inputFile=' +
+        JSON.stringify(sampleInputFile) +
+        '\n :deletable=false'+
+        '\n :downloadBoxClick: ()=>{ window.alert("Downloading the document!" }'+
+        '\n/>',
+    },
+  },
+};
+
+export const DownloadBoxWithInitialUpdateMode = Template.bind({});
+DownloadBoxWithInitialUpdateMode.args = {
+  inputFile: sampleInputFile,
+  initialFileUpdateMode: "delete",
+  downloadBoxClick: () => {
+    window.alert('Downloading the document!');
+  },
+};
+
+DownloadBoxWithInitialUpdateMode.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-file-input \n :inputFile=' +
+        JSON.stringify(sampleInputFile) +
+        '\n :initialFileUpdateMode="delete"'+
+        '\n :downloadBoxClick: ()=>{ window.alert("Downloading the document!" }'+
+        '\n/>',
+    },
+  },
+};
+
+export const WithDownloadBoxDisabled = Template.bind({});
+WithDownloadBoxDisabled.args = {
+  disabled: true,
+  inputFile: sampleInputFile,
+  downloadBoxClick: () => {
+    window.alert('Downloading the document!');
+  },
+};
+
+WithDownloadBoxDisabled.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-file-input \n :inputFile=' +
+        JSON.stringify(sampleInputFile) +
+        '\n :disabled=true'+
+        '\n :downloadBoxClick: ()=>{ window.alert("Downloading the document!" }'+
+        '\n/>',
+    },
+  },
+};
+
+export const WithDownloadBoxReadonly = Template.bind({});
+WithDownloadBoxReadonly.args = {
+  readonly: true,
+  inputFile: sampleInputFile,
+  downloadBoxClick: () => {
+    window.alert('Downloading the document!');
+  },
+};
+
+WithDownloadBoxReadonly.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-file-input \n :inputFile=' +
+        JSON.stringify(sampleInputFile) +
+        '\n :readonly=true'+
+        '\n :downloadBoxClick: ()=>{ window.alert("Downloading the document!" }'+
+        '\n/>',
+    },
+  },
 };

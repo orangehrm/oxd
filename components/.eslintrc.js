@@ -28,6 +28,7 @@ module.exports = {
       files: [
         '**/__tests__/*.{j,t}s?(x)',
         '**/tests/unit/**/*.spec.{j,t}s?(x)',
+        '**/themes/modern/**/*.spec.{j,t}s?(x)',
       ],
       env: {
         jest: true,

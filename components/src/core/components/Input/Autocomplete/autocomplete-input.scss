@@ -43,11 +43,6 @@
     }
   }
 
-  &--disabled,
-  &--readonly {
-    background: $oxd-dropdown-dropdown-background--disabled;
-  }
-
   input {
     @include oxd-input-control;
     width: 100%;
@@ -60,6 +55,14 @@
 
     &::placeholder {
       color: $oxd-input-placeholder-color;
+    }
+  }
+
+  &--disabled,
+  &--readonly {
+    background: $oxd-dropdown-dropdown-background--disabled;
+    input {
+      background-color: transparent;
     }
   }
 
@@ -213,6 +216,29 @@
     }
     &:focus-within {
       border: $oxd-input-border--focus;
+    }
+    :deep(.oxd-icon-button) {
+      [class^='bi-']::before,
+      [class*=' bi-']::before {
+        line-height: inherit;
+        display: flex;
+      }
+    }
+  }
+  .pre-selected {
+    color: $oxd-feedback-info-color;
+    background-color: rgba($oxd-feedback-info-color, 0.1);
+    border: 1px solid;
+    .oxd-autocomplete-chip-remover {
+      background-color: $oxd-white-color;
+      :deep(i) {
+        color: $oxd-feedback-info-color !important;
+      }
+      &:hover {
+        :deep(i) {
+          color: $oxd-white-color !important;
+        }
+      }
     }
   }
   &:empty {

@@ -61,6 +61,9 @@
     line-height: 18px;
     max-width: 100%;
     min-width: 0;
+    .select-placeholder {
+      color: $oxd-input-placeholder-color;
+    }
     .selected-content {
       min-height: 10px;
       overflow: hidden;
@@ -179,7 +182,6 @@
   font-weight: $oxd-dropdown-option-font-weight;
   padding: $oxd-dropdown-option-padding;
   margin: $oxd-dropdown-option-margin;
-  border-bottom: $oxd-dropdown-option-border-bottom;
   background-color: $oxd-dropdown-option-background;
   min-height: $oxd-dropdown-option-min-height;
 
@@ -220,4 +222,8 @@
       padding-left: #{$value}rem;
     }
   }
+}
+
+.oxd-select-input-spinner-wrapper {
+  min-height: 150px;
 }

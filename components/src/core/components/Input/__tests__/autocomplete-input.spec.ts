@@ -1,4 +1,4 @@
-import {config, flushPromises, mount} from '@vue/test-utils';
+import {config, mount} from '@vue/test-utils';
 import AutocompleteInput from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteInput.vue';
 import AutocompleteTextInput from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteTextInput.vue';
 import AutocompleteOption from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteOption.vue';
@@ -99,6 +99,32 @@ describe('AutocompleteInput.vue', () => {
     wrapper.find('[data-test="autocompleteSelectClearIcon"]').trigger('click');
     await wrapper.vm.$nextTick();
     expect(wrapper.emitted('update:modelValue')).toEqual([[null]]);
+  });
+
+  it('on pagedown', async () => {
+    const wrapper = mount(AutocompleteInput, {
+      props: {
+        createOptions: syncFunction,
+      },
+    });
+    const input = wrapper.find('input');
+    input.setValue('test');
+    expect(input.element.selectionEnd).toBe(0);
+    await input.trigger('keyup', {key: 'PageDown'});
+    expect(input.element.selectionEnd).toBe(4);
+  });
+
+  it('on pageup', async () => {
+    const wrapper = mount(AutocompleteInput, {
+      props: {
+        createOptions: syncFunction,
+      },
+    });
+    const input = wrapper.find('input');
+    input.setValue('test');
+    expect(input.element.selectionEnd).toBe(0);
+    await input.trigger('keyup', {key: 'PageUp'});
+    expect(input.element.selectionEnd).toBe(0);
   });
 
   it('should load the options when input is changed', async () => {

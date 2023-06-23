@@ -50,6 +50,10 @@ export default defineComponent({
       type: Object as PropType<Model>,
       required: false,
     },
+    enableFirstElementFocus: {
+      type: Boolean,
+      default: true,
+    },
     loading: {
       type: Boolean,
       default: false,
@@ -59,7 +63,7 @@ export default defineComponent({
   setup(props, context) {
     const {$t} = useTranslate();
     const layoutSchema = computed(() => {
-      return props.schema?.layout.map(layout => ({
+      return props.schema?.layout?.map(layout => ({
         id: layout.id,
         style: layout.style,
         class: layout.class,
@@ -71,7 +75,7 @@ export default defineComponent({
     });
 
     const fieldSchema = computed(() => {
-      return props.schema?.layout.map(({children}) => {
+      return props.schema?.layout?.map(({children}) => {
         if (Array.isArray(children)) return children;
         for (const slot in children) {
           children[slot] = children[slot].map(field => {
@@ -146,8 +150,8 @@ export default defineComponent({
             class: field.class,
           },
           {
-            default: () =>
-              h(extractFieldComponent(field), {
+            default: () => {
+              return h(extractFieldComponent(field), {
                 id: getFormElementId(
                   field.type,
                   field.name,
@@ -174,7 +178,8 @@ export default defineComponent({
                 required:
                   field.validators?.has('required') && !props.schema?.disabled,
                 ...(field.type !== 'custom' && {type: field.type}),
-              }),
+              });
+            },
           },
         );
       }
@@ -242,6 +247,7 @@ export default defineComponent({
           style: props.schema?.style,
           class: 'oxd-schema-form-container ' + props.schema?.class,
           loading: isLoading.value,
+          enableFirstElementFocus: props.enableFirstElementFocus,
           onSubmitValid: ($e: SubmitEvent) => {
             context.emit('submitValid', props.model, $e);
           },
@@ -249,7 +255,7 @@ export default defineComponent({
         {
           ...(props.schema && {
             default: () =>
-              layoutSchema.value.map((layout, index) =>
+              layoutSchema.value?.map((layout, index) =>
                 createLayoutNode(
                   extractLayoutComponent(layout),
                   {

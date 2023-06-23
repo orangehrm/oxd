@@ -6,6 +6,7 @@ import {
 } from '@orangehrm/oxd/core/components/Icon/types';
 
 import oxdIcons from '@orangehrm/oxd/core/components/Icon/icons'
+import { ref } from 'vue'
 
 const bootstrapIconsNames = Object.keys(icons)
 const oxdIconsNames = Object.keys(oxdIcons)
@@ -42,3 +43,26 @@ export const OhrmIcon = Template.bind({});
 OhrmIcon.args = {
   name: 'oxd-archive',
 };
+
+const IconGalleryTemplate = () => ({
+  setup() {
+    return {oxdIconsNames};
+  },
+  components: {'oxd-icon': Icon},
+  template: `<div class="icon-gallery">
+    <div>Red icons are the ones supporting fill:currentColor;</div>
+    <table>
+      <thead>
+      <tr><th>Icon Name</th><th>Icon</th></tr>
+      </thead>
+      <tbody>
+      <tr v-for="(name) in oxdIconsNames">
+        <td>{{ name }}</td><td><oxd-icon :name="name" size="extra-large" style="color:red;"></oxd-icon></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>`,
+});
+
+
+export const IconGallery = IconGalleryTemplate.bind({});

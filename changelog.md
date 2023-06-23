@@ -1,3 +1,81 @@
+2023-06-22 - 4265556336e3c25626751cd4bf5d991dfe027fa5 - InfoBox.vue - Fixed Keyboard Accessibility issue.
+
+2023-06-15 - 00f9bf213d3e1d9c7f45514b427f2e4df0220850 - InfoBox.vue - Added a new icon to the library.
+
+2023-06-10 - fc27d63ee4f8ba1aa0cc3a74c28a4f466756ff10 - InfoBox.vue - Updated the info-box component supoprting with slots.
+
+2023-05-15 - 9f3abad41e71b773876fa24377fbf7e62791c258 - switch-input.scss - Fixed switch button disable and read-only color is inconsistent issue.
+
+2023-05-09 - c9fa0fab8d949c4e03218f97b9b9e79f99e2c068 - Comments/Comment.vue - Added a prop to stack comment delete confirmation message and the actions
+
+2023-02-22 - 38a57d11c250022d6116fbcb1f71e78125abe5b3 - List/List.vue - Added prop support for No data found message and icon
+
+2023-01-26 - 3e627e7fbd8a8a40c929a1df6256893dbc17bcb8 - Input/Autocomplet/AutocompleteInput.vue - handled search term resetting issue in autcompleteinput when on keypress enter
+
+2022-12-30 - 2b89327bcf23d6106fdedeec0f4e6528eee3a1a9 - Icon/icons.ts - Add 6 new icons (oxd-goals, oxd-okrs, oxd-individual, oxd-organizational-structure, oxd-dashboard-performance, oxd-goals-development)
+
+2022-12-28 - bf8a6638fca996b227da9f45547d021704bf58e9 - Tabs/Tabs.vue and Segments/Segments.vue - Added icon support and additional class support for Segments component and Tabs component
+
+2022-12-15 - dcc8bc807292f0793be9bf422513ede6a39e6ee0 - Tabs/Tabs.vue - Added a slot support to Tabs component for Action buttons
+
+2022-12-12 - a0709231e479b3da3c50ab23ae082e1b45a98dd9 - InfBox/InfoBox.vue - Added a clickable text to infobox component
+
+2022-12-01 - 032cbeb91ed7a7841c391d1aec9842c04f66895a - Icon/icons.ts, CardTable/Cell/Dropdown.vue - Add oxd-add-employee icon and made colour supporting for the CardTable Dropdown Cell
+
+2022-11-04 - 7e6426e25e1eddaeffa989f89a1c7ac3fc6b00a7 - Icon/icons.ts - Add oxd-about-employee icon
+
+2022-10-25 - 2285ef2561933df2d0f156d95a490ea7e3ff2c02 - Icon/icons.ts - Add 5 new icons: oxd-timezone, oxd-leaving, oxd-clock, oxd-date-and-time and oxd-employee-time
+
+2022-09-22 - d4942a3f331a768b5b1e20981962cd9e7eeff201 - Segments/Segments.vue Add Key Board Accessibility and in Segments/segments.scss Add focus styles
+
+2022-09-12 - d9bd1040e5e228ccf874090c64f67822cd1a32a9 - Icon/icons.ts - Add 2 new icons: oxd-mail and oxd-mail-multiple
+
+2022-09-08 - 38609f74219c515ec2f7038841ceaf9ed414f772 - Input/Autocomplete/AutocompleteChips.vue - Add a custom template to autocomplete-chips
+
+2022-09-07 - afb9a62c5058432539c670d504e6e4f33e7cfdb6 - Input/MultiSelect/MultiSelectInput.vue - Add a custom template to multiselect-chips
+
+2022-09-06 - 62a5486f6f33ff2ec3011ea26517c30c4ed0ba7d - Input/Select/SelectInputButton.vue - Updated the style of select option without the bottom border
+
+2022-08-30 - 21f27018fd82c3b60ff350b4fb350a268a582479 - Input/Time/TimePicker.vue - Fixed issue where hour input picking value from minute (LMR-435)
+
+2022-08-26 - e03f4d96f4eb79b922e0c59d6399137a0aa46d41 - Input/DateInput.vue - Fixed issue where date picked from calendar is lost when input is blurred.
+
+2022-08-26 - 86766da043150f15aa7f1868fc655f788c22ed3d - Input/RadioPilLGroup - set tab focus colour and setting name prop for the pills
+
+2022-08-24 - 65ddb076d1e499787dd8d4dc7a96237ea06e7ca1 - Input/Time/TimeInput.vue - Now supports clearing value by default. allEmpty prop removed. Time field hint changed to HH:MM (was HH-MM)
+
+2022-08-23 - 07ef5e0fd2b7f084b9a113d9b74efa0bf8dc0d20 - Button/Icon.vue, Icon/Icon.vue - Icon color for disabled Button/Icon.vue changed to match oxd guide
+
+2022-08-18 - e872d101314dadb0db5c410bf8a44dc5a1366c7c - Calendar/CalendarDropdown.vue - Affects DateInput.vue behavior. Prevent whole page scrolling up when month/year dropdown opened.
+
+2022-08-18 - f7d3683bc3cb8a6cef404c65a1d2cf4530a1d41e - Input/FileInput.vue - added edit file option
+
+2022-08-16 - 8a27adb9dfff1bbe7324caedbce570b0a6f25687 - Form/Form.vue, focus-first-element/index.ts - focus fist element not return back to correct element
+
+2022-08-14 - 87ed14348cc352d130fc59f79250129674e0c11a - Input/Time/TimeInput.vue - Added allowEmpty prop to enable placeholder text suppport, set HH-MM AM for default placeholder value and fix movelValue setting issue
+
+2022-08-10 - f92f4a97da8b281f841c643da93ef0a74bc68ce5 - Icon/Icons.ts - Add 3 new icons
+
+2022-08-05 - 544a46d0de236d1eb15fb5ee42dda2c9e338ac8a - Icon/Icons.ts - Add now oxd-duration icon
+
+2022-08-04 - f07e979f20aa3d4779c3eaa57e4f63f81e7c2cad - Icon/Icons.ts - Change fill colour of oxd-add icon
+
+2022-08-03 - b3553e6029bed67fc9ff472079d3ea56c5cd31cb - RadioPilLGroup - Changes to support InputField
+
+2022-07-28 - 0b9810356ba78246cff49fbced59645a7ba55ee6 - tyles/\_utility.scss - Fix tooltip width
+
+2022-07-25 - b9271bec74aad8cb48e4ff6bf0e0ba84a80912b6 - components/Table/ClassicTable - Classic Table - Add support for tooltips and rendering styled contents
+
+2022-07-25 - 23d88c64daee0475d64f9f1f8d2a3b8184ff7864 - styles/\_utility.scss - Show tool tips in multi line if the content is too lengthy
+
+2022-07-20 - b7038ebe7ef9a2ab5c513ad2c7f1a00f6d31c8af - components/Table/ClassicTable - Fixing column widths in oxd-classic-table
+
+2022-07-19 - 0dbfe9656449b2c80b09b09e05ec779c0ea8a301 - components/src/core/components/CardTable/Cell/actions.scss - Remove extra padding and in components/src/core/components/List/list.scss - Remove the extra padding and if there is a left pannel, it will add 1rem extra padding to the left
+
+2022-07-11 - 983922db066fe3298f70e5be1b42e8fdf9aff2cd - components/Input/Time - changes to functionality and style of Time Input and Picker
+
+2022-07-08 - 2d7295d529ac95349ebe163cfb8ffe2aef6ba128 - components/src/core/components/CardTable/Table/table.scss - Change the header padding and in components/src/core/components/List/list.scss - Fix the card padding is not equal in left and right sides issue
+
 2022-06-30 - 0f6416adf5331113ba1741b95a9e00c5a673e2c1 - components/CardTable/Cell/\_variables.scss, actions.scss - Change the action button gap according to oxd-guide and in components/TableFilter/table-filter.scss - Action buttons moved further to the right
 
 2022-06-30 - 8378af0e1a2dc9182389dc0f43ff9dd8d22e0682 - components/Icon/Icons.ts, components/Icon/Icons.ts, - this refectoring effects to change the colour of the oxd-calendar icon

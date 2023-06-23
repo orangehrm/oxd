@@ -1,12 +1,15 @@
 <script lang="ts">
 import {
   isEqual,
+  isAfter,
+  isBefore,
   getDaysInMonth,
   getYear,
   getMonth,
   getDayOffset,
   freshDate,
   rearrangeWeek,
+  formatDate,
 } from '../../../utils/date';
 import {enGB} from 'date-fns/locale';
 import {CalendarDayAttributes, CalendarEvent} from './types';
@@ -44,6 +47,12 @@ export default defineComponent({
           (_, i) => 1970 + i,
         );
       },
+    },
+    min: {
+      type: Date,
+    },
+    max: {
+      type: Date,
     },
     locale: {
       type: Object as PropType<Locale>,
@@ -195,23 +204,62 @@ export default defineComponent({
           'div',
           {class: 'oxd-calendar-dates-grid'},
           this.datesOfMonth.map((date: Date, i: number) => {
+            let disabledDate = false;
+            if (this.max && this.min) {
+              disabledDate =
+                isAfter(
+                  formatDate(date, 'yyyy-MM-dd'),
+                  formatDate(this.max, 'yyyy-MM-dd'),
+                  'yyyy-MM-dd',
+                ) ||
+                isBefore(
+                  formatDate(date, 'yyyy-MM-dd'),
+                  formatDate(this.min, 'yyyy-MM-dd'),
+                  'yyyy-MM-dd',
+                )
+                  ? true
+                  : false;
+            } else if (this.max && !this.min) {
+              disabledDate = isAfter(
+                formatDate(date, 'yyyy-MM-dd'),
+                formatDate(this.max, 'yyyy-MM-dd'),
+                'yyyy-MM-dd',
+              )
+                ? true
+                : false;
+            } else if (!this.max && this.min) {
+              disabledDate = isBefore(
+                formatDate(date, 'yyyy-MM-dd'),
+                formatDate(this.min, 'yyyy-MM-dd'),
+                'yyyy-MM-dd',
+              )
+                ? true
+                : false;
+            } else {
+              disabledDate = false;
+            }
             return h(DateVue, {
               key: date.valueOf(),
               date,
               selected: isEqual(date, this.selectedDate),
+              disabled: disabledDate,
               today: isEqual(freshDate(), date),
               offset: i === 0 ? getDayOffset(date, this.firstDayOfWeek) : 0,
               attributes: this.attributes[i],
               event: this.parsedEvents[i],
               onKeyup: ($event: KeyboardEvent) => {
                 if ($event.key === 'Enter') {
-                  $event.stopPropagation();
-                  this.$emit('update:modelValue', date);
+                  if (!disabledDate) {
+                    $event.stopPropagation();
+                    this.$emit('update:modelValue', date);
+                  }
                 }
               },
               onClick: ($event: Event) => {
-                $event.stopPropagation();
-                this.$emit('update:modelValue', date);
+                if (!disabledDate) {
+                  $event.stopPropagation();
+                  this.$emit('update:modelValue', date);
+                }
               },
             });
           }),

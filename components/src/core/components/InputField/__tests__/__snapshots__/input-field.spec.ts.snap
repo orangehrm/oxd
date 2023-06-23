@@ -25,10 +25,15 @@ exports[`InputField.vue renders OXD InputField type \`file\` 1`] = `
     <!--v-if-->
     <!--v-if-->
   </div>
-  <div class=""><input type="file" class="oxd-file-input">
-    <div class="oxd-file-div oxd-file-div--active">
+  <div class="">
+    <div>
       <!--v-if-->
-      <div class="oxd-file-input-div">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon"></i>
+      <div><input type="file" class="oxd-file-input">
+        <div class="oxd-file-div oxd-file-div--active">
+          <!--v-if-->
+          <div class="oxd-file-input-div --placeholder">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon"></i>
+        </div>
+      </div>
     </div>
   </div>
   <!--v-if-->
@@ -43,10 +48,15 @@ exports[`InputField.vue renders OXD InputField type \`file\` with button 1`] = `
     <!--v-if-->
     <!--v-if-->
   </div>
-  <div class=""><input type="file" class="oxd-file-input">
-    <div class="oxd-file-div oxd-file-div--active">
-      <div class="oxd-file-button">Browse</div>
-      <div class="oxd-file-input-div">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon"></i>
+  <div class="">
+    <div>
+      <!--v-if-->
+      <div><input type="file" class="oxd-file-input">
+        <div class="oxd-file-div oxd-file-div--active">
+          <div class="oxd-file-button">Browse</div>
+          <div class="oxd-file-input-div --placeholder">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon"></i>
+        </div>
+      </div>
     </div>
   </div>
   <!--v-if-->

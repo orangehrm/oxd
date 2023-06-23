@@ -11,7 +11,7 @@
         :readonly="readonly"
         :value="displayDate"
         :placeholder="placeholder"
-        v-bind="$attrs"
+        v-bind="defaultAttrs"
         v-click-outside="onClickTextOutside"
         ref="oxdInput"
         @update:modelValue="onDateTyped"
@@ -52,6 +52,8 @@
           :days="days"
           :dayAttributes="dayAttributes"
           :events="events"
+          :min="min"
+          :max="max"
           v-focus-trap
         >
           <div class="oxd-date-input-links">
@@ -89,7 +91,15 @@
 <script lang="ts">
 import {enUS} from 'date-fns/locale';
 import {defineComponent, PropType} from 'vue';
-import {formatDate, parseDate, freshDate, getYear} from '../../../utils/date';
+import {
+  formatDate,
+  parseDate,
+  freshDate,
+  getYear,
+  isAfter,
+  isBefore,
+  isEqual,
+} from '../../../utils/date';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import Calendar from '@orangehrm/oxd/core/components/Calendar/Calendar.vue';
@@ -188,6 +198,12 @@ export default defineComponent({
       type: Array as PropType<CalendarEvent[]>,
       default: () => [],
     },
+    min: {
+      type: Date,
+    },
+    max: {
+      type: Date,
+    },
   },
 
   data() {
@@ -203,6 +219,10 @@ export default defineComponent({
         this.dateSelected = parseDate(this.dateTyped, this.format, {
           locale: this.locale,
         });
+        if (!this.nonDisabledDate(parseDate(this.dateTyped, this.format))) {
+          this.dateTyped = null;
+          this.dateSelected = null;
+        }
       }
       e.stopImmediatePropagation();
       this.$emit('blur');
@@ -211,11 +231,13 @@ export default defineComponent({
       this.dateTyped = value;
     },
     onDateSelected() {
+      this.dateTyped = null;
       const oxdDatePicker = this.$refs.oxdInput;
-      oxdDatePicker.focused = true;
       this.$nextTick(() => {
         const oxdDateInputTriggerBtn = this.$refs.oxdIcon;
         oxdDateInputTriggerBtn.blur();
+        const inputElement = oxdDatePicker.$el.querySelectorAll('input');
+        inputElement[0]?.focus();
       });
       this.closeDropdown();
     },
@@ -247,7 +269,13 @@ export default defineComponent({
       oxdDatePicker.focused = false;
     },
     onClickToday() {
-      this.dateSelected = freshDate();
+      if (!this.nonDisabledDate(freshDate())) {
+        this.dateTyped = null;
+        this.dateSelected = null;
+      } else {
+        this.dateSelected = freshDate();
+      }
+
       this.open = false;
       this.$refs.oxdIcon.focus();
     },
@@ -263,9 +291,37 @@ export default defineComponent({
     selectYear($e: Event) {
       this.$emit('selectYear', $e);
     },
+    nonDisabledDate(value: Date): boolean {
+      if (
+        isAfter(
+          formatDate(value, 'yyyy-MM-dd'),
+          formatDate(this.max, 'yyyy-MM-dd'),
+          'yyyy-MM-dd',
+        ) ||
+        isBefore(
+          formatDate(value, 'yyyy-MM-dd'),
+          formatDate(this.min, 'yyyy-MM-dd'),
+          'yyyy-MM-dd',
+        ) ||
+        isEqual(value, this.max)
+      ) {
+        return false;
+      } else {
+        return true;
+      }
+    },
   },
 
   computed: {
+    defaultAttrs() {
+      const notAllowed = ['onUpdate:modelValue'];
+      return Object.keys(this.$attrs)
+        .filter(key => !notAllowed.includes(key))
+        .reduce((obj, key) => {
+          obj[key] = this.$attrs[key];
+          return obj;
+        }, {});
+    },
     isLengthyDate() {
       return LENGTHY_DATE_FORMATS.indexOf(this.format) > -1;
     },

@@ -1,4 +1,4 @@
-import {flushPromises, mount, shallowMount} from '@vue/test-utils';
+import {mount, shallowMount} from '@vue/test-utils';
 import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput.vue';
 import SelectText from '@orangehrm/oxd/core/components/Input/Select/SelectText.vue';
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
@@ -28,21 +28,25 @@ describe('SelectInput.vue', () => {
   });
   it('should load options to Select', async () => {
     const wrapper = mount(SelectInput, {
-      props: {options},
+      props: {
+        options,
+      },
     });
     wrapper.findComponent(SelectText).trigger('click');
     await wrapper.vm.$nextTick();
     const nodes = wrapper.findAllComponents(SelectOption);
-    expect(nodes.length).toBe(4);
+    expect(nodes.length).toBe(3);
   });
   it('should select one option', async () => {
     const wrapper = mount(SelectInput, {
-      props: {options},
+      props: {
+        options,
+      },
     });
     wrapper.findComponent(SelectText).trigger('click');
     await wrapper.vm.$nextTick();
     const nodes = wrapper.findAllComponents(SelectOption);
-    await nodes[1].trigger('mousedown');
+    await nodes[0].trigger('mousedown');
     expect(wrapper.emitted('update:modelValue')).toEqual([
       [
         {
@@ -99,16 +103,6 @@ describe('SelectInput.vue', () => {
     expect(Input.classes('sampleClass')).not.toBe(true);
   });
 
-  it('should select none if placeholder selected', async () => {
-    const wrapper = mount(SelectInput, {
-      props: {options},
-    });
-    wrapper.findComponent(SelectText).trigger('click');
-    await wrapper.vm.$nextTick();
-    const nodes = wrapper.findAllComponents(SelectOption);
-    await nodes[0].trigger('mousedown');
-    expect(wrapper.emitted('update:modelValue')).toEqual([[null]]);
-  });
   it('should not select already selected option', async () => {
     const wrapper = mount(SelectInput, {
       props: {
@@ -117,6 +111,7 @@ describe('SelectInput.vue', () => {
           id: 1,
           label: 'HR Admin',
         },
+        showEmptySelector: true,
       },
     });
     wrapper.findComponent(SelectText).trigger('click');
@@ -153,7 +148,6 @@ describe('SelectInput.vue', () => {
         },
         dropdownPosition: BOTTOM,
         showEmptySelector: true,
-        hideDropdownDefaultLabel: false,
       },
     });
     expect(wrapper.vm.dropdownClasses).toStrictEqual({
@@ -173,7 +167,6 @@ describe('SelectInput.vue', () => {
         },
         dropdownPosition: BOTTOM,
         showEmptySelector: false,
-        hideDropdownDefaultLabel: false,
       },
     });
     expect(wrapper.vm.dropdownClasses).toStrictEqual({
@@ -192,8 +185,6 @@ describe('SelectInput.vue', () => {
           label: 'HR Admin',
         },
         dropdownPosition: BOTTOM,
-        showEmptySelector: true,
-        hideDropdownDefaultLabel: true,
       },
     });
     expect(wrapper.vm.dropdownClasses).toStrictEqual({
@@ -227,5 +218,21 @@ describe('SelectInput.vue', () => {
     wrapper.find('.oxd-select-text').trigger('click');
     await wrapper.vm.$nextTick();
     expect(wrapper.emitted('click'));
+  });
+
+  it('when click on input to opens the dropdown and display spinner', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {
+        options,
+        isLoading: true,
+      },
+    });
+    wrapper.findComponent(SelectText).trigger('click');
+    await wrapper.vm.$nextTick();
+    const nodes = wrapper.findAllComponents(SelectOption);
+    expect(nodes.length).toBe(1);
+    expect(
+      wrapper.find('.oxd-select-input-spinner-wrapper').exists(),
+    ).toBeTruthy();
   });
 });

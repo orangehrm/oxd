@@ -3,6 +3,7 @@
     <oxd-select-text
       v-bind="$attrs"
       :value="inputValue"
+      :placeholder="placeholder"
       :disabled="disabled"
       :readonly="readonly"
       :dropdownOpened="dropdownOpen"
@@ -23,14 +24,14 @@
       v-dropdown-direction
       v-if="dropdownOpen"
       :class="dropdownClasses"
-      :loading="loading"
+      :loading="isLoading"
       :empty="computedOptions.length === 0"
     >
       <oxd-select-option
-        v-if="showEmptySelector && !hideDropdownDefaultLabel"
+        v-if="showEmptySelector && inputValue"
         @select="onClear"
       >
-        {{ $vt(placeholder) }}
+        {{ $vt('Unselect') }}
       </oxd-select-option>
       <oxd-select-option
         v-for="(option, i) in computedOptions"
@@ -94,28 +95,28 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    hideDropdownDefaultLabel: {
-      type: Boolean,
-      default: false,
-    },
     options: {
       type: Array,
       required: true,
     },
     placeholder: {
       type: String,
-      default: '-- Select --',
+      default: 'Select',
     },
     dropdownPosition: {
       type: String,
       default: BOTTOM,
-      validator: function (value: Position) {
+      validator: function(value: Position) {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
     showEmptySelector: {
       type: Boolean,
-      default: true,
+      default: false,
+    },
+    isLoading: {
+      type: Boolean,
+      default: false,
     },
   },
 
@@ -142,8 +143,7 @@ export default defineComponent({
       return {
         '--positon-bottom': this.dropdownPosition === BOTTOM,
         '--positon-top': this.dropdownPosition === TOP,
-        '--with-empty-selector':
-          this.showEmptySelector && !this.hideDropdownDefaultLabel,
+        '--with-empty-selector': this.showEmptySelector,
       };
     },
     optionClasses(): object[] {
@@ -157,11 +157,7 @@ export default defineComponent({
       });
     },
     selectedItem(): string {
-      return this.modelValue?.label
-        ? this.$vt(this.modelValue.label)
-        : this.hideDropdownDefaultLabel
-        ? null
-        : this.$vt(this.placeholder);
+      return this.modelValue?.label ? this.$vt(this.modelValue.label) : null;
     },
     inputValue(): string {
       return this.computedOptions[this.pointer]?.label || this.selectedItem;

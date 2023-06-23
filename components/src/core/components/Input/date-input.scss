@@ -15,14 +15,14 @@
 .oxd-date-input-calendar {
   &.--positon-top > .oxd-calendar-wrapper {
     right: 0;
-    width: 88%;
+    width: 100%;
     position: absolute;
     bottom: 100%;
     margin-bottom: calc(50px + $oxd-dropdown-dropdown-margin);
   }
   &.--positon-bottom > .oxd-calendar-wrapper {
     right: 0;
-    width: 271px;
+    width: 100%;
     position: absolute;
   }
 }
