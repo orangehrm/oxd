@@ -52,12 +52,30 @@ Default.args = {
   width: 100,
   height: 100,
 };
+Default.parameters = {
+  docs: {
+    source: {
+      code: `
+<oxd-skeleton :width="100" :height="100" />
+    `,
+    },
+  },
+};
 
 export const Animate = Template.bind({});
 Animate.args = {
   width: 100,
   height: 100,
   animate: true,
+};
+Animate.parameters = {
+  docs: {
+    source: {
+      code: `
+<oxd-skeleton :width="100" :height="100" :animate="true" />
+    `,
+    },
+  },
 };
 
 export const Circle = Template.bind({});
@@ -67,5 +85,28 @@ Circle.args = {
   circle: true,
   animate: true,
 };
+Circle.parameters = {
+  docs: {
+    source: {
+      code: `
+<oxd-skeleton :width="100" :height="100" :circle="true" :animate="true" />
+    `,
+    },
+  },
+};
 
 export const Custom = () => CustomSkeletonStory;
+Custom.parameters = {
+  docs: {
+    source: {
+      code: `
+<oxd-grid :cols="4">
+  <oxd-grid-item v-for="i in 12" :key="i">
+    <oxd-skeleton :width="50" :height="50" circle animate />
+    <oxd-skeleton :lines="3" animate />
+  </oxd-grid-item>
+</oxd-grid>
+    `,
+    },
+  },
+};

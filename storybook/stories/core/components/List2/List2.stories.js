@@ -2,6 +2,7 @@ import DefaultStory from './Default.story.vue';
 import ListTopTabsStory from './ListTopTabs.story.vue';
 import ListTopTitleStory from './ListTopTitle.story.vue';
 import NoSidepanelStory from './NoSidepanel.story.vue';
+import ListSkeletonStory from './ListSkeleton.story.vue';
 
 export default {
   title: 'Data Tables/List v2',
@@ -130,6 +131,40 @@ NoSidepanel.parameters = {
     <div class="placeholder slotbody">
       <oxd-text tag="p" class="placeholder-text"> Slot for body </oxd-text>
     </div>
+  </template>
+</oxd-list>
+    `,
+    },
+  },
+};
+
+export const SkeletonLoader = () => ListSkeletonStory;
+SkeletonLoader.parameters = {
+  docs: {
+    source: {
+      code: `
+<oxd-list :loading="isLoading">
+  <template #sidepanel="{collapsed}">
+    <oxd-status-tab-panel
+      :loading="isLoading"
+      :collapsed="collapsed"
+      :filters="sidepanelFilters"
+    >
+    </oxd-status-tab-panel>
+  </template>
+  <template #contentHeaderLeft>
+    <oxd-skeleton height="28px" width="220px" animate></oxd-skeleton>
+  </template>
+  <template #contentBody>
+    <oxd-list-table
+      :items="items"
+      :skeleton="true"
+      :flashing="true"
+      :selectable="true"
+      :headers="headers"
+      :loading="isLoading"
+      v-model:selected="checkedItems"
+    ></oxd-list-table>
   </template>
 </oxd-list>
     `,

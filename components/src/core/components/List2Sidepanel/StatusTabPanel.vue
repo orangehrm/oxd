@@ -9,7 +9,7 @@
       :class="mainButtonClasses"
       :displayType="mainButtonType"
       :iconName="mainButtonIconName"
-      :disabled="mainButtonDisabled"
+      :disabled="loading || mainButtonDisabled"
       :tooltip="$vt(mainButtonLabel)"
       :label="!collapsed ? $vt(mainButtonLabel) : ''"
       @click="onClickMainButton"
@@ -18,7 +18,14 @@
   <oxd-divider></oxd-divider>
   <div class="oxd-status-tab-panel-body">
     <slot name="body" :collapsed="collapsed"></slot>
+    <oxd-skeleton
+      v-if="loading"
+      :lines="10"
+      :height="30"
+      :animate="true"
+    ></oxd-skeleton>
     <ul
+      v-else
       :class="{
         'oxd-status-tab-panel-filters': true,
         '--padtop': $slots['body'],
@@ -55,8 +62,9 @@ import {Filter} from './types';
 import translateMixin from '../../../mixins/translate';
 import {computed, defineComponent, PropType} from 'vue';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
+import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';
-import OxdButton from '@orangehrm/oxd/core/components/Button/Button.vue';
+import Skeleton from '@orangehrm/oxd/core/components/Skeleton/Skeleton.vue';
 
 export default defineComponent({
   inheritAttrs: false,
@@ -67,6 +75,10 @@ export default defineComponent({
 
   props: {
     collapsed: {
+      type: Boolean,
+      default: false,
+    },
+    loading: {
       type: Boolean,
       default: false,
     },
@@ -94,8 +106,9 @@ export default defineComponent({
 
   components: {
     'oxd-text': Text,
+    'oxd-button': Button,
     'oxd-divider': Divider,
-    'oxd-button': OxdButton,
+    'oxd-skeleton': Skeleton,
   },
 
   emits: ['clickMainButton', 'filter'],

@@ -3,7 +3,11 @@
     <oxd-card-thead>
       <oxd-card-tr :clickable="false">
         <oxd-card-th v-if="selectable" class="oxd-padding-cell oxd-table-th">
-          <oxd-checkbox-input v-model="selectAll" :checkIcon="checkIcon" />
+          <oxd-checkbox-input
+            v-model="selectAll"
+            :disabled="loading"
+            :checkIcon="checkIcon"
+          />
         </oxd-card-th>
 
         <oxd-card-th

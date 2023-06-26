@@ -1,5 +1,11 @@
 <template>
-  <div v-for="line in lines" :key="line" :class="classes" :style="styles"></div>
+  <div
+    v-for="line in lines"
+    :key="line"
+    :class="classes"
+    :style="styles"
+    v-bind="$attrs"
+  ></div>
 </template>
 
 <script lang="ts">
@@ -7,6 +13,8 @@ import {defineComponent} from 'vue';
 
 export default defineComponent({
   name: 'oxd-skeleton',
+
+  inheritAttrs: false,
 
   props: {
     animate: {
