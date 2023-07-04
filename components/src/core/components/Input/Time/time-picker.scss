@@ -16,7 +16,7 @@
   max-height: $oxd-dropdown-dropdown-max-height;
   margin-top: $oxd-dropdown-dropdown-margin;
   padding: $oxd-time-picker-dropdown-padding;
-  width: $oxd-time-picker-dropdown-width;
+  width: fit-content;
 
   .oxd-time-hour-input,
   .oxd-time-minute-input,
@@ -45,7 +45,7 @@
 
   .oxd-time-period-input {
     justify-content: space-between;
-    margin-left: auto;
+    margin-left: 1rem;
   }
 
   .oxd-time-period-label {

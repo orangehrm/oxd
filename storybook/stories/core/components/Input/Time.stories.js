@@ -17,6 +17,16 @@ export default {
         },
       },
     },
+    is24HrsFormat: {
+      control: {type: 'boolean'},
+      defaultValue: false,
+      table: {
+        type: {
+          summary:
+            'Whether the time pickers is in 24 hours format or 12 hours format',
+        },
+      },
+    },
   },
 };
 
@@ -69,4 +79,10 @@ Error.args = {
 export const CustomStep = Template.bind({});
 CustomStep.args = {
   step: 10,
+};
+
+export const IsIn24HoursFormat = Template.bind({});
+IsIn24HoursFormat.args = {
+  is24HrsFormat: true,
+  initialValue: '20:00',
 };

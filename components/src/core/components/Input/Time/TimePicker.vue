@@ -59,7 +59,7 @@
         :withContainer="false"
       />
     </div>
-    <div class="oxd-time-period-input">
+    <div class="oxd-time-period-input" v-if="!is24HrsFormat">
       <div class="oxd-time-period-label">
         <input
           name="am"
@@ -68,7 +68,7 @@
           value="AM"
           @keydown.enter.stop.prevent="togglePeriod"
         />
-        <label for="am">{{ $vt('AM') }}</label>
+        <label for="am">{{ $vt(TIME_PERIOD_AM) }}</label>
       </div>
       <div class="oxd-time-period-label">
         <input
@@ -78,7 +78,7 @@
           value="PM"
           @keydown.enter.stop.prevent="togglePeriod"
         />
-        <label for="pm">{{ $vt('PM') }}</label>
+        <label for="pm">{{ $vt(TIME_PERIOD_PM) }}</label>
       </div>
     </div>
   </div>
@@ -86,19 +86,20 @@
 
 <script lang="ts">
 import {formatDate, parseDate} from '@orangehrm/oxd/utils/date';
-import {defineComponent, reactive, toRefs, watch} from 'vue';
+import {defineComponent, PropType, reactive, toRefs, watch} from 'vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import clickOutsideDirective from '@orangehrm/oxd/directives/click-outside';
 import focusTrapDirective from '@orangehrm/oxd/directives/focus-trap';
 import focusFirstElementDirective from '@orangehrm/oxd/directives/focus-first-element';
 import translateMixin from '@orangehrm/oxd/mixins/translate';
-
-interface State {
-  hour: string;
-  minute: string;
-  period: string;
-}
+import {
+  State,
+  TIME_FORMAT_12_HR_WITH_PERIOD,
+  TIME_FORMAT_24_HR,
+  TIME_PERIOD_AM,
+  TIME_PERIOD_PM,
+} from './types';
 
 export default defineComponent({
   name: 'oxd-time-picker',
@@ -110,6 +111,10 @@ export default defineComponent({
     step: {
       type: Number,
       default: 1,
+    },
+    is24HrsFormat: {
+      type: Boolean as PropType<boolean>,
+      default: false,
     },
   },
 
@@ -132,15 +137,24 @@ export default defineComponent({
     let enteredHour = '';
     let enteredMinute = '';
     const state: State = reactive({
-      hour: '01',
+      hour: props.is24HrsFormat ? '00' : '01',
       minute: '00',
-      period: 'AM',
+      ...(!props.is24HrsFormat && {
+        period: TIME_PERIOD_AM,
+      }),
     });
+
+    const timeFormatToParse = props.is24HrsFormat
+      ? TIME_FORMAT_24_HR
+      : TIME_FORMAT_12_HR_WITH_PERIOD;
+
+    const hoursMax = props.is24HrsFormat ? 23 : 12;
+    const hoursMin = props.is24HrsFormat ? 0 : 1;
 
     const setValue = (input: number, type: string) => {
       if (!isNaN(input)) {
         if (type === 'hour') {
-          if (input > 0 && input <= 12) {
+          if (input >= hoursMin && input <= hoursMax) {
             state.hour = input < 10 ? '0' + input : input.toString();
           }
         } else {
@@ -159,7 +173,7 @@ export default defineComponent({
 
       if (!isNaN(numericValue)) {
         if (type === 'hour') {
-          valid = input > 0 && input <= 12;
+          valid = input >= hoursMin && input <= hoursMax;
         } else {
           valid = input >= 0 && input <= 59 && input % props.step === 0;
         }
@@ -181,12 +195,12 @@ export default defineComponent({
     };
 
     const getMin = (type: string) => {
-      return type === 'hour' ? 1 : 0;
+      return type === 'hour' && !props.is24HrsFormat ? 1 : 0;
     };
 
     const getMax = (type: string) => {
       if (type === 'hour') {
-        return 12;
+        return hoursMax;
       } else {
         return (Math.floor(59 / props.step) * props.step) % 60;
       }
@@ -230,21 +244,27 @@ export default defineComponent({
     };
 
     const togglePeriod = () => {
-      state.period = state.period === 'AM' ? 'PM' : 'AM';
+      state.period =
+        state.period === TIME_PERIOD_AM ? TIME_PERIOD_PM : TIME_PERIOD_AM;
     };
 
     watch(
       () => props.modelValue,
       () => {
         if (props.modelValue) {
-          const time = parseDate(props.modelValue, 'HH:mm');
+          const time = parseDate(props.modelValue, TIME_FORMAT_24_HR);
           if (time) {
             // getHours() return 0-23, return 12 if 0
-            setValue(time.getHours() % 12 || 12, 'hour');
-            setValue(time.getMinutes(), 'minute');
-            const period = formatDate(time, 'a');
-            if (period) {
-              state.period = period;
+            if (props.is24HrsFormat) {
+              setValue(time.getHours(), 'hour');
+              setValue(time.getMinutes(), 'minute');
+            } else {
+              setValue(time.getHours() % 12 || 12, 'hour');
+              setValue(time.getMinutes(), 'minute');
+              const period = formatDate(time, 'a');
+              if (period) {
+                state.period = period;
+              }
             }
           }
         }
@@ -257,11 +277,14 @@ export default defineComponent({
     watch(
       () => state,
       () => {
-        const timeString = `${state.hour}:${state.minute} ${state.period}`;
+        let timeString = `${state.hour}:${state.minute}`;
+        if (!props.is24HrsFormat) {
+          timeString += ` ${state.period}`;
+        }
         if (timeString) {
-          const parsedTime = parseDate(timeString, 'hh:mm a');
+          const parsedTime = parseDate(timeString, timeFormatToParse);
           if (parsedTime) {
-            const formattedTime = formatDate(parsedTime, 'HH:mm');
+            const formattedTime = formatDate(parsedTime, TIME_FORMAT_24_HR);
             if (props.modelValue !== formattedTime) {
               context.emit('update:modelValue', formattedTime);
             }
@@ -284,6 +307,8 @@ export default defineComponent({
       togglePeriod,
       onHourInputBlur,
       onMinuteInputBlur,
+      TIME_PERIOD_PM,
+      TIME_PERIOD_AM,
     };
   },
 });
