@@ -26,7 +26,7 @@
 <script lang="ts">
 import {nanoid} from 'nanoid';
 import {Tab} from './types';
-import {computed, defineComponent, PropType, ref} from 'vue';
+import {computed, defineComponent, PropType} from 'vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';

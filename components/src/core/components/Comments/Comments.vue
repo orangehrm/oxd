@@ -318,6 +318,7 @@ export default defineComponent({
 
     const doScroll = async () => {
       await nextTick();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const commentGroupsListElm: any = commentGroupsList.value;
       const offsetTop =
         scrollSettingsObj.value.scrollTo === END
