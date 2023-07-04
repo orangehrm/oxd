@@ -35,7 +35,7 @@ yarn dev
 #### Build Storybook
 
 ```
-yarn workspace oxd-storybook build
+yarn build:storybook
 ```
 
 #### Unit Testing
@@ -44,10 +44,25 @@ yarn workspace oxd-storybook build
 yarn test:unit
 ```
 
+#### Type checking
+
+```
+yarn type-check
+```
+
 #### Linting
 
 ```
 yarn lint
+```
+
+#### Increment version
+
+```bash
+# yarn version --help
+yarn version <strategy>
+E.g.
+yarn version patch
 ```
 
 ### License
