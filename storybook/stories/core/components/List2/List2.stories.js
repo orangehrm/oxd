@@ -25,6 +25,14 @@ export default {
         },
       },
     },
+    loading: {
+      control: {type: 'boolean'},
+      table: {
+        type: {
+          summary: 'Sets loading state of list for skeleton loading',
+        },
+      },
+    },
   },
 };
 

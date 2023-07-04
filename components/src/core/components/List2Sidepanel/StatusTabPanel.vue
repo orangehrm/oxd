@@ -18,41 +18,39 @@
   <oxd-divider></oxd-divider>
   <div class="oxd-status-tab-panel-body">
     <slot name="body" :collapsed="collapsed"></slot>
-    <oxd-skeleton
-      v-if="loading"
-      :lines="10"
-      :height="30"
-      :animate="true"
-    ></oxd-skeleton>
     <ul
-      v-else
       :class="{
         'oxd-status-tab-panel-filters': true,
         '--padtop': $slots['body'],
       }"
     >
-      <li
-        v-for="filter in filterTabs"
-        :key="filter"
-        :class="{
-          'oxd-status-tab-panel-filter': true,
-          '--selected': filter.selected,
-          '--collapsed': collapsed,
-        }"
-        @click.stop="onClickFilter(filter)"
-      >
-        <oxd-text v-if="!collapsed" class="oxd-status-tab-panel-filter-name">
-          {{ $vt(filter.name) }}
-        </oxd-text>
-        <oxd-text
-          flow="right"
-          class="oxd-status-tab-panel-filter-count"
-          :tooltip="collapsed ? $vt(filter.name) : ''"
-          :style="{color: filter.color, background: filter.backgroundColor}"
+      <template v-if="loading && filterTabs.length === 0">
+        <oxd-skeleton :lines="10" :height="30" :animate="true"></oxd-skeleton>
+      </template>
+      <template v-else>
+        <li
+          v-for="filter in filterTabs"
+          :key="filter"
+          :class="{
+            'oxd-status-tab-panel-filter': true,
+            '--selected': filter.selected,
+            '--collapsed': collapsed,
+          }"
+          @click.stop="onClickFilter(filter)"
         >
-          {{ filter.count }}
-        </oxd-text>
-      </li>
+          <oxd-text v-if="!collapsed" class="oxd-status-tab-panel-filter-name">
+            {{ $vt(filter.name) }}
+          </oxd-text>
+          <oxd-text
+            flow="right"
+            class="oxd-status-tab-panel-filter-count"
+            :tooltip="collapsed ? $vt(filter.name) : ''"
+            :style="{color: filter.color, background: filter.backgroundColor}"
+          >
+            {{ filter.count }}
+          </oxd-text>
+        </li>
+      </template>
     </ul>
   </div>
 </template>

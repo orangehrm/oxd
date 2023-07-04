@@ -3,9 +3,13 @@
     <oxd-card-thead>
       <oxd-card-tr :clickable="false">
         <oxd-card-th v-if="selectable" class="oxd-padding-cell oxd-table-th">
+          <oxd-skeleton
+            v-if="loading && skeleton"
+            class="oxd-skeleton-checkbox"
+          />
           <oxd-checkbox-input
+            v-else
             v-model="selectAll"
-            :disabled="loading"
             :checkIcon="checkIcon"
           />
         </oxd-card-th>
@@ -53,8 +57,8 @@
           <oxd-card-cell
             class="oxd-padding-cell"
             :index="index"
-            :loading="loading"
             :headers="cardHeaders"
+            :loading="skeleton && loading"
             :items="{selector: index, ...item}"
           ></oxd-card-cell>
         </oxd-card-tr>
@@ -89,6 +93,7 @@ import useFlashing from '../../../composables/useFlashing';
 import {DEVICE_LG} from '../../../composables/useResponsive';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
+import Skeleton from '@orangehrm/oxd/core/components/Skeleton/Skeleton.vue';
 import Table from '@orangehrm/oxd/core/components/CardTable/Table/Table.vue';
 import TableRow from '@orangehrm/oxd/core/components/CardTable/Table/TableRow.vue';
 import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
@@ -103,7 +108,7 @@ export default defineComponent({
   props: {
     clickable: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     selectable: {
       type: Boolean,
@@ -118,10 +123,6 @@ export default defineComponent({
       default: false,
     },
     flashing: {
-      type: Boolean,
-      default: false,
-    },
-    skeleton: {
       type: Boolean,
       default: false,
     },
@@ -152,6 +153,14 @@ export default defineComponent({
     flashRows: {
       type: Array as PropType<number[]>,
       default: () => [],
+    },
+    skeleton: {
+      type: Boolean,
+      default: false,
+    },
+    skeletonCount: {
+      type: Number,
+      default: 10,
     },
   },
 
@@ -258,7 +267,7 @@ export default defineComponent({
         props.headers.forEach(header => {
           defaultValue[header.name] = null;
         });
-        return Array(10).fill(defaultValue);
+        return Array(props.skeletonCount).fill(defaultValue);
       }
 
       return props.items;
@@ -310,6 +319,7 @@ export default defineComponent({
   components: {
     'oxd-icon': Icon,
     'oxd-card-tr': TableRow,
+    'oxd-skeleton': Skeleton,
     'oxd-card-tbody': TableBody,
     'oxd-card-thead': TableHeader,
     'oxd-card-th': TableHeaderCell,
