@@ -8,16 +8,18 @@
       @keydown.enter.prevent="onSelectEnter"
       @keydown.down.exact.prevent="onSelectDown"
       @keydown.up.exact.prevent="onSelectUp"
+      :label="popOverButtonLabel"
+      :style="popOverButtonStyle"
     />
     <div
       class="oxd-pop-over-button-drop-down"
-      v-if="dropdownOpen && options.length > 0"
+      v-if="dropdownOpen && computedOptions.length > 0"
       :class="dropdownClasses"
       :style="dropDownStyle"
       v-dropdown-direction
     >
       <oxd-pop-over-button-drop-down-option
-        v-for="(option, i) in options"
+        v-for="(option, i) in computedOptions"
         :key="i"
         :disabled="option.disabled"
         @select="onSelect(option)"
@@ -38,7 +40,18 @@ import clickOutsideDirective from '../../../directives/click-outside';
 import dropdownDirectionDirective from '../../../directives/dropdown-direction';
 import translateMixin from '../../../mixins/translate';
 import PopOverButtonDropDownOption from './PopOverButtonDropDownOption.vue';
-import {BOTTOM, DROPDOWN_POSITIONS, Option, Position, TOP} from './types';
+import {
+  BOTTOM,
+  DropdownAlignment,
+  DROPDOWN_ALIGHMENT,
+  DROPDOWN_POSITIONS,
+  LEFT,
+  Option,
+  Position,
+  RIGHT,
+  TOP,
+  CENTER,
+} from './types';
 
 export default defineComponent({
   name: 'oxd-pop-over-button',
@@ -51,11 +64,14 @@ export default defineComponent({
     'oxd-button': OxdButton,
     'oxd-pop-over-button-drop-down-option': PopOverButtonDropDownOption,
   },
-  emits: ['click', 'select'],
+  emits: ['click', 'update:modelValue'],
   props: {
+    modelValue: {
+      type: Object as PropType<Option>,
+    },
     options: {
       type: Array as PropType<Option[]>,
-      default: () => [],
+      required: true,
     },
     dropdownPosition: {
       type: String,
@@ -64,22 +80,50 @@ export default defineComponent({
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
+    dropdownAlignment: {
+      type: String,
+      default: RIGHT,
+      validator: (value: DropdownAlignment) => {
+        return DROPDOWN_ALIGHMENT.indexOf(value) !== -1;
+      },
+    },
     dropDownStyle: {
       type: Object,
+    },
+    customPopOverButtonLabel: {
+      type: String,
+    },
+    popOverButtonStyle: {
+      type: Object,
+      default: () => ({}),
+    },
+    dropdpwnArrow: {
+      type: Boolean as PropType<boolean>,
+      default: false,
     },
   },
   data() {
     return {
       dropdownOpen: false,
-      pointer: -1,
+      pointer: 0,
     };
   },
   computed: {
+    computedOptions(): Option[] {
+      return this.options.map((option: Option) => {
+        let _selected = false;
+        if (this.modelValue?.context === option.context) {
+          _selected = true;
+        }
+        return {...option, _selected};
+      });
+    },
     optionClasses(): object[] {
-      return this.options.map((option: Option, index: number) => {
+      return this.computedOptions.map((option: Option, index: number) => {
         return {
           '--disabled': option.disabled,
           '--focused': index === this.pointer,
+          '--selected': option._selected,
         };
       });
     },
@@ -87,12 +131,31 @@ export default defineComponent({
       return {
         '--position-bottom': this.dropdownPosition === BOTTOM,
         '--position-top': this.dropdownPosition === TOP,
+        '--align-left': this.dropdownAlignment === LEFT,
+        '--align-right': this.dropdownAlignment === RIGHT,
+        '--align-center': this.dropdownAlignment === CENTER,
+        '--arrow': this.dropdpwnArrow,
       };
+    },
+    popOverButtonLabel(): string {
+      if (this.customPopOverButtonLabel) {
+        return this.customPopOverButtonLabel;
+      } else {
+        return this.modelValue ? this.modelValue.label : '';
+      }
     },
   },
   methods: {
     clickOutside() {
       this.onCloseDropdown(null);
+    },
+    getInitialPointerValue() {
+      if (this.modelValue) {
+        return this.options.findIndex(
+          option => option.context === this.modelValue?.context,
+        );
+      }
+      return 0;
     },
     onToggleDropdown() {
       if (!this.dropdownOpen) {
@@ -102,9 +165,9 @@ export default defineComponent({
       }
     },
     openDropdown() {
+      this.pointer = 0;
       if (this.dropdownOpen) return;
       this.dropdownOpen = true;
-      this.pointer = 0;
     },
     onCloseDropdown($e: KeyboardEvent | null) {
       if (!this.dropdownOpen) return;
@@ -115,8 +178,9 @@ export default defineComponent({
       this.onCloseDropdown(null);
     },
     onSelect(option: Option) {
-      this.pointer = -1;
       this.$emit('click', option.context, option);
+      this.$emit('update:modelValue', option);
+      this.pointer = -1;
       this.dropdownOpen = false;
     },
     onSelectDown() {
@@ -125,11 +189,11 @@ export default defineComponent({
         do {
           this.pointer++;
         } while (
-          this.pointer < this.options.length &&
-          this.options[this.pointer].disabled
+          this.pointer < this.computedOptions.length &&
+          this.computedOptions[this.pointer].disabled
         );
 
-        if (this.pointer >= this.options.length) {
+        if (this.pointer >= this.computedOptions.length) {
           this.pointer = originalPointer;
         }
       }
@@ -139,7 +203,10 @@ export default defineComponent({
         const originalPointer = this.pointer;
         do {
           this.pointer--;
-        } while (this.pointer >= 0 && this.options[this.pointer].disabled);
+        } while (
+          this.pointer >= 0 &&
+          this.computedOptions[this.pointer].disabled
+        );
 
         if (this.pointer < 0) {
           this.pointer = originalPointer;
@@ -151,7 +218,7 @@ export default defineComponent({
         this.openDropdown();
       } else {
         if (this.pointer >= 0) {
-          const option = this.options[this.pointer];
+          const option = this.computedOptions[this.pointer];
           if (!option?.disabled) this.onSelect(option);
         }
       }

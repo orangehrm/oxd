@@ -5,10 +5,10 @@
       label="Add Schedule"
       size="medium"
       displayType="secondary"
-      iconName="oxd-add"
-      iconSize="small"
+      :customPopOverButtonLabel="'Add'"
       :options="addScheduleOptions"
-      @click="onSelectOption"
+      :modelValue="selectedOption"
+      @update:modelValue="onSelectOption"
     />
   </div>
 </template>
@@ -24,7 +24,7 @@ export default defineComponent({
   },
 
   setup: function () {
-    const selectedOption = ref<string>('nothing');
+    const selectedOption = ref<Option>(null);
 
     const addScheduleOptions: Array<Option> = [
       {
@@ -42,8 +42,7 @@ export default defineComponent({
       },
     ];
 
-    const onSelectOption = (option: string) => {
-      console.log('selected');
+    const onSelectOption = (option: Option) => {
       selectedOption.value = option;
     };
 
@@ -57,7 +56,7 @@ export default defineComponent({
 </script>
 <style scoped lang="scss">
 .story-container {
-  padding-left: 20px;
+  padding-left: 100px;
   display: flex;
 }
 </style>

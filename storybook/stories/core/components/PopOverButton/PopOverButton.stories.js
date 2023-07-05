@@ -9,11 +9,20 @@ import {
   ICON_SIZES,
   ICON_SIZE_MEDIUM,
 } from '@orangehrm/oxd/core/components/Icon/types';
+
+import {
+  DROPDOWN_POSITIONS,
+  BOTTOM,
+  DROPDOWN_ALIGHMENT,
+  RIGHT,
+} from '@orangehrm/oxd/core/components/PopOverButton/types';
+
 import icons from 'bootstrap-icons/font/bootstrap-icons.json';
 import oxdIcons from '@orangehrm/oxd/core/components/Icon/icons';
-import PopOverButtonTextOption from './PopOverButtonTextOption.story.vue';
+import PopOverButtonTextOptionWithInitialValue from './PopOverButtonTextOptionWithInitialValue.story.vue';
 import PopOverButtonTemplateOption from './PopOverButtonTemplateOption.story.vue';
 import PopOverButtonLongTextOption from './PopOverButtonLongTextOption.story.vue';
+import PopOverButtonTextOptionWithCustomLabel from './PopOverButtonTextOptionWithCustomLabel.story.vue';
 
 const bootstrapIconsNames = Object.keys(icons);
 const oxdIconsNames = Object.keys(oxdIcons);
@@ -23,6 +32,14 @@ export default {
   title: 'Inputs/PopOverButton',
   component: PopOverButton,
   argTypes: {
+    modelValue: {
+      control: {type: 'object'},
+      table: {
+        type: {
+          summary: 'Already selected value',
+        },
+      },
+    },
     options: {
       control: {type: 'array'},
       table: {
@@ -32,7 +49,8 @@ export default {
       },
     },
     dropdownPosition: {
-      control: {type: 'text'},
+      control: {type: 'select', options: DROPDOWN_POSITIONS},
+      defaultValue: BOTTOM,
       table: {
         type: {
           summary:
@@ -40,10 +58,41 @@ export default {
         },
       },
     },
+    dropdownAlignment: {
+      control: {type: 'select', options: DROPDOWN_ALIGHMENT},
+      defaultValue: RIGHT,
+      table: {
+        type: {
+          summary:
+            'Alignment of the drop down, whether it is left, right or center',
+        },
+      },
+    },
+    customPopOverButtonLabel: {
+      control: {type: 'text'},
+      table: {
+        type: {
+          summary: 'Custom label for the button',
+        },
+      },
+    },
+    popOverButtonStyle: {
+      control: {type: 'object'},
+      table: {
+        type: {summary: 'Custom styles for the popover button'},
+      },
+    },
     dropDownStyle: {
       control: {type: 'object'},
       table: {
         type: {summary: 'Custom styles for the dropdown'},
+      },
+    },
+    dropdpwnArrow: {
+      control: {type: 'boolean'},
+      defaultValue: false,
+      table: {
+        type: {summary: 'Whether to insert the pop over arrow or not'},
       },
     },
     size: {
@@ -61,14 +110,6 @@ export default {
       table: {
         type: {
           summary: 'Display type of the button',
-        },
-      },
-    },
-    style: {
-      control: {type: 'object'},
-      table: {
-        type: {
-          summary: 'Styles fo the button',
         },
       },
     },
@@ -122,12 +163,63 @@ export default {
         },
       },
     },
+    'update:modelValue': {
+      control: {type: 'object'},
+      defaultValue: {},
+      table: {
+        type: {summary: 'emit event when selected value updates'},
+      },
+    },
+    click: {
+      control: {type: 'object'},
+      defaultValue: {},
+      table: {
+        type: {
+          summary:
+            'emit event when click on the value of options dropdown. First parameter is the context and the second parameter is the object',
+        },
+      },
+    },
+    option: {
+      control: {type: 'object'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'Should be passed as an array object'},
+      },
+    },
   },
 };
 
-export const WithTextOptions = () => PopOverButtonTextOption;
+const Template = (args) => ({
+  setup() {
+    return {args};
+  },
+  components: {'oxd-pop-over-button': PopOverButton},
+  template: '<oxd-pop-over-button v-bind="args" />',
+});
 
-WithTextOptions.parameters = {
+export const Default = Template.bind({});
+Default.args = {
+  customPopOverButtonLabel: 'Add Schedule',
+  options: [
+    {
+      context: 'context_fixed',
+      label: 'Fixed Schedule',
+    },
+    {
+      context: 'context_daily',
+      label: 'Flexible Schedule (Daily)',
+    },
+    {
+      context: 'context_weekly',
+      label: 'Flexible Schedule (Weekly)',
+    },
+  ],
+};
+
+export const WithTextOptionsWithInitialValue = () => PopOverButtonTextOptionWithInitialValue;
+
+WithTextOptionsWithInitialValue.parameters = {
   docs: {
     source: {
       code:
@@ -144,8 +236,34 @@ WithTextOptions.parameters = {
         '@click="onSelectOption"' +
         '/>' +
         '</div>' +
-        '</trmplate>' +
-        'File -> PopOverButtonTextOption.story.vue',
+        '</template>' +
+        'File -> PopOverButtonTextOptionWithInitialValue.story.vue',
+    },
+  },
+};
+
+export const WithTextOptionWithCustomLabel = () =>
+  PopOverButtonTextOptionWithCustomLabel;
+
+WithTextOptionWithCustomLabel.parameters = {
+  docs: {
+    source: {
+      code:
+        '<template>' +
+        '<p>{{ selectedOption }} selected</p>' +
+        '<div class="story-container">' +
+        '<oxd-pop-over-button' +
+        'label="Add Schedule"' +
+        'size="medium"' +
+        'displayType="secondary"' +
+        'iconName="oxd-add"' +
+        'iconSize="small"' +
+        ':options="addScheduleOptions"' +
+        '@click="onSelectOption"' +
+        '/>' +
+        '</div>' +
+        '</template>' +
+        'File -> PopOverButtonTextOptionWithInitialValue.story.vue',
     },
   },
 };
@@ -169,7 +287,7 @@ WithLongTextOptions.parameters = {
         '@click="onSelectOption"' +
         '/>' +
         '</div>' +
-        '</trmplate>' +
+        '</template>' +
         'File -> PopOverButtonLongTextOption.story.vue',
     },
   },
