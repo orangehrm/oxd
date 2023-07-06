@@ -59,7 +59,7 @@
         :withContainer="false"
       />
     </div>
-    <div class="oxd-time-period-input" v-if="!is24HrsFormat">
+    <div class="oxd-time-period-input" v-if="format == INPUT_TIME_FORMAT_12">
       <div class="oxd-time-period-label">
         <input
           name="am"
@@ -86,7 +86,13 @@
 
 <script lang="ts">
 import {formatDate, parseDate} from '@orangehrm/oxd/utils/date';
-import {defineComponent, PropType, reactive, toRefs, watch} from 'vue';
+import {
+  computed,
+  defineComponent,
+  reactive,
+  toRefs,
+  watch,
+} from 'vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import clickOutsideDirective from '@orangehrm/oxd/directives/click-outside';
@@ -94,6 +100,10 @@ import focusTrapDirective from '@orangehrm/oxd/directives/focus-trap';
 import focusFirstElementDirective from '@orangehrm/oxd/directives/focus-first-element';
 import translateMixin from '@orangehrm/oxd/mixins/translate';
 import {
+  InputTimeFormat,
+  INPUT_TIME_FORMATS,
+  INPUT_TIME_FORMAT_12,
+  INPUT_TIME_FORMAT_24,
   State,
   TIME_FORMAT_12_HR_WITH_PERIOD,
   TIME_FORMAT_24_HR,
@@ -112,9 +122,12 @@ export default defineComponent({
       type: Number,
       default: 1,
     },
-    is24HrsFormat: {
-      type: Boolean as PropType<boolean>,
-      default: false,
+    format: {
+      type: String,
+      default: INPUT_TIME_FORMAT_12,
+      validator: (value: InputTimeFormat) => {
+        return INPUT_TIME_FORMATS.indexOf(value) !== -1;
+      },
     },
   },
 
@@ -137,24 +150,31 @@ export default defineComponent({
     let enteredHour = '';
     let enteredMinute = '';
     const state: State = reactive({
-      hour: props.is24HrsFormat ? '00' : '01',
+      hour: '01',
       minute: '00',
-      ...(!props.is24HrsFormat && {
+      ...(props.format == INPUT_TIME_FORMAT_12 && {
         period: TIME_PERIOD_AM,
       }),
     });
 
-    const timeFormatToParse = props.is24HrsFormat
-      ? TIME_FORMAT_24_HR
-      : TIME_FORMAT_12_HR_WITH_PERIOD;
+    const parseFormat = computed(() => {
+      return props.format == INPUT_TIME_FORMAT_24
+        ? TIME_FORMAT_24_HR
+        : TIME_FORMAT_12_HR_WITH_PERIOD;
+    });
 
-    const hoursMax = props.is24HrsFormat ? 23 : 12;
-    const hoursMin = props.is24HrsFormat ? 0 : 1;
+    const hoursMax = computed(() => {
+      return props.format == INPUT_TIME_FORMAT_24 ? 23 : 12;
+    });
+
+    const hoursMin = computed(() => {
+      return props.format == INPUT_TIME_FORMAT_24 ? 0 : 1;
+    });
 
     const setValue = (input: number, type: string) => {
       if (!isNaN(input)) {
         if (type === 'hour') {
-          if (input >= hoursMin && input <= hoursMax) {
+          if (input >= hoursMin.value && input <= hoursMax.value) {
             state.hour = input < 10 ? '0' + input : input.toString();
           }
         } else {
@@ -173,7 +193,7 @@ export default defineComponent({
 
       if (!isNaN(numericValue)) {
         if (type === 'hour') {
-          valid = input >= hoursMin && input <= hoursMax;
+          valid = input >= hoursMin.value && input <= hoursMax.value;
         } else {
           valid = input >= 0 && input <= 59 && input % props.step === 0;
         }
@@ -195,12 +215,12 @@ export default defineComponent({
     };
 
     const getMin = (type: string) => {
-      return type === 'hour' && !props.is24HrsFormat ? 1 : 0;
+      return type === 'hour' && props.format == INPUT_TIME_FORMAT_12 ? 1 : 0;
     };
 
     const getMax = (type: string) => {
       if (type === 'hour') {
-        return hoursMax;
+        return hoursMax.value;
       } else {
         return (Math.floor(59 / props.step) * props.step) % 60;
       }
@@ -255,7 +275,7 @@ export default defineComponent({
           const time = parseDate(props.modelValue, TIME_FORMAT_24_HR);
           if (time) {
             // getHours() return 0-23, return 12 if 0
-            if (props.is24HrsFormat) {
+            if (props.format == INPUT_TIME_FORMAT_24) {
               setValue(time.getHours(), 'hour');
               setValue(time.getMinutes(), 'minute');
             } else {
@@ -278,11 +298,11 @@ export default defineComponent({
       () => state,
       () => {
         let timeString = `${state.hour}:${state.minute}`;
-        if (!props.is24HrsFormat) {
+        if (props.format == INPUT_TIME_FORMAT_12) {
           timeString += ` ${state.period}`;
         }
         if (timeString) {
-          const parsedTime = parseDate(timeString, timeFormatToParse);
+          const parsedTime = parseDate(timeString, parseFormat.value);
           if (parsedTime) {
             const formattedTime = formatDate(parsedTime, TIME_FORMAT_24_HR);
             if (props.modelValue !== formattedTime) {
@@ -309,6 +329,7 @@ export default defineComponent({
       onMinuteInputBlur,
       TIME_PERIOD_PM,
       TIME_PERIOD_AM,
+      INPUT_TIME_FORMAT_12,
     };
   },
 });

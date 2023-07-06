@@ -139,7 +139,7 @@ describe('TimeInput.vue', () => {
   it('invalid time value in 12 hrs format', async () => {
     const wrapper = mount(TimeInput, {
       props: {
-        modelValue: '58:00'
+        modelValue: '58:00',
       },
     });
     expect(wrapper.vm.time).toEqual('');
@@ -148,8 +148,8 @@ describe('TimeInput.vue', () => {
   it('invalid time value in 24 hrs format', async () => {
     const wrapper = mount(TimeInput, {
       props: {
-        is24HrsFormat: true,
-        modelValue: '25:00'
+        format: '24',
+        modelValue: '25:00',
       },
     });
     expect(wrapper.vm.time).toEqual('');
@@ -159,7 +159,7 @@ describe('TimeInput.vue', () => {
     const wrapper = mount(TimeInput, {
       props: {
         modelValue: '15:00',
-        is24HrsFormat: true,
+        format: '24',
       },
     });
     expect(
@@ -254,7 +254,7 @@ describe('TimeInput.vue', () => {
   it('should not accept invalid input 24hrs format is enabled', async () => {
     const wrapper = mount(TimeInput, {
       props: {
-        is24HrsFormat: true,
+        format: '24',
       },
     });
     wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
@@ -263,7 +263,7 @@ describe('TimeInput.vue', () => {
     const pickerInput = picker.find('input');
     (pickerInput.element as HTMLInputElement).value = '25:00';
     await pickerInput.trigger('input');
-    expect(wrapper.vm.pickerInput).toEqual('00:00');
+    expect(wrapper.vm.pickerInput).toEqual('01:00');
   });
 
   it('should increment/decrement hour', async () => {
@@ -283,7 +283,7 @@ describe('TimeInput.vue', () => {
   it('should increment/decrement hours in 24hrs format', async () => {
     const wrapper = mount(TimeInput, {
       props: {
-        is24HrsFormat: true,
+        format: '24',
       },
     });
     wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');

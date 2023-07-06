@@ -13,11 +13,7 @@
         tabindex="0"
         maxlength="5"
       />
-      <div
-        class="oxd-time-input-am-pm-wrapper"
-        :class="amPmWrapperClasses"
-        v-if="!is24HrsFormat"
-      >
+      <div :class="amPmWrapperClasses" v-if="format == INPUT_TIME_FORMAT_12">
         <label :class="amPmLabelClasses"
           >{{ am ? $vt(TIME_PERIOD_AM) : $vt(TIME_PERIOD_PM) }}
           <input
@@ -50,7 +46,7 @@
       v-if="timePickerOpen"
       v-model="pickerInput"
       :step="step"
-      :is24-hrs-format="is24HrsFormat"
+      :format="format"
       @update:modelValue="timePickerUpdate"
       @timepicker:closed="closeDropdown"
     ></oxd-time-picker>
@@ -58,15 +54,7 @@
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  PropType,
-  reactive,
-  ref,
-  toRefs,
-  watch,
-} from 'vue';
+import {computed, defineComponent, reactive, ref, toRefs, watch} from 'vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import clickOutsideDirective from '@orangehrm/oxd/directives/click-outside';
@@ -83,6 +71,10 @@ import {
   TIME_FORMAT_12_HR_WITH_PERIOD,
   TIME_PERIOD_AM,
   TIME_PERIOD_PM,
+  INPUT_TIME_FORMAT_12,
+  InputTimeFormat,
+  INPUT_TIME_FORMATS,
+  INPUT_TIME_FORMAT_24,
 } from './types';
 
 export default defineComponent({
@@ -133,9 +125,12 @@ export default defineComponent({
       type: Number,
       default: 1,
     },
-    is24HrsFormat: {
-      type: Boolean as PropType<boolean>,
-      default: false,
+    format: {
+      type: String,
+      default: INPUT_TIME_FORMAT_12,
+      validator: (value: InputTimeFormat) => {
+        return INPUT_TIME_FORMATS.indexOf(value) !== -1;
+      },
     },
   },
 
@@ -144,17 +139,22 @@ export default defineComponent({
     const amPmLabelFocus = ref<boolean>(false);
     let inputTime = '';
 
-    const timeFormatToParse = props.is24HrsFormat
-      ? TIME_FORMAT_24_HR
-      : TIME_FORMAT_12_HR_WITH_PERIOD;
-    const timeFormatToDisplay = props.is24HrsFormat
-      ? TIME_FORMAT_24_HR
-      : TIME_FORMAT_12_HR;
+    const parseFormat = computed(() => {
+      return props.format == INPUT_TIME_FORMAT_24
+        ? TIME_FORMAT_24_HR
+        : TIME_FORMAT_12_HR_WITH_PERIOD;
+    });
+
+    const displayFormat = computed(() => {
+      return props.format == INPUT_TIME_FORMAT_24
+        ? TIME_FORMAT_24_HR
+        : TIME_FORMAT_12_HR;
+    });
 
     const state = reactive<TimeInputState>({
       time: '',
       pickerInput: props.modelValue,
-      ...(!props.is24HrsFormat && {am: true}),
+      am: props.format == INPUT_TIME_FORMAT_12,
     });
 
     const openDropdown = () => {
@@ -205,11 +205,11 @@ export default defineComponent({
         if (props.modelValue) {
           const time = parseDate(props.modelValue, TIME_FORMAT_24_HR);
           if (time) {
-            const formattedTime = formatDate(time, timeFormatToDisplay);
+            const formattedTime = formatDate(time, displayFormat.value);
             if (formattedTime) {
               state.time = formattedTime;
               inputTime = formattedTime;
-              if (!props.is24HrsFormat) {
+              if (props.format == INPUT_TIME_FORMAT_12) {
                 state.am = time.getHours() < 12;
               }
             }
@@ -224,18 +224,19 @@ export default defineComponent({
     watch(
       () => [state.time, state.am],
       () => {
-        const validTimeFormat = props.is24HrsFormat
-          ? VALID_TIME_FORMAT_24
-          : VALID_TIME_FORMAT_12;
+        const validTimeFormat =
+          props.format == INPUT_TIME_FORMAT_24
+            ? VALID_TIME_FORMAT_24
+            : VALID_TIME_FORMAT_12;
         const validTime = validTimeFormat.test(state.time);
         let newModelValue: string | null = state.time;
-        if (!props.is24HrsFormat) {
+        if (props.format == INPUT_TIME_FORMAT_12) {
           newModelValue += ' ';
           newModelValue += state.am ? TIME_PERIOD_AM : TIME_PERIOD_PM;
         }
 
         if (validTime) {
-          const parsedTime = parseDate(newModelValue, timeFormatToParse);
+          const parsedTime = parseDate(newModelValue, parseFormat.value);
           if (parsedTime) {
             newModelValue = formatDate(parsedTime, TIME_FORMAT_24_HR);
             state.pickerInput = newModelValue;
@@ -272,6 +273,7 @@ export default defineComponent({
 
     const amPmWrapperClasses = computed(() => {
       return {
+        'oxd-time-input-am-pm-wrapper': props.format == INPUT_TIME_FORMAT_12,
         '--disabled': props.disabled,
       };
     });
@@ -309,6 +311,7 @@ export default defineComponent({
       amPmWrapperClasses,
       TIME_PERIOD_AM,
       TIME_PERIOD_PM,
+      INPUT_TIME_FORMAT_12,
     };
   },
 });

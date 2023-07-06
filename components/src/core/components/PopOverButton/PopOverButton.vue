@@ -8,7 +8,7 @@
       @keydown.enter.prevent="onSelectEnter"
       @keydown.down.exact.prevent="onSelectDown"
       @keydown.up.exact.prevent="onSelectUp"
-      :label="popOverButtonLabel"
+      :label="$vt(popOverButtonLabel)"
       :style="popOverButtonStyle"
     />
     <div
@@ -66,9 +66,7 @@ export default defineComponent({
   },
   emits: ['click', 'update:modelValue'],
   props: {
-    modelValue: {
-      type: Object as PropType<Option>,
-    },
+    modelValue: {type: Object},
     options: {
       type: Array as PropType<Option[]>,
       required: true,
@@ -98,7 +96,7 @@ export default defineComponent({
       default: () => ({}),
     },
     dropdpwnArrow: {
-      type: Boolean as PropType<boolean>,
+      type: Boolean,
       default: false,
     },
   },
@@ -110,13 +108,14 @@ export default defineComponent({
   },
   computed: {
     computedOptions(): Option[] {
-      return this.options.map((option: Option) => {
-        let _selected = false;
-        if (this.modelValue?.context === option.context) {
-          _selected = true;
-        }
-        return {...option, _selected};
-      });
+      return (
+        this.options?.map((option: Option) => {
+          return {
+            ...option,
+            _selected: this.modelValue?.context === option.context,
+          };
+        }) || []
+      );
     },
     optionClasses(): object[] {
       return this.computedOptions.map((option: Option, index: number) => {
@@ -148,14 +147,6 @@ export default defineComponent({
   methods: {
     clickOutside() {
       this.onCloseDropdown(null);
-    },
-    getInitialPointerValue() {
-      if (this.modelValue) {
-        return this.options.findIndex(
-          option => option.context === this.modelValue?.context,
-        );
-      }
-      return 0;
     },
     onToggleDropdown() {
       if (!this.dropdownOpen) {

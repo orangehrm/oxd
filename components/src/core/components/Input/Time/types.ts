@@ -10,6 +10,14 @@ export interface TimeInputState {
   am?: boolean;
 }
 
+export const INPUT_TIME_FORMAT_12 = '12';
+export const INPUT_TIME_FORMAT_24 = '24';
+
+export const INPUT_TIME_FORMATS = [INPUT_TIME_FORMAT_12, INPUT_TIME_FORMAT_24];
+export type InputTimeFormat =
+  | typeof INPUT_TIME_FORMAT_12
+  | typeof INPUT_TIME_FORMAT_24;
+
 export const TIME_FORMAT_24_HR = 'HH:mm';
 export const TIME_FORMAT_12_HR = 'hh:mm';
 export const TIME_FORMAT_12_HR_WITH_PERIOD = 'hh:mm a';

@@ -2,7 +2,7 @@
   <p>{{ selectedOption }} selected</p>
   <div class="story-container">
     <oxd-pop-over-button
-      :customPopOverButtonLabel="'Add'"
+      customPopOverButtonLabel="Add"
       size="medium"
       displayType="secondary"
       iconName="oxd-add"

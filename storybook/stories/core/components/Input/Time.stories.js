@@ -1,5 +1,9 @@
 import {h, ref} from 'vue';
 import TimeInput from '@orangehrm/oxd/core/components/Input/Time/TimeInput';
+import {
+  INPUT_TIME_FORMATS,
+  INPUT_TIME_FORMAT_12,
+} from '@orangehrm/oxd/core/components/Input/Time/types';
 
 export default {
   title: 'Inputs/TimeInput',
@@ -17,13 +21,12 @@ export default {
         },
       },
     },
-    is24HrsFormat: {
-      control: {type: 'boolean'},
-      defaultValue: false,
+    format: {
+      control: {type: 'select', options: INPUT_TIME_FORMATS},
+      defaultValue: INPUT_TIME_FORMAT_12,
       table: {
         type: {
-          summary:
-            'Whether the time pickers is in 24 hours format or 12 hours format',
+          summary: 'Whether the time picker format is 24 hours or 12 hours',
         },
       },
     },
@@ -83,6 +86,6 @@ CustomStep.args = {
 
 export const IsIn24HoursFormat = Template.bind({});
 IsIn24HoursFormat.args = {
-  is24HrsFormat: true,
+  format: '24',
   initialValue: '20:00',
 };

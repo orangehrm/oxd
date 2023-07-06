@@ -6,11 +6,17 @@ const dropDownOptions = [
   {context: 'c_2', label: 'Option 2'},
 ];
 
+const dropDownOptionsWithDisabled = [
+  {context: 'c_1', label: 'Option 1'},
+  {context: 'c_2', label: 'Option 2'},
+  {context: 'c_3', label: 'Option 3', disabled: true},
+];
+
 describe('PopOverButton', () => {
   it('before click the button, pop over drop down not appear', () => {
     const wrapper = mount(PopOverButton, {
       props: {
-        label: 'Select Option',
+        customPopOverButtonLabel: 'Select Option',
       },
     });
     expect(wrapper.vm.dropdownOpen).toBe(false);
@@ -21,7 +27,7 @@ describe('PopOverButton', () => {
   it('after the button click without options dropdown should not be appeared', async () => {
     const wrapper = mount(PopOverButton, {
       props: {
-        label: 'Select Option',
+        customPopOverButtonLabel: 'Select Option',
       },
     });
     const button = wrapper.find('.oxd-button');
@@ -40,7 +46,7 @@ describe('PopOverButton', () => {
   it('after the button click with options dropdown should be appeared', async () => {
     const wrapper = mount(PopOverButton, {
       props: {
-        label: 'Select Option',
+        customPopOverButtonLabel: 'Select Option',
         options: dropDownOptions,
       },
     });
@@ -62,7 +68,7 @@ describe('PopOverButton', () => {
   it('after the button click on option 2, selected option should be emmitted', async () => {
     const wrapper = mount(PopOverButton, {
       props: {
-        label: 'Select Option',
+        customPopOverButtonLabel: 'Select Option',
         options: dropDownOptions,
       },
     });
@@ -77,13 +83,101 @@ describe('PopOverButton', () => {
     await wrapper.vm.$nextTick();
     const emitResult = wrapper.emitted('click');
 
-    expect(emitResult).toEqual([['c_2', {context: 'c_2', label: 'Option 2'}]]);
+    expect(emitResult).toEqual([
+      ['c_2', {context: 'c_2', label: 'Option 2', _selected: false}],
+    ]);
+  });
+
+  it('with disabled option', async () => {
+    const wrapper = mount(PopOverButton, {
+      props: {
+        customPopOverButtonLabel: 'Select Option',
+        options: dropDownOptionsWithDisabled,
+      },
+    });
+
+    const button = wrapper.find('.oxd-button');
+    await button.trigger('click');
+    await wrapper.vm.$nextTick();
+
+    const listptions = wrapper.findAll('.oxd-pop-over-button-drop-down-option');
+
+    expect(listptions[2].find('.--disabled').exists).toBeTruthy;
+  });
+
+  it('modal value can be set initially', async () => {
+    const wrapper = mount(PopOverButton, {
+      props: {
+        options: dropDownOptions,
+        modelValue: dropDownOptions[1],
+      },
+    });
+
+    const button = wrapper.find('.oxd-button');
+    await button.trigger('click');
+    await wrapper.vm.$nextTick();
+
+    const popOverButtonLabel = wrapper.find('.oxd-button-label-wrapper');
+
+    expect(wrapper.vm.modelValue).toEqual(dropDownOptions[1]);
+    expect(popOverButtonLabel.text()).toContain('Option 2');
+  });
+
+  it('when no modal value and no customlabel, label should be empty', async () => {
+    const wrapper = mount(PopOverButton, {
+      props: {
+        options: dropDownOptions,
+      },
+    });
+
+    const button = wrapper.find('.oxd-button');
+    await button.trigger('click');
+    await wrapper.vm.$nextTick();
+
+    const popOverButtonLabelBefore = wrapper.find('.oxd-button-label-wrapper');
+
+    expect(wrapper.vm.modelValue).toEqual(undefined);
+    expect(popOverButtonLabelBefore.text()).toContain('');
+  });
+
+  it('when dropdown arrow is enabled it should be appeared', async () => {
+    const wrapper = mount(PopOverButton, {
+      props: {
+        options: dropDownOptions,
+        dropdpwnArrow: true,
+      },
+    });
+
+    const button = wrapper.find('.oxd-button');
+    await button.trigger('click');
+    await wrapper.vm.$nextTick();
+
+    const dropdownArrow = wrapper.find('.--arrow');
+
+    expect(dropdownArrow.exists()).toBeTruthy();
+  });
+
+  it('when dropdown arrow is disables it should not be appeared', async () => {
+    const wrapper = mount(PopOverButton, {
+      props: {
+        options: dropDownOptions,
+        dropdpwnArrow: false,
+      },
+    });
+
+    const button = wrapper.find('.oxd-button');
+    await button.trigger('click');
+    await wrapper.vm.$nextTick();
+
+    const dropdownArrow = wrapper.find('.--arrow');
+
+    expect(dropdownArrow.exists()).toBeFalsy();
   });
 
   it('passing options as slots', async () => {
     const wrapper = mount(PopOverButton, {
       props: {
-        label: 'Select Option',
+        customPopOverButtonLabel: 'Select Option',
         options: dropDownOptions,
       },
       slots: {
@@ -102,7 +196,7 @@ describe('PopOverButton', () => {
   it('consecutively press on the button', async () => {
     const wrapper = mount(PopOverButton, {
       props: {
-        label: 'Select Option',
+        customPopOverButtonLabel: 'Select Option',
         options: dropDownOptions,
       },
     });
@@ -126,7 +220,7 @@ describe('PopOverButton', () => {
   it('press key down and up', async () => {
     const wrapper = mount(PopOverButton, {
       props: {
-        label: 'Select Option',
+        customPopOverButtonLabel: 'Select Option',
         options: dropDownOptions,
       },
     });
@@ -149,7 +243,7 @@ describe('PopOverButton', () => {
   it('press key down exceeds the length', async () => {
     const wrapper = mount(PopOverButton, {
       props: {
-        label: 'Select Option',
+        customPopOverButtonLabel: 'Select Option',
         options: dropDownOptions,
       },
     });
@@ -172,7 +266,7 @@ describe('PopOverButton', () => {
   it('press key up exceeds than minimum', async () => {
     const wrapper = mount(PopOverButton, {
       props: {
-        label: 'Select Option',
+        customPopOverButtonLabel: 'Select Option',
         options: dropDownOptions,
       },
     });
@@ -193,7 +287,7 @@ describe('PopOverButton', () => {
   it('blur event', async () => {
     const wrapper = mount(PopOverButton, {
       props: {
-        label: 'Select Option',
+        customPopOverButtonLabel: 'Select Option',
         options: dropDownOptions,
       },
     });
@@ -213,7 +307,7 @@ describe('PopOverButton', () => {
     const wrapper = mount(PopOverButton, {
       attachTo: document.body,
       props: {
-        label: 'Select Option',
+        customPopOverButtonLabel: 'Select Option',
         options: dropDownOptions,
       },
     });
@@ -232,7 +326,7 @@ describe('PopOverButton', () => {
   it('press key down and enter', async () => {
     const wrapper = mount(PopOverButton, {
       props: {
-        label: 'Select Option',
+        customPopOverButtonLabel: 'Select Option',
         options: dropDownOptions,
       },
     });
@@ -250,13 +344,15 @@ describe('PopOverButton', () => {
 
     const emitResult = wrapper.emitted('click');
 
-    expect(emitResult).toEqual([['c_2', {context: 'c_2', label: 'Option 2'}]]);
+    expect(emitResult).toEqual([
+      ['c_2', {context: 'c_2', label: 'Option 2', _selected: false}],
+    ]);
   });
 
   it('press esc', async () => {
     const wrapper = mount(PopOverButton, {
       props: {
-        label: 'Select Option',
+        customPopOverButtonLabel: 'Select Option',
         options: dropDownOptions,
       },
     });

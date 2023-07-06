@@ -5,7 +5,7 @@
       label="Add Schedule"
       size="medium"
       displayType="secondary"
-      :customPopOverButtonLabel="'Add'"
+      customPopOverButtonLabel="Add"
       :options="addScheduleOptions"
       :modelValue="selectedOption"
       @update:modelValue="onSelectOption"
