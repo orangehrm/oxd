@@ -95,7 +95,7 @@ export default defineComponent({
       type: Object,
       default: () => ({}),
     },
-    dropdpwnArrow: {
+    dropdownArrow: {
       type: Boolean,
       default: false,
     },
@@ -120,9 +120,10 @@ export default defineComponent({
     optionClasses(): object[] {
       return this.computedOptions.map((option: Option, index: number) => {
         return {
+          '--default': !this.$slots['option'] ,
           '--disabled': option.disabled,
           '--focused': index === this.pointer,
-          '--selected': option._selected,
+          '--selected': option._selected       
         };
       });
     },
@@ -133,7 +134,7 @@ export default defineComponent({
         '--align-left': this.dropdownAlignment === LEFT,
         '--align-right': this.dropdownAlignment === RIGHT,
         '--align-center': this.dropdownAlignment === CENTER,
-        '--arrow': this.dropdpwnArrow,
+        '--arrow': this.dropdownArrow,
       };
     },
     popOverButtonLabel(): string {

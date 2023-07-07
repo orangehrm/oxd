@@ -182,23 +182,26 @@
   &:last-child {
     border-bottom: unset;
   }
-  &:hover,
-  &.--focused {
-    border-radius: 0.65rem;
-    background-color: $oxd-pop-over-button-drop-down-option-background-color-focused;
-  }
-  &.--selected {
-    border-radius: 0.65rem;
-    background-color: $oxd-pop-over-button-drop-down-option-background-color-selected;
-    cursor: unset;
-  }
-  &.--disabled {
-    border-radius: 0.65rem;
-    color: $oxd-pop-over-button-drop-down-option-background-color-disabled;
-    cursor: unset;
+
+  &.--default {
     &:hover,
     &.--focused {
-      background-color: transparent;
+      border-radius: 0.65rem;
+      background-color: $oxd-pop-over-button-drop-down-option-background-color-focused;
+    }
+    &.--selected {
+      border-radius: 0.65rem;
+      background-color: $oxd-pop-over-button-drop-down-option-background-color-selected;
+      cursor: unset;
+    }
+    &.--disabled {
+      border-radius: 0.65rem;
+      color: $oxd-pop-over-button-drop-down-option-background-color-disabled;
+      cursor: unset;
+      &:hover,
+      &.--focused {
+        background-color: transparent;
+      }
     }
   }
 }

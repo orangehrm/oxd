@@ -81,18 +81,13 @@
         <label for="pm">{{ $vt(TIME_PERIOD_PM) }}</label>
       </div>
     </div>
+    <slot name="timePickerBottom"></slot>
   </div>
 </template>
 
 <script lang="ts">
 import {formatDate, parseDate} from '@orangehrm/oxd/utils/date';
-import {
-  computed,
-  defineComponent,
-  reactive,
-  toRefs,
-  watch,
-} from 'vue';
+import {computed, defineComponent, reactive, toRefs, watch} from 'vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import clickOutsideDirective from '@orangehrm/oxd/directives/click-outside';
@@ -138,7 +133,7 @@ export default defineComponent({
 
   mixins: [translateMixin],
 
-  emits: ['update:modelValue', 'timepicker:closed'],
+  emits: ['update:modelValue', 'timepicker:closed', 'slot:click'],
 
   directives: {
     'click-outside': clickOutsideDirective,
@@ -329,7 +324,7 @@ export default defineComponent({
       onMinuteInputBlur,
       TIME_PERIOD_PM,
       TIME_PERIOD_AM,
-      INPUT_TIME_FORMAT_12,
+      INPUT_TIME_FORMAT_12
     };
   },
 });

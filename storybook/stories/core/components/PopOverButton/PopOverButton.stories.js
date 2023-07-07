@@ -88,7 +88,7 @@ export default {
         type: {summary: 'Custom styles for the dropdown'},
       },
     },
-    dropdpwnArrow: {
+    dropdownArrow: {
       control: {type: 'boolean'},
       defaultValue: false,
       table: {

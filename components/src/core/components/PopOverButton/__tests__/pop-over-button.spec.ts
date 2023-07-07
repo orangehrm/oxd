@@ -144,7 +144,7 @@ describe('PopOverButton', () => {
     const wrapper = mount(PopOverButton, {
       props: {
         options: dropDownOptions,
-        dropdpwnArrow: true,
+        dropdownArrow: true,
       },
     });
 
