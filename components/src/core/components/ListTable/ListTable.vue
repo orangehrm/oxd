@@ -3,7 +3,15 @@
     <oxd-card-thead>
       <oxd-card-tr :clickable="false">
         <oxd-card-th v-if="selectable" class="oxd-padding-cell oxd-table-th">
-          <oxd-checkbox-input v-model="selectAll" :checkIcon="checkIcon" />
+          <oxd-skeleton
+            v-if="loading && skeleton"
+            class="oxd-skeleton-checkbox"
+          />
+          <oxd-checkbox-input
+            v-else
+            v-model="selectAll"
+            :checkIcon="checkIcon"
+          />
         </oxd-card-th>
 
         <oxd-card-th
@@ -25,11 +33,11 @@
       </oxd-card-tr>
     </oxd-card-thead>
 
-    <div v-if="loading" class="oxd-table-loader">
+    <div v-if="loading && !skeleton" class="oxd-table-loader">
       <oxd-loading-spinner :withContainer="false" />
     </div>
 
-    <div v-else-if="items.length === 0" class="empty-msg-container">
+    <div v-else-if="!loading && items.length === 0" class="empty-msg-container">
       <div class="empty-msg">
         <oxd-icon name="oxd-no-data" class="icon"></oxd-icon>
         <div class="caption">
@@ -40,7 +48,7 @@
 
     <oxd-card-tbody v-else>
       <div
-        v-for="(item, index) in items"
+        v-for="(item, index) in computedItems"
         :key="item"
         :class="tableRowClasses[index]"
         @click="onClickRow(item)($event)"
@@ -50,6 +58,7 @@
             class="oxd-padding-cell"
             :index="index"
             :headers="cardHeaders"
+            :loading="skeleton && loading"
             :items="{selector: index, ...item}"
           ></oxd-card-cell>
         </oxd-card-tr>
@@ -81,8 +90,10 @@ import emitter from '../../../utils/emitter';
 import {RowItem} from '../CardTable/Cell/types';
 import translateMixin from '../../../mixins/translate';
 import useFlashing from '../../../composables/useFlashing';
+import {DEVICE_LG} from '../../../composables/useResponsive';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Spinner from '@orangehrm/oxd/core/components/Loader/Spinner.vue';
+import Skeleton from '@orangehrm/oxd/core/components/Skeleton/Skeleton.vue';
 import Table from '@orangehrm/oxd/core/components/CardTable/Table/Table.vue';
 import TableRow from '@orangehrm/oxd/core/components/CardTable/Table/TableRow.vue';
 import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
@@ -97,7 +108,7 @@ export default defineComponent({
   props: {
     clickable: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     selectable: {
       type: Boolean,
@@ -120,6 +131,7 @@ export default defineComponent({
       default: () => nanoid(8),
     },
     items: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       type: Array as PropType<any>,
       default: () => [],
     },
@@ -143,10 +155,22 @@ export default defineComponent({
       type: Array as PropType<number[]>,
       default: () => [],
     },
+    skeleton: {
+      type: Boolean,
+      default: false,
+    },
+    skeletonCount: {
+      type: Number,
+      default: 10,
+    },
   },
 
   setup(props, context) {
+    provide('screenState', {
+      screenType: DEVICE_LG,
+    });
     provide('tableProps', readonly(props));
+
     let selected = [...props.selected];
     const flashIndexes = useFlashing(props, context as SetupContext);
 
@@ -238,6 +262,18 @@ export default defineComponent({
       })),
     );
 
+    const computedItems = computed(() => {
+      if (props.loading) {
+        const defaultValue = {};
+        props.headers.forEach(header => {
+          defaultValue[header.name] = null;
+        });
+        return Array(props.skeletonCount).fill(defaultValue);
+      }
+
+      return props.items;
+    });
+
     const onOrderChange = (order: Order, column: CardHeader) => {
       const orderFields = {};
       for (const key in props.order) {
@@ -274,6 +310,7 @@ export default defineComponent({
       cardHeaders,
       flashIndexes,
       onOrderChange,
+      computedItems,
       tableRowClasses,
     };
   },
@@ -283,6 +320,7 @@ export default defineComponent({
   components: {
     'oxd-icon': Icon,
     'oxd-card-tr': TableRow,
+    'oxd-skeleton': Skeleton,
     'oxd-card-tbody': TableBody,
     'oxd-card-thead': TableHeader,
     'oxd-card-th': TableHeaderCell,

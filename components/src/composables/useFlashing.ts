@@ -14,6 +14,7 @@ export default function useFlashing(
   context: SetupContext,
 ) {
   const flashIndexes = shallowRef<number[]>([]);
+  let flash = false;
   let cachedItems: RowItem[] = JSON.parse(JSON.stringify(props.items));
 
   // Reset cached values if loading or sorting
@@ -23,6 +24,7 @@ export default function useFlashing(
       context.emit('update:selected', []);
       flashIndexes.value = [];
       cachedItems = [];
+      flash = false;
     },
     {
       flush: 'pre',
@@ -47,14 +49,18 @@ export default function useFlashing(
     watch(
       () => props.items,
       newValue => {
-        if (
-          newValue.length === cachedItems.length ||
-          newValue.length - cachedItems.length === 1
-        ) {
-          flashIndexes.value = [
-            ...flashIndexes.value,
-            ...getDiff(newValue, cachedItems),
-          ];
+        if (flash) {
+          if (
+            newValue.length === cachedItems.length ||
+            newValue.length - cachedItems.length === 1
+          ) {
+            flashIndexes.value = [
+              ...flashIndexes.value,
+              ...getDiff(newValue, cachedItems),
+            ];
+          }
+        } else {
+          if (newValue.length === 0 || cachedItems.length === 0) flash = true;
         }
         cachedItems = JSON.parse(JSON.stringify(newValue));
       },

@@ -379,6 +379,7 @@ export default defineComponent({
 
     const emptyMsgValidated = computed(
       (): EmptyMsg => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const initialObject: any = EmptyMsgEnum;
         for (const key in props.emptyMsg) {
           let value = props.emptyMsg['message'];

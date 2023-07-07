@@ -102,3 +102,37 @@
 @function nth-value($list, $index) {
   @return if(length($list) >= $index, nth($list, $index), null);
 }
+
+@mixin truncate($rows, $line-height) {
+  overflow: hidden;
+  position: relative;
+  word-wrap: break-word;
+  line-height: $line-height;
+  justify-content: space-between;
+  max-height: $line-height * $rows;
+
+  &:after {
+    content: '';
+    right: 0;
+    bottom: 0;
+    width: inherit;
+    position: absolute;
+    height: $line-height;
+    background: linear-gradient(to right, rgba(#fff, 0) 0%, rgba(#fff, 1) 100%);
+  }
+
+  // If supports line-clamp then add an ellipsis overflow and hide the gradient
+  // This will work in Chrome and Opera, otherwise a gradient will gradually hide the text.
+
+  @supports (-webkit-line-clamp: $rows) {
+    display: -webkit-box;
+    -webkit-line-clamp: $rows;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    &:after {
+      display: none;
+    }
+  }
+}

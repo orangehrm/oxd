@@ -5,13 +5,22 @@
     </div>
     <div v-if="$slots['sidepanel']" class="oxd-list-divider">
       <oxd-divider orientation="vertical"></oxd-divider>
-      <oxd-icon-button
-        v-if="showCollapse"
-        size="xxx-small"
-        class="oxd-list-collapsebtn"
-        :name="isCollapsed ? 'oxd-arrow-right' : 'oxd-arrow-left'"
-        @click="onClickCollapse"
-      />
+      <template v-if="showCollapse">
+        <oxd-skeleton
+          v-if="loading"
+          :width="20"
+          :height="20"
+          :circle="true"
+          class="skeleton-collapsebtn"
+        />
+        <oxd-icon-button
+          v-else
+          size="xxx-small"
+          class="oxd-list-collapsebtn"
+          :name="isCollapsed ? 'oxd-arrow-right' : 'oxd-arrow-left'"
+          @click="onClickCollapse"
+        />
+      </template>
     </div>
     <div class="oxd-list-content">
       <template
@@ -43,6 +52,7 @@ import {computed, defineComponent, ref} from 'vue';
 import Sheet from '@orangehrm/oxd/core/components/Sheet/Sheet.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';
+import Skeleton from '@orangehrm/oxd/core/components/Skeleton/Skeleton.vue';
 
 export default defineComponent({
   name: 'oxd-list',
@@ -50,6 +60,7 @@ export default defineComponent({
   components: {
     'oxd-sheet': Sheet,
     'oxd-divider': Divider,
+    'oxd-skeleton': Skeleton,
     'oxd-icon-button': IconButton,
   },
 
@@ -59,6 +70,10 @@ export default defineComponent({
       default: true,
     },
     flatTop: {
+      type: Boolean,
+      default: false,
+    },
+    loading: {
       type: Boolean,
       default: false,
     },
