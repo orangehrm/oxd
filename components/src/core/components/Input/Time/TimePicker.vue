@@ -7,81 +7,85 @@
     v-focus-trap
     v-focus-first-element
   >
-    <div class="oxd-time-hour-input">
-      <oxd-icon-button
-        name="chevron-up"
-        class="oxd-time-hour-input-up"
-        role="none"
-        @click="increment(1, 'hour')"
-        :withContainer="false"
-      />
-      <oxd-input
-        :value="hour"
-        inputmode="number"
-        @keydown.up="increment(step, 'hour')"
-        @keydown.down="decrement(step, 'hour')"
-        @blur="onHourInputBlur()"
-        @input="onInput($event, 'hour')"
-        class="oxd-time-hour-input-text"
-      />
-      <oxd-icon-button
-        name="chevron-down"
-        class="oxd-time-hour-input-down"
-        role="none"
-        @click="decrement(1, 'hour')"
-        :withContainer="false"
-      />
-    </div>
-    <div class="oxd-time-separator">
-      <span class="oxd-time-separator-icon">:</span>
-    </div>
-    <div class="oxd-time-minute-input">
-      <oxd-icon-button
-        name="chevron-up"
-        class="oxd-time-minute-input-up"
-        role="none"
-        @click="increment(step, 'minute')"
-        :withContainer="false"
-      />
-      <oxd-input
-        :value="minute"
-        @keydown.up="increment(step, 'minute')"
-        @keydown.down="decrement(step, 'minute')"
-        @blur="onMinuteInputBlur()"
-        @input="onInput($event, 'minute')"
-        class="oxd-time-minute-input-text"
-      />
-      <oxd-icon-button
-        name="chevron-down"
-        class="oxd-time-minute-input-down"
-        role="none"
-        @click="decrement(step, 'minute')"
-        :withContainer="false"
-      />
-    </div>
-    <div class="oxd-time-period-input" v-if="format == INPUT_TIME_FORMAT_12">
-      <div class="oxd-time-period-label">
-        <input
-          name="am"
-          v-model="period"
-          type="radio"
-          value="AM"
-          @keydown.enter.stop.prevent="togglePeriod"
+    <div class="oxd-standard-time-picker">
+      <div class="oxd-time-hour-input">
+        <oxd-icon-button
+          name="chevron-up"
+          class="oxd-time-hour-input-up"
+          role="none"
+          @click="increment(1, 'hour')"
+          :withContainer="false"
         />
-        <label for="am">{{ $vt(TIME_PERIOD_AM) }}</label>
-      </div>
-      <div class="oxd-time-period-label">
-        <input
-          name="pm"
-          v-model="period"
-          type="radio"
-          value="PM"
-          @keydown.enter.stop.prevent="togglePeriod"
+        <oxd-input
+          :value="hour"
+          inputmode="number"
+          @keydown.up="increment(step, 'hour')"
+          @keydown.down="decrement(step, 'hour')"
+          @blur="onHourInputBlur()"
+          @input="onInput($event, 'hour')"
+          class="oxd-time-hour-input-text"
         />
-        <label for="pm">{{ $vt(TIME_PERIOD_PM) }}</label>
+        <oxd-icon-button
+          name="chevron-down"
+          class="oxd-time-hour-input-down"
+          role="none"
+          @click="decrement(1, 'hour')"
+          :withContainer="false"
+        />
+      </div>
+      <div class="oxd-time-separator">
+        <span class="oxd-time-separator-icon">:</span>
+      </div>
+      <div class="oxd-time-minute-input">
+        <oxd-icon-button
+          name="chevron-up"
+          class="oxd-time-minute-input-up"
+          role="none"
+          @click="increment(step, 'minute')"
+          :withContainer="false"
+        />
+        <oxd-input
+          :value="minute"
+          @keydown.up="increment(step, 'minute')"
+          @keydown.down="decrement(step, 'minute')"
+          @blur="onMinuteInputBlur()"
+          @input="onInput($event, 'minute')"
+          class="oxd-time-minute-input-text"
+        />
+        <oxd-icon-button
+          name="chevron-down"
+          class="oxd-time-minute-input-down"
+          role="none"
+          @click="decrement(step, 'minute')"
+          :withContainer="false"
+        />
+      </div>
+      <div class="oxd-time-period-input" v-if="format == INPUT_TIME_FORMAT_12">
+        <div class="oxd-time-period-label">
+          <input
+            name="am"
+            v-model="period"
+            type="radio"
+            value="AM"
+            @keydown.enter.stop.prevent="togglePeriod"
+          />
+          <label for="am">{{ $vt(TIME_PERIOD_AM) }}</label>
+        </div>
+        <div class="oxd-time-period-label">
+          <input
+            name="pm"
+            v-model="period"
+            type="radio"
+            value="PM"
+            @keydown.enter.stop.prevent="togglePeriod"
+          />
+          <label for="pm">{{ $vt(TIME_PERIOD_PM) }}</label>
+        </div>
       </div>
     </div>
-    <slot name="timePickerBottom"></slot>
+    <div class="oxd-time-picker-custom-slot">
+      <slot name="timePickerBottom"></slot>
+    </div>
   </div>
 </template>
 
@@ -324,7 +328,7 @@ export default defineComponent({
       onMinuteInputBlur,
       TIME_PERIOD_PM,
       TIME_PERIOD_AM,
-      INPUT_TIME_FORMAT_12
+      INPUT_TIME_FORMAT_12,
     };
   },
 });

@@ -3,7 +3,7 @@
 
 .oxd-time-picker {
   right: 0;
-  display: flex;
+  display: block;
   position: absolute;
   align-items: center;
   box-sizing: border-box;
@@ -18,75 +18,79 @@
   padding: $oxd-time-picker-dropdown-padding;
   width: fit-content;
 
-  .oxd-time-hour-input,
-  .oxd-time-minute-input,
-  .oxd-time-period-input {
-    display: flex;
-    flex-direction: column;
-    width: $oxd-time-picker-dropdown-input-width;
+  .oxd-standard-time-picker {
     align-items: center;
-  }
-
-  .oxd-time-separator {
-    display: block;
-    &-icon {
-      padding: $oxd-time-picker-dropdown-seperator-padding;
-    }
-  }
-
-  :deep(.oxd-time-hour-input-text),
-  :deep(.oxd-time-minute-input-text),
-  .oxd-time-separator-icon {
-    width: inherit;
-    text-align: center;
-    font-size: $oxd-time-picker-input-font-size;
-    font-weight: $oxd-time-picker-input-font-weight;
-  }
-
-  .oxd-time-period-input {
-    justify-content: space-between;
-    margin-left: 1rem;
-  }
-
-  .oxd-time-period-label {
-    position: relative;
-    padding: $oxd-time-picker-period-label-padding;
-    min-width: $oxd-time-picker-period-label-width;
-
-    &:first-child {
-      margin-bottom: $oxd-time-picker-period-label-margin-between;
+    display: flex;
+    .oxd-time-hour-input,
+    .oxd-time-minute-input,
+    .oxd-time-period-input {
+      display: flex;
+      flex-direction: column;
+      width: $oxd-time-picker-dropdown-input-width;
+      align-items: center;
     }
 
-    input[type='radio'] {
-      opacity: 0;
-      margin: 0;
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      cursor: pointer;
+    .oxd-time-separator {
+      display: block;
+      &-icon {
+        padding: $oxd-time-picker-dropdown-seperator-padding;
+      }
+    }
 
-      + label {
-        display: block;
-        text-align: center;
-        color: $oxd-time-picker-period-font-color;
-        background-color: $oxd-time-picker-period-background-color;
-        font-size: $oxd-time-picker-period-font-size;
-        font-weight: $oxd-time-picker-period-font-weight;
-        font-family: $oxd-time-picker-period-font-family;
-        padding: $oxd-time-picker-period-vertical-padding
-          $oxd-time-picker-period-horizontal-padding;
-        border-radius: $oxd-time-picker-period-border-radius;
-        border: $oxd-input-border--active;
+    :deep(.oxd-time-hour-input-text),
+    :deep(.oxd-time-minute-input-text),
+    .oxd-time-separator-icon {
+      width: inherit;
+      text-align: center;
+      font-size: $oxd-time-picker-input-font-size;
+      font-weight: $oxd-time-picker-input-font-weight;
+    }
+
+    .oxd-time-period-input {
+      justify-content: space-between;
+      margin-left: 1rem;
+    }
+
+    .oxd-time-period-label {
+      position: relative;
+      padding: $oxd-time-picker-period-label-padding;
+      min-width: $oxd-time-picker-period-label-width;
+
+      &:first-child {
+        margin-bottom: $oxd-time-picker-period-label-margin-between;
       }
 
-      &:checked + label {
-        background-color: $oxd-time-picker-period-checked-background-color;
-        color: $oxd-time-picker-period-checked-font-color;
-      }
+      input[type='radio'] {
+        opacity: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        cursor: pointer;
 
-      &:focus + label {
-        border: $oxd-input-border--focus;
-        box-shadow: $oxd-input-box-shadow--focus;
+        + label {
+          display: block;
+          text-align: center;
+          color: $oxd-time-picker-period-font-color;
+          background-color: $oxd-time-picker-period-background-color;
+          font-size: $oxd-time-picker-period-font-size;
+          font-weight: $oxd-time-picker-period-font-weight;
+          font-family: $oxd-time-picker-period-font-family;
+          padding: $oxd-time-picker-period-vertical-padding
+            $oxd-time-picker-period-horizontal-padding;
+          border-radius: $oxd-time-picker-period-border-radius;
+          border: $oxd-input-border--active;
+        }
+
+        &:checked + label {
+          background-color: $oxd-time-picker-period-checked-background-color;
+          color: $oxd-time-picker-period-checked-font-color;
+        }
+
+        &:focus + label {
+          border: $oxd-input-border--focus;
+          box-shadow: $oxd-input-box-shadow--focus;
+        }
       }
     }
   }
