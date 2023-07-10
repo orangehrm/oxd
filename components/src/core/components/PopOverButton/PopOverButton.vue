@@ -55,6 +55,7 @@ import {
 
 export default defineComponent({
   name: 'oxd-pop-over-button',
+  inheritAttrs: false,
   directives: {
     'click-outside': clickOutsideDirective,
     'dropdown-direction': dropdownDirectionDirective,

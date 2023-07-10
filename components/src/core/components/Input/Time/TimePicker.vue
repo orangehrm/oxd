@@ -137,7 +137,7 @@ export default defineComponent({
 
   mixins: [translateMixin],
 
-  emits: ['update:modelValue', 'timepicker:closed', 'slot:click'],
+  emits: ['update:modelValue', 'timepicker:closed'],
 
   directives: {
     'click-outside': clickOutsideDirective,
