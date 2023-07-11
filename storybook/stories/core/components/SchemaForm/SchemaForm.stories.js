@@ -4,7 +4,7 @@ import {
   required,
   shouldNotExceedCharLength,
 } from '../../../../../components/src/validation/rules.ts';
-import {h} from 'vue';
+import {h, ref} from 'vue';
 
 export default {
   title: 'Example/SchemaForm',
@@ -313,6 +313,7 @@ FunctionBased.args = {
 };
 
 export const Advance = Template.bind({});
+const weight = ref(2);
 Advance.args = {
   schema: {
     name: 'AdvanceForm',
@@ -433,6 +434,21 @@ Advance.args = {
               name: 'date',
               label: 'Date of Application',
               type: 'date',
+            },
+            {
+              name: 'weight',
+              label: 'Weightage',
+              type: 'number',
+              visible: true,
+              value: weight.value,
+              style: {
+                'max-width': '100px',
+              },
+              listeners: {
+                'onUpdate:modelValue': (value) => {
+                  weight.value = value;
+                },
+              },
             },
             {
               name: 'certificate',
