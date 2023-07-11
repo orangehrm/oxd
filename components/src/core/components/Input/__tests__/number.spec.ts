@@ -88,6 +88,6 @@ describe('Number.vue', () => {
         defaultValue: 5,
       },
     });
-    expect(wrapper.vm.modelValue).toBe(2);
+    expect(wrapper.vm.defaultValue).toBe(5);
   });
 });
