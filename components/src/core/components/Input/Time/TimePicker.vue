@@ -6,13 +6,14 @@
     v-click-outside="onClickOutside"
     v-focus-trap
   >
-    <div class="oxd-time-picker-reset-button" v-if="resetButton">
+    <div class="oxd-time-picker-reset-button" v-if="resetEnabled">
       <oxd-button
         iconName="oxd-refresh"
         label="Reset"
         size="small"
         iconSize="xx-small"
         display-type="text"
+        @click="onReset"
       />
     </div>
     <div class="oxd-standard-time-picker" v-focus-first-element:return-focus>
@@ -137,7 +138,7 @@ export default defineComponent({
         return INPUT_TIME_FORMATS.indexOf(value) !== -1;
       },
     },
-    resetButton: {
+    resetEnabled: {
       type: Boolean,
       default: false,
     },
@@ -151,7 +152,7 @@ export default defineComponent({
 
   mixins: [translateMixin],
 
-  emits: ['update:modelValue', 'timepicker:closed'],
+  emits: ['update:modelValue', 'timepicker:closed', 'timepicker:reset'],
 
   directives: {
     'click-outside': clickOutsideDirective,
@@ -184,8 +185,8 @@ export default defineComponent({
       return props.format == INPUT_TIME_FORMAT_24 ? 0 : 1;
     });
 
-    const setValue = (input: number, type: string) => {
-      if (!isNaN(input)) {
+    const setValue = (input: number | null, type: string | null) => {
+      if (input !== null && !isNaN(input) && type) {
         if (type === 'hour') {
           if (input >= hoursMin.value && input <= hoursMax.value) {
             state.hour = input < 10 ? '0' + input : input.toString();
@@ -197,6 +198,9 @@ export default defineComponent({
             state.minute = minutes < 10 ? '0' + minutes : minutes.toString();
           }
         }
+      } else if (input === null) {
+        state.hour = '';
+        state.minute = '';
       }
     };
 
@@ -240,19 +244,27 @@ export default defineComponent({
     };
 
     const increment = (step: number, type: string) => {
-      const max = getMax(type);
-      const min = getMin(type);
-      const input = parseInt(state[type]);
-      const newValue = input + step > max ? min : input + step;
-      setValue(newValue, type);
+      if (state[type]) {
+        const max = getMax(type);
+        const min = getMin(type);
+        const input = parseInt(state[type]);
+        const newValue = input + step > max ? min : input + step;
+        setValue(newValue, type);
+      } else {
+        setValue(getDefaultValue(type), type);
+      }
     };
 
     const decrement = (step: number, type: string) => {
-      const max = getMax(type);
-      const min = getMin(type);
-      const input = parseInt(state[type]);
-      const newValue = input - step < min ? max : input - step;
-      setValue(newValue, type);
+      if (state[type]) {
+        const max = getMax(type);
+        const min = getMin(type);
+        const input = parseInt(state[type]);
+        const newValue = input - step < min ? max : input - step;
+        setValue(newValue, type);
+      } else {
+        setValue(getDefaultValue(type), type);
+      }
     };
 
     const onInput = (e: Event, type: string) => {
@@ -265,6 +277,21 @@ export default defineComponent({
       } else {
         enteredMinute = inputValue;
       }
+    };
+
+    const getDefaultValue = (type: string) => {
+      if (type === 'hour') {
+        state['minute'] = '00';
+        return 1;
+      } else {
+        state['hour'] = '01';
+        return 0;
+      }
+    };
+
+    const onReset = () => {
+      setValue(null, null);
+      context.emit('timepicker:reset');
     };
 
     const onClose = () => {
@@ -310,16 +337,20 @@ export default defineComponent({
     watch(
       () => state,
       () => {
-        let timeString = `${state.hour}:${state.minute}`;
-        if (props.format == INPUT_TIME_FORMAT_12) {
-          timeString += ` ${state.period}`;
-        }
-        if (timeString) {
-          const parsedTime = parseDate(timeString, parseFormat.value);
-          if (parsedTime) {
-            const formattedTime = formatDate(parsedTime, TIME_FORMAT_24_HR);
-            if (props.modelValue !== formattedTime) {
-              context.emit('update:modelValue', formattedTime);
+        if (!state.hour && !state.minute) {
+          context.emit('update:modelValue', '');
+        } else {
+          let timeString = `${state.hour}:${state.minute}`;
+          if (props.format == INPUT_TIME_FORMAT_12) {
+            timeString += ` ${state.period}`;
+          }
+          if (timeString) {
+            const parsedTime = parseDate(timeString, parseFormat.value);
+            if (parsedTime) {
+              const formattedTime = formatDate(parsedTime, TIME_FORMAT_24_HR);
+              if (props.modelValue !== formattedTime) {
+                context.emit('update:modelValue', formattedTime);
+              }
             }
           }
         }
@@ -343,6 +374,7 @@ export default defineComponent({
       TIME_PERIOD_PM,
       TIME_PERIOD_AM,
       INPUT_TIME_FORMAT_12,
+      onReset,
     };
   },
 });

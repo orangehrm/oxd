@@ -47,9 +47,10 @@
       v-model="pickerInput"
       :step="step"
       :format="format"
-      :resetButton="resetButton"
+      :resetEnabled="resetEnabled"
       @update:modelValue="timePickerUpdate"
       @timepicker:closed="closeDropdown"
+      @timepicker:reset="onReset"
     ></oxd-time-picker>
   </div>
 </template>
@@ -133,12 +134,11 @@ export default defineComponent({
         return INPUT_TIME_FORMATS.indexOf(value) !== -1;
       },
     },
-    resetButton: {
+    resetEnabled: {
       type: Boolean,
       default: false,
     },
   },
-
   setup(props, context) {
     const timePickerOpen = ref<boolean>(false);
     const amPmLabelFocus = ref<boolean>(false);
@@ -202,6 +202,10 @@ export default defineComponent({
 
     const timePickerUpdate = () => {
       context.emit('update:modelValue', state.pickerInput);
+    };
+
+    const onReset = () => {
+      state.time = '';
     };
 
     watch(
@@ -317,6 +321,7 @@ export default defineComponent({
       TIME_PERIOD_AM,
       TIME_PERIOD_PM,
       INPUT_TIME_FORMAT_12,
+      onReset,
     };
   },
 });
