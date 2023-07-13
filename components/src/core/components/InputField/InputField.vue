@@ -60,6 +60,7 @@ import CheckboxGroup from '@orangehrm/oxd/core/components/Input/CheckboxGroup.vu
 import RadioPillGroup from '@orangehrm/oxd/core/components/Input/RadioPills/RadioPillGroup.vue';
 import TreeSelectInput from '@orangehrm/oxd/core/components/Input/TreeSelect/TreeSelect.vue';
 import RadioGroup from '@orangehrm/oxd/core/components/Input/RadioGroup.vue';
+import Number from '@orangehrm/oxd/core/components/Input/Number/Number.vue';
 
 export default defineComponent({
   name: 'oxd-input-field',
@@ -88,6 +89,7 @@ export default defineComponent({
     'oxd-tree-select-input': TreeSelectInput,
     'oxd-radiogroup-input': RadioGroup,
     'oxd-tinymce': TinyMce,
+    'oxd-number-input': Number,
   },
 
   mixins: [translateMixin],
