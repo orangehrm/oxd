@@ -243,6 +243,16 @@ export default defineComponent({
       }
     };
 
+    const getDefaultValue = (type: string) => {
+      if (type === 'hour') {
+        state['minute'] = '00';
+        return 1;
+      } else {
+        state['hour'] = '01';
+        return 0;
+      }
+    };
+
     const increment = (step: number, type: string) => {
       if (state[type]) {
         const max = getMax(type);
@@ -276,16 +286,6 @@ export default defineComponent({
         enteredHour = inputValue;
       } else {
         enteredMinute = inputValue;
-      }
-    };
-
-    const getDefaultValue = (type: string) => {
-      if (type === 'hour') {
-        state['minute'] = '00';
-        return 1;
-      } else {
-        state['hour'] = '01';
-        return 0;
       }
     };
 
