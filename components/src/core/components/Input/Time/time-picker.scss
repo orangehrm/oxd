@@ -11,12 +11,22 @@
   z-index: $oxd-dropdown-dropdown-z-index;
   border: $oxd-dropdown-dropdown-border;
   box-shadow: $oxd-dropdown-dropdown-box-shadow;
-  border-radius: $oxd-dropdown-dropdown-border-radius;
+  border-radius: 1rem;
   background-color: $oxd-dropdown-dropdown-background;
   max-height: $oxd-dropdown-dropdown-max-height;
   margin-top: $oxd-dropdown-dropdown-margin;
   padding: $oxd-time-picker-dropdown-padding;
   width: fit-content;
+
+  .oxd-time-picker-reset-button {
+    margin-bottom: 5px;
+    :deep(.oxd-button--small) {
+      color: $oxd-interface-gray-darken-1-color;
+    }
+    :deep(.oxd-button-icon) {
+      margin-right: 5px;
+    }
+  }
 
   .oxd-standard-time-picker {
     align-items: center;

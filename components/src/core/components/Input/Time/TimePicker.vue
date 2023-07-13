@@ -5,9 +5,17 @@
     @keyup.esc="onClose"
     v-click-outside="onClickOutside"
     v-focus-trap
-    v-focus-first-element
   >
-    <div class="oxd-standard-time-picker">
+    <div class="oxd-time-picker-reset-button" v-if="resetButton">
+      <oxd-button
+        iconName="oxd-refresh"
+        label="Reset"
+        size="small"
+        iconSize="xx-small"
+        display-type="text"
+      />
+    </div>
+    <div class="oxd-standard-time-picker" v-focus-first-element:return-focus>
       <div class="oxd-time-hour-input">
         <oxd-icon-button
           name="chevron-up"
@@ -98,6 +106,7 @@ import clickOutsideDirective from '@orangehrm/oxd/directives/click-outside';
 import focusTrapDirective from '@orangehrm/oxd/directives/focus-trap';
 import focusFirstElementDirective from '@orangehrm/oxd/directives/focus-first-element';
 import translateMixin from '@orangehrm/oxd/mixins/translate';
+import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import {
   InputTimeFormat,
   INPUT_TIME_FORMATS,
@@ -128,11 +137,16 @@ export default defineComponent({
         return INPUT_TIME_FORMATS.indexOf(value) !== -1;
       },
     },
+    resetButton: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   components: {
     'oxd-input': Input,
     'oxd-icon-button': IconButton,
+    'oxd-button': Button,
   },
 
   mixins: [translateMixin],

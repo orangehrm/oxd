@@ -47,6 +47,7 @@
       v-model="pickerInput"
       :step="step"
       :format="format"
+      :resetButton="resetButton"
       @update:modelValue="timePickerUpdate"
       @timepicker:closed="closeDropdown"
     ></oxd-time-picker>
@@ -131,6 +132,10 @@ export default defineComponent({
       validator: (value: InputTimeFormat) => {
         return INPUT_TIME_FORMATS.indexOf(value) !== -1;
       },
+    },
+    resetButton: {
+      type: Boolean,
+      default: false,
     },
   },
 

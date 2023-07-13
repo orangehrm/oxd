@@ -114,8 +114,10 @@
 /* Button Sizes */
 .oxd-button--small {
   font-size: $oxd-button-font-size--small;
-  padding-top: $oxd-button-vertical-padding--small;
-  padding-bottom: $oxd-button-vertical-padding--small;
+  min-width: unset;
+  min-height: unset;
+  padding: $oxd-button-vertical-padding--small
+    $oxd-button-horizontal-padding--small;
 }
 
 .oxd-button--medium {

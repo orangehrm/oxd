@@ -18,7 +18,7 @@
   color: $oxd-pop-over-button-drop-down-font-color;
   z-index: 300;
   border: $oxd-pop-over-button-drop-down-border;
-  padding: 0.5rem 0.25rem;
+  padding: 0.75rem 0.75rem;
   box-shadow: $oxd-pop-over-button-drop-down-shadow-without-arrow;
   border-radius: 0.65rem;
   background-color: $oxd-pop-over-button-drop-down-background-color;
@@ -165,8 +165,8 @@
   font-size: $oxd-pop-over-button-drop-down-option-font-size;
   font-family: $oxd-pop-over-button-drop-down-option-font-family;
   font-weight: $oxd-pop-over-button-drop-down-option-font-weight;
-  padding: 0.3rem 0.75rem;
-  margin: 0.15rem 0;
+  margin-bottom: 5px;
+  padding: 0.5rem 0.5rem;
   background-color: transparent;
   min-height: 37px;
   overflow-wrap: anywhere;
