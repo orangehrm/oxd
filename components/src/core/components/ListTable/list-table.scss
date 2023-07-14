@@ -31,7 +31,7 @@
   grid-gap: unset !important;
 }
 ::v-deep(.oxd-table-header) {
-  padding: 10px 0;
+  padding: 5px 0;
   border-bottom: 2px solid #dee2e6;
 }
 ::v-deep(.oxd-table-card) {
@@ -46,4 +46,10 @@
 ::v-deep(.oxd-table-cell-actions .oxd-select-text) {
   max-width: 195px;
   width: fit-content;
+}
+::v-deep(.oxd-skeleton-checkbox) {
+  margin: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 0.375rem;
 }

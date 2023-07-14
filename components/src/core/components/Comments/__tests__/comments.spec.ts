@@ -215,9 +215,9 @@ describe('Comments.vue', () => {
       },
     });
     await wrapper.vm.$nextTick();
-    const commentBoxTextarea = wrapper.find(
-      '[data-test="comment-box-textarea"]',
-    );
+    // const commentBoxTextarea = wrapper.find(
+    //   '[data-test="comment-box-textarea"]',
+    // );
 
     // await commentBoxTextarea.setValue('new comment');
 

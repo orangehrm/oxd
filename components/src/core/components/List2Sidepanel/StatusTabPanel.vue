@@ -9,7 +9,7 @@
       :class="mainButtonClasses"
       :displayType="mainButtonType"
       :iconName="mainButtonIconName"
-      :disabled="mainButtonDisabled"
+      :disabled="loading || mainButtonDisabled"
       :tooltip="$vt(mainButtonLabel)"
       :label="!collapsed ? $vt(mainButtonLabel) : ''"
       @click="onClickMainButton"
@@ -24,28 +24,33 @@
         '--padtop': $slots['body'],
       }"
     >
-      <li
-        v-for="filter in filterTabs"
-        :key="filter"
-        :class="{
-          'oxd-status-tab-panel-filter': true,
-          '--selected': filter.selected,
-          '--collapsed': collapsed,
-        }"
-        @click.stop="onClickFilter(filter)"
-      >
-        <oxd-text v-if="!collapsed" class="oxd-status-tab-panel-filter-name">
-          {{ $vt(filter.name) }}
-        </oxd-text>
-        <oxd-text
-          flow="right"
-          class="oxd-status-tab-panel-filter-count"
-          :tooltip="collapsed ? $vt(filter.name) : ''"
-          :style="{color: filter.color, background: filter.backgroundColor}"
+      <template v-if="loading && filterTabs.length === 0">
+        <oxd-skeleton :lines="10" :height="30" :animate="true"></oxd-skeleton>
+      </template>
+      <template v-else>
+        <li
+          v-for="filter in filterTabs"
+          :key="filter"
+          :class="{
+            'oxd-status-tab-panel-filter': true,
+            '--selected': filter.selected,
+            '--collapsed': collapsed,
+          }"
+          @click.stop="onClickFilter(filter)"
         >
-          {{ filter.count }}
-        </oxd-text>
-      </li>
+          <oxd-text v-if="!collapsed" class="oxd-status-tab-panel-filter-name">
+            {{ $vt(filter.name) }}
+          </oxd-text>
+          <oxd-text
+            flow="right"
+            class="oxd-status-tab-panel-filter-count"
+            :tooltip="collapsed ? $vt(filter.name) : ''"
+            :style="{color: filter.color, background: filter.backgroundColor}"
+          >
+            {{ filter.count }}
+          </oxd-text>
+        </li>
+      </template>
     </ul>
   </div>
 </template>
@@ -55,8 +60,9 @@ import {Filter} from './types';
 import translateMixin from '../../../mixins/translate';
 import {computed, defineComponent, PropType} from 'vue';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
+import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider.vue';
-import OxdButton from '@orangehrm/oxd/core/components/Button/Button.vue';
+import Skeleton from '@orangehrm/oxd/core/components/Skeleton/Skeleton.vue';
 
 export default defineComponent({
   inheritAttrs: false,
@@ -67,6 +73,10 @@ export default defineComponent({
 
   props: {
     collapsed: {
+      type: Boolean,
+      default: false,
+    },
+    loading: {
       type: Boolean,
       default: false,
     },
@@ -94,8 +104,9 @@ export default defineComponent({
 
   components: {
     'oxd-text': Text,
+    'oxd-button': Button,
     'oxd-divider': Divider,
-    'oxd-button': OxdButton,
+    'oxd-skeleton': Skeleton,
   },
 
   emits: ['clickMainButton', 'filter'],

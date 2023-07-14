@@ -98,6 +98,7 @@ export default defineComponent({
       type: Object,
     },
   },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setup(props: any, {emit}: any) {
     const {modelValue} = toRefs(props);
     const editorValue = ref(modelValue.value);

@@ -318,16 +318,19 @@ export default defineComponent({
 
     const doScroll = async () => {
       await nextTick();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const commentGroupsListElm: any = commentGroupsList.value;
-      const offsetTop =
-        scrollSettingsObj.value.scrollTo === END
-          ? commentGroupsListElm.offsetTop +
-            commentGroupsListElm.parentNode.scrollHeight
-          : commentGroupsListElm.offsetTop;
-      if (scrollSettingsObj.value.scrollTo === END) {
-        commentGroupsListElm.parentNode.scrollTop = offsetTop;
-      } else {
-        commentGroupsListElm.parentNode.scrollTop = offsetTop;
+      if (commentGroupsListElm) {
+        const offsetTop =
+          scrollSettingsObj.value.scrollTo === END
+            ? commentGroupsListElm.offsetTop +
+              commentGroupsListElm.parentNode.scrollHeight
+            : commentGroupsListElm.offsetTop;
+        if (scrollSettingsObj.value.scrollTo === END) {
+          commentGroupsListElm.parentNode.scrollTop = offsetTop;
+        } else {
+          commentGroupsListElm.parentNode.scrollTop = offsetTop;
+        }
       }
     };
 

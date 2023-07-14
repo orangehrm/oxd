@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Skeleton.vue should renders OXD Skeleton > Circle with custom height and width 1`] = `<div class="oxd-skeleton --circle" style="width: 100px; height: 100px;"></div>`;
+
+exports[`Skeleton.vue should renders OXD Skeleton > with Animation 1`] = `<div class="oxd-skeleton --animate" style="width: 100px; height: 100px;"></div>`;
+
+exports[`Skeleton.vue should renders OXD Skeleton 1`] = `<div class="oxd-skeleton"></div>`;
+
+exports[`Skeleton.vue should renders OXD Skeleton, 3 lines 1`] = `
+<div class="oxd-skeleton"></div>
+<div class="oxd-skeleton"></div>
+<div class="oxd-skeleton"></div>
+`;

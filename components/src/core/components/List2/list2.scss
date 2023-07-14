@@ -49,11 +49,11 @@
     min-height: unset;
     position: absolute;
     margin-top: 1rem;
-    border: 1px solid #e8eaef !important;
     background: $oxd-white-color !important;
     width: $oxd-list-collapse-button-width;
     height: $oxd-list-collapse-button-height;
     left: calc(#{$oxd-list-collapse-button-width} * -0.5);
+    border: 1px solid $oxd-interface-gray-lighten-2-color !important;
     top: calc(#{$oxd-list-header-height} - #{$oxd-list-collapse-button-height});
   }
 }
@@ -63,4 +63,11 @@
   width: 100%;
   height: 100%;
   position: absolute;
+}
+
+::v-deep(.skeleton-collapsebtn) {
+  position: absolute;
+  margin-top: 1rem;
+  left: calc(#{$oxd-list-collapse-button-width} * -0.5);
+  top: calc(#{$oxd-list-header-height} - #{$oxd-list-collapse-button-height});
 }
