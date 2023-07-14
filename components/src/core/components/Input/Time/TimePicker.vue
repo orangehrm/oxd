@@ -9,7 +9,7 @@
     <div class="oxd-time-picker-reset-button" v-if="resetEnabled">
       <oxd-button
         iconName="oxd-refresh"
-        label="Reset"
+        :label="$vt('Reset')"
         size="small"
         iconSize="xx-small"
         display-type="text"

@@ -30,6 +30,15 @@ export default {
         },
       },
     },
+    resetEnabled: {
+      control: {type: 'boolean'},
+      defaultValue: false,
+      table: {
+        type: {
+          summary: 'Whether the reset option is enabled or not',
+        },
+      },
+    },
   },
 };
 

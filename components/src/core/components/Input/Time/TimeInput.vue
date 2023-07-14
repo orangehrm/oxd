@@ -99,6 +99,7 @@ export default defineComponent({
     'update:modelValue',
     'timeselect:opened',
     'timeselect:closed',
+    'timepicker:reset',
     'blur',
   ],
 
@@ -206,6 +207,7 @@ export default defineComponent({
 
     const onReset = () => {
       state.time = '';
+      context.emit('timepicker:reset');
     };
 
     watch(

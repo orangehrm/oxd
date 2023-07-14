@@ -66,7 +66,7 @@ export default defineComponent({
 </script>
 <style scoped lang="scss">
 .story-container {
-  padding-left: 20px;
+  padding-left: 100px;
   display: flex;
 }
 .pop-over-chip {

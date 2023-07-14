@@ -121,10 +121,10 @@ export default defineComponent({
     optionClasses(): object[] {
       return this.computedOptions.map((option: Option, index: number) => {
         return {
-          '--default': !this.$slots['option'] ,
+          '--default': !this.$slots['option'],
           '--disabled': option.disabled,
           '--focused': index === this.pointer,
-          '--selected': option._selected       
+          '--selected': option._selected,
         };
       });
     },

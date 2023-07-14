@@ -300,6 +300,109 @@ describe('TimeInput.vue', () => {
     expect(wrapper.vm.pickerInput).toEqual('15:00');
   });
 
+  it('click on time picker reset', async () => {
+    const wrapper = mount(TimeInput, {
+      props: {
+        format: '24',
+        resetEnabled: true,
+        modelValue: '05:00',
+      },
+    });
+    wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.vm.time).toEqual('05:00');
+    const picker = wrapper.findComponent(TimePicker);
+    const reset = picker.find('.oxd-time-picker-reset-button');
+    const resetBtn = reset.find('.oxd-button');
+    expect(resetBtn.exists()).toBeTruthy();
+    await resetBtn.trigger('click');
+    await wrapper.vm.$nextTick();
+    await picker.vm.$nextTick();
+    expect(wrapper.vm.time).toEqual('');
+  });
+
+  it('click on time picker reset and increment hour', async () => {
+    const wrapper = mount(TimeInput, {
+      props: {
+        format: '24',
+        resetEnabled: true,
+        modelValue: '05:00',
+      },
+    });
+    wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.vm.time).toEqual('05:00');
+    const picker = wrapper.findComponent(TimePicker);
+    const reset = picker.find('.oxd-time-picker-reset-button');
+    const resetBtn = reset.find('.oxd-button');
+    expect(resetBtn.exists()).toBeTruthy();
+    await resetBtn.trigger('click');
+    await wrapper.vm.$nextTick();
+    await picker.vm.$nextTick();
+
+    const incrementBtn = picker.find('.oxd-time-hour-input-up');
+    await incrementBtn.trigger('click');
+    await wrapper.vm.$nextTick();
+    await picker.vm.$nextTick();
+
+    expect(picker.vm.hour).toEqual('01');
+    expect(picker.vm.minute).toEqual('00');
+  });
+
+  it('click on time picker reset and decrement hour', async () => {
+    const wrapper = mount(TimeInput, {
+      props: {
+        format: '24',
+        resetEnabled: true,
+        modelValue: '05:00',
+      },
+    });
+    wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.vm.time).toEqual('05:00');
+    const picker = wrapper.findComponent(TimePicker);
+    const reset = picker.find('.oxd-time-picker-reset-button');
+    const resetBtn = reset.find('.oxd-button');
+    expect(resetBtn.exists()).toBeTruthy();
+    await resetBtn.trigger('click');
+    await wrapper.vm.$nextTick();
+    await picker.vm.$nextTick();
+
+    const decrementBtn = picker.find('.oxd-time-hour-input-down');
+    await decrementBtn.trigger('click');
+    await picker.vm.$nextTick();
+
+    expect(picker.vm.hour).toEqual('01');
+    expect(picker.vm.minute).toEqual('00');
+  });
+
+  it('click on time picker reset and decrement minute', async () => {
+    const wrapper = mount(TimeInput, {
+      props: {
+        format: '24',
+        resetEnabled: true,
+        modelValue: '05:00',
+      },
+    });
+    wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.vm.time).toEqual('05:00');
+    const picker = wrapper.findComponent(TimePicker);
+    const reset = picker.find('.oxd-time-picker-reset-button');
+    const resetBtn = reset.find('.oxd-button');
+    expect(resetBtn.exists()).toBeTruthy();
+    await resetBtn.trigger('click');
+    await wrapper.vm.$nextTick();
+    await picker.vm.$nextTick();
+
+    const decrementBtn = picker.find('.oxd-time-minute-input-down');
+    await decrementBtn.trigger('click');
+    await picker.vm.$nextTick();
+
+    expect(picker.vm.hour).toEqual('01');
+    expect(picker.vm.minute).toEqual('00');
+  });
+
   it('should increment/decrement minute', async () => {
     const wrapper = mount(TimeInput, {});
     wrapper.find('.oxd-time-input-icon-wrapper').trigger('click');

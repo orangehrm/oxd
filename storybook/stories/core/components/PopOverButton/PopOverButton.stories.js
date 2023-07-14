@@ -217,23 +217,24 @@ Default.args = {
   ],
 };
 
-export const WithTextOptionsWithInitialValue = () => PopOverButtonTextOptionWithInitialValue;
+export const WithTextOptionsWithInitialValue = () =>
+  PopOverButtonTextOptionWithInitialValue;
 
 WithTextOptionsWithInitialValue.parameters = {
   docs: {
     source: {
       code:
         '<template>' +
-        '<p>{{ selectedOption }} selected</p>' +
+        '<p>option - {{ selectedOption }}</p>' +
         '<div class="story-container">' +
         '<oxd-pop-over-button' +
         'label="Add Schedule"' +
         'size="medium"' +
         'displayType="secondary"' +
-        'iconName="oxd-add"' +
-        'iconSize="small"' +
         ':options="addScheduleOptions"' +
-        '@click="onSelectOption"' +
+        ':modelValue="selectedOption"' +
+        ':dropdownAlignment="center"' +
+        '@update:modelValue="onSelectOption"' +
         '/>' +
         '</div>' +
         '</template>' +
@@ -250,18 +251,17 @@ WithTextOptionWithCustomLabel.parameters = {
     source: {
       code:
         '<template>' +
-        '<p>{{ selectedOption }} selected</p>' +
+        '<p>option - {{ selectedOption }}</p>' +
         '<div class="story-container">' +
         '<oxd-pop-over-button' +
-        'label="Add Schedule"' +
         'size="medium"' +
         'displayType="secondary"' +
-        'iconName="oxd-add"' +
-        'iconSize="small"' +
         ':options="addScheduleOptions"' +
-        '@click="onSelectOption"' +
+        ':modelValue="selectedOption"' +
+        ':customPopOverButtonLabel="Add Schedule"' +
+        ' @update:modelValue="onSelectOption"' +
         '/>' +
-        '</div>' +
+        '  </div>' +
         '</template>' +
         'File -> PopOverButtonTextOptionWithInitialValue.story.vue',
     },
@@ -281,10 +281,10 @@ WithLongTextOptions.parameters = {
         'label="Add Schedule"' +
         'size="medium"' +
         'displayType="secondary"' +
-        'iconName="oxd-add"' +
-        'iconSize="small"' +
+        'customPopOverButtonLabel="Add"' +
         ':options="addScheduleOptions"' +
-        '@click="onSelectOption"' +
+        ':modelValue="selectedOption"' +
+        '@update:modelValue="onSelectOption"' +
         '/>' +
         '</div>' +
         '</template>' +
@@ -303,13 +303,15 @@ WithTemplateOptions.parameters = {
         '<p>{{ selectedOption }} selected</p>' +
         '<div class="story-container">' +
         '<oxd-pop-over-button' +
-        'label="Add Schedule"' +
+        'customPopOverButtonLabel="Add"' +
         'size="medium"' +
         'displayType="secondary"' +
         'iconName="oxd-add"' +
         'iconSize="small"' +
         ':options="addScheduleOptions"' +
-        '@click="onSelectOption"' +
+        ':dropdownAlignment = "RIGHT"' +
+        ':modelValue="selectedOption"' +
+        '@update:modelValue="onSelectOption"' +
         '>' +
         '<template v-slot:option="{data}">' +
         '<div class="d-flex justify-between align-center w-100">' +
@@ -317,8 +319,8 @@ WithTemplateOptions.parameters = {
         '<span v-html="data.label"></span>' +
         '</div>' +
         '</template>' +
-        '</oxd-pop-over-button>' +
-        ' </div>' +
+        ' </oxd-pop-over-button>' +
+        '</div>' +
         '</template>' +
         'File -> PopOverButtonTemplateOption.story.vue',
     },
