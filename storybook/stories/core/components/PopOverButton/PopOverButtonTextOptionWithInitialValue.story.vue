@@ -1,64 +1,59 @@
 <template>
-  <p>{{ selectedOption }} selected</p>
+  <p>option - {{ selectedOption }}</p>
   <div class="story-container">
     <oxd-pop-over-button
-      customPopOverButtonLabel="Add"
+      label="Add Schedule"
       size="medium"
       displayType="secondary"
-      iconName="oxd-add"
-      iconSize="small"
       :options="addScheduleOptions"
-      :dropdownAlignment = "'RIGHT'"
       :modelValue="selectedOption"
+      :dropdownAlignment="'center'"
       @update:modelValue="onSelectOption"
-    >
-      <template v-slot:option="{data}">
-        <div class="d-flex justify-between align-center w-100">
-          <oxd-chip class="pop-over-chip" :label="data.context" />
-          <span v-html="data.label"></span>
-        </div>
-      </template>
-    </oxd-pop-over-button>
+    />
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent, ref} from 'vue';
 import PopOverButton from '@orangehrm/oxd/core/components/PopOverButton/PopOverButton.vue';
-import OxdChip from '@orangehrm/oxd/core/components/Chip/Chip';
 import {Option} from '@orangehrm/oxd/core/components/PopOverButton/types';
 
 export default defineComponent({
   components: {
     'oxd-pop-over-button': PopOverButton,
-    'oxd-chip': OxdChip,
   },
 
   setup: function () {
-    const selectedOption = ref<Option>(null);
-
     const addScheduleOptions: Array<Option> = [
       {
-        context: 'fixed',
-        label: 'Fixed',
+        context: 'context_fixed',
+        label: 'Fixed Schedule',
       },
       {
-        context: 'daily',
-        label: 'Daily',
+        context: 'context_daily',
+        label: 'Flexible Schedule (Daily)',
       },
       {
-        context: 'weekly',
-        label: 'Weekly',
+        context: 'context_weekly',
+        label: 'Flexible Schedule (Weekly)',
       },
     ];
+
+
+    const selectedOptionContext = ref<string>('');
+    const selectedOption = ref<Option>(null);
+
+    selectedOptionContext.value = addScheduleOptions[1].label;
+    selectedOption.value = addScheduleOptions[1];
 
     const onSelectOption = (option: Option) => {
       selectedOption.value = option;
     };
-
+    
     return {
       addScheduleOptions,
       onSelectOption,
+      selectedOptionContext,
       selectedOption,
     };
   },
@@ -68,8 +63,5 @@ export default defineComponent({
 .story-container {
   padding-left: 100px;
   display: flex;
-}
-.pop-over-chip {
-  white-space: nowrap;
 }
 </style>

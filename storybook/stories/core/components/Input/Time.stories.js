@@ -1,5 +1,9 @@
 import {h, ref} from 'vue';
 import TimeInput from '@orangehrm/oxd/core/components/Input/Time/TimeInput';
+import {
+  INPUT_TIME_FORMATS,
+  INPUT_TIME_FORMAT_12,
+} from '@orangehrm/oxd/core/components/Input/Time/types';
 
 export default {
   title: 'Inputs/TimeInput',
@@ -14,6 +18,24 @@ export default {
         type: {
           summary:
             'Set boolean value to allow empty values. The default value is false',
+        },
+      },
+    },
+    format: {
+      control: {type: 'select', options: INPUT_TIME_FORMATS},
+      defaultValue: INPUT_TIME_FORMAT_12,
+      table: {
+        type: {
+          summary: 'Whether the time picker format is 24 hours or 12 hours',
+        },
+      },
+    },
+    resetEnabled: {
+      control: {type: 'boolean'},
+      defaultValue: false,
+      table: {
+        type: {
+          summary: 'Whether the reset option is enabled or not',
         },
       },
     },
@@ -69,4 +91,10 @@ Error.args = {
 export const CustomStep = Template.bind({});
 CustomStep.args = {
   step: 10,
+};
+
+export const IsIn24HoursFormat = Template.bind({});
+IsIn24HoursFormat.args = {
+  format: '24',
+  initialValue: '20:00',
 };

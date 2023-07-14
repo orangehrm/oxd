@@ -1,15 +1,13 @@
 <template>
-  <p>context - {{ selectedOptionContext }}</p>
   <p>option - {{ selectedOption }}</p>
   <div class="story-container">
     <oxd-pop-over-button
-      label="Add Schedule"
       size="medium"
       displayType="secondary"
-      iconName="oxd-add"
-      iconSize="small"
       :options="addScheduleOptions"
-      @click="onSelectOption"
+      :modelValue="selectedOption"
+      :customPopOverButtonLabel="'Add Schedule'"
+      @update:modelValue="onSelectOption"
     />
   </div>
 </template>
@@ -25,9 +23,6 @@ export default defineComponent({
   },
 
   setup: function () {
-    const selectedOption = ref<string>('nothing');
-    const selectedOptionContext = ref<Option>(null);
-
     const addScheduleOptions: Array<Option> = [
       {
         context: 'context_fixed',
@@ -43,16 +38,14 @@ export default defineComponent({
       },
     ];
 
-    const onSelectOption = (optionContext: string, option: Option) => {
-      console.log('selected');
-      selectedOptionContext.value = optionContext;
+    const selectedOption = ref<Option>(null);
+    const onSelectOption = (option: Option) => {
       selectedOption.value = option;
     };
 
     return {
       addScheduleOptions,
       onSelectOption,
-      selectedOptionContext,
       selectedOption,
     };
   },
@@ -60,7 +53,7 @@ export default defineComponent({
 </script>
 <style scoped lang="scss">
 .story-container {
-  padding-left: 20px;
+  padding-left: 100px;
   display: flex;
 }
 </style>

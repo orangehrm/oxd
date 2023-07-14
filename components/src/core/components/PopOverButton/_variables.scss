@@ -1,0 +1,23 @@
+$oxd-pop-over-button-drop-down-background-color: $oxd-white-color !default;
+$oxd-pop-over-button-drop-down-font-color: $oxd-interface-gray-darken-1-color !default;
+$oxd-pop-over-button-drop-down-border: 1px solid
+  $oxd-interface-gray-lighten-2-color !default;
+
+$oxd-pop-over-button-drop-down-option-background-color-selected: $oxd-interface-gray-lighten-2-color !default;
+$oxd-pop-over-button-drop-down-option-background-color-focused: #f6f7f9 !default;
+$oxd-pop-over-button-drop-down-option-background-color-disabled: $oxd-interface-gray-lighten-1-color !default;
+$oxd-pop-over-button-drop-down-option-font-color: $oxd-pop-over-button-drop-down-font-color !default;
+$oxd-pop-over-button-drop-down-option-font-family: $oxd-input-control-font-family !default;
+$oxd-pop-over-button-drop-down-option-font-size: $oxd-input-control-font-size !default;
+$oxd-pop-over-button-drop-down-option-font-weight: $oxd-input-control-font-weight !default;
+
+$oxd-pop-over-button-drop-down-shadow-without-arrow: 0px 5px 15px -8px rgba(0, 0, 0, 0.15) !default;
+$oxd-pop-over-button-drop-down-margin-without-arrow: 5px !default;
+
+$oxd-pop-over-button-drop-down-shadow-with-arrow-top: 0px 3px 15px -3px rgb(0 0
+      0 / 15%) !default;
+$oxd-pop-over-button-drop-down-shadow-with-arrow-bottom: 0px 2px 19px 3px
+  hsl(0deg 0% 0% / 18%) !default;
+$oxd-pop-over-button-drop-down-margin-with-arrow: 15px !default;
+
+$oxd-pop-over-button-drop-down-arrow-color: $oxd-pop-over-button-drop-down-background-color !default;

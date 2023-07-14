@@ -1,6 +1,8 @@
 @import '../../../styles';
+@import './variables';
 
 .oxd-button-pop-over {
+  @include oxd-input-control-size;
   outline: 0;
   width: fit-content;
   position: relative;
@@ -9,24 +11,145 @@
 .oxd-pop-over-button-drop-down {
   display: flex;
   width: 100%;
-  min-width: 200px;
+  min-width: 180px;
   flex-direction: column;
   position: absolute;
-  right: 0;
   box-sizing: border-box;
-  color: $oxd-interface-gray-darken-1-color;
+  color: $oxd-pop-over-button-drop-down-font-color;
   z-index: 300;
-  border: 1px solid $oxd-interface-gray-lighten-2-color;
-  padding: 0.5rem 0.25rem;
-  box-shadow: 0px 5px 15px -8px rgba(0, 0, 0, 0.15);
+  border: $oxd-pop-over-button-drop-down-border;
+  padding: 0.75rem 0.75rem;
+  box-shadow: $oxd-pop-over-button-drop-down-shadow-without-arrow;
   border-radius: 0.65rem;
-  background-color: $oxd-white-color;
+  background-color: $oxd-pop-over-button-drop-down-background-color;
+
   &.--position-top {
     bottom: 100%;
-    margin-bottom: $oxd-dropdown-dropdown-margin;
+    margin-bottom: $oxd-pop-over-button-drop-down-margin-without-arrow;
   }
   &.--position-bottom {
-    margin-top: $oxd-dropdown-dropdown-margin;
+    margin-top: $oxd-pop-over-button-drop-down-margin-without-arrow;
+  }
+
+  &.--align-right {
+    right: 0;
+  }
+
+  &.--align-left {
+    left: 0;
+  }
+
+  &.--align-center {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.--position-top.--align-center.--arrow {
+    margin-bottom: $oxd-pop-over-button-drop-down-margin-with-arrow;
+    box-shadow: $oxd-pop-over-button-drop-down-shadow-with-arrow-top;
+    &.--arrow::before {
+      content: '';
+      width: 0px;
+      height: 0px;
+      position: absolute;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 15px solid $oxd-pop-over-button-drop-down-arrow-color;
+      border-bottom: 5px solid transparent;
+      bottom: -18px;
+      z-index: 400;
+      align-self: center;
+    }
+  }
+
+  &.--position-top.--align-left.--arrow {
+    margin-bottom: $oxd-pop-over-button-drop-down-margin-with-arrow;
+    box-shadow: $oxd-pop-over-button-drop-down-shadow-with-arrow-top;
+    &.--arrow::before {
+      content: '';
+      width: 0px;
+      height: 0px;
+      position: absolute;
+      border-left: 5px solid transparent;
+      border-right: 15px solid transparent;
+      border-top: 10px solid $oxd-pop-over-button-drop-down-arrow-color;
+      border-bottom: 10px solid transparent;
+      left: 6px;
+      bottom: -18px;
+      z-index: 400;
+    }
+  }
+
+  &.--position-top.--align-right.--arrow {
+    margin-bottom: $oxd-pop-over-button-drop-down-margin-with-arrow;
+    box-shadow: $oxd-pop-over-button-drop-down-shadow-with-arrow-top;
+    &.--arrow::before {
+      content: '';
+      width: 0px;
+      height: 0px;
+      position: absolute;
+      border-right: 5px solid transparent;
+      border-left: 15px solid transparent;
+      border-top: 10px solid $oxd-pop-over-button-drop-down-arrow-color;
+      border-bottom: 10px solid transparent;
+      right: 6px;
+      bottom: -18px;
+      z-index: 400;
+    }
+  }
+
+  &.--position-bottom.--align-center.--arrow {
+    margin-top: $oxd-pop-over-button-drop-down-margin-with-arrow;
+    box-shadow: $oxd-pop-over-button-drop-down-shadow-with-arrow-bottom;
+    &.--arrow::before {
+      content: '';
+      width: 0px;
+      height: 0px;
+      position: absolute;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 5px solid transparent;
+      border-bottom: 15px solid $oxd-pop-over-button-drop-down-arrow-color;
+      top: -18px;
+      z-index: 400;
+      align-self: center;
+    }
+  }
+
+  &.--position-bottom.--align-left.--arrow {
+    margin-top: $oxd-pop-over-button-drop-down-margin-with-arrow;
+    box-shadow: $oxd-pop-over-button-drop-down-shadow-with-arrow-bottom;
+    &.--arrow::before {
+      content: '';
+      width: 0px;
+      height: 0px;
+      position: absolute;
+      border-left: 5px solid transparent;
+      border-right: 15px solid transparent;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid $oxd-pop-over-button-drop-down-arrow-color;
+      left: 6px;
+      top: -18px;
+      z-index: 400;
+    }
+  }
+
+  &.--position-bottom.--align-right.--arrow {
+    margin-top: $oxd-pop-over-button-drop-down-margin-with-arrow;
+    box-shadow: $oxd-pop-over-button-drop-down-shadow-with-arrow-bottom;
+    &.--arrow::before {
+      content: '';
+      width: 0px;
+      height: 0px;
+      position: absolute;
+      border-right: 5px solid transparent;
+      border-left: 15px solid transparent;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid $oxd-pop-over-button-drop-down-arrow-color;
+      right: 6px;
+      top: -18px;
+      z-index: 400;
+    }
   }
 }
 
@@ -38,12 +161,12 @@
   align-items: center;
   text-align: inherit;
   cursor: pointer;
-  color: $oxd-interface-gray-darken-1-color;
-  font-size: $oxd-input-control-font-size;
-  font-family: $oxd-input-control-font-family;
-  font-weight: $oxd-input-control-font-weight;
-  padding: 0.3rem 0.75rem;
-  margin: 0.15rem 0;
+  color: $oxd-pop-over-button-drop-down-option-font-color;
+  font-size: $oxd-pop-over-button-drop-down-option-font-size;
+  font-family: $oxd-pop-over-button-drop-down-option-font-family;
+  font-weight: $oxd-pop-over-button-drop-down-option-font-weight;
+  margin-bottom: 5px;
+  padding: 0.5rem 0.5rem;
   background-color: transparent;
   min-height: 37px;
   overflow-wrap: anywhere;
@@ -59,18 +182,26 @@
   &:last-child {
     border-bottom: unset;
   }
-  &:hover,
-  &.--focused {
-    border-radius: 0.65rem;
-    background-color: #f6f7f9;
-  }
-  &.--disabled {
-    border-radius: 0.65rem;
-    color: $oxd-interface-gray-lighten-1-color;
-    cursor: unset;
+
+  &.--default {
     &:hover,
     &.--focused {
-      background-color: transparent;
+      border-radius: 0.65rem;
+      background-color: $oxd-pop-over-button-drop-down-option-background-color-focused;
+    }
+    &.--selected {
+      border-radius: 0.65rem;
+      background-color: $oxd-pop-over-button-drop-down-option-background-color-selected;
+      cursor: unset;
+    }
+    &.--disabled {
+      border-radius: 0.65rem;
+      color: $oxd-pop-over-button-drop-down-option-background-color-disabled;
+      cursor: unset;
+      &:hover,
+      &.--focused {
+        background-color: transparent;
+      }
     }
   }
 }
