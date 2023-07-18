@@ -154,7 +154,7 @@ SkeletonLoader.parameters = {
 <oxd-list :loading="isLoading">
   <template #sidepanel="{collapsed}">
     <oxd-status-tab-panel
-      :loading="isLoading"
+      :skeleton="true"
       :collapsed="collapsed"
       :filters="sidepanelFilters"
     >

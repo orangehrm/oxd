@@ -1,19 +1,27 @@
 <template>
   <div class="oxd-status-tab-panel-header">
-    <slot name="header" :collapsed="collapsed"></slot>
-    <oxd-button
-      v-if="!$slots['header']"
-      size="long"
-      flow="right"
-      iconSize="xx-small"
-      :class="mainButtonClasses"
-      :displayType="mainButtonType"
-      :iconName="mainButtonIconName"
-      :disabled="loading || mainButtonDisabled"
-      :tooltip="$vt(mainButtonLabel)"
-      :label="!collapsed ? $vt(mainButtonLabel) : ''"
-      @click="onClickMainButton"
+    <oxd-skeleton
+      v-if="skeleton && filterTabs.length === 0"
+      width="100%"
+      :height="35"
+      :animate="true"
     />
+    <template v-else>
+      <slot name="header" :collapsed="collapsed"></slot>
+      <oxd-button
+        v-if="!$slots['header']"
+        size="long"
+        flow="right"
+        iconSize="xx-small"
+        :class="mainButtonClasses"
+        :displayType="mainButtonType"
+        :iconName="mainButtonIconName"
+        :disabled="mainButtonDisabled"
+        :tooltip="$vt(mainButtonLabel)"
+        :label="!collapsed ? $vt(mainButtonLabel) : ''"
+        @click="onClickMainButton"
+      />
+    </template>
   </div>
   <oxd-divider></oxd-divider>
   <div class="oxd-status-tab-panel-body">
@@ -24,7 +32,7 @@
         '--padtop': $slots['body'],
       }"
     >
-      <template v-if="loading && filterTabs.length === 0">
+      <template v-if="skeleton && filterTabs.length === 0">
         <oxd-skeleton :lines="10" :height="30" :animate="true"></oxd-skeleton>
       </template>
       <template v-else>
@@ -76,7 +84,7 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    loading: {
+    skeleton: {
       type: Boolean,
       default: false,
     },
