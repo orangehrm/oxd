@@ -1,6 +1,6 @@
 <template>
   <oxd-skeleton
-    v-if="loading"
+    v-if="isLoading"
     circle
     animate
     width="2.8rem"
@@ -9,18 +9,18 @@
   <oxd-profile-pic
     v-else
     :size="profilePicture.size"
-    :imageSrc="profilePicture.src"
     :link="profilePicture.link"
+    :imageSrc="profilePicture.src"
     :link-mode="profilePicture.target"
     v-bind="$attrs"
   />
 </template>
 
 <script lang="ts">
-import {defineComponent, computed} from 'vue';
 import {SIZE_SMALL} from '../../ProfilePic/types';
 import {cellMixin} from './cell-mixin';
 import {TargetTypes, TARGET_SELF, TARGETS} from './types';
+import {defineComponent, computed, ref, watchEffect} from 'vue';
 import Skeleton from '@orangehrm/oxd/core/components/Skeleton/Skeleton.vue';
 import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue';
 
@@ -54,9 +54,28 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const imgSrc = ref(null);
+    const imgLoading = ref(false);
+
+    const loadImage = (url: string): Promise<string | null> => {
+      if (!url || !props.loading) return Promise.resolve(url);
+
+      imgLoading.value = true;
+      return new Promise(_resolve => {
+        const resolve = (value: string | null) => {
+          imgLoading.value = false;
+          _resolve(value);
+        };
+        const img = new Image();
+        img.onload = () => resolve(url);
+        img.onerror = () => resolve(null);
+        img.src = url;
+      });
+    };
+
     const profilePicture = computed(() => {
       return {
-        src: props.item ?? null,
+        src: imgSrc.value,
         size: props.size ?? SIZE_SMALL,
         link:
           props.link && props.rowItem[props.link]
@@ -65,7 +84,15 @@ export default defineComponent({
         target: props.target ?? TARGET_SELF,
       };
     });
+
+    const isLoading = computed(() => props.loading || imgLoading.value);
+
+    watchEffect(async () => {
+      imgSrc.value = await loadImage(props.item as string);
+    });
+
     return {
+      isLoading,
       profilePicture,
     };
   },

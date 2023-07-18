@@ -21,7 +21,11 @@ const filterStub = [
 
 describe('List2 > Sidepanel > StatusTabPanel.vue', () => {
   it('renders StatusTabPanel', () => {
-    const wrapper = mount(StatusTabPanel);
+    const wrapper = mount(StatusTabPanel, {
+      props: {
+        skeleton: false,
+      },
+    });
     expect(wrapper.html()).toMatchSnapshot();
   });
   it('renders StatusTabPanel with filters', () => {

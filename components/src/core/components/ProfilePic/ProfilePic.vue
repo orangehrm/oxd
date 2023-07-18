@@ -73,6 +73,8 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
+@import '../../../styles';
+
 .header-image {
   .img-tag,
   :deep(img) {
@@ -84,6 +86,7 @@ export default defineComponent({
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-color: $oxd-background-light-gray-color;
   }
 }
 
