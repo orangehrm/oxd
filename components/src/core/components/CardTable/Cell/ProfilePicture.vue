@@ -57,15 +57,15 @@ export default defineComponent({
     const imgSrc = ref(null);
     const imgLoading = ref(false);
 
-    const loadImage = (url: string) => {
+    const loadImage = (url: string): Promise<string | null> => {
+      if (!url || !props.loading) return Promise.resolve(url);
+
       imgLoading.value = true;
       return new Promise(_resolve => {
         const resolve = (value: string | null) => {
           imgLoading.value = false;
           _resolve(value);
         };
-
-        if (!url) resolve(null);
         const img = new Image();
         img.onload = () => resolve(url);
         img.onerror = () => resolve(null);
@@ -87,13 +87,9 @@ export default defineComponent({
 
     const isLoading = computed(() => props.loading || imgLoading.value);
 
-    if (props.loading) {
-      watchEffect(async () => {
-        imgSrc.value = await loadImage(props.item as string);
-      });
-    } else {
-      imgSrc.value = props.item;
-    }
+    watchEffect(async () => {
+      imgSrc.value = await loadImage(props.item as string);
+    });
 
     return {
       isLoading,
