@@ -17,10 +17,10 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, computed, ref, onBeforeMount} from 'vue';
 import {SIZE_SMALL} from '../../ProfilePic/types';
 import {cellMixin} from './cell-mixin';
 import {TargetTypes, TARGET_SELF, TARGETS} from './types';
+import {defineComponent, computed, ref, watchEffect} from 'vue';
 import Skeleton from '@orangehrm/oxd/core/components/Skeleton/Skeleton.vue';
 import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue';
 
@@ -58,7 +58,14 @@ export default defineComponent({
     const imgLoading = ref(false);
 
     const loadImage = (url: string) => {
-      return new Promise(resolve => {
+      imgLoading.value = true;
+      return new Promise(_resolve => {
+        const resolve = (value: string | null) => {
+          imgLoading.value = false;
+          _resolve(value);
+        };
+
+        if (!url) resolve(null);
         const img = new Image();
         img.onload = () => resolve(url);
         img.onerror = () => resolve(null);
@@ -80,14 +87,8 @@ export default defineComponent({
 
     const isLoading = computed(() => props.loading || imgLoading.value);
 
-    onBeforeMount(async () => {
-      if (props.loading) {
-        imgLoading.value = true;
-        imgSrc.value = await loadImage(props.item as string);
-        imgLoading.value = false;
-      } else {
-        imgSrc.value = props.item;
-      }
+    watchEffect(async () => {
+      imgSrc.value = await loadImage(props.item as string);
     });
 
     return {
