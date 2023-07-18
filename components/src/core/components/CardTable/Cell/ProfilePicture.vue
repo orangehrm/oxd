@@ -60,11 +60,9 @@ export default defineComponent({
     const loadImage = (url: string) => {
       return new Promise(resolve => {
         const img = new Image();
+        img.onload = () => resolve(url);
+        img.onerror = () => resolve(null);
         img.src = url;
-        img
-          .decode()
-          .then(() => resolve(url))
-          .catch(() => resolve(null));
       });
     };
 
@@ -83,9 +81,13 @@ export default defineComponent({
     const isLoading = computed(() => props.loading || imgLoading.value);
 
     onBeforeMount(async () => {
-      imgLoading.value = true;
-      imgSrc.value = await loadImage(props.item as string);
-      imgLoading.value = false;
+      if (props.loading) {
+        imgLoading.value = true;
+        imgSrc.value = await loadImage(props.item as string);
+        imgLoading.value = false;
+      } else {
+        imgSrc.value = props.item;
+      }
     });
 
     return {

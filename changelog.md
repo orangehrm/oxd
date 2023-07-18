@@ -1,3 +1,5 @@
+2023-07-18 - 4f832fe5a91a181ecf4f6e26c1b0db2768c62c62 - Update CardTable/Cell/ProfilePicture.vue to support skeleton loading images.
+
 2023-06-26 - 92f6283ecfa335142256e5188c6fe23e41e363ef - CardTable/Cell/\* - Added skeleton loading support for all cardtable cells.
 
 2023-06-26 - 0d10f48f44c90a6ced289ce22fe3e538112fca42 - InfoBox.vue - Fixed Keyboard Accessibility issue(supported with oxd icon button).

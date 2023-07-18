@@ -3,7 +3,7 @@
     <oxd-list :loading="isLoading">
       <template #sidepanel="{collapsed}">
         <oxd-status-tab-panel
-          :skeleton="true"
+          :loading="true"
           :collapsed="collapsed"
           :filters="sidepanelFilters"
         >

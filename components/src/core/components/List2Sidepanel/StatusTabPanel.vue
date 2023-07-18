@@ -1,7 +1,7 @@
 <template>
   <div class="oxd-status-tab-panel-header">
     <oxd-skeleton
-      v-if="skeleton && filterTabs.length === 0"
+      v-if="skeleton && loading"
       width="100%"
       :height="35"
       :animate="true"
@@ -84,9 +84,13 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    skeleton: {
+    loading: {
       type: Boolean,
       default: false,
+    },
+    skeleton: {
+      type: Boolean,
+      default: true,
     },
     mainButtonLabel: {
       type: String,
