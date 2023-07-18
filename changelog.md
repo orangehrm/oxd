@@ -1,4 +1,4 @@
-2023-07-18 - 062ca8c977a7d0bcc69ce5fd03e6356222f07909 - Update CardTable/Cell/ProfilePicture.vue ProfilePic.vue to support skeleton loading images.
+2023-07-18 - c9c95369854606181469c76d7d621008af6946b3 - Update CardTable/Cell/ProfilePicture.vue ProfilePic.vue to support skeleton loading images.
 
 2023-06-26 - 92f6283ecfa335142256e5188c6fe23e41e363ef - CardTable/Cell/\* - Added skeleton loading support for all cardtable cells.
 

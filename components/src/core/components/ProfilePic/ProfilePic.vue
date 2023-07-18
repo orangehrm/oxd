@@ -73,6 +73,8 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
+@import '../../../styles';
+
 .header-image {
   .img-tag,
   :deep(img) {
