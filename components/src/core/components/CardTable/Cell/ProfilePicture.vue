@@ -87,9 +87,13 @@ export default defineComponent({
 
     const isLoading = computed(() => props.loading || imgLoading.value);
 
-    watchEffect(async () => {
-      imgSrc.value = await loadImage(props.item as string);
-    });
+    if (props.loading) {
+      watchEffect(async () => {
+        imgSrc.value = await loadImage(props.item as string);
+      });
+    } else {
+      imgSrc.value = props.item;
+    }
 
     return {
       isLoading,
