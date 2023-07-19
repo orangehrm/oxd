@@ -52,12 +52,12 @@ export default {
         },
       },
     },
-    required: {
+    requiredDefaultValue: {
       control: {type: 'boolean'},
       defaultValue: false,
       table: {
         type: {
-          summary: 'Set the required state',
+          summary: 'Set the required with default value state',
         },
       },
     },
@@ -138,23 +138,23 @@ Default.parameters = {
   },
 };
 
-export const Required = Template.bind({});
-Required.args = {
+export const RequiredWithDefaultValue = Template.bind({});
+RequiredWithDefaultValue.args = {
   style: {
     'max-width': '100px',
   },
-  required: true,
+  requiredDefaultValue: true,
   defaultValue: 5,
 };
 
-Required.parameters = {
+RequiredWithDefaultValue.parameters = {
   docs: {
     source: {
       code: `
 <oxd-number-input
   id="oxd-number-input-1"
   :style="{'max-width': '100px'}"
-  :required="false"
+  :requiredDefaultValue="true"
   :defaultValue="1"
 />
       `,

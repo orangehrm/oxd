@@ -35,7 +35,7 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    required: {
+    requiredDefaultValue: {
       type: Boolean,
       default: false,
     },
@@ -122,7 +122,7 @@ export default defineComponent({
                   }
                 }
               } else {
-                if (props.required) {
+                if (props.requiredDefaultValue) {
                   number.value = props.defaultValue;
                 } else {
                   number.value = null;

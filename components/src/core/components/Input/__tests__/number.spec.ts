@@ -84,7 +84,7 @@ describe('Number.vue', () => {
   it('required true with a default value', () => {
     const wrapper = mount(Number, {
       props: {
-        required: true,
+        requiredWithDefaultValue: true,
         defaultValue: 5,
       },
     });
