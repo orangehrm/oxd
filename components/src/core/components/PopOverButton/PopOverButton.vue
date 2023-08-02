@@ -130,12 +130,12 @@ export default defineComponent({
     },
     dropdownClasses(): object {
       return {
-        '--position-bottom': this.dropdownPosition === BOTTOM,
-        '--position-top': this.dropdownPosition === TOP,
+        '--arrow': this.dropdownArrow,
         '--align-left': this.dropdownAlignment === LEFT,
         '--align-right': this.dropdownAlignment === RIGHT,
         '--align-center': this.dropdownAlignment === CENTER,
-        '--arrow': this.dropdownArrow,
+        '--positon-bottom': this.dropdownPosition === BOTTOM,
+        '--positon-top': this.dropdownPosition === TOP,
       };
     },
     popOverButtonLabel(): string {
