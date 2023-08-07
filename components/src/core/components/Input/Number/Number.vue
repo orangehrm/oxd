@@ -106,7 +106,7 @@ export default defineComponent({
               focused.value = false;
               emit('blur', $event);
             },
-            onChange: ($event: any) => {
+            onKeyup: ($event: any) => {
               const value:
                 | number
                 | string
