@@ -115,10 +115,10 @@ export default defineComponent({
                 number.value = Number(value);
                 if (!(number.value === undefined || number.value === null)) {
                   if (number.value <= props.min) {
-                    number.value = props.min;
+                    number.value = props.defaultValue || 0;
                   }
                   if (number.value >= props.max) {
-                    number.value = props.max;
+                    number.value = props.defaultValue || 0;
                   }
                 }
               } else {
