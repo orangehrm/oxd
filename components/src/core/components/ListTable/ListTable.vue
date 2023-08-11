@@ -58,7 +58,7 @@
             class="oxd-padding-cell"
             :index="index"
             :headers="cardHeaders"
-            :loading="skeleton && loading"
+            :loading="item._skeleton"
             :items="{selector: index, ...item}"
           ></oxd-card-cell>
         </oxd-card-tr>
@@ -163,6 +163,10 @@ export default defineComponent({
       type: Number,
       default: 10,
     },
+    partialLoading: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   setup(props, context) {
@@ -263,14 +267,23 @@ export default defineComponent({
     );
 
     const computedItems = computed(() => {
-      if (props.loading) {
-        const defaultValue = {};
+      if (props.skeleton) {
+        const defaultValue = {
+          _skeleton: true,
+        };
         props.headers.forEach(header => {
           defaultValue[header.name] = null;
         });
-        return Array(props.skeletonCount).fill(defaultValue);
-      }
 
+        if (props.loading) {
+          return Array(props.skeletonCount).fill(defaultValue);
+        }
+        if (props.partialLoading) {
+          return Array(props.items.length + 3)
+            .fill(defaultValue)
+            .map((value, i) => props.items[i] || value);
+        }
+      }
       return props.items;
     });
 

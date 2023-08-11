@@ -125,6 +125,16 @@ export default {
         },
       },
     },
+    partialLoading: {
+      control: {type: 'boolean'},
+      defaultValue: false,
+      table: {
+        type: {
+          summary:
+            'If true and skeleton prop is also true, the table will display 3 skeleton rows to indicate partial loading.',
+        },
+      },
+    },
   },
 };
 
