@@ -81,13 +81,82 @@ describe('Number.vue', () => {
     await nextTick();
     expect(wrapper.vm.modelValue).toBe(1);
   });
-  it('required true with a default value', () => {
+
+  it('type invalid value', async () => {
     const wrapper = mount(Number, {
       props: {
-        requiredWithDefaultValue: true,
-        defaultValue: 5,
+        max: 10,
       },
     });
-    expect(wrapper.vm.defaultValue).toBe(5);
+
+    const inputElement = wrapper.find('input');
+    (inputElement.element as HTMLInputElement).value = 'abcd';
+    inputElement.trigger('input');
+    expect((inputElement.element as HTMLInputElement).value).toBe('');
+  });
+
+  it('type valid positive', async () => {
+    const wrapper = mount(Number, {
+      props: {
+        max: 10,
+      },
+    });
+
+    const inputElement = wrapper.find('input');
+    (inputElement.element as HTMLInputElement).value = '11';
+    inputElement.trigger('input');
+    expect((inputElement.element as HTMLInputElement).value).toBe('11');
+  });
+
+  it('type valid value with invalid part', async () => {
+    const wrapper = mount(Number, {
+      props: {
+        max: 10,
+      },
+    });
+
+    const inputElement = wrapper.find('input');
+    (inputElement.element as HTMLInputElement).value = '100+';
+    inputElement.trigger('input');
+    expect((inputElement.element as HTMLInputElement).value).toBe('100');
+  });
+
+  it('type negative', async () => {
+    const wrapper = mount(Number, {
+      props: {
+        max: 10,
+      },
+    });
+
+    const inputElement = wrapper.find('input');
+    (inputElement.element as HTMLInputElement).value = '-10';
+    inputElement.trigger('input');
+    expect((inputElement.element as HTMLInputElement).value).toBe('');
+  });
+
+  it('type negative valid', async () => {
+    const wrapper = mount(Number, {
+      props: {
+        max: 10,
+        min: -5,
+      },
+    });
+
+    const inputElement = wrapper.find('input');
+    (inputElement.element as HTMLInputElement).value = '-10';
+    inputElement.trigger('input');
+    expect((inputElement.element as HTMLInputElement).value).toBe('-10');
+  });
+
+  it('type minus number within range', async () => {
+    const wrapper = mount(Number, {
+      props: {
+        max: 10,
+        min: -5,
+        modelValue: -2,
+      },
+    });
+
+    expect(wrapper.vm.modelValue).toBe(-2);
   });
 });

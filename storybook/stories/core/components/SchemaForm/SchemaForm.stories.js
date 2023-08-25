@@ -444,11 +444,15 @@ Advance.args = {
               style: {
                 'max-width': '100px',
               },
+              props: {
+                min: -4,
+                max: 5
+              },
               listeners: {
                 'onUpdate:modelValue': (value) => {
                   weight.value = value;
                 },
-              },
+              }
             },
             {
               name: 'certificate',
