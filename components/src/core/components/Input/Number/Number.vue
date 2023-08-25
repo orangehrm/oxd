@@ -63,14 +63,15 @@ export default defineComponent({
       return matchingNumber ? matchingNumber[0] : '';
     };
 
-    const getCorrectedValue = (value: number) => {
-      if (value > props.max) {
-        value = props.max;
+    const getModifiedValue = (value: number) => {
+      var modifiedValue = value;
+      if (props.min > value) {
+        modifiedValue = props.min;
       }
-      if (value < props.min) {
-        value = props.min;
+      if (props.max < value) {
+        modifiedValue = props.max;
       }
-      return value;
+      return modifiedValue;
     };
     watch(
       () => props.modelValue,
@@ -101,8 +102,7 @@ export default defineComponent({
               ) {
                 number.value = Number(number.value);
                 if (!Number.isNaN(number.value)) {
-                  if (number.value > props.min) number.value--;
-                  number.value = getCorrectedValue(number.value);
+                  number.value = getModifiedValue(number.value + 1);
                 }
               } else {
                 number.value = props.min;
@@ -148,8 +148,7 @@ export default defineComponent({
               ) {
                 number.value = Number(number.value);
                 if (!Number.isNaN(number.value)) {
-                  if (props.max > number.value) number.value++;
-                  number.value = getCorrectedValue(number.value);
+                  number.value = getModifiedValue(number.value + 1);
                 }
               } else {
                 number.value = props.min;
