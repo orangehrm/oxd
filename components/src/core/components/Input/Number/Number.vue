@@ -19,7 +19,7 @@ export default defineComponent({
     },
     modelValue: {
       type: String,
-      default: ''
+      default: '',
     },
     disabled: {
       type: Boolean,
@@ -62,6 +62,16 @@ export default defineComponent({
       let matchingNumber = value.match(/^[0-9]*(?:\.[0-9]+)?/);
       return matchingNumber ? matchingNumber[0] : '';
     };
+
+    const getCorrectedValue = (value: number) => {
+      if (value > props.max) {
+        value = props.max;
+      }
+      if (value < props.min) {
+        value = props.min;
+      }
+      return value;
+    };
     watch(
       () => props.modelValue,
       value => {
@@ -91,11 +101,11 @@ export default defineComponent({
               ) {
                 number.value = Number(number.value);
                 if (!Number.isNaN(number.value)) {
-                  if (number.value <= props.min) return;
-                  number.value--;
+                  if (number.value > props.min) number.value--;
+                  number.value = getCorrectedValue(number.value);
                 }
               } else {
-                number.value = props.max;
+                number.value = props.min;
               }
               emit('update:modelValue', number.value);
             },
@@ -138,8 +148,8 @@ export default defineComponent({
               ) {
                 number.value = Number(number.value);
                 if (!Number.isNaN(number.value)) {
-                  if (number.value >= props.max) return;
-                  number.value++;
+                  if (props.max > number.value) number.value++;
+                  number.value = getCorrectedValue(number.value);
                 }
               } else {
                 number.value = props.min;
