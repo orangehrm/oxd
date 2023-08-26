@@ -102,7 +102,7 @@ export default defineComponent({
               ) {
                 number.value = Number(number.value);
                 if (!Number.isNaN(number.value)) {
-                  number.value = getModifiedValue(number.value + 1);
+                  number.value = getModifiedValue(number.value - 1);
                 }
               } else {
                 number.value = props.min;

@@ -97,6 +97,7 @@ Default.args = {
     'max-width': '100px',
   },
   max: 10,
+  modelValue: 1
 };
 
 Default.parameters = {
@@ -126,6 +127,7 @@ Disabled.args = {
   style: {
     'max-width': '100px',
   },
+  modelValue: 1
 };
 
 Disabled.parameters = {
@@ -146,6 +148,7 @@ Disabled.parameters = {
 export const Readonly = Template.bind({});
 Readonly.args = {
   readonly: true,
+  modelValue: 1,
   style: {
     'max-width': '100px',
   },
@@ -172,6 +175,7 @@ Error.args = {
   style: {
     'max-width': '100px',
   },
+  modelValue: -1
 };
 
 Error.parameters = {
