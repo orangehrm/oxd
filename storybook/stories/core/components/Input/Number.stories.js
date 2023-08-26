@@ -14,7 +14,7 @@ export default {
     },
     modelValue: {
       control: {type: 'number'},
-      defaultValue: 1,
+      defaultValue: "",
       table: {
         type: {summary: 'Set value to the Number element'},
       },
@@ -51,24 +51,6 @@ export default {
           summary: 'Set the error state',
         },
       },
-    },
-    requiredDefaultValue: {
-      control: {type: 'boolean'},
-      defaultValue: false,
-      table: {
-        type: {
-          summary: 'Set the required with default value state',
-        },
-      },
-    },
-    defaultValue: {
-      control: {type: 'number'},
-      table: {
-        type: {
-          summary: 'Set a default value when cleared the model value',
-        },
-      },
-      defaultValue: 5,
     },
     id: {
       control: {type: 'text'},
@@ -132,30 +114,6 @@ Default.parameters = {
   @update:model-value="onUpdateModelValue"
   @focus="onFocus()"
   @blur="onBlur()"
-/>
-      `,
-    },
-  },
-};
-
-export const RequiredWithDefaultValue = Template.bind({});
-RequiredWithDefaultValue.args = {
-  style: {
-    'max-width': '100px',
-  },
-  requiredDefaultValue: true,
-  defaultValue: 5,
-};
-
-RequiredWithDefaultValue.parameters = {
-  docs: {
-    source: {
-      code: `
-<oxd-number-input
-  id="oxd-number-input-1"
-  :style="{'max-width': '100px'}"
-  :requiredDefaultValue="true"
-  :defaultValue="1"
 />
       `,
     },

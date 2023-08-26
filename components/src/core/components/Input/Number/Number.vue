@@ -18,10 +18,8 @@ export default defineComponent({
       }),
     },
     modelValue: {
-      type: Number as PropType<number | undefined>,
-    },
-    defaultValue: {
-      type: Number as PropType<number | undefined>,
+      type: String,
+      default: '',
     },
     disabled: {
       type: Boolean,
@@ -32,10 +30,6 @@ export default defineComponent({
       default: false,
     },
     hasError: {
-      type: Boolean,
-      default: false,
-    },
-    requiredDefaultValue: {
       type: Boolean,
       default: false,
     },
@@ -50,7 +44,7 @@ export default defineComponent({
   },
   setup(props, {emit}) {
     const focused = ref(false);
-    const number = ref<number | null | undefined>(props.modelValue);
+    const number = ref<number | string | undefined>(props.modelValue);
     const outerClasses = computed((): object => {
       return {
         'oxd-number-input-wrapper d-flex justify-between align-center': true,
@@ -60,6 +54,25 @@ export default defineComponent({
         'input-outer--error': props.hasError,
       };
     });
+    const getValidatedValue = (value: string) => {
+      if (props.min < 0) {
+        let matchingNumber = value.match(/^[-]?[0-9]*(?:\.[0-9]+)?/);
+        return matchingNumber ? matchingNumber[0] : '';
+      }
+      let matchingNumber = value.match(/^[0-9]*(?:\.[0-9]+)?/);
+      return matchingNumber ? matchingNumber[0] : '';
+    };
+
+    const getModifiedValue = (value: number) => {
+      var modifiedValue = value;
+      if (props.min > value) {
+        modifiedValue = props.min;
+      }
+      if (props.max < value) {
+        modifiedValue = props.max;
+      }
+      return modifiedValue;
+    };
     watch(
       () => props.modelValue,
       value => {
@@ -80,11 +93,19 @@ export default defineComponent({
             class: 'number-min-btn',
             disabled: props.disabled || props.readonly,
             onClick: () => {
-              if (!(number.value === undefined || number.value === null)) {
-                if (number.value <= props.min) return true;
-                number.value--;
+              if (
+                !(
+                  number.value === undefined ||
+                  number.value === null ||
+                  number.value === ''
+                )
+              ) {
+                number.value = Number(number.value);
+                if (!Number.isNaN(number.value)) {
+                  number.value = getModifiedValue(number.value + 1);
+                }
               } else {
-                number.value = 0;
+                number.value = props.min;
               }
               emit('update:modelValue', number.value);
             },
@@ -93,11 +114,8 @@ export default defineComponent({
             id: props.id,
             disabled: props.disabled,
             readonly: props.readonly,
-            type: 'number',
             class: 'oxd-number-input',
             value: number.value,
-            min: props.min,
-            max: props.max,
             onFocus: ($event: Event) => {
               focused.value = true;
               emit('focus', $event);
@@ -106,28 +124,12 @@ export default defineComponent({
               focused.value = false;
               emit('blur', $event);
             },
-            onKeyup: ($event: any) => {
-              const value:
-                | number
-                | string
-                | null = ($event.target as HTMLInputElement).value;
-              if (value) {
-                number.value = Number(value);
-                if (!(number.value === undefined || number.value === null)) {
-                  if (number.value <= props.min) {
-                    number.value = props.defaultValue || 0;
-                  }
-                  if (number.value >= props.max) {
-                    number.value = props.defaultValue || 0;
-                  }
-                }
-              } else {
-                if (props.requiredDefaultValue) {
-                  number.value = props.defaultValue;
-                } else {
-                  number.value = null;
-                }
-              }
+            onInput: ($event: any) => {
+              const value: string = getValidatedValue(
+                ($event.target as HTMLInputElement).value,
+              );
+              ($event.target as HTMLInputElement).value = value;
+              number.value = value;
               emit('update:modelValue', number.value);
             },
           }),
@@ -137,11 +139,19 @@ export default defineComponent({
             class: 'number-max-btn',
             disabled: props.disabled || props.readonly,
             onClick: () => {
-              if (number.value) {
-                if (number.value >= props.max) return true;
-                number.value++;
+              if (
+                !(
+                  number.value === undefined ||
+                  number.value === null ||
+                  number.value === ''
+                )
+              ) {
+                number.value = Number(number.value);
+                if (!Number.isNaN(number.value)) {
+                  number.value = getModifiedValue(number.value + 1);
+                }
               } else {
-                number.value = 1;
+                number.value = props.min;
               }
               emit('update:modelValue', number.value);
             },
