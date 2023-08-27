@@ -18,7 +18,7 @@ import Number from '@orangehrm/oxd/core/components/Input/Number/Number';
 export default {
   data() {
     return {
-      modelValue: undefined,
+      modelValue: 1,
       isFocus: false,
       blurEvent: true,
     };
