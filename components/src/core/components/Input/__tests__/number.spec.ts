@@ -131,7 +131,46 @@ describe('Number.vue', () => {
     const inputElement = wrapper.find('input');
     (inputElement.element as HTMLInputElement).value = '-10';
     inputElement.trigger('input');
-    expect((inputElement.element as HTMLInputElement).value).toBe('');
+    expect((inputElement.element as HTMLInputElement).value).toBe('10');
+  });
+
+  it('type decimal', async () => {
+    const wrapper = mount(Number, {
+      props: {
+        max: 10,
+      },
+    });
+
+    const inputElement = wrapper.find('input');
+    (inputElement.element as HTMLInputElement).value = '5.6';
+    inputElement.trigger('input');
+    expect((inputElement.element as HTMLInputElement).value).toBe('5');
+  });
+
+  it('type decimal front', async () => {
+    const wrapper = mount(Number, {
+      props: {
+        max: 10,
+      },
+    });
+
+    const inputElement = wrapper.find('input');
+    (inputElement.element as HTMLInputElement).value = '.567';
+    inputElement.trigger('input');
+    expect((inputElement.element as HTMLInputElement).value).toBe('567');
+  });
+
+  it('type with special characters', async () => {
+    const wrapper = mount(Number, {
+      props: {
+        max: 10,
+      },
+    });
+
+    const inputElement = wrapper.find('input');
+    (inputElement.element as HTMLInputElement).value = '456&';
+    inputElement.trigger('input');
+    expect((inputElement.element as HTMLInputElement).value).toBe('456');
   });
 
   it('type negative valid', async () => {
