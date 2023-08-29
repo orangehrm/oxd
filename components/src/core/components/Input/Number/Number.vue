@@ -56,15 +56,15 @@ export default defineComponent({
     });
     const getValidatedValue = (value: string) => {
       if (props.min < 0) {
-        let matchingNumber = value.match(/^[-]?[0-9]*(?:\.[0-9]+)?/);
+        const matchingNumber = value.match(/[-]?\d*/);
         return matchingNumber ? matchingNumber[0] : '';
       }
-      let matchingNumber = value.match(/^[0-9]*(?:\.[0-9]+)?/);
+      const matchingNumber = value.match(/\d+/);
       return matchingNumber ? matchingNumber[0] : '';
     };
 
     const getModifiedValue = (value: number) => {
-      var modifiedValue = value;
+      let modifiedValue = value;
       if (props.min > value) {
         modifiedValue = props.min;
       }
@@ -124,7 +124,7 @@ export default defineComponent({
               focused.value = false;
               emit('blur', $event);
             },
-            onInput: ($event: any) => {
+            onInput: ($event: Event) => {
               const value: string = getValidatedValue(
                 ($event.target as HTMLInputElement).value,
               );
