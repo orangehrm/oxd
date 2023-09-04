@@ -1,3 +1,5 @@
+2023-09-04 - d72a759e6904d11d222b62a792aa8c5f622238cf - Update ListTable.vue component to show partial loading status.
+
 2023-07-18 - c9c95369854606181469c76d7d621008af6946b3 - Update CardTable/Cell/ProfilePicture.vue ProfilePic.vue to support skeleton loading images.
 
 2023-06-26 - 92f6283ecfa335142256e5188c6fe23e41e363ef - CardTable/Cell/\* - Added skeleton loading support for all cardtable cells.
