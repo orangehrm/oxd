@@ -1,4 +1,5 @@
 import {mount} from '@vue/test-utils';
+import Skeleton from '@orangehrm/oxd/core/components/Skeleton/Skeleton.vue';
 import ListTable from '@orangehrm/oxd/core/components/ListTable/ListTable.vue';
 
 const DUMMY_DATA = {
@@ -59,5 +60,33 @@ describe('ListTable > ListTable.vue', () => {
       },
     });
     wrapper.unmount();
+  });
+
+  it('should render skeleton if skeleton is true && loading', () => {
+    const wrapper = mount(ListTable, {
+      props: {
+        items: [],
+        loading: true,
+        skeleton: true,
+        headers: DUMMY_DATA.headers,
+      },
+    });
+    expect(wrapper.findAllComponents(Skeleton).length).toEqual(20); // 10 skeleton per column
+  });
+
+  it('should render skeleton if partial render is true && not loading', () => {
+    const wrapper = mount(ListTable, {
+      props: {
+        loading: false,
+        skeleton: true,
+        partialLoading: true,
+        headers: DUMMY_DATA.headers,
+        items: Array(10).fill({col1: 'Data 1', col2: 'Data 2'}),
+      },
+    });
+    expect(wrapper.findAll('.oxd-table-body .oxd-table-row').length).toEqual(
+      13,
+    );
+    expect(wrapper.findAllComponents(Skeleton).length).toEqual(6);
   });
 });
