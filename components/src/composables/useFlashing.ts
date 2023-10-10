@@ -4,6 +4,20 @@ type RowItem = {
   [name: string]: string | number | object | null;
 };
 
+const getDiff = (newValue: RowItem[], oldValue: RowItem[]) => {
+  const diff: number[] = [];
+  for (let i = 0; i < newValue.length; i++) {
+    const isNew =
+      oldValue.findIndex(item => {
+        const o = JSON.stringify(Object.entries(item).sort());
+        const n = JSON.stringify(Object.entries(newValue[i]).sort());
+        return o === n;
+      }) === -1;
+    if (isNew) diff.push(i);
+  }
+  return diff;
+};
+
 export default function useFlashing(
   props: ShallowReactive<{
     order: object;
@@ -13,9 +27,9 @@ export default function useFlashing(
   }>,
   context: SetupContext,
 ) {
-  const flashIndexes = shallowRef<number[]>([]);
   let flash = false;
-  let cachedItems: RowItem[] = JSON.parse(JSON.stringify(props.items));
+  let cachedItems: RowItem[] = [];
+  const flashIndexes = shallowRef<number[]>([]);
 
   // Reset cached values if loading or sorting
   watch(
@@ -30,20 +44,6 @@ export default function useFlashing(
       flush: 'pre',
     },
   );
-
-  const getDiff = (newValue: RowItem[], oldValue: RowItem[]) => {
-    const diff: number[] = [];
-    for (let i = 0; i < newValue.length; i++) {
-      const isNew =
-        oldValue.findIndex(item => {
-          const o = JSON.stringify(Object.entries(item).sort());
-          const n = JSON.stringify(Object.entries(newValue[i]).sort());
-          return o === n;
-        }) === -1;
-      if (isNew) diff.push(i);
-    }
-    return diff;
-  };
 
   if (props.flashing) {
     watch(
