@@ -72,18 +72,6 @@
       font-weight: $oxd-calendar-date-today-font-weight;
     }
 
-    &.--working-day-half {
-      background-color: $oxd-calendar-date-half-background-color;
-      color: $oxd-calendar-date-half-font-color;
-      font-weight: $oxd-calendar-date-half-font-weight;
-      border-radius: 0;
-    }
-    &.--non-working-day {
-      background-color: $oxd-calendar-date-weekend-background-color;
-      color: $oxd-calendar-date-weekend-font-color;
-      font-weight: $oxd-calendar-date-weekend-font-weight;
-      border-radius: 0;
-    }
     &.--holiday-half {
       background-color: $oxd-calendar-date-holiday-half-background-color;
       color: $oxd-calendar-date-holiday-half-font-color;
@@ -103,6 +91,11 @@
       background-color: $oxd-calendar-date-highlight-full-background-color;
       color: $oxd-calendar-date-highlight-full-font-color;
       font-weight: $oxd-calendar-date-highlight-full-font-weight;
+    }
+    &.--working-weekend {
+      background-color: $oxd-calendar-date-working-weekend-background-color;
+      color: $oxd-calendar-date-working-weekend-font-color;
+      font-weight: $oxd-calendar-date-working-weekend-font-weight;
     }
     &:hover,
     &:focus-visible {
