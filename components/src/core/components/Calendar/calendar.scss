@@ -77,20 +77,12 @@
       color: $oxd-calendar-date-half-font-color;
       font-weight: $oxd-calendar-date-half-font-weight;
       border-radius: 0;
-
-      &.--selected {
-        border-radius: $oxd-calendar-date-border-radius;
-      }
     }
     &.--non-working-day {
       background-color: $oxd-calendar-date-weekend-background-color;
       color: $oxd-calendar-date-weekend-font-color;
       font-weight: $oxd-calendar-date-weekend-font-weight;
       border-radius: 0;
-      
-      &.--selected {
-        border-radius: $oxd-calendar-date-border-radius;
-      }
     }
     &.--holiday-half {
       background-color: $oxd-calendar-date-holiday-half-background-color;
