@@ -1,3 +1,5 @@
+2023-10-11 - a06c8f9059ceb16ba00c4bf8bf0528ea2c9cee22 - Adding style support for working weekend calendar event
+
 2023-09-04 - d72a759e6904d11d222b62a792aa8c5f622238cf - Update ListTable.vue component to show partial loading status.
 
 2023-07-18 - c9c95369854606181469c76d7d621008af6946b3 - Update CardTable/Cell/ProfilePicture.vue ProfilePic.vue to support skeleton loading images.

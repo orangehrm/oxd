@@ -67,7 +67,13 @@ Default.args = {
     },
   ],
   events: datesOfMonth().map(date => {
-    if (date.getDate() % 2 === 0) {
+    if (date.getDay() % 6 === 0) {
+      return {
+        date,
+        type: 'weekend',
+        class: Math.random() > 0.5 ? '--working-weekend' : '',
+      };
+    } else if (date.getDate() % 2 === 0) {
       return {
         date,
         type: 'holiday',
