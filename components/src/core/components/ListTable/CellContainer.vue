@@ -8,6 +8,8 @@ import {
   resolveComponent,
 } from 'vue';
 import DefaultCell from './Default.vue';
+import ClickableCell from './ClickableCell.vue';
+import LocalizedCell from './LocalizedCell.vue';
 import {CardHeaders} from '../CardTable/types';
 import {RowItem} from '../CardTable/Cell/types';
 import LinkCell from '@orangehrm/oxd/core/components/CardTable/Cell/Link.vue';
@@ -27,6 +29,8 @@ export default defineComponent({
     'oxd-table-cell-default': DefaultCell,
     'oxd-table-cell-actions': ActionsCell,
     'oxd-table-cell-checkbox': CheckboxCell,
+    'oxd-table-cell-clickable': ClickableCell,
+    'oxd-table-cell-localized': LocalizedCell,
     'oxd-table-cell-profile-pic': ProfilePicCell,
     'oxd-table-cell-link-with-pill': LinkWithPillCell,
   },
@@ -84,6 +88,7 @@ export default defineComponent({
           item: cellData,
           header: header,
           rowItem: rowData,
+          class: header.class,
           loading: this.loading,
         },
         header.cellProps ?? {},
