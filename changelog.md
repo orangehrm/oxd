@@ -93,3 +93,7 @@
 2022-04-27 - 142465669cff13509290ca84ea9914cdfad613b8 - AutocompleteInput.vue - cleared options each on every search initiation to refrain from showing old list items untill the API request resolves.
 
 2022-04-19 - 64859152abe759529d145b96af6bcdf232501517 - AutocompleteInput.vue - Added translation to placeholder, imported translationMixin and updated unit tests [autocomplete-input.spec.ts, quicksearch-input.spec.ts]
+
+2023-11-17 - a1cbc0a5bc9386bc415452108100a005b4e196d0 - AutocompleteInput.vue - Removed limitation (5 result) of autocomplete result list
+
+2023-11-17 - 0a400c7f9be38c5809a5ad75425f9b4d987618a4 - autocomplete-input.scss - oxd-autocomplete-dropdown set max height and scrollbar added
