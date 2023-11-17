@@ -277,7 +277,7 @@ export default defineComponent({
         this.loading = false;
         if (resolved && Array.isArray(resolved)) {
           if (resolved.length > 0) {
-            this.options = resolved.slice(0, 5);
+            this.options = resolved;
           } else {
             this.options = [];
           }
