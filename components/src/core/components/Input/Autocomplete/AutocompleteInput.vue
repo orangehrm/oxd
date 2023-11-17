@@ -276,11 +276,7 @@ export default defineComponent({
       }).then(resolved => {
         this.loading = false;
         if (resolved && Array.isArray(resolved)) {
-          if (resolved.length > 0) {
-            this.options = resolved;
-          } else {
-            this.options = [];
-          }
+          this.options = resolved;
         } else {
           throw new Error('options returned are not array');
         }
