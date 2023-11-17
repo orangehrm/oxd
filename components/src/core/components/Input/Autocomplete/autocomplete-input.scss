@@ -113,6 +113,7 @@
   box-shadow: $oxd-dropdown-dropdown-box-shadow;
   border-radius: $oxd-dropdown-dropdown-border-radius;
   background-color: $oxd-dropdown-dropdown-background;
+  @include oxd-scrollbar();
   &.--positon-top {
     bottom: 100%;
     margin-bottom: $oxd-dropdown-dropdown-margin;
@@ -120,17 +121,6 @@
   &.--positon-bottom {
     margin-top: $oxd-dropdown-dropdown-margin;
   }
-}
-
-.oxd-autocomplete-dropdown::-webkit-scrollbar {
-  width: 0.5rem;
-  height: 0.5rem; }
-.oxd-autocomplete-dropdown::-webkit-scrollbar-thumb {
-  background: $oxd-scrollbar-thumb-color;
-  border-radius: 20px;
-}
-.oxd-autocomplete-dropdown::-webkit-scrollbar-track {
-  background: $oxd-scrollbar-track-color;
 }
 
 .oxd-autocomplete-option {
