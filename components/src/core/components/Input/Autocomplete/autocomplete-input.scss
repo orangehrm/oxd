@@ -101,6 +101,8 @@
 }
 
 .oxd-autocomplete-dropdown {
+  max-height: 250px;
+  overflow-y: auto;
   position: absolute;
   width: inherit;
   box-sizing: border-box;
@@ -118,6 +120,17 @@
   &.--positon-bottom {
     margin-top: $oxd-dropdown-dropdown-margin;
   }
+}
+
+.oxd-autocomplete-dropdown::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem; }
+.oxd-autocomplete-dropdown::-webkit-scrollbar-thumb {
+  background: $oxd-scrollbar-thumb-color;
+  border-radius: 20px;
+}
+.oxd-autocomplete-dropdown::-webkit-scrollbar-track {
+  background: $oxd-scrollbar-track-color;
 }
 
 .oxd-autocomplete-option {
