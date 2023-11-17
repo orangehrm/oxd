@@ -1,3 +1,5 @@
+2023-11-18 - 37b5c67d67b24357d773210c952d3a899d60b008 - onKeypress changed to skip the disabled options when updating the pointer in navigation-mixin.
+
 2023-10-11 - a06c8f9059ceb16ba00c4bf8bf0528ea2c9cee22 - Adding style support for working weekend calendar event
 
 2023-09-04 - d72a759e6904d11d222b62a792aa8c5f622238cf - Update ListTable.vue component to show partial loading status.
