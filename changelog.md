@@ -1,3 +1,7 @@
+2023-11-17 - a1cbc0a5bc9386bc415452108100a005b4e196d0 - AutocompleteInput.vue - Removed limitation (5 result) of autocomplete result list
+
+2023-11-17 - 0a400c7f9be38c5809a5ad75425f9b4d987618a4 - autocomplete-input.scss - oxd-autocomplete-dropdown set max height and scrollbar added
+
 2023-02-22 - 38a57d11c250022d6116fbcb1f71e78125abe5b3 - List/List.vue - Added prop support for No data found message and icon
 
 2023-01-26 - 3e627e7fbd8a8a40c929a1df6256893dbc17bcb8 - Input/Autocomplet/AutocompleteInput.vue - handled search term resetting issue in autcompleteinput when on keypress enter

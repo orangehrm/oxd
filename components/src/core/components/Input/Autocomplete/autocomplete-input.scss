@@ -101,6 +101,8 @@
 }
 
 .oxd-autocomplete-dropdown {
+  max-height: 250px;
+  overflow-y: auto;
   position: absolute;
   width: inherit;
   box-sizing: border-box;
@@ -111,6 +113,7 @@
   box-shadow: $oxd-dropdown-dropdown-box-shadow;
   border-radius: $oxd-dropdown-dropdown-border-radius;
   background-color: $oxd-dropdown-dropdown-background;
+  @include oxd-scrollbar();
   &.--positon-top {
     bottom: 100%;
     margin-bottom: $oxd-dropdown-dropdown-margin;
