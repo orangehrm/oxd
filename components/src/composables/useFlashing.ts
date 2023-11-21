@@ -4,7 +4,7 @@ type RowItem = {
   [name: string]: string | number | object | null;
 };
 
-const getDiff = (newValue: RowItem[], oldValue: RowItem[]) => {
+export const getDiff = (newValue: RowItem[], oldValue: RowItem[]) => {
   const diff: number[] = [];
   for (let i = 0; i < newValue.length; i++) {
     const isNew =

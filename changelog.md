@@ -1,3 +1,7 @@
+2023-11-21 - 35904535e09b3a0c2048300b53e0345f6f00ec85 - directives/focus-first-element - Fix focus on disabled input elements
+
+2023-11-21 - 7bdeb5b38f87223920e3acc074b0e5b1062d38d8 - ListTable/ListTable.vue - Add new cell types, fixed duplicated key warnings
+
 2023-11-20 - b2baf9c07983d0bdf9c772786f0dbd9b68b7172b - Icon/icons.ts - Add oxd-window-in, oxd-window-out icons
 
 2023-11-18 - 37b5c67d67b24357d773210c952d3a899d60b008 - onKeypress changed to skip the disabled options when updating the pointer in navigation-mixin.
