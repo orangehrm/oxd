@@ -272,6 +272,7 @@ export default defineComponent({
           _skeleton: true,
         };
         props.headers.forEach(header => {
+          defaultValue['_id'] = nanoid();
           defaultValue[header.name] = null;
         });
 
