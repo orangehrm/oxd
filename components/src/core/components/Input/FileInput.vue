@@ -45,11 +45,12 @@
         </div>
       </div>
     </div>
-    <div v-if="fileUpdateMode === 'replace' || !inputFile.name">
+    <div v-show="fileUpdateMode === 'replace' || !inputFile.name">
       <input
         type="file"
         ref="input"
         v-bind="$attrs"
+        :disabled="disabled"
         :class="fileInputClasses"
         @focus="onFocus"
         @blur="onBlur"
@@ -81,16 +82,16 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from 'vue';
 import {
-  ATTACHMENT_UPDATE_MODE_KEEP,
+  OutputFile,
   FileUpdateMode,
   FILE_UPDATE_MODES,
-  OutputFile,
+  ATTACHMENT_UPDATE_MODE_KEEP,
 } from './types';
+import {defineComponent, PropType} from 'vue';
+import translateMixin from '../../../mixins/translate';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Radio from '@orangehrm/oxd/core/components/Input/RadioInput.vue';
-import translateMixin from '../../../mixins/translate';
 
 export interface State {
   focused: boolean;
@@ -152,6 +153,13 @@ export default defineComponent({
     downloadBoxClick: {
       type: Function,
       required: false,
+    },
+    encoding: {
+      type: String,
+      default: 'base64',
+      validator: function(value: string) {
+        return ['base64', 'binary'].indexOf(value) !== -1;
+      },
     },
   },
   beforeMount() {
@@ -239,11 +247,13 @@ export default defineComponent({
     },
     onInput(e: Event) {
       e.preventDefault();
-      const files = [...((e.target as HTMLInputElement).files || [])];
+      const files = Array.from((e.target as HTMLInputElement).files);
       const inputValue = files.map((file: File) => file.name).join(', ');
 
       if (files.length > 0) {
-        this.readFiles(files);
+        this.readFiles(files).then(files =>
+          this.$emit('update:modelValue', files),
+        );
         this.inputValue = inputValue;
       } else {
         this.inputValue = inputValue;
@@ -252,40 +262,35 @@ export default defineComponent({
 
       this.$emit('input', e);
     },
-    readFiles(files: Array<File>) {
-      const count = files.length;
-      const outputFileArray: OutputFile[] = [];
-      for (let i = count - 1; i >= 0; i--) {
-        const file = files[i];
-        const reader = new FileReader();
-        reader.onload = (event: ProgressEvent<FileReader>) => {
-          if (
-            typeof event.target?.result === 'string' ||
-            event.target?.result instanceof String
-          ) {
-            const base64 = event.target?.result.split(',').pop();
-            if (base64) {
-              const outputFile: OutputFile = {
-                name: file.name,
-                type: file.type,
-                size: file.size,
-                base64,
-                ...(this.inputFile.name && {
-                  fileUpdateMode: this.fileUpdateMode,
-                }),
-              };
-
-              outputFileArray.push(outputFile);
-              if (outputFileArray.length === files.length)
-                this.onFilesReadComplete(outputFileArray);
-            }
-          }
-        };
-        reader.readAsDataURL(file);
-      }
+    readFiles(files: File[]): Promise<OutputFile[]> {
+      return new Promise(resolve =>
+        Promise.all(
+          files.map(file => this.readFile(file, this.encoding === 'base64')),
+        )
+          .then(readFiles => resolve(readFiles))
+          .catch(() => resolve(null)),
+      );
     },
-    onFilesReadComplete(files: OutputFile[]) {
-      this.$emit('update:modelValue', files);
+    readFile(file: File, isBase64Encoded: boolean): Promise<OutputFile> {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onerror = reject;
+        reader.onload = () => {
+          let base64, binary;
+          if (typeof reader.result === 'string')
+            base64 = (reader.result as string).split(',').pop();
+          if (typeof reader.result === 'object') binary = reader.result;
+          resolve({
+            name: file.name,
+            type: file.type,
+            size: file.size,
+            base64: base64 ?? null,
+            binary: binary ?? null,
+          });
+        };
+        if (isBase64Encoded) reader.readAsDataURL(file);
+        reader.readAsArrayBuffer(file);
+      });
     },
     setModelValue() {
       const modelArr = [
