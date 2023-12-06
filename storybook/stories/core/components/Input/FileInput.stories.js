@@ -39,6 +39,13 @@ export default {
         },
       },
     },
+    encoding: {
+      control: {type: 'select', options: ['base64', 'binary']},
+      defaultValue: 'base64',
+      table: {
+        type: {summary: 'Set the file encoding mode'},
+      },
+    },
   },
 };
 
@@ -136,7 +143,7 @@ const sampleInputFile = {
 
 export const WithDownloadBox = Template.bind({});
 WithDownloadBox.args = {
-  inputFile:sampleInputFile ,
+  inputFile: sampleInputFile,
   downloadBoxClick: () => {
     window.alert('Downloading the document!');
   },
@@ -146,10 +153,10 @@ WithDownloadBox.parameters = {
   docs: {
     source: {
       code:
-      '<oxd-file-input \n :inputFile=' +
-      JSON.stringify(sampleInputFile) +
-      '\n :downloadBoxClick: ()=>{ window.alert("Downloading the document!" }'+
-      '\n/>',
+        '<oxd-file-input \n :inputFile=' +
+        JSON.stringify(sampleInputFile) +
+        '\n :downloadBoxClick: ()=>{ window.alert("Downloading the document!" }' +
+        '\n/>',
     },
   },
 };
@@ -169,8 +176,8 @@ DownloadBoxWithoutDeleteOption.parameters = {
       code:
         '<oxd-file-input \n :inputFile=' +
         JSON.stringify(sampleInputFile) +
-        '\n :deletable=false'+
-        '\n :downloadBoxClick: ()=>{ window.alert("Downloading the document!" }'+
+        '\n :deletable=false' +
+        '\n :downloadBoxClick: ()=>{ window.alert("Downloading the document!" }' +
         '\n/>',
     },
   },
@@ -179,7 +186,7 @@ DownloadBoxWithoutDeleteOption.parameters = {
 export const DownloadBoxWithInitialUpdateMode = Template.bind({});
 DownloadBoxWithInitialUpdateMode.args = {
   inputFile: sampleInputFile,
-  initialFileUpdateMode: "delete",
+  initialFileUpdateMode: 'delete',
   downloadBoxClick: () => {
     window.alert('Downloading the document!');
   },
@@ -191,8 +198,8 @@ DownloadBoxWithInitialUpdateMode.parameters = {
       code:
         '<oxd-file-input \n :inputFile=' +
         JSON.stringify(sampleInputFile) +
-        '\n :initialFileUpdateMode="delete"'+
-        '\n :downloadBoxClick: ()=>{ window.alert("Downloading the document!" }'+
+        '\n :initialFileUpdateMode="delete"' +
+        '\n :downloadBoxClick: ()=>{ window.alert("Downloading the document!" }' +
         '\n/>',
     },
   },
@@ -213,8 +220,8 @@ WithDownloadBoxDisabled.parameters = {
       code:
         '<oxd-file-input \n :inputFile=' +
         JSON.stringify(sampleInputFile) +
-        '\n :disabled=true'+
-        '\n :downloadBoxClick: ()=>{ window.alert("Downloading the document!" }'+
+        '\n :disabled=true' +
+        '\n :downloadBoxClick: ()=>{ window.alert("Downloading the document!" }' +
         '\n/>',
     },
   },
@@ -235,8 +242,8 @@ WithDownloadBoxReadonly.parameters = {
       code:
         '<oxd-file-input \n :inputFile=' +
         JSON.stringify(sampleInputFile) +
-        '\n :readonly=true'+
-        '\n :downloadBoxClick: ()=>{ window.alert("Downloading the document!" }'+
+        '\n :readonly=true' +
+        '\n :downloadBoxClick: ()=>{ window.alert("Downloading the document!" }' +
         '\n/>',
     },
   },

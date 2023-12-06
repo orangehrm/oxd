@@ -276,7 +276,7 @@ export default defineComponent({
         const reader = new FileReader();
         reader.onerror = reject;
         reader.onload = () => {
-          let base64, binary;
+          let base64: string, binary: ArrayBuffer;
           if (typeof reader.result === 'string')
             base64 = (reader.result as string).split(',').pop();
           if (typeof reader.result === 'object') binary = reader.result;
@@ -288,8 +288,11 @@ export default defineComponent({
             binary: binary ?? null,
           });
         };
-        if (isBase64Encoded) reader.readAsDataURL(file);
-        reader.readAsArrayBuffer(file);
+        if (isBase64Encoded) {
+          reader.readAsDataURL(file);
+        } else {
+          reader.readAsArrayBuffer(file);
+        }
       });
     },
     setModelValue() {
