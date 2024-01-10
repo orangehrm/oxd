@@ -1,3 +1,5 @@
+2024-01-04 - 2b33251decb8c5eb9e3a262c7a8d6cc5c7f357d8 - Icon/icons.ts - Window work In/Out color change
+
 2024-01-04 - bb29debcb4165164fbda67e306db357e244bd18d - Icon/icons.ts - Add oxd-orange Icon
 
 2023-11-21 - 35904535e09b3a0c2048300b53e0345f6f00ec85 - directives/focus-first-element - Fix focus on disabled input elements
