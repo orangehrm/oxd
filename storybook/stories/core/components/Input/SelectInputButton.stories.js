@@ -132,6 +132,7 @@ Default.args = {
   button: buttonObject,
   moreIconName: 'oxd-info',
   doubleLineLabel: true,
+  additionalIconName: 'oxd-best-match'
 };
 
 export const Error = Template.bind({});
@@ -139,6 +140,7 @@ Error.args = {
   hasError: true,
   moreIconName: 'oxd-info',
   doubleLineLabel: true,
+  additionalIconName: 'oxd-best-match'
 };
 
 export const Disabled = Template.bind({});
@@ -147,6 +149,7 @@ Disabled.args = {
   disabled: true,
   moreIconName: 'oxd-info',
   doubleLineLabel: true,
+  additionalIconName: 'oxd-best-match'
 };
 
 export const Readonly = Template.bind({});
@@ -155,6 +158,7 @@ Readonly.args = {
   readonly: true,
   moreIconName: 'oxd-info',
   doubleLineLabel: true,
+  additionalIconName: 'oxd-best-match'
 };
 
 export const LongLabels = Template.bind({});
@@ -172,6 +176,7 @@ LongLabels.args = {
   ],
   moreIconName: 'oxd-info',
   doubleLineLabel: true,
+  additionalIconName: 'oxd-best-match'
 };
 
 export const CustomDropdownTriggerStyles = Template.bind({});
@@ -182,4 +187,5 @@ CustomDropdownTriggerStyles.args = {
   doubleLineLabel: true,
   dropdownTriggerIconStyles: {color: '#ff0000'},
   dropdownTriggerButtonBackgroundColor: '#ff0000',
+  additionalIconName: 'oxd-best-match'
 };
