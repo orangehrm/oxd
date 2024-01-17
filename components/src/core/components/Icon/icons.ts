@@ -1548,7 +1548,6 @@ const icons: Icons = {
   'oxd-window-in': oxdWindowIn,
   'oxd-window-out': oxdWindowOut,
   'oxd-orange': oxdOrange,
-
 };
 
 export default icons;

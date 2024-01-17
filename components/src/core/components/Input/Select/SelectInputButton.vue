@@ -54,7 +54,7 @@
               class="d-flex
                 align-center
                 justify-center oxd-select-info-button-container"
-                v-if="additionalIconName"
+              v-if="additionalIconName"
             >
               <oxd-icon
                 :tooltip="$vt(additionalIconTooltip)"
@@ -196,7 +196,7 @@ export default defineComponent({
     'dropdown:closed',
     'dropdown:blur',
     'dropdown:clear',
-    'onAdditionalIconClick'
+    'onAdditionalIconClick',
   ],
 
   props: {
