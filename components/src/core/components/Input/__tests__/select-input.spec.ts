@@ -3,6 +3,7 @@ import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput
 import SelectText from '@orangehrm/oxd/core/components/Input/Select/SelectText.vue';
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
 import {BOTTOM} from '@orangehrm/oxd/core/components/Input/types';
+import SelectInputButton from '@orangehrm/oxd/core/components/Input/Select/SelectInputButton.vue';
 
 const options = [
   {
@@ -234,5 +235,30 @@ describe('SelectInput.vue', () => {
     expect(
       wrapper.find('.oxd-select-input-spinner-wrapper').exists(),
     ).toBeTruthy();
+  });
+
+  it('should render the additional icon when additionalIconName is provided', async () => {
+    const wrapper = mount(SelectInputButton, {
+      props: {
+        options,
+        additionalIconName: 'oxd-best-match',
+        doubleLineLabel: true,
+        hideDropdownLabel: false,
+        modelValue: {
+          id: 1,
+          label: 'HR Admin',
+        },
+      },
+    });
+    const additionalIconContainer = wrapper.find(
+      '.oxd-select-info-button-container',
+    );
+    expect(additionalIconContainer.exists()).toBeTruthy();
+    const additionalIcon = additionalIconContainer.find(
+      '.oxd-select-info-button',
+    );
+    expect(additionalIcon.exists()).toBeTruthy();
+    await additionalIcon.trigger('click');
+    expect(wrapper.emitted('onAdditionalIconClick')).toBeTruthy();
   });
 });

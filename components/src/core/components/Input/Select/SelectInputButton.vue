@@ -72,9 +72,9 @@
                 justify-center
                 oxd-select-info-button-container
               "
+              v-if="moreIconName"
             >
               <oxd-icon
-                v-if="moreIconName"
                 :tooltip="$vt(moreTooltip)"
                 :flow="moreTooltipFlow"
                 class="oxd-select-info-button"

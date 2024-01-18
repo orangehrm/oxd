@@ -132,6 +132,7 @@ Default.args = {
   button: buttonObject,
   moreIconName: 'oxd-info',
   doubleLineLabel: true,
+  additionalIconName: 'oxd-best-match',
 };
 
 export const Error = Template.bind({});
