@@ -1,3 +1,5 @@
+2024-01-18 - 28eb678ead7b6bc914cd2ee365e8ff10e426c2d4 - Input/Select/SelectInputButton.vue - Add an additional icon 
+
 2024-01-04 - 2b33251decb8c5eb9e3a262c7a8d6cc5c7f357d8 - Icon/icons.ts - Window work In/Out color change
 
 2024-01-04 - bb29debcb4165164fbda67e306db357e244bd18d - Icon/icons.ts - Add oxd-orange Icon
