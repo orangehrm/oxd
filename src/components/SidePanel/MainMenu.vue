@@ -22,7 +22,15 @@
 <template>
   <!-- Search -->
   <div class="oxd-main-menu --fixed">
-    <div class="oxd-main-menu-search">
+    <div class="oxd-main-menu-p">
+      <oxd-button
+        label="HR Management"
+        :icon-right-name="!hrmToggle ? 'chevron-right' : 'chevron-down'"
+        @click="hrmToggle = !hrmToggle"
+      />
+    </div>
+
+    <div v-if="hrmToggle" class="oxd-main-menu-search">
       <oxd-icon
         name="search"
         type="svg"
@@ -36,6 +44,7 @@
         :class="{toggled: toggle}"
       />
       <oxd-icon-button
+        v-if="false"
         :name="toggle ? 'chevron-right' : 'chevron-left'"
         class="oxd-main-menu-button"
         role="none"
@@ -47,7 +56,7 @@
   <!-- Search -->
 
   <!-- Nav Items  -->
-  <ul class="oxd-main-menu">
+  <ul v-if="hrmToggle" class="oxd-main-menu">
     <oxd-main-menu-item
       v-for="(menuItem, index) in filteredMenuItems"
       :key="`oxd-main-menu-${index}`"
@@ -69,6 +78,7 @@ import MainMenuItem from './MainMenuItem.vue';
 import Icon from '@/components/Icon/Icon.vue';
 import Input from '@/components/Input/Input.vue';
 import IconButton from '@/components/Button/Icon.vue';
+import Button from '@/components/Button/Button.vue';
 
 export default defineComponent({
   name: 'OxdMainMenu',
@@ -78,6 +88,7 @@ export default defineComponent({
     'oxd-input': Input,
     'oxd-icon-button': IconButton,
     'oxd-main-menu-item': MainMenuItem,
+    'oxd-button': Button,
   },
 
   props: {
@@ -109,6 +120,7 @@ export default defineComponent({
   data() {
     return {
       searchTerm: '',
+      hrmToggle: true,
     };
   },
 

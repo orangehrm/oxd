@@ -131,3 +131,19 @@
     flex: none;
   }
 }
+
+.oxd-main-menu-p {
+  width: 100%;
+
+  button {
+    width: 100%;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    // display: flex;
+
+    i {
+      margin-right: 0.25rem;
+      margin-left: 0.25rem;
+    }
+  }
+}
