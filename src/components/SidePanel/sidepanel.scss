@@ -32,8 +32,8 @@
   height: 100%;
   position: fixed;
   background-color: $oxd-sidepanel-bg-color;
-  border-bottom-right-radius: $oxd-sidepanel-border-radius;
-  border-top-right-radius: $oxd-sidepanel-border-radius;
+  // border-bottom-right-radius: $oxd-sidepanel-border-radius;
+  // border-top-right-radius: $oxd-sidepanel-border-radius;
   box-shadow: $oxd-sidepanel-box-shadow;
   z-index: $oxd-sidepanel-z-index;
   transition: width 0.3s ease-in-out;
@@ -79,5 +79,11 @@
     display: flex;
     flex-direction: column;
     padding-bottom: 30px;
+  }
+
+  .oxd-sidepanel-body {
+    // scrollbar-color: #cfd3de #f6f5fb;
+    scrollbar-color: #103978 #072b62;
+    scrollbar-width: thin;
   }
 }

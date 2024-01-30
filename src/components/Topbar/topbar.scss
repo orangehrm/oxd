@@ -46,7 +46,7 @@ $oxd-topbar-body-web-margin-collapse: $oxd-sidepanel-collapse-width;
     padding-top: $oxd-topbar-header-padding-top;
     padding-bottom: $oxd-topbar-header-padding-bottom;
     padding-left: $oxd-topbar-header-mobile-padding-left;
-    padding-right: $oxd-topbar-header-mobile-padding-right;
+    // padding-right: $oxd-topbar-header-mobile-padding-right;
     background-color: $oxd-topbar-bg-color;
     background-image: $oxd-topbar-bg-gradient;
     &-title {
@@ -108,7 +108,7 @@ $oxd-topbar-body-web-margin-collapse: $oxd-sidepanel-collapse-width;
     }
     @include oxd-respond-to('md') {
       padding-left: $oxd-topbar-header-padding-left-calc;
-      padding-right: $oxd-topbar-header-web-padding-right;
+      padding-right: 0.25rem;
       &.toggled {
         padding-left: $oxd-topbar-header-padding-left-collapse-calc;
       }

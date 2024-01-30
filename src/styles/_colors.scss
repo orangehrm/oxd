@@ -18,6 +18,7 @@
 // OXD - Primary Colors
 $oxd-primary-one-color: #ff7b1d !default;
 $oxd-primary-two-color: #17a954 !default;
+$oxd-iprimary-one-color: #b92525 !default;
 
 // OXD - Secondary Colors
 $oxd-secondary-one-color: #ffaa00 !default;
@@ -46,6 +47,7 @@ $oxd-feedback-success-color: #34bc40 !default;
 
 $oxd-white-color: #ffffff !default;
 $oxd-black-color: #000000 !default;
+$oxd-pannel-bg-color: #072b62 !default;
 
 // OXD - Gradient Colors
 $oxd-primary-gradient-start-color: #ff8226 !default;
@@ -55,12 +57,23 @@ $oxd-primary-gradient: linear-gradient(
   $oxd-primary-gradient-start-color 0%,
   $oxd-primary-gradient-end-color 90%
 ) !default;
+
 $oxd-secondary-gradient-start-color: #ff5e00 !default;
 $oxd-secondary-gradient-end-color: #ffa46b !default;
+
+$oxd-isecondary-gradient-start-color: #b92525 !default;
+$oxd-isecondary-gradient-end-color: #d75e5e !default;
+
 $oxd-secondary-gradient: linear-gradient(
   90deg,
   $oxd-secondary-gradient-start-color 0%,
   $oxd-secondary-gradient-end-color 90%
+) !default;
+
+$oxd-isecondary-gradient: linear-gradient(
+  90deg,
+  $oxd-isecondary-gradient-start-color 0%,
+  $oxd-isecondary-gradient-end-color 90%
 ) !default;
 
 // OXD Font Color

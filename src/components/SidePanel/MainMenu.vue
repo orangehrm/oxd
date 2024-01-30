@@ -20,42 +20,78 @@
 -->
 
 <template>
-  <!-- Search -->
-  <div class="oxd-main-menu --fixed">
+  <!-- GD -->
+  <div class="oxd-main-menu">
+    <div class="oxd-main-menu-p">
+      <oxd-button label="Global Dashboard" :display-type="''" />
+    </div>
+  </div>
+  <div class="oxd-main-menu-divider"></div>
+  <!-- Accounting -->
+  <div class="oxd-main-menu">
+    <div class="oxd-main-menu-p">
+      <oxd-button
+        label="Accounting"
+        :display-type="''"
+        :icon-right-name="!acToggle ? 'chevron-right' : 'chevron-down'"
+        @click="acToggle = !acToggle"
+      />
+    </div>
+  </div>
+  <!--Accounting  Nav Items  -->
+  <ul v-if="acToggle" class="oxd-main-menu">
+    <oxd-main-menu-item
+      v-for="(menuItem, index) in accountingData"
+      :key="`oxd-main-menu-${index}`"
+      :collapsed="toggle"
+      :name="menuItem.name"
+    ></oxd-main-menu-item>
+  </ul>
+  <div class="oxd-main-menu-divider"></div>
+
+  <!-- Document Manager -->
+  <div class="oxd-main-menu">
+    <div class="oxd-main-menu-p">
+      <oxd-button label="Document Manager" :display-type="''" />
+    </div>
+  </div>
+  <div class="oxd-main-menu-divider"></div>
+
+  <!-- Equipment Tracking -->
+  <div class="oxd-main-menu">
+    <div class="oxd-main-menu-p">
+      <oxd-button
+        label="Equipment Tracking"
+        :display-type="''"
+        :icon-right-name="!eqToggle ? 'chevron-right' : 'chevron-down'"
+        @click="eqToggle = !eqToggle"
+      />
+    </div>
+  </div>
+  <!--Equipment Tracking  Nav Items  -->
+  <ul v-if="eqToggle" class="oxd-main-menu">
+    <oxd-main-menu-item
+      v-for="(menuItem, index) in equpTracData"
+      :key="`oxd-main-menu-${index}`"
+      :collapsed="toggle"
+      :name="menuItem.name"
+    ></oxd-main-menu-item>
+  </ul>
+  <div class="oxd-main-menu-divider"></div>
+
+  <!-- HRM -->
+  <div class="oxd-main-menu">
     <div class="oxd-main-menu-p">
       <oxd-button
         label="HR Management"
+        class="active-btn"
         :icon-right-name="!hrmToggle ? 'chevron-right' : 'chevron-down'"
         @click="hrmToggle = !hrmToggle"
       />
     </div>
-
-    <div v-if="hrmToggle" class="oxd-main-menu-search">
-      <oxd-icon
-        name="search"
-        type="svg"
-        width="22"
-        height="22"
-        class="oxd-menu-icon"
-      ></oxd-icon>
-      <oxd-input
-        v-model="searchTerm"
-        :placeholder="t('general.search', 'Search')"
-        :class="{toggled: toggle}"
-      />
-      <oxd-icon-button
-        v-if="false"
-        :name="toggle ? 'chevron-right' : 'chevron-left'"
-        class="oxd-main-menu-button"
-        role="none"
-        @click="onClickCollapse"
-      />
-    </div>
-    <hr class="oxd-main-menu-divider" />
   </div>
   <!-- Search -->
-
-  <!-- Nav Items  -->
+  <!--HRM  Nav Items  -->
   <ul v-if="hrmToggle" class="oxd-main-menu">
     <oxd-main-menu-item
       v-for="(menuItem, index) in filteredMenuItems"
@@ -67,6 +103,107 @@
       :icon="menuItem.icon"
     ></oxd-main-menu-item>
   </ul>
+  <div class="oxd-main-menu-divider"></div>
+
+  <!-- Inventory Tracking -->
+  <div class="oxd-main-menu">
+    <div class="oxd-main-menu-p">
+      <oxd-button
+        label="Inventory Tracking"
+        :display-type="''"
+        :icon-right-name="!itToggle ? 'chevron-right' : 'chevron-down'"
+        @click="itToggle = !itToggle"
+      />
+    </div>
+  </div>
+  <!-- Search -->
+  <!--Inventory Tracking  Nav Items  -->
+  <ul v-if="itToggle" class="oxd-main-menu">
+    <oxd-main-menu-item
+      v-for="(menuItem, index) in itMenuItems"
+      :key="`oxd-main-menu-${index}`"
+      :collapsed="toggle"
+      :name="menuItem.name"
+    ></oxd-main-menu-item>
+  </ul>
+  <div class="oxd-main-menu-divider"></div>
+
+  <!-- Job Tracking -->
+  <div class="oxd-main-menu">
+    <div class="oxd-main-menu-p">
+      <oxd-button
+        label="Job Tracking"
+        :display-type="''"
+        :icon-right-name="!jtToggle ? 'chevron-right' : 'chevron-down'"
+        @click="jtToggle = !jtToggle"
+      />
+    </div>
+  </div>
+  <!-- Search -->
+  <!--Job Tracking  Nav Items  -->
+  <ul v-if="jtToggle" class="oxd-main-menu">
+    <oxd-main-menu-item
+      v-for="(menuItem, index) in jtMenuItems"
+      :key="`oxd-main-menu-${index}`"
+      :collapsed="toggle"
+      :name="menuItem.name"
+    ></oxd-main-menu-item>
+  </ul>
+  <div class="oxd-main-menu-divider"></div>
+
+  <!-- Billing and Invoicing -->
+  <div class="oxd-main-menu">
+    <div class="oxd-main-menu-p">
+      <oxd-button
+        label="Billing and Invoicing"
+        :display-type="''"
+        :icon-right-name="!biToggle ? 'chevron-right' : 'chevron-down'"
+        @click="biToggle = !biToggle"
+      />
+    </div>
+  </div>
+  <!-- Search -->
+  <!--Billing and Invoicing  Nav Items  -->
+  <ul v-if="biToggle" class="oxd-main-menu">
+    <oxd-main-menu-item
+      v-for="(menuItem, index) in biMenuItems"
+      :key="`oxd-main-menu-${index}`"
+      :collapsed="toggle"
+      :name="menuItem.name"
+    ></oxd-main-menu-item>
+  </ul>
+  <div class="oxd-main-menu-divider"></div>
+
+  <!-- Payroll -->
+  <div class="oxd-main-menu">
+    <div class="oxd-main-menu-p">
+      <oxd-button
+        label="Payroll"
+        :display-type="''"
+        :icon-right-name="!prToggle ? 'chevron-right' : 'chevron-down'"
+        @click="prToggle = !prToggle"
+      />
+    </div>
+  </div>
+  <!-- Search -->
+  <!--Payroll  Nav Items  -->
+  <ul v-if="prToggle" class="oxd-main-menu">
+    <oxd-main-menu-item
+      v-for="(menuItem, index) in prMenuItems"
+      :key="`oxd-main-menu-${index}`"
+      :collapsed="toggle"
+      :name="menuItem.name"
+    ></oxd-main-menu-item>
+  </ul>
+  <div class="oxd-main-menu-divider"></div>
+
+  <!-- Settings -->
+  <div class="oxd-main-menu">
+    <div class="oxd-main-menu-p">
+      <oxd-button label="Settings" :display-type="''" />
+    </div>
+  </div>
+  <!-- Search -->
 </template>
 
 <script lang="ts">
@@ -121,6 +258,53 @@ export default defineComponent({
     return {
       searchTerm: '',
       hrmToggle: true,
+      acToggle: false,
+      eqToggle: false,
+      itToggle: false,
+      jtToggle: false,
+      biToggle: false,
+      prToggle: false,
+      accountingData: [
+        {name: 'Accounts Payable'},
+        {name: 'Accounts Receivable'},
+        {name: 'Bank Reconciliation'},
+        {name: 'Cash Manager'},
+        {name: 'Check Book'},
+        {name: 'Client Accounting'},
+        {name: 'Depreciation'},
+        {name: 'General Ledger'},
+        {name: 'Loan Amortization'},
+        {name: 'Report Manager'},
+      ],
+      equpTracData: [
+        {name: 'Equipment Manager'},
+        {name: 'Equipment Cost'},
+        {name: 'Report Manager'},
+      ],
+      itMenuItems: [
+        {name: 'Inventory'},
+        {name: 'Inventory Manager'},
+        {name: 'Report Manager'},
+      ],
+      jtMenuItems: [
+        {name: 'Job Cost'},
+        {name: 'Job Manager'},
+        {name: 'Job Stream'},
+        {name: 'Report Manager'},
+      ],
+      biMenuItems: [
+        {name: 'Order Processing'},
+        {name: 'Purchase Order'},
+        {name: 'Service Billing'},
+        {name: 'Billing Manager'},
+        {name: 'Time and Billing'},
+        {name: 'Report Manager'},
+      ],
+      prMenuItems: [
+        {name: 'Payroll DataEntry'},
+        {name: 'Time Manager'},
+        {name: 'Report Manager'},
+      ],
     };
   },
 

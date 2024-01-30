@@ -42,7 +42,7 @@
       >
       </oxd-navigation-more>
 
-      <div class="oxd-topbar-body-nav-slot">
+      <div v-if="false" class="oxd-topbar-body-nav-slot">
         <slot></slot>
       </div>
     </ul>

@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see  http://www.gnu.org/licenses
 
-$oxd-sidepanel-bg-color: $oxd-white-color !default;
+$oxd-sidepanel-bg-color: $oxd-pannel-bg-color !default;
 $oxd-sidepanel-border-radius: 35px !default;
 $oxd-sidepanel-min-height: 100vh !default;
 $oxd-sidepanel-box-shadow: 0px 25px 35px 0 rgba(0, 0, 0, 0.18) !default;
@@ -32,8 +32,8 @@ $oxd-menu-item-padding: 8px 16px 8px 24px !default;
 $oxd-menu-item-color: $oxd-interface-gray-darken-1-color !default;
 $oxd-menu-item-color--active: $oxd-primary-font-color !default;
 $oxd-menu-item-color--hover: $oxd-primary-font-color !default;
-$oxd-menu-item-hover-color: $oxd-primary-one-alpha-10-color !default;
-$oxd-menu-item-active-color: $oxd-primary-one-color !default;
+$oxd-menu-item-hover-color: rgba(250, 95, 95, 0.2) !default;
+$oxd-menu-item-active-color: $oxd-iprimary-one-color !default;
 $oxd-menu-slide-button-color: $oxd-primary-one-color !default;
 $oxd-menu-item-text-padding-left: 15px !default;
 
