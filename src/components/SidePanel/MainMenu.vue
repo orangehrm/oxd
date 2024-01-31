@@ -45,6 +45,7 @@
       :key="`oxd-main-menu-${index}`"
       :collapsed="toggle"
       :name="menuItem.name"
+      :icon="menuItem.icon"
     ></oxd-main-menu-item>
   </ul>
   <div class="oxd-main-menu-divider"></div>
@@ -75,6 +76,7 @@
       :key="`oxd-main-menu-${index}`"
       :collapsed="toggle"
       :name="menuItem.name"
+      :icon="menuItem.icon"
     ></oxd-main-menu-item>
   </ul>
   <div class="oxd-main-menu-divider"></div>
@@ -124,6 +126,7 @@
       :key="`oxd-main-menu-${index}`"
       :collapsed="toggle"
       :name="menuItem.name"
+      :icon="menuItem.icon"
     ></oxd-main-menu-item>
   </ul>
   <div class="oxd-main-menu-divider"></div>
@@ -147,6 +150,7 @@
       :key="`oxd-main-menu-${index}`"
       :collapsed="toggle"
       :name="menuItem.name"
+      :icon="menuItem.icon"
     ></oxd-main-menu-item>
   </ul>
   <div class="oxd-main-menu-divider"></div>
@@ -170,6 +174,7 @@
       :key="`oxd-main-menu-${index}`"
       :collapsed="toggle"
       :name="menuItem.name"
+      :icon="menuItem.icon"
     ></oxd-main-menu-item>
   </ul>
   <div class="oxd-main-menu-divider"></div>
@@ -193,6 +198,7 @@
       :key="`oxd-main-menu-${index}`"
       :collapsed="toggle"
       :name="menuItem.name"
+      :icon="menuItem.icon"
     ></oxd-main-menu-item>
   </ul>
   <div class="oxd-main-menu-divider"></div>
@@ -265,45 +271,45 @@ export default defineComponent({
       biToggle: false,
       prToggle: false,
       accountingData: [
-        {name: 'Accounts Payable'},
-        {name: 'Accounts Receivable'},
-        {name: 'Bank Reconciliation'},
-        {name: 'Cash Manager'},
-        {name: 'Check Book'},
-        {name: 'Client Accounting'},
-        {name: 'Depreciation'},
-        {name: 'General Ledger'},
-        {name: 'Loan Amortization'},
-        {name: 'Report Manager'},
+        {name: 'Accounts Payable', icon: 'accountPayable'},
+        {name: 'Accounts Receivable', icon: 'accountReceive'},
+        {name: 'Bank Reconciliation', icon: 'bank'},
+        {name: 'Cash Manager', icon: 'cashM'},
+        {name: 'Check Book', icon: 'checkBook'},
+        {name: 'Client Accounting', icon: 'clientAcc'},
+        {name: 'Depreciation', icon: 'depreciation'},
+        {name: 'General Ledger', icon: 'generalLedger'},
+        {name: 'Loan Amortization', icon: 'loanAmortization'},
+        {name: 'Report Manager', icon: 'reportM'},
       ],
       equpTracData: [
-        {name: 'Equipment Manager'},
-        {name: 'Equipment Cost'},
-        {name: 'Report Manager'},
+        {name: 'Equipment Manager', icon: 'equipM'},
+        {name: 'Equipment Cost', icon: 'equipCost'},
+        {name: 'Report Manager', icon: 'reportM'},
       ],
       itMenuItems: [
-        {name: 'Inventory'},
-        {name: 'Inventory Manager'},
-        {name: 'Report Manager'},
+        {name: 'Inventory', icon: 'inventory'},
+        {name: 'Inventory Manager', icon: 'inventoryM'},
+        {name: 'Report Manager', icon: 'reportM'},
       ],
       jtMenuItems: [
-        {name: 'Job Cost'},
-        {name: 'Job Manager'},
-        {name: 'Job Stream'},
-        {name: 'Report Manager'},
+        {name: 'Job Cost', icon: 'jobCost'},
+        {name: 'Job Manager', icon: 'jobM'},
+        {name: 'Job Stream', icon: 'jobStream'},
+        {name: 'Report Manager', icon: 'reportM'},
       ],
       biMenuItems: [
-        {name: 'Order Processing'},
-        {name: 'Purchase Order'},
-        {name: 'Service Billing'},
-        {name: 'Billing Manager'},
-        {name: 'Time and Billing'},
-        {name: 'Report Manager'},
+        {name: 'Order Processing', icon: 'orderProcess'},
+        {name: 'Purchase Order', icon: 'purchaseOrder'},
+        {name: 'Service Billing', icon: 'serviceBilling'},
+        {name: 'Billing Manager', icon: 'billingManager'},
+        {name: 'Time and Billing', icon: 'timeAndBilling'},
+        {name: 'Report Manager', icon: 'reportM'},
       ],
       prMenuItems: [
-        {name: 'Payroll DataEntry'},
-        {name: 'Time Manager'},
-        {name: 'Report Manager'},
+        {name: 'Payroll DataEntry', icon: 'payrollDataEntry'},
+        {name: 'Time Manager', icon: 'timeManager'},
+        {name: 'Report Manager', icon: 'reportM'},
       ],
     };
   },
