@@ -192,9 +192,9 @@ export default defineComponent({
         label: $t(field.label),
         style: field.style,
         class: field.class,
+        disabled: props.schema?.disabled ? props.schema.disabled : false,
         ...(field.props ?? {}),
         ...(field.listeners ?? {}),
-        disabled: props.schema?.disabled ? props.schema.disabled : false,
       });
     };
 
