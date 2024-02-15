@@ -34,10 +34,8 @@
       }
 
       &:not(:checked):disabled + .oxd-switch-input {
-        background-color: $oxd-switch-off-disabled-background-color;
-        &::after {
-          background-color: $oxd-switch-off-disabled-selector-color;
-        }
+        border: 1px solid $oxd-switch-off-disabled-background-color;
+        opacity: 0.50;
       }
     }
 

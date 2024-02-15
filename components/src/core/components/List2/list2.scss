@@ -1,0 +1,76 @@
+@import './variables';
+@import '../../../styles';
+
+.oxd-list {
+  &-card {
+    width: 100%;
+    display: flex;
+    min-height: 100vh;
+    padding: $oxd-list-padding;
+    &.--flat-top {
+      padding-top: 0;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+  &-sidepanel {
+    width: 20%;
+    display: block;
+    max-width: 190px; // 200px - 10px for divider
+    &.--collapsed {
+      width: 8%;
+      min-width: 70px;
+    }
+  }
+  &-divider {
+    margin: 0 10px;
+    position: relative;
+  }
+  &-content {
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+    &-header {
+      gap: 0.5rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      &.--left,
+      &.--right {
+        margin-bottom: 1rem;
+      }
+    }
+    &-footer {
+      display: flex;
+      margin-top: auto;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+  &-collapsebtn {
+    min-width: unset;
+    min-height: unset;
+    position: absolute;
+    margin-top: 1rem;
+    background: $oxd-white-color !important;
+    width: $oxd-list-collapse-button-width;
+    height: $oxd-list-collapse-button-height;
+    left: calc(#{$oxd-list-collapse-button-width} * -0.5);
+    border: 1px solid $oxd-interface-gray-lighten-2-color !important;
+    top: calc(#{$oxd-list-header-height} - #{$oxd-list-collapse-button-height});
+  }
+}
+::v-deep(.oxd-divider-vertical) {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+::v-deep(.skeleton-collapsebtn) {
+  position: absolute;
+  margin-top: 1rem;
+  left: calc(#{$oxd-list-collapse-button-width} * -0.5);
+  top: calc(#{$oxd-list-header-height} - #{$oxd-list-collapse-button-height});
+}

@@ -51,9 +51,11 @@
             :class="{'flex-wrap': clickableText}"
             :style="subtitleWrapperStyles"
           >
+            <slot></slot>
             <label
               class="oxd-select-fill-subtitle text-left"
               :style="selectedItemLabelStyles"
+              v-if="!$slots['default']"
             >
               {{ $vt(getLabel) }}
             </label>
@@ -76,6 +78,7 @@
               :style="infoBoxTriggerButtonStyles"
               :disabled="readonly"
               @click="onToggleDropdown"
+              @blur="onBlur"
             />
           </div>
         </div>
@@ -87,6 +90,7 @@
       :style="dropdownStyles"
       :loading="loading"
       :empty="computedOptions.length === 0"
+      @blur="onBlur"
     >
       <oxd-select-option
         v-for="(option, i) in computedOptions"
@@ -211,6 +215,17 @@ export default defineComponent({
     };
   },
 
+  watch: {
+    pointer(newIndex: number) {
+      const option = this.$refs[`option-${newIndex}`];
+      if (Array.isArray(option) && option.length > 0) {
+        if (option[0]?.$el) this.scrollToView(option[0].$el);
+      } else {
+        if (option?.$el) this.scrollToView(option.$el);
+      }
+    },
+  },
+
   computed: {
     computedOptions(): Option[] {
       return this.options.map((option: Option) => {
@@ -330,8 +345,10 @@ export default defineComponent({
         this.focused = true;
       }
     },
-    onBlur() {
+    onBlur($e: Event) {
       this.focused = false;
+      this.dropdownOpen = false;
+      this.$emit('blur', $e);
     },
     clickOutside() {
       this.dropdownOpen = false;

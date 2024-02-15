@@ -13,9 +13,9 @@
         tabindex="0"
         maxlength="5"
       />
-      <div class="oxd-time-input-am-pm-wrapper" :class="amPmWrapperClasses">
+      <div :class="amPmWrapperClasses" v-if="format == INPUT_TIME_FORMAT_12">
         <label :class="amPmLabelClasses"
-          >{{ am ? $vt('AM') : $vt('PM') }}
+          >{{ am ? $vt(TIME_PERIOD_AM) : $vt(TIME_PERIOD_PM) }}
           <input
             class="oxd-time-input-am-pm-checkbox"
             type="checkbox"
@@ -46,8 +46,11 @@
       v-if="timePickerOpen"
       v-model="pickerInput"
       :step="step"
+      :format="format"
+      :resetEnabled="resetEnabled"
       @update:modelValue="timePickerUpdate"
       @timepicker:closed="closeDropdown"
+      @timepicker:reset="onReset"
     ></oxd-time-picker>
   </div>
 </template>
@@ -61,6 +64,20 @@ import TimePicker from '@orangehrm/oxd/core/components/Input/Time/TimePicker.vue
 import {parseDate, formatDate} from '@orangehrm/oxd/utils/date';
 import dropdownDirectionDirective from '@orangehrm/oxd/directives/dropdown-direction';
 import translateMixin from '@orangehrm/oxd/mixins/translate';
+import {
+  TimeInputState,
+  TIME_FORMAT_12_HR,
+  TIME_FORMAT_24_HR,
+  VALID_TIME_FORMAT_24,
+  VALID_TIME_FORMAT_12,
+  TIME_FORMAT_12_HR_WITH_PERIOD,
+  TIME_PERIOD_AM,
+  TIME_PERIOD_PM,
+  INPUT_TIME_FORMAT_12,
+  InputTimeFormat,
+  INPUT_TIME_FORMATS,
+  INPUT_TIME_FORMAT_24,
+} from './types';
 
 export default defineComponent({
   name: 'oxd-time-input',
@@ -82,6 +99,7 @@ export default defineComponent({
     'update:modelValue',
     'timeselect:opened',
     'timeselect:closed',
+    'timepicker:reset',
     'blur',
   ],
 
@@ -110,23 +128,39 @@ export default defineComponent({
       type: Number,
       default: 1,
     },
+    format: {
+      type: String,
+      default: INPUT_TIME_FORMAT_12,
+      validator: (value: InputTimeFormat) => {
+        return INPUT_TIME_FORMATS.indexOf(value) !== -1;
+      },
+    },
+    resetEnabled: {
+      type: Boolean,
+      default: false,
+    },
   },
-
   setup(props, context) {
     const timePickerOpen = ref<boolean>(false);
     const amPmLabelFocus = ref<boolean>(false);
     let inputTime = '';
 
-    interface TimeInputState {
-      time: string;
-      am: boolean;
-      pickerInput: string | null;
-    }
+    const parseFormat = computed(() => {
+      return props.format == INPUT_TIME_FORMAT_24
+        ? TIME_FORMAT_24_HR
+        : TIME_FORMAT_12_HR_WITH_PERIOD;
+    });
+
+    const displayFormat = computed(() => {
+      return props.format == INPUT_TIME_FORMAT_24
+        ? TIME_FORMAT_24_HR
+        : TIME_FORMAT_12_HR;
+    });
 
     const state = reactive<TimeInputState>({
       time: '',
-      am: true,
       pickerInput: props.modelValue,
+      am: props.format == INPUT_TIME_FORMAT_12,
     });
 
     const openDropdown = () => {
@@ -171,17 +205,24 @@ export default defineComponent({
       context.emit('update:modelValue', state.pickerInput);
     };
 
+    const onReset = () => {
+      state.time = '';
+      context.emit('timepicker:reset');
+    };
+
     watch(
       () => props.modelValue,
       () => {
         if (props.modelValue) {
-          const time = parseDate(props.modelValue, 'HH:mm');
+          const time = parseDate(props.modelValue, TIME_FORMAT_24_HR);
           if (time) {
-            const formattedTime = formatDate(time, 'hh:mm');
+            const formattedTime = formatDate(time, displayFormat.value);
             if (formattedTime) {
               state.time = formattedTime;
               inputTime = formattedTime;
-              state.am = time.getHours() < 12;
+              if (props.format == INPUT_TIME_FORMAT_12) {
+                state.am = time.getHours() < 12;
+              }
             }
           }
         }
@@ -194,14 +235,21 @@ export default defineComponent({
     watch(
       () => [state.time, state.am],
       () => {
-        const validTime = /^(0?[1-9]|1[0-2]):[0-5][0-9]$/.test(state.time);
-        let newModelValue: string | null =
-          state.time + ' ' + (state.am ? 'AM' : 'PM');
+        const validTimeFormat =
+          props.format == INPUT_TIME_FORMAT_24
+            ? VALID_TIME_FORMAT_24
+            : VALID_TIME_FORMAT_12;
+        const validTime = validTimeFormat.test(state.time);
+        let newModelValue: string | null = state.time;
+        if (props.format == INPUT_TIME_FORMAT_12) {
+          newModelValue += ' ';
+          newModelValue += state.am ? TIME_PERIOD_AM : TIME_PERIOD_PM;
+        }
 
         if (validTime) {
-          const parsedTime = parseDate(newModelValue, 'hh:mm a');
+          const parsedTime = parseDate(newModelValue, parseFormat.value);
           if (parsedTime) {
-            newModelValue = formatDate(parsedTime, 'HH:mm');
+            newModelValue = formatDate(parsedTime, TIME_FORMAT_24_HR);
             state.pickerInput = newModelValue;
           }
         } else if (state.time === '') {
@@ -236,6 +284,7 @@ export default defineComponent({
 
     const amPmWrapperClasses = computed(() => {
       return {
+        'oxd-time-input-am-pm-wrapper': props.format == INPUT_TIME_FORMAT_12,
         '--disabled': props.disabled,
       };
     });
@@ -271,6 +320,10 @@ export default defineComponent({
       onAmPmLabelFocus,
       onAmPmLabelBlur,
       amPmWrapperClasses,
+      TIME_PERIOD_AM,
+      TIME_PERIOD_PM,
+      INPUT_TIME_FORMAT_12,
+      onReset,
     };
   },
 });

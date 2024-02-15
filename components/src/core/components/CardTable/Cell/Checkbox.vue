@@ -1,25 +1,30 @@
 <template>
-  <oxd-checkbox-input
-    v-if="isSelectable"
-    v-model="checkState"
-    :value="item"
-    @click="onClickCheckbox(item, $event)"
-    :disabled="isDisabled"
-  />
-  <div v-else class="oxd-table-card-cell-hidden">
+  <div v-if="!isSelectable" class="oxd-table-card-cell-hidden">
     <oxd-checkbox-input />
   </div>
+  <oxd-skeleton v-else-if="loading" class="oxd-skeleton-checkbox" />
+  <oxd-checkbox-input
+    v-else
+    v-model="checkState"
+    :value="item"
+    :disabled="isDisabled"
+    @click="onClickCheckbox(item, $event)"
+  />
 </template>
 
 <script lang="ts">
-import {defineComponent, inject, computed, onBeforeUnmount} from 'vue';
-import emitter from '../../../../utils/emitter';
-import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
 import {cellMixin} from './cell-mixin';
+import emitter from '../../../../utils/emitter';
+import {defineComponent, inject, computed, onBeforeUnmount} from 'vue';
+import Skeleton from '@orangehrm/oxd/core/components/Skeleton/Skeleton.vue';
+import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
 
 export default defineComponent({
   name: 'oxd-table-cell-checkbox',
-  components: {'oxd-checkbox-input': CheckboxInput},
+  components: {
+    'oxd-skeleton': Skeleton,
+    'oxd-checkbox-input': CheckboxInput,
+  },
   mixins: [cellMixin],
   setup(props) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

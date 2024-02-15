@@ -21,6 +21,7 @@
     border-radius: 1rem;
     &.scroll-vertical {
       overflow-y: auto;
+      scroll-behavior: smooth;
       @include oxd-scrollbar();
     }
   }

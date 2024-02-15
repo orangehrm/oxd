@@ -8,25 +8,19 @@ import {
 import {nanoid} from 'nanoid';
 import {injectStrict} from '../utils/injectable';
 import {
-  Disabled,
   ErrorField,
   FormAPI,
   formKey,
   ModelValue,
   Rules,
+  FieldContext,
 } from './types';
 
-export default function useField(fieldContext: {
-  fieldLabel: string;
-  rules: Rules;
-  modelValue: ModelValue;
-  isDisabled: Disabled;
-  onReset: () => Promise<void>;
-}) {
+export default function useField(fieldContext: FieldContext) {
   const form = injectStrict<FormAPI>(formKey);
   const cid = ref<string>(nanoid());
   const label = ref<string>(fieldContext.fieldLabel);
-  const dirty = ref<boolean>(false);
+  const dirty = ref<boolean>(fieldContext.isDirty);
   const touched = ref<boolean>(false);
   const processing = ref<boolean>(false);
   let watchHandler: WatchStopHandle | undefined;

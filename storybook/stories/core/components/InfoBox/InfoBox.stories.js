@@ -3,6 +3,7 @@ import SchemaForm from '@orangehrm/oxd/core/components/SchemaForm/SchemaForm';
 import useSchemaForm from '../../../../../components/src/composables/useSchemaForm.ts';
 import {required} from '../../../../../components/src/validation/rules.ts';
 import InfoBoxEvents from './InfoBoxEvents.story.vue';
+import InfoBoxDetails from './InfoBoxDetails.story.vue';
 import {h, ref} from 'vue';
 
 export default {
@@ -412,6 +413,33 @@ WithoutInitialValue.args = {
 
 export const Events = () => InfoBoxEvents;
 
+const detailedOptions = [
+  {
+    id: 1,
+    label: 'Entitlements',
+    subHeader: '4 Days (2 available)',
+    description: 'Valid from 2020-10-10 to 2021-10-10',
+  },
+  {
+    id: 2,
+    label: 'Entitlements',
+    subHeader: '14 Days (12 available)',
+    description: 'Valid from 2021-07-10 to 2021-10-10',
+  },
+  {
+    id: 3,
+    label: 'Entitlements',
+    subHeader: '15 Days (21 available)',
+    description: 'Valid from 2023-07-10 to 2023-10-10',
+  },
+];
+
+export const Detailed = () => InfoBoxDetails;
+
+Detailed.args = {
+  options: detailedOptions,
+};
+
 Default.parameters = {
   docs: {
     source: {
@@ -443,6 +471,49 @@ Default.parameters = {
         :titleLineHeight="44"
         :subtitleLineHeight="38"
       />`,
+    },
+  },
+};
+
+Detailed.parameters = {
+  docs: {
+    source: {
+      code: `
+      <oxd-infobox
+    :options="entitlementsOptions"
+    @update:modelValue="updateInfoBoxModelValue"
+    :modelValue="infoBoxModelValue"
+  >
+    <template #default>
+      <div class="label-tile-content">
+        <div class="oxd-info-drop-down-content">
+          <span class="oxd-info-drop-down-main-label">
+            {{ infoBoxModelValue.label }}
+          </span>
+          {{ infoBoxModelValue.subHeader }}
+        </div>
+        <div class="oxd-info-drop-down-description">
+          {{ infoBoxModelValue.description }}
+        </div>
+      </div>
+    </template>
+    <template #option="slotProps">
+      <div class="label-tile-content">
+        <div
+          class="oxd-info-drop-down-content oxd-info-drop-down-content-option-item"
+        >
+          <span class="oxd-info-drop-down-main-label">{{
+            slotProps.data.label
+          }}</span
+          >{{ slotProps.data.subHeader }}
+        </div>
+        <div class="oxd-info-drop-down-description">
+          {{ slotProps.data.description }}
+        </div>
+      </div>
+    </template>
+  </oxd-infobox>
+      `,
     },
   },
 };

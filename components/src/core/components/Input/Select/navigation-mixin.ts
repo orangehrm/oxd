@@ -70,7 +70,7 @@ export const navigationMixin = defineComponent({
     onKeypress($e: KeyboardEvent) {
       if ($e.key.length > 1) return; // Filter one letter keypress only
       const filtered = this.computedOptions.flatMap((item: Option, i: number) =>
-        item.label.toLowerCase().startsWith($e.key) ? i : [],
+        item.label.toLowerCase().startsWith($e.key) && !item._disabled ? i : [],
       );
       if (filtered.length > 0) {
         this.pointer = cycleIndexes(this.pointer, filtered);

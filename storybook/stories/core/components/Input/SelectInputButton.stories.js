@@ -132,6 +132,7 @@ Default.args = {
   button: buttonObject,
   moreIconName: 'oxd-info',
   doubleLineLabel: true,
+  additionalIconName: 'oxd-best-match',
 };
 
 export const Error = Template.bind({});
@@ -182,4 +183,12 @@ CustomDropdownTriggerStyles.args = {
   doubleLineLabel: true,
   dropdownTriggerIconStyles: {color: '#ff0000'},
   dropdownTriggerButtonBackgroundColor: '#ff0000',
+};
+
+export const WithAdditionalIcon = Template.bind({});
+WithAdditionalIcon.args = {
+  options: options,
+  button: buttonObject,
+  additionalIconName: 'oxd-best-match',
+  doubleLineLabel: true,
 };

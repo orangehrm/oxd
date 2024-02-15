@@ -7,4 +7,5 @@ module.exports = {
   moduleNameMapper: {
     '^!!raw-loader!(.*)$': '$1',
   },
+  setupFiles: ['<rootDir>/jest.init.js'],
 };

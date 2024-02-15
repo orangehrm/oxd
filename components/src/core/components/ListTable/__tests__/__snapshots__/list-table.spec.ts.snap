@@ -1,0 +1,196 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListTable > ListTable.vue renders OXD ListTable > ListTable 1`] = `
+<div class="oxd-table" role="table">
+  <div class="oxd-table-header" role="rowgroup">
+    <div class="oxd-table-row oxd-table-row--with-border" role="row">
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader">
+        <div class="oxd-checkbox-wrapper"><label class="">
+            <!--v-if--><input type="checkbox" true-value="true" false-value="false"><span class="oxd-checkbox-input oxd-checkbox-input--active --label-right oxd-checkbox-input"><i class="oxd-svg-icon oxd-svg-icon--xx-small oxd-checkbox-input-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36.51 27.2"><defs><style>{fill:currentColor;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="_ÎÓÈ_1" data-name="—ÎÓÈ_1"><path style="fill:currentColor" d="M0,13c.11-.32.21-.64.34-1a4.23,4.23,0,0,1,6.94-1.28c1.77,1.74,3.52,3.51,5.27,5.26.71.71,1.22.71,1.93,0Q21.79,8.68,29.09,1.38A4.23,4.23,0,0,1,32.22,0,4,4,0,0,1,36.1,2.5,4.08,4.08,0,0,1,35.44,7c-.08.1-.17.19-.26.29L16.59,25.89a4.22,4.22,0,0,1-3.23,1.31,4.1,4.1,0,0,1-2.85-1.26Q5.88,21.34,1.26,16.7A4.32,4.32,0,0,1,.08,14.56c0-.07,0-.15-.08-.18Z"></path></g></g></svg></i></span>
+            <div class="oxd-checkbox-option-label"></div>
+          </label></div>
+        <!--v-if-->
+      </div>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;"><span>Column 1</span>
+        <!--v-if-->
+      </div>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;"><span>Column 2</span>
+        <!--v-if-->
+      </div>
+    </div>
+  </div>
+  <div class="oxd-table-body" role="rowgroup">
+    <div class="oxd-table-card">
+      <div class="oxd-table-row oxd-table-row--with-border" role="row">
+        <div class="oxd-table-cell oxd-padding-cell" role="cell">
+          <div class="oxd-checkbox-wrapper"><label class="">
+              <!--v-if--><input type="checkbox" true-value="true" false-value="false" value="0"><span class="oxd-checkbox-input oxd-checkbox-input--active --label-right oxd-checkbox-input"><i class="oxd-svg-icon oxd-svg-icon--xx-small oxd-checkbox-input-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36.51 27.2"><defs><style>{fill:currentColor;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="_ÎÓÈ_1" data-name="—ÎÓÈ_1"><path style="fill:currentColor" d="M0,13c.11-.32.21-.64.34-1a4.23,4.23,0,0,1,6.94-1.28c1.77,1.74,3.52,3.51,5.27,5.26.71.71,1.22.71,1.93,0Q21.79,8.68,29.09,1.38A4.23,4.23,0,0,1,32.22,0,4,4,0,0,1,36.1,2.5,4.08,4.08,0,0,1,35.44,7c-.08.1-.17.19-.26.29L16.59,25.89a4.22,4.22,0,0,1-3.23,1.31,4.1,4.1,0,0,1-2.85-1.26Q5.88,21.34,1.26,16.7A4.32,4.32,0,0,1,.08,14.56c0-.07,0-.15-.08-.18Z"></path></g></g></svg></i></span>
+              <div class="oxd-checkbox-option-label"></div>
+            </label></div>
+        </div>
+        <div class="oxd-table-cell oxd-padding-cell" role="cell" style="flex: 1;">
+          <div class="oxd-table-card-cell">Data 1</div>
+        </div>
+        <div class="oxd-table-cell oxd-padding-cell" role="cell" style="flex: 5;">
+          <div class="oxd-table-card-cell">Data 2</div>
+        </div>
+      </div>
+    </div>
+    <div class="oxd-table-card">
+      <div class="oxd-table-row oxd-table-row--with-border" role="row">
+        <div class="oxd-table-cell oxd-padding-cell" role="cell">
+          <div class="oxd-checkbox-wrapper"><label class="">
+              <!--v-if--><input type="checkbox" true-value="true" false-value="false" value="1"><span class="oxd-checkbox-input oxd-checkbox-input--active --label-right oxd-checkbox-input"><i class="oxd-svg-icon oxd-svg-icon--xx-small oxd-checkbox-input-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36.51 27.2"><defs><style>{fill:currentColor;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="_ÎÓÈ_1" data-name="—ÎÓÈ_1"><path style="fill:currentColor" d="M0,13c.11-.32.21-.64.34-1a4.23,4.23,0,0,1,6.94-1.28c1.77,1.74,3.52,3.51,5.27,5.26.71.71,1.22.71,1.93,0Q21.79,8.68,29.09,1.38A4.23,4.23,0,0,1,32.22,0,4,4,0,0,1,36.1,2.5,4.08,4.08,0,0,1,35.44,7c-.08.1-.17.19-.26.29L16.59,25.89a4.22,4.22,0,0,1-3.23,1.31,4.1,4.1,0,0,1-2.85-1.26Q5.88,21.34,1.26,16.7A4.32,4.32,0,0,1,.08,14.56c0-.07,0-.15-.08-.18Z"></path></g></g></svg></i></span>
+              <div class="oxd-checkbox-option-label"></div>
+            </label></div>
+        </div>
+        <div class="oxd-table-cell oxd-padding-cell" role="cell" style="flex: 1;">
+          <div class="oxd-table-card-cell">Data 2</div>
+        </div>
+        <div class="oxd-table-cell oxd-padding-cell" role="cell" style="flex: 5;">
+          <div class="oxd-table-card-cell">Data 2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ListTable > ListTable.vue should render OXD ListTable without selectable 1`] = `
+<div class="oxd-table" role="table">
+  <div class="oxd-table-header" role="rowgroup">
+    <div class="oxd-table-row oxd-table-row--with-border" role="row">
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader">
+        <div class="oxd-checkbox-wrapper"><label class="">
+            <!--v-if--><input type="checkbox" true-value="true" false-value="false"><span class="oxd-checkbox-input oxd-checkbox-input--active --label-right oxd-checkbox-input"><i class="oxd-svg-icon oxd-svg-icon--xx-small oxd-checkbox-input-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36.51 27.2"><defs><style>{fill:currentColor;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="_ÎÓÈ_1" data-name="—ÎÓÈ_1"><path style="fill:currentColor" d="M0,13c.11-.32.21-.64.34-1a4.23,4.23,0,0,1,6.94-1.28c1.77,1.74,3.52,3.51,5.27,5.26.71.71,1.22.71,1.93,0Q21.79,8.68,29.09,1.38A4.23,4.23,0,0,1,32.22,0,4,4,0,0,1,36.1,2.5,4.08,4.08,0,0,1,35.44,7c-.08.1-.17.19-.26.29L16.59,25.89a4.22,4.22,0,0,1-3.23,1.31,4.1,4.1,0,0,1-2.85-1.26Q5.88,21.34,1.26,16.7A4.32,4.32,0,0,1,.08,14.56c0-.07,0-.15-.08-.18Z"></path></g></g></svg></i></span>
+            <div class="oxd-checkbox-option-label"></div>
+          </label></div>
+        <!--v-if-->
+      </div>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;"><span>Column 1</span>
+        <!--v-if-->
+      </div>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;"><span>Column 2</span>
+        <!--v-if-->
+      </div>
+    </div>
+  </div>
+  <div class="oxd-table-body" role="rowgroup">
+    <div class="oxd-table-card">
+      <div class="oxd-table-row oxd-table-row--with-border" role="row">
+        <div class="oxd-table-cell oxd-padding-cell" role="cell">
+          <div class="oxd-checkbox-wrapper"><label class="">
+              <!--v-if--><input type="checkbox" true-value="true" false-value="false" value="0"><span class="oxd-checkbox-input oxd-checkbox-input--active --label-right oxd-checkbox-input"><i class="oxd-svg-icon oxd-svg-icon--xx-small oxd-checkbox-input-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36.51 27.2"><defs><style>{fill:currentColor;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="_ÎÓÈ_1" data-name="—ÎÓÈ_1"><path style="fill:currentColor" d="M0,13c.11-.32.21-.64.34-1a4.23,4.23,0,0,1,6.94-1.28c1.77,1.74,3.52,3.51,5.27,5.26.71.71,1.22.71,1.93,0Q21.79,8.68,29.09,1.38A4.23,4.23,0,0,1,32.22,0,4,4,0,0,1,36.1,2.5,4.08,4.08,0,0,1,35.44,7c-.08.1-.17.19-.26.29L16.59,25.89a4.22,4.22,0,0,1-3.23,1.31,4.1,4.1,0,0,1-2.85-1.26Q5.88,21.34,1.26,16.7A4.32,4.32,0,0,1,.08,14.56c0-.07,0-.15-.08-.18Z"></path></g></g></svg></i></span>
+              <div class="oxd-checkbox-option-label"></div>
+            </label></div>
+        </div>
+        <div class="oxd-table-cell oxd-padding-cell" role="cell" style="flex: 1;">
+          <div class="oxd-table-card-cell">Data 1</div>
+        </div>
+        <div class="oxd-table-cell oxd-padding-cell" role="cell" style="flex: 5;">
+          <div class="oxd-table-card-cell">Data 2</div>
+        </div>
+      </div>
+    </div>
+    <div class="oxd-table-card">
+      <div class="oxd-table-row oxd-table-row--with-border" role="row">
+        <div class="oxd-table-cell oxd-padding-cell" role="cell">
+          <div class="oxd-checkbox-wrapper"><label class="">
+              <!--v-if--><input type="checkbox" true-value="true" false-value="false" value="1"><span class="oxd-checkbox-input oxd-checkbox-input--active --label-right oxd-checkbox-input"><i class="oxd-svg-icon oxd-svg-icon--xx-small oxd-checkbox-input-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36.51 27.2"><defs><style>{fill:currentColor;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="_ÎÓÈ_1" data-name="—ÎÓÈ_1"><path style="fill:currentColor" d="M0,13c.11-.32.21-.64.34-1a4.23,4.23,0,0,1,6.94-1.28c1.77,1.74,3.52,3.51,5.27,5.26.71.71,1.22.71,1.93,0Q21.79,8.68,29.09,1.38A4.23,4.23,0,0,1,32.22,0,4,4,0,0,1,36.1,2.5,4.08,4.08,0,0,1,35.44,7c-.08.1-.17.19-.26.29L16.59,25.89a4.22,4.22,0,0,1-3.23,1.31,4.1,4.1,0,0,1-2.85-1.26Q5.88,21.34,1.26,16.7A4.32,4.32,0,0,1,.08,14.56c0-.07,0-.15-.08-.18Z"></path></g></g></svg></i></span>
+              <div class="oxd-checkbox-option-label"></div>
+            </label></div>
+        </div>
+        <div class="oxd-table-cell oxd-padding-cell" role="cell" style="flex: 1;">
+          <div class="oxd-table-card-cell">Data 2</div>
+        </div>
+        <div class="oxd-table-cell oxd-padding-cell" role="cell" style="flex: 5;">
+          <div class="oxd-table-card-cell">Data 2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ListTable > ListTable.vue should render empty state when there is no data 1`] = `
+<div class="oxd-table" role="table">
+  <div class="oxd-table-header" role="rowgroup">
+    <div class="oxd-table-row oxd-table-row--with-border" role="row">
+      <!--v-if-->
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;"><span>Column 1</span>
+        <!--v-if-->
+      </div>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;"><span>Column 2</span>
+        <!--v-if-->
+      </div>
+    </div>
+  </div>
+  <div class="empty-msg-container">
+    <div class="empty-msg"><i class="oxd-svg-icon oxd-svg-icon--medium icon"><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600.87 651.52">
+          <defs>
+            <style>
+              .cls-no-data-1 {
+                fill: none;
+                stroke-width: 14px;
+              }
+
+              .cls-no-data-1,
+              .cls-no-data-2,
+              .cls-no-data-3 {
+                stroke: #ced3d6;
+              }
+
+              .cls-no-data-1,
+              .cls-no-data-3 {
+                stroke-linecap: round;
+                stroke-linejoin: round;
+              }
+
+              .cls-no-data-2,
+              .cls-no-data-3,
+              .cls-no-data-4 {
+                fill: #ced3d6;
+              }
+
+              .cls-no-data-2 {
+                stroke-miterlimit: 10;
+                stroke-width: 4px;
+              }
+
+              .cls-no-data-3 {
+                stroke-width: 9px;
+              }
+
+              .cls-no-data-5 {
+                fill: #f2f3f4;
+              }
+            </style>
+          </defs>
+          <path class="cls-no-data-1" d="M174.24,578V294.87A38,38,0,0,1,212.19,257H480.65a37.94,37.94,0,0,1,38,37.88v42m0,286.28v43.62a38,38,0,0,1-38,38H311.85" transform="translate(-40.16 -113.87)"></path>
+          <path class="cls-no-data-1" d="M519.25,367.21A114.79,114.79,0,1,1,404.46,482,114.78,114.78,0,0,1,519.25,367.21" transform="translate(-40.16 -113.87)"></path>
+          <path class="cls-no-data-1" d="M519.25,390.21A91.83,91.83,0,1,1,427.42,482a91.84,91.84,0,0,1,91.83-91.83" transform="translate(-40.16 -113.87)"></path>
+          <line class="cls-no-data-1" x1="195.93" y1="212.38" x2="410.19" y2="212.38"></line>
+          <line class="cls-no-data-1" x1="195.93" y1="257.45" x2="372.7" y2="257.45"></line>
+          <line class="cls-no-data-1" x1="195.93" y1="302.51" x2="341.32" y2="302.51"></line>
+          <line class="cls-no-data-1" x1="195.93" y1="347.58" x2="322.95" y2="347.58"></line>
+          <path class="cls-no-data-1" d="M257.21,578h-83L311.85,704.66V633.49A55.11,55.11,0,0,0,257.21,578Z" transform="translate(-40.16 -113.87)"></path>
+          <path class="cls-no-data-2" d="M473.55,459.22a2.64,2.64,0,0,1-2-4.22A27.37,27.37,0,0,1,492,443.41a2.63,2.63,0,1,1,0,5.26,22.34,22.34,0,0,0-16.31,9.49,2.61,2.61,0,0,1-2,1.06" transform="translate(-40.16 -113.87)"></path>
+          <path class="cls-no-data-2" d="M565.51,459.22a2.61,2.61,0,0,1-2-1.06,22.16,22.16,0,0,0-16.31-9.49,2.63,2.63,0,0,1,0-5.26,27.39,27.39,0,0,1,20.53,11.52,2.63,2.63,0,0,1-.5,3.69,2.66,2.66,0,0,1-1.54.54" transform="translate(-40.16 -113.87)"></path>
+          <path class="cls-no-data-2" d="M498.79,471l4.73-4.71a2.64,2.64,0,0,0-3.73-3.73l-4.71,4.81-4.73-4.73a2.64,2.64,0,0,0-3.73,3.73l4.73,4.71-4.73,4.73a2.67,2.67,0,0,0,0,3.74,2.72,2.72,0,0,0,1.88.75,2.65,2.65,0,0,0,1.85-.75l4.73-4.74,4.71,4.74a2.69,2.69,0,0,0,3.73,0,2.65,2.65,0,0,0,0-3.74Z" transform="translate(-40.16 -113.87)"></path>
+          <path class="cls-no-data-2" d="M550.81,471l4.71-4.71a2.63,2.63,0,0,0-3.71-3.73l-4.73,4.81-4.73-4.73a2.63,2.63,0,1,0-3.71,3.73l4.71,4.71-4.71,4.73a2.63,2.63,0,0,0,3.71,3.74l4.73-4.74,4.73,4.74a2.64,2.64,0,0,0,3.65-3.82Z" transform="translate(-40.16 -113.87)"></path>
+          <path class="cls-no-data-2" d="M496.28,514h45.93c2.27-.27,4.29,2,4.55,5h0c-.27,3-2.28,5.24-4.55,5H496.28c-2.27.26-4.28-1.94-4.55-5h0C492,516,494,513.73,496.28,514Z" transform="translate(-40.16 -113.87)"></path>
+          <line class="cls-no-data-3" x1="180.67" y1="50.89" x2="202.52" y2="72.74"></line>
+          <line class="cls-no-data-3" x1="202.52" y1="50.89" x2="180.67" y2="72.74"></line>
+          <circle class="cls-no-data-4" cx="276.59" cy="92.72" r="7.73"></circle>
+          <circle class="cls-no-data-4" cx="253.41" cy="7.73" r="7.73"></circle>
+          <line class="cls-no-data-3" x1="4.5" y1="483.58" x2="26.35" y2="505.43"></line>
+          <line class="cls-no-data-3" x1="26.35" y1="483.58" x2="4.5" y2="505.43"></line>
+          <circle class="cls-no-data-4" cx="48.73" cy="550.07" r="7.73"></circle>
+          <circle class="cls-no-data-4" cx="77.24" cy="440.42" r="7.73"></circle>
+          <ellipse class="cls-no-data-5" cx="306.26" cy="639.78" rx="250.7" ry="11.74"></ellipse>
+        </svg></i>
+      <div class="caption">Sorry, No Data Found!</div>
+    </div>
+  </div>
+</div>
+`;

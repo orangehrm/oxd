@@ -1,3 +1,39 @@
+2024-02-02 - ba5f3a97e182acf42bd2c5ec1dc38a0823e1f8fe - Icon/icons.ts - Add oxd-draft, oxd-attachment, oxd-docs-check, oxd-acknowledgement icons
+
+2024-01-18 - 28eb678ead7b6bc914cd2ee365e8ff10e426c2d4 - Input/Select/SelectInputButton.vue - Add an additional icon
+
+2024-01-04 - 2b33251decb8c5eb9e3a262c7a8d6cc5c7f357d8 - Icon/icons.ts - Window work In/Out color change
+
+2024-01-04 - bb29debcb4165164fbda67e306db357e244bd18d - Icon/icons.ts - Add oxd-orange Icon
+
+2023-11-21 - 35904535e09b3a0c2048300b53e0345f6f00ec85 - directives/focus-first-element - Fix focus on disabled input elements
+
+2023-11-21 - 7bdeb5b38f87223920e3acc074b0e5b1062d38d8 - ListTable/ListTable.vue - Add new cell types, fixed duplicated key warnings
+
+2023-11-20 - b2baf9c07983d0bdf9c772786f0dbd9b68b7172b - Icon/icons.ts - Add oxd-window-in, oxd-window-out icons
+
+2023-11-18 - 37b5c67d67b24357d773210c952d3a899d60b008 - onKeypress changed to skip the disabled options when updating the pointer in navigation-mixin.
+
+2023-10-11 - a06c8f9059ceb16ba00c4bf8bf0528ea2c9cee22 - Adding style support for working weekend calendar event
+
+2023-09-04 - d72a759e6904d11d222b62a792aa8c5f622238cf - Update ListTable.vue component to show partial loading status.
+
+2023-07-18 - c9c95369854606181469c76d7d621008af6946b3 - Update CardTable/Cell/ProfilePicture.vue ProfilePic.vue to support skeleton loading images.
+
+2023-06-26 - 92f6283ecfa335142256e5188c6fe23e41e363ef - CardTable/Cell/\* - Added skeleton loading support for all cardtable cells.
+
+2023-06-26 - 0d10f48f44c90a6ced289ce22fe3e538112fca42 - InfoBox.vue - Fixed Keyboard Accessibility issue(supported with oxd icon button).
+
+2023-06-22 - 4265556336e3c25626751cd4bf5d991dfe027fa5 - InfoBox.vue - Fixed Keyboard Accessibility issue.
+
+2023-06-15 - 00f9bf213d3e1d9c7f45514b427f2e4df0220850 - InfoBox.vue - Added a new icon to the library.
+
+2023-06-10 - fc27d63ee4f8ba1aa0cc3a74c28a4f466756ff10 - InfoBox.vue - Updated the info-box component supoprting with slots.
+
+2023-05-15 - 9f3abad41e71b773876fa24377fbf7e62791c258 - switch-input.scss - Fixed switch button disable and read-only color is inconsistent issue.
+
+2023-05-09 - c9fa0fab8d949c4e03218f97b9b9e79f99e2c068 - Comments/Comment.vue - Added a prop to stack comment delete confirmation message and the actions
+
 2023-02-22 - 38a57d11c250022d6116fbcb1f71e78125abe5b3 - List/List.vue - Added prop support for No data found message and icon
 
 2023-01-26 - 3e627e7fbd8a8a40c929a1df6256893dbc17bcb8 - Input/Autocomplet/AutocompleteInput.vue - handled search term resetting issue in autcompleteinput when on keypress enter

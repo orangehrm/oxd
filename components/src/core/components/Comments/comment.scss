@@ -142,6 +142,14 @@
   &-inline-delete {
     border-radius: 1.2rem;
     background-color: rgba(235, 9, 16, 0.1);
+    &.stacked {
+      flex-wrap: wrap;
+      .comment-inline-delete-actions-wrapper {
+        margin: 0.5rem 0 0 0;
+        width: 100%;
+        justify-content: flex-end;
+      }
+    }
   }
 }
 

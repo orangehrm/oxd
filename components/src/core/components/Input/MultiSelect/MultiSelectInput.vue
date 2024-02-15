@@ -16,7 +16,7 @@
     >
       <template v-slot:afterInput>
         <slot
-          v-if="modelValue.length > 0"
+          v-if="modelValue && modelValue.length > 0"
           name="afterSelected"
           :data="modelValue"
         ></slot>

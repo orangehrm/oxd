@@ -51,15 +51,30 @@
               <span>{{ $vt(buttonData.labelMini) }}</span>
             </div>
             <div
+              class="d-flex
+                align-center
+                justify-center oxd-select-info-button-container"
+              v-if="additionalIconName"
+            >
+              <oxd-icon
+                :tooltip="$vt(additionalIconTooltip)"
+                :flow="moreTooltipFlow"
+                class="oxd-select-info-button"
+                :size="additionalIconSize"
+                :name="additionalIconName"
+                @click="$emit('onAdditionalIconClick')"
+              />
+            </div>
+            <div
               class="
                 d-flex
                 align-center
                 justify-center
                 oxd-select-info-button-container
               "
+              v-if="moreIconName"
             >
               <oxd-icon
-                v-if="moreIconName"
                 :tooltip="$vt(moreTooltip)"
                 :flow="moreTooltipFlow"
                 class="oxd-select-info-button"
@@ -181,6 +196,7 @@ export default defineComponent({
     'dropdown:closed',
     'dropdown:blur',
     'dropdown:clear',
+    'onAdditionalIconClick',
   ],
 
   props: {
@@ -256,6 +272,21 @@ export default defineComponent({
     wholeButtonClickable: {
       type: Boolean,
       default: false,
+    },
+    additionalIconName: {
+      type: String,
+      default: null,
+      required: false,
+    },
+    additionalIconTooltip: {
+      type: String,
+      default: null,
+      required: false,
+    },
+    additionalIconSize: {
+      type: String,
+      default: 'xx-small',
+      required: false,
     },
   },
 

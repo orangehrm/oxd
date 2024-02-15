@@ -1,16 +1,18 @@
 <template>
   <oxd-table-cell-default>
     <template #body="{cell, row}">
-      <a
-        :href="link ? row[link] : '#'"
-        :target="target"
-        class="oxd-table-cell-link "
-      >
-        {{ cell }}
-      </a>
-      <div v-if="pillProperty" class="oxd-table-cell-pill">
-        {{ getPillValue(row) }}
-      </div>
+      <template v-if="loading">
+        <oxd-skeleton animate></oxd-skeleton>
+        <oxd-skeleton width="50%" animate></oxd-skeleton>
+      </template>
+      <template v-else>
+        <a :href="link ? row[link] : '#'" :target="target" :class="linkClasses">
+          {{ cell }}
+        </a>
+        <div v-if="pillProperty" :class="pillClasses">
+          {{ getPillValue(row) }}
+        </div>
+      </template>
     </template>
   </oxd-table-cell-default>
 </template>
@@ -19,9 +21,11 @@
 import {defineComponent} from 'vue';
 import DefaultCell from './Default.vue';
 import {TargetTypes, TARGET_SELF, TARGETS, RowItem} from './types';
+import Skeleton from '@orangehrm/oxd/core/components/Skeleton/Skeleton.vue';
 
 export default defineComponent({
   components: {
+    'oxd-skeleton': Skeleton,
     'oxd-table-cell-default': DefaultCell,
   },
   methods: {
@@ -57,6 +61,28 @@ export default defineComponent({
     pillProperty: {
       type: [String, Array],
       default: null,
+    },
+    pillInline: {
+      type: Boolean,
+      default: false,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    linkClasses(): object {
+      return {
+        'oxd-table-cell-link': true,
+        ['oxd-table-cell-link--inline-pill']: this.pillInline,
+      };
+    },
+    pillClasses(): object {
+      return {
+        'oxd-table-cell-pill': true,
+        ['oxd-table-cell-pill--inline']: this.pillInline,
+      };
     },
   },
 });

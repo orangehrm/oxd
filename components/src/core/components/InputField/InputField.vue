@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import {toRef, PropType, nextTick, defineComponent, watch} from 'vue';
+import {toRef, PropType, nextTick, defineComponent} from 'vue';
 import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import FileInput from '@orangehrm/oxd/core/components/Input/FileInput.vue';
@@ -60,6 +60,7 @@ import CheckboxGroup from '@orangehrm/oxd/core/components/Input/CheckboxGroup.vu
 import RadioPillGroup from '@orangehrm/oxd/core/components/Input/RadioPills/RadioPillGroup.vue';
 import TreeSelectInput from '@orangehrm/oxd/core/components/Input/TreeSelect/TreeSelect.vue';
 import RadioGroup from '@orangehrm/oxd/core/components/Input/RadioGroup.vue';
+import Number from '@orangehrm/oxd/core/components/Input/Number/Number.vue';
 
 export default defineComponent({
   name: 'oxd-input-field',
@@ -88,6 +89,7 @@ export default defineComponent({
     'oxd-tree-select-input': TreeSelectInput,
     'oxd-radiogroup-input': RadioGroup,
     'oxd-tinymce': TinyMce,
+    'oxd-number-input': Number,
   },
 
   mixins: [translateMixin],
@@ -143,12 +145,18 @@ export default defineComponent({
       type: Object,
       default: () => ({}),
     },
+    dirty: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   setup(props, context) {
     const modelValue = toRef(props, 'modelValue');
     const rules = toRef(props, 'rules');
     const isDisabled = toRef(props, 'disabled');
+    const isDirty: boolean =
+      props.dirty || Boolean(props.type === 'date' && modelValue.value);
 
     const initialValue = modelValue.value;
 
@@ -162,10 +170,12 @@ export default defineComponent({
       rules,
       modelValue,
       isDisabled,
+      isDirty,
       onReset,
     });
 
-    const onChange = $event => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const onChange = ($event: any) => {
       if (!dirty.value) {
         dirty.value = true;
         startWatcher();
@@ -173,20 +183,7 @@ export default defineComponent({
       context.emit('update:modelValue', $event);
     };
 
-    const MakeDateFieldDirtyWithDefaultValue = () => {
-      if (props.type === 'date' && modelValue.value) {
-        dirty.value = true;
-        startWatcher();
-      }
-    };
-    MakeDateFieldDirtyWithDefaultValue();
-
-    watch(
-      () => modelValue.value,
-      () => {
-        MakeDateFieldDirtyWithDefaultValue();
-      },
-    );
+    if (isDirty) startWatcher();
 
     return {
       message,

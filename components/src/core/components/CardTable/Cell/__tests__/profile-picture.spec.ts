@@ -1,6 +1,7 @@
 import {mount} from '@vue/test-utils';
 import ProfilePicture from '@orangehrm/oxd/core/components/CardTable/Cell/ProfilePicture.vue';
 import {DEVICE_LG} from '@orangehrm/oxd/composables/useResponsive';
+import {nextTick} from 'vue';
 
 const imgSrc =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=';
@@ -27,7 +28,7 @@ describe('CardTable > Cell > ProfilePicture.vue', () => {
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
-  it('should renders OXD CardTable > Cell > Profile Picture Cell with custom image', () => {
+  it('should renders OXD CardTable > Cell > Profile Picture Cell with custom image', async () => {
     const wrapper = mount(ProfilePicture, {
       global: GLOBAL,
       props: {
@@ -40,6 +41,7 @@ describe('CardTable > Cell > ProfilePicture.vue', () => {
         },
       },
     });
+    await nextTick();
     expect(wrapper.html()).toMatchSnapshot();
   });
 });

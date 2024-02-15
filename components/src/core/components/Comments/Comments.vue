@@ -53,6 +53,7 @@
             :commentDeleteConfirmationMsg="commentDeleteConfirmationMsg"
             :maxCharLength="commentEditMaxCharLength"
             :showGroupNamePill="true"
+            :stackConfirmationElements="stackConfirmationElements"
             @commentEditHasError="commentEditHasError"
             @onUpdateComment="onUpdateComment"
             @onDeleteComment="onDeleteComment"
@@ -91,6 +92,7 @@
               :unsavedEditCommentErrorMsg="unsavedEditCommentErrorMsg"
               :commentDeleteConfirmationMsg="commentDeleteConfirmationMsg"
               :maxCharLength="commentEditMaxCharLength"
+              :stackConfirmationElements="stackConfirmationElements"
               @commentEditHasError="commentEditHasError"
               @onUpdateComment="onUpdateComment"
               @onDeleteComment="onDeleteComment"
@@ -103,13 +105,12 @@
       v-if="!(readOnly || disabled || hideAddInput)"
       :label="commentBoxLabel"
       :labelIcon="'oxd-note'"
-      :actionButtonIcon="'oxd-add'"
-      :actionButtonTooltip="'Add'"
+      :actionButtonIcon="'oxd-add-note'"
+      :actionButtonTooltip="'Save Note'"
       :placeholder="commentBoxPlaceholder"
       :modelValue="comment"
       :hasError="hasError"
       :unsavedAddCommentErrorMsg="unsavedAddCommentErrorMsg"
-      :preventAddOnKeyPressEnter="true"
       @update:modelValue="onInputComment"
       @addComment="onAddComment"
     />
@@ -248,6 +249,10 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
+    stackConfirmationElements: {
+      type: Boolean as PropType<boolean>,
+      default: false,
+    },
   },
   setup(props, {emit}) {
     const commentGroupsList = ref(null);
@@ -313,10 +318,20 @@ export default defineComponent({
 
     const doScroll = async () => {
       await nextTick();
-      commentGroupsList.value?.scrollIntoView({
-        behavior: scrollSettingsObj.value.mode,
-        block: scrollSettingsObj.value.scrollTo,
-      });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const commentGroupsListElm: any = commentGroupsList.value;
+      if (commentGroupsListElm) {
+        const offsetTop =
+          scrollSettingsObj.value.scrollTo === END
+            ? commentGroupsListElm.offsetTop +
+              commentGroupsListElm.parentNode.scrollHeight
+            : commentGroupsListElm.offsetTop;
+        if (scrollSettingsObj.value.scrollTo === END) {
+          commentGroupsListElm.parentNode.scrollTop = offsetTop;
+        } else {
+          commentGroupsListElm.parentNode.scrollTop = offsetTop;
+        }
+      }
     };
 
     const onAddComment = event => {
