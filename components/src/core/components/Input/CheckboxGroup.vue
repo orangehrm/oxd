@@ -14,6 +14,9 @@ export interface Options {
   disabled?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   style?: Record<string, any>;
+  additionalClass?: string;
+  additionalIcon?: string;
+  additionalMessage?: string;
 }
 
 export default defineComponent({
@@ -72,6 +75,9 @@ export default defineComponent({
             optionLabel: $t(option.label),
             modelValue: this.modelValue,
             disabled: this.disabled ? 'true' : option.disabled,
+            additionalClass: option.additionalClass,
+            additionalIcon: option.additionalIcon,
+            additionalMessage: option.additionalMessage,
             onFocus: () => {
               this.$emit('focus', true);
             },
