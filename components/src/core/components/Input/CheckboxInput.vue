@@ -2,7 +2,7 @@
   <div class="oxd-checkbox-wrapper">
     <label :class="{'--disabled': disabled}">
       <template v-if="labelPosition === 'left'">
-        <div class="oxd-checkbox-option-label">
+        <div :class="['oxd-checkbox-option-label', additionalClass]">
           {{ optionLabel }}
         </div>
       </template>
@@ -25,10 +25,19 @@
         />
       </span>
       <template v-if="labelPosition === 'right'">
-        <div class="oxd-checkbox-option-label">
+        <div :class="['oxd-checkbox-option-label', additionalClass]">
           {{ optionLabel }}
         </div>
       </template>
+      <span class="oxd-additional-icon" v-if="additionalIcon">
+        <oxd-icon
+          class="additional-icon"
+          :name="additionalIcon"
+          :size="additionalIconSize"
+          :with-container="true"
+          :tooltip="additionalMessage"
+        />
+      </span>
     </label>
   </div>
 </template>
@@ -82,6 +91,21 @@ export default defineComponent({
       validator: function(value: Position) {
         return LABEL_POSITIONS.indexOf(value) !== -1;
       },
+    },
+    additionalClass: {
+      type: String,
+    },
+    additionalIcon: {
+      type: String,
+      default: 'oxd-info',
+    },
+    additionalIconSize: {
+      type: String,
+      default: 'xx-small',
+    },
+    additionalMessage: {
+      type: String,
+      default: '',
     },
   },
 
