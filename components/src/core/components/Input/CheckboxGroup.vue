@@ -14,6 +14,12 @@ export interface Options {
   disabled?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   style?: Record<string, any>;
+  optionWrapperAdditionalClass?: string;
+  optionInfoIcon?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  optionInfoIconStyle?: Record<string, any>;
+  optionInfoIconSize?: string;
+  optionInfoMessage?: string;
 }
 
 export default defineComponent({
@@ -72,6 +78,11 @@ export default defineComponent({
             optionLabel: $t(option.label),
             modelValue: this.modelValue,
             disabled: this.disabled ? 'true' : option.disabled,
+            optionWrapperAdditionalClass: option.optionWrapperAdditionalClass,
+            optionInfoIcon: option.optionInfoIcon,
+            optionInfoIconStyle: option.optionInfoIconStyle,
+            optionInfoIconSize: option.optionInfoIconSize,
+            optionInfoMessage: option.optionInfoMessage,
             onFocus: () => {
               this.$emit('focus', true);
             },

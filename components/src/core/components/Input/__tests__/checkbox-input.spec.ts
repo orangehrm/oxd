@@ -49,4 +49,29 @@ describe('CheckboxInput.vue', () => {
     await wrapper.vm.$nextTick();
     expect(wrapper.emitted('update:modelValue')).toBeFalsy();
   });
+
+  it('should apply additional class to wrapper div', () => {
+    const additionalClass = 'custom-class';
+    const wrapper = mount(CheckboxInput, {
+      props: {
+        optionWrapperAdditionalClass: additionalClass,
+      },
+    });
+    expect(wrapper.find('.oxd-checkbox-wrapper').classes()).toContain(
+      additionalClass,
+    );
+  });
+
+  it('should render optional info icon when optionInfoIcon is provided', () => {
+    const wrapper = mount(CheckboxInput, {
+      props: {
+        optionInfoIcon: 'info-icon',
+        optionInfoMessage: 'This is additional information',
+        optionInfoIconStyle: {color: 'blue'},
+        optionInfoIconSize: 'small',
+      },
+    });
+    const optionalInfoIcon = wrapper.find('.oxd-optional-info-icon');
+    expect(optionalInfoIcon.exists()).toBe(true);
+  });
 });
