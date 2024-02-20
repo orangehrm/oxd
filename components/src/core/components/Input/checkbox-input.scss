@@ -8,15 +8,16 @@
   }
   & label {
     cursor: pointer;
+    display: -webkit-box;
     display: flex;
     align-content: center;
+    align-items: center;
     font-family: $oxd-input-control-font-family;
     color: $oxd-checkbox-label-color;
     font-size: $oxd-input-control-font-size;
     font-weight: $oxd-input-control-font-weight;
     width: fit-content;
     margin: 0;
-    display: -webkit-box;
 
     &:after {
       content: '';
@@ -69,6 +70,14 @@
     &.--disabled {
       color: $oxd-checkbox-label-color--disabled;
       cursor: unset;
+    }
+
+    & span.oxd-optional-info-icon {
+      margin-left: 5px;
+    }
+
+    & span.oxd-optional-info-icon i {
+      height: revert;
     }
   }
 }

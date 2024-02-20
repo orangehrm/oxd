@@ -67,8 +67,8 @@ describe('CheckboxInput.vue', () => {
       props: {
         optionInfoIcon: 'info-icon',
         optionInfoMessage: 'This is additional information',
-        optionInfoIconStyle: { color: 'blue' },
-        optionInfoIconSize: 'xxx-small',
+        optionInfoIconStyle: {color: 'blue'},
+        optionInfoIconSize: 'small',
       },
     });
     const optionalInfoIcon = wrapper.find('.oxd-optional-info-icon');

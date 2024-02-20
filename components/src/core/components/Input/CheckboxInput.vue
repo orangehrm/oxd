@@ -71,7 +71,7 @@ export default defineComponent({
     },
     checkIconSize: {
       type: String,
-      default: 'xx-small',
+      default: 'small',
     },
     trueValue: {
       type: [String, Boolean],
@@ -105,7 +105,7 @@ export default defineComponent({
     },
     optionInfoIconSize: {
       type: String,
-      default: 'xx-small',
+      default: 'small',
     },
     optionInfoMessage: {
       type: String,
