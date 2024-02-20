@@ -1,8 +1,8 @@
 <template>
-  <div class="oxd-checkbox-wrapper">
+  <div :class="['oxd-checkbox-wrapper ', optionWrapperAdditionalClass]">
     <label :class="{'--disabled': disabled}">
       <template v-if="labelPosition === 'left'">
-        <div :class="['oxd-checkbox-option-label', additionalClass]">
+        <div class="oxd-checkbox-option-label">
           {{ optionLabel }}
         </div>
       </template>
@@ -25,17 +25,17 @@
         />
       </span>
       <template v-if="labelPosition === 'right'">
-        <div :class="['oxd-checkbox-option-label', additionalClass]">
+        <div class="oxd-checkbox-option-label">
           {{ optionLabel }}
         </div>
       </template>
-      <span class="oxd-additional-icon" v-if="additionalIcon">
+      <span class="oxd-optional-info-icon" v-if="optionInfoIcon">
         <oxd-icon
-          class="additional-icon"
-          :name="additionalIcon"
-          :size="additionalIconSize"
-          :with-container="true"
-          :tooltip="additionalMessage"
+          class="optional-info-icon"
+          :name="optionInfoIcon"
+          :style="optionInfoIconStyle"
+          :size="optionInfoIconSize"
+          :tooltip="optionInfoMessage"
         />
       </span>
     </label>
@@ -92,18 +92,22 @@ export default defineComponent({
         return LABEL_POSITIONS.indexOf(value) !== -1;
       },
     },
-    additionalClass: {
+    optionWrapperAdditionalClass: {
       type: String,
     },
-    additionalIcon: {
+    optionInfoIcon: {
       type: String,
-      default: 'oxd-info',
+      default: '',
     },
-    additionalIconSize: {
+    optionInfoIconStyle: {
+      type: Object,
+      default: () => ({}),
+    },
+    optionInfoIconSize: {
       type: String,
       default: 'xx-small',
     },
-    additionalMessage: {
+    optionInfoMessage: {
       type: String,
       default: '',
     },

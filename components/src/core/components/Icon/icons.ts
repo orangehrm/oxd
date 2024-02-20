@@ -1446,6 +1446,53 @@ export const oxdAcknowledgement: icon = {
   value: `<svg fill="none" viewBox="-60 0 650 750" xmlns="http://www.w3.org/2000/svg"><g> <path style="fill:currentColor" d="M92.8,557.6c-33.3,0-60.5-27.1-60.5-60.5V163.3c16.3,14,37.4,22.5,60.5,22.5H436v161.8 c11.2,0.8,22,2.7,32.4,5.7V169.5c-0.1-8.9-7.3-16.2-16.3-16.2H92.8c-33.3,0-60.5-27.1-60.5-60.5c0-33.3,27.1-60.5,60.5-60.5h359.4 c9,0,16.2-7.3,16.2-16.2c0-9-7.3-16.2-16.2-16.2H92.8C41.7,0,0,41.7,0,92.8v404.3C0,548.3,41.7,590,92.8,590h196.6 c-6.3-10.1-11.4-20.9-15.3-32.3H92.8z"/> <path style="fill:currentColor" d="M423.5,351.4c-85.1,0-154.1,69-154.1,154.1c0,85.1,69,154.1,154.1,154.1s154.1-69,154.1-154.1 C577.5,420.4,508.6,351.5,423.5,351.4z M423.5,631.6c-69.6,0-126.1-56.5-126.1-126.1s56.5-126.1,126.1-126.1 s126.1,56.5,126.1,126.1C549.5,575.1,493.1,631.5,423.5,631.6z"/> <path style="fill:currentColor" d="M484.1,460.1l-74.2,68l-32.5-32.5c-5.5-5.5-14.3-5.5-19.8,0c-5.5,5.5-5.5,14.3,0,19.8l42,42 c5.3,5.3,13.8,5.5,19.4,0.4l84.1-77.1c0,0,0,0,0,0c5.7-5.2,6.1-14.1,0.9-19.8C498.6,455.3,489.8,454.9,484.1,460.1z"/> <path style="fill:currentColor" d="M439.4,72.1H91c-11.4,0-20.7,9.2-20.7,20.7v0c0,9.8,8,17.8,17.8,17.8h351.3c9.8,0,17.8-8,17.8-17.8v-2.9 C457.2,80,449.3,72.1,439.4,72.1z"/> </g></svg>`,
 };
 
+export const oxdSpeechBubble: icon = {
+  name: 'oxd-speech-bubble',
+  value: `<?xml version="1.0" encoding="iso-8859-1"?>
+  <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+  <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     width="28.621px" height="28.621px" viewBox="0 0 28.621 28.621" style="enable-background:new 0 0 28.621 28.621;"
+     xml:space="preserve" style="fill:currentColor">
+  <g>
+    <path style="fill:currentColor" d="M14.311,0c-6.904,0-12.5,5.596-12.5,12.5c0,4.723,2.618,8.828,6.48,10.955l-0.147,5.166l5.898-3.635
+      C14.131,24.988,14.22,25,14.311,25c6.904,0,12.5-5.596,12.5-12.5C26.811,5.596,21.215,0,14.311,0z M15.903,19.784h-3.203V9.474
+      h3.203V19.784z M14.28,8.211c-1.013,0-1.687-0.718-1.665-1.604c-0.021-0.927,0.652-1.624,1.686-1.624
+      c1.033,0,1.689,0.697,1.71,1.624C16.01,7.493,15.332,8.211,14.28,8.211z"/>
+  </g>
+  <g>
+  </g>
+  <g>
+  </g>
+  <g>
+  </g>
+  <g>
+  </g>
+  <g>
+  </g>
+  <g>
+  </g>
+  <g>
+  </g>
+  <g>
+  </g>
+  <g>
+  </g>
+  <g>
+  </g>
+  <g>
+  </g>
+  <g>
+  </g>
+  <g>
+  </g>
+  <g>
+  </g>
+  <g>
+  </g>
+  </svg>`,
+};
+
 const icons: Icons = {
   'oxd-likes': oxdLikes,
   'oxd-birthday': oxdBirthday,
@@ -1609,6 +1656,7 @@ const icons: Icons = {
   'oxd-attachment': oxdAttachment,
   'oxd-docs-check': oxdDocsCheck,
   'oxd-acknowledgement': oxdAcknowledgement,
+  'oxd-speech-bubble': oxdSpeechBubble,
 };
 
 export default icons;

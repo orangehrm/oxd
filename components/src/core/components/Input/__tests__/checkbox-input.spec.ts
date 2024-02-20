@@ -50,48 +50,28 @@ describe('CheckboxInput.vue', () => {
     expect(wrapper.emitted('update:modelValue')).toBeFalsy();
   });
 
-  it('renders with additional class when provided', () => {
+  it('should apply additional class to wrapper div', () => {
     const additionalClass = 'custom-class';
     const wrapper = mount(CheckboxInput, {
       props: {
-        additionalClass: additionalClass,
-        labelPosition: 'left',
-      },
-      slots: {
-        default: 'Checkbox',
+        optionWrapperAdditionalClass: additionalClass,
       },
     });
-
-    const labelDiv = wrapper.find('.oxd-checkbox-option-label');
-    expect(labelDiv.classes()).toContain(additionalClass);
+    expect(wrapper.find('.oxd-checkbox-wrapper').classes()).toContain(
+      additionalClass,
+    );
   });
 
-  it('renders without additional class when not provided', () => {
+  it('should render optional info icon when optionInfoIcon is provided', () => {
     const wrapper = mount(CheckboxInput, {
       props: {
-        labelPosition: 'left',
-      },
-      slots: {
-        default: 'Checkbox',
-      },
-    });
-
-    const labelDiv = wrapper.find('.oxd-checkbox-option-label');
-    expect(labelDiv.classes()).not.toContain('custom-class');
-  });
-
-  it('renders with additional icon when additionalIcon prop is provided', () => {
-    const additionalIcon = 'oxd-info';
-    const additionalMessage =
-      'This action will be applied only for the candidates who are not yet shortlisted';
-    const wrapper = mount(CheckboxInput, {
-      props: {
-        additionalIcon: additionalIcon,
-        additionalMessage: additionalMessage,
+        optionInfoIcon: 'info-icon',
+        optionInfoMessage: 'This is additional information',
+        optionInfoIconStyle: { color: 'blue' },
+        optionInfoIconSize: 'xxx-small',
       },
     });
-
-    const additionalIconSpan = wrapper.find('.oxd-additional-icon');
-    expect(additionalIconSpan.exists()).toBe(true);
+    const optionalInfoIcon = wrapper.find('.oxd-optional-info-icon');
+    expect(optionalInfoIcon.exists()).toBe(true);
   });
 });
