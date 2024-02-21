@@ -17,6 +17,13 @@
 
   &--shadow {
     box-shadow: $oxd-dialog-sheet-box-shadow;
+
+    // Safari has issues with Backdrop-Filter: Blur and Box-Shadow
+    // This is known to resolve many unusual animations on Webkit browsers.
+    // Ref: https://copyprogramming.com/howto/backdrop-filter-blur-box-shadow-not-rendering-properly-in-safari
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000px;
   }
 }
 
