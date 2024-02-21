@@ -1448,10 +1448,7 @@ export const oxdAcknowledgement: icon = {
 
 export const oxdSpeechBubble: icon = {
   name: 'oxd-speech-bubble',
-  value: `<?xml version="1.0" encoding="iso-8859-1"?>
-  <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-  <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+  value: `<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
      width="28.621px" height="28.621px" viewBox="0 0 28.621 28.621" style="enable-background:new 0 0 28.621 28.621;"
      xml:space="preserve" style="fill:currentColor">
   <g>
@@ -1459,36 +1456,6 @@ export const oxdSpeechBubble: icon = {
       C14.131,24.988,14.22,25,14.311,25c6.904,0,12.5-5.596,12.5-12.5C26.811,5.596,21.215,0,14.311,0z M15.903,19.784h-3.203V9.474
       h3.203V19.784z M14.28,8.211c-1.013,0-1.687-0.718-1.665-1.604c-0.021-0.927,0.652-1.624,1.686-1.624
       c1.033,0,1.689,0.697,1.71,1.624C16.01,7.493,15.332,8.211,14.28,8.211z"/>
-  </g>
-  <g>
-  </g>
-  <g>
-  </g>
-  <g>
-  </g>
-  <g>
-  </g>
-  <g>
-  </g>
-  <g>
-  </g>
-  <g>
-  </g>
-  <g>
-  </g>
-  <g>
-  </g>
-  <g>
-  </g>
-  <g>
-  </g>
-  <g>
-  </g>
-  <g>
-  </g>
-  <g>
-  </g>
-  <g>
   </g>
   </svg>`,
 };

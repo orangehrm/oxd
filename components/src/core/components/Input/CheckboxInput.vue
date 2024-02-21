@@ -71,7 +71,7 @@ export default defineComponent({
     },
     checkIconSize: {
       type: String,
-      default: 'small',
+      default: 'xx-small',
     },
     trueValue: {
       type: [String, Boolean],
