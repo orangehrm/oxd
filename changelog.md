@@ -1,3 +1,5 @@
+2024-02-26 - 2066b47ea802651a3356d50d0fbf8775d002a031 - Icon/icons.ts - Add oxd-profile-protection, oxd-profile-protection icons
+
 2024-02-21 - 37b84a39ef9d93423235a600ffc1e5280545d586 - Input/CheckboxInput.vue -additional icon addded for checkbox input and checkbox input option label css chnages using new class
 
 2024-02-15 - 6646640ca262e8644c8bb49a6e0cfade119a01cc - Dialog/dialog.scss - Fixed Safari rendering glitch of resizing modals (issue not reproducible in Safari 17.3) 
