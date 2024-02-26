@@ -1,12 +1,13 @@
 <template>
   <div class="oxd-table-card-cell" :tooltip="tooltipContent" flow="left">
     <oxd-skeleton v-if="loading" animate></oxd-skeleton>
-    <template v-else>{{ cellContent }}</template>
+    <template v-else>{{ $vt(cellContent) }}</template>
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
+import translateMixin from '../../../mixins/translate';
 import Skeleton from '@orangehrm/oxd/core/components/Skeleton/Skeleton.vue';
 
 export default defineComponent({
@@ -15,6 +16,8 @@ export default defineComponent({
   components: {
     'oxd-skeleton': Skeleton,
   },
+
+  mixins: [translateMixin],
 
   props: {
     header: {
