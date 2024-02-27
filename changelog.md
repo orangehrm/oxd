@@ -1,3 +1,5 @@
+2024-02-27 - dc5949c79c4f2e9b6a84be99a411a36ddefe208c - Icon/icons.ts - Change width and height of oxd-profile-protection icon to align the svg
+
 2024-02-26 - 2066b47ea802651a3356d50d0fbf8775d002a031 - Icon/icons.ts - Add oxd-profile-protection, oxd-profile-protection icons
 
 2024-02-21 - 37b84a39ef9d93423235a600ffc1e5280545d586 - Input/CheckboxInput.vue -additional icon addded for checkbox input and checkbox input option label css chnages using new class
