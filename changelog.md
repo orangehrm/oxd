@@ -1,3 +1,5 @@
+2024-03-01 - 5c028e4dfec4dc1a50c62a22263f0706a497927f - Icon/icons.ts - Add oxd-secure-profile icon
+
 2024-02-27 - dc5949c79c4f2e9b6a84be99a411a36ddefe208c - Icon/icons.ts - Change width and height of oxd-profile-protection icon to align the svg
 
 2024-02-26 - 2066b47ea802651a3356d50d0fbf8775d002a031 - Icon/icons.ts - Add oxd-profile-protection, oxd-profile-protection icons
