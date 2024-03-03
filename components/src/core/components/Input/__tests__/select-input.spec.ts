@@ -264,7 +264,6 @@ describe('SelectInput.vue', () => {
 
   it('should pass default prop icons values to oxd-icon-button (oxd-select-dropdown-trigger) as props when no open-close icons are passed', async () => {
 
-    // Mount the component with the provided props
     const wrapper = mount(SelectInputButton, {
       props: {
         options,
@@ -289,7 +288,6 @@ describe('SelectInput.vue', () => {
     const dropdownTriggerOpenIcon = 'oxd-dropdown-open-icon';
     const dropdownTriggerCloseIcon = 'oxd-dropdown-close-icon';
 
-    // Mount the component with the provided props
     const wrapper = mount(SelectInputButton, {
       props: {
         options,
