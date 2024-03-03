@@ -87,7 +87,7 @@
           <div class="w-100 d-flex align-center justify-between">
             <span class="label">{{ $vt(modelValue.label) }}</span>
             <oxd-icon-button
-              :name="dropdownOpen ? 'oxd-chevron-up' : 'oxd-chevron-down'"
+              :name="dropdownOpen ? dropdownTriggerOpenIcon : dropdownTriggerCloseIcon"
               size="xxx-small"
               class="oxd-select-dropdown-trigger"
               @click="wholeButtonClickable ? {} : onToggleDropdown()"
@@ -107,7 +107,7 @@
         v-slot:iconRight
       >
         <oxd-icon-button
-          :name="dropdownOpen ? 'oxd-chevron-up' : 'oxd-chevron-down'"
+          :name="dropdownOpen ? dropdownTriggerOpenIcon : dropdownTriggerCloseIcon"
           size="xxx-small"
           class="oxd-select-dropdown-trigger"
           :class="{
@@ -220,6 +220,14 @@ export default defineComponent({
     },
     dropdownTriggerIconStyles: {
       type: Object,
+    },
+    dropdownTriggerOpenIcon: {
+      type: String,
+      default: 'oxd-chevron-up',
+    },
+    dropdownTriggerCloseIcon: {
+      type: String,
+      default: 'oxd-chevron-down',
     },
     dropdownTriggerButtonBackgroundColor: {
       type: String,

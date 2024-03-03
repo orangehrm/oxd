@@ -192,3 +192,11 @@ WithAdditionalIcon.args = {
   additionalIconName: 'oxd-best-match',
   doubleLineLabel: true,
 };
+
+export const CustomDropdownOpenCloseIcons = Template.bind({});
+CustomDropdownOpenCloseIcons.args = {
+  options: options,
+  button: buttonObject,
+  dropdownTriggerOpenIcon: 'oxd-arrow-right',
+  dropdownTriggerCloseIcon: 'oxd-arrow-left',
+};
