@@ -261,4 +261,54 @@ describe('SelectInput.vue', () => {
     await additionalIcon.trigger('click');
     expect(wrapper.emitted('onAdditionalIconClick')).toBeTruthy();
   });
+
+  it('should pass default prop icons values to oxd-icon-button (oxd-select-dropdown-trigger) as props when no open-close icons are passed', async () => {
+
+    // Mount the component with the provided props
+    const wrapper = mount(SelectInputButton, {
+      props: {
+        options,
+        modelValue: {
+          id: 1,
+          label: 'HR Admin',
+        }
+      },
+    });
+
+    let iconButton = wrapper.findComponent({name: 'oxd-icon-button'});
+    expect(iconButton.props('name')).toBe('oxd-chevron-down');
+
+    wrapper.setData({ dropdownOpen: true });
+    iconButton = wrapper.findComponent({name: 'oxd-icon-button'});
+    await wrapper.vm.$nextTick();
+    expect(iconButton.props('name')).toBe('oxd-chevron-up');
+  });
+
+  it('should pass correct icons as props to oxd-icon-button (oxd-select-dropdown-trigger)', async () => {
+
+    const dropdownTriggerOpenIcon = 'oxd-dropdown-open-icon';
+    const dropdownTriggerCloseIcon = 'oxd-dropdown-close-icon';
+
+    // Mount the component with the provided props
+    const wrapper = mount(SelectInputButton, {
+      props: {
+        options,
+        dropdownTriggerOpenIcon,
+        dropdownTriggerCloseIcon,
+        modelValue: {
+          id: 1,
+          label: 'HR Admin',
+        }
+      },
+    });
+
+    let iconButton = wrapper.findComponent({name: 'oxd-icon-button'});
+    expect(iconButton.props('name')).toBe(dropdownTriggerOpenIcon);
+
+    wrapper.setData({ dropdownOpen: true });
+    iconButton = wrapper.findComponent({name: 'oxd-icon-button'});
+    await wrapper.vm.$nextTick();
+    expect(iconButton.props('name')).toBe(dropdownTriggerCloseIcon);
+  });
+
 });
