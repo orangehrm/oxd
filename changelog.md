@@ -1,3 +1,5 @@
+2024-03-03 - d26b070536248c3fa9dd6e6fa08a626a8a3c003f - Input/Select/SelectInputButton.vue - Introduce a prop to change dropdown trigger open-close icons.
+
 2024-03-03 - 8549f91435ed52187c76197b2c88a4ad4bbc71f2 - Icon/icons.ts - Add Add oxd-chevron-up-border-less and oxd-chevron-down-border-less Icons
 
 2024-03-01 - 5c028e4dfec4dc1a50c62a22263f0706a497927f - Icon/icons.ts - Add oxd-secure-profile icon
