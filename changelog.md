@@ -1,3 +1,17 @@
+2024-03-03 - 0c128908b14eddb786a82107bc0bc93caaaefd8e - Icon/icons.ts - Add oxd-lock-slash icon
+
+2024-03-03 - d26b070536248c3fa9dd6e6fa08a626a8a3c003f - Input/Select/SelectInputButton.vue - Introduce a prop to change dropdown trigger open-close icons.
+
+2024-03-03 - 8549f91435ed52187c76197b2c88a4ad4bbc71f2 - Icon/icons.ts - Add Add oxd-chevron-up-border-less and oxd-chevron-down-border-less Icons
+
+2024-03-01 - 5c028e4dfec4dc1a50c62a22263f0706a497927f - Icon/icons.ts - Add oxd-secure-profile icon
+
+2024-02-27 - dc5949c79c4f2e9b6a84be99a411a36ddefe208c - Icon/icons.ts - Change width and height of oxd-profile-protection icon to align the svg
+
+2024-02-26 - 2066b47ea802651a3356d50d0fbf8775d002a031 - Icon/icons.ts - Add oxd-profile-protection, oxd-profile-protection icons
+
+2024-02-21 - 37b84a39ef9d93423235a600ffc1e5280545d586 - Input/CheckboxInput.vue -additional icon addded for checkbox input and checkbox input option label css chnages using new class
+
 2024-02-15 - 6646640ca262e8644c8bb49a6e0cfade119a01cc - Dialog/dialog.scss - Fixed Safari rendering glitch of resizing modals (issue not reproducible in Safari 17.3) 
 
 2024-02-02 - ba5f3a97e182acf42bd2c5ec1dc38a0823e1f8fe - Icon/icons.ts - Add oxd-draft, oxd-attachment, oxd-docs-check, oxd-acknowledgement icons
