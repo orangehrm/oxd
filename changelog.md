@@ -1,3 +1,5 @@
+2024-03-05 - d5e39a6a953513de221b1eb40e5a9c15969d9a3e - Icon/icons.ts - Add oxd-move-up and oxd-move-down icons
+
 2024-03-03 - 0c128908b14eddb786a82107bc0bc93caaaefd8e - Icon/icons.ts - Add oxd-lock-slash icon
 
 2024-03-03 - d26b070536248c3fa9dd6e6fa08a626a8a3c003f - Input/Select/SelectInputButton.vue - Introduce a prop to change dropdown trigger open-close icons.
