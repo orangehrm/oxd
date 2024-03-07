@@ -51,6 +51,7 @@
         ref="input"
         v-bind="$attrs"
         :class="fileInputClasses"
+        :disabled="disabled"
         @focus="onFocus"
         @blur="onBlur"
         @input="onInput"
