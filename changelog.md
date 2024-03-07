@@ -1,3 +1,7 @@
+2024-03-07 - fcca09cfb9bb7297e5d8b12aaec07db795520494 - SchemaForm/SchemaForm.vue - Expose schemaform validation functions
+
+2024-03-07 - a61a40dbd0f1307e6c43c3591db89eba03ede239 - ListTable/CellContainer.vue - Add truncate cell type
+
 2024-03-05 - d5e39a6a953513de221b1eb40e5a9c15969d9a3e - Icon/icons.ts - Add oxd-move-up and oxd-move-down icons
 
 2024-03-03 - 0c128908b14eddb786a82107bc0bc93caaaefd8e - Icon/icons.ts - Add oxd-lock-slash icon
@@ -14,7 +18,7 @@
 
 2024-02-21 - 37b84a39ef9d93423235a600ffc1e5280545d586 - Input/CheckboxInput.vue -additional icon addded for checkbox input and checkbox input option label css chnages using new class
 
-2024-02-15 - 6646640ca262e8644c8bb49a6e0cfade119a01cc - Dialog/dialog.scss - Fixed Safari rendering glitch of resizing modals (issue not reproducible in Safari 17.3) 
+2024-02-15 - 6646640ca262e8644c8bb49a6e0cfade119a01cc - Dialog/dialog.scss - Fixed Safari rendering glitch of resizing modals (issue not reproducible in Safari 17.3)
 
 2024-02-02 - ba5f3a97e182acf42bd2c5ec1dc38a0823e1f8fe - Icon/icons.ts - Add oxd-draft, oxd-attachment, oxd-docs-check, oxd-acknowledgement icons
 
