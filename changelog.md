@@ -1,3 +1,7 @@
+2024-03-08 - 5faed9ef47cd11db376fe4f8649249d195d60267 - ListTable/ListTable.vue - Table header shrink behaviour
+
+2024-03-08 - beb6490e13e633dc98c9ef17075c439b51d2ffad - Input/FileInput.vue - File input prevent focus on disabled
+
 2024-03-07 - fcca09cfb9bb7297e5d8b12aaec07db795520494 - SchemaForm/SchemaForm.vue - Expose schemaform validation functions
 
 2024-03-07 - a61a40dbd0f1307e6c43c3591db89eba03ede239 - ListTable/CellContainer.vue - Add truncate cell type
