@@ -19,6 +19,7 @@
           :key="header"
           :style="header.style"
           :class="header.class"
+          :tooltip="$vt(header.title)"
           :order="sortFields[header.sortField]"
           class="oxd-padding-cell oxd-table-th"
           @order="onOrderChange($event, header)"
@@ -28,7 +29,9 @@
             :name="header.iconName"
             :style="header.iconStyle"
           />
-          <span v-else>{{ $vt(header.title) }}</span>
+          <span v-else>
+            {{ $vt(header.title) }}
+          </span>
         </oxd-card-th>
       </oxd-card-tr>
     </oxd-card-thead>
