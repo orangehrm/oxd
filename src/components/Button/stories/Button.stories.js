@@ -40,12 +40,12 @@ export default {
   component: Button,
   argTypes: {
     size: {
-      control: {type: 'select', options: SIZES},
-      defaultValue: SIZE_MEDIUM,
+      options: SIZES,
+      control: {type: 'select'},
     },
     displayType: {
-      control: {type: 'select', options: TYPES},
-      defaultValue: TYPE_MAIN,
+      options: TYPES,
+      control: {type: 'select'},
     },
     style: {control: {type: 'object'}},
     disabled: {control: {type: 'boolean'}},
@@ -137,36 +137,42 @@ Small.args = {
 
 export const CustomColor = Template.bind({});
 CustomColor.args = {
+  size: SIZE_MEDIUM,
   label: 'Button',
   style: {backgroundColor: 'palegreen'},
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
+  size: SIZE_MEDIUM,
   label: 'Button',
   disabled: true,
 };
 
 export const ButtonWithIcon = Template.bind({});
 ButtonWithIcon.args = {
+  size: SIZE_MEDIUM,
   label: 'Button',
   iconName: 'trash',
 };
 
 export const ButtonWithIconRight = Template.bind({});
 ButtonWithIconRight.args = {
+  size: SIZE_MEDIUM,
   label: 'Button',
   iconRightName: 'arrow-right',
 };
 
 export const Text = Template.bind({});
 Text.args = {
+  size: SIZE_MEDIUM,
   label: 'Button',
   displayType: TYPE_TEXT,
 };
 
 export const Tool = Template.bind({});
 Tool.args = {
+  size: SIZE_MEDIUM,
   label: 'Button',
   iconName: 'person-plus',
   displayType: TYPE_TOOL,

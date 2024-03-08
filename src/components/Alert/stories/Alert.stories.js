@@ -27,7 +27,8 @@ export default {
   component: Alert,
   argTypes: {
     type: {
-      control: {type: 'select', options: TYPES},
+      options: TYPES,
+      control: {type: 'select'},
     },
     show: {
       control: {type: 'boolean'},

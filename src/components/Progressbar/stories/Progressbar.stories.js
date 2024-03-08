@@ -25,7 +25,8 @@ export default {
   component: Progressbar,
   argTypes: {
     type: {
-      control: {type: 'select', options: TYPES},
+      options: TYPES,
+      control: {type: 'select'},
     },
     progress: {
       control: {type: 'range', min: 0, max: 100, step: 1},

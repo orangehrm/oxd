@@ -42,7 +42,8 @@ const Template = (args) => ({
 
 const argTypes = {
   tag: {
-    control: {type: 'select', options: TAGS},
+    options: TAGS,
+    control: {type: 'select'},
   },
   style: {control: {type: 'object'}},
 };

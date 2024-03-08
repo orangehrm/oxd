@@ -27,7 +27,8 @@ export default {
     style: {control: {type: 'object'}},
     hasError: {control: {type: 'boolean'}},
     labelPosition: {
-      control: {type: 'select', options: LABEL_POSITIONS},
+      options: LABEL_POSITIONS,
+      control: {type: 'select'},
       defaultValue: RIGHT,
     },
   },

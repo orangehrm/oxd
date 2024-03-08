@@ -27,7 +27,8 @@ export default {
   component: Sheet,
   argTypes: {
     type: {
-      control: {type: 'select', options: TYPES},
+      options: TYPES,
+      control: {type: 'select'},
     },
     rounded: {
       control: {type: 'boolean'},

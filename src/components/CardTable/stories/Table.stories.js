@@ -51,7 +51,7 @@ export const SortableTable = () => SortableCardTable;
 export const JobTitleExample = () => CardTableJobs;
 export const LeaveListExample = () => CardTableLeavelist;
 export const LeaveListExample2 = () => CardTableLeavelistAlt;
-export const LanguagPackageEdit = () => CardTableLangStringList;
+export const LanguagePackageEdit = () => CardTableLangStringList;
 
 const RowOptionsTemplate = (args) => ({
   setup() {
