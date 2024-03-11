@@ -6,8 +6,8 @@ export default {
   component: GlassButton,
   argTypes: {
     icon: {
-      control: {type: 'select', options: GLASS_ICON_TYPES},
-      defaultValue: TYPE_GLASS_VIDEO,
+      options: GLASS_ICON_TYPES,
+      control: {type: 'select'},
     },
     style: {control: {type: 'object'}},
     disabled: {control: {type: 'boolean'}},
@@ -25,4 +25,5 @@ const Template = (args) => ({
 export const Default = Template.bind({});
 Default.args = {
   label: 'Share Video',
+  icon: TYPE_GLASS_VIDEO,
 };

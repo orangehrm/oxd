@@ -18,6 +18,7 @@
  */
 
 import PasswordInput from '@/components/Input/PasswordInput.vue';
+import {ref, h} from 'vue';
 
 export default {
   title: 'Example/PasswordInput',
@@ -30,25 +31,29 @@ export default {
 
 const Template = (args) => ({
   setup() {
-    return {args};
+    const input = ref('Input');
+    return {args, input};
   },
-  components: {'oxd-password-input': PasswordInput},
-  template: '<oxd-password-input v-bind="args" />',
+  render() {
+    return h(PasswordInput, {
+      ...this.args,
+      modelValue: this.input,
+      'onUpdate:modelValue': (value) => {
+        this.input = value;
+      },
+    });
+  },
 });
 
 export const Default = Template.bind({});
-Default.args = {
-  value: 'Input',
-};
+Default.args = {};
 
 export const Colored = Template.bind({});
 Colored.args = {
-  value: 'Input',
   style: {backgroundColor: 'aliceblue'},
 };
 
 export const Error = Template.bind({});
 Error.args = {
-  value: 'Input',
   hasError: true,
 };

@@ -27,8 +27,8 @@ export default {
   component: ToastContainer,
   argTypes: {
     position: {
-      control: {type: 'select', options: POSITIONS},
-      defaultValue: POSITION_BOTTOM,
+      options: POSITIONS,
+      control: {type: 'select'},
     },
   },
 };
@@ -78,6 +78,9 @@ const Template = (args) => ({
 });
 
 export const Default = Template.bind({});
+Default.args = {
+  position: POSITION_BOTTOM,
+};
 
 export const CustomAnimation = () => ToastContainerCustomAnimationStory;
 

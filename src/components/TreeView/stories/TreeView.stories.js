@@ -66,8 +66,8 @@ Default.args = {
 };
 Default.argTypes = argTypes;
 
-export const withoutAnimation = Template.bind({});
-withoutAnimation.args = {
+export const WithoutAnimation = Template.bind({});
+WithoutAnimation.args = {
   data: {
     name: '/',
     children: [
@@ -94,10 +94,10 @@ withoutAnimation.args = {
   },
   animation: '',
 };
-withoutAnimation.argTypes = argTypes;
+WithoutAnimation.argTypes = argTypes;
 
-export const openNodes = Template.bind({});
-openNodes.args = {
+export const OpenNodes = Template.bind({});
+OpenNodes.args = {
   data: {
     name: '/',
     children: [
@@ -124,6 +124,6 @@ openNodes.args = {
   },
   open: true,
 };
-openNodes.argTypes = argTypes;
+OpenNodes.argTypes = argTypes;
 
 export const CustomTreeview = () => CustomTemplate;

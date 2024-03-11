@@ -18,6 +18,7 @@
  */
 
 import Input from '@/components/Input/Input.vue';
+import {h, ref} from 'vue';
 
 export default {
   title: 'Example/Input',
@@ -30,25 +31,29 @@ export default {
 
 const Template = (args) => ({
   setup() {
-    return {args};
+    const input = ref('Input');
+    return {args, input};
   },
-  components: {'oxd-input': Input},
-  template: '<oxd-input v-bind="args" />',
+  render() {
+    return h(Input, {
+      ...this.args,
+      modelValue: this.input,
+      'onUpdate:modelValue': (value) => {
+        this.input = value;
+      },
+    });
+  },
 });
 
 export const Default = Template.bind({});
-Default.args = {
-  value: 'Input',
-};
+Default.args = {};
 
 export const Colored = Template.bind({});
 Colored.args = {
-  value: 'Input',
   style: {backgroundColor: 'aliceblue'},
 };
 
 export const Error = Template.bind({});
 Error.args = {
-  value: 'Input',
   hasError: true,
 };

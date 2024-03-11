@@ -21,6 +21,7 @@ import Form from '@/components/Form/Form.vue';
 import {TYPES} from '@/components/InputField/types';
 import InputField from '@/components/InputField/InputField.vue';
 import InputFieldValidation from './InputFieldValidation.story.vue';
+import {h, ref} from 'vue';
 
 export default {
   title: 'Example/InputField',
@@ -29,16 +30,35 @@ export default {
 
 const argTypes = {
   type: {
-    control: {type: 'select', options: TYPES},
+    options: TYPES,
+    control: {type: 'select'},
   },
 };
 
 const Template = (args) => ({
   setup() {
-    return {args};
+    let input;
+    if (args.type === 'multiselect') {
+      input = ref([]);
+    } else {
+      input = ref(null);
+    }
+
+    return {args, input};
   },
-  components: {'oxd-input-field': InputField, 'oxd-form': Form},
-  template: '<oxd-form><oxd-input-field v-bind="args" /></oxd-form>',
+  render() {
+    return h('div', {}, [
+      h(Form, {}, () => [
+        h(InputField, {
+          ...this.args,
+          modelValue: this.input,
+          'onUpdate:modelValue': (value) => {
+            this.input = value;
+          },
+        }),
+      ]),
+    ]);
+  },
 });
 
 export const Default = Template.bind({});

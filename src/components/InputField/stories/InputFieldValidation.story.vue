@@ -46,6 +46,7 @@
 
     <oxd-form-row>
       <oxd-input-field
+        v-model="file"
         type="file"
         label="File Label with button"
         button-label="Browse"

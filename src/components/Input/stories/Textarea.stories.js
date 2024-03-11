@@ -18,47 +18,54 @@
  */
 
 import Textarea from '@/components/Input/Textarea/Textarea.vue';
+import {h, ref} from 'vue';
 
 export default {
   title: 'Example/Textarea',
   component: Textarea,
   argTypes: {
     resize: {
-      control: {type: 'select', options: ['vertical', 'horizontal', 'none']},
+      options: ['vertical', 'horizontal', 'none'],
+      control: {type: 'select'},
     },
     style: {control: {type: 'object'}},
     hasError: {control: {type: 'boolean'}},
+    modelValue: {control: {type: 'string'}},
   },
 };
 
 const Template = (args) => ({
   setup() {
-    return {args};
+    const input = ref('Textarea');
+    return {args, input};
   },
-  components: {'oxd-textarea': Textarea},
-  template: '<oxd-textarea v-bind="args" />',
+  render() {
+    return h(Textarea, {
+      ...this.args,
+      modelValue: this.input,
+      'onUpdate:modelValue': (value) => {
+        this.input = value;
+      },
+    });
+  },
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  value: 'Textarea',
   style: {},
 };
 
 export const Colored = Template.bind({});
 Colored.args = {
-  value: 'Textarea',
   style: {backgroundColor: 'aliceblue'},
 };
 
 export const Error = Template.bind({});
 Error.args = {
-  value: 'Textarea',
   hasError: true,
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  value: 'Textarea',
   disabled: true,
 };

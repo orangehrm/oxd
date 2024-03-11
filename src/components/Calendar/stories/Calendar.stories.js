@@ -28,18 +28,19 @@ export default {
 
 const argTypes = {
   firstDayOfWeek: {
-    control: {type: 'select', options: [0, 1, 2, 3, 4, 5, 6]},
+    options: [0, 1, 2, 3, 4, 5, 6],
+    control: {type: 'select'},
   },
   monthFormat: {
+    options: ['narrow', 'abbreviated', 'wide'],
     control: {
       type: 'select',
-      options: ['narrow', 'abbreviated', 'wide'],
     },
   },
   dayFormat: {
+    options: ['narrow', 'short', 'abbreviated', 'wide'],
     control: {
       type: 'select',
-      options: ['narrow', 'short', 'abbreviated', 'wide'],
     },
   },
   years: {control: {type: 'object'}, defaultValue: [2019, 2020, 2021]},

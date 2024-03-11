@@ -104,6 +104,7 @@ Default.args = {
 
 export const Error = Template.bind({});
 Error.args = {
+  options: [],
   hasError: true,
 };
 
@@ -146,5 +147,6 @@ PreSelected.args = {
 
 export const CustomEmptyText = Template.bind({});
 CustomEmptyText.args = {
+  options: [],
   emptyText: 'No Leave Types Available',
 };

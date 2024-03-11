@@ -66,13 +66,13 @@ const options = [
   },
 ];
 
-const syncFunction = function (serachParam) {
-  const filter = new RegExp(serachParam, 'i');
+const syncFunction = function (searchParam) {
+  const filter = new RegExp(searchParam, 'i');
   return options.filter((item) => item.label.match(filter));
 };
 
-const asyncFunction = async function (serachParam) {
-  const filter = new RegExp(serachParam, 'i');
+const asyncFunction = async function (searchParam) {
+  const filter = new RegExp(searchParam, 'i');
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(options.filter((item) => item.label.match(filter)));
@@ -80,10 +80,10 @@ const asyncFunction = async function (serachParam) {
   });
 };
 
-const callAPI = async function (serachParam) {
+const callAPI = async function (searchParam) {
   return new Promise((resolve) => {
-    if (serachParam.trim()) {
-      fetch(`https://api.github.com/search/users?q=${serachParam}`)
+    if (searchParam.trim()) {
+      fetch(`https://api.github.com/search/users?q=${searchParam}`)
         .then((response) => response.json())
         .then((json) => {
           const {items} = json;
@@ -119,11 +119,14 @@ const Template = (args) => ({
 });
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  createOptions: () => [],
+};
 
 export const Error = Template.bind({});
 Error.args = {
   value: 'Input',
+  createOptions: () => [],
   hasError: true,
 };
 

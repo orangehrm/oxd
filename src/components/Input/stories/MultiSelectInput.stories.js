@@ -104,6 +104,7 @@ Default.args = {
 
 export const Error = Template.bind({});
 Error.args = {
+  options: [],
   hasError: true,
 };
 

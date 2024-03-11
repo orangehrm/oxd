@@ -25,7 +25,8 @@ export default {
   component: IconButton,
   argTypes: {
     displayType: {
-      control: {type: 'select', options: ICON_TYPES},
+      options: ICON_TYPES,
+      control: {type: 'select'},
     },
     disabled: {control: {type: 'boolean'}},
   },
