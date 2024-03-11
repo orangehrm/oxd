@@ -57,6 +57,7 @@
   min-width: 0;
 }
 
-::v-deep(.oxd-table-th > span) {
+::v-deep(.oxd-table-th-txt) {
+  margin: 0;
   @include truncate(2, 1);
 }
