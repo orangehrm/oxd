@@ -53,3 +53,11 @@
   height: 16px;
   border-radius: 0.375rem;
 }
+::v-deep(.oxd-table-th) {
+  min-width: 0;
+}
+
+::v-deep(.oxd-table-th-txt) {
+  margin: 0;
+  @include truncate(2, 1);
+}

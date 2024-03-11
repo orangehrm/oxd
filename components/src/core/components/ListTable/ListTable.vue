@@ -28,7 +28,9 @@
             :name="header.iconName"
             :style="header.iconStyle"
           />
-          <span v-else>{{ $vt(header.title) }}</span>
+          <span :tooltip="$vt(header.title)" v-else>
+            <p class="oxd-table-th-txt">{{ $vt(header.title) }}</p>
+          </span>
         </oxd-card-th>
       </oxd-card-tr>
     </oxd-card-thead>

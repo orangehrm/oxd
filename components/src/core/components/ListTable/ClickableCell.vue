@@ -1,5 +1,10 @@
 <template>
-  <div :class="classes" @click.stop="onClick">
+  <div
+    :class="classes"
+    :tabindex="tabIndex"
+    @click.stop="handleAction"
+    @keydown.enter.stop="handleAction"
+  >
     <oxd-skeleton v-if="loading" animate></oxd-skeleton>
     <template v-else>{{ item }}</template>
   </div>
@@ -48,15 +53,20 @@ export default defineComponent({
       return isTableDisabled ? isTableDisabled : isRowDisabled;
     },
     classes(): object {
+      const isClickable = !this.isDisabled && !this.loading;
       return {
         'oxd-table-card-cell': true,
-        '--clickable': !this.isDisabled && !this.loading,
+        '--clickable': isClickable,
+        '--underline': isClickable && this.header?.cellConfig?.underline,
       };
+    },
+    tabIndex(): number {
+      return this.isDisabled ? -1 : 0;
     },
   },
 
   methods: {
-    onClick(e: MouseEvent) {
+    handleAction(e: MouseEvent | KeyboardEvent) {
       if (this.isDisabled) return;
       const cellConfig = this.header?.cellConfig;
       if (cellConfig && typeof cellConfig?.onClick === 'function') {
@@ -68,10 +78,16 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@import '../../../styles';
+
 .oxd-table-card-cell {
   &.--clickable {
+    outline: none;
     cursor: pointer;
     width: fit-content;
+  }
+  &.--underline:focus-visible {
+    border-bottom: 1px solid $oxd-interface-gray-color;
   }
 }
 </style>

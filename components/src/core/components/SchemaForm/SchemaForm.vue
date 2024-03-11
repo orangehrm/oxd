@@ -1,6 +1,7 @@
 <script lang="ts">
 import {
   h,
+  ref,
   VNode,
   computed,
   PropType,
@@ -61,6 +62,7 @@ export default defineComponent({
   },
   emits: ['submitValid', 'update:model'],
   setup(props, context) {
+    const formRef = ref();
     const {$t} = useTranslate();
     const layoutSchema = computed(() => {
       return props.schema?.layout?.map(layout => ({
@@ -192,9 +194,9 @@ export default defineComponent({
         label: $t(field.label),
         style: field.style,
         class: field.class,
+        disabled: props.schema?.disabled ? props.schema.disabled : false,
         ...(field.props ?? {}),
         ...(field.listeners ?? {}),
-        disabled: props.schema?.disabled ? props.schema.disabled : false,
       });
     };
 
@@ -239,10 +241,19 @@ export default defineComponent({
       }
     };
 
+    context.expose({
+      reset: () => formRef.value?.onReset(),
+      validate: () => formRef.value?.validate(),
+      submit: () => formRef.value?.onSubmit(new Event('submit')),
+      errorbag: computed(() => formRef.value?.errorbag),
+      invalid: computed(() => formRef.value?.isFromInvalid),
+    });
+
     return () =>
       h(
         Form,
         {
+          ref: formRef,
           name: props.schema?.name,
           style: props.schema?.style,
           class: 'oxd-schema-form-container ' + props.schema?.class,

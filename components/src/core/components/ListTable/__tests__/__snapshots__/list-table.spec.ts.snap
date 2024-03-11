@@ -12,10 +12,10 @@ exports[`ListTable > ListTable.vue renders OXD ListTable > ListTable 1`] = `
           </label></div>
         <!--v-if-->
       </div>
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;"><span>Column 1</span>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;"><span tooltip="Column 1"><p class="oxd-table-th-txt">Column 1</p></span>
         <!--v-if-->
       </div>
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;"><span>Column 2</span>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;"><span tooltip="Column 2"><p class="oxd-table-th-txt">Column 2</p></span>
         <!--v-if-->
       </div>
     </div>
@@ -71,10 +71,10 @@ exports[`ListTable > ListTable.vue should render OXD ListTable without selectabl
           </label></div>
         <!--v-if-->
       </div>
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;"><span>Column 1</span>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;"><span tooltip="Column 1"><p class="oxd-table-th-txt">Column 1</p></span>
         <!--v-if-->
       </div>
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;"><span>Column 2</span>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;"><span tooltip="Column 2"><p class="oxd-table-th-txt">Column 2</p></span>
         <!--v-if-->
       </div>
     </div>
@@ -123,10 +123,10 @@ exports[`ListTable > ListTable.vue should render empty state when there is no da
   <div class="oxd-table-header" role="rowgroup">
     <div class="oxd-table-row oxd-table-row--with-border" role="row">
       <!--v-if-->
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;"><span>Column 1</span>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 1;"><span tooltip="Column 1"><p class="oxd-table-th-txt">Column 1</p></span>
         <!--v-if-->
       </div>
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;"><span>Column 2</span>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;"><span tooltip="Column 2"><p class="oxd-table-th-txt">Column 2</p></span>
         <!--v-if-->
       </div>
     </div>
