@@ -1,3 +1,5 @@
+2024-03-18 - 0ed25f1c3db3b364dc31874362c6455af008be80 - directives/focus-first-element - Focus first directive prevent scroll on focus
+
 2024-03-08 - 5faed9ef47cd11db376fe4f8649249d195d60267 - ListTable/ListTable.vue - Table header shrink behaviour
 
 2024-03-08 - beb6490e13e633dc98c9ef17075c439b51d2ffad - Input/FileInput.vue - File input prevent focus on disabled
