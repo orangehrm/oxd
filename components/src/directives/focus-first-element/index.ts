@@ -20,7 +20,9 @@ const focusOnFirstElement = (
   const firstFocusedElement = element.querySelectorAll(matchingString)[0];
   firstFocusedElementsOnMounted.set(vnode.scopeId, firstFocusedElement);
   if (firstFocusedElement) {
-    (firstFocusedElement as HTMLElement).focus();
+    (firstFocusedElement as HTMLElement).focus({
+      preventScroll: true,
+    });
   }
 };
 
@@ -62,7 +64,9 @@ const focusonFirstElementDirective: Directive = {
         (previosFocusedElement as HTMLElement) &&
         (previosFocusedElement as HTMLElement).offsetParent !== null
       ) {
-        (previosFocusedElement as HTMLElement).focus();
+        (previosFocusedElement as HTMLElement).focus({
+          preventScroll: true,
+        });
       } else {
         let rightPanel = binding.instance?.$root?.$el.parentNode;
         if (!rightPanel) {
