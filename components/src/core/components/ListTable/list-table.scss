@@ -56,6 +56,9 @@
 ::v-deep(.oxd-table-th) {
   min-width: 0;
 }
+::v-deep(.oxd-table-th span) {
+  min-width: 0;
+}
 
 ::v-deep(.oxd-table-th-txt) {
   margin: 0;
