@@ -1,3 +1,5 @@
+2024-03-21 - 8319dbeeb35e6aa50fb955ea075ebea5ba30bf43 - ListTable/ListTable.vue - Table header truncate improvments
+
 2024-03-18 - 0ed25f1c3db3b364dc31874362c6455af008be80 - directives/focus-first-element - Focus first directive prevent scroll on focus
 
 2024-03-08 - 5faed9ef47cd11db376fe4f8649249d195d60267 - ListTable/ListTable.vue - Table header shrink behaviour
