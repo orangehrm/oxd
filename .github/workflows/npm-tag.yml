@@ -1,0 +1,34 @@
+name: Tag Latest
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  tag:
+    if: github.repository == 'orangehrm/oxd'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check version already published
+        run: |
+          set -x
+          npm -v
+          current_version=$(npm pkg get version | sed 's/"//g')
+          fetched_current_version=$(npm show @ohrm/oxd@$current_version version) || fetched_current_version=''
+          echo "current_version=$current_version" >> $GITHUB_ENV
+          echo "fetched_current_version=$fetched_current_version" >> $GITHUB_ENV
+          echo "current_published_version=$(npm show @ohrm/oxd version)" >> $GITHUB_ENV
+
+      - name: Authenticate to npm registry
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Tag as latest
+        run: |
+          set -x
+          current_version=${{ env.current_version }}
+          npm dist-tag add @ohrm/oxd@$current_version latest
