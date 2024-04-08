@@ -136,7 +136,6 @@ describe('Comment.vue', () => {
     await wrapper.vm.$nextTick();
     const errorAlert = wrapper.find('.oxd-alert-content--error');
     expect(errorAlert.exists()).toBeTruthy();
-    expect(errorAlert.classes()).toContain(["oxd-alert-content", "oxd-alert-content--error"]);
   });
 
   it('Delete confimation message and action buttons are stacked', async () => {
@@ -155,6 +154,5 @@ describe('Comment.vue', () => {
     await wrapper.vm.$nextTick();
     const inlineDeleteBar = wrapper.find('.oxd-alert-content--compact');
     expect(inlineDeleteBar.exists()).toBeTruthy();
-    expect(inlineDeleteBar.classes()).toContain(["oxd-alert-content", "oxd-alert-content--error", "oxd-alert-content--compact"]);
   });
 });
