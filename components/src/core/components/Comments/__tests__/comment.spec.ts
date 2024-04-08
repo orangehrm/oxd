@@ -28,14 +28,14 @@ describe('Comment.vue', () => {
         enableAvatar: false,
         okButton: {
           label: 'Yes, Delete',
-          iconName: 'oxd-trash',
+          iconName: null,
           size: 'medium',
           displayType: 'warn',
           style: null,
           class: null,
         },
         cancelButton: {
-          label: 'Cancel',
+          label: 'No, Cancel',
           iconName: null,
           size: 'medium',
           displayType: 'ghost-warn',
@@ -119,6 +119,26 @@ describe('Comment.vue', () => {
     expect(wrapper.find('.oxd-comment-group-name-chip').exists()).toBeTruthy();
   });
 
+  it('With error alert type', async () => {
+    const wrapper = mount(Comment, {
+      props: {
+        comment: comment,
+        allowToEdit: false,
+        allowToDelete: true,
+        enableAvatar: false,
+        stackConfirmationElements: false,
+        alertType: 'error'
+      },
+    });
+    await wrapper.vm.$nextTick();
+    const deleteButton = wrapper.find('[data-test="deleteIcon"]');
+    deleteButton.trigger('click');
+    await wrapper.vm.$nextTick();
+    const errorAlert = wrapper.find('.oxd-alert-content--error');
+    expect(errorAlert.exists()).toBeTruthy();
+    expect(errorAlert.classes()).toContain(["oxd-alert-content", "oxd-alert-content--error"]);
+  });
+
   it('Delete confimation message and action buttons are stacked', async () => {
     const wrapper = mount(Comment, {
       props: {
@@ -133,8 +153,8 @@ describe('Comment.vue', () => {
     const deleteButton = wrapper.find('[data-test="deleteIcon"]');
     deleteButton.trigger('click');
     await wrapper.vm.$nextTick();
-    const inlineDeleteBar = wrapper.find('.oxd-comment-inline-delete');
+    const inlineDeleteBar = wrapper.find('.oxd-alert-content--compact');
     expect(inlineDeleteBar.exists()).toBeTruthy();
-    expect(inlineDeleteBar.classes()).toContain('stacked');
+    expect(inlineDeleteBar.classes()).toContain(["oxd-alert-content", "oxd-alert-content--error", "oxd-alert-content--compact"]);
   });
 });
