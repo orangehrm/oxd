@@ -144,34 +144,15 @@
         </div>
       </div>
     </div>
-    <div
-      v-if="deleteMode"
-      ref="commentDeleteWrapper"
-      class="
-        oxd-comment-inline-delete
-        d-flex
-        align-center
-        justify-between
-        oxd-mt-5 oxd-p-5
-      "
-      :class="{stacked: stackConfirmationElements}"
-    >
-      <div class="comment-inline-delete-content-wrapper d-flex align-center">
-        <oxd-text type="subtitle-2">
-          {{ commentDeleteConfirmationMsg }}
-        </oxd-text>
-      </div>
-      <div
-        class="
-          comment-inline-delete-actions-wrapper
-          d-flex
-          align-center
-          oxd-ml-3
-        "
+    <div v-if="deleteMode" ref="commentDeleteWrapper">
+      <oxd-alert
+        :message="$vt(commentDeleteConfirmationMsg)"
+        :type="'error'"
+        :show="deleteMode"
+        :compact="stackConfirmationElements"
       >
         <oxd-button
           :label="$vt(cancelDeleteButtonData.label)"
-          :iconName="cancelDeleteButtonData.iconName"
           :iconSize="cancelDeleteButtonData.size"
           :displayType="cancelDeleteButtonData.displayType"
           :style="cancelDeleteButtonData.style"
@@ -181,7 +162,6 @@
         />
         <oxd-button
           :label="$vt(confirmDeleteButtonData.label)"
-          :iconName="confirmDeleteButtonData.iconName"
           :iconSize="confirmDeleteButtonData.size"
           :displayType="confirmDeleteButtonData.displayType"
           :style="confirmDeleteButtonData.style"
@@ -190,7 +170,7 @@
           class="oxd-ml-3"
           @click="confirmDeleteButtonData.click"
         />
-      </div>
+      </oxd-alert>
     </div>
   </div>
 </template>
@@ -205,6 +185,7 @@ import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue
 import CommentBox from '@orangehrm/oxd/core/components/Comments/CommentBox.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import oxdButton from '@orangehrm/oxd/core/components/Button/Button.vue';
+import oxdAlert from '@orangehrm/oxd/core/components/Alert/Alert.vue';
 import useTranslate from '../../../composables/useTranslate';
 
 export default defineComponent({
@@ -220,6 +201,7 @@ export default defineComponent({
     'oxd-comment-box': CommentBox,
     'oxd-text': oxdText,
     'oxd-button': oxdButton,
+    'oxd-alert': oxdAlert,
   },
 
   props: {
@@ -420,7 +402,6 @@ export default defineComponent({
     const confirmDeleteButtonData = computed(() => {
       const initialObject = {
         label: 'Yes, Delete',
-        iconName: 'oxd-trash',
         size: 'medium',
         displayType: 'danger',
         style: null,
@@ -438,8 +419,7 @@ export default defineComponent({
 
     const cancelDeleteButtonData = computed(() => {
       const initialObject = {
-        label: 'Cancel',
-        iconName: null,
+        label: 'No, Cancel',
         size: 'medium',
         displayType: 'ghost-danger',
         style: null,
