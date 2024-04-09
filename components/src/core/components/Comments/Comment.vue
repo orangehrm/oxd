@@ -147,13 +147,12 @@
     <div v-if="deleteMode" ref="commentDeleteWrapper">
       <oxd-alert
         :message="$vt(commentDeleteConfirmationMsg)"
-        :type="alertType"
+        :type="'error'"
         :show="deleteMode"
         :compact="stackConfirmationElements"
       >
         <oxd-button
           :label="$vt(cancelDeleteButtonData.label)"
-          :iconName="cancelDeleteButtonData.iconName"
           :iconSize="cancelDeleteButtonData.size"
           :displayType="cancelDeleteButtonData.displayType"
           :style="cancelDeleteButtonData.style"
@@ -163,7 +162,6 @@
         />
         <oxd-button
           :label="$vt(confirmDeleteButtonData.label)"
-          :iconName="confirmDeleteButtonData.iconName"
           :iconSize="confirmDeleteButtonData.size"
           :displayType="confirmDeleteButtonData.displayType"
           :style="confirmDeleteButtonData.style"
@@ -254,10 +252,6 @@ export default defineComponent({
     stackConfirmationElements: {
       type: Boolean as PropType<boolean>,
       default: false,
-    },
-    alertType: {
-      type: String,
-      default: 'error',
     },
   },
 
@@ -408,7 +402,6 @@ export default defineComponent({
     const confirmDeleteButtonData = computed(() => {
       const initialObject = {
         label: 'Yes, Delete',
-        iconName: null,
         size: 'medium',
         displayType: 'danger',
         style: null,
@@ -427,7 +420,6 @@ export default defineComponent({
     const cancelDeleteButtonData = computed(() => {
       const initialObject = {
         label: 'No, Cancel',
-        iconName: null,
         size: 'medium',
         displayType: 'ghost-danger',
         style: null,

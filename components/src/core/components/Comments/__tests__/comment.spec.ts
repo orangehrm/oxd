@@ -127,7 +127,6 @@ describe('Comment.vue', () => {
         allowToDelete: true,
         enableAvatar: false,
         stackConfirmationElements: false,
-        alertType: 'error'
       },
     });
     await wrapper.vm.$nextTick();
