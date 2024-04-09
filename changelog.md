@@ -1,3 +1,5 @@
+2024-04-09 - 2b3e650eecb38e9f3ea731e84f167d7c950a641a - Comments/Comment.vue - Hardcoded delete warning is replaced by oxd-alert warning
+
 2024-03-21 - 8319dbeeb35e6aa50fb955ea075ebea5ba30bf43 - ListTable/ListTable.vue - Table header truncate improvments
 
 2024-03-18 - 0ed25f1c3db3b364dc31874362c6455af008be80 - directives/focus-first-element - Focus first directive prevent scroll on focus
