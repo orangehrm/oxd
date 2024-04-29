@@ -2,11 +2,7 @@
   <div>
     <div class="oxd-download-box-outer-wrapper" v-if="inputFile.name">
       <div class="oxd-download-box-wrapper d-flex">
-        <button
-          class="oxd-download-box"
-          @click="downloadBoxClick()"
-          type="button"
-        >
+        <button class="oxd-download-box" @click="downloadBoxClick()" type="button">
           <div class="oxd-download-box-doc-icon d-flex">
             <oxd-icon :name="'oxd-file-doc'"> </oxd-icon>
           </div>
@@ -19,62 +15,25 @@
             </div>
           </div>
         </button>
-        <div
-          class="oxd-download-box-radio-buttons"
-          v-if="!(disabled || readonly)"
-        >
-          <oxd-radio-input
-            v-model="fileUpdateMode"
-            id="check1"
-            value="keep"
-            :optionLabel="$vt('Keep Current')"
-          />
-          <oxd-radio-input
-            v-if="deletable"
-            v-model="fileUpdateMode"
-            id="check2"
-            value="delete"
-            :optionLabel="$vt('Delete Current')"
-          />
-          <oxd-radio-input
-            v-model="fileUpdateMode"
-            id="check3"
-            value="replace"
-            :optionLabel="$vt('Replace Current')"
-          />
+        <div class="oxd-download-box-radio-buttons" v-if="!(disabled || readonly)">
+          <oxd-radio-input v-model="fileUpdateMode" id="check1" value="keep" :optionLabel="$vt('Keep Current')" />
+          <oxd-radio-input v-if="deletable" v-model="fileUpdateMode" id="check2" value="delete" :optionLabel="$vt('Delete Current')" />
+          <oxd-radio-input v-model="fileUpdateMode" id="check3" value="replace" :optionLabel="$vt('Replace Current')" />
         </div>
       </div>
     </div>
     <div v-if="fileUpdateMode === 'replace' || !inputFile.name">
-      <input
-        type="file"
-        ref="input"
-        v-bind="$attrs"
-        :class="fileInputClasses"
-        :disabled="disabled"
-        @focus="onFocus"
-        @blur="onBlur"
-        @input="onInput"
-        @keyup.esc.stop
-      />
+      <input type="file" ref="input" v-bind="$attrs" :class="fileInputClasses" :disabled="disabled" @focus="onFocus" @blur="onBlur" @input="onInput" @keyup.esc.stop />
       <div :class="classes" :style="style" @click="onClick">
         <slot></slot>
         <template v-if="!$slots.default">
-          <div
-            v-if="buttonLabel"
-            :class="{'oxd-file-button': true, '--disabled': disabled}"
-          >
+          <div v-if="buttonLabel" :class="{ 'oxd-file-button': true, '--disabled': disabled }">
             {{ buttonLabel }}
           </div>
-          <div
-            :class="{'oxd-file-input-div': true, '--placeholder': !inputValue}"
-          >
+          <div :class="{ 'oxd-file-input-div': true, '--placeholder': !inputValue }">
             {{ inputValue ? inputValue : placeholder }}
           </div>
-          <oxd-icon
-            :class="{'oxd-file-input-icon': true, '--disabled': disabled}"
-            :name="buttonIcon"
-          />
+          <oxd-icon :class="{ 'oxd-file-input-icon': true, '--disabled': disabled }" :name="buttonIcon" />
         </template>
       </div>
     </div>
@@ -82,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from 'vue';
+import { defineComponent, PropType } from 'vue';
 import {
   ATTACHMENT_UPDATE_MODE_KEEP,
   FileUpdateMode,
@@ -116,7 +75,7 @@ export default defineComponent({
     initialFileUpdateMode: {
       type: String as PropType<string>,
       default: ATTACHMENT_UPDATE_MODE_KEEP,
-      validator: function(value: FileUpdateMode) {
+      validator: function (value: FileUpdateMode) {
         return FILE_UPDATE_MODES.indexOf(value) !== -1;
       },
     },
@@ -265,7 +224,7 @@ export default defineComponent({
             event.target?.result instanceof String
           ) {
             const base64 = event.target?.result.split(',').pop();
-            if (base64) {
+            if (base64 !== undefined || base64 !== null) {
               const outputFile: OutputFile = {
                 name: file.name,
                 type: file.type,
