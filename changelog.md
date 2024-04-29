@@ -1,3 +1,5 @@
+2024-04-29 - 61f578cf1dcbff808e64ba8b915fb853a74d2932 - Input/FileInput.vue - File input create output file for 0 byte files
+
 2024-04-09 - 2b3e650eecb38e9f3ea731e84f167d7c950a641a - Comments/Comment.vue - Hardcoded delete warning is replaced by oxd-alert warning
 
 2024-03-21 - 8319dbeeb35e6aa50fb955ea075ebea5ba30bf43 - ListTable/ListTable.vue - Table header truncate improvments
