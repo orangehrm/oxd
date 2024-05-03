@@ -1513,7 +1513,7 @@ export const oxdMoveDown: icon = {
   name: 'oxd-move-down',
   value: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C12.5523 4 13 4.44772 13 5V16.5858L17.2929 12.2929C17.6834 11.9024 18.3166 11.9024 18.7071 12.2929C19.0976 12.6834 19.0976 13.3166 18.7071 13.7071L12.7071 19.7071C12.5196 19.8946 12.2652 20 12 20C11.7348 20 11.4804 19.8946 11.2929 19.7071L5.29289 13.7071C4.90237 13.3166 4.90237 12.6834 5.29289 12.2929C5.68342 11.9024 6.31658 11.9024 6.70711 12.2929L11 16.5858V5C11 4.44772 11.4477 4 12 4Z" style="fill:currentColor" />
-  </svg>`
+  </svg>`,
 };
 
 export const oxdTickCircle: icon = {
@@ -1521,7 +1521,14 @@ export const oxdTickCircle: icon = {
   value: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path style="fill: none; stroke: currentColor" d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <path style="fill: none; stroke: currentColor" d="M7.75 12L10.58 14.83L16.25 9.17004" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>`
+</svg>`,
+};
+
+export const oxdShortlist: icon = {
+  name: 'oxd-shortlist',
+  value: `<svg viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg" fill="none">
+  <g id="icon" .cls-1 transform="translate(42.666667, 42.666667)"> <path d="M377.757355,253.659504 L411.575978,279.67383 L291.053891,436.352543 L188.618568,346.721636 L216.714765,314.611697 L284.928,374.314667 L377.757355,253.659504 Z M186.666667,192 C246.976161,192 296.152141,241.030192 298.573247,302.451464 L298.666667,307.2 L298.666,321.456 L281.877333,343.274667 L214.709805,284.506445 L158.515501,348.728507 L198.825,383.999 L7.10542736e-15,384 L7.10542736e-15,307.2 C7.10542736e-15,245.167377 47.6682427,194.586369 107.383368,192.096089 L112,192 L186.666667,192 Z M149.333333,7.10542736e-15 C190.570595,7.10542736e-15 224,33.4294053 224,74.6666667 C224,114.529353 192.762078,147.096031 153.430084,149.222851 L149.333333,149.333333 C108.096072,149.333333 74.6666667,115.903928 74.6666667,74.6666667 C74.6666667,34.8039807 105.904589,2.23730242 145.236582,0.110482405 L149.333333,7.10542736e-15 Z" id="Combined-Shape" style="fill:currentColor"> </path> </g>
+  </svg>`,
 };
 
 const icons: Icons = {
@@ -1697,6 +1704,7 @@ const icons: Icons = {
   'oxd-move-up': oxdMoveUp,
   'oxd-move-down': oxdMoveDown,
   'oxd-tick-circle': oxdTickCircle,
+  'oxd-shortlist': oxdShortlist,
 };
 
 export default icons;

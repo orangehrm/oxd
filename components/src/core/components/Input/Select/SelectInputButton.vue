@@ -10,6 +10,7 @@
       :class="dropdownButtonClasses"
       :label="modelValue ? modelValue.label : buttonData.label"
       :iconName="buttonIconName"
+      :hideIcon="buttonData.hideIcon"
       :iconSize="buttonData.iconSize"
       :iconStyle="buttonData.iconStyle"
       :hide-dropdown-label="hideDropdownLabel"
@@ -87,7 +88,11 @@
           <div class="w-100 d-flex align-center justify-between">
             <span class="label">{{ $vt(modelValue.label) }}</span>
             <oxd-icon-button
-              :name="dropdownOpen ? dropdownTriggerCloseIcon : dropdownTriggerOpenIcon"
+              :name="
+                dropdownOpen
+                  ? dropdownTriggerCloseIcon
+                  : dropdownTriggerOpenIcon
+              "
               size="xxx-small"
               class="oxd-select-dropdown-trigger"
               @click="wholeButtonClickable ? {} : onToggleDropdown()"
@@ -107,7 +112,9 @@
         v-slot:iconRight
       >
         <oxd-icon-button
-          :name="dropdownOpen ? dropdownTriggerCloseIcon : dropdownTriggerOpenIcon"
+          :name="
+            dropdownOpen ? dropdownTriggerCloseIcon : dropdownTriggerOpenIcon
+          "
           size="xxx-small"
           class="oxd-select-dropdown-trigger"
           :class="{
@@ -309,6 +316,9 @@ export default defineComponent({
 
   computed: {
     buttonIconName(): boolean {
+      if (this.buttonData.hideIcon) {
+        return null;
+      }
       if (this.hideDropdownLabel) {
         return this.buttonData.iconName;
       } else {
@@ -363,6 +373,7 @@ export default defineComponent({
         label: 'Button',
         labelMini: null,
         iconName: 'plus',
+        hideIcon: false,
         iconSize: 'small',
         iconStyle: null,
         iconImageSrc: null,
