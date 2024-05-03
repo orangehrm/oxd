@@ -368,7 +368,7 @@ export default defineComponent({
       const initialObject = {
         label: 'Button',
         labelMini: null,
-        iconName: ' ',
+        iconName: 'plus',
         iconSize: 'small',
         iconStyle: null,
         iconImageSrc: null,
