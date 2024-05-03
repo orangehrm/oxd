@@ -1,3 +1,5 @@
+2024-05-03 - 0730e0e90cdeea36fd64f7d5fd3e3aaf01a138d6 - Icon/icons.ts - Add oxd-shortlist icon
+
 2024-04-29 - 61f578cf1dcbff808e64ba8b915fb853a74d2932 - Input/FileInput.vue - File input create output file for 0 byte files
 
 2024-04-09 - 2b3e650eecb38e9f3ea731e84f167d7c950a641a - Comments/Comment.vue - Hardcoded delete warning is replaced by oxd-alert warning
