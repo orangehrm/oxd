@@ -10,7 +10,6 @@
       :class="dropdownButtonClasses"
       :label="modelValue ? modelValue.label : buttonData.label"
       :iconName="buttonIconName"
-      :hideIcon="buttonData.hideIcon"
       :iconSize="buttonData.iconSize"
       :iconStyle="buttonData.iconStyle"
       :hide-dropdown-label="hideDropdownLabel"
@@ -316,9 +315,6 @@ export default defineComponent({
 
   computed: {
     buttonIconName(): boolean {
-      if (this.buttonData.hideIcon) {
-        return null;
-      }
       if (this.hideDropdownLabel) {
         return this.buttonData.iconName;
       } else {
@@ -372,8 +368,7 @@ export default defineComponent({
       const initialObject = {
         label: 'Button',
         labelMini: null,
-        iconName: 'plus',
-        hideIcon: false,
+        iconName: ' ',
         iconSize: 'small',
         iconStyle: null,
         iconImageSrc: null,
