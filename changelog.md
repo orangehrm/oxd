@@ -1,3 +1,7 @@
+2024-05-06 - 78c22c31a971adbf9a9c146f871994bcf7eaa648 - components/LinearProgress/LinearProgress.vue - Add new component LinearProgress to support linear progress
+
+2024-05-06 - e9f660cd0022162a017d8fc58f7690cba72be1af - Icon/icons.ts - Add oxd-time-zone icon
+
 2024-05-03 - 0730e0e90cdeea36fd64f7d5fd3e3aaf01a138d6 - Icon/icons.ts - Add oxd-shortlist icon
 
 2024-04-29 - 61f578cf1dcbff808e64ba8b915fb853a74d2932 - Input/FileInput.vue - File input create output file for 0 byte files
