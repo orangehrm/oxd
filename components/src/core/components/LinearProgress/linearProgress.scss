@@ -1,0 +1,34 @@
+@import "../../../styles";
+
+.oxd-linear-progress-wrapper {
+  display: flex;
+  align-items: center;
+  .oxd-linear-progress-outer {
+    background-color: $oxd-interface-gray-lighten-1-color;
+    height: 8px;
+    border-radius: 4px;
+    width: 100%;
+  }
+
+  .oxd-progress {
+    margin: 0;
+  }
+
+  .oxd-progress .oxd-linear-progress-inner {
+    background-color: $oxd-interface-gray-darken-1-color;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 8px;
+    width: var(--value);
+    border-radius: 4px;
+    transition: width 0.8s;
+  }
+
+  .oxd-linear-progress-value {
+    color: $oxd-interface-gray-darken-1-color;
+    font-size: 12px;
+    font-weight: 800;
+    margin-left: 0.25rem;
+  }
+}
