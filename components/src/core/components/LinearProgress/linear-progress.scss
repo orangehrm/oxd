@@ -1,0 +1,35 @@
+@import "../../../styles";
+@import 'variables';
+
+.oxd-linear-progress-wrapper {
+  display: flex;
+  align-items: center;
+  .oxd-linear-progress-outer {
+    background-color: $oxd-linear-progress-background-color;
+    height: $oxd-linear-progress-bar-height;
+    border-radius: $oxd-linear-progress-bar-radius;
+    width: 100%;
+  }
+
+  .oxd-progress {
+    margin: 0;
+  }
+
+  .oxd-progress .oxd-linear-progress-inner {
+    background-color: $oxd-linear-progress-fill-color;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: $oxd-linear-progress-bar-height;
+    width: var(--progress-value);
+    border-radius: $oxd-linear-progress-bar-radius;
+    transition: width 0.8s;
+  }
+
+  .oxd-linear-progress-value {
+    color: $oxd-linear-progress-value-text-color;
+    font-size: $oxd-linear-progress-value-text-size;
+    font-weight: $oxd-linear-progress-value-text-weight;
+    margin-left: 0.25rem;
+  }
+}
