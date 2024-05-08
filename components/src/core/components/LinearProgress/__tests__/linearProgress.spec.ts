@@ -9,7 +9,7 @@ describe('LinearProgress.vue', () => {
     expect(wrapper.find('.oxd-linear-progress-value').exists()).toBeFalsy();
     expect(
       wrapper.find('.oxd-linear-progress-inner').attributes('style'),
-    ).toContain('--value: 0%');
+    ).toContain('--progress-value: 0%');
   });
 
   it('renders OXD LinearProgress with custom value', () => {
@@ -18,7 +18,7 @@ describe('LinearProgress.vue', () => {
     });
     expect(
       wrapper.find('.oxd-linear-progress-inner').attributes('style'),
-    ).toContain('--value: 60%');
+    ).toContain('--progress-value: 60%');
   });
 
   it('show progress value as a percentage', () => {
@@ -44,7 +44,7 @@ describe('LinearProgress.vue', () => {
     });
     expect(
       wrapper.find('.oxd-linear-progress-inner').attributes('style'),
-    ).toContain('--value: 55%');
+    ).toContain('--progress-value: 55%');
     expect(
       wrapper.find('.oxd-linear-progress-outer').attributes('style'),
     ).toContain('background-color: rgb(255, 123, 29)');
@@ -72,7 +72,9 @@ describe('LinearProgress.vue', () => {
     const wrapper = mount(LinearProgress, {
       props: {progressValue: '', showPercentageValue: true},
     });
-    expect(wrapper.find('.oxd-linear-progress-value').text()).toStrictEqual('');
+    expect(wrapper.find('.oxd-linear-progress-value').text()).toStrictEqual(
+      '0%',
+    );
   });
 
   it('when the percentage value is greater than 100', () => {

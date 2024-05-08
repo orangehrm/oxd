@@ -21,7 +21,7 @@
     left: 0;
     bottom: 0;
     height: $oxd-linear-progress-bar-height;
-    width: var(--value);
+    width: var(--progress-value);
     border-radius: $oxd-linear-progress-bar-radius;
     transition: width 0.8s;
   }

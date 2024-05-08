@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, PropType} from 'vue';
+import {computed, defineComponent} from 'vue';
 
 export default defineComponent({
   name: 'oxd-linear-progress',
@@ -35,13 +35,13 @@ export default defineComponent({
       default: false,
     },
     progressBarHeight: {
-      type: String as PropType<string>,
+      type: String,
     },
     progressBarFillColor: {
-      type: String as PropType<string>,
+      type: String,
     },
     progressBarBackgroundColor: {
-      type: String as PropType<string>,
+      type: String,
     },
     progressPercentageValueStyles: {
       type: Object,
@@ -51,20 +51,13 @@ export default defineComponent({
 
   setup: function(props) {
     const progressPercentage = computed(() => {
-      if (props.progressValue || props.progressValue === 0) {
-        if (props.progressValue < 0 || props.progressValue === 0) {
-          return '0%';
-        } else if (props.progressValue > 100) {
-          return '100%';
-        } else {
-          return props.progressValue.toString() + '%';
-        }
-      }
-      return '';
+      if (props.progressValue > 0)
+        return `${Math.min(props.progressValue, 100)}%`;
+      return '0%';
     });
 
     const customProgressBarFillStyles: object = computed(() => ({
-      '--value': progressPercentage.value,
+      '--progress-value': progressPercentage.value,
       ...(props.progressBarFillColor && {
         'background-color': props.progressBarFillColor,
       }),
@@ -90,4 +83,4 @@ export default defineComponent({
 });
 </script>
 
-<style src="./linearProgress.scss" lang="scss" scoped></style>
+<style src="./linear-progress.scss" lang="scss" scoped></style>
