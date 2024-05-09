@@ -1,3 +1,5 @@
+2024-05-09 - 5a8b404db53df944733a36a373b1429c98a6d79d - Button/button.scss, Button/types.ts, Button/_variables.scss, styles/_colors.scss - Add label-feedback-reject button
+
 2024-05-06 - 78c22c31a971adbf9a9c146f871994bcf7eaa648 - components/LinearProgress/LinearProgress.vue - Add new component LinearProgress to support linear progress
 
 2024-05-06 - e9f660cd0022162a017d8fc58f7690cba72be1af - Icon/icons.ts - Add oxd-time-zone icon
