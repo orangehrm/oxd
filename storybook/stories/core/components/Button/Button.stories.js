@@ -137,6 +137,7 @@ LabelFeedback.argTypes = {
         'label-feedback-danger',
         'label-feedback-warn',
         'label-feedback-success',
+        'label-feedback-reject'
       ],
     },
   },
