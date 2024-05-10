@@ -315,6 +315,20 @@ $oxd-button-color--label-feedback-success-hover: $oxd-button-font-color--label-f
 $oxd-button-color--label-feedback-success-focus: $oxd-button-color--label-feedback-success-hover !default;
 $oxd-button-color--label-feedback-success-inactive: $oxd-interface-gray-lighten-1-color !default;
 
+/* Reject */
+$oxd-button-font-color--label-feedback-reject: $oxd-feedback-reject-color !default;
+$oxd-button-color--label-feedback-reject: rgba(
+  $oxd-feedback-reject-color,
+  0.2
+) !default;
+$oxd-button-color--label-feedback-reject-pressed: rgba(
+  $oxd-feedback-reject-color,
+  0.2
+) !default;
+$oxd-button-color--label-feedback-reject-hover: $oxd-button-font-color--label-feedback-reject !default;
+$oxd-button-color--label-feedback-reject-focus: $oxd-button-color--label-feedback-reject-hover !default;
+$oxd-button-color--label-feedback-reject-inactive: $oxd-interface-gray-lighten-1-color !default;
+
 /* Text button */
 $oxd-button-font-color--label-text: $oxd-interface-gray-darken-1-color !default;
 $oxd-button-color--label-text: rgba(
@@ -425,6 +439,14 @@ $oxd-label-feedback-buttons: (
     focus: $oxd-button-color--label-feedback-success-focus,
     hover: $oxd-button-color--label-feedback-success-hover,
     inactive: $oxd-button-color--label-feedback-success-inactive,
+  ),
+  reject: (
+    font: $oxd-button-font-color--label-feedback-reject,
+    active: $oxd-button-color--label-feedback-reject,
+    pressed: $oxd-button-color--label-feedback-reject-pressed,
+    focus: $oxd-button-color--label-feedback-reject-focus,
+    hover: $oxd-button-color--label-feedback-reject-hover,
+    inactive: $oxd-button-color--label-feedback-reject-inactive,
   ),
   text: (
     font: $oxd-button-font-color--label-text,

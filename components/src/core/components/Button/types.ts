@@ -28,6 +28,7 @@ export const TYPE_LABEL_FEEDBACK_INFO = 'label-feedback-info';
 export const TYPE_LABEL_FEEDBACK_DANGER = 'label-feedback-danger';
 export const TYPE_LABEL_FEEDBACK_WARN = 'label-feedback-warn';
 export const TYPE_LABEL_FEEDBACK_SUCCESS = 'label-feedback-success';
+export const TYPE_LABEL_FEEDBACK_REJECT = 'label-feedback-reject';
 
 export const TYPE_TEXT = 'text';
 export const TYPE_TOOL = 'tool';
@@ -68,6 +69,7 @@ export const TYPES = [
   TYPE_LABEL_FEEDBACK_DANGER,
   TYPE_LABEL_FEEDBACK_WARN,
   TYPE_LABEL_FEEDBACK_SUCCESS,
+  TYPE_LABEL_FEEDBACK_REJECT,
   TYPE_TEXT,
   TYPE_TOOL,
   TYPE_GLASS,
@@ -101,6 +103,7 @@ export type ButtonType =
   | typeof TYPE_LABEL_FEEDBACK_DANGER
   | typeof TYPE_LABEL_FEEDBACK_WARN
   | typeof TYPE_LABEL_FEEDBACK_SUCCESS
+  | typeof TYPE_LABEL_FEEDBACK_REJECT
   | typeof TYPE_TEXT
   | typeof TYPE_TOOL;
 

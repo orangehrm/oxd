@@ -98,6 +98,9 @@
     &-success {
       @include oxd-button-label-feedback('success');
     }
+    &-reject {
+      @include oxd-button-label-feedback('reject');
+    }
   }
 
   /* Text Button */
