@@ -14,7 +14,7 @@ describe('LinearProgress.vue', () => {
 
   it('renders OXD LinearProgress with custom value', () => {
     const wrapper = mount(LinearProgress, {
-      props: {progressValue: '60'},
+      props: {progressValue: 60},
     });
     expect(
       wrapper.find('.oxd-linear-progress-inner').attributes('style'),
@@ -91,6 +91,24 @@ describe('LinearProgress.vue', () => {
     });
     expect(wrapper.find('.oxd-linear-progress-value').text()).toStrictEqual(
       '0%',
+    );
+  });
+
+  it('when the percentage value is having decimal values', () => {
+    const wrapper = mount(LinearProgress, {
+      props: {progressValue: 5.78, showPercentageValue: true},
+    });
+    expect(wrapper.find('.oxd-linear-progress-value').text()).toStrictEqual(
+      '5.78%',
+    );
+  });
+
+  it('when the percentage value is having decimal values than 2 decimals', () => {
+    const wrapper = mount(LinearProgress, {
+      props: {progressValue: 5.7893883, showPercentageValue: true},
+    });
+    expect(wrapper.find('.oxd-linear-progress-value').text()).toStrictEqual(
+      '5.79%',
     );
   });
 });

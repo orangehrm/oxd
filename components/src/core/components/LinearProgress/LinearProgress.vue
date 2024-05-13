@@ -52,7 +52,7 @@ export default defineComponent({
   setup: function(props) {
     const progressPercentage = computed(() => {
       if (props.progressValue > 0)
-        return `${Math.min(props.progressValue, 100)}%`;
+        return `${Math.min(Number(props.progressValue.toFixed(2)), 100)}%`;
       return '0%';
     });
 
