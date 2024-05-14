@@ -1,3 +1,7 @@
+2024-05-14 - f91c5a9ac899c5e8a431447d7611d95b9ca38cce - styles/_colors.scss - label-feedback-reject color changed
+
+2024-05-14 - f91c5a9ac899c5e8a431447d7611d95b9ca38cce - Icon/icons.ts - Add oxd-unarchive icon
+
 2024-05-09 - 5a8b404db53df944733a36a373b1429c98a6d79d - Button/button.scss, Button/types.ts, Button/_variables.scss, styles/_colors.scss - Add label-feedback-reject button
 
 2024-05-06 - 78c22c31a971adbf9a9c146f871994bcf7eaa648 - components/LinearProgress/LinearProgress.vue - Add new component LinearProgress to support linear progress

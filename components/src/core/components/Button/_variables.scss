@@ -319,7 +319,7 @@ $oxd-button-color--label-feedback-success-inactive: $oxd-interface-gray-lighten-
 $oxd-button-font-color--label-feedback-reject: $oxd-feedback-reject-color !default;
 $oxd-button-color--label-feedback-reject: rgba(
   $oxd-feedback-reject-color,
-  0.2
+  0.1
 ) !default;
 $oxd-button-color--label-feedback-reject-pressed: rgba(
   $oxd-feedback-reject-color,
