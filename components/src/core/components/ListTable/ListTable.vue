@@ -21,6 +21,7 @@
           :class="header.class"
           :order="sortFields[header.sortField]"
           class="oxd-padding-cell oxd-table-th"
+          :loading="loading && skeleton"
           @order="onOrderChange($event, header)"
         >
           <oxd-icon
@@ -102,7 +103,7 @@ import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vu
 import TableBody from '@orangehrm/oxd/core/components/CardTable/Table/TableBody.vue';
 import CellContainer from '@orangehrm/oxd/core/components/ListTable/CellContainer.vue';
 import TableHeader from '@orangehrm/oxd/core/components/CardTable/Table/TableHeader.vue';
-import TableHeaderCell from '@orangehrm/oxd/core/components/CardTable/Table/TableHeaderCell.vue';
+import TableHeaderCell from './TableHeaderCell.vue';
 
 export default defineComponent({
   name: 'oxd-list-table',
@@ -259,15 +260,6 @@ export default defineComponent({
       return sort;
     });
 
-    const tableRowClasses = computed(() =>
-      props.items.map((_, index: number) => ({
-        'oxd-table-card': true,
-        'oxd-row-highlight--success':
-          [...flashIndexes.value, ...props.flashRows].find(i => i === index) !==
-          undefined,
-      })),
-    );
-
     const computedItems = computed(() => {
       if (props.skeleton) {
         const defaultValue = {
@@ -289,6 +281,15 @@ export default defineComponent({
       }
       return props.items;
     });
+
+    const tableRowClasses = computed(() =>
+      computedItems.value.map((_, index: number) => ({
+        'oxd-table-card': true,
+        'oxd-row-highlight--success':
+          [...flashIndexes.value, ...props.flashRows].find(i => i === index) !==
+          undefined,
+      })),
+    );
 
     const onOrderChange = (order: Order, column: CardHeader) => {
       const orderFields = {};
