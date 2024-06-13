@@ -164,7 +164,7 @@ export default defineComponent({
     },
     skeletonCount: {
       type: Number,
-      default: 10,
+      default: 15,
     },
     partialLoading: {
       type: Boolean,
