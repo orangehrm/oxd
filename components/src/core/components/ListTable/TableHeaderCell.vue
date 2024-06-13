@@ -1,6 +1,6 @@
 <template>
   <div class="oxd-table-header-cell" role="columnheader">
-    <oxd-skeleton v-if="loading" animate></oxd-skeleton>
+    <oxd-skeleton v-if="loading" animate :style="{ maxWidth: '300px' }"></oxd-skeleton>
     <template v-else>
       <slot></slot>
       <oxd-card-th-sort
