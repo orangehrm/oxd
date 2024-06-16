@@ -30,6 +30,10 @@
   }
 }
 
+.oxd-table-card-no-hover {
+  pointer-events: none;
+}
+
 .oxd-row-highlight {
   &--info {
     background-color: rgba($oxd-feedback-info-color, 0.10);
