@@ -725,7 +725,7 @@ export const oxdPDF: icon = {
   <!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
   <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-     viewBox="0 0 482.14 482.14" style="enable-background:new 0 0 482.14 482.14;" xml:space="preserve" >
+     viewBox="0 0 482.14 482.14" style="enable-background:new 0 0 482.14 482.14;" xml:space="preserve" fill="#64728c">
   <g>
     <path style="fill:currentColor" d="M142.024,310.194c0-8.007-5.556-12.782-15.359-12.782c-4.003,0-6.714,0.395-8.132,0.773v25.69
       c1.679,0.378,3.743,0.504,6.588,0.504C135.57,324.379,142.024,319.1,142.024,310.194z"/>
@@ -846,7 +846,7 @@ export const oxdQuickAccessGoals: icon = {
    viewBox="0 0 1417.000000 1417.000000"
    preserveAspectRatio="xMidYMid meet">
   <g transform="translate(0.000000,1417.000000) scale(0.100000,-0.100000)"
-   stroke="none">
+  fill="#64728c" stroke="none">
   <path style="fill:currentColor" d="M6330 13641 c0 -16 -61 -31 -127 -31 -35 0 -73 -5 -85 -11 -11 -6
   -54 -15 -97 -20 -42 -5 -103 -13 -136 -17 -33 -4 -67 -12 -75 -17 -14 -9 -64
   -18 -170 -32 -25 -3 -54 -12 -65 -19 -11 -8 -36 -14 -57 -14 -20 0 -40 -4 -43
@@ -1306,7 +1306,7 @@ export const oxdOKRs: icon = {
 
 export const oxdIndividual: icon = {
   name: 'oxd-individual',
-  value: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.000000 512.000000" >
+  value: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.000000 512.000000" fill="#64728c">
   <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
   fill="black" stroke="none">
   <path style="fill:currentColor" d="M2385 5104 c-33 -8 -98 -33 -145 -56 -68 -34 -103 -60 -171 -128 -73
