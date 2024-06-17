@@ -285,7 +285,7 @@ export default defineComponent({
     const tableRowClasses = computed(() =>
       computedItems.value.map((_, index: number) => ({
         'oxd-table-card': true,
-        'oxd-table-card-no-hover': props.loading && props.skeleton,
+        '--loaded': !(props.loading && props.skeleton),
         'oxd-row-highlight--success':
           [...flashIndexes.value, ...props.flashRows].find(i => i === index) !==
           undefined,
