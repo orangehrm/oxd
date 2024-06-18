@@ -102,8 +102,8 @@ import TableRow from '@orangehrm/oxd/core/components/CardTable/Table/TableRow.vu
 import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
 import TableBody from '@orangehrm/oxd/core/components/CardTable/Table/TableBody.vue';
 import CellContainer from '@orangehrm/oxd/core/components/ListTable/CellContainer.vue';
-import TableHeader from '@orangehrm/oxd/core/components/CardTable/Table/TableHeader.vue';
-import TableHeaderCell from './TableHeaderCell.vue';
+import TableHeader from '@orangehrm/oxd/core/components/ListTable/TableHeader.vue';
+import TableHeaderCell from '@orangehrm/oxd/core/components/ListTable/TableHeaderCell.vue';
 
 export default defineComponent({
   name: 'oxd-list-table',
