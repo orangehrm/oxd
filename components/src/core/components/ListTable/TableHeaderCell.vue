@@ -1,6 +1,10 @@
 <template>
   <div class="oxd-table-header-cell" role="columnheader">
-    <oxd-skeleton v-if="loading" animate :style="{ maxWidth: '300px' }"></oxd-skeleton>
+    <oxd-skeleton
+      v-if="loading"
+      animate
+      :style="{maxWidth: '300px'}"
+    ></oxd-skeleton>
     <template v-else>
       <slot></slot>
       <oxd-card-th-sort
@@ -51,8 +55,4 @@ export default defineComponent({
 });
 </script>
 
-<style
-  src="./table-header-cell.scss"
-  lang="scss"
-  scoped
-></style>
+<style src="./table-header-cell.scss" lang="scss" scoped></style>
