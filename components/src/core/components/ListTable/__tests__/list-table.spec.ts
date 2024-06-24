@@ -71,7 +71,7 @@ describe('ListTable > ListTable.vue', () => {
         headers: DUMMY_DATA.headers,
       },
     });
-    expect(wrapper.findAllComponents(Skeleton).length).toEqual(20); // 10 skeleton per column
+    expect(wrapper.findAllComponents(Skeleton).length).toEqual(32); // 15 skeletons per column and one for each header
   });
 
   it('should render skeleton if partial render is true && not loading', () => {
