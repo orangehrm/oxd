@@ -21,7 +21,9 @@
           :class="header.class"
           :order="sortFields[header.sortField]"
           class="oxd-padding-cell oxd-table-th"
-          :loading="loading && skeleton"
+          :loading="
+            loading && skeleton && !(header.name == 'action' && !header.title)
+          "
           @order="onOrderChange($event, header)"
         >
           <oxd-icon
@@ -225,16 +227,25 @@ export default defineComponent({
     });
 
     const cardHeaders = computed(() => {
+      const headers = props.headers.map(header => {
+        if (header.name === 'action' && !header.title) {
+          return {
+            ...header,
+            hideOnLoading: true,
+          };
+        }
+        return header;
+      });
       if (props.selectable) {
         return [
           {
             name: 'selector',
             cellType: 'oxd-table-cell-checkbox',
           },
-          ...props.headers,
+          ...headers,
         ];
       }
-      return props.headers;
+      return headers;
     });
 
     const checkIcon = computed(() => getCheckIcon(props.selected, props.items));

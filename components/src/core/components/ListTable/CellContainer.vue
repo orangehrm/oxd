@@ -91,7 +91,11 @@ export default defineComponent({
           header: header,
           rowItem: rowData,
           class: header.class,
-          loading: this.loading,
+          loading: this.loading && header.hideOnLoading !== true,
+          style:
+            header.hideOnLoading === true && this.loading
+              ? {display: 'none'}
+              : {},
         },
         header.cellProps ?? {},
         cellRenderResponse?.props ?? {},
