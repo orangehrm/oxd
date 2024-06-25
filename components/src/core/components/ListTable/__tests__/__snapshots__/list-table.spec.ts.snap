@@ -21,7 +21,7 @@ exports[`ListTable > ListTable.vue renders OXD ListTable > ListTable 1`] = `
     </div>
   </div>
   <div class="oxd-table-body" role="rowgroup">
-    <div class="oxd-table-card">
+    <div class="oxd-table-card --loaded">
       <div class="oxd-table-row oxd-table-row--with-border" role="row">
         <div class="oxd-table-cell oxd-padding-cell" role="cell">
           <div class="oxd-checkbox-wrapper"><label class="">
@@ -38,7 +38,7 @@ exports[`ListTable > ListTable.vue renders OXD ListTable > ListTable 1`] = `
         </div>
       </div>
     </div>
-    <div class="oxd-table-card">
+    <div class="oxd-table-card --loaded">
       <div class="oxd-table-row oxd-table-row--with-border" role="row">
         <div class="oxd-table-cell oxd-padding-cell" role="cell">
           <div class="oxd-checkbox-wrapper"><label class="">
@@ -80,7 +80,7 @@ exports[`ListTable > ListTable.vue should render OXD ListTable without selectabl
     </div>
   </div>
   <div class="oxd-table-body" role="rowgroup">
-    <div class="oxd-table-card">
+    <div class="oxd-table-card --loaded">
       <div class="oxd-table-row oxd-table-row--with-border" role="row">
         <div class="oxd-table-cell oxd-padding-cell" role="cell">
           <div class="oxd-checkbox-wrapper"><label class="">
@@ -97,7 +97,7 @@ exports[`ListTable > ListTable.vue should render OXD ListTable without selectabl
         </div>
       </div>
     </div>
-    <div class="oxd-table-card">
+    <div class="oxd-table-card --loaded">
       <div class="oxd-table-row oxd-table-row--with-border" role="row">
         <div class="oxd-table-cell oxd-padding-cell" role="cell">
           <div class="oxd-checkbox-wrapper"><label class="">

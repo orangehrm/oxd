@@ -1,3 +1,5 @@
+2024-06-26 - f91c5a9ac899c5e8a431447d7611d95b9ca38cce - components/CardTable/Decorator/DefaultCardMobile.vue, components/CardTable/Decorator/DefaultCardWeb.vue, components/CardTable/Decorator/card.scss, components/ListTable/CellContainer.vue, components/ListTable/CellContainer.vue, components/ListTable/ListTable.vue, components/ListTable/TableHeader.vue, components/ListTable/TableHeaderCell.vue, components/src/core/components/ListTable/_variables.scss, components/ListTable/table-header-cell.scss, components/ListTable/table-header.scss - Fixed Skeleton loader related issues in VUE lists
+
 2024-06-24 - 26320f5efcb9e3023ef7cfb7d095042b6963f8dd - Icon/icons.ts - Add oxd-email & oxd-document-text-3 icons
 
 2024-06-17 - d2aa0e5610ea393c9cd0e963123a84e4ff8d4f4c - Icon/icons.ts - Add oxd-dollar-note,oxd-document-consent,oxd-document-disclosure,oxd-document-info,oxd-document-home,oxd-document-text-2,oxd-employee-info-card,oxd-employee-reference,oxd-employee-question,oxd-employee-welcome,oxd-contact,oxd-emergency-contact,oxd-wallet icons

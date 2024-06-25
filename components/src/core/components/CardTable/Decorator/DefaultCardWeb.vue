@@ -47,6 +47,7 @@ export default defineComponent({
       return this.items.map((_, index) => {
         return {
           'oxd-table-card': true,
+          '--loaded': true,
           [`oxd-row-highlight--${highlightObject.type}`]:
             highlightObject.rowIndexes.indexOf(index) > -1,
         };

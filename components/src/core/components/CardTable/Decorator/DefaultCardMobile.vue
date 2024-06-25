@@ -91,6 +91,7 @@ export default defineComponent({
     classes(): object {
       return {
         'oxd-table-card': true,
+        '--loaded': true,
         '--mobile': true,
       };
     },

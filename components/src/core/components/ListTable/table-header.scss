@@ -1,0 +1,10 @@
+@import '../../../styles';
+@import 'variables';
+
+.oxd-table-header {
+  font-weight: $oxd-table-header-font-weight;
+  display: flex;
+  flex-direction: column;
+  min-height: 45px;
+  justify-content: center;
+}

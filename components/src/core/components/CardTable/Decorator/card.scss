@@ -19,15 +19,18 @@
   border-radius: $oxd-card-table-decorator-card-radius;
   background-color: $oxd-card-table-decorator-card-color;
 
-  &:hover {
-    color: $oxd-card-table-row-hover-font-color;
-    background-color: $oxd-card-table-row-hover-bg-color;
+  &.--loaded{
+    &:hover {
+      color: $oxd-card-table-row-hover-font-color;
+      background-color: $oxd-card-table-row-hover-bg-color;
+    }
+
+    &:focus-within {
+      color: $oxd-card-table-row-hover-font-color;
+      background-color: $oxd-card-table-row-hover-bg-color;
+    }
   }
 
-  &:focus-within {
-    color: $oxd-card-table-row-hover-font-color;
-    background-color: $oxd-card-table-row-hover-bg-color;
-  }
 }
 
 .oxd-row-highlight {

@@ -21,6 +21,9 @@
           :class="header.class"
           :order="sortFields[header.sortField]"
           class="oxd-padding-cell oxd-table-th"
+          :loading="
+            loading && skeleton && !(header.name == 'action' && !header.title)
+          "
           @order="onOrderChange($event, header)"
         >
           <oxd-icon
@@ -101,8 +104,8 @@ import TableRow from '@orangehrm/oxd/core/components/CardTable/Table/TableRow.vu
 import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
 import TableBody from '@orangehrm/oxd/core/components/CardTable/Table/TableBody.vue';
 import CellContainer from '@orangehrm/oxd/core/components/ListTable/CellContainer.vue';
-import TableHeader from '@orangehrm/oxd/core/components/CardTable/Table/TableHeader.vue';
-import TableHeaderCell from '@orangehrm/oxd/core/components/CardTable/Table/TableHeaderCell.vue';
+import TableHeader from '@orangehrm/oxd/core/components/ListTable/TableHeader.vue';
+import TableHeaderCell from '@orangehrm/oxd/core/components/ListTable/TableHeaderCell.vue';
 
 export default defineComponent({
   name: 'oxd-list-table',
@@ -163,7 +166,7 @@ export default defineComponent({
     },
     skeletonCount: {
       type: Number,
-      default: 10,
+      default: 15,
     },
     partialLoading: {
       type: Boolean,
@@ -224,16 +227,25 @@ export default defineComponent({
     });
 
     const cardHeaders = computed(() => {
+      const headers = props.headers.map(header => {
+        if (header.name === 'action' && !header.title) {
+          return {
+            ...header,
+            hideOnLoading: true,
+          };
+        }
+        return header;
+      });
       if (props.selectable) {
         return [
           {
             name: 'selector',
             cellType: 'oxd-table-cell-checkbox',
           },
-          ...props.headers,
+          ...headers,
         ];
       }
-      return props.headers;
+      return headers;
     });
 
     const checkIcon = computed(() => getCheckIcon(props.selected, props.items));
@@ -259,15 +271,6 @@ export default defineComponent({
       return sort;
     });
 
-    const tableRowClasses = computed(() =>
-      props.items.map((_, index: number) => ({
-        'oxd-table-card': true,
-        'oxd-row-highlight--success':
-          [...flashIndexes.value, ...props.flashRows].find(i => i === index) !==
-          undefined,
-      })),
-    );
-
     const computedItems = computed(() => {
       if (props.skeleton) {
         const defaultValue = {
@@ -289,6 +292,16 @@ export default defineComponent({
       }
       return props.items;
     });
+
+    const tableRowClasses = computed(() =>
+      computedItems.value.map((_, index: number) => ({
+        'oxd-table-card': true,
+        '--loaded': !(props.loading && props.skeleton),
+        'oxd-row-highlight--success':
+          [...flashIndexes.value, ...props.flashRows].find(i => i === index) !==
+          undefined,
+      })),
+    );
 
     const onOrderChange = (order: Order, column: CardHeader) => {
       const orderFields = {};
