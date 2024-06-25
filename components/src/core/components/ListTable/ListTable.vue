@@ -15,15 +15,13 @@
         </oxd-card-th>
 
         <oxd-card-th
-          v-for="header in headers"
+          v-for="header in computedHeaders"
           :key="header"
           :style="header.style"
           :class="header.class"
           :order="sortFields[header.sortField]"
           class="oxd-padding-cell oxd-table-th"
-          :loading="
-            loading && skeleton && !(header.name == 'action' && !header.title)
-          "
+          :loading="loading && skeleton"
           @order="onOrderChange($event, header)"
         >
           <oxd-icon
@@ -225,27 +223,25 @@ export default defineComponent({
         }
       },
     });
-
+    const computedHeaders = computed(() => {
+      if (props.loading && props.skeleton) {
+        return props.headers.filter(
+          header => !(header.name === 'action' && !header.title),
+        );
+      }
+      return props.headers;
+    });
     const cardHeaders = computed(() => {
-      const headers = props.headers.map(header => {
-        if (header.name === 'action' && !header.title) {
-          return {
-            ...header,
-            hideOnLoading: true,
-          };
-        }
-        return header;
-      });
       if (props.selectable) {
         return [
           {
             name: 'selector',
             cellType: 'oxd-table-cell-checkbox',
           },
-          ...headers,
+          ...computedHeaders.value,
         ];
       }
-      return headers;
+      return computedHeaders.value;
     });
 
     const checkIcon = computed(() => getCheckIcon(props.selected, props.items));
@@ -341,6 +337,7 @@ export default defineComponent({
       onOrderChange,
       computedItems,
       tableRowClasses,
+      computedHeaders,
     };
   },
 
