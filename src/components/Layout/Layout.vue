@@ -36,6 +36,9 @@
         :toggle="collapse"
         :breadcrumb="breadcrumb"
         :menu-items="topbarMenuItems"
+        :upgrade-label="upgradeLabel"
+        :show-upgrade="showUpgrade"
+        :upgrade-url="upgradeUrl"
         @collapse="onCollapse"
       >
         <template #user-context>
@@ -106,6 +109,20 @@ export default defineComponent({
       required: true,
     },
     homeUrl: {
+      type: String,
+      required: false,
+      default: '/',
+    },
+    upgradeLabel: {
+      type: String,
+      required: false,
+      default: 'Upgrade',
+    },
+    showUpgrade: {
+      type: Boolean,
+      default: false,
+    },
+    upgradeUrl: {
       type: String,
       required: false,
       default: '/',
