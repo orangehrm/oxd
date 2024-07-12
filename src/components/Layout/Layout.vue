@@ -38,6 +38,9 @@
         :menu-items="topbarMenuItems"
         @collapse="onCollapse"
       >
+        <template #topbar-header-right-area>
+          <slot name="topbar-header-right-area"></slot>
+        </template>
         <template #user-context>
           <slot name="user-actions"></slot>
         </template>

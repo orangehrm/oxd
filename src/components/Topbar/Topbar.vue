@@ -42,6 +42,7 @@
           </oxd-text>
         </span>
       </div>
+      <slot name="topbar-header-right-area"></slot>
       <!-- User Menu Area -->
       <div class="oxd-topbar-header-userarea">
         <ul>
