@@ -42,14 +42,7 @@
           </oxd-text>
         </span>
       </div>
-      <!-- Upgrade Button Area -->
-      <div class="oxd-topbar-header-upgradearea">
-        <upgrade-button
-          :label="upgradeLabel"
-          :show-upgrade-button="showUpgrade"
-          :upgrade-url="upgradeUrl"
-        />
-      </div>
+      <slot name="topbar-header-right-area"></slot>
       <!-- User Menu Area -->
       <div class="oxd-topbar-header-userarea">
         <ul>
@@ -75,7 +68,6 @@ import Icon from '@/components/Icon/Icon.vue';
 import type {TopMenuItem, User, Breadcrumb} from './types';
 import Navigation from '@/components/Topbar/Navigation.vue';
 import UserDropdown from '@/components/Topbar/UserDropdown.vue';
-import UpgradeButton from '@/components/Topbar/UpgradeButton.vue';
 
 export default defineComponent({
   name: 'OxdTopBar',
@@ -85,7 +77,6 @@ export default defineComponent({
     'oxd-icon': Icon,
     'oxd-navigation': Navigation,
     'oxd-user-dropdown': UserDropdown,
-    'upgrade-button': UpgradeButton,
   },
 
   props: {
@@ -108,18 +99,6 @@ export default defineComponent({
       type: Object as PropType<Breadcrumb>,
       required: false,
       default: () => ({}),
-    },
-    upgradeLabel: {
-      type: String,
-      required: true,
-    },
-    showUpgrade: {
-      type: Boolean,
-      required: true,
-    },
-    upgradeUrl: {
-      type: String,
-      required: true,
     },
   },
 

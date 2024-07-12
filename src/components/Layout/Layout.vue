@@ -41,6 +41,9 @@
         :upgrade-url="upgradeUrl"
         @collapse="onCollapse"
       >
+        <template #topbar-header-right-area>
+          <slot name="topbar-header-right-area"></slot>
+        </template>
         <template #user-context>
           <slot name="user-actions"></slot>
         </template>
@@ -109,20 +112,6 @@ export default defineComponent({
       required: true,
     },
     homeUrl: {
-      type: String,
-      required: false,
-      default: '/',
-    },
-    upgradeLabel: {
-      type: String,
-      required: false,
-      default: 'Upgrade',
-    },
-    showUpgrade: {
-      type: Boolean,
-      default: false,
-    },
-    upgradeUrl: {
       type: String,
       required: false,
       default: '/',

@@ -33,6 +33,25 @@
     upgrade-url="https://orangehrm.com"
   >
     <p class="context-default">slot for context</p>
+    <template #topbar-header-right-area>
+      <div class="orangehrm-slot-button-container">
+        <a class="orangehrm-slot-button-link" href="https://orangehrm.com">
+          <oxd-glass-button
+            label="OHRM"
+            size="large"
+            class="orangehrm-slot-button-button"
+          >
+            <template #icon>
+              <oxd-icon
+                type="svg"
+                name="upgrade"
+                class="orangehrm-slot-button-icon"
+              ></oxd-icon>
+            </template>
+          </oxd-glass-button>
+        </a>
+      </div>
+    </template>
     <template #user-actions>
       <li role="none">
         <a href="#" role="menuitem" class="oxd-userdropdown-link"> Logout </a>
@@ -52,6 +71,7 @@
 import {topMenuItems, sidePanelItems, breadcrumb} from './mockdata';
 import Layout from '@/components/Layout/Layout.vue';
 import IconButton from '@/components/Button/Icon.vue';
+import {OxdGlassButton, OxdIcon} from '@/index';
 
 export default {
   name: 'LayoutWithUpgrade',
@@ -59,6 +79,8 @@ export default {
   components: {
     'oxd-layout': Layout,
     'oxd-icon-button': IconButton,
+    'oxd-glass-button': OxdGlassButton,
+    'oxd-icon': OxdIcon,
   },
 
   data() {
@@ -78,7 +100,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .context-default {
   background-color: rgba(255, 0, 0, 0.37);
   text-align: center;
@@ -88,5 +110,42 @@ export default {
   background-color: rgb(160 210 249);
   text-align: center;
   margin: 0 3rem;
+}
+
+::v-deep(.oxd-topbar-header-userarea) {
+  margin-left: unset;
+  align-self: center;
+}
+
+.orangehrm-slot-button {
+  &-container {
+    margin-left: auto;
+  }
+
+  &-link {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+  }
+
+  &-button {
+    font-size: 0rem;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+    padding-left: 1rem;
+    padding-right: 0.4rem;
+    align-self: center;
+    @include oxd-respond-to('md') {
+      color: $oxd-primary-one-color;
+      font-size: 1.1rem;
+      white-space: nowrap;
+      padding-right: 1rem;
+    }
+  }
+
+  &-icon {
+    color: $oxd-primary-one-color;
+    scale: 1.5;
+  }
 }
 </style>
