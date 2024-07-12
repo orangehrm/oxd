@@ -18,7 +18,7 @@
  */
 import LayoutSimple from './LayoutSimple.story.vue';
 import LayoutComplex from './LayoutComplex.story.vue';
-import LayoutWithUpgrade from '@/components/Layout/stories/LayoutWithUpgrade.vue';
+import LayoutWithButton from '@/components/Layout/stories/LayoutWithButton.vue';
 
 export default {
   title: 'Example/Layout',
@@ -44,9 +44,9 @@ Complex.parameters = {
   },
 };
 
-export const Upgrade = () => LayoutWithUpgrade;
+export const Button = () => LayoutWithButton;
 
-Upgrade.parameters = {
+Button.parameters = {
   layout: 'fullscreen',
   docs: {
     inlineStories: false,
