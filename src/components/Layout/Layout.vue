@@ -36,9 +36,6 @@
         :toggle="collapse"
         :breadcrumb="breadcrumb"
         :menu-items="topbarMenuItems"
-        :upgrade-label="upgradeLabel"
-        :show-upgrade="showUpgrade"
-        :upgrade-url="upgradeUrl"
         @collapse="onCollapse"
       >
         <template #topbar-header-right-area>
