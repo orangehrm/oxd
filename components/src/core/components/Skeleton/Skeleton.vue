@@ -37,6 +37,10 @@ export default defineComponent({
       type: Number,
       default: 1,
     },
+    animateHighlighted: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   computed: {
@@ -45,6 +49,7 @@ export default defineComponent({
         'oxd-skeleton': true,
         '--circle': this.circle,
         '--animate': this.animate,
+        '--animate-highlighted': this.animateHighlighted,
       };
     },
     styles() {

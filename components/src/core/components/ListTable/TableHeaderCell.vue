@@ -1,6 +1,6 @@
 <template>
   <div class="oxd-table-header-cell" role="columnheader">
-    <oxd-skeleton v-if="loading" animate></oxd-skeleton>
+    <oxd-skeleton v-if="loading" animateHighlighted></oxd-skeleton>
     <template v-else>
       <slot></slot>
       <oxd-card-th-sort
@@ -42,6 +42,8 @@ export default defineComponent({
     'oxd-card-th-sort': TableHeaderSortDropdown,
     'oxd-skeleton': Skeleton,
   },
+
+
 
   methods: {
     onOrder(order: Order) {
