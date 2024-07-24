@@ -233,7 +233,7 @@ export default defineComponent({
       return props.headers;
     });
     const cardHeaders = computed(() => {
-      if (props.selectable) {
+      if (props.selectable || (props.loading && props.skeleton)) {
         return [
           {
             name: 'selector',
@@ -338,7 +338,7 @@ export default defineComponent({
       onOrderChange,
       computedItems,
       tableRowClasses,
-      computedHeaders
+      computedHeaders,
     };
   },
 
