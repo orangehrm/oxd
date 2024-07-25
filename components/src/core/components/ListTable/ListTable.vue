@@ -2,16 +2,17 @@
   <oxd-card-table-container>
     <oxd-card-thead>
       <oxd-card-tr :clickable="false">
-        <oxd-card-th v-if="selectable" class="oxd-padding-cell oxd-table-th">
-          <oxd-skeleton
-            v-if="loading && skeleton"
-            class="oxd-skeleton-checkbox"
-          />
-          <oxd-checkbox-input
-            v-else
-            v-model="selectAll"
-            :checkIcon="checkIcon"
-          />
+        <oxd-card-th
+          v-if="loading && skeleton"
+          class="oxd-padding-cell oxd-table-th"
+        >
+          <oxd-skeleton class="oxd-skeleton-checkbox" animateHighlighted />
+        </oxd-card-th>
+        <oxd-card-th
+          v-else-if="selectable"
+          class="oxd-padding-cell oxd-table-th"
+        >
+          <oxd-checkbox-input v-model="selectAll" :checkIcon="checkIcon" />
         </oxd-card-th>
 
         <oxd-card-th

@@ -43,8 +43,6 @@ export default defineComponent({
     'oxd-skeleton': Skeleton,
   },
 
-
-
   methods: {
     onOrder(order: Order) {
       this.$emit('order', order);
