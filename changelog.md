@@ -1,3 +1,11 @@
+2024-07-26 - 2ceb7b2988f8d3ffcdd46ffdd4d0316d485a10c1 - /components/ListTable/list-table.scss, /components/ListTable/listTable.vue, /components/ListTable/TableHeaderCell.vue- display selectable column header skeleton
+
+2024-07-26 - b709a7576bc44c621f64b91e15f174e7af9eeee5 - /components/ListTable/ListTable.vue - display selectable column skeleton
+
+2024-07-26 - dd1c3563dfa6d9d3c897a5d3ecc7632fa284f89d - /components/ListTable/TableHeaderCell.vue, /components/Skeleton/_variables.scss, /components/Skeleton/skeleton.scss, /components/Skeleton/skeleton.vue - highlight skeleton colour
+
+2024-07-26 - 7b223c63f057a7664719d2336b82c5ba4b6be3be - /components/ListTable/ListTable.vue, /components/ListTable/TableHeaderCell.vue - remove header max width
+
 2024-06-26 - f91c5a9ac899c5e8a431447d7611d95b9ca38cce - components/CardTable/Decorator/DefaultCardMobile.vue, components/CardTable/Decorator/DefaultCardWeb.vue, components/CardTable/Decorator/card.scss, components/ListTable/CellContainer.vue, components/ListTable/CellContainer.vue, components/ListTable/ListTable.vue, components/ListTable/TableHeader.vue, components/ListTable/TableHeaderCell.vue, components/src/core/components/ListTable/_variables.scss, components/ListTable/table-header-cell.scss, components/ListTable/table-header.scss - Fixed Skeleton loader related issues in VUE lists
 
 2024-06-24 - 26320f5efcb9e3023ef7cfb7d095042b6963f8dd - Icon/icons.ts - Add oxd-email & oxd-document-text-3 icons
