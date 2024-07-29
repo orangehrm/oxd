@@ -1,22 +1,24 @@
-2024-07-26 - 2ceb7b2988f8d3ffcdd46ffdd4d0316d485a10c1 - /components/ListTable/list-table.scss, /components/ListTable/listTable.vue, /components/ListTable/TableHeaderCell.vue- display selectable column header skeleton
+2024-07-29 - 9328fceaf61ede65f4dc0074ac92de0a0cba88fb - Input/Select/navigation-mixin.ts - Fix Select input not selecting option on keypress issue
 
-2024-07-26 - b709a7576bc44c621f64b91e15f174e7af9eeee5 - /components/ListTable/ListTable.vue - display selectable column skeleton
+2024-07-26 - 2ceb7b2988f8d3ffcdd46ffdd4d0316d485a10c1 - ListTable/list-table.scss, ListTable/listTable.vue, ListTable/TableHeaderCell.vue- display selectable column header skeleton
 
-2024-07-26 - dd1c3563dfa6d9d3c897a5d3ecc7632fa284f89d - /components/ListTable/TableHeaderCell.vue, /components/Skeleton/_variables.scss, /components/Skeleton/skeleton.scss, /components/Skeleton/skeleton.vue - highlight skeleton colour
+2024-07-26 - b709a7576bc44c621f64b91e15f174e7af9eeee5 - ListTable/ListTable.vue - display selectable column skeleton
 
-2024-07-26 - 7b223c63f057a7664719d2336b82c5ba4b6be3be - /components/ListTable/ListTable.vue, /components/ListTable/TableHeaderCell.vue - remove header max width
+2024-07-26 - dd1c3563dfa6d9d3c897a5d3ecc7632fa284f89d - ListTable/TableHeaderCell.vue, Skeleton/\_variables.scss, Skeleton/skeleton.scss, Skeleton/skeleton.vue - highlight skeleton colour
 
-2024-06-26 - f91c5a9ac899c5e8a431447d7611d95b9ca38cce - components/CardTable/Decorator/DefaultCardMobile.vue, components/CardTable/Decorator/DefaultCardWeb.vue, components/CardTable/Decorator/card.scss, components/ListTable/CellContainer.vue, components/ListTable/CellContainer.vue, components/ListTable/ListTable.vue, components/ListTable/TableHeader.vue, components/ListTable/TableHeaderCell.vue, components/src/core/components/ListTable/_variables.scss, components/ListTable/table-header-cell.scss, components/ListTable/table-header.scss - Fixed Skeleton loader related issues in VUE lists
+2024-07-26 - 7b223c63f057a7664719d2336b82c5ba4b6be3be - ListTable/ListTable.vue, ListTable/TableHeaderCell.vue - remove header max width
+
+2024-06-26 - f91c5a9ac899c5e8a431447d7611d95b9ca38cce - CardTable/Decorator/DefaultCardMobile.vue, CardTable/Decorator/DefaultCardWeb.vue, CardTable/Decorator/card.scss, ListTable/CellContainer.vue, ListTable/CellContainer.vue, ListTable/ListTable.vue, ListTable/TableHeader.vue, ListTable/TableHeaderCell.vue, src/coreListTable/\_variables.scss, ListTable/table-header-cell.scss, ListTable/table-header.scss - Fixed Skeleton loader related issues in VUE lists
 
 2024-06-24 - 26320f5efcb9e3023ef7cfb7d095042b6963f8dd - Icon/icons.ts - Add oxd-email & oxd-document-text-3 icons
 
 2024-06-17 - d2aa0e5610ea393c9cd0e963123a84e4ff8d4f4c - Icon/icons.ts - Add oxd-dollar-note,oxd-document-consent,oxd-document-disclosure,oxd-document-info,oxd-document-home,oxd-document-text-2,oxd-employee-info-card,oxd-employee-reference,oxd-employee-question,oxd-employee-welcome,oxd-contact,oxd-emergency-contact,oxd-wallet icons
 
-2024-05-14 - f91c5a9ac899c5e8a431447d7611d95b9ca38cce - styles/_colors.scss - label-feedback-reject color changed
+2024-05-14 - f91c5a9ac899c5e8a431447d7611d95b9ca38cce - styles/\_colors.scss - label-feedback-reject color changed
 
 2024-05-14 - f91c5a9ac899c5e8a431447d7611d95b9ca38cce - Icon/icons.ts - Add oxd-unarchive icon
 
-2024-05-09 - 5a8b404db53df944733a36a373b1429c98a6d79d - Button/button.scss, Button/types.ts, Button/_variables.scss, styles/_colors.scss - Add label-feedback-reject button
+2024-05-09 - 5a8b404db53df944733a36a373b1429c98a6d79d - Button/button.scss, Button/types.ts, Button/\_variables.scss, styles/\_colors.scss - Add label-feedback-reject button
 
 2024-05-06 - 78c22c31a971adbf9a9c146f871994bcf7eaa648 - components/LinearProgress/LinearProgress.vue - Add new component LinearProgress to support linear progress
 

@@ -69,11 +69,14 @@ export const navigationMixin = defineComponent({
     },
     onKeypress($e: KeyboardEvent) {
       if ($e.key.length > 1) return; // Filter one letter keypress only
+      if (this.disabled || this.readonly) return;
       const filtered = this.computedOptions.flatMap((item: Option, i: number) =>
         item.label.toLowerCase().startsWith($e.key) && !item._disabled ? i : [],
       );
       if (filtered.length > 0) {
         this.pointer = cycleIndexes(this.pointer, filtered);
+        const option = this.computedOptions[this.pointer];
+        if (!option?._selected && !option?._disabled) this.onSelect(option);
       }
     },
 

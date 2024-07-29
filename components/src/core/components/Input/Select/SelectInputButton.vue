@@ -87,7 +87,11 @@
           <div class="w-100 d-flex align-center justify-between">
             <span class="label">{{ $vt(modelValue.label) }}</span>
             <oxd-icon-button
-              :name="dropdownOpen ? dropdownTriggerCloseIcon : dropdownTriggerOpenIcon"
+              :name="
+                dropdownOpen
+                  ? dropdownTriggerCloseIcon
+                  : dropdownTriggerOpenIcon
+              "
               size="xxx-small"
               class="oxd-select-dropdown-trigger"
               @click="wholeButtonClickable ? {} : onToggleDropdown()"
@@ -107,7 +111,9 @@
         v-slot:iconRight
       >
         <oxd-icon-button
-          :name="dropdownOpen ? dropdownTriggerCloseIcon : dropdownTriggerOpenIcon"
+          :name="
+            dropdownOpen ? dropdownTriggerCloseIcon : dropdownTriggerOpenIcon
+          "
           size="xxx-small"
           class="oxd-select-dropdown-trigger"
           :class="{
