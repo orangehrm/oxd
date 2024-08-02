@@ -297,7 +297,7 @@ export default defineComponent({
         '--loaded': !(props.loading && props.skeleton),
         'oxd-row-highlight--success':
           [...flashIndexes.value, ...props.flashRows].find(i => i === index) !==
-          undefined,
+            undefined && !(props.loading && props.skeleton),
       })),
     );
 

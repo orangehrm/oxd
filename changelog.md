@@ -1,3 +1,5 @@
+2024-08-02 - 2529c40ce428a16f6ef2f062b13797ac856a95c9 - components/ListTable/ListTable.vue - Fix rows flashing while loading issue
+
 2024-08-02 - 2509a66c2ec6ec43f16fd63e3c885b5be3faf2d7 - Chip/chip.scss - Fix text overflow in chip component
 
 2024-07-29 - 9328fceaf61ede65f4dc0074ac92de0a0cba88fb - Input/Select/navigation-mixin.ts - Fix Select input not selecting option on keypress issue
