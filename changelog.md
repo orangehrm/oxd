@@ -1,3 +1,5 @@
+2024-09-12 - ef0e792067e15b19da1e5d1992bdedca2e51f42d - add oxd new icon for external link
+
 2024-08-02 - 2529c40ce428a16f6ef2f062b13797ac856a95c9 - components/ListTable/ListTable.vue - Fix rows flashing while loading issue
 
 2024-08-02 - 2509a66c2ec6ec43f16fd63e3c885b5be3faf2d7 - Chip/chip.scss - Fix text overflow in chip component
