@@ -141,7 +141,7 @@ export default defineComponent({
         editor.allowed_file_types = () => {
           return props.allowedFileTypes;
         };
-
+        emit('tinymce:editor-ready', editor);
         setTinymceImage.value = (file: File) => {
           const reader = new FileReader();
           reader.readAsDataURL(file);
