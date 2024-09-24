@@ -1,4 +1,4 @@
-2024-09-12 - ef0e792067e15b19da1e5d1992bdedca2e51f42d - add oxd new icon for external link
+2024-09-12 - 80222890b5422b9913bc84a4e8dff1831b7272f9 - Icon/icons.ts - Add oxd-outline-drip-dry icon
 
 2024-08-02 - 2529c40ce428a16f6ef2f062b13797ac856a95c9 - components/ListTable/ListTable.vue - Fix rows flashing while loading issue
 
