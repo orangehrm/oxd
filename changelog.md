@@ -1,5 +1,7 @@
 2024-10-03 - 15c4f9e5f2459055c23bae0bdc1afa6590321950 - Icon/icons.ts - Added preboarding feature related icons list
 
+2024-09-12 - 80222890b5422b9913bc84a4e8dff1831b7272f9 - Icon/icons.ts - Add oxd-outline-drip-dry icon
+
 2024-08-02 - 2529c40ce428a16f6ef2f062b13797ac856a95c9 - components/ListTable/ListTable.vue - Fix rows flashing while loading issue
 
 2024-08-02 - 2509a66c2ec6ec43f16fd63e3c885b5be3faf2d7 - Chip/chip.scss - Fix text overflow in chip component
