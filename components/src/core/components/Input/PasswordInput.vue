@@ -49,8 +49,8 @@ export default defineComponent({
   },
   props: {
     strength: {
-      type: Number || String,
-      default: 0,
+      type: Number,
+      default: -1,
     },
     hasError: {
       type: Boolean,
@@ -84,15 +84,17 @@ export default defineComponent({
         'strongest-strength',
       ];
       if (
+        this.strength == -1 ||
         this.hasError ||
         this.disabled ||
         this.readonly ||
         this.password.length > 64 ||
-        this.password.length < 8
+        this.password.length < 8 
       ) {
         this.showStrength = false;
         console.log(
           'this.showStrength',
+          this.strength,
           this.showStrength,
           this.hasError,
           this.disabled,
