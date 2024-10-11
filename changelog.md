@@ -1,3 +1,5 @@
+2024-10-11 - 6d028db15ec82666c290476cc656467c1e95b9aa - LinkWithPill.vue, link-with-pill.spec.ts, ProfilePicture.vue, ProfilePic.vue, profile-pic.spec.ts, ListSkeleton.story.vue - add onclick event to prevent default behaviour of link and execute a function
+
 2024-09-12 - 80222890b5422b9913bc84a4e8dff1831b7272f9 - Icon/icons.ts - Add oxd-outline-drip-dry icon
 
 2024-08-02 - 2529c40ce428a16f6ef2f062b13797ac856a95c9 - components/ListTable/ListTable.vue - Fix rows flashing while loading issue
