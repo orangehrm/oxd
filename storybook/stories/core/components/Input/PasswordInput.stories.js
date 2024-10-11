@@ -17,6 +17,12 @@ export default {
         type: {summary: 'Set custom style to the input'},
       },
     },
+    strength: {
+      control: {type: 'number'},
+      table: {
+        type: {summary: 'Set the strength of the password'},
+      },
+    },
     focus: {
       control: {type: 'function'},
       table: {
@@ -98,8 +104,16 @@ Colored.parameters = {
   },
 };
 
+export const Strength = Template.bind({});
+Strength.args = {
+  strength: 4,
+  lable: 'Password',
+};
+
+
 export const Error = Template.bind({});
 Error.args = {
+  strength: 5,
   hasError: true,
 };
 
@@ -113,7 +127,7 @@ Error.parameters = {
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  Disabled: true,
+  disabled: true,
 };
 
 Disabled.parameters = {
