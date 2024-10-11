@@ -1,7 +1,7 @@
 <template>
   <div :class="classes">
     <slot>
-      <a v-if="link" :href="link" :target="linkMode">
+      <a v-if="link" :href="link" :target="linkMode" @click="handleLinkClick($event)">
         <span
           class="img-tag"
           :style="`background-image: url(${profileImage})`"
@@ -54,6 +54,23 @@ export default defineComponent({
       validator: (value: TargetTypes) => {
         return TARGETS.indexOf(value) !== -1;
       },
+    },
+    header: {
+      type: Object,
+      default: () => ({}),
+    },
+    rowItem: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
+  methods: {
+    handleLinkClick(event: MouseEvent | KeyboardEvent) {
+      const cellConfig = this.header?.cellConfig;
+      if (cellConfig && typeof cellConfig?.onClick === 'function') {
+        event.preventDefault();
+        this.header.cellConfig.onClick(this.rowItem, event);
+      }
     },
   },
   computed: {
