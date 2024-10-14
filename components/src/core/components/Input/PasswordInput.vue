@@ -3,40 +3,28 @@
     <oxd-text class="password-strength-check" v-if="showStrength">{{
       strengthLabel
     }}</oxd-text>
-    <div
-      :class="[
-        'password-view-icon-container',
-        {'password-visible': isPasswordVisible},
-      ]"
-      @click="togglePasswordVisibility"
-    >
-      <oxd-icon
-        :name="isPasswordVisible ? 'oxd-hide' : 'oxd-show'"
-        class="oxd-password-view-icon"
-      />
+    <div :class="[
+      'password-view-icon-container',
+      { 'password-visible': isPasswordVisible },
+    ]" @click="togglePasswordVisibility">
+      <oxd-icon :name="isPasswordVisible ? 'oxd-hide' : 'oxd-show'" class="oxd-password-view-icon"
+      :iconStyles="isPasswordVisible ? { fill: 'white' } : {}" />
     </div>
-    <oxd-input
-      :type="isPasswordVisible ? 'text' : 'password'"
-      class="password-input"
-      v-bind="$attrs"
-      :hasError="hasError"
-      :disabled="disabled"
-      :readonly="readonly"
-      v-model="password"
-    />
+    <oxd-input :type="isPasswordVisible ? 'text' : 'password'" class="password-input" v-bind="$attrs"
+      :hasError="hasError" :disabled="disabled" :readonly="readonly" />
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import { defineComponent } from 'vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import oxdText from '@orangehrm/oxd/core/components/Text/Text.vue';
-import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
+import Icon from '@orangehrm/oxd/core/components/Button/Icon.vue';
 
 export interface State {
   showStrength: boolean;
   isPasswordVisible: boolean;
-  password: string;
+
 }
 
 export default defineComponent({
@@ -64,17 +52,19 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+
   },
   data(): State {
     return {
       showStrength: true,
       isPasswordVisible: false,
-      password: '',
+
     };
   },
 
   computed: {
     strengthClass() {
+
       const strengthClasses = [
         'very-weak-strength',
         'weak-strength',
@@ -83,13 +73,13 @@ export default defineComponent({
         'strong-strength',
         'strongest-strength',
       ];
+      console.log(this.strength, this.hasError, this.disabled, this.readonly);
       if (
         this.strength == -1 ||
         this.hasError ||
         this.disabled ||
-        this.readonly ||
-        this.password.length > 64 ||
-        this.password.length < 8 
+        this.readonly
+
       ) {
         this.showStrength = false;
         return 'password-container';
@@ -117,4 +107,3 @@ export default defineComponent({
 });
 </script>
 <style src="./password-input.scss" lang="scss" scoped></style>
-
