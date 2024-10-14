@@ -13,6 +13,10 @@
     :skeleton="showSkeleton"
     v-model:selected="checkedItems"
   ></oxd-list-table>
+  <br />
+  <p>{{ LinkPhillResult }}</p>
+  <br/>
+  <p>{{ profilePicResult }}</p>
 </template>
 
 <script>
@@ -30,6 +34,8 @@ export default {
 
   data() {
     return {
+      LinkPhillResult: '',
+      profilePicResult: '',
       selector: {
         style: {flex: 1},
       },
@@ -43,6 +49,23 @@ export default {
           iconName: 'oxd-profile-pic',
           iconStyle: 'color: #929baa; justify-content: center;',
           cellType: 'oxd-table-cell-profile-pic',
+        },
+        {
+          name: 'profilePic',
+          style: {
+            width: '55px',
+            'justify-content': 'center',
+          },
+          iconName: 'oxd-profile-pic',
+          iconStyle: 'color: #929baa; justify-content: center;',
+          cellType: 'oxd-table-cell-profile-pic',
+          cellProps: {
+            link: "url1",
+            target: "_blank",
+          },
+          cellConfig: {
+            onClick: this.onClickProfilePic,
+          },
         },
         {
           name: 'col1',
@@ -69,6 +92,20 @@ export default {
             link: 'url1',
             target: '_blank',
             pillProperty: ['tag', 'name'],
+          },
+        },
+        {
+          name: 'col2',
+          title: 'Link with Pill with onClick event',
+          style: {flex: 1},
+          cellType: 'oxd-table-cell-link-with-pill',
+          cellProps: {
+            link: 'url1',
+            target: '_blank',
+            pillProperty: ['tag', 'name'],
+          },
+          cellConfig: {
+            onClick: this.onClickLinkWithPill,
           },
         },
         {
@@ -115,6 +152,13 @@ export default {
           },
         },
       };
+    },
+    onClickLinkWithPill(row, event) {
+      this.LinkPhillResult = 'Link with Pill with onClick function executed: ' + row.col2;
+    },
+    onClickProfilePic(row, event) {
+      console.log('Profile Pic with onClick function executed: ', row.col2);
+      this.profilePicResult = 'Profile Pic with onClick function executed: ' + row.col2;
     },
   },
 

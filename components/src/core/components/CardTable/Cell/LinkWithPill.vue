@@ -6,7 +6,7 @@
         <oxd-skeleton width="50%" animate></oxd-skeleton>
       </template>
       <template v-else>
-        <a :href="link ? row[link] : '#'" :target="target" :class="linkClasses">
+        <a :href="link ? row[link] : '#'" :target="target" :class="linkClasses" @click="handleLinkClick(row, $event)">
           {{ cell }}
         </a>
         <div v-if="pillProperty" :class="pillClasses">
@@ -45,6 +45,13 @@ export default defineComponent({
       }
       return value;
     },
+    handleLinkClick(row: RowItem, event: MouseEvent) {
+      const cellConfig = this.header?.cellConfig;
+      if (cellConfig && typeof cellConfig?.onClick === 'function') {
+        event.preventDefault();
+        this.header.cellConfig.onClick(row, event);
+      }
+    },
   },
   props: {
     link: {
@@ -69,6 +76,10 @@ export default defineComponent({
     loading: {
       type: Boolean,
       default: false,
+    },
+    header: {
+      type: Object,
+      default: () => ({}),
     },
   },
   computed: {

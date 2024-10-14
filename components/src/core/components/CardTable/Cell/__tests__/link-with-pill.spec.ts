@@ -109,4 +109,54 @@ describe('CardTable > Cell > LinkWithPill.vue', () => {
         .trim(),
     ).toEqual('external');
   });
+
+  it('should trigger handleLinkClick on link click', async () => {
+    const mockOnClick = jest.fn();
+    const rowItem = {
+      url1: 'https://orangehrm.com',
+      tag: 'external',
+    };
+
+    const wrapper = mount(LinkWithPill, {
+      global: GLOBAL,
+      props: {
+        item: 'This is a link',
+        target: '_parent',
+        link: 'url1',
+        rowItem: rowItem,
+        header: {
+          cellConfig: {
+            onClick: mockOnClick,
+          },
+        },
+      },
+    });
+
+    const link = wrapper.find('a');
+    await link.trigger('click');
+
+    expect(mockOnClick).toHaveBeenCalledWith(rowItem, expect.any(MouseEvent));
+  });
+
+  it('should not prevent default behavior if no onClick handler is present', async () => {
+    const wrapper = mount(LinkWithPill, {
+      global: GLOBAL,
+      props: {
+        item: 'This is a link',
+        target: '_blank',
+        link: 'url1',
+        rowItem: {
+          url1: 'https://orangehrm.com',
+          tag: 'external',
+        },
+      },
+    });
+
+    const link = wrapper.find('a');
+    const event = { preventDefault: jest.fn() };
+
+    await link.trigger('click', event);
+
+    expect(event.preventDefault).not.toHaveBeenCalled();
+  });
 });

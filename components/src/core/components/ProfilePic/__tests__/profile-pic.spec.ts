@@ -23,4 +23,45 @@ describe('ProfilePic.vue', () => {
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
+
+  it('should trigger handleLinkClick on link click', async () => {
+    const mockOnClick = jest.fn();
+    const rowItem = {
+      id: 1,
+      name: 'John Doe',
+    };
+
+    const wrapper = mount(ProfilePic, {
+      props: {
+        link: 'https://orangehrm.com',
+        rowItem: rowItem,
+        header: {
+          cellConfig: {
+            onClick: mockOnClick,
+          },
+        },
+      },
+    });
+
+    const link = wrapper.find('a');
+    await link.trigger('click');
+
+    expect(mockOnClick).toHaveBeenCalledWith(rowItem, expect.any(MouseEvent));
+  });
+
+  it('should not prevent default behavior if no onClick handler is present', async () => {
+    const wrapper = mount(ProfilePic, {
+      props: {
+        link: 'https://orangehrm.com',
+      },
+    });
+
+    const link = wrapper.find('a');
+    const event = { preventDefault: jest.fn() };
+
+    await link.trigger('click', event);
+
+    expect(event.preventDefault).not.toHaveBeenCalled();
+  });
+
 });

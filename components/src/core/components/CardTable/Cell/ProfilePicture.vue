@@ -12,6 +12,8 @@
     :link="profilePicture.link"
     :imageSrc="profilePicture.src"
     :link-mode="profilePicture.target"
+    :header="profilePicture.header"
+    :rowItem="profilePicture.rowItem"
     v-bind="$attrs"
   />
 </template>
@@ -52,6 +54,14 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    header: {
+      type: Object,
+      default: () => ({}),
+    },
+    rowItem: {
+      type: Object,
+      default: () => ({}),
+    },
   },
   setup(props) {
     const imgSrc = ref(null);
@@ -82,6 +92,8 @@ export default defineComponent({
             ? props.rowItem[props.link]
             : null,
         target: props.target ?? TARGET_SELF,
+        header: props.header,
+        rowItem: props.rowItem,
       };
     });
 
