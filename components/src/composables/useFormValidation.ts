@@ -65,6 +65,7 @@ export default function useFormValidation() {
       }),
     )
       .then(results => {
+        formState.errorbag = [];
         results.map(errorField => {
           addError(errorField);
         });
