@@ -1,3 +1,5 @@
+2024-10-14 - 125be6b66b9edfa08a53c5dff8ebe9bae8bdfab0 - Pagination.vue - Fix pagination issue in product: Prevent unnecessary '...' separator display between consecutive page numbers
+
 2024-10-03 - 15c4f9e5f2459055c23bae0bdc1afa6590321950 - Icon/icons.ts - Added preboarding feature related icons list
 
 2024-09-26 - a459c2c09ae2ddb76a3c38fe5cf26b3e98eb7c98 - composables/useFormValidation.ts - Fix form validation error not removed when field is toggled
