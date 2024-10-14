@@ -92,14 +92,6 @@ export default defineComponent({
         this.password.length < 8 
       ) {
         this.showStrength = false;
-        console.log(
-          'this.showStrength',
-          this.strength,
-          this.showStrength,
-          this.hasError,
-          this.disabled,
-          this.readonly,
-        );
         return 'password-container';
       }
       this.showStrength = true;
