@@ -13,7 +13,7 @@
         @click="onClickPage(1, $event)"
       />
       <span
-        v-if="pageItems.indexOf(1) === -1"
+        v-if="pageItems.indexOf(1) === -1 && (pageItems[0] > 2)"
         class="d-flex align-end oxd-pagination-separator"
         last
         >...</span
@@ -26,7 +26,7 @@
         @click="onClickPage(page, $event)"
       />
       <span
-        v-if="!(pageItems[pageItems.length - 1] === length)"
+        v-if="!(pageItems[pageItems.length - 1] === length) && (pageItems[pageItems.length - 1] < length - 1)"
         class="d-flex align-end oxd-pagination-separator"
         last
         >...</span
