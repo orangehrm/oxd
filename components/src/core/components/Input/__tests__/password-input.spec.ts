@@ -163,7 +163,6 @@ describe('PasswordInput.vue', () => {
   });
   it('should hide password strength when component has no strength prop', async () => {
     const wrapper = mount(PasswordInput, {});
-
     expect(wrapper.vm.showStrength).toBe(false);
   });
 });
