@@ -5,7 +5,7 @@
     </oxd-text>
     <oxd-input
       v-bind="$attrs"
-      class="oxd-password-input"
+      class="password-input"
       :hasError="hasError"
       :disabled="disabled"
       :readonly="readonly"
