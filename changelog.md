@@ -1,3 +1,5 @@
+2024-10-18 - 59c22c85b1256cc167408e93402f6fb85a3bb775 -Input/PasswordInput.vue - Updating password Input field 
+
 2024-10-03 - 15c4f9e5f2459055c23bae0bdc1afa6590321950 - Icon/icons.ts - Added preboarding feature related icons list
 
 2024-09-12 - 80222890b5422b9913bc84a4e8dff1831b7272f9 - Icon/icons.ts - Add oxd-outline-drip-dry icon
