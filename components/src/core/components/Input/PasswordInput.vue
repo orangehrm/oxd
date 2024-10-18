@@ -3,21 +3,6 @@
     <oxd-text class="password-strength-check" v-if="showStrength">{{
       strengthLabel
     }}</oxd-text>
-    <div
-      :class="[
-        'password-view-icon-container',
-        {'password-visible': isPasswordVisible},
-      ]"
-      @click="togglePasswordVisibility"
-    >
-      <oxd-icon
-        :name="isPasswordVisible ? 'eye-slash-fill' : 'eye-fill'"
-        class="oxd-password-view-icon"
-        :iconStyles="isPasswordVisible ? {color: 'white'} : {}"
-        size="large"
-        :tooltip="isPasswordVisible ? 'Hide Password' : 'Show Password'"
-      />
-    </div>
     <oxd-input
       :type="isPasswordVisible ? 'text' : 'password'"
       class="password-input"
@@ -26,6 +11,21 @@
       :disabled="disabled"
       :readonly="readonly"
     />
+    <div
+      :class="[
+        'password-view-icon-container',
+        {'password-visible': isPasswordVisible},
+      ]"
+      @click="togglePasswordVisibility"
+    >
+      <oxd-icon-button
+        :name="isPasswordVisible ? 'eye-slash-fill' : 'eye-fill'"
+        class="oxd-password-view-icon"
+        :iconStyles="isPasswordVisible ? {color: 'white'} : {}"
+        size="large"
+        :tooltip="isPasswordVisible ? 'Hide Password' : 'Show Password'"
+      />
+    </div>
   </div>
 </template>
 
@@ -33,7 +33,7 @@
 import {defineComponent} from 'vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import oxdText from '@orangehrm/oxd/core/components/Text/Text.vue';
-import Icon from '@orangehrm/oxd/core/components/Button/Icon.vue';
+import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 
 export interface State {
   showStrength: boolean;
@@ -46,7 +46,7 @@ export default defineComponent({
   components: {
     'oxd-input': Input,
     'oxd-text': oxdText,
-    'oxd-icon': Icon,
+    'oxd-icon-button': IconButton,
   },
   props: {
     strength: {
@@ -90,10 +90,9 @@ export default defineComponent({
         this.disabled ||
         this.readonly
       ) {
-        this.showStrength = false;
         return 'password-container';
       }
-      this.showStrength = true;
+
       return `password-container ${strengthClasses[this.strength]}`;
     },
     strengthLabel() {
@@ -108,10 +107,34 @@ export default defineComponent({
       return strengthLabels[this.strength];
     },
   },
+  watch: {
+    strength() {
+      this.updateShowStrength();
+    },
+    hasError() {
+      this.updateShowStrength();
+    },
+    disabled() {
+      this.updateShowStrength();
+    },
+    readonly() {
+      this.updateShowStrength();
+    },
+  },
   methods: {
     togglePasswordVisibility() {
       this.isPasswordVisible = !this.isPasswordVisible;
     },
+    updateShowStrength() {
+      this.showStrength =
+        this.strength !== -1 &&
+        !this.hasError &&
+        !this.disabled &&
+        !this.readonly;
+    },
+  },
+  mounted() {
+    this.updateShowStrength();
   },
 });
 </script>
