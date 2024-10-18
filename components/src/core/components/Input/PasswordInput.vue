@@ -1,16 +1,16 @@
 <template>
   <div :class="strengthClass">
-    <oxd-text class="password-strength-check" v-if="showStrength">{{
-      strengthLabel
-    }}</oxd-text>
+    <oxd-text class="password-strength-check" v-if="showStrength">
+      {{ strengthLabel }}
+    </oxd-text>
     <oxd-input
-      :type="isPasswordVisible ? 'text' : 'password'"
-      class="password-input"
       v-bind="$attrs"
+      class="oxd-password-input"
       :hasError="hasError"
       :disabled="disabled"
       :readonly="readonly"
-    />
+      :type="isPasswordVisible ? 'text' : 'password'"
+    ></oxd-input>
     <div
       :class="[
         'password-view-icon-container',
@@ -19,11 +19,11 @@
       @click="togglePasswordVisibility"
     >
       <oxd-icon-button
-        :name="isPasswordVisible ? 'eye-slash-fill' : 'eye-fill'"
         class="oxd-password-view-icon"
+        :name="isPasswordVisible ? 'eye-slash-fill' : 'eye-fill'"
         :iconStyles="isPasswordVisible ? {color: 'white'} : {}"
-        size="large"
         :tooltip="isPasswordVisible ? 'Hide Password' : 'Show Password'"
+        size="large"
       />
     </div>
   </div>
@@ -36,7 +36,6 @@ import oxdText from '@orangehrm/oxd/core/components/Text/Text.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 
 export interface State {
-  showStrength: boolean;
   isPasswordVisible: boolean;
 }
 
@@ -52,6 +51,7 @@ export default defineComponent({
     strength: {
       type: Number,
       default: -1,
+      validator: (value: number) => value >= -1 && value <= 5,
     },
     hasError: {
       type: Boolean,
@@ -68,7 +68,6 @@ export default defineComponent({
   },
   data(): State {
     return {
-      showStrength: true,
       isPasswordVisible: false,
     };
   },
@@ -106,35 +105,19 @@ export default defineComponent({
       ];
       return strengthLabels[this.strength];
     },
-  },
-  watch: {
-    strength() {
-      this.updateShowStrength();
-    },
-    hasError() {
-      this.updateShowStrength();
-    },
-    disabled() {
-      this.updateShowStrength();
-    },
-    readonly() {
-      this.updateShowStrength();
+    showStrength(): boolean {
+      return (
+        this.strength !== -1 &&
+        !this.hasError &&
+        !this.disabled &&
+        !this.readonly
+      );
     },
   },
   methods: {
     togglePasswordVisibility() {
       this.isPasswordVisible = !this.isPasswordVisible;
     },
-    updateShowStrength() {
-      this.showStrength =
-        this.strength !== -1 &&
-        !this.hasError &&
-        !this.disabled &&
-        !this.readonly;
-    },
-  },
-  mounted() {
-    this.updateShowStrength();
   },
 });
 </script>

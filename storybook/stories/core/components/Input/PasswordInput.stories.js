@@ -18,7 +18,7 @@ export default {
       },
     },
     strength: {
-      control: {type: 'number'},
+      control: {type: 'select', options: [0, 1, 2, 3, 4, 5]},
       table: {
         type: {summary: 'Set the strength of the password'},
       },
