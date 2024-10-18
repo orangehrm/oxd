@@ -2,6 +2,8 @@
 
 2024-10-03 - 15c4f9e5f2459055c23bae0bdc1afa6590321950 - Icon/icons.ts - Added preboarding feature related icons list
 
+2024-09-26 - a459c2c09ae2ddb76a3c38fe5cf26b3e98eb7c98 - composables/useFormValidation.ts - Fix form validation error not removed when field is toggled
+
 2024-09-12 - 80222890b5422b9913bc84a4e8dff1831b7272f9 - Icon/icons.ts - Add oxd-outline-drip-dry icon
 
 2024-08-02 - 2529c40ce428a16f6ef2f062b13797ac856a95c9 - components/ListTable/ListTable.vue - Fix rows flashing while loading issue
