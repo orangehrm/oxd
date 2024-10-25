@@ -48,7 +48,7 @@ export default defineComponent({
     strength: {
       type: Number,
       default: -1,
-      validator: (value: number) => [1, 2, 3, 4, 5].includes(value),
+      validator: (value: number) => [-1, 0, 1, 2, 3, 4, 5].includes(value),
     },
     hasError: {
       type: Boolean,
