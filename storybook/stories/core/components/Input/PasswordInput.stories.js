@@ -18,9 +18,15 @@ export default {
       },
     },
     strength: {
-      control: {type: 'select', options: [0, 1, 2, 3, 4, 5]},
+      control: {type: 'select', options: [-1, 0, 1, 2, 3, 4, 5]},
       table: {
         type: {summary: 'Set the strength of the password'},
+      },
+    },
+    hasMinimumPasswordStrength: {
+      control: {type: 'boolean'},
+      table: {
+        type: {summary: 'Set minimum password strength'},
       },
     },
     focus: {
@@ -110,10 +116,15 @@ Strength.args = {
   lable: 'Password',
 };
 
+export const MinimumStrength = Template.bind({});
+MinimumStrength.args = {
+  strength: 4,
+  hasMinimumPasswordStrength: false,
+};
 
 export const Error = Template.bind({});
 Error.args = {
-  strength: 5,
+  strength: 4,
   hasError: true,
 };
 

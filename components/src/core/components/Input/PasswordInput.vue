@@ -28,16 +28,12 @@
     </div>
   </div>
 </template>
-
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, ref, computed} from 'vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import oxdText from '@orangehrm/oxd/core/components/Text/Text.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
-
-export interface State {
-  isPasswordVisible: boolean;
-}
+import useTranslate from '@orangehrm/oxd/composables/useTranslate';
 
 export default defineComponent({
   name: 'oxd-password-input',
@@ -47,11 +43,12 @@ export default defineComponent({
     'oxd-text': oxdText,
     'oxd-icon-button': IconButton,
   },
+
   props: {
     strength: {
       type: Number,
       default: -1,
-      validator: (value: number) => value >= -1 && value <= 5,
+      validator: (value: number) => [-1, 0, 1, 2, 3, 4, 5].includes(value),
     },
     hasError: {
       type: Boolean,
@@ -65,15 +62,19 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-  },
-  data(): State {
-    return {
-      isPasswordVisible: false,
-    };
+    hasMinimumPasswordStrength: {
+      type: Boolean,
+      default: true,
+    },
   },
 
-  computed: {
-    strengthClass() {
+  setup(props) {
+    // Reactive reference for password visibility
+    const isPasswordVisible = ref(false);
+    const {$t} = useTranslate();
+
+    // Computed properties for strengthClass, strengthLabel, and showStrength
+    const strengthClass = computed(() => {
       const strengthClasses = [
         'very-weak-strength',
         'weak-strength',
@@ -83,18 +84,23 @@ export default defineComponent({
         'strongest-strength',
       ];
 
+      if (!props.hasMinimumPasswordStrength) {
+        return 'password-container below-minimum-strength';
+      }
+
       if (
-        this.strength == -1 ||
-        this.hasError ||
-        this.disabled ||
-        this.readonly
+        props.strength === -1 ||
+        props.hasError ||
+        props.disabled ||
+        props.readonly
       ) {
         return 'password-container';
       }
 
-      return `password-container ${strengthClasses[this.strength]}`;
-    },
-    strengthLabel() {
+      return `password-container ${strengthClasses[props.strength]}`;
+    });
+
+    const strengthLabel = computed(() => {
       const strengthLabels = [
         'Very Weak',
         'Weak',
@@ -103,21 +109,33 @@ export default defineComponent({
         'Strong',
         'Strongest',
       ];
-      return strengthLabels[this.strength];
-    },
-    showStrength(): boolean {
+      return $t(strengthLabels[props.strength]);
+    });
+
+    const showStrength = computed(() => {
+      if (!props.hasMinimumPasswordStrength && props.strength !== -1) {
+        return true;
+      }
       return (
-        this.strength !== -1 &&
-        !this.hasError &&
-        !this.disabled &&
-        !this.readonly
+        props.strength !== -1 &&
+        !props.hasError &&
+        !props.disabled &&
+        !props.readonly
       );
-    },
-  },
-  methods: {
-    togglePasswordVisibility() {
-      this.isPasswordVisible = !this.isPasswordVisible;
-    },
+    });
+
+    // Method to toggle password visibility
+    const togglePasswordVisibility = () => {
+      isPasswordVisible.value = !isPasswordVisible.value;
+    };
+
+    return {
+      isPasswordVisible,
+      strengthClass,
+      strengthLabel,
+      showStrength,
+      togglePasswordVisibility,
+    };
   },
 });
 </script>

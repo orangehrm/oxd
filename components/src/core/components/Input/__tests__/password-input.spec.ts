@@ -165,4 +165,16 @@ describe('PasswordInput.vue', () => {
     const wrapper = mount(PasswordInput, {});
     expect(wrapper.vm.showStrength).toBe(false);
   });
+  it('should show password strength gray color when hasMinimumPasswordStrength is false', async () => {
+    const wrapper = mount(PasswordInput, {
+      props: {
+        hasMinimumPasswordStrength: false,
+        strength: 1,
+      },
+    });
+    expect(wrapper.vm.showStrength).toBe(true);
+    expect(wrapper.vm.strengthClass).toBe(
+      'password-container below-minimum-strength',
+    );
+  });
 });
