@@ -43,7 +43,6 @@ export default defineComponent({
     'oxd-text': oxdText,
     'oxd-icon-button': IconButton,
   },
-
   props: {
     strength: {
       type: Number,

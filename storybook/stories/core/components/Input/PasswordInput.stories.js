@@ -112,7 +112,7 @@ Colored.parameters = {
 
 export const Strength = Template.bind({});
 Strength.args = {
-  strength: 6,
+  strength: 4,
   lable: 'Password',
 };
 
