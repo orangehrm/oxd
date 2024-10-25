@@ -23,6 +23,12 @@ export default {
         type: {summary: 'Set the strength of the password'},
       },
     },
+    hasMinimumPasswordStrength: {
+      control: {type: 'boolean'},
+      table: {
+        type: {summary: 'Set minimum password strength'},
+      },
+    },
     focus: {
       control: {type: 'function'},
       table: {
@@ -106,14 +112,19 @@ Colored.parameters = {
 
 export const Strength = Template.bind({});
 Strength.args = {
-  strength: 4,
+  strength: 6,
   lable: 'Password',
 };
 
+export const MinimumStrength = Template.bind({});
+MinimumStrength.args = {
+  strength: 4,
+  hasMinimumPasswordStrength: false,
+};
 
 export const Error = Template.bind({});
 Error.args = {
-  strength: 5,
+  strength: 4,
   hasError: true,
 };
 
