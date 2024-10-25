@@ -1,3 +1,5 @@
+2024-10-22 - 84b7f4bfe4893a54c8bd281e10feda17a2356abd -Icon/icons.ts - Added new icon as oxd-open-new-tab
+
 2024-10-18 - 59c22c85b1256cc167408e93402f6fb85a3bb775 -Input/PasswordInput.vue - Updating password Input field 
 
 2024-10-03 - 15c4f9e5f2459055c23bae0bdc1afa6590321950 - Icon/icons.ts - Added preboarding feature related icons list
