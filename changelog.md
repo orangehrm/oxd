@@ -1,3 +1,5 @@
+2024-10-25 - a7f234223a3a34e55a77e3c216733c9f01e5e3c9 -TAR-1977 Preboarding keyboard accessibility issue fixes
+
 2024-10-25 - 0ba4cd7666f48d5e702ff930ec39f43f203bc4bc -Input/PasswordInput.vue - Updating password Input field
 
 2024-10-22 - 84b7f4bfe4893a54c8bd281e10feda17a2356abd -Icon/icons.ts - Added new icon as oxd-open-new-tab
