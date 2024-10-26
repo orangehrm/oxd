@@ -1,4 +1,4 @@
-2024-10-25 - a7f234223a3a34e55a77e3c216733c9f01e5e3c9 -TAR-1977 Preboarding keyboard accessibility issue fixes
+2024-10-26 - a7f234223a3a34e55a77e3c216733c9f01e5e3c9 - directives/focus-first-element/index.ts - Update the focus first directive to wait for animations to stop
 
 2024-10-25 - 0ba4cd7666f48d5e702ff930ec39f43f203bc4bc -Input/PasswordInput.vue - Updating password Input field
 
