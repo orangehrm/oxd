@@ -1,10 +1,12 @@
+2024-10-28 - e5840791366e3abbf3cb6b57f77ede4a8842fb79 - Icon/icons.ts - Add oxd-date-input, oxd-attachment-input,oxd-checkbox-input, oxd-checkbox-group-input, oxd-select-input, oxd-file-input, oxd-radio-input, oxd-radio-group-input, oxd-switch-input, oxd-time-input, oxd-text-input, oxd-password-input, oxd-circle-plus, oxd-textbox, oxd-text, oxd-divider, oxd-grid, oxd-grid-item, oxd-subform, oxd-masterdata, oxd-employee-autocomplete, oxd-status, oxd-required to OXD Icons
+
 2024-10-26 - a7f234223a3a34e55a77e3c216733c9f01e5e3c9 - directives/focus-first-element/index.ts - Update the focus first directive to wait for animations to stop
 
 2024-10-25 - 0ba4cd7666f48d5e702ff930ec39f43f203bc4bc -Input/PasswordInput.vue - Updating password Input field
 
 2024-10-22 - 84b7f4bfe4893a54c8bd281e10feda17a2356abd -Icon/icons.ts - Added new icon as oxd-open-new-tab
 
-2024-10-18 - 59c22c85b1256cc167408e93402f6fb85a3bb775 -Input/PasswordInput.vue - Updating password Input field 
+2024-10-18 - 59c22c85b1256cc167408e93402f6fb85a3bb775 -Input/PasswordInput.vue - Updating password Input field
 
 2024-10-03 - 15c4f9e5f2459055c23bae0bdc1afa6590321950 - Icon/icons.ts - Added preboarding feature related icons list
 
