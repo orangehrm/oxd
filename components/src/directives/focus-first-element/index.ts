@@ -20,8 +20,10 @@ const focusOnFirstElement = (
   const firstFocusedElement = element.querySelectorAll(matchingString)[0];
   firstFocusedElementsOnMounted.set(vnode.scopeId, firstFocusedElement);
   if (firstFocusedElement) {
-    (firstFocusedElement as HTMLElement).focus({
-      preventScroll: true,
+    window.requestAnimationFrame(() => {
+      (firstFocusedElement as HTMLElement).focus({
+        preventScroll: true,
+      });
     });
   }
 };
