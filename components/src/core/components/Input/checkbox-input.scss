@@ -2,6 +2,19 @@
 @import 'variables';
 
 .oxd-checkbox-wrapper {
+  .border-enabled {
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 10px;
+  }
+
+  .border-error {
+    border: 1px solid #ff4e00;
+    box-shadow: 0 0 5px 0.2rem rgba(223, 9, 16, 0.1);
+    padding: 8px;
+    border-radius: 10px;
+  }
+
   .oxd-checkbox-option-label {
     overflow-wrap: break-word;
     word-break: break-all;

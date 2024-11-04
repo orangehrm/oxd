@@ -1,6 +1,22 @@
 <template>
   <div :class="['oxd-checkbox-wrapper ', optionWrapperAdditionalClass]">
-    <label :class="{'--disabled': disabled}">
+    <label
+      :class="[
+        {'--disabled': disabled},
+        {'border-enabled': enableBorder, 'border-error': hasError && enableBorder},
+      ]"
+    >
+      <template v-if="optionInfoIcon && optionInfoIconPosition === 'left'">
+        <span class="oxd-optional-info-icon oxd-optional-info-icon-left">
+          <oxd-icon
+            class="optional-info-icon"
+            :name="optionInfoIcon"
+            :style="optionInfoIconStyle"
+            :size="optionInfoIconSize"
+            :tooltip="optionInfoMessage"
+          />
+        </span>
+      </template>
       <template v-if="labelPosition === 'left'">
         <div class="oxd-checkbox-option-label">
           {{ optionLabel }}
@@ -14,6 +30,7 @@
         :true-value="trueValue"
         :false-value="falseValue"
         :disabled="disabled"
+        :hasError="hasError"
         v-bind="$attrs"
         v-model="checked"
       />
@@ -29,15 +46,17 @@
           {{ optionLabel }}
         </div>
       </template>
-      <span class="oxd-optional-info-icon" v-if="optionInfoIcon">
-        <oxd-icon
-          class="optional-info-icon"
-          :name="optionInfoIcon"
-          :style="optionInfoIconStyle"
-          :size="optionInfoIconSize"
-          :tooltip="optionInfoMessage"
-        />
-      </span>
+      <template v-if="optionInfoIcon && optionInfoIconPosition === 'right'">
+        <span class="oxd-optional-info-icon" v-if="optionInfoIcon">
+          <oxd-icon
+            class="optional-info-icon"
+            :name="optionInfoIcon"
+            :style="optionInfoIconStyle"
+            :size="optionInfoIconSize"
+            :tooltip="optionInfoMessage"
+          />
+        </span>
+      </template>
     </label>
   </div>
 </template>
@@ -110,6 +129,21 @@ export default defineComponent({
     optionInfoMessage: {
       type: String,
       default: '',
+    },
+    optionInfoIconPosition: {
+      type: String,
+      default: RIGHT,
+      validator: function(value: Position) {
+        return LABEL_POSITIONS.indexOf(value) !== -1;
+      },
+    },
+    enableBorder: {
+      type: Boolean,
+      default: false,
+    },
+    hasError: {
+      type: Boolean,
+      default: false,
     },
   },
 

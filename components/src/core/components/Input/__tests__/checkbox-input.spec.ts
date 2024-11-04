@@ -74,4 +74,40 @@ describe('CheckboxInput.vue', () => {
     const optionalInfoIcon = wrapper.find('.oxd-optional-info-icon');
     expect(optionalInfoIcon.exists()).toBe(true);
   });
+
+  it('should render border when optionBorder is provided', () => {
+    const wrapper = mount(CheckboxInput, {
+      props: {
+        enableBorder: true,
+      },
+    });
+    const border = wrapper.find('.border-enabled');
+    expect(border.exists()).toBe(true);
+  });
+
+  it('if optionInfoIconPosition is left, should render info icon at left', () => {
+    const wrapper = mount(CheckboxInput, {
+      props: {
+        optionInfoIcon: 'info-icon',
+        optionInfoMessage: 'This is additional information',
+        optionInfoIconStyle: {color: 'blue'},
+        optionInfoIconSize: 'small',
+        optionInfoIconPosition: 'left',
+      },
+    });
+    const optionalInfoIcon = wrapper.find('.oxd-optional-info-icon');
+    expect(optionalInfoIcon.exists()).toBe(true);
+    expect(optionalInfoIcon.classes()).toContain('oxd-optional-info-icon-left');
+  });
+
+  it('if hasError is true, border should be red', () => {
+    const wrapper = mount(CheckboxInput, {
+      props: {
+        enableBorder: true,
+        hasError: true,
+      },
+    });
+    const border = wrapper.find('.border-enabled');
+    expect(border.classes()).toContain('border-error');
+  });
 });
