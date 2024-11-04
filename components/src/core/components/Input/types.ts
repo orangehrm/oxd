@@ -27,6 +27,10 @@ export type FileUpdateMode =
 export interface Option {
   id: number;
   label: string;
+  icon?: string;
+  iconStyle?: Record<string, string>;
+  iconSize?: string;
+  message?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }

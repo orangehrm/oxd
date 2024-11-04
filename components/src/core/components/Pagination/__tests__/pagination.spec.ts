@@ -27,7 +27,9 @@ describe('Pageination.vue', () => {
         )
         .html(),
     ).toEqual(
-      '<div role="option" class="oxd-select-option --selected"><span>50</span></div>',
+      `<div role="option" class="oxd-select-option --selected">
+  <!--v-if--><span>50</span>
+</div>`,
     );
   });
 });

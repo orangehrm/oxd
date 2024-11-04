@@ -3,7 +3,10 @@
     <label
       :class="[
         {'--disabled': disabled},
-        {'border-enabled': enableBorder, 'border-error': hasError && enableBorder},
+        {
+          'border-enabled': enableBorder,
+          'border-error': hasError && enableBorder,
+        },
       ]"
     >
       <template v-if="optionInfoIcon && optionInfoIconPosition === 'left'">
