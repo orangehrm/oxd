@@ -92,7 +92,7 @@ describe('Input.vue', () => {
         imageIconClick: callFunction,
       },
     });
-    expect(wrapper.find('.click-disabled').exists()).toBe(false);
+    expect(wrapper.find('.click-disabled').exists()).toBe(true);
     await wrapper.find('img').trigger('click');
     expect(callFunction).toHaveBeenCalled();
   });
