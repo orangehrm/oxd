@@ -56,12 +56,17 @@ export default defineComponent({
       type: Array,
       default: () => [],
     },
+    hasError: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   render() {
     const inputId = this.id == '' ? 'check-box-group-id' : this.id;
     const inputClass = this.class == '' ? 'check-box-column' : this.class;
     const {$t} = useTranslate();
+    console.log('this.options', this.hasError);
     return h(
       InputGroup,
       {
@@ -70,6 +75,7 @@ export default defineComponent({
         },
         id: inputId,
         style: this.style,
+        hasError: this.hasError,
       },
       [
         this.options.map((option: Options, index: number) => {
@@ -89,6 +95,7 @@ export default defineComponent({
             optionInfoIconPosition: option.optionInfoIconPosition,
             labelPosition: option.labelPosition,
             enableBorder: option.enableBorder,
+            hasError: this.hasError,
 
             onFocus: () => {
               this.$emit('focus', true);
