@@ -66,7 +66,6 @@ export default defineComponent({
     const inputId = this.id == '' ? 'check-box-group-id' : this.id;
     const inputClass = this.class == '' ? 'check-box-column' : this.class;
     const {$t} = useTranslate();
-    console.log('this.options', this.hasError);
     return h(
       InputGroup,
       {
