@@ -1,3 +1,5 @@
+2024-11-07 - 30e71393cff4e116c842c56bf35ef84bd659448d - Update OXD CheckBox/SelectInput Component
+
 2024-11-01 - d9cb67f8abf3c1128203f14bce687c8b5b4075a6 - Remove unnecessary separator between consecutive page numbers in OXD pagination
 
 2024-11-01 - 5f4c5306a8ec4b497cb824fa673e50ac0162af4b - ProfilePicture.vue, ProfilePic.vue, profile-pic.spec.ts- add onclick event to prevent default behaviour of link and execute a function fix issue
