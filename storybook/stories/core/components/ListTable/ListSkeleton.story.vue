@@ -140,6 +140,10 @@ export default {
             {
               id: 1,
               label: 'HR Admin',
+              icon: 'eye-fill',
+              iconStyle:{
+                marginRight: '5px',
+              },
             },
             {
               id: 2,

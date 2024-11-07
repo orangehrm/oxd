@@ -27,7 +27,9 @@ describe('Pageination.vue', () => {
         )
         .html(),
     ).toEqual(
-      '<div role="option" class="oxd-select-option --selected"><span>50</span></div>',
+      `<div role="option" class="oxd-select-option --selected">
+  <!--v-if--><span>50</span>
+</div>`,
     );
   });
   it('shows the first separator when first page is missing and pageItems starts from 3 or higher', async () => {

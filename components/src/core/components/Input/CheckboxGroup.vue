@@ -20,6 +20,9 @@ export interface Options {
   optionInfoIconStyle?: Record<string, any>;
   optionInfoIconSize?: string;
   optionInfoMessage?: string;
+  optionInfoIconPosition?: string;
+  labelPosition?: string;
+  enableBorder?: boolean;
 }
 
 export default defineComponent({
@@ -53,6 +56,10 @@ export default defineComponent({
       type: Array,
       default: () => [],
     },
+    hasError: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   render() {
@@ -83,6 +90,11 @@ export default defineComponent({
             optionInfoIconStyle: option.optionInfoIconStyle,
             optionInfoIconSize: option.optionInfoIconSize,
             optionInfoMessage: option.optionInfoMessage,
+            optionInfoIconPosition: option.optionInfoIconPosition,
+            labelPosition: option.labelPosition,
+            enableBorder: option.enableBorder,
+            hasError: this.hasError,
+
             onFocus: () => {
               this.$emit('focus', true);
             },

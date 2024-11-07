@@ -34,7 +34,7 @@ export default {
       },
     },
     checkIcon: {
-      control: {type: 'boolean'},
+      control: {type: 'string'},
       table: {
         type: {summary: 'Set icon to be display in the  checkbox'},
       },
@@ -68,6 +68,18 @@ export default {
       defaultValue: RIGHT,
       table: {
         type: {summary: 'Set label position for checkbox label'},
+      },
+    },
+    enableBorder: {
+      control: {type: 'boolean'},
+      table: {
+        type: {summary: 'Set border for the checkbox'},
+      },
+    },
+    optionInfoIcon:{
+      control: {type: 'text'},
+      table: {
+        type: {summary: 'Set icon to be display in the  checkbox'},
       },
     },
     blur: {
@@ -202,6 +214,40 @@ Colored.parameters = {
 </div>`,
     },
   },
+};
+
+export const OptionInfoIcon = Template.bind({
+  optionInfoIcon: 'oxd-eye',
+});
+
+OptionInfoIcon.parameters = {
+  docs: {
+    source: {
+      code: `<div>
+  <oxd-checkbox-input optionInfoIcon="oxd-eye"  />
+  <br/>
+  <span>{{selected}}</span>
+</div>`,
+    },
+  },
+};
+
+export const EnableBorder= Template.bind({
+  optionLabel: 'check this!',
+  enableBorder: true,
+
+});
+
+EnableBorder.parameters = {
+  docs: {
+    source: {
+      code: `<div>
+  <oxd-checkbox-input :enableBorder="true"  optionLabel="Check this!"/>
+  <br/>
+  <span>{{selected}}</span>
+</div>`,
+    },
+  },  
 };
 
 export const VmodelSingleDefault = VmodelSample.bind({});

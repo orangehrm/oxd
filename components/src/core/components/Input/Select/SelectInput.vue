@@ -41,6 +41,14 @@
         :ref="`option-${i}`"
         @select="onSelect(option)"
       >
+        <oxd-icon
+          v-if="option.icon"
+          :name="option.icon"
+          :size="option.iconSize"
+          :style="option.iconStyle"
+          :tooltip="option.message"
+          class="optional-select-icon"
+        />
         <slot name="option" :data="option"></slot>
         <span v-if="!$slots['option']">{{ $vt(option.label) }}</span>
       </oxd-select-option>
@@ -58,6 +66,7 @@ import SelectDropdown from '@orangehrm/oxd/core/components/Input/Select/SelectDr
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
 import translateMixin from '../../../../mixins/translate';
 import dropdownDirectionDirective from '../../../../directives/dropdown-direction';
+import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
   name: 'oxd-select-input',
@@ -67,6 +76,7 @@ export default defineComponent({
     'oxd-select-text': SelectText,
     'oxd-select-dropdown': SelectDropdown,
     'oxd-select-option': SelectOption,
+    'oxd-icon': Icon,
   },
 
   directives: {
