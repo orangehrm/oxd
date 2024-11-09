@@ -2,6 +2,7 @@ import SelectInput from '@orangehrm/oxd/core/components/Input/Select/SelectInput
 import SelectInputEvents from './SelectInputEvents.story.vue';
 import SelectInputAfterSelect from './SelectInputAfterSelect.story.vue';
 import {h, ref} from 'vue';
+import SelectInputCustomSelectStory from './SelectInputCustomSelect.story.vue';
 
 export default {
   title: 'Inputs/SelectInput',
@@ -326,6 +327,21 @@ Loading.parameters = {
         '<oxd-select \n :isLoading="true"\n :options=' +
         JSON.stringify(options) +
         '\n/>',
+    },
+  },
+};
+
+export const CustomTemplate = () => SelectInputCustomSelectStory;
+
+CustomTemplate.parameters = {
+  docs: {
+    source: {
+      code:
+      ' <oxd-select :options="options" v-model="value">\n' +
+        '<template v-slot:option> (Github ID) </template> \n' +
+        '</oxd-select>"\n' +
+        '//\n' +
+        'File -> SelectInputCustomSelect.story.vue',
     },
   },
 };

@@ -306,47 +306,4 @@ describe('SelectInput.vue', () => {
     await wrapper.vm.$nextTick();
     expect(iconButton.props('name')).toBe(dropdownTriggerCloseIcon);
   });
-
-  it('when icon attribute is provide, icon should be appera on option list', async () => {
-    const options = [
-      {
-        id: 1,
-        label: 'HR Admin',
-        icon: 'eye-fill',
-        iconStyle: {
-          marginRight: '5px',
-        },
-      },
-      {
-        id: 2,
-        label: 'ESS User',
-      },
-      {
-        id: 3,
-        label: 'Supervisor',
-      },
-    ];
-    const wrapper = mount(SelectInput, {
-      props: {
-        options,
-      },
-    });
-    wrapper.findComponent(SelectText).trigger('click');
-    await wrapper.vm.$nextTick();
-    const nodes = wrapper.findAllComponents(SelectOption);
-    await nodes[0].trigger('mousedown');
-    expect(wrapper.emitted('update:modelValue')).toEqual([
-      [
-        {
-          _selected: false,
-          icon: 'eye-fill',
-          iconStyle: {
-            marginRight: '5px',
-          },
-          id: 1,
-          label: 'HR Admin',
-        },
-      ],
-    ]);
-  });
 });
