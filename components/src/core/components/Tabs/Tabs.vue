@@ -8,17 +8,23 @@
     >
       <span
         tabindex="0"
-        class="tab-item"
+        :id="tab.id"
+        :class="{
+          'tab-item': true,
+          active: selectedTabId == tab.id,
+        }"
+        @blur="onBlur($event, tab)"
         @click="onClick($event, tab)"
         @focus="onFocus($event, tab)"
-        @blur="onBlur($event, tab)"
-        :class="{active: selectedTabId == tab.id}"
         @keyup.enter="onClick($event, tab)"
-        :id="tab.id"
       >
-        <oxd-icon class="tab-icon" :name="tab.icon" v-if="tab.icon" />{{
-          $vt(tab.title)
-        }}</span
+        <oxd-icon
+          class="tab-icon"
+          :name="tab.icon"
+          v-if="tab.icon"
+          :flow="!tab.title && tab.tooltip ? 'bottom' : null"
+          :tooltip="!tab.title && tab.tooltip ? $vt(tab.tooltip) : null"
+        />{{ $vt(tab.title) }}</span
       >
       <div
         class="selected-tab-indicator"
@@ -58,6 +64,7 @@ export default defineComponent({
                 title: value.props?.tab.title,
                 icon: value.props?.tab.icon,
                 class: value.props?.tab.class,
+                tooltip: value.props?.tab.tooltip,
               };
             })
         : [],

@@ -1,5 +1,5 @@
 <template>
-  <oxd-table-cell-default>
+  <oxd-table-cell-default :header="header">
     <template #body="{cell, row}">
       <template v-if="loading">
         <oxd-skeleton animate></oxd-skeleton>

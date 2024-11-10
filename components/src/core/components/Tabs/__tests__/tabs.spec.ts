@@ -191,4 +191,58 @@ describe('Tabs.vue', () => {
     });
     expect(wrapper.emitted('blur')).toBeTruthy();
   });
+  it('Displays tooltip on icon when title is empty and tooltip is provided', async () => {
+    const wrapper = mount(Tabs, {
+      slots: {
+        default: [
+          h(
+            'Tab',
+            {
+              tab: {
+                id: 'tab1',
+                title: '',
+                icon: 'oxd-icon-info',
+                tooltip: 'Information',
+              },
+            },
+            'This is the content of tab 1',
+          ),
+        ],
+      },
+    });
+
+    await wrapper.vm.$nextTick();
+
+    const icon = wrapper.findComponent(Icon);
+    expect(icon.exists()).toBeTruthy();
+    expect(icon.attributes('tooltip')).toBe('Information');
+    expect(icon.attributes('flow')).toBe('bottom');
+  });
+  it('Does not display tooltip on icon when title is provided', async () => {
+    const wrapper = mount(Tabs, {
+      slots: {
+        default: [
+          h(
+            'Tab',
+            {
+              tab: {
+                id: 'tab1',
+                title: 'Information',
+                icon: 'oxd-icon-info',
+                tooltip: 'Information',
+              },
+            },
+            'This is the content of tab 1',
+          ),
+        ],
+      },
+    });
+
+    await wrapper.vm.$nextTick();
+
+    const icon = wrapper.findComponent(Icon);
+    expect(icon.exists()).toBeTruthy();
+    expect(icon.attributes('tooltip')).toBeFalsy();
+    expect(icon.attributes('flow')).toBeFalsy();
+  });
 });

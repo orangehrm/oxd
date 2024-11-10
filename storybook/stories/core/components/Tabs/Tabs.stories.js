@@ -42,14 +42,14 @@ const TemplateWithIcon = (args) => ({
     return {args};
   },
   components: {'oxd-tabs': Tabs, 'oxd-tab': Tab},
-  template: `<oxd-tabs v-bind="args">   <oxd-tab :tab="{id:'1',title:'Posts',icon: 'oxd-posts'}"> <div> Hi this is the content of first tab </div> </oxd-tab><oxd-tab :tab="{id:'2',title:'Personal Details',icon: 'oxd-time'}"> <div> Hi this is the content of second tab </div> </oxd-tab> <oxd-tab :tab="{id:'3',title:'Schedule',icon: 'oxd-posts'}"> <div> Hi this is the content of third tab </div> </oxd-tab> </oxd-tabs>`,
+  template: `<oxd-tabs v-bind="args">   <oxd-tab :tab="{id:'1',title:'Posts',icon: 'oxd-posts'}"> <div> Hi this is the content of first tab </div> </oxd-tab><oxd-tab :tab="{id:'2',title:'Personal Details',icon: 'oxd-time'}"> <div> Hi this is the content of second tab </div> </oxd-tab> <oxd-tab :tab="{id:'3',title:'Schedule',icon: 'oxd-posts'}"> <div> Hi this is the content of third tab </div> </oxd-tab> <oxd-tab :tab="{id:'4',title:'',icon: 'oxd-posts', tooltip: 'Posts'}"> <div> Hi this is the content of fourth tab </div></oxd-tab> </oxd-tabs>`,
 });
 export const WithIcon = TemplateWithIcon.bind({});
 
 WithIcon.parameters = {
   docs: {
     source: {
-      code: `<oxd-tabs v-bind="args">   <oxd-tab :tab="{id:'1',title:'Posts',icon: 'oxd-posts'}"> <div> Hi this is the content of first tab </div> </oxd-tab><oxd-tab :tab="{id:'2',title:'Personal Details',icon: 'oxd-time'}"> <div> Hi this is the content of second tab </div> </oxd-tab> <oxd-tab :tab="{id:'3',title:'Schedule',icon: 'oxd-posts'}"> <div> Hi this is the content of third tab </div> </oxd-tab> </oxd-tabs>`,
+      code: `<oxd-tabs v-bind="args">   <oxd-tab :tab="{id:'1',title:'Posts',icon: 'oxd-posts'}"> <div> Hi this is the content of first tab </div> </oxd-tab><oxd-tab :tab="{id:'2',title:'Personal Details',icon: 'oxd-time'}"> <div> Hi this is the content of second tab </div> </oxd-tab> <oxd-tab :tab="{id:'3',title:'Schedule',icon: 'oxd-posts'}"> <div> Hi this is the content of third tab </div> </oxd-tab> <oxd-tab :tab="{id:'4',title:'',icon: 'oxd-posts', tooltip: 'Posts'}"> <div> Hi this is the content of fourth tab </div></oxd-tab> </oxd-tabs>`,
     },
   },
 };
