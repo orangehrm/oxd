@@ -78,7 +78,7 @@ describe('CheckboxInput.vue', () => {
   it('should render border when optionBorder is provided', () => {
     const wrapper = mount(CheckboxInput, {
       props: {
-        enableBorder: true,
+        border: true,
       },
     });
     const border = wrapper.find('.border-enabled');
@@ -103,11 +103,11 @@ describe('CheckboxInput.vue', () => {
   it('if hasError is true, border should be red', () => {
     const wrapper = mount(CheckboxInput, {
       props: {
-        enableBorder: true,
+        border: true,
         hasError: true,
       },
     });
     const border = wrapper.find('.border-enabled');
-    expect(border.classes()).toContain('border-error');
+    expect(border.classes()).toContain('--error');
   });
 });

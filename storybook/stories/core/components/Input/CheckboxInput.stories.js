@@ -70,7 +70,7 @@ export default {
         type: {summary: 'Set label position for checkbox label'},
       },
     },
-    enableBorder: {
+    border: {
       control: {type: 'boolean'},
       table: {
         type: {summary: 'Set border for the checkbox'},
@@ -234,7 +234,7 @@ OptionInfoIcon.parameters = {
 
 export const EnableBorder= Template.bind({
   optionLabel: 'check this!',
-  enableBorder: true,
+  border: true,
 
 });
 
@@ -242,7 +242,7 @@ EnableBorder.parameters = {
   docs: {
     source: {
       code: `<div>
-  <oxd-checkbox-input :enableBorder="true"  optionLabel="Check this!"/>
+  <oxd-checkbox-input :border="true"  optionLabel="Check this!"/>
   <br/>
   <span>{{selected}}</span>
 </div>`,

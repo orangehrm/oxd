@@ -4,8 +4,8 @@
       :class="[
         {'--disabled': disabled},
         {
-          'border-enabled': enableBorder,
-          'border-error': hasError && enableBorder,
+          'border-enabled': border,
+          '--error': hasError && border && !disabled,
         },
       ]"
     >
@@ -139,7 +139,7 @@ export default defineComponent({
         return LABEL_POSITIONS.indexOf(value) !== -1;
       },
     },
-    enableBorder: {
+    border: {
       type: Boolean,
       default: false,
     },
