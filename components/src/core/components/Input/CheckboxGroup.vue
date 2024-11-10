@@ -22,7 +22,7 @@ export interface Options {
   optionInfoMessage?: string;
   optionInfoIconPosition?: string;
   labelPosition?: string;
-  enableBorder?: boolean;
+  border?: boolean;
 }
 
 export default defineComponent({
@@ -92,7 +92,7 @@ export default defineComponent({
             optionInfoMessage: option.optionInfoMessage,
             optionInfoIconPosition: option.optionInfoIconPosition,
             labelPosition: option.labelPosition,
-            enableBorder: option.enableBorder,
+            border: option.border,
             hasError: this.hasError,
 
             onFocus: () => {
