@@ -1,6 +1,6 @@
-2024-11-11 - 30e71393cff4e116c842c56bf35ef84bd659448d - Icons.ts - Add oxd-on-leave,oxd-holiday,oxd-disabled-url,oxd-generate-link,oxd-enable-url icons
+2024-11-11 - 30e71393cff4e116c842c56bf35ef84bd659448d - components/Icon/icons.ts - Add oxd-on-leave,oxd-holiday,oxd-disabled-url,oxd-generate-link,oxd-enable-url icons
 
-2024-11-11 - 30e71393cff4e116c842c56bf35ef84bd659448d - Update OXD CheckBox Component - Add a border prop to enable borders for the checkbox and an optionInfoIconPosition prop to adjust optional icon position.
+2024-11-11 - 30e71393cff4e116c842c56bf35ef84bd659448d - components/Input/CheckboxInput.vue, components/Input/CheckboxInput.vue - Add a border prop to enable borders for the checkbox and an optionInfoIconPosition prop to adjust optional icon position.
 
 2024-11-08 - cca468f6ad704248ff1de9f34672f3cf29d516e2 - components/CardTable/Cell/LinkWithPill.vue -  header pass as props
 
