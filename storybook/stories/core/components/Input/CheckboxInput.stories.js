@@ -235,7 +235,6 @@ OptionInfoIcon.parameters = {
 export const EnableBorder= Template.bind({
   optionLabel: 'check this!',
   border: true,
-
 });
 
 EnableBorder.parameters = {

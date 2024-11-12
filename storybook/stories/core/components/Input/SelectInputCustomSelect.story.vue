@@ -1,7 +1,7 @@
 <template>
     <oxd-select :options="options" v-model="value">
-      <template v-slot:option="{data}"> 
-        <oxd-icon name="eye-fill" /> 
+      <template v-slot:option="{ data }"> 
+        <oxd-icon name="eye-fill"  /> 
           <span >{{ data.label }}</span>
          </template>
     </oxd-select>
@@ -37,3 +37,4 @@
     },
   };
   </script>
+  
