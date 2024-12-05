@@ -17,6 +17,7 @@
       </template>
     </oxd-autocomplete-input>
     <slot v-if="!disabled" name="iconSlot"></slot>
+    <slot v-if="!disabled" name="subNameSlot"></slot>
   </div>
 </template>
 
