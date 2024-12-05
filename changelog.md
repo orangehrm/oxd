@@ -1,3 +1,5 @@
+2024-12-05 - f0159ab7fde847bc7d8ef19f0f793e7840bc8419 - components/src/core/components/Input/Autocomplete/QuickSearchInput.vue - Added new slot to show a new sub text on the text field
+
 2024-12-02 - abc536c1864e5c272aac7508bf19066148f0969c - components/Icon/icons.ts - Update oxd-refresh icon fill colour
 
 2024-11-25 - 8f72e7876778929c8f86de9e50362f71c04a6133 - components/Collapsible.vue - getting tooltip flow attribute as a props
