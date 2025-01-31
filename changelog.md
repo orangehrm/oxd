@@ -1,3 +1,5 @@
+2025-01-31 - d1b4c076ca73c443c6c2d13b6733879a255eba01 - components/src/core/components/Icon/icons.ts - Add oxd-overnight-shift icon
+
 2025-01-30 - b2efada3c181274cadc340ed0cb6c8251c5cadb3 - components/src/core/components/Icon/icons.ts - Update oxd-summary-report and oxd-detailed-report icons
 
 2025-01-17 - 00972872186d9b9dd80c1365d16c716d28f1859f - components/src/core/components/Icon/icons.ts - Add oxd-summary-report and oxd-detailed-report icons
