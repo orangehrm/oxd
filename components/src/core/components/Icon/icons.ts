@@ -2224,6 +2224,15 @@ export const oxdSummaryReport: icon = {
 </svg>`,
 };
 
+export const oxdOvernightShift: icon = {
+  name: 'oxd-overnight-shift',
+  value: `<svg viewBox="0 -0.5 17 17" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <path style="fill:currentColor" d="M15.584,5.988 L10.344,1.343 C9.94,0.933 9.465,0.864 9.061,1.275 L9.061,4.407 C8.965,4.406 8.883,4.406 8.834,4.406 C3.884,4.406 0.084,7.969 0.084,12.816 C0.084,14.504 0.85,13.889 1.167,13.3 C2.668,10.52 5.434,8.623 8.872,8.623 C8.913,8.623 8.982,8.624 9.06,8.624 L9.06,11.689 C9.464,12.099 9.989,12.05 10.343,11.757 L15.583,7.474 C15.988,7.064 15.988,6.399 15.584,5.988 L15.584,5.988 Z"></path>
+  </g>
+</svg>`,
+};
+
 const icons: Icons = {
   'oxd-likes': oxdLikes,
   'oxd-birthday': oxdBirthday,
@@ -2465,6 +2474,7 @@ const icons: Icons = {
   'oxd-enable-url': oxdEnableUrl,
   'oxd-summary-report': oxdSummaryReport,
   'oxd-detailed-report': oxdDetailedReport,
+  'oxd-overnight-shift': oxdOvernightShift,
 };
 
 export default icons;
