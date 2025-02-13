@@ -8,6 +8,7 @@ const executeHookSafely = async (
   try {
     await Promise.resolve(hook());
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(`Hook error in ${hookName}:`, error);
   }
 };
@@ -15,6 +16,7 @@ const executeHookSafely = async (
 export function injectValidationHook(): ValidationHookContext {
   const hooks = inject(validationHookKey, new Set<ValidationHookContext>());
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const createSafeHook = <T extends any[]>(
     hookName: string,
     callback: (hook: ValidationHookContext, ...args: T) => void | Promise<void>,

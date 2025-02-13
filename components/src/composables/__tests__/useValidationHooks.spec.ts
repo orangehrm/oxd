@@ -7,8 +7,10 @@ import {
 import {injectValidationHook, useValidationHooks} from '../useValidationHooks';
 import {mount} from '@vue/test-utils';
 
-var originalConsoleError = console.error;
+// eslint-disable-next-line no-console
+const originalConsoleError = console.error;
 beforeEach(() => {
+  // eslint-disable-next-line no-console
   console.error = originalConsoleError;
   jest.clearAllMocks();
 });
@@ -19,7 +21,6 @@ const mockField: FieldProperties = {
   name: 'testField',
   dirty: false,
   touched: false,
-  processing: false,
 };
 
 const mockModelValue = ref('test value');
@@ -102,6 +103,7 @@ describe('components/src/composables/useValidationHooks.ts', () => {
     wrapper.unmount();
   });
   it('should catch and log errors without affecting other hooks', async () => {
+    // eslint-disable-next-line no-console
     console.error = jest.fn();
     const successHook = jest.fn();
     const errorHook = jest.fn().mockImplementation(() => {
@@ -125,6 +127,7 @@ describe('components/src/composables/useValidationHooks.ts', () => {
     await expect(
       context.hook.onSuccessfulValidation?.(mockModelValue, mockField),
     ).resolves.not.toThrow();
+    // eslint-disable-next-line no-console
     expect(console.error).toHaveBeenCalledWith(
       'Hook error in onSuccessfulValidation:',
       expect.any(Error),
