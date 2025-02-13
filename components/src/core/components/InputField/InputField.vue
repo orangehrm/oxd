@@ -110,6 +110,9 @@ export default defineComponent({
     id: {
       type: String,
     },
+    name: {
+      type: String,
+    },
     disabled: {
       type: Boolean,
       default: false,
@@ -167,6 +170,7 @@ export default defineComponent({
 
     const {hasError, message, startWatcher, dirty} = useField({
       fieldLabel: props.label ? props.label : '',
+      fieldName: props.name ? props.name : '',
       rules,
       modelValue,
       isDisabled,

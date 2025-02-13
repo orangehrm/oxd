@@ -39,9 +39,46 @@ export const formKey: InjectionKey<FormAPI> = Symbol('form');
 
 export interface FieldContext {
   fieldLabel: string;
+  fieldName: string;
   rules: Rules;
   modelValue: ModelValue;
   isDisabled: Disabled;
   isDirty: boolean;
   onReset: () => Promise<void>;
 }
+
+export interface FieldProperties {
+  cid: string;
+  label: string;
+  name: string;
+  dirty: boolean;
+  touched: boolean;
+}
+
+export interface ValidationHookContext {
+  onValidationError?: (
+    modelValue: ModelValue,
+    errors: string[],
+    field: FieldProperties,
+  ) => void | Promise<void>;
+  onValidationComplete?: (
+    modelValue: ModelValue,
+    result: ErrorField,
+    field: FieldProperties,
+  ) => void | Promise<void>;
+  onValidationStart?: (
+    modelValue: ModelValue,
+    field: FieldProperties,
+  ) => void | Promise<void>;
+  onSuccessfulValidation?: (
+    modelValue: ModelValue,
+    field: FieldProperties,
+  ) => void | Promise<void>;
+  onFieldRegister?: (field: FieldProperties) => void | Promise<void>;
+  onFieldUnregister?: (field: FieldProperties) => void | Promise<void>;
+}
+
+export type ValidationHookSet = Set<ValidationHookContext>;
+export const validationHookKey: InjectionKey<ValidationHookSet> = Symbol(
+  'vhooks',
+);
