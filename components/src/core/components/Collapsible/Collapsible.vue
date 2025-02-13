@@ -30,11 +30,7 @@
 import {defineComponent} from 'vue';
 import oxdIconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import translateMixin from '../../../mixins/translate';
-import {
-  TooltipPosition,
-  TOOLTIP_TOP,
-  TOOLTIP_POSITIONS,
-} from '../Button/types';
+import {TooltipPosition, TOOLTIP_TOP, TOOLTIP_POSITIONS} from '../Button/types';
 
 export default defineComponent({
   name: 'CollapsibleComponent',

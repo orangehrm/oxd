@@ -120,7 +120,7 @@ describe('CheckboxInput.vue', () => {
     const tooltipSpan = wrapper.find('.oxd-checkbox-input');
     expect(tooltipSpan.exists()).toBeTruthy();
     expect(tooltipSpan.attributes('tooltip')).toBeFalsy();
-    expect(tooltipSpan.attributes('flow')).toEqual("top");
+    expect(tooltipSpan.attributes('flow')).toEqual('top');
   });
 
   it('when the disabled tooltip is there, checkbox should be disabled and the tooltip should be there', async () => {

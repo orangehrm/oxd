@@ -62,10 +62,9 @@ export default defineComponent({
         tableProps?.disabled === undefined
           ? false
           : Boolean(tableProps?.disabled);
-          const isSelectDisabled = Boolean(props.rowItem?.isSelectDisabled);
-          return isTableDisabled || isRowDisabled || isSelectDisabled;
+      const isSelectDisabled = Boolean(props.rowItem?.isSelectDisabled);
+      return isTableDisabled || isRowDisabled || isSelectDisabled;
     });
-
 
     const tooltipPosition = computed(() => {
       return props.rowItem?.selectDisabledTooltipPosition
@@ -74,8 +73,8 @@ export default defineComponent({
     });
 
     const disabledTooltip = computed(() => {
-        return props.rowItem?.isSelectDisabled 
-        ? props.rowItem?.selectDisabledTooltip ?? null 
+      return props.rowItem?.isSelectDisabled
+        ? props.rowItem?.selectDisabledTooltip ?? null
         : null;
     });
 
@@ -110,7 +109,7 @@ export default defineComponent({
       isDisabled,
       isSelectable,
       tooltipPosition,
-      disabledTooltip
+      disabledTooltip,
     };
   },
   methods: {
