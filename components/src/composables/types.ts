@@ -39,8 +39,8 @@ export const formKey: InjectionKey<FormAPI> = Symbol('form');
 
 export interface FieldContext {
   fieldLabel: string;
-  fieldName: string;
   rules: Rules;
+  modelName: string;
   modelValue: ModelValue;
   isDisabled: Disabled;
   isDirty: boolean;
@@ -50,30 +50,24 @@ export interface FieldContext {
 export interface FieldProperties {
   cid: string;
   label: string;
-  name: string;
   dirty: boolean;
   touched: boolean;
+  modelName: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  modelValue: any;
 }
 
 export interface ValidationHookContext {
   onValidationError?: (
-    modelValue: ModelValue,
-    errors: string[],
     field: FieldProperties,
+    errors: string[],
   ) => void | Promise<void>;
   onValidationComplete?: (
-    modelValue: ModelValue,
+    field: FieldProperties,
     result: ErrorField,
-    field: FieldProperties,
   ) => void | Promise<void>;
-  onValidationStart?: (
-    modelValue: ModelValue,
-    field: FieldProperties,
-  ) => void | Promise<void>;
-  onSuccessfulValidation?: (
-    modelValue: ModelValue,
-    field: FieldProperties,
-  ) => void | Promise<void>;
+  onValidationStart?: (field: FieldProperties) => void | Promise<void>;
+  onSuccessfulValidation?: (field: FieldProperties) => void | Promise<void>;
   onFieldRegister?: (field: FieldProperties) => void | Promise<void>;
   onFieldUnregister?: (field: FieldProperties) => void | Promise<void>;
 }

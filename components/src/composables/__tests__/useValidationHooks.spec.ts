@@ -1,11 +1,11 @@
-import {ref, defineComponent} from 'vue';
 import {
   FieldProperties,
-  ValidationHookContext,
   validationHookKey,
+  ValidationHookContext,
 } from '../types';
-import {injectValidationHook, useValidationHooks} from '../useValidationHooks';
+import {defineComponent} from 'vue';
 import {mount} from '@vue/test-utils';
+import {injectValidationHook, useValidationHooks} from '../useValidationHooks';
 
 // eslint-disable-next-line no-console
 const originalConsoleError = console.error;
@@ -18,12 +18,11 @@ beforeEach(() => {
 const mockField: FieldProperties = {
   cid: 'test-id',
   label: 'Test Field',
-  name: 'testField',
+  modelName: 'testField',
+  modelValue: 'test value',
   dirty: false,
   touched: false,
 };
-
-const mockModelValue = ref('test value');
 
 const createTestComponent = (
   setupFn: (context: {
@@ -64,15 +63,12 @@ describe('components/src/composables/useValidationHooks.ts', () => {
       },
     });
 
-    await context.hook.onSuccessfulValidation?.(mockModelValue, mockField);
-    expect(onSuccessfulValidation).toHaveBeenCalledWith(
-      mockModelValue,
-      mockField,
-    );
+    await context.hook.onSuccessfulValidation?.(mockField);
+    expect(onSuccessfulValidation).toHaveBeenCalledWith(mockField);
     expect(onSuccessfulValidation).toHaveBeenCalledTimes(1);
 
     context.removeHook?.();
-    await context.hook.onSuccessfulValidation?.(mockModelValue, mockField);
+    await context.hook.onSuccessfulValidation?.(mockField);
     expect(onSuccessfulValidation).toHaveBeenCalledTimes(1);
 
     wrapper.unmount();
@@ -97,7 +93,7 @@ describe('components/src/composables/useValidationHooks.ts', () => {
       },
     });
 
-    await context.hook.onSuccessfulValidation?.(mockModelValue, mockField);
+    await context.hook.onSuccessfulValidation?.(mockField);
     expect(executionOrder).toEqual([1, 2]);
 
     wrapper.unmount();
@@ -125,7 +121,7 @@ describe('components/src/composables/useValidationHooks.ts', () => {
     });
 
     await expect(
-      context.hook.onSuccessfulValidation?.(mockModelValue, mockField),
+      context.hook.onSuccessfulValidation?.(mockField),
     ).resolves.not.toThrow();
     // eslint-disable-next-line no-console
     expect(console.error).toHaveBeenCalledWith(
@@ -168,13 +164,12 @@ describe('components/src/composables/useValidationHooks.ts', () => {
     });
 
     // Test successful validation flow
-    await context.hook.onValidationStart?.(mockModelValue, mockField);
-    await context.hook.onSuccessfulValidation?.(mockModelValue, mockField);
-    await context.hook.onValidationComplete?.(
-      mockModelValue,
-      {cid: 'test-id', errors: []},
-      mockField,
-    );
+    await context.hook.onValidationStart?.(mockField);
+    await context.hook.onSuccessfulValidation?.(mockField);
+    await context.hook.onValidationComplete?.(mockField, {
+      cid: 'test-id',
+      errors: [],
+    });
 
     expect(lifecycle).toEqual(['start', 'success', 'complete']);
     expect(hooks.onValidationError).not.toHaveBeenCalled();
@@ -213,17 +208,12 @@ describe('components/src/composables/useValidationHooks.ts', () => {
     });
 
     // Test error validation flow
-    await context.hook.onValidationStart?.(mockModelValue, mockField);
-    await context.hook.onValidationError?.(
-      mockModelValue,
-      ['Error message'],
-      mockField,
-    );
-    await context.hook.onValidationComplete?.(
-      mockModelValue,
-      {cid: 'test-id', errors: ['Error message']},
-      mockField,
-    );
+    await context.hook.onValidationStart?.(mockField);
+    await context.hook.onValidationError?.(mockField, ['Error message']);
+    await context.hook.onValidationComplete?.(mockField, {
+      cid: 'test-id',
+      errors: ['Error message'],
+    });
 
     expect(lifecycle).toEqual(['start', 'error', 'complete']);
     expect(hooks.onSuccessfulValidation).not.toHaveBeenCalled();
@@ -279,7 +269,7 @@ describe('components/src/composables/useValidationHooks.ts', () => {
       },
     });
 
-    await context.hook.onSuccessfulValidation?.(mockModelValue, mockField);
+    await context.hook.onSuccessfulValidation?.(mockField);
 
     expect(fastHook).toHaveBeenCalled();
     expect(slowHook).toHaveBeenCalled();

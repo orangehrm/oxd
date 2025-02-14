@@ -22,7 +22,7 @@ export default function useField(fieldContext: FieldContext) {
   const validationHook = injectValidationHook();
   const cid = ref<string>(nanoid());
   const label = ref<string>(fieldContext.fieldLabel);
-  const name = ref<string>(fieldContext.fieldName);
+  const name = ref<string>(fieldContext.modelName);
   const dirty = ref<boolean>(fieldContext.isDirty);
   const touched = ref<boolean>(false);
   const processing = ref<boolean>(false);
@@ -33,7 +33,8 @@ export default function useField(fieldContext: FieldContext) {
     label: label.value,
     dirty: dirty.value,
     touched: touched.value,
-    name: name.value,
+    modelName: name.value,
+    modelValue: fieldContext.modelValue.value,
   });
 
   const validate = (modelValue: ModelValue, rules: Rules) => {
@@ -46,7 +47,7 @@ export default function useField(fieldContext: FieldContext) {
 
     processing.value = true;
     const snapshot = getFieldSnapshot();
-    validationHook?.onValidationStart?.(modelValue, snapshot);
+    validationHook?.onValidationStart?.(snapshot);
 
     const allValidations = Promise.all(
       rules.value.map(func => {
@@ -71,13 +72,13 @@ export default function useField(fieldContext: FieldContext) {
     return new Promise<ErrorField>((resolve, reject) => {
       allValidations
         .then(() => {
-          validationHook?.onSuccessfulValidation?.(modelValue, snapshot);
+          validationHook?.onSuccessfulValidation?.(snapshot);
           resolve(validationResult);
         })
         .catch(error => {
           if (typeof error === 'string') {
             validationResult.errors.push(error);
-            validationHook?.onValidationError?.(modelValue, [error], snapshot);
+            validationHook?.onValidationError?.(snapshot, [error]);
             resolve(validationResult);
           } else {
             reject(error);
@@ -85,11 +86,7 @@ export default function useField(fieldContext: FieldContext) {
         })
         .finally(() => {
           processing.value = false;
-          validationHook?.onValidationComplete?.(
-            modelValue,
-            validationResult,
-            snapshot,
-          );
+          validationHook?.onValidationComplete?.(snapshot, validationResult);
         });
     });
   };

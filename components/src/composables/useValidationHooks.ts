@@ -32,25 +32,21 @@ export function injectValidationHook(): ValidationHookContext {
   return {
     onSuccessfulValidation: createSafeHook(
       'onSuccessfulValidation',
-      (hook, modelValue, field) =>
-        hook.onSuccessfulValidation?.(modelValue, field),
+      (hook, field) => hook.onSuccessfulValidation?.(field),
     ),
 
     onValidationError: createSafeHook(
       'onValidationError',
-      (hook, modelValue, errors, field) =>
-        hook.onValidationError?.(modelValue, errors, field),
+      (hook, field, errors) => hook.onValidationError?.(field, errors),
     ),
 
-    onValidationStart: createSafeHook(
-      'onValidationStart',
-      (hook, modelValue, field) => hook.onValidationStart?.(modelValue, field),
+    onValidationStart: createSafeHook('onValidationStart', (hook, field) =>
+      hook.onValidationStart?.(field),
     ),
 
     onValidationComplete: createSafeHook(
       'onValidationComplete',
-      (hook, modelValue, result, field) =>
-        hook.onValidationComplete?.(modelValue, result, field),
+      (hook, field, result) => hook.onValidationComplete?.(field, result),
     ),
 
     onFieldRegister: createSafeHook('onFieldRegister', (hook, field) =>

@@ -25,7 +25,7 @@ const TestField = defineComponent({
     const {form, validate, reset, startWatcher} = useField({
       isDirty: false,
       fieldLabel: 'test',
-      fieldName: 'test',
+      modelName: 'test',
       isDisabled: disabled,
       modelValue: modelValue,
       onReset: mockRestFunction,
