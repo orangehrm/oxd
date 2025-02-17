@@ -66,7 +66,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import debounce from 'lodash.debounce';
+import {debounce} from 'lodash-es';
 import eventsMixin from '../Select/events-mixin';
 import navigationMixin from '../Select/navigation-mixin';
 import {TOP, BOTTOM, Option, Position, DROPDOWN_POSITIONS} from '../types';

@@ -1,21 +1,16 @@
 import {
-  ref,
-  computed,
-  watchEffect,
-  onBeforeUnmount,
-  WatchStopHandle,
-} from 'vue';
-import {nanoid} from 'nanoid';
-import {injectStrict} from '../utils/injectable';
-import {
-  ErrorField,
-  FormAPI,
-  formKey,
-  ModelValue,
   Rules,
+  formKey,
+  FormAPI,
+  ErrorField,
+  ModelValue,
   FieldContext,
 } from './types';
+import {nanoid} from 'nanoid';
+import {isEqual} from 'lodash-es';
+import {injectStrict} from '../utils/injectable';
 import {injectValidationHook} from './useValidationHooks';
+import {ref, watch, computed, onBeforeUnmount, WatchStopHandle} from 'vue';
 
 export default function useField(fieldContext: FieldContext) {
   const form = injectStrict<FormAPI>(formKey);
@@ -37,7 +32,11 @@ export default function useField(fieldContext: FieldContext) {
     modelValue: fieldContext.modelValue.value,
   });
 
-  const validate = (modelValue: ModelValue, rules: Rules) => {
+  const validate = (
+    modelValue: ModelValue,
+    rules: Rules,
+    modelUpdated?: boolean,
+  ) => {
     const validationResult: ErrorField = {
       cid: cid.value,
       errors: [],
@@ -47,7 +46,7 @@ export default function useField(fieldContext: FieldContext) {
 
     processing.value = true;
     const snapshot = getFieldSnapshot();
-    validationHook?.onValidationStart?.(snapshot);
+    if (modelUpdated) validationHook?.onValidationStart?.(snapshot);
 
     const allValidations = Promise.all(
       rules.value.map(func => {
@@ -72,13 +71,14 @@ export default function useField(fieldContext: FieldContext) {
     return new Promise<ErrorField>((resolve, reject) => {
       allValidations
         .then(() => {
-          validationHook?.onSuccessfulValidation?.(snapshot);
+          if (modelUpdated) validationHook?.onSuccessfulValidation?.(snapshot);
           resolve(validationResult);
         })
         .catch(error => {
           if (typeof error === 'string') {
             validationResult.errors.push(error);
-            validationHook?.onValidationError?.(snapshot, [error]);
+            if (modelUpdated)
+              validationHook?.onValidationError?.(snapshot, [error]);
             resolve(validationResult);
           } else {
             reject(error);
@@ -86,15 +86,22 @@ export default function useField(fieldContext: FieldContext) {
         })
         .finally(() => {
           processing.value = false;
-          validationHook?.onValidationComplete?.(snapshot, validationResult);
+          if (modelUpdated)
+            validationHook?.onValidationComplete?.(snapshot, validationResult);
         });
     });
   };
 
   const startWatcher = () => {
-    watchHandler = watchEffect(
-      () => {
-        validate(fieldContext.modelValue, fieldContext.rules).then(result => {
+    watchHandler = watch(
+      [fieldContext.modelValue, fieldContext.rules],
+      ([newModelValue], [oldModelValue]) => {
+        const isModelUpdated = !isEqual(newModelValue, oldModelValue);
+        validate(
+          fieldContext.modelValue,
+          fieldContext.rules,
+          isModelUpdated,
+        ).then(result => {
           form.addError(result);
         });
       },
