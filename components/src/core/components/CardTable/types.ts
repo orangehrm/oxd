@@ -4,11 +4,14 @@ import {ActionsCellConfig, RowItem} from './Cell/types';
 
 export interface CardHeader extends StyleProps {
   name: string;
+  title?: string;
   slot?: string;
   cellType?: string;
   cellConfig?: ActionsCellConfig<RowItem>;
   sortField?: string;
   cellRenderer?: cellRenderCallback;
+  iconName?: string;
+  iconStyle?: object;
 }
 
 export type cellRenderCallback = (

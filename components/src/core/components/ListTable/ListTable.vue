@@ -151,6 +151,15 @@ export default defineComponent({
       type: Object as PropType<CardSelector>,
       default: () => ({}),
     },
+    selectionMode: {
+      type: String as PropType<'index' | 'property'>,
+      default: 'index',
+      validator: (value: string) => ['index', 'property'].includes(value),
+    },
+    selectionProperty: {
+      type: String,
+      default: 'id',
+    },
     headers: {
       type: Array as PropType<CardHeaders>,
       default: () => [],

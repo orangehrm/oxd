@@ -24,6 +24,7 @@ export default function useFlashing(
     loading: boolean;
     flashing: boolean;
     items: RowItem[];
+    selectionMode?: 'index' | 'property';
   }>,
   context: SetupContext,
 ) {
@@ -31,11 +32,13 @@ export default function useFlashing(
   let cachedItems: RowItem[] = [];
   const flashIndexes = shallowRef<number[]>([]);
 
-  // Reset cached values if loading or sorting
+  // Reset cached values if loading or sorting, but only clear selection for index-based selection
   watch(
     [() => props.loading, () => props.order],
     () => {
-      context.emit('update:selected', []);
+      if (props.selectionMode !== 'property') {
+        context.emit('update:selected', []);
+      }
       flashIndexes.value = [];
       cachedItems = [];
       flash = false;

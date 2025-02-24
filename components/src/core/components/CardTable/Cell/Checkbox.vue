@@ -20,7 +20,7 @@ import emitter from '../../../../utils/emitter';
 import {defineComponent, inject, computed, onBeforeUnmount} from 'vue';
 import Skeleton from '@orangehrm/oxd/core/components/Skeleton/Skeleton.vue';
 import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
-import {TOP} from '@orangehrm/oxd/core/components/Input/types';
+import {TOP} from '../../../../core/components/Input/types';
 
 export default defineComponent({
   name: 'oxd-table-cell-checkbox',
@@ -35,20 +35,32 @@ export default defineComponent({
 
     const checkState = computed({
       get: () => {
+        const selectionMode = tableProps?.selectionMode;
+        const selectionValue =
+          selectionMode === 'property' && tableProps?.selectionProperty
+            ? props.rowItem[tableProps.selectionProperty]
+            : props.item;
+
         const itemIndex = tableProps.selected.findIndex(
-          item => item === props.item,
+          value => value === selectionValue,
         );
         return itemIndex > -1;
       },
       set: newVal => {
+        const selectionMode = tableProps?.selectionMode;
+        const selectionValue =
+          selectionMode === 'property' && tableProps?.selectionProperty
+            ? props.rowItem[tableProps.selectionProperty]
+            : props.item;
+
         newVal
           ? emitter.emit(
               `${tableProps.tableId}-datatable:rowSelected`,
-              props.item,
+              selectionValue,
             )
           : emitter.emit(
               `${tableProps.tableId}-datatable:rowUnselected`,
-              props.item,
+              selectionValue,
             );
       },
     });
