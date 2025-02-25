@@ -11,6 +11,8 @@
         :readonly="readonly"
         :value="displayDate"
         :placeholder="placeholder"
+        :openCalendarOnInputClick="openCalendarOnInputClick"
+        @click="openCalendarOnClick"
         v-bind="defaultAttrs"
         v-click-outside="onClickTextOutside"
         ref="oxdInput"
@@ -56,7 +58,23 @@
           :max="max"
           v-focus-trap
         >
-          <div class="oxd-date-input-links">
+          <slot name="actionButton" v-if="isActionButtonVisible">
+            <oxd-button
+              class="table-header-action-btn"
+              :label="actionButtonData.label"
+              :iconName="actionButtonData.iconName"
+              :iconSize="actionButtonData.iconSize"
+              :iconStyle="actionButtonData.iconStyle"
+              :size="actionButtonData.size"
+              :style="actionButtonData.style"
+              :disabled="actionButtonData.disabled"
+              :disabledTooltip="actionButtonData.disabledTooltip"
+              :displayType="actionButtonData.displayType"
+              @click="OnClickActionButtonInCalendar"
+            >
+            </oxd-button>
+          </slot>
+          <div class="oxd-date-input-links" v-if="!isActionButtonVisible">
             <div
               @keyup.enter="onClickToday"
               @click="onClickToday"
@@ -109,6 +127,7 @@ import focusTrapDirective from '../../../directives/focus-trap';
 import translateMixin from '../../../mixins/translate';
 import {LENGTHY_DATE_FORMATS} from '../Calendar/types';
 import {CalendarDayAttributes, CalendarEvent} from '../Calendar/types';
+import Button from '@orangehrm/oxd/core/components/Button/Button.vue';
 
 export default defineComponent({
   name: 'oxd-date-input',
@@ -118,6 +137,7 @@ export default defineComponent({
     'oxd-icon': Icon,
     'oxd-input': Input,
     'oxd-calendar': Calendar,
+    'oxd-button': Button,
   },
 
   mixins: [translateMixin],
@@ -204,6 +224,18 @@ export default defineComponent({
     max: {
       type: Date,
     },
+    actionButton: {
+      type: Object,
+      default: () => null,
+    },
+    isActionButtonVisible: {
+      type: Boolean,
+      default: false,
+    },
+    openCalendarOnInputClick: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -240,6 +272,11 @@ export default defineComponent({
         inputElement[0]?.focus();
       });
       this.closeDropdown();
+    },
+    openCalendarOnClick() {
+      if (this.openCalendarOnInputClick && !this.disabled && !this.readonly) {
+        this.toggleDropdown();
+      }
     },
     toggleDropdown() {
       if (!this.disabled && !this.readonly) {
@@ -310,6 +347,10 @@ export default defineComponent({
         return true;
       }
     },
+    OnClickActionButtonInCalendar() {
+      this.open = false;
+      this.$emit('action-button-in-calendar:clicked');
+    },
   },
 
   computed: {
@@ -361,6 +402,27 @@ export default defineComponent({
       return this.displayFormat && this.displayFormat.trim()
         ? this.displayFormat
         : this.ioformat;
+    },
+    actionButtonData(): object {
+      const initialObject = {
+        label: 'Button',
+        labelMini: null,
+        iconName: null,
+        iconSize: null,
+        iconStyle: null,
+        iconImageSrc: null,
+        size: 'long',
+        displayType: 'label',
+        style: null,
+        showLabel: true,
+      };
+      for (const key in this.actionButton) {
+        const value = this.actionButton[key];
+        if (value) {
+          initialObject[key] = value;
+        }
+      }
+      return initialObject;
     },
   },
 });
