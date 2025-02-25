@@ -39,12 +39,13 @@ export const formKey: InjectionKey<FormAPI> = Symbol('form');
 
 export interface FieldContext {
   fieldLabel: string;
-  rules: Rules;
   modelName: string;
   modelValue: ModelValue;
-  isDisabled: Disabled;
+  rules: Rules;
+  isDisabled: Ref<boolean>;
   isDirty: boolean;
-  onReset: () => Promise<void>;
+  onReset: () => void;
+  getSnapshot?: unknown;
 }
 
 export interface FieldProperties {
@@ -76,3 +77,16 @@ export type ValidationHookSet = Set<ValidationHookContext>;
 export const validationHookKey: InjectionKey<ValidationHookSet> = Symbol(
   'vhooks',
 );
+
+export interface FieldState {
+  cid: string;
+  label: string;
+  dirty: boolean;
+  touched: boolean;
+  modelName: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  modelValue: any;
+  processing: boolean;
+}
+
+export type CustomSnapshotFn = (state: FieldState) => FieldProperties;

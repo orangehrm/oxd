@@ -97,6 +97,7 @@ export default defineComponent({
 
   props: {
     modelValue: {},
+    snapshotFunction: {},
     label: {
       type: String,
     },
@@ -176,6 +177,7 @@ export default defineComponent({
       isDisabled,
       isDirty,
       onReset,
+      getSnapshot: props.snapshotFunction,
     });
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

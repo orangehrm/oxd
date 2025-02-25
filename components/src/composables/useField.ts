@@ -4,7 +4,10 @@ import {
   FormAPI,
   ErrorField,
   ModelValue,
+  FieldState,
   FieldContext,
+  FieldProperties,
+  CustomSnapshotFn,
 } from './types';
 import {nanoid} from 'nanoid';
 import {isEqual} from 'lodash-es';
@@ -23,14 +26,30 @@ export default function useField(fieldContext: FieldContext) {
   const processing = ref<boolean>(false);
   let watchHandler: WatchStopHandle | undefined;
 
-  const getFieldSnapshot = () => ({
-    cid: cid.value,
-    label: label.value,
-    dirty: dirty.value,
-    touched: touched.value,
-    modelName: name.value,
-    modelValue: fieldContext.modelValue.value,
-  });
+  const getFieldSnapshot = () => {
+    const state: FieldState = {
+      cid: cid.value,
+      label: label.value,
+      dirty: dirty.value,
+      touched: touched.value,
+      modelName: name.value,
+      modelValue: fieldContext.modelValue.value,
+      processing: processing.value,
+    };
+
+    if (typeof fieldContext.getSnapshot === 'function') {
+      return (fieldContext.getSnapshot as CustomSnapshotFn)(state);
+    }
+
+    return {
+      cid: state.cid,
+      label: state.label,
+      dirty: state.dirty,
+      touched: state.touched,
+      modelName: state.modelName,
+      modelValue: state.modelValue,
+    } as FieldProperties;
+  };
 
   const validate = (
     modelValue: ModelValue,

@@ -4,6 +4,7 @@ module.exports = {
     '^.+\\.vue$': 'vue-jest',
   },
   testEnvironmentOptions: {resources: 'usable'},
+  transformIgnorePatterns: ['/node_modules/(?!(lodash-es))'],
   moduleNameMapper: {
     '^!!raw-loader!(.*)$': '$1',
   },

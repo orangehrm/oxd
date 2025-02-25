@@ -4,6 +4,14 @@ import {defineComponent, toRef, ref} from 'vue';
 import {flushPromises, shallowMount} from '@vue/test-utils';
 
 const mockRestFunction = jest.fn();
+const mockSnapshotFunction = jest.fn().mockImplementation(state => ({
+  cid: state.cid,
+  label: state.label,
+  dirty: state.dirty,
+  touched: state.touched,
+  modelName: state.modelName,
+  modelValue: state.modelValue,
+}));
 const purgeErrors = jest.fn();
 const registerField = jest.fn();
 const unregisterField = jest.fn();
@@ -17,7 +25,7 @@ jest.mock('nanoid', () => ({
 const TestField = defineComponent({
   name: 'Field',
   // eslint-disable-next-line vue/require-prop-types
-  props: ['disabled', 'modelValue'],
+  props: ['disabled', 'modelValue', 'useCustomSnapshot'],
   setup(props) {
     const disabled = toRef(props, 'disabled');
     const modelValue = toRef(props, 'modelValue');
@@ -30,6 +38,7 @@ const TestField = defineComponent({
       modelValue: modelValue,
       onReset: mockRestFunction,
       rules: ref([(v: string) => (!!v && v.trim() !== '') || 'Required']),
+      getSnapshot: props.useCustomSnapshot ? mockSnapshotFunction : undefined,
     });
     return {
       form,
@@ -62,6 +71,7 @@ beforeEach(() => {
   registerField.mockClear();
   unregisterField.mockClear();
   mockRestFunction.mockClear();
+  mockSnapshotFunction.mockClear();
 });
 
 describe('components/src/composables/useField', () => {
@@ -111,5 +121,35 @@ describe('components/src/composables/useField', () => {
       cid: 'RQo9uIESilqxkE9scKup7',
       errors: [],
     });
+  });
+
+  it('should use custom snapshot function when provided', async () => {
+    const wrapper = shallowMount(TestField, {
+      ...mountConfigs,
+      props: {
+        useCustomSnapshot: true,
+        modelValue: 'test',
+      },
+    });
+    wrapper.vm.startWatcher();
+    await wrapper.setProps({modelValue: 'new value'});
+    await flushPromises();
+
+    expect(mockSnapshotFunction).toHaveBeenCalled();
+  });
+
+  it('should use default snapshot when custom function is not provided', async () => {
+    const wrapper = shallowMount(TestField, {
+      ...mountConfigs,
+      props: {
+        useCustomSnapshot: false,
+        modelValue: 'test',
+      },
+    });
+    wrapper.vm.startWatcher();
+    await wrapper.setProps({modelValue: 'new value'});
+    await flushPromises();
+
+    expect(mockSnapshotFunction).not.toHaveBeenCalled();
   });
 });
