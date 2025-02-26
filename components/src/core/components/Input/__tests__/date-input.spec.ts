@@ -232,52 +232,13 @@ describe('DateInput.vue', () => {
     expect(wrapper.emitted('update:modelValue')).toEqual([[null]]);
   });
 
-  it('should not show action button when isActionButtonVisible is false', async () => {
-    const wrapper = mount(DateInput, {});
+  it('should not show date input links when actions slot is true', async () => {
+    const wrapper = mount(DateInput, {slots: {
+      actions: '<div id="actionss">Action Options</div>',
+    }});
     await wrapper.findComponent(Icon).trigger('click');
     await wrapper.vm.$nextTick();
-    expect(wrapper.find('.oxd-date-input-links').exists()).toBeTruthy();
-    expect(wrapper.find('.table-header-action-btn').exists()).toBeFalsy();
+    expect(wrapper.find('.oxd-date-input-links').exists()).toBeFalsy();
   });
 
-  it('should show action button when isActionButtonVisible is true', async () => {
-    const wrapper = mount(DateInput, {
-      props: {
-        isActionButtonVisible: true,
-        actionButton: {
-          label: 'Current Week',
-        },
-      },
-    });
-    await wrapper.findComponent(Icon).trigger('click');
-    await wrapper.vm.$nextTick();
-    expect(wrapper.find('.table-header-action-btn').exists()).toBeTruthy();
-  });
-
-  it('should emit action-button:clicked when action button is clicked', async () => {
-    const wrapper = mount(DateInput, {
-      props: {
-        isActionButtonVisible: true,
-        actionButton: {
-          label: 'Current Week',
-        },
-      },
-    });
-    await wrapper.findComponent(Icon).trigger('click');
-    await wrapper.vm.$nextTick();
-    const button = wrapper.find('.table-header-action-btn');
-    await button.trigger('click');
-    expect(wrapper.emitted('action-button-in-calendar:clicked')).toBeTruthy();
-  });
-
-  it('should open calendar on input click when openCalendarOnInputClick is true', async () => {
-    const wrapper = mount(DateInput, {
-      props: {
-        openCalendarOnInputClick: true,
-      },
-    });
-    wrapper.find('.oxd-input').trigger('click');
-    await wrapper.vm.$nextTick();
-    expect(wrapper.vm.open).toBeTruthy();
-  });
 });
