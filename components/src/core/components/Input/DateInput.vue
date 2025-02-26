@@ -56,7 +56,7 @@
           :max="max"
           v-focus-trap
         >
-        <slot name="actions"></slot>
+          <slot name="actions"></slot>
           <div class="oxd-date-input-links" v-if="!$slots['actions']">
             <div
               @keyup.enter="onClickToday"

@@ -233,12 +233,13 @@ describe('DateInput.vue', () => {
   });
 
   it('should not show date input links when actions slot is true', async () => {
-    const wrapper = mount(DateInput, {slots: {
-      actions: '<div id="actionss">Action Options</div>',
-    }});
+    const wrapper = mount(DateInput, {
+      slots: {
+        actions: '<div id="actionss">Action Options</div>',
+      },
+    });
     await wrapper.findComponent(Icon).trigger('click');
     await wrapper.vm.$nextTick();
     expect(wrapper.find('.oxd-date-input-links').exists()).toBeFalsy();
   });
-
 });
