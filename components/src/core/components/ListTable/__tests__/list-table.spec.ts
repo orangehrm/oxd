@@ -303,4 +303,164 @@ describe('ListTable > ListTable.vue', () => {
     expect(wrapper.emitted('update:selected')).toBeTruthy();
     expect(wrapper.emitted('update:selected')![0]).toEqual([['a2', 'a3']]);
   });
+
+  it('should show check mark in select all checkbox when all items are selected with property selection mode', async () => {
+    const wrapper = mount(ListTable, {
+      props: {
+        selectable: true,
+        items: DUMMY_DATA.items,
+        headers: DUMMY_DATA.headers,
+        selected: ['a1', 'a2', 'a3'],
+        selectionMode: 'property',
+        selectionProperty: 'id',
+      },
+    });
+
+    // Check if the select all checkbox is checked
+    const selectAllCheckbox = wrapper.find(
+      '.oxd-table-header .checkbox-cell input[type="checkbox"]',
+    );
+    expect((selectAllCheckbox.element as HTMLInputElement).checked).toBe(true);
+
+    // Check if the icon is 'oxd-check'
+    const vm = wrapper.vm as any;
+    expect(vm.checkIcon).toBe('oxd-check');
+  });
+});
+
+describe('ListTable > areAllItemsSelected function', () => {
+  it('should consider only selectable items when determining if all items are selected', async () => {
+    const items = [
+      {id: 'a1', col1: 'Data 1', col2: 'Data 2'},
+      {id: 'a2', col1: 'Data 2', col2: 'Data 2', isSelectable: false},
+      {id: 'a3', col1: 'Data 3', col2: 'Data 3'},
+    ];
+
+    const wrapper = mount(ListTable, {
+      props: {
+        selectable: true,
+        items: items,
+        headers: DUMMY_DATA.headers,
+        selected: ['a1', 'a3'],
+        selectionMode: 'property',
+        selectionProperty: 'id',
+      },
+    });
+
+    // Check if the select all checkbox is checked (should be true since all selectable items are selected)
+    const selectAllCheckbox = wrapper.find(
+      '.oxd-table-header .checkbox-cell input[type="checkbox"]',
+    );
+    expect((selectAllCheckbox.element as HTMLInputElement).checked).toBe(true);
+  });
+
+  it('should consider only non-disabled items when determining if all items are selected', async () => {
+    const items = [
+      {id: 'a1', col1: 'Data 1', col2: 'Data 2'},
+      {id: 'a2', col1: 'Data 2', col2: 'Data 2', isDisabled: true},
+      {id: 'a3', col1: 'Data 3', col2: 'Data 3'},
+    ];
+
+    const wrapper = mount(ListTable, {
+      props: {
+        selectable: true,
+        items: items,
+        headers: DUMMY_DATA.headers,
+        selected: ['a1', 'a3'],
+        selectionMode: 'property',
+        selectionProperty: 'id',
+      },
+    });
+
+    // Check if the select all checkbox is checked (should be true since all non-disabled items are selected)
+    const selectAllCheckbox = wrapper.find(
+      '.oxd-table-header .checkbox-cell input[type="checkbox"]',
+    );
+    expect((selectAllCheckbox.element as HTMLInputElement).checked).toBe(true);
+  });
+
+  it('should return false when there are no selectable items', async () => {
+    const items = [
+      {id: 'a1', col1: 'Data 1', col2: 'Data 2', isSelectable: false},
+      {id: 'a2', col1: 'Data 2', col2: 'Data 2', isDisabled: true},
+      {id: 'a3', col1: 'Data 3', col2: 'Data 3', isSelectable: false},
+    ];
+
+    const wrapper = mount(ListTable, {
+      props: {
+        selectable: true,
+        items: items,
+        headers: DUMMY_DATA.headers,
+        selected: ['a1', 'a2', 'a3'],
+        selectionMode: 'property',
+        selectionProperty: 'id',
+      },
+    });
+
+    // Check if the select all checkbox is checked (should be false since there are no selectable items)
+    const selectAllCheckbox = wrapper.find(
+      '.oxd-table-header .checkbox-cell input[type="checkbox"]',
+    );
+    expect((selectAllCheckbox.element as HTMLInputElement).checked).toBe(false);
+  });
+
+  it('should return false when some selectable items are not selected', async () => {
+    const items = [
+      {id: 'a1', col1: 'Data 1', col2: 'Data 2'},
+      {id: 'a2', col1: 'Data 2', col2: 'Data 2', isSelectable: false},
+      {id: 'a3', col1: 'Data 3', col2: 'Data 3'},
+      {id: 'a4', col1: 'Data 4', col2: 'Data 4', isDisabled: true},
+      {id: 'a5', col1: 'Data 5', col2: 'Data 5'},
+    ];
+
+    const wrapper = mount(ListTable, {
+      props: {
+        selectable: true,
+        items: items,
+        headers: DUMMY_DATA.headers,
+        selected: ['a1', 'a3'], // a5 is selectable but not selected
+        selectionMode: 'property',
+        selectionProperty: 'id',
+      },
+    });
+
+    // Check if the select all checkbox is checked (should be false since not all selectable items are selected)
+    const selectAllCheckbox = wrapper.find(
+      '.oxd-table-header .checkbox-cell input[type="checkbox"]',
+    );
+    expect((selectAllCheckbox.element as HTMLInputElement).checked).toBe(false);
+  });
+
+  it('should handle mixed selectable, non-selectable, and disabled items correctly', async () => {
+    const items = [
+      {id: 'a1', col1: 'Data 1', col2: 'Data 2'},
+      {id: 'a2', col1: 'Data 2', col2: 'Data 2', isSelectable: false},
+      {id: 'a3', col1: 'Data 3', col2: 'Data 3'},
+      {id: 'a4', col1: 'Data 4', col2: 'Data 4', isDisabled: true},
+      {
+        id: 'a5',
+        col1: 'Data 5',
+        col2: 'Data 5',
+        isSelectable: false,
+        isDisabled: true,
+      },
+    ];
+
+    const wrapper = mount(ListTable, {
+      props: {
+        selectable: true,
+        items: items,
+        headers: DUMMY_DATA.headers,
+        selected: ['a1', 'a3'], // All selectable and non-disabled items are selected
+        selectionMode: 'property',
+        selectionProperty: 'id',
+      },
+    });
+
+    // Check if the select all checkbox is checked (should be true since all selectable and non-disabled items are selected)
+    const selectAllCheckbox = wrapper.find(
+      '.oxd-table-header .checkbox-cell input[type="checkbox"]',
+    );
+    expect((selectAllCheckbox.element as HTMLInputElement).checked).toBe(true);
+  });
 });

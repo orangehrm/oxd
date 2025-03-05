@@ -213,10 +213,31 @@ export default defineComponent({
       },
     );
 
+    const areAllItemsSelected = (
+      selectedItems: Array<number>,
+      allItems: Array<RowItem>,
+    ) => {
+      const selectableItems = allItems.filter(
+        (item: RowItem) =>
+          item?.isSelectable !== false && item?.isDisabled !== true,
+      );
+
+      if (selectableItems.length === 0) return false;
+
+      let selectedCount = 0;
+      for (const item of selectableItems) {
+        const itemValue = item[props.selectionProperty];
+        if (selectedItems.includes(itemValue)) selectedCount++;
+      }
+
+      return selectedCount === selectableItems.length;
+    };
+
     const getCheckIcon = (
       selectedItems: Array<number>,
       allItems: Array<RowItem>,
     ) => {
+      if (props.selectionMode === 'property') return 'oxd-check';
       return allItems.filter(
         (item: RowItem) =>
           item?.isSelectable !== false && item?.isDisabled !== true,
@@ -227,7 +248,11 @@ export default defineComponent({
 
     const selectAll = computed({
       get: () => {
-        return props.selected.length > 0;
+        if (props.selectionMode === 'property') {
+          return areAllItemsSelected(props.selected, props.items);
+        } else {
+          return props.selected.length > 0;
+        }
       },
       set: value => {
         if (value) {
@@ -305,6 +330,16 @@ export default defineComponent({
     });
 
     const allSelectDisabled = computed(() => {
+      // For property-based selection, we need to check if all items have the selectionProperty
+      if (props.selectionMode === 'property') {
+        return computedItems.value.every(
+          item =>
+            item.isSelectDisabled === true ||
+            item[props.selectionProperty] === undefined,
+        );
+      }
+
+      // Original behavior for index-based selection
       return computedItems.value.every(item => item.isSelectDisabled === true);
     });
 
