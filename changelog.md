@@ -1,3 +1,5 @@
+2025-03-06 - 3b38331530364fc1848235bb1b8415722f981d1d - components/src/composables/types.ts, components/src/composables/useField.ts, components/src/composables/useValidationHooks.ts, components/src/core/components/InputField/InputField.vue - Add useValidationHooks composable and inject validationhook context to fields
+
 2025-01-31 - d1b4c076ca73c443c6c2d13b6733879a255eba01 - components/src/core/components/Icon/icons.ts - Add oxd-overnight-shift icon
 
 2025-01-30 - b2efada3c181274cadc340ed0cb6c8251c5cadb3 - components/src/core/components/Icon/icons.ts - Update oxd-summary-report and oxd-detailed-report icons
