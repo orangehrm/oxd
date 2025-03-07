@@ -1,3 +1,5 @@
+2025-03-07 - b5ce75a28ee89ab7fe0c6361e11659a385e744af - components/src/core/components/ListTable/ListTable.vue - Refactor ListTable selection logic with isItemSelectable helper
+
 2025-03-06 - b613122b8b919850b356d77a245e836f53173ba1 - components/src/composables/useFlashing.ts, components/src/core/components/CardTable/types.ts, components/src/core/components/CardTable/Cell/Checkbox.vue, components/src/core/components/ListTable/ListTable.vue - Add selection mode support for list table
 
 2025-03-06 - 3b38331530364fc1848235bb1b8415722f981d1d - components/src/composables/types.ts, components/src/composables/useField.ts, components/src/composables/useValidationHooks.ts, components/src/core/components/InputField/InputField.vue - Add useValidationHooks composable and inject validationhook context to fields
