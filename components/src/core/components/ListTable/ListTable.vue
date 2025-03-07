@@ -213,14 +213,20 @@ export default defineComponent({
       },
     );
 
+    const isItemSelectable = (item: RowItem): boolean => {
+      return (
+        item?.isSelectable !== false &&
+        item?.isDisabled !== true &&
+        item?.isRowDisabled !== true &&
+        item?.isSelectDisabled !== true
+      );
+    };
+
     const areAllItemsSelected = (
       selectedItems: Array<number>,
       allItems: Array<RowItem>,
     ) => {
-      const selectableItems = allItems.filter(
-        (item: RowItem) =>
-          item?.isSelectable !== false && item?.isDisabled !== true,
-      );
+      const selectableItems = allItems.filter(isItemSelectable);
 
       if (selectableItems.length === 0) return false;
 
@@ -238,10 +244,7 @@ export default defineComponent({
       allItems: Array<RowItem>,
     ) => {
       if (props.selectionMode === 'property') return 'oxd-check';
-      return allItems.filter(
-        (item: RowItem) =>
-          item?.isSelectable !== false && item?.isDisabled !== true,
-      ).length === selectedItems.length
+      return allItems.filter(isItemSelectable).length === selectedItems.length
         ? 'oxd-check'
         : 'dash';
     };
@@ -271,6 +274,7 @@ export default defineComponent({
       }
       return props.headers;
     });
+
     const cardHeaders = computed(() => {
       if (props.selectable || (props.loading && props.skeleton)) {
         return [
