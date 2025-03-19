@@ -41,6 +41,27 @@ describe('ListTable > ListTable.vue', () => {
     expect(wrapper.html()).toMatchSnapshot();
   });
 
+  it('should render OXD ListTable with both Icon and Text in the header', () => {
+    const wrapper = mount(ListTable, {
+      props: {
+        selectable: true,
+        items: DUMMY_DATA.items,
+        headers: [
+          {name: 'col1', title: 'Column 1', style: {flex: 1}},
+          {
+            name: 'col2',
+            title: 'Column 2',
+            style: {flex: 5},
+            icon: 'oxd-icon-plus',
+            iconText: 'Add',
+          },
+        ],
+        selected: DUMMY_DATA.checkedItems,
+      },
+    });
+    expect(wrapper.html()).toMatchSnapshot();
+  }
+  );
   it('should render empty state when there is no data', () => {
     const wrapper = mount(ListTable, {
       props: {
