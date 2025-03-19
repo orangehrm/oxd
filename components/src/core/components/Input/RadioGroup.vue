@@ -65,6 +65,7 @@ export default defineComponent({
         this.options.map((option: Options, index: number) => {
           return h(RadioInput, {
             id: inputId + '_' + option.id,
+            name: inputId,
             style: option.style,
             autofocus: this.$attrs.autofocus && index === 0 ? true : false,
             optionLabel: $t(option.label),
