@@ -33,8 +33,9 @@
             v-if="header.iconName"
             :name="header.iconName"
             :style="header.iconStyle"
+            :tooltip="$vt(header.title)"
           />
-          <span :tooltip="$vt(header.title)" v-else>
+          <span v-if="header.title" :tooltip="$vt(header.title)">
             <p class="oxd-table-th-txt">{{ $vt(header.title) }}</p>
           </span>
         </oxd-card-th>
@@ -109,6 +110,7 @@ import TableBody from '@orangehrm/oxd/core/components/CardTable/Table/TableBody.
 import CellContainer from '@orangehrm/oxd/core/components/ListTable/CellContainer.vue';
 import TableHeader from '@orangehrm/oxd/core/components/ListTable/TableHeader.vue';
 import TableHeaderCell from '@orangehrm/oxd/core/components/ListTable/TableHeaderCell.vue';
+import {Tooltip} from 'chart.js';
 
 export default defineComponent({
   name: 'oxd-list-table',
