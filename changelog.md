@@ -1,6 +1,6 @@
-2025-03-20 - ff114ce595dc09f5a37518bf2c2f5de3ddfdd308 - components/src/core/components/Icon/icons.ts - Added new ai icon(oxd-ai-content)
+2025-03-20 - ff114ce595dc09f5a37518bf2c2f5de3ddfdd308 - components/src/core/components/Icon/icons.ts - Added oxd-ai-content icon
 
-2025-03-20 - ff114ce595dc09f5a37518bf2c2f5de3ddfdd308 - components/src/core/components/ListTable/ListTable.vue -Refactor ListTable selection header logic with enable adding both Icon and text for list header in same time
+2025-03-20 - ff114ce595dc09f5a37518bf2c2f5de3ddfdd308 - components/src/core/components/ListTable/ListTable.vue - Refactor ListTable selection header logic with enable adding both Icon and text for list header in same time
 
 2025-03-20 - 4122c2c302493c878fef0b37dd94c653420684a5 - components/src/core/components/Input/RadioGroup.vue - Add name property to radio group for keyboard accessiblity
 
