@@ -110,7 +110,6 @@ import TableBody from '@orangehrm/oxd/core/components/CardTable/Table/TableBody.
 import CellContainer from '@orangehrm/oxd/core/components/ListTable/CellContainer.vue';
 import TableHeader from '@orangehrm/oxd/core/components/ListTable/TableHeader.vue';
 import TableHeaderCell from '@orangehrm/oxd/core/components/ListTable/TableHeaderCell.vue';
-import {Tooltip} from 'chart.js';
 
 export default defineComponent({
   name: 'oxd-list-table',

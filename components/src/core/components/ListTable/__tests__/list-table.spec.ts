@@ -52,16 +52,14 @@ describe('ListTable > ListTable.vue', () => {
             name: 'col2',
             title: 'Column 2',
             style: {flex: 5},
-            icon: 'oxd-icon-plus',
-            iconText: 'Add',
+            iconName: 'oxd-icon-plus',
           },
         ],
         selected: DUMMY_DATA.checkedItems,
       },
     });
     expect(wrapper.html()).toMatchSnapshot();
-  }
-  );
+  });
   it('should render empty state when there is no data', () => {
     const wrapper = mount(ListTable, {
       props: {

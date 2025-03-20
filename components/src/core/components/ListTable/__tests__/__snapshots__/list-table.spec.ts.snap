@@ -99,8 +99,7 @@ exports[`ListTable > ListTable.vue should render OXD ListTable with both Icon an
         <!--v-if--><span tooltip="Column 1"><p class="oxd-table-th-txt">Column 1</p></span>
         <!--v-if-->
       </div>
-      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;">
-        <!--v-if--><span tooltip="Column 2"><p class="oxd-table-th-txt">Column 2</p></span>
+      <div class="oxd-table-header-cell oxd-padding-cell oxd-table-th" role="columnheader" style="flex: 5;"><i class="oxd-svg-icon oxd-svg-icon--medium" tooltip="Column 2"></i><span tooltip="Column 2"><p class="oxd-table-th-txt">Column 2</p></span>
         <!--v-if-->
       </div>
     </div>
