@@ -6,6 +6,7 @@
         v-for="(option, i) in options"
         :key="option.context"
         @click.once="onClick($event, option.context)"
+        @keydown.enter="onClick($event, option.context)"
         :class="optionClasses[i]"
       >
         <div class="oxd-table-dropdown-item-left" tabindex="0">
