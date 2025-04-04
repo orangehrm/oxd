@@ -3,6 +3,7 @@
     <oxd-icon-button :name="iconName" :size="iconSize" :disabled="disabled" />
     <template v-slot:content>
       <li
+        tabindex="0"
         v-for="(option, i) in options"
         :key="option.context"
         @click.once="onClick($event, option.context)"
