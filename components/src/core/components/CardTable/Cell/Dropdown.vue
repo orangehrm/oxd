@@ -3,13 +3,12 @@
     <oxd-icon-button :name="iconName" :size="iconSize" :disabled="disabled" />
     <template v-slot:content>
       <li
-        tabindex="0"
         v-for="(option, i) in options"
         :key="option.context"
         @click.once="onClick($event, option.context)"
         :class="optionClasses[i]"
       >
-        <div class="oxd-table-dropdown-item-left">
+        <div class="oxd-table-dropdown-item-left" tabindex="0">
           <oxd-icon v-if="option.icon" :name="option.icon" size="extra-small" />
           <oxd-text tag="p">{{ option.label }}</oxd-text>
         </div>
