@@ -60,7 +60,7 @@ export default defineComponent({
       // stop event bubbling and prevent emiting event until selected
       e.stopImmediatePropagation();
     },
-    onClick(e: MouseEvent, context: string) {
+    onClick(e: UIEvent, context: string) {
       const event: ActionCellEvent = e;
       event.context = context;
       this.$emit('click', event);
