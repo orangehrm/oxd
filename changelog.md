@@ -1,3 +1,5 @@
+2025-04-04 - a34df128b3a2568a8d02ef3c5b169b261d923316 - components/src/core/components/CardTable/Cell/Dropdown.vue - Added tabindex to dropdown items to support keyboard accessiblity
+
 2025-03-20 - ff114ce595dc09f5a37518bf2c2f5de3ddfdd308 - components/src/core/components/Icon/icons.ts - Added oxd-ai-content icon
 
 2025-03-20 - ff114ce595dc09f5a37518bf2c2f5de3ddfdd308 - components/src/core/components/ListTable/ListTable.vue - Refactor ListTable selection header logic with enable adding both Icon and text for list header in same time
