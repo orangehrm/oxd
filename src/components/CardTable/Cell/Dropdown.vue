@@ -24,6 +24,7 @@
     <oxd-icon-button name="three-dots-vertical" />
     <template #content>
       <li
+        tabindex="0"
         v-for="option in options"
         :key="option.context"
         class="oxd-table-dropdown-item"
