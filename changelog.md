@@ -1,3 +1,5 @@
+2025-04-17 - 0488e16c8507c454f4fcafff4c2627c5098aa786 - components/src/core/components/Icon/icons.ts - Add roster menu item icon to the OXD library
+
 2025-04-04 - a34df128b3a2568a8d02ef3c5b169b261d923316 - components/src/core/components/CardTable/Cell/Dropdown.vue - Added tabindex to dropdown items to support keyboard accessiblity
 
 2025-03-20 - ff114ce595dc09f5a37518bf2c2f5de3ddfdd308 - components/src/core/components/Icon/icons.ts - Added oxd-ai-content icon
