@@ -3,9 +3,11 @@
     <oxd-icon-button :name="iconName" :size="iconSize" :disabled="disabled" />
     <template v-slot:content>
       <li
+        tabindex="0"
         v-for="(option, i) in options"
         :key="option.context"
         @click.once="onClick($event, option.context)"
+        @keydown.enter="onClick($event, option.context)"
         :class="optionClasses[i]"
       >
         <div class="oxd-table-dropdown-item-left">
@@ -58,7 +60,7 @@ export default defineComponent({
       // stop event bubbling and prevent emiting event until selected
       e.stopImmediatePropagation();
     },
-    onClick(e: MouseEvent, context: string) {
+    onClick(e: UIEvent, context: string) {
       const event: ActionCellEvent = e;
       event.context = context;
       this.$emit('click', event);
