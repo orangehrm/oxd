@@ -1,4 +1,4 @@
-2025-04-18 - 1bbdd81ea11f8b7097e15b06357e8c5e3c2f1050 - Added OXD Wizard component : components/src/core/components/Wizard/Wizard.vue, components/src/core/components/Wizard/Wizard.scss, components/src/core/components/Wizard/types.ts, components/src/core/components/Wizard/\_\_tests\_\_/wizard.spec.ts, storybook/stories/core/components/Wizard/Wizard.stories.js
+2025-04-18 - cca89d5ee4a51cfd6c1c764a416f1370a346f8ee - Added OXD Wizard component : components/src/core/components/Wizard/Wizard.vue, components/src/core/components/Wizard/Wizard.scss, components/src/core/components/Wizard/types.ts, components/src/core/components/Wizard/\_\_tests\_\_/wizard.spec.ts, storybook/stories/core/components/Wizard/Wizard.stories.js
 
 2025-03-20 - ff114ce595dc09f5a37518bf2c2f5de3ddfdd308 - components/src/core/components/Icon/icons.ts - Added oxd-ai-content icon
 
