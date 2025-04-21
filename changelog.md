@@ -1,5 +1,7 @@
 2025-04-18 - cca89d5ee4a51cfd6c1c764a416f1370a346f8ee - Added OXD Wizard component : components/src/core/components/Wizard/Wizard.vue, components/src/core/components/Wizard/Wizard.scss, components/src/core/components/Wizard/types.ts, components/src/core/components/Wizard/\_\_tests\_\_/wizard.spec.ts, storybook/stories/core/components/Wizard/Wizard.stories.js
 
+2025-04-04 - a34df128b3a2568a8d02ef3c5b169b261d923316 - components/src/core/components/CardTable/Cell/Dropdown.vue - Added tabindex to dropdown items to support keyboard accessiblity
+
 2025-03-20 - ff114ce595dc09f5a37518bf2c2f5de3ddfdd308 - components/src/core/components/Icon/icons.ts - Added oxd-ai-content icon
 
 2025-03-20 - ff114ce595dc09f5a37518bf2c2f5de3ddfdd308 - components/src/core/components/ListTable/ListTable.vue - Refactor ListTable selection header logic with enable adding both Icon and text for list header in same time
@@ -11,6 +13,8 @@
 2025-03-06 - b613122b8b919850b356d77a245e836f53173ba1 - components/src/composables/useFlashing.ts, components/src/core/components/CardTable/types.ts, components/src/core/components/CardTable/Cell/Checkbox.vue, components/src/core/components/ListTable/ListTable.vue - Add selection mode support for list table
 
 2025-03-06 - 3b38331530364fc1848235bb1b8415722f981d1d - components/src/composables/types.ts, components/src/composables/useField.ts, components/src/composables/useValidationHooks.ts, components/src/core/components/InputField/InputField.vue - Add useValidationHooks composable and inject validationhook context to fields
+
+2025-02-25 - c8dd1795b3f99197795c25a4168d10cbcd2379ef - components/src/core/components/Input/DateInput.vue - Enabling the calender widget to open upon click on text input, Enabling the calender widget to include an action button instead of date input links (Today/Clear/Close)
 
 2025-01-31 - d1b4c076ca73c443c6c2d13b6733879a255eba01 - components/src/core/components/Icon/icons.ts - Add oxd-overnight-shift icon
 

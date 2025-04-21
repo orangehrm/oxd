@@ -231,4 +231,16 @@ describe('DateInput.vue', () => {
     expect(wrapper.emitted('update:modelValue')).toBeTruthy();
     expect(wrapper.emitted('update:modelValue')).toEqual([[null]]);
   });
+
+  it('should not show date input links when actions slot is true and instead should show the item in slot', async () => {
+    const wrapper = mount(DateInput, {
+      slots: {
+        actions: '<div id="actions">Action Options</div>',
+      },
+    });
+    await wrapper.findComponent(Icon).trigger('click');
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find('.oxd-date-input-links').exists()).toBeFalsy();
+    expect(wrapper.find('#actions').exists()).toBeTruthy();
+  });
 });

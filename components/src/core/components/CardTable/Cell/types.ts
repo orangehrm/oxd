@@ -23,7 +23,7 @@ export interface RowItem {
   isDisabled?: boolean;
 }
 
-export interface ActionCellEvent extends MouseEvent {
+export interface ActionCellEvent extends UIEvent {
   context?: string;
 }
 
