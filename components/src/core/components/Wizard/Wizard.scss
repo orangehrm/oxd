@@ -1,3 +1,6 @@
+@import '../../../styles/_colors.scss';
+@import './_variables.scss';
+
 .oxd-wizard {
     display: flex;
     align-items: center;
@@ -8,22 +11,22 @@
     &-tab {
         display: flex;
         align-items: center;
-        background-color: #F6F5FB;
-        width: 200px;
+        background-color: $oxd-background-pastel-white-color;
+        width: $oxd-wizard-tab-width-default;
 
         @container wizard (max-width: 1200px) {
-            width: 160px;
+            width: $oxd-wizard-tab-width-1200;
         }
 
         @container wizard (max-width: 960px) {
-            width: 120px;
+            width: $oxd-wizard-tab-width-960;
         }
 
         @container wizard (max-width: 720px) {
-            width: 100px;
+            width: $oxd-wizard-tab-width-720;
 
             &:last-child {
-                width: 36px;
+                width: $oxd-wizard-tab-width-720-last;
             }
 
             .oxd-wizard-tab-title-container {
@@ -46,20 +49,20 @@
         }
 
         &:first-child {
-            border-radius: 20px 0 0 20px;
+            border-radius: $oxd-wizard-tab-border-radius 0 0 $oxd-wizard-tab-border-radius;
         }
 
         &:last-child {
-            border-radius: 0 20px 20px 0;
+            border-radius: 0 $oxd-wizard-tab-border-radius $oxd-wizard-tab-border-radius 0;
         }
 
         &-circle {
             display: flex;
             align-items: center;
             justify-content: center;
-            min-width: 35px;
-            min-height: 35px;
-            border-radius: 35px;
+            min-width: $oxd-wizard-tab-circle-size;
+            min-height: $oxd-wizard-tab-circle-size;
+            border-radius: $oxd-wizard-tab-circle-border-radius;
             position: relative;
 
             &-tooltip {
@@ -73,23 +76,23 @@
 
             &-button {
                 &.--active {
-                    color: #F6F5FB;
-                    background-color: rgba(118, 188, 33, 0.6);
+                    color: $oxd-background-pastel-white-color;
+                    background-color: rgba($oxd-secondary-four-color, 0.6);
 
                     &:hover {
-                        color: #F6F5FB;
-                        background-color: rgba(118, 188, 33, 0.8);
+                        color: $oxd-background-pastel-white-color;
+                        background-color: rgba($oxd-secondary-four-color, 0.8);
                     }
 
                     &:focus {
-                        color: #F6F5FB;
-                        background-color: rgba(118, 188, 33, 0.9);
+                        color: $oxd-background-pastel-white-color;
+                        background-color: rgba($oxd-secondary-four-color, 0.9);
                     }
                 }
 
                 &:disabled {
-                    color: rgba(100, 114, 140, 0.3);
-                    background-color: rgba(100, 114, 140, 0.1);
+                    color: rgba($oxd-interface-gray-darken-1-color, 0.3);
+                    background-color: rgba($oxd-interface-gray-darken-1-color, 0.1);
                     cursor: not-allowed;
                     pointer-events: none;
                 }
@@ -104,8 +107,8 @@
 
         &-title-container {
             transition: width 0.3s;
-            margin-left: 10px;
-            margin-right: 10px;
+            margin-left: $oxd-wizard-tab-margin;
+            margin-right: $oxd-wizard-tab-margin;
             max-width: 100%;
             overflow: hidden;
 
@@ -118,16 +121,15 @@
                 text-overflow: ellipsis;
 
                 &.--active {
-                    color: #76BC21;
+                    color: $oxd-secondary-four-color;
                 }
 
                 &.--disabled {
-                    color: rgba(100, 114, 140, 0.3);
+                    color: rgba($oxd-interface-gray-darken-1-color, 0.3);
                     cursor: not-allowed;
                     pointer-events: none;
                 }
             }
         }
-
     }
 }
