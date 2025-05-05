@@ -346,6 +346,14 @@ CustomTemplate.parameters = {
   },
 };
 
+export const TranslateOptions = Template.bind({});
+TranslateOptions.args = {
+  options: options,
+  translateOptions: false,
+};
+
+
+
 export const Events = () => SelectInputEvents;
 
 Events.parameters = {
