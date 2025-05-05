@@ -42,7 +42,9 @@
         @select="onSelect(option)"
       >
         <slot name="option" :data="option"></slot>
-        <span v-if="!$slots['option']">{{ translateOptions ? $vt(option.label) : option.label }}</span>
+        <span v-if="!$slots['option']">{{
+          translateOptions ? $vt(option.label) : option.label
+        }}</span>
       </oxd-select-option>
     </oxd-select-dropdown>
   </div>
@@ -161,7 +163,11 @@ export default defineComponent({
       });
     },
     selectedItem(): string {
-      return this.modelValue?.label ? (this.translateOptions ? this.$vt(this.modelValue.label) : this.modelValue.label) : '';
+      return this.modelValue?.label
+        ? this.translateOptions
+          ? this.$vt(this.modelValue.label)
+          : this.modelValue.label
+        : '';
     },
     inputValue(): string {
       return this.computedOptions[this.pointer]?.label || this.selectedItem;
