@@ -306,4 +306,26 @@ describe('SelectInput.vue', () => {
     await wrapper.vm.$nextTick();
     expect(iconButton.props('name')).toBe(dropdownTriggerCloseIcon);
   });
+
+  it('should not translate option labels when translateOptions is false', async () => {
+    const $vt = jest.fn();
+    const wrapper = mount(SelectInput, {
+      props: {
+        options,
+        translateOptions: false,
+      },
+      global: {
+        mocks: {
+          $vt,
+        },
+      },
+    });
+    wrapper.findComponent(SelectText).trigger('click');
+    await wrapper.vm.$nextTick();
+    const nodes = wrapper.findAllComponents(SelectOption);
+    expect(nodes[0].text()).toBe('HR Admin');
+    expect(nodes[1].text()).toBe('ESS User');
+    expect(nodes[2].text()).toBe('Supervisor');
+    expect($vt).not.toHaveBeenCalled();
+  });
 });

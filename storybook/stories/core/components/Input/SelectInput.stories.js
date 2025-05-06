@@ -35,6 +35,13 @@ export default {
         type: {summary: 'Set options for select'},
       },
     },
+    translateOptions: {
+      control: {type: 'boolean'},
+      defaultValue: true,
+      table: {
+        type: {summary: 'Translate options'},
+      },
+    },
     'dropdown:opened': {
       control: {type: 'array'},
       defaultValue: [],
@@ -345,6 +352,7 @@ CustomTemplate.parameters = {
     },
   },
 };
+
 
 export const Events = () => SelectInputEvents;
 
