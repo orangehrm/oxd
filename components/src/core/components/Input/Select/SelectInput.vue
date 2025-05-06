@@ -163,11 +163,12 @@ export default defineComponent({
       });
     },
     selectedItem(): string {
-      return this.modelValue?.label
-        ? this.translateOptions
+      if (this.modelValue?.label) {
+        return this.translateOptions
           ? this.$vt(this.modelValue.label)
-          : this.modelValue.label
-        : '';
+          : this.modelValue.label;
+      }
+      return '';
     },
     inputValue(): string {
       return this.computedOptions[this.pointer]?.label || this.selectedItem;
