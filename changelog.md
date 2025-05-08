@@ -1,3 +1,5 @@
+2025-05-09 - cd602f0751162656a10875d3042de4e855895677 - components/src/core/components/Icon/icons.ts - Added oxd-section icon
+
 2025-05-05 - b9c9c21bde995468e8051a4eb55abf89d341ab3d - components/Input/Select/SelectInput.vue - Added a new prop called translateOptions to prevent the translation of the select component's options
 
 2025-04-04 - a34df128b3a2568a8d02ef3c5b169b261d923316 - components/src/core/components/CardTable/Cell/Dropdown.vue - Added tabindex to dropdown items to support keyboard accessiblity
