@@ -1,3 +1,5 @@
+2025-05-09 - cd602f0751162656a10875d3042de4e855895677 - components/src/core/components/Icon/icons.ts - Added oxd-section icon
+
 2025-05-05 - b9c9c21bde995468e8051a4eb55abf89d341ab3d - components/Input/Select/SelectInput.vue - Added a new prop called translateOptions to prevent the translation of the select component's options
 
 2025-04-18 - cca89d5ee4a51cfd6c1c764a416f1370a346f8ee - Added OXD Wizard component : components/src/core/components/Wizard/Wizard.vue, components/src/core/components/Wizard/Wizard.scss, components/src/core/components/Wizard/types.ts, components/src/core/components/Wizard/\_\_tests\_\_/wizard.spec.ts, storybook/stories/core/components/Wizard/Wizard.stories.js
