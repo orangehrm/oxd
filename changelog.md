@@ -1,3 +1,5 @@
+2025-05-21 - 196352bfc706fdb456effebe87224c47b0a7ae90 - components/src/core/components/Icon/icons.ts - Added icons : oxd-application-form, oxd-drag-icon-vertical, oxd-description, oxd-posting, oxd-smart-screen, oxd-view-info, oxd-workflow
+
 2025-05-09 - cd602f0751162656a10875d3042de4e855895677 - components/src/core/components/Icon/icons.ts - Added oxd-section icon
 
 2025-05-05 - b9c9c21bde995468e8051a4eb55abf89d341ab3d - components/Input/Select/SelectInput.vue - Added a new prop called translateOptions to prevent the translation of the select component's options
