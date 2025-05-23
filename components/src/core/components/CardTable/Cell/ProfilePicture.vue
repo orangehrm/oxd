@@ -6,15 +6,26 @@
     width="2.8rem"
     height="2.8rem"
   ></oxd-skeleton>
-  <oxd-profile-pic
-    v-else
-    :size="profilePicture.size"
-    :link="profilePicture.link"
-    :imageSrc="profilePicture.src"
-    :link-mode="profilePicture.target"
-    :link-handler="handleLinkClick"
-    v-bind="$attrs"
-  />
+  <div class="profile-wrapper">
+     v-else
+    <oxd-profile-pic
+      :size="profilePicture.size"
+      :link="profilePicture.link"
+      :imageSrc="profilePicture.src"
+      :link-mode="profilePicture.target"
+      :link-handler="handleLinkClick"
+      v-bind="$attrs"
+    />
+    <div class="profile-indicators">
+      <oxd-icon-button
+        v-if="enableProfileIndicator"
+        name="oxd-personal"
+        class="indicator-icon"
+        size="xxx-small"
+        :tooltip="candidateProfileStauts"
+      />
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -24,6 +35,7 @@ import {TargetTypes, TARGET_SELF, TARGETS} from './types';
 import {defineComponent, computed, ref, watchEffect} from 'vue';
 import Skeleton from '@orangehrm/oxd/core/components/Skeleton/Skeleton.vue';
 import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue';
+import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
 
 export default defineComponent({
   name: 'oxd-table-cell-profile-pic',
@@ -32,8 +44,13 @@ export default defineComponent({
   components: {
     'oxd-skeleton': Skeleton,
     'oxd-profile-pic': ProfilePic,
+    'oxd-icon-button': IconButton,
   },
   props: {
+    item: {
+      type: String,
+      default: '',
+    },
     link: {
       type: String,
       default: null,
@@ -61,6 +78,14 @@ export default defineComponent({
       type: Object,
       default: () => ({}),
     },
+    enableProfileIndicator: {
+      type: Boolean,
+      default: true,
+    },
+    candidateProfileStauts: {
+      type: String,
+      default: '',
+    }
   },
   setup(props) {
     const imgSrc = ref(null);
@@ -112,7 +137,42 @@ export default defineComponent({
       isLoading,
       profilePicture,
       handleLinkClick,
+      enableProfileIndicator: computed(() => props.enableProfileIndicator),
+      candidateProfileStauts: computed(() => props.candidateProfileStauts),
     };
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.profile-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-indicators {
+  position: absolute;
+  top: 40px;
+  right: -8px;
+  display: flex;
+  gap: 4px;
+  z-index: 1;
+
+  .indicator-icon {
+    min-width: 20px !important;
+    min-height: 20px !important;
+    background-color: #E6CCD5 !important;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(226, 9, 9) !important;
+    font-size: 12px;
+
+    ::v-deep(.oxd-icon) {
+      color: white !important;
+      font-size: 12px;
+    }
+  }
+}
+</style>
