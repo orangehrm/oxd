@@ -6,8 +6,7 @@
     width="2.8rem"
     height="2.8rem"
   ></oxd-skeleton>
-  <div class="profile-wrapper">
-     v-else
+  <div v-else class="profile-wrapper">
     <oxd-profile-pic
       :size="profilePicture.size"
       :link="profilePicture.link"
@@ -16,13 +15,13 @@
       :link-handler="handleLinkClick"
       v-bind="$attrs"
     />
-    <div class="profile-indicators">
+    <div v-if="enableProfileIndicator" class="profile-indicators">
       <oxd-icon-button
-        v-if="enableProfileIndicator"
         name="oxd-personal"
         class="indicator-icon"
         size="xxx-small"
-        :tooltip="candidateProfileStauts"
+        :tooltip="candidateProfileStauts ? $vt(candidateProfileStauts) : ''"
+        @click=onClickHandleProfileIndicator
       />
     </div>
   </div>
@@ -87,7 +86,7 @@ export default defineComponent({
       default: '',
     }
   },
-  setup(props) {
+  setup(props, context) {
     const imgSrc = ref(null);
     const imgLoading = ref(false);
 
@@ -129,6 +128,10 @@ export default defineComponent({
       }
     };
 
+    const onClickHandleProfileIndicator = ($event: Event) => {
+      context.emit('handleProfileIndicator', $event);
+    };
+
     watchEffect(async () => {
       imgSrc.value = await loadImage(props.item as string);
     });
@@ -137,10 +140,10 @@ export default defineComponent({
       isLoading,
       profilePicture,
       handleLinkClick,
-      enableProfileIndicator: computed(() => props.enableProfileIndicator),
-      candidateProfileStauts: computed(() => props.candidateProfileStauts),
+      onClickHandleProfileIndicator,
     };
   },
+  emits: ['handleProfileIndicator'],
 });
 </script>
 
@@ -152,7 +155,7 @@ export default defineComponent({
 
 .profile-indicators {
   position: absolute;
-  top: 40px;
+  top: 25px;
   right: -8px;
   display: flex;
   gap: 4px;
