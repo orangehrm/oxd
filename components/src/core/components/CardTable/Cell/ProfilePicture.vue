@@ -35,11 +35,12 @@ import {defineComponent, computed, ref, watchEffect} from 'vue';
 import Skeleton from '@orangehrm/oxd/core/components/Skeleton/Skeleton.vue';
 import ProfilePic from '@orangehrm/oxd/core/components/ProfilePic/ProfilePic.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
+import translateMixin from '@orangehrm/oxd/mixins/translate';
 
 export default defineComponent({
   name: 'oxd-table-cell-profile-pic',
   inheritAttrs: false,
-  mixins: [cellMixin],
+  mixins: [cellMixin, translateMixin],
   components: {
     'oxd-skeleton': Skeleton,
     'oxd-profile-pic': ProfilePic,
