@@ -48,8 +48,8 @@ export default defineComponent({
   },
   props: {
     item: {
-      type: String,
-      default: '',
+      type: Object,
+      default: () => ({}),
     },
     link: {
       type: String,
