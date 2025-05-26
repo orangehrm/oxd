@@ -15,13 +15,13 @@
       :link-handler="handleLinkClick"
       v-bind="$attrs"
     />
-    <div v-if="enableSecondaryIconIndicator" class="secondary-icon-indicators">
+    <div v-if="secondaryIconName" class="secondary-icon-indicators">
       <oxd-icon-button
         :name="secondaryIconName"
         class="secondary-icon"
         size="xxx-small"
         :tooltip="secondaryIconToolTip ? $vt(secondaryIconToolTip) : ''"
-        @click=onClickHandleSecondaryIconIndicator
+        @click=onClickHandleSecondaryButton
       />
     </div>
   </div>
@@ -78,10 +78,6 @@ export default defineComponent({
       type: Object,
       default: () => ({}),
     },
-    enableSecondaryIconIndicator: {
-      type: Boolean,
-      default: false,
-    },
     secondaryIconToolTip: {
       type: String,
       default: '',
@@ -133,8 +129,12 @@ export default defineComponent({
       }
     };
 
-    const onClickHandleSecondaryIconIndicator = ($event: Event) => {
-      context.emit('handleSecondaryIconIndicator', $event);
+    const onClickHandleSecondaryButton = (event: MouseEvent) => {
+      const cellConfig = props.header?.cellConfig;
+      if (cellConfig && typeof cellConfig?.onClickSecondaryButton === 'function') {
+        event.preventDefault();
+        props.header?.cellConfig.onClickSecondaryButton(props.rowItem, event);
+      }
     };
 
     watchEffect(async () => {
@@ -145,7 +145,7 @@ export default defineComponent({
       isLoading,
       profilePicture,
       handleLinkClick,
-      onClickHandleSecondaryIconIndicator,
+      onClickHandleSecondaryButton,
     };
   },
   emits: ['handleSecondaryIconIndicator'],
