@@ -15,13 +15,13 @@
       :link-handler="handleLinkClick"
       v-bind="$attrs"
     />
-    <div v-if="enableProfileIndicator" class="profile-indicators">
+    <div v-if="enableSecondaryIconIndicator" class="secondary-icon-indicators">
       <oxd-icon-button
-        name="oxd-personal"
-        class="indicator-icon"
+        :name="secondaryIconName"
+        class="secondary-icon"
         size="xxx-small"
-        :tooltip="candidateProfileStauts ? $vt(candidateProfileStauts) : ''"
-        @click=onClickHandleProfileIndicator
+        :tooltip="secondaryIconToolTip ? $vt(secondaryIconToolTip) : ''"
+        @click=onClickHandleSecondaryIconIndicator
       />
     </div>
   </div>
@@ -78,11 +78,15 @@ export default defineComponent({
       type: Object,
       default: () => ({}),
     },
-    enableProfileIndicator: {
+    enableSecondaryIconIndicator: {
       type: Boolean,
       default: false,
     },
-    candidateProfileStauts: {
+    secondaryIconToolTip: {
+      type: String,
+      default: '',
+    },
+    secondaryIconName: {
       type: String,
       default: '',
     }
@@ -129,8 +133,8 @@ export default defineComponent({
       }
     };
 
-    const onClickHandleProfileIndicator = ($event: Event) => {
-      context.emit('handleProfileIndicator', $event);
+    const onClickHandleSecondaryIconIndicator = ($event: Event) => {
+      context.emit('handleSecondaryIconIndicator', $event);
     };
 
     watchEffect(async () => {
@@ -141,10 +145,10 @@ export default defineComponent({
       isLoading,
       profilePicture,
       handleLinkClick,
-      onClickHandleProfileIndicator,
+      onClickHandleSecondaryIconIndicator,
     };
   },
-  emits: ['handleProfileIndicator'],
+  emits: ['handleSecondaryIconIndicator'],
 });
 </script>
 
@@ -154,7 +158,7 @@ export default defineComponent({
   display: inline-block;
 }
 
-.profile-indicators {
+.secondary-icon-indicators {
   position: absolute;
   top: 25px;
   right: -8px;
@@ -162,7 +166,7 @@ export default defineComponent({
   gap: 4px;
   z-index: 1;
 
-  .indicator-icon {
+  .secondary-icon {
     min-width: 20px !important;
     min-height: 20px !important;
     background-color: #E6CCD5 !important;
