@@ -80,7 +80,7 @@ export default defineComponent({
     },
     enableProfileIndicator: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     candidateProfileStauts: {
       type: String,
