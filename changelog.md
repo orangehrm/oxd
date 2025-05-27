@@ -1,3 +1,5 @@
+2025-05-27 - 69c989e9faeb39cdbecb2873a0dea9aa9645b4fb - components/src/core/components/Icon/icons.ts - Added icon : oxd-duplicate
+
 2025-05-21 - 196352bfc706fdb456effebe87224c47b0a7ae90 - components/src/core/components/Icon/icons.ts - Added icons : oxd-application-form, oxd-drag-icon-vertical, oxd-description, oxd-posting, oxd-smart-screen, oxd-view-info, oxd-workflow
 
 2025-05-09 - cd602f0751162656a10875d3042de4e855895677 - components/src/core/components/Icon/icons.ts - Added oxd-section icon
