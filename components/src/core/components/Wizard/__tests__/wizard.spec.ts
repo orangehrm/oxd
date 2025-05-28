@@ -192,4 +192,120 @@ describe('Wizard.vue', () => {
         expect(wrapper.emitted('update:modelValue')).toBeFalsy();
         expect(wrapper.emitted('tab-click')).toBeFalsy();
     });
+
+    it('emits update:modelValue and tab-click when clicking on tooltip of enabled and clickable tab', async () => {
+        const wrapper = mount(Wizard, {
+            props: {
+                tabs: defaultTabs,
+                modelValue: 1,
+            },
+        });
+
+        await wrapper.findAll('.oxd-wizard-tab-circle-tooltip')[1].trigger('click');
+
+        expect(wrapper.emitted('update:modelValue')).toBeTruthy();
+        const modelValueEmitted = wrapper.emitted('update:modelValue');
+        if (modelValueEmitted) {
+            expect(modelValueEmitted[0]).toEqual([2]);
+        }
+
+        expect(wrapper.emitted('tab-click')).toBeTruthy();
+        const tabClickEmitted = wrapper.emitted('tab-click');
+        if (tabClickEmitted) {
+            const emittedEvent = tabClickEmitted[0] as WizardEvent<MouseEvent>[];
+            expect(emittedEvent[0].tab).toEqual(defaultTabs[1]);
+            expect(emittedEvent[0].event).toBeInstanceOf(Event);
+        }
+    });
+
+    it('does not emit events when clicking on tooltip of disabled tab', async () => {
+        const tabs = [
+            { id: 1, title: 'Step 1' },
+            { id: 2, title: 'Step 2', disabled: true },
+            { id: 3, title: 'Step 3' },
+        ];
+
+        const wrapper = mount(Wizard, {
+            props: {
+                tabs,
+                modelValue: 1,
+            },
+        });
+
+        await wrapper.findAll('.oxd-wizard-tab-circle-tooltip')[1].trigger('click');
+
+        expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+        expect(wrapper.emitted('tab-click')).toBeFalsy();
+    });
+
+    it('does not emit events when clicking on tooltip of non-clickable tab', async () => {
+        const tabs = [
+            { id: 1, title: 'Step 1' },
+            { id: 2, title: 'Step 2', clickable: false },
+            { id: 3, title: 'Step 3' },
+        ];
+
+        const wrapper = mount(Wizard, {
+            props: {
+                tabs,
+                modelValue: 1,
+            },
+        });
+
+        await wrapper.findAll('.oxd-wizard-tab-circle-tooltip')[1].trigger('click');
+
+        expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+        expect(wrapper.emitted('tab-click')).toBeFalsy();
+    });
+
+    it('does not emit events when clicking on tooltip of both disabled and non-clickable tab', async () => {
+        const tabs = [
+            { id: 1, title: 'Step 1' },
+            { id: 2, title: 'Step 2', disabled: true, clickable: false },
+            { id: 3, title: 'Step 3' },
+        ];
+
+        const wrapper = mount(Wizard, {
+            props: {
+                tabs,
+                modelValue: 1,
+            },
+        });
+
+        await wrapper.findAll('.oxd-wizard-tab-circle-tooltip')[1].trigger('click');
+
+        expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+        expect(wrapper.emitted('tab-click')).toBeFalsy();
+    });
+
+    it('emits events when clicking on tooltip of tab with disabled: false and clickable: true', async () => {
+        const tabs = [
+            { id: 1, title: 'Step 1' },
+            { id: 2, title: 'Step 2', disabled: false, clickable: true },
+            { id: 3, title: 'Step 3' },
+        ];
+
+        const wrapper = mount(Wizard, {
+            props: {
+                tabs,
+                modelValue: 1,
+            },
+        });
+
+        await wrapper.findAll('.oxd-wizard-tab-circle-tooltip')[1].trigger('click');
+
+        expect(wrapper.emitted('update:modelValue')).toBeTruthy();
+        expect(wrapper.emitted('tab-click')).toBeTruthy();
+
+        const modelValueEmitted = wrapper.emitted('update:modelValue');
+        if (modelValueEmitted) {
+            expect(modelValueEmitted[0]).toEqual([2]);
+        }
+
+        const tabClickEmitted = wrapper.emitted('tab-click');
+        if (tabClickEmitted) {
+            const emittedEvent = tabClickEmitted[0] as WizardEvent<MouseEvent>[];
+            expect(emittedEvent[0].tab).toEqual(tabs[1]);
+        }
+    });
 });
