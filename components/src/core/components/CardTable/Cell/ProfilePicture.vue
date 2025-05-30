@@ -19,9 +19,10 @@
       <oxd-icon-button
         :name="secondaryIconName"
         class="secondary-icon"
-        size="xxx-small"
+        size="small"
         :tooltip="secondaryIconToolTip ? $vt(secondaryIconToolTip) : ''"
-        @click=onClickHandleSecondaryButton
+        @click="onClickHandleSecondaryButton"
+        :style="{ 'backgroundColor': secondaryIconbackgroundColor  , 'color': secondaryIconColor }"
       />
     </div>
   </div>
@@ -84,8 +85,16 @@ export default defineComponent({
     },
     secondaryIconName: {
       type: String,
-      default: '',
-    }
+      default: "",
+    },
+    secondaryIconbackgroundColor: {
+      type: String,
+      default: "#e6eaf3",
+    },
+    secondaryIconColor: {
+      type: String,
+      default: "#4d4d4d",
+    },
   },
   setup(props, context) {
     const imgSrc = ref(null);
@@ -167,14 +176,14 @@ export default defineComponent({
   z-index: 1;
 
   .secondary-icon {
-    min-width: 20px !important;
-    min-height: 20px !important;
-    background-color: #E6CCD5 !important;
+    min-height: inherit;
+    min-width: inherit;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgb(226, 9, 9) !important;
     font-size: 12px;
 
     ::v-deep(.oxd-icon) {
