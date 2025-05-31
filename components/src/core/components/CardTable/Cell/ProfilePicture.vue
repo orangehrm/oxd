@@ -22,7 +22,7 @@
         size="small"
         :tooltip="secondaryIconToolTip ? $vt(secondaryIconToolTip) : ''"
         @click="onClickHandleSecondaryButton"
-        :style="{ 'backgroundColor': secondaryIconbackgroundColor  , 'color': secondaryIconColor }"
+        :style="{ 'backgroundColor': secondaryIconBackgroundColor  , 'color': secondaryIconColor }"
       />
     </div>
   </div>
@@ -87,7 +87,7 @@ export default defineComponent({
       type: String,
       default: "",
     },
-    secondaryIconbackgroundColor: {
+    secondaryIconBackgroundColor: {
       type: String,
       default: "#e6eaf3",
     },

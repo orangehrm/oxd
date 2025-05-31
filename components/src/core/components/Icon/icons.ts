@@ -2259,7 +2259,7 @@ export const oxdCitraNewChat: icon = {
 export const oxdPastEmployee: icon = {
   name: 'oxd-past-employee',
   value: `<svg fill="currentColor" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-	 width="250px" height="22px" viewBox="0 0 500 600" enable-background="new 0 0 512 512" xml:space="preserve">
+	 width="250px"  viewBox="0 0 500 600" enable-background="new 0 0 512 512" xml:space="preserve">
 <g>
 	<path style="fill:currentColor" d="M369.818,195.01c-24.467,42.494-65.777,75.375-113.803,75.375c-48.052,0-89.363-32.873-113.834-75.357
 		c-49.031,23.253-83.014,73.06-83.014,130.948v128.983c0,27.408,22.189,49.619,49.553,49.619h294.494
