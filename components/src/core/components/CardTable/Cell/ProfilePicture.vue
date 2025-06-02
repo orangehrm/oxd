@@ -23,6 +23,7 @@
         :tooltip="secondaryIconToolTip ? $vt(secondaryIconToolTip) : ''"
         @click="onClickHandleSecondaryButton"
         :style="{ 'backgroundColor': secondaryIconBackgroundColor  , 'color': secondaryIconColor }"
+        :flow="tooltipFlowDirection"
       />
     </div>
   </div>
@@ -94,6 +95,10 @@ export default defineComponent({
     secondaryIconColor: {
       type: String,
       default: "#4d4d4d",
+    },
+    tooltipFlowDirection: {
+      type: String,
+      default: "right",
     },
   },
   setup(props, context) {
