@@ -1,3 +1,5 @@
+2025-06-02 - a6453107053cbee9b7ea128460507c535c10a4dd - components/src/core/components/Icon/icons.ts, components/src/core/components/CardTable/Cell/ProfilePicture.vue - Added oxd-past-employee icon and added secondary icon button in to the ProfilePicture component
+
 2025-05-14 - 511762a38749a9a04bf3c855f7bb41bae9405920 - components/src/core/components/Icon/icons.ts - Added oxd-citra-new-chat icon
 
 2025-05-09 - cd602f0751162656a10875d3042de4e855895677 - components/src/core/components/Icon/icons.ts - Added oxd-section icon
