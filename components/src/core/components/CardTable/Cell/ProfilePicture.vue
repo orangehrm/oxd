@@ -98,7 +98,7 @@ export default defineComponent({
     },
     tooltipFlowDirection: {
       type: String,
-      default: "right",
+      default: "top",
     },
   },
   setup(props, context) {
