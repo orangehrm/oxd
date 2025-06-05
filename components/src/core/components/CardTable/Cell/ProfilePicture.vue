@@ -17,13 +17,13 @@
     />
     <div v-if="secondaryIconName" class="secondary-icon-indicators">
       <oxd-icon-button
-        :name="secondaryIconName"
         class="secondary-icon"
+        :name="secondaryIconName"
         size="small"
-        :tooltip="secondaryIconToolTip ? $vt(secondaryIconToolTip) : ''"
-        @click="onClickHandleSecondaryButton"
-        :style="{ 'backgroundColor': secondaryIconBackgroundColor  , 'color': secondaryIconColor }"
         :flow="tooltipFlowDirection"
+        :tooltip="secondaryIconToolTip ? $vt(secondaryIconToolTip) : undefined"
+        :style="{ 'backgroundColor': secondaryIconBackgroundColor  , 'color': secondaryIconColor }"
+        @click="onClickHandleSecondaryButton"
       />
     </div>
   </div>
@@ -147,7 +147,7 @@ export default defineComponent({
       const cellConfig = props.header?.cellConfig;
       if (cellConfig && typeof cellConfig?.onClickSecondaryButton === 'function') {
         event.preventDefault();
-        props.header?.cellConfig.onClickSecondaryButton(props.rowItem, event);
+        cellConfig.onClickSecondaryButton(props.rowItem, event);
       }
     };
 
