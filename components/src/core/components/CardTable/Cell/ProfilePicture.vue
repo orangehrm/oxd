@@ -104,7 +104,7 @@ export default defineComponent({
       default: 'top',
     },
   },
-  setup(props, context) {
+  setup(props) {
     const imgSrc = ref(null);
     const imgLoading = ref(false);
 
