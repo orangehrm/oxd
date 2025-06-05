@@ -161,8 +161,7 @@ export default defineComponent({
       handleLinkClick,
       onClickHandleSecondaryButton,
     };
-  },
-  emits: ['handleSecondaryIconIndicator'],
+  }
 });
 </script>
 
