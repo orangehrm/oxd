@@ -22,7 +22,10 @@
         size="small"
         :flow="tooltipFlowDirection"
         :tooltip="secondaryIconToolTip ? $vt(secondaryIconToolTip) : undefined"
-        :style="{ 'backgroundColor': secondaryIconBackgroundColor  , 'color': secondaryIconColor }"
+        :style="{
+          backgroundColor: secondaryIconBackgroundColor,
+          color: secondaryIconColor,
+        }"
         @click="onClickHandleSecondaryButton"
       />
     </div>
@@ -86,19 +89,19 @@ export default defineComponent({
     },
     secondaryIconName: {
       type: String,
-      default: "",
+      default: '',
     },
     secondaryIconBackgroundColor: {
       type: String,
-      default: "#e6eaf3",
+      default: '#e6eaf3',
     },
     secondaryIconColor: {
       type: String,
-      default: "#4d4d4d",
+      default: '#4d4d4d',
     },
     tooltipFlowDirection: {
       type: String,
-      default: "top",
+      default: 'top',
     },
   },
   setup(props, context) {
@@ -145,7 +148,10 @@ export default defineComponent({
 
     const onClickHandleSecondaryButton = (event: MouseEvent) => {
       const cellConfig = props.header?.cellConfig;
-      if (cellConfig && typeof cellConfig?.onClickSecondaryButton === 'function') {
+      if (
+        cellConfig &&
+        typeof cellConfig?.onClickSecondaryButton === 'function'
+      ) {
         event.preventDefault();
         cellConfig.onClickSecondaryButton(props.rowItem, event);
       }
@@ -161,7 +167,7 @@ export default defineComponent({
       handleLinkClick,
       onClickHandleSecondaryButton,
     };
-  }
+  },
 });
 </script>
 
