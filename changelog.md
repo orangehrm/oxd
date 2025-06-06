@@ -1,3 +1,5 @@
+2025-06-03 - 0058934f5b717d01998650a25366529f777eec72 - components/src/composables/useFlashing.ts, components/src/core/components/ListTable/ListTable.vue - Add support to ignore specific attributes when detecting flash rows
+
 2025-06-02 - a6453107053cbee9b7ea128460507c535c10a4dd - components/src/core/components/Icon/icons.ts, components/src/core/components/CardTable/Cell/ProfilePicture.vue - Added oxd-past-employee icon and added secondary icon button in to the ProfilePicture component
 
 2025-05-14 - 511762a38749a9a04bf3c855f7bb41bae9405920 - components/src/core/components/Icon/icons.ts - Added oxd-citra-new-chat icon
