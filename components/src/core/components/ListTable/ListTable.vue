@@ -173,6 +173,10 @@ export default defineComponent({
       type: Array as PropType<number[]>,
       default: () => [],
     },
+    flashIgnoreKeys: {
+      type: Array as PropType<string[]>,
+      default: () => [],
+    },
     skeleton: {
       type: Boolean,
       default: false,
