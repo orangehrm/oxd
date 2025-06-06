@@ -10,6 +10,16 @@ const options = [
       {
         id: '1-1',
         label: 'Child 1-1',
+        children: [
+          {
+            id: '1-1-1',
+            label: 'Grandchild 1-1-1',
+          },
+          {
+            id: '1-1-2',
+            label: 'Grandchild 1-1-2',
+          },
+        ],
       },
       {
         id: '1-2',
@@ -156,5 +166,171 @@ describe('TreeSelect.vue', () => {
     await wrapper.find('.oxd-select-text').trigger('click');
     await wrapper.find('.oxd-select-text').trigger('keydown.enter');
     expect(wrapper.find('.oxd-select-dropdown').exists()).toBe(false);
+  });
+
+  it('should handle deeply nested items correctly', async () => {
+    const wrapper = mount(TreeSelect, {
+      props: {
+        options,
+      },
+    });
+    wrapper.find('.oxd-select-text').trigger('click');
+    await wrapper.vm.$nextTick();
+    
+    // Expand first parent
+    const firstExpandIcon = wrapper.find('.icon-td');
+    await firstExpandIcon.trigger('click');
+    await wrapper.vm.$nextTick();
+    
+    // Expand first child
+    const secondExpandIcon = wrapper.findAll('.icon-td')[1];
+    await secondExpandIcon.trigger('click');
+    await wrapper.vm.$nextTick();
+    
+    const nodes = wrapper.findAll('.oxd-select-option');
+    expect(nodes.length).toBe(6); // Parent + 2 children + 2 grandchildren
+  });
+
+  it('should select all nested children when parent is selected', async () => {
+    const wrapper = mount(TreeSelect, {
+      props: {
+        options,
+        selectParentsOnChildSelection: true,
+      },
+    });
+    wrapper.find('.oxd-select-text').trigger('click');
+    await wrapper.vm.$nextTick();
+    
+    // Expand all levels
+    const firstExpandIcon = wrapper.find('.icon-td');
+    await firstExpandIcon.trigger('click');
+    await wrapper.vm.$nextTick();
+    
+    const secondExpandIcon = wrapper.findAll('.icon-td')[1];
+    await secondExpandIcon.trigger('click');
+    await wrapper.vm.$nextTick();
+    
+    // Select parent
+    const checkbox = wrapper.find('.oxd-checkbox-input');
+    await checkbox.trigger('click');
+    await wrapper.vm.$nextTick();
+    
+    const selectedIds = (wrapper.emitted('update:modelValue') as string[][])[0][0];
+    expect(selectedIds).toContain('1');
+    expect(selectedIds).toContain('1-1');
+    expect(selectedIds).toContain('1-1-1');
+    expect(selectedIds).toContain('1-1-2');
+    expect(selectedIds).toContain('1-2');
+  });
+
+  it('should handle select all functionality', async () => {
+    const wrapper = mount(TreeSelect, {
+      props: {
+        options,
+      },
+    });
+    wrapper.find('.oxd-select-text').trigger('click');
+    await wrapper.vm.$nextTick();
+    
+    // Click select all checkbox
+    const selectAllCheckbox = wrapper.find('.all-checkbox-div .oxd-checkbox-input');
+    await selectAllCheckbox.trigger('click');
+    await wrapper.vm.$nextTick();
+    
+    const selectedIds = (wrapper.emitted('update:modelValue') as string[][])[0][0];
+    expect(selectedIds).toContain("1");
+    expect(selectedIds).toContain("1-1");
+    expect(selectedIds).toContain("1-1-1");
+    expect(selectedIds).toContain("1-1-2");
+    expect(selectedIds).toContain("1-2");
+    expect(selectedIds).not.toContain("2");
+  });
+
+  it('should handle remove all selection', async () => {
+    const wrapper = mount(TreeSelect, {
+      props: {
+        options,
+        removeAllSelection: true,
+      },
+    });
+    wrapper.find('.oxd-select-text').trigger('click');
+    await wrapper.vm.$nextTick();
+    
+    // Select all checkbox should not be visible
+    expect(wrapper.find('.all-checkbox-div').exists()).toBe(false);
+  });
+
+  it('should handle countTopmostParents prop', async () => {
+    const wrapper = mount(TreeSelect, {
+      props: {
+        options,
+        modelValue: ['1', '1-1', '1-2'],
+        countTopmostParents: false,
+      },
+    });
+    await wrapper.vm.$nextTick();
+    
+  
+    const chip = wrapper.find('.selected-count-chip');
+    expect(chip.text()).toContain('+3'); 
+  });
+
+  it('should handle dropdown position prop', async () => {
+    const wrapper = mount(TreeSelect, {
+      props: {
+        options,
+        dropdownPosition: BOTTOM,
+      },
+    });
+    wrapper.find('.oxd-select-text').trigger('click');
+    await wrapper.vm.$nextTick();
+    
+    const dropdown = wrapper.find('.oxd-select-dropdown');
+    expect(dropdown.classes()).toContain('--positon-bottom');
+  });
+
+  it('should handle duplicate IDs validation', () => {
+    const invalidOptions = [
+      {
+        id: '1',
+        label: 'Parent 1',
+        children: [
+          {
+            id: '1', // Duplicate ID
+            label: 'Child 1-1',
+          },
+        ],
+      },
+    ];
+    
+    const consoleSpy = jest.spyOn(console, 'error').mockImplementation();
+    mount(TreeSelect, {
+      props: {
+        options: invalidOptions,
+      },
+    });
+    
+    expect(consoleSpy).toHaveBeenCalledWith(
+      expect.stringContaining('prop validation error: treeSelect- options array prop cannot include duplicate option ids'),
+    );
+    consoleSpy.mockRestore();
+  });
+
+
+  it('should handle modelValue updates', async () => {
+    const wrapper = mount(TreeSelect, {
+      props: {
+        options,
+        modelValue: ['1'],
+      },
+    });
+    
+    await wrapper.setProps({
+      modelValue: ['1', '1-1'],
+    });
+    await wrapper.vm.$nextTick();
+    
+    const chip = wrapper.find('.selected-count-chip');
+    expect(chip.exists()).toBe(true);
   });
 });
