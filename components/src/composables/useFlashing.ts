@@ -4,13 +4,28 @@ type RowItem = {
   [name: string]: string | number | object | null;
 };
 
-export const getDiff = (newValue: RowItem[], oldValue: RowItem[]) => {
+const sanitize = (item: RowItem, ignoredKeys: string[] = []) => {
+  for (const key of ignoredKeys) {
+    delete item[key];
+  }
+  return item;
+};
+
+export const getDiff = (
+  newValue: RowItem[],
+  oldValue: RowItem[],
+  ignoredKeys: string[] = [],
+) => {
   const diff: number[] = [];
   for (let i = 0; i < newValue.length; i++) {
     const isNew =
       oldValue.findIndex(item => {
-        const o = JSON.stringify(Object.entries(item).sort());
-        const n = JSON.stringify(Object.entries(newValue[i]).sort());
+        const o = JSON.stringify(
+          Object.entries(sanitize(item, ignoredKeys)).sort(),
+        );
+        const n = JSON.stringify(
+          Object.entries(sanitize(newValue[i], ignoredKeys)).sort(),
+        );
         return o === n;
       }) === -1;
     if (isNew) diff.push(i);
@@ -25,6 +40,7 @@ export default function useFlashing(
     flashing: boolean;
     items: RowItem[];
     selectionMode?: 'index' | 'property';
+    flashIgnoreKeys: string[];
   }>,
   context: SetupContext,
 ) {
@@ -52,20 +68,24 @@ export default function useFlashing(
     watch(
       () => props.items,
       newValue => {
+        const newValueClone = JSON.parse(JSON.stringify(newValue));
+
         if (flash) {
           if (
-            newValue.length === cachedItems.length ||
-            newValue.length - cachedItems.length === 1
+            newValueClone.length === cachedItems.length ||
+            newValueClone.length - cachedItems.length === 1
           ) {
             flashIndexes.value = [
               ...flashIndexes.value,
-              ...getDiff(newValue, cachedItems),
+              ...getDiff(newValueClone, cachedItems, props.flashIgnoreKeys),
             ];
           }
         } else {
-          if (newValue.length === 0 || cachedItems.length === 0) flash = true;
+          if (newValueClone.length === 0 || cachedItems.length === 0)
+            flash = true;
         }
-        cachedItems = JSON.parse(JSON.stringify(newValue));
+
+        cachedItems = newValueClone;
       },
       {flush: 'post', deep: true},
     );
