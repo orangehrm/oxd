@@ -1,3 +1,5 @@
+2025-06-20 - 817afecb8a122d851d455358f60c8b5e1a912fad - components/src/core/components/Icon/icons.ts - Added icons : oxd-application-received , oxd-shortlisted , oxd-interview , oxd-test , oxd-hired , oxd-job-offer , oxd-expand , oxd-collapse , oxd-auto-save
+
 2025-06-05 - 42563da35f05e286119f1e37dda743f052937984 - components/src/core/components/Input/TreeSelect/TreeSelect.vue - select only not disabled options when selecting all otpions.
 
 2025-06-03 - 0058934f5b717d01998650a25366529f777eec72 - components/src/composables/useFlashing.ts, components/src/core/components/ListTable/ListTable.vue - Add support to ignore specific attributes when detecting flash rows
