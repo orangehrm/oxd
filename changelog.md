@@ -1,6 +1,13 @@
+2025-06-05 - 42563da35f05e286119f1e37dda743f052937984 - components/src/core/components/Input/TreeSelect/TreeSelect.vue - select only not disabled options when selecting all otpions.
+
+2025-06-03 - 0058934f5b717d01998650a25366529f777eec72 - components/src/composables/useFlashing.ts, components/src/core/components/ListTable/ListTable.vue - Add support to ignore specific attributes when detecting flash rows
+
+2025-06-02 - a6453107053cbee9b7ea128460507c535c10a4dd - components/src/core/components/Icon/icons.ts, components/src/core/components/CardTable/Cell/ProfilePicture.vue - Added oxd-past-employee icon and added secondary icon button in to the ProfilePicture component
+
 2025-05-27 - 69c989e9faeb39cdbecb2873a0dea9aa9645b4fb - components/src/core/components/Icon/icons.ts - Added icon : oxd-duplicate
 
 2025-05-21 - 196352bfc706fdb456effebe87224c47b0a7ae90 - components/src/core/components/Icon/icons.ts - Added icons : oxd-application-form, oxd-drag-icon-vertical, oxd-description, oxd-posting, oxd-smart-screen, oxd-view-info, oxd-workflow
+
 2025-05-14 - 511762a38749a9a04bf3c855f7bb41bae9405920 - components/src/core/components/Icon/icons.ts - Added oxd-citra-new-chat icon
 
 2025-05-09 - cd602f0751162656a10875d3042de4e855895677 - components/src/core/components/Icon/icons.ts - Added oxd-section icon

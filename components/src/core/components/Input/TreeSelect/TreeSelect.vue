@@ -601,7 +601,11 @@ export default defineComponent({
 
     const selectAllOptions = () => {
       for (const key in selectedIdsObject.value) {
-        selectedIdsObject.value[key] = true;
+        const option = findOptionByOptionId(key, optionsArr.value);
+        if (option && typeof option !== 'string' && !option._disabled) {
+          // Only select non-disabled options
+          selectedIdsObject.value[key] = true;
+        }
       }
     };
 

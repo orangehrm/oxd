@@ -2384,6 +2384,24 @@ export const oxdCitraNewChat: icon = {
 </svg>`
 };
 
+export const oxdPastEmployee: icon = {
+  name: 'oxd-past-employee',
+  value: `<svg fill="currentColor" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 viewBox="0 0 500 600" enable-background="new 0 0 512 512" xml:space="preserve">
+<g>
+	<path style="fill:currentColor" d="M369.818,195.01c-24.467,42.494-65.777,75.375-113.803,75.375c-48.052,0-89.363-32.873-113.834-75.357
+		c-49.031,23.253-83.014,73.06-83.014,130.948v128.983c0,27.408,22.189,49.619,49.553,49.619h294.494
+		c27.465,0,49.617-22.211,49.617-49.619V325.976C452.832,268.079,418.854,218.256,369.818,195.01z M330.366,423.406
+		c8.305,8.282,8.305,21.722,0,30.006c-4.137,4.146-9.548,6.214-14.986,6.214c-5.442,0-10.85-2.068-14.986-6.214l-44.409-44.392
+		l-44.373,44.392c-4.137,4.146-9.58,6.214-15.019,6.214c-5.411,0-10.85-2.068-14.986-6.214c-8.278-8.285-8.278-21.724,0-30.006
+		l44.374-44.383l-44.374-44.382c-8.278-8.285-8.278-21.724,0-30.006c8.273-8.285,21.731-8.285,30.005,0l44.373,44.389l44.409-44.389
+		c8.273-8.285,21.694-8.285,29.973,0c8.305,8.282,8.305,21.722,0,30.006l-44.374,44.382L330.366,423.406z"/>
+	<path style="fill:currentColor" d="M256.016,237.022c57.504,0,104.096-67.962,104.096-125.457c0-57.521-46.592-104.144-104.096-104.144
+		c-57.536,0-104.154,46.623-104.154,104.144C151.861,169.061,198.479,237.022,256.016,237.022z"/>
+</g>
+</svg>`,
+};
+
 export const oxdApplicationReceived: icon = {
   name: 'oxd-application-received',
   value: `<svg viewBox="0 0 18 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2736,6 +2754,7 @@ const icons: Icons = {
   'oxd-workflow': oxdWorkflow,
   'oxd-duplicate': oxdDuplicate,
   'oxd-citra-new-chat': oxdCitraNewChat,
+  'oxd-past-employee': oxdPastEmployee,
   'oxd-application-received': oxdApplicationReceived,
   'oxd-shortlisted': oxdShortlisted,
   'oxd-interview': oxdInterview,
