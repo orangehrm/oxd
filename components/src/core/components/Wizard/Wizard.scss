@@ -77,22 +77,22 @@
             &-button {
                 &.--active {
                     color: $oxd-background-pastel-white-color;
-                    background-color: $oxd-wizard-cicle-button-active-color;
+                    background-color: rgba(118, 188, 33, 0.6);
 
                     &:hover {
                         color: $oxd-background-pastel-white-color;
-                        background-color: $oxd-wizard-cicle-button-active-color-hover;
+                        background-color: rgba(118, 188, 33, 0.8);
                     }
 
                     &:focus {
                         color: $oxd-background-pastel-white-color;
-                        background-color: $oxd-wizard-cicle-button-active-color-focus;
+                        background-color: rgba(118, 188, 33, 0.9);
                     }
                 }
 
                 &:disabled {
-                    color: $oxd-wizard-cicle-button-disabled-color;
-                    background-color: $oxd-wizard-disabled-background-color;
+                    color: rgba(100, 114, 140, 0.3);
+                    background-color: rgba(100, 114, 140, 0.1);
                     cursor: not-allowed;
                     pointer-events: none;
                 }
@@ -125,7 +125,7 @@
                 }
 
                 &.--disabled {
-                    color: $oxd-wizard-cicle-button-disabled-color;
+                    color: rgba(100, 114, 140, 0.3);
                     cursor: not-allowed;
                     pointer-events: none;
                 }
