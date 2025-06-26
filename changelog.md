@@ -1,3 +1,5 @@
+2025-06-26 - 0ce8d51eeb6014ed5a5b194e6168896d864af1a4 - components/src/core/components/Icon/icons.ts - oxdCopy icon button style changes
+
 2025-06-05 - 42563da35f05e286119f1e37dda743f052937984 - components/src/core/components/Input/TreeSelect/TreeSelect.vue - select only not disabled options when selecting all otpions.
 
 2025-06-03 - 0058934f5b717d01998650a25366529f777eec72 - components/src/composables/useFlashing.ts, components/src/core/components/ListTable/ListTable.vue - Add support to ignore specific attributes when detecting flash rows
