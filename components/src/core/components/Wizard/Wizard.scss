@@ -119,6 +119,7 @@
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                cursor: pointer;
 
                 &.--active {
                     color: $oxd-secondary-four-color;
@@ -127,6 +128,11 @@
                 &.--disabled {
                     color: rgba(100, 114, 140, 0.3);
                     cursor: not-allowed;
+                    pointer-events: none;
+                }
+
+                &.--not-clickable {
+                    cursor: default;
                     pointer-events: none;
                 }
             }

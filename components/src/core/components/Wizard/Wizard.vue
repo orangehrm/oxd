@@ -23,7 +23,8 @@
           'oxd-wizard-tab-title-container--title': true,
           '--active': tab.id == modelValue,
           '--disabled': tab.disabled === true,
-        }">
+          '--not-clickable': tab.clickable === false,
+        }" @click="onClick(tab, $event)">
           {{ tab.title }}
         </oxd-text>
       </div>
