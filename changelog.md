@@ -1,4 +1,6 @@
-2025-06-20 - 253a55178b74b48bc1db417ef2f1fd5e3d5a03bb - components/src/core/components/Icon/icons.ts - Added icons : oxd-saving, oxd-save-error 
+2025-06-26 - 0ce8d51eeb6014ed5a5b194e6168896d864af1a4 - components/src/core/components/Icon/icons.ts - oxdCopy icon button style changes
+
+2025-06-20 - 253a55178b74b48bc1db417ef2f1fd5e3d5a03bb - components/src/core/components/Icon/icons.ts - Added icons : oxd-saving, oxd-save-error
 
 2025-06-20 - 817afecb8a122d851d455358f60c8b5e1a912fad - components/src/core/components/Icon/icons.ts - Added icons : oxd-application-received , oxd-shortlisted , oxd-interview , oxd-test , oxd-hired , oxd-job-offer , oxd-expand , oxd-collapse , oxd-auto-save
 
