@@ -1,20 +1,13 @@
 @import '../../../styles/_colors.scss';
 
-// Wizard component variables
 $oxd-wizard-tab-border-radius: 20px;
 $oxd-wizard-tab-circle-border-radius: 35px;
 $oxd-wizard-tab-circle-size: 35px;
 $oxd-wizard-tab-margin: 10px;
 
-// Tab widths for different breakpoints
 $oxd-wizard-tab-width-default: 200px;
 $oxd-wizard-tab-width-1200: 160px;
 $oxd-wizard-tab-width-960: 120px;
 $oxd-wizard-tab-width-720: 100px;
 $oxd-wizard-tab-width-720-last: 36px;
 
-// $oxd-wizard-cicle-button-active-color: rgba($oxd-secondary-four-color, 0.6);
-// $oxd-wizard-cicle-button-active-color-hover: rgba($oxd-secondary-four-color, 0.8);
-// $oxd-wizard-cicle-button-active-color-focus: rgba($oxd-secondary-four-color, 0.9);
-// $oxd-wizard-cicle-button-disabled-color: rgba(100, 114, 140, 0.3);
-// $oxd-wizard-disabled-background-color: rgba(100, 114, 140, 0.1);
