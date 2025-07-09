@@ -2425,8 +2425,8 @@ export const oxdInterview: icon = {
 </svg>`
 }
 
-export const oxdTest: icon = {
-  name: 'oxd-test',
+export const oxdWorkflowTest: icon = {
+  name: 'oxd-workflow-test',
   value: `<svg viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path style="fill:currentColor" d="M25.6901 3.65143C26.0074 3.96873 26.0074 4.48317 25.6901 4.80048L23.9954 6.49516L20.7454 3.24516L22.4401 1.55048C22.7574 1.23317 23.2718 1.23317 23.5891 1.55048L25.6901 3.65143Z" fill="white"/>
 <path style="fill:currentColor" d="M22.8464 7.64421L19.5964 4.39421L8.52524 15.4653C8.43605 15.5545 8.36885 15.6633 8.32896 15.7829L7.02155 19.7051C6.91569 20.0227 7.21783 20.3249 7.53542 20.219L11.4577 18.9116C11.5773 18.8717 11.686 18.8045 11.7752 18.7153L22.8464 7.64421Z" fill="white"/>
@@ -2776,7 +2776,7 @@ const icons: Icons = {
   'oxd-application-received': oxdApplicationReceived,
   'oxd-shortlisted': oxdShortlisted,
   'oxd-interview': oxdInterview,
-  'oxd-test': oxdTest,
+  'oxd-workflow-test': oxdWorkflowTest,
   'oxd-hired': oxdHired,
   'oxd-job-offer': oxdJobOffer,
   'oxd-expand': oxdExpand,
