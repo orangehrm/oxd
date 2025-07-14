@@ -328,4 +328,26 @@ describe('SelectInput.vue', () => {
     expect(nodes[2].text()).toBe('Supervisor');
     expect($vt).not.toHaveBeenCalled();
   });
+
+  it('should apply dropdown-direction directive conditionally based on forcedDirection prop', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {
+        options,
+        forcedDirection: true,
+        dropdownPosition: 'top',
+      },
+    });
+
+    wrapper.findComponent(SelectText).trigger('click');
+    await wrapper.vm.$nextTick();
+
+    const dropdown = wrapper.findComponent({ name: 'oxd-select-dropdown' });
+    expect(dropdown.exists()).toBe(true);
+
+    expect(wrapper.vm.dropdownClasses).toStrictEqual({
+      '--positon-bottom': false,
+      '--positon-top': true,
+      '--with-empty-selector': false,
+    });
+  });
 });

@@ -1,4 +1,4 @@
-import {Directive} from 'vue';
+import { Directive } from 'vue';
 
 const offset = 10;
 function fixPosition(el: HTMLElement) {
@@ -15,11 +15,15 @@ function fixPosition(el: HTMLElement) {
 }
 
 const dropdownDirectionDirective: Directive = {
-  mounted(el: HTMLElement) {
-    fixPosition(el);
+  mounted(el: HTMLElement, binding) {
+    if (binding.value !== false) {
+      fixPosition(el);
+    }
   },
-  updated(el: HTMLElement) {
-    fixPosition(el);
+  updated(el: HTMLElement, binding) {
+    if (binding.value !== false) {
+      fixPosition(el);
+    }
   },
 };
 

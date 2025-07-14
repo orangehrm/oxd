@@ -42,6 +42,13 @@ export default {
         type: {summary: 'Translate options'},
       },
     },
+    forcedDirection: {
+      control: {type: 'boolean'},
+      defaultValue: false,
+      table: {
+        type: {summary: 'Force the dropdown direction'},
+      },
+    },
     'dropdown:opened': {
       control: {type: 'array'},
       defaultValue: [],
@@ -344,7 +351,7 @@ CustomTemplate.parameters = {
   docs: {
     source: {
       code:
-      ' <oxd-select :options="options" v-model="value">\n' +
+        ' <oxd-select :options="options" v-model="value">\n' +
         '<template v-slot:option> (Github ID) </template> \n' +
         '</oxd-select>"\n' +
         '//\n' +
@@ -353,6 +360,31 @@ CustomTemplate.parameters = {
   },
 };
 
+export const ForcedDirection = Template.bind({});
+ForcedDirection.args = {
+  options: options,
+  forcedDirection: true,
+  dropdownPosition: 'top',
+  style: {
+    marginTop: '200px',
+  },
+};
+
+ForcedDirection.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-select \n' +
+        ' :options=' +
+        JSON.stringify(options) +
+        '\n' +
+        ' :forcedDirection="true"\n' +
+        ' dropdownPosition="top"\n' +
+        ' :style="{ marginTop: \'200px\' }"\n' +
+        '/>',
+    },
+  },
+};
 
 export const Events = () => SelectInputEvents;
 
