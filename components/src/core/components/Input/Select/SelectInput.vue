@@ -21,7 +21,7 @@
     </oxd-select-text>
 
     <oxd-select-dropdown
-      v-dropdown-direction="!forceDropdownPosition"
+      v-dropdown-direction="forceDropdownPosition === false"
       v-if="dropdownOpen"
       :class="dropdownClasses"
       :loading="isLoading"
