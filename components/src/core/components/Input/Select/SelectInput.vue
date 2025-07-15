@@ -21,7 +21,7 @@
     </oxd-select-text>
 
     <oxd-select-dropdown
-      v-dropdown-direction="!forcedDirection"
+      v-dropdown-direction="!forceDropdownPosition"
       v-if="dropdownOpen"
       :class="dropdownClasses"
       :loading="isLoading"
@@ -124,7 +124,7 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
-    forcedDirection: {
+    forceDropdownPosition: {
       type: Boolean,
       default: false,
     },

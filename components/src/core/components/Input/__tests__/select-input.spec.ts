@@ -329,11 +329,11 @@ describe('SelectInput.vue', () => {
     expect($vt).not.toHaveBeenCalled();
   });
 
-  it('should apply dropdown-direction directive conditionally based on forcedDirection prop', async () => {
+  it('should compute dropdownClasses conditionally based on forceDropdownPosition prop', async () => {
     const wrapper = mount(SelectInput, {
       props: {
         options,
-        forcedDirection: true,
+        forceDropdownPosition: true,
         dropdownPosition: 'top',
       },
     });

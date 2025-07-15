@@ -42,11 +42,11 @@ export default {
         type: {summary: 'Translate options'},
       },
     },
-    forcedDirection: {
+    forceDropdownPosition: {
       control: {type: 'boolean'},
       defaultValue: false,
       table: {
-        type: {summary: 'Force the dropdown direction'},
+        type: {summary: 'Force the dropdown position'},
       },
     },
     'dropdown:opened': {
@@ -360,17 +360,17 @@ CustomTemplate.parameters = {
   },
 };
 
-export const ForcedDirection = Template.bind({});
-ForcedDirection.args = {
+export const ForceDropdownPosition = Template.bind({});
+ForceDropdownPosition.args = {
   options: options,
-  forcedDirection: true,
+  forceDropdownPosition: true,
   dropdownPosition: 'top',
   style: {
     marginTop: '200px',
   },
 };
 
-ForcedDirection.parameters = {
+ForceDropdownPosition.parameters = {
   docs: {
     source: {
       code:
@@ -378,7 +378,7 @@ ForcedDirection.parameters = {
         ' :options=' +
         JSON.stringify(options) +
         '\n' +
-        ' :forcedDirection="true"\n' +
+        ' :forceDropdownPosition="true"\n' +
         ' dropdownPosition="top"\n' +
         ' :style="{ marginTop: \'200px\' }"\n' +
         '/>',
