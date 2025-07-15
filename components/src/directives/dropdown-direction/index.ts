@@ -16,16 +16,14 @@ function fixPosition(el: HTMLElement) {
 
 const dropdownDirectionDirective: Directive = {
   mounted(el: HTMLElement, binding: DirectiveBinding) {
-    // When forceDropdownPosition is true, the directive skips automatic positioning
-    if (binding.value !== false) {
-      fixPosition(el);
-    }
+    const skipReposition = binding.value === true; //skip repositioning when binding value is true
+    if (skipReposition) return;
+    fixPosition(el);
   },
   updated(el: HTMLElement, binding: DirectiveBinding) {
-    // When forceDropdownPosition is true, the directive skips automatic positioning
-    if (binding.value !== false) {
-      fixPosition(el);
-    }
+    const skipReposition = binding.value === true; //skip repositioning when binding value is true
+    if (skipReposition) return;
+    fixPosition(el);
   },
 };
 
