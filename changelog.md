@@ -1,3 +1,5 @@
+2025-07-25 - 0dfb35532153bdf53d794c9e98bc9be287ed51c9 - components/src/core/components/Input/Select/SelectInput.vue Add new slot for inline label for dropdown. 
+
 2025-07-14 - 5755b20da63e679a67283113880ec2db734b01be - components/src/core/components/Input/Select/SelectInput.vue - Added a new prop called forceDropdownPosition to force the dropdown position, components/src/directives/dropdown-direction/index.ts - Added changes to force the dropdown position
 
 2025-06-26 - 0ce8d51eeb6014ed5a5b194e6168896d864af1a4 - components/src/core/components/Icon/icons.ts - oxdCopy icon button style changes
