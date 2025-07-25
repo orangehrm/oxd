@@ -89,6 +89,7 @@ export default {
       defaultValue: [],
       table: {
         type: {summary: 'Interal Slot to manage option'},
+        category: 'Slots',
       },
     },
     afterSelected: {
@@ -96,6 +97,15 @@ export default {
       defaultValue: [],
       table: {
         type: {summary: 'Attend a specific text to the end of the select'},
+        category: 'Slots',
+      },
+    },
+    inlineLabel: {
+      control: {type: 'text'},
+      defaultValue: '',
+      table: {
+        type: {summary: 'Inline label displayed above the input content'},
+        category: 'Slots',
       },
     },
     isLoading: {
@@ -156,13 +166,20 @@ const Template = (args) => ({
     return {args, selected};
   },
   render() {
+    const slots = {};
+    
+    // Add inlineLabel slot if provided
+    if (this.args.inlineLabel) {
+      slots.inlineLabel = () => this.args.inlineLabel;
+    }
+    
     return h(SelectInput, {
       ...this.args,
       modelValue: this.selected,
       'onUpdate:modelValue': (value) => {
         this.selected = value;
       },
-    });
+    }, slots);
   },
 });
 
@@ -356,6 +373,23 @@ CustomTemplate.parameters = {
         '</oxd-select>"\n' +
         '//\n' +
         'File -> SelectInputCustomSelect.story.vue',
+    },
+  },
+};
+
+export const InlineLabel = Template.bind({});
+InlineLabel.args = {
+  options: options,
+  inlineLabel: 'Location',
+};
+
+InlineLabel.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-select :options="options" v-model="value">\n' +
+        '<template #inlineLabel>Location</template>\n' +
+        '</oxd-select>',
     },
   },
 };

@@ -61,6 +61,7 @@
     line-height: 18px;
     max-width: 100%;
     min-width: 0;
+    
     .select-placeholder {
       color: $oxd-input-placeholder-color;
     }
@@ -78,6 +79,13 @@
       outline: none;
       max-width: 0;
     }
+  }
+
+  // When inline label is present, align input content to bottom
+  &-input.oxd-select-text--has-inline-label {
+    align-items: flex-end;
+    padding-top: 24px; // Increase top padding to make room for label
+    padding-bottom: 8px; // Add some bottom padding for better spacing
   }
 
   &--before,
@@ -98,6 +106,19 @@
     margin-left: auto;
     padding-right: 0;
   }
+
+  &--inline-label {
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    font-size: 11px;
+    color: $oxd-input-placeholder-color;
+    font-weight: 400;
+    z-index: 1;
+    pointer-events: none;
+    line-height: 1;
+  }
+
   &--after {
     margin-right: auto;
     padding-left: 0;
