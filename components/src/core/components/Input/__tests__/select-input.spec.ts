@@ -341,7 +341,7 @@ describe('SelectInput.vue', () => {
     wrapper.findComponent(SelectText).trigger('click');
     await wrapper.vm.$nextTick();
 
-    const dropdown = wrapper.findComponent({ name: 'oxd-select-dropdown' });
+    const dropdown = wrapper.findComponent({name: 'oxd-select-dropdown'});
     expect(dropdown.exists()).toBe(true);
 
     expect(wrapper.vm.dropdownClasses).toStrictEqual({

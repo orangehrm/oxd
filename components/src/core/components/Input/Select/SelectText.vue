@@ -11,9 +11,12 @@
     <div v-if="$slots.inlineLabel" class="oxd-select-text--inline-label">
       <slot name="inlineLabel"></slot>
     </div>
-    
+
     <!-- Input content - aligns to bottom when inline label is present -->
-    <div class="oxd-select-text-input" :class="{ 'oxd-select-text--has-inline-label': $slots.inlineLabel }">
+    <div
+      class="oxd-select-text-input"
+      :class="{'oxd-select-text--has-inline-label': $slots.inlineLabel}"
+    >
       <div v-if="!value" class="select-placeholder">{{ $vt(placeholder) }}</div>
       <div v-else class="selected-content">{{ value }}</div>
       <input

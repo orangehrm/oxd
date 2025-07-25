@@ -1,30 +1,51 @@
 <template>
   <div class="oxd-wizard">
-    <div v-for="(tab, index) in tabs" :key="tab.id" :id="String(tab.id)"
-      :tooltip="tab.disabled !== true ? tab.title : undefined" :class="{
+    <div
+      v-for="(tab, index) in tabs"
+      :key="tab.id"
+      :id="String(tab.id)"
+      :tooltip="tab.disabled !== true ? tab.title : undefined"
+      :class="{
         'oxd-wizard-tab': true,
         '--active': tab.id == modelValue,
         '--disabled': tab.disabled === true,
-      }">
+      }"
+    >
       <div class="oxd-wizard-tab-circle">
-        <div :class="{
-          'oxd-wizard-tab-circle-tooltip': true,
-          '--not-clickable': tab.clickable === false,
-        }" :tooltip="tab.disabled !== true ? tab.title : undefined" @click="onTooltipClick(tab, $event)"></div>
-        <oxd-icon-button size="small" :name="getTabIconName(tab, index)" :disabled="tab.disabled === true" :class="{
-          'oxd-wizard-tab-circle-button': true,
-          '--active': tab.id == modelValue || tab.completed,
-          '--not-clickable': tab.clickable === false,
-        }" @click="onClick(tab, $event)" @focus="onFocus(tab, $event)" @blur="onBlur(tab, $event)" />
+        <div
+          :class="{
+            'oxd-wizard-tab-circle-tooltip': true,
+            '--not-clickable': tab.clickable === false,
+          }"
+          :tooltip="tab.disabled !== true ? tab.title : undefined"
+          @click="onTooltipClick(tab, $event)"
+        ></div>
+        <oxd-icon-button
+          size="small"
+          :name="getTabIconName(tab, index)"
+          :disabled="tab.disabled === true"
+          :class="{
+            'oxd-wizard-tab-circle-button': true,
+            '--active': tab.id == modelValue || tab.completed,
+            '--not-clickable': tab.clickable === false,
+          }"
+          @click="onClick(tab, $event)"
+          @focus="onFocus(tab, $event)"
+          @blur="onBlur(tab, $event)"
+        />
       </div>
 
       <div class="oxd-wizard-tab-title-container">
-        <oxd-text tag="p" :class="{
-          'oxd-wizard-tab-title-container--title': true,
-          '--active': tab.id == modelValue,
-          '--disabled': tab.disabled === true,
-          '--not-clickable': tab.clickable === false,
-        }" @click="onClick(tab, $event)">
+        <oxd-text
+          tag="p"
+          :class="{
+            'oxd-wizard-tab-title-container--title': true,
+            '--active': tab.id == modelValue,
+            '--disabled': tab.disabled === true,
+            '--not-clickable': tab.clickable === false,
+          }"
+          @click="onClick(tab, $event)"
+        >
           {{ tab.title }}
         </oxd-text>
       </div>
@@ -33,10 +54,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import {defineComponent, PropType} from 'vue';
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import IconButton from '@orangehrm/oxd/core/components/Button/Icon.vue';
-import { WizardTab, WIZARD_ICONS } from './types';
+import {WizardTab, WIZARD_ICONS} from './types';
 
 export default defineComponent({
   name: 'oxd-wizard',
@@ -70,26 +91,26 @@ export default defineComponent({
     },
   },
 
-  setup(props, { emit }) {
+  setup(props, {emit}) {
     const onClick = (tab: WizardTab, event: Event) => {
       if (tab.disabled !== true && tab.clickable !== false) {
         emit('update:modelValue', tab.id);
-        emit('tab-click', { tab, event });
+        emit('tab-click', {tab, event});
       }
     };
 
     const onFocus = (tab: WizardTab, event: Event) => {
-      emit('tab-focus', { tab, event });
+      emit('tab-focus', {tab, event});
     };
 
     const onBlur = (tab: WizardTab, event: Event) => {
-      emit('tab-blur', { tab, event });
+      emit('tab-blur', {tab, event});
     };
 
     const onTooltipClick = (tab: WizardTab, event: Event) => {
       if (tab.disabled !== true && tab.clickable !== false) {
         emit('update:modelValue', tab.id);
-        emit('tab-click', { tab, event });
+        emit('tab-click', {tab, event});
       }
     };
 

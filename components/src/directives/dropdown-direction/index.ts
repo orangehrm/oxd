@@ -1,4 +1,4 @@
-import { Directive, DirectiveBinding } from 'vue';
+import {Directive, DirectiveBinding} from 'vue';
 
 const offset = 10;
 function fixPosition(el: HTMLElement) {
