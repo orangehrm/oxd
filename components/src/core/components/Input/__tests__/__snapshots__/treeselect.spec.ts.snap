@@ -3,6 +3,9 @@
 exports[`TreeSelect.vue renders OXD Tree Select 1`] = `
 <div class="oxd-multiselect-wrapper">
   <div class="oxd-select-text oxd-select-text--active" tabindex="0">
+    <!-- Inline label slot -->
+    <!--v-if-->
+    <!-- Input content - aligns to bottom when inline label is present -->
     <div class="oxd-select-text-input">
       <div class="select-placeholder"></div><input type="text" readonly="" tabindex="-1">
     </div>
