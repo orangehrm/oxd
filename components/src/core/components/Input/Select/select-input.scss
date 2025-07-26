@@ -107,18 +107,6 @@
     padding-right: 0;
   }
 
-  &--inline-label {
-    position: absolute;
-    top: 6px;
-    left: 8px;
-    font-size: 11px;
-    color: $oxd-input-placeholder-color;
-    font-weight: 400;
-    z-index: 1;
-    pointer-events: none;
-    line-height: 1;
-  }
-
   &--after {
     margin-right: auto;
     padding-left: 0;

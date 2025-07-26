@@ -15,8 +15,8 @@
       @keydown.up.exact.prevent="onSelectUp"
       @keydown="onKeypress"
     >
-      <template v-if="$slots.inlineLabel" v-slot:inlineLabel>
-        <slot name="inlineLabel"></slot>
+      <template v-if="$slots.topOfInput" v-slot:topOfInput>
+        <slot name="topOfInput"></slot>
       </template>
       <template v-slot:afterInput>
         <slot v-if="modelValue" name="afterSelected" :data="modelValue"></slot>
