@@ -1,63 +1,29 @@
 <template>
   <div class="oxd-autocomplete-wrapper">
-    <oxd-autocomplete-text-input
-      v-bind="$attrs"
-      :clear="showClear"
-      :placeholder="!disabled ? $vt(placeholder) : null"
-      :value="inputValue"
-      :disabled="disabled"
-      :readonly="readonly"
-      @blur="onBlur"
-      @input="onSearch"
-      @clear="onClear"
-      @keyup.esc="onCloseDropdown"
-      @keydown.enter.prevent="onSelectEnter"
-      @keydown.down.exact.prevent="onSelectDown"
-      @keydown.up.exact.prevent="onSelectUp"
-    >
+    <oxd-autocomplete-text-input v-bind="$attrs" :clear="showClear" :placeholder="!disabled ? $vt(placeholder) : null"
+      :value="inputValue" :disabled="disabled" :readonly="readonly" @blur="onBlur" @input="onSearch" @clear="onClear"
+      @keyup.esc="onCloseDropdown" @keydown.enter.prevent="onSelectEnter" @keydown.down.exact.prevent="onSelectDown"
+      @keydown.up.exact.prevent="onSelectUp">
       <template v-slot:beforeInput>
-        <slot
-          v-if="!multiple && modelValue"
-          name="beforeSelected"
-          :data="modelValue"
-        ></slot>
+        <slot v-if="!multiple && modelValue" name="beforeSelected" :data="modelValue"></slot>
       </template>
       <template v-slot:afterInput>
-        <slot
-          v-if="!multiple && modelValue"
-          name="afterSelected"
-          :data="modelValue"
-        ></slot>
+        <slot v-if="!multiple && modelValue" name="afterSelected" :data="modelValue"></slot>
       </template>
     </oxd-autocomplete-text-input>
 
-    <oxd-autocomplete-dropdown
-      v-if="dropdownOpen"
-      :class="dropdownClasses"
-      :loading="loading"
-      :empty="computedOptions.length === 0"
-      v-dropdown-direction
-    >
-      <oxd-autocomplete-option
-        v-for="(option, i) in computedOptions"
-        :key="option.id"
-        :class="optionClasses[i]"
-        :disabled="option._disabled || option._selected"
-        @select="onSelect(option)"
-      >
+    <oxd-autocomplete-dropdown v-if="dropdownOpen" :class="dropdownClasses" :loading="loading"
+      :empty="computedOptions.length === 0" v-dropdown-direction>
+      <oxd-autocomplete-option v-for="(option, i) in computedOptions" :key="option.id" :class="optionClasses[i]"
+        :disabled="option._disabled || option._selected" @select="onSelect(option)">
         <slot name="option" :data="option" :text="highlightedOptions[i]"></slot>
         <span v-if="!$slots['option']" v-html="highlightedOptions[i]"></span>
       </oxd-autocomplete-option>
     </oxd-autocomplete-dropdown>
 
-    <oxd-autocomplete-chips
-      v-if="showChips"
-      :disabled="disabled"
-      :readonly="readonly"
-      :selected="showChips ? modelValue : []"
-      @chipRemoved="onRemoveSelected"
-    >
-      <template v-slot:chips="{data}">
+    <oxd-autocomplete-chips v-if="showChips" :disabled="disabled" :readonly="readonly"
+      :selected="showChips ? modelValue : []" @chipRemoved="onRemoveSelected">
+      <template v-slot:chips="{ data }">
         <slot name="chips" :data="data"></slot>
       </template>
     </oxd-autocomplete-chips>
@@ -65,11 +31,11 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
-import {debounce} from 'lodash-es';
+import { defineComponent } from 'vue';
+import { debounce } from 'lodash-es';
 import eventsMixin from '../Select/events-mixin';
 import navigationMixin from '../Select/navigation-mixin';
-import {TOP, BOTTOM, Option, Position, DROPDOWN_POSITIONS} from '../types';
+import { TOP, BOTTOM, Option, Position, DROPDOWN_POSITIONS } from '../types';
 import AutocompleteTextInput from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteTextInput.vue';
 import AutocompleteDropdown from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteDropdown.vue';
 import AutocompleteOption from '@orangehrm/oxd/core/components/Input/Autocomplete/AutocompleteOption.vue';
@@ -132,7 +98,7 @@ export default defineComponent({
     dropdownPosition: {
       type: String,
       default: BOTTOM,
-      validator: function(value: Position) {
+      validator: function (value: Position) {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
     },
@@ -167,9 +133,10 @@ export default defineComponent({
           } else if (this.modelValue?.id === option.id) {
             _selected = true;
           }
-          return {...option, _selected};
+          return { ...option, _selected };
         })
-        .filter((option: Option) => !option._selected);
+        .filter((option: Option) => !option._selected)
+        .slice(0, 5);
     },
     dropdownClasses(): object {
       return {
@@ -277,7 +244,7 @@ export default defineComponent({
         this.loading = false;
         if (resolved && Array.isArray(resolved)) {
           if (resolved.length > 0) {
-            this.options = resolved.slice(0, 5);
+            this.options = resolved;
           } else {
             this.options = [];
           }
