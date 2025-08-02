@@ -365,13 +365,13 @@ describe('AutocompleteInput.vue', () => {
     expect(wrapper.vm.dropdownOpen).toEqual(true);
     expect(wrapper.vm.loading).toEqual(true);
     await delayFunction(2000);
-    
+
     // Verify that only 5 options are displayed even though 8 were returned
     expect(wrapper.vm.computedOptions.length).toEqual(5);
     expect(wrapper.vm.computedOptions[0].label).toEqual('Option 1');
     expect(wrapper.vm.computedOptions[4].label).toEqual('Option 5');
     expect(wrapper.vm.computedOptions[5]).toBeUndefined();
-    
+
     // Verify that the dropdown shows only 5 options
     const optionNodes = wrapper.findAllComponents(AutocompleteOption);
     expect(optionNodes.length).toEqual(5);
