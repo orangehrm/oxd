@@ -46,6 +46,19 @@ const syncDisabledOptionFunction = function() {
   return disabledptions;
 };
 
+const manyOptionsFunction = function() {
+  return [
+    {id: 1, label: 'Option 1'},
+    {id: 2, label: 'Option 2'},
+    {id: 3, label: 'Option 3'},
+    {id: 4, label: 'Option 4'},
+    {id: 5, label: 'Option 5'},
+    {id: 6, label: 'Option 6'},
+    {id: 7, label: 'Option 7'},
+    {id: 8, label: 'Option 8'},
+  ];
+};
+
 const delayFunction = function(time: number) {
   return new Promise(reslove =>
     setTimeout(() => {
@@ -331,5 +344,36 @@ describe('AutocompleteInput.vue', () => {
     wrapper.find('input').setValue('');
     await wrapper.vm.$nextTick();
     expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+  });
+
+  it('should limit computed options to maximum of 5 items', async () => {
+    const wrapper = mount(AutocompleteInput, {
+      props: {
+        createOptions: manyOptionsFunction,
+      },
+    });
+
+    const input = wrapper.findComponent(AutocompleteTextInput).find('input');
+    const searchTerm = 'option';
+    const event = new Event('input', {
+      bubbles: true,
+      cancelable: true,
+    });
+    input.element.value = searchTerm;
+    input.element.dispatchEvent(event);
+    await wrapper.vm.$nextTick();
+    expect(wrapper.vm.dropdownOpen).toEqual(true);
+    expect(wrapper.vm.loading).toEqual(true);
+    await delayFunction(2000);
+    
+    // Verify that only 5 options are displayed even though 8 were returned
+    expect(wrapper.vm.computedOptions.length).toEqual(5);
+    expect(wrapper.vm.computedOptions[0].label).toEqual('Option 1');
+    expect(wrapper.vm.computedOptions[4].label).toEqual('Option 5');
+    expect(wrapper.vm.computedOptions[5]).toBeUndefined();
+    
+    // Verify that the dropdown shows only 5 options
+    const optionNodes = wrapper.findAllComponents(AutocompleteOption);
+    expect(optionNodes.length).toEqual(5);
   });
 });
