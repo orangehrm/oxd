@@ -1,3 +1,5 @@
+2025-08-04 - 441ddf4d243d25c1fd80c3cc6f2b7e7557178dc1 - components/src/core/components/Icon/icons.ts Added icon : oxd-adjust. 
+
 2025-08-04 - a034a4785409aaabd52df67ed136a1f240cb6d8f - components/src/core/components/Input/Autocomplete/AutocompleteInput.vue Fix autocomplete dropdown doesn't shows all matching results with proper 5-item display limit. 
 
 2025-07-25 - 0dfb35532153bdf53d794c9e98bc9be287ed51c9 - components/src/core/components/Input/Select/SelectInput.vue Add new slot for inline label for dropdown. 
