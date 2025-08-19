@@ -1,4 +1,4 @@
-2025-08-19 - 3dc9a8853d02cb4d9fafa12986b9234ffb8d42a8 - components/src/core/components/Icon/icons.ts - Added icons : oxd-logs-list, oxd-created-date, oxd-modified-date
+2025-08-19 - 3dc9a8853d02cb4d9fafa12986b9234ffb8d42a8 - components/src/core/components/Icon/icons.ts - Added icons : oxd-multi-user-2, oxd-logs-list, oxd-created-date, oxd-modified-date
 
 2025-08-12 - 441ddf4d243d25c1fd80c3cc6f2b7e7557178dc1 - components/src/core/components/Icon/icons.ts Added icon : oxd-adjust.
 
