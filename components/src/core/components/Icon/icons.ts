@@ -2520,6 +2520,27 @@ export const oxdAdjust: icon = {
 </svg>`,
 };
 
+export const oxdMultiUser2: icon = {
+  name: 'oxd-multi-user-2',
+  value: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3061.4 3061.4"><defs><style>.st0{stroke-linecap:round}.st0,.st1{fill:none;stroke:currentColor;stroke-miterlimit:10;stroke-width:239.3px}</style></defs><path class="st1" d="M1189.4,1273c226.2,0,409.5-183.3,409.5-409.5s-183.3-409.5-409.5-409.5-409.5,183.3-409.5,409.5,183.3,409.5,409.5,409.5Z"/><path class="st0" d="M1847.9,454s397.9,0,409.5,409.5"/><path class="st0" d="M1847.9,1273s397.9,18.4,409.5-409.5"/><path class="st0" d="M2257.4,1668.2s467-17.9,407.1,580.2c0,0-59.8,299-358.9,358.9"/><path class="st1" d="M1987.2,2137.9c-49.4-427.2-529.5-469.5-529.5-469.5h-536.6s-480.1,42.4-529.5,469.5c0,0-7.1,293,225.9,469.5h1143.8c233-176.5,225.9-469.5,225.9-469.5Z"/></svg>`,
+};
+
+export const oxdLogsList: icon = {
+  name: 'oxd-logs-list',
+  value: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3061.4 3061.4"><defs><style>.st0{fill:currentColor}.st1{fill:none;stroke:currentColor;stroke-linecap:round;stroke-width:222.1px}</style></defs><path class="st0" d="M531.2,2308.1c-61.1,0-113.3-21.7-156.8-65.2-43.5-43.5-65.2-95.8-65.3-156.9V753.3c0-61.1,21.8-113.3,65.3-156.8,43.5-43.5,95.8-65.2,156.8-65.3h1776.9c61.1,0,113.4,21.8,156.9,65.3,43.5,43.5,65.3,95.8,65.2,156.8v666.3h-222.1v-208.3H531.2v874.6h1110.5v222.1H531.2ZM531.2,975.4h1776.9v-222.1H531.2v222.1ZM2197,2530.2v-333.2h-333.2v-222.1h333.2v-333.2h222.1v333.2h333.2v222.1h-333.2v333.2h-222.1Z"/><path class="st1" d="M753.3,1752.8h555.3"/></svg>`
+};
+
+export const oxdCreatedDate: icon = {
+  name: 'oxd-created-date',
+  value: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3061.4 3061.4"><defs><style>.st0{fill:none;stroke:currentColor;stroke-linecap:round;stroke-width:215.1px}.st1{fill:currentColor}</style></defs><path class="st1" d="M2367.3,574.6h-119.5v-239h-239v239h-956.1v-239h-239v239h-119.5c-132.7,0-239,106.4-239,239v1673.2c0,63.4,25.2,124.2,70,169,44.8,44.8,105.6,70,169,70h1673.2c132.7,0,239-106.4,239-239V813.6c0-63.4-25.2-124.2-70-169-44.8-44.8-105.6-70-169-70ZM2367.3,813.6v239H694.1v-239h1673.2ZM694.1,2486.8v-1195.1h1673.2v1195.1H694.1Z"/><path class="st0" d="M933.1,1650.3h1075.6M933.1,2008.8h470.6"/></svg>`,
+};
+
+export const oxdModifiedDate: icon = {
+  name: 'oxd-modified-date',
+  value: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3061.4 3061.4"><defs><style>.st0{fill:currentColor}.st1{fill:none;stroke:currentColor;stroke-linecap:round;stroke-width:216.2px}</style></defs><path class="st0" d="M569.8,2731.8c-66.1,0-122.6-23.5-169.6-70.5-47-47-70.5-103.6-70.6-169.7V810c0-66.1,23.5-122.6,70.6-169.6,47.1-47,103.6-70.5,169.6-70.6h120.1v-240.2h240.2v240.2h960.9v-240.2h240.2v240.2h120.1c66.1,0,122.6,23.5,169.7,70.6,47.1,47.1,70.6,103.6,70.5,169.6v600.6h-240.2v-120.1H569.8v1201.1h840.8v240.2h-840.8ZM569.8,1050.3h1681.6v-240.2H569.8v240.2ZM1650.8,2731.8v-369.3l663.6-660.6c18-18,38-31,60.1-39,22-8,44-12,66.1-12s47.1,4.5,69.1,13.6c22,9.1,42,22.5,60.1,40.5l111.1,111.1c16,18,28.5,38,37.6,60.1,9.1,22,13.5,44,13.5,66.1,0,22-4.1,44.6-12,67.6-7.9,23.1-20.9,43.6-39,61.5l-660.6,660.6h-369.3ZM1831,2551.7h114.1l606.6-609.6-55.6-55.6-55.6-55.5-609.6,606.6v114.1ZM2496.1,1886.5l-55.6-55.5,111.1,111.1-55.6-55.6Z"/><path class="st1" d="M810,1650.8h1081M810,2011.1h472.9"/></svg>`,
+};
+
+
 const icons: Icons = {
   'oxd-likes': oxdLikes,
   'oxd-birthday': oxdBirthday,
@@ -2792,6 +2813,10 @@ const icons: Icons = {
   'oxd-saving': oxdSaving,
   'oxd-save-error': oxdSaveError,
   'oxd-adjust': oxdAdjust,
+  'oxd-multi-user-2': oxdMultiUser2,
+  'oxd-logs-list': oxdLogsList,
+  'oxd-created-date': oxdCreatedDate,
+  'oxd-modified-date': oxdModifiedDate,
 };
 
 export default icons;
