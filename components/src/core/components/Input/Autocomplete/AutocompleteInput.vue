@@ -270,7 +270,7 @@ export default defineComponent({
     doSearch() {
       new Promise(resolve => {
         if (this.createOptions) {
-          resolve(this.createOptions(this.searchTerm));
+          resolve(this.createOptions(this.searchTerm, this.modelValue));
         } else {
           throw new Error('createOptions not defined');
         }
