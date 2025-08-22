@@ -1,8 +1,12 @@
 2025-08-022- 390b3a08bddd39d4511c8a1ffd1bf3dd2e90b7c1 - components/src/core/components/Input/Autocomplete/AutocompleteInput.vue - Pass selected options to createOptions function enabling developers to filter already selected options
 
-2025-08-04 - a034a4785409aaabd52df67ed136a1f240cb6d8f - components/src/core/components/Input/Autocomplete/AutocompleteInput.vue Fix autocomplete dropdown doesn't shows all matching results with proper 5-item display limit. 
+2025-08-19 - 3dc9a8853d02cb4d9fafa12986b9234ffb8d42a8 - components/src/core/components/Icon/icons.ts - Added icons : oxd-multi-user-2, oxd-logs-list, oxd-created-date, oxd-modified-date
 
-2025-07-25 - 0dfb35532153bdf53d794c9e98bc9be287ed51c9 - components/src/core/components/Input/Select/SelectInput.vue Add new slot for inline label for dropdown. 
+2025-08-12 - 441ddf4d243d25c1fd80c3cc6f2b7e7557178dc1 - components/src/core/components/Icon/icons.ts Added icon : oxd-adjust.
+
+2025-08-04 - a034a4785409aaabd52df67ed136a1f240cb6d8f - components/src/core/components/Input/Autocomplete/AutocompleteInput.vue Fix autocomplete dropdown doesn't shows all matching results with proper 5-item display limit.
+
+2025-07-25 - 0dfb35532153bdf53d794c9e98bc9be287ed51c9 - components/src/core/components/Input/Select/SelectInput.vue Add new slot for inline label for dropdown.
 
 2025-07-14 - 5755b20da63e679a67283113880ec2db734b01be - components/src/core/components/Input/Select/SelectInput.vue - Added a new prop called forceDropdownPosition to force the dropdown position, components/src/directives/dropdown-direction/index.ts - Added changes to force the dropdown position
 
