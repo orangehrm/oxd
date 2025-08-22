@@ -22,7 +22,7 @@ const options = [
   },
 ];
 
-const disabledptions = [
+const disabledOptions = [
   {
     id: 1,
     label: 'HR Admin',
@@ -66,7 +66,7 @@ const syncFunctionWithSelectedOptions = function(
 };
 
 const syncDisabledOptionFunction = function() {
-  return disabledptions;
+  return disabledOptions;
 };
 
 const manyOptionsFunction = function() {
