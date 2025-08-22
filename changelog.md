@@ -1,3 +1,5 @@
+2025-08-022- 390b3a08bddd39d4511c8a1ffd1bf3dd2e90b7c1 - components/src/core/components/Input/Autocomplete/AutocompleteInput.vue - Pass selected options to createOptions function enabling developers to filter already selected options
+
 2025-08-04 - a034a4785409aaabd52df67ed136a1f240cb6d8f - components/src/core/components/Input/Autocomplete/AutocompleteInput.vue Fix autocomplete dropdown doesn't shows all matching results with proper 5-item display limit. 
 
 2025-07-25 - 0dfb35532153bdf53d794c9e98bc9be287ed51c9 - components/src/core/components/Input/Select/SelectInput.vue Add new slot for inline label for dropdown. 
