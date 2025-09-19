@@ -30,7 +30,7 @@ export default defineComponent({
   name: 'oxd-calendar',
   props: {
     modelValue: {
-      type: Object as PropType<Date>,
+      type: Object as PropType<Date | undefined>,
       default: () => {
         return undefined;
       },
@@ -84,56 +84,47 @@ export default defineComponent({
     },
   },
   setup(props, context) {
-    const modifiedModelValue = props.modelValue || freshDate();
-
     const selectedDate = computed(() => {
-      return modifiedModelValue
-        ? new Date(modifiedModelValue.setHours(0, 0, 0, 0))
-        : modifiedModelValue;
+      const value = props.modelValue || freshDate();
+      return value ? new Date(value.setHours(0, 0, 0, 0)) : value;
     });
 
     const calculateInitialMonth = () => {
-      // If modelValue exists, use its month/year regardless of min/max constraints
+      const getMonthStart = (date: Date) =>
+        new Date(getYear(date), getMonth(date), 1);
+
+      // If modelValue exists, always prefer it
       if (props.modelValue) {
-        const targetYear = getYear(props.modelValue);
-        const targetMonth = getMonth(props.modelValue);
-        return {year: targetYear, month: targetMonth};
+        return {
+          year: getYear(props.modelValue),
+          month: getMonth(props.modelValue),
+        };
       }
 
-      // If no modelValue, use current date and apply min/max constraints
-      let targetYear = getYear(modifiedModelValue);
-      let targetMonth = getMonth(modifiedModelValue);
+      const currentMonthSart = getMonthStart(selectedDate.value);
 
-      // Create a date for the first day of the target month for comparison
-      const targetMonthDate = new Date(targetYear, targetMonth, 1);
-
-      // If min is set and target month is before min, use min's month
-      if (props.min) {
-        const minMonthDate = new Date(
-          getYear(props.min),
-          getMonth(props.min),
-          1,
-        );
-        if (targetMonthDate < minMonthDate) {
-          targetYear = getYear(props.min);
-          targetMonth = getMonth(props.min);
-        }
+      // If min is set and current date is before min → return min's year and month
+      if (props.min && currentMonthSart < getMonthStart(props.min)) {
+        return {
+          year: getYear(props.min),
+          month: getMonth(props.min),
+        };
       }
 
-      // If max is set and target month is after max, use max's month
-      if (props.max) {
-        const maxMonthDate = new Date(
-          getYear(props.max),
-          getMonth(props.max),
-          1,
-        );
-        if (targetMonthDate > maxMonthDate) {
-          targetYear = getYear(props.max);
-          targetMonth = getMonth(props.max);
-        }
+      // If max is set and current date is after max → return max's year and month
+      if (props.max && currentMonthSart > getMonthStart(props.max)) {
+        return {
+          year: getYear(props.max),
+          month: getMonth(props.max),
+        };
       }
 
-      return {year: targetYear, month: targetMonth};
+      // Otherwise return the current date's month
+      // When there are no min/max constraints OR current date is within min/max constraints
+      return {
+        year: getYear(currentMonthSart),
+        month: getMonth(currentMonthSart),
+      };
     };
 
     const state = reactive(calculateInitialMonth());
