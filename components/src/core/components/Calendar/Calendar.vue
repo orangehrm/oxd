@@ -32,7 +32,7 @@ export default defineComponent({
     modelValue: {
       type: Object as PropType<Date>,
       default: () => {
-        return freshDate();
+        return undefined;
       },
     },
     firstDayOfWeek: {
@@ -84,16 +84,59 @@ export default defineComponent({
     },
   },
   setup(props, context) {
+    const modifiedModelValue = props.modelValue || freshDate();
+
     const selectedDate = computed(() => {
-      return props.modelValue
-        ? new Date(props.modelValue.setHours(0, 0, 0, 0))
-        : props.modelValue;
+      return modifiedModelValue
+        ? new Date(modifiedModelValue.setHours(0, 0, 0, 0))
+        : modifiedModelValue;
     });
 
-    const state = reactive({
-      year: getYear(selectedDate.value || new Date()),
-      month: getMonth(selectedDate.value || new Date()),
-    });
+    const calculateInitialMonth = () => {
+      // If modelValue exists, use its month/year regardless of min/max constraints
+      if (props.modelValue) {
+        const targetYear = getYear(props.modelValue);
+        const targetMonth = getMonth(props.modelValue);
+        return {year: targetYear, month: targetMonth};
+      }
+
+      // If no modelValue, use current date and apply min/max constraints
+      let targetYear = getYear(modifiedModelValue);
+      let targetMonth = getMonth(modifiedModelValue);
+
+      // Create a date for the first day of the target month for comparison
+      const targetMonthDate = new Date(targetYear, targetMonth, 1);
+
+      // If min is set and target month is before min, use min's month
+      if (props.min) {
+        const minMonthDate = new Date(
+          getYear(props.min),
+          getMonth(props.min),
+          1,
+        );
+        if (targetMonthDate < minMonthDate) {
+          targetYear = getYear(props.min);
+          targetMonth = getMonth(props.min);
+        }
+      }
+
+      // If max is set and target month is after max, use max's month
+      if (props.max) {
+        const maxMonthDate = new Date(
+          getYear(props.max),
+          getMonth(props.max),
+          1,
+        );
+        if (targetMonthDate > maxMonthDate) {
+          targetYear = getYear(props.max);
+          targetMonth = getMonth(props.max);
+        }
+      }
+
+      return {year: targetYear, month: targetMonth};
+    };
+
+    const state = reactive(calculateInitialMonth());
 
     const daysOfWeek = computed(() => {
       let days = JSON.parse(JSON.stringify(props.days));
