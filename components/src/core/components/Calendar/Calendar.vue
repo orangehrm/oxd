@@ -101,10 +101,10 @@ export default defineComponent({
         };
       }
 
-      const currentMonthSart = getMonthStart(selectedDate.value);
+      const currentMonthStart = getMonthStart(selectedDate.value);
 
       // If min is set and current date is before min → return min's year and month
-      if (props.min && currentMonthSart < getMonthStart(props.min)) {
+      if (props.min && currentMonthStart < getMonthStart(props.min)) {
         return {
           year: getYear(props.min),
           month: getMonth(props.min),
@@ -112,7 +112,7 @@ export default defineComponent({
       }
 
       // If max is set and current date is after max → return max's year and month
-      if (props.max && currentMonthSart > getMonthStart(props.max)) {
+      if (props.max && currentMonthStart > getMonthStart(props.max)) {
         return {
           year: getYear(props.max),
           month: getMonth(props.max),
@@ -122,8 +122,8 @@ export default defineComponent({
       // Otherwise return the current date's month
       // When there are no min/max constraints OR current date is within min/max constraints
       return {
-        year: getYear(currentMonthSart),
-        month: getMonth(currentMonthSart),
+        year: getYear(currentMonthStart),
+        month: getMonth(currentMonthStart),
       };
     };
 
