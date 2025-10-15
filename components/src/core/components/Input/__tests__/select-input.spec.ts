@@ -351,146 +351,79 @@ describe('SelectInput.vue', () => {
     });
   });
 
-  it('should auto-select next option when scrollToNextOf is provided', async () => {
-    const wrapper = mount(SelectInput, {
-      props: {
-        options,
-        scrollToNextOf: {id: 1, label: 'HR Admin'},
-      },
-    });
-    await wrapper.vm.$nextTick();
+  describe('Scrolling Behavior', () => {
+    it('should scroll to selected option when dropdown opens', async () => {
+      const wrapper = mount(SelectInput, {
+        props: {
+          options,
+          modelValue: {
+            id: 2,
+            label: 'ESS User',
+          },
+        },
+      });
 
-    // Should emit update:modelValue with the next option after the reference (id: 1)
-    const emitted = wrapper.emitted('update:modelValue');
-    expect(emitted).toBeTruthy();
-    expect(emitted?.[0]).toEqual([
-      {
-        id: 2,
-        label: 'ESS User',
-        _selected: false,
-      },
-    ]);
-  });
+      const scrollToOptionByIndex = jest.spyOn(
+        wrapper.vm,
+        'scrollToOptionByIndex',
+      );
 
-  it('should not auto-select if scrollToNextOf references the last option', async () => {
-    const wrapper = mount(SelectInput, {
-      props: {
-        options,
-        scrollToNextOf: {id: 3, label: 'Supervisor'},
-      },
-    });
-    await wrapper.vm.$nextTick();
+      wrapper.findComponent(SelectText).trigger('click');
+      await wrapper.vm.$nextTick();
+      await new Promise(resolve => setTimeout(resolve, 10));
 
-    // Should not emit since there's no next option after the last one
-    expect(wrapper.emitted('update:modelValue')).toBeFalsy();
-  });
-
-  it('should update auto-selection when scrollToNextOf changes', async () => {
-    const wrapper = mount(SelectInput, {
-      props: {
-        options,
-        scrollToNextOf: {id: 1, label: 'HR Admin'},
-      },
-    });
-    await wrapper.vm.$nextTick();
-
-    // First auto-selection
-    const emitted = wrapper.emitted('update:modelValue');
-    expect(emitted?.[0]).toEqual([
-      {
-        id: 2,
-        label: 'ESS User',
-        _selected: false,
-      },
-    ]);
-
-    // Change scrollToNextOf to a different option
-    await wrapper.setProps({
-      scrollToNextOf: {id: 2, label: 'ESS User'},
-    });
-    await wrapper.vm.$nextTick();
-
-    // Should emit again with the next option after id: 2
-    expect(emitted?.length).toBe(2);
-    expect(emitted?.[1]).toEqual([
-      {
-        id: 3,
-        label: 'Supervisor',
-        _selected: false,
-      },
-    ]);
-  });
-
-  it('should not override manual selection with auto-selection', async () => {
-    const wrapper = mount(SelectInput, {
-      props: {
-        options,
-        modelValue: {id: 3, label: 'Supervisor'},
-        scrollToNextOf: {id: 1, label: 'HR Admin'},
-      },
-    });
-    await wrapper.vm.$nextTick();
-
-    // Should not emit update:modelValue because there's already a manual selection
-    expect(wrapper.emitted('update:modelValue')).toBeFalsy();
-  });
-
-  it('should scroll to next option when dropdown opens with scrollToNextOf', async () => {
-    const wrapper = mount(SelectInput, {
-      props: {
-        options,
-        scrollToNextOf: {id: 1, label: 'HR Admin'},
-      },
+      expect(scrollToOptionByIndex).toHaveBeenCalledWith(1);
     });
 
-    // Open the dropdown
-    wrapper.findComponent(SelectText).trigger('click');
-    await wrapper.vm.$nextTick();
+    it('should scroll to scrollToOption prop when no selection exists', async () => {
+      const wrapper = mount(SelectInput, {
+        props: {
+          options,
+          scrollToOption: {
+            id: 3,
+            label: 'Supervisor',
+          },
+        },
+      });
 
-    // Pointer should be set to the next option after the reference (index 1)
-    expect(wrapper.vm.pointer).toBe(1);
-  });
+      const scrollToOptionByIndex = jest.spyOn(
+        wrapper.vm,
+        'scrollToOptionByIndex',
+      );
 
-  it('should allow auto-selection to override previous auto-selection', async () => {
-    const wrapper = mount(SelectInput, {
-      props: {
-        options,
-        scrollToNextOf: {id: 1, label: 'HR Admin'},
-      },
+      wrapper.findComponent(SelectText).trigger('click');
+      await wrapper.vm.$nextTick();
+      await new Promise(resolve => setTimeout(resolve, 10));
+
+      expect(scrollToOptionByIndex).toHaveBeenCalledWith(2);
     });
-    await wrapper.vm.$nextTick();
 
-    // First auto-selection - should select option with id: 2
-    const emitted = wrapper.emitted('update:modelValue');
-    expect(emitted?.[0]).toEqual([
-      {
-        id: 2,
-        label: 'ESS User',
-        _selected: false,
-      },
-    ]);
-    expect(wrapper.vm.isAutoSelected).toBe(true);
+    it('should prioritize selected value over scrollToOption prop', async () => {
+      const wrapper = mount(SelectInput, {
+        props: {
+          options,
+          modelValue: {
+            id: 1,
+            label: 'HR Admin',
+          },
+          scrollToOption: {
+            id: 3,
+            label: 'Supervisor',
+          },
+        },
+      });
 
-    // Manually update modelValue to simulate the selection
-    await wrapper.setProps({
-      modelValue: {id: 2, label: 'ESS User'},
+      const scrollToOptionByIndex = jest.spyOn(
+        wrapper.vm,
+        'scrollToOptionByIndex',
+      );
+
+      wrapper.findComponent(SelectText).trigger('click');
+      await wrapper.vm.$nextTick();
+      await new Promise(resolve => setTimeout(resolve, 10));
+
+      // Should scroll to modelValue (index 0), not scrollToOption (index 2)
+      expect(scrollToOptionByIndex).toHaveBeenCalledWith(0);
     });
-    await wrapper.vm.$nextTick();
-
-    // Change scrollToNextOf - should override the previous auto-selection
-    await wrapper.setProps({
-      scrollToNextOf: {id: 2, label: 'ESS User'},
-    });
-    await wrapper.vm.$nextTick();
-
-    // Should emit again because previous selection was auto-selected
-    expect(emitted?.length).toBe(2);
-    expect(emitted?.[1]).toEqual([
-      {
-        id: 3,
-        label: 'Supervisor',
-        _selected: false,
-      },
-    ]);
   });
 });
