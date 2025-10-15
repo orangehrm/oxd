@@ -1,3 +1,5 @@
+2025-10-15 - 876fc4835a18250f9125321e29fe9ee5ef7ed033 - components/src/core/components/Input/Select/SelectInput.vue - Enhanced dropdown component to auto-scroll to the selected option and Add a new prop called scrollToNextOf to auto-select the next option based on a reference value. 
+
 2025-10-03 - f5a0e2aaab498f23f7c8b726336a2f5b221ab26a - components/src/core/components/Icon/icons.ts - Add oxd-delete icon
 
 2025-09-19 - da08b5e9e5bfed360d38bfa495511ff23017340e - components/src/core/components/Calendar/Calendar.vue - Fix calendar to default visible month based on min/max values.
