@@ -1,4 +1,4 @@
-2025-10-15 - 876fc4835a18250f9125321e29fe9ee5ef7ed033 - components/src/core/components/Input/Select/SelectInput.vue - Enhanced dropdown component to auto-scroll to the selected option and Add a new prop called scrollToNextOf to auto-select the next option based on a reference value. 
+2025-10-15 - 78dd0a3a8c2458f1398003eeac980c4462963a2f - components/src/core/components/Input/Select/SelectInput.vue - Enhanced dropdown component to auto-scroll to the selected option and Add a new prop called scrollToNextOf to auto-select the next option based on a reference value. 
 
 2025-10-03 - f5a0e2aaab498f23f7c8b726336a2f5b221ab26a - components/src/core/components/Icon/icons.ts - Add oxd-delete icon
 
