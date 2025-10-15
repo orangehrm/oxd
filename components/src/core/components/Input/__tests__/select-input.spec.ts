@@ -350,4 +350,147 @@ describe('SelectInput.vue', () => {
       '--with-empty-selector': false,
     });
   });
+
+  it('should auto-select next option when scrollToNextOf is provided', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {
+        options,
+        scrollToNextOf: {id: 1, label: 'HR Admin'},
+      },
+    });
+    await wrapper.vm.$nextTick();
+
+    // Should emit update:modelValue with the next option after the reference (id: 1)
+    const emitted = wrapper.emitted('update:modelValue');
+    expect(emitted).toBeTruthy();
+    expect(emitted?.[0]).toEqual([
+      {
+        id: 2,
+        label: 'ESS User',
+        _selected: false,
+      },
+    ]);
+  });
+
+  it('should not auto-select if scrollToNextOf references the last option', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {
+        options,
+        scrollToNextOf: {id: 3, label: 'Supervisor'},
+      },
+    });
+    await wrapper.vm.$nextTick();
+
+    // Should not emit since there's no next option after the last one
+    expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+  });
+
+  it('should update auto-selection when scrollToNextOf changes', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {
+        options,
+        scrollToNextOf: {id: 1, label: 'HR Admin'},
+      },
+    });
+    await wrapper.vm.$nextTick();
+
+    // First auto-selection
+    const emitted = wrapper.emitted('update:modelValue');
+    expect(emitted?.[0]).toEqual([
+      {
+        id: 2,
+        label: 'ESS User',
+        _selected: false,
+      },
+    ]);
+
+    // Change scrollToNextOf to a different option
+    await wrapper.setProps({
+      scrollToNextOf: {id: 2, label: 'ESS User'},
+    });
+    await wrapper.vm.$nextTick();
+
+    // Should emit again with the next option after id: 2
+    expect(emitted?.length).toBe(2);
+    expect(emitted?.[1]).toEqual([
+      {
+        id: 3,
+        label: 'Supervisor',
+        _selected: false,
+      },
+    ]);
+  });
+
+  it('should not override manual selection with auto-selection', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {
+        options,
+        modelValue: {id: 3, label: 'Supervisor'},
+        scrollToNextOf: {id: 1, label: 'HR Admin'},
+      },
+    });
+    await wrapper.vm.$nextTick();
+
+    // Should not emit update:modelValue because there's already a manual selection
+    expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+  });
+
+  it('should scroll to next option when dropdown opens with scrollToNextOf', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {
+        options,
+        scrollToNextOf: {id: 1, label: 'HR Admin'},
+      },
+    });
+
+    // Open the dropdown
+    wrapper.findComponent(SelectText).trigger('click');
+    await wrapper.vm.$nextTick();
+
+    // Pointer should be set to the next option after the reference (index 1)
+    expect(wrapper.vm.pointer).toBe(1);
+  });
+
+  it('should allow auto-selection to override previous auto-selection', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {
+        options,
+        scrollToNextOf: {id: 1, label: 'HR Admin'},
+      },
+    });
+    await wrapper.vm.$nextTick();
+
+    // First auto-selection - should select option with id: 2
+    const emitted = wrapper.emitted('update:modelValue');
+    expect(emitted?.[0]).toEqual([
+      {
+        id: 2,
+        label: 'ESS User',
+        _selected: false,
+      },
+    ]);
+    expect(wrapper.vm.isAutoSelected).toBe(true);
+
+    // Manually update modelValue to simulate the selection
+    await wrapper.setProps({
+      modelValue: {id: 2, label: 'ESS User'},
+    });
+    await wrapper.vm.$nextTick();
+
+    // Change scrollToNextOf - should override the previous auto-selection
+    await wrapper.setProps({
+      scrollToNextOf: {id: 2, label: 'ESS User'},
+    });
+    await wrapper.vm.$nextTick();
+
+    // Should emit again because previous selection was auto-selected
+    expect(emitted?.length).toBe(2);
+    expect(emitted?.[1]).toEqual([
+      {
+        id: 3,
+        label: 'Supervisor',
+        _selected: false,
+      },
+    ]);
+  });
 });
