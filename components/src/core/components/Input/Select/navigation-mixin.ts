@@ -63,7 +63,7 @@ export const navigationMixin = defineComponent({
     scrollToView(elm: HTMLElement) {
       elm.scrollIntoView({
         behavior: 'smooth',
-        block: 'nearest',
+        block: 'start',
         inline: 'start',
       });
     },

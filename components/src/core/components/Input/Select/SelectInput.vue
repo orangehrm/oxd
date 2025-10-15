@@ -131,7 +131,7 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    scrollToNextOf: {
+    scrollToOption: {
       type: Object,
       default: null,
     },
@@ -143,10 +143,6 @@ export default defineComponent({
       loading: false,
       dropdownOpen: false,
       searchTerm: null,
-      lastScrollToNextOfId: null,
-      isAutoSelected: false, // Track if value was auto-set vs user-selected
-      valueWhenDropdownOpened: null, // Track value when dropdown opens
-      userInteractedWithDropdown: false, // Track if user actually selected from dropdown
     };
   },
 
@@ -190,128 +186,72 @@ export default defineComponent({
     },
   },
 
+  methods: {
+    scrollToOptionByIndex(index: number) {
+      this.$nextTick(() => {
+        let option = this.$refs[`option-${index}`] as any;
+        // Handle array refs in v-for
+        if (Array.isArray(option)) {
+          option = option[0];
+        }
+        const el = option?.$el || option;
+        if (el && el.scrollIntoView) {
+          this.scrollToView(el);
+        }
+      });
+    },
+  },
+
   watch: {
     pointer(newIndex: number) {
-      const option = this.$refs[`option-${newIndex}`];
-      if (option?.$el) this.scrollToView(option.$el);
-    },
-    modelValue(newValue, oldValue) {
-      // Track if value changed while dropdown is open (user clicked an option)
-      if (this.dropdownOpen && newValue?.id !== oldValue?.id) {
-        this.userInteractedWithDropdown = true;
-      }
-
-      // If value is cleared (becomes null/undefined), reset auto-selected flag
-      if (!newValue && oldValue) {
-        this.isAutoSelected = false;
-      }
-    },
-    scrollToNextOf: {
-      handler(newValue) {
-        const newId = newValue?.id;
-
-        // Auto-select next option if:
-        // 1. There's a new scrollToNextOf value
-        // 2. It's different from the last one
-        // 3. Either the field is empty OR it was previously auto-selected (not manually selected)
-        if (
-          newId &&
-          newId !== this.lastScrollToNextOfId &&
-          (!this.modelValue || this.isAutoSelected)
-        ) {
-          this.lastScrollToNextOfId = newId;
-
-          const referenceIndex = this.computedOptions.findIndex(
-            (option: Option) => option.id === newId,
-          );
-          if (
-            referenceIndex !== -1 &&
-            referenceIndex < this.computedOptions.length - 1
-          ) {
-            // Get the next option and auto-select it
-            const nextOption = this.computedOptions[referenceIndex + 1];
-            if (nextOption && !nextOption._disabled) {
-              this.isAutoSelected = true; // Mark as auto-selected
-
-              // Reset pointer to ensure inputValue updates correctly
-              this.pointer = -1;
-
-              // Force update by using nextTick
-              this.$nextTick(() => {
-                this.$emit('update:modelValue', nextOption);
-              });
-            }
+      if (newIndex >= 0 && this.dropdownOpen) {
+        this.$nextTick(() => {
+          let option = this.$refs[`option-${newIndex}`] as any;
+          // Handle array refs in v-for
+          if (Array.isArray(option)) {
+            option = option[0];
           }
+          const el = option?.$el || option;
+          if (el && el.scrollIntoView) {
+            this.scrollToView(el);
+          }
+        });
+      }
+    },
+    scrollToOption(option: Option | null) {
+      if (option?.id && this.dropdownOpen) {
+        const scrollIndex = this.computedOptions.findIndex(
+          (opt: Option) => opt.id === option.id,
+        );
+        if (scrollIndex !== -1) {
+          this.scrollToOptionByIndex(scrollIndex);
         }
-
-        if (!newValue) {
-          // Reset tracking when scrollToNextOf is cleared
-          this.lastScrollToNextOfId = null;
-          this.isAutoSelected = false;
-        }
-      },
-      immediate: true,
-      deep: true,
+      }
     },
     dropdownOpen(isOpen: boolean) {
       if (isOpen) {
-        // Dropdown is OPENING - reset interaction flag
-        this.userInteractedWithDropdown = false;
-        this.valueWhenDropdownOpened = this.modelValue?.id || null;
-
-        let targetIndex = -1;
-
-        // Priority 1: If there's a selected value, scroll to it
-        if (this.modelValue) {
-          targetIndex = this.computedOptions.findIndex(
-            (option: Option) => option.id === this.modelValue.id,
-          );
-        }
-        // Priority 2: If no selection but scrollToNextOf is provided, scroll to next after reference
-        else if (this.scrollToNextOf) {
-          const referenceIndex = this.computedOptions.findIndex(
-            (option: Option) => option.id === this.scrollToNextOf.id,
-          );
-          if (
-            referenceIndex !== -1 &&
-            referenceIndex < this.computedOptions.length - 1
-          ) {
-            // Get the next option index
-            targetIndex = referenceIndex + 1;
-          }
-        }
-
-        // Scroll to the target index if found
-        if (targetIndex !== -1) {
-          this.pointer = targetIndex;
-
-          this.$nextTick(() => {
-            const optionRef = this.$refs[`option-${targetIndex}`];
-            // Handle both array and single ref cases
-            const optionElement = Array.isArray(optionRef)
-              ? optionRef[0]
-              : optionRef;
-            if (optionElement?.$el) {
-              // Find the dropdown inner container
-              const dropdownInner = optionElement.$el.closest(
-                '.oxd-select-dropdown-inner',
-              );
-              if (dropdownInner) {
-                const optionTop = optionElement.$el.offsetTop;
-                // Position target item at the top of the dropdown
-                dropdownInner.scrollTop = optionTop;
-              }
+        // Priority 1: If user has selected a value, always scroll to it
+        if (this.modelValue?.id) {
+          setTimeout(() => {
+            const selectedIndex = this.computedOptions.findIndex(
+              (option: Option) => option.id === this.modelValue.id,
+            );
+            if (selectedIndex !== -1) {
+              this.scrollToOptionByIndex(selectedIndex);
             }
-          });
+          }, 0);
         }
-      } else {
-        if (this.userInteractedWithDropdown) {
-          // User clicked an option = manual selection
-          this.isAutoSelected = false;
+        // Priority 2: If no selection yet, use scrollToOption (initial scroll position)
+        else if (this.scrollToOption?.id) {
+          setTimeout(() => {
+            const scrollIndex = this.computedOptions.findIndex(
+              (opt: Option) => opt.id === this.scrollToOption.id,
+            );
+            if (scrollIndex !== -1) {
+              this.scrollToOptionByIndex(scrollIndex);
+            }
+          }, 0);
         }
-        // Reset for next time
-        this.userInteractedWithDropdown = false;
-        this.valueWhenDropdownOpened = null;
       }
     },
   },
