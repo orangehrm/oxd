@@ -7,7 +7,7 @@ interface State {
 }
 
 export const eventsMixin = defineComponent({
-  props: ['modelValue', 'disabled', 'readonly'],
+  props: ['modelValue', 'disabled', 'readonly', 'scrollToOption'],
   data(): State {
     return {
       dropdownOpen: false,
@@ -19,6 +19,26 @@ export const eventsMixin = defineComponent({
       if (this.disabled || this.readonly || this.dropdownOpen) return;
       this.dropdownOpen = true;
       this.$emit('dropdown:opened');
+
+      if (this.modelValue?.id) {
+        setTimeout(() => {
+          const selectedIndex = this.computedOptions.findIndex(
+            (option: Option) => option.id === this.modelValue.id,
+          );
+          if (selectedIndex !== -1) {
+            this.scrollToOptionByIndex(selectedIndex);
+          }
+        }, 0);
+      } else if (this.scrollToOption?.id) {
+        setTimeout(() => {
+          const scrollIndex = this.computedOptions.findIndex(
+            (option: Option) => option.id === this.scrollToOption.id,
+          );
+          if (scrollIndex !== -1) {
+            this.scrollToOptionByIndex(scrollIndex);
+          }
+        }, 0);
+      }
     },
     onCloseDropdown($e: KeyboardEvent | null) {
       if (this.disabled || this.readonly || !this.dropdownOpen) return;
@@ -55,6 +75,14 @@ export const eventsMixin = defineComponent({
     onClear() {
       this.$emit('update:modelValue', null);
       this.$emit('dropdown:clear');
+    },
+    /* eslint-disable */
+    scrollToOptionByIndex(index: number) {},
+    /* eslint-enable */
+  },
+  computed: {
+    computedOptions(): Option[] {
+      return [];
     },
   },
 });

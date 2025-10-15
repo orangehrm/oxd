@@ -218,42 +218,6 @@ export default defineComponent({
         });
       }
     },
-    scrollToOption(option: Option | null) {
-      if (option?.id && this.dropdownOpen) {
-        const scrollIndex = this.computedOptions.findIndex(
-          (opt: Option) => opt.id === option.id,
-        );
-        if (scrollIndex !== -1) {
-          this.scrollToOptionByIndex(scrollIndex);
-        }
-      }
-    },
-    dropdownOpen(isOpen: boolean) {
-      if (isOpen) {
-        // Priority 1: If user has selected a value, always scroll to it
-        if (this.modelValue?.id) {
-          setTimeout(() => {
-            const selectedIndex = this.computedOptions.findIndex(
-              (option: Option) => option.id === this.modelValue.id,
-            );
-            if (selectedIndex !== -1) {
-              this.scrollToOptionByIndex(selectedIndex);
-            }
-          }, 0);
-        }
-        // Priority 2: If no selection yet, use scrollToOption (initial scroll position)
-        else if (this.scrollToOption?.id) {
-          setTimeout(() => {
-            const scrollIndex = this.computedOptions.findIndex(
-              (opt: Option) => opt.id === this.scrollToOption.id,
-            );
-            if (scrollIndex !== -1) {
-              this.scrollToOptionByIndex(scrollIndex);
-            }
-          }, 0);
-        }
-      }
-    },
   },
 });
 </script>
