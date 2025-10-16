@@ -1,4 +1,4 @@
-import {defineComponent} from 'vue';
+import {defineComponent, nextTick} from 'vue';
 import {Option} from '../types';
 
 interface State {
@@ -21,23 +21,23 @@ export const eventsMixin = defineComponent({
       this.$emit('dropdown:opened');
 
       if (this.modelValue?.id) {
-        setTimeout(() => {
+        nextTick(() => {
           const selectedIndex = this.options.findIndex(
             (option: Option) => option.id === this.modelValue.id,
           );
           if (selectedIndex !== -1) {
             this.scrollToOptionByIndex(selectedIndex);
           }
-        }, 0);
+        });
       } else if (this.scrollToOption?.id) {
-        setTimeout(() => {
+        nextTick(() => {
           const scrollIndex = this.options.findIndex(
             (option: Option) => option.id === this.scrollToOption.id,
           );
           if (scrollIndex !== -1) {
             this.scrollToOptionByIndex(scrollIndex);
           }
-        }, 0);
+        });
       }
     },
     onCloseDropdown($e: KeyboardEvent | null) {
