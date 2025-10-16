@@ -78,7 +78,7 @@ export const eventsMixin = defineComponent({
     },
     scrollToView(elm: HTMLElement) {
       elm.scrollIntoView({
-        behavior: 'smooth',
+        behavior: 'instant',
         block: 'start',
         inline: 'start',
       });
