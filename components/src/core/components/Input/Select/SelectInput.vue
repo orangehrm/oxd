@@ -186,22 +186,6 @@ export default defineComponent({
     },
   },
 
-  methods: {
-    scrollToOptionByIndex(index: number) {
-      this.$nextTick(() => {
-        let option = this.$refs[`option-${index}`] as any;
-        // Handle array refs in v-for
-        if (Array.isArray(option)) {
-          option = option[0];
-        }
-        const el = option?.$el || option;
-        if (el && el.scrollIntoView) {
-          this.scrollToView(el);
-        }
-      });
-    },
-  },
-
   watch: {
     pointer(newIndex: number) {
       if (newIndex >= 0 && this.dropdownOpen) {

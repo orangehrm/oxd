@@ -7,7 +7,7 @@ interface State {
 }
 
 export const eventsMixin = defineComponent({
-  props: ['modelValue', 'disabled', 'readonly', 'scrollToOption'],
+  props: ['modelValue', 'disabled', 'readonly', 'scrollToOption', 'options'],
   data(): State {
     return {
       dropdownOpen: false,
@@ -22,7 +22,7 @@ export const eventsMixin = defineComponent({
 
       if (this.modelValue?.id) {
         setTimeout(() => {
-          const selectedIndex = this.computedOptions.findIndex(
+          const selectedIndex = this.options.findIndex(
             (option: Option) => option.id === this.modelValue.id,
           );
           if (selectedIndex !== -1) {
@@ -31,7 +31,7 @@ export const eventsMixin = defineComponent({
         }, 0);
       } else if (this.scrollToOption?.id) {
         setTimeout(() => {
-          const scrollIndex = this.computedOptions.findIndex(
+          const scrollIndex = this.options.findIndex(
             (option: Option) => option.id === this.scrollToOption.id,
           );
           if (scrollIndex !== -1) {
@@ -76,13 +76,26 @@ export const eventsMixin = defineComponent({
       this.$emit('update:modelValue', null);
       this.$emit('dropdown:clear');
     },
-    /* eslint-disable */
-    scrollToOptionByIndex(index: number) {},
-    /* eslint-enable */
-  },
-  computed: {
-    computedOptions(): Option[] {
-      return [];
+    scrollToView(elm: HTMLElement) {
+      elm.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'start',
+      });
+    },
+    scrollToOptionByIndex(index: number) {
+      this.$nextTick(() => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        let option = this.$refs[`option-${index}`] as any;
+        // Handle array refs in v-for
+        if (Array.isArray(option)) {
+          option = option[0];
+        }
+        const el = option?.$el || option;
+        if (el && el.scrollIntoView) {
+          this.scrollToView(el);
+        }
+      });
     },
   },
 });
