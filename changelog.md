@@ -1,4 +1,4 @@
-2025-10-16 - b307d09639d6ba63bb0d702f7a1b12d0495ccccc - components/src/core/components/Input/Select/events-mixin.ts - Change scrollToView behaviour as instant.
+2025-10-16 - be4112ff7db4c4b376e3cef04ec0c0275464841e - components/src/core/components/Input/Select/events-mixin.ts - Change scrollToView behaviour as auto.
 
 2025-10-16 - ba91e7ae77499398f5a15471901d329102ac1cae - components/src/core/components/Input/Select/SelectInput.vue, components/src/core/components/Input/Select/events-mixin.ts - Enhanced dropdown component to auto-scroll to the selected option and add a new prop called scrollToOption to auto-scroll to given specific option. 
 
