@@ -50,6 +50,13 @@ export default {
         type: {summary: 'Force the dropdown position'},
       },
     },
+    scrollToOption: {
+      control: {type: 'object'},
+      defaultValue: null,
+      table: {
+        type: {summary: 'Scroll to a specific option when dropdown opens'},
+      },
+    },
     'dropdown:opened': {
       control: {type: 'array'},
       defaultValue: [],
@@ -428,6 +435,30 @@ ForceDropdownPosition.parameters = {
         ' dropdownPosition="top"\n' +
         ' :style="{ marginTop: \'200px\' }"\n' +
         '/>',
+    },
+  },
+};
+
+export const ScrollToOption = Template.bind({});
+ScrollToOption.args = {
+  options: options,
+  scrollToOption: {
+    id: 6,
+    label: 'Assistant Manager',
+  },
+};
+
+ScrollToOption.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-select \n' +
+        ' :options=' +
+        JSON.stringify(options) +
+        '\n' +
+        ' :scrollToOption="{ id: 6, label: \'Assistant Manager\' }"\n' +
+        '/>\n' +
+        '// When dropdown opens, it will scroll to "Assistant Manager" option',
     },
   },
 };
