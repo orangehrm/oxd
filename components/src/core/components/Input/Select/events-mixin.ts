@@ -1,4 +1,4 @@
-import {defineComponent, nextTick} from 'vue';
+import {defineComponent} from 'vue';
 import {Option} from '../types';
 
 interface State {
@@ -21,7 +21,7 @@ export const eventsMixin = defineComponent({
       this.$emit('dropdown:opened');
 
       if (this.modelValue?.id) {
-        nextTick(() => {
+        this.$nextTick(() => {
           const selectedIndex = this.options.findIndex(
             (option: Option) => option.id === this.modelValue.id,
           );
@@ -30,7 +30,7 @@ export const eventsMixin = defineComponent({
           }
         });
       } else if (this.scrollToOption?.id) {
-        nextTick(() => {
+        this.$nextTick(() => {
           const scrollIndex = this.options.findIndex(
             (option: Option) => option.id === this.scrollToOption.id,
           );

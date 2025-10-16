@@ -4,6 +4,7 @@ import SelectText from '@orangehrm/oxd/core/components/Input/Select/SelectText.v
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
 import {BOTTOM} from '@orangehrm/oxd/core/components/Input/types';
 import SelectInputButton from '@orangehrm/oxd/core/components/Input/Select/SelectInputButton.vue';
+import {flushPromises} from '@vue/test-utils';
 
 const options = [
   {
@@ -370,7 +371,7 @@ describe('SelectInput.vue', () => {
 
       wrapper.findComponent(SelectText).trigger('click');
       await wrapper.vm.$nextTick();
-      await new Promise(resolve => setTimeout(resolve, 10));
+      await flushPromises();
 
       expect(scrollToOptionByIndex).toHaveBeenCalledWith(1);
     });
@@ -393,7 +394,7 @@ describe('SelectInput.vue', () => {
 
       wrapper.findComponent(SelectText).trigger('click');
       await wrapper.vm.$nextTick();
-      await new Promise(resolve => setTimeout(resolve, 10));
+      await flushPromises();
 
       expect(scrollToOptionByIndex).toHaveBeenCalledWith(2);
     });
@@ -420,7 +421,7 @@ describe('SelectInput.vue', () => {
 
       wrapper.findComponent(SelectText).trigger('click');
       await wrapper.vm.$nextTick();
-      await new Promise(resolve => setTimeout(resolve, 10));
+      await flushPromises();
 
       // Should scroll to modelValue (index 0), not scrollToOption (index 2)
       expect(scrollToOptionByIndex).toHaveBeenCalledWith(0);

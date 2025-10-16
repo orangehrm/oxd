@@ -1,6 +1,7 @@
 import {mount} from '@vue/test-utils';
 import {defineComponent} from 'vue';
 import eventsMixin from '@orangehrm/oxd/core/components/Input/Select/events-mixin';
+import {flushPromises} from '@vue/test-utils';
 
 const MockComponent = defineComponent({
   name: 'mock-component',
@@ -108,7 +109,7 @@ describe('eventsMixin.ts', () => {
 
     wrapper.vm.onOpenDropdown();
 
-    await new Promise(resolve => setTimeout(resolve, 0));
+    await flushPromises();
 
     expect(scrollToOptionByIndexSpy).toHaveBeenCalledWith(1);
     expect(wrapper.emitted()).toHaveProperty('dropdown:opened');
@@ -137,7 +138,7 @@ describe('eventsMixin.ts', () => {
 
     wrapper.vm.onOpenDropdown();
 
-    await new Promise(resolve => setTimeout(resolve, 0));
+    await flushPromises();
 
     expect(scrollToOptionByIndexSpy).toHaveBeenCalledWith(2);
     expect(wrapper.emitted()).toHaveProperty('dropdown:opened');
@@ -167,7 +168,7 @@ describe('eventsMixin.ts', () => {
 
     wrapper.vm.onOpenDropdown();
 
-    await new Promise(resolve => setTimeout(resolve, 0));
+    await flushPromises();
 
     expect(scrollToOptionByIndexSpy).toHaveBeenCalledWith(0);
     expect(scrollToOptionByIndexSpy).not.toHaveBeenCalledWith(2);
