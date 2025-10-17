@@ -77,11 +77,12 @@ export const eventsMixin = defineComponent({
       this.$emit('dropdown:clear');
     },
     scrollToView(elm: HTMLElement) {
-      elm.scrollIntoView({
-        behavior: 'auto',
-        block: 'start',
-        inline: 'start',
-      });
+      const dropdownInner = elm.closest('.oxd-select-dropdown-inner');
+
+      if (dropdownInner) {
+        const optionTop = elm.offsetTop;
+        dropdownInner.scrollTop = optionTop;
+      }
     },
     scrollToOptionByIndex(index: number) {
       this.$nextTick(() => {
