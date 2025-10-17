@@ -77,11 +77,21 @@ export const eventsMixin = defineComponent({
       this.$emit('dropdown:clear');
     },
     scrollToView(elm: HTMLElement) {
-      const dropdownInner = elm.closest('.oxd-select-dropdown-inner');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const dropdown = this.$refs.dropdownRef as any;
+      const dropdownInner = dropdown?.$refs?.dropdownInnerRef as HTMLElement;
 
-      if (dropdownInner) {
-        const optionTop = elm.offsetTop;
-        dropdownInner.scrollTop = optionTop;
+      if (dropdownInner instanceof HTMLElement) {
+        const optionRect = elm.getBoundingClientRect();
+        const containerRect = dropdownInner.getBoundingClientRect();
+        dropdownInner.scrollTop =
+          dropdownInner.scrollTop + (optionRect.top - containerRect.top);
+      } else if (elm && typeof elm.scrollIntoView === 'function') {
+        elm.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'start',
+        });
       }
     },
     scrollToOptionByIndex(index: number) {

@@ -1,6 +1,6 @@
 <template>
   <div role="listbox" class="oxd-select-dropdown">
-    <div class="oxd-select-dropdown-inner">
+    <div ref="dropdownInnerRef" class="oxd-select-dropdown-inner">
       <oxd-select-option v-if="empty && !loading">
         {{ $vt('No results found') }}
       </oxd-select-option>
