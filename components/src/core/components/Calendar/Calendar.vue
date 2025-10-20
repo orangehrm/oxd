@@ -30,9 +30,9 @@ export default defineComponent({
   name: 'oxd-calendar',
   props: {
     modelValue: {
-      type: Object as PropType<Date>,
+      type: Object as PropType<Date | undefined>,
       default: () => {
-        return freshDate();
+        return undefined;
       },
     },
     firstDayOfWeek: {
@@ -85,15 +85,49 @@ export default defineComponent({
   },
   setup(props, context) {
     const selectedDate = computed(() => {
-      return props.modelValue
-        ? new Date(props.modelValue.setHours(0, 0, 0, 0))
-        : props.modelValue;
+      const value = props.modelValue || freshDate();
+      return value ? new Date(value.setHours(0, 0, 0, 0)) : value;
     });
 
-    const state = reactive({
-      year: getYear(selectedDate.value || new Date()),
-      month: getMonth(selectedDate.value || new Date()),
-    });
+    const calculateInitialMonth = () => {
+      const getMonthStart = (date: Date) =>
+        new Date(getYear(date), getMonth(date), 1);
+
+      // If modelValue exists, always prefer it
+      if (props.modelValue) {
+        return {
+          year: getYear(props.modelValue),
+          month: getMonth(props.modelValue),
+        };
+      }
+
+      const currentMonthStart = getMonthStart(selectedDate.value);
+
+      // If min is set and current date is before min → return min's year and month
+      if (props.min && currentMonthStart < getMonthStart(props.min)) {
+        return {
+          year: getYear(props.min),
+          month: getMonth(props.min),
+        };
+      }
+
+      // If max is set and current date is after max → return max's year and month
+      if (props.max && currentMonthStart > getMonthStart(props.max)) {
+        return {
+          year: getYear(props.max),
+          month: getMonth(props.max),
+        };
+      }
+
+      // Otherwise return the current date's month
+      // When there are no min/max constraints OR current date is within min/max constraints
+      return {
+        year: getYear(currentMonthStart),
+        month: getMonth(currentMonthStart),
+      };
+    };
+
+    const state = reactive(calculateInitialMonth());
 
     const daysOfWeek = computed(() => {
       let days = JSON.parse(JSON.stringify(props.days));

@@ -4,6 +4,7 @@ import SelectText from '@orangehrm/oxd/core/components/Input/Select/SelectText.v
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
 import {BOTTOM} from '@orangehrm/oxd/core/components/Input/types';
 import SelectInputButton from '@orangehrm/oxd/core/components/Input/Select/SelectInputButton.vue';
+import {flushPromises} from '@vue/test-utils';
 
 const options = [
   {
@@ -348,6 +349,82 @@ describe('SelectInput.vue', () => {
       '--positon-bottom': false,
       '--positon-top': true,
       '--with-empty-selector': false,
+    });
+  });
+
+  describe('Scrolling Behavior', () => {
+    it('should scroll to selected option when dropdown opens', async () => {
+      const wrapper = mount(SelectInput, {
+        props: {
+          options,
+          modelValue: {
+            id: 2,
+            label: 'ESS User',
+          },
+        },
+      });
+
+      const scrollToOptionByIndex = jest.spyOn(
+        wrapper.vm,
+        'scrollToOptionByIndex',
+      );
+
+      wrapper.findComponent(SelectText).trigger('click');
+      await wrapper.vm.$nextTick();
+      await flushPromises();
+
+      expect(scrollToOptionByIndex).toHaveBeenCalledWith(1);
+    });
+
+    it('should scroll to scrollToOption prop when no selection exists', async () => {
+      const wrapper = mount(SelectInput, {
+        props: {
+          options,
+          scrollToOption: {
+            id: 3,
+            label: 'Supervisor',
+          },
+        },
+      });
+
+      const scrollToOptionByIndex = jest.spyOn(
+        wrapper.vm,
+        'scrollToOptionByIndex',
+      );
+
+      wrapper.findComponent(SelectText).trigger('click');
+      await wrapper.vm.$nextTick();
+      await flushPromises();
+
+      expect(scrollToOptionByIndex).toHaveBeenCalledWith(2);
+    });
+
+    it('should prioritize selected value over scrollToOption prop', async () => {
+      const wrapper = mount(SelectInput, {
+        props: {
+          options,
+          modelValue: {
+            id: 1,
+            label: 'HR Admin',
+          },
+          scrollToOption: {
+            id: 3,
+            label: 'Supervisor',
+          },
+        },
+      });
+
+      const scrollToOptionByIndex = jest.spyOn(
+        wrapper.vm,
+        'scrollToOptionByIndex',
+      );
+
+      wrapper.findComponent(SelectText).trigger('click');
+      await wrapper.vm.$nextTick();
+      await flushPromises();
+
+      // Should scroll to modelValue (index 0), not scrollToOption (index 2)
+      expect(scrollToOptionByIndex).toHaveBeenCalledWith(0);
     });
   });
 });

@@ -24,6 +24,7 @@
     </oxd-select-text>
 
     <oxd-select-dropdown
+      ref="dropdownRef"
       v-dropdown-direction="forceDropdownPosition === true"
       v-if="dropdownOpen"
       :class="dropdownClasses"
@@ -131,6 +132,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    scrollToOption: {
+      type: Object,
+      default: null,
+    },
   },
 
   data() {
@@ -184,8 +189,19 @@ export default defineComponent({
 
   watch: {
     pointer(newIndex: number) {
-      const option = this.$refs[`option-${newIndex}`];
-      if (option?.$el) this.scrollToView(option.$el);
+      if (newIndex >= 0 && this.dropdownOpen) {
+        this.$nextTick(() => {
+          let option = this.$refs[`option-${newIndex}`] as any;
+          // Handle array refs in v-for
+          if (Array.isArray(option)) {
+            option = option[0];
+          }
+          const el = option?.$el || option;
+          if (el && el.scrollIntoView) {
+            this.scrollToView(el);
+          }
+        });
+      }
     },
   },
 });

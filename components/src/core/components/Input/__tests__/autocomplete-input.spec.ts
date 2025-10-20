@@ -22,7 +22,7 @@ const options = [
   },
 ];
 
-const disabledptions = [
+const disabledOptions = [
   {
     id: 1,
     label: 'HR Admin',
@@ -42,8 +42,31 @@ const syncFunction = function() {
   return options;
 };
 
+const syncFunctionWithSelectedOptions = function(
+  searchTerm: string,
+  selectedOptions: any,
+) {
+  // Test function that can access both searchTerm and selectedOptions
+  // Filter options to exclude already selected ones for testing
+  const filtered = options.filter(option => {
+    if (Array.isArray(selectedOptions)) {
+      return !selectedOptions.some(selected => selected.id === option.id);
+    } else if (selectedOptions) {
+      return selectedOptions.id !== option.id;
+    }
+    return true;
+  });
+
+  // Apply search filter if provided
+  if (searchTerm) {
+    const filter = new RegExp(searchTerm, 'i');
+    return filtered.filter(option => option.label.match(filter));
+  }
+  return filtered;
+};
+
 const syncDisabledOptionFunction = function() {
-  return disabledptions;
+  return disabledOptions;
 };
 
 const manyOptionsFunction = function() {
@@ -375,5 +398,133 @@ describe('AutocompleteInput.vue', () => {
     // Verify that the dropdown shows only 5 options
     const optionNodes = wrapper.findAllComponents(AutocompleteOption);
     expect(optionNodes.length).toEqual(5);
+  });
+
+  it('should pass selected options as second parameter to createOptions function', async () => {
+    const mockCreateOptions = jest.fn(() => options);
+
+    const wrapper = mount(AutocompleteInput, {
+      props: {
+        createOptions: mockCreateOptions,
+        modelValue: {
+          id: 1,
+          label: 'HR Admin',
+        },
+      },
+    });
+
+    const input = wrapper.findComponent(AutocompleteTextInput).find('input');
+    const searchTerm = 'test';
+    const event = new Event('input', {
+      bubbles: true,
+      cancelable: true,
+    });
+    input.element.value = searchTerm;
+    input.element.dispatchEvent(event);
+    await wrapper.vm.$nextTick();
+    await delayFunction(500);
+
+    // Verify createOptions was called with both searchTerm and selectedOptions
+    expect(mockCreateOptions).toHaveBeenCalledWith(searchTerm, {
+      id: 1,
+      label: 'HR Admin',
+    });
+  });
+
+  it('should pass selected options array in multiple mode as second parameter to createOptions function', async () => {
+    const mockCreateOptions = jest.fn(() => options);
+
+    const selectedOptions = [
+      {id: 1, label: 'HR Admin'},
+      {id: 2, label: 'ESS User'},
+    ];
+
+    const wrapper = mount(AutocompleteInput, {
+      props: {
+        createOptions: mockCreateOptions,
+        modelValue: selectedOptions,
+        multiple: true,
+      },
+    });
+
+    const input = wrapper.findComponent(AutocompleteTextInput).find('input');
+    const searchTerm = 'test';
+    const event = new Event('input', {
+      bubbles: true,
+      cancelable: true,
+    });
+    input.element.value = searchTerm;
+    input.element.dispatchEvent(event);
+    await wrapper.vm.$nextTick();
+    await delayFunction(500);
+
+    // Verify createOptions was called with both searchTerm and selectedOptions array
+    expect(mockCreateOptions).toHaveBeenCalledWith(searchTerm, selectedOptions);
+  });
+
+  it('should work with createOptions functions that ignore the second parameter (backward compatibility)', async () => {
+    // This test uses the original syncFunction that only accepts searchTerm
+    const wrapper = mount(AutocompleteInput, {
+      props: {
+        createOptions: syncFunction,
+        modelValue: {
+          id: 1,
+          label: 'HR Admin',
+        },
+      },
+    });
+
+    const input = wrapper.findComponent(AutocompleteTextInput).find('input');
+    const searchTerm = 'hr';
+    const event = new Event('input', {
+      bubbles: true,
+      cancelable: true,
+    });
+    input.element.value = searchTerm;
+    input.element.dispatchEvent(event);
+    await wrapper.vm.$nextTick();
+    expect(wrapper.vm.dropdownOpen).toEqual(true);
+    expect(wrapper.vm.loading).toEqual(true);
+    await delayFunction(500);
+    expect(wrapper.vm.searchTerm).toEqual(searchTerm);
+    expect(wrapper.vm.loading).toEqual(false);
+    expect(wrapper.vm.options.length).toEqual(3);
+
+    // Verify that the option works as before
+    const nodes = wrapper.findAllComponents(AutocompleteOption);
+    await nodes[0].trigger('mousedown');
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy();
+  });
+
+  it('should allow createOptions function to filter based on selected options', async () => {
+    const wrapper = mount(AutocompleteInput, {
+      props: {
+        createOptions: syncFunctionWithSelectedOptions,
+        modelValue: [{id: 1, label: 'HR Admin'}],
+        multiple: true,
+      },
+    });
+
+    const input = wrapper.findComponent(AutocompleteTextInput).find('input');
+    const searchTerm = 'e'; // Use a non-empty search term to trigger the search
+    const event = new Event('input', {
+      bubbles: true,
+      cancelable: true,
+    });
+    input.element.value = searchTerm;
+    input.element.dispatchEvent(event);
+    await wrapper.vm.$nextTick();
+    await delayFunction(500);
+
+    // The function should filter out the selected HR Admin and then apply search filter
+    // 'e' matches 'ESS User' and 'Employee' from the unselected options
+    expect(wrapper.vm.options.length).toEqual(2);
+    expect(wrapper.vm.options).toEqual([
+      {id: 2, label: 'ESS User'},
+      {id: 3, label: 'Supervisor'},
+    ]);
+
+    // And verify computedOptions shows these options
+    expect(wrapper.vm.computedOptions.length).toEqual(2);
   });
 });
