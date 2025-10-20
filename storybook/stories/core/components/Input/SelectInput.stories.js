@@ -166,6 +166,18 @@ const options = [
     id: 10,
     label: 'Senior Executive',
   },
+  {
+    id: 11,
+    label: 'Software Engineer',
+  },
+  {
+    id: 12,
+    label: 'Sales Manager',
+  },
+  {
+    id: 13,
+    label: 'System Administrator',
+  },
 ];
 
 const Template = (args) => ({

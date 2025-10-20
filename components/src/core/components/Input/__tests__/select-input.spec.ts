@@ -21,6 +21,50 @@ const options = [
   },
 ];
 
+const optionsWithMultipleS = [
+  {
+    id: 1,
+    label: 'HR Admin',
+  },
+  {
+    id: 2,
+    label: 'ESS User',
+  },
+  {
+    id: 3,
+    label: 'Supervisor',
+  },
+  {
+    id: 4,
+    label: 'Senior Executive',
+  },
+  {
+    id: 5,
+    label: 'Software Engineer',
+  },
+  {
+    id: 6,
+    label: 'Sales Manager',
+  },
+  {
+    id: 7,
+    label: 'System Administrator',
+  },
+  {
+    id: 8,
+    label: 'Manager',
+  },
+  {
+    id: 9,
+    label: 'Assistant Manager',
+    _disabled: true,
+  },
+  {
+    id: 10,
+    label: 'Security Analyst',
+  },
+];
+
 describe('SelectInput.vue', () => {
   it('renders OXD Select Input', () => {
     const wrapper = mount(SelectInput, {
@@ -425,6 +469,253 @@ describe('SelectInput.vue', () => {
 
       // Should scroll to modelValue (index 0), not scrollToOption (index 2)
       expect(scrollToOptionByIndex).toHaveBeenCalledWith(0);
+    });
+  });
+
+  describe('Keypress Cycling', () => {
+    it('should cycle through all options starting with the same letter', async () => {
+      const wrapper = mount(SelectInput, {
+        props: {
+          options: optionsWithMultipleS,
+        },
+      });
+
+      const selectText = wrapper.findComponent(SelectText);
+
+      // First press of 'S' should select 'Supervisor' (index 2)
+      await selectText.trigger('keydown', {key: 's'});
+      expect(wrapper.emitted('update:modelValue')).toEqual([
+        [{id: 3, label: 'Supervisor', _selected: false}],
+      ]);
+
+      // Second press of 'S' should select 'Senior Executive' (index 3)
+      await selectText.trigger('keydown', {key: 's'});
+      expect(wrapper.emitted('update:modelValue')![1]).toEqual([
+        {id: 4, label: 'Senior Executive', _selected: false},
+      ]);
+
+      // Third press of 'S' should select 'Software Engineer' (index 4)
+      await selectText.trigger('keydown', {key: 's'});
+      expect(wrapper.emitted('update:modelValue')![2]).toEqual([
+        {id: 5, label: 'Software Engineer', _selected: false},
+      ]);
+
+      // Fourth press of 'S' should select 'Sales Manager' (index 5)
+      await selectText.trigger('keydown', {key: 's'});
+      expect(wrapper.emitted('update:modelValue')![3]).toEqual([
+        {id: 6, label: 'Sales Manager', _selected: false},
+      ]);
+
+      // Fifth press of 'S' should select 'System Administrator' (index 6)
+      await selectText.trigger('keydown', {key: 's'});
+      expect(wrapper.emitted('update:modelValue')![4]).toEqual([
+        {id: 7, label: 'System Administrator', _selected: false},
+      ]);
+
+      // Sixth press of 'S' should select 'Security Analyst' (index 9, skipping disabled option)
+      await selectText.trigger('keydown', {key: 's'});
+      expect(wrapper.emitted('update:modelValue')![5]).toEqual([
+        {id: 10, label: 'Security Analyst', _selected: false},
+      ]);
+
+      // Seventh press of 'S' should cycle back to 'Supervisor' (index 2)
+      await selectText.trigger('keydown', {key: 's'});
+      expect(wrapper.emitted('update:modelValue')![6]).toEqual([
+        {id: 3, label: 'Supervisor', _selected: false},
+      ]);
+    });
+
+    it('should handle independent cycling for different letters', async () => {
+      const wrapper = mount(SelectInput, {
+        props: {
+          options: optionsWithMultipleS,
+        },
+      });
+
+      const selectText = wrapper.findComponent(SelectText);
+
+      // Press 'S' to select first S option
+      await selectText.trigger('keydown', {key: 's'});
+      expect(wrapper.emitted('update:modelValue')![0]).toEqual([
+        {id: 3, label: 'Supervisor', _selected: false},
+      ]);
+
+      // Press 'M' to select first M option
+      await selectText.trigger('keydown', {key: 'm'});
+      expect(wrapper.emitted('update:modelValue')![1]).toEqual([
+        {id: 8, label: 'Manager', _selected: false},
+      ]);
+
+      // Press 'S' again - should continue from where S left off (Senior Executive)
+      await selectText.trigger('keydown', {key: 's'});
+      expect(wrapper.emitted('update:modelValue')![2]).toEqual([
+        {id: 4, label: 'Senior Executive', _selected: false},
+      ]);
+
+      // Press 'H' to select HR Admin
+      await selectText.trigger('keydown', {key: 'h'});
+      expect(wrapper.emitted('update:modelValue')![3]).toEqual([
+        {id: 1, label: 'HR Admin', _selected: false},
+      ]);
+    });
+
+    it('should skip disabled options during cycling', async () => {
+      const optionsWithDisabled = [
+        {id: 1, label: 'Sales Manager'},
+        {id: 2, label: 'Senior Executive', _disabled: true},
+        {id: 3, label: 'Software Engineer'},
+        {id: 4, label: 'System Administrator', _disabled: true},
+        {id: 5, label: 'Security Analyst'},
+      ];
+
+      const wrapper = mount(SelectInput, {
+        props: {
+          options: optionsWithDisabled,
+        },
+      });
+
+      const selectText = wrapper.findComponent(SelectText);
+
+      // First press should select 'Sales Manager'
+      await selectText.trigger('keydown', {key: 's'});
+      expect(wrapper.emitted('update:modelValue')![0]).toEqual([
+        {id: 1, label: 'Sales Manager', _selected: false},
+      ]);
+
+      // Second press should skip disabled 'Senior Executive' and select 'Software Engineer'
+      await selectText.trigger('keydown', {key: 's'});
+      expect(wrapper.emitted('update:modelValue')![1]).toEqual([
+        {id: 3, label: 'Software Engineer', _selected: false},
+      ]);
+
+      // Third press should skip disabled 'System Administrator' and select 'Security Analyst'
+      await selectText.trigger('keydown', {key: 's'});
+      expect(wrapper.emitted('update:modelValue')![2]).toEqual([
+        {id: 5, label: 'Security Analyst', _selected: false},
+      ]);
+
+      // Fourth press should cycle back to 'Sales Manager'
+      await selectText.trigger('keydown', {key: 's'});
+      expect(wrapper.emitted('update:modelValue')![3]).toEqual([
+        {id: 1, label: 'Sales Manager', _selected: false},
+      ]);
+    });
+
+    it('should handle case insensitive keypress', async () => {
+      const wrapper = mount(SelectInput, {
+        props: {
+          options: optionsWithMultipleS,
+        },
+      });
+
+      const selectText = wrapper.findComponent(SelectText);
+
+      // Press uppercase 'S'
+      await selectText.trigger('keydown', {key: 'S'});
+      expect(wrapper.emitted('update:modelValue')![0]).toEqual([
+        {id: 3, label: 'Supervisor', _selected: false},
+      ]);
+
+      // Press lowercase 's' - should continue cycling
+      await selectText.trigger('keydown', {key: 's'});
+      expect(wrapper.emitted('update:modelValue')![1]).toEqual([
+        {id: 4, label: 'Senior Executive', _selected: false},
+      ]);
+    });
+
+    it('should not trigger on multi-character keys', async () => {
+      const wrapper = mount(SelectInput, {
+        props: {
+          options: optionsWithMultipleS,
+        },
+      });
+
+      const selectText = wrapper.findComponent(SelectText);
+
+      // Press multi-character keys
+      await selectText.trigger('keydown', {key: 'Enter'});
+      await selectText.trigger('keydown', {key: 'Escape'});
+      await selectText.trigger('keydown', {key: 'ArrowDown'});
+
+      // Should not emit any modelValue updates
+      expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+    });
+
+    it('should not trigger when disabled', async () => {
+      const wrapper = mount(SelectInput, {
+        props: {
+          options: optionsWithMultipleS,
+          disabled: true,
+        },
+      });
+
+      const selectText = wrapper.findComponent(SelectText);
+
+      await selectText.trigger('keydown', {key: 's'});
+
+      // Should not emit any modelValue updates when disabled
+      expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+    });
+
+    it('should not trigger when readonly', async () => {
+      const wrapper = mount(SelectInput, {
+        props: {
+          options: optionsWithMultipleS,
+          readonly: true,
+        },
+      });
+
+      const selectText = wrapper.findComponent(SelectText);
+
+      await selectText.trigger('keydown', {key: 's'});
+
+      // Should not emit any modelValue updates when readonly
+      expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+    });
+
+    it('should handle no matching options gracefully', async () => {
+      const wrapper = mount(SelectInput, {
+        props: {
+          options: [
+            {id: 1, label: 'HR Admin'},
+            {id: 2, label: 'Manager'},
+          ],
+        },
+      });
+
+      const selectText = wrapper.findComponent(SelectText);
+
+      // Press 'Z' - no options start with Z
+      await selectText.trigger('keydown', {key: 'z'});
+
+      // Should not emit any modelValue updates
+      expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+    });
+
+    it('should handle single matching option', async () => {
+      const wrapper = mount(SelectInput, {
+        props: {
+          options: [
+            {id: 1, label: 'HR Admin'},
+            {id: 2, label: 'Manager'},
+            {id: 3, label: 'Supervisor'},
+          ],
+        },
+      });
+
+      const selectText = wrapper.findComponent(SelectText);
+
+      // Press 'S' - only one option starts with S
+      await selectText.trigger('keydown', {key: 's'});
+      expect(wrapper.emitted('update:modelValue')![0]).toEqual([
+        {id: 3, label: 'Supervisor', _selected: false},
+      ]);
+
+      // Press 'S' again - should select the same option again
+      await selectText.trigger('keydown', {key: 's'});
+      expect(wrapper.emitted('update:modelValue')![1]).toEqual([
+        {id: 3, label: 'Supervisor', _selected: false},
+      ]);
     });
   });
 });
