@@ -1,3 +1,5 @@
+2025-10-21 - 02943b8121e9e6f2b47a264838a74afa7b82b1ef - components/src/core/components/Input/Select/navigation-mixin.ts - Improve keypress cycling to navigate through all matching options
+
 2025-10-20 - a28c4b893782bbd13ff491d37ee06622062dd5e4 - components/src/core/components/Icon/icons.ts - Added icons : oxd-dollar-symbol
 
 2025-10-17 - 878e013fe00284ce969d810db31eb71f9155c7eb - components/src/core/components/Input/Select/events-mixin.ts - Fixed Dropdown Scroll Behavior to Prevent Parent Container Scrolling
