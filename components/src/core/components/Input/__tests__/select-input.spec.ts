@@ -546,10 +546,10 @@ describe('SelectInput.vue', () => {
         {id: 8, label: 'Manager', _selected: false},
       ]);
 
-      // Press 'S' again - should continue from where S left off (Senior Executive)
+      // Press 'S' again - should select Supervisor (first S option)
       await selectText.trigger('keydown', {key: 's'});
       expect(wrapper.emitted('update:modelValue')![2]).toEqual([
-        {id: 4, label: 'Senior Executive', _selected: false},
+        {id: 3, label: 'Supervisor', _selected: false},
       ]);
 
       // Press 'H' to select HR Admin

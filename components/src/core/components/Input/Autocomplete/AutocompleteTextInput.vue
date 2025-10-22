@@ -3,33 +3,19 @@
     <div class="oxd-autocomplete-text-input--before">
       <slot name="beforeInput"></slot>
     </div>
-    <input
-      @focus="onFocus"
-      @blur="onBlur"
-      data-test="autocompleteSelect"
-      v-bind="$attrs"
-      :disabled="disabled"
-      :readonly="readonly"
-      :placeholder="placeholder"
-      @keyup.page-down="onPageDown"
-      @keyup.page-up="onPageUp"
-      :style="style"
-    />
+    <input @focus="onFocus" @blur="onBlur" data-test="autocompleteSelect" v-bind="$attrs" :disabled="disabled"
+      :readonly="readonly" :placeholder="placeholder" @keyup.page-down="onPageDown" @keyup.page-up="onPageUp"
+      :style="style" />
     <div class="oxd-autocomplete-text-input--after">
       <slot name="afterInput"></slot>
-      <oxd-icon
-        v-if="clear"
-        class="oxd-autocomplete-text-input--clear"
-        data-test="autocompleteSelectClearIcon"
-        name="x"
-        @click="onClear"
-      />
+      <oxd-icon v-if="clear" class="oxd-autocomplete-text-input--clear" data-test="autocompleteSelectClearIcon" name="x"
+        @click="onClear" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import { defineComponent } from 'vue';
 import Icon from '@orangehrm/oxd/core/components/Button/Icon.vue';
 
 export default defineComponent({
@@ -111,6 +97,9 @@ export default defineComponent({
 
     onPageUp(e: KeyboardEvent) {
       (e.target as HTMLInputElement).setSelectionRange(0, 0);
+    },
+    onKeypress(e: KeyboardEvent) {
+      return;
     },
   },
 });

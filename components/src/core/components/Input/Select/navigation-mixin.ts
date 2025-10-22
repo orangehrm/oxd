@@ -4,7 +4,7 @@ import {Option} from '../types';
 interface State {
   dropdownOpen: boolean;
   pointer: number;
-  lastKeyPressIndex: {[key: string]: number};
+  lastPressCount: number;
 }
 
 const cycleIndexes = (lastIndex: number, array: number[]) => {
@@ -19,7 +19,7 @@ export const navigationMixin = defineComponent({
     return {
       dropdownOpen: false,
       pointer: -1,
-      lastKeyPressIndex: {},
+      lastPressCount: -1,
     };
   },
   methods: {
@@ -78,13 +78,11 @@ export const navigationMixin = defineComponent({
         item.label.toLowerCase().startsWith(key) && !item._disabled ? i : [],
       );
       if (filtered.length > 0) {
-        // Get the last index we were at for this key, or start from -1
-        const lastIndex = this.lastKeyPressIndex[key] ?? -1;
+        // Use cycleIndexes to get the next option based on last press count
+        this.pointer = cycleIndexes(this.lastPressCount, filtered);
 
-        // Use cycleIndexes to get the next option
-        this.pointer = cycleIndexes(lastIndex, filtered);
-
-        this.lastKeyPressIndex[key] = this.pointer;
+        // Update the last press count
+        this.lastPressCount = this.pointer;
 
         const option = this.computedOptions[this.pointer];
         if (!option?._selected && !option?._disabled) this.onSelect(option);
