@@ -4,7 +4,6 @@ import {Option} from '../types';
 interface State {
   dropdownOpen: boolean;
   pointer: number;
-  lastPressCount: number;
 }
 
 const cycleIndexes = (lastIndex: number, array: number[]) => {
@@ -19,7 +18,6 @@ export const navigationMixin = defineComponent({
     return {
       dropdownOpen: false,
       pointer: -1,
-      lastPressCount: -1,
     };
   },
   methods: {
@@ -78,14 +76,15 @@ export const navigationMixin = defineComponent({
         item.label.toLowerCase().startsWith(key) && !item._disabled ? i : [],
       );
       if (filtered.length > 0) {
-        // Use cycleIndexes to get the next option based on last press count
-        this.pointer = cycleIndexes(this.lastPressCount, filtered);
-
-        // Update the last press count
-        this.lastPressCount = this.pointer;
+        if (filtered.includes(this.pointer)) {
+          this.pointer = cycleIndexes(this.pointer, filtered);
+        } else {
+          this.pointer = filtered[0];
+        }
 
         const option = this.computedOptions[this.pointer];
-        if (!option?._selected && !option?._disabled) this.onSelect(option);
+        if (!option?._selected && !option?._disabled)
+          this.onSelect(option, true);
       }
     },
 
@@ -95,7 +94,7 @@ export const navigationMixin = defineComponent({
       this.$emit('dropdown:opened');
     },
     /* eslint-disable */
-    onSelect(option: Option) {},
+    onSelect(option: Option, keepOpen: boolean = false) {},
     /* eslint-enable */
   },
   computed: {

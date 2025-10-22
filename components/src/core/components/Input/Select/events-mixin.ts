@@ -57,9 +57,11 @@ export const eventsMixin = defineComponent({
       this.onCloseDropdown(null);
       this.$emit('dropdown:blur');
     },
-    onSelect(option: Option) {
-      this.pointer = -1;
-      this.dropdownOpen = false;
+    onSelect(option: Option, keepOpen = false) {
+      if (!keepOpen) {
+        this.pointer = -1;
+        this.dropdownOpen = false;
+      }
       if (Array.isArray(this.modelValue)) {
         this.$emit('update:modelValue', [...this.modelValue, option]);
       } else {
