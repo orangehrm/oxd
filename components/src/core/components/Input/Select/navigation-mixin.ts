@@ -81,10 +81,6 @@ export const navigationMixin = defineComponent({
         } else {
           this.pointer = filtered[0];
         }
-
-        const option = this.computedOptions[this.pointer];
-        if (!option?._selected && !option?._disabled)
-          this.onSelect(option, true);
       }
     },
 
@@ -94,7 +90,7 @@ export const navigationMixin = defineComponent({
       this.$emit('dropdown:opened');
     },
     /* eslint-disable */
-    onSelect(option: Option, keepOpen: boolean = false) {},
+    onSelect(option: Option) {},
     /* eslint-enable */
   },
   computed: {
