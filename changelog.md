@@ -1,3 +1,5 @@
+2025-10-27 - dc6dd3cab272c6c7df79e0ee90dc7a4007c0e328 - components/src/core/components/Input/Select/navigation-mixin.ts, components/src/core/components/Input/Select/events-mixin.ts - Change OXD select behaviour to not select option on keystroke, clear pointer on close
+
 2025-10-21 - 02943b8121e9e6f2b47a264838a74afa7b82b1ef - components/src/core/components/Input/Select/navigation-mixin.ts - Improve keypress cycling to navigate through all matching options
 
 2025-10-20 - a28c4b893782bbd13ff491d37ee06622062dd5e4 - components/src/core/components/Icon/icons.ts - Added icons : oxd-dollar-symbol
