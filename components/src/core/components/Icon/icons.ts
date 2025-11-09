@@ -2611,6 +2611,14 @@ export const oxdAiHelp: icon = {
 </svg>`,
 };
 
+export const oxdNumber: icon = {
+  name: 'oxd-number',
+  value: `<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path style="fill:currentColor" d="M9.2832 4.00195V12H7.9707V5.33789H7.90625L6.07227 6.65625V5.38477L7.9707 4.00195H9.2832Z" />
+<path style="fill:currentColor" d="M0 2C0 0.895431 0.895431 0 2 0H14C15.1046 0 16 0.895431 16 2V14C16 15.1046 15.1046 16 14 16H2C0.895431 16 0 15.1046 0 14V2ZM15 2C15 1.44772 14.5523 1 14 1H2C1.44772 1 1 1.44772 1 2V14C1 14.5523 1.44772 15 2 15H14C14.5523 15 15 14.5523 15 14V2Z"/>
+</svg>`,
+};
+
 const icons: Icons = {
   'oxd-likes': oxdLikes,
   'oxd-birthday': oxdBirthday,
@@ -2894,6 +2902,7 @@ const icons: Icons = {
   'oxd-remove': oxdRemove,
   'oxd-ok': oxdOk,
   'oxd-ai-help': oxdAiHelp,
+  'oxd-number': oxdNumber,
 };
 
 export default icons;
