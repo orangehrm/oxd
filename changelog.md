@@ -1,3 +1,5 @@
+2025-11-10 - 51e21e7105151dfe8cb37934f343b0f8d01662bd - components/src/core/components/Icon/icons.ts - Add oxd-number icon
+
 2025-11-10 - cf42c8406d23f81d3bc750a774dc33cb0bfbb07d - components/src/core/components/Icon/icons.ts - Added icons : oxd-ai-help
 
 2025-11-10 - 85c78978bb83adfe85ad56cf67a5b9bc4820a353 - components/src/core/components/Icon/icons.ts - Added icons : oxd-remove, oxd-ok
