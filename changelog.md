@@ -1,3 +1,9 @@
+2025-11-10 - cf42c8406d23f81d3bc750a774dc33cb0bfbb07d - components/src/core/components/Icon/icons.ts - Added icons : oxd-ai-help
+
+2025-11-10 - 85c78978bb83adfe85ad56cf67a5b9bc4820a353 - components/src/core/components/Icon/icons.ts - Added icons : oxd-remove, oxd-ok
+
+2025-11-10 - 8c64f46d1594cdaa64b5a46460ea2d1d4e11d5ef - components/src/core/components/Icon/icons.ts - Added icons : oxd-mic
+
 2025-10-27 - dc6dd3cab272c6c7df79e0ee90dc7a4007c0e328 - components/src/core/components/Input/Select/navigation-mixin.ts, components/src/core/components/Input/Select/events-mixin.ts - Change OXD select behaviour to not select option on keystroke, clear pointer on close
 
 2025-10-21 - 02943b8121e9e6f2b47a264838a74afa7b82b1ef - components/src/core/components/Input/Select/navigation-mixin.ts - Improve keypress cycling to navigate through all matching options
