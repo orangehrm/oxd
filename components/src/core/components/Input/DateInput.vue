@@ -4,7 +4,13 @@
       class="oxd-date-input"
       :tooltip="isLengthyDate ? displayDate : null"
       flow="bottom"
+      :class="{'oxd-date-input--has-inline-label': $slots.topOfInput}"
     >
+      <!-- Inline label slot -->
+      <div v-if="$slots.topOfInput" class="oxd-date-input--inline-label">
+        <slot name="topOfInput"></slot>
+      </div>
+
       <oxd-input
         :hasError="hasError"
         :disabled="disabled"

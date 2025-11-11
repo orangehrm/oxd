@@ -1,6 +1,28 @@
 @import '../../../styles';
 @import 'variables';
 
+.oxd-textarea-wrapper {
+  position: relative;
+  width: 100%;
+
+  // Inline label styling
+  .oxd-textarea--inline-label {
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    font-size: 10px;
+    color: $oxd-textarea-placeholder-color;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  // When inline label is present, adjust textarea padding
+  &--has-inline-label .oxd-textarea {
+    padding-top: 22px;
+    padding-bottom: 4px;
+  }
+}
+
 .oxd-textarea {
   @include oxd-input-control;
   @include oxd-input-control-size;

@@ -30,6 +30,29 @@
 .oxd-date-input {
   display: flex;
   align-items: center;
+  position: relative;
+
+  // Inline label styling
+  &--inline-label {
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    font-size: 10px;
+    color: $oxd-input-placeholder-color;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  // When inline label is present, adjust input padding
+  &--has-inline-label {
+    ::v-deep(.oxd-input) {
+      padding-top: 22px;
+      padding-bottom: 4px;
+      text-overflow: ellipsis;
+      padding-right: 4rem;
+    }
+  }
+
   &-icon-wrapper {
     right: 0.25rem;
     display: flex;

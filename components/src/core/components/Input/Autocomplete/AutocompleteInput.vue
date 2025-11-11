@@ -15,6 +15,9 @@
       @keydown.down.exact.prevent="onSelectDown"
       @keydown.up.exact.prevent="onSelectUp"
     >
+      <template v-if="$slots.topOfInput" v-slot:topOfInput>
+        <slot name="topOfInput"></slot>
+      </template>
       <template v-slot:beforeInput>
         <slot
           v-if="!multiple && modelValue"

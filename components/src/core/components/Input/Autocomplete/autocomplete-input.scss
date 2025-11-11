@@ -43,6 +43,32 @@
     }
   }
 
+  // Inline label styling
+  &--inline-label {
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    font-size: 10px;
+    color: $oxd-input-placeholder-color;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  // Input wrapper for layout control
+  &--input-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex: 1;
+  }
+
+  // When inline label is present, align input content to bottom
+  &--input-wrapper.oxd-autocomplete-text-input--has-inline-label {
+    align-items: flex-end;
+    padding-top: 10px;
+    padding-bottom: 0;
+  }
+
   input {
     @include oxd-input-control;
     width: 100%;
