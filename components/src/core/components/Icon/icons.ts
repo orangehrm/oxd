@@ -2709,6 +2709,16 @@ export const oxdClose: icon = {
 </svg>`,
 };
 
+export const oxdShiftNote: icon = {
+  name: 'oxd-shift-note',
+  value: `<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path style="fill:currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M2.75 17.1875C2.75 16.8078 3.0578 16.5 3.4375 16.5H13.0625C13.4422 16.5 13.75 16.8078 13.75 17.1875C13.75 17.5672 13.4422 17.875 13.0625 17.875H3.4375C3.0578 17.875 2.75 17.5672 2.75 17.1875Z"/>
+<path style="fill:currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M2.75 13.0625C2.75 12.6828 3.0578 12.375 3.4375 12.375H18.5625C18.9422 12.375 19.25 12.6828 19.25 13.0625C19.25 13.4422 18.9422 13.75 18.5625 13.75H3.4375C3.0578 13.75 2.75 13.4422 2.75 13.0625Z"/>
+<path style="fill:currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M2.75 8.9375C2.75 8.5578 3.0578 8.25 3.4375 8.25H18.5625C18.9422 8.25 19.25 8.5578 19.25 8.9375C19.25 9.3172 18.9422 9.625 18.5625 9.625H3.4375C3.0578 9.625 2.75 9.3172 2.75 8.9375Z"/>
+<path style="fill:currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M2.75 4.8125C2.75 4.4328 3.0578 4.125 3.4375 4.125H18.5625C18.9422 4.125 19.25 4.4328 19.25 4.8125C19.25 5.1922 18.9422 5.5 18.5625 5.5H3.4375C3.0578 5.5 2.75 5.1922 2.75 4.8125Z"/>
+</svg>`,
+};
+
 const icons: Icons = {
   'oxd-likes': oxdLikes,
   'oxd-birthday': oxdBirthday,
@@ -3001,6 +3011,7 @@ const icons: Icons = {
   'oxd-department': oxdDepartment,
   'oxd-date': oxdDate,
   'oxd-close': oxdClose,
+  'oxd-shift-note': oxdShiftNote,
 };
 
 export default icons;
