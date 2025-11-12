@@ -4,7 +4,12 @@ exports[`QuickSearchInput.vue Renders OXD QuickSearchInput Input 1`] = `
 <div class="oxd-autocomplete-search-wrapper">
   <div class="oxd-autocomplete-wrapper">
     <div class="oxd-autocomplete-text-input oxd-autocomplete-text-input--active">
-      <div class="oxd-autocomplete-text-input--before"></div><input data-test="autocompleteSelect" placeholder="Type for hints...">
+      <!-- Inline label slot -->
+      <!--v-if-->
+      <!-- Input wrapper with conditional class -->
+      <div class="oxd-autocomplete-text-input--input-wrapper">
+        <div class="oxd-autocomplete-text-input--before"></div><input data-test="autocompleteSelect" placeholder="Type for hints...">
+      </div>
       <div class="oxd-autocomplete-text-input--after">
         <!--v-if-->
       </div>

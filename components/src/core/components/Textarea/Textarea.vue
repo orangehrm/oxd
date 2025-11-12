@@ -12,6 +12,7 @@
       :class="classes"
       :style="style"
       :value="modelValue"
+      v-bind="$attrs"
       @focus="onFocus"
       @blur="onBlur"
       @input="onInput"
@@ -34,6 +35,7 @@ export interface State {
 
 export default defineComponent({
   name: 'oxd-textarea',
+  inheritAttrs: false,
 
   props: {
     modelValue: {},

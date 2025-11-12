@@ -107,7 +107,12 @@ exports[`InputField.vue renders OXD InputField type \`textarea\` 1`] = `
     <!--v-if-->
     <!--v-if-->
   </div>
-  <div class=""><textarea class="oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical"></textarea></div>
+  <div class="">
+    <div class="oxd-textarea-wrapper">
+      <!-- Inline label slot -->
+      <!--v-if--><textarea class="oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical"></textarea>
+    </div>
+  </div>
   <!--v-if-->
   <!--v-if-->
 </div>
