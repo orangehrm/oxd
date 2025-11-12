@@ -135,6 +135,13 @@ export default {
         type: {summary: 'emit event when select a year'},
       },
     },
+    topOfInput: {
+      control: {type: 'object'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'A slot which renders an inline label above the input'},
+      },
+    },
   },
 };
 
@@ -374,6 +381,43 @@ Events.parameters = {
         '</div>\n' +
         '//\n' +
         'File -> DateInputEvents.story.vue',
+    },
+  },
+};
+
+export const WithInlineLabel = (args) => ({
+  setup() {
+    const selected = ref('2022-07-01');
+    return {args, selected};
+  },
+  render() {
+    return h('div', {}, [
+      h(DateInput, {
+        ...this.args,
+        modelValue: this.selected,
+        'onUpdate:modelValue': (value) => {
+          this.selected = value;
+        },
+      }, {
+        topOfInput: () => h('span', {style: 'font-size: 12px; color: #666;'}, 'Date of Birth'),
+      }),
+      h('br'),
+      h('p', {}, `v-model : ${this.selected}`),
+    ]);
+  },
+});
+
+WithInlineLabel.args = {};
+
+WithInlineLabel.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-date-input>\n' +
+        '  <template v-slot:topOfInput>\n' +
+        '    <span>Date of Birth</span>\n' +
+        '  </template>\n' +
+        '</oxd-date-input>',
     },
   },
 };

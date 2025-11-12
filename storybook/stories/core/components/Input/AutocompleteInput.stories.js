@@ -104,6 +104,13 @@ export default {
         type: {summary: 'Interal Slot to manage option'},
       },
     },
+    topOfInput: {
+      control: {type: 'object'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'A slot which renders an inline label above the input'},
+      },
+    },
     createOptions: {
       control: {type: 'function'},
       table: {
@@ -499,6 +506,41 @@ WithSelectedOptionsFilter.parameters = {
         '          \n' +
         '          return availableOptions;\n' +
         '        }',
+    },
+  },
+};
+
+export const WithInlineLabel = (args) => ({
+  setup() {
+    const selected = ref();
+    return {args, selected};
+  },
+  render() {
+    return h(AutocompleteInput, {
+      ...this.args,
+      modelValue: this.selected,
+      'onUpdate:modelValue': (value) => {
+        this.selected = value;
+      },
+    }, {
+      topOfInput: () => h('span', {style: 'font-size: 12px; color: #666;'}, 'Role'),
+    });
+  },
+});
+
+WithInlineLabel.args = {
+  createOptions: syncFunction,
+};
+
+WithInlineLabel.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-autocomplete-input \n  :createOptions="syncFunction">\n' +
+        '  <template v-slot:topOfInput>\n' +
+        '    <span>Role</span>\n' +
+        '  </template>\n' +
+        '</oxd-autocomplete-input>',
     },
   },
 };

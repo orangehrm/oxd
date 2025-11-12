@@ -1,3 +1,4 @@
+import {h} from 'vue';
 import Textarea from '@orangehrm/oxd/core/components/Textarea/Textarea';
 import TextAreaEvents from './TextAreaEvents.story.vue';
 
@@ -77,6 +78,13 @@ export default {
       control: {type: 'function'},
       table: {
         type: {summary: 'Emit value on adding a input'},
+      },
+    },
+    topOfInput: {
+      control: {type: 'object'},
+      defaultValue: [],
+      table: {
+        type: {summary: 'A slot which renders an inline label above the textarea'},
       },
     },
   },
@@ -184,6 +192,37 @@ Events.parameters = {
         '</div>\n' +
         '//\n' +
         'File -> TextAreaEvents.story.vue',
+    },
+  },
+};
+
+export const WithInlineLabel = (args) => ({
+  setup() {
+    return {args};
+  },
+  render() {
+    return h(Textarea, {
+      ...this.args,
+    }, {
+      topOfInput: () => h('span', {style: 'font-size: 12px; color: #666;'}, 'Comments'),
+    });
+  },
+});
+
+WithInlineLabel.args = {
+  placeholder: 'Enter your comments here...',
+  style: {},
+};
+
+WithInlineLabel.parameters = {
+  docs: {
+    source: {
+      code:
+        '<oxd-textarea>\n' +
+        '  <template v-slot:topOfInput>\n' +
+        '    <span>Comments</span>\n' +
+        '  </template>\n' +
+        '</oxd-textarea>',
     },
   },
 };
