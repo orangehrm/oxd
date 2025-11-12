@@ -1,3 +1,5 @@
+2025-11-12 - d91eec609c6a8d11944277c1534af16b19800f34 - components/src/core/components/Input/Autocomplete/AutocompleteInput.vue, components/src/core/components/Input/DateInput.vue, components/src/core/components/Textarea/Textarea.vue, components/src/core/components/Icon/icons.ts - add new slot to inline label for AutoComplete, DateInput, TextArea input fields and added oxd-break,oxd-start-end-time,oxd-set-time,oxd-recurrence,oxd-person-fill,oxd-department,oxd-date,oxd-close,oxd-shift-note icons
+
 2025-11-10 - 51e21e7105151dfe8cb37934f343b0f8d01662bd - components/src/core/components/Icon/icons.ts - Add oxd-number icon
 
 2025-11-10 - cf42c8406d23f81d3bc750a774dc33cb0bfbb07d - components/src/core/components/Icon/icons.ts - Added icons : oxd-ai-help
