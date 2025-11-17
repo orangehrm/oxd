@@ -407,20 +407,7 @@ TopOfInputCustom.parameters = {
         '<template v-slot:topOfInput>\n' +
         '  <span class="top-of-input-label">Location</span>\n' +
         '</template>\n' +
-        '</oxd-select>\n\n' +
-        '<style scoped>\n' +
-        '.top-of-input-label {\n' +
-        '  position: absolute;\n' +
-        '  top: 6px;\n' +
-        '  left: 8px;\n' +
-        '  font-size: 11px;\n' +
-        '  color: #6c757d;\n' +
-        '  font-weight: 400;\n' +
-        '  z-index: 1;\n' +
-        '  pointer-events: none;\n' +
-        '  line-height: 1;\n' +
-        '}\n' +
-        '</style>',
+        '</oxd-select>\n\n',
     },
   },
 };

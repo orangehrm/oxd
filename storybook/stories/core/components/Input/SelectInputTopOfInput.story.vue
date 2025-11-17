@@ -30,17 +30,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.top-of-input-label {
-  position: absolute;
-  top: 6px;
-  left: 8px;
-  font-size: 11px;
-  color: #6c757d;
-  font-weight: 400;
-  z-index: 1;
-  pointer-events: none;
-  line-height: 1;
-}
-</style>

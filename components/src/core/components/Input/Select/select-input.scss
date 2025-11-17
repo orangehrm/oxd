@@ -81,6 +81,17 @@
     }
   }
 
+  // Inline label styling
+  &--inline-label {
+    position: absolute;
+    top: $oxd-inline-label-top;
+    left: $oxd-inline-label-left;
+    font-size: $oxd-inline-label-font-size;
+    color: $oxd-input-placeholder-color;
+    pointer-events: none;
+    z-index: 1;
+  }
+
   // When inline label is present, align input content to bottom
   &-input.oxd-select-text--has-inline-label {
     align-items: flex-end;
