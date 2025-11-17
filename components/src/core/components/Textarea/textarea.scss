@@ -8,9 +8,9 @@
   // Inline label styling
   .oxd-textarea--inline-label {
     position: absolute;
-    top: 6px;
-    left: 8px;
-    font-size: 10px;
+    top: $oxd-inline-label-top;
+    left: $oxd-inline-label-left;
+    font-size: $oxd-inline-label-font-size;
     color: $oxd-textarea-placeholder-color;
     pointer-events: none;
     z-index: 1;
