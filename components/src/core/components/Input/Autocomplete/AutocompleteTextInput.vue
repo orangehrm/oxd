@@ -8,7 +8,6 @@
       <slot name="topOfInput"></slot>
     </div>
 
-    <!-- Input wrapper with conditional class -->
     <div
       class="oxd-autocomplete-text-input--input-wrapper"
       :class="{
