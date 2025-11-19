@@ -167,7 +167,7 @@ export default defineComponent({
         option = option[0];
       }
       const el = option?.$el || option;
-      if (el && el.scrollIntoView) {
+      if (el) {
         this.scrollToView(el);
       }
     },
