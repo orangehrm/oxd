@@ -89,44 +89,404 @@ export default {
 
 const options = [
   {
-    id: 1,
-    label: 'HR Admin',
+    id: 27,
+    label: 'Account Manager',
   },
   {
-    id: 2,
-    label: 'ESS User',
+    id: 67,
+    label: 'Actuary',
   },
   {
-    id: 3,
-    label: 'Supervisor',
+    id: 64,
+    label: 'Analytics Engineer',
   },
   {
-    id: 4,
-    label: 'Manager',
-  },
-  {
-    id: 5,
-    label: 'Employee',
-  },
-  {
-    id: 6,
-    label: 'Assistant Manager',
-  },
-  {
-    id: 7,
-    label: 'Director',
-  },
-  {
-    id: 8,
-    label: 'Officer',
+    id: 56,
+    label: 'API Developer',
   },
   {
     id: 9,
     label: 'Appraiser',
   },
   {
+    id: 6,
+    label: 'Assistant Manager',
+  },
+  {
+    id: 73,
+    label: 'Auditor',
+  },
+  {
+    id: 50,
+    label: 'Automation Engineer',
+  },
+  {
+    id: 42,
+    label: 'Backend Developer',
+  },
+  {
+    id: 33,
+    label: 'Benefits Coordinator',
+  },
+  {
+    id: 100,
+    label: 'Board Member',
+  },
+  {
+    id: 12,
+    label: 'Business Analyst',
+  },
+  {
+    id: 62,
+    label: 'Business Intelligence Analyst',
+  },
+  {
+    id: 78,
+    label: 'CFO',
+  },
+  {
+    id: 82,
+    label: 'CHRO',
+  },
+  {
+    id: 81,
+    label: 'CMO',
+  },
+  {
+    id: 99,
+    label: 'Chief Executive Officer',
+  },
+  {
+    id: 94,
+    label: 'Chief Customer Officer',
+  },
+  {
+    id: 92,
+    label: 'Chief Data Officer',
+  },
+  {
+    id: 96,
+    label: 'Chief Digital Officer',
+  },
+  {
+    id: 97,
+    label: 'Chief Information Officer',
+  },
+  {
+    id: 93,
+    label: 'Chief Innovation Officer',
+  },
+  {
+    id: 89,
+    label: 'Chief Product Officer',
+  },
+  {
+    id: 90,
+    label: 'Chief Revenue Officer',
+  },
+  {
+    id: 91,
+    label: 'Chief Security Officer',
+  },
+  {
+    id: 95,
+    label: 'Chief Strategy Officer',
+  },
+  {
+    id: 98,
+    label: 'Chief Technology Officer',
+  },
+  {
+    id: 39,
+    label: 'Cloud Architect',
+  },
+  {
+    id: 34,
+    label: 'Compliance Officer',
+  },
+  {
+    id: 23,
+    label: 'Content Writer',
+  },
+  {
+    id: 80,
+    label: 'COO',
+  },
+  {
+    id: 75,
+    label: 'Cost Accountant',
+  },
+  {
+    id: 72,
+    label: 'Credit Analyst',
+  },
+  {
+    id: 79,
+    label: 'CTO',
+  },
+  {
+    id: 26,
+    label: 'Customer Support',
+  },
+  {
+    id: 60,
+    label: 'Data Engineer',
+  },
+  {
+    id: 37,
+    label: 'Data Scientist',
+  },
+  {
+    id: 63,
+    label: 'Data Warehouse Specialist',
+  },
+  {
+    id: 19,
+    label: 'Database Administrator',
+  },
+  {
+    id: 22,
+    label: 'DevOps Engineer',
+  },
+  {
+    id: 7,
+    label: 'Director',
+  },
+  {
+    id: 66,
+    label: 'Economist',
+  },
+  {
+    id: 46,
+    label: 'Embedded Systems Engineer',
+  },
+  {
+    id: 5,
+    label: 'Employee',
+  },
+  {
+    id: 59,
+    label: 'Enterprise Architect',
+  },
+  {
+    id: 2,
+    label: 'ESS User',
+  },
+  {
+    id: 61,
+    label: 'ETL Developer',
+  },
+  {
+    id: 28,
+    label: 'Financial Analyst',
+  },
+  {
+    id: 77,
+    label: 'Financial Controller',
+  },
+  {
+    id: 47,
+    label: 'Firmware Engineer',
+  },
+  {
+    id: 41,
+    label: 'Frontend Developer',
+  },
+  {
+    id: 43,
+    label: 'Full Stack Developer',
+  },
+  {
+    id: 45,
+    label: 'Game Developer',
+  },
+  {
+    id: 48,
+    label: 'Hardware Engineer',
+  },
+  {
+    id: 1,
+    label: 'HR Admin',
+  },
+  {
+    id: 53,
+    label: 'Infrastructure Engineer',
+  },
+  {
+    id: 55,
+    label: 'Integration Specialist',
+  },
+  {
+    id: 69,
+    label: 'Investment Analyst',
+  },
+  {
+    id: 35,
+    label: 'Legal Advisor',
+  },
+  {
+    id: 38,
+    label: 'Machine Learning Engineer',
+  },
+  {
+    id: 76,
+    label: 'Management Accountant',
+  },
+  {
+    id: 4,
+    label: 'Manager',
+  },
+  {
+    id: 24,
+    label: 'Marketing Manager',
+  },
+  {
+    id: 57,
+    label: 'Microservices Architect',
+  },
+  {
+    id: 44,
+    label: 'Mobile Developer',
+  },
+  {
+    id: 20,
+    label: 'Network Engineer',
+  },
+  {
+    id: 8,
+    label: 'Officer',
+  },
+  {
+    id: 29,
+    label: 'Operations Manager',
+  },
+  {
+    id: 32,
+    label: 'Payroll Administrator',
+  },
+  {
+    id: 51,
+    label: 'Performance Engineer',
+  },
+  {
+    id: 54,
+    label: 'Platform Engineer',
+  },
+  {
+    id: 70,
+    label: 'Portfolio Manager',
+  },
+  {
+    id: 15,
+    label: 'Product Owner',
+  },
+  {
+    id: 11,
+    label: 'Project Coordinator',
+  },
+  {
+    id: 13,
+    label: 'Quality Assurance',
+  },
+  {
+    id: 31,
+    label: 'Recruitment Officer',
+  },
+  {
+    id: 36,
+    label: 'Research Analyst',
+  },
+  {
+    id: 68,
+    label: 'Risk Analyst',
+  },
+  {
+    id: 25,
+    label: 'Sales Representative',
+  },
+  {
+    id: 16,
+    label: 'Scrum Master',
+  },
+  {
+    id: 21,
+    label: 'Security Specialist',
+  },
+  {
     id: 10,
     label: 'Senior Executive',
+  },
+  {
+    id: 52,
+    label: 'Site Reliability Engineer',
+  },
+  {
+    id: 58,
+    label: 'Solution Architect',
+  },
+  {
+    id: 65,
+    label: 'Statistician',
+  },
+  {
+    id: 3,
+    label: 'Supervisor',
+  },
+  {
+    id: 40,
+    label: 'System Administrator',
+  },
+  {
+    id: 74,
+    label: 'Tax Specialist',
+  },
+  {
+    id: 14,
+    label: 'Technical Lead',
+  },
+  {
+    id: 49,
+    label: 'Test Engineer',
+  },
+  {
+    id: 30,
+    label: 'Training Specialist',
+  },
+  {
+    id: 71,
+    label: 'Treasury Analyst',
+  },
+  {
+    id: 18,
+    label: 'UI Developer',
+  },
+  {
+    id: 17,
+    label: 'UX Designer',
+  },
+  {
+    id: 83,
+    label: 'VP of Engineering',
+  },
+  {
+    id: 88,
+    label: 'VP of Human Resources',
+  },
+  {
+    id: 85,
+    label: 'VP of Marketing',
+  },
+  {
+    id: 86,
+    label: 'VP of Operations',
+  },
+  {
+    id: 87,
+    label: 'VP of Product',
+  },
+  {
+    id: 84,
+    label: 'VP of Sales',
   },
 ];
 
