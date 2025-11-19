@@ -1,5 +1,6 @@
 <template>
   <div class="oxd-multiselect-wrapper">
+    arunatebel
     <oxd-select-text
       v-bind="$attrs"
       :disabled="disabled"
