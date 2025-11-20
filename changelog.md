@@ -1,4 +1,4 @@
-2025-11-19 - fd2d7ef79f3f4f3ce9b36c224eed3f27edc2ad66 - components/src/core/components/Input/MultiSelect/MultiSelectInput.vue - Support keyboard navigation of options
+2025-11-19 - dfead436dde5cc128316cb99b802ebd4704fe7b6 - components/src/core/components/Input/MultiSelect/MultiSelectInput.vue - Support keyboard navigation of options
 
 2025-11-12 - d91eec609c6a8d11944277c1534af16b19800f34 - components/src/core/components/Input/Autocomplete/AutocompleteInput.vue, components/src/core/components/Input/DateInput.vue, components/src/core/components/Textarea/Textarea.vue, components/src/core/components/Icon/icons.ts - add new slot to inline label for AutoComplete, DateInput, TextArea input fields and added oxd-break,oxd-start-end-time,oxd-set-time,oxd-recurrence,oxd-person-fill,oxd-department,oxd-date,oxd-close,oxd-shift-note icons
 
