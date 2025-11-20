@@ -24,6 +24,7 @@
     </oxd-select-text>
 
     <oxd-select-dropdown
+      ref="dropdownRef"
       v-dropdown-direction
       v-if="dropdownOpen"
       :class="dropdownClasses"
