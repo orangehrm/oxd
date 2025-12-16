@@ -1,5 +1,6 @@
 import {h, ref} from 'vue';
 import {ru} from 'date-fns/locale';
+import {getDaysInMonth} from 'date-fns';
 import DateInput from '@orangehrm/oxd/core/components/Input/DateInput';
 import buildLocale from '@orangehrm/oxd/utils/locale.ts';
 import {convertPHPDateFormat} from '@orangehrm/oxd/utils/date.ts';
@@ -381,6 +382,148 @@ Events.parameters = {
         '</div>\n' +
         '//\n' +
         'File -> DateInputEvents.story.vue',
+    },
+  },
+};
+
+
+// Helper function to get dates for current month (same as Calendar.stories.js)
+const datesOfMonth = () => {
+  const today = new Date();
+  return new Array(getDaysInMonth(today)).fill('').map((...[, index]) => {
+    return new Date(today.getFullYear(), today.getMonth(), ++index);
+  });
+};
+
+export const BlackoutEvents = (args) => ({
+  setup() {
+    const selected = ref(new Date());
+    return {args, selected};
+  },
+  render() {
+    return h('div', {}, [
+      h(DateInput, {
+        ...this.args,
+        modelValue: this.selected,
+        'onUpdate:modelValue': (value) => {
+          this.selected = value;
+        },
+      }),
+      h('br'),
+      h('p', {}, `v-model : ${this.selected}`),
+    ]);
+  },
+});
+
+BlackoutEvents.args = {
+  events: datesOfMonth().map(date => {
+    const day = date.getDate();
+    
+    // Strict blackout dates (Complete Holidays/Closures)
+    if (day === 8) {
+      return {
+        date,
+        type: 'strict-blackout',
+        class: '--strict-blackout',
+        tooltip: 'System Maintenance\nNo bookings allowed',
+        tooltipPosition: 'top'
+      };
+    } else if (day === 15) {
+      return {
+        date,
+        type: 'strict-blackout',
+        class: '--strict-blackout',
+        tooltip: 'Public Holiday - Office Closed',
+        tooltipPosition: 'top'
+      };
+    }
+    
+    else if (day === 14) {
+      return {
+        date,
+        type: 'warning-blackout',
+        class: '--warning-blackout',
+        tooltip: 'Limited Availability\nSome services may be affected',
+        tooltipPosition: 'bottom'
+      };
+    } 
+    // Warning blackout dates (Limited Service Days)
+    else if (day === 16) {
+      return {
+        date,
+        type: 'warning-blackout',
+        class: '--warning-blackout',
+        tooltip: 'Limited Availability\nSome services may be affected',
+        tooltipPosition: 'bottom'
+      };
+    } else if (day === 20) {
+      return {
+        date,
+        type: 'warning-blackout',
+        class: '--warning-blackout',
+        tooltip: 'Training Day - Slower Response Time',
+        tooltipPosition: 'bottom'
+      };
+    }
+    
+    // Regular dates
+    else {
+      return {date};
+    }
+  })
+};
+
+BlackoutEvents.parameters = {
+  docs: {
+    source: {
+      code: `<oxd-date-input 
+  :events="datesOfMonth().map(date => {
+    const day = date.getDate();
+    
+    // Strict blackout dates (Complete Holidays/Closures)
+    if (day === 8) {
+      return {
+        date,
+        type: 'strict-blackout',
+        class: '--strict-blackout',
+        tooltip: 'System Maintenance\\nNo bookings allowed',
+        tooltipPosition: 'top'
+      };
+    } else if (day === 15) {
+      return {
+        date,
+        type: 'strict-blackout',
+        class: '--strict-blackout',
+        tooltip: 'Public Holiday - Office Closed',
+        tooltipPosition: 'top'
+      };
+    }
+    
+    // Warning blackout dates (Limited Service Days)
+    else if (day === 16) {
+      return {
+        date,
+        type: 'warning-blackout',
+        class: '--warning-blackout',
+        tooltip: 'Limited Availability\\nSome services may be affected',
+        tooltipPosition: 'bottom'
+      };
+    } else if (day === 20) {
+      return {
+        date,
+        type: 'warning-blackout',
+        class: '--warning-blackout',
+        tooltip: 'Training Day - Slower Response Time',
+        tooltipPosition: 'bottom'
+      };
+    }
+    
+    // Regular dates
+    else {
+      return {date};
+    }
+  })"
+/>`,
     },
   },
 };

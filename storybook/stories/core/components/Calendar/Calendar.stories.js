@@ -189,3 +189,94 @@ CustomStyles.args = {
   ],
   locale: enGB,
 };
+
+export const BlackoutHolidays = Template.bind({});
+BlackoutHolidays.argTypes = argTypes;
+BlackoutHolidays.args = {
+  firstDayOfWeek: 0,
+  monthFormat: 'wide',
+  dayFormat: 'narrow',
+  dayAttributes: [
+    {
+      index: 0, // sunday
+      class: '--non-working-day',
+      style: {},
+    },
+    {
+      index: 6, // saturday
+      class: '--working-day-half',
+      style: {},
+    },
+  ],
+  events: datesOfMonth().map(date => {
+    const day = date.getDate();
+    
+    // Strict blackout dates (Complete Holidays/Closures)
+    if (day === 1) {
+      return {
+        date,
+        type: 'strict-blackout',
+        tooltip: 'New Year\'s Day - Office Closed',
+        class: '--strict-blackout',
+      };
+    } else if (day === 10) {
+      return {
+        date,
+        type: 'strict-blackout',
+        tooltip: 'Public Holiday - No Service Available',
+        class: '--strict-blackout',
+      };
+    } else if (day === 17) {
+      return {
+        date,
+        type: 'strict-blackout',
+        tooltip: 'System Maintenance - Service Unavailable',
+        class: '--strict-blackout',
+      };
+    } else if (day === 25) {
+      return {
+        date,
+        type: 'strict-blackout',
+        tooltip: 'Christmas Day - Office Closed',
+        class: '--strict-blackout',
+      };
+    }
+    
+    // Warning blackout dates (Limited Service Days)
+    else if (day === 6) {
+      return {
+        date,
+        type: 'warning-blackout',
+        tooltip: 'Limited Staff - Reduced Capacity',
+        class: '--warning-blackout',
+      };
+    } else if (day === 16) {
+      return {
+        date,
+        type: 'warning-blackout',
+        tooltip: 'Training Day - Slower Response Time',
+        class: '--warning-blackout',
+      };
+    } else if (day === 20) {
+      return {
+        date,
+        type: 'warning-blackout',
+        tooltip: 'Peak Season - High Demand Expected',
+        class: '--warning-blackout',
+      };
+    } else if (day === 24) {
+      return {
+        date,
+        type: 'warning-blackout',
+        tooltip: 'Christmas Eve - Half Day (9AM-1PM)',
+        class: '--warning-blackout',
+      };
+    }
+    
+    // Regular dates
+    else {
+      return {date};
+    }
+  }),
+  locale: enGB,
+};

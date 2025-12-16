@@ -12,7 +12,7 @@ import {
   formatDate,
 } from '../../../utils/date';
 import {enGB} from 'date-fns/locale';
-import {CalendarDayAttributes, CalendarEvent} from './types';
+import {CalendarDayAttributes, CalendarEvent, STRICT_BLACKOUT} from './types';
 import {
   computed,
   defineComponent,
@@ -269,6 +269,8 @@ export default defineComponent({
               )
                 ? true
                 : false;
+            } else if (this.parsedEvents[i] && this.parsedEvents[i].type === STRICT_BLACKOUT) {
+              disabledDate = true;
             } else {
               disabledDate = false;
             }

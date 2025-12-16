@@ -69,3 +69,10 @@ $oxd-calendar-controller-item-padding: 0.5rem !default;
 $oxd-calendar-controller-item-radius: 0.65rem !default;
 
 $oxd-date--disabled: #cfd3de !default;
+
+$oxd-calendar-blackout-icon-color: $oxd-interface-gray-lighten-1-color !default;
+$oxd-calendar-blackout-icon-size: 28px !default;
+$oxd-calendar-strict-blackout-color: $oxd-interface-gray-color !default;
+$oxd-calendar-warning-blackout-color: $oxd-primary-one-color !default;
+$oxd-calendar-warning-blackout-background-color: $oxd-secondary-two-color !default;
+$oxd-calendar-strict-blackout-background-color: #f6f7f9 !default;

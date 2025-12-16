@@ -1,9 +1,13 @@
 <script lang="ts">
-import {CalendarDayAttributes, CalendarEvent} from './types';
+import {CalendarDayAttributes, CalendarEvent, STRICT_BLACKOUT, WARNING_BLACKOUT} from './types';
 import {computed, defineComponent, h, PropType} from 'vue';
+import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
   name: 'oxd-calendar-date',
+  components: {
+    'oxd-icon': Icon,
+  },
   props: {
     date: {
       type: Date as PropType<Date>,
@@ -43,22 +47,60 @@ export default defineComponent({
       return props?.attributes?.class ? props.attributes.class.split(' ') : [];
     });
 
+    const tooltipText = computed(() => {
+      // Prioritize event tooltip, fallback to attributes tooltip
+      return props?.event?.tooltip || '';
+    });
+
+    const tooltipPosition = computed(() => {
+      return props?.event?.tooltipPosition || 'top';
+    });
+
+    const showBlackoutIcon = computed(() => {
+      return props.event?.type === STRICT_BLACKOUT || props.event?.type === WARNING_BLACKOUT;
+    });
+
     return {
       innerClasses,
       wrapperClasses,
+      tooltipText,
+      tooltipPosition,
+      showBlackoutIcon,
     };
   },
   render() {
+    const dateContent = [];
+    
+    // Date number
+    dateContent.push(String(this.date.getDate()));
+    
+    // Add slash-circle icon for both strict and warning blackout dates
+    if (this.showBlackoutIcon) {
+      dateContent.push(
+        h(Icon, {
+          name: 'oxd-slash-circle',
+          class: 'oxd-calendar-date-icon',
+        })
+      );
+    }
+    
     return h(
       'div',
-      {
-        class: [
-          ...this.wrapperClasses,
-          {'oxd-calendar-date-wrapper': true},
-          {[`--offset-${this.offset}`]: this.offset},
-        ],
-        style: this.attributes?.style,
-      },
+      Object.assign(
+        {
+          class: [
+            ...this.wrapperClasses,
+            {'oxd-calendar-date-wrapper': true},
+            {[`--offset-${this.offset}`]: this.offset},
+          ],
+          style: this.attributes?.style,
+        },
+        // Apply tooltip to wrapper element to avoid layout interference
+        this.tooltipText ? {
+          tooltip: this.tooltipText,
+          flow: this.tooltipPosition,
+        } : {}
+      ),
       h(
         'div',
         {
@@ -72,7 +114,7 @@ export default defineComponent({
           ],
           style: this.event?.style,
         },
-        this.date.getDate(),
+        dateContent,
       ),
     );
   },

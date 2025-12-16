@@ -19,6 +19,9 @@ export const OCTOBER = 'October';
 export const NOVEMBER = 'November';
 export const DECEMBER = 'December';
 
+export const STRICT_BLACKOUT = 'strict-blackout';
+export const WARNING_BLACKOUT = 'warning-blackout';
+
 export const DAYS_OF_WEEK = [
   SUNDAY,
   MONDAY,
@@ -51,10 +54,14 @@ export type CalendarEvent = {
   type: string;
   class?: string;
   style?: object;
+  tooltip?: string;
+  tooltipPosition?: string;
 };
 
 export interface CalendarDayAttributes {
   index: number;
   class?: string;
   style?: object;
+  tooltip?: string;
+  tooltipPosition?: string;
 }
