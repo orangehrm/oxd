@@ -171,6 +171,7 @@
   // Override tooltip text alignment for calendar dates
   &-date-wrapper[tooltip]::after {
     text-align: left;
+    max-width: 300px;
   }
 
   &-selector {
