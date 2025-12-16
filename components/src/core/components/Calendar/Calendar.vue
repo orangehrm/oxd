@@ -239,7 +239,9 @@ export default defineComponent({
           {class: 'oxd-calendar-dates-grid'},
           this.datesOfMonth.map((date: Date, i: number) => {
             let disabledDate = false;
-            if (this.max && this.min) {
+            if (this.parsedEvents[i] && this.parsedEvents[i].type === STRICT_BLACKOUT) {
+              disabledDate = true;
+            } else if (this.max && this.min) {
               disabledDate =
                 isAfter(
                   formatDate(date, 'yyyy-MM-dd'),
@@ -269,8 +271,6 @@ export default defineComponent({
               )
                 ? true
                 : false;
-            } else if (this.parsedEvents[i] && this.parsedEvents[i].type === STRICT_BLACKOUT) {
-              disabledDate = true;
             } else {
               disabledDate = false;
             }
