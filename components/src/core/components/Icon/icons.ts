@@ -2728,6 +2728,14 @@ export const oxdSwap: icon = {
 </svg>`,
 };
 
+export const oxdSlashCircle: icon = {
+  name: 'oxd-slash-circle',
+  value: `<svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="0.8" fill="none"/>
+<line x1="3.5" y1="12.5" x2="12.5" y2="3.5" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/>
+</svg>`,
+};
+
 const icons: Icons = {
   'oxd-likes': oxdLikes,
   'oxd-birthday': oxdBirthday,
@@ -3022,6 +3030,7 @@ const icons: Icons = {
   'oxd-close': oxdClose,
   'oxd-shift-note': oxdShiftNote,
   'oxd-swap': oxdSwap,
+  'oxd-slash-circle': oxdSlashCircle,
 };
 
 export default icons;
