@@ -428,7 +428,9 @@ BlackoutEvents.args = {
         tooltip: 'System Maintenance\nNo bookings allowed',
         tooltipPosition: 'top'
       };
-    } else if (day === 15) {
+    }
+    
+    if (day === 15) {
       return {
         date,
         type: 'strict-blackout',
@@ -438,17 +440,8 @@ BlackoutEvents.args = {
       };
     }
     
-    else if (day === 14) {
-      return {
-        date,
-        type: 'warning-blackout',
-        class: '--warning-blackout',
-        tooltip: 'Limited Availability\nSome services may be affected',
-        tooltipPosition: 'bottom'
-      };
-    } 
     // Warning blackout dates (Limited Service Days)
-    else if (day === 16) {
+    if (day === 14) {
       return {
         date,
         type: 'warning-blackout',
@@ -456,7 +449,19 @@ BlackoutEvents.args = {
         tooltip: 'Limited Availability\nSome services may be affected',
         tooltipPosition: 'bottom'
       };
-    } else if (day === 20) {
+    }
+    
+    if (day === 16) {
+      return {
+        date,
+        type: 'warning-blackout',
+        class: '--warning-blackout',
+        tooltip: 'Limited Availability\nSome services may be affected',
+        tooltipPosition: 'bottom'
+      };
+    }
+    
+    if (day === 20) {
       return {
         date,
         type: 'warning-blackout',
@@ -467,9 +472,7 @@ BlackoutEvents.args = {
     }
     
     // Regular dates
-    else {
-      return {date};
-    }
+    return {date};
   })
 };
 
@@ -489,7 +492,9 @@ BlackoutEvents.parameters = {
         tooltip: 'System Maintenance\\nNo bookings allowed',
         tooltipPosition: 'top'
       };
-    } else if (day === 15) {
+    }
+    
+    if (day === 15) {
       return {
         date,
         type: 'strict-blackout',
@@ -500,7 +505,7 @@ BlackoutEvents.parameters = {
     }
     
     // Warning blackout dates (Limited Service Days)
-    else if (day === 16) {
+    if (day === 14) {
       return {
         date,
         type: 'warning-blackout',
@@ -508,7 +513,19 @@ BlackoutEvents.parameters = {
         tooltip: 'Limited Availability\\nSome services may be affected',
         tooltipPosition: 'bottom'
       };
-    } else if (day === 20) {
+    }
+    
+    if (day === 16) {
+      return {
+        date,
+        type: 'warning-blackout',
+        class: '--warning-blackout',
+        tooltip: 'Limited Availability\\nSome services may be affected',
+        tooltipPosition: 'bottom'
+      };
+    }
+    
+    if (day === 20) {
       return {
         date,
         type: 'warning-blackout',
@@ -519,9 +536,7 @@ BlackoutEvents.parameters = {
     }
     
     // Regular dates
-    else {
-      return {date};
-    }
+    return {date};
   })"
 />`,
     },

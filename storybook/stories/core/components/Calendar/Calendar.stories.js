@@ -219,21 +219,27 @@ BlackoutHolidays.args = {
         tooltip: 'New Year\'s Day - Office Closed',
         class: '--strict-blackout',
       };
-    } else if (day === 10) {
+    }
+    
+    if (day === 10) {
       return {
         date,
         type: 'strict-blackout',
         tooltip: 'Public Holiday - No Service Available',
         class: '--strict-blackout',
       };
-    } else if (day === 17) {
+    }
+    
+    if (day === 17) {
       return {
         date,
         type: 'strict-blackout',
         tooltip: 'System Maintenance - Service Unavailable',
         class: '--strict-blackout',
       };
-    } else if (day === 25) {
+    }
+    
+    if (day === 25) {
       return {
         date,
         type: 'strict-blackout',
@@ -243,28 +249,34 @@ BlackoutHolidays.args = {
     }
     
     // Warning blackout dates (Limited Service Days)
-    else if (day === 6) {
+    if (day === 6) {
       return {
         date,
         type: 'warning-blackout',
         tooltip: 'Limited Staff - Reduced Capacity',
         class: '--warning-blackout',
       };
-    } else if (day === 16) {
+    }
+    
+    if (day === 16) {
       return {
         date,
         type: 'warning-blackout',
         tooltip: 'Training Day - Slower Response Time',
         class: '--warning-blackout',
       };
-    } else if (day === 20) {
+    }
+    
+    if (day === 20) {
       return {
         date,
         type: 'warning-blackout',
         tooltip: 'Peak Season - High Demand Expected',
         class: '--warning-blackout',
       };
-    } else if (day === 24) {
+    }
+    
+    if (day === 24) {
       return {
         date,
         type: 'warning-blackout',
@@ -274,9 +286,7 @@ BlackoutHolidays.args = {
     }
     
     // Regular dates
-    else {
-      return {date};
-    }
+    return {date};
   }),
   locale: enGB,
 };
