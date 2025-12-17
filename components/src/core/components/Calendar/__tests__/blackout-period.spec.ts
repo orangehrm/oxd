@@ -94,11 +94,74 @@ describe('Calendar.vue Blackout Period Tests', () => {
       expect(dateWrapper.attributes('flow')).toStrictEqual('bottom');
     });
 
-    it('should disable selection for strict blackout dates', async () => {
+    it('should not disable selection for strict blackout dates when not disabled', async () => {
       const strictBlackoutEvent = {
         date: new Date(2025, 6, 15, 0, 0, 0),
         type: 'strict-blackout',
         class: '--strict-blackout',
+        tooltip: 'System Maintenance - No Service Available',
+      };
+
+      const wrapper = mount(Calendar, {
+        props: {
+          modelValue: dateExpected,
+          events: [strictBlackoutEvent],
+        },
+      });
+
+      // Find the Date component for the strict blackout date
+      const dateComponents = wrapper.findAllComponents(DateVue);
+      const strictBlackoutDateComponent = dateComponents.find(comp => {
+        return comp.props('date').getDate() === 15 && comp.props('disabled') === false;
+      });
+
+      expect(strictBlackoutDateComponent).toBeTruthy();
+      expect(strictBlackoutDateComponent!.props('disabled')).toStrictEqual(false);
+
+      // Try to click the disabled strict blackout date
+      await strictBlackoutDateComponent!.trigger('click');
+
+      // Should emit update:modelValue for disabled dates
+      expect(wrapper.emitted('update:modelValue')).toBeTruthy();
+    });
+
+    it('should change modelValue when clicking strict blackout dates when not disabled', async () => {
+      const strictBlackoutEvent = {
+        date: new Date(2025, 6, 10, 0, 0, 0),
+        type: 'strict-blackout',
+        class: '--strict-blackout',
+      };
+
+      const originalModelValue = new Date(2025, 6, 27, 0, 0, 0);
+      
+      const wrapper = mount(Calendar, {
+        props: {
+          modelValue: originalModelValue,
+          events: [strictBlackoutEvent],
+        },
+      });
+
+      // Find and click the strict blackout date
+      const dateComponents = wrapper.findAllComponents(DateVue);
+      const strictBlackoutDateComponent = dateComponents.find(comp => {
+        return comp.props('date').getDate() === 10 && comp.props('disabled') === false;
+      });
+
+      await strictBlackoutDateComponent!.trigger('click');
+
+      // Should not emit update:modelValue
+      expect(wrapper.emitted('update:modelValue')).toBeTruthy();
+      
+      // Verify the date is marked as disabled
+      expect(strictBlackoutDateComponent!.props('disabled')).toStrictEqual(false);
+    });
+
+
+    it('should disable selection for strict blackout dates when disabled', async () => {
+      const strictBlackoutEvent = {
+        date: new Date(2025, 6, 15, 0, 0, 0),
+        type: 'strict-blackout',
+        class: '--strict-blackout-disabled',
         tooltip: 'System Maintenance - No Service Available',
       };
 
@@ -125,11 +188,11 @@ describe('Calendar.vue Blackout Period Tests', () => {
       expect(wrapper.emitted('update:modelValue')).toBeFalsy();
     });
 
-    it('should not change modelValue when clicking strict blackout dates', async () => {
+    it('should not change modelValue when clicking strict blackout dates when disabled', async () => {
       const strictBlackoutEvent = {
         date: new Date(2025, 6, 10, 0, 0, 0),
         type: 'strict-blackout',
-        class: '--strict-blackout',
+        class: '--strict-blackout-disabled',
       };
 
       const originalModelValue = new Date(2025, 6, 27, 0, 0, 0);
@@ -144,7 +207,7 @@ describe('Calendar.vue Blackout Period Tests', () => {
       // Find and click the strict blackout date
       const dateComponents = wrapper.findAllComponents(DateVue);
       const strictBlackoutDateComponent = dateComponents.find(comp => {
-        return comp.props('date').getDate() === 10;
+        return comp.props('date').getDate() === 10 && comp.props('disabled') === true;
       });
 
       await strictBlackoutDateComponent!.trigger('click');
@@ -154,6 +217,77 @@ describe('Calendar.vue Blackout Period Tests', () => {
       
       // Verify the date is marked as disabled
       expect(strictBlackoutDateComponent!.props('disabled')).toStrictEqual(true);
+    });
+
+    it('should render strict blackout disabled variant with proper styling', () => {
+      const strictBlackoutDisabledEvent = {
+        date: new Date(2025, 6, 26, 0, 0, 0),
+        type: 'strict-blackout',
+        class: '--strict-blackout-disabled',
+        tooltip: 'Disabled Date - Office Closed',
+      };
+
+      const wrapper = mount(Calendar, {
+        props: {
+          modelValue: dateExpected,
+          events: [strictBlackoutDisabledEvent],
+        },
+      });
+
+      const strictBlackoutDisabledDate = wrapper.find('.oxd-calendar-date.--strict-blackout-disabled');
+      expect(strictBlackoutDisabledDate.exists()).toBeTruthy();
+      expect(strictBlackoutDisabledDate.text()).toStrictEqual('26');
+    });
+
+    it('should render strict blackout disabled variant with icon', () => {
+      const strictBlackoutDisabledEvent = {
+        date: new Date(2025, 6, 27, 0, 0, 0),
+        type: 'strict-blackout',
+        class: '--strict-blackout-disabled',
+        tooltip: 'Disabled Date - Office Closed',
+      };
+
+      const wrapper = mount(Calendar, {
+        props: {
+          modelValue: dateExpected,
+          events: [strictBlackoutDisabledEvent],
+        },
+      });
+
+      // Find the specific date component for the disabled blackout event
+      const dateComponents = wrapper.findAllComponents(DateVue);
+      const disabledBlackoutDateComponent = dateComponents.find(comp => {
+        return comp.props('date').getDate() === 27;
+      });
+
+      expect(disabledBlackoutDateComponent).toBeTruthy();
+      
+      const icon = disabledBlackoutDateComponent!.findComponent(Icon);
+      expect(icon.exists()).toBeTruthy();
+      expect(icon.props('name')).toStrictEqual('oxd-slash-circle');
+    });
+
+    it('should render strict blackout disabled variant with tooltip', () => {
+      const strictBlackoutDisabledEvent = {
+        date: new Date(2025, 6, 26, 0, 0, 0),
+        type: 'strict-blackout',
+        class: '--strict-blackout-disabled',
+        tooltip: 'Disabled Date - Office Closed',
+      };
+
+      const wrapper = mount(Calendar, {
+        props: {
+          modelValue: dateExpected,
+          events: [strictBlackoutDisabledEvent],
+        },
+      });
+
+      const dateWrapper = wrapper.find('.oxd-calendar-date-wrapper[tooltip="Disabled Date - Office Closed"]');
+      expect(dateWrapper.exists()).toBeTruthy();
+      expect(dateWrapper.attributes('flow')).toStrictEqual('top');
+
+      const strictBlackoutDisabledDate = wrapper.find('.oxd-calendar-date.--strict-blackout-disabled');
+      expect(strictBlackoutDisabledDate.exists()).toBeTruthy();
     });
   });
 
@@ -449,10 +583,17 @@ describe('Calendar.vue Blackout Period Tests', () => {
         tooltip: 'Limited Service Available',
       };
 
+      const strictBlackoutDisabledEvent = {
+        date: new Date(2025, 6, 26, 0, 0, 0),
+        type: 'strict-blackout',
+        class: '--strict-blackout-disabled',
+        tooltip: 'Disabled Date - Office Closed',
+      };
+
       const wrapper = mount(Calendar, {
         props: {
           modelValue: dateExpected,
-          events: [strictBlackoutEvent, warningBlackoutEvent],
+          events: [strictBlackoutEvent, strictBlackoutDisabledEvent, warningBlackoutEvent],
         },
       });
 
@@ -463,19 +604,28 @@ describe('Calendar.vue Blackout Period Tests', () => {
       // Find warning blackout date component  
       const warningBlackoutComponent = dateComponents.find(comp => comp.props('date').getDate() === 15);
 
+      // Find strict blackout disabled date component
+      const strictBlackoutDisabledComponent = dateComponents.find(comp => comp.props('date').getDate() === 26);
+
       // Verify strict blackout is disabled
-      expect(strictBlackoutComponent!.props('disabled')).toStrictEqual(true);
+      expect(strictBlackoutComponent!.props('disabled')).toStrictEqual(false);
+      // Verify strict blackout disabled is disabled
+      expect(strictBlackoutDisabledComponent!.props('disabled')).toStrictEqual(true);
       // Verify warning blackout is NOT disabled
       expect(warningBlackoutComponent!.props('disabled')).toStrictEqual(false);
 
-      // Try to click strict blackout (should not work)
+
+       // Try to click strict blackout disabled (should not work)
+       await strictBlackoutDisabledComponent!.trigger('click');
+       expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+       
+      // Try to click strict blackout
       await strictBlackoutComponent!.trigger('click');
-      expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+      expect(wrapper.emitted('update:modelValue')).toBeTruthy();
 
       // Click warning blackout (should work)
       await warningBlackoutComponent!.trigger('click');
       expect(wrapper.emitted('update:modelValue')).toBeTruthy();
-      expect((wrapper.emitted('update:modelValue')![0] as any[])[0]).toEqual(new Date(2025, 6, 15, 0, 0, 0));
     });
   });
 
@@ -583,11 +733,11 @@ describe('Calendar.vue Blackout Period Tests', () => {
       expect(warningBlackoutDate.exists()).toBeTruthy();
     });
 
-    it('should prevent selection on strict blackout even with custom styling', async () => {
+    it('should prevent selection on strict blackout when disabled even with custom styling', async () => {
       const strictBlackoutEventCustomStyle = {
         date: new Date(2025, 6, 25, 0, 0, 0),
         type: 'strict-blackout',
-        class: '--strict-blackout',
+        class: '--strict-blackout-disabled',
         style: { backgroundColor: '#ff0000', color: '#ffffff' },
         tooltip: 'Critical Emergency Maintenance'
       };
@@ -610,7 +760,7 @@ describe('Calendar.vue Blackout Period Tests', () => {
       expect(wrapper.emitted('update:modelValue')).toBeFalsy();
 
       // Should still show styling and tooltip
-      const strictBlackoutDate = wrapper.find('.oxd-calendar-date.--strict-blackout');
+      const strictBlackoutDate = wrapper.find('.oxd-calendar-date.--strict-blackout-disabled');
       expect(strictBlackoutDate.exists()).toBeTruthy();
       
       const tooltipWrapper = wrapper.find('[tooltip="Critical Emergency Maintenance"]');
