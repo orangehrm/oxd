@@ -48,7 +48,6 @@ export default defineComponent({
     });
 
     const tooltipText = computed(() => {
-      // Prioritize event tooltip, fallback to attributes tooltip
       return props?.event?.tooltip || '';
     });
 
@@ -69,54 +68,43 @@ export default defineComponent({
     };
   },
   render() {
-    const dateContent = [];
-    
-    // Date number
-    dateContent.push(String(this.date.getDate()));
-    
-    // Add slash-circle icon for both strict and warning blackout dates
-    if (this.showBlackoutIcon) {
-      dateContent.push(
-        h(Icon, {
-          name: 'oxd-slash-circle',
-          class: 'oxd-calendar-date-icon',
-        })
-      );
-    }
-    
-    return h(
-      'div',
-      Object.assign(
+      return h(
+        "div",
         {
           class: [
             ...this.wrapperClasses,
-            {'oxd-calendar-date-wrapper': true},
-            {[`--offset-${this.offset}`]: this.offset},
+            { "oxd-calendar-date-wrapper": true },
+            { [`--offset-${this.offset}`]: this.offset },
           ],
           style: this.attributes?.style,
+          ...(this.tooltipText && {
+            tooltip: this.tooltipText,
+            flow: this.tooltipPosition,
+          }),
         },
-        // Apply tooltip to wrapper element to avoid layout interference
-        this.tooltipText ? {
-          tooltip: this.tooltipText,
-          flow: this.tooltipPosition,
-        } : {}
-      ),
-      h(
-        'div',
-        {
-          tabindex: this.disabled ? -1 : 0,
-          class: [
-            ...this.innerClasses,
-            {'oxd-calendar-date': true},
-            {'--disabled': this.disabled},
-            {'--selected': this.selected},
-            {'--today': this.today},
-          ],
-          style: this.event?.style,
-        },
-        dateContent,
-      ),
-    );
-  },
+        h(
+          "div",
+          {
+            tabindex: this.disabled ? -1 : 0,
+            class: [
+              ...this.innerClasses,
+              { "oxd-calendar-date": true },
+              { "--disabled": this.disabled },
+              { "--selected": this.selected },
+              { "--today": this.today },
+            ],
+            style: this.event?.style,
+          },
+          [
+            String(this.date.getDate()),
+            this.showBlackoutIcon &&
+              h(Icon, {
+                name: "oxd-slash-circle",
+                class: "oxd-calendar-date-icon",
+              }),
+          ].filter(Boolean)
+        )
+      );
+  } 
 });
 </script>

@@ -1,5 +1,3 @@
-2025-12-16 - 130f4bf57604e70813c4d49f40d537714bf63cc0 - components/src/core/components/Calendar/Calendar.vue, components/src/core/components/Calendar/Date.vue, components/src/core/components/Calendar/_variables.scss,  components/src/core/components/Calendar/calendar.scss, components/src/core/components/Calendar/types.ts, storybook/stories/core/components/Calendar/Calendar.stories.js, storybook/stories/core/components/Input/Date.stories.js - Add blackout period support for Date picker
-
 2025-12-16 - d3b4f1f2553967a334ce5414eb3f83c12d19c368 - components/src/core/components/Icon/icons.ts - Add oxd-slash-circle icon
 
 2025-11-30 - 30957e24f2be744d6a1987c8951e1b083b0a57c5 - components/src/core/components/Icon/icons.ts - Add oxd-swap icon
