@@ -239,7 +239,7 @@ export default defineComponent({
           {class: 'oxd-calendar-dates-grid'},
           this.datesOfMonth.map((date: Date, i: number) => {
             let disabledDate = false;
-            if (this.parsedEvents[i] && this.parsedEvents[i].type === STRICT_BLACKOUT) {
+            if (this.parsedEvents[i] && this.parsedEvents[i].type === STRICT_BLACKOUT && this.parsedEvents[i].class === '--strict-blackout-disabled') {
               disabledDate = true;
             } else if (this.max && this.min) {
               disabledDate =

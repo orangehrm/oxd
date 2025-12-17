@@ -470,6 +470,16 @@ BlackoutEvents.args = {
         tooltipPosition: 'bottom'
       };
     }
+
+    if (day === 26) {
+      return {
+        date,
+        type: 'strict-blackout',
+        class: '--strict-blackout-disabled',
+        tooltip: 'Christmas Day - Office Closed',
+      };
+    }
+    
     
     // Regular dates
     return {date};
@@ -532,6 +542,14 @@ BlackoutEvents.parameters = {
         class: '--warning-blackout',
         tooltip: 'Training Day - Slower Response Time',
         tooltipPosition: 'bottom'
+      };
+    }
+    if (day === 26) {
+      return {
+        date,
+        type: 'strict-blackout',
+        class: '--strict-blackout-disabled',
+        tooltip: 'Christmas Day - Office Closed',
       };
     }
     

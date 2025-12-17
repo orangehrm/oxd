@@ -284,6 +284,24 @@ BlackoutHolidays.args = {
         class: '--warning-blackout',
       };
     }
+
+    if (day === 26) {
+      return {
+        date,
+        type: 'strict-blackout',
+        class: '--strict-blackout-disabled',
+        tooltip: 'Christmas Day - Office Closed',
+      };
+    }
+
+    if (day === 27) {
+      return {
+        date,
+        type: 'strict-blackout',
+        class: '--strict-blackout-disabled',
+        tooltip: 'Christmas Day - Office Closed',
+      };
+    }
     
     // Regular dates
     return {date};

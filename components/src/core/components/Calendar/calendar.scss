@@ -116,7 +116,7 @@
       transform: none;
     }
 
-    &.--strict-blackout, &.--warning-blackout {      
+    &.--strict-blackout, &.--warning-blackout, &.--strict-blackout-disabled {      
       .oxd-calendar-date-icon {
         position: absolute;
         top: 50%;
@@ -135,10 +135,17 @@
 
     &.--strict-blackout {
       position: relative;
-      cursor: not-allowed;
       color: $oxd-calendar-strict-blackout-color;
-      pointer-events: none;
       background-color: $oxd-calendar-strict-blackout-background-color;
+      &-disabled {
+        cursor: not-allowed;
+        pointer-events: none;
+        color: $oxd-calendar-strict-blackout-text-disabled-color;
+        background-color: $oxd-calendar-strict-blackout-background-color;
+        .oxd-calendar-date-icon {
+          color: $oxd-calendar-strict-blackout-icon-disabled-color;
+        }
+      }
     }
 
     &.--warning-blackout {
@@ -146,7 +153,9 @@
       background-color: $oxd-calendar-warning-blackout-background-color;
       color: $oxd-calendar-warning-blackout-color;
       font-weight: 700;
+    }
 
+    &.--strict-blackout, &.--warning-blackout {
       &.--selected {
         background-color: $oxd-calendar-date-selected-background-color;
         color: $oxd-calendar-date-selected-font-color;

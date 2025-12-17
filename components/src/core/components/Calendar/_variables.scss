@@ -73,6 +73,8 @@ $oxd-date--disabled: #cfd3de !default;
 $oxd-calendar-blackout-icon-color: $oxd-interface-gray-lighten-1-color !default;
 $oxd-calendar-blackout-icon-size: 28px !default;
 $oxd-calendar-strict-blackout-color: $oxd-interface-gray-color !default;
+$oxd-calendar-strict-blackout-text-disabled-color: rgba(207, 211, 222, 0.8) !default;
+$oxd-calendar-strict-blackout-icon-disabled-color: rgba(207, 211, 222, 0.5) !default;
 $oxd-calendar-warning-blackout-color: $oxd-primary-one-color !default;
 $oxd-calendar-warning-blackout-background-color: $oxd-secondary-two-color !default;
 $oxd-calendar-strict-blackout-background-color: #f6f7f9 !default;
