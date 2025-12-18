@@ -10,11 +10,15 @@ exports[`RadioGroup > RadioGroup.vue renders OXD RadioGroup 1`] = `
   <div class="radio-column">
     <div class="oxd-radio-wrapper"><label class="">
         <!--v-if--><input type="radio" id="radio-group-id_1" name="radio-group-id" value="1"><span class="oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input"></span>
-        <div class="oxd-radio-option-label">Item one</div>
+        <div class="oxd-radio-option-label">Item one
+          <!--v-if-->
+        </div>
       </label></div>
     <div class="oxd-radio-wrapper"><label class="">
         <!--v-if--><input type="radio" id="radio-group-id_2" name="radio-group-id" value="2"><span class="oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input"></span>
-        <div class="oxd-radio-option-label">Item two</div>
+        <div class="oxd-radio-option-label">Item two
+          <!--v-if-->
+        </div>
       </label></div>
   </div>
   <!--v-if-->

@@ -53,4 +53,41 @@ describe('RadioInput.vue', () => {
       'oxd-radio-input--focus',
     );
   });
+
+  it('should render secondary label as provided by developer', () => {
+    const wrapper = mount(RadioInput, {
+      props: {
+        optionLabel: 'Full Time',
+        secondaryLabel: '(Permanent)',
+      },
+    });
+    expect(wrapper.text()).toContain('Full Time');
+    expect(wrapper.text()).toContain('(Permanent)');
+    expect(
+      wrapper.find('.oxd-radio-option-secondary-label').exists(),
+    ).toBeTruthy();
+  });
+
+  it('should not render secondary label when not provided', () => {
+    const wrapper = mount(RadioInput, {
+      props: {
+        optionLabel: 'Full Time',
+      },
+    });
+    expect(wrapper.text()).toContain('Full Time');
+    expect(
+      wrapper.find('.oxd-radio-option-secondary-label').exists(),
+    ).toBeFalsy();
+  });
+
+  it('should render secondary label with any format passed by developer', () => {
+    const wrapper = mount(RadioInput, {
+      props: {
+        optionLabel: 'Part Time',
+        secondaryLabel: '{Temporary}',
+      },
+    });
+    expect(wrapper.text()).toContain('Part Time');
+    expect(wrapper.text()).toContain('{Temporary}');
+  });
 });

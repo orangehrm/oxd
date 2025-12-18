@@ -2,10 +2,13 @@
 @import 'variables';
 
 .oxd-radio-wrapper {
-
-  .oxd-radio-option-label{
+  .oxd-radio-option-label {
     overflow-wrap: break-word;
     word-break: break-all;
+  }
+
+  .oxd-radio-option-secondary-label {
+    opacity: $oxd-radio-secondary-label-opacity;
   }
 
   & label {

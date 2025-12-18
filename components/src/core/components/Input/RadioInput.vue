@@ -4,21 +4,20 @@
       <template v-if="labelPosition === 'left'">
         <div class="oxd-radio-option-label">
           {{ optionLabel }}
+          <span v-if="secondaryLabel" class="oxd-radio-option-secondary-label">
+            {{ secondaryLabel }}
+          </span>
         </div>
       </template>
-      <input
-        type="radio"
-        @focus="onFocus"
-        @blur="onBlur"
-        @change="onChange"
-        v-bind="$attrs"
-        v-model="checked"
-        :disabled="disabled"
-      />
+      <input type="radio" @focus="onFocus" @blur="onBlur" @change="onChange" v-bind="$attrs" v-model="checked"
+        :disabled="disabled" />
       <span :class="classes" :style="style" class="oxd-radio-input"></span>
       <template v-if="labelPosition === 'right'">
         <div class="oxd-radio-option-label">
           {{ optionLabel }}
+          <span v-if="secondaryLabel" class="oxd-radio-option-secondary-label">
+            {{ secondaryLabel }}
+          </span>
         </div>
       </template>
     </label>
@@ -26,8 +25,8 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
-import {Position, LABEL_POSITIONS, RIGHT} from './types';
+import { defineComponent } from 'vue';
+import { Position, LABEL_POSITIONS, RIGHT } from './types';
 
 export interface State {
   focused: boolean;
@@ -47,10 +46,14 @@ export default defineComponent({
       type: String,
       default: '',
     },
+    secondaryLabel: {
+      type: String,
+      default: '',
+    },
     labelPosition: {
       type: String,
       default: RIGHT,
-      validator: function(value: Position) {
+      validator: function (value: Position) {
         return LABEL_POSITIONS.indexOf(value) !== -1;
       },
     },
@@ -88,7 +91,8 @@ export default defineComponent({
       get() {
         return this.modelValue;
       },
-      set(value) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      set(value: any) {
         this.checkedProxy = value;
       },
     },

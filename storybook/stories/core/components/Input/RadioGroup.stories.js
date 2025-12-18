@@ -18,7 +18,7 @@ export default {
       table: {
         type: {
           summary:
-            'Set choises for radio buttons. Currently only id, label, style and disable are supported',
+            'Set choices for radio buttons. Currently only id, label, secondaryLabel, style and disable are supported',
         },
       },
     },
@@ -48,8 +48,7 @@ export default {
       control: {type: 'text'},
       table: {
         type: {
-          summary:
-            'Set custom class (Can align row wise using "radio-row")',
+          summary: 'Set custom class (Can align row wise using "radio-row")',
         },
       },
       defaultValue: 'radio-column',
@@ -205,6 +204,57 @@ CustomClass.parameters = {
         <div>
         <span v-if="value">Value Selected : {{ value }}</span>
   </div>,`,
+    },
+  },
+};
+
+export const WithSecondaryLabel = Template.bind({});
+WithSecondaryLabel.args = {
+  options: [
+    {
+      id: 1,
+      label: 'Full Time',
+      secondaryLabel: '(Permanent)',
+    },
+    {
+      id: 2,
+      label: 'Part Time',
+      secondaryLabel: '{Temporary}',
+    },
+    {
+      id: 3,
+      label: 'Contract',
+    },
+  ],
+};
+
+WithSecondaryLabel.parameters = {
+  docs: {
+    source: {
+      code:
+        '  <div> \n' +
+        '<oxd-radio-group \n' +
+        ':options="[\n' +
+        '  {\n' +
+        '    id: 1,\n' +
+        "    label: 'Full Time',\n" +
+        "    secondaryLabel: '(Permanent)' // Pass with brackets as needed\n" +
+        '  },\n' +
+        '  {\n' +
+        '    id: 2,\n' +
+        "    label: 'Part Time',\n" +
+        "    secondaryLabel: '{Temporary}' // Any format is supported\n" +
+        '  },\n' +
+        '  {\n' +
+        '    id: 3,\n' +
+        "    label: 'Contract' // No secondary label\n" +
+        '  }\n' +
+        ']"\n' +
+        'v-model="selectedValue""\n' +
+        '/>\n' +
+        '<div>\n' +
+        '<span v-if="value">Value Selected : {{ selectedValue }}</span>\n' +
+        '</div>\n',
     },
   },
 };
