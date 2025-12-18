@@ -1,3 +1,5 @@
+2025-12-17 - f1ffdb28fcab2b3a9b07da6336ce1eb9da02a3d0 - components/src/core/components/Input/RadioInput.vue, components/src/core/components/Input/RadioGroup.vue, components/src/core/components/Input/radio-input.scss components/src/core/components/Input/_variables.scss - Add optional secondaryLabel prop to radio buttons for displaying additional information
+
 2025-12-16 - d3b4f1f2553967a334ce5414eb3f83c12d19c368 - components/src/core/components/Icon/icons.ts - Add oxd-slash-circle icon
 
 2025-11-30 - 30957e24f2be744d6a1987c8951e1b083b0a57c5 - components/src/core/components/Icon/icons.ts - Add oxd-swap icon
