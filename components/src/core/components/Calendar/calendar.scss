@@ -155,7 +155,9 @@
       font-weight: 700;
     }
 
-    &.--strict-blackout, &.--warning-blackout {
+    &.--strict-blackout,
+    &.--warning-blackout,
+    &.--strict-blackout-disabled {
       &.--selected {
         background-color: $oxd-calendar-date-selected-background-color;
         color: $oxd-calendar-date-selected-font-color;
