@@ -1,3 +1,5 @@
+2025-01-09 - 0265f2d40dc4262dac28ddbbb111663d737ed795 - components/src/core/components/Icon/icons.ts - Add oxd-dollor-earning,oxd-dollar-deduction,oxd-dollor-pay-structure,oxd-dollor-base-pay,oxd-dollor-pay-summary icons
+
 2025-12-23 - 4883d072289419a163910cde18ec7e5cb69d9dfb - components/src/core/components/Calendar/calendar.scss - Added styles to show today's date with orange background when it is selected even on disabled blackout dates.
 
 2025-12-17 - f1ffdb28fcab2b3a9b07da6336ce1eb9da02a3d0 - components/src/core/components/Input/RadioInput.vue, components/src/core/components/Input/RadioGroup.vue, components/src/core/components/Input/radio-input.scss components/src/core/components/Input/_variables.scss - Add optional secondaryLabel prop to radio buttons for displaying additional information
