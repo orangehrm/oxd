@@ -4,6 +4,8 @@ exports[`TimeInput.vue renders OXD Time Input 1`] = `
 <div class="oxd-time-wrapper">
   <div class="oxd-time-input">
     <div class="input-outer-wrapper">
+      <!-- Inline label slot -->
+      <!--v-if-->
       <!--v-if-->
       <!--v-if--><input class="oxd-input oxd-input--active" placeholder="HH:MM" tabindex="0" maxlength="5">
     </div>

@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Input.vue input field with icon - in default mode, the icon is not clickable 1`] = `
-<div class="input-outer input-outer--active input-outer-wrapper">
+<div class="input-outer-wrapper input-outer input-outer--active">
+  <!-- Inline label slot -->
+  <!--v-if-->
   <div class="input-text-field-icon"><img src="@orangehrm/oxd/assets/images/facebook_logo_icon.svg" class="click-disabled"></div>
   <div>
     <!--v-if-->
@@ -11,7 +13,9 @@ exports[`Input.vue input field with icon - in default mode, the icon is not clic
 `;
 
 exports[`Input.vue input field with icon 1`] = `
-<div class="input-outer input-outer--active input-outer-wrapper">
+<div class="input-outer-wrapper input-outer input-outer--active">
+  <!-- Inline label slot -->
+  <!--v-if-->
   <div class="input-text-field-icon"><img src="@orangehrm/oxd/assets/images/facebook_logo_icon.svg" class="click-disabled"></div>
   <div>
     <!--v-if-->
@@ -22,6 +26,8 @@ exports[`Input.vue input field with icon 1`] = `
 
 exports[`Input.vue renders OXD Input 1`] = `
 <div class="input-outer-wrapper">
+  <!-- Inline label slot -->
+  <!--v-if-->
   <!--v-if-->
   <!--v-if--><input class="oxd-input oxd-input--active" label="Input">
 </div>
@@ -29,6 +35,8 @@ exports[`Input.vue renders OXD Input 1`] = `
 
 exports[`Input.vue should renders OXD Input with custom color 1`] = `
 <div class="input-outer-wrapper">
+  <!-- Inline label slot -->
+  <!--v-if-->
   <!--v-if-->
   <!--v-if--><input class="oxd-input oxd-input--active" style="background-color: aliceblue;" label="Input">
 </div>
@@ -36,6 +44,8 @@ exports[`Input.vue should renders OXD Input with custom color 1`] = `
 
 exports[`Input.vue should renders OXD Input with error 1`] = `
 <div class="input-outer-wrapper">
+  <!-- Inline label slot -->
+  <!--v-if-->
   <!--v-if-->
   <!--v-if--><input class="oxd-input oxd-input--active oxd-input--error" label="Input">
 </div>

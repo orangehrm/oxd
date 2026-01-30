@@ -20,6 +20,9 @@
       @keydown.up.exact.prevent="onSelectUp"
       @keydown="onKeypress"
     >
+      <template #topOfInput>
+        <slot name="topOfInput"></slot>
+      </template>
       <template #afterInput>
         <div v-if="selectedIdsLengthComputed > 1" class="selected-count-chip">
           <oxd-chip

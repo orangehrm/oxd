@@ -6,6 +6,8 @@ exports[`DateInput.vue renders OXD Date Input 1`] = `
     <!-- Inline label slot -->
     <!--v-if-->
     <div class="input-outer-wrapper">
+      <!-- Inline label slot -->
+      <!--v-if-->
       <!--v-if-->
       <!--v-if--><input class="oxd-input oxd-input--active">
     </div>

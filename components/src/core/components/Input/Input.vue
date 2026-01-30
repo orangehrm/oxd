@@ -1,5 +1,10 @@
 <template>
-  <div :class="outerClasses" class="input-outer-wrapper">
+  <div class="input-outer-wrapper"
+    :class="[outerClasses, { 'input-outer-wrapper--has-inline-label': $slots.topOfInput }]">
+    <!-- Inline label slot -->
+    <div v-if="$slots.topOfInput" class="oxd-textarea--inline-label">
+      <slot name="topOfInput"></slot>
+    </div>
     <div v-if="imageIcon" class="input-text-field-icon">
       <img
         :src="imageIcon"
