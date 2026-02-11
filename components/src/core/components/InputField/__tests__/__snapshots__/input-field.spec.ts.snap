@@ -9,6 +9,8 @@ exports[`InputField.vue renders OXD InputField 1`] = `
   </div>
   <div class="">
     <div class="input-outer-wrapper">
+      <!-- Inline label slot -->
+      <!--v-if-->
       <!--v-if-->
       <!--v-if--><input class="oxd-input oxd-input--active">
     </div>
@@ -73,6 +75,8 @@ exports[`InputField.vue renders OXD InputField type \`input\` 1`] = `
   </div>
   <div class="">
     <div class="input-outer-wrapper">
+      <!-- Inline label slot -->
+      <!--v-if-->
       <!--v-if-->
       <!--v-if--><input class="oxd-input oxd-input--active">
     </div>
@@ -91,6 +95,8 @@ exports[`InputField.vue renders OXD InputField type \`input\` with Hint 1`] = `
   </div>
   <div class="">
     <div class="input-outer-wrapper">
+      <!-- Inline label slot -->
+      <!--v-if-->
       <!--v-if-->
       <!--v-if--><input class="oxd-input oxd-input--active">
     </div>
