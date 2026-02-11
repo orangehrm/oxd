@@ -20,7 +20,7 @@
       @keydown.up.exact.prevent="onSelectUp"
       @keydown="onKeypress"
     >
-      <template #topOfInput>
+      <template v-if="$slots.topOfInput" #topOfInput>
         <slot name="topOfInput"></slot>
       </template>
       <template #afterInput>
