@@ -1,3 +1,10 @@
+
+2025-02-06 - 552b3ef11cf0f00012f4063f6a9f78e9ea495efb - components/src/core/components/Icon/icons.ts - Add oxd-schedule icon
+
+2025-01-30 - fddf1d704af2866ce27dbe3388093eb2a04c976a - components/src/core/components/Icon/icons.ts - Add oxd-worksite, oxd-bookmark
+
+2025-01-30 - 605122c87c0ff50501b10a22339e6319ee497664 - components/src/core/components/Input/TreeSelect/TreeSelect.vue, components/src/core/components/Input/Input.vue - Added new slot to support inline label capability for Input and Treeselect input components
+
 2025-01-09 - 0265f2d40dc4262dac28ddbbb111663d737ed795 - components/src/core/components/Icon/icons.ts - Add oxd-dollor-earning,oxd-dollar-deduction,oxd-dollor-pay-structure,oxd-dollor-base-pay,oxd-dollor-pay-summary icons
 
 2025-12-23 - 4883d072289419a163910cde18ec7e5cb69d9dfb - components/src/core/components/Calendar/calendar.scss - Added styles to show today's date with orange background when it is selected even on disabled blackout dates.
