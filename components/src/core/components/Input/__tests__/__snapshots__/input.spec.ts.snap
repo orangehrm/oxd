@@ -33,6 +33,15 @@ exports[`Input.vue renders OXD Input 1`] = `
 </div>
 `;
 
+exports[`Input.vue should render topOfInput slot when provided 1`] = `
+<div class="input-outer-wrapper input-outer-wrapper--has-inline-label">
+  <!-- Inline label slot -->
+  <div class="oxd-textarea--inline-label"><span class="test-label">Test Label</span></div>
+  <!--v-if-->
+  <!--v-if--><input class="oxd-input oxd-input--active">
+</div>
+`;
+
 exports[`Input.vue should renders OXD Input with custom color 1`] = `
 <div class="input-outer-wrapper">
   <!-- Inline label slot -->

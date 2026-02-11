@@ -16,3 +16,19 @@ exports[`TreeSelect.vue renders OXD Tree Select 1`] = `
   <!--v-if-->
 </div>
 `;
+
+exports[`TreeSelect.vue should render topOfInput slot when provided 1`] = `
+<div class="oxd-multiselect-wrapper">
+  <div class="oxd-select-text oxd-select-text--active" tabindex="0">
+    <!-- Inline label slot -->
+    <div class="oxd-select-text--inline-label"><span class="test-label">Test Label</span></div><!-- Input content - aligns to bottom when inline label is present -->
+    <div class="oxd-select-text-input oxd-select-text--has-inline-label">
+      <div class="select-placeholder"></div><input type="text" readonly="" tabindex="-1">
+    </div>
+    <div class="oxd-select-text--after">
+      <div class="oxd-select-text--arrow"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill"></i></div>
+    </div>
+  </div>
+  <!--v-if-->
+</div>
+`;

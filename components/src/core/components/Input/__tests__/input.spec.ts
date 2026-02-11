@@ -104,4 +104,50 @@ describe('Input.vue', () => {
     });
     expect(wrapper.find('.input-text-field-icon').exists()).toBe(false);
   });
+
+  it('should render topOfInput slot when provided', () => {
+    const wrapper = mount(Input, {
+      slots: {
+        topOfInput: '<span class="test-label">Test Label</span>',
+      },
+    });
+    const inlineLabel = wrapper.find('.oxd-textarea--inline-label');
+    expect(inlineLabel.exists()).toBe(true);
+    expect(inlineLabel.text()).toBe('Test Label');
+    expect(wrapper.html()).toMatchSnapshot();
+  });
+
+  it('should not render topOfInput slot when not provided', () => {
+    const wrapper = mount(Input, {});
+    const inlineLabel = wrapper.find('.oxd-textarea--inline-label');
+    expect(inlineLabel.exists()).toBe(false);
+  });
+
+  it('should apply has-inline-label class when topOfInput slot is provided', () => {
+    const wrapper = mount(Input, {
+      slots: {
+        topOfInput: '<span>Label</span>',
+      },
+    });
+    const outerWrapper = wrapper.find('.input-outer-wrapper');
+    expect(outerWrapper.classes()).toContain('input-outer-wrapper--has-inline-label');
+  });
+
+  it('should not apply has-inline-label class when topOfInput slot is not provided', () => {
+    const wrapper = mount(Input, {});
+    const outerWrapper = wrapper.find('.input-outer-wrapper');
+    expect(outerWrapper.classes()).not.toContain('input-outer-wrapper--has-inline-label');
+  });
+
+  it('should render topOfInput slot content correctly', () => {
+    const wrapper = mount(Input, {
+      slots: {
+        topOfInput: '<span class="custom-label">Custom Inline Label</span>',
+      },
+    });
+    const inlineLabel = wrapper.find('.oxd-textarea--inline-label');
+    const customLabel = inlineLabel.find('.custom-label');
+    expect(customLabel.exists()).toBe(true);
+    expect(customLabel.text()).toBe('Custom Inline Label');
+  });
 });

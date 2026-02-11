@@ -339,4 +339,57 @@ describe('TreeSelect.vue', () => {
     const chip = wrapper.find('.selected-count-chip');
     expect(chip.exists()).toBe(true);
   });
+
+  it('should render topOfInput slot when provided', () => {
+    const wrapper = mount(TreeSelect, {
+      props: { options },
+      slots: {
+        topOfInput: '<span class="test-label">Test Label</span>',
+      },
+    });
+    const inlineLabel = wrapper.find('.oxd-select-text--inline-label');
+    expect(inlineLabel.exists()).toBe(true);
+    expect(inlineLabel.text()).toBe('Test Label');
+    expect(wrapper.html()).toMatchSnapshot();
+  });
+
+  it('should not render topOfInput slot when not provided', () => {
+    const wrapper = mount(TreeSelect, {
+      props: { options },
+    });
+    const inlineLabel = wrapper.find('.oxd-select-text--inline-label');
+    expect(inlineLabel.exists()).toBe(false);
+  });
+
+  it('should apply has-inline-label class when topOfInput slot is provided', () => {
+    const wrapper = mount(TreeSelect, {
+      props: { options },
+      slots: {
+        topOfInput: '<span>Label</span>',
+      },
+    });
+    const selectTextInput = wrapper.find('.oxd-select-text-input');
+    expect(selectTextInput.classes()).toContain('oxd-select-text--has-inline-label');
+  });
+
+  it('should not apply has-inline-label class when topOfInput slot is not provided', () => {
+    const wrapper = mount(TreeSelect, {
+      props: { options },
+    });
+    const selectTextInput = wrapper.find('.oxd-select-text-input');
+    expect(selectTextInput.classes()).not.toContain('oxd-select-text--has-inline-label');
+  });
+
+  it('should render topOfInput slot content correctly', () => {
+    const wrapper = mount(TreeSelect, {
+      props: { options },
+      slots: {
+        topOfInput: '<span class="custom-label">Custom Inline Label</span>',
+      },
+    });
+    const inlineLabel = wrapper.find('.oxd-select-text--inline-label');
+    const customLabel = inlineLabel.find('.custom-label');
+    expect(customLabel.exists()).toBe(true);
+    expect(customLabel.text()).toBe('Custom Inline Label');
+  });
 });
