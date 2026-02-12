@@ -92,7 +92,7 @@ export default defineComponent({
         ],
       },
       {id: 'pak', label: 'Pakistan'},
-      {id: 'nz', label: 'New zeland'},
+      {id: 'nz', label: 'New Zealand'},
       {id: 'sa', label: 'South Africa'},
       {id: 'china', label: 'China'},
     ] as Array<OptionProp>;

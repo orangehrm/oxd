@@ -2809,7 +2809,7 @@ export const oxdDollarEaring: icon = {
 <path style="fill:currentColor" d="M6 10H3H1.14286C1.0945 10 1.04685 10.0044 1.00008 10.0126C1.00684 10.5591 1.45193 11 2 11H2.2198H2.28571H6V10Z"/>
 <path style="fill:currentColor" d="M11 10H6V11H7H10H11V10Z"/>
 </svg>`,
-}
+};
 
 export const oxdWorksite: icon = {
   name: 'oxd-worksite',
@@ -2826,7 +2826,7 @@ export const oxdWorksite: icon = {
 <path style="fill:currentColor" d="M10.5 8C10.2239 8 10 8.22386 10 8.5V9.5C10 9.77614 10.2239 10 10.5 10H11.5C11.7761 10 12 9.77614 12 9.5V8.5C12 8.22386 11.7761 8 11.5 8H10.5Z" fill="black"/>
 <path style="fill:currentColor" d="M2 1C2 0.447716 2.44771 0 3 0H13C13.5523 0 14 0.447715 14 1V15C14 15.5523 13.5523 16 13 16H3C2.44772 16 2 15.5523 2 15V1ZM13 1L3 1V15H6V12.5C6 12.2239 6.22386 12 6.5 12H9.5C9.77614 12 10 12.2239 10 12.5V15H13V1Z" fill="black"/>
 </svg>`
-}
+};
 
 export const oxdBookmark: icon = {
   name: 'oxd-bookmark',
@@ -2834,7 +2834,7 @@ export const oxdBookmark: icon = {
 <path style="fill:currentColor" d="M2 2C2 0.895431 2.89543 0 4 0H12C13.1046 0 14 0.89543 14 2V15.5C14 15.6844 13.8985 15.8538 13.7359 15.9408C13.5733 16.0278 13.3761 16.0183 13.2226 15.916L8 13.1009L2.77735 15.916C2.62392 16.0183 2.42665 16.0278 2.26407 15.9408C2.10149 15.8538 2 15.6844 2 15.5V2ZM4 1C3.44772 1 3 1.44772 3 2V14.5657L7.72265 12.084C7.8906 11.972 8.1094 11.972 8.27735 12.084L13 14.5657V2C13 1.44772 12.5523 1 12 1H4Z" fill="black"/>
 <path style="fill:currentColor" d="M8 4C8.27614 4 8.5 4.22386 8.5 4.5V6H10C10.2761 6 10.5 6.22386 10.5 6.5C10.5 6.77614 10.2761 7 10 7H8.5V8.5C8.5 8.77614 8.27614 9 8 9C7.72386 9 7.5 8.77614 7.5 8.5V7H6C5.72386 7 5.5 6.77614 5.5 6.5C5.5 6.22386 5.72386 6 6 6H7.5V4.5C7.5 4.22386 7.72386 4 8 4Z" fill="black"/>
 </svg>`
-}
+};
 
 export const oxdSchedule: icon = {
   name: 'oxd-schedule',
@@ -2857,7 +2857,7 @@ export const oxdSchedule: icon = {
 </clipPath>
 </defs>
 </svg>`
-}
+};
 
 const icons: Icons = {
   'oxd-likes': oxdLikes,

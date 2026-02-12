@@ -71,7 +71,7 @@
   position: relative;
   width: 100%;
 
-  .oxd-textarea--inline-label {
+  .oxd-input--inline-label {
     position: absolute;
     top: $oxd-inline-label-top;
     left: $oxd-inline-label-left;
@@ -81,10 +81,15 @@
     z-index: 1;
   }
 
+  &.input-outer .oxd-input--inline-label {
+    // Icon area: padding (left) + icon size + padding (right) + divider border width
+    left: calc(#{$oxd-inline-label-left} + #{$oxd-input-icon-padding} + #{$oxd-input-icon-size} + #{$oxd-input-icon-padding} + 1px);
+  }
+
   &--has-inline-label {
     .oxd-input,
     .oxd-input--with-icon {
-      padding-top: 18px;
+      padding-top: calc(#{$oxd-inline-label-top} + #{$oxd-inline-label-font-size} + 2px);
       padding-bottom: 4px;
     }
   }

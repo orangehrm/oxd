@@ -1,6 +1,7 @@
 import Input from '@orangehrm/oxd/core/components/Input/Input';
 import InputEvents from './InputEvents.story.vue';
 import InputTopOfInput from './InputTopOfInput.story.vue';
+import InputTopOfInputWithIcon from './InputTopOfInputWithIcon.story.vue';
 
 export default {
   title: 'Inputs/Text',
@@ -190,6 +191,8 @@ Events.parameters = {
 };
 
 export const TopOfInput = () => InputTopOfInput;
+
+export const TopOfInputWithIcon = () => InputTopOfInputWithIcon;
 
 const openFacebookTab = function() {
   window.open('https://www.facebook.com/OrangeHRM/', "_blank");

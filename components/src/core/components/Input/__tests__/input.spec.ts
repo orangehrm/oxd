@@ -111,7 +111,7 @@ describe('Input.vue', () => {
         topOfInput: '<span class="test-label">Test Label</span>',
       },
     });
-    const inlineLabel = wrapper.find('.oxd-textarea--inline-label');
+    const inlineLabel = wrapper.find('.oxd-input--inline-label');
     expect(inlineLabel.exists()).toBe(true);
     expect(inlineLabel.text()).toBe('Test Label');
     expect(wrapper.html()).toMatchSnapshot();
@@ -119,7 +119,7 @@ describe('Input.vue', () => {
 
   it('should not render topOfInput slot when not provided', () => {
     const wrapper = mount(Input, {});
-    const inlineLabel = wrapper.find('.oxd-textarea--inline-label');
+    const inlineLabel = wrapper.find('.oxd-input--inline-label');
     expect(inlineLabel.exists()).toBe(false);
   });
 
@@ -145,7 +145,7 @@ describe('Input.vue', () => {
         topOfInput: '<span class="custom-label">Custom Inline Label</span>',
       },
     });
-    const inlineLabel = wrapper.find('.oxd-textarea--inline-label');
+    const inlineLabel = wrapper.find('.oxd-input--inline-label');
     const customLabel = inlineLabel.find('.custom-label');
     expect(customLabel.exists()).toBe(true);
     expect(customLabel.text()).toBe('Custom Inline Label');

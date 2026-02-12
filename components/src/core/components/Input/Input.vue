@@ -2,7 +2,7 @@
   <div class="input-outer-wrapper"
     :class="[outerClasses, { 'input-outer-wrapper--has-inline-label': $slots.topOfInput }]">
     <!-- Inline label slot -->
-    <div v-if="$slots.topOfInput" class="oxd-textarea--inline-label">
+    <div v-if="$slots.topOfInput" class="oxd-input--inline-label">
       <slot name="topOfInput"></slot>
     </div>
     <div v-if="imageIcon" class="input-text-field-icon">
