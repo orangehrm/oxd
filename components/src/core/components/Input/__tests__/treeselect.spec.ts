@@ -394,7 +394,7 @@ describe('TreeSelect.vue', () => {
     expect(customLabel.text()).toBe('Custom Inline Label');
   });
 
-  describe('showAllWhenAllSelected prop', () => {
+  describe('allSelectedText prop', () => {
     const getAllOptionIds = (opts: OptionProp[]): string[] => {
       const ids: string[] = [];
       opts.forEach(opt => {
@@ -406,12 +406,12 @@ describe('TreeSelect.vue', () => {
       return ids;
     };
 
-    it('should display "All" when showAllWhenAllSelected is true and all options are selected', async () => {
+    it('should display custom text when allSelectedText is set and all options are selected', async () => {
       const allIds = getAllOptionIds(options);
       const wrapper = mount(TreeSelect, {
         props: {
           options,
-          showAllWhenAllSelected: true,
+          allSelectedText: 'All',
           modelValue: allIds,
         },
         global: {
@@ -426,12 +426,12 @@ describe('TreeSelect.vue', () => {
       expect(selectText.props('value')).toBe('All');
     });
 
-    it('should not display "All" when showAllWhenAllSelected is false even if all options are selected', async () => {
+    it('should not display custom text when allSelectedText is empty string even if all options are selected', async () => {
       const allIds = getAllOptionIds(options);
       const wrapper = mount(TreeSelect, {
         props: {
           options,
-          showAllWhenAllSelected: false,
+          allSelectedText: '',
           modelValue: allIds,
         },
         global: {
@@ -447,11 +447,11 @@ describe('TreeSelect.vue', () => {
       expect(selectText.props('value')).toBe('Parent 1,');
     });
 
-    it('should not display "All" when showAllWhenAllSelected is true but not all options are selected', async () => {
+    it('should not display custom text when allSelectedText is set but not all options are selected', async () => {
       const wrapper = mount(TreeSelect, {
         props: {
           options,
-          showAllWhenAllSelected: true,
+          allSelectedText: 'All',
           modelValue: ['1', '1-1'],
         },
         global: {
@@ -467,12 +467,12 @@ describe('TreeSelect.vue', () => {
       expect(selectText.props('value')).toBe('Parent 1,');
     });
 
-    it('should hide count chip when showAllWhenAllSelected is true and all options are selected', async () => {
+    it('should hide count chip when allSelectedText is set and all options are selected', async () => {
       const allIds = getAllOptionIds(options);
       const wrapper = mount(TreeSelect, {
         props: {
           options,
-          showAllWhenAllSelected: true,
+          allSelectedText: 'All',
           modelValue: allIds,
         },
       });
@@ -482,11 +482,11 @@ describe('TreeSelect.vue', () => {
       expect(chip.exists()).toBe(false);
     });
 
-    it('should show count chip when showAllWhenAllSelected is true but not all options are selected', async () => {
+    it('should show count chip when allSelectedText is set but not all options are selected', async () => {
       const wrapper = mount(TreeSelect, {
         props: {
           options,
-          showAllWhenAllSelected: true,
+          allSelectedText: 'All',
           modelValue: ['1', '1-1', '1-2'],
         },
       });
@@ -496,11 +496,11 @@ describe('TreeSelect.vue', () => {
       expect(chip.exists()).toBe(true);
     });
 
-    it('should still emit correct modelValue when showAllWhenAllSelected is true and all options are selected', async () => {
+    it('should still emit correct modelValue when allSelectedText is set and all options are selected', async () => {
       const wrapper = mount(TreeSelect, {
         props: {
           options,
-          showAllWhenAllSelected: true,
+          allSelectedText: 'All',
         },
       });
       wrapper.find('.oxd-select-text').trigger('click');
@@ -525,11 +525,11 @@ describe('TreeSelect.vue', () => {
       expect(selectedIds).not.toContain('2');
     });
 
-    it('should display "All" after selecting all options via select all checkbox', async () => {
+    it('should display custom text after selecting all options via select all checkbox', async () => {
       const wrapper = mount(TreeSelect, {
         props: {
           options,
-          showAllWhenAllSelected: true,
+          allSelectedText: 'All',
         },
         global: {
           mocks: {

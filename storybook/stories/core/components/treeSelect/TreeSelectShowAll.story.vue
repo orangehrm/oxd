@@ -9,7 +9,7 @@
       :placeholder="'Select options'"
       :disable-unchecked-options="false"
       :remove-all-selection="false"
-      :show-all-when-all-selected="true"
+      :all-selected-text="'All'"
       @update:modelValue="updateSelectedIdsFun"
       :modelValue="selectedIds"
     >

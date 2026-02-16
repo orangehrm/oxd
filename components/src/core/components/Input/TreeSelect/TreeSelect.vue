@@ -7,7 +7,7 @@
       v-bind="$attrs"
       :disabled="disabled"
       :readonly="readonly"
-      :value="showAllWhenAllSelected && isAllSelected ? $vt('All') : displayValue"
+      :value="allSelectedText && isAllSelected ? allSelectedText : displayValue"
       :placeholder="placeholder"
       :dropdownOpened="dropdownOpen"
       @blur="onBlur"
@@ -22,7 +22,7 @@
         <slot name="topOfInput"></slot>
       </template>
       <template #afterInput>
-        <div v-if="selectedIdsLengthComputed > 1 && !(showAllWhenAllSelected && isAllSelected)" class="selected-count-chip">
+        <div v-if="selectedIdsLengthComputed > 1 && !(allSelectedText && isAllSelected)" class="selected-count-chip">
           <oxd-chip
             v-if="String(selectedIdsLengthComputed - 1).length == 1"
             :label="'&nbsp;' + '+' + (selectedIdsLengthComputed - 1) + '&nbsp;'"
@@ -252,9 +252,12 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
-    showAllWhenAllSelected: {
-      type: Boolean,
-      default: false,
+    allSelectedText: {
+      type: String,
+      default: '',
+      validator: function(value: string) {
+        return value.length <= 100;
+      },
     },
     dropdownPosition: {
       type: String,
@@ -775,6 +778,7 @@ export default defineComponent({
       isAllSelected,
       expandedIdsObject,
       selectedIdsLengthComputed,
+      displayValue,
       getOptionLabelStyle,
       selectOptionsOnCheckbox,
       expandIconClicked,
@@ -787,7 +791,6 @@ export default defineComponent({
       onCloseDropdown,
       onToggleDropdown,
       getPlaceholderValue,
-      displayValue,
       keyUpEnterOnCheckbox,
     };
   },
