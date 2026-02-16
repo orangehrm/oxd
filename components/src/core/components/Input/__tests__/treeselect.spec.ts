@@ -1,4 +1,4 @@
-import {mount} from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import TreeSelect from '@orangehrm/oxd/core/components/Input/TreeSelect/TreeSelect.vue';
 import { BOTTOM } from '@orangehrm/oxd/core/components/Input/types';
 import { OptionProp } from '@orangehrm/oxd/core/components/Input/TreeSelect/type';
@@ -38,7 +38,7 @@ const options = [
 describe('TreeSelect.vue', () => {
   it('renders OXD Tree Select', () => {
     const wrapper = mount(TreeSelect, {
-      props: {options},
+      props: { options },
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
@@ -444,7 +444,7 @@ describe('TreeSelect.vue', () => {
 
       const selectText = wrapper.findComponent({ name: 'oxd-select-text' });
       expect(selectText.props('value')).not.toBe('All');
-      expect(selectText.props('value')).toBe('Parent 1'); // Should show first selected option
+      expect(selectText.props('value')).toBe('Parent 1,');
     });
 
     it('should not display "All" when showAllWhenAllSelected is true but not all options are selected', async () => {
@@ -464,7 +464,7 @@ describe('TreeSelect.vue', () => {
 
       const selectText = wrapper.findComponent({ name: 'oxd-select-text' });
       expect(selectText.props('value')).not.toBe('All');
-      expect(selectText.props('value')).toBe('Parent 1');
+      expect(selectText.props('value')).toBe('Parent 1,');
     });
 
     it('should hide count chip when showAllWhenAllSelected is true and all options are selected', async () => {

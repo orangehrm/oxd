@@ -691,7 +691,7 @@ export default defineComponent({
     };
 
     const displayValue = computed(() => {
-      return getPlaceholderValue();
+      return getPlaceholderValue() + (selectedIdsLengthComputed.value > 1 ? ',' : '');
     });
 
     const keyUpEnterOnCheckbox = ($e: KeyboardEvent, option: Option) => {

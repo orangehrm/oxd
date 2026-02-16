@@ -28,7 +28,7 @@ export default defineComponent({
   },
   setup() {
     const options = ref<OptionProp[]>([]);
-    options.value = [   
+    options.value = [
       {
         id: '1',
         label: 'Option 1',
