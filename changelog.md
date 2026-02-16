@@ -1,3 +1,5 @@
+2025-02-16 - 03a24eacc0c10d61ba5c26b934ec433d93c6b386 - components/src/core/components/Input/TreeSelect/TreeSelect.vue - Show "All" when all the options are selected in the treeselect input
+
 2025-02-06 - 552b3ef11cf0f00012f4063f6a9f78e9ea495efb - components/src/core/components/Icon/icons.ts - Add oxd-schedule icon
 
 2025-01-30 - fddf1d704af2866ce27dbe3388093eb2a04c976a - components/src/core/components/Icon/icons.ts - Add oxd-worksite, oxd-bookmark
