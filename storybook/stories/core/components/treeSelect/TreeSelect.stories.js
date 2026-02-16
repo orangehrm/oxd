@@ -1,6 +1,7 @@
 import TreeSelect from './TreeSelect.story.vue';
 import TreeSelectNarrow from './TreeSelectNarrow.story.vue';
 import TreeSelectTopOfInput from './TreeSelectTopOfInput.story.vue';
+import TreeSelectShowAll from './TreeSelectShowAll.story.vue';
 
 export default {
   title: 'Inputs/TreeSelect',
@@ -38,3 +39,13 @@ const TopOfInputTemplate = (args) => ({
 });
 
 export const TopOfInput = TopOfInputTemplate.bind({});
+
+const ShowAllTemplate = (args) => ({
+  setup() {
+    return {args};
+  },
+  components: {TreeSelectShowAll},
+  template: `<TreeSelectShowAll/>`,
+});
+
+export const ShowAllWhenAllSelected = ShowAllTemplate.bind({});
