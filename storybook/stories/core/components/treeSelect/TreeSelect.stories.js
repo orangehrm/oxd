@@ -49,3 +49,23 @@ const ShowAllTemplate = (args) => ({
 });
 
 export const ShowAllWhenAllSelected = ShowAllTemplate.bind({});
+
+ShowAllWhenAllSelected.parameters = {
+  docs: {
+    source: {
+      code: `<oxd-tree-select-input
+  :select-parents-on-child-selection="true"
+  :count-topmost-parents="true"
+  :options="options"
+  :disabled="false"
+  :readonly="false"
+  :placeholder="'Select options'"
+  :disable-unchecked-options="false"
+  :remove-all-selection="false"
+  :all-selected-text="'All'"
+  :modelValue="selectedIds"
+  @update:modelValue="updateSelectedIdsFun"
+/>`,
+    },
+  },
+};

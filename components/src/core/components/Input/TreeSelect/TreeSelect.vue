@@ -7,7 +7,7 @@
       v-bind="$attrs"
       :disabled="disabled"
       :readonly="readonly"
-      :value="allSelectedText && isAllSelected ? allSelectedText : displayValue"
+      :value="displayValue"
       :placeholder="placeholder"
       :dropdownOpened="dropdownOpen"
       @blur="onBlur"
@@ -158,6 +158,7 @@
 import {computed, defineComponent, ref, PropType, watch} from 'vue';
 
 import SelectText from '../Select/SelectText.vue';
+import useTranslate from '../../../../composables/useTranslate';
 import SelectDropdown from '../Select/SelectDropdown.vue';
 import IconVue from '../../Button/Icon.vue';
 import CheckboxInputVue from '../CheckboxInput.vue';
@@ -269,6 +270,7 @@ export default defineComponent({
   },
 
   setup: function(props, {emit}) {
+    const {$t} = useTranslate();
     const selectedIdsObject = ref<IdsObject>({});
     const expandedIdsObject = ref<IdsObject>({});
     const optionsArr = ref<Option[]>([]);
@@ -694,6 +696,9 @@ export default defineComponent({
     };
 
     const displayValue = computed(() => {
+      if (props.allSelectedText && isAllSelected.value) {
+        return $t(props.allSelectedText);
+      }
       return getPlaceholderValue() + (selectedIdsLengthComputed.value > 1 ? ',' : '');
     });
 
