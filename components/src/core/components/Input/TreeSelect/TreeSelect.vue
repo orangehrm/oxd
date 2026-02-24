@@ -1,5 +1,6 @@
 <template>
   <div
+    ref="inputContainerRef"
     v-click-outside="closeDropdownOnOutsideClick"
     class="oxd-multiselect-wrapper"
   >
@@ -22,14 +23,14 @@
         <slot name="topOfInput"></slot>
       </template>
       <template #afterInput>
-        <div v-if="selectedIdsLengthComputed > 1 && !(allSelectedText && isAllSelected)" class="selected-count-chip">
+        <div v-if="remainingCount > 0 && !(allSelectedText && isAllSelected)" class="selected-count-chip">
           <oxd-chip
-            v-if="String(selectedIdsLengthComputed - 1).length == 1"
-            :label="'&nbsp;' + '+' + (selectedIdsLengthComputed - 1) + '&nbsp;'"
+            v-if="String(remainingCount).length == 1"
+            :label="'&nbsp;' + '+' + remainingCount + '&nbsp;'"
           ></oxd-chip>
           <oxd-chip
-            v-if="String(selectedIdsLengthComputed - 1).length > 1"
-            :label="'+' + (selectedIdsLengthComputed - 1)"
+            v-if="String(remainingCount).length > 1"
+            :label="'+' + remainingCount"
           ></oxd-chip>
         </div>
       </template>
@@ -155,7 +156,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, ref, PropType, watch} from 'vue';
+import {computed, defineComponent, ref, PropType, watch, nextTick, onMounted} from 'vue';
 
 import SelectText from '../Select/SelectText.vue';
 import useTranslate from '../../../../composables/useTranslate';
@@ -171,7 +172,49 @@ import clickOutsideDirective from '@orangehrm/oxd/directives/click-outside';
 import Divider from '@orangehrm/oxd/core/components/Divider/Divider';
 import Chip from '../../Chip/Chip.vue';
 import Button from '../../Button/Button.vue';
+import {memoize} from 'lodash-es';
 import {Option, OptionProp, IdsObject, NOT_FOUND} from './type';
+
+const CHIP_RESERVE_WIDTH = 52;
+
+/**
+ * Pure calculation: how many option labels fit in availableWidth when rendered
+ * with the given font. Used with memoize to avoid repeated canvas measurement.
+ */
+function getVisibleCount(
+  optionLabels: string[],
+  availableWidth: number,
+  fontString: string,
+): number {
+  if (optionLabels.length === 0) return 0;
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return optionLabels.length;
+  ctx.font = fontString;
+  let totalWidth = 0;
+  let visibleCount = 0;
+  for (let i = 0; i < optionLabels.length; i++) {
+    const itemText = i > 0 ? `, ${optionLabels[i]}` : optionLabels[i];
+    const itemWidth = ctx.measureText(itemText).width;
+    const remainingItems = optionLabels.length - (i + 1);
+    const needsChip = remainingItems > 0;
+    const requiredWidth =
+      totalWidth + itemWidth + (needsChip ? CHIP_RESERVE_WIDTH : 0);
+    if (requiredWidth <= availableWidth) {
+      totalWidth += itemWidth;
+      visibleCount++;
+    } else {
+      break;
+    }
+  }
+  return visibleCount === 0 && optionLabels.length > 0 ? 1 : visibleCount;
+}
+
+const getVisibleCountMemoized = memoize(
+  getVisibleCount,
+  (optionLabels: string[], availableWidth: number, fontString: string) =>
+    `${availableWidth};${fontString};${optionLabels.join('\0')}`,
+);
 
 export default defineComponent({
   name: 'oxd-tree-select-input',
@@ -276,6 +319,8 @@ export default defineComponent({
     const optionsArr = ref<Option[]>([]);
     const dropdownOpen = ref<boolean>(false);
     const isAllSelected = ref<boolean>(false);
+    const inputContainerRef = ref<HTMLElement | null>(null);
+    const visibleItemsCount = ref<number>(0);
 
     const spreadOptions = () => {
       optionsArr.value = [...JSON.parse(JSON.stringify(props.options))];
@@ -668,38 +713,69 @@ export default defineComponent({
       }
     };
 
-    const findPlaceholderOption = (options: Option[]): Option | string => {
-      for (const option of options) {
-        if (
-          selectedIdsObject.value[option.id] &&
-          (props.countTopmostParents ? true : option._level > 1)
-        ) {
-          return option;
-        } else if (option.children ? option.children.length !== 0 : false) {
-          const result = findPlaceholderOption(option.children);
-          if (result !== NOT_FOUND && typeof result !== 'string') {
-            return result;
-          }
-        }
-      }
-      return NOT_FOUND;
-    };
+    const allSelectedOptions = computed((): Option[] => {
+      return selectedIdsComputed.value
+        .map(id => findOptionByOptionId(id, optionsArr.value))
+        .filter((option): option is Option => 
+          typeof option !== 'string' && 
+          (props.countTopmostParents || option._level > 1)
+        );
+    });
 
-    const getPlaceholderValue = () => {
-      let placeholderString = '';
-      const option = findPlaceholderOption(getLevelOneOptions());
-      if (typeof option !== 'string') {
-        placeholderString = option.label;
+    const calculateVisibleItems = () => {
+      const selectedOptions = allSelectedOptions.value;
+      if (selectedOptions.length === 0) {
+        visibleItemsCount.value = 0;
+        return;
       }
 
-      return placeholderString;
+      if (!inputContainerRef.value) {
+        visibleItemsCount.value = selectedOptions.length;
+        return;
+      }
+
+      const inputElement = inputContainerRef.value.querySelector(
+        '.oxd-select-text-input',
+      ) as HTMLElement;
+      if (!inputElement) {
+        visibleItemsCount.value = selectedOptions.length;
+        return;
+      }
+
+      const inputRect = inputElement.getBoundingClientRect();
+      const inputStyles = window.getComputedStyle(inputElement);
+      const paddingLeft = parseFloat(inputStyles.paddingLeft) || 0;
+      const paddingRight = parseFloat(inputStyles.paddingRight) || 0;
+      const availableWidth = inputRect.width - (paddingLeft + paddingRight);
+      const fontString = `${inputStyles.fontWeight || 'normal'} ${inputStyles.fontSize || '12px'} ${inputStyles.fontFamily || 'sans-serif'}`;
+
+      const optionLabels = selectedOptions.map(opt => opt.label);
+      visibleItemsCount.value = getVisibleCountMemoized(
+        optionLabels,
+        availableWidth,
+        fontString,
+      );
     };
+
+    const visibleSelectedOptions = computed(() => {
+      return allSelectedOptions.value.slice(0, visibleItemsCount.value);
+    });
+
+    const remainingCount = computed(() => {
+      return Math.max(0, allSelectedOptions.value.length - visibleItemsCount.value);
+    });
 
     const displayValue = computed(() => {
       if (props.allSelectedText && isAllSelected.value) {
         return $t(props.allSelectedText);
       }
-      return getPlaceholderValue() + (selectedIdsLengthComputed.value > 1 ? ',' : '');
+      
+      const visible = visibleSelectedOptions.value;
+      if (visible.length === 0) {
+        return '';
+      }
+      
+      return visible.map(option => option.label).join(', ');
     });
 
     const keyUpEnterOnCheckbox = ($e: KeyboardEvent, option: Option) => {
@@ -755,10 +831,17 @@ export default defineComponent({
     };
     init();
 
+    const recalculateVisible = () => {
+      nextTick(() => {
+        calculateVisibleItems();
+      });
+    };
+
     watch(
       () => props.options,
       () => {
         init();
+        recalculateVisible();
       },
     );
 
@@ -768,10 +851,27 @@ export default defineComponent({
         if (props.modelValue == null) {
           //when clicked reset in schema form
           init();
+          recalculateVisible();
         }
       },
       {
         immediate: true,
+      },
+    );
+
+    watch(
+      [selectedIdsComputed, allSelectedOptions],
+      () => {
+        recalculateVisible();
+      },
+    );
+
+    watch(
+      () => inputContainerRef.value,
+      (newVal) => {
+        if (newVal && selectedIdsComputed.value.length > 0) {
+          recalculateVisible();
+        }
       },
     );
 
@@ -784,6 +884,8 @@ export default defineComponent({
       expandedIdsObject,
       selectedIdsLengthComputed,
       displayValue,
+      inputContainerRef,
+      remainingCount,
       getOptionLabelStyle,
       selectOptionsOnCheckbox,
       expandIconClicked,
@@ -795,7 +897,6 @@ export default defineComponent({
       selectOptionOnlabelClick,
       onCloseDropdown,
       onToggleDropdown,
-      getPlaceholderValue,
       keyUpEnterOnCheckbox,
     };
   },
