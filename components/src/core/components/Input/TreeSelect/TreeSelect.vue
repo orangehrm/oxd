@@ -187,27 +187,31 @@ function getVisibleCount(
   fontString: string,
 ): number {
   if (optionLabels.length === 0) return 0;
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-  if (!ctx) return optionLabels.length;
-  ctx.font = fontString;
-  let totalWidth = 0;
-  let visibleCount = 0;
-  for (let i = 0; i < optionLabels.length; i++) {
-    const itemText = i > 0 ? `, ${optionLabels[i]}` : optionLabels[i];
-    const itemWidth = ctx.measureText(itemText).width;
-    const remainingItems = optionLabels.length - (i + 1);
-    const needsChip = remainingItems > 0;
-    const requiredWidth =
-      totalWidth + itemWidth + (needsChip ? CHIP_RESERVE_WIDTH : 0);
-    if (requiredWidth <= availableWidth) {
-      totalWidth += itemWidth;
-      visibleCount++;
-    } else {
-      break;
+  try {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return optionLabels.length;
+    ctx.font = fontString;
+    let totalWidth = 0;
+    let visibleCount = 0;
+    for (let i = 0; i < optionLabels.length; i++) {
+      const itemText = i > 0 ? `, ${optionLabels[i]}` : optionLabels[i];
+      const itemWidth = ctx.measureText(itemText).width;
+      const remainingItems = optionLabels.length - (i + 1);
+      const needsChip = remainingItems > 0;
+      const requiredWidth =
+        totalWidth + itemWidth + (needsChip ? CHIP_RESERVE_WIDTH : 0);
+      if (requiredWidth <= availableWidth) {
+        totalWidth += itemWidth;
+        visibleCount++;
+      } else {
+        break;
+      }
     }
+    return visibleCount === 0 && optionLabels.length > 0 ? 1 : visibleCount;
+  } catch {
+    return optionLabels.length;
   }
-  return visibleCount === 0 && optionLabels.length > 0 ? 1 : visibleCount;
 }
 
 const getVisibleCountMemoized = memoize(
