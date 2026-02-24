@@ -1,3 +1,5 @@
+2025-02-24 - c7d1ea6631b4a04a34ea3e440b33417a15547b2c - components/src/core/components/Input/TreeSelect/TreeSelect.vue - Improve tree-select input to show selected values as much as possible (not limited to one)
+
 2025-02-16 - 03a24eacc0c10d61ba5c26b934ec433d93c6b386 - components/src/core/components/Input/TreeSelect/TreeSelect.vue - Show "All" when all the options are selected in the treeselect input
 
 2025-02-06 - 552b3ef11cf0f00012f4063f6a9f78e9ea495efb - components/src/core/components/Icon/icons.ts - Add oxd-schedule icon
