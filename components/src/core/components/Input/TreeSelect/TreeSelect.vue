@@ -156,7 +156,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, ref, PropType, watch, nextTick, onMounted} from 'vue';
+import {computed, defineComponent, ref, PropType, watch, nextTick} from 'vue';
 
 import SelectText from '../Select/SelectText.vue';
 import useTranslate from '../../../../composables/useTranslate';
@@ -864,7 +864,7 @@ export default defineComponent({
     );
 
     watch(
-      [selectedIdsComputed, allSelectedOptions],
+      [selectedIdsComputed],
       () => {
         recalculateVisible();
       },
