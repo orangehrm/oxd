@@ -137,3 +137,10 @@ td {
   overflow-x: auto;
   padding: $oxd-dropdown-dropdown-inner-padding;
 }
+
+:deep(
+    .oxd-select-text:has(> .oxd-select-text--has-inline-label)
+      .selected-count-chip
+  ) {
+  padding-top: 15px !important;
+}
