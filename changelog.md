@@ -1,3 +1,5 @@
+2026-03-03 - a15cfd91d588439872f49864cc912bc1628b45d9 - add a padding to count chip if there is inline label
+
 2025-02-24 - c7d1ea6631b4a04a34ea3e440b33417a15547b2c - components/src/core/components/Input/TreeSelect/TreeSelect.vue - Improve tree-select input to show selected values as much as possible (not limited to one)
 
 2025-02-16 - 03a24eacc0c10d61ba5c26b934ec433d93c6b386 - components/src/core/components/Input/TreeSelect/TreeSelect.vue - Show "All" when all the options are selected in the treeselect input
