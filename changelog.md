@@ -1,3 +1,5 @@
+2026-03-05 - 9a50f9b95e84621d97b2a0426726cf839339d0ad - components/src/core/components/Icon/icons.ts - Add 'oxd-check-circle-filled','oxd-shield-check-filled','oxd-person-badge-filled','oxd-laptop-filled','oxd-capslock-filled' & 'oxd-e-sign-pen' icons
+
 2026-03-03 - a15cfd91d588439872f49864cc912bc1628b45d9 - add a padding to count chip if there is inline label
 
 2025-02-24 - c7d1ea6631b4a04a34ea3e440b33417a15547b2c - components/src/core/components/Input/TreeSelect/TreeSelect.vue - Improve tree-select input to show selected values as much as possible (not limited to one)
