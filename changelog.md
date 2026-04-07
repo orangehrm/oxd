@@ -1,3 +1,5 @@
+2026-04-07 - b3201baebce843cf64c8471ad355cb08f319b591 - components/src/core/components/Icon/icons.ts - Add oxd-download-alt icon
+
 2026-03-23 - f43704c9a2cc99876504c0a4a8d506a783eb270d - components/src/core/components/Input/TreeSelect/TreeSelect.vue - add emit on done button click in tree select component
 
 2026-03-05 - 9a50f9b95e84621d97b2a0426726cf839339d0ad - components/src/core/components/Icon/icons.ts - Add 'oxd-check-circle-filled','oxd-shield-check-filled','oxd-person-badge-filled','oxd-laptop-filled','oxd-capslock-filled' & 'oxd-e-sign-pen' icons
@@ -18,13 +20,13 @@
 
 2025-12-23 - 4883d072289419a163910cde18ec7e5cb69d9dfb - components/src/core/components/Calendar/calendar.scss - Added styles to show today's date with orange background when it is selected even on disabled blackout dates.
 
-2025-12-17 - f1ffdb28fcab2b3a9b07da6336ce1eb9da02a3d0 - components/src/core/components/Input/RadioInput.vue, components/src/core/components/Input/RadioGroup.vue, components/src/core/components/Input/radio-input.scss components/src/core/components/Input/_variables.scss - Add optional secondaryLabel prop to radio buttons for displaying additional information
+2025-12-17 - f1ffdb28fcab2b3a9b07da6336ce1eb9da02a3d0 - components/src/core/components/Input/RadioInput.vue, components/src/core/components/Input/RadioGroup.vue, components/src/core/components/Input/radio-input.scss components/src/core/components/Input/\_variables.scss - Add optional secondaryLabel prop to radio buttons for displaying additional information
 
 2025-12-16 - d3b4f1f2553967a334ce5414eb3f83c12d19c368 - components/src/core/components/Icon/icons.ts - Add oxd-slash-circle icon
 
 2025-11-30 - 30957e24f2be744d6a1987c8951e1b083b0a57c5 - components/src/core/components/Icon/icons.ts - Add oxd-swap icon
 
-2025-11-25 - eb7604886ab6816c6b0939385d6157eb53a2cb85 - components/src/core/components/TinyMce/skins/lightgray/content.module.css -  Added Arial as default font for TinyMce
+2025-11-25 - eb7604886ab6816c6b0939385d6157eb53a2cb85 - components/src/core/components/TinyMce/skins/lightgray/content.module.css - Added Arial as default font for TinyMce
 
 2025-11-19 - dfead436dde5cc128316cb99b802ebd4704fe7b6 - components/src/core/components/Input/MultiSelect/MultiSelectInput.vue - Support keyboard navigation of options
 
@@ -48,7 +50,7 @@
 
 2025-10-16 - be4112ff7db4c4b376e3cef04ec0c0275464841e - components/src/core/components/Input/Select/events-mixin.ts - Change scrollToView behaviour as auto.
 
-2025-10-16 - ba91e7ae77499398f5a15471901d329102ac1cae - components/src/core/components/Input/Select/SelectInput.vue, components/src/core/components/Input/Select/events-mixin.ts - Enhanced dropdown component to auto-scroll to the selected option and add a new prop called scrollToOption to auto-scroll to given specific option. 
+2025-10-16 - ba91e7ae77499398f5a15471901d329102ac1cae - components/src/core/components/Input/Select/SelectInput.vue, components/src/core/components/Input/Select/events-mixin.ts - Enhanced dropdown component to auto-scroll to the selected option and add a new prop called scrollToOption to auto-scroll to given specific option.
 
 2025-10-03 - f5a0e2aaab498f23f7c8b726336a2f5b221ab26a - components/src/core/components/Icon/icons.ts - Add oxd-delete icon
 
