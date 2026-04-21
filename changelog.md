@@ -1,3 +1,5 @@
+2026-04-21 - f60e37da2af20efcd8fe44c18a5d73e363604574 - components/src/core/components/Icon/icons.ts - Add oxd-xlsx icon
+
 2026-04-07 - b3201baebce843cf64c8471ad355cb08f319b591 - components/src/core/components/Icon/icons.ts - Add oxd-download-alt icon
 
 2026-03-23 - f43704c9a2cc99876504c0a4a8d506a783eb270d - components/src/core/components/Input/TreeSelect/TreeSelect.vue - add emit on done button click in tree select component
