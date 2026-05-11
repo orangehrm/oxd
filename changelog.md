@@ -1,3 +1,5 @@
+2026-05-11 - b5da1204b0c461430cf39d09281ae1be775237f3 - components/src/core/components/Icon/icons.ts - Add oxd-roster-menu icon
+
 2026-04-24 - 49a6d061f0d7bec6cdfae264e8953a84db8a39ba - components/src/core/components/Icon/icons.ts - Add oxd-lightning icon
 
 2026-04-21 - f60e37da2af20efcd8fe44c18a5d73e363604574 - components/src/core/components/Icon/icons.ts - Add oxd-xlsx icon
