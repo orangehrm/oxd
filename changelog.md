@@ -1,3 +1,5 @@
+2026-05-25 - 0fa5c01eb2414a047ac7f54effdd54ec7469ef8c - components/src/core/components/Icon/icons.ts - Add oxd-record-edit and oxd-round-off icons
+
 2026-05-11 - b5da1204b0c461430cf39d09281ae1be775237f3 - components/src/core/components/Icon/icons.ts - Add oxd-roster-menu icon
 
 2026-04-24 - 49a6d061f0d7bec6cdfae264e8953a84db8a39ba - components/src/core/components/Icon/icons.ts - Add oxd-lightning icon
