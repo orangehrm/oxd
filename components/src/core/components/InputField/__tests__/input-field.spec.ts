@@ -244,4 +244,65 @@ describe('InputField.vue', () => {
       'font-style: bold;',
     );
   });
+
+  const mountField = (props: Record<string, unknown>) =>
+    mount(InputField, {
+      props,
+      global: {provide: {[formKey as symbol]: mockFormAPI}},
+    });
+
+  it('associates the label with its control when no id is passed', () => {
+    const wrapper = mountField({label: 'First Name'});
+    const id = wrapper.find('input').attributes('id');
+    expect(id).toBeTruthy();
+    expect(wrapper.find('label').attributes('for')).toBe(id);
+  });
+
+  it('uses a consumer supplied id verbatim', () => {
+    const wrapper = mountField({label: 'First Name', id: 'first-name'});
+    expect(wrapper.find('input').attributes('id')).toBe('first-name');
+    expect(wrapper.find('label').attributes('for')).toBe('first-name');
+  });
+
+  it('generates a distinct id per instance', () => {
+    const first = mountField({label: 'First Name'});
+    const second = mountField({label: 'Last Name'});
+    expect(first.find('input').attributes('id')).not.toBe(
+      second.find('input').attributes('id'),
+    );
+  });
+
+  it.each(['checkboxgroup', 'radiogroup', 'radiopillgroup'])(
+    'names a %s group without orphaning the label',
+    type => {
+      // `name` is required by radiopillgroup; harmless for the others
+      const wrapper = mountField({
+        label: 'Job Titles',
+        type,
+        options: [],
+        name: 'job-titles',
+      });
+      const label = wrapper.find('label');
+
+      // each member owns `${id}_${option.id}`, so nothing owns the field id —
+      // a `for` here would point at no element at all
+      expect(label.attributes('for')).toBeUndefined();
+
+      // the group is named by pointing at the label instead
+      const group = wrapper.find('[role="group"]');
+      expect(group.exists()).toBe(true);
+      expect(group.attributes('aria-labelledby')).toBe(
+        label.attributes('id'),
+      );
+      expect(label.attributes('id')).toBeTruthy();
+    },
+  );
+
+  it('does not apply group semantics to a single control', () => {
+    const wrapper = mountField({label: 'First Name', type: 'input'});
+    expect(wrapper.find('[role="group"]').exists()).toBe(false);
+    expect(wrapper.find('label').attributes('for')).toBe(
+      wrapper.find('input').attributes('id'),
+    );
+  });
 });

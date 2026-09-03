@@ -6,6 +6,7 @@
     :class="classes"
     @click="onClick"
     :tooltip="tooltipText"
+    :aria-label="accessibleName"
     :flow="flow"
   >
     <oxd-icon
@@ -13,6 +14,7 @@
       :size="size"
       :class="{'--disabled': disabled}"
       :name="name"
+      aria-hidden="true"
     />
   </button>
   <oxd-icon
@@ -91,6 +93,15 @@ export default defineComponent({
       return this.disabled && !this.showTooltipWhenDisabled
         ? null
         : this.$vt(this.tooltip);
+    },
+    // tooltip is a CSS-only [tooltip]::after and invisible to AT, so an
+    // icon-only button has no name. Reuse the tooltip text unless the
+    // consumer supplied one. Must NOT null out when disabled — a disabled
+    // control still needs a name. WCAG 4.1.2.
+    accessibleName(): string | null {
+      return (
+        (this.$attrs['aria-label'] as string) || this.$vt(this.tooltip) || null
+      );
     },
   },
 

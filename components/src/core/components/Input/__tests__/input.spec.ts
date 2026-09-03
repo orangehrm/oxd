@@ -130,13 +130,17 @@ describe('Input.vue', () => {
       },
     });
     const outerWrapper = wrapper.find('.input-outer-wrapper');
-    expect(outerWrapper.classes()).toContain('input-outer-wrapper--has-inline-label');
+    expect(outerWrapper.classes()).toContain(
+      'input-outer-wrapper--has-inline-label',
+    );
   });
 
   it('should not apply has-inline-label class when topOfInput slot is not provided', () => {
     const wrapper = mount(Input, {});
     const outerWrapper = wrapper.find('.input-outer-wrapper');
-    expect(outerWrapper.classes()).not.toContain('input-outer-wrapper--has-inline-label');
+    expect(outerWrapper.classes()).not.toContain(
+      'input-outer-wrapper--has-inline-label',
+    );
   });
 
   it('should render topOfInput slot content correctly', () => {
@@ -149,5 +153,24 @@ describe('Input.vue', () => {
     const customLabel = inlineLabel.find('.custom-label');
     expect(customLabel.exists()).toBe(true);
     expect(customLabel.text()).toBe('Custom Inline Label');
+  });
+
+  it('marks the icon image as decorative by default', () => {
+    const wrapper = mount(Input, {
+      props: {imageIcon: '@orangehrm/oxd/assets/images/facebook_logo_icon.svg'},
+    });
+    // alt="" is deliberate: the field already has a visible label, so the
+    // icon should be skipped rather than announced as its filename
+    expect(wrapper.find('img').attributes('alt')).toBe('');
+  });
+
+  it('lets the call site name a meaningful icon', () => {
+    const wrapper = mount(Input, {
+      props: {
+        imageIcon: '@orangehrm/oxd/assets/images/facebook_logo_icon.svg',
+        imageIconAlt: 'Facebook profile',
+      },
+    });
+    expect(wrapper.find('img').attributes('alt')).toBe('Facebook profile');
   });
 });

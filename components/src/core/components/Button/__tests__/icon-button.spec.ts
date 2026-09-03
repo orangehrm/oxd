@@ -62,4 +62,32 @@ describe('Button > Icon.vue', () => {
     });
     expect(wrapper.attributes('tooltip')).toBe('My Tooltip');
   });
+
+  it('exposes the tooltip as the accessible name', () => {
+    const wrapper = mount(IconButton, {
+      props: {name: 'trash', tooltip: 'Delete record'},
+    });
+    // tooltip is surfaced through a CSS [tooltip]::after, which assistive
+    // technology cannot see, so it has to be mirrored into a real name
+    expect(wrapper.attributes('aria-label')).toBe('Delete record');
+    expect(wrapper.find('i').attributes('aria-hidden')).toBe('true');
+  });
+
+  it('keeps its accessible name while disabled', () => {
+    const wrapper = mount(IconButton, {
+      props: {name: 'trash', tooltip: 'Delete record', disabled: true},
+    });
+    // the visible tooltip is suppressed when disabled, but a disabled
+    // control still needs a name
+    expect(wrapper.attributes('tooltip')).toBeUndefined();
+    expect(wrapper.attributes('aria-label')).toBe('Delete record');
+  });
+
+  it('lets a consumer supplied aria-label win over the tooltip', () => {
+    const wrapper = mount(IconButton, {
+      props: {name: 'trash', tooltip: 'Delete record'},
+      attrs: {'aria-label': 'Remove this row'},
+    });
+    expect(wrapper.attributes('aria-label')).toBe('Remove this row');
+  });
 });

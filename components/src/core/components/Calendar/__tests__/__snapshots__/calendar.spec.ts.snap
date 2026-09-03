@@ -2,7 +2,7 @@
 
 exports[`Calendar.vue renders OXD Calendar 1`] = `
 <div class="oxd-calendar-wrapper">
-  <div class="oxd-calendar-header"><button type="button" class="oxd-icon-button oxd-calendar-header-arrow" flow="top"><i class="oxd-svg-icon oxd-svg-icon--extra-small"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 451.847 451.847" style="transform:rotate(90deg);" xml:space="preserve">
+  <div class="oxd-calendar-header"><button type="button" class="oxd-icon-button oxd-calendar-header-arrow" flow="top"><i class="oxd-svg-icon oxd-svg-icon--extra-small" aria-hidden="true"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 451.847 451.847" style="transform:rotate(90deg);" xml:space="preserve">
           <style>
             .cls-1 {
               fill: currentColor;
@@ -30,7 +30,7 @@ exports[`Calendar.vue renders OXD Calendar 1`] = `
           <!--v-if-->
         </transition-stub>
       </li>
-    </ul><button type="button" class="oxd-icon-button oxd-calendar-header-arrow" flow="top"><i class="oxd-svg-icon oxd-svg-icon--extra-small"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 451.847 451.847" style="transform:rotate(-90deg);" xml:space="preserve">
+    </ul><button type="button" class="oxd-icon-button oxd-calendar-header-arrow" flow="top"><i class="oxd-svg-icon oxd-svg-icon--extra-small" aria-hidden="true"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 451.847 451.847" style="transform:rotate(-90deg);" xml:space="preserve">
           <style>
             .cls-1 {
               fill: currentColor;

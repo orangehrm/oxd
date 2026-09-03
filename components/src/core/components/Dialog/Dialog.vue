@@ -1,16 +1,13 @@
 <template>
   <transition :name="computedTransition" appear>
-    <oxd-overlay role="dialog" centered :show="true" @click="onClickOverlay">
-      <!--
-    :aria-labelledby="'dialogTitle_' + id"
-    :aria-describedby="'dialogDesc_' + id"
-    -->
+    <oxd-overlay centered :show="true" @click="onClickOverlay">
       <component :is="dialogContainer">
         <oxd-sheet
           :class="classes"
           v-bind="$attrs"
           v-focus-trap
-          role="document"
+          role="dialog"
+          aria-modal="true"
           @keyup="onEscape"
           @click="onClickSheet"
         >

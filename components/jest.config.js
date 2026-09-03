@@ -9,4 +9,5 @@ module.exports = {
     '^!!raw-loader!(.*)$': '$1',
   },
   setupFiles: ['<rootDir>/jest.init.js'],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup-after-env.js'],
 };

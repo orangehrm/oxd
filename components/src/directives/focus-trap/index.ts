@@ -60,6 +60,11 @@ const focusTrapDirective: Directive = {
         el,
         focusableElements + ', ' + focusableButtonElements,
       );
+      // drop the previous handler before installing a new one, or a
+      // re-rendering dialog accumulates document-level listeners
+      if (el._tabClicking) {
+        document.removeEventListener('keydown', el._tabClicking);
+      }
       el._tabClicking = function(e: KeyboardEvent) {
         onTabClick(e);
       };
@@ -68,7 +73,8 @@ const focusTrapDirective: Directive = {
   },
   unmounted(el: FocusTrapHTMLElement) {
     if (!el._tabClicking) return;
-    document.removeEventListener('keydown', el._tabClicking, true);
+    // must match the phase used in mounted/updated (bubble), or this is a no-op
+    document.removeEventListener('keydown', el._tabClicking);
     delete el._tabClicking;
   },
 };

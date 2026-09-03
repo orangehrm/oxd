@@ -2,4 +2,4 @@
 
 exports[`Button > Icon.vue should renders OXD icon button 1`] = `<i class="oxd-icon oxd-icon--medium bi-trash oxd-icon-button__icon" flow="up"></i>`;
 
-exports[`Button > Icon.vue should renders OXD icon button with container 1`] = `<button type="button" class="oxd-icon-button" flow="up"><i class="oxd-icon oxd-icon--medium bi-trash"></i></button>`;
+exports[`Button > Icon.vue should renders OXD icon button with container 1`] = `<button type="button" class="oxd-icon-button" flow="up"><i class="oxd-icon oxd-icon--medium bi-trash" aria-hidden="true"></i></button>`;

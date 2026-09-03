@@ -7,7 +7,13 @@
           :name="labelIcon"
           class="oxd-input-group__label-icon"
         />
-        <oxd-label v-if="label" :id="id" :label="label" :class="labelClasses" />
+        <oxd-label
+          v-if="label"
+          :id="id"
+          :labelId="labelId"
+          :label="label"
+          :class="labelClasses"
+        />
         <oxd-text
           v-if="hint && hintPlacement === HINT_PLACEMENT_TOP"
           class="oxd-input-field-hint placement-top"
@@ -83,6 +89,9 @@ export default defineComponent({
       type: String,
     },
     id: {
+      type: String,
+    },
+    labelId: {
       type: String,
     },
     classes: {

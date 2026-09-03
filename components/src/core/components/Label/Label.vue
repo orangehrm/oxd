@@ -1,5 +1,5 @@
 <template>
-  <label :class="classes" :for="id" :style="style">
+  <label :id="labelId" :class="classes" :for="id" :style="style">
     {{ label }}
   </label>
 </template>
@@ -17,6 +17,11 @@ export default {
       type: Object,
     },
     id: {
+      type: String,
+    },
+    // The label's own element id, so a control that cannot be referenced by
+    // `for` (a group of inputs, say) can point at it with aria-labelledby.
+    labelId: {
       type: String,
     },
   },

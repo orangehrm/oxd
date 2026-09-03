@@ -1,6 +1,11 @@
 <template>
-  <div class="input-outer-wrapper"
-    :class="[outerClasses, { 'input-outer-wrapper--has-inline-label': $slots.topOfInput }]">
+  <div
+    class="input-outer-wrapper"
+    :class="[
+      outerClasses,
+      {'input-outer-wrapper--has-inline-label': $slots.topOfInput},
+    ]"
+  >
     <!-- Inline label slot -->
     <div v-if="$slots.topOfInput" class="oxd-input--inline-label">
       <slot name="topOfInput"></slot>
@@ -8,6 +13,7 @@
     <div v-if="imageIcon" class="input-text-field-icon">
       <img
         :src="imageIcon"
+        :alt="imageIconAlt"
         :class="{'click-disabled': !isIconClickable}"
         @click="imageIconClick()"
       />
@@ -58,6 +64,13 @@ export default defineComponent({
     },
     imageIcon: {
       type: String,
+    },
+    // Accessible name for the icon. Defaults to '' (decorative), correct for
+    // the common case where the field already has a visible label. Pass a
+    // description only when the icon carries meaning. WCAG 1.1.1.
+    imageIconAlt: {
+      type: String,
+      default: '',
     },
     isIconClickable: {
       type: Boolean,

@@ -4,7 +4,7 @@ exports[`Input.vue input field with icon - in default mode, the icon is not clic
 <div class="input-outer-wrapper input-outer input-outer--active">
   <!-- Inline label slot -->
   <!--v-if-->
-  <div class="input-text-field-icon"><img src="@orangehrm/oxd/assets/images/facebook_logo_icon.svg" class="click-disabled"></div>
+  <div class="input-text-field-icon"><img src="@orangehrm/oxd/assets/images/facebook_logo_icon.svg" alt="" class="click-disabled"></div>
   <div>
     <!--v-if-->
     <div class="oxd-divider-vertical" style="height: 100%;"></div>
@@ -16,7 +16,7 @@ exports[`Input.vue input field with icon 1`] = `
 <div class="input-outer-wrapper input-outer input-outer--active">
   <!-- Inline label slot -->
   <!--v-if-->
-  <div class="input-text-field-icon"><img src="@orangehrm/oxd/assets/images/facebook_logo_icon.svg" class="click-disabled"></div>
+  <div class="input-text-field-icon"><img src="@orangehrm/oxd/assets/images/facebook_logo_icon.svg" alt="" class="click-disabled"></div>
   <div>
     <!--v-if-->
     <div class="oxd-divider-vertical" style="height: 100%;"></div>

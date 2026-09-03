@@ -72,6 +72,8 @@
           >
             <oxd-icon-button
               :name="dropdownOpen ? 'oxd-chevron-up' : 'oxd-chevron-down'"
+              :aria-label="$vt('Show options')"
+              :aria-expanded="dropdownOpen ? 'true' : 'false'"
               size="xxx-small"
               class="oxd-select-dropdown-trigger"
               :class="{'cursor-default': readonly}"

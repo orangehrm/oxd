@@ -5,7 +5,8 @@
     :hint="hint"
     :hintPlacement="hintPlacement"
     :hintStyle="hintStyle"
-    :id="id"
+    :id="labelFor"
+    :labelId="labelId"
     :message="message"
     class="oxd-input-field-bottom-space"
     :classes="classes"
@@ -13,7 +14,9 @@
     <component
       :is="component"
       v-bind="$attrs"
-      :id="id"
+      :id="resolvedId"
+      :role="isGroup ? 'group' : null"
+      :aria-labelledby="isGroup && label ? labelId : null"
       :disabled="disabled"
       :hasError="hasError"
       :modelValue="modelValue"
@@ -52,10 +55,12 @@ import {
   TYPES,
   TYPE_INPUT,
   TYPE_MAP,
+  GROUP_TYPES,
   HINT_PLACEMENT_TOP,
 } from './types';
 import useField from '../../../composables/useField';
 import translateMixin from '../../../mixins/translate';
+import {uuid} from '../../../mixins/uuid';
 import CheckboxGroup from '@orangehrm/oxd/core/components/Input/CheckboxGroup.vue';
 import RadioPillGroup from '@orangehrm/oxd/core/components/Input/RadioPills/RadioPillGroup.vue';
 import TreeSelectInput from '@orangehrm/oxd/core/components/Input/TreeSelect/TreeSelect.vue';
@@ -92,7 +97,7 @@ export default defineComponent({
     'oxd-number-input': Number,
   },
 
-  mixins: [translateMixin],
+  mixins: [translateMixin, uuid],
   emits: ['update:modelValue'],
 
   props: {
@@ -199,6 +204,23 @@ export default defineComponent({
   },
 
   computed: {
+    // A label binds to its control only through id/for. When the consumer
+    // omits id, generate a stable per-instance one. WCAG 1.3.1/3.3.2/4.1.2.
+    resolvedId(): string {
+      return this.id || `oxd-input-field-${this.cid}`;
+    },
+    labelId(): string {
+      return `${this.resolvedId}-label`;
+    },
+    // checkboxgroup/radiogroup/radiopillgroup hand each member its own
+    // `${id}_${option.id}`, so no element owns resolvedId. Naming them with
+    // `for` would leave both the group unnamed and the label orphaned.
+    isGroup(): boolean {
+      return GROUP_TYPES.indexOf(this.type as Types) !== -1;
+    },
+    labelFor(): string | undefined {
+      return this.isGroup ? undefined : this.resolvedId;
+    },
     classes(): object {
       return {
         label: {

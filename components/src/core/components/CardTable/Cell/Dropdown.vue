@@ -1,6 +1,11 @@
 <template>
   <oxd-dropdown-menu @click="noOp" class="oxd-table-dropdown">
-    <oxd-icon-button :name="iconName" :size="iconSize" :disabled="disabled" />
+    <oxd-icon-button
+      :name="iconName"
+      :size="iconSize"
+      :disabled="disabled"
+      :aria-label="$vt('More actions')"
+    />
     <template v-slot:content>
       <li
         tabindex="0"
@@ -29,9 +34,11 @@ import DropdownMenu from '@orangehrm/oxd/core/components/DropdownMenu/DropdownMe
 import Text from '@orangehrm/oxd/core/components/Text/Text.vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import {ActionCellEvent, DropdownOption} from './types';
+import translateMixin from '../../../../mixins/translate';
 
 export default defineComponent({
   name: 'oxd-table-dropdown',
+  mixins: [translateMixin],
   props: {
     options: {
       type: Array as PropType<DropdownOption[]>,

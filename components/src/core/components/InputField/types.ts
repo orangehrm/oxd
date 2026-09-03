@@ -69,6 +69,16 @@ export const TYPES = [
   TYPE_NUMBER,
 ];
 
+// Types that render a set of controls rather than one labelable element.
+// Each member gets its own id (`${id}_${option.id}`), so nothing owns the
+// field's id and a <label for> would point at nothing. They are named with
+// aria-labelledby against the label's own id instead.
+export const GROUP_TYPES = [
+  TYPE_CHECKBOXGROUP,
+  TYPE_RADIOGROUP,
+  TYPE_RADIO_PILL_GROUP,
+];
+
 export const TYPE_MAP: TypeMap<Components> = {
   [TYPE_INPUT]: COMPONENT_INPUT,
   [TYPE_FILE_INPUT]: COMPONENT_FILE_INPUT,

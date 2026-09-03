@@ -2,14 +2,10 @@
 
 exports[`Dialog > Dialog.vue should renders OXD Dialog > Dialog 1`] = `
 <transition-stub>
-  <div role="dialog" class="oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered">
-    <!--
-    :aria-labelledby="'dialogTitle_' + id"
-    :aria-describedby="'dialogDesc_' + id"
-    -->
+  <div class="oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered">
     <div class="oxd-dialog-container-default">
       <div class="oxd-dialog-container-default--inner">
-        <div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow" role="document"><button type="button" class="oxd-icon-button oxd-dialog-close-button oxd-dialog-close-button-position" flow="top"><i class="oxd-icon oxd-icon--extra-large bi-x" style="color: rgb(255, 255, 255);"></i></button></div>
+        <div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow" role="dialog" aria-modal="true"><button type="button" class="oxd-icon-button oxd-dialog-close-button oxd-dialog-close-button-position" aria-label="Close" flow="top"><i class="oxd-icon oxd-icon--extra-large bi-x" style="color: rgb(255, 255, 255);" aria-hidden="true"></i></button></div>
       </div>
     </div>
   </div>
@@ -18,13 +14,9 @@ exports[`Dialog > Dialog.vue should renders OXD Dialog > Dialog 1`] = `
 
 exports[`Dialog > Dialog.vue should renders OXD Dialog > Dialog dialogContainer-div 1`] = `
 <transition-stub>
-  <div role="dialog" class="oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered">
-    <!--
-    :aria-labelledby="'dialogTitle_' + id"
-    :aria-describedby="'dialogDesc_' + id"
-    -->
+  <div class="oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered">
     <div>
-      <div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow" show="true" role="document"><button type="button" class="oxd-icon-button oxd-dialog-close-button oxd-dialog-close-button-position" flow="top"><i class="oxd-icon oxd-icon--extra-large bi-x" style="color: rgb(255, 255, 255);"></i></button></div>
+      <div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow" show="true" role="dialog" aria-modal="true"><button type="button" class="oxd-icon-button oxd-dialog-close-button oxd-dialog-close-button-position" aria-label="Close" flow="top"><i class="oxd-icon oxd-icon--extra-large bi-x" style="color: rgb(255, 255, 255);" aria-hidden="true"></i></button></div>
     </div>
   </div>
 </transition-stub>
@@ -32,14 +24,10 @@ exports[`Dialog > Dialog.vue should renders OXD Dialog > Dialog dialogContainer-
 
 exports[`Dialog > Dialog.vue should renders OXD Dialog > Dialog no shadow 1`] = `
 <transition-stub>
-  <div role="dialog" class="oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered">
-    <!--
-    :aria-labelledby="'dialogTitle_' + id"
-    :aria-describedby="'dialogDesc_' + id"
-    -->
+  <div class="oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered">
     <div class="oxd-dialog-container-default">
       <div class="oxd-dialog-container-default--inner">
-        <div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white oxd-dialog-sheet" show="true" role="document"><button type="button" class="oxd-icon-button oxd-dialog-close-button oxd-dialog-close-button-position" flow="top"><i class="oxd-icon oxd-icon--extra-large bi-x" style="color: rgb(255, 255, 255);"></i></button></div>
+        <div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white oxd-dialog-sheet" show="true" role="dialog" aria-modal="true"><button type="button" class="oxd-icon-button oxd-dialog-close-button oxd-dialog-close-button-position" aria-label="Close" flow="top"><i class="oxd-icon oxd-icon--extra-large bi-x" style="color: rgb(255, 255, 255);" aria-hidden="true"></i></button></div>
       </div>
     </div>
   </div>
@@ -48,14 +36,10 @@ exports[`Dialog > Dialog.vue should renders OXD Dialog > Dialog no shadow 1`] = 
 
 exports[`Dialog > Dialog.vue should renders OXD Dialog > Dialog persistent 1`] = `
 <transition-stub>
-  <div role="dialog" class="oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered">
-    <!--
-    :aria-labelledby="'dialogTitle_' + id"
-    :aria-describedby="'dialogDesc_' + id"
-    -->
+  <div class="oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered">
     <div class="oxd-dialog-container-default">
       <div class="oxd-dialog-container-default--inner">
-        <div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow" show="true" role="document"><button type="button" class="oxd-icon-button oxd-dialog-close-button oxd-dialog-close-button-position" flow="top"><i class="oxd-icon oxd-icon--extra-large bi-x" style="color: rgb(255, 255, 255);"></i></button></div>
+        <div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow" show="true" role="dialog" aria-modal="true"><button type="button" class="oxd-icon-button oxd-dialog-close-button oxd-dialog-close-button-position" aria-label="Close" flow="top"><i class="oxd-icon oxd-icon--extra-large bi-x" style="color: rgb(255, 255, 255);" aria-hidden="true"></i></button></div>
       </div>
     </div>
   </div>
@@ -64,14 +48,10 @@ exports[`Dialog > Dialog.vue should renders OXD Dialog > Dialog persistent 1`] =
 
 exports[`Dialog > Dialog.vue should renders OXD Dialog > Dialog show 1`] = `
 <transition-stub>
-  <div role="dialog" class="oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered">
-    <!--
-    :aria-labelledby="'dialogTitle_' + id"
-    :aria-describedby="'dialogDesc_' + id"
-    -->
+  <div class="oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered">
     <div class="oxd-dialog-container-default">
       <div class="oxd-dialog-container-default--inner">
-        <div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow" show="true" role="document"><button type="button" class="oxd-icon-button oxd-dialog-close-button oxd-dialog-close-button-position" flow="top"><i class="oxd-icon oxd-icon--extra-large bi-x" style="color: rgb(255, 255, 255);"></i></button></div>
+        <div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow" show="true" role="dialog" aria-modal="true"><button type="button" class="oxd-icon-button oxd-dialog-close-button oxd-dialog-close-button-position" aria-label="Close" flow="top"><i class="oxd-icon oxd-icon--extra-large bi-x" style="color: rgb(255, 255, 255);" aria-hidden="true"></i></button></div>
       </div>
     </div>
   </div>
@@ -80,14 +60,10 @@ exports[`Dialog > Dialog.vue should renders OXD Dialog > Dialog show 1`] = `
 
 exports[`Dialog > Dialog.vue should renders OXD Dialog > Dialog witout close 1`] = `
 <transition-stub>
-  <div role="dialog" class="oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered">
-    <!--
-    :aria-labelledby="'dialogTitle_' + id"
-    :aria-describedby="'dialogDesc_' + id"
-    -->
+  <div class="oxd-overlay oxd-overlay--flex oxd-overlay--flex-centered">
     <div class="oxd-dialog-container-default">
       <div class="oxd-dialog-container-default--inner">
-        <div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow" show="true" role="document"></div>
+        <div class="oxd-sheet oxd-sheet--rounded oxd-sheet--gutters oxd-sheet--white oxd-dialog-sheet oxd-dialog-sheet--shadow" show="true" role="dialog" aria-modal="true"></div>
       </div>
     </div>
   </div>
