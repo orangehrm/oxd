@@ -19,11 +19,15 @@
   justify-content: flex-start;
   & .oxd-multiselect-chips-selected {
     display: flex;
+    align-items: center;
     font-family: $oxd-input-control-font-family;
     color: $oxd-input-control-font-color;
     background-color: $oxd-dropdown-chip-background-color;
     margin-right: $oxd-dropdown-chip-margin;
     margin-bottom: $oxd-dropdown-chip-margin;
+    :deep(.oxd-chip-label) {
+      min-width: 0;
+    }
     & .--clear {
       cursor: pointer;
       border-radius: $oxd-dropdown-chip-border-radius;
@@ -31,8 +35,11 @@
       color: $oxd-dropdown-chip-clear-font-color;
       margin-left: $oxd-dropdown-chip-margin;
       font-size: 14px;
-      min-width: auto;
-      min-height: auto;
+      width: $oxd-file-button-font-size;
+      height: $oxd-file-button-font-size;
+      min-width: $oxd-file-button-font-size;
+      min-height: $oxd-file-button-font-size;
+      flex: 0 0 auto;
       padding: 0;
       :deep(.oxd-icon) {
         color: $oxd-dropdown-chip-clear-font-color;
