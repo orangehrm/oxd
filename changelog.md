@@ -1,4 +1,4 @@
-2026-09-11 - fb102a2d9f96d00e4ff4e1757428d30c2ea55468 - components/src/core/components/Input/MultiSelect/multiselect-input.scss - Fixed multi-select input chip clear (x) icon get compressed when option name is too long.
+2026-09-11 - 52823cdf6010458d40ae6eb10b498252b26c6423 - components/src/core/components/Input/MultiSelect/multiselect-input.scss - Fixed the clear (x) icon in multi-select input chips being compressed when the option label is too long.
 
 2026-07-28 - 9a9304372e569bdad99b3347a896f21cc6ab66c3 - components/src/core/components/Icon/icons.ts - Add oxd-no-employees-found and oxd-document-text-4 icons
 
