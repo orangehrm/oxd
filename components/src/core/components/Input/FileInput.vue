@@ -25,20 +25,20 @@
         >
           <oxd-radio-input
             v-model="fileUpdateMode"
-            id="check1"
+            :id="radioIds.keep"
             value="keep"
             :optionLabel="$vt('Keep Current')"
           />
           <oxd-radio-input
             v-if="deletable"
             v-model="fileUpdateMode"
-            id="check2"
+            :id="radioIds.delete"
             value="delete"
             :optionLabel="$vt('Delete Current')"
           />
           <oxd-radio-input
             v-model="fileUpdateMode"
-            id="check3"
+            :id="radioIds.replace"
             value="replace"
             :optionLabel="$vt('Replace Current')"
           />
@@ -95,6 +95,7 @@ import {
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Radio from '@orangehrm/oxd/core/components/Input/RadioInput.vue';
 import translateMixin from '../../../mixins/translate';
+import {uuid} from '../../../mixins/uuid';
 
 export interface State {
   focused: boolean;
@@ -119,7 +120,7 @@ export default defineComponent({
     'oxd-icon': Icon,
     'oxd-radio-input': Radio,
   },
-  mixins: [translateMixin],
+  mixins: [translateMixin, uuid],
   inheritAttrs: false,
   props: {
     modelValue: {},
@@ -233,6 +234,16 @@ export default defineComponent({
     fileInputClasses(): object {
       return {
         'oxd-file-input': true,
+      };
+    },
+    // Two file inputs on one page - the 13th Judicial application form has
+    // several - would otherwise both render id="check1". Duplicate ids are
+    // invalid, and they make the radios ambiguous to anything resolving an id.
+    radioIds(): Record<string, string> {
+      return {
+        keep: `oxd-file-update-keep-${this.cid}`,
+        delete: `oxd-file-update-delete-${this.cid}`,
+        replace: `oxd-file-update-replace-${this.cid}`,
       };
     },
   },

@@ -171,4 +171,30 @@ describe('FileInput.vue', () => {
     expect(wrapperDiv.attributes('aria-hidden')).toBeUndefined();
     expect(wrapper.find('.oxd-file-input-div').exists()).toBe(false);
   });
+
+  const mountWithFile = () =>
+    mount(FileInput, {
+      props: {
+        buttonLabel: 'Browse',
+        inputFile: {name: 'sample.pdf', type: 'application/pdf', size: 101273},
+      },
+    });
+
+  it('gives each file input its own update-mode radio ids', () => {
+    // hardcoded check1/check2/check3 collided as soon as a form rendered two
+    // file inputs, which the 13th Judicial application form does
+    const first = mountWithFile();
+    const second = mountWithFile();
+
+    const idsOf = (wrapper: ReturnType<typeof mountWithFile>) =>
+      wrapper.findAll('input[type="radio"]').map(r => r.attributes('id'));
+
+    const firstIds = idsOf(first);
+    const secondIds = idsOf(second);
+
+    expect(firstIds).toHaveLength(3);
+    expect(firstIds.every(Boolean)).toBe(true);
+    expect(new Set(firstIds).size).toBe(3);
+    firstIds.forEach(id => expect(secondIds).not.toContain(id));
+  });
 });
