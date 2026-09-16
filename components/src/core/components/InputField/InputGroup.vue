@@ -28,7 +28,13 @@
       <slot></slot>
     </div>
     <slot name="message">
-      <oxd-text v-if="message" :class="messageClasses" tag="span">
+      <oxd-text
+        v-if="messageId || message"
+        :id="messageId"
+        :role="messageId ? 'status' : null"
+        :class="messageClasses"
+        tag="span"
+      >
         {{ message }}
       </oxd-text>
     </slot>
@@ -92,6 +98,19 @@ export default defineComponent({
       type: String,
     },
     labelId: {
+      type: String,
+    },
+    // Supplying this turns the message into a live region: the span is then
+    // rendered even when empty, because a live region has to be in the
+    // accessibility tree before its content changes or the change goes
+    // unannounced - which is exactly what `v-if="message"` prevented. The
+    // `:empty` rule in input-group.scss keeps the empty span from taking up
+    // space; `display: none` would drop it from the tree again.
+    //
+    // Left out, the span stays conditional and silent. RadioGroup and
+    // CheckboxGroup nest an InputGroup purely for layout, and they must not
+    // end up with a second, permanently empty live region inside the real one.
+    messageId: {
       type: String,
     },
     classes: {

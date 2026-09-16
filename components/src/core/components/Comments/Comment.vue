@@ -69,6 +69,8 @@
               :actionButtonTooltip="$vt('Update')"
               :modelValue="commentContent"
               :hasError="commentInlineValidationMsg"
+              :aria-invalid="commentInlineValidationMsg ? true : null"
+              :aria-describedby="commentInlineValidationMsg ? messageId : null"
               :preventAddOnKeyPressEnter="false"
               @blurCommentBox="blurCommentBox"
               @update:modelValue="onInputComment"
@@ -76,11 +78,15 @@
               @keyup.esc.stop="enableEditMode(false)"
             />
             <oxd-text
-              v-if="commentInlineValidationMsg"
-              class="oxd-input-field-error-message oxd-input-group__message"
+              :id="messageId"
+              role="status"
+              class="oxd-input-group__message"
+              :class="{
+                'oxd-input-field-error-message': commentInlineValidationMsg,
+              }"
               tag="span"
             >
-              {{ commentInlineValidationMsg }}
+              {{ commentInlineValidationMsg || '' }}
             </oxd-text>
             <div
               class="oxd-comment-content-footer-container d-flex align-center"
@@ -177,6 +183,7 @@
 
 <script lang="ts">
 import {defineComponent, ref, computed, nextTick, watch, PropType} from 'vue';
+import {nanoid} from 'nanoid';
 import translateMixin from '../../../mixins/translate';
 import Chip from '@orangehrm/oxd/core/components/Chip/Chip.vue';
 import Label from '@orangehrm/oxd/core/components/Label/Label.vue';
@@ -257,6 +264,13 @@ export default defineComponent({
 
   setup(props, {emit}) {
     const {$t} = useTranslate();
+    // This component renders its inline validation message by hand instead of
+    // going through InputGroup, so it needs the same treatment on its own: a
+    // stable id for the textarea's aria-describedby, and a region that is
+    // always present so a message appearing inside it gets announced.
+    // `oxd-input-field-error-message` carries `display: block` plus a margin,
+    // so the template applies it only when there is something to show.
+    const messageId = `oxd-comment-message-${nanoid()}`;
     const editable = ref(false);
     const invalidCommentUpdate = ref(false);
     const invalidCommentSaveRequired = ref(false);
@@ -458,6 +472,7 @@ export default defineComponent({
       cancelDeleteButtonData,
       commentInlineValidationMsg,
       invalidCommentSaveRequired,
+      messageId,
     };
   },
 });

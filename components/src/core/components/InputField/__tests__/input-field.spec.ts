@@ -291,9 +291,7 @@ describe('InputField.vue', () => {
       // the group is named by pointing at the label instead
       const group = wrapper.find('[role="group"]');
       expect(group.exists()).toBe(true);
-      expect(group.attributes('aria-labelledby')).toBe(
-        label.attributes('id'),
-      );
+      expect(group.attributes('aria-labelledby')).toBe(label.attributes('id'));
       expect(label.attributes('id')).toBeTruthy();
     },
   );
@@ -305,4 +303,94 @@ describe('InputField.vue', () => {
       wrapper.find('input').attributes('id'),
     );
   });
+
+  // A field is only invalid when the injected form reports an error against
+  // its cid, so an erroring form stands in for a failed validation rule.
+  const invalidFormAPI: FormAPI = {
+    ...mockFormAPI,
+    searchErrors: jest.fn((cid: string) => [{cid, errors: ['Required']}]),
+  };
+
+  const mountInvalidField = (props: Record<string, unknown>) =>
+    mount(InputField, {
+      props,
+      global: {provide: {[formKey as symbol]: invalidFormAPI}},
+    });
+
+  it('renders the message region before there is a message to put in it', () => {
+    // v-if would have kept the region out of the accessibility tree until the
+    // error appeared, and a region added at the same moment as its content is
+    // not announced.
+    const wrapper = mountField({label: 'First Name'});
+    const region = wrapper.find('.oxd-input-group__message');
+
+    expect(region.exists()).toBe(true);
+    expect(region.attributes('role')).toBe('status');
+    expect(region.text()).toBe('');
+  });
+
+  it('leaves a valid control unmarked', () => {
+    const wrapper = mountField({label: 'First Name'});
+    const input = wrapper.find('input');
+
+    // absent, not aria-invalid="false" — the attribute is only meaningful
+    // when the control really is invalid
+    expect(input.attributes('aria-invalid')).toBeUndefined();
+    expect(input.attributes('aria-describedby')).toBeUndefined();
+  });
+
+  it('marks an invalid control and points it at the message', () => {
+    const wrapper = mountInvalidField({label: 'First Name'});
+    const input = wrapper.find('input');
+    const region = wrapper.find('.oxd-input-group__message');
+
+    expect(input.attributes('aria-invalid')).toBe('true');
+    expect(input.attributes('aria-describedby')).toBe(region.attributes('id'));
+    expect(region.attributes('id')).toBeTruthy();
+    expect(region.text()).toBe('Required');
+  });
+
+  it('appends to a consumer supplied aria-describedby rather than replacing it', () => {
+    // $attrs is merged before InputField's own bindings, so a naive bind here
+    // would drop the consumer's description entirely
+    const wrapper = mountInvalidField({
+      label: 'First Name',
+      'aria-describedby': 'field-help',
+    });
+    const messageId = wrapper
+      .find('.oxd-input-group__message')
+      .attributes('id');
+
+    expect(wrapper.find('input').attributes('aria-describedby')).toBe(
+      `field-help ${messageId}`,
+    );
+  });
+
+  it('keeps a consumer supplied aria-describedby when the field is valid', () => {
+    const wrapper = mountField({
+      label: 'First Name',
+      'aria-describedby': 'field-help',
+    });
+    expect(wrapper.find('input').attributes('aria-describedby')).toBe(
+      'field-help',
+    );
+  });
+
+  it.each(['checkboxgroup', 'radiogroup', 'radiopillgroup'])(
+    'describes an invalid %s on the element carrying role=group',
+    type => {
+      const wrapper = mountInvalidField({
+        label: 'Job Titles',
+        type,
+        options: [],
+        name: 'job-titles',
+      });
+      const group = wrapper.find('[role="group"]');
+
+      expect(group.attributes('aria-invalid')).toBe('true');
+      expect(group.attributes('aria-describedby')).toBe(
+        wrapper.find('.oxd-input-group__message').attributes('id'),
+      );
+    },
+  );
 });

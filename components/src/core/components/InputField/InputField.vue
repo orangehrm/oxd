@@ -8,6 +8,7 @@
     :id="labelFor"
     :labelId="labelId"
     :message="message"
+    :messageId="messageId"
     class="oxd-input-field-bottom-space"
     :classes="classes"
   >
@@ -17,6 +18,8 @@
       :id="resolvedId"
       :role="isGroup ? 'group' : null"
       :aria-labelledby="isGroup && label ? labelId : null"
+      :aria-invalid="hasError || null"
+      :aria-describedby="describedBy"
       :disabled="disabled"
       :hasError="hasError"
       :modelValue="modelValue"
@@ -211,6 +214,17 @@ export default defineComponent({
     },
     labelId(): string {
       return `${this.resolvedId}-label`;
+    },
+    messageId(): string {
+      return `${this.resolvedId}-message`;
+    },
+    // `v-bind="$attrs"` is merged first, so binding aria-describedby here would
+    // otherwise silently drop one the consumer passed in. It is an id list, so
+    // append to theirs rather than replace it.
+    describedBy(): string | null {
+      const inherited = this.$attrs['aria-describedby'] as string | undefined;
+      if (!this.message) return inherited || null;
+      return inherited ? `${inherited} ${this.messageId}` : this.messageId;
     },
     // checkboxgroup/radiogroup/radiopillgroup hand each member its own
     // `${id}_${option.id}`, so no element owns resolvedId. Naming them with
