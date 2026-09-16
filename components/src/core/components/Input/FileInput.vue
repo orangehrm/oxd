@@ -62,16 +62,19 @@
         <template v-if="!$slots.default">
           <div
             v-if="buttonLabel"
+            aria-hidden="true"
             :class="{'oxd-file-button': true, '--disabled': disabled}"
           >
             {{ buttonLabel }}
           </div>
           <div
+            aria-hidden="true"
             :class="{'oxd-file-input-div': true, '--placeholder': !inputValue}"
           >
             {{ inputValue ? inputValue : placeholder }}
           </div>
           <oxd-icon
+            aria-hidden="true"
             :class="{'oxd-file-input-icon': true, '--disabled': disabled}"
             :name="buttonIcon"
           />
@@ -99,6 +102,17 @@ export interface State {
   fileUpdateMode: string;
 }
 
+/**
+ * The <input type="file"> is only visually hidden (`opacity: 0` in
+ * file-input.scss), so it stays in the accessibility tree carrying the
+ * accessible name from InputGroup's <label for>. The visible block beside it
+ * repeats that name as plain text, which is what made screen readers announce
+ * the attachment control twice, so it is marked aria-hidden.
+ *
+ * The attribute goes on the three presentational elements rather than on their
+ * wrapper, because the wrapper also holds the consumer <slot>, whose content
+ * may be real and must stay announced.
+ */
 export default defineComponent({
   name: 'oxd-file-input',
   components: {
