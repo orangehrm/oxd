@@ -12,6 +12,7 @@
           :id="id"
           :labelId="labelId"
           :label="label"
+          :aria-hidden="labelHidden ? 'true' : null"
           :class="labelClasses"
         />
         <oxd-text
@@ -99,6 +100,17 @@ export default defineComponent({
     },
     labelId: {
       type: String,
+    },
+    // Hides the label ELEMENT from assistive tech while leaving it on screen.
+    // Only for a control the screen reader would otherwise announce twice -
+    // see `isFile` in InputField.vue. The control must then name itself with
+    // aria-labelledby pointing back here: accname keeps a node that is
+    // DIRECTLY referenced by aria-labelledby even when it is aria-hidden, so
+    // the name survives. Without that reference this silently unnames the
+    // control in engines that honour aria-hidden during name computation.
+    labelHidden: {
+      type: Boolean,
+      default: false,
     },
     // Supplying this turns the message into a live region: the span is then
     // rendered even when empty, because a live region has to be in the

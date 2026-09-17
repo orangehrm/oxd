@@ -393,4 +393,67 @@ describe('InputField.vue', () => {
       );
     },
   );
+
+  const mountNamed = (props: Record<string, unknown>) =>
+    mount(InputField, {
+      props,
+      global: {provide: {[formKey as symbol]: mockFormAPI}},
+    });
+
+  it('hides a file input label from AT and names the control with it', () => {
+    // A file input is exposed as a BUTTON. Screen readers do not suppress a
+    // label that names a button the way they do for a textbox, so the label
+    // was read as text and then again as the button's name - "Upload Resume"
+    // twice under Orca.
+    const wrapper = mountNamed({label: 'Upload Resume', type: 'file'});
+    const label = wrapper.find('label');
+    const input = wrapper.find('input[type="file"]');
+
+    expect(label.attributes('aria-hidden')).toBe('true');
+    // accname keeps an aria-hidden node that is DIRECTLY referenced by
+    // aria-labelledby, so the control is still named. Without this reference
+    // the field would go unnamed wherever aria-hidden is honoured during name
+    // computation - a far worse failure than the duplicate.
+    expect(input.attributes('aria-labelledby')).toBe(label.attributes('id'));
+    expect(label.attributes('id')).toBeTruthy();
+  });
+
+  it('keeps the file label clickable', () => {
+    // aria-hidden is AT-only; `for` still has to point at the input or the
+    // label stops opening the file picker.
+    const wrapper = mountNamed({label: 'Upload Resume', type: 'file'});
+    expect(wrapper.find('label').attributes('for')).toBe(
+      wrapper.find('input[type="file"]').attributes('id'),
+    );
+  });
+
+  it('leaves ordinary field labels alone', () => {
+    // Text fields are announced correctly today. Hiding their labels would
+    // regress them, so the treatment is scoped to `file`.
+    const wrapper = mountNamed({label: 'First Name', type: 'input'});
+    const label = wrapper.find('label');
+
+    expect(label.attributes('aria-hidden')).toBeUndefined();
+    expect(wrapper.find('input').attributes('aria-labelledby')).toBeUndefined();
+  });
+
+  it.each(['checkboxgroup', 'radiogroup', 'radiopillgroup'])(
+    'still names a %s without hiding its label',
+    type => {
+      // Groups are named by aria-labelledby because `for` cannot address
+      // several controls - but their label must stay visible to AT.
+      const wrapper = mountNamed({
+        label: 'Job Titles',
+        type,
+        options: [],
+        name: 'job-titles',
+      });
+      const label = wrapper.find('label');
+
+      expect(label.attributes('aria-hidden')).toBeUndefined();
+      expect(wrapper.find('[role="group"]').attributes('aria-labelledby')).toBe(
+        label.attributes('id'),
+      );
+    },
+  );
 });

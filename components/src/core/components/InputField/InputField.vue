@@ -9,6 +9,7 @@
     :labelId="labelId"
     :message="message"
     :messageId="messageId"
+    :labelHidden="isFile"
     class="oxd-input-field-bottom-space"
     :classes="classes"
   >
@@ -17,7 +18,7 @@
       v-bind="$attrs"
       :id="resolvedId"
       :role="isGroup ? 'group' : null"
-      :aria-labelledby="isGroup && label ? labelId : null"
+      :aria-labelledby="labelledBy"
       :aria-invalid="hasError || null"
       :aria-describedby="describedBy"
       :disabled="disabled"
@@ -59,6 +60,7 @@ import {
   TYPE_INPUT,
   TYPE_MAP,
   GROUP_TYPES,
+  TYPE_FILE_INPUT,
   HINT_PLACEMENT_TOP,
 } from './types';
 import useField from '../../../composables/useField';
@@ -225,6 +227,22 @@ export default defineComponent({
       const inherited = this.$attrs['aria-describedby'] as string | undefined;
       if (!this.message) return inherited || null;
       return inherited ? `${inherited} ${this.messageId}` : this.messageId;
+    },
+    // A file input is exposed as a BUTTON, not a textbox. Screen readers
+    // suppress a <label> that names a textbox, but not one that names a
+    // button - a button normally names itself from its own content - so the
+    // label gets read as text and then again as the button's name. Hiding the
+    // label element and naming the control with aria-labelledby collapses that
+    // to a single announcement. Verified against Orca: "Upload Resume" twice
+    // before, once after.
+    isFile(): boolean {
+      return this.type === TYPE_FILE_INPUT;
+    },
+    // Groups cannot use `for` at all; a file input can, but must not, for the
+    // reason above. Everything else keeps the plain <label for> wiring.
+    labelledBy(): string | null {
+      if (!this.label) return null;
+      return this.isGroup || this.isFile ? this.labelId : null;
     },
     // checkboxgroup/radiogroup/radiopillgroup hand each member its own
     // `${id}_${option.id}`, so no element owns resolvedId. Naming them with
