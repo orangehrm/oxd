@@ -7,7 +7,7 @@ exports[`TreeSelect.vue renders OXD Tree Select 1`] = `
     <!--v-if-->
     <!-- Input content - aligns to bottom when inline label is present -->
     <div class="oxd-select-text-input">
-      <div class="select-placeholder"></div><input type="text" readonly="" tabindex="-1">
+      <div class="select-placeholder"></div><input type="text" readonly="" tabindex="-1" aria-hidden="true">
     </div>
     <div class="oxd-select-text--after">
       <div class="oxd-select-text--arrow"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill"></i></div>
@@ -23,7 +23,7 @@ exports[`TreeSelect.vue should render topOfInput slot when provided 1`] = `
     <!-- Inline label slot -->
     <div class="oxd-select-text--inline-label"><span class="test-label">Test Label</span></div><!-- Input content - aligns to bottom when inline label is present -->
     <div class="oxd-select-text-input oxd-select-text--has-inline-label">
-      <div class="select-placeholder"></div><input type="text" readonly="" tabindex="-1">
+      <div class="select-placeholder"></div><input type="text" readonly="" tabindex="-1" aria-hidden="true">
     </div>
     <div class="oxd-select-text--after">
       <div class="oxd-select-text--arrow"><i class="oxd-icon oxd-icon--medium bi-caret-down-fill"></i></div>

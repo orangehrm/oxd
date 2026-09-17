@@ -1,5 +1,5 @@
 <template>
-  <div role="listbox" class="oxd-select-dropdown">
+  <div :role="role" class="oxd-select-dropdown">
     <div ref="dropdownInnerRef" class="oxd-select-dropdown-inner">
       <oxd-select-option v-if="empty && !loading">
         {{ $vt('No results found') }}
@@ -32,6 +32,13 @@ export default defineComponent({
   },
 
   props: {
+    // Defaults to listbox because that is what it holds for Select and
+    // MultiSelect. TreeSelect fills it with a table of checkboxes instead and
+    // passes null, since calling that a listbox misdescribes every row in it.
+    role: {
+      type: String,
+      default: 'listbox',
+    },
     empty: {
       type: Boolean,
       default: false,

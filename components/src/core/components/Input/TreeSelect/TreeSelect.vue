@@ -37,6 +37,7 @@
     </oxd-select-text>
 
     <oxd-select-dropdown
+      :role="null"
       v-dropdown-direction
       v-if="dropdownOpen"
       :class="dropdownClasses"
@@ -236,6 +237,12 @@ export default defineComponent({
     'click-outside': clickOutsideDirective,
   },
 
+  // The dropdown is given :role="null" and the trigger is deliberately passed no
+  // popup-role. This popup holds a table of checkbox rows, not options, so
+  // calling it a listbox misdescribes every row in it - and a combobox
+  // advertising aria-haspopup="listbox" would promise a structure that is not
+  // there. Giving the tree its own pattern is separate design work; until then
+  // it stays honest rather than wrong.
   mixins: [navigationMixin, eventsMixin, translateMixin],
 
   props: {

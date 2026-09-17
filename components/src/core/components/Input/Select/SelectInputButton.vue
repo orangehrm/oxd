@@ -141,6 +141,7 @@
         v-for="(option, i) in computedOptions"
         :key="option.id"
         :class="optionClasses[i]"
+        :selected="option._selected"
         :disabled="option._disabled || option._selected"
         :ref="`option-${i}`"
         @select="onSelect(option)"

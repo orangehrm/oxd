@@ -129,14 +129,79 @@ describe('SelectInput.vue', () => {
     expect(wrapper.find('.oxd-select-text--active').exists()).toBe(true);
   });
 
-  it('Id filed append to the input field of Select"', async () => {
+  it('puts the id on the combobox, not the hidden input', async () => {
+    // This used to assert the opposite. Routing the id to the readonly,
+    // tabindex=-1 <input> meant <label for> named an element that can never be
+    // focused, while the element that IS focused had no name at all - the
+    // reader announced "text field read only" and no label.
     const wrapper = mount(SelectInput, {
       props: {id: 'form_select', options},
     });
     wrapper.findComponent(SelectText).trigger('blur');
     await wrapper.vm.$nextTick();
-    const Input = wrapper.find('input');
-    expect(Input.attributes('id')).toBe('form_select');
+
+    expect(wrapper.find('[role="combobox"]').attributes('id')).toBe(
+      'form_select',
+    );
+    expect(wrapper.find('input').attributes('id')).toBeUndefined();
+    expect(wrapper.find('input').attributes('aria-hidden')).toBe('true');
+  });
+
+  it('exposes combobox semantics and expanded state', async () => {
+    const wrapper = mount(SelectInput, {props: {options}});
+    const combobox = wrapper.find('[role="combobox"]');
+
+    expect(combobox.attributes('aria-haspopup')).toBe('listbox');
+    // Assert both directions: checking only the open state passes even if the
+    // binding is hardcoded.
+    expect(combobox.attributes('aria-expanded')).toBe('false');
+    expect(combobox.attributes('aria-controls')).toBeUndefined();
+
+    await wrapper.findComponent(SelectText).trigger('click');
+    expect(wrapper.find('[role="combobox"]').attributes('aria-expanded')).toBe(
+      'true',
+    );
+  });
+
+  it('points aria-controls at a listbox that exists', async () => {
+    // A dangling id reference is worse than none - the reader reports a
+    // control it cannot then find.
+    const wrapper = mount(SelectInput, {props: {options}});
+    await wrapper.findComponent(SelectText).trigger('click');
+
+    const controls = wrapper
+      .find('[role="combobox"]')
+      .attributes('aria-controls');
+    expect(controls).toBeTruthy();
+    expect(wrapper.find(`#${controls}`).attributes('role')).toBe('listbox');
+  });
+
+  it('tracks the highlighted option with aria-activedescendant', async () => {
+    // Without this the reader has no way to follow arrow-key movement, which
+    // is why the list appeared to do nothing - or close - on down-arrow.
+    const wrapper = mount(SelectInput, {props: {options}});
+    await wrapper.findComponent(SelectText).trigger('click');
+    expect(
+      wrapper.find('[role="combobox"]').attributes('aria-activedescendant'),
+    ).toBeUndefined();
+
+    await wrapper.findComponent(SelectText).trigger('keydown.down');
+    const active = wrapper
+      .find('[role="combobox"]')
+      .attributes('aria-activedescendant');
+    expect(active).toBeTruthy();
+    expect(wrapper.find(`#${active}`).attributes('role')).toBe('option');
+  });
+
+  it('marks the selected option with aria-selected', async () => {
+    const wrapper = mount(SelectInput, {
+      props: {options, modelValue: {id: 1, label: 'HR Admin'}},
+    });
+    await wrapper.findComponent(SelectText).trigger('click');
+    const selected = wrapper.findAll('[role="option"][aria-selected="true"]');
+
+    expect(selected).toHaveLength(1);
+    expect(selected[0].text()).toContain('HR Admin');
   });
 
   it('Class filed not to append to the input field of Select"', async () => {

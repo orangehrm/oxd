@@ -10,6 +10,14 @@
     margin-top: $oxd-input-group-message-margin-top;
     font-size: $oxd-input-group-message-font-size;
     font-weight: $oxd-input-group-message-font-weight;
+
+    // The span is always rendered so it can act as a live region. As a flex
+    // item an empty one is blockified, so it would still claim `margin-top`
+    // plus a line box and shift every field down by a few pixels.
+    &:empty {
+      margin-top: 0;
+      height: 0;
+    }
   }
 
   &__label-wrapper {

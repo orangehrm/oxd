@@ -25,20 +25,20 @@
         >
           <oxd-radio-input
             v-model="fileUpdateMode"
-            id="check1"
+            :id="radioIds.keep"
             value="keep"
             :optionLabel="$vt('Keep Current')"
           />
           <oxd-radio-input
             v-if="deletable"
             v-model="fileUpdateMode"
-            id="check2"
+            :id="radioIds.delete"
             value="delete"
             :optionLabel="$vt('Delete Current')"
           />
           <oxd-radio-input
             v-model="fileUpdateMode"
-            id="check3"
+            :id="radioIds.replace"
             value="replace"
             :optionLabel="$vt('Replace Current')"
           />
@@ -62,16 +62,19 @@
         <template v-if="!$slots.default">
           <div
             v-if="buttonLabel"
+            aria-hidden="true"
             :class="{'oxd-file-button': true, '--disabled': disabled}"
           >
             {{ buttonLabel }}
           </div>
           <div
+            aria-hidden="true"
             :class="{'oxd-file-input-div': true, '--placeholder': !inputValue}"
           >
             {{ inputValue ? inputValue : placeholder }}
           </div>
           <oxd-icon
+            aria-hidden="true"
             :class="{'oxd-file-input-icon': true, '--disabled': disabled}"
             :name="buttonIcon"
           />
@@ -92,6 +95,7 @@ import {
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import Radio from '@orangehrm/oxd/core/components/Input/RadioInput.vue';
 import translateMixin from '../../../mixins/translate';
+import {uuid} from '../../../mixins/uuid';
 
 export interface State {
   focused: boolean;
@@ -99,13 +103,24 @@ export interface State {
   fileUpdateMode: string;
 }
 
+/**
+ * The <input type="file"> is only visually hidden (`opacity: 0` in
+ * file-input.scss), so it stays in the accessibility tree carrying the
+ * accessible name from InputGroup's <label for>. The visible block beside it
+ * repeats that name as plain text, which is what made screen readers announce
+ * the attachment control twice, so it is marked aria-hidden.
+ *
+ * The attribute goes on the three presentational elements rather than on their
+ * wrapper, because the wrapper also holds the consumer <slot>, whose content
+ * may be real and must stay announced.
+ */
 export default defineComponent({
   name: 'oxd-file-input',
   components: {
     'oxd-icon': Icon,
     'oxd-radio-input': Radio,
   },
-  mixins: [translateMixin],
+  mixins: [translateMixin, uuid],
   inheritAttrs: false,
   props: {
     modelValue: {},
@@ -219,6 +234,16 @@ export default defineComponent({
     fileInputClasses(): object {
       return {
         'oxd-file-input': true,
+      };
+    },
+    // Two file inputs on one page - the 13th Judicial application form has
+    // several - would otherwise both render id="check1". Duplicate ids are
+    // invalid, and they make the radios ambiguous to anything resolving an id.
+    radioIds(): Record<string, string> {
+      return {
+        keep: `oxd-file-update-keep-${this.cid}`,
+        delete: `oxd-file-update-delete-${this.cid}`,
+        replace: `oxd-file-update-replace-${this.cid}`,
       };
     },
   },

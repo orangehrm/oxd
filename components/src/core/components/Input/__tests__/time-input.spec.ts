@@ -497,4 +497,25 @@ describe('TimeInput.vue', () => {
     expect((amInput.element as HTMLInputElement).checked).toBeFalsy();
     expect((pmInput.element as HTMLInputElement).checked).toBeTruthy();
   });
+
+  it('puts the aria relationships on the input, not the wrapper', () => {
+    // TimeInput's root is a layout wrapper, so fallthrough attributes landed on
+    // a div nobody focuses - a reader on the real control heard neither the
+    // invalid state nor the message describing it.
+    const wrapper = mount(TimeInput, {
+      attrs: {
+        id: 'form_time',
+        'aria-invalid': 'true',
+        'aria-describedby': 'form_time-message',
+      },
+    });
+    const input = wrapper.find('input.oxd-input');
+    expect(input.attributes('id')).toBe('form_time');
+    expect(input.attributes('aria-invalid')).toBe('true');
+    expect(input.attributes('aria-describedby')).toBe('form_time-message');
+    // and the wrapper must not keep a duplicate id
+    expect(
+      wrapper.find('.oxd-time-wrapper').attributes('id'),
+    ).toBeUndefined();
+  });
 });

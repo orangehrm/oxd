@@ -134,4 +134,67 @@ describe('FileInput.vue', () => {
     await wrapper.vm.$nextTick();
     expect(wrapper.find('.oxd-file-input').exists()).toBe(true);
   });
+
+  it('hides the presentation layer from assistive technology', () => {
+    // the <input> is only visually hidden (opacity: 0), so it stays in the
+    // accessibility tree carrying the label - leaving this text readable too
+    // is what announced the control twice
+    const wrapper = mount(FileInput, {
+      props: {buttonLabel: 'Browse', placeholder: 'No file chosen'},
+    });
+
+    expect(wrapper.find('.oxd-file-button').attributes('aria-hidden')).toBe(
+      'true',
+    );
+    expect(wrapper.find('.oxd-file-input-div').attributes('aria-hidden')).toBe(
+      'true',
+    );
+    expect(wrapper.find('.oxd-file-input-icon').attributes('aria-hidden')).toBe(
+      'true',
+    );
+  });
+
+  it('leaves the input itself exposed to assistive technology', () => {
+    // the failure mode of over-applying aria-hidden is a control with no
+    // accessible name at all
+    const wrapper = mount(FileInput, {props: {buttonLabel: 'Browse'}});
+    expect(wrapper.find('input').attributes('aria-hidden')).toBeUndefined();
+  });
+
+  it('does not hide consumer slot content', () => {
+    const wrapper = mount(FileInput, {
+      slots: {default: '<span class="custom">Upload CV</span>'},
+    });
+    const wrapperDiv = wrapper.find('.oxd-file-div');
+
+    expect(wrapper.find('.custom').exists()).toBe(true);
+    expect(wrapperDiv.attributes('aria-hidden')).toBeUndefined();
+    expect(wrapper.find('.oxd-file-input-div').exists()).toBe(false);
+  });
+
+  const mountWithFile = () =>
+    mount(FileInput, {
+      props: {
+        buttonLabel: 'Browse',
+        inputFile: {name: 'sample.pdf', type: 'application/pdf', size: 101273},
+      },
+    });
+
+  it('gives each file input its own update-mode radio ids', () => {
+    // hardcoded check1/check2/check3 collided as soon as a form rendered two
+    // file inputs, which the 13th Judicial application form does
+    const first = mountWithFile();
+    const second = mountWithFile();
+
+    const idsOf = (wrapper: ReturnType<typeof mountWithFile>) =>
+      wrapper.findAll('input[type="radio"]').map(r => r.attributes('id'));
+
+    const firstIds = idsOf(first);
+    const secondIds = idsOf(second);
+
+    expect(firstIds).toHaveLength(3);
+    expect(firstIds.every(Boolean)).toBe(true);
+    expect(new Set(firstIds).size).toBe(3);
+    firstIds.forEach(id => expect(secondIds).not.toContain(id));
+  });
 });

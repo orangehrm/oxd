@@ -39,19 +39,19 @@ exports[`FileInput.vue download box is rendered 1`] = `
       </button>
       <div class="oxd-download-box-radio-buttons">
         <div class="oxd-radio-wrapper"><label class="">
-            <!--v-if--><input type="radio" id="check1" value="keep"><span class="oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input"></span>
+            <!--v-if--><input type="radio" id="oxd-file-update-keep-test-5" value="keep"><span class="oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input"></span>
             <div class="oxd-radio-option-label">Keep Current
               <!--v-if-->
             </div>
           </label></div>
         <div class="oxd-radio-wrapper"><label class="">
-            <!--v-if--><input type="radio" id="check2" value="delete"><span class="oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input"></span>
+            <!--v-if--><input type="radio" id="oxd-file-update-delete-test-5" value="delete"><span class="oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input"></span>
             <div class="oxd-radio-option-label">Delete Current
               <!--v-if-->
             </div>
           </label></div>
         <div class="oxd-radio-wrapper"><label class="">
-            <!--v-if--><input type="radio" id="check3" value="replace"><span class="oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input"></span>
+            <!--v-if--><input type="radio" id="oxd-file-update-replace-test-5" value="replace"><span class="oxd-radio-input oxd-radio-input--active --label-right oxd-radio-input"></span>
             <div class="oxd-radio-option-label">Replace Current
               <!--v-if-->
             </div>
@@ -69,7 +69,7 @@ exports[`FileInput.vue renders OXD FileInput 1`] = `
   <div><input type="file" class="oxd-file-input">
     <div class="oxd-file-div oxd-file-div--active">
       <!--v-if-->
-      <div class="oxd-file-input-div --placeholder">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon"></i>
+      <div aria-hidden="true" class="oxd-file-input-div --placeholder">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon" aria-hidden="true"></i>
     </div>
   </div>
 </div>
@@ -80,8 +80,8 @@ exports[`FileInput.vue should renders OXD FileInput with browse button 1`] = `
   <!--v-if-->
   <div><input type="file" class="oxd-file-input">
     <div class="oxd-file-div oxd-file-div--active">
-      <div class="oxd-file-button">Browse</div>
-      <div class="oxd-file-input-div --placeholder">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon"></i>
+      <div aria-hidden="true" class="oxd-file-button">Browse</div>
+      <div aria-hidden="true" class="oxd-file-input-div --placeholder">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon" aria-hidden="true"></i>
     </div>
   </div>
 </div>
@@ -93,7 +93,7 @@ exports[`FileInput.vue should renders OXD FileInput with custom color 1`] = `
   <div><input type="file" class="oxd-file-input">
     <div class="oxd-file-div oxd-file-div--active" style="background-color: aliceblue;">
       <!--v-if-->
-      <div class="oxd-file-input-div --placeholder">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon"></i>
+      <div aria-hidden="true" class="oxd-file-input-div --placeholder">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon" aria-hidden="true"></i>
     </div>
   </div>
 </div>
@@ -105,7 +105,7 @@ exports[`FileInput.vue should renders OXD FileInput with error 1`] = `
   <div><input type="file" class="oxd-file-input">
     <div class="oxd-file-div oxd-file-div--active oxd-file-div--error">
       <!--v-if-->
-      <div class="oxd-file-input-div --placeholder">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon"></i>
+      <div aria-hidden="true" class="oxd-file-input-div --placeholder">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon" aria-hidden="true"></i>
     </div>
   </div>
 </div>

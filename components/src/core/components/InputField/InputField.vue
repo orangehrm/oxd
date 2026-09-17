@@ -8,6 +8,9 @@
     :id="labelFor"
     :labelId="labelId"
     :message="message"
+    :messageId="messageId"
+    :hintId="hintId"
+    :labelHidden="isFile"
     class="oxd-input-field-bottom-space"
     :classes="classes"
   >
@@ -16,7 +19,9 @@
       v-bind="$attrs"
       :id="resolvedId"
       :role="isGroup ? 'group' : null"
-      :aria-labelledby="isGroup && label ? labelId : null"
+      :aria-labelledby="labelledBy"
+      :aria-invalid="hasError || null"
+      :aria-describedby="describedBy"
       :disabled="disabled"
       :hasError="hasError"
       :modelValue="modelValue"
@@ -56,6 +61,10 @@ import {
   TYPE_INPUT,
   TYPE_MAP,
   GROUP_TYPES,
+  TYPE_SELECT,
+  TYPE_MULTISELECT,
+  TYPE_TREE_SELECT,
+  TYPE_FILE_INPUT,
   HINT_PLACEMENT_TOP,
 } from './types';
 import useField from '../../../composables/useField';
@@ -212,6 +221,56 @@ export default defineComponent({
     labelId(): string {
       return `${this.resolvedId}-label`;
     },
+    messageId(): string {
+      return `${this.resolvedId}-message`;
+    },
+    hintId(): string {
+      return `${this.resolvedId}-hint`;
+    },
+    // `v-bind="$attrs"` is merged first, so binding aria-describedby here would
+    // otherwise silently drop one the consumer passed in. It is an id list, so
+    // append to theirs rather than replace it.
+    describedBy(): string | null {
+      const inherited = this.$attrs['aria-describedby'] as string | undefined;
+      // Hint before message: instructions first, then what went wrong.
+      const ids = [
+        inherited,
+        this.hint ? this.hintId : null,
+        this.message ? this.messageId : null,
+      ].filter(Boolean);
+      return ids.length > 0 ? ids.join(' ') : null;
+    },
+    // A file input is exposed as a BUTTON, not a textbox. Screen readers
+    // suppress a <label> that names a textbox, but not one that names a
+    // button - a button normally names itself from its own content - so the
+    // label gets read as text and then again as the button's name. Hiding the
+    // label element and naming the control with aria-labelledby collapses that
+    // to a single announcement. Verified against Orca: "Upload Resume" twice
+    // before, once after.
+    isFile(): boolean {
+      return this.type === TYPE_FILE_INPUT;
+    },
+    // The select's focusable element is a <div role="combobox">, and `for`
+    // only addresses labelable elements - so it must be named by reference
+    // too. Unlike the file input its label stays visible to AT: combobox is a
+    // form-field role, which readers do collapse with their label.
+    // All three render SelectText, whose focusable element is the div, so all
+    // three need naming by reference - not just the one the defect was raised
+    // against. Leaving multiselect/treeselect on `for` would point their label
+    // at a <div>, which names nothing.
+    isSelect(): boolean {
+      return (
+        this.type === TYPE_SELECT ||
+        this.type === TYPE_MULTISELECT ||
+        this.type === TYPE_TREE_SELECT
+      );
+    },
+    // Groups cannot use `for` at all; a file input can, but must not, for the
+    // reason above. Everything else keeps the plain <label for> wiring.
+    labelledBy(): string | null {
+      if (!this.label) return null;
+      return this.isGroup || this.isFile || this.isSelect ? this.labelId : null;
+    },
     // checkboxgroup/radiogroup/radiopillgroup hand each member its own
     // `${id}_${option.id}`, so no element owns resolvedId. Naming them with
     // `for` would leave both the group unnamed and the label orphaned.
@@ -219,7 +278,7 @@ export default defineComponent({
       return GROUP_TYPES.indexOf(this.type as Types) !== -1;
     },
     labelFor(): string | undefined {
-      return this.isGroup ? undefined : this.resolvedId;
+      return this.isGroup || this.isSelect ? undefined : this.resolvedId;
     },
     classes(): object {
       return {

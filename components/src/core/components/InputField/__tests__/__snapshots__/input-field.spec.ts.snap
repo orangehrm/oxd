@@ -14,8 +14,7 @@ exports[`InputField.vue renders OXD InputField 1`] = `
       <!--v-if-->
       <!--v-if--><input class="oxd-input oxd-input--active" id="oxd-input-field-test-3">
     </div>
-  </div>
-  <!--v-if-->
+  </div><span class="oxd-text oxd-text--span oxd-input-group__message" id="oxd-input-field-test-3-message" role="status"></span>
   <!--v-if-->
 </div>
 `;
@@ -33,12 +32,11 @@ exports[`InputField.vue renders OXD InputField type \`file\` 1`] = `
       <div><input type="file" id="oxd-input-field-test-7" class="oxd-file-input">
         <div class="oxd-file-div oxd-file-div--active">
           <!--v-if-->
-          <div class="oxd-file-input-div --placeholder">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon"></i>
+          <div aria-hidden="true" class="oxd-file-input-div --placeholder">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon" aria-hidden="true"></i>
         </div>
       </div>
     </div>
-  </div>
-  <!--v-if-->
+  </div><span class="oxd-text oxd-text--span oxd-input-group__message" id="oxd-input-field-test-7-message" role="status"></span>
   <!--v-if-->
 </div>
 `;
@@ -53,15 +51,14 @@ exports[`InputField.vue renders OXD InputField type \`file\` with button 1`] = `
   <div class="">
     <div>
       <!--v-if-->
-      <div><input type="file" id="oxd-input-field-test-9" class="oxd-file-input">
+      <div><input type="file" id="oxd-input-field-test-10" class="oxd-file-input">
         <div class="oxd-file-div oxd-file-div--active">
-          <div class="oxd-file-button">Browse</div>
-          <div class="oxd-file-input-div --placeholder">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon"></i>
+          <div aria-hidden="true" class="oxd-file-button">Browse</div>
+          <div aria-hidden="true" class="oxd-file-input-div --placeholder">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon" aria-hidden="true"></i>
         </div>
       </div>
     </div>
-  </div>
-  <!--v-if-->
+  </div><span class="oxd-text oxd-text--span oxd-input-group__message" id="oxd-input-field-test-10-message" role="status"></span>
   <!--v-if-->
 </div>
 `;
@@ -80,8 +77,7 @@ exports[`InputField.vue renders OXD InputField type \`input\` 1`] = `
       <!--v-if-->
       <!--v-if--><input class="oxd-input oxd-input--active" id="oxd-input-field-test-5">
     </div>
-  </div>
-  <!--v-if-->
+  </div><span class="oxd-text oxd-text--span oxd-input-group__message" id="oxd-input-field-test-5-message" role="status"></span>
   <!--v-if-->
 </div>
 `;
@@ -91,17 +87,16 @@ exports[`InputField.vue renders OXD InputField type \`input\` with Hint 1`] = `
   <div class="oxd-input-group__label-wrapper">
     <!--v-if-->
     <!--v-if-->
-    <p class="oxd-text oxd-text--p oxd-input-field-hint placement-top">(This field has a hint)</p>
+    <p class="oxd-text oxd-text--p oxd-input-field-hint placement-top" id="oxd-input-field-test-15-hint">(This field has a hint)</p>
   </div>
   <div class="">
     <div class="input-outer-wrapper">
       <!-- Inline label slot -->
       <!--v-if-->
       <!--v-if-->
-      <!--v-if--><input class="oxd-input oxd-input--active" id="oxd-input-field-test-13">
+      <!--v-if--><input class="oxd-input oxd-input--active" id="oxd-input-field-test-15" aria-describedby="oxd-input-field-test-15-hint">
     </div>
-  </div>
-  <!--v-if-->
+  </div><span class="oxd-text oxd-text--span oxd-input-group__message" id="oxd-input-field-test-15-message" role="status"></span>
   <!--v-if-->
 </div>
 `;
@@ -116,10 +111,9 @@ exports[`InputField.vue renders OXD InputField type \`textarea\` 1`] = `
   <div class="">
     <div class="oxd-textarea-wrapper">
       <!-- Inline label slot -->
-      <!--v-if--><textarea class="oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical" id="oxd-input-field-test-11"></textarea>
+      <!--v-if--><textarea class="oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical" id="oxd-input-field-test-13"></textarea>
     </div>
-  </div>
-  <!--v-if-->
+  </div><span class="oxd-text oxd-text--span oxd-input-group__message" id="oxd-input-field-test-13-message" role="status"></span>
   <!--v-if-->
 </div>
 `;

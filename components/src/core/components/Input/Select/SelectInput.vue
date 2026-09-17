@@ -7,6 +7,9 @@
       :disabled="disabled"
       :readonly="readonly"
       :dropdownOpened="dropdownOpen"
+      popup-role="listbox"
+      :listboxId="listboxId"
+      :activeOptionId="activeOptionId"
       @click="onToggleDropdown"
       @blur="onBlur"
       @keyup.esc="onCloseDropdown"
@@ -25,6 +28,7 @@
 
     <oxd-select-dropdown
       ref="dropdownRef"
+      :id="listboxId"
       v-dropdown-direction="forceDropdownPosition === true"
       v-if="dropdownOpen"
       :class="dropdownClasses"
@@ -40,7 +44,9 @@
       <oxd-select-option
         v-for="(option, i) in computedOptions"
         :key="option.id"
+        :id="optionId(i)"
         :class="optionClasses[i]"
+        :selected="option._selected"
         :disabled="option._disabled || option._selected"
         :ref="`option-${i}`"
         @select="onSelect(option)"
@@ -63,6 +69,7 @@ import SelectText from '@orangehrm/oxd/core/components/Input/Select/SelectText.v
 import SelectDropdown from '@orangehrm/oxd/core/components/Input/Select/SelectDropdown.vue';
 import SelectOption from '@orangehrm/oxd/core/components/Input/Select/SelectOption.vue';
 import translateMixin from '../../../../mixins/translate';
+import {uuid} from '../../../../mixins/uuid';
 import dropdownDirectionDirective from '../../../../directives/dropdown-direction';
 
 export default defineComponent({
@@ -79,7 +86,7 @@ export default defineComponent({
     'dropdown-direction': dropdownDirectionDirective,
   },
 
-  mixins: [navigationMixin, eventsMixin, translateMixin],
+  mixins: [navigationMixin, eventsMixin, translateMixin, uuid],
 
   emits: [
     'update:modelValue',
@@ -148,6 +155,16 @@ export default defineComponent({
   },
 
   computed: {
+    // aria-controls and aria-activedescendant have to point at ids that really
+    // exist, so the listbox and every option get one per instance.
+    listboxId(): string {
+      return `oxd-select-listbox-${this.cid}`;
+    },
+    activeOptionId(): string | null {
+      return this.dropdownOpen && this.pointer >= 0
+        ? this.optionId(this.pointer)
+        : null;
+    },
     computedOptions(): Option[] {
       return this.options.map((option: Option) => {
         let _selected = false;
@@ -184,6 +201,12 @@ export default defineComponent({
     },
     inputValue(): string {
       return this.computedOptions[this.pointer]?.label || this.selectedItem;
+    },
+  },
+
+  methods: {
+    optionId(index: number): string {
+      return `oxd-select-listbox-${this.cid}-option-${index}`;
     },
   },
 

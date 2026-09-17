@@ -680,4 +680,20 @@ describe('TreeSelect.vue', () => {
       expect(wrapper.emitted('dropdown:closed')).toBeTruthy();
     });
   });
+
+  it('does not claim combobox or listbox semantics', async () => {
+    // TreeSelect's popup is a table of checkbox rows, not options. Inheriting
+    // combobox + aria-haspopup="listbox" from the shared SelectText promised a
+    // structure that is not there, and SelectDropdown's hardcoded
+    // role="listbox" mislabelled every row inside it.
+    const wrapper = mount(TreeSelect, {props: {options}});
+    expect(wrapper.find('[role="combobox"]').exists()).toBe(false);
+    expect(wrapper.find('.oxd-select-text').attributes('aria-haspopup'))
+      .toBeUndefined();
+
+    await wrapper.find('.oxd-select-text').trigger('click');
+    expect(wrapper.find('[role="listbox"]').exists()).toBe(false);
+    // the popup itself still renders - this is about what it is CALLED
+    expect(wrapper.find('.oxd-select-dropdown').exists()).toBe(true);
+  });
 });

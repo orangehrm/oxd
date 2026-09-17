@@ -2,9 +2,16 @@
 import {computed, defineComponent, h, PropType, ref, watch} from 'vue';
 import Icon from '@orangehrm/oxd/core/components/Button/Icon.vue';
 import {nanoid} from 'nanoid';
+import {splitControlAttrs} from '../../../../utils/controlAttrs';
 
 export default defineComponent({
   name: 'oxd-number-input',
+
+  // The root is the spinner wrapper, so fallthrough attributes - the aria
+  // relationships InputField supplies - were landing on a div nobody focuses.
+  // Route them to the <input> below instead.
+  inheritAttrs: false,
+
   emits: ['update:modelValue', 'blur', 'focus'],
   props: {
     id: {
@@ -42,7 +49,7 @@ export default defineComponent({
       default: 999,
     },
   },
-  setup(props, {emit}) {
+  setup(props, {emit, attrs}) {
     const focused = ref(false);
     const number = ref<number | string | undefined>(props.modelValue);
     const outerClasses = computed((): object => {
@@ -83,6 +90,7 @@ export default defineComponent({
       h(
         'div',
         {
+          ...splitControlAttrs(attrs).wrapper,
           class: outerClasses.value,
           style: props.style,
         },
@@ -111,6 +119,7 @@ export default defineComponent({
             },
           }),
           h('input', {
+            ...splitControlAttrs(attrs).control,
             id: props.id,
             disabled: props.disabled,
             readonly: props.readonly,

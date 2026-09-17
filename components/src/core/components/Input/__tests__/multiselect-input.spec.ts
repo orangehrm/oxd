@@ -402,4 +402,52 @@ describe('MultiSelectInput.vue', () => {
       expect(wrapper.vm.pointer).toBe(2); // Supervisor
     });
   });
+
+  it('reports the selected option as selected, not unselected', async () => {
+    // SelectOption gained an aria-selected binding driven by a `selected`
+    // prop. MultiSelectInput, SelectInputButton and InfoBox all compute
+    // option._selected but did not pass it, so every option in those callers
+    // rendered aria-selected="false" - including the one that IS selected.
+    // A wrong state is worse than an absent one.
+    const wrapper = mount(MultiSelectInput, {
+      props: {options, modelValue: [{id: 2, label: 'ESS User'}]},
+    });
+    await wrapper.findComponent(SelectText).trigger('click');
+
+    const selected = wrapper.findAll('[role="option"][aria-selected="true"]');
+    expect(selected).toHaveLength(1);
+    expect(selected[0].text()).toContain('ESS User');
+    // and the rest must actually say false, not be missing the attribute
+    expect(
+      wrapper.findAll('[role="option"][aria-selected="false"]').length,
+    ).toBeGreaterThan(0);
+  });
+
+  it('points aria-controls at a listbox that exists', async () => {
+    // MultiSelect shares SelectText with Select but was never given ids, so it
+    // announced itself as an expanded combobox while aria-controls was absent.
+    const wrapper = mount(MultiSelectInput, {props: {options}});
+    await wrapper.findComponent(SelectText).trigger('click');
+
+    const combobox = wrapper.find('[role="combobox"]');
+    expect(combobox.attributes('aria-expanded')).toBe('true');
+    const controls = combobox.attributes('aria-controls');
+    expect(controls).toBeTruthy();
+    expect(wrapper.find(`#${controls}`).attributes('role')).toBe('listbox');
+  });
+
+  it('tracks the highlighted option with aria-activedescendant', async () => {
+    const wrapper = mount(MultiSelectInput, {props: {options}});
+    await wrapper.findComponent(SelectText).trigger('click');
+    expect(
+      wrapper.find('[role="combobox"]').attributes('aria-activedescendant'),
+    ).toBeUndefined();
+
+    await wrapper.findComponent(SelectText).trigger('keydown.down');
+    const active = wrapper
+      .find('[role="combobox"]')
+      .attributes('aria-activedescendant');
+    expect(active).toBeTruthy();
+    expect(wrapper.find(`#${active}`).attributes('role')).toBe('option');
+  });
 });

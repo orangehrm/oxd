@@ -69,6 +69,38 @@ describe('Comment.vue', () => {
     addCommentbutton.trigger('click');
   });
 
+  it('announces the inline validation message and describes the textarea', async () => {
+    const wrapper = mount(Comment, {
+      props: {
+        comment: comment,
+        allowToEdit: true,
+        allowToDelete: false,
+        enableAvatar: false,
+        maxCharLength: 5,
+      },
+    });
+    await wrapper.vm.$nextTick();
+    wrapper.find('[data-test="editIcon"]').trigger('click');
+    await wrapper.vm.$nextTick();
+
+    // present and empty up front: a live region added at the same moment as
+    // its content is not announced
+    const region = wrapper.find('.oxd-input-group__message');
+    expect(region.exists()).toBe(true);
+    expect(region.attributes('role')).toBe('status');
+    expect(region.attributes('id')).toBeTruthy();
+
+    const textarea = wrapper.find('[data-test="comment-box-textarea"]');
+    await textarea.setValue('well over the limit');
+    await wrapper.vm.$nextTick();
+
+    expect(wrapper.find('.oxd-input-group__message').text()).toBeTruthy();
+    expect(textarea.attributes('aria-invalid')).toBe('true');
+    expect(textarea.attributes('aria-describedby')).toBe(
+      region.attributes('id'),
+    );
+  });
+
   it('enable delete mode and delete comment', async () => {
     const wrapper = mount(Comment, {
       props: {
