@@ -456,4 +456,62 @@ describe('InputField.vue', () => {
       );
     },
   );
+
+  it('describes a control with its hint', () => {
+    // The hint carries instructions - accepted file types, a size cap, a
+    // required format. It rendered with no id, so nothing referenced it and a
+    // reader tabbing between fields never reached it: it sat in the tree as a
+    // loose paragraph after the control.
+    const wrapper = mountNamed({
+      label: 'Upload Resume',
+      type: 'file',
+      hint: 'Accepts .pdf up to 5MB',
+    });
+    const hint = wrapper.find('.oxd-input-field-hint');
+    const describedBy = wrapper
+      .find('input[type="file"]')
+      .attributes('aria-describedby');
+
+    expect(hint.attributes('id')).toBeTruthy();
+    expect(describedBy).toBe(hint.attributes('id'));
+  });
+
+  it('describes with hint and error together, hint first', () => {
+    const wrapper = mount(InputField, {
+      props: {label: 'First Name', hint: 'Letters only'},
+      global: {provide: {[formKey as symbol]: invalidFormAPI}},
+    });
+    const ids = wrapper
+      .find('input')
+      .attributes('aria-describedby')
+      .split(' ');
+
+    expect(ids).toHaveLength(2);
+    expect(ids[0]).toBe(wrapper.find('.oxd-input-field-hint').attributes('id'));
+    expect(ids[1]).toBe(
+      wrapper.find('.oxd-input-group__message').attributes('id'),
+    );
+  });
+
+  it('still appends to a consumer aria-describedby when a hint is present', () => {
+    const wrapper = mountNamed({
+      label: 'First Name',
+      hint: 'Letters only',
+      'aria-describedby': 'field-help',
+    });
+    const ids = wrapper
+      .find('input')
+      .attributes('aria-describedby')
+      .split(' ');
+
+    expect(ids[0]).toBe('field-help');
+    expect(ids[1]).toBe(wrapper.find('.oxd-input-field-hint').attributes('id'));
+  });
+
+  it('adds no description when there is no hint and no error', () => {
+    const wrapper = mountNamed({label: 'First Name'});
+    expect(
+      wrapper.find('input').attributes('aria-describedby'),
+    ).toBeUndefined();
+  });
 });

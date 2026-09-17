@@ -9,6 +9,7 @@
     :labelId="labelId"
     :message="message"
     :messageId="messageId"
+    :hintId="hintId"
     :labelHidden="isFile"
     class="oxd-input-field-bottom-space"
     :classes="classes"
@@ -223,13 +224,21 @@ export default defineComponent({
     messageId(): string {
       return `${this.resolvedId}-message`;
     },
+    hintId(): string {
+      return `${this.resolvedId}-hint`;
+    },
     // `v-bind="$attrs"` is merged first, so binding aria-describedby here would
     // otherwise silently drop one the consumer passed in. It is an id list, so
     // append to theirs rather than replace it.
     describedBy(): string | null {
       const inherited = this.$attrs['aria-describedby'] as string | undefined;
-      if (!this.message) return inherited || null;
-      return inherited ? `${inherited} ${this.messageId}` : this.messageId;
+      // Hint before message: instructions first, then what went wrong.
+      const ids = [
+        inherited,
+        this.hint ? this.hintId : null,
+        this.message ? this.messageId : null,
+      ].filter(Boolean);
+      return ids.length > 0 ? ids.join(' ') : null;
     },
     // A file input is exposed as a BUTTON, not a textbox. Screen readers
     // suppress a <label> that names a textbox, but not one that names a

@@ -17,6 +17,7 @@
         />
         <oxd-text
           v-if="hint && hintPlacement === HINT_PLACEMENT_TOP"
+          :id="hintId"
           class="oxd-input-field-hint placement-top"
           :style="hintStyle"
           tag="p"
@@ -41,6 +42,7 @@
     </slot>
     <oxd-text
       v-if="hint && hintPlacement === HINT_PLACEMENT_BOTTOM"
+      :id="hintId"
       class="oxd-input-field-hint placement-bottom"
       :style="hintStyle"
       tag="p"
@@ -123,6 +125,13 @@ export default defineComponent({
     // CheckboxGroup nest an InputGroup purely for layout, and they must not
     // end up with a second, permanently empty live region inside the real one.
     messageId: {
+      type: String,
+    },
+    // The hint carries instructions - accepted file types, a size cap, a
+    // required format. Without an id nothing can reference it, so it sat in
+    // the tree as a loose paragraph that a reader tabbing between fields never
+    // reaches. Only one of the two placements renders, so they can share it.
+    hintId: {
       type: String,
     },
     classes: {
