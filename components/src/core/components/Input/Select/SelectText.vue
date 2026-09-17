@@ -4,11 +4,11 @@
     :style="style"
     :tabindex="tabIndex"
     v-bind="$attrs"
-    role="combobox"
-    aria-haspopup="listbox"
-    :aria-expanded="dropdownOpened ? 'true' : 'false'"
-    :aria-controls="dropdownOpened ? listboxId : null"
-    :aria-activedescendant="dropdownOpened ? activeOptionId : null"
+    :role="popupRole ? 'combobox' : null"
+    :aria-haspopup="popupRole"
+    :aria-expanded="popupRole ? (dropdownOpened ? 'true' : 'false') : null"
+    :aria-controls="popupRole && dropdownOpened ? listboxId : null"
+    :aria-activedescendant="popupRole && dropdownOpened ? activeOptionId : null"
     @focus="onFocus"
     @blur="onBlur"
   >
@@ -116,6 +116,15 @@ export default defineComponent({
     // id of the listbox this combobox controls, and of the option currently
     // highlighted inside it. Both have to be real ids or the reader cannot
     // follow arrow-key movement.
+    // Opt-in. SelectText is shared by SelectInput, MultiSelectInput and
+    // TreeSelect, and only a caller whose popup really is a listbox may say so.
+    // TreeSelect's popup is a table of checkboxes, so it passes nothing and
+    // stays a plain focusable div rather than promising semantics it does not
+    // have. Set it to the popup's role ('listbox') to turn the pattern on.
+    popupRole: {
+      type: String,
+      default: null,
+    },
     listboxId: {
       type: String,
     },

@@ -7,6 +7,7 @@
       :disabled="disabled"
       :readonly="readonly"
       :dropdownOpened="dropdownOpen"
+      popup-role="listbox"
       :listboxId="listboxId"
       :activeOptionId="activeOptionId"
       @click="onToggleDropdown"

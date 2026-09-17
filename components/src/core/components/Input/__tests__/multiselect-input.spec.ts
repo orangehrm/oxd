@@ -422,4 +422,32 @@ describe('MultiSelectInput.vue', () => {
       wrapper.findAll('[role="option"][aria-selected="false"]').length,
     ).toBeGreaterThan(0);
   });
+
+  it('points aria-controls at a listbox that exists', async () => {
+    // MultiSelect shares SelectText with Select but was never given ids, so it
+    // announced itself as an expanded combobox while aria-controls was absent.
+    const wrapper = mount(MultiSelectInput, {props: {options}});
+    await wrapper.findComponent(SelectText).trigger('click');
+
+    const combobox = wrapper.find('[role="combobox"]');
+    expect(combobox.attributes('aria-expanded')).toBe('true');
+    const controls = combobox.attributes('aria-controls');
+    expect(controls).toBeTruthy();
+    expect(wrapper.find(`#${controls}`).attributes('role')).toBe('listbox');
+  });
+
+  it('tracks the highlighted option with aria-activedescendant', async () => {
+    const wrapper = mount(MultiSelectInput, {props: {options}});
+    await wrapper.findComponent(SelectText).trigger('click');
+    expect(
+      wrapper.find('[role="combobox"]').attributes('aria-activedescendant'),
+    ).toBeUndefined();
+
+    await wrapper.findComponent(SelectText).trigger('keydown.down');
+    const active = wrapper
+      .find('[role="combobox"]')
+      .attributes('aria-activedescendant');
+    expect(active).toBeTruthy();
+    expect(wrapper.find(`#${active}`).attributes('role')).toBe('option');
+  });
 });

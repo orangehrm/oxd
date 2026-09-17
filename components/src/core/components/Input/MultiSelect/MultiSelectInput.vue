@@ -6,6 +6,9 @@
       :readonly="readonly"
       :value="placeholder"
       :dropdownOpened="dropdownOpen"
+      popup-role="listbox"
+      :listboxId="listboxId"
+      :activeOptionId="activeOptionId"
       @blur="onBlur"
       @click="onToggleDropdown"
       @keyup.esc="onCloseDropdown"
@@ -25,6 +28,7 @@
 
     <oxd-select-dropdown
       ref="dropdownRef"
+      :id="listboxId"
       v-dropdown-direction
       v-if="dropdownOpen"
       :class="dropdownClasses"
@@ -34,6 +38,7 @@
       <oxd-select-option
         v-for="(option, i) in computedOptions"
         :key="option.id"
+        :id="optionId(i)"
         :class="optionClasses[i]"
         :selected="option._selected"
         :disabled="option._disabled || option._selected"
@@ -64,6 +69,7 @@
 import {defineComponent} from 'vue';
 import eventsMixin from '../Select/events-mixin';
 import navigationMixin from '../Select/navigation-mixin';
+import {uuid} from '../../../../mixins/uuid';
 import {TOP, BOTTOM, Option, Position, DROPDOWN_POSITIONS} from '../types';
 import SelectText from '@orangehrm/oxd/core/components/Input/Select/SelectText.vue';
 import SelectDropdown from '@orangehrm/oxd/core/components/Input/Select/SelectDropdown.vue';
@@ -86,7 +92,7 @@ export default defineComponent({
     'dropdown-direction': dropdownDirectionDirective,
   },
 
-  mixins: [navigationMixin, eventsMixin],
+  mixins: [navigationMixin, eventsMixin, uuid],
 
   emits: [
     'update:modelValue',
@@ -134,6 +140,15 @@ export default defineComponent({
   },
 
   computed: {
+    // aria-controls and aria-activedescendant must resolve to real elements.
+    listboxId(): string {
+      return `oxd-multiselect-listbox-${this.cid}`;
+    },
+    activeOptionId(): string | null {
+      return this.dropdownOpen && this.pointer >= 0
+        ? this.optionId(this.pointer)
+        : null;
+    },
     computedOptions(): Option[] {
       return this.options.map((option: Option) => {
         let _selected = false;
@@ -158,6 +173,12 @@ export default defineComponent({
           [`--indent-${option._indent}`]: option._indent !== undefined,
         };
       });
+    },
+  },
+
+  methods: {
+    optionId(index: number): string {
+      return `oxd-multiselect-listbox-${this.cid}-option-${index}`;
     },
   },
 
