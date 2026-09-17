@@ -402,4 +402,24 @@ describe('MultiSelectInput.vue', () => {
       expect(wrapper.vm.pointer).toBe(2); // Supervisor
     });
   });
+
+  it('reports the selected option as selected, not unselected', async () => {
+    // SelectOption gained an aria-selected binding driven by a `selected`
+    // prop. MultiSelectInput, SelectInputButton and InfoBox all compute
+    // option._selected but did not pass it, so every option in those callers
+    // rendered aria-selected="false" - including the one that IS selected.
+    // A wrong state is worse than an absent one.
+    const wrapper = mount(MultiSelectInput, {
+      props: {options, modelValue: [{id: 2, label: 'ESS User'}]},
+    });
+    await wrapper.findComponent(SelectText).trigger('click');
+
+    const selected = wrapper.findAll('[role="option"][aria-selected="true"]');
+    expect(selected).toHaveLength(1);
+    expect(selected[0].text()).toContain('ESS User');
+    // and the rest must actually say false, not be missing the attribute
+    expect(
+      wrapper.findAll('[role="option"][aria-selected="false"]').length,
+    ).toBeGreaterThan(0);
+  });
 });
