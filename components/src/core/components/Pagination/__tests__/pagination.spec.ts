@@ -26,9 +26,15 @@ describe('Pageination.vue', () => {
           '.oxd-select-wrapper > .oxd-select-dropdown > .oxd-select-dropdown-inner > .oxd-select-option:nth-child(4)',
         )
         .html(),
-    ).toEqual(
-      '<div role="option" class="oxd-select-option --selected"><span>50</span></div>',
+    ).toContain('<span>50</span>');
+    // The option now also carries aria-selected and a generated id. Assert
+    // those separately rather than pinning the whole element, so a future
+    // attribute does not fail a test that is really about page size.
+    const selected = wrapper.find(
+      '.oxd-select-wrapper > .oxd-select-dropdown > .oxd-select-dropdown-inner > .oxd-select-option:nth-child(4)',
     );
+    expect(selected.classes()).toContain('--selected');
+    expect(selected.attributes('aria-selected')).toBe('true');
   });
   it('shows the first separator when first page is missing and pageItems starts from 3 or higher', async () => {
     const wrapper = mount(Pagination, {

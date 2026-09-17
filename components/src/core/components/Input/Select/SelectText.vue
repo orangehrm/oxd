@@ -3,7 +3,12 @@
     :class="classes"
     :style="style"
     :tabindex="tabIndex"
-    v-bind="defaultAttrs"
+    v-bind="$attrs"
+    role="combobox"
+    aria-haspopup="listbox"
+    :aria-expanded="dropdownOpened ? 'true' : 'false'"
+    :aria-controls="dropdownOpened ? listboxId : null"
+    :aria-activedescendant="dropdownOpened ? activeOptionId : null"
     @focus="onFocus"
     @blur="onBlur"
   >
@@ -23,7 +28,7 @@
         type="text"
         readonly="readonly"
         tabIndex="-1"
-        v-bind="inputAttrs"
+        aria-hidden="true"
         @blur="onBlur"
       />
     </div>
@@ -102,6 +107,22 @@ export default defineComponent({
       type: String,
       default: 'medium',
     },
+    // The readonly tabindex=-1 <input> in the template is kept for layout only
+    // and is aria-hidden. It used to carry the id, so <label for> named an
+    // element that can never be focused while the focusable div went unnamed -
+    // the reader announced "text field read only" and no label. The id now
+    // lives on the combobox div.
+    //
+    // id of the listbox this combobox controls, and of the option currently
+    // highlighted inside it. Both have to be real ids or the reader cannot
+    // follow arrow-key movement.
+    listboxId: {
+      type: String,
+    },
+    activeOptionId: {
+      type: String,
+      default: null,
+    },
   },
 
   data() {
@@ -132,24 +153,6 @@ export default defineComponent({
     },
     tabIndex(): number {
       return this.disabled ? -1 : 0;
-    },
-    inputAttrs() {
-      const allowed = ['id'];
-      return Object.keys(this.$attrs)
-        .filter(key => allowed.includes(key))
-        .reduce((obj, key) => {
-          obj[key] = this.$attrs[key];
-          return obj;
-        }, {});
-    },
-    defaultAttrs() {
-      const notAllowed = ['id'];
-      return Object.keys(this.$attrs)
-        .filter(key => !notAllowed.includes(key))
-        .reduce((obj, key) => {
-          obj[key] = this.$attrs[key];
-          return obj;
-        }, {});
     },
   },
 

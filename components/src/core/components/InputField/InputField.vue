@@ -60,6 +60,9 @@ import {
   TYPE_INPUT,
   TYPE_MAP,
   GROUP_TYPES,
+  TYPE_SELECT,
+  TYPE_MULTISELECT,
+  TYPE_TREE_SELECT,
   TYPE_FILE_INPUT,
   HINT_PLACEMENT_TOP,
 } from './types';
@@ -238,11 +241,26 @@ export default defineComponent({
     isFile(): boolean {
       return this.type === TYPE_FILE_INPUT;
     },
+    // The select's focusable element is a <div role="combobox">, and `for`
+    // only addresses labelable elements - so it must be named by reference
+    // too. Unlike the file input its label stays visible to AT: combobox is a
+    // form-field role, which readers do collapse with their label.
+    // All three render SelectText, whose focusable element is the div, so all
+    // three need naming by reference - not just the one the defect was raised
+    // against. Leaving multiselect/treeselect on `for` would point their label
+    // at a <div>, which names nothing.
+    isSelect(): boolean {
+      return (
+        this.type === TYPE_SELECT ||
+        this.type === TYPE_MULTISELECT ||
+        this.type === TYPE_TREE_SELECT
+      );
+    },
     // Groups cannot use `for` at all; a file input can, but must not, for the
     // reason above. Everything else keeps the plain <label for> wiring.
     labelledBy(): string | null {
       if (!this.label) return null;
-      return this.isGroup || this.isFile ? this.labelId : null;
+      return this.isGroup || this.isFile || this.isSelect ? this.labelId : null;
     },
     // checkboxgroup/radiogroup/radiopillgroup hand each member its own
     // `${id}_${option.id}`, so no element owns resolvedId. Naming them with
@@ -251,7 +269,7 @@ export default defineComponent({
       return GROUP_TYPES.indexOf(this.type as Types) !== -1;
     },
     labelFor(): string | undefined {
-      return this.isGroup ? undefined : this.resolvedId;
+      return this.isGroup || this.isSelect ? undefined : this.resolvedId;
     },
     classes(): object {
       return {
