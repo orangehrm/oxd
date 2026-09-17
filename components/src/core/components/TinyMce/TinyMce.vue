@@ -62,6 +62,15 @@ export default defineComponent({
   },
   mixins: [translateMixin],
   emits: ['update:modelValue', 'onBlur'],
+  // NOT routed to the control, unlike TimeInput and Number. tinymce-vue renders
+  // a <textarea> that TinyMCE then hides and replaces with its own UI, and the
+  // editable region is a contenteditable body inside an IFRAME. aria-describedby
+  // and aria-labelledby are IDREFs, which cannot cross a document boundary, so
+  // forwarding them to either the textarea or the <editor> element would look
+  // like a fix and reach nobody. The attributes stay on the wrapper.
+  //
+  // Naming and describing the editable area has to go through TinyMCE's own
+  // init options, which is a separate piece of work.
   props: {
     id: {
       type: String as PropType<string>,

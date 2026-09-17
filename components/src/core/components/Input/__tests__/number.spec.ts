@@ -198,4 +198,19 @@ describe('Number.vue', () => {
 
     expect(wrapper.vm.modelValue).toBe(-2);
   });
+
+  it('puts the aria relationships on the input, not the spinner wrapper', () => {
+    const wrapper = mount(Number, {
+      attrs: {
+        'aria-invalid': 'true',
+        'aria-describedby': 'form_number-message',
+      },
+    });
+    const input = wrapper.find('input.oxd-number-input');
+    expect(input.attributes('aria-invalid')).toBe('true');
+    expect(input.attributes('aria-describedby')).toBe('form_number-message');
+    expect(
+      wrapper.find('.oxd-number-input-wrapper').attributes('aria-invalid'),
+    ).toBeUndefined();
+  });
 });

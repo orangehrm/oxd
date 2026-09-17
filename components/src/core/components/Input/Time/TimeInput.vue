@@ -1,8 +1,9 @@
 <template>
-  <div class="oxd-time-wrapper">
+  <div class="oxd-time-wrapper" v-bind="wrapperAttrs">
     <div class="oxd-time-input">
       <oxd-input
         ref="oxdInput"
+        v-bind="controlAttrs"
         :hasError="hasError"
         :disabled="disabled"
         :readonly="readonly"
@@ -64,6 +65,7 @@ import TimePicker from '@orangehrm/oxd/core/components/Input/Time/TimePicker.vue
 import {parseDate, formatDate} from '@orangehrm/oxd/utils/date';
 import dropdownDirectionDirective from '@orangehrm/oxd/directives/dropdown-direction';
 import translateMixin from '@orangehrm/oxd/mixins/translate';
+import {splitControlAttrs} from '../../../../utils/controlAttrs';
 import {
   TimeInputState,
   TIME_FORMAT_12_HR,
@@ -81,6 +83,12 @@ import {
 
 export default defineComponent({
   name: 'oxd-time-input',
+
+  // The root is a layout wrapper, so fallthrough attributes - the id and the
+  // aria relationships InputField supplies - were landing on a div nobody
+  // focuses. Route them to the real control instead; oxd-input forwards its own
+  // $attrs onto the <input> it renders.
+  inheritAttrs: false,
 
   components: {
     'oxd-icon': Icon,
@@ -102,6 +110,15 @@ export default defineComponent({
     'timepicker:reset',
     'blur',
   ],
+
+  computed: {
+    controlAttrs(): Record<string, unknown> {
+      return splitControlAttrs(this.$attrs).control;
+    },
+    wrapperAttrs(): Record<string, unknown> {
+      return splitControlAttrs(this.$attrs).wrapper;
+    },
+  },
 
   props: {
     modelValue: {
