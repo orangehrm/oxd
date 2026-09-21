@@ -18,7 +18,7 @@
   padding: $oxd-dropdown-chip-area-padding;
   justify-content: flex-start;
   & .oxd-multiselect-chips-selected {
-    display: flex;
+    display: block;
     font-family: $oxd-input-control-font-family;
     color: $oxd-input-control-font-color;
     background-color: $oxd-dropdown-chip-background-color;
@@ -31,8 +31,12 @@
       color: $oxd-dropdown-chip-clear-font-color;
       margin-left: $oxd-dropdown-chip-margin;
       font-size: 14px;
-      min-width: auto;
-      min-height: auto;
+      width: $oxd-dropdown-chip-clear-size;
+      height: $oxd-dropdown-chip-clear-size;
+      min-width: $oxd-dropdown-chip-clear-size;
+      min-height: $oxd-dropdown-chip-clear-size;
+      display: inline-flex;
+      vertical-align: middle;
       padding: 0;
       :deep(.oxd-icon) {
         color: $oxd-dropdown-chip-clear-font-color;
