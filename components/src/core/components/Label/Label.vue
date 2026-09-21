@@ -47,7 +47,16 @@ export default {
       const el = document.getElementById(this.clickTarget);
       if (!el) return;
       el.focus();
-      el.click();
+      // Activate on the next macrotask, not inline. A control that closes on
+      // an outside click - TreeSelect does, via v-click-outside on its wrapper
+      // - would otherwise open here and then be closed again by this very same
+      // click as it finishes bubbling to the document, since the label sits
+      // outside that wrapper. Deferring lets the outside-click handler run
+      // first against a still-closed dropdown, where it is a no-op.
+      setTimeout(() => {
+        // The label may have been unmounted in the meantime.
+        if (el.isConnected) el.click();
+      }, 0);
     },
   },
 

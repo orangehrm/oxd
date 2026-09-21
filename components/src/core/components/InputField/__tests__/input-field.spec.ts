@@ -515,26 +515,57 @@ describe('InputField.vue', () => {
     ).toBeUndefined();
   });
 
-  it('opens the dropdown when the select label is clicked', async () => {
-    // Regression: a select's focusable element is a <div>, and `for` only
-    // addresses labelable elements. When the id moved onto that div and `for`
-    // was dropped, clicking the label silently stopped doing anything - it had
-    // previously worked because `for` targeted the hidden input inside the
-    // control and the synthesised click bubbled up to the toggle handler.
+  it.each(['select', 'multiselect', 'treeselect'])(
+    'opens the %s dropdown when its label is clicked',
+    async type => {
+      // All three render SelectText, whose focusable element is a <div>, and
+      // `for` only addresses labelable elements - so none of them get native
+      // label-click behaviour and all three need the forwarding.
+      const wrapper = mount(InputField, {
+        props: {label: 'Job Title', type, options: []},
+        attachTo: document.body,
+        global: {provide: {[formKey as symbol]: mockFormAPI}},
+      });
+      expect(wrapper.find('label').attributes('for')).toBeUndefined();
+      expect(wrapper.find('.oxd-select-dropdown').exists()).toBe(false);
+      // treeselect deliberately claims no combobox role - its popup is a table
+      // of checkbox rows, not a listbox - so only assert the state on the two
+      // that do.
+      const hasCombobox = type !== 'treeselect';
+      if (hasCombobox) {
+        expect(
+          wrapper.find('[role="combobox"]').attributes('aria-expanded'),
+        ).toBe('false');
+      }
+
+      await wrapper.find('label').trigger('click');
+      await new Promise(r => setTimeout(r, 0));
+
+      expect(wrapper.find('.oxd-select-dropdown').exists()).toBe(true);
+      // and the combobox must report the new state, not just render a popup
+      if (hasCombobox) {
+        expect(
+          wrapper.find('[role="combobox"]').attributes('aria-expanded'),
+        ).toBe('true');
+      }
+      wrapper.unmount();
+    },
+  );
+
+  it('gives the tree select control a unique id', async () => {
+    // TreeSelect lacked inheritAttrs: false, so the id fell through onto its
+    // wrapper AND was bound onto the control - two elements sharing one id.
+    // getElementById then resolved to the wrapper, which has no click handler,
+    // so anything addressing the control by id reached the wrong element.
     const wrapper = mount(InputField, {
-      props: {label: 'Job Title', type: 'select', options: []},
+      props: {label: 'Job Title', type: 'treeselect', options: [], id: 'tree'},
       attachTo: document.body,
       global: {provide: {[formKey as symbol]: mockFormAPI}},
     });
-    const label = wrapper.find('label');
-    expect(label.attributes('for')).toBeUndefined();
 
-    const combobox = wrapper.find('[role="combobox"]');
-    expect(combobox.attributes('aria-expanded')).toBe('false');
-
-    await label.trigger('click');
-    expect(wrapper.find('[role="combobox"]').attributes('aria-expanded')).toBe(
-      'true',
+    expect(document.querySelectorAll('#tree')).toHaveLength(1);
+    expect(document.getElementById('tree')).toBe(
+      wrapper.find('.oxd-select-text').element,
     );
     wrapper.unmount();
   });

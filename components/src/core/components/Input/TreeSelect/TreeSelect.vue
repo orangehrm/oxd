@@ -2,6 +2,7 @@
   <div
     ref="inputContainerRef"
     v-click-outside="closeDropdownOnOutsideClick"
+    v-bind="wrapperAttrs"
     class="oxd-multiselect-wrapper"
   >
     <oxd-select-text
@@ -167,6 +168,7 @@ import CheckboxInputVue from '../CheckboxInput.vue';
 import dropdownDirectionDirective from '@orangehrm/oxd/directives/dropdown-direction';
 import eventsMixin from '../Select/events-mixin';
 import navigationMixin from '../Select/navigation-mixin';
+import {splitControlAttrs} from '../../../../utils/controlAttrs';
 import translateMixin from '../../../../mixins/translate';
 import {BOTTOM, DROPDOWN_POSITIONS, Position, TOP} from '../types';
 import clickOutsideDirective from '@orangehrm/oxd/directives/click-outside';
@@ -236,6 +238,14 @@ export default defineComponent({
     'dropdown-direction': dropdownDirectionDirective,
     'click-outside': clickOutsideDirective,
   },
+
+  // Without inheritAttrs: false the id fell through onto this wrapper AND was
+  // bound explicitly onto oxd-select-text, so two elements shared it. Duplicate
+  // ids are invalid, and document.getElementById resolved to the wrapper - which
+  // has no click handler - so anything addressing the control by id reached the
+  // wrong element. SelectInput and MultiSelectInput already set this; TreeSelect
+  // was the odd one out. wrapperAttrs keeps class/style where they were.
+  inheritAttrs: false,
 
   // The dropdown is given :role="null" and the trigger is deliberately passed no
   // popup-role. This popup holds a table of checkbox rows, not options, so
@@ -320,6 +330,15 @@ export default defineComponent({
       validator: function(value: Position) {
         return DROPDOWN_POSITIONS.indexOf(value) !== -1;
       },
+    },
+  },
+
+  computed: {
+    // Everything except the identity attributes, which belong on the control
+    // (see inheritAttrs above). Keeps class/style on the wrapper exactly where
+    // they were before inheritAttrs: false was introduced.
+    wrapperAttrs(): Record<string, unknown> {
+      return splitControlAttrs(this.$attrs).wrapper;
     },
   },
 
