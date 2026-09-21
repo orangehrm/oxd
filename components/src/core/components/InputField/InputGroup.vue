@@ -12,6 +12,7 @@
           :id="id"
           :labelId="labelId"
           :label="label"
+          :clickTarget="labelClickTarget"
           :aria-hidden="labelHidden ? 'true' : null"
           :class="labelClasses"
         />
@@ -113,6 +114,10 @@ export default defineComponent({
     labelHidden: {
       type: Boolean,
       default: false,
+    },
+    // See Label.vue's clickTarget - for a control that `for` cannot address.
+    labelClickTarget: {
+      type: String,
     },
     // Supplying this turns the message into a live region: the span is then
     // rendered even when empty, because a live region has to be in the

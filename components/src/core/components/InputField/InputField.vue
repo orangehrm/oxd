@@ -11,6 +11,7 @@
     :messageId="messageId"
     :hintId="hintId"
     :labelHidden="isFile"
+    :labelClickTarget="labelClickTarget"
     class="oxd-input-field-bottom-space"
     :classes="classes"
   >
@@ -276,6 +277,13 @@ export default defineComponent({
     // `for` would leave both the group unnamed and the label orphaned.
     isGroup(): boolean {
       return GROUP_TYPES.indexOf(this.type as Types) !== -1;
+    },
+    // A select's focusable element is a <div>, which `for` cannot address, so
+    // clicking its label had no effect once `for` was dropped. Groups are left
+    // alone: a group label has no single control to activate and never had
+    // click behaviour.
+    labelClickTarget(): string | undefined {
+      return this.isSelect ? this.resolvedId : undefined;
     },
     labelFor(): string | undefined {
       return this.isGroup || this.isSelect ? undefined : this.resolvedId;

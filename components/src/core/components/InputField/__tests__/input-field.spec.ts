@@ -514,4 +514,45 @@ describe('InputField.vue', () => {
       wrapper.find('input').attributes('aria-describedby'),
     ).toBeUndefined();
   });
+
+  it('opens the dropdown when the select label is clicked', async () => {
+    // Regression: a select's focusable element is a <div>, and `for` only
+    // addresses labelable elements. When the id moved onto that div and `for`
+    // was dropped, clicking the label silently stopped doing anything - it had
+    // previously worked because `for` targeted the hidden input inside the
+    // control and the synthesised click bubbled up to the toggle handler.
+    const wrapper = mount(InputField, {
+      props: {label: 'Job Title', type: 'select', options: []},
+      attachTo: document.body,
+      global: {provide: {[formKey as symbol]: mockFormAPI}},
+    });
+    const label = wrapper.find('label');
+    expect(label.attributes('for')).toBeUndefined();
+
+    const combobox = wrapper.find('[role="combobox"]');
+    expect(combobox.attributes('aria-expanded')).toBe('false');
+
+    await label.trigger('click');
+    expect(wrapper.find('[role="combobox"]').attributes('aria-expanded')).toBe(
+      'true',
+    );
+    wrapper.unmount();
+  });
+
+  it('does not double-activate a label that has a native for', async () => {
+    // A text field keeps `for`, so the browser already activates it. Firing a
+    // second synthetic click would toggle twice on anything stateful.
+    const wrapper = mount(InputField, {
+      props: {label: 'First Name', type: 'input'},
+      attachTo: document.body,
+      global: {provide: {[formKey as symbol]: mockFormAPI}},
+    });
+    const input = wrapper.find('input');
+    let clicks = 0;
+    input.element.addEventListener('click', () => (clicks += 1));
+
+    await wrapper.find('label').trigger('click');
+    expect(clicks).toBeLessThanOrEqual(1);
+    wrapper.unmount();
+  });
 });
