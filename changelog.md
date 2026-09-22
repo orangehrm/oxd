@@ -1,7 +1,3 @@
-2026-09-16 - 8b353abd17e1d1007e7469faaa74d933d8bca107 - components/src/core/components/Icon/icons.ts - Add clear filter icon
-
-2026-09-11 - 52823cdf6010458d40ae6eb10b498252b26c6423 - components/src/core/components/Input/MultiSelect/multiselect-input.scss - Fixed the clear (x) icon in multi-select input chips being compressed when the option label is too long.
-
 2026-07-28 - 9a9304372e569bdad99b3347a896f21cc6ab66c3 - components/src/core/components/Icon/icons.ts - Add oxd-no-employees-found and oxd-document-text-4 icons
 
 2026-06-19 - 31b827ca34ac1b4e72732ab699438f52a026c6a9 - components/src/core/components/Icon/icons.ts - Add oxd-pay-structure icon
