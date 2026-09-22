@@ -514,4 +514,76 @@ describe('InputField.vue', () => {
       wrapper.find('input').attributes('aria-describedby'),
     ).toBeUndefined();
   });
+
+  it.each(['select', 'multiselect', 'treeselect'])(
+    'opens the %s dropdown when its label is clicked',
+    async type => {
+      // All three render SelectText, whose focusable element is a <div>, and
+      // `for` only addresses labelable elements - so none of them get native
+      // label-click behaviour and all three need the forwarding.
+      const wrapper = mount(InputField, {
+        props: {label: 'Job Title', type, options: []},
+        attachTo: document.body,
+        global: {provide: {[formKey as symbol]: mockFormAPI}},
+      });
+      expect(wrapper.find('label').attributes('for')).toBeUndefined();
+      expect(wrapper.find('.oxd-select-dropdown').exists()).toBe(false);
+      // treeselect deliberately claims no combobox role - its popup is a table
+      // of checkbox rows, not a listbox - so only assert the state on the two
+      // that do.
+      const hasCombobox = type !== 'treeselect';
+      if (hasCombobox) {
+        expect(
+          wrapper.find('[role="combobox"]').attributes('aria-expanded'),
+        ).toBe('false');
+      }
+
+      await wrapper.find('label').trigger('click');
+      await new Promise(r => setTimeout(r, 0));
+
+      expect(wrapper.find('.oxd-select-dropdown').exists()).toBe(true);
+      // and the combobox must report the new state, not just render a popup
+      if (hasCombobox) {
+        expect(
+          wrapper.find('[role="combobox"]').attributes('aria-expanded'),
+        ).toBe('true');
+      }
+      wrapper.unmount();
+    },
+  );
+
+  it('gives the tree select control a unique id', async () => {
+    // TreeSelect lacked inheritAttrs: false, so the id fell through onto its
+    // wrapper AND was bound onto the control - two elements sharing one id.
+    // getElementById then resolved to the wrapper, which has no click handler,
+    // so anything addressing the control by id reached the wrong element.
+    const wrapper = mount(InputField, {
+      props: {label: 'Job Title', type: 'treeselect', options: [], id: 'tree'},
+      attachTo: document.body,
+      global: {provide: {[formKey as symbol]: mockFormAPI}},
+    });
+
+    expect(document.querySelectorAll('#tree')).toHaveLength(1);
+    expect(document.getElementById('tree')).toBe(
+      wrapper.find('.oxd-select-text').element,
+    );
+    wrapper.unmount();
+  });
+
+  it('does not double-activate a label that has a native for', async () => {
+    // A text field keeps `for`, so the browser already activates it. Firing a
+    // second synthetic click would toggle twice on anything stateful.
+    const wrapper = mount(InputField, {
+      props: {label: 'First Name', type: 'input'},
+      attachTo: document.body,
+      global: {provide: {[formKey as symbol]: mockFormAPI}},
+    });
+    const input = wrapper.find('input');
+    let clicks = 0;
+    input.element.addEventListener('click', () => (clicks += 1));
+
+    await wrapper.find('label').trigger('click');
+    expect(clicks).toBeLessThanOrEqual(1);
+    wrapper.unmount();
+  });
 });
