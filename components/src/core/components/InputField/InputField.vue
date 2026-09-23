@@ -269,8 +269,17 @@ export default defineComponent({
     // Groups cannot use `for` at all; a file input can, but must not, for the
     // reason above. Everything else keeps the plain <label for> wiring.
     labelledBy(): string | null {
-      if (!this.label) return null;
-      return this.isGroup || this.isFile || this.isSelect ? this.labelId : null;
+      // `v-bind="$attrs"` is merged BEFORE this binding, so returning null does
+      // not fall back to an inherited aria-labelledby - it erases it, and a
+      // consumer that renders its own label is left with an unnamed control.
+      // Same hazard already handled for aria-describedby below.
+      const inherited = this.$attrs['aria-labelledby'] as string | undefined;
+      if (!this.label) return inherited ?? null;
+      // When this component renders the label it owns the naming, so its own
+      // labelId wins over anything inherited.
+      return this.isGroup || this.isFile || this.isSelect
+        ? this.labelId
+        : inherited ?? null;
     },
     // checkboxgroup/radiogroup/radiopillgroup hand each member its own
     // `${id}_${option.id}`, so no element owns resolvedId. Naming them with

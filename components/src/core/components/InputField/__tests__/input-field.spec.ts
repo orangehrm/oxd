@@ -586,4 +586,51 @@ describe('InputField.vue', () => {
     expect(clicks).toBeLessThanOrEqual(1);
     wrapper.unmount();
   });
+
+  it.each(['select', 'input'])(
+    'keeps a consumer aria-labelledby on a %s with no label prop',
+    type => {
+      // A consumer that renders its own label and names the control by
+      // reference passes aria-labelledby as a fallthrough attribute. It
+      // arrives via v-bind="$attrs", but the explicit :aria-labelledby binding
+      // is declared AFTER that, so a null from here does not fall back to the
+      // inherited value - it ERASES it, leaving the control with no accessible
+      // name at all. Reported against custom questions on the candidate apply
+      // form across Ubuntu, Firefox, Chrome, macOS and iOS.
+      const wrapper = mount(InputField, {
+        props: {type, options: []},
+        attrs: {'aria-labelledby': 'consumer-label'},
+        global: {provide: {[formKey as symbol]: mockFormAPI}},
+      });
+      const control = wrapper.find(
+        type === 'select' ? '[role="combobox"]' : 'input',
+      );
+      expect(control.attributes('aria-labelledby')).toBe('consumer-label');
+    },
+  );
+
+  it('prefers its own label over an inherited aria-labelledby', () => {
+    // When InputField renders the label itself it owns the naming, and its
+    // labelId must win - otherwise adding a label to an existing consumer
+    // would silently keep pointing at the consumer's element.
+    const wrapper = mount(InputField, {
+      props: {label: 'Job Title', type: 'select', options: []},
+      attrs: {'aria-labelledby': 'consumer-label'},
+      global: {provide: {[formKey as symbol]: mockFormAPI}},
+    });
+    const labelId = wrapper.find('label').attributes('id');
+
+    expect(labelId).toBeTruthy();
+    expect(
+      wrapper.find('[role="combobox"]').attributes('aria-labelledby'),
+    ).toBe(labelId);
+  });
+
+  it('adds no aria-labelledby when there is neither a label nor an inherited one', () => {
+    const wrapper = mount(InputField, {
+      props: {type: 'input'},
+      global: {provide: {[formKey as symbol]: mockFormAPI}},
+    });
+    expect(wrapper.find('input').attributes('aria-labelledby')).toBeUndefined();
+  });
 });
