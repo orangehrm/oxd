@@ -336,7 +336,25 @@ describe('InputField.vue', () => {
     // absent, not aria-invalid="false" — the attribute is only meaningful
     // when the control really is invalid
     expect(input.attributes('aria-invalid')).toBeUndefined();
-    expect(input.attributes('aria-describedby')).toBeUndefined();
+    // Already pointed at the (empty) message region: an empty description is
+    // not read, and the reference must not appear only once an error does.
+    expect(input.attributes('aria-describedby')).toBe(
+      wrapper.find('.oxd-input-group__message').attributes('id'),
+    );
+  });
+
+  it('does not change aria-describedby when an error appears', () => {
+    // Errors appear while the user is typing, i.e. on the FOCUSED control.
+    // Adding the message id to aria-describedby at that moment makes a screen
+    // reader announce the new description - and the live region announces
+    // the same text, so the error was read twice.
+    const valid = mountField({label: 'First Name', id: 'first-name'});
+    const invalid = mountInvalidField({label: 'First Name', id: 'first-name'});
+
+    expect(invalid.find('input').attributes('aria-invalid')).toBe('true');
+    expect(invalid.find('input').attributes('aria-describedby')).toBe(
+      valid.find('input').attributes('aria-describedby'),
+    );
   });
 
   it('marks an invalid control and points it at the message', () => {
@@ -371,8 +389,11 @@ describe('InputField.vue', () => {
       label: 'First Name',
       'aria-describedby': 'field-help',
     });
+    const messageId = wrapper
+      .find('.oxd-input-group__message')
+      .attributes('id');
     expect(wrapper.find('input').attributes('aria-describedby')).toBe(
-      'field-help',
+      `field-help ${messageId}`,
     );
   });
 
@@ -473,7 +494,11 @@ describe('InputField.vue', () => {
       .attributes('aria-describedby');
 
     expect(hint.attributes('id')).toBeTruthy();
-    expect(describedBy).toBe(hint.attributes('id'));
+    expect(describedBy).toBe(
+      `${hint.attributes('id')} ${wrapper
+        .find('.oxd-input-group__message')
+        .attributes('id')}`,
+    );
   });
 
   it('describes with hint and error together, hint first', () => {
@@ -508,11 +533,14 @@ describe('InputField.vue', () => {
     expect(ids[1]).toBe(wrapper.find('.oxd-input-field-hint').attributes('id'));
   });
 
-  it('adds no description when there is no hint and no error', () => {
+  it('points only at the empty message region when there is no hint or error', () => {
     const wrapper = mountNamed({label: 'First Name'});
-    expect(
-      wrapper.find('input').attributes('aria-describedby'),
-    ).toBeUndefined();
+    const region = wrapper.find('.oxd-input-group__message');
+
+    expect(region.text()).toBe('');
+    expect(wrapper.find('input').attributes('aria-describedby')).toBe(
+      region.attributes('id'),
+    );
   });
 
   it.each(['select', 'multiselect', 'treeselect'])(

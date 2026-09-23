@@ -234,12 +234,18 @@ export default defineComponent({
     describedBy(): string | null {
       const inherited = this.$attrs['aria-describedby'] as string | undefined;
       // Hint before message: instructions first, then what went wrong.
+      // The message id is referenced ALWAYS, not only while there is an
+      // error. Errors appear while the user is typing, on the focused
+      // control; adding the id then changes that control's description,
+      // which a screen reader announces - on top of the live region
+      // announcing the same text, so the error was read twice. The region
+      // always renders and an empty description is not read.
       const ids = [
         inherited,
         this.hint ? this.hintId : null,
-        this.message ? this.messageId : null,
+        this.messageId,
       ].filter(Boolean);
-      return ids.length > 0 ? ids.join(' ') : null;
+      return ids.join(' ');
     },
     // A file input is exposed as a BUTTON, not a textbox. Screen readers
     // suppress a <label> that names a textbox, but not one that names a
