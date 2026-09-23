@@ -1,4 +1,5 @@
 import {mount} from '@vue/test-utils';
+import {nextTick, ref} from 'vue';
 import InputField from '@orangehrm/oxd/core/components/InputField/InputField.vue';
 import {FormAPI, formKey} from '@orangehrm/oxd/composables/types';
 
@@ -336,10 +337,10 @@ describe('InputField.vue', () => {
     // absent, not aria-invalid="false" — the attribute is only meaningful
     // when the control really is invalid
     expect(input.attributes('aria-invalid')).toBeUndefined();
-    // Already pointed at the (empty) message region: an empty description is
+    // Already pointed at the (empty) description: an empty description is
     // not read, and the reference must not appear only once an error does.
     expect(input.attributes('aria-describedby')).toBe(
-      wrapper.find('.oxd-input-group__message').attributes('id'),
+      wrapper.find('.oxd-input-field-description').attributes('id'),
     );
   });
 
@@ -361,10 +362,15 @@ describe('InputField.vue', () => {
     const wrapper = mountInvalidField({label: 'First Name'});
     const input = wrapper.find('input');
     const region = wrapper.find('.oxd-input-group__message');
+    const description = wrapper.find('.oxd-input-field-description');
 
     expect(input.attributes('aria-invalid')).toBe('true');
-    expect(input.attributes('aria-describedby')).toBe(region.attributes('id'));
-    expect(region.attributes('id')).toBeTruthy();
+    // described by the (non-live) copy, announced by the live region
+    expect(input.attributes('aria-describedby')).toBe(
+      description.attributes('id'),
+    );
+    expect(description.text()).toBe('Required');
+    expect(region.attributes('role')).toBe('status');
     expect(region.text()).toBe('Required');
   });
 
@@ -376,7 +382,7 @@ describe('InputField.vue', () => {
       'aria-describedby': 'field-help',
     });
     const messageId = wrapper
-      .find('.oxd-input-group__message')
+      .find('.oxd-input-field-description')
       .attributes('id');
 
     expect(wrapper.find('input').attributes('aria-describedby')).toBe(
@@ -390,7 +396,7 @@ describe('InputField.vue', () => {
       'aria-describedby': 'field-help',
     });
     const messageId = wrapper
-      .find('.oxd-input-group__message')
+      .find('.oxd-input-field-description')
       .attributes('id');
     expect(wrapper.find('input').attributes('aria-describedby')).toBe(
       `field-help ${messageId}`,
@@ -410,7 +416,7 @@ describe('InputField.vue', () => {
 
       expect(group.attributes('aria-invalid')).toBe('true');
       expect(group.attributes('aria-describedby')).toBe(
-        wrapper.find('.oxd-input-group__message').attributes('id'),
+        wrapper.find('.oxd-input-field-description').attributes('id'),
       );
     },
   );
@@ -478,6 +484,83 @@ describe('InputField.vue', () => {
     },
   );
 
+  describe('while the control has focus', () => {
+    // What a screen reader receives as the description: the text of every
+    // element aria-describedby points at, not the attribute itself.
+    const descriptionText = (wrapper: ReturnType<typeof mount>) =>
+      (wrapper.find('input').attributes('aria-describedby') || '')
+        .split(' ')
+        .filter(Boolean)
+        .map(id => document.getElementById(id)?.textContent?.trim() ?? '')
+        .join(' ')
+        .trim();
+
+    const mountWithLiveErrors = () => {
+      const errors = ref<string[]>([]);
+      const form: FormAPI = {
+        ...mockFormAPI,
+        // reading the ref inside searchErrors makes `message` reactive
+        searchErrors: jest.fn((cid: string) =>
+          errors.value.length ? [{cid, errors: errors.value}] : [],
+        ),
+      };
+      const wrapper = mount(InputField, {
+        props: {label: 'Email'},
+        attachTo: document.body,
+        global: {provide: {[formKey as symbol]: form}},
+      });
+      return {wrapper, errors};
+    };
+
+    it('keeps its description steady when an error appears while typing', async () => {
+      // Orca 46 + Chrome, measured: typing an invalid email spoke "Expected
+      // format: admin@example.com" twice - once from
+      // object:property-change:accessible-description on the focused entry,
+      // once from the role="status" region. The live region must be the
+      // only thing that changes while the user is in the field.
+      const {wrapper, errors} = mountWithLiveErrors();
+      const input = wrapper.find('input');
+      (input.element as HTMLInputElement).focus();
+      await input.trigger('focusin');
+      const before = descriptionText(wrapper);
+
+      errors.value = ['Expected format: admin@example.com'];
+      await nextTick();
+
+      expect(wrapper.find('.oxd-input-group__message').text()).toBe(
+        'Expected format: admin@example.com',
+      );
+      expect(descriptionText(wrapper)).toBe(before);
+      wrapper.unmount();
+    });
+
+    it('describes the error once focus leaves, so returning to the field reads it', async () => {
+      const {wrapper, errors} = mountWithLiveErrors();
+      const input = wrapper.find('input');
+      (input.element as HTMLInputElement).focus();
+      await input.trigger('focusin');
+      errors.value = ['Expected format: admin@example.com'];
+      await nextTick();
+
+      await input.trigger('focusout');
+
+      expect(descriptionText(wrapper)).toBe(
+        'Expected format: admin@example.com',
+      );
+      wrapper.unmount();
+    });
+
+    it('describes an error that appears while unfocused straight away', async () => {
+      // e.g. submit: focus is on the button, not the field
+      const {wrapper, errors} = mountWithLiveErrors();
+      errors.value = ['Required'];
+      await nextTick();
+
+      expect(descriptionText(wrapper)).toBe('Required');
+      wrapper.unmount();
+    });
+  });
+
   it('describes a control with its hint', () => {
     // The hint carries instructions - accepted file types, a size cap, a
     // required format. It rendered with no id, so nothing referenced it and a
@@ -496,7 +579,7 @@ describe('InputField.vue', () => {
     expect(hint.attributes('id')).toBeTruthy();
     expect(describedBy).toBe(
       `${hint.attributes('id')} ${wrapper
-        .find('.oxd-input-group__message')
+        .find('.oxd-input-field-description')
         .attributes('id')}`,
     );
   });
@@ -514,7 +597,7 @@ describe('InputField.vue', () => {
     expect(ids).toHaveLength(2);
     expect(ids[0]).toBe(wrapper.find('.oxd-input-field-hint').attributes('id'));
     expect(ids[1]).toBe(
-      wrapper.find('.oxd-input-group__message').attributes('id'),
+      wrapper.find('.oxd-input-field-description').attributes('id'),
     );
   });
 
@@ -533,13 +616,13 @@ describe('InputField.vue', () => {
     expect(ids[1]).toBe(wrapper.find('.oxd-input-field-hint').attributes('id'));
   });
 
-  it('points only at the empty message region when there is no hint or error', () => {
+  it('points only at the empty description when there is no hint or error', () => {
     const wrapper = mountNamed({label: 'First Name'});
-    const region = wrapper.find('.oxd-input-group__message');
+    const description = wrapper.find('.oxd-input-field-description');
 
-    expect(region.text()).toBe('');
+    expect(description.text()).toBe('');
     expect(wrapper.find('input').attributes('aria-describedby')).toBe(
-      region.attributes('id'),
+      description.attributes('id'),
     );
   });
 

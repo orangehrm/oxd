@@ -12,8 +12,8 @@ exports[`InputField.vue renders OXD InputField 1`] = `
       <!-- Inline label slot -->
       <!--v-if-->
       <!--v-if-->
-      <!--v-if--><input class="oxd-input oxd-input--active" id="oxd-input-field-test-3" aria-describedby="oxd-input-field-test-3-message">
-    </div>
+      <!--v-if--><input class="oxd-input oxd-input--active" id="oxd-input-field-test-3" aria-describedby="oxd-input-field-test-3-description">
+    </div><span id="oxd-input-field-test-3-description" class="oxd-input-field-description" hidden=""></span>
   </div><span class="oxd-text oxd-text--span oxd-input-group__message" id="oxd-input-field-test-3-message" role="status"></span>
   <!--v-if-->
 </div>
@@ -29,13 +29,13 @@ exports[`InputField.vue renders OXD InputField type \`file\` 1`] = `
   <div class="">
     <div>
       <!--v-if-->
-      <div><input type="file" id="oxd-input-field-test-7" aria-describedby="oxd-input-field-test-7-message" class="oxd-file-input">
+      <div><input type="file" id="oxd-input-field-test-7" aria-describedby="oxd-input-field-test-7-description" class="oxd-file-input">
         <div class="oxd-file-div oxd-file-div--active">
           <!--v-if-->
           <div aria-hidden="true" class="oxd-file-input-div --placeholder">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon" aria-hidden="true"></i>
         </div>
       </div>
-    </div>
+    </div><span id="oxd-input-field-test-7-description" class="oxd-input-field-description" hidden=""></span>
   </div><span class="oxd-text oxd-text--span oxd-input-group__message" id="oxd-input-field-test-7-message" role="status"></span>
   <!--v-if-->
 </div>
@@ -51,13 +51,13 @@ exports[`InputField.vue renders OXD InputField type \`file\` with button 1`] = `
   <div class="">
     <div>
       <!--v-if-->
-      <div><input type="file" id="oxd-input-field-test-10" aria-describedby="oxd-input-field-test-10-message" class="oxd-file-input">
+      <div><input type="file" id="oxd-input-field-test-10" aria-describedby="oxd-input-field-test-10-description" class="oxd-file-input">
         <div class="oxd-file-div oxd-file-div--active">
           <div aria-hidden="true" class="oxd-file-button">Browse</div>
           <div aria-hidden="true" class="oxd-file-input-div --placeholder">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon" aria-hidden="true"></i>
         </div>
       </div>
-    </div>
+    </div><span id="oxd-input-field-test-10-description" class="oxd-input-field-description" hidden=""></span>
   </div><span class="oxd-text oxd-text--span oxd-input-group__message" id="oxd-input-field-test-10-message" role="status"></span>
   <!--v-if-->
 </div>
@@ -75,8 +75,8 @@ exports[`InputField.vue renders OXD InputField type \`input\` 1`] = `
       <!-- Inline label slot -->
       <!--v-if-->
       <!--v-if-->
-      <!--v-if--><input class="oxd-input oxd-input--active" id="oxd-input-field-test-5" aria-describedby="oxd-input-field-test-5-message">
-    </div>
+      <!--v-if--><input class="oxd-input oxd-input--active" id="oxd-input-field-test-5" aria-describedby="oxd-input-field-test-5-description">
+    </div><span id="oxd-input-field-test-5-description" class="oxd-input-field-description" hidden=""></span>
   </div><span class="oxd-text oxd-text--span oxd-input-group__message" id="oxd-input-field-test-5-message" role="status"></span>
   <!--v-if-->
 </div>
@@ -94,8 +94,8 @@ exports[`InputField.vue renders OXD InputField type \`input\` with Hint 1`] = `
       <!-- Inline label slot -->
       <!--v-if-->
       <!--v-if-->
-      <!--v-if--><input class="oxd-input oxd-input--active" id="oxd-input-field-test-15" aria-describedby="oxd-input-field-test-15-hint oxd-input-field-test-15-message">
-    </div>
+      <!--v-if--><input class="oxd-input oxd-input--active" id="oxd-input-field-test-15" aria-describedby="oxd-input-field-test-15-hint oxd-input-field-test-15-description">
+    </div><span id="oxd-input-field-test-15-description" class="oxd-input-field-description" hidden=""></span>
   </div><span class="oxd-text oxd-text--span oxd-input-group__message" id="oxd-input-field-test-15-message" role="status"></span>
   <!--v-if-->
 </div>
@@ -111,8 +111,8 @@ exports[`InputField.vue renders OXD InputField type \`textarea\` 1`] = `
   <div class="">
     <div class="oxd-textarea-wrapper">
       <!-- Inline label slot -->
-      <!--v-if--><textarea class="oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical" id="oxd-input-field-test-13" aria-describedby="oxd-input-field-test-13-message"></textarea>
-    </div>
+      <!--v-if--><textarea class="oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical" id="oxd-input-field-test-13" aria-describedby="oxd-input-field-test-13-description"></textarea>
+    </div><span id="oxd-input-field-test-13-description" class="oxd-input-field-description" hidden=""></span>
   </div><span class="oxd-text oxd-text--span oxd-input-group__message" id="oxd-input-field-test-13-message" role="status"></span>
   <!--v-if-->
 </div>

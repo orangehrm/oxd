@@ -14,6 +14,8 @@
     :labelClickTarget="labelClickTarget"
     class="oxd-input-field-bottom-space"
     :classes="classes"
+    @focusin="onFocusIn"
+    @focusout="onFocusOut"
   >
     <component
       :is="component"
@@ -32,11 +34,14 @@
         <slot :name="name" v-bind="slotData" />
       </template>
     </component>
+    <span :id="descriptionId" class="oxd-input-field-description" hidden>
+      {{ describedMessage }}
+    </span>
   </oxd-input-group>
 </template>
 
 <script lang="ts">
-import {toRef, PropType, nextTick, defineComponent} from 'vue';
+import {toRef, ref, watch, PropType, nextTick, defineComponent} from 'vue';
 import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import FileInput from '@orangehrm/oxd/core/components/Input/FileInput.vue';
@@ -206,10 +211,37 @@ export default defineComponent({
 
     if (isDirty) startWatcher();
 
+    // The description a screen reader reads for the control is a COPY of the
+    // message that only catches up while the control is not focused. Errors
+    // appear as the user types, i.e. on the focused control; if its
+    // description changed then, Orca spoke it (accessible-description
+    // changed) AND the role="status" region spoke it again. Freezing the copy
+    // leaves the live region as the one announcement, and the copy is current
+    // again by the time the user comes back to the field.
+    const focused = ref(false);
+    const describedMessage = ref(message.value);
+    watch(message, value => {
+      if (!focused.value) describedMessage.value = value;
+    });
+    const onFocusIn = () => {
+      focused.value = true;
+    };
+    const onFocusOut = (event: FocusEvent) => {
+      const root = event.currentTarget as HTMLElement | null;
+      const next = event.relatedTarget as Node | null;
+      // moving between parts of one field (date input -> calendar button)
+      if (root && next && root.contains(next)) return;
+      focused.value = false;
+      describedMessage.value = message.value;
+    };
+
     return {
       message,
       hasError,
       onChange,
+      describedMessage,
+      onFocusIn,
+      onFocusOut,
     };
   },
 
@@ -225,6 +257,9 @@ export default defineComponent({
     messageId(): string {
       return `${this.resolvedId}-message`;
     },
+    descriptionId(): string {
+      return `${this.resolvedId}-description`;
+    },
     hintId(): string {
       return `${this.resolvedId}-hint`;
     },
@@ -234,16 +269,14 @@ export default defineComponent({
     describedBy(): string | null {
       const inherited = this.$attrs['aria-describedby'] as string | undefined;
       // Hint before message: instructions first, then what went wrong.
-      // The message id is referenced ALWAYS, not only while there is an
-      // error. Errors appear while the user is typing, on the focused
-      // control; adding the id then changes that control's description,
-      // which a screen reader announces - on top of the live region
-      // announcing the same text, so the error was read twice. The region
-      // always renders and an empty description is not read.
+      // Points at the frozen copy of the message (see setup), never at the
+      // live region itself, and ALWAYS - so neither the attribute nor the
+      // text it resolves to changes while the user is typing. An empty
+      // description is not read.
       const ids = [
         inherited,
         this.hint ? this.hintId : null,
-        this.messageId,
+        this.descriptionId,
       ].filter(Boolean);
       return ids.join(' ');
     },
