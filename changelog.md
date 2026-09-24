@@ -1,3 +1,5 @@
+2026-09-24 - 6c7e2875aea52ffb63f7c34a02c6cf4c68b5351d - components/src/core/components/Icon/icons.ts - Update oxd-filetype-csv, oxd-filetype-pdf, oxd-filetype-docx and oxd-filetype-xlsx icons to the solid-banner design
+
 2026-09-24 - d8cd58860a7d40f09ecb0f694ab99be5cee07481 - components/src/core/components/Icon/icons.ts - Add oxd-filetype-csv, oxd-filetype-pdf, oxd-filetype-docx and oxd-filetype-xlsx icons
 
 2026-09-16 - 8b353abd17e1d1007e7469faaa74d933d8bca107 - components/src/core/components/Icon/icons.ts - Add clear filter icon
