@@ -102,6 +102,8 @@ const ANNOUNCE_CLEAR_AFTER = 5000;
 const ANNOUNCE_REWRITE_GAP = 100;
 // shared by every field on the page: Orca's duplicate check is page wide
 let announceParity = false;
+// what an announcer holds when it has nothing to say (see setup)
+const ANNOUNCER_IDLE = '\u00a0';
 
 export default defineComponent({
   name: 'oxd-input-field',
@@ -253,28 +255,32 @@ export default defineComponent({
     // the next key typed. Announce once typing pauses, from a live region of
     // our own; the visible message stays immediate. Clear it again shortly
     // after so reading the page line by line does not meet the text twice.
-    // starts empty: an error already present at mount was not typed by the
-    // user, and pre-filled text would only be read twice in browse mode
-    const announcedMessage = ref<string | null>(null);
+    // Starts idle: an error already present at mount was not typed by the
+    // user, and pre-filled text would only be read twice in browse mode.
+    // "Idle" is a lone no-break space, never "": Orca 46 caches per element
+    // whether it has text (treatAsTextObject: character count > 0), so an
+    // announcer it once walked over while EMPTY - e.g. reading the form in
+    // browse mode - was treated as text-less for good and every later error
+    // from that field was dropped. Orca strips the space; nothing is spoken.
+    const announcedMessage = ref<string>(ANNOUNCER_IDLE);
     let announceTimer: ReturnType<typeof setTimeout> | undefined;
     let clearTimer: ReturnType<typeof setTimeout> | undefined;
     let rewriteTimer: ReturnType<typeof setTimeout> | undefined;
     const write = (value: string | null) => {
-      if (value) {
-        // Orca drops a live-region text insert identical to the LAST one it
-        // queued, page wide ("Event is believed to be duplicate message"), so
-        // a second field's "Required" was never spoken. Alternate a trailing
-        // no-break space so consecutive announcements always differ; Orca
-        // strips it before speaking and it is invisible.
-        announceParity = !announceParity;
-        value = announceParity ? value : `${value}\u00a0`;
+      if (!value) {
+        announcedMessage.value = ANNOUNCER_IDLE;
+        return;
       }
-      announcedMessage.value = value;
-      if (value) {
-        clearTimer = setTimeout(() => {
-          announcedMessage.value = null;
-        }, ANNOUNCE_CLEAR_AFTER);
-      }
+      // Orca drops a live-region text insert identical to the LAST one it
+      // queued, page wide ("Event is believed to be duplicate message"), so a
+      // second field's "Required" was never spoken. Alternate a trailing
+      // no-break space so consecutive announcements always differ; Orca
+      // strips it before speaking and it is invisible.
+      announceParity = !announceParity;
+      announcedMessage.value = announceParity ? value : `${value}\u00a0`;
+      clearTimer = setTimeout(() => {
+        announcedMessage.value = ANNOUNCER_IDLE;
+      }, ANNOUNCE_CLEAR_AFTER);
     };
     const announceNow = () => {
       clearTimeout(announceTimer);
@@ -286,8 +292,8 @@ export default defineComponent({
       // screen reader announces nothing - the second "Required" after a
       // field is fixed and cleared again was lost this way. Empty it first
       // and write the text a moment later, as a separate update.
-      if (next && next === announcedMessage.value?.trim()) {
-        announcedMessage.value = null;
+      if (next && next === announcedMessage.value.trim()) {
+        announcedMessage.value = ANNOUNCER_IDLE;
         rewriteTimer = setTimeout(() => write(next), ANNOUNCE_REWRITE_GAP);
       } else {
         write(next);

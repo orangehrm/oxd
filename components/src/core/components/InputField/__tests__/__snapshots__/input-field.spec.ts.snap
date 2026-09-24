@@ -13,7 +13,7 @@ exports[`InputField.vue renders OXD InputField 1`] = `
       <!--v-if-->
       <!--v-if-->
       <!--v-if--><input class="oxd-input oxd-input--active" id="oxd-input-field-test-3" aria-describedby="oxd-input-field-test-3-description">
-    </div><span id="oxd-input-field-test-3-description" class="oxd-input-field-description" hidden=""></span><span class="oxd-input-field-announcer" role="status"></span>
+    </div><span id="oxd-input-field-test-3-description" class="oxd-input-field-description" hidden=""></span><span class="oxd-input-field-announcer" role="status">&nbsp;</span>
   </div><span class="oxd-text oxd-text--span oxd-input-group__message" id="oxd-input-field-test-3-message"></span>
   <!--v-if-->
 </div>
@@ -35,7 +35,7 @@ exports[`InputField.vue renders OXD InputField type \`file\` 1`] = `
           <div aria-hidden="true" class="oxd-file-input-div --placeholder">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon" aria-hidden="true"></i>
         </div>
       </div>
-    </div><span id="oxd-input-field-test-7-description" class="oxd-input-field-description" hidden=""></span><span class="oxd-input-field-announcer" role="status"></span>
+    </div><span id="oxd-input-field-test-7-description" class="oxd-input-field-description" hidden=""></span><span class="oxd-input-field-announcer" role="status">&nbsp;</span>
   </div><span class="oxd-text oxd-text--span oxd-input-group__message" id="oxd-input-field-test-7-message"></span>
   <!--v-if-->
 </div>
@@ -57,7 +57,7 @@ exports[`InputField.vue renders OXD InputField type \`file\` with button 1`] = `
           <div aria-hidden="true" class="oxd-file-input-div --placeholder">No file chosen</div><i class="oxd-icon oxd-icon--medium bi-upload oxd-file-input-icon" aria-hidden="true"></i>
         </div>
       </div>
-    </div><span id="oxd-input-field-test-10-description" class="oxd-input-field-description" hidden=""></span><span class="oxd-input-field-announcer" role="status"></span>
+    </div><span id="oxd-input-field-test-10-description" class="oxd-input-field-description" hidden=""></span><span class="oxd-input-field-announcer" role="status">&nbsp;</span>
   </div><span class="oxd-text oxd-text--span oxd-input-group__message" id="oxd-input-field-test-10-message"></span>
   <!--v-if-->
 </div>
@@ -76,7 +76,7 @@ exports[`InputField.vue renders OXD InputField type \`input\` 1`] = `
       <!--v-if-->
       <!--v-if-->
       <!--v-if--><input class="oxd-input oxd-input--active" id="oxd-input-field-test-5" aria-describedby="oxd-input-field-test-5-description">
-    </div><span id="oxd-input-field-test-5-description" class="oxd-input-field-description" hidden=""></span><span class="oxd-input-field-announcer" role="status"></span>
+    </div><span id="oxd-input-field-test-5-description" class="oxd-input-field-description" hidden=""></span><span class="oxd-input-field-announcer" role="status">&nbsp;</span>
   </div><span class="oxd-text oxd-text--span oxd-input-group__message" id="oxd-input-field-test-5-message"></span>
   <!--v-if-->
 </div>
@@ -95,7 +95,7 @@ exports[`InputField.vue renders OXD InputField type \`input\` with Hint 1`] = `
       <!--v-if-->
       <!--v-if-->
       <!--v-if--><input class="oxd-input oxd-input--active" id="oxd-input-field-test-15" aria-describedby="oxd-input-field-test-15-hint oxd-input-field-test-15-description">
-    </div><span id="oxd-input-field-test-15-description" class="oxd-input-field-description" hidden=""></span><span class="oxd-input-field-announcer" role="status"></span>
+    </div><span id="oxd-input-field-test-15-description" class="oxd-input-field-description" hidden=""></span><span class="oxd-input-field-announcer" role="status">&nbsp;</span>
   </div><span class="oxd-text oxd-text--span oxd-input-group__message" id="oxd-input-field-test-15-message"></span>
   <!--v-if-->
 </div>
@@ -112,7 +112,7 @@ exports[`InputField.vue renders OXD InputField type \`textarea\` 1`] = `
     <div class="oxd-textarea-wrapper">
       <!-- Inline label slot -->
       <!--v-if--><textarea class="oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical" id="oxd-input-field-test-13" aria-describedby="oxd-input-field-test-13-description"></textarea>
-    </div><span id="oxd-input-field-test-13-description" class="oxd-input-field-description" hidden=""></span><span class="oxd-input-field-announcer" role="status"></span>
+    </div><span id="oxd-input-field-test-13-description" class="oxd-input-field-description" hidden=""></span><span class="oxd-input-field-announcer" role="status">&nbsp;</span>
   </div><span class="oxd-text oxd-text--span oxd-input-group__message" id="oxd-input-field-test-13-message"></span>
   <!--v-if-->
 </div>

@@ -740,6 +740,32 @@ describe('InputField.vue', () => {
       second.wrapper.unmount();
     });
 
+    it('never leaves the announcer completely empty', async () => {
+      // Orca 46 caches per element whether it "has text"
+      // (treatAsTextObject: character count > 0). Reading the page in browse
+      // mode walked over the EMPTY announcer, cached "no text", and every
+      // later error from that field was dropped (rig: arrowed over First/Last
+      // Name, then neither announced "Required"). An idle no-break space keeps
+      // the count above zero; Orca strips it, so nothing is spoken.
+      const {wrapper, errors} = mountLive();
+      const raw = () => announcer(wrapper).element.textContent || '';
+      expect(raw().length).toBeGreaterThan(0);
+      expect(announcer(wrapper).text()).toBe('');
+
+      await focus(wrapper);
+      errors.value = ['Required'];
+      await nextTick();
+      jest.advanceTimersByTime(1000);
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe('Required');
+
+      jest.advanceTimersByTime(5000); // auto-clear
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe('');
+      expect(raw().length).toBeGreaterThan(0);
+      wrapper.unmount();
+    });
+
     it('leaves an error raised while unfocused (submit) to the form', async () => {
       // On submit every invalid field got its error at once while focus was
       // on the Apply button, so Orca spoke "Required" alongside the form's
