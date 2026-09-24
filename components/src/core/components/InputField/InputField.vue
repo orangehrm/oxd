@@ -294,12 +294,20 @@ export default defineComponent({
       // and write the text a moment later, as a separate update.
       if (next && next === announcedMessage.value.trim()) {
         announcedMessage.value = ANNOUNCER_IDLE;
-        rewriteTimer = setTimeout(() => write(next), ANNOUNCE_REWRITE_GAP);
+        rewriteTimer = setTimeout(() => {
+          rewriteTimer = undefined;
+          write(next);
+        }, ANNOUNCE_REWRITE_GAP);
       } else {
         write(next);
       }
     };
     const scheduleAnnounce = () => {
+      // A rewrite waiting out its gap is a pending announcement too: it
+      // holds the error as it was, so a newer state must replace it or the
+      // old error is spoken after it stopped being true. (PR 910 review.)
+      clearTimeout(rewriteTimer);
+      rewriteTimer = undefined;
       clearTimeout(announceTimer);
       announceTimer = setTimeout(announceNow, ANNOUNCE_AFTER_PAUSE);
     };
@@ -313,7 +321,7 @@ export default defineComponent({
     });
     // still typing: push a pending announcement back
     watch(modelValue, () => {
-      if (focused.value && announceTimer) scheduleAnnounce();
+      if (focused.value && (announceTimer || rewriteTimer)) scheduleAnnounce();
     });
     onBeforeUnmount(() => {
       clearTimeout(announceTimer);
@@ -331,7 +339,7 @@ export default defineComponent({
       if (root && next && root.contains(next)) return;
       focused.value = false;
       describedMessage.value = message.value;
-      if (announceTimer) announceNow();
+      if (announceTimer || rewriteTimer) announceNow();
     };
 
     return {

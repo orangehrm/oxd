@@ -708,6 +708,40 @@ describe('InputField.vue', () => {
       wrapper.unmount();
     });
 
+    it('drops a pending re-announcement once the error is no longer current', async () => {
+      // PR 910 review: the same-text rewrite waits 100ms. If the user typed
+      // in that gap and the error cleared, nothing cancelled the rewrite, so
+      // the old "Required" was spoken after it had stopped being true.
+      const {wrapper, errors} = mountLive();
+      await focus(wrapper);
+      errors.value = ['Required'];
+      await wrapper.setProps({modelValue: ''});
+      jest.advanceTimersByTime(1000);
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe('Required');
+
+      // same error again -> rewrite armed (announcer emptied, 100ms gap)
+      errors.value = [];
+      await wrapper.setProps({modelValue: 'a'});
+      errors.value = ['Required'];
+      await wrapper.setProps({modelValue: ''});
+      jest.advanceTimersByTime(1000);
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe('');
+
+      // user types inside the gap and the field becomes valid
+      errors.value = [];
+      await wrapper.setProps({modelValue: 'ab'});
+      // when the rewrite would have fired - the moment it would be spoken
+      jest.advanceTimersByTime(150);
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe('');
+      jest.advanceTimersByTime(2000);
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe('');
+      wrapper.unmount();
+    });
+
     it('never repeats the exact text of the previous announcement, across fields', async () => {
       // Orca 46 (web/script_utilities.py handleAsLiveRegion) drops a live
       // region text insert whose text equals the LAST one it queued - page
