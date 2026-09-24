@@ -9,6 +9,7 @@
     :labelId="labelId"
     :message="message"
     :messageId="messageId"
+    :messageLive="false"
     :hintId="hintId"
     :labelHidden="isFile"
     :labelClickTarget="labelClickTarget"
@@ -37,11 +38,22 @@
     <span :id="descriptionId" class="oxd-input-field-description" hidden>
       {{ describedMessage }}
     </span>
+    <span class="oxd-input-field-announcer" role="status">
+      {{ announcedMessage }}
+    </span>
   </oxd-input-group>
 </template>
 
 <script lang="ts">
-import {toRef, ref, watch, PropType, nextTick, defineComponent} from 'vue';
+import {
+  toRef,
+  ref,
+  watch,
+  PropType,
+  nextTick,
+  defineComponent,
+  onBeforeUnmount,
+} from 'vue';
 import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import FileInput from '@orangehrm/oxd/core/components/Input/FileInput.vue';
@@ -81,6 +93,11 @@ import RadioPillGroup from '@orangehrm/oxd/core/components/Input/RadioPills/Radi
 import TreeSelectInput from '@orangehrm/oxd/core/components/Input/TreeSelect/TreeSelect.vue';
 import RadioGroup from '@orangehrm/oxd/core/components/Input/RadioGroup.vue';
 import Number from '@orangehrm/oxd/core/components/Input/Number/Number.vue';
+
+// A pause long enough to be past the user's next keystroke, short enough to
+// still read as immediate feedback.
+const ANNOUNCE_AFTER_PAUSE = 1000;
+const ANNOUNCE_CLEAR_AFTER = 5000;
 
 export default defineComponent({
   name: 'oxd-input-field',
@@ -223,6 +240,43 @@ export default defineComponent({
     watch(message, value => {
       if (!focused.value) describedMessage.value = value;
     });
+    // Announcing: a screen reader flushes pending live-region output on every
+    // keypress (Orca 46: "Interrupting presentation" / "Flushing live region
+    // messages"), so an error announced the instant it appears is lost to
+    // the next key typed. Announce once typing pauses, from a live region of
+    // our own; the visible message stays immediate. Clear it again shortly
+    // after so reading the page line by line does not meet the text twice.
+    const announcedMessage = ref<string | null>(message.value);
+    let announceTimer: ReturnType<typeof setTimeout> | undefined;
+    let clearTimer: ReturnType<typeof setTimeout> | undefined;
+    const announceNow = () => {
+      clearTimeout(announceTimer);
+      announceTimer = undefined;
+      clearTimeout(clearTimer);
+      announcedMessage.value = message.value;
+      if (message.value) {
+        clearTimer = setTimeout(() => {
+          announcedMessage.value = null;
+        }, ANNOUNCE_CLEAR_AFTER);
+      }
+    };
+    const scheduleAnnounce = () => {
+      clearTimeout(announceTimer);
+      announceTimer = setTimeout(announceNow, ANNOUNCE_AFTER_PAUSE);
+    };
+    watch(message, () => {
+      if (focused.value) scheduleAnnounce();
+      else announceNow();
+    });
+    // still typing: push a pending announcement back
+    watch(modelValue, () => {
+      if (focused.value && announceTimer) scheduleAnnounce();
+    });
+    onBeforeUnmount(() => {
+      clearTimeout(announceTimer);
+      clearTimeout(clearTimer);
+    });
+
     const onFocusIn = () => {
       focused.value = true;
     };
@@ -233,6 +287,7 @@ export default defineComponent({
       if (root && next && root.contains(next)) return;
       focused.value = false;
       describedMessage.value = message.value;
+      if (announceTimer) announceNow();
     };
 
     return {
@@ -240,6 +295,7 @@ export default defineComponent({
       hasError,
       onChange,
       describedMessage,
+      announcedMessage,
       onFocusIn,
       onFocusOut,
     };

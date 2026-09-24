@@ -318,12 +318,12 @@ describe('InputField.vue', () => {
       global: {provide: {[formKey as symbol]: invalidFormAPI}},
     });
 
-  it('renders the message region before there is a message to put in it', () => {
+  it('renders the live region before there is a message to put in it', () => {
     // v-if would have kept the region out of the accessibility tree until the
     // error appeared, and a region added at the same moment as its content is
-    // not announced.
+    // not announced. The live region is the announcer, not the visible text.
     const wrapper = mountField({label: 'First Name'});
-    const region = wrapper.find('.oxd-input-group__message');
+    const region = wrapper.find('.oxd-input-field-announcer');
 
     expect(region.exists()).toBe(true);
     expect(region.attributes('role')).toBe('status');
@@ -370,8 +370,9 @@ describe('InputField.vue', () => {
       description.attributes('id'),
     );
     expect(description.text()).toBe('Required');
-    expect(region.attributes('role')).toBe('status');
+    // shown immediately; announced by the separate live region
     expect(region.text()).toBe('Required');
+    expect(wrapper.find('.oxd-input-field-announcer').text()).toBe('Required');
   });
 
   it('appends to a consumer supplied aria-describedby rather than replacing it', () => {
@@ -557,6 +558,113 @@ describe('InputField.vue', () => {
       await nextTick();
 
       expect(descriptionText(wrapper)).toBe('Required');
+      wrapper.unmount();
+    });
+  });
+
+  describe('announcing an error', () => {
+    // Orca 46 with key echo, measured with real X keystrokes: every keypress
+    // runs "Interrupting presentation" + "Flushing live region messages", so
+    // an error announced the moment it appears is thrown away by the next
+    // key the user types. The error is therefore announced once the user
+    // pauses, from a dedicated live region; the visible message stays
+    // immediate but is no longer itself a live region.
+    const mountLive = () => {
+      const errors = ref<string[]>([]);
+      const form: FormAPI = {
+        ...mockFormAPI,
+        searchErrors: jest.fn((cid: string) =>
+          errors.value.length ? [{cid, errors: errors.value}] : [],
+        ),
+      };
+      const wrapper = mount(InputField, {
+        props: {label: 'Email', modelValue: ''},
+        attachTo: document.body,
+        global: {provide: {[formKey as symbol]: form}},
+      });
+      return {wrapper, errors};
+    };
+    const announcer = (w: ReturnType<typeof mount>) =>
+      w.find('.oxd-input-field-announcer');
+    const focus = async (w: ReturnType<typeof mount>) => {
+      const input = w.find('input');
+      (input.element as HTMLInputElement).focus();
+      await input.trigger('focusin');
+    };
+
+    beforeEach(() => jest.useFakeTimers());
+    afterEach(() => jest.useRealTimers());
+
+    it('is the only live region in the field', () => {
+      const {wrapper} = mountLive();
+      const live = wrapper.findAll('[role="status"], [aria-live]');
+
+      expect(live).toHaveLength(1);
+      expect(live[0].classes()).toContain('oxd-input-field-announcer');
+      expect(
+        wrapper.find('.oxd-input-group__message').attributes('role'),
+      ).toBeUndefined();
+      wrapper.unmount();
+    });
+
+    it('waits for the user to pause typing before announcing', async () => {
+      const {wrapper, errors} = mountLive();
+      await focus(wrapper);
+
+      errors.value = ['Expected format: admin@example.com'];
+      await wrapper.setProps({modelValue: 'x'});
+      // visible at once, but not announced mid-typing
+      expect(wrapper.find('.oxd-input-group__message').text()).toBe(
+        'Expected format: admin@example.com',
+      );
+      expect(announcer(wrapper).text()).toBe('');
+
+      jest.advanceTimersByTime(600);
+      await wrapper.setProps({modelValue: 'xy'}); // still typing: restart
+      jest.advanceTimersByTime(600);
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe('');
+
+      jest.advanceTimersByTime(500);
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe(
+        'Expected format: admin@example.com',
+      );
+      wrapper.unmount();
+    });
+
+    it('clears the announcement afterwards so line-by-line reading does not repeat it', async () => {
+      const {wrapper, errors} = mountLive();
+      await focus(wrapper);
+      errors.value = ['Required'];
+      await nextTick();
+      jest.advanceTimersByTime(1000);
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe('Required');
+
+      jest.advanceTimersByTime(5000);
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe('');
+      wrapper.unmount();
+    });
+
+    it('announces straight away when focus leaves before the pause', async () => {
+      const {wrapper, errors} = mountLive();
+      await focus(wrapper);
+      errors.value = ['Required'];
+      await nextTick();
+
+      await wrapper.find('input').trigger('focusout');
+      expect(announcer(wrapper).text()).toBe('Required');
+      wrapper.unmount();
+    });
+
+    it('announces an error raised while unfocused (e.g. on submit) at once', async () => {
+      const {wrapper, errors} = mountLive();
+      errors.value = ['Required'];
+      await nextTick();
+
+      expect(announcer(wrapper).text()).toBe('Required');
       wrapper.unmount();
     });
   });
