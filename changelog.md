@@ -1,3 +1,5 @@
+2026-09-24 - d8cd58860a7d40f09ecb0f694ab99be5cee07481 - components/src/core/components/Icon/icons.ts - Add oxd-filetype-csv, oxd-filetype-pdf, oxd-filetype-docx and oxd-filetype-xlsx icons
+
 2026-09-16 - 8b353abd17e1d1007e7469faaa74d933d8bca107 - components/src/core/components/Icon/icons.ts - Add clear filter icon
 
 2026-09-11 - 52823cdf6010458d40ae6eb10b498252b26c6423 - components/src/core/components/Input/MultiSelect/multiselect-input.scss - Fixed the clear (x) icon in multi-select input chips being compressed when the option label is too long.
