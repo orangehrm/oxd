@@ -9,11 +9,14 @@
     :labelId="labelId"
     :message="message"
     :messageId="messageId"
+    :messageLive="false"
     :hintId="hintId"
     :labelHidden="isFile"
     :labelClickTarget="labelClickTarget"
     class="oxd-input-field-bottom-space"
     :classes="classes"
+    @focusin="onFocusIn"
+    @focusout="onFocusOut"
   >
     <component
       :is="component"
@@ -32,11 +35,25 @@
         <slot :name="name" v-bind="slotData" />
       </template>
     </component>
+    <span :id="descriptionId" class="oxd-input-field-description" hidden>
+      {{ describedMessage }}
+    </span>
+    <span class="oxd-input-field-announcer" role="status">
+      {{ announcedMessage }}
+    </span>
   </oxd-input-group>
 </template>
 
 <script lang="ts">
-import {toRef, PropType, nextTick, defineComponent} from 'vue';
+import {
+  toRef,
+  ref,
+  watch,
+  PropType,
+  nextTick,
+  defineComponent,
+  onBeforeUnmount,
+} from 'vue';
 import InputGroup from '@orangehrm/oxd/core/components/InputField/InputGroup.vue';
 import Input from '@orangehrm/oxd/core/components/Input/Input.vue';
 import FileInput from '@orangehrm/oxd/core/components/Input/FileInput.vue';
@@ -76,6 +93,17 @@ import RadioPillGroup from '@orangehrm/oxd/core/components/Input/RadioPills/Radi
 import TreeSelectInput from '@orangehrm/oxd/core/components/Input/TreeSelect/TreeSelect.vue';
 import RadioGroup from '@orangehrm/oxd/core/components/Input/RadioGroup.vue';
 import Number from '@orangehrm/oxd/core/components/Input/Number/Number.vue';
+
+// A pause long enough to be past the user's next keystroke, short enough to
+// still read as immediate feedback.
+const ANNOUNCE_AFTER_PAUSE = 1000;
+const ANNOUNCE_CLEAR_AFTER = 5000;
+// long enough to land in a separate accessibility-tree update
+const ANNOUNCE_REWRITE_GAP = 100;
+// shared by every field on the page: Orca's duplicate check is page wide
+let announceParity = false;
+// what an announcer holds when it has nothing to say (see setup)
+const ANNOUNCER_IDLE = '\u00a0';
 
 export default defineComponent({
   name: 'oxd-input-field',
@@ -206,10 +234,122 @@ export default defineComponent({
 
     if (isDirty) startWatcher();
 
+    // The description a screen reader reads for the control is a COPY of the
+    // message that only catches up while the control is not focused. Errors
+    // appear as the user types, i.e. on the focused control; if its
+    // description changed then, Orca spoke it (accessible-description
+    // changed) AND the role="status" region spoke it again. Freezing the copy
+    // leaves the live region as the one announcement, and the copy is current
+    // again by the time the user comes back to the field.
+    const focused = ref(false);
+    const describedMessage = ref(message.value);
+    watch(message, value => {
+      // Frozen while focused so a NEW error is not spoken twice - but a field
+      // the user has just made valid must stop reporting its old error at
+      // once. Clearing a description is not announced.
+      if (!focused.value || !value) describedMessage.value = value;
+    });
+    // Announcing: a screen reader flushes pending live-region output on every
+    // keypress (Orca 46: "Interrupting presentation" / "Flushing live region
+    // messages"), so an error announced the instant it appears is lost to
+    // the next key typed. Announce once typing pauses, from a live region of
+    // our own; the visible message stays immediate. Clear it again shortly
+    // after so reading the page line by line does not meet the text twice.
+    // Starts idle: an error already present at mount was not typed by the
+    // user, and pre-filled text would only be read twice in browse mode.
+    // "Idle" is a lone no-break space, never "": Orca 46 caches per element
+    // whether it has text (treatAsTextObject: character count > 0), so an
+    // announcer it once walked over while EMPTY - e.g. reading the form in
+    // browse mode - was treated as text-less for good and every later error
+    // from that field was dropped. Orca strips the space; nothing is spoken.
+    const announcedMessage = ref<string>(ANNOUNCER_IDLE);
+    let announceTimer: ReturnType<typeof setTimeout> | undefined;
+    let clearTimer: ReturnType<typeof setTimeout> | undefined;
+    let rewriteTimer: ReturnType<typeof setTimeout> | undefined;
+    const write = (value: string | null) => {
+      if (!value) {
+        announcedMessage.value = ANNOUNCER_IDLE;
+        return;
+      }
+      // Orca drops a live-region text insert identical to the LAST one it
+      // queued, page wide ("Event is believed to be duplicate message"), so a
+      // second field's "Required" was never spoken. Alternate a trailing
+      // no-break space so consecutive announcements always differ; Orca
+      // strips it before speaking and it is invisible.
+      announceParity = !announceParity;
+      announcedMessage.value = announceParity ? value : `${value}\u00a0`;
+      clearTimer = setTimeout(() => {
+        announcedMessage.value = ANNOUNCER_IDLE;
+      }, ANNOUNCE_CLEAR_AFTER);
+    };
+    const announceNow = () => {
+      clearTimeout(announceTimer);
+      announceTimer = undefined;
+      clearTimeout(clearTimer);
+      clearTimeout(rewriteTimer);
+      const next = message.value;
+      // Writing the text the region already holds is no change at all, so a
+      // screen reader announces nothing - the second "Required" after a
+      // field is fixed and cleared again was lost this way. Empty it first
+      // and write the text a moment later, as a separate update.
+      if (next && next === announcedMessage.value.trim()) {
+        announcedMessage.value = ANNOUNCER_IDLE;
+        rewriteTimer = setTimeout(() => {
+          rewriteTimer = undefined;
+          write(next);
+        }, ANNOUNCE_REWRITE_GAP);
+      } else {
+        write(next);
+      }
+    };
+    const scheduleAnnounce = () => {
+      // A rewrite waiting out its gap is a pending announcement too: it
+      // holds the error as it was, so a newer state must replace it or the
+      // old error is spoken after it stopped being true. (PR 910 review.)
+      clearTimeout(rewriteTimer);
+      rewriteTimer = undefined;
+      clearTimeout(announceTimer);
+      announceTimer = setTimeout(announceNow, ANNOUNCE_AFTER_PAUSE);
+    };
+    // Only an error that appears while the user is working in THIS field is
+    // announced. One raised while the field is not focused comes from a
+    // form-level action - submit - and the form announces that itself (the
+    // "Please fill in all required fields" toast); announcing every field's
+    // error on top of it buried the summary. It is still shown and described.
+    watch(message, () => {
+      if (focused.value) scheduleAnnounce();
+    });
+    // still typing: push a pending announcement back
+    watch(modelValue, () => {
+      if (focused.value && (announceTimer || rewriteTimer)) scheduleAnnounce();
+    });
+    onBeforeUnmount(() => {
+      clearTimeout(announceTimer);
+      clearTimeout(clearTimer);
+      clearTimeout(rewriteTimer);
+    });
+
+    const onFocusIn = () => {
+      focused.value = true;
+    };
+    const onFocusOut = (event: FocusEvent) => {
+      const root = event.currentTarget as HTMLElement | null;
+      const next = event.relatedTarget as Node | null;
+      // moving between parts of one field (date input -> calendar button)
+      if (root && next && root.contains(next)) return;
+      focused.value = false;
+      describedMessage.value = message.value;
+      if (announceTimer || rewriteTimer) announceNow();
+    };
+
     return {
       message,
       hasError,
       onChange,
+      describedMessage,
+      announcedMessage,
+      onFocusIn,
+      onFocusOut,
     };
   },
 
@@ -225,6 +365,9 @@ export default defineComponent({
     messageId(): string {
       return `${this.resolvedId}-message`;
     },
+    descriptionId(): string {
+      return `${this.resolvedId}-description`;
+    },
     hintId(): string {
       return `${this.resolvedId}-hint`;
     },
@@ -234,12 +377,16 @@ export default defineComponent({
     describedBy(): string | null {
       const inherited = this.$attrs['aria-describedby'] as string | undefined;
       // Hint before message: instructions first, then what went wrong.
+      // Points at the frozen copy of the message (see setup), never at the
+      // live region itself, and ALWAYS - so neither the attribute nor the
+      // text it resolves to changes while the user is typing. An empty
+      // description is not read.
       const ids = [
         inherited,
         this.hint ? this.hintId : null,
-        this.message ? this.messageId : null,
+        this.descriptionId,
       ].filter(Boolean);
-      return ids.length > 0 ? ids.join(' ') : null;
+      return ids.join(' ');
     },
     // A file input is exposed as a BUTTON, not a textbox. Screen readers
     // suppress a <label> that names a textbox, but not one that names a
@@ -269,7 +416,16 @@ export default defineComponent({
     // Groups cannot use `for` at all; a file input can, but must not, for the
     // reason above. Everything else keeps the plain <label for> wiring.
     labelledBy(): string | null {
-      if (!this.label) return null;
+      // `v-bind="$attrs"` is merged BEFORE this binding, so returning null does
+      // not fall back to an inherited aria-labelledby - it erases it, and a
+      // consumer that renders its own label is left with an unnamed control.
+      // Same hazard already handled for aria-describedby below.
+      const inherited = this.$attrs['aria-labelledby'] as string | undefined;
+      if (!this.label) return inherited ?? null;
+      // When this component renders the label it owns the naming, so nothing
+      // inherited may override it. Groups, file inputs and selects are named
+      // by reference to that label; a plain control is named by its native
+      // <label for>, which an inherited aria-labelledby would override.
       return this.isGroup || this.isFile || this.isSelect ? this.labelId : null;
     },
     // checkboxgroup/radiogroup/radiopillgroup hand each member its own

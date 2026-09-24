@@ -1,4 +1,5 @@
 import {mount} from '@vue/test-utils';
+import {nextTick, ref} from 'vue';
 import InputField from '@orangehrm/oxd/core/components/InputField/InputField.vue';
 import {FormAPI, formKey} from '@orangehrm/oxd/composables/types';
 
@@ -317,12 +318,12 @@ describe('InputField.vue', () => {
       global: {provide: {[formKey as symbol]: invalidFormAPI}},
     });
 
-  it('renders the message region before there is a message to put in it', () => {
+  it('renders the live region before there is a message to put in it', () => {
     // v-if would have kept the region out of the accessibility tree until the
     // error appeared, and a region added at the same moment as its content is
-    // not announced.
+    // not announced. The live region is the announcer, not the visible text.
     const wrapper = mountField({label: 'First Name'});
-    const region = wrapper.find('.oxd-input-group__message');
+    const region = wrapper.find('.oxd-input-field-announcer');
 
     expect(region.exists()).toBe(true);
     expect(region.attributes('role')).toBe('status');
@@ -336,18 +337,43 @@ describe('InputField.vue', () => {
     // absent, not aria-invalid="false" — the attribute is only meaningful
     // when the control really is invalid
     expect(input.attributes('aria-invalid')).toBeUndefined();
-    expect(input.attributes('aria-describedby')).toBeUndefined();
+    // Already pointed at the (empty) description: an empty description is
+    // not read, and the reference must not appear only once an error does.
+    expect(input.attributes('aria-describedby')).toBe(
+      wrapper.find('.oxd-input-field-description').attributes('id'),
+    );
+  });
+
+  it('does not change aria-describedby when an error appears', () => {
+    // Errors appear while the user is typing, i.e. on the FOCUSED control.
+    // Adding the message id to aria-describedby at that moment makes a screen
+    // reader announce the new description - and the live region announces
+    // the same text, so the error was read twice.
+    const valid = mountField({label: 'First Name', id: 'first-name'});
+    const invalid = mountInvalidField({label: 'First Name', id: 'first-name'});
+
+    expect(invalid.find('input').attributes('aria-invalid')).toBe('true');
+    expect(invalid.find('input').attributes('aria-describedby')).toBe(
+      valid.find('input').attributes('aria-describedby'),
+    );
   });
 
   it('marks an invalid control and points it at the message', () => {
     const wrapper = mountInvalidField({label: 'First Name'});
     const input = wrapper.find('input');
     const region = wrapper.find('.oxd-input-group__message');
+    const description = wrapper.find('.oxd-input-field-description');
 
     expect(input.attributes('aria-invalid')).toBe('true');
-    expect(input.attributes('aria-describedby')).toBe(region.attributes('id'));
-    expect(region.attributes('id')).toBeTruthy();
+    // described by the (non-live) copy, announced by the live region
+    expect(input.attributes('aria-describedby')).toBe(
+      description.attributes('id'),
+    );
+    expect(description.text()).toBe('Required');
+    // shown and described, but not announced: the user was not typing in
+    // this field when the error appeared
     expect(region.text()).toBe('Required');
+    expect(wrapper.find('.oxd-input-field-announcer').text()).toBe('');
   });
 
   it('appends to a consumer supplied aria-describedby rather than replacing it', () => {
@@ -358,7 +384,7 @@ describe('InputField.vue', () => {
       'aria-describedby': 'field-help',
     });
     const messageId = wrapper
-      .find('.oxd-input-group__message')
+      .find('.oxd-input-field-description')
       .attributes('id');
 
     expect(wrapper.find('input').attributes('aria-describedby')).toBe(
@@ -371,8 +397,11 @@ describe('InputField.vue', () => {
       label: 'First Name',
       'aria-describedby': 'field-help',
     });
+    const messageId = wrapper
+      .find('.oxd-input-field-description')
+      .attributes('id');
     expect(wrapper.find('input').attributes('aria-describedby')).toBe(
-      'field-help',
+      `field-help ${messageId}`,
     );
   });
 
@@ -389,7 +418,7 @@ describe('InputField.vue', () => {
 
       expect(group.attributes('aria-invalid')).toBe('true');
       expect(group.attributes('aria-describedby')).toBe(
-        wrapper.find('.oxd-input-group__message').attributes('id'),
+        wrapper.find('.oxd-input-field-description').attributes('id'),
       );
     },
   );
@@ -457,6 +486,341 @@ describe('InputField.vue', () => {
     },
   );
 
+  describe('while the control has focus', () => {
+    // What a screen reader receives as the description: the text of every
+    // element aria-describedby points at, not the attribute itself.
+    const descriptionText = (wrapper: ReturnType<typeof mount>) =>
+      (wrapper.find('input').attributes('aria-describedby') || '')
+        .split(' ')
+        .filter(Boolean)
+        .map(id => document.getElementById(id)?.textContent?.trim() ?? '')
+        .join(' ')
+        .trim();
+
+    const mountWithLiveErrors = () => {
+      const errors = ref<string[]>([]);
+      const form: FormAPI = {
+        ...mockFormAPI,
+        // reading the ref inside searchErrors makes `message` reactive
+        searchErrors: jest.fn((cid: string) =>
+          errors.value.length ? [{cid, errors: errors.value}] : [],
+        ),
+      };
+      const wrapper = mount(InputField, {
+        props: {label: 'Email'},
+        attachTo: document.body,
+        global: {provide: {[formKey as symbol]: form}},
+      });
+      return {wrapper, errors};
+    };
+
+    it('keeps its description steady when an error appears while typing', async () => {
+      // Orca 46 + Chrome, measured: typing an invalid email spoke "Expected
+      // format: admin@example.com" twice - once from
+      // object:property-change:accessible-description on the focused entry,
+      // once from the role="status" region. The live region must be the
+      // only thing that changes while the user is in the field.
+      const {wrapper, errors} = mountWithLiveErrors();
+      const input = wrapper.find('input');
+      (input.element as HTMLInputElement).focus();
+      await input.trigger('focusin');
+      const before = descriptionText(wrapper);
+
+      errors.value = ['Expected format: admin@example.com'];
+      await nextTick();
+
+      expect(wrapper.find('.oxd-input-group__message').text()).toBe(
+        'Expected format: admin@example.com',
+      );
+      expect(descriptionText(wrapper)).toBe(before);
+      wrapper.unmount();
+    });
+
+    it('describes the error once focus leaves, so returning to the field reads it', async () => {
+      const {wrapper, errors} = mountWithLiveErrors();
+      const input = wrapper.find('input');
+      (input.element as HTMLInputElement).focus();
+      await input.trigger('focusin');
+      errors.value = ['Expected format: admin@example.com'];
+      await nextTick();
+
+      await input.trigger('focusout');
+
+      expect(descriptionText(wrapper)).toBe(
+        'Expected format: admin@example.com',
+      );
+      wrapper.unmount();
+    });
+
+    it('stops describing an error as soon as the focused field becomes valid', async () => {
+      // The copy is frozen while focused so a new error is not spoken twice,
+      // but a field the user has just fixed must not keep reporting its old
+      // error to anyone who queries it (PR 910 review). Clearing a
+      // description announces nothing, so this costs no extra speech.
+      const {wrapper, errors} = mountWithLiveErrors();
+      errors.value = ['Required']; // e.g. raised on submit
+      await nextTick();
+      const input = wrapper.find('input');
+      (input.element as HTMLInputElement).focus();
+      await input.trigger('focusin');
+      expect(descriptionText(wrapper)).toBe('Required');
+
+      errors.value = [];
+      await nextTick();
+
+      expect(descriptionText(wrapper)).toBe('');
+      wrapper.unmount();
+    });
+
+    it('describes an error that appears while unfocused straight away', async () => {
+      // e.g. submit: focus is on the button, not the field
+      const {wrapper, errors} = mountWithLiveErrors();
+      errors.value = ['Required'];
+      await nextTick();
+
+      expect(descriptionText(wrapper)).toBe('Required');
+      wrapper.unmount();
+    });
+  });
+
+  describe('announcing an error', () => {
+    // Orca 46 with key echo, measured with real X keystrokes: every keypress
+    // runs "Interrupting presentation" + "Flushing live region messages", so
+    // an error announced the moment it appears is thrown away by the next
+    // key the user types. The error is therefore announced once the user
+    // pauses, from a dedicated live region; the visible message stays
+    // immediate but is no longer itself a live region.
+    const mountLive = () => {
+      const errors = ref<string[]>([]);
+      const form: FormAPI = {
+        ...mockFormAPI,
+        searchErrors: jest.fn((cid: string) =>
+          errors.value.length ? [{cid, errors: errors.value}] : [],
+        ),
+      };
+      const wrapper = mount(InputField, {
+        props: {label: 'Email', modelValue: ''},
+        attachTo: document.body,
+        global: {provide: {[formKey as symbol]: form}},
+      });
+      return {wrapper, errors};
+    };
+    const announcer = (w: ReturnType<typeof mount>) =>
+      w.find('.oxd-input-field-announcer');
+    const focus = async (w: ReturnType<typeof mount>) => {
+      const input = w.find('input');
+      (input.element as HTMLInputElement).focus();
+      await input.trigger('focusin');
+    };
+
+    beforeEach(() => jest.useFakeTimers());
+    afterEach(() => jest.useRealTimers());
+
+    it('is the only live region in the field', () => {
+      const {wrapper} = mountLive();
+      const live = wrapper.findAll('[role="status"], [aria-live]');
+
+      expect(live).toHaveLength(1);
+      expect(live[0].classes()).toContain('oxd-input-field-announcer');
+      expect(
+        wrapper.find('.oxd-input-group__message').attributes('role'),
+      ).toBeUndefined();
+      wrapper.unmount();
+    });
+
+    it('waits for the user to pause typing before announcing', async () => {
+      const {wrapper, errors} = mountLive();
+      await focus(wrapper);
+
+      errors.value = ['Expected format: admin@example.com'];
+      await wrapper.setProps({modelValue: 'x'});
+      // visible at once, but not announced mid-typing
+      expect(wrapper.find('.oxd-input-group__message').text()).toBe(
+        'Expected format: admin@example.com',
+      );
+      expect(announcer(wrapper).text()).toBe('');
+
+      jest.advanceTimersByTime(600);
+      await wrapper.setProps({modelValue: 'xy'}); // still typing: restart
+      jest.advanceTimersByTime(600);
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe('');
+
+      jest.advanceTimersByTime(500);
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe(
+        'Expected format: admin@example.com',
+      );
+      wrapper.unmount();
+    });
+
+    it('clears the announcement afterwards so line-by-line reading does not repeat it', async () => {
+      const {wrapper, errors} = mountLive();
+      await focus(wrapper);
+      errors.value = ['Required'];
+      await nextTick();
+      jest.advanceTimersByTime(1000);
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe('Required');
+
+      jest.advanceTimersByTime(5000);
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe('');
+      wrapper.unmount();
+    });
+
+    it('announces straight away when focus leaves before the pause', async () => {
+      const {wrapper, errors} = mountLive();
+      await focus(wrapper);
+      errors.value = ['Required'];
+      await nextTick();
+
+      await wrapper.find('input').trigger('focusout');
+      expect(announcer(wrapper).text()).toBe('Required');
+      wrapper.unmount();
+    });
+
+    it('announces the same error again when it comes back', async () => {
+      // Measured on the user's own Chrome (AT-SPI log): clear Last Name ->
+      // "Required" announced; type -> valid; clear again -> NOTHING. The
+      // announcer still held "Required", so writing the same text changed
+      // nothing and the screen reader had no change to announce.
+      const {wrapper, errors} = mountLive();
+      await focus(wrapper);
+
+      errors.value = ['Required'];
+      await wrapper.setProps({modelValue: ''});
+      jest.advanceTimersByTime(1000);
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe('Required');
+
+      errors.value = []; // user types: valid
+      await wrapper.setProps({modelValue: 'a'});
+      errors.value = ['Required']; // user clears it again
+      await wrapper.setProps({modelValue: ''});
+      jest.advanceTimersByTime(1000);
+      await nextTick();
+      // emptied first, so the rewrite is a real change
+      expect(announcer(wrapper).text()).toBe('');
+      jest.advanceTimersByTime(150);
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe('Required');
+      wrapper.unmount();
+    });
+
+    it('drops a pending re-announcement once the error is no longer current', async () => {
+      // PR 910 review: the same-text rewrite waits 100ms. If the user typed
+      // in that gap and the error cleared, nothing cancelled the rewrite, so
+      // the old "Required" was spoken after it had stopped being true.
+      const {wrapper, errors} = mountLive();
+      await focus(wrapper);
+      errors.value = ['Required'];
+      await wrapper.setProps({modelValue: ''});
+      jest.advanceTimersByTime(1000);
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe('Required');
+
+      // same error again -> rewrite armed (announcer emptied, 100ms gap)
+      errors.value = [];
+      await wrapper.setProps({modelValue: 'a'});
+      errors.value = ['Required'];
+      await wrapper.setProps({modelValue: ''});
+      jest.advanceTimersByTime(1000);
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe('');
+
+      // user types inside the gap and the field becomes valid
+      errors.value = [];
+      await wrapper.setProps({modelValue: 'ab'});
+      // when the rewrite would have fired - the moment it would be spoken
+      jest.advanceTimersByTime(150);
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe('');
+      jest.advanceTimersByTime(2000);
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe('');
+      wrapper.unmount();
+    });
+
+    it('never repeats the exact text of the previous announcement, across fields', async () => {
+      // Orca 46 (web/script_utilities.py handleAsLiveRegion) drops a live
+      // region text insert whose text equals the LAST one it queued - page
+      // wide, from any field: "Event is believed to be duplicate message".
+      // So after First Name announced "Required", Last Name's "Required" was
+      // silently dropped. Consecutive announcements must differ in raw text;
+      // the difference is a trailing no-break space, which Orca strips before
+      // speaking and trim() removes, so nothing heard or seen changes.
+      const first = mountLive();
+      const second = mountLive();
+      const raw = (w: ReturnType<typeof mount>) =>
+        (announcer(w).element.textContent || '').replace(/^\s+(?=\S)/, '');
+
+      await focus(first.wrapper);
+      first.errors.value = ['Required'];
+      await nextTick();
+      jest.advanceTimersByTime(1000);
+      await nextTick();
+
+      await focus(second.wrapper);
+      second.errors.value = ['Required'];
+      await nextTick();
+      jest.advanceTimersByTime(1000);
+      await nextTick();
+
+      expect(announcer(first.wrapper).text()).toBe('Required');
+      expect(announcer(second.wrapper).text()).toBe('Required');
+      expect(raw(second.wrapper)).not.toBe(raw(first.wrapper));
+      first.wrapper.unmount();
+      second.wrapper.unmount();
+    });
+
+    it('never leaves the announcer completely empty', async () => {
+      // Orca 46 caches per element whether it "has text"
+      // (treatAsTextObject: character count > 0). Reading the page in browse
+      // mode walked over the EMPTY announcer, cached "no text", and every
+      // later error from that field was dropped (rig: arrowed over First/Last
+      // Name, then neither announced "Required"). An idle no-break space keeps
+      // the count above zero; Orca strips it, so nothing is spoken.
+      const {wrapper, errors} = mountLive();
+      const raw = () => announcer(wrapper).element.textContent || '';
+      expect(raw().length).toBeGreaterThan(0);
+      expect(announcer(wrapper).text()).toBe('');
+
+      await focus(wrapper);
+      errors.value = ['Required'];
+      await nextTick();
+      jest.advanceTimersByTime(1000);
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe('Required');
+
+      jest.advanceTimersByTime(5000); // auto-clear
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe('');
+      expect(raw().length).toBeGreaterThan(0);
+      wrapper.unmount();
+    });
+
+    it('leaves an error raised while unfocused (submit) to the form', async () => {
+      // On submit every invalid field got its error at once while focus was
+      // on the Apply button, so Orca spoke "Required" alongside the form's
+      // own "Please fill in all required fields" toast. QA's expected
+      // behaviour is the toast alone. The field still shows the error and
+      // describes it, so tabbing to it reads "invalid entry, Required".
+      const {wrapper, errors} = mountLive();
+      errors.value = ['Required'];
+      await nextTick();
+      jest.advanceTimersByTime(2000);
+      await nextTick();
+
+      expect(announcer(wrapper).text()).toBe('');
+      expect(wrapper.find('.oxd-input-group__message').text()).toBe('Required');
+      expect(wrapper.find('.oxd-input-field-description').text()).toBe(
+        'Required',
+      );
+      wrapper.unmount();
+    });
+  });
+
   it('describes a control with its hint', () => {
     // The hint carries instructions - accepted file types, a size cap, a
     // required format. It rendered with no id, so nothing referenced it and a
@@ -473,7 +837,11 @@ describe('InputField.vue', () => {
       .attributes('aria-describedby');
 
     expect(hint.attributes('id')).toBeTruthy();
-    expect(describedBy).toBe(hint.attributes('id'));
+    expect(describedBy).toBe(
+      `${hint.attributes('id')} ${wrapper
+        .find('.oxd-input-field-description')
+        .attributes('id')}`,
+    );
   });
 
   it('describes with hint and error together, hint first', () => {
@@ -489,7 +857,7 @@ describe('InputField.vue', () => {
     expect(ids).toHaveLength(2);
     expect(ids[0]).toBe(wrapper.find('.oxd-input-field-hint').attributes('id'));
     expect(ids[1]).toBe(
-      wrapper.find('.oxd-input-group__message').attributes('id'),
+      wrapper.find('.oxd-input-field-description').attributes('id'),
     );
   });
 
@@ -508,11 +876,14 @@ describe('InputField.vue', () => {
     expect(ids[1]).toBe(wrapper.find('.oxd-input-field-hint').attributes('id'));
   });
 
-  it('adds no description when there is no hint and no error', () => {
+  it('points only at the empty description when there is no hint or error', () => {
     const wrapper = mountNamed({label: 'First Name'});
-    expect(
-      wrapper.find('input').attributes('aria-describedby'),
-    ).toBeUndefined();
+    const description = wrapper.find('.oxd-input-field-description');
+
+    expect(description.text()).toBe('');
+    expect(wrapper.find('input').attributes('aria-describedby')).toBe(
+      description.attributes('id'),
+    );
   });
 
   it.each(['select', 'multiselect', 'treeselect'])(
@@ -585,5 +956,66 @@ describe('InputField.vue', () => {
     await wrapper.find('label').trigger('click');
     expect(clicks).toBeLessThanOrEqual(1);
     wrapper.unmount();
+  });
+
+  it.each(['select', 'input'])(
+    'keeps a consumer aria-labelledby on a %s with no label prop',
+    type => {
+      // A consumer that renders its own label and names the control by
+      // reference passes aria-labelledby as a fallthrough attribute. It
+      // arrives via v-bind="$attrs", but the explicit :aria-labelledby binding
+      // is declared AFTER that, so a null from here does not fall back to the
+      // inherited value - it ERASES it, leaving the control with no accessible
+      // name at all. Reported against custom questions on the candidate apply
+      // form across Ubuntu, Firefox, Chrome, macOS and iOS.
+      const wrapper = mount(InputField, {
+        props: {type, options: []},
+        attrs: {'aria-labelledby': 'consumer-label'},
+        global: {provide: {[formKey as symbol]: mockFormAPI}},
+      });
+      const control = wrapper.find(
+        type === 'select' ? '[role="combobox"]' : 'input',
+      );
+      expect(control.attributes('aria-labelledby')).toBe('consumer-label');
+    },
+  );
+
+  it('prefers its own label over an inherited aria-labelledby', () => {
+    // When InputField renders the label itself it owns the naming, and its
+    // labelId must win - otherwise adding a label to an existing consumer
+    // would silently keep pointing at the consumer's element.
+    const wrapper = mount(InputField, {
+      props: {label: 'Job Title', type: 'select', options: []},
+      attrs: {'aria-labelledby': 'consumer-label'},
+      global: {provide: {[formKey as symbol]: mockFormAPI}},
+    });
+    const labelId = wrapper.find('label').attributes('id');
+
+    expect(labelId).toBeTruthy();
+    expect(
+      wrapper.find('[role="combobox"]').attributes('aria-labelledby'),
+    ).toBe(labelId);
+  });
+
+  it('names a labelled plain input by its own <label>, not an inherited aria-labelledby', () => {
+    // aria-labelledby overrides a native <label for>. Returning the inherited
+    // value here replaced "First Name" with whatever the consumer pointed at,
+    // although the component renders - and owns - the label. (PR 910 review.)
+    const wrapper = mount(InputField, {
+      props: {label: 'First Name', id: 'first-name'},
+      attrs: {'aria-labelledby': 'consumer-label'},
+      global: {provide: {[formKey as symbol]: mockFormAPI}},
+    });
+
+    expect(wrapper.find('input').attributes('aria-labelledby')).toBeUndefined();
+    expect(wrapper.find('label').attributes('for')).toBe('first-name');
+  });
+
+  it('adds no aria-labelledby when there is neither a label nor an inherited one', () => {
+    const wrapper = mount(InputField, {
+      props: {type: 'input'},
+      global: {provide: {[formKey as symbol]: mockFormAPI}},
+    });
+    expect(wrapper.find('input').attributes('aria-labelledby')).toBeUndefined();
   });
 });

@@ -34,7 +34,7 @@
       <oxd-text
         v-if="messageId || message"
         :id="messageId"
-        :role="messageId ? 'status' : null"
+        :role="messageId && messageLive ? 'status' : null"
         :class="messageClasses"
         tag="span"
       >
@@ -131,6 +131,13 @@ export default defineComponent({
     // end up with a second, permanently empty live region inside the real one.
     messageId: {
       type: String,
+    },
+    // InputField turns this off and announces through its own debounced
+    // live region instead: announcing the moment the message changes lost it
+    // to the next keystroke (screen readers flush live output on typing).
+    messageLive: {
+      type: Boolean,
+      default: true,
     },
     // The hint carries instructions - accepted file types, a size cap, a
     // required format. Without an id nothing can reference it, so it sat in

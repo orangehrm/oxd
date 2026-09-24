@@ -3,7 +3,7 @@
 exports[`Toast > Toast.vue should renders OXD Toast 1`] = `
 <div class="oxd-toast oxd-toast--default" aria-live="assertive">
   <div class="oxd-toast-start">
-    <div class="oxd-toast-icon-container">
+    <div class="oxd-toast-icon-container" aria-hidden="true">
       <div class="oxd-toast-icon-wrap oxd-toast-icon-wrap--default"><i class="oxd-icon oxd-icon--medium bi-star oxd-toast-icon d-flex align-center"></i></div>
     </div>
     <div class="oxd-toast-content oxd-toast-content--default">
@@ -11,16 +11,14 @@ exports[`Toast > Toast.vue should renders OXD Toast 1`] = `
       <p class="oxd-text oxd-text--p oxd-text--toast-message oxd-toast-content-text"></p>
     </div>
   </div>
-  <div class="oxd-toast-close-container">
-    <div class="oxd-toast-close oxd-toast-close--default" role="button"> × </div>
-  </div>
+  <div class="oxd-toast-close-container"><button type="button" class="oxd-toast-close oxd-toast-close--default" aria-label="Close"><span aria-hidden="true">×</span></button></div>
 </div>
 `;
 
 exports[`Toast > Toast.vue should renders OXD Toast error 1`] = `
 <div class="oxd-toast oxd-toast--error" aria-live="assertive">
   <div class="oxd-toast-start">
-    <div class="oxd-toast-icon-container">
+    <div class="oxd-toast-icon-container" aria-hidden="true">
       <div class="oxd-toast-icon-wrap oxd-toast-icon-wrap--error"><i class="oxd-icon oxd-icon--medium bi-exclamation-circle oxd-toast-icon d-flex align-center"></i></div>
     </div>
     <div class="oxd-toast-content oxd-toast-content--error">
@@ -28,16 +26,14 @@ exports[`Toast > Toast.vue should renders OXD Toast error 1`] = `
       <p class="oxd-text oxd-text--p oxd-text--toast-message oxd-toast-content-text"></p>
     </div>
   </div>
-  <div class="oxd-toast-close-container">
-    <div class="oxd-toast-close oxd-toast-close--error" role="button"> × </div>
-  </div>
+  <div class="oxd-toast-close-container"><button type="button" class="oxd-toast-close oxd-toast-close--error" aria-label="Close"><span aria-hidden="true">×</span></button></div>
 </div>
 `;
 
 exports[`Toast > Toast.vue should renders OXD Toast info 1`] = `
 <div class="oxd-toast oxd-toast--info" aria-live="assertive">
   <div class="oxd-toast-start">
-    <div class="oxd-toast-icon-container">
+    <div class="oxd-toast-icon-container" aria-hidden="true">
       <div class="oxd-toast-icon-wrap oxd-toast-icon-wrap--info"><i class="oxd-icon oxd-icon--medium bi-info-circle oxd-toast-icon d-flex align-center"></i></div>
     </div>
     <div class="oxd-toast-content oxd-toast-content--info">
@@ -45,16 +41,14 @@ exports[`Toast > Toast.vue should renders OXD Toast info 1`] = `
       <p class="oxd-text oxd-text--p oxd-text--toast-message oxd-toast-content-text"></p>
     </div>
   </div>
-  <div class="oxd-toast-close-container">
-    <div class="oxd-toast-close oxd-toast-close--info" role="button"> × </div>
-  </div>
+  <div class="oxd-toast-close-container"><button type="button" class="oxd-toast-close oxd-toast-close--info" aria-label="Close"><span aria-hidden="true">×</span></button></div>
 </div>
 `;
 
 exports[`Toast > Toast.vue should renders OXD Toast success 1`] = `
 <div class="oxd-toast oxd-toast--success" aria-live="assertive">
   <div class="oxd-toast-start">
-    <div class="oxd-toast-icon-container">
+    <div class="oxd-toast-icon-container" aria-hidden="true">
       <div class="oxd-toast-icon-wrap oxd-toast-icon-wrap--success"><i class="oxd-icon oxd-icon--medium bi-check2 oxd-toast-icon d-flex align-center"></i></div>
     </div>
     <div class="oxd-toast-content oxd-toast-content--success">
@@ -62,16 +56,14 @@ exports[`Toast > Toast.vue should renders OXD Toast success 1`] = `
       <p class="oxd-text oxd-text--p oxd-text--toast-message oxd-toast-content-text"></p>
     </div>
   </div>
-  <div class="oxd-toast-close-container">
-    <div class="oxd-toast-close oxd-toast-close--success" role="button"> × </div>
-  </div>
+  <div class="oxd-toast-close-container"><button type="button" class="oxd-toast-close oxd-toast-close--success" aria-label="Close"><span aria-hidden="true">×</span></button></div>
 </div>
 `;
 
 exports[`Toast > Toast.vue should renders OXD Toast warn 1`] = `
 <div class="oxd-toast oxd-toast--warn" aria-live="assertive">
   <div class="oxd-toast-start">
-    <div class="oxd-toast-icon-container">
+    <div class="oxd-toast-icon-container" aria-hidden="true">
       <div class="oxd-toast-icon-wrap oxd-toast-icon-wrap--warn"><i class="oxd-icon oxd-icon--medium bi-exclamation-triangle oxd-toast-icon d-flex align-center"></i></div>
     </div>
     <div class="oxd-toast-content oxd-toast-content--warn">
@@ -79,8 +71,6 @@ exports[`Toast > Toast.vue should renders OXD Toast warn 1`] = `
       <p class="oxd-text oxd-text--p oxd-text--toast-message oxd-toast-content-text"></p>
     </div>
   </div>
-  <div class="oxd-toast-close-container">
-    <div class="oxd-toast-close oxd-toast-close--warn" role="button"> × </div>
-  </div>
+  <div class="oxd-toast-close-container"><button type="button" class="oxd-toast-close oxd-toast-close--warn" aria-label="Close"><span aria-hidden="true">×</span></button></div>
 </div>
 `;

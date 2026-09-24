@@ -13,3 +13,19 @@
   content: '*';
   color: $oxd-input-field-required-asterisk-color;
 }
+
+// Visually hidden but still in the accessibility tree - `hidden` or
+// `display: none` would remove it, and a live region that is not in the tree
+// announces nothing.
+.oxd-input-field-announcer {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
