@@ -370,9 +370,10 @@ describe('InputField.vue', () => {
       description.attributes('id'),
     );
     expect(description.text()).toBe('Required');
-    // shown immediately; announced by the separate live region
+    // shown and described, but not announced: the user was not typing in
+    // this field when the error appeared
     expect(region.text()).toBe('Required');
-    expect(wrapper.find('.oxd-input-field-announcer').text()).toBe('Required');
+    expect(wrapper.find('.oxd-input-field-announcer').text()).toBe('');
   });
 
   it('appends to a consumer supplied aria-describedby rather than replacing it', () => {
@@ -659,12 +660,23 @@ describe('InputField.vue', () => {
       wrapper.unmount();
     });
 
-    it('announces an error raised while unfocused (e.g. on submit) at once', async () => {
+    it('leaves an error raised while unfocused (submit) to the form', async () => {
+      // On submit every invalid field got its error at once while focus was
+      // on the Apply button, so Orca spoke "Required" alongside the form's
+      // own "Please fill in all required fields" toast. QA's expected
+      // behaviour is the toast alone. The field still shows the error and
+      // describes it, so tabbing to it reads "invalid entry, Required".
       const {wrapper, errors} = mountLive();
       errors.value = ['Required'];
       await nextTick();
+      jest.advanceTimersByTime(2000);
+      await nextTick();
 
-      expect(announcer(wrapper).text()).toBe('Required');
+      expect(announcer(wrapper).text()).toBe('');
+      expect(wrapper.find('.oxd-input-group__message').text()).toBe('Required');
+      expect(wrapper.find('.oxd-input-field-description').text()).toBe(
+        'Required',
+      );
       wrapper.unmount();
     });
   });

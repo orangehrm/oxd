@@ -246,7 +246,9 @@ export default defineComponent({
     // the next key typed. Announce once typing pauses, from a live region of
     // our own; the visible message stays immediate. Clear it again shortly
     // after so reading the page line by line does not meet the text twice.
-    const announcedMessage = ref<string | null>(message.value);
+    // starts empty: an error already present at mount was not typed by the
+    // user, and pre-filled text would only be read twice in browse mode
+    const announcedMessage = ref<string | null>(null);
     let announceTimer: ReturnType<typeof setTimeout> | undefined;
     let clearTimer: ReturnType<typeof setTimeout> | undefined;
     const announceNow = () => {
@@ -264,9 +266,13 @@ export default defineComponent({
       clearTimeout(announceTimer);
       announceTimer = setTimeout(announceNow, ANNOUNCE_AFTER_PAUSE);
     };
+    // Only an error that appears while the user is working in THIS field is
+    // announced. One raised while the field is not focused comes from a
+    // form-level action - submit - and the form announces that itself (the
+    // "Please fill in all required fields" toast); announcing every field's
+    // error on top of it buried the summary. It is still shown and described.
     watch(message, () => {
       if (focused.value) scheduleAnnounce();
-      else announceNow();
     });
     // still typing: push a pending announcement back
     watch(modelValue, () => {
