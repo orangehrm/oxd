@@ -100,6 +100,8 @@ const ANNOUNCE_AFTER_PAUSE = 1000;
 const ANNOUNCE_CLEAR_AFTER = 5000;
 // long enough to land in a separate accessibility-tree update
 const ANNOUNCE_REWRITE_GAP = 100;
+// shared by every field on the page: Orca's duplicate check is page wide
+let announceParity = false;
 
 export default defineComponent({
   name: 'oxd-input-field',
@@ -258,6 +260,15 @@ export default defineComponent({
     let clearTimer: ReturnType<typeof setTimeout> | undefined;
     let rewriteTimer: ReturnType<typeof setTimeout> | undefined;
     const write = (value: string | null) => {
+      if (value) {
+        // Orca drops a live-region text insert identical to the LAST one it
+        // queued, page wide ("Event is believed to be duplicate message"), so
+        // a second field's "Required" was never spoken. Alternate a trailing
+        // no-break space so consecutive announcements always differ; Orca
+        // strips it before speaking and it is invisible.
+        announceParity = !announceParity;
+        value = announceParity ? value : `${value}\u00a0`;
+      }
       announcedMessage.value = value;
       if (value) {
         clearTimer = setTimeout(() => {
@@ -275,7 +286,7 @@ export default defineComponent({
       // screen reader announces nothing - the second "Required" after a
       // field is fixed and cleared again was lost this way. Empty it first
       // and write the text a moment later, as a separate update.
-      if (next && next === announcedMessage.value) {
+      if (next && next === announcedMessage.value?.trim()) {
         announcedMessage.value = null;
         rewriteTimer = setTimeout(() => write(next), ANNOUNCE_REWRITE_GAP);
       } else {

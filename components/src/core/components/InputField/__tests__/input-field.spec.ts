@@ -708,6 +708,38 @@ describe('InputField.vue', () => {
       wrapper.unmount();
     });
 
+    it('never repeats the exact text of the previous announcement, across fields', async () => {
+      // Orca 46 (web/script_utilities.py handleAsLiveRegion) drops a live
+      // region text insert whose text equals the LAST one it queued - page
+      // wide, from any field: "Event is believed to be duplicate message".
+      // So after First Name announced "Required", Last Name's "Required" was
+      // silently dropped. Consecutive announcements must differ in raw text;
+      // the difference is a trailing no-break space, which Orca strips before
+      // speaking and trim() removes, so nothing heard or seen changes.
+      const first = mountLive();
+      const second = mountLive();
+      const raw = (w: ReturnType<typeof mount>) =>
+        (announcer(w).element.textContent || '').replace(/^\s+(?=\S)/, '');
+
+      await focus(first.wrapper);
+      first.errors.value = ['Required'];
+      await nextTick();
+      jest.advanceTimersByTime(1000);
+      await nextTick();
+
+      await focus(second.wrapper);
+      second.errors.value = ['Required'];
+      await nextTick();
+      jest.advanceTimersByTime(1000);
+      await nextTick();
+
+      expect(announcer(first.wrapper).text()).toBe('Required');
+      expect(announcer(second.wrapper).text()).toBe('Required');
+      expect(raw(second.wrapper)).not.toBe(raw(first.wrapper));
+      first.wrapper.unmount();
+      second.wrapper.unmount();
+    });
+
     it('leaves an error raised while unfocused (submit) to the form', async () => {
       // On submit every invalid field got its error at once while focus was
       // on the Apply button, so Orca spoke "Required" alongside the form's
