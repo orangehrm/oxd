@@ -38,6 +38,7 @@
       <div
         class="oxd-select-text--arrow"
         :class="dropdownIconClasses"
+        aria-hidden="true"
         v-if="!disabled"
       >
         <oxd-icon
@@ -59,6 +60,11 @@ import translateMixin from '../../../../mixins/translate';
 
 export default defineComponent({
   name: 'oxd-select-text',
+
+  // The dropdown arrow is aria-hidden in the template: it is a bootstrap-icons
+  // private-use glyph (U+F229) drawn as ::before content inside the
+  // combobox, and Orca + Chrome read the combobox as "Select \uf229".
+  // aria-haspopup / aria-expanded already say that it opens a list.
   inheritAttrs: false,
 
   components: {

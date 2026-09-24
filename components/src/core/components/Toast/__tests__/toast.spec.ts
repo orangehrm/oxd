@@ -37,3 +37,25 @@ describe('Toast > Toast.vue', () => {
     expect(wrapper.html()).toMatchSnapshot();
   });
 });
+
+describe('Toast.vue close control', () => {
+  it('closes a persistent toast when its close button is pressed', async () => {
+    // Guards the switch from <div role="button"> to a native <button>: the
+    // click must still reach onClickClose, including for a persistent toast
+    // that ignores clicks on its body.
+    const wrapper = mount(Toast, {
+      props: {
+        show: true,
+        persistent: true,
+        type: 'error',
+        title: 'Error',
+        message: 'm',
+      },
+    });
+    await wrapper.find('.oxd-toast').trigger('click');
+    expect(wrapper.emitted('update:show')).toBeUndefined();
+
+    await wrapper.find('button.oxd-toast-close').trigger('click');
+    expect(wrapper.emitted('update:show')).toEqual([[false]]);
+  });
+});

@@ -10,7 +10,17 @@
   border-radius: $oxd-toast-close-border-radius;
   cursor: pointer;
   background-color: rgba($oxd-toast-icon-color, 0.1);
+  // now a native <button>: take the toast's text styling, not the UA's
+  color: inherit;
+  font: inherit;
   @include oxd-flex-center;
+
+  // `outline: 0` above suppresses the UA ring; now that the control is
+  // focusable a keyboard user must still see where focus is. WCAG 2.4.7.
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
 
   &--default {
     background-color: rgba($oxd-toast-icon-color-default, 0.1);

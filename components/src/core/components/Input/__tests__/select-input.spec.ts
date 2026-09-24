@@ -746,3 +746,17 @@ describe('SelectInput.vue', () => {
     });
   });
 });
+
+describe('SelectInput dropdown arrow', () => {
+  it('hides the decorative arrow from screen readers', () => {
+    // The caret is a bootstrap-icons private-use glyph (U+F229) drawn as
+    // ::before content INSIDE the combobox, so Orca + Chrome read the
+    // combobox as 'Select '. aria-haspopup/aria-expanded already
+    // convey that it opens a list.
+    const wrapper = mount(SelectInput, {props: {options}});
+    const arrow = wrapper.find('.oxd-select-text--arrow');
+
+    expect(arrow.exists()).toBe(true);
+    expect(arrow.attributes('aria-hidden')).toBe('true');
+  });
+});
