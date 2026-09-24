@@ -552,6 +552,26 @@ describe('InputField.vue', () => {
       wrapper.unmount();
     });
 
+    it('stops describing an error as soon as the focused field becomes valid', async () => {
+      // The copy is frozen while focused so a new error is not spoken twice,
+      // but a field the user has just fixed must not keep reporting its old
+      // error to anyone who queries it (PR 910 review). Clearing a
+      // description announces nothing, so this costs no extra speech.
+      const {wrapper, errors} = mountWithLiveErrors();
+      errors.value = ['Required']; // e.g. raised on submit
+      await nextTick();
+      const input = wrapper.find('input');
+      (input.element as HTMLInputElement).focus();
+      await input.trigger('focusin');
+      expect(descriptionText(wrapper)).toBe('Required');
+
+      errors.value = [];
+      await nextTick();
+
+      expect(descriptionText(wrapper)).toBe('');
+      wrapper.unmount();
+    });
+
     it('describes an error that appears while unfocused straight away', async () => {
       // e.g. submit: focus is on the button, not the field
       const {wrapper, errors} = mountWithLiveErrors();
@@ -855,6 +875,20 @@ describe('InputField.vue', () => {
     expect(
       wrapper.find('[role="combobox"]').attributes('aria-labelledby'),
     ).toBe(labelId);
+  });
+
+  it('names a labelled plain input by its own <label>, not an inherited aria-labelledby', () => {
+    // aria-labelledby overrides a native <label for>. Returning the inherited
+    // value here replaced "First Name" with whatever the consumer pointed at,
+    // although the component renders - and owns - the label. (PR 910 review.)
+    const wrapper = mount(InputField, {
+      props: {label: 'First Name', id: 'first-name'},
+      attrs: {'aria-labelledby': 'consumer-label'},
+      global: {provide: {[formKey as symbol]: mockFormAPI}},
+    });
+
+    expect(wrapper.find('input').attributes('aria-labelledby')).toBeUndefined();
+    expect(wrapper.find('label').attributes('for')).toBe('first-name');
   });
 
   it('adds no aria-labelledby when there is neither a label nor an inherited one', () => {

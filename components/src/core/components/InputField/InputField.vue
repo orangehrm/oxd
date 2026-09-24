@@ -238,7 +238,10 @@ export default defineComponent({
     const focused = ref(false);
     const describedMessage = ref(message.value);
     watch(message, value => {
-      if (!focused.value) describedMessage.value = value;
+      // Frozen while focused so a NEW error is not spoken twice - but a field
+      // the user has just made valid must stop reporting its old error at
+      // once. Clearing a description is not announced.
+      if (!focused.value || !value) describedMessage.value = value;
     });
     // Announcing: a screen reader flushes pending live-region output on every
     // keypress (Orca 46: "Interrupting presentation" / "Flushing live region
@@ -376,11 +379,11 @@ export default defineComponent({
       // Same hazard already handled for aria-describedby below.
       const inherited = this.$attrs['aria-labelledby'] as string | undefined;
       if (!this.label) return inherited ?? null;
-      // When this component renders the label it owns the naming, so its own
-      // labelId wins over anything inherited.
-      return this.isGroup || this.isFile || this.isSelect
-        ? this.labelId
-        : inherited ?? null;
+      // When this component renders the label it owns the naming, so nothing
+      // inherited may override it. Groups, file inputs and selects are named
+      // by reference to that label; a plain control is named by its native
+      // <label for>, which an inherited aria-labelledby would override.
+      return this.isGroup || this.isFile || this.isSelect ? this.labelId : null;
     },
     // checkboxgroup/radiogroup/radiopillgroup hand each member its own
     // `${id}_${option.id}`, so no element owns resolvedId. Naming them with
