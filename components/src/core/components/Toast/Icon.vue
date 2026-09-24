@@ -1,5 +1,5 @@
 <template>
-  <div class="oxd-toast-icon-container">
+  <div class="oxd-toast-icon-container" aria-hidden="true">
     <div :class="iconWrapClasses">
       <oxd-icon :name="iconName" class="oxd-toast-icon d-flex align-center" />
     </div>
@@ -14,6 +14,11 @@ import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 
 export default defineComponent({
   name: 'oxd-toast-icon',
+
+  // The icon is drawn as ::before content from a private-use codepoint
+  // (U+F333 for exclamation-circle). Inside the toast's aria-live region
+  // screen readers spoke that codepoint before the message, so the icon is
+  // aria-hidden; the toast title already says what it means. WCAG 1.1.1.
 
   mixins: [toastMixin],
 

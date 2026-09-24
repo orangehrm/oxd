@@ -37,3 +37,17 @@ describe('Toast > CloseButton.vue', () => {
     expect(wrapper.html()).toMatchSnapshot();
   });
 });
+
+describe('Toast > CloseButton.vue accessibility', () => {
+  it('names the close control instead of exposing the "×" glyph', () => {
+    // Orca read the bare "×" as part of the toast announcement. The glyph is
+    // decorative; the control needs a real name.
+    const wrapper = mount(Toast, {props: {type: 'error'}});
+    const button = wrapper.find('[role="button"]');
+
+    expect(button.attributes('aria-label')).toBe('Close');
+    const glyph = button.find('[aria-hidden="true"]');
+    expect(glyph.exists()).toBe(true);
+    expect(glyph.text()).toBe('×');
+  });
+});
