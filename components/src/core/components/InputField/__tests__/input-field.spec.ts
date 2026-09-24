@@ -680,6 +680,34 @@ describe('InputField.vue', () => {
       wrapper.unmount();
     });
 
+    it('announces the same error again when it comes back', async () => {
+      // Measured on the user's own Chrome (AT-SPI log): clear Last Name ->
+      // "Required" announced; type -> valid; clear again -> NOTHING. The
+      // announcer still held "Required", so writing the same text changed
+      // nothing and the screen reader had no change to announce.
+      const {wrapper, errors} = mountLive();
+      await focus(wrapper);
+
+      errors.value = ['Required'];
+      await wrapper.setProps({modelValue: ''});
+      jest.advanceTimersByTime(1000);
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe('Required');
+
+      errors.value = []; // user types: valid
+      await wrapper.setProps({modelValue: 'a'});
+      errors.value = ['Required']; // user clears it again
+      await wrapper.setProps({modelValue: ''});
+      jest.advanceTimersByTime(1000);
+      await nextTick();
+      // emptied first, so the rewrite is a real change
+      expect(announcer(wrapper).text()).toBe('');
+      jest.advanceTimersByTime(150);
+      await nextTick();
+      expect(announcer(wrapper).text()).toBe('Required');
+      wrapper.unmount();
+    });
+
     it('leaves an error raised while unfocused (submit) to the form', async () => {
       // On submit every invalid field got its error at once while focus was
       // on the Apply button, so Orca spoke "Required" alongside the form's

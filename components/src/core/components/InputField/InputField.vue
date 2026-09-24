@@ -98,6 +98,8 @@ import Number from '@orangehrm/oxd/core/components/Input/Number/Number.vue';
 // still read as immediate feedback.
 const ANNOUNCE_AFTER_PAUSE = 1000;
 const ANNOUNCE_CLEAR_AFTER = 5000;
+// long enough to land in a separate accessibility-tree update
+const ANNOUNCE_REWRITE_GAP = 100;
 
 export default defineComponent({
   name: 'oxd-input-field',
@@ -254,15 +256,30 @@ export default defineComponent({
     const announcedMessage = ref<string | null>(null);
     let announceTimer: ReturnType<typeof setTimeout> | undefined;
     let clearTimer: ReturnType<typeof setTimeout> | undefined;
+    let rewriteTimer: ReturnType<typeof setTimeout> | undefined;
+    const write = (value: string | null) => {
+      announcedMessage.value = value;
+      if (value) {
+        clearTimer = setTimeout(() => {
+          announcedMessage.value = null;
+        }, ANNOUNCE_CLEAR_AFTER);
+      }
+    };
     const announceNow = () => {
       clearTimeout(announceTimer);
       announceTimer = undefined;
       clearTimeout(clearTimer);
-      announcedMessage.value = message.value;
-      if (message.value) {
-        clearTimer = setTimeout(() => {
-          announcedMessage.value = null;
-        }, ANNOUNCE_CLEAR_AFTER);
+      clearTimeout(rewriteTimer);
+      const next = message.value;
+      // Writing the text the region already holds is no change at all, so a
+      // screen reader announces nothing - the second "Required" after a
+      // field is fixed and cleared again was lost this way. Empty it first
+      // and write the text a moment later, as a separate update.
+      if (next && next === announcedMessage.value) {
+        announcedMessage.value = null;
+        rewriteTimer = setTimeout(() => write(next), ANNOUNCE_REWRITE_GAP);
+      } else {
+        write(next);
       }
     };
     const scheduleAnnounce = () => {
@@ -284,6 +301,7 @@ export default defineComponent({
     onBeforeUnmount(() => {
       clearTimeout(announceTimer);
       clearTimeout(clearTimer);
+      clearTimeout(rewriteTimer);
     });
 
     const onFocusIn = () => {
