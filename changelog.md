@@ -1,4 +1,4 @@
-2026-10-20 - 30fc31d0d339a7f0adbdfd9340aebe9edcd424ba - components/src/core/components/Icon/icons.ts - Add shift type icon
+2026-10-20 - d51b93ff946d8cc826deb4e10264c3720348ece9 - components/src/core/components/Icon/icons.ts - Add shift type icon
 
 2026-10-08 - 913d066b533711161aebb6dc2cf93204f06a415e - components/src/core/components/Icon/icons.ts - Add oxd-expand-all, oxd-collapse-all icons
 
