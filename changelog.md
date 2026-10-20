@@ -1,3 +1,5 @@
+2026-10-20 - 30fc31d0d339a7f0adbdfd9340aebe9edcd424ba - components/src/core/components/Icon/icons.ts - Add shift type icon
+
 2026-10-08 - 913d066b533711161aebb6dc2cf93204f06a415e - components/src/core/components/Icon/icons.ts - Add oxd-expand-all, oxd-collapse-all icons
 
 2026-09-24 - 6c7e2875aea52ffb63f7c34a02c6cf4c68b5351d - components/src/core/components/Icon/icons.ts - Update oxd-filetype-csv, oxd-filetype-pdf, oxd-filetype-docx and oxd-filetype-xlsx icons to the solid-banner design
