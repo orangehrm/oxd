@@ -3095,7 +3095,7 @@ export const oxdCollapseAll: icon = {
 
 export const oxdShiftType: icon = {
   name: 'oxd-shift-type',
-  value: `<svg viewBox="0 0 19 19" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1.6" y="1.6" width="15.8" height="12.2" rx="3"></rect><path style="fill:currentColor" d="M1.6 10.8v3.6a3 3 0 0 0 3 3h9.8a3 3 0 0 0 3-3v-3.6"></path><path style="fill:currentColor" d="M9.5 10.8V6.4"></path></g><path d="M9.5 3.6 12.3 6.8H6.7z" style="fill:currentColor"></path></svg>`,
+  value: `<svg viewBox="0 0 19 19" xmlns="http://www.w3.org/2000/svg"><g style="fill:none;stroke:currentColor;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round"><rect style="fill:none" x="1.6" y="1.6" width="15.8" height="12.2" rx="3"/><path style="fill:none" d="M1.6 10.8v3.6a3 3 0 0 0 3 3h9.8a3 3 0 0 0 3-3v-3.6"/><path style="fill:none" d="M9.5 10.8V6.4"/></g><path style="fill:currentColor;stroke:none" d="M9.5 3.6 12.3 6.8H6.7z"/></svg>`,
 };
 
 const icons: Icons = {
