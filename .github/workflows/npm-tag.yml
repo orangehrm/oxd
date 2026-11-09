@@ -10,7 +10,7 @@ jobs:
     if: github.repository == 'orangehrm/oxd'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
 
       - name: Check version already published
         run: |
