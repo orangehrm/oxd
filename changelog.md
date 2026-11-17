@@ -1,3 +1,5 @@
+2026-11-17 - 4fb3c5feeec8b44f061e500fcec49baaffc2d306 - components/src/core/components/CardTable/Cell/ProfilePicture.vue - oxd-table-cell-profile-pic: item prop type changed from Object to String (default null). Pass the image URL or data URI; an empty value shows the default avatar.
+
 2026-10-20 - d51b93ff946d8cc826deb4e10264c3720348ece9 - components/src/core/components/Icon/icons.ts - Add shift type icon
 
 2026-10-08 - 913d066b533711161aebb6dc2cf93204f06a415e - components/src/core/components/Icon/icons.ts - Add oxd-expand-all, oxd-collapse-all icons
