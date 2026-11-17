@@ -53,8 +53,8 @@ export default defineComponent({
   },
   props: {
     item: {
-      type: Object,
-      default: () => ({}),
+      type: String,
+      default: null,
     },
     link: {
       type: String,
@@ -158,7 +158,7 @@ export default defineComponent({
     };
 
     watchEffect(async () => {
-      imgSrc.value = await loadImage(props.item as string);
+      imgSrc.value = await loadImage(props.item);
     });
 
     return {

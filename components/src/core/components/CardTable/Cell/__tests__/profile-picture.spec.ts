@@ -1,5 +1,6 @@
-import {mount} from '@vue/test-utils';
+import {flushPromises, mount} from '@vue/test-utils';
 import ProfilePicture from '@orangehrm/oxd/core/components/CardTable/Cell/ProfilePicture.vue';
+import {defaultUser} from '@orangehrm/oxd/core/components/ProfilePic/images';
 import {DEVICE_LG} from '@orangehrm/oxd/composables/useResponsive';
 import {nextTick} from 'vue';
 
@@ -43,5 +44,53 @@ describe('CardTable > Cell > ProfilePicture.vue', () => {
     });
     await nextTick();
     expect(wrapper.html()).toMatchSnapshot();
+  });
+
+  describe('item prop', () => {
+    let warnSpy: jest.SpyInstance;
+
+    const invalidPropWarnings = () =>
+      warnSpy.mock.calls.filter(args =>
+        String(args[0]).includes('Invalid prop'),
+      );
+
+    const renderedImage = (wrapper: ReturnType<typeof mount>) =>
+      wrapper.find('.img-tag').attributes('style');
+
+    beforeEach(() => {
+      warnSpy = jest.spyOn(console, 'warn').mockImplementation();
+    });
+
+    afterEach(() => {
+      warnSpy.mockRestore();
+    });
+
+    it('accepts an image URL string without a prop warning and renders it', async () => {
+      const wrapper = mount(ProfilePicture, {
+        global: GLOBAL,
+        props: {item: imgSrc},
+      });
+      await flushPromises();
+
+      expect(invalidPropWarnings()).toEqual([]);
+      expect(renderedImage(wrapper)).toBe(`background-image: url(${imgSrc});`);
+    });
+
+    it.each([
+      ['missing', {}],
+      ['null', {item: null}],
+      ['an empty string', {item: ''}],
+    ])(
+      'renders the default avatar without a prop warning when item is %s',
+      async (_label, props) => {
+        const wrapper = mount(ProfilePicture, {global: GLOBAL, props});
+        await flushPromises();
+
+        expect(invalidPropWarnings()).toEqual([]);
+        expect(renderedImage(wrapper)).toBe(
+          `background-image: url(${defaultUser.value});`,
+        );
+      },
+    );
   });
 });
