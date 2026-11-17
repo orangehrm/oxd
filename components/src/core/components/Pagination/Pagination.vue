@@ -10,6 +10,8 @@
         v-if="pageItems.indexOf(1) === -1"
         :page="1"
         :selected="1 === currentPage"
+        :marked="isMarked(1)"
+        :marked-label="markedPageLabel"
         @click="onClickPage(1, $event)"
       />
       <span
@@ -23,6 +25,8 @@
         :key="page"
         :page="page"
         :selected="page === currentPage"
+        :marked="isMarked(page)"
+        :marked-label="markedPageLabel"
         @click="onClickPage(page, $event)"
       />
       <span
@@ -38,6 +42,8 @@
         v-if="!(pageItems[pageItems.length - 1] === length)"
         :page="length"
         :selected="length === currentPage"
+        :marked="isMarked(length)"
+        :marked-label="markedPageLabel"
         @click="onClickPage(length, $event)"
       />
       <oxd-pagination-page-item next @click="onClickNext" v-if="showNext" />
@@ -108,6 +114,15 @@ export default defineComponent({
     perPage: {
       type: Number as PropType<number>,
       default: () => 20,
+    },
+    // Page numbers that get a dot, e.g. pages holding selected rows.
+    markedPages: {
+      type: Array as PropType<number[]>,
+      default: () => [],
+    },
+    // Screen-reader text for a marked page; PageItem's default is used when unset.
+    markedPageLabel: {
+      type: String,
     },
   },
 
@@ -196,6 +211,9 @@ export default defineComponent({
   },
 
   methods: {
+    isMarked(page: number): boolean {
+      return this.markedPages.includes(page);
+    },
     onClickPrevious(e: Event) {
       this.currentPage--;
       this.$emit('update:current', this.currentPage);
