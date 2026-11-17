@@ -90,6 +90,21 @@ export default defineComponent({
       type: Array as PropType<number[]>,
       default: () => [],
     },
+    selectionMode: {
+      type: String as PropType<'index' | 'property'>,
+      default: 'index',
+      validator: (value: string) => ['index', 'property'].includes(value),
+    },
+    selectionProperty: {
+      type: String,
+      default: 'id',
+    },
+    // Keep `selected` when the items or loading state change. Pair it with
+    // selectionMode 'property' so rows are matched by key, not by position.
+    preserveSelection: {
+      type: Boolean,
+      default: false,
+    },
     decorator: {
       type: String,
       default: 'oxd-table-decorator-card',
@@ -136,6 +151,7 @@ export default defineComponent({
     watch(
       () => props.loading,
       () => {
+        if (props.preserveSelection) return;
         context.emit('update:selected', []);
       },
     );
@@ -143,6 +159,7 @@ export default defineComponent({
     watch(
       () => props.items,
       () => {
+        if (props.preserveSelection) return;
         context.emit('update:selected', []);
       },
     );
