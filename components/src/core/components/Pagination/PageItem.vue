@@ -1,6 +1,6 @@
 <template>
   <li>
-    <button type="button" :class="classes">
+    <button type="button" :class="classes" :aria-label="ariaLabel">
       <oxd-icon v-if="previous" name="chevron-left" />
       <oxd-icon v-else-if="next" name="chevron-right" />
       <template v-else>{{ page }}</template>
@@ -12,6 +12,7 @@
 import {defineComponent} from 'vue';
 import Icon from '@orangehrm/oxd/core/components/Icon/Icon.vue';
 import {pageableMixin} from '../../../mixins/pageable';
+import translateMixin from '../../../mixins/translate';
 
 export default defineComponent({
   name: 'oxd-pagination-page-item',
@@ -20,7 +21,7 @@ export default defineComponent({
     'oxd-icon': Icon,
   },
 
-  mixins: [pageableMixin],
+  mixins: [pageableMixin, translateMixin],
 
   props: {
     previous: {
@@ -32,6 +33,14 @@ export default defineComponent({
     selected: {
       type: Boolean,
     },
+    marked: {
+      type: Boolean,
+      default: false,
+    },
+    markedLabel: {
+      type: String,
+      default: 'Marked',
+    },
   },
 
   computed: {
@@ -41,7 +50,13 @@ export default defineComponent({
         'oxd-pagination-page-item--page': !(this.previous || this.next),
         'oxd-pagination-page-item--page-selected': this.selected,
         'oxd-pagination-page-item--previous-next': this.previous || this.next,
+        'oxd-pagination-page-item--marked': this.marked,
       };
+    },
+    ariaLabel(): string | undefined {
+      return this.marked
+        ? `${this.page}, ${this.$vt(this.markedLabel)}`
+        : undefined;
     },
   },
 });

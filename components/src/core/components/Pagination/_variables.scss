@@ -11,3 +11,7 @@ $oxd-pagination-page-item--page-selected-bg-color: $oxd-background-light-gray-co
 $oxd-pagination-page-item--page-hover-font-color: $oxd-white-color !default;
 $oxd-pagination-page-item--page-hover-bg-color: $oxd-primary-one-color !default;
 $oxd-pagination-page-item--previous-next-hover-bg-color: $oxd-background-light-gray-color !default;
+$oxd-pagination-page-item-mark-size: 5px !default;
+$oxd-pagination-page-item-mark-offset: 3px !default;
+// Dark enough for 3:1 contrast on the white, selected and hover backgrounds.
+$oxd-pagination-page-item-mark-color: $oxd-interface-gray-darken-2-color !default;
