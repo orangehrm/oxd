@@ -94,17 +94,30 @@ export default defineComponent({
 
     const isKeyedSelection = () => tableProps.selectionMode === 'property';
 
+    // Keys of this page's rows the user can tick; a disabled row checkbox can't be ticked.
+    const pageKeys = computed(() =>
+      tableProps.items
+        .filter(
+          (item: RowItem) => isSelectableRow(item) && !item.isSelectDisabled,
+        )
+        .map((item: RowItem) => item[tableProps.selectionProperty]),
+    );
+
     // Keyed selection may hold rows from other pages, so only this page's rows count.
     const getPageSelectionState = (selectedItems: Array<number>) => {
-      const keys = tableProps.items
-        .filter(isSelectableRow)
-        .map((item: RowItem) => item[tableProps.selectionProperty]);
-      const selectedCount = keys.filter(key => selectedItems.includes(key))
+      const selected = new Set(selectedItems);
+      const selectedCount = pageKeys.value.filter(key => selected.has(key))
         .length;
       return {
         selectedAll: selectedCount > 0,
-        checkIcon: selectedCount === keys.length ? 'oxd-check' : 'dash',
+        checkIcon:
+          selectedCount === pageKeys.value.length ? 'oxd-check' : 'dash',
       };
+    };
+
+    const sameKeys = (a: Array<number>, b: Array<number>) => {
+      const keys = new Set(a);
+      return a.length === b.length && b.every(key => keys.has(key));
     };
 
     const allSelectDisabled = computed(() => {
@@ -140,7 +153,13 @@ export default defineComponent({
     watch(
       () => state.checkedItems,
       newVal => {
-        emitter.emit(`${tableProps.tableId}-datatable:updateSelected`, newVal);
+        // A keyed selection copied from the parent isn't sent back to it.
+        if (!isKeyedSelection() || !sameKeys(newVal, tableProps.selected)) {
+          emitter.emit(
+            `${tableProps.tableId}-datatable:updateSelected`,
+            newVal,
+          );
+        }
         if (isKeyedSelection()) {
           Object.assign(state, getPageSelectionState(newVal));
         } else if (tableProps.items.length > 0 && newVal.length > 0) {
@@ -153,15 +172,22 @@ export default defineComponent({
       {deep: true},
     );
 
-    // Rows can change while the header stays mounted, e.g. paging without a loader.
+    // The parent can change a keyed selection too, e.g. clear it or add rows from other pages.
     watch(
-      () => tableProps.items,
-      () => {
-        if (isKeyedSelection()) {
-          Object.assign(state, getPageSelectionState(state.checkedItems));
+      () => tableProps.selected,
+      selected => {
+        if (isKeyedSelection() && !sameKeys(selected, state.checkedItems)) {
+          state.checkedItems = [...selected];
         }
       },
     );
+
+    // Rows can change while the header stays mounted: paging without a loader, or edits in place.
+    watch(pageKeys, () => {
+      if (isKeyedSelection()) {
+        Object.assign(state, getPageSelectionState(state.checkedItems));
+      }
+    });
 
     const showHeader = computed(() => {
       return (

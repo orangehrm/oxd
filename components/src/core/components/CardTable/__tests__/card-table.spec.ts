@@ -1,4 +1,4 @@
-import {ComponentPublicInstance} from 'vue';
+import {ComponentPublicInstance, reactive} from 'vue';
 import {flushPromises, mount, VueWrapper} from '@vue/test-utils';
 import CardTable from '@orangehrm/oxd/core/components/CardTable/CardTable.vue';
 import DefaultCardHeader from '@orangehrm/oxd/core/components/CardTable/Header/DefaultCardHeader.vue';
@@ -285,6 +285,58 @@ describe('CardTable > CardTable.vue > selection when rows change', () => {
         items: [{id: 1}, {id: 2, isSelectable: false}],
         selected: [1],
       });
+      expect(headerState(wrapper)).toEqual({checked: true, icon: 'oxd-check'});
+    });
+
+    it('ignores rows whose checkbox is disabled when setting the header state', async () => {
+      const wrapper = await mountTable({
+        ...keyed,
+        items: [{id: 1}, {id: 2, isSelectDisabled: true}],
+        selected: [1],
+      });
+      expect(headerState(wrapper)).toEqual({checked: true, icon: 'oxd-check'});
+    });
+
+    it('starts from the new selection when the parent clears it', async () => {
+      const wrapper = await mountTable({...keyed, selected: [5, 1]});
+      await wrapper.setProps({selected: []});
+      await rowCheckboxes(wrapper)[1].setValue(true);
+      expect(lastSelected(wrapper)).toEqual([2]);
+    });
+
+    it('keeps rows the parent selected when a row is unticked', async () => {
+      const wrapper = await mountTable(keyed);
+      await wrapper.setProps({selected: [4, 5, 1, 2]});
+      await rowCheckboxes(wrapper)[0].setValue(false);
+      expect(lastSelected(wrapper)).toEqual([4, 5, 2]);
+      expect(headerState(wrapper)).toEqual({checked: true, icon: 'dash'});
+    });
+
+    it('does not emit the selection back when only the parent changed it', async () => {
+      const wrapper = await mountTable(keyed);
+      await wrapper.setProps({selected: [4, 5, 1, 2, 3]});
+      await flushPromises();
+      expect(wrapper.emitted('update:selected')).toBeUndefined();
+      expect(headerState(wrapper)).toEqual({checked: true, icon: 'oxd-check'});
+    });
+
+    it('updates the header when rows are removed in place', async () => {
+      const items = reactive([{id: 1}, {id: 2}]);
+      const wrapper = await mountTable({...keyed, items, selected: [1]});
+      expect(headerState(wrapper).icon).toBe('dash');
+      items.splice(1, 1);
+      await flushPromises();
+      expect(headerState(wrapper)).toEqual({checked: true, icon: 'oxd-check'});
+    });
+
+    it('updates the header when a row checkbox is disabled in place', async () => {
+      const items = reactive<Array<{id: number; isSelectDisabled?: boolean}>>([
+        {id: 1},
+        {id: 2},
+      ]);
+      const wrapper = await mountTable({...keyed, items, selected: [1]});
+      items[1].isSelectDisabled = true;
+      await flushPromises();
       expect(headerState(wrapper)).toEqual({checked: true, icon: 'oxd-check'});
     });
   });
