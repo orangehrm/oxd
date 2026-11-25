@@ -61,9 +61,5 @@
       background-color: $oxd-pagination-page-item-mark-color;
       transform: translateX(-50%);
     }
-
-    &:hover::after {
-      background-color: $oxd-pagination-page-item--page-hover-font-color;
-    }
   }
 }
