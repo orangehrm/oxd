@@ -166,5 +166,19 @@ describe('Pageination.vue', () => {
       await wrapper.setProps({markedPages: [3, 20]});
       expect(markedPageNumbers(wrapper)).toEqual([3, 20]);
     });
+
+    it('marks no page when markedPages is null', () => {
+      const wrapper = mount(Pagination, {
+        props: {length: 20, markedPages: null},
+      });
+      expect(markedPageNumbers(wrapper)).toEqual([]);
+    });
+
+    it('marks pages given as numeric strings', () => {
+      const wrapper = mount(Pagination, {
+        props: {length: 20, markedPages: ['2', '20']},
+      });
+      expect(markedPageNumbers(wrapper)).toEqual([2, 20]);
+    });
   });
 });
