@@ -37,7 +37,15 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, reactive, watch, toRefs, inject, computed} from 'vue';
+import {
+  defineComponent,
+  reactive,
+  watch,
+  toRefs,
+  inject,
+  computed,
+  onBeforeUnmount,
+} from 'vue';
 import emitter from '../../../../utils/emitter';
 import TableHeader from '@orangehrm/oxd/core/components/CardTable/Table/TableHeader.vue';
 import TableRow from '@orangehrm/oxd/core/components/CardTable/Table/TableRow.vue';
@@ -120,9 +128,7 @@ export default defineComponent({
       return a.length === b.length && b.every(key => keys.has(key));
     };
 
-    const allSelectDisabled = computed(() => {
-      return tableProps.items.every(item => item.isSelectDisabled === true);
-    });
+    const allSelectDisabled = computed(() => pageKeys.value.length === 0);
 
     const state: State = reactive({
       checkIcon: 'oxd-check',
@@ -136,18 +142,33 @@ export default defineComponent({
       Object.assign(state, getPageSelectionState(state.checkedItems));
     }
 
-    emitter.on(`${tableProps.tableId}-datatable:rowSelected`, value => {
+    const onRowSelected = (value: number) => {
       const itemIndex = state.checkedItems.findIndex(item => item === value);
       if (itemIndex === -1) {
         state.checkedItems.push(value);
       }
-    });
+    };
 
-    emitter.on(`${tableProps.tableId}-datatable:rowUnselected`, value => {
+    const onRowUnselected = (value: number) => {
       const itemIndex = state.checkedItems.findIndex(item => item === value);
       if (itemIndex > -1) {
         state.checkedItems.splice(itemIndex, 1);
       }
+    };
+
+    emitter.on(`${tableProps.tableId}-datatable:rowSelected`, onRowSelected);
+    emitter.on(
+      `${tableProps.tableId}-datatable:rowUnselected`,
+      onRowUnselected,
+    );
+
+    // The header remounts on every load, so it must not leave its listeners behind.
+    onBeforeUnmount(() => {
+      emitter.off(`${tableProps.tableId}-datatable:rowSelected`, onRowSelected);
+      emitter.off(
+        `${tableProps.tableId}-datatable:rowUnselected`,
+        onRowUnselected,
+      );
     });
 
     watch(
@@ -155,9 +176,10 @@ export default defineComponent({
       newVal => {
         // A keyed selection copied from the parent isn't sent back to it.
         if (!isKeyedSelection() || !sameKeys(newVal, tableProps.selected)) {
+          // Keyed mode sends a copy, so the parent never holds the array this header keeps changing.
           emitter.emit(
             `${tableProps.tableId}-datatable:updateSelected`,
-            newVal,
+            isKeyedSelection() ? [...newVal] : newVal,
           );
         }
         if (isKeyedSelection()) {
@@ -180,6 +202,8 @@ export default defineComponent({
           state.checkedItems = [...selected];
         }
       },
+      // Deep, so in-place edits like selected.splice(0) are seen too.
+      {deep: true},
     );
 
     // Rows can change while the header stays mounted: paging without a loader, or edits in place.

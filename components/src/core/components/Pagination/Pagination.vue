@@ -117,7 +117,7 @@ export default defineComponent({
     },
     // Page numbers that get a dot, e.g. pages holding selected rows.
     markedPages: {
-      type: Array as PropType<number[]>,
+      type: Array as PropType<Array<number | string>>,
       default: () => [],
     },
     // Screen-reader text for a marked page; PageItem's default is used when unset.
@@ -212,7 +212,8 @@ export default defineComponent({
 
   methods: {
     isMarked(page: number): boolean {
-      return this.markedPages.includes(page);
+      // null is allowed until the data loads; numeric strings count too.
+      return (this.markedPages ?? []).some(p => Number(p) === page);
     },
     onClickPrevious(e: Event) {
       this.currentPage--;
