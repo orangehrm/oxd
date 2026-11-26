@@ -166,7 +166,7 @@ export default defineComponent({
 
     onBeforeUnmount(() => {
       emitter.all.forEach((...[, key]) => {
-        if ((key as string).substr(0, 8) === props.tableId) {
+        if ((key as string).startsWith(`${props.tableId}-datatable:`)) {
           emitter.all.delete(key);
         }
       });

@@ -3,6 +3,7 @@ import {flushPromises, mount, VueWrapper} from '@vue/test-utils';
 import CardTable from '@orangehrm/oxd/core/components/CardTable/CardTable.vue';
 import DefaultCardHeader from '@orangehrm/oxd/core/components/CardTable/Header/DefaultCardHeader.vue';
 import CheckboxInput from '@orangehrm/oxd/core/components/Input/CheckboxInput.vue';
+import emitter from '../../../../utils/emitter';
 
 const DUMMY_DATA = {
   selector: {
@@ -152,11 +153,18 @@ describe('CardTable > CardTable.vue > selection when rows change', () => {
     };
   };
 
-  // Copied, because the table keeps mutating the array it emitted.
   const lastSelected = (wrapper: TableWrapper) => {
     const events = wrapper.emitted('update:selected') as number[][][];
-    return [...events[events.length - 1][0]];
+    return events[events.length - 1][0];
   };
+
+  const listenerCount = (tableId: string, event: string) =>
+    emitter.all.get(`${tableId}-datatable:${event}`)?.length ?? 0;
+
+  const tableKeys = (tableId: string) =>
+    [...emitter.all.keys()].filter(key =>
+      (key as string).startsWith(`${tableId}-datatable:`),
+    );
 
   describe('by default', () => {
     it('clears the selection when the items change', async () => {
@@ -235,6 +243,7 @@ describe('CardTable > CardTable.vue > selection when rows change', () => {
       expect(headerState(wrapper).checked).toBe(false);
 
       await rowCheckboxes(wrapper)[1].setValue(true);
+      expect(wrapper.emitted('update:selected')).toHaveLength(2);
       expect(lastSelected(wrapper)).toEqual([2, 5]);
 
       await changePage(wrapper, pageOne);
@@ -329,6 +338,58 @@ describe('CardTable > CardTable.vue > selection when rows change', () => {
       expect(headerState(wrapper)).toEqual({checked: true, icon: 'oxd-check'});
     });
 
+    it('emits every change when the parent keeps the emitted array', async () => {
+      const wrapper = await mountTable(keyed);
+      await rowCheckboxes(wrapper)[0].setValue(true);
+      await rowCheckboxes(wrapper)[1].setValue(true);
+      await rowCheckboxes(wrapper)[0].setValue(false);
+      expect(wrapper.emitted('update:selected')).toEqual([
+        [[1]],
+        [[1, 2]],
+        [[2]],
+      ]);
+    });
+
+    it('sees the parent changing its selection in place', async () => {
+      const selected = reactive<number[]>([]);
+      const wrapper = await mountTable({
+        ...keyed,
+        selected,
+        'onUpdate:selected': (keys: number[]) =>
+          selected.splice(0, selected.length, ...keys),
+      });
+      await rowCheckboxes(wrapper)[1].setValue(true);
+      await changePage(wrapper, pageTwo);
+      selected.splice(0);
+      await flushPromises();
+      await rowCheckboxes(wrapper)[0].setValue(true);
+      expect(lastSelected(wrapper)).toEqual([4]);
+    });
+
+    it('removes the header listeners when the header unmounts', async () => {
+      const wrapper = await mountTable(keyed);
+      const tableId = wrapper.props('tableId') as string;
+      const selected = listenerCount(tableId, 'rowSelected');
+      const unselected = listenerCount(tableId, 'rowUnselected');
+
+      await changePage(wrapper, pageTwo);
+      await changePage(wrapper, pageOne);
+
+      expect(listenerCount(tableId, 'rowSelected')).toBe(selected);
+      expect(listenerCount(tableId, 'rowUnselected')).toBe(unselected);
+    });
+
+    it('disables the header checkbox when no row on the page can be selected', async () => {
+      const wrapper = await mountTable({
+        ...keyed,
+        items: [
+          {id: 1, isSelectable: false},
+          {id: 2, isDisabled: true},
+        ],
+      });
+      expect(headerCheckbox(wrapper).attributes('disabled')).toBeDefined();
+    });
+
     it('updates the header when a row checkbox is disabled in place', async () => {
       const items = reactive<Array<{id: number; isSelectDisabled?: boolean}>>([
         {id: 1},
@@ -338,6 +399,34 @@ describe('CardTable > CardTable.vue > selection when rows change', () => {
       items[1].isSelectDisabled = true;
       await flushPromises();
       expect(headerState(wrapper)).toEqual({checked: true, icon: 'oxd-check'});
+    });
+  });
+
+  it('disables the header checkbox in index mode when no row can be selected', async () => {
+    const wrapper = await mountTable({
+      items: [
+        {id: 1, isSelectable: false},
+        {id: 2, isDisabled: true},
+      ],
+    });
+    expect(headerCheckbox(wrapper).attributes('disabled')).toBeDefined();
+  });
+
+  describe('when the table unmounts', () => {
+    it('removes the listeners of a table with a custom id', async () => {
+      const wrapper = await mountTable({tableId: 'leave-list'});
+      expect(tableKeys('leave-list')).not.toEqual([]);
+      wrapper.unmount();
+      expect(tableKeys('leave-list')).toEqual([]);
+    });
+
+    it('keeps the listeners of a table whose id starts with the same text', async () => {
+      const longer = await mountTable({tableId: 'abcdefgh2'});
+      const keys = tableKeys('abcdefgh2');
+      const shorter = await mountTable({tableId: 'abcdefgh'});
+      shorter.unmount();
+      expect(tableKeys('abcdefgh2')).toEqual(keys);
+      longer.unmount();
     });
   });
 });
