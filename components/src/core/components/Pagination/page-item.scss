@@ -46,4 +46,20 @@
       background-color: $oxd-pagination-page-item--page-hover-bg-color;
     }
   }
+
+  &--marked {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: $oxd-pagination-page-item-mark-offset;
+      width: $oxd-pagination-page-item-mark-size;
+      height: $oxd-pagination-page-item-mark-size;
+      border-radius: 50%;
+      background-color: $oxd-pagination-page-item-mark-color;
+      transform: translateX(-50%);
+    }
+  }
 }
