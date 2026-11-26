@@ -1,3 +1,5 @@
+2026-11-17 - e9f5adbbceb3c3d5a8f55dae5de1870716300afb - components/src/core/components/Pagination/Pagination.vue, components/src/core/components/Pagination/PageItem.vue, components/src/core/components/Pagination/page-item.scss - Add markedPages prop to mark page numbers with a dot and an accessible label
+
 2026-11-17 - 4fb3c5feeec8b44f061e500fcec49baaffc2d306 - components/src/core/components/CardTable/Cell/ProfilePicture.vue - oxd-table-cell-profile-pic: item prop type changed from Object to String (default null). Pass the image URL or data URI; an empty value shows the default avatar.
 
 2026-10-20 - d51b93ff946d8cc826deb4e10264c3720348ece9 - components/src/core/components/Icon/icons.ts - Add shift type icon
