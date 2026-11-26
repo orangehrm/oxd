@@ -37,7 +37,15 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, reactive, watch, toRefs, inject, computed} from 'vue';
+import {
+  defineComponent,
+  reactive,
+  watch,
+  toRefs,
+  inject,
+  computed,
+  onBeforeUnmount,
+} from 'vue';
 import emitter from '../../../../utils/emitter';
 import TableHeader from '@orangehrm/oxd/core/components/CardTable/Table/TableHeader.vue';
 import TableRow from '@orangehrm/oxd/core/components/CardTable/Table/TableRow.vue';
@@ -74,25 +82,53 @@ export default defineComponent({
     const screenState: any = inject('screenState');
     /* eslint-enable @typescript-eslint/no-explicit-any */
 
+    const isSelectableRow = (item: RowItem) => {
+      return (
+        (!Object.prototype.hasOwnProperty.call(item, 'isSelectable') ||
+          item.isSelectable) &&
+        (!Object.prototype.hasOwnProperty.call(item, 'isDisabled') ||
+          !item.isDisabled)
+      );
+    };
+
     const getCheckIcon = (
       selectedItems: Array<number>,
       allItems: Array<RowItem>,
     ) => {
-      return allItems.filter((item: RowItem) => {
-        return (
-          (!Object.prototype.hasOwnProperty.call(item, 'isSelectable') ||
-            item.isSelectable) &&
-          (!Object.prototype.hasOwnProperty.call(item, 'isDisabled') ||
-            !item.isDisabled)
-        );
-      }).length === selectedItems.length
+      return allItems.filter(isSelectableRow).length === selectedItems.length
         ? 'oxd-check'
         : 'dash';
     };
 
-    const allSelectDisabled = computed(() => {
-      return tableProps.items.every(item => item.isSelectDisabled === true);
-    });
+    const isKeyedSelection = () => tableProps.selectionMode === 'property';
+
+    // Keys of this page's rows the user can tick; a disabled row checkbox can't be ticked.
+    const pageKeys = computed(() =>
+      tableProps.items
+        .filter(
+          (item: RowItem) => isSelectableRow(item) && !item.isSelectDisabled,
+        )
+        .map((item: RowItem) => item[tableProps.selectionProperty]),
+    );
+
+    // Keyed selection may hold rows from other pages, so only this page's rows count.
+    const getPageSelectionState = (selectedItems: Array<number>) => {
+      const selected = new Set(selectedItems);
+      const selectedCount = pageKeys.value.filter(key => selected.has(key))
+        .length;
+      return {
+        selectedAll: selectedCount > 0,
+        checkIcon:
+          selectedCount === pageKeys.value.length ? 'oxd-check' : 'dash',
+      };
+    };
+
+    const sameKeys = (a: Array<number>, b: Array<number>) => {
+      const keys = new Set(a);
+      return a.length === b.length && b.every(key => keys.has(key));
+    };
+
+    const allSelectDisabled = computed(() => pageKeys.value.length === 0);
 
     const state: State = reactive({
       checkIcon: 'oxd-check',
@@ -102,25 +138,53 @@ export default defineComponent({
         tableProps.selected.length === tableProps.items.length,
     });
 
-    emitter.on(`${tableProps.tableId}-datatable:rowSelected`, value => {
+    if (isKeyedSelection()) {
+      Object.assign(state, getPageSelectionState(state.checkedItems));
+    }
+
+    const onRowSelected = (value: number) => {
       const itemIndex = state.checkedItems.findIndex(item => item === value);
       if (itemIndex === -1) {
         state.checkedItems.push(value);
       }
-    });
+    };
 
-    emitter.on(`${tableProps.tableId}-datatable:rowUnselected`, value => {
+    const onRowUnselected = (value: number) => {
       const itemIndex = state.checkedItems.findIndex(item => item === value);
       if (itemIndex > -1) {
         state.checkedItems.splice(itemIndex, 1);
       }
+    };
+
+    emitter.on(`${tableProps.tableId}-datatable:rowSelected`, onRowSelected);
+    emitter.on(
+      `${tableProps.tableId}-datatable:rowUnselected`,
+      onRowUnselected,
+    );
+
+    // The header remounts on every load, so it must not leave its listeners behind.
+    onBeforeUnmount(() => {
+      emitter.off(`${tableProps.tableId}-datatable:rowSelected`, onRowSelected);
+      emitter.off(
+        `${tableProps.tableId}-datatable:rowUnselected`,
+        onRowUnselected,
+      );
     });
 
     watch(
       () => state.checkedItems,
       newVal => {
-        emitter.emit(`${tableProps.tableId}-datatable:updateSelected`, newVal);
-        if (tableProps.items.length > 0 && newVal.length > 0) {
+        // A keyed selection copied from the parent isn't sent back to it.
+        if (!isKeyedSelection() || !sameKeys(newVal, tableProps.selected)) {
+          // Keyed mode sends a copy, so the parent never holds the array this header keeps changing.
+          emitter.emit(
+            `${tableProps.tableId}-datatable:updateSelected`,
+            isKeyedSelection() ? [...newVal] : newVal,
+          );
+        }
+        if (isKeyedSelection()) {
+          Object.assign(state, getPageSelectionState(newVal));
+        } else if (tableProps.items.length > 0 && newVal.length > 0) {
           state.selectedAll = true;
           state.checkIcon = getCheckIcon(newVal, tableProps.items);
         } else {
@@ -129,6 +193,25 @@ export default defineComponent({
       },
       {deep: true},
     );
+
+    // The parent can change a keyed selection too, e.g. clear it or add rows from other pages.
+    watch(
+      () => tableProps.selected,
+      selected => {
+        if (isKeyedSelection() && !sameKeys(selected, state.checkedItems)) {
+          state.checkedItems = [...selected];
+        }
+      },
+      // Deep, so in-place edits like selected.splice(0) are seen too.
+      {deep: true},
+    );
+
+    // Rows can change while the header stays mounted: paging without a loader, or edits in place.
+    watch(pageKeys, () => {
+      if (isKeyedSelection()) {
+        Object.assign(state, getPageSelectionState(state.checkedItems));
+      }
+    });
 
     const showHeader = computed(() => {
       return (
